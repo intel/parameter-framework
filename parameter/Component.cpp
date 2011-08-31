@@ -32,7 +32,7 @@
 #include "ComponentLibrary.h"
 #include "Mapper.h"
 
-#define base CParameterBlock
+#define base CInstanceConfigurableElement
 
 CComponent::CComponent(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
 {

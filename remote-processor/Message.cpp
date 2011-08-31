@@ -236,7 +236,7 @@ bool CMessage::serialize(CSocket* pSocket, bool bOut)
 // Checksum
 uint8_t CMessage::computeChecksum() const
 {
-    uint8_t uiChecksum = (_ucMsgId & 0xFF) + (_ucMsgId >> 8);
+    uint8_t uiChecksum = _ucMsgId;
 
     uint32_t uiIndex;
 

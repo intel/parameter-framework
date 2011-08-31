@@ -24,7 +24,6 @@ LOCAL_SRC_FILES:= \
         SelectionCriteriaDefinition.cpp \
         SelectionCriterionType.cpp \
         ElementLibrary.cpp \
-        SelectionCriterionDefinition.cpp \
         SubsystemElementBuilder.cpp \
         SubsystemLibrary.cpp \
         SelectionCriterion.cpp \
@@ -83,7 +82,8 @@ LOCAL_SRC_FILES:= \
         MappingContext.cpp \
         SubsystemObject.cpp \
         SubsystemObjectCreator.cpp \
-        BaseParameter.cpp
+        BaseParameter.cpp \
+        AutoLock.cpp
 
 
 LOCAL_MODULE:= libparameter

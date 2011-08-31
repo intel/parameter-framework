@@ -30,9 +30,9 @@
  */
 #pragma once
 
-#include "ParameterBlock.h"
+#include "InstanceConfigurableElement.h"
 
-class CComponent : public CParameterBlock
+class CComponent : public CInstanceConfigurableElement
 {
 public:
     CComponent(const string& strName, const CTypeElement* pTypeElement);

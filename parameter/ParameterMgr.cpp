@@ -39,7 +39,6 @@
 #include "KindElementBuilderTemplate.h"
 #include "ElementBuilderTemplate.h"
 #include "SelectionCriterionType.h"
-#include "SelectionCriterionDefinition.h"
 #include "SubsystemElementBuilder.h"
 #include "SelectionCriteria.h"
 #include "ComponentType.h"
@@ -71,6 +70,7 @@
 #include "SelectionCriterionRule.h"
 #include "SimulatedBackSynchronizer.h"
 #include "HardwareBackSynchronizer.h"
+#include "AutoLock.h"
 #include <strings.h>
 #include <dlfcn.h>
 #include <assert.h>
@@ -120,7 +120,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gaRemoteCommandPars
     { "getAutoSync", &CParameterMgr::getAutoSyncCommmandProcess, 0, "", "Show Auto Sync state" },
     { "sync", &CParameterMgr::syncCommmandProcess, 0, "", "Synchronize current settings to hardware while in Tuning Mode and Auto Sync off" },
     /// Criteria
-    { "listCriteria", &CParameterMgr::listCriteriaCommmandProcess, 0, "", "List available selection criteria" },
+    { "listCriteria", &CParameterMgr::listCriteriaCommmandProcess, 0, "", "List selection criteria" },
     /// Domains
     { "listDomains", &CParameterMgr::listDomainsCommmandProcess, 0, "", "List configurable domains" },
     { "createDomain", &CParameterMgr::createDomainCommmandProcess, 1, "<domain>", "Create new configurable domain" },
@@ -143,9 +143,9 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gaRemoteCommandPars
     { "dumpElement", &CParameterMgr::dumpElementCommmandProcess, 1, "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommmandProcess, 1, "<elem path>", "Show size of element at given path" },
     { "showProperties", &CParameterMgr::showPropertiesCommmandProcess, 1, "<elem path>", "Show properties of element at given path" },
-    { "getParameter", &CParameterMgr::getParameterCommmandProcess, 1, "<param ath>", "Get value for parameter at given path" },
+    { "getParameter", &CParameterMgr::getParameterCommmandProcess, 1, "<param path>", "Get value for parameter at given path" },
     { "setParameter", &CParameterMgr::setParameterCommmandProcess, 2, "<param path> <value>", "Set value for parameter at given path" },
-    { "listBelongingDomains", &CParameterMgr::listBelongingDomainsCommmandProcess, 1, "<elem path>", "List domain(s) element at given path is contained in" },
+    { "listBelongingDomains", &CParameterMgr::listBelongingDomainsCommmandProcess, 1, "<elem path>", "List domain(s) element at given path belongs to" },
     { "listAssociatedDomains", &CParameterMgr::listAssociatedDomainsCommmandProcess, 1, "<elem path>", "List domain(s) element at given path is associated to" },
     /// Browse
     { "listAssociatedElements", &CParameterMgr::listAssociatedElementsCommmandProcess, 0, "", "List element sub-trees associated to at least one configurable domain" },
@@ -273,16 +273,41 @@ bool CParameterMgr::load(string& strError)
         return false;
     }
 
-    // All is loaded, we're ready to observe selection criteria events
-    getSelectionCriteria()->setObserver(this);
+    // Back synchronization for areas in parameter blackboard not covered by any domain
+    CBackSynchronizer* pBackSynchronizer = createBackSynchronizer(strError);
 
-    // Load and start Remote processor server if appropriate
-    if (!handleRemoteProcessingInterface(strError)) {
+    log("Main blackboard back synchronization");
+
+    // Back-synchronize
+    if (!pBackSynchronizer->sync()) {
+        // Get rid of back synchronizer
+        delete pBackSynchronizer;
+
+        strError = "Main blackboard back synchronization failed: " + strError;
+
+        return false;
+    }
+    // Get rif of back synchronizer
+    delete pBackSynchronizer;
+
+    // We're done loading the settings and back synchronizing
+    CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
+
+    // We need to ensure all domains are valid
+    pConfigurableDomains->validate(_pMainParameterBlackboard);
+
+    // Ensure application of currently selected configurations
+    // Force-apply configurations
+    if (!pConfigurableDomains->apply(_pMainParameterBlackboard, true, strError)) {
 
         return false;
     }
 
-    return true;
+    // All is loaded, we're ready to observe selection criteria change events
+    getSelectionCriteria()->setObserver(this);
+
+    // Start remote processor server if appropriate
+    return handleRemoteProcessingInterface(strError);
 }
 
 bool CParameterMgr::loadFrameworkConfiguration(string& strError)
@@ -456,30 +481,7 @@ bool CParameterMgr::loadSettings(string& strError)
         return false;
     }
 
-    // Back synchronization for areas in parameter blackboard no covered by any domain
-    CBackSynchronizer* pBackSynchronizer = createBackSynchronizer(strError);
-
-    log("Main blackboard back synchronization");
-
-    // Back-synchronize
-    if (!pBackSynchronizer->sync()) {
-        // Get rif of back synchronizer
-        delete pBackSynchronizer;
-
-        strError = "Main blackboard back synchronization failed: " + strError;
-
-        return false;
-    }
-    // Get rif of back synchronizer
-    delete pBackSynchronizer;
-
-    // We're done loading the settings
-    // We need to ensure all domains are valid
-    pConfigurableDomains->validate(_pMainParameterBlackboard);
-
-    // Ensure application of currently selected configurations
-    // Force-apply configuration(s)
-    return pConfigurableDomains->apply(_pMainParameterBlackboard, true, strError);
+    return true;
 }
 
 // XML parsing
@@ -556,7 +558,7 @@ void CParameterMgr::selectionCriterionChanged(const CSelectionCriterion* pSelect
     CAutoLog autoLog(this, "Selection criterion changed event: " + pSelectionCriterion->getFormattedDescription(false));
 
     // Lock state
-    pthread_mutex_lock(&_tuningModeMutex);
+    CAutoLock autoLock(&_tuningModeMutex);
 
     if (!_bTuningModeIsOn) {
 
@@ -568,8 +570,6 @@ void CParameterMgr::selectionCriterionChanged(const CSelectionCriterion* pSelect
             log("Failed to apply configurations!");
         }
     }
-    // Unlock state
-    pthread_mutex_unlock(&_tuningModeMutex);
 }
 
 // Command processing
@@ -1267,13 +1267,13 @@ bool CParameterMgr::setTuningMode(bool bOn, string& strError)
         return false;
     }
     // Lock state
-    pthread_mutex_lock(&_tuningModeMutex);
+    CAutoLock autoLock(&_tuningModeMutex);
 
     // Warn domains about exiting tuning mode
     if (!bOn && _bTuningModeIsOn) {
 
         // Ensure application of currently selected configurations
-        // Force-apply configuration(s)
+        // Force-apply configurations
         if (!getConfigurableDomains()->apply(_pMainParameterBlackboard, true, strError)) {
 
             return false;
@@ -1284,9 +1284,6 @@ bool CParameterMgr::setTuningMode(bool bOn, string& strError)
 
     // Store
     _bTuningModeIsOn = bOn;
-
-    // Unlock state
-    pthread_mutex_unlock(&_tuningModeMutex);
 
     return true;
 }
@@ -1331,7 +1328,7 @@ bool CParameterMgr::setAutoSync(bool bAutoSyncOn, string& strError)
     if (bAutoSyncOn && !_bAutoSyncOn) {
 
         // Ensure application of currently selected configurations
-        // Force-apply configuration(s)
+        // Force-apply configurations
         if (!getConfigurableDomains()->apply(_pMainParameterBlackboard, true, strError)) {
 
             return false;

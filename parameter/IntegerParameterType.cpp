@@ -74,21 +74,30 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
     // Size
     setSize(xmlElement.getAttributeInteger("Size") / 8);
 
+    // Size in bits
+    uint32_t uiUtilSizeInBits = getSize() << 3;
+
     // Min / Max
     if (_bSigned) {
+
+        // Signed means we have one less util bit
+        uiUtilSizeInBits--;
+
         if (xmlElement.hasAttribute("Min")) {
 
             _uiMin = (uint32_t)xmlElement.getAttributeSignedInteger("Min");
         } else {
 
-            _uiMin = 1UL << 31;
+            _uiMin = 1UL << uiUtilSizeInBits;
+
+            signExtend((int32_t&)_uiMin);
         }
         if (xmlElement.hasAttribute("Max")) {
 
             _uiMax = (uint32_t)xmlElement.getAttributeSignedInteger("Max");
         } else {
 
-            _uiMax = (1UL << 31) - 1;
+            _uiMax = (1UL << uiUtilSizeInBits) - 1;
         }
     } else {
         if (xmlElement.hasAttribute("Min")) {
@@ -103,7 +112,7 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
             _uiMax = xmlElement.getAttributeInteger("Max");
         } else {
 
-            _uiMax = (uint32_t)-1;
+            _uiMax = (uint32_t)((1UL << uiUtilSizeInBits) - 1);
         }
     }
 

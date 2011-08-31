@@ -80,6 +80,8 @@ bool CSystemClass::loadSubsystems(string& strError, const vector<string>& astrPl
 
         // No plugin found?
         strError = "No subsystem plugin found";
+
+        return false;
     }
 
     // Actually load plugins

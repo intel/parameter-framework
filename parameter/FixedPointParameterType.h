@@ -58,6 +58,8 @@ private:
     uint32_t getUtilSizeInBits() const;
     // Out of range error
     string getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const;
+    // Check data is consistent with available range, with respect to its sign
+    bool isConsistent(uint32_t uiData) const;
 
     // Integral part in Q notation
     uint32_t _uiIntegral;

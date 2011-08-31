@@ -689,7 +689,7 @@ void CElement::appendTitle(string& strTo, const string& strTitle)
 
     while (uiLength--) {
 
-        strTo += "─";
+        strTo += "=";
     }
     strTo += "\n";
 }
