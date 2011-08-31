@@ -50,7 +50,7 @@ public:
     virtual Type getType() const;
 
     // XML configuration settings parsing/composing
-    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
+    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 protected:
     // Parameter Access
     virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const;
@@ -59,9 +59,9 @@ protected:
     // Used for simulation only
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
-    // To be implemented by derived
-    virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
-    virtual void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    // Actual value access
+    bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
 
     // Value space handling for configuration import
     void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;

@@ -33,7 +33,7 @@
 #define base CXmlElementSerializingContext
 
 CXmlDomainSerializingContext::CXmlDomainSerializingContext(string& strError, bool bWithSettings)
-    : base(strError), _bWithSettings(bWithSettings), _bValueSpaceIsRaw(false), _pSelectionCriteriaDefinition(NULL)
+    : base(strError), _bWithSettings(bWithSettings), _bValueSpaceIsRaw(false), _bOutputRawFormatIsHex(false), _pSelectionCriteriaDefinition(NULL)
 {
 }
 
@@ -52,6 +52,17 @@ void CXmlDomainSerializingContext::setValueSpaceRaw(bool bIsRaw)
 bool CXmlDomainSerializingContext::valueSpaceIsRaw() const
 {
     return _bValueSpaceIsRaw;
+}
+
+// Output Raw Format for user get value interpretation
+void CXmlDomainSerializingContext::setOutputRawFormat(bool bIsHex)
+{
+    _bOutputRawFormatIsHex = bIsHex;
+}
+
+bool CXmlDomainSerializingContext::outputRawFormatIsHex()
+{
+    return _bOutputRawFormatIsHex;
 }
 
 // Criteria defintion

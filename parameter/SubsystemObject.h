@@ -45,20 +45,30 @@ public:
     virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError);
 
 protected:
-    // Synchronized location
-    void setSynchronizedLocation(void* pvSynchronizedLocation);
+    // Blackboard data location
+    uint8_t* getBlackboardLocation() const;
     // Size
     uint32_t getSize() const;
+    // Conversion utility
+    static uint32_t asInteger(const string& strValue);
+    static string asString(uint32_t uiValue);
 
     // Sync to/from HW
-    virtual bool sendToHW() = 0;
-    virtual bool receiveFromHW() = 0;
+    virtual bool sendToHW(string& strError);
+    virtual bool receiveFromHW(string& strError);
+    // Fall back HW access
+    virtual bool accessHW(bool bReceive, string& strError);
+    // Blackboard access from subsystems
+    void blackboardRead(void* pvData, uint32_t uiSize);
+    void blackboardWrite(const void* pvData, uint32_t uiSize);
 private:
     // Instance element to sync from/to
     CInstanceConfigurableElement* _pInstanceConfigurableElement;
     // Data size
     uint32_t _uiDataSize;
-    // Synchronized location
-    void* _pvSynchronizedLocation;
+    // Blackboard data location
+    uint8_t* _pucBlackboardLocation;
+    // Accessed index for Subsystem read/write from/to blackboard
+    uint32_t _uiAccessedIndex;
 };
 

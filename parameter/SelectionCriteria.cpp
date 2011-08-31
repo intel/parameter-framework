@@ -63,6 +63,12 @@ void CSelectionCriteria::setObserver(ISelectionCriterionObserver* pSelectionCrit
     getSelectionCriteriaDefinition()->setObserver(pSelectionCriterionObserver);
 }
 
+// List available criteria
+void CSelectionCriteria::listSelectionCriteria(string& strResult, bool bWithTypeInfo) const
+{
+    getSelectionCriteriaDefinition()->listSelectionCriteria(strResult, bWithTypeInfo);
+}
+
 // Children access
 CSelectionCriterionLibrary* CSelectionCriteria::getSelectionCriterionLibrary()
 {

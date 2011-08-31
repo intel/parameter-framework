@@ -40,7 +40,7 @@ public:
     CComponentInstance(const string& strName);
 
     // Mapping info
-    virtual bool getMappingData(const string& strKey, string& strValue) const;
+    virtual bool getMappingData(const string& strKey, const string*& pStrValue) const;
     virtual bool hasMappingData() const;
 
     // From IXmlSink
@@ -53,6 +53,7 @@ private:
     virtual CInstanceConfigurableElement* doInstantiate() const;
     virtual void populate(CElement* pElement) const;
 
+    // Related component type
     const CComponentType* _pComponentType;
 };
 

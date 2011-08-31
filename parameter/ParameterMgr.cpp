@@ -50,7 +50,6 @@
 #include "FixedPointParameterType.h"
 #include "ParameterBlackboard.h"
 #include "Parameter.h"
-#include "ComputedSizeParameterType.h"
 #include "ParameterBlackboard.h"
 #include "ParameterAccessContext.h"
 #include "XmlFileIncluderElement.h"
@@ -75,7 +74,6 @@
 #include <strings.h>
 #include <dlfcn.h>
 #include <assert.h>
-#include <sstream>
 
 #define base CElement
 
@@ -112,12 +110,17 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gaRemoteCommandPars
     { "setTuningMode", &CParameterMgr::setTuningModeCommmandProcess, 1, "on|off*", "Turn on or off Tuning Mode" },
     { "getTuningMode", &CParameterMgr::getTuningModeCommmandProcess, 0, "", "Show Tuning Mode" },
     /// Value Space
-    { "setValueSpace", &CParameterMgr::setValueSpaceCommmandProcess, 1, "raw|real*", "Assigns Value Space used for fixed point integer value interpretation" },
+    { "setValueSpace", &CParameterMgr::setValueSpaceCommmandProcess, 1, "raw|real*", "Assigns Value Space used for parameter value interpretation" },
     { "getValueSpace", &CParameterMgr::getValueSpaceCommmandProcess, 0, "", "Show Value Space" },
+    /// Output Raw Format
+    { "setOutputRawFormat", &CParameterMgr::setOutputRawFormatCommmandProcess, 1, "dec*|hex", "Assigns format used to output parameter values when in raw Value Space" },
+    { "getOutputRawFormat", &CParameterMgr::getOutputRawFormatCommmandProcess, 0, "", "Show Output Raw Format" },
     /// Sync
     { "setAutoSync", &CParameterMgr::setAutoSyncCommmandProcess, 1, "on*|off", "Turn on or off automatic synchronization to hardware while in Tuning Mode" },
     { "getAutoSync", &CParameterMgr::getAutoSyncCommmandProcess, 0, "", "Show Auto Sync state" },
     { "sync", &CParameterMgr::syncCommmandProcess, 0, "", "Synchronize current settings to hardware while in Tuning Mode and Auto Sync off" },
+    /// Criteria
+    { "listCriteria", &CParameterMgr::listCriteriaCommmandProcess, 0, "", "List available selection criteria" },
     /// Domains
     { "listDomains", &CParameterMgr::listDomainsCommmandProcess, 0, "", "List configurable domains" },
     { "createDomain", &CParameterMgr::createDomainCommmandProcess, 1, "<domain>", "Create new configurable domain" },
@@ -136,7 +139,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gaRemoteCommandPars
     { "restoreConfiguration", &CParameterMgr::restoreConfigurationCommmandProcess, 2, "<domain> <configuration>", "Restore current settings from configuration" },
     /// Elements/Parameters
     { "listElements", &CParameterMgr::listElementsCommmandProcess, 1, "<elem path>|/", "List elements under element at given path or root" },
-    { "listElementsRecursive", &CParameterMgr::listElementsRecursiveCommmandProcess, 1, "<elem path>|/", "Recursively list elements under element at given path or root" },
+    { "listParameters", &CParameterMgr::listParametersCommmandProcess, 1, "<elem path>|/", "Recursively list elements under element at given path or root" },
     { "dumpElement", &CParameterMgr::dumpElementCommmandProcess, 1, "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommmandProcess, 1, "<elem path>", "Show size of element at given path" },
     { "getParameter", &CParameterMgr::getParameterCommmandProcess, 1, "<elem ath>", "Get value for parameter at given path" },
@@ -161,6 +164,7 @@ const uint32_t CParameterMgr::guiNbRemoteCommandParserItems = sizeof(gaRemoteCom
 CParameterMgr::CParameterMgr(const string& strParameterFrameworkConfigurationFolderPath, const string& strSystemClassName) :
     _bTuningModeIsOn(false),
     _bValueSpaceIsRaw(false),
+    _bOutputRawFormatIsHex(false),
     _bAutoSyncOn(true),
     _pMainParameterBlackboard(new CParameterBlackboard),
     _pElementLibrarySet(new CElementLibrarySet),
@@ -370,6 +374,8 @@ bool CParameterMgr::loadStructure(string& strError)
     // Parse Structure XML file
     CXmlParameterSerializingContext parameterBuildContext(strError);
 
+    log("Importing system structure from file %s", strXmlStructureFilePath.c_str());
+
     if (!xmlParse(parameterBuildContext, pSystemClass, strXmlStructureFilePath, strXmlStructureFolder, EParameterCreationLibrary)) {
 
         return false;
@@ -431,6 +437,8 @@ bool CParameterMgr::loadSettings(string& strError)
 
     // Selection criteria definition for rule creation
     xmlDomainSerializingContext.setSelectionCriteriaDefinition(getConstSelectionCriteria()->getSelectionCriteriaDefinition());
+
+    log("Importing configurable domains from file %s %s settings", strXmlConfigurationDomainsFilePath.c_str(), pBinarySettingsFileLocation ? "without" : "with");
 
     // Do parse
     if (!xmlParse(xmlDomainSerializingContext, pConfigurableDomains, strXmlConfigurationDomainsFilePath, strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary, "SystemClassName")) {
@@ -544,7 +552,7 @@ CSelectionCriterion* CParameterMgr::createSelectionCriterion(const string& strNa
 // Selection criteria changed event
 void CParameterMgr::selectionCriterionChanged(const CSelectionCriterion* pSelectionCriterion)
 {
-    CAutoLog autoLog(this, pSelectionCriterion->getName() + " selection criterion changed event");
+    CAutoLog autoLog(this, "Selection criterion changed event: " + pSelectionCriterion->getFormattedDescription(false));
 
     // Lock state
     pthread_mutex_lock(&_tuningModeMutex);
@@ -665,40 +673,51 @@ CParameterMgr::CommandStatus CParameterMgr::statusCommandProcess(const IRemoteCo
     // System class
     const CSystemClass* pSystemClass = getSystemClass();
 
-    strResult = "\n";
-
     // Show status
-    /// System class
+    /// General section
+    appendTitle(strResult, "General:");
+    // System class
     strResult += "System Class: ";
     strResult += pSystemClass->getName();
     strResult += "\n";
 
-    /// Tuning mode
+    // Tuning mode
     strResult += "Tuning Mode: ";
     strResult += tuningModeOn() ? "on" : "off";
     strResult += "\n";
 
-    /// Value space
+    // Value space
     strResult += "Value Space: ";
     strResult += valueSpaceIsRaw() ? "raw" : "real";
     strResult += "\n";
 
-    /// Value space
+    // Output raw format
+    strResult += "Output Raw Format: ";
+    strResult += outputRawFormatIsHex() ? "hex" : "dec";
+    strResult += "\n";
+
+    // Auto Sync
     strResult += "Auto Sync: ";
     strResult += autoSyncOn() ? "on" : "off";
     strResult += "\n";
 
     /// Subsystem list
-    strResult += "\nSubsystems:";
+    appendTitle(strResult, "Subsystems:");
     string strSubsystemList;
     pSystemClass->listChildrenPaths(strSubsystemList);
     strResult += strSubsystemList;
 
     /// Last applied configurations
-    strResult += "\nLast applied configurations:";
+    appendTitle(strResult, "Last applied configurations:");
     string strLastAppliedConfigurations;
     getConfigurableDomains()->listLastAppliedConfigurations(strLastAppliedConfigurations);
     strResult += strLastAppliedConfigurations;
+
+    /// Criteria states
+    appendTitle(strResult, "Selection criteria:");
+    string strSelectionCriteria;
+    getSelectionCriteria()->listSelectionCriteria(strSelectionCriteria, false);
+    strResult += strSelectionCriteria;
 
     return ESucceeded;
 }
@@ -767,6 +786,39 @@ CParameterMgr::CommandStatus CParameterMgr::getValueSpaceCommmandProcess(const I
     return ESucceeded;
 }
 
+/// Output Raw Format
+CParameterMgr::CommandStatus CParameterMgr::setOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)strResult;
+
+    if (remoteCommand.getArgument(0) == "hex") {
+
+        setOutputRawFormat(true);
+
+        return EDone;
+
+    } else if (remoteCommand.getArgument(0) == "dec") {
+
+        setOutputRawFormat(false);
+
+        return EDone;
+
+    } else {
+        // Show usage
+        return EShowUsgae;
+    }
+    return EFailed;
+}
+
+CParameterMgr::CommandStatus CParameterMgr::getOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)remoteCommand;
+
+    strResult = outputRawFormatIsHex() ? "hex" : "dec";
+
+    return ESucceeded;
+}
+
 /// Sync
 CParameterMgr::CommandStatus CParameterMgr::setAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
@@ -805,6 +857,15 @@ CParameterMgr::CommandStatus CParameterMgr::syncCommmandProcess(const IRemoteCom
     return sync(strResult) ? EDone : EFailed;
 }
 
+/// Criteria
+CParameterMgr::CommandStatus CParameterMgr::listCriteriaCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)remoteCommand;
+
+    getSelectionCriteria()->listSelectionCriteria(strResult, true);
+
+    return ESucceeded;
+}
 
 /// Domains
 CParameterMgr::CommandStatus CParameterMgr::listDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -911,7 +972,7 @@ CParameterMgr::CommandStatus CParameterMgr::listElementsCommmandProcess(const IR
 }
 
 /// Elements/Parameters
-CParameterMgr::CommandStatus CParameterMgr::listElementsRecursiveCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CommandStatus CParameterMgr::listParametersCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     CElementLocator elementLocator(getSystemClass(), false);
 
@@ -951,7 +1012,7 @@ CParameterMgr::CommandStatus CParameterMgr::dumpElementCommmandProcess(const IRe
 
     string strError;
 
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw);
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     // Dump elements
     pLocatedElement->dumpContent(strResult, parameterAccessContext);
@@ -974,11 +1035,7 @@ CParameterMgr::CommandStatus CParameterMgr::getElementSizeCommmandProcess(const 
     const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
 
     // Get size as string
-    ostringstream str;
-
-    str << endl << pConfigurableElement->getFootPrint() << " bytes" << endl;
-
-    strResult = str.str();
+    strResult = pConfigurableElement->getFootprintAsString();
 
     return ESucceeded;
 }
@@ -999,7 +1056,7 @@ CParameterMgr::CommandStatus CParameterMgr::getParameterCommmandProcess(const IR
 
 CParameterMgr::CommandStatus CParameterMgr::setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return setValue(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? EDone : EFailed;
+    return setValue(remoteCommand.getArgument(0), remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1), strResult) ? EDone : EFailed;
 }
 
 CParameterMgr::CommandStatus CParameterMgr::listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1135,7 +1192,7 @@ bool CParameterMgr::setValue(const string& strPath, const string& strValue, stri
     }
 
     // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw);
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     // Set auto sync
     parameterAccessContext.setAutoSync(_bAutoSyncOn);
@@ -1172,7 +1229,7 @@ bool CParameterMgr::getValue(const string& strPath, string& strValue, string& st
     }
 
     // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw);
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     // Do the get
     return getConstSystemClass()->getValue(pathNavigator, strValue, parameterAccessContext);
@@ -1227,6 +1284,17 @@ void CParameterMgr::setValueSpace(bool bIsRaw)
 bool CParameterMgr::valueSpaceIsRaw()
 {
     return _bValueSpaceIsRaw;
+}
+
+// Current Output Raw Format for user get value interpretation
+void CParameterMgr::setOutputRawFormat(bool bIsHex)
+{
+    _bOutputRawFormatIsHex = bIsHex;
+}
+
+bool CParameterMgr::outputRawFormatIsHex()
+{
+    return _bOutputRawFormatIsHex;
 }
 
 /// Sync
@@ -1289,7 +1357,7 @@ void CParameterMgr::logStructureContent(string& strContent) const
 {
     string strError;
 
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw);
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     dumpContent(strContent, parameterAccessContext);
 }
@@ -1499,6 +1567,9 @@ bool CParameterMgr::exportDomainsXml(const string& strFileName, bool bWithSettin
     // Value space
     xmlDomainSerializingContext.setValueSpaceRaw(_bValueSpaceIsRaw);
 
+    // Output raw format
+    xmlDomainSerializingContext.setOutputRawFormat(_bOutputRawFormatIsHex);
+
     // Instantiate composer
     CXmlComposer xmlComposer(strFileName, strXmlSchemaFilePath, pConfigurableDomains->getKind(), xmlDomainSerializingContext);
 
@@ -1582,15 +1653,15 @@ void CParameterMgr::feedElementLibraries()
     // Global Configuration handling
     CElementLibrary* pFrameworkConfigurationLibrary = new CElementLibrary;
 
-    pFrameworkConfigurationLibrary->addElementBuilder(new CElementBuilderTemplate<CParameterFrameworkConfiguration>("ParameterFrameworkConfiguration"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new CKindElementBuilderTemplate<CFrameworkConfigurationGroup>("SubsystemPluginFolders"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new CKindElementBuilderTemplate<CFrameworkConfigurationLocation>("PluginFolderLocation"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new CKindElementBuilderTemplate<CFrameworkConfigurationGroup>("ParameterConfiguration"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new CKindElementBuilderTemplate<CSystemClassConfiguration>("SystemClassConfiguration"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new CKindElementBuilderTemplate<CFrameworkConfigurationLocation>("StructureDescriptionFileLocation"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new CKindElementBuilderTemplate<CFrameworkConfigurationGroup>("SettingsConfiguration"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new CKindElementBuilderTemplate<CFrameworkConfigurationLocation>("ConfigurableDomainsFileLocation"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new CKindElementBuilderTemplate<CFrameworkConfigurationLocation>("BinarySettingsFileLocation"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TElementBuilderTemplate<CParameterFrameworkConfiguration>("ParameterFrameworkConfiguration"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>("SubsystemPluginFolders"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("PluginFolderLocation"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>("ParameterConfiguration"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CSystemClassConfiguration>("SystemClassConfiguration"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("StructureDescriptionFileLocation"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>("SettingsConfiguration"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("ConfigurableDomainsFileLocation"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("BinarySettingsFileLocation"));
 
     _pElementLibrarySet->addElementLibrary(pFrameworkConfigurationLibrary);
 
@@ -1598,26 +1669,25 @@ void CParameterMgr::feedElementLibraries()
     CElementLibrary* pParameterCreationLibrary = new CElementLibrary;
 
     pParameterCreationLibrary->addElementBuilder(new CSubsystemElementBuilder(getSystemClass()->getSubsystemLibrary()));
-    pParameterCreationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CComponentType>("ComponentType"));
-    pParameterCreationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CComponentInstance>("Component"));
-    pParameterCreationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CBitParameterType>("BitParameter"));
-    pParameterCreationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CBitParameterBlockType>("BitParameterBlock"));
-    pParameterCreationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CParameterBlockType>("ParameterBlock"));
-    pParameterCreationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CBooleanParameterType>("BooleanParameter"));
-    pParameterCreationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CIntegerParameterType>("IntegerParameter"));
-    pParameterCreationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CFixedPointParameterType>("FixedPointParameter"));
-    pParameterCreationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CComputedSizeParameterType>("ComputedSizeParameter"));
-    pParameterCreationLibrary->addElementBuilder(new CKindElementBuilderTemplate<CXmlFileIncluderElement>("SubsystemInclude"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CComponentType>("ComponentType"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CComponentInstance>("Component"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBitParameterType>("BitParameter"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBitParameterBlockType>("BitParameterBlock"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CParameterBlockType>("ParameterBlock"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBooleanParameterType>("BooleanParameter"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CIntegerParameterType>("IntegerParameter"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CFixedPointParameterType>("FixedPointParameter"));
+    pParameterCreationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CXmlFileIncluderElement>("SubsystemInclude"));
 
     _pElementLibrarySet->addElementLibrary(pParameterCreationLibrary);
 
     // Parameter Configuration Domains creation
     CElementLibrary* pParameterConfigurationLibrary = new CElementLibrary;
 
-    pParameterConfigurationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CConfigurableDomain>("ConfigurableDomain"));
-    pParameterConfigurationLibrary->addElementBuilder(new CNamedElementBuilderTemplate<CDomainConfiguration>("Configuration"));
-    pParameterConfigurationLibrary->addElementBuilder(new CElementBuilderTemplate<CCompoundRule>("CompoundRule"));
-    pParameterConfigurationLibrary->addElementBuilder(new CElementBuilderTemplate<CSelectionCriterionRule>("SelectionCriterionRule"));
+    pParameterConfigurationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CConfigurableDomain>("ConfigurableDomain"));
+    pParameterConfigurationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CDomainConfiguration>("Configuration"));
+    pParameterConfigurationLibrary->addElementBuilder(new TElementBuilderTemplate<CCompoundRule>("CompoundRule"));
+    pParameterConfigurationLibrary->addElementBuilder(new TElementBuilderTemplate<CSelectionCriterionRule>("SelectionCriterionRule"));
 
     _pElementLibrarySet->addElementLibrary(pParameterConfigurationLibrary);
 }

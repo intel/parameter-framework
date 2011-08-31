@@ -51,7 +51,7 @@ public:
     virtual string getKind() const;
 private:
     // Range checking
-    template <class type> bool checkValueAgainstRange(type value, CParameterAccessContext& parameterAccessContext) const;
+    template <typename type> bool checkValueAgainstRange(const string& strValue, type value, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const;
 
     // Signing
     bool _bSigned;

@@ -43,11 +43,16 @@ public:
     CSelectionCriterionType(bool bIsInclusive);
 
     // From ISelectionCriterionTypeInterface
-    virtual std::string getCriterionTypeName();
     virtual bool addValuePair(int iValue, const string& strValue);
     virtual bool getNumericalValue(const string& strValue, int& iValue) const;
     virtual bool getLiteralValue(int iValue, string& strValue) const;
     virtual bool isTypeInclusive() const;
+
+    // Value list
+    string listPossibleValues() const;
+
+    // Formatted state
+    string getFormattedState(int iValue) const;
 
     // From CElement
     virtual string getKind() const;

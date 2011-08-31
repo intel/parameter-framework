@@ -51,6 +51,7 @@ bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXm
     return true;
 }
 
+// File path
 string CFrameworkConfigurationLocation::getFilePath(const string& strBaseFolder) const
 {
     if (isPathRelative()) {
@@ -60,11 +61,7 @@ string CFrameworkConfigurationLocation::getFilePath(const string& strBaseFolder)
     return _strPath;
 }
 
-bool CFrameworkConfigurationLocation::isPathRelative() const
-{
-    return _strPath[0] != '/';
-}
-
+// Folder path
 string CFrameworkConfigurationLocation::getFolderPath(const string& strBaseFolder) const
 {
     uint32_t uiSlashPos = _strPath.rfind('/', -1);
@@ -93,17 +90,8 @@ string CFrameworkConfigurationLocation::getFolderPath(const string& strBaseFolde
     }
 }
 
-#if 0
-string CFrameworkConfigurationLocation::getFileName() const
+// Detect relative path
+bool CFrameworkConfigurationLocation::isPathRelative() const
 {
-    uint32_t uiSlashPos = _strPath.rfind('/', -1);
-
-    if (uiSlashPos != (uint32_t)-1) {
-
-        return _strPath.substr(uiSlashPos + 1, _strPath.size() - uiSlashPos - 1);
-    } else {
-
-        return _strPath;
-    }
+    return _strPath[0] != '/';
 }
-#endif

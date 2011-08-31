@@ -56,7 +56,7 @@ public:
     bool isBigEndian() const;
 
     // XML configuration settings parsing
-    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
+    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 
     // from CElement
     virtual string getKind() const;
@@ -72,7 +72,7 @@ protected:
     // Subsystem context mapping keys publication
     void addContextMappingKey(const string& strMappingKey);
     // Subsystem object creator publication (strong reference)
-    void addSubsystemObjectCreator(CSubsystemObjectCreator* pSubsystemObjectCreator);
+    void addSubsystemObjectFactory(CSubsystemObjectCreator* pSubsystemObjectCreator);
 private:
     // Belonging subsystem
     virtual const CSubsystem* getBelongingSubsystem() const;

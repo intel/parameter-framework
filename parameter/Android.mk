@@ -45,8 +45,6 @@ LOCAL_SRC_FILES:= \
         ArrayParameter.cpp \
         InstanceDefinition.cpp \
         ParameterMgrPlatformConnector.cpp \
-        ComputedSizeParameterType.cpp \
-        ComputedSizeParameter.cpp \
         FixedPointParameterType.cpp \
         ParameterAccessContext.cpp \
         XmlFileIncluderElement.cpp \

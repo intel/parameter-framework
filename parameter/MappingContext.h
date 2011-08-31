@@ -39,13 +39,13 @@ class CMappingContext
 {
     // Item structure
     struct SItem {
-        uint32_t uiItem;
+        const string* strItem;
         bool bSet;
     };
 
 public:
     // Regular Constructor
-    CMappingContext(uint32_t uiNbItems);
+    CMappingContext(uint32_t uiNbItemTypes);
     ~CMappingContext();
 
     // Copy constructor
@@ -55,13 +55,14 @@ public:
     const CMappingContext& operator=(const CMappingContext& right);
 
     // Item access
-    bool setItem(uint32_t uiItemType, const string& strItem);
-    uint32_t getItem(uint32_t uiItemType) const;
+    bool setItem(uint32_t uiItemType, const string* pStrItem);
+    const string& getItem(uint32_t uiItemType) const;
+    uint32_t getItemAsInteger(uint32_t uiItemType) const;
     bool iSet(uint32_t uiItemType) const;
 private:
     // Item array
     SItem* _pstItemArray;
     // Items array size
-    uint32_t _uiNbItems;
+    uint32_t _uiNbItemTypes;
 };
 

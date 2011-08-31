@@ -54,7 +54,7 @@ public:
     const CTypeElement* getTypeElement() const;
 
     // Mapping info
-    bool getMappingData(const string& strKey, string& strValue) const;
+    bool getMappingData(const string& strKey, const string*& pStrValue) const;
 
     // From CElement
     virtual string getKind() const;

@@ -300,6 +300,7 @@ string CElement::getPathName() const
     }
 }
 
+// Hierarchy
 void CElement::addChild(CElement* pChild)
 {
     _childArray.push_back(pChild);
@@ -366,11 +367,17 @@ void CElement::listChildren(string& strChildList) const
 
 string CElement::listQualifiedPaths(bool bDive, uint32_t uiLevel) const
 {
-    string strResult = getQualifiedPath() + "\n";
+    uint32_t uiNbChildren = getNbChildren();
+    string strResult;
+
+    // Dive Will cause only leaf nodes to be printed
+    if (!bDive || !uiNbChildren) {
+
+        strResult = getQualifiedPath() + "\n";
+    }
 
     if (bDive || !uiLevel) {
         // Get list of children paths
-        uint32_t uiNbChildren = getNbChildren();
         uint32_t uiChild;
 
         for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
@@ -385,8 +392,6 @@ string CElement::listQualifiedPaths(bool bDive, uint32_t uiLevel) const
 
 void CElement::listChildrenPaths(string& strChildList) const
 {
-    strChildList = "\n";
-
     // Get list of children paths
     uint32_t uiNbChildren = getNbChildren();
     uint32_t uiChild;
@@ -647,3 +652,16 @@ uint8_t CElement::computeStructureChecksum() const
     return uiChecksum;
 }
 
+// Utility to underline
+void CElement::appendTitle(string& strTo, const string& strTitle)
+{
+    strTo += "\n" + strTitle + "\n";
+
+    uint32_t uiLength = strTitle.size();
+
+    while (uiLength--) {
+
+        strTo += "─";
+    }
+    strTo += "\n";
+}

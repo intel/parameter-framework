@@ -49,7 +49,7 @@ public:
     virtual Type getType() const;
 
     // XML configuration settings parsing/composing
-    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
+    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 protected:
     // Parameter Access
     virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const;

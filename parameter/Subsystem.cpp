@@ -125,12 +125,12 @@ bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& 
 }
 
 // XML configuration settings parsing
-bool CSubsystem::serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
+bool CSubsystem::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {
     // Fix Endianness
     configurationAccessContext.setBigEndianSubsystem(_bBigEndian);
 
-    return base::serializeXmlSettings(xmlConfigurableElementSettingsElement, configurationAccessContext);
+    return base::serializeXmlSettings(xmlConfigurationSettingsElementContent, configurationAccessContext);
 }
 
 
@@ -208,7 +208,7 @@ void CSubsystem::addContextMappingKey(const string& strMappingKey)
 }
 
 // Subsystem object creator publication (strong reference)
-void CSubsystem::addSubsystemObjectCreator(CSubsystemObjectCreator* pSubsystemObjectCreator)
+void CSubsystem::addSubsystemObjectFactory(CSubsystemObjectCreator* pSubsystemObjectCreator)
 {
     _subsystemObjectCreatorArray.push_back(pSubsystemObjectCreator);
 }
@@ -222,11 +222,11 @@ bool CSubsystem::handleMappingContext(const CInstanceConfigurableElement* pInsta
     for (uiItem = 0; uiItem < _contextMappingKeyArray.size(); uiItem++) {
 
         string strKey = _contextMappingKeyArray[uiItem];
-        string strValue;
+        const string* pStrValue;
 
-        if (pInstanceConfigurableElement->getMappingData(strKey, strValue)) {
+        if (pInstanceConfigurableElement->getMappingData(strKey, pStrValue)) {
             // Assign item to context
-            if (!context.setItem(uiItem, strValue)) {
+            if (!context.setItem(uiItem, pStrValue)) {
 
                 getMappingError(strError, strKey, "Already set", pInstanceConfigurableElement);
 
@@ -249,39 +249,41 @@ bool CSubsystem::handleSubsystemObjectCreation(CInstanceConfigurableElement* pIn
         // Mapping key
         string strKey = pSubsystemObjectCreator->getMappingKey();
         // Object id
-        string strId;
+        const string* pStrValue;
 
-        if (pInstanceConfigurableElement->getMappingData(strKey, strId)) {
+        if (pInstanceConfigurableElement->getMappingData(strKey, pStrValue)) {
 
-            // First check context consisteny
+            // First check context consistensy (required ancestors must have been set prior to object creation)
             uint32_t uiAncestorKey;
             uint32_t uiAncestorMask = pSubsystemObjectCreator->getAncestorMask();
 
-            for (uiAncestorKey = 0; uiAncestorKey & uiAncestorMask; uiAncestorKey++) {
+            for (uiAncestorKey = 0; uiAncestorKey < _contextMappingKeyArray.size(); uiAncestorKey++) {
 
-                string strAncestorKey = _subsystemObjectCreatorArray[uiAncestorKey]->getMappingKey();
-
+                if (!((1 << uiAncestorKey) & uiAncestorMask)) {
+                    // Ancestor not required
+                    continue;
+                }
+                // Check ancestor was provided
                 if (!context.iSet(uiAncestorKey)) {
 
-                    getMappingError(strError, strKey, strAncestorKey + " not set", pInstanceConfigurableElement);
+                    getMappingError(strError, strKey, _contextMappingKeyArray[uiAncestorKey] + " not set", pInstanceConfigurableElement);
 
                     return false;
                 }
             }
 
-            // Do create object
-            string strCreationError;
+            // Then check configurable element size is correct
+            if (pInstanceConfigurableElement->getFootPrint() > pSubsystemObjectCreator->getMaxConfigurableElementSize()) {
 
-            CSubsystemObject* pSubsystemObject = pSubsystemObjectCreator->objectCreate(strId, pInstanceConfigurableElement, context, strCreationError);
+                string strSizeError = "Size should not exceed " + pInstanceConfigurableElement->getFootprintAsString();
 
-            if (!pSubsystemObject) {
-
-                getMappingError(strError, strKey, strCreationError, pInstanceConfigurableElement);
+                getMappingError(strError, strKey, strSizeError, pInstanceConfigurableElement);
 
                 return false;
             }
-            // Keep track of created object
-            _subsystemObjectList.push_back(pSubsystemObject);
+
+            // Do create object and keep its track
+            _subsystemObjectList.push_back(pSubsystemObjectCreator->objectCreate(*pStrValue, pInstanceConfigurableElement, context));
 
             // Done
             return true;

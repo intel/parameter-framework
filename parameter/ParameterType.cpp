@@ -95,3 +95,58 @@ CInstanceConfigurableElement* CParameterType::doInstantiate() const
     }
 }
 
+// Sign extension
+void CParameterType::signExtend(int32_t& iData) const
+{
+    uint32_t uiSizeInBits = _uiSize << 3;
+    uint32_t uiShift = 32 - uiSizeInBits;
+
+    if (uiShift) {
+
+        iData = (iData << uiShift) >> uiShift;
+    }
+}
+
+// Check data has no bit set outside available range
+bool CParameterType::isEncodable(uint32_t uiData) const
+{
+    uint32_t uiSizeInBits = _uiSize << 3;
+    uint32_t uiShift = 32 - uiSizeInBits;
+
+    if (uiShift) {
+
+        // Check high bits are clean
+        return !(uiData >> uiShift);
+    }
+
+    return true;
+}
+
+// Remove all bits set outside available range
+uint32_t CParameterType::makeEncodable(uint32_t uiData) const
+{
+    uint32_t uiSizeInBits = _uiSize << 3;
+
+    uint32_t uiMask = (1 << uiSizeInBits) - 1;
+
+    return uiData & uiMask;
+}
+
+// Check data is consistent with available range, with respect to its sign
+bool CParameterType::isConsistent(uint32_t uiData, bool bSigned) const
+{
+    uint32_t uiSizeInBits = _uiSize << 3;
+    uint32_t uiShift = 32 - uiSizeInBits;
+
+    if (uiShift) {
+
+        // Negative value?
+        bool bIsValueExpectedNegative = bSigned && (uiData & (1 << (uiShift - 1))) != 0;
+
+        // Check high bits are clean
+        return bIsValueExpectedNegative ? !(~uiData >> uiShift) : !(uiData >> uiShift);
+    }
+
+    return true;
+}
+

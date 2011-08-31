@@ -69,7 +69,7 @@ public:
     void copyToInner(CAreaConfiguration* pToAreaConfiguration) const;
 
     // XML configuration settings parsing/composing
-    bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElement, CConfigurationAccessContext& configurationAccessContext);
+    bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext);
 
     // Serialization
     void serialize(CBinaryStream& binaryStream);

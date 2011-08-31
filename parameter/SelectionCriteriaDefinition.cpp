@@ -70,3 +70,19 @@ void CSelectionCriteriaDefinition::setObserver(ISelectionCriterionObserver* pSel
         pSelectionCriterion->setObserver(pSelectionCriterionObserver);
     }
 }
+
+// List available criteria
+void CSelectionCriteriaDefinition::listSelectionCriteria(string& strResult, bool bWithTypeInfo) const
+{
+    // Propagate
+    uint32_t uiNbChildren = getNbChildren();
+    uint32_t uiChild;
+
+    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
+
+        const CSelectionCriterion* pSelectionCriterion = static_cast<const CSelectionCriterion*>(getChild(uiChild));
+
+        strResult += pSelectionCriterion->getFormattedDescription(bWithTypeInfo) + "\n";
+    }
+}
+

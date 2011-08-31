@@ -41,7 +41,7 @@ public:
     virtual uint32_t getFootPrint() const;
 
     // XML configuration settings parsing
-    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
+    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 protected:
     // User set/get
     virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const;

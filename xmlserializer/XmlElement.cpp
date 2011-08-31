@@ -166,6 +166,20 @@ bool CXmlElement::getChildElement(const string& strType, const string& strNameAt
     return false;
 }
 
+uint32_t CXmlElement::getNbChildElements() const
+{
+    CXmlElement childElement;
+    uint32_t uiNbChildren = 0;
+
+    CChildIterator childIterator(*this);
+
+    while (childIterator.next(childElement)) {
+
+        uiNbChildren++;
+    }
+    return uiNbChildren;
+}
+
 bool CXmlElement::getParentElement(CXmlElement& parentElement) const
 {
     _xmlNode* pXmlNode = _pXmlElement->parent;

@@ -37,16 +37,20 @@ class CParameterBlackboard;
 class CParameterAccessContext : public CErrorContext
 {
 public:
-    CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw);
+    CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex);
     CParameterAccessContext(string& strError);
 
     // ParameterBlackboard
     CParameterBlackboard* getParameterBlackboard();
     void setParameterBlackboard(CParameterBlackboard* pBlackboard);
 
-    // Value interpretation as Real or Raw (usefull for Fixed point parameters)
+    // Value interpretation as Real or Raw
     void setValueSpaceRaw(bool bIsRaw);
     bool valueSpaceIsRaw() const;
+
+    // Output Raw Format for user get value interpretation
+    void setOutputRawFormat(bool bIsHex);
+    bool outputRawFormatIsHex();
 
     // Endianness
     void setBigEndianSubsystem(bool bBigEndian);
@@ -61,6 +65,8 @@ private:
     CParameterBlackboard* _pParameterBlackboard;
     // Value space
     bool _bValueSpaceIsRaw;
+    // Output Raw Format
+    bool _bOutputRawFormatIsHex;
     // Subsystem Endianness
     bool _bBigEndianSubsystem;
     // Automatic synchronization to HW

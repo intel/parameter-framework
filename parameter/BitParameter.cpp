@@ -54,13 +54,13 @@ uint32_t CBitParameter::getSize() const
 }
 
 // XML configuration settings parsing/composing
-bool CBitParameter::serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
+bool CBitParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {
     // Handle access
     if (!configurationAccessContext.serializeOut()) {
 
         // Write to blackboard
-        if (!doSetValue(xmlConfigurableElementSettingsElement.getTextContent(), getOffset() - configurationAccessContext.getBaseOffset(), configurationAccessContext)) {
+        if (!doSetValue(xmlConfigurationSettingsElementContent.getTextContent(), getOffset() - configurationAccessContext.getBaseOffset(), configurationAccessContext)) {
 
             // Append parameter path to error
             configurationAccessContext.appendToError(" " + getPath());
@@ -75,7 +75,7 @@ bool CBitParameter::serializeXmlSettings(CXmlElement& xmlConfigurableElementSett
         doGetValue(strValue, getOffset() - configurationAccessContext.getBaseOffset(), configurationAccessContext);
 
         // Populate value into xml text node
-        xmlConfigurableElementSettingsElement.setTextContent(strValue);
+        xmlConfigurationSettingsElementContent.setTextContent(strValue);
     }
 
     // Done
@@ -175,6 +175,6 @@ void CBitParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAc
     pBlackboard->read(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     // Convert
-    static_cast<const CBitParameterType*>(getTypeElement())->asString(uiData, strValue);
+    static_cast<const CBitParameterType*>(getTypeElement())->asString(uiData, strValue, parameterAccessContext);
 }
 

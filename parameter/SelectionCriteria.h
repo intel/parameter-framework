@@ -57,6 +57,9 @@ public:
     // Subscription
     void setObserver(ISelectionCriterionObserver* pSelectionCriterionObserver);
 
+    // List available criteria
+    void listSelectionCriteria(string& strResult, bool bWithTypeInfo) const;
+
     // Base
     virtual string getKind() const;
 private:

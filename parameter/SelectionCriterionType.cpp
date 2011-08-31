@@ -42,14 +42,20 @@ string CSelectionCriterionType::getKind() const
 }
 
 // From ISelectionCriterionTypeInterface
-std::string CSelectionCriterionType::getCriterionTypeName()
-{
-    return getName();
-}
-
 bool CSelectionCriterionType::addValuePair(int iValue, const string& strValue)
 {
+    // Check 1 bit set only for inclusive types
+    if (_bInclusive && (!iValue || (iValue & (iValue - 1)))) {
+
+        log("Rejecting value pair association: 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
+
+        return false;
+    }
+
+    // Check already inserted
     if (_numToLitMap.find(strValue) != _numToLitMap.end()) {
+
+        log("Rejecting value pair association (literal already present): 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
 
         return false;
     }
@@ -90,4 +96,79 @@ bool CSelectionCriterionType::getLiteralValue(int iValue, string& strValue) cons
 bool CSelectionCriterionType::isTypeInclusive() const
 {
     return _bInclusive;
+}
+
+// Value list
+string CSelectionCriterionType::listPossibleValues() const
+{
+    string strValueList = "{";
+
+    // Get comma seprated list of values
+    NumToLitMapConstIt it;
+    bool bFirst = true;
+
+    for (it = _numToLitMap.begin(); it != _numToLitMap.end(); ++it) {
+
+        if (bFirst) {
+
+            bFirst = false;
+        } else {
+            strValueList += ", ";
+        }
+        strValueList += it->first;
+    }
+
+    strValueList += "}";
+
+    return strValueList;
+}
+
+// Formatted state
+string CSelectionCriterionType::getFormattedState(int iValue) const
+{
+    string strFormattedState;
+
+    if (_bInclusive) {
+
+        // Need to go through all set bit
+        uint32_t uiBit;
+        bool bFirst = true;
+
+        for (uiBit = 0; uiBit < sizeof(iValue) << 3; uiBit++) {
+
+            int iSingleBitValue = iValue & (1 << uiBit);
+
+            // Check if current bit is set
+            if (!iSingleBitValue) {
+
+                continue;
+            }
+
+            // Simple translation
+            string strSingleValue;
+
+            getLiteralValue(iSingleBitValue, strSingleValue);
+
+            if (bFirst) {
+
+                bFirst = false;
+            } else {
+                strFormattedState += "|";
+            }
+
+            strFormattedState += strSingleValue;
+        }
+
+    } else {
+        // Simple translation
+        getLiteralValue(iValue, strFormattedState);
+    }
+
+    // Sometimes nothing is set
+    if (strFormattedState.empty()) {
+
+        strFormattedState = "<none>";
+    }
+
+    return strFormattedState;
 }

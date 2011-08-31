@@ -32,13 +32,16 @@
 
 #define base CErrorContext
 
-CParameterAccessContext::CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw) :
-    base(strError), _pParameterBlackboard(pParameterBlackboard), _bValueSpaceIsRaw(bValueSpaceIsRaw), _bBigEndianSubsystem(false), _bAutoSync(true)
+CParameterAccessContext::CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex) :
+    base(strError), _pParameterBlackboard(pParameterBlackboard),
+    _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
+    _bBigEndianSubsystem(false), _bAutoSync(true)
 {
 }
 
 CParameterAccessContext::CParameterAccessContext(string& strError) :
-    base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false), _bBigEndianSubsystem(false), _bAutoSync(true)
+    base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false),
+    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(true)
 {
 }
 
@@ -62,6 +65,17 @@ void CParameterAccessContext::setValueSpaceRaw(bool bIsRaw)
 bool CParameterAccessContext::valueSpaceIsRaw() const
 {
     return _bValueSpaceIsRaw;
+}
+
+// Output Raw Format for user get value interpretation
+void CParameterAccessContext::setOutputRawFormat(bool bIsHex)
+{
+    _bOutputRawFormatIsHex = bIsHex;
+}
+
+bool CParameterAccessContext::outputRawFormatIsHex()
+{
+    return _bOutputRawFormatIsHex;
 }
 
 // Endianness

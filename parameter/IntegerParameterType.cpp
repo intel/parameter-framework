@@ -31,6 +31,7 @@
 #include "IntegerParameterType.h"
 #include <stdlib.h>
 #include <sstream>
+#include <iomanip>
 #include "ParameterAccessContext.h"
 
 #define base CParameterType
@@ -91,48 +92,72 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 
 bool CIntegerParameterType::asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    uiValue = strtoul(strValue.c_str(), NULL, 0);
+    // Hexa
+    bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
 
+    // Get value
+    int32_t iData;
+
+    if (_bSigned) {
+
+        iData = strtoul(strValue.c_str(), NULL, 0);
+    } else {
+
+        iData = strtol(strValue.c_str(), NULL, 0);
+    }
+
+    if (bValueProvidedAsHexa) {
+
+        if (isEncodable(iData)) {
+
+            // Sign extend
+            signExtend(iData);
+        }
+    }
     // Check against Min / Max
     if (_bSigned) {
 
-        if (!checkValueAgainstRange<int32_t>(uiValue, parameterAccessContext)) {
+        if (!checkValueAgainstRange<int32_t>(strValue, iData, parameterAccessContext, bValueProvidedAsHexa)) {
 
             return false;
         }
     } else {
 
-        if (!checkValueAgainstRange<uint32_t>(uiValue, parameterAccessContext)) {
+        if (!checkValueAgainstRange<uint32_t>(strValue, iData, parameterAccessContext, bValueProvidedAsHexa)) {
 
             return false;
         }
     }
+
+    uiValue = iData;
 
     return true;
 }
 
 void CIntegerParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)parameterAccessContext;
-
     // Format
     ostringstream strStream;
 
-    if (_bSigned) {
-        // Sign extend
-        uint32_t uiShift = (4 - getSize()) << 3;
+    // Take care of format
+    if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
 
-        int32_t iValue = (int32_t)uiValue;
-
-        if (uiShift) {
-
-            iValue = (iValue << uiShift) >> uiShift;
-        }
-
-        strStream << iValue;
+        // Hexa display with unecessary bits cleared out
+        strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(uiValue);
     } else {
 
-        strStream << uiValue;
+        if (_bSigned) {
+
+            int32_t iValue = uiValue;
+
+            // Sign extend
+            signExtend(iValue);
+
+            strStream << iValue;
+        } else {
+
+            strStream << uiValue;
+        }
     }
 
     strValue = strStream.str();
@@ -145,12 +170,27 @@ uint32_t CIntegerParameterType::getDefaultValue() const
 }
 
 // Range checking
-template <class type> bool CIntegerParameterType::checkValueAgainstRange(type value, CParameterAccessContext& parameterAccessContext) const
+template <typename type> bool CIntegerParameterType::checkValueAgainstRange(const string& strValue, type value, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const
 {
     if ((type)value < (type)_uiMin || (type)value > (type)_uiMax) {
+
         ostringstream strStream;
 
-        strStream << "Value " << value << " standing out of admitted range: [" << (type)_uiMin << ", " <<  (type)_uiMax << "] for " << getKind();
+        strStream << "Value " << strValue << " standing out of admitted range [";
+
+        if (bHexaValue) {
+
+            // Format Min
+            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(_uiMin);
+            // Format Max
+            strStream << ", 0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(_uiMax);
+
+        } else {
+
+            strStream << (type)_uiMin << ", " <<  (type)_uiMax;
+        }
+
+        strStream << "] for " << getKind();
 
         parameterAccessContext.setError(strStream.str());
 

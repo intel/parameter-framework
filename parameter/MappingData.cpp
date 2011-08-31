@@ -42,7 +42,7 @@ bool CMappingData::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext
 
     string strMapping = xmlElement.getAttributeString("Mapping");
 
-    Tokenizer mappingTok(strMapping, ", ");
+    Tokenizer mappingTok(strMapping, ",");
 
     string strMappingElement;
 
@@ -63,13 +63,13 @@ bool CMappingData::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext
     return true;
 }
 
-bool CMappingData::getValue(const string& strkey, string& strValue) const
+bool CMappingData::getValue(const string& strkey, const string*& pStrValue) const
 {
     KeyToValueMapConstIterator it = _keyToValueMap.find(strkey);
 
     if (it != _keyToValueMap.end()) {
 
-        strValue = it->second;
+        pStrValue = &it->second;
 
         return true;
     }

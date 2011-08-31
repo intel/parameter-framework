@@ -277,7 +277,38 @@ bool CConfigurableDomain::serializeConfigurableElementConfiguration(CDomainConfi
     // Actual XML context
     CXmlDomainSerializingContext& xmlDomainSerializingContext = static_cast<CXmlDomainSerializingContext&>(serializingContext);
 
-    // Change context type for parameter settings access
+    // Element content
+    CXmlElement xmlConfigurationSettingsElementContent;
+
+    // Deal with element itself
+    if (!bSerializeOut) {
+
+        // Check structure
+        if (xmlConfigurationSettingsElement.getNbChildElements() != 1) {
+
+            // Structure error
+            serializingContext.setError("Struture error encountered while parsing settinsg of " + pConfigurableElement->getKind() + " " + pConfigurableElement->getName() + " in Configuration " + pDomainConfiguration->getName() + " in Domain " + getName());
+
+            return false;
+        }
+
+        // Check name and kind
+        if (!xmlConfigurationSettingsElement.getChildElement(pConfigurableElement->getKind(), pConfigurableElement->getName(), xmlConfigurationSettingsElementContent)) {
+
+            serializingContext.setError("Couldn't find settings for " + pConfigurableElement->getKind() + " " + pConfigurableElement->getName() + " for Configuration " + pDomainConfiguration->getName() + " in Domain " + getName());
+
+            return false;
+        }
+    } else {
+
+        // Create child XML element
+        xmlConfigurationSettingsElement.createChild(xmlConfigurationSettingsElementContent, pConfigurableElement->getKind());
+
+        // Set Name
+        xmlConfigurationSettingsElementContent.setNameAttribute(pConfigurableElement->getName());
+    }
+
+    // Change context type to parameter settings access
     string strError;
 
     // Create configuration access context
@@ -285,6 +316,9 @@ bool CConfigurableDomain::serializeConfigurableElementConfiguration(CDomainConfi
 
     // Provide current value space
     configurationAccessContext.setValueSpaceRaw(xmlDomainSerializingContext.valueSpaceIsRaw());
+
+    // Provide current output raw format
+    configurationAccessContext.setOutputRawFormat(xmlDomainSerializingContext.outputRawFormatIsHex());
 
     // Get subsystem
     const CSubsystem* pSubsystem = pConfigurableElement->getBelongingSubsystem();
@@ -298,7 +332,7 @@ bool CConfigurableDomain::serializeConfigurableElementConfiguration(CDomainConfi
     }
 
     // Have domain configuration parse settings for configurable element
-    if (!pDomainConfiguration->serializeXmlSettings(pConfigurableElement, xmlConfigurationSettingsElement, configurationAccessContext)) {
+    if (!pDomainConfiguration->serializeXmlSettings(pConfigurableElement, xmlConfigurationSettingsElementContent, configurationAccessContext)) {
 
         // Forward error
         xmlDomainSerializingContext.setError(strError);
@@ -735,32 +769,7 @@ bool CConfigurableDomain::autoValidateConfiguration(CDomainConfiguration* pDomai
     }
     return false;
 }
-#if 0
-void CConfigurableDomain::autoValidateConfiguration(CDomainConfiguration* pDomainConfiguration)
-{
-    // Validate
-    ConfigurableElementListIterator it;
 
-    // Browse all configurable elements for configuration validation
-    for (it = _configurableElementList.begin(); it != _configurableElementList.end(); ++it) {
-
-        const CConfigurableElement* pConfigurableElement = *it;
-
-        // Find first valid configuration for given configurable element
-        const CDomainConfiguration* pValidDomainConfiguration = findValidDomainConfiguration(pConfigurableElement);
-
-        // Check valid configuration exists for that configurable element
-        if (pValidDomainConfiguration) {
-
-            // Called on purpose
-            assert(pValidDomainConfiguration != pDomainConfiguration);
-
-            // Validate
-            pDomainConfiguration->validateAgainst(pValidDomainConfiguration, pConfigurableElement);
-        }
-    }
-}
-#endif
 // Search for a valid configuration for given configurable element
 const CDomainConfiguration* CConfigurableDomain::findValidDomainConfiguration(const CConfigurableElement* pConfigurableElement) const
 {

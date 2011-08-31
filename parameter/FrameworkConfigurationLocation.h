@@ -37,13 +37,18 @@ class CFrameworkConfigurationLocation : public CKindElement
 public:
     CFrameworkConfigurationLocation(const string& strName, const string& strKind);
 
+    // File path
     string getFilePath(const string& strBaseFolder) const;
+
+    // Folder path
     string getFolderPath(const string& strBaseFolder) const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 private:
+    // Detect relative path
     bool isPathRelative() const;
 
+    // Path
     string _strPath;
 };

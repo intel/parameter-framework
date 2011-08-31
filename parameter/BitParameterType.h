@@ -46,7 +46,7 @@ public:
 
     // Conversion
     bool asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    void asString(const uint32_t& uiValue, string& strValue) const;
+    void asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const;
 
     // Bit Size
     uint32_t getBitSize() const;
@@ -60,6 +60,8 @@ private:
     uint32_t getMaxValue() const;
     // Biwise mask
     uint32_t getMask() const;
+    // Check data has no bit set outside available range
+    bool isEncodable(uint32_t uiData) const;
 
     // Pos in bits
     uint32_t _uiBitPos;

@@ -49,15 +49,26 @@ string CBooleanParameterType::getKind() const
 
 bool CBooleanParameterType::asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    if (strValue == "1") {
+    if (strValue == "1" || strValue == "0x1") {
 
         uiValue = true;
-    } else if (strValue == "0") {
+    } else if (strValue == "0" || strValue == "0x0") {
 
         uiValue = false;
     } else {
+        parameterAccessContext.setError(strValue + " value not part of numerical space {");
 
-        parameterAccessContext.setError(strValue + " value not part of numerical space {0, 1} for " + getKind());
+        // Hexa
+        bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
+
+        if (bValueProvidedAsHexa) {
+
+            parameterAccessContext.appendToError("0x0, 0x1");
+        } else {
+
+            parameterAccessContext.appendToError("0, 1");
+        }
+        parameterAccessContext.appendToError("} for " + getKind());
 
         return false;
     }
@@ -67,7 +78,10 @@ bool CBooleanParameterType::asInteger(const string& strValue, uint32_t& uiValue,
 
 void CBooleanParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)parameterAccessContext;
+    if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
 
-    strValue = uiValue ? "1" : "0";
+        strValue = "0x";
+    }
+
+    strValue += uiValue ? "1" : "0";
 }

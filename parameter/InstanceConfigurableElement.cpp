@@ -55,10 +55,10 @@ const CTypeElement* CInstanceConfigurableElement::getTypeElement() const
 }
 
 // Mapping
-bool CInstanceConfigurableElement::getMappingData(const string& strKey, string& strValue) const
+bool CInstanceConfigurableElement::getMappingData(const string& strKey, const string*& pStrValue) const
 {
     // Delegate
-    return getTypeElement()->getMappingData(strKey, strValue);
+    return getTypeElement()->getMappingData(strKey, pStrValue);
 }
 
 bool CInstanceConfigurableElement::map(IMapper& mapper, string& strError)
@@ -139,7 +139,7 @@ bool CInstanceConfigurableElement::sync(CParameterAccessContext& parameterAccess
 
     if (!pSyncer) {
 
-        parameterAccessContext.setError("Unable to synchronize modification. No Syncer object assiciated to configurable element " + getPath());
+        parameterAccessContext.setError("Unable to synchronize modification. No Syncer object associated to configurable element " + getPath());
 
         return false;
     }

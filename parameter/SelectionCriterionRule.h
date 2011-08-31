@@ -36,11 +36,20 @@ class CSelectionCriterion;
 
 class CSelectionCriterionRule : public CRule
 {
+    // Matching rules
     enum MatchesWhen {
         EIs,
-        EContains,
+        EIsNot,
+        EIncludes,
+        EExcludes,
 
         ENbMatchesWhen
+    };
+    // Matching rule description
+    struct SMatchingRuleDescription
+    {
+        const char* pcMatchesWhen;
+        bool bInclusiveTypeCompatible;
     };
 
 public:
@@ -58,11 +67,11 @@ public:
     // Class kind
     virtual string getKind() const;
 private:
+    // XML MatchesWhen attribute parsing
+    bool setMatchesWhen(const string& strMatchesWhen, string& strError);
+
     // Selection criterion
     const CSelectionCriterion* _pSelectionCriterion;
-
-    // XML MatchesWhen attribute parsing
-    bool setMatchesWhen(const string& strMatchesWhen);
 
     // MatchesWhen
     MatchesWhen _eMatchesWhen;
@@ -71,6 +80,6 @@ private:
     int32_t _iMatchValue;
 
     // Used for XML MatchesWhen attribute parsing
-    static const char* _apcMatchesWhen[ENbMatchesWhen];
+    static SMatchingRuleDescription _astMatchesWhen[ENbMatchesWhen];
 };
 

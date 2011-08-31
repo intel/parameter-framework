@@ -75,7 +75,7 @@ public:
     void split(CConfigurableElement* pFromConfigurableElement);
 
     // XML configuration settings parsing/composing
-    bool serializeXmlSettings(const CConfigurableElement* pConfigurableElement, CXmlElement& xmlConfigurationSettingsElement, CConfigurationAccessContext& configurationAccessContext);
+    bool serializeXmlSettings(const CConfigurableElement* pConfigurableElement, CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext);
 
     // Presence of application condition
     bool hasRule() const;

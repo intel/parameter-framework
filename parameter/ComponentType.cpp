@@ -50,10 +50,10 @@ bool CComponentType::childrenAreDynamic() const
     return true;
 }
 
-bool CComponentType::getMappingData(const string& strKey, string& strValue) const
+bool CComponentType::getMappingData(const string& strKey, const string*& pStrValue) const
 {
     // Try myself first then extended component type
-    return base::getMappingData(strKey, strValue) || (_pExtendsComponentType && _pExtendsComponentType->getMappingData(strKey, strValue));
+    return base::getMappingData(strKey, pStrValue) || (_pExtendsComponentType && _pExtendsComponentType->getMappingData(strKey, pStrValue));
 }
 
 bool CComponentType::hasMappingData() const

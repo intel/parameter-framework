@@ -32,26 +32,26 @@
 #include <string.h>
 #include <assert.h>
 
-CParameterBlackboard::CParameterBlackboard() : _puiData(NULL), _uiSize(0)
+CParameterBlackboard::CParameterBlackboard() : _pucData(NULL), _uiSize(0)
 {
 }
 
 CParameterBlackboard::~CParameterBlackboard()
 {
-    delete [] _puiData;
+    delete [] _pucData;
 }
 
 // Size
 void CParameterBlackboard::setSize(uint32_t uiSize)
 {
-    if (_puiData) {
+    if (_pucData) {
 
-        delete [] _puiData;
+        delete [] _pucData;
     }
 
-    _puiData = new uint8_t[uiSize];
+    _pucData = new uint8_t[uiSize];
 
-    memset(_puiData, 0, uiSize);
+    memset(_pucData, 0, uiSize);
 
     _uiSize = uiSize;
 }
@@ -68,7 +68,7 @@ void CParameterBlackboard::write(const void* pvSrcData, uint32_t uiSize, uint32_
 
     if (!bBigEndian) {
 
-        memcpy(_puiData + uiOffset, pvSrcData, uiSize);
+        memcpy(_pucData + uiOffset, pvSrcData, uiSize);
     } else {
 
         uint32_t uiIndex;
@@ -76,7 +76,7 @@ void CParameterBlackboard::write(const void* pvSrcData, uint32_t uiSize, uint32_
 
         for (uiIndex = 0; uiIndex < uiSize; uiIndex++) {
 
-            _puiData[uiIndex + uiOffset] = puiSrcData[uiSize - uiIndex - 1];
+            _pucData[uiIndex + uiOffset] = puiSrcData[uiSize - uiIndex - 1];
         }
     }
 }
@@ -87,7 +87,7 @@ void CParameterBlackboard::read(void* pvDstData, uint32_t uiSize, uint32_t uiOff
 
     if (!bBigEndian) {
 
-        memcpy(pvDstData, _puiData + uiOffset, uiSize);
+        memcpy(pvDstData, _pucData + uiOffset, uiSize);
     } else {
 
         uint32_t uiIndex;
@@ -95,35 +95,26 @@ void CParameterBlackboard::read(void* pvDstData, uint32_t uiSize, uint32_t uiOff
 
         for (uiIndex = 0; uiIndex < uiSize; uiIndex++) {
 
-            puiDstData[uiSize - uiIndex - 1] = _puiData[uiIndex + uiOffset];
+            puiDstData[uiSize - uiIndex - 1] = _pucData[uiIndex + uiOffset];
         }
     }
 }
 
 // Access from/to subsystems
-void CParameterBlackboard::rawRead(void* pvDstData, uint32_t uiSize, uint32_t uiOffset) const
+uint8_t* CParameterBlackboard::getLocation(uint32_t uiOffset)
 {
-    assert(uiSize + uiOffset <= _uiSize);
-
-    memcpy(pvDstData, _puiData + uiOffset, uiSize);
-}
-
-void CParameterBlackboard::rawWrite(const void* pvDstData, uint32_t uiSize, uint32_t uiOffset)
-{
-    assert(uiSize + uiOffset <= _uiSize);
-
-    memcpy(_puiData + uiOffset, pvDstData, uiSize);
+    return _pucData + uiOffset;
 }
 
 // Configuration handling
 void CParameterBlackboard::restoreFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset)
 {
-    memcpy(_puiData + uiOffset, pFromBlackboard->_puiData, pFromBlackboard->_uiSize);
+    memcpy(_pucData + uiOffset, pFromBlackboard->_pucData, pFromBlackboard->_uiSize);
 }
 
 void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const
 {
-    memcpy(pToBlackboard->_puiData, _puiData + uiOffset, pToBlackboard->_uiSize);
+    memcpy(pToBlackboard->_pucData, _pucData + uiOffset, pToBlackboard->_uiSize);
 }
 
 // Serialization
@@ -131,9 +122,9 @@ void CParameterBlackboard::serialize(CBinaryStream& binaryStream)
 {
     if (binaryStream.isOut()) {
 
-        binaryStream.write(_puiData, _uiSize);
+        binaryStream.write(_pucData, _uiSize);
     } else {
 
-        binaryStream.read(_puiData, _uiSize);
+        binaryStream.read(_pucData, _uiSize);
     }
 }

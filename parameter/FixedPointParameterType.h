@@ -53,6 +53,8 @@ public:
 private:
     // Util size
     uint32_t getUtilSizeInBits() const;
+    // Out of range error
+    string getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const;
 
     // Integral part in Q notation
     uint32_t _uiIntegral;

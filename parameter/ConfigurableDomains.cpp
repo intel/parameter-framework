@@ -32,6 +32,7 @@
 #include "ConfigurableDomain.h"
 #include "ConfigurableElement.h"
 #include "BinaryStream.h"
+#include "AutoLog.h"
 
 #define base CBinarySerializableElement
 
@@ -67,7 +68,7 @@ void CConfigurableDomains::validate(const CParameterBlackboard* pMainBlackboard)
 // Configuration application if required
 bool CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, bool bForce, string& strError)
 {
-    log("Applying configurations");
+   CAutoLog autoLog(this, "Applying configurations");
 
     // Syncer set
     CSyncerSet syncerSet;
@@ -359,8 +360,6 @@ bool CConfigurableDomains::saveConfiguration(const string& strDomain, const stri
 // Last applied configurations
 void CConfigurableDomains::listLastAppliedConfigurations(string& strResult) const
 {
-    strResult = "\n";
-
     // Browse domains
     uint32_t uiChild;
     uint32_t uiNbConfigurableDomains = getNbChildren();

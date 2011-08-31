@@ -55,11 +55,11 @@ uint32_t CTypeElement::getArrayLength() const
     return _uiArrayLength;
 }
 
-bool CTypeElement::getMappingData(const string& strKey, string& strValue) const
+bool CTypeElement::getMappingData(const string& strKey, const string*& pStrValue) const
 {
     if (_pMappingData) {
 
-        return _pMappingData->getValue(strKey, strValue);
+        return _pMappingData->getValue(strKey, pStrValue);
     }
     return false;
 }

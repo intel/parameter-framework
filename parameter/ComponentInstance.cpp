@@ -50,10 +50,10 @@ bool CComponentInstance::childrenAreDynamic() const
     return true;
 }
 
-bool CComponentInstance::getMappingData(const string& strKey, string& strValue) const
+bool CComponentInstance::getMappingData(const string& strKey, const string*& pStrValue) const
 {
     // Try myself first then associated component type
-    return base::getMappingData(strKey, strValue) || (_pComponentType && _pComponentType->getMappingData(strKey, strValue));
+    return base::getMappingData(strKey, pStrValue) || (_pComponentType && _pComponentType->getMappingData(strKey, pStrValue));
 }
 
 bool CComponentInstance::hasMappingData() const

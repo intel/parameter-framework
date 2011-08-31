@@ -47,6 +47,7 @@ public:
     virtual void addArgument(const string& strArgument);
     virtual uint32_t getArgumentCount() const;
     virtual const string& getArgument(uint32_t uiArgument) const;
+    virtual const string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const;
 
 private:
     // Fill data to send

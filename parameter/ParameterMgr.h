@@ -122,6 +122,10 @@ public:
     void setValueSpace(bool bIsRaw);
     bool valueSpaceIsRaw();
 
+    // Current Output Raw Format for user get value interpretation
+    void setOutputRawFormat(bool bIsHex);
+    bool outputRawFormatIsHex();
+
     // Automatic hardware synchronization control (during tuning session)
     bool setAutoSync(bool bAutoSyncOn, string& strError);
     bool autoSyncOn() const;
@@ -183,10 +187,15 @@ private:
     /// Value Space
     CommandStatus setValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus getValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    /// Output Raw Format
+    CommandStatus setOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CommandStatus getOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Sync
     CommandStatus setAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus getAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus syncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    /// Criteria
+    CommandStatus listCriteriaCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Domains
     CommandStatus listDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus createDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
@@ -205,7 +214,7 @@ private:
     CommandStatus restoreConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Elements/Parameters
     CommandStatus listElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus listElementsRecursiveCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CommandStatus listParametersCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus dumpElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus getElementSizeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus getParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
@@ -273,6 +282,9 @@ private:
 
     // Value Space
     bool _bValueSpaceIsRaw;
+
+    // Output Raw Format
+    bool _bOutputRawFormatIsHex;
 
     // Automatic synchronization to HW during Tuning session
     bool _bAutoSyncOn;

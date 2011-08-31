@@ -80,6 +80,10 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
 // Conversion
 bool CBitParameterType::asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
+    // Hexa
+    bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
+
+    // Get value
     uint32_t uiConvertedValue = strtoul(strValue.c_str(), NULL, 0);
 
     if (uiConvertedValue > getMaxValue()) {
@@ -87,25 +91,40 @@ bool CBitParameterType::asInteger(const string& strValue, uint32_t& uiValue, CPa
         // Range exceeded
         ostringstream strStream;
 
-        strStream << strValue << " value out of range [0, " << getMaxValue() << "] for " + getKind();
+        strStream << "Value " << strValue << " standing out of admitted range [";
+
+        if (bValueProvidedAsHexa) {
+
+            strStream << "0x0, " << "0x" << hex << uppercase;
+        } else {
+
+            strStream << "0, ";
+        }
+        strStream << getMaxValue() << "] for " + getKind();
 
         parameterAccessContext.setError(strStream.str());
 
         return false;
     }
 
-    // Do bitwise operation
+    // Do bitwise RMW operation
     uiValue = (uiValue & ~getMask()) | (uiConvertedValue << _uiBitPos);
 
     return true;
 }
 
-void CBitParameterType::asString(const uint32_t& uiValue, string& strValue) const
+void CBitParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiConvertedValue = (uiValue & getMask()) >> _uiBitPos;
 
     // Format
     ostringstream strStream;
+
+    // Take care of format
+    if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
+
+        strStream << "0x" << hex << uppercase;
+    }
 
     strStream << uiConvertedValue;
 
@@ -133,4 +152,18 @@ uint32_t CBitParameterType::getMaxValue() const
 uint32_t CBitParameterType::getMask() const
 {
     return getMaxValue() << _uiBitPos;
+}
+
+// Check data has no bit set outside available range
+bool CBitParameterType::isEncodable(uint32_t uiData) const
+{
+    uint32_t uiShift = 32 - _uiBitSize;
+
+    if (uiShift) {
+
+        // Check high bits are clean
+        return !(uiData >> uiShift);
+    }
+
+    return true;
 }

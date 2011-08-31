@@ -106,6 +106,8 @@ protected:
     virtual void logValue(string& strValue, CErrorContext& errorContext) const;
     // Name setting
     void setName(const string& strName);
+    // Utility to underline
+    static void appendTitle(string& strTo, const string& strTitle);
 
     // Hierarchy
     CElement* getLastChild();

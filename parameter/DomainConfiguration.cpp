@@ -63,7 +63,7 @@ bool CDomainConfiguration::childrenAreDynamic() const
 }
 
 // XML configuration settings parsing
-bool CDomainConfiguration::serializeXmlSettings(const CConfigurableElement* pConfigurableElement, CXmlElement& xmlConfigurationSettingsElement, CConfigurationAccessContext& configurationAccessContext)
+bool CDomainConfiguration::serializeXmlSettings(const CConfigurableElement* pConfigurableElement, CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext)
 {
     // Find related AreaConfiguration
     CAreaConfiguration* pAreaConfiguration = getAreaConfiguration(pConfigurableElement);
@@ -71,7 +71,7 @@ bool CDomainConfiguration::serializeXmlSettings(const CConfigurableElement* pCon
     assert(pAreaConfiguration);
 
     // Delegate to corresponding area configuration
-    return pAreaConfiguration->serializeXmlSettings(xmlConfigurationSettingsElement, configurationAccessContext);
+    return pAreaConfiguration->serializeXmlSettings(xmlConfigurationSettingsElementContent, configurationAccessContext);
 }
 
 // Configurable Elements association

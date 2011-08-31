@@ -1,2 +1,2 @@
-#! /bin/sh
+#!/bin/sh
 ./remote-process localhost 5000 $*

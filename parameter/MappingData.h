@@ -46,7 +46,7 @@ public:
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     // Query
-    bool getValue(const string& strkey, string& strValue) const;
+    bool getValue(const string& strkey, const string*& pStrValue) const;
 
 private:
     bool addValue(const string& strkey, const string& strValue);

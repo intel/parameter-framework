@@ -78,6 +78,9 @@ public:
     // Elements with no domains
     void listRogueElements(string& strResult) const;
 
+    // Footprint as string
+    string getFootprintAsString() const;
+
     // Parameter access
     virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const;
     virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const;
@@ -85,7 +88,7 @@ public:
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
     // XML configuration settings parsing
-    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
+    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 protected:
     // Syncer (me or ascendant)
     virtual ISyncer* getSyncer() const;

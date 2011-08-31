@@ -43,9 +43,13 @@ public:
     // Settings to be serialized or not
     bool withSettings() const;
 
-    // Value interpretation as Real or Raw (usefull for Fixed point parameters)
+    // Value interpretation as Real or Raw
     void setValueSpaceRaw(bool bIsRaw);
     bool valueSpaceIsRaw() const;
+
+    // Output Raw Format for user get value interpretation
+    void setOutputRawFormat(bool bIsHex);
+    bool outputRawFormatIsHex();
 
     // ParameterBlackboard
     const CParameterBlackboard* getParameterBlackboard() const;
@@ -59,6 +63,8 @@ private:
     bool _bWithSettings;
     // Value Space
     bool _bValueSpaceIsRaw;
+    // Output Raw Format
+    bool _bOutputRawFormatIsHex;
     // Criteria defintion
     const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
 };

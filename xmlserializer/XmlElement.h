@@ -64,6 +64,7 @@ public:
     // Navigation
     bool getChildElement(const string& strType, CXmlElement& childElement) const;
     bool getChildElement(const string& strType, const string& strNameAttribute, CXmlElement& childElement) const;
+    uint32_t getNbChildElements() const;
     bool getParentElement(CXmlElement& parentElement) const;
 
     // Setters

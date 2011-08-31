@@ -32,13 +32,16 @@
 #include "SelectionCriterion.h"
 #include "XmlDomainSerializingContext.h"
 #include "SelectionCriteriaDefinition.h"
+#include "SelectionCriterionTypeInterface.h"
 #include <assert.h>
 
 #define base CRule
 
-const char* CSelectionCriterionRule::_apcMatchesWhen[CSelectionCriterionRule::ENbMatchesWhen] = {
-    "Is",
-    "Contains"
+CSelectionCriterionRule::SMatchingRuleDescription CSelectionCriterionRule::_astMatchesWhen[CSelectionCriterionRule::ENbMatchesWhen] = {
+    { "Is", false },
+    { "IsNot", false },
+    { "Includes", true },
+    { "Excludes", true }
 };
 
 CSelectionCriterionRule::CSelectionCriterionRule() : _pSelectionCriterion(NULL), _eMatchesWhen(CSelectionCriterionRule::EIs), _iMatchValue(0)
@@ -58,9 +61,13 @@ bool CSelectionCriterionRule::matches() const
 
     switch(_eMatchesWhen) {
     case EIs:
-        return _pSelectionCriterion->equals(_iMatchValue);
-    case EContains:
-        return _pSelectionCriterion->contains(_iMatchValue);
+        return _pSelectionCriterion->is(_iMatchValue);
+    case EIsNot:
+        return _pSelectionCriterion->isNot(_iMatchValue);
+    case EIncludes:
+        return _pSelectionCriterion->includes(_iMatchValue);
+    case EExcludes:
+        return _pSelectionCriterion->excludes(_iMatchValue);
     default:
         assert(0);
         return false;
@@ -88,10 +95,11 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
 
     // Get MatchesWhen
     string strMatchesWhen = xmlElement.getAttributeString("MatchesWhen");
+    string strError;
 
-    if (!setMatchesWhen(strMatchesWhen)) {
+    if (!setMatchesWhen(strMatchesWhen, strError)) {
 
-        xmlDomainSerializingContext.setError("Wrong MatchesWhen attribute " + strMatchesWhen + " in " + getKind() + " " + xmlElement.getPath());
+        xmlDomainSerializingContext.setError("Wrong MatchesWhen attribute " + strMatchesWhen + " in " + getKind() + " " + xmlElement.getPath() + ": " + strError);
 
         return false;
     }
@@ -121,7 +129,7 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getName());
 
     // Set MatchesWhen
-    xmlElement.setAttributeString("MatchesWhen", _apcMatchesWhen[_eMatchesWhen]);
+    xmlElement.setAttributeString("MatchesWhen", _astMatchesWhen[_eMatchesWhen].pcMatchesWhen);
 
     // Set Value
     string strValue;
@@ -132,19 +140,37 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
 }
 
 // XML MatchesWhen attribute parsing
-bool CSelectionCriterionRule::setMatchesWhen(const string& strMatchesWhen)
+bool CSelectionCriterionRule::setMatchesWhen(const string& strMatchesWhen, string& strError)
 {
     uint32_t uiMatchesWhen;
 
     for (uiMatchesWhen = 0; uiMatchesWhen < ENbMatchesWhen; uiMatchesWhen++) {
 
-        if (strMatchesWhen == _apcMatchesWhen[uiMatchesWhen]) {
+        const SMatchingRuleDescription* pstMatchingRuleDescription = &_astMatchesWhen[uiMatchesWhen];
+
+        if (strMatchesWhen == pstMatchingRuleDescription->pcMatchesWhen) {
 
             // Found it!
+
+            // Get Type
+            const ISelectionCriterionTypeInterface* pSelectionCriterionType = _pSelectionCriterion->getCriterionType();
+
+            // Check compatibility if relevant
+            if (pSelectionCriterionType->isTypeInclusive() && !pstMatchingRuleDescription->bInclusiveTypeCompatible) {
+
+                strError = "Value incompatible with inclusive kind of type";
+
+                return false;
+            }
+
+            // Store
             _eMatchesWhen = (MatchesWhen)uiMatchesWhen;
 
             return true;
         }
     }
+
+    strError = "Value not found";
+
     return false;
 }

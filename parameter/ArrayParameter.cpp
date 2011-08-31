@@ -48,16 +48,16 @@ uint32_t CArrayParameter::getFootPrint() const
 }
 
 // XML configuration settings parsing
-bool CArrayParameter::serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
+bool CArrayParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {
     // Check for value space
-    handleValueSpaceAttribute(xmlConfigurableElementSettingsElement, configurationAccessContext);
+    handleValueSpaceAttribute(xmlConfigurationSettingsElementContent, configurationAccessContext);
 
     // Handle access
     if (!configurationAccessContext.serializeOut()) {
 
         // Actually set values to blackboard
-        if (!setValues(0, configurationAccessContext.getBaseOffset(), xmlConfigurableElementSettingsElement.getTextContent(), configurationAccessContext)) {
+        if (!setValues(0, configurationAccessContext.getBaseOffset(), xmlConfigurationSettingsElementContent.getTextContent(), configurationAccessContext)) {
 
             return false;
         }
@@ -70,7 +70,7 @@ bool CArrayParameter::serializeXmlSettings(CXmlElement& xmlConfigurableElementSe
         getValues(configurationAccessContext.getBaseOffset(), strValue, configurationAccessContext);
 
         // Populate value into xml text node
-        xmlConfigurableElementSettingsElement.setTextContent(strValue);
+        xmlConfigurationSettingsElementContent.setTextContent(strValue);
     }
 
     // Done
@@ -220,7 +220,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
 bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, const string& strValue, CParameterAccessContext& parameterContext) const
 {
     // Deal with value(s)
-    Tokenizer tok(strValue);
+    Tokenizer tok(strValue, DEFAULT_DELIMITER + ",");
 
     vector<string> astrValues = tok.split();
     uint32_t uiNbValues = astrValues.size();
@@ -261,12 +261,22 @@ void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParam
     uint32_t uiSize = getSize();
     uint32_t uiOffset = getOffset() - uiBaseOffset;
 
+    bool bFirst = true;
+
     for (uiValueIndex = 0; uiValueIndex < _uiLength; uiValueIndex++) {
         string strReadValue;
 
         doGetValue(strReadValue, uiOffset, parameterContext);
 
-        strValues += strReadValue + " ";
+        if (!bFirst) {
+
+            strValues += " ";
+        } else {
+
+            bFirst = false;
+        }
+
+        strValues += strReadValue;
 
         uiOffset += uiSize;
     }

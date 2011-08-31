@@ -73,6 +73,33 @@ const string& CRequestMessage::getArgument(uint32_t uiArgument) const
     return _argumentVector[uiArgument];
 }
 
+const string CRequestMessage::packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const
+{
+    string strPackedArguments;
+
+    assert(uiStartArgument + uiNbArguments <= _argumentVector.size());
+
+    // Pack arguments, separating them with a space
+    uint32_t uiArgument;
+
+    bool bFirst = true;
+
+    for (uiArgument = uiStartArgument; uiArgument < uiStartArgument + uiNbArguments; uiArgument++) {
+
+        if (!bFirst) {
+
+            strPackedArguments += " ";
+        } else {
+
+            bFirst = false;
+        }
+
+        strPackedArguments += _argumentVector[uiArgument];
+    }
+
+    return strPackedArguments;
+}
+
 // Fill data to send
 void CRequestMessage::fillDataToSend()
 {

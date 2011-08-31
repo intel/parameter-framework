@@ -30,8 +30,8 @@
  */
 #include "SubsystemObjectCreator.h"
 
-CSubsystemObjectCreator::CSubsystemObjectCreator(const string& strMappingKey, uint32_t uiAncestorIdMask)
-    : _strMappingKey(strMappingKey), _uiAncestorIdMask(uiAncestorIdMask)
+CSubsystemObjectCreator::CSubsystemObjectCreator(const string& strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize)
+    : _strMappingKey(strMappingKey), _uiAncestorIdMask(uiAncestorIdMask), _uiMaxConfigurableElementSize(uiMaxConfigurableElementSize)
 {
 }
 
@@ -44,4 +44,9 @@ const string& CSubsystemObjectCreator::getMappingKey() const
 uint32_t CSubsystemObjectCreator::getAncestorMask() const
 {
     return _uiAncestorIdMask;
+}
+
+uint32_t CSubsystemObjectCreator::getMaxConfigurableElementSize() const
+{
+    return _uiMaxConfigurableElementSize;
 }

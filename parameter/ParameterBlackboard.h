@@ -50,8 +50,7 @@ public:
     void read(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const;
 
     // Access from/to subsystems
-    void rawRead(void* pvDstData, uint32_t uiSize, uint32_t uiOffset) const;
-    void rawWrite(const void* pvDstData, uint32_t uiSize, uint32_t uiOffset);
+    uint8_t* getLocation(uint32_t uiOffset);
 
     // Configuration handling
     void restoreFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset);
@@ -60,7 +59,7 @@ public:
     // Serialization
     void serialize(CBinaryStream& binaryStream);
 private:
-    uint8_t* _puiData;
+    uint8_t* _pucData;
     uint32_t _uiSize;
 };
 

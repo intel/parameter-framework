@@ -91,7 +91,7 @@ void CAreaConfiguration::validateAgainst(const CAreaConfiguration* pValidAreaCon
 }
 
 // XML configuration settings parsing
-bool CAreaConfiguration::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElement, CConfigurationAccessContext& configurationAccessContext)
+bool CAreaConfiguration::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext)
 {
     // Assign blackboard to configuration context
     configurationAccessContext.setParameterBlackboard(&_blackboard);
@@ -99,12 +99,12 @@ bool CAreaConfiguration::serializeXmlSettings(CXmlElement& xmlConfigurationSetti
     // Assign base offset to configuration context
     configurationAccessContext.setBaseOffset(_pConfigurableElement->getOffset());
 
-    // Parse configuration settings
-    if (_pConfigurableElement->serializeXmlSettings(xmlConfigurationSettingsElement, configurationAccessContext)) {
+    // Parse configuration settings (element contents)
+    if (_pConfigurableElement->serializeXmlSettings(xmlConfigurationSettingsElementContent, configurationAccessContext)) {
 
         if (!configurationAccessContext.serializeOut()) {
 
-            // Serialized in areas are valid
+            // Serialized-in areas are valid
             _bValid = true;
         }
         return true;

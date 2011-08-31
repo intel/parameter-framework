@@ -31,6 +31,8 @@
 #include "FixedPointParameterType.h"
 #include <stdlib.h>
 #include <sstream>
+#include <iomanip>
+#include <assert.h>
 #include "Parameter.h"
 #include "ParameterAccessContext.h"
 #include "ConfigurationAccessContext.h"
@@ -82,7 +84,7 @@ bool CFixedPointParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerial
     // Size vs. Q notation integrity check
     if (uiSizeInBits < getUtilSizeInBits()) {
 
-        serializingContext.setError("Inconsistent Size vs. Q notation for " + getKind() + " " + xmlElement.getPath() + ": Summing (Integral + _uiFractional + 1) should be less than given Size (" + xmlElement.getAttributeString("Size") + ")");
+        serializingContext.setError("Inconsistent Size vs. Q notation for " + getKind() + " " + xmlElement.getPath() + ": Summing (Integral + _uiFractional + 1) should not exceed given Size (" + xmlElement.getAttributeString("Size") + ")");
 
         return false;
     }
@@ -95,11 +97,38 @@ bool CFixedPointParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerial
 
 bool CFixedPointParameterType::asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
+    // Hexa
+    bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
+
+    // Check data integrity
+    if (bValueProvidedAsHexa && !parameterAccessContext.valueSpaceIsRaw()) {
+
+        parameterAccessContext.setError("Hexadecimal values are not supported for " + getKind() + " when selected value space is real:");
+
+        return false;
+    }
+
     int32_t iData;
 
     if (parameterAccessContext.valueSpaceIsRaw()) {
 
+        // Get data in integer form
         iData = strtol(strValue.c_str(), NULL, 0);
+
+        if (bValueProvidedAsHexa) {
+
+            if (!isEncodable(iData)) {
+
+                // Illegal value provided
+                parameterAccessContext.setError(getOutOfRangeError(strValue, parameterAccessContext.valueSpaceIsRaw(), true));
+
+                return false;
+            } else {
+
+                // Sign extend
+                signExtend(iData);
+            }
+        }
 
     } else {
         double dData = strtod(strValue.c_str(), NULL);
@@ -107,28 +136,11 @@ bool CFixedPointParameterType::asInteger(const string& strValue, uint32_t& uiVal
         // Do the conversion
         iData = (int32_t)(dData * (1UL << _uiFractional) + 0.5F - (double)(dData < 0));
     }
+    // Check integrity
+    if (!isConsistent(iData, true)) {
 
-    // Check for admitted range: [-2^m, 2^m - 2^n]
-    uint32_t uiSizeInBits = getUtilSizeInBits();
-
-    int32_t iMin = ((int32_t)1 << 31) >> (32 - uiSizeInBits);
-    int32_t iMax = -iMin - 1;
-
-    if (iData < iMin || iData > iMax) {
-        ostringstream strStream;
-
-        strStream << "Value " << strValue << " standing out of admitted ";
-
-        if (!parameterAccessContext.valueSpaceIsRaw()) {
-
-            strStream << "real range [" << (double)iMin / (1UL << _uiFractional) << ", "<< (double)iMax / (1UL << _uiFractional) << "]";
-        } else {
-
-            strStream << "raw range ["  << iMin << ", " << iMax << "]";
-        }
-        strStream <<  " for " << getKind();
-
-        parameterAccessContext.setError(strStream.str());
+        // Illegal value provided
+        parameterAccessContext.setError(getOutOfRangeError(strValue, parameterAccessContext.valueSpaceIsRaw(), bValueProvidedAsHexa));
 
         return false;
     }
@@ -140,22 +152,28 @@ bool CFixedPointParameterType::asInteger(const string& strValue, uint32_t& uiVal
 
 void CFixedPointParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
 {
-    int32_t iData = (int32_t)uiValue;
+    int32_t iData = uiValue;
+
+    // Check consistency
+    assert(isEncodable(iData));
 
     // Sign extend
-    uint32_t uiShift = 32 - getUtilSizeInBits();
-
-    if (uiShift) {
-
-        iData = (iData << uiShift) >> uiShift;
-    }
+    signExtend(iData);
 
     // Format
     ostringstream strStream;
 
+    // Raw formatting?
     if (parameterAccessContext.valueSpaceIsRaw()) {
 
-        strStream << iData;
+        // Hexa formatting?
+        if (parameterAccessContext.outputRawFormatIsHex()) {
+
+            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << uiValue;
+        } else {
+
+            strStream << iData;
+        }
     } else {
 
         double dData = (double)iData / (1UL << _uiFractional);
@@ -170,4 +188,39 @@ void CFixedPointParameterType::asString(const uint32_t& uiValue, string& strValu
 uint32_t CFixedPointParameterType::getUtilSizeInBits() const
 {
     return _uiIntegral + _uiFractional + 1;
+}
+
+// Out of range error
+string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const
+{
+    // Min/Max computation
+    int32_t iMin = ((int32_t)1 << 31) >> (32 - getUtilSizeInBits());
+    int32_t iMax = -iMin - 1;
+
+    ostringstream strStream;
+
+    strStream << "Value " << strValue << " standing out of admitted ";
+
+    if (!bRawValueSpace) {
+
+        strStream << "real range [" << (double)iMin / (1UL << _uiFractional) << ", "<< (double)iMax / (1UL << _uiFractional) << "]";
+    } else {
+
+        strStream << "raw range [";
+
+        if (bHexaValue) {
+
+            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(iMin);
+            strStream << ", 0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(iMax);
+
+        } else {
+
+            strStream << iMin << ", " << iMax;
+        }
+
+        strStream << "]";
+    }
+    strStream <<  " for " << getKind();
+
+    return strStream.str();
 }

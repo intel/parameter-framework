@@ -32,10 +32,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-CMappingContext::CMappingContext(uint32_t uiNbItems) : _pstItemArray(new CMappingContext::SItem[uiNbItems]), _uiNbItems(uiNbItems)
+CMappingContext::CMappingContext(uint32_t uiNbItemTypes) : _pstItemArray(new CMappingContext::SItem[uiNbItemTypes]), _uiNbItemTypes(uiNbItemTypes)
 {
     // Clear items
-    memset(_pstItemArray, 0, sizeof(*_pstItemArray) * uiNbItems);
+    memset(_pstItemArray, 0, sizeof(*_pstItemArray) * uiNbItemTypes);
 }
 
 CMappingContext::~CMappingContext()
@@ -44,10 +44,10 @@ CMappingContext::~CMappingContext()
 }
 
 // Copy constructor
-CMappingContext::CMappingContext(const CMappingContext& from) : _pstItemArray(new CMappingContext::SItem[from._uiNbItems]), _uiNbItems(from._uiNbItems)
+CMappingContext::CMappingContext(const CMappingContext& from) : _pstItemArray(new CMappingContext::SItem[from._uiNbItemTypes]), _uiNbItemTypes(from._uiNbItemTypes)
 {
     // Copy content items
-    memcpy(_pstItemArray, from._pstItemArray, sizeof(*_pstItemArray) * _uiNbItems);
+    memcpy(_pstItemArray, from._pstItemArray, sizeof(*_pstItemArray) * _uiNbItemTypes);
 }
 
 // Affectation
@@ -56,23 +56,23 @@ const CMappingContext& CMappingContext::operator=(const CMappingContext& right)
     if (&right != this) {
 
         // Size
-        _uiNbItems = right._uiNbItems;
+        _uiNbItemTypes = right._uiNbItemTypes;
 
         // Content
         // Delete previous array
         delete [] _pstItemArray;
 
         // Reallocate it
-        _pstItemArray = new CMappingContext::SItem[_uiNbItems];
+        _pstItemArray = new CMappingContext::SItem[_uiNbItemTypes];
 
         // Copy content items
-        memcpy(_pstItemArray, right._pstItemArray, sizeof(*_pstItemArray) * _uiNbItems);
+        memcpy(_pstItemArray, right._pstItemArray, sizeof(*_pstItemArray) * _uiNbItemTypes);
     }
     return *this;
 }
 
 // Item access
-bool CMappingContext::setItem(uint32_t uiItemType, const string& strItem)
+bool CMappingContext::setItem(uint32_t uiItemType, const string* pStrItem)
 {
     // Do some checks
     if (_pstItemArray[uiItemType].bSet) {
@@ -81,7 +81,7 @@ bool CMappingContext::setItem(uint32_t uiItemType, const string& strItem)
         return false;
     }
     // Get item value
-    _pstItemArray[uiItemType].uiItem = strtoul(strItem.c_str(), NULL, 0);
+    _pstItemArray[uiItemType].strItem = pStrItem;
 
     // Now is set
     _pstItemArray[uiItemType].bSet = true;
@@ -89,9 +89,19 @@ bool CMappingContext::setItem(uint32_t uiItemType, const string& strItem)
     return true;
 }
 
-uint32_t CMappingContext::getItem(uint32_t uiItemType) const
+const string&  CMappingContext::getItem(uint32_t uiItemType) const
 {
-    return _pstItemArray[uiItemType].uiItem;
+    return *_pstItemArray[uiItemType].strItem;
+}
+
+uint32_t CMappingContext::getItemAsInteger(uint32_t uiItemType) const
+{
+    if (!_pstItemArray[uiItemType].strItem) {
+
+        return 0;
+    }
+
+    return strtoul(_pstItemArray[uiItemType].strItem->c_str(), NULL, 0);
 }
 
 bool CMappingContext::iSet(uint32_t uiItemType) const

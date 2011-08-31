@@ -50,16 +50,16 @@ CInstanceConfigurableElement::Type CParameter::getType() const
 }
 
 // XML configuration settings parsing/composing
-bool CParameter::serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
+bool CParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {
     // Check for value space
-    handleValueSpaceAttribute(xmlConfigurableElementSettingsElement, configurationAccessContext);
+    handleValueSpaceAttribute(xmlConfigurationSettingsElementContent, configurationAccessContext);
 
     // Handle access
     if (!configurationAccessContext.serializeOut()) {
 
         // Write to blackboard
-        if (!doSetValue(xmlConfigurableElementSettingsElement.getTextContent(), getOffset() - configurationAccessContext.getBaseOffset(), configurationAccessContext)) {
+        if (!doSetValue(xmlConfigurationSettingsElementContent.getTextContent(), getOffset() - configurationAccessContext.getBaseOffset(), configurationAccessContext)) {
 
             // Append parameter path to error
             configurationAccessContext.appendToError(" " + getPath());
@@ -74,7 +74,7 @@ bool CParameter::serializeXmlSettings(CXmlElement& xmlConfigurableElementSetting
         doGetValue(strValue, getOffset() - configurationAccessContext.getBaseOffset(), configurationAccessContext);
 
         // Populate value into xml text node
-        xmlConfigurableElementSettingsElement.setTextContent(strValue);
+        xmlConfigurationSettingsElementContent.setTextContent(strValue);
     }
 
     // Done

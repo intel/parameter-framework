@@ -39,19 +39,22 @@ using namespace std;
 class CSubsystemObjectCreator
 {
 public:
-    CSubsystemObjectCreator(const string& strMappingKey, uint32_t uiAncestorIdMask);
+    CSubsystemObjectCreator(const string& strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize);
 
     // Accessors
     const string& getMappingKey() const;
     uint32_t getAncestorMask() const;
+    uint32_t getMaxConfigurableElementSize() const;
 
     // Object creation
-    virtual CSubsystemObject* objectCreate(const string& strId, CInstanceConfigurableElement* pInstanceConfigurableElement, CMappingContext& context, string& strError) const = 0;
+    virtual CSubsystemObject* objectCreate(const string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context) const = 0;
 
 private:
     // Mapping key
     string _strMappingKey;
     // Mask of must-be-specified ancestors
     uint32_t _uiAncestorIdMask;
+    // Masximum expected size for configurable elment (-1 means none)
+    uint32_t _uiMaxConfigurableElementSize;
 };
 

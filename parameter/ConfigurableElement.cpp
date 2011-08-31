@@ -34,6 +34,7 @@
 #include "ConfigurableDomain.h"
 #include "ConfigurationAccessContext.h"
 #include "ConfigurableElementAggregator.h"
+#include <sstream>
 #include <assert.h>
 
 #define base CElement
@@ -47,14 +48,14 @@ CConfigurableElement::~CConfigurableElement()
 }
 
 // XML configuration settings parsing
-bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
+bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {
     uint32_t uiIndex;
     uint32_t uiNbChildren = getNbChildren();
 
     if (!configurationAccessContext.serializeOut()) {
         // Just do basic checks and propagate to children
-        CXmlElement::CChildIterator it(xmlConfigurableElementSettingsElement);
+        CXmlElement::CChildIterator it(xmlConfigurationSettingsElementContent);
 
         CXmlElement xmlChildConfigurableElementSettingsElement;
 
@@ -113,7 +114,7 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurableElem
             // Create corresponding child element
             CXmlElement xmlChildConfigurableElementSettingsElement;
 
-            xmlConfigurableElementSettingsElement.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getKind());
+            xmlConfigurationSettingsElementContent.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getKind());
 
             // Handle element name attribute
             xmlChildConfigurableElementSettingsElement.setNameAttribute(pChildConfigurableElement->getName());
@@ -125,67 +126,6 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurableElem
     // Done
     return true;
 }
-
-#if 0
-bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
-{
-    if (!configurationAccessContext.serializeOut()) {
-        // Just do basic checks and propagate to children
-        CXmlElement::CChildIterator it(xmlConfigurableElementSettingsElement);
-
-        CXmlElement xmlChildConfigurableElementSettingsElement;
-
-        while (it.next(xmlChildConfigurableElementSettingsElement)) {
-
-            // Find child configurable element
-            const CConfigurableElement* pChildConfigurableElement = static_cast<const CConfigurableElement*>(findChild(xmlChildConfigurableElementSettingsElement.getNameAttribute()));
-
-            if (!pChildConfigurableElement) {
-
-                configurationAccessContext.setError("Configuration settings parsing: Unable to find configurable element " + xmlChildConfigurableElementSettingsElement.getNameAttribute() +  " under configurable element " + getName());
-
-                return false;
-            }
-
-            // Check element type matches
-            if (xmlChildConfigurableElementSettingsElement.getType() != pChildConfigurableElement->getKind()) {
-
-                configurationAccessContext.setError("Settings for configurable element " + pChildConfigurableElement->getName() + " does not match expected type: " + xmlChildConfigurableElementSettingsElement.getType() + " instead of " + pChildConfigurableElement->getKind());
-
-                return false;
-            }
-
-            // Parse child configurable element's settings
-            if (!pChildConfigurableElement->serializeXmlSettings(xmlChildConfigurableElementSettingsElement, configurationAccessContext)) {
-
-                return false;
-            }
-        }
-    } else {
-        // Propagate to children
-        uint32_t uiIndex;
-        uint32_t uiNbChildren = getNbChildren();
-
-        for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
-
-            const CConfigurableElement* pChildConfigurableElement = static_cast<const CConfigurableElement*>(getChild(uiIndex));
-
-            // Create corresponding child element
-            CXmlElement xmlChildConfigurableElementSettingsElement;
-
-            xmlConfigurableElementSettingsElement.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getKind());
-
-            // Handle element name attribute
-            xmlChildConfigurableElementSettingsElement.setNameAttribute(pChildConfigurableElement->getName());
-
-            // Propagate
-            pChildConfigurableElement->serializeXmlSettings(xmlChildConfigurableElementSettingsElement, configurationAccessContext);
-        }
-    }
-    // Done
-    return true;
-}
-#endif
 
 // Parameter access
 bool CConfigurableElement::setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const
@@ -404,6 +344,17 @@ void CConfigurableElement::listRogueElements(string& strResult) const
 
         strResult += pConfigurableElement->getPath() + "\n";
     }
+}
+
+// Footprint as string
+string CConfigurableElement::getFootprintAsString() const
+{
+    // Get size as string
+    ostringstream str;
+
+    str << getFootPrint() << " bytes";
+
+    return str.str();
 }
 
 // Matching check for no domain association

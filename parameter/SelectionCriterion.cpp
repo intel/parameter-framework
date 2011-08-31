@@ -82,12 +82,56 @@ void CSelectionCriterion::setObserver(ISelectionCriterionObserver* pSelectionCri
 }
 
 /// Match methods
-bool CSelectionCriterion::equals(int iState) const
+bool CSelectionCriterion::is(int iState) const
 {
     return _iState == iState;
 }
 
-bool CSelectionCriterion::contains(int iState) const
+bool CSelectionCriterion::isNot(int iState) const
+{
+    return _iState != iState;
+}
+
+bool CSelectionCriterion::includes(int iState) const
 {
     return (_iState & iState) != 0;
+}
+
+bool CSelectionCriterion::excludes(int iState) const
+{
+    return (_iState & iState) == 0;
+}
+
+/// User request
+string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo) const
+{
+    string strFormattedDescription;
+
+    if (bWithTypeInfo) {
+
+        // Display type info
+        appendTitle(strFormattedDescription, getName() + ":");
+
+        // States
+        strFormattedDescription += "Possible states ";
+
+        // Type Kind
+        strFormattedDescription += "(";
+        strFormattedDescription += _pType->isTypeInclusive() ? "Inclusive" : "Exclusive";
+        strFormattedDescription += "): ";
+
+        // States
+        strFormattedDescription += _pType->listPossibleValues() + "\n";
+
+        // Current State
+        strFormattedDescription += "Current state";
+    } else {
+        // Name only
+        strFormattedDescription = getName();
+    }
+
+    // Current State
+    strFormattedDescription += " = " + _pType->getFormattedState(_iState);
+
+    return strFormattedDescription;
 }

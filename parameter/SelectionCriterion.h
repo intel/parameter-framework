@@ -57,8 +57,13 @@ public:
     void setObserver(ISelectionCriterionObserver* pSelectionCriterionObserver);
 
     /// Match methods
-    bool equals(int iState) const;
-    bool contains(int iState) const;
+    bool is(int iState) const;
+    bool isNot(int iState) const;
+    bool includes(int iState) const;
+    bool excludes(int iState) const;
+
+    /// User request
+    string getFormattedDescription(bool bWithTypeInfo) const;
 
     /// From CElement
     virtual string getKind() const;

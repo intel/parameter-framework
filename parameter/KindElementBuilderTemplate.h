@@ -33,10 +33,10 @@
 #include "ElementBuilder.h"
 
 template <class ElementType>
-class CKindElementBuilderTemplate : public CElementBuilder
+class TKindElementBuilderTemplate : public CElementBuilder
 {
 public:
-    CKindElementBuilderTemplate(const string& strType) : CElementBuilder(strType) {}
+    TKindElementBuilderTemplate(const string& strType) : CElementBuilder(strType) {}
 
     virtual CElement* createElement(const CXmlElement& xmlElement) const
     {
