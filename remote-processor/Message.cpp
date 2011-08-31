@@ -39,7 +39,7 @@ CMessage::CMessage(uint8_t ucMsgId) : _ucMsgId(ucMsgId), _pucData(NULL), _uiData
 {
 }
 
-CMessage::CMessage() : _ucMsgId(-1), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
+CMessage::CMessage() : _ucMsgId((uint8_t)-1), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
 {
 }
 
