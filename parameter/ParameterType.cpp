@@ -69,12 +69,27 @@ bool CParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingConte
 }
 
 // XML Serialization value space handling
-// Value space handling for configuration import
+// Value space handling for configuration import/export
 void CParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
 {
     (void)xmlConfigurableElementSettingsElement;
     (void)configurationAccessContext;
     // Do nothing by default
+}
+
+// Element properties
+void CParameterType::showProperties(string& strResult) const
+{
+    base::showProperties(strResult);
+
+    // Unit
+    if (!_strUnit.empty()) {
+
+        strResult += "Unit: " + _strUnit + "\n";
+    }
+
+    // Scalar size
+    strResult += "Scalar size: " + toString(_uiSize) + " byte(s) \n";
 }
 
 // Default value handling (simulation only)
@@ -91,7 +106,7 @@ CInstanceConfigurableElement* CParameterType::doInstantiate() const
         return new CParameter(getName(), this);
     } else {
         // Array Parameter
-        return new CArrayParameter(getName(), this, getArrayLength());
+        return new CArrayParameter(getName(), this);
     }
 }
 

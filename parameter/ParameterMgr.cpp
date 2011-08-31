@@ -142,8 +142,9 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gaRemoteCommandPars
     { "listParameters", &CParameterMgr::listParametersCommmandProcess, 1, "<elem path>|/", "Recursively list elements under element at given path or root" },
     { "dumpElement", &CParameterMgr::dumpElementCommmandProcess, 1, "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommmandProcess, 1, "<elem path>", "Show size of element at given path" },
-    { "getParameter", &CParameterMgr::getParameterCommmandProcess, 1, "<elem ath>", "Get value for parameter at given path" },
-    { "setParameter", &CParameterMgr::setParameterCommmandProcess, 2, "<elem path> <value>", "Set value for parameter at given path" },
+    { "showProperties", &CParameterMgr::showPropertiesCommmandProcess, 1, "<elem path>", "Show properties of element at given path" },
+    { "getParameter", &CParameterMgr::getParameterCommmandProcess, 1, "<param ath>", "Get value for parameter at given path" },
+    { "setParameter", &CParameterMgr::setParameterCommmandProcess, 2, "<param path> <value>", "Set value for parameter at given path" },
     { "listBelongingDomains", &CParameterMgr::listBelongingDomainsCommmandProcess, 1, "<elem path>", "List domain(s) element at given path is contained in" },
     { "listAssociatedDomains", &CParameterMgr::listAssociatedDomainsCommmandProcess, 1, "<elem path>", "List domain(s) element at given path is associated to" },
     /// Browse
@@ -1036,6 +1037,26 @@ CParameterMgr::CommandStatus CParameterMgr::getElementSizeCommmandProcess(const 
 
     // Get size as string
     strResult = pConfigurableElement->getFootprintAsString();
+
+    return ESucceeded;
+}
+
+CParameterMgr::CommandStatus CParameterMgr::showPropertiesCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement* pLocatedElement = NULL;
+
+    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+
+        return EFailed;
+    }
+
+    // Convert element
+    const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+
+    // Return element properties
+    pConfigurableElement->showProperties(strResult);
 
     return ESucceeded;
 }

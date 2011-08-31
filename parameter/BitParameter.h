@@ -32,12 +32,9 @@
 
 #include <stdint.h>
 
-#include "InstanceConfigurableElement.h"
+#include "BaseParameter.h"
 
-class CParameterAccessContext;
-class CConfigurationAccessContext;
-
-class CBitParameter : public CInstanceConfigurableElement
+class CBitParameter : public CBaseParameter
 {
 public:
     CBitParameter(const string& strName, const CTypeElement* pTypeElement);
@@ -47,20 +44,11 @@ public:
 
     // Type
     virtual Type getType() const;
-
-    // XML configuration settings parsing/composing
-    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
-protected:
-    // Parameter Access
-    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const;
-    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const;
-    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
 private:
     // Size
-    uint32_t getSize() const;
+    uint32_t getBelongingBlockSize() const;
 
     // Actual Access
-    bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
-    void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
-
+    virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    virtual void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
 };

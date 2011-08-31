@@ -32,6 +32,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <sstream>
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
 #include "ErrorContext.h"
@@ -157,6 +158,33 @@ void CElement::dumpContent(string& strContent, CErrorContext& errorContext, cons
     }
 }
 
+// Element properties
+void CElement::showProperties(string& strResult) const
+{
+    strResult = "\n";
+    strResult += "Kind: " + getKind() + "\n";
+}
+
+// Conversion utilities
+string CElement::toString(uint32_t uiValue)
+{
+    ostringstream ostr;
+
+    ostr << uiValue;
+
+    return ostr.str();
+}
+
+string CElement::toString(int32_t iValue)
+{
+    ostringstream ostr;
+
+    ostr << iValue;
+
+    return ostr.str();
+}
+
+// Content dumping
 void CElement::logValue(string& strValue, CErrorContext& errorContext) const
 {
     (void)strValue;

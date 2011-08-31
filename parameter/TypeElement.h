@@ -48,16 +48,19 @@ public:
     virtual bool getMappingData(const string& strKey, const string*& pStrValue) const;
     virtual bool hasMappingData() const;
 
+    // Element properties
+    virtual void showProperties(string& strResult) const;
+
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     // Scalar or Array?
     bool isScalar() const;
 
-protected:
     // Array Length
     uint32_t getArrayLength() const;
 
+protected:
     // Object creation
     virtual void populate(CElement* pElement) const;
 private:

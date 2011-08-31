@@ -38,13 +38,30 @@
 
 #define base CParameter
 
-CArrayParameter::CArrayParameter(const string& strName, const CTypeElement* pTypeElement, uint32_t uiLength) : base(strName, pTypeElement), _uiLength(uiLength)
+CArrayParameter::CArrayParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
 {
 }
 
 uint32_t CArrayParameter::getFootPrint() const
 {
-    return getSize() * _uiLength;
+    return getSize() * getArrayLength();
+}
+
+// Array length
+uint32_t CArrayParameter::getArrayLength() const
+{
+    return getTypeElement()->getArrayLength();
+}
+
+// Element properties
+void CArrayParameter::showProperties(string& strResult) const
+{
+    base::showProperties(strResult);
+
+    // Array length
+    strResult += "Array length: ";
+    strResult += toString(getArrayLength());
+    strResult += "\n";
 }
 
 // XML configuration settings parsing
@@ -78,10 +95,8 @@ bool CArrayParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettings
 }
 
 // User set/get
-bool CArrayParameter::setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const
+bool CArrayParameter::setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const
 {
-    CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
-
     uint32_t uiStartIndex;
 
     if (!getIndex(pathNavigator, uiStartIndex, parameterContext)) {
@@ -105,7 +120,7 @@ bool CArrayParameter::setValue(CPathNavigator& pathNavigator, const string& strV
     if (parameterContext.getAutoSync() && !sync(parameterContext)) {
 
         // Append parameter path to error
-        errorContext.appendToError(" " + getPath());
+        parameterContext.appendToError(" " + getPath());
 
         return false;
     }
@@ -113,9 +128,8 @@ bool CArrayParameter::setValue(CPathNavigator& pathNavigator, const string& strV
     return true;
 }
 
-bool CArrayParameter::getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const
+bool CArrayParameter::getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const
 {
-    CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
     uint32_t uiIndex;
 
     if (!getIndex(pathNavigator, uiIndex, parameterContext)) {
@@ -137,13 +151,11 @@ bool CArrayParameter::getValue(CPathNavigator& pathNavigator, string& strValue, 
 
 void CArrayParameter::logValue(string& strValue, CErrorContext& errorContext) const
 {
+    // Parameter context
     CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
 
     // Dump values
     getValues(0, strValue, parameterContext);
-
-    // Prepend unit if any
-    prependUnit(strValue);
 }
 
 // Used for simulation only
@@ -160,8 +172,9 @@ void CArrayParameter::setDefaultValues(CParameterAccessContext& parameterAccessC
     uint32_t uiSize = getSize();
     uint32_t uiOffset = getOffset();
     bool bSubsystemIsBigEndian = parameterAccessContext.isBigEndianSubsystem();
+    uint32_t uiArrayLength = getArrayLength();
 
-    for (uiValueIndex = 0; uiValueIndex < _uiLength; uiValueIndex++) {
+    for (uiValueIndex = 0; uiValueIndex < uiArrayLength; uiValueIndex++) {
 
         // Beware this code works on little endian architectures only!
         pBlackboard->write(&uiDefaultValue, uiSize, uiOffset, bSubsystemIsBigEndian);
@@ -171,7 +184,7 @@ void CArrayParameter::setDefaultValues(CParameterAccessContext& parameterAccessC
 }
 
 // Index from path
-bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex, CErrorContext& errorContext) const
+bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex, CParameterAccessContext& parameterContext) const
 {
     uiIndex = (uint32_t)-1;
 
@@ -186,17 +199,17 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
 
         if (!iss) {
 
-            errorContext.setError("Expected numerical expression as last item in " + pathNavigator.getCurrentPath());
+            parameterContext.setError("Expected numerical expression as last item in " + pathNavigator.getCurrentPath());
 
             return false;
         }
 
-        if (uiIndex >= _uiLength) {
+        if (uiIndex >= getArrayLength()) {
             ostringstream oss;
 
-            oss << "Provided index out of range (max is " << _uiLength - 1 << ")";
+            oss << "Provided index out of range (max is " << getArrayLength() - 1 << ")";
 
-            errorContext.setError(oss.str());
+            parameterContext.setError(oss.str());
 
             return false;
         }
@@ -207,7 +220,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
         if (pStrChildName) {
 
             // Should be leaf element
-            errorContext.setError("Path not found: " + pathNavigator.getCurrentPath());
+            parameterContext.setError("Path not found: " + pathNavigator.getCurrentPath());
 
             return false;
         }
@@ -226,7 +239,7 @@ bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, co
     uint32_t uiNbValues = astrValues.size();
 
     // Check number of provided values
-    if (uiNbValues + uiStartIndex > _uiLength) {
+    if (uiNbValues + uiStartIndex >  getArrayLength()) {
 
         // Out of bounds
         parameterContext.setError("Too many values provided");
@@ -244,7 +257,7 @@ bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, co
         if (!doSetValue(astrValues[uiValueIndex], uiOffset, parameterContext)) {
 
             // Append parameter path to error
-            parameterContext.appendToError(" " + getPath() + "/" + getIndexAsString(uiValueIndex + uiStartIndex));
+            parameterContext.appendToError(" " + getPath() + "/" + toString(uiValueIndex + uiStartIndex));
 
             return false;
         }
@@ -260,10 +273,11 @@ void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParam
     uint32_t uiValueIndex;
     uint32_t uiSize = getSize();
     uint32_t uiOffset = getOffset() - uiBaseOffset;
+    uint32_t uiArrayLength = getArrayLength();
 
     bool bFirst = true;
 
-    for (uiValueIndex = 0; uiValueIndex < _uiLength; uiValueIndex++) {
+    for (uiValueIndex = 0; uiValueIndex < uiArrayLength; uiValueIndex++) {
         string strReadValue;
 
         doGetValue(strReadValue, uiOffset, parameterContext);
@@ -280,13 +294,4 @@ void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParam
 
         uiOffset += uiSize;
     }
-}
-
-string CArrayParameter::getIndexAsString(uint32_t uiIndex)
-{
-    ostringstream strStream;
-
-    strStream << uiIndex;
-
-    return strStream.str();
 }

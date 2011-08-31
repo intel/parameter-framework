@@ -47,6 +47,22 @@ string CBitParameterType::getKind() const
     return "BitParameter";
 }
 
+// Element properties
+void CBitParameterType::showProperties(string& strResult) const
+{
+    base::showProperties(strResult);
+
+    // Bit Pos
+    strResult += "Bit pos: ";
+    strResult += toString(_uiBitPos);
+    strResult += "\n";
+
+    // Bit size
+    strResult += "Bit size: ";
+    strResult += toString(_uiBitSize);
+    strResult += "\n";
+}
+
 // From IXmlSink
 bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {

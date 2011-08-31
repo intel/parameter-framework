@@ -57,8 +57,11 @@ public:
     virtual void asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const = 0;
 
     // XML Serialization value space handling
-    // Value space handling for configuration import
+    // Value space handling for configuration import/export
     virtual void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
+
+    // Element properties
+    virtual void showProperties(string& strResult) const;
 
     // Default value handling (simulation only)
     virtual uint32_t getDefaultValue() const;

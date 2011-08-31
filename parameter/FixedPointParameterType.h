@@ -48,6 +48,9 @@ public:
     virtual bool asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     virtual void asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const;
 
+    // Element properties
+    virtual void showProperties(string& strResult) const;
+
     // CElement
     virtual string getKind() const;
 private:

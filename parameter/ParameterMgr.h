@@ -217,6 +217,7 @@ private:
     CommandStatus listParametersCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus dumpElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus getElementSizeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CommandStatus showPropertiesCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus getParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CommandStatus listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);

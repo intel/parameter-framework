@@ -51,6 +51,9 @@ public:
     // Bit Size
     uint32_t getBitSize() const;
 
+    // Element properties
+    virtual void showProperties(string& strResult) const;
+
     // CElement
     virtual string getKind() const;
 private:

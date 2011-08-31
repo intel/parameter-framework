@@ -35,7 +35,7 @@
 #include "ParameterBlackboard.h"
 #include "BitParameterBlock.h"
 
-#define base CInstanceConfigurableElement
+#define base CBaseParameter
 
 CBitParameter::CBitParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
 {
@@ -48,101 +48,19 @@ CInstanceConfigurableElement::Type CBitParameter::getType() const
 }
 
 // Size
-uint32_t CBitParameter::getSize() const
+uint32_t CBitParameter::getBelongingBlockSize() const
 {
     return static_cast<const CBitParameterBlock*>(getParent())->getSize();
 }
 
-// XML configuration settings parsing/composing
-bool CBitParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
-{
-    // Handle access
-    if (!configurationAccessContext.serializeOut()) {
-
-        // Write to blackboard
-        if (!doSetValue(xmlConfigurationSettingsElementContent.getTextContent(), getOffset() - configurationAccessContext.getBaseOffset(), configurationAccessContext)) {
-
-            // Append parameter path to error
-            configurationAccessContext.appendToError(" " + getPath());
-
-            return false;
-        }
-    } else {
-
-        // Get string value
-        string strValue;
-
-        doGetValue(strValue, getOffset() - configurationAccessContext.getBaseOffset(), configurationAccessContext);
-
-        // Populate value into xml text node
-        xmlConfigurationSettingsElementContent.setTextContent(strValue);
-    }
-
-    // Done
-    return true;
-}
-
+// Instantiation, allocation
 uint32_t CBitParameter::getFootPrint() const
 {
     // Allocation made on parent side
     return 0;
 }
 
-// Dump
-void CBitParameter::logValue(string& strValue, CErrorContext& errorContext) const
-{
-    CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
-
-    // Dump value
-    doGetValue(strValue, getOffset(), parameterContext);
-}
-
-// Parameter Access
-bool CBitParameter::setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const
-{
-    // Check path validity
-    if (!checkPathExhausted(pathNavigator, errorContext)) {
-
-        return false;
-    }
-    // Parameter context
-    CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
-
-    // Set Value
-    if (!doSetValue(strValue, getOffset(), parameterContext)) {
-
-        // Append parameter path to error
-        parameterContext.appendToError(" " + getPath());
-
-        return false;
-    }
-    // Synchronize
-    if (!sync(parameterContext)) {
-
-        // Append parameter path to error
-        parameterContext.appendToError(" " + getPath());
-
-        return false;
-    }
-    return true;
-}
-
-bool CBitParameter::getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const
-{
-    // Check path validity
-    if (!checkPathExhausted(pathNavigator, errorContext)) {
-
-        return false;
-    }
-    // Parameter context
-    CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
-
-    // Get Value
-    doGetValue(strValue, getOffset(), parameterContext);
-
-    return true;
-}
-
+// Actual parameter access
 bool CBitParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiData = 0;
@@ -151,7 +69,7 @@ bool CBitParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParam
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->read(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->read(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     // Convert
     if (!static_cast<const CBitParameterType*>(getTypeElement())->asInteger(strValue, uiData, parameterAccessContext)) {
@@ -159,7 +77,7 @@ bool CBitParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParam
         return false;
     }
     // Write blackboard
-    pBlackboard->write(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->write(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     return true;
 }
@@ -172,7 +90,7 @@ void CBitParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAc
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->read(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->read(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     // Convert
     static_cast<const CBitParameterType*>(getTypeElement())->asString(uiData, strValue, parameterAccessContext);

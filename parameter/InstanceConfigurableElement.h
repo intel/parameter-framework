@@ -68,6 +68,9 @@ public:
 
     // Mapping execution
     bool map(IMapper& mapper, string& strError);
+
+    // Element properties
+    virtual void showProperties(string& strResult) const;
 protected:
     // Syncer
     virtual ISyncer* getSyncer() const;

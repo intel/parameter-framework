@@ -32,16 +32,12 @@
 
 #include <stdint.h>
 
-#include "InstanceConfigurableElement.h"
+#include "BaseParameter.h"
 
-class CParameterAccessContext;
-class CConfigurationAccessContext;
-
-class CParameter : public CInstanceConfigurableElement
+class CParameter : public CBaseParameter
 {
 public:
     CParameter(const string& strName, const CTypeElement* pTypeElement);
-    virtual ~CParameter();
 
     // Instantiation, allocation
     virtual uint32_t getFootPrint() const;
@@ -52,23 +48,16 @@ public:
     // XML configuration settings parsing/composing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 protected:
-    // Parameter Access
-    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const;
-    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const;
-    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
     // Used for simulation only
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
     // Actual value access
-    bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
-    void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    virtual void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
 
     // Value space handling for configuration import
     void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
 
     // Size
     uint32_t getSize() const;
-
-    // Unit
-    void prependUnit(string& strValue) const;
 };

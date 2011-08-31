@@ -82,10 +82,13 @@ public:
     string getFootprintAsString() const;
 
     // Parameter access
-    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const;
-    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const;
+    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const;
+    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const;
     // Used for simulation only
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
+
+    // Element properties
+    virtual void showProperties(string& strResult) const;
 
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;

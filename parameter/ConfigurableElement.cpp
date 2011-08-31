@@ -34,7 +34,6 @@
 #include "ConfigurableDomain.h"
 #include "ConfigurationAccessContext.h"
 #include "ConfigurableElementAggregator.h"
-#include <sstream>
 #include <assert.h>
 
 #define base CElement
@@ -128,13 +127,13 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
 }
 
 // Parameter access
-bool CConfigurableElement::setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const
+bool CConfigurableElement::setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const
 {
     string* pStrChildName = pathNavigator.next();
 
     if (!pStrChildName) {
 
-        errorContext.setError("Non settable element");
+        parameterContext.setError("Non settable element");
 
         return false;
     }
@@ -143,21 +142,21 @@ bool CConfigurableElement::setValue(CPathNavigator& pathNavigator, const string&
 
     if (!pChild) {
 
-        errorContext.setError("Path not found: " + pathNavigator.getCurrentPath());
+        parameterContext.setError("Path not found: " + pathNavigator.getCurrentPath());
 
         return false;
     }
 
-    return pChild->setValue(pathNavigator, strValue, errorContext);
+    return pChild->setValue(pathNavigator, strValue, parameterContext);
 }
 
-bool CConfigurableElement::getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const
+bool CConfigurableElement::getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const
 {
     string* pStrChildName = pathNavigator.next();
 
     if (!pStrChildName) {
 
-        errorContext.setError("Non gettable element");
+        parameterContext.setError("Non gettable element");
 
         return false;
     }
@@ -166,12 +165,12 @@ bool CConfigurableElement::getValue(CPathNavigator& pathNavigator, string& strVa
 
     if (!pChild) {
 
-        errorContext.setError("Path not found: " + pathNavigator.getCurrentPath());
+        parameterContext.setError("Path not found: " + pathNavigator.getCurrentPath());
 
         return false;
     }
 
-    return pChild->getValue(pathNavigator, strValue, errorContext);
+    return pChild->getValue(pathNavigator, strValue, parameterContext);
 }
 
 // Used for simulation only
@@ -187,6 +186,14 @@ void CConfigurableElement::setDefaultValues(CParameterAccessContext& parameterAc
 
         pConfigurableElement->setDefaultValues(parameterAccessContext);
     }
+}
+
+// Element properties
+void CConfigurableElement::showProperties(string& strResult) const
+{
+    base::showProperties(strResult);
+
+    strResult += "Total size: " + getFootprintAsString() + "\n";
 }
 
 // Offset
@@ -350,11 +357,7 @@ void CConfigurableElement::listRogueElements(string& strResult) const
 string CConfigurableElement::getFootprintAsString() const
 {
     // Get size as string
-    ostringstream str;
-
-    str << getFootPrint() << " bytes";
-
-    return str.str();
+    return toString(getFootPrint()) + " byte(s)";
 }
 
 // Matching check for no domain association

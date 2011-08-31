@@ -156,24 +156,20 @@ bool CSubsystem::mapSubsystemElements(string& strError)
 }
 
 // Parameter access
-bool CSubsystem::setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const
+bool CSubsystem::setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const
 {
-    CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
-
     // Deal with Endianness
     parameterContext.setBigEndianSubsystem(_bBigEndian);
 
-    return base::setValue(pathNavigator, strValue, errorContext);
+    return base::setValue(pathNavigator, strValue, parameterContext);
 }
 
-bool CSubsystem::getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const
+bool CSubsystem::getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const
 {
-    CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
-
     // Deal with Endianness
     parameterContext.setBigEndianSubsystem(_bBigEndian);
 
-    return base::getValue(pathNavigator, strValue, errorContext);
+    return base::getValue(pathNavigator, strValue, parameterContext);
 }
 
 void CSubsystem::logValue(string& strValue, CErrorContext& errorContext) const

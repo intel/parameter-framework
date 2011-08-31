@@ -45,7 +45,7 @@ CInstanceConfigurableElement::CInstanceConfigurableElement(const string& strName
 string CInstanceConfigurableElement::getKind() const
 {
     // Delegate
-    return getTypeElement()->getKind();
+    return _pTypeElement->getKind();
 }
 
 // Type element
@@ -94,6 +94,15 @@ bool CInstanceConfigurableElement::map(IMapper& mapper, string& strError)
         mapper.mapEnd();
     }
     return true;
+}
+
+// Element properties
+void CInstanceConfigurableElement::showProperties(string& strResult) const
+{
+    base::showProperties(strResult);
+
+    // Delegate to type element
+    _pTypeElement->showProperties(strResult);
 }
 
 // Sync to HW

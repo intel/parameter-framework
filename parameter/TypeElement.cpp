@@ -69,6 +69,13 @@ bool CTypeElement::hasMappingData() const
     return !!_pMappingData;
 }
 
+// Element properties
+void CTypeElement::showProperties(string& strResult) const
+{
+    (void)strResult;
+    // Prevent base from being called in that context!
+}
+
 void CTypeElement::populate(CElement* pElement) const
 {
     // Populate children

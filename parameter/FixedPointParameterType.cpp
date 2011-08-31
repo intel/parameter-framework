@@ -48,6 +48,19 @@ string CFixedPointParameterType::getKind() const
     return "FixedPointParameter";
 }
 
+// Element properties
+void CFixedPointParameterType::showProperties(string& strResult) const
+{
+    base::showProperties(strResult);
+
+    // Notation
+    strResult += "Notation: Q";
+    strResult += toString(_uiIntegral);
+    strResult += ".";
+    strResult += toString(_uiFractional);
+    strResult += "\n";
+}
+
 // XML Serialization value space handling
 // Value space handling for configuration import
 void CFixedPointParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const

@@ -96,6 +96,13 @@ public:
     // Content structure dump
     void dumpContent(string& strContent, CErrorContext& errorContext, const uint32_t uiDepth = 0) const;
 
+    // Element properties
+    virtual void showProperties(string& strResult) const;
+
+    // Conversion utilities
+    static string toString(uint32_t uiValue);
+    static string toString(int32_t iValue);
+
     // Checksum for integrity checks
     uint8_t computeStructureChecksum() const;
 

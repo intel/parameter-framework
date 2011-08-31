@@ -62,8 +62,8 @@ public:
     virtual string getKind() const;
 protected:
     // Parameter access
-    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const;
-    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const;
+    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const;
+    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const;
     virtual void logValue(string& strValue, CErrorContext& errorContext) const;
     // Used for simulation only
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;

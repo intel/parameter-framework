@@ -35,7 +35,7 @@
 class CArrayParameter : public CParameter
 {
 public:
-    CArrayParameter(const string& strName, const CTypeElement* pTypeElement, uint32_t uiLength);
+    CArrayParameter(const string& strName, const CTypeElement* pTypeElement);
 
     // Instantiation, allocation
     virtual uint32_t getFootPrint() const;
@@ -44,22 +44,21 @@ public:
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 protected:
     // User set/get
-    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CErrorContext& errorContext) const;
-    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CErrorContext& errorContext) const;
+    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const;
+    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const;
     virtual void logValue(string& strValue, CErrorContext& errorContext) const;
     // Used for simulation only
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
+    // Element properties
+    virtual void showProperties(string& strResult) const;
 private:
+    // Array length
+    uint32_t getArrayLength() const;
     // Common set value processing
     bool setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, const string& strValue, CParameterAccessContext& parameterContext) const;
     // Log / get values common
     void getValues(uint32_t uiBaseOffset, string& strValues, CParameterAccessContext& parameterContext) const;
     // Index retrieval from user set/get request
-    bool getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex, CErrorContext& errorContext) const;
-    // Int to string conversion utility
-    static string getIndexAsString(uint32_t uiIndex);
-
-    // Array length
-    uint32_t _uiLength;
+    bool getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex, CParameterAccessContext& parameterContext) const;
 };

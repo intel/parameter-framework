@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     if (argc < 4) {
 
         cerr << "Missing arguments" << endl;
-        cerr << "Usage: " << argv[1] << " <target> <port> <cmd> <arg>*" << endl;
+        cerr << "Usage: " << argv[0] << " <target> <port> <cmd> <arg>*" << endl;
 
         return -1;
     }

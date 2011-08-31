@@ -45,6 +45,27 @@ string CIntegerParameterType::getKind() const
     return "IntegerParameter";
 }
 
+// Element properties
+void CIntegerParameterType::showProperties(string& strResult) const
+{
+    base::showProperties(strResult);
+
+    // Sign
+    strResult += "Signed: ";
+    strResult += _bSigned ? "yes" : "no";
+    strResult += "\n";
+
+    // Min
+    strResult += "Min: ";
+    strResult += _bSigned ? toString((int32_t)_uiMin) : toString(_uiMin);
+    strResult += "\n";
+
+    // Max
+    strResult += "Max: ";
+    strResult += _bSigned ? toString((int32_t)_uiMax) : toString(_uiMax);
+    strResult += "\n";
+}
+
 bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Sign

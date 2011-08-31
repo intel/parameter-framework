@@ -30,7 +30,6 @@
  */
 #include "ParameterBlockType.h"
 #include "ParameterBlock.h"
-#include <sstream>
 
 #define base CTypeElement
 
@@ -64,7 +63,7 @@ void CParameterBlockType::populate(CElement* pElement) const
 
         for (uiChild = 0; uiChild < uiArrayLength; uiChild++) {
 
-            CParameterBlock* pChildParameterBlock = new CParameterBlock(computeChildName(uiChild), this);
+            CParameterBlock* pChildParameterBlock = new CParameterBlock(toString(uiChild), this);
 
             pElement->addChild(pChildParameterBlock);
 
@@ -74,13 +73,4 @@ void CParameterBlockType::populate(CElement* pElement) const
         // Regular block
         base::populate(pElement);
     }
-}
-
-string CParameterBlockType::computeChildName(uint32_t uiChild)
-{
-    ostringstream strStream;
-
-    strStream << uiChild;
-
-    return strStream.str();
 }

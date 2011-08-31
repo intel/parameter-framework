@@ -82,7 +82,8 @@ LOCAL_SRC_FILES:= \
         SimulatedBackSynchronizer.cpp \
         MappingContext.cpp \
         SubsystemObject.cpp \
-        SubsystemObjectCreator.cpp
+        SubsystemObjectCreator.cpp \
+        BaseParameter.cpp
 
 
 LOCAL_MODULE:= libparameter
