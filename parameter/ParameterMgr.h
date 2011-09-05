@@ -40,6 +40,7 @@
 #include <map>
 #include <vector>
 
+
 class CElementLibrarySet;
 class CSubsystemLibrary;
 class CSystemClass;
@@ -90,6 +91,11 @@ class CParameterMgr : private CElement, private IRemoteCommandHandler, private I
             return string(_pcCommandName) + " " + _pcHelp;
         }
     };
+
+    // Version
+    static const uint32_t guiEditionMajor = 0x0;
+    static const uint32_t guiEditionMinor = 0x1;
+    static const uint32_t guiRevision = 0x1;
 public:
     // Logger interface
     class ILogger
@@ -179,6 +185,8 @@ private:
     ////////////////:: Remote command parsers
     /// Help
     CommandStatus helpCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    /// Version
+    CommandStatus versionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Status
     CommandStatus statusCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Tuning Mode
@@ -313,7 +321,7 @@ private:
     IRemoteProcessorServerInterface* _pRemoteProcessorServer;
 
     // Parser description array
-    static const SRemoteCommandParserItem gaRemoteCommandParserItems[];
+    static const SRemoteCommandParserItem gastRemoteCommandParserItems[];
 
     // Parser description array size
     static const uint32_t guiNbRemoteCommandParserItems;
@@ -326,6 +334,6 @@ private:
 
     // Logging
     ILogger* _pLogger;
-    uint32_t _uiLogDepth;
+    mutable uint32_t _uiLogDepth;
 };
 

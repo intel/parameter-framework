@@ -101,9 +101,11 @@ const char* gacSystemSchemasSubFolder = "Schemas";
 
 
 // Remote command parser array
-const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gaRemoteCommandParserItems[] = {
+const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandParserItems[] = {
     /// Help
     { "help", &CParameterMgr::helpCommandProcess, 0, "", "Show commands description and usage" },
+    /// Version
+    { "version", &CParameterMgr::versionCommandProcess, 0, "", "Show version" },
     /// Status
     { "status", &CParameterMgr::statusCommandProcess, 0, "", "Show current status" },
     /// Tuning Mode
@@ -139,7 +141,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gaRemoteCommandPars
     { "restoreConfiguration", &CParameterMgr::restoreConfigurationCommmandProcess, 2, "<domain> <configuration>", "Restore current settings from configuration" },
     /// Elements/Parameters
     { "listElements", &CParameterMgr::listElementsCommmandProcess, 1, "<elem path>|/", "List elements under element at given path or root" },
-    { "listParameters", &CParameterMgr::listParametersCommmandProcess, 1, "<elem path>|/", "Recursively list elements under element at given path or root" },
+    { "listParameters", &CParameterMgr::listParametersCommmandProcess, 1, "<elem path>|/", "List parameters under element at given path or root" },
     { "dumpElement", &CParameterMgr::dumpElementCommmandProcess, 1, "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommmandProcess, 1, "<elem path>", "Show size of element at given path" },
     { "showProperties", &CParameterMgr::showPropertiesCommmandProcess, 1, "<elem path>", "Show properties of element at given path" },
@@ -160,7 +162,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gaRemoteCommandPars
     { "importSettings", &CParameterMgr::importSettingsCommmandProcess, 1, "<file path>", "Import settings from binary file" }
 };
 // Remote command parsers array Size
-const uint32_t CParameterMgr::guiNbRemoteCommandParserItems = sizeof(gaRemoteCommandParserItems) / sizeof(gaRemoteCommandParserItems[0]);
+const uint32_t CParameterMgr::guiNbRemoteCommandParserItems = sizeof(gastRemoteCommandParserItems) / sizeof(gastRemoteCommandParserItems[0]);
 
 CParameterMgr::CParameterMgr(const string& strParameterFrameworkConfigurationFolderPath, const string& strSystemClassName) :
     _bTuningModeIsOn(false),
@@ -237,12 +239,12 @@ void CParameterMgr::doLog(const string& strLog) const
 
 void CParameterMgr::nestLog() const
 {
-    ((uint32_t&)_uiLogDepth)++;
+    _uiLogDepth++;
 }
 
 void CParameterMgr::unnestLog() const
 {
-    ((uint32_t&)_uiLogDepth)--;
+    _uiLogDepth--;
 }
 
 bool CParameterMgr::load(string& strError)
@@ -582,7 +584,7 @@ bool CParameterMgr::remoteCommandProcess(const IRemoteCommand& remoteCommand, st
 
     for (uiRemoteCommandParserItem = 0; uiRemoteCommandParserItem < guiNbRemoteCommandParserItems; uiRemoteCommandParserItem++) {
 
-        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gaRemoteCommandParserItems[uiRemoteCommandParserItem];
+        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gastRemoteCommandParserItems[uiRemoteCommandParserItem];
 
         if (string(pRemoteCommandParserItem->_pcCommandName) == remoteCommand.getCommand()) {
 
@@ -623,7 +625,7 @@ void CParameterMgr::setMaxCommandUsageLength()
 
     for (uiRemoteCommandParserItem = 0; uiRemoteCommandParserItem < guiNbRemoteCommandParserItems; uiRemoteCommandParserItem++) {
 
-        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gaRemoteCommandParserItems[uiRemoteCommandParserItem];
+        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gastRemoteCommandParserItems[uiRemoteCommandParserItem];
 
         uint32_t uiRemoteCommandUsageLength = pRemoteCommandParserItem->usage().length();
 
@@ -647,7 +649,7 @@ CParameterMgr::CommandStatus CParameterMgr::helpCommandProcess(const IRemoteComm
 
     for (uiRemoteCommandParserItem = 0; uiRemoteCommandParserItem < guiNbRemoteCommandParserItems; uiRemoteCommandParserItem++) {
 
-        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gaRemoteCommandParserItems[uiRemoteCommandParserItem];
+        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gastRemoteCommandParserItems[uiRemoteCommandParserItem];
 
         string strUsage = pRemoteCommandParserItem->usage();
 
@@ -664,6 +666,22 @@ CParameterMgr::CommandStatus CParameterMgr::helpCommandProcess(const IRemoteComm
         strResult += string("=> ") + string(pRemoteCommandParserItem->_pcDescription) + "\n";
 
     }
+    return ESucceeded;
+}
+
+/// Version
+CParameterMgr::CommandStatus CParameterMgr::versionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)remoteCommand;
+
+    // Show versions
+    // Major
+    strResult = toString(guiEditionMajor) + ".";
+    // Minor
+    strResult += toString(guiEditionMinor) + ".";
+    // Revision
+    strResult += toString(guiRevision);
+
     return ESucceeded;
 }
 
@@ -1327,9 +1345,8 @@ bool CParameterMgr::setAutoSync(bool bAutoSyncOn, string& strError)
     // Warn domains about turning auto sync back on
     if (bAutoSyncOn && !_bAutoSyncOn) {
 
-        // Ensure application of currently selected configurations
-        // Force-apply configurations
-        if (!getConfigurableDomains()->apply(_pMainParameterBlackboard, true, strError)) {
+        // Do the synchronization at system class level (could be optimized by keeping track of all modified parameters)
+        if (!sync(strError)) {
 
             return false;
         }

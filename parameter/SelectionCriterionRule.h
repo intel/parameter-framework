@@ -80,6 +80,6 @@ private:
     int32_t _iMatchValue;
 
     // Used for XML MatchesWhen attribute parsing
-    static SMatchingRuleDescription _astMatchesWhen[ENbMatchesWhen];
+    static const SMatchingRuleDescription _astMatchesWhen[ENbMatchesWhen];
 };
 

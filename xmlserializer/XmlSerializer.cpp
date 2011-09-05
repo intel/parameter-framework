@@ -38,7 +38,7 @@ bool CXmlSerializer::_bLibXml2CleanupScheduled;
 CXmlSerializer::CXmlSerializer(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType, CXmlSerializingContext& serializingContext) :
     _strXmlInstanceFile(strXmlInstanceFile), _strXmlSchemaFile(strXmlSchemaFile), _strRootElementType(strRootElementType), _serializingContext(serializingContext), _pDoc(NULL), _pRootNode(NULL)
 {
-    if (_bLibXml2CleanupScheduled) {
+    if (!_bLibXml2CleanupScheduled) {
 
         // Schedule cleanup
         atexit(xmlCleanupParser);
