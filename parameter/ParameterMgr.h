@@ -36,7 +36,6 @@
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
 #include "Element.h"
-#include "SelectionCriterionObserver.h"
 #include <map>
 #include <vector>
 
@@ -52,7 +51,7 @@ class CConfigurableDomains;
 class IRemoteProcessorServerInterface;
 class CBackSynchronizer;
 
-class CParameterMgr : private CElement, private IRemoteCommandHandler, private ISelectionCriterionObserver
+class CParameterMgr : private CElement, private IRemoteCommandHandler
 {
     enum ChildElement {
         EFrameworkConfiguration,
@@ -94,7 +93,7 @@ class CParameterMgr : private CElement, private IRemoteCommandHandler, private I
 
     // Version
     static const uint32_t guiEditionMajor = 0x0;
-    static const uint32_t guiEditionMinor = 0x1;
+    static const uint32_t guiEditionMinor = 0x2;
     static const uint32_t guiRevision = 0x1;
 public:
     // Logger interface
@@ -118,6 +117,11 @@ public:
     // Selection Criteria
     CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
     CSelectionCriterion* createSelectionCriterion(const string& strName, const CSelectionCriterionType* pSelectionCriterionType);
+    // Selection criterion retrieval
+    CSelectionCriterion* getSelectionCriterion(const string& strName);
+
+    // Configuration application
+    bool applyConfigurations(string& strError);
 
     //////////// Tuning /////////////
     // Tuning mode
@@ -175,9 +179,6 @@ private:
     virtual void doLog(const string& strLog) const;
     virtual void nestLog() const;
     virtual void unnestLog() const;
-
-    // From ISelectionCriterionObserver: selection criteria changed event
-    virtual void selectionCriterionChanged(const CSelectionCriterion* pSelectionCriterion);
 
     // From IRemoteCommandHandler: return true on success, fill result in any cases
     virtual bool remoteCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);

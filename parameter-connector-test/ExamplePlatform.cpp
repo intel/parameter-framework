@@ -80,9 +80,6 @@ CExamplePlatform::CExamplePlatform(const string& strClass) : _pParameterMgrPlatf
     _pMode = _pParameterMgrPlatformConnector->createSelectionCriterion("Mode", _pModeType);
     _pSelectedInputDevice = _pParameterMgrPlatformConnector->createSelectionCriterion("SelectedInputDevice", _pInputDeviceType);
     _pSelectedOutputDevice = _pParameterMgrPlatformConnector->createSelectionCriterion("SelectedOutputDevice", _pOutputDeviceType);
-
-    // Init state
-    setState(EInitState);
 }
 
 CExamplePlatform::~CExamplePlatform()
@@ -94,21 +91,26 @@ CExamplePlatform::~CExamplePlatform()
 // Start
 bool CExamplePlatform::start(string& strError)
 {
-    return _pParameterMgrPlatformConnector->start(strError);
+    if (!_pParameterMgrPlatformConnector->start(strError)) {
+
+        return false;
+    }
+    // Init state
+    return setState(EInitState, strError);
 }
 
 // State
-void CExamplePlatform::setState(CExamplePlatform::State eState)
+bool CExamplePlatform::setState(CExamplePlatform::State eState, string& strError)
 {
     switch(eState) {
     case EInitState:
-        _pMode->setCriterionState(0, false);
-        _pSelectedInputDevice->setCriterionState(0, false);
+        _pMode->setCriterionState(0);
+        _pSelectedInputDevice->setCriterionState(0);
         _pSelectedOutputDevice->setCriterionState(0x4);
         break;
     case EState1:
-        _pMode->setCriterionState(0, false);
-        _pSelectedInputDevice->setCriterionState(0, false);
+        _pMode->setCriterionState(0);
+        _pSelectedInputDevice->setCriterionState(0);
         // Select Headset
         _pSelectedOutputDevice->setCriterionState(0x1);
         break;
@@ -119,5 +121,6 @@ void CExamplePlatform::setState(CExamplePlatform::State eState)
     default:
         break;
     }
+    return _pParameterMgrPlatformConnector->applyConfigurations(strError);
 }
 

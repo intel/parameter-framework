@@ -56,11 +56,10 @@ CSelectionCriterion* CSelectionCriteria::createSelectionCriterion(const string& 
     return getSelectionCriteriaDefinition()->createSelectionCriterion(strName, pSelectionCriterionType);
 }
 
-// Subscription
-void CSelectionCriteria::setObserver(ISelectionCriterionObserver* pSelectionCriterionObserver)
+// Selection criterion retrieval
+CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const string& strName)
 {
-    // Delegate
-    getSelectionCriteriaDefinition()->setObserver(pSelectionCriterionObserver);
+    return getSelectionCriteriaDefinition()->getSelectionCriterion(strName);
 }
 
 // List available criteria

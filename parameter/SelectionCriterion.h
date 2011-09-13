@@ -32,7 +32,6 @@
 
 #include "Element.h"
 #include "SelectionCriterionType.h"
-#include "SelectionCriterionObserver.h"
 #include "SelectionCriterionInterface.h"
 
 #include <list>
@@ -46,15 +45,12 @@ public:
 
     /// From ISelectionCriterionInterface
     // State
-    virtual void setCriterionState(int iState, bool bUpdate);
+    virtual void setCriterionState(int iState);
     virtual int getCriterionState() const;
     // Name
     virtual string getCriterionName() const;
     // Type
     virtual const ISelectionCriterionTypeInterface* getCriterionType() const;
-
-    /// Subscription
-    void setObserver(ISelectionCriterionObserver* pSelectionCriterionObserver);
 
     /// Match methods
     bool is(int iState) const;
@@ -72,7 +68,5 @@ private:
     int _iState;
     // Type
     const CSelectionCriterionType* _pType;
-    // Observer
-    ISelectionCriterionObserver* _pObserver;
 };
 

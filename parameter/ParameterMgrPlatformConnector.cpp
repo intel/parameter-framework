@@ -54,6 +54,7 @@ CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
     delete _pParameterMgrLogger;
 }
 
+// Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
 ISelectionCriterionTypeInterface* CParameterMgrPlatformConnector::createSelectionCriterionType(bool bIsInclusive)
 {
     assert(!_bStarted);
@@ -61,11 +62,25 @@ ISelectionCriterionTypeInterface* CParameterMgrPlatformConnector::createSelectio
     return _pParameterMgr->createSelectionCriterionType(bIsInclusive);
 }
 
-ISelectionCriterionInterface* CParameterMgrPlatformConnector::createSelectionCriterion(const std::string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType)
+ISelectionCriterionInterface* CParameterMgrPlatformConnector::createSelectionCriterion(const string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType)
 {
     assert(!_bStarted);
 
     return _pParameterMgr->createSelectionCriterion(strName, static_cast<const CSelectionCriterionType*>(pSelectionCriterionType));
+}
+
+// Selection criterion retrieval
+ISelectionCriterionInterface* CParameterMgrPlatformConnector::getSelectionCriterion(const string& strName)
+{
+    return _pParameterMgr->getSelectionCriterion(strName);
+}
+
+// Configuration application
+bool CParameterMgrPlatformConnector::applyConfigurations(string& strError)
+{
+    assert(_bStarted);
+
+    return _pParameterMgr->applyConfigurations(strError);
 }
 
 // Logging
@@ -75,7 +90,7 @@ void CParameterMgrPlatformConnector::setLogger(CParameterMgrPlatformConnector::I
 }
 
 // Start
-bool CParameterMgrPlatformConnector::start(std::string& strError)
+bool CParameterMgrPlatformConnector::start(string& strError)
 {
     // Create data structure
     if (!_pParameterMgr->load(strError)) {
@@ -88,11 +103,13 @@ bool CParameterMgrPlatformConnector::start(std::string& strError)
         return false;
     }
 
+    _bStarted = true;
+
     return true;
 }
 
 // Private logging
-void CParameterMgrPlatformConnector::doLog(const std::string& strLog)
+void CParameterMgrPlatformConnector::doLog(const string& strLog)
 {
     if (_pLogger) {
 

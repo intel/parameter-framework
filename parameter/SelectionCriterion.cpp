@@ -29,10 +29,11 @@
  * </auto_header>
  */
 #include "SelectionCriterion.h"
+#include "AutoLog.h"
 
 #define base CElement
 
-CSelectionCriterion::CSelectionCriterion(const string& strName, const CSelectionCriterionType* pType) : base(strName), _iState(0), _pType(pType), _pObserver(NULL)
+CSelectionCriterion::CSelectionCriterion(const string& strName, const CSelectionCriterionType* pType) : base(strName), _iState(0), _pType(pType)
 {
 }
 
@@ -43,18 +44,14 @@ string CSelectionCriterion::getKind() const
 
 /// From ISelectionCriterionInterface
 // State
-void CSelectionCriterion::setCriterionState(int iState, bool bUpdate)
+void CSelectionCriterion::setCriterionState(int iState)
 {
     // Check for a change
     if (_iState != iState) {
 
+        CAutoLog autoLog(this, "Selection criterion changed event: " + getFormattedDescription(false));
+
         _iState = iState;
-
-        // Update if required
-        if (bUpdate && _pObserver) {
-
-            _pObserver->selectionCriterionChanged(this);
-        }
     }
 }
 
@@ -73,12 +70,6 @@ string CSelectionCriterion::getCriterionName() const
 const ISelectionCriterionTypeInterface* CSelectionCriterion::getCriterionType() const
 {
     return _pType;
-}
-
-/// Observer
-void CSelectionCriterion::setObserver(ISelectionCriterionObserver* pSelectionCriterionObserver)
-{
-    _pObserver = pSelectionCriterionObserver;
 }
 
 /// Match methods

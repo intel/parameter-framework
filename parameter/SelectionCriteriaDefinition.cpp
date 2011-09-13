@@ -56,19 +56,9 @@ const CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(c
     return static_cast<const CSelectionCriterion*>(findChild(strName));
 }
 
-// Subscription
-void CSelectionCriteriaDefinition::setObserver(ISelectionCriterionObserver* pSelectionCriterionObserver)
+CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const string& strName)
 {
-    // Propagate
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-        CSelectionCriterion* pSelectionCriterion = static_cast<CSelectionCriterion*>(getChild(uiChild));
-
-        pSelectionCriterion->setObserver(pSelectionCriterionObserver);
-    }
+    return static_cast<CSelectionCriterion*>(findChild(strName));
 }
 
 // List available criteria

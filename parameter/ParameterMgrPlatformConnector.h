@@ -46,6 +46,11 @@ public:
     // Should be called before start
     ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive = false);
     ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType);
+    // Selection criterion retrieval
+    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
+
+    // Configuration application
+    bool applyConfigurations(std::string& strError);
 
     // Logging
     // Should be called before start

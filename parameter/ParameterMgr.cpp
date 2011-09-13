@@ -305,9 +305,6 @@ bool CParameterMgr::load(string& strError)
         return false;
     }
 
-    // All is loaded, we're ready to observe selection criteria change events
-    getSelectionCriteria()->setObserver(this);
-
     // Start remote processor server if appropriate
     return handleRemoteProcessingInterface(strError);
 }
@@ -554,10 +551,17 @@ CSelectionCriterion* CParameterMgr::createSelectionCriterion(const string& strNa
     return getSelectionCriteria()->createSelectionCriterion(strName, pSelectionCriterionType);
 }
 
-// Selection criteria changed event
-void CParameterMgr::selectionCriterionChanged(const CSelectionCriterion* pSelectionCriterion)
+// Selection criterion retrieval
+CSelectionCriterion* CParameterMgr::getSelectionCriterion(const string& strName)
 {
-    CAutoLog autoLog(this, "Selection criterion changed event: " + pSelectionCriterion->getFormattedDescription(false));
+    // Propagate
+    return getSelectionCriteria()->getSelectionCriterion(strName);
+}
+
+// Selection criteria changed event
+bool CParameterMgr::applyConfigurations(string& strError)
+{
+    CAutoLog autoLog(this, "Configuration application request");
 
     // Lock state
     CAutoLock autoLock(&_tuningModeMutex);
@@ -565,13 +569,15 @@ void CParameterMgr::selectionCriterionChanged(const CSelectionCriterion* pSelect
     if (!_bTuningModeIsOn) {
 
         // Apply configuration(s)
-        string strError;
-
         if (!getConfigurableDomains()->apply(_pMainParameterBlackboard, false, strError)) {
 
             log("Failed to apply configurations!");
+
+            return false;
         }
     }
+
+    return true;
 }
 
 // Command processing

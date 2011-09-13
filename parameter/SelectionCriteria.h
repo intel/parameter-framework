@@ -50,12 +50,11 @@ public:
     // Selection Criteria/Type creation
     CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
     CSelectionCriterion* createSelectionCriterion(const string& strName, const CSelectionCriterionType* pSelectionCriterionType);
+    // Selection criterion retrieval
+    CSelectionCriterion* getSelectionCriterion(const string& strName);
 
     // Selection Criterion definition
     const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
-
-    // Subscription
-    void setObserver(ISelectionCriterionObserver* pSelectionCriterionObserver);
 
     // List available criteria
     void listSelectionCriteria(string& strResult, bool bWithTypeInfo) const;

@@ -45,9 +45,7 @@ public:
 
     // Selection Criterion access
     const CSelectionCriterion* getSelectionCriterion(const string& strName) const;
-
-    // Subscription
-    void setObserver(ISelectionCriterionObserver* pSelectionCriterionObserver);
+    CSelectionCriterion* getSelectionCriterion(const string& strName);
 
     // List available criteria
     void listSelectionCriteria(string& strResult, bool bWithTypeInfo) const;

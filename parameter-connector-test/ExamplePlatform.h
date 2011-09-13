@@ -58,7 +58,7 @@ public:
     bool start(string& strError);
 
     // State
-    void setState(State eState);
+    bool setState(State eState, string& strError);
 
 private:
     // The connector
