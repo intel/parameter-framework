@@ -109,18 +109,3 @@ LOCAL_LDFLAGS +=
 
 include $(BUILD_SHARED_LIBRARY)
 
-# ==== export parameter script  ========================
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := parameter
-
-LOCAL_MODULE_TAGS := optional
-
-LOCAL_MODULE_CLASS := EXECUTABLES
-
-# This will install the file in /system/bin
-LOCAL_MODULE_PATH := $(TARGET_OUT_EXECUTABLES)
-
-LOCAL_SRC_FILES := $(LOCAL_MODULE)
-
-include $(BUILD_PREBUILT)
