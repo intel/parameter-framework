@@ -72,10 +72,10 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
     // Size
     _uiBitSize = xmlElement.getAttributeInteger("Size");
 
-    // TODO: Validate bit pos and size still fit into parent type
+    // Validate bit pos and size still fit into parent type
     const CBitParameterBlockType* pBitParameterBlockType = static_cast<const CBitParameterBlockType*>(getParent());
 
-    uint32_t uiParentBlockBitSize = pBitParameterBlockType->getSize() << 3;
+    uint32_t uiParentBlockBitSize = pBitParameterBlockType->getSize() * 8;
 
     if (_uiBitPos + _uiBitSize > uiParentBlockBitSize) {
 
@@ -173,7 +173,7 @@ uint32_t CBitParameterType::getMask() const
 // Check data has no bit set outside available range
 bool CBitParameterType::isEncodable(uint32_t uiData) const
 {
-    uint32_t uiShift = 32 - _uiBitSize;
+    uint32_t uiShift = 8 * sizeof(uiData) - _uiBitSize;
 
     if (uiShift) {
 

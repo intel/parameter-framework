@@ -113,8 +113,8 @@ CInstanceConfigurableElement* CParameterType::doInstantiate() const
 // Sign extension
 void CParameterType::signExtend(int32_t& iData) const
 {
-    uint32_t uiSizeInBits = _uiSize << 3;
-    uint32_t uiShift = 32 - uiSizeInBits;
+    uint32_t uiSizeInBits = _uiSize * 8;
+    uint32_t uiShift = 8 * sizeof(iData) - uiSizeInBits;
 
     if (uiShift) {
 
@@ -125,13 +125,9 @@ void CParameterType::signExtend(int32_t& iData) const
 // Check data has no bit set outside available range
 bool CParameterType::isEncodable(uint32_t uiData) const
 {
-    return isEncodable(uiData, _uiSize << 3);
-}
+    uint32_t uiSizeInBits = _uiSize * 8;
 
-// Check data has no bit set outside available range
-bool CParameterType::isEncodable(uint32_t uiData, uint32_t uiSizeInBits) const
-{
-    if (uiSizeInBits == 32) {
+    if (uiSizeInBits == 8 * sizeof(uiData)) {
 
         return true;
     }
@@ -147,7 +143,7 @@ uint32_t CParameterType::makeEncodable(uint32_t uiData) const
 
         return uiData;
     }
-    uint32_t uiSizeInBits = _uiSize << 3;
+    uint32_t uiSizeInBits = _uiSize * 8;
 
     uint32_t uiMask = (1 << uiSizeInBits) - 1;
 

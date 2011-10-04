@@ -128,19 +128,10 @@ bool CFixedPointParameterType::asInteger(const string& strValue, uint32_t& uiVal
         // Get data in integer form
         iData = strtol(strValue.c_str(), NULL, 0);
 
-        if (bValueProvidedAsHexa) {
+        if (bValueProvidedAsHexa && isEncodable(iData)) {
 
-            if (!isEncodable(iData, getUtilSizeInBits())) {
-
-                // Illegal value provided
-                parameterAccessContext.setError(getOutOfRangeError(strValue, parameterAccessContext.valueSpaceIsRaw(), true));
-
-                return false;
-            } else {
-
-                // Sign extend
-                signExtend(iData);
-            }
+            // Sign extend
+            signExtend(iData);
         }
 
     } else {
@@ -148,6 +139,8 @@ bool CFixedPointParameterType::asInteger(const string& strValue, uint32_t& uiVal
 
         // Do the conversion
         iData = (int32_t)(dData * (1UL << _uiFractional) + 0.5F - (double)(dData < 0));
+        // Left justify
+        iData <<= getSize() * 8 - getUtilSizeInBits();
     }
 
     // Check integrity
@@ -159,7 +152,7 @@ bool CFixedPointParameterType::asInteger(const string& strValue, uint32_t& uiVal
         return false;
     }
 
-    uiValue = (uint32_t)iData;
+    uiValue = iData;
 
     return true;
 }
@@ -169,7 +162,7 @@ void CFixedPointParameterType::asString(const uint32_t& uiValue, string& strValu
     int32_t iData = uiValue;
 
     // Check consistency
-    assert(isEncodable(iData, getUtilSizeInBits()));
+    assert(isEncodable(iData));
 
     // Sign extend
     signExtend(iData);
@@ -183,12 +176,15 @@ void CFixedPointParameterType::asString(const uint32_t& uiValue, string& strValu
         // Hexa formatting?
         if (parameterAccessContext.outputRawFormatIsHex()) {
 
-            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << uiValue;
+            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << (uint32_t)iData;
         } else {
 
             strStream << iData;
         }
     } else {
+
+        // Unjustify
+        iData >>= getSize() * 8 - getUtilSizeInBits();
 
         double dData = (double)iData / (1UL << _uiFractional);
 
@@ -208,7 +204,7 @@ uint32_t CFixedPointParameterType::getUtilSizeInBits() const
 string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const
 {
     // Min/Max computation
-    int32_t iMax = (1L << (getUtilSizeInBits() - 1)) - 1;
+    int32_t iMax = (1L << (getSize() * 8 - 1)) - 1;
     int32_t iMin = -iMax - 1;
 
     ostringstream strStream;
@@ -244,17 +240,17 @@ string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool
 // Check data is consistent with available range, with respect to its sign
 bool CFixedPointParameterType::isConsistent(uint32_t uiData) const
 {
-    uint32_t uiShift = 32 - getUtilSizeInBits();
+    uint32_t uiShift = getSize() * 8;
 
-    if (uiShift) {
-
-        // Negative value?
-        bool bIsValueExpectedNegative = (uiData & (1 << (uiShift - 1))) != 0;
-
-        // Check high bits are clean
-        return bIsValueExpectedNegative ? !(~uiData >> uiShift) : !(uiData >> uiShift);
+    if (uiShift == 8 * sizeof(uiData)) {
+        // Prevent inappropriate shifts
+        return true;
     }
 
-    return true;
+    // Negative value?
+    bool bIsValueExpectedNegative = (uiData & (1 << (uiShift - 1))) != 0;
+
+    // Check high bits are clean
+    return bIsValueExpectedNegative ? !(~uiData >> uiShift) : !(uiData >> uiShift);
 }
 
