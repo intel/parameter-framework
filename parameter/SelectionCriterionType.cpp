@@ -134,7 +134,7 @@ string CSelectionCriterionType::getFormattedState(int iValue) const
         uint32_t uiBit;
         bool bFirst = true;
 
-        for (uiBit = 0; uiBit < sizeof(iValue) << 3; uiBit++) {
+        for (uiBit = 0; uiBit < sizeof(iValue) * 8; uiBit++) {
 
             int iSingleBitValue = iValue & (1 << uiBit);
 

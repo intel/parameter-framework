@@ -44,6 +44,7 @@ public:
         EBitParameter,
         EBitParameterBlock,
         EParameter,
+        EStringParameter,
         EParameterBlock,
         EComponent
     };

@@ -63,6 +63,7 @@
 #include "XmlDomainSerializingContext.h"
 #include "BitParameterBlockType.h"
 #include "BitParameterType.h"
+#include "StringParameterType.h"
 #include "RemoteProcessorServerInterface.h"
 #include "ElementLocator.h"
 #include "AutoLog.h"
@@ -1714,6 +1715,7 @@ void CParameterMgr::feedElementLibraries()
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CComponentInstance>("Component"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBitParameterType>("BitParameter"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBitParameterBlockType>("BitParameterBlock"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CStringParameterType>("StringParameter"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CParameterBlockType>("ParameterBlock"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBooleanParameterType>("BooleanParameter"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CIntegerParameterType>("IntegerParameter"));

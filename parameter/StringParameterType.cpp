@@ -1,10 +1,10 @@
 /* <auto_header>
  * <FILENAME>
- * 
+ *
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel 
+ * Copyright © 2011 Intel
  * Corporation All Rights Reserved.
- * 
+ *
  * The source code contained or described herein and all documents related to
  * the source code ("Material") are owned by Intel Corporation or its suppliers
  * or licensors. Title to the Material remains with Intel Corporation or its
@@ -14,54 +14,63 @@
  * treaty provisions. No part of the Material may be used, copied, reproduced,
  * modified, published, uploaded, posted, transmitted, distributed, or
  * disclosed in any way without Intel’s prior express written permission.
- * 
+ *
  * No license under any patent, copyright, trade secret or other intellectual
  * property right is granted to or conferred upon you by disclosure or delivery
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- * 
+ *
  *  AUTHOR: Patrick Benavoli (patrickx.benavoli@intel.com)
  * CREATED: 2011-06-01
  * UPDATED: 2011-07-27
- * 
- * 
+ *
+ *
  * </auto_header>
  */
-#pragma once
+#include "StringParameterType.h"
+#include "StringParameter.h"
 
-#include <stdint.h>
-#include "BinaryStream.h"
+#define base CTypeElement
 
-using namespace std;
-
-class CParameterBlackboard
+CStringParameterType::CStringParameterType(const string& strName) : base(strName), _uiMaxLength(0)
 {
-public:
-    CParameterBlackboard();
-    ~CParameterBlackboard();
+}
 
-    // Size
-    void setSize(uint32_t uiSize);
-    uint32_t getSize() const;
+// CElement
+string CStringParameterType::getKind() const
+{
+    return "StringParameter";
+}
 
-    // Single parameter access
-    void writeInteger(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian);
-    void readInteger(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const;
-    void writeString(const char* pcSrcData, uint32_t uiOffset);
-    void readString(char* pcDstData, uint32_t uiOffset) const;
+// Element properties
+void CStringParameterType::showProperties(string& strResult) const
+{
+    base::showProperties(strResult);
 
-    // Access from/to subsystems
-    uint8_t* getLocation(uint32_t uiOffset);
+    // Max length
+    strResult += "Max length: ";
+    strResult += toString(_uiMaxLength);
+    strResult += "\n";
+}
 
-    // Configuration handling
-    void restoreFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset);
-    void saveTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const;
+// From IXmlSink
+bool CStringParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+{
+    // MaxLength
+    _uiMaxLength = xmlElement.getAttributeInteger("MaxLength");
 
-    // Serialization
-    void serialize(CBinaryStream& binaryStream);
-private:
-    uint8_t* _pucData;
-    uint32_t _uiSize;
-};
+    // Base
+    return base::fromXml(xmlElement, serializingContext);
+}
 
+CInstanceConfigurableElement* CStringParameterType::doInstantiate() const
+{
+    return new CStringParameter(getName(), this);
+}
+
+// Max length
+uint32_t CStringParameterType::getMaxLength() const
+{
+    return _uiMaxLength;
+}

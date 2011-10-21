@@ -69,7 +69,7 @@ bool CBitParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParam
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->read(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     // Convert
     if (!static_cast<const CBitParameterType*>(getTypeElement())->asInteger(strValue, uiData, parameterAccessContext)) {
@@ -77,7 +77,7 @@ bool CBitParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParam
         return false;
     }
     // Write blackboard
-    pBlackboard->write(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->writeInteger(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     return true;
 }
@@ -87,10 +87,10 @@ void CBitParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAc
     uint32_t uiData = 0;
 
     // Read blackboard
-    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->read(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     // Convert
     static_cast<const CBitParameterType*>(getTypeElement())->asString(uiData, strValue, parameterAccessContext);

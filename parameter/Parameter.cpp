@@ -83,7 +83,7 @@ void CParameter::setDefaultValues(CParameterAccessContext& parameterAccessContex
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->write(&uiDefaultValue, getSize(), getOffset(), parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->writeInteger(&uiDefaultValue, getSize(), getOffset(), parameterAccessContext.isBigEndianSubsystem());
 }
 
 // Actual parameter access
@@ -100,7 +100,7 @@ bool CParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParamete
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->write(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->writeInteger(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     return true;
 }
@@ -110,10 +110,10 @@ void CParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAcces
     uint32_t uiData = 0;
 
     // Read blackboard
-    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->read(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->readInteger(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     static_cast<const CParameterType*>(getTypeElement())->asString(uiData, strValue, parameterAccessContext);
 }

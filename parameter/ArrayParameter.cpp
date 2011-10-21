@@ -177,7 +177,7 @@ void CArrayParameter::setDefaultValues(CParameterAccessContext& parameterAccessC
     for (uiValueIndex = 0; uiValueIndex < uiArrayLength; uiValueIndex++) {
 
         // Beware this code works on little endian architectures only!
-        pBlackboard->write(&uiDefaultValue, uiSize, uiOffset, bSubsystemIsBigEndian);
+        pBlackboard->writeInteger(&uiDefaultValue, uiSize, uiOffset, bSubsystemIsBigEndian);
 
         uiOffset += uiSize;
     }

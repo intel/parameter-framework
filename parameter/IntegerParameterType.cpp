@@ -112,7 +112,7 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
             _uiMax = xmlElement.getAttributeInteger("Max");
         } else {
 
-            _uiMax = -1L >> (32 - uiSizeInBits);
+            _uiMax = -1L >> (8 * sizeof(uint32_t) - uiSizeInBits);
         }
     }
 

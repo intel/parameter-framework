@@ -314,6 +314,7 @@ bool CSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableEle
     case CInstanceConfigurableElement::EParameterBlock:
     case CInstanceConfigurableElement::EBitParameterBlock:
     case CInstanceConfigurableElement::EParameter:
+    case CInstanceConfigurableElement::EStringParameter:
     {
         if (!handleSubsystemObjectCreation(pInstanceConfigurableElement, context, strError)) {
 

@@ -148,7 +148,7 @@ bool CInstanceConfigurableElement::sync(CParameterAccessContext& parameterAccess
 
     if (!pSyncer) {
 
-        parameterAccessContext.setError("Unable to synchronize modification. No Syncer object associated to configurable element " + getPath());
+        parameterAccessContext.setError("Unable to synchronize modification. No Syncer object associated to configurable element:");
 
         return false;
     }

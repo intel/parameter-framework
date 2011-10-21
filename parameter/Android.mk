@@ -83,7 +83,9 @@ LOCAL_SRC_FILES:= \
         SubsystemObject.cpp \
         SubsystemObjectCreator.cpp \
         BaseParameter.cpp \
-        AutoLock.cpp
+        AutoLock.cpp \
+        StringParameterType.cpp \
+        StringParameter.cpp
 
 
 LOCAL_MODULE:= libparameter

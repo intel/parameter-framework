@@ -62,7 +62,7 @@ uint32_t CParameterBlackboard::getSize() const
 }
 
 // Single parameter access
-void CParameterBlackboard::write(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian)
+void CParameterBlackboard::writeInteger(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian)
 {
     assert(uiSize + uiOffset <= _uiSize);
 
@@ -81,7 +81,7 @@ void CParameterBlackboard::write(const void* pvSrcData, uint32_t uiSize, uint32_
     }
 }
 
-void CParameterBlackboard::read(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const
+void CParameterBlackboard::readInteger(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const
 {
     assert(uiSize + uiOffset <= _uiSize);
 
@@ -98,6 +98,16 @@ void CParameterBlackboard::read(void* pvDstData, uint32_t uiSize, uint32_t uiOff
             puiDstData[uiSize - uiIndex - 1] = _pucData[uiIndex + uiOffset];
         }
     }
+}
+
+void CParameterBlackboard::writeString(const char* pcSrcData, uint32_t uiOffset)
+{
+    strcpy((char*)_pucData + uiOffset, pcSrcData);
+}
+
+void CParameterBlackboard::readString(char* pcDstData, uint32_t uiOffset) const
+{
+    strcpy(pcDstData, (const char*)_pucData + uiOffset);
 }
 
 // Access from/to subsystems
