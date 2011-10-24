@@ -61,6 +61,8 @@ protected:
     // Blackboard access from subsystems
     void blackboardRead(void* pvData, uint32_t uiSize);
     void blackboardWrite(const void* pvData, uint32_t uiSize);
+    // Logging
+    void log(const string& strMessage, ...) const;
 private:
     // Instance element to sync from/to
     CInstanceConfigurableElement* _pInstanceConfigurableElement;

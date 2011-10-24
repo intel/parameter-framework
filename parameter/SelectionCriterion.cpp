@@ -49,9 +49,9 @@ void CSelectionCriterion::setCriterionState(int iState)
     // Check for a change
     if (_iState != iState) {
 
-        CAutoLog autoLog(this, "Selection criterion changed event: " + getFormattedDescription(false));
-
         _iState = iState;
+
+        log("Selection criterion changed event: %s", getFormattedDescription(false).c_str());
     }
 }
 

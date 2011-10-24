@@ -35,6 +35,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sstream>
+#include <stdarg.h>
 
 CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement)
     : _pInstanceConfigurableElement(pInstanceConfigurableElement),
@@ -132,7 +133,7 @@ bool CSubsystemObject::receiveFromHW(string& strError)
 // Fall back HW access
 bool CSubsystemObject::accessHW(bool bReceive, string& strError)
 {
-    // Default access falls back
+    // Default access fall back
     if (bReceive) {
 
         return receiveFromHW(strError);
@@ -159,4 +160,19 @@ void CSubsystemObject::blackboardWrite(const void* pvData, uint32_t uiSize)
     memcpy(_pucBlackboardLocation + _uiAccessedIndex, pvData, uiSize);
 
     _uiAccessedIndex += uiSize;
+}
+
+// Logging
+void CSubsystemObject::log(const string& strMessage, ...) const
+{
+    char acBuffer[512];
+    va_list listPointer;
+
+    va_start(listPointer, strMessage);
+
+    vsnprintf(acBuffer, sizeof(acBuffer), strMessage.c_str(), listPointer);
+
+    va_end(listPointer);
+
+    _pInstanceConfigurableElement->log(acBuffer);
 }

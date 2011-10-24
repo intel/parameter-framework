@@ -44,6 +44,7 @@ class CParameterAccessContext;
 class CConfigurableElement : public CElement
 {
     friend class CConfigurableDomain;
+    friend class CDomainConfiguration;
     typedef list<const CConfigurableDomain*>::const_iterator ConfigurableDomainListConstIterator;
 public:
     CConfigurableElement(const string& strName);

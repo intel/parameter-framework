@@ -80,7 +80,7 @@ bool CXmlComposer::close()
 }
 
 // Composing contents
-void CXmlComposer::compose(const IXmlSource* pXmlSource)
+void CXmlComposer::compose(const IXmlSource* pXmlSource, const string& strProduct, const string& strVersion)
 {
     // Compose document
     CXmlElement docElement(_pRootNode);
@@ -92,7 +92,7 @@ void CXmlComposer::compose(const IXmlSource* pXmlSource)
     docElement.setAttributeString("xsi:noNamespaceSchemaLocation", _strXmlSchemaFile);
 
     // Comment for date/time
-    docElement.setComment(string(" Exported on ") + getTimeAsString() + " from parameter-framework ");
+    docElement.setComment(string(" Exported on ") + getTimeAsString() + " from " + strProduct + " version " + strVersion + " ");
 
     pXmlSource->toXml(docElement, _serializingContext);
 }

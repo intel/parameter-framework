@@ -47,7 +47,7 @@ public:
     virtual bool close();
 
     // Composing contents
-    void compose(const IXmlSource* pXmlSource);
+    void compose(const IXmlSource* pXmlSource, const string& strProduct, const string& strVersion);
 
 private:
     static string getTimeAsString();

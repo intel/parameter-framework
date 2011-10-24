@@ -34,8 +34,10 @@
 #include "BinaryStream.h"
 #include <assert.h>
 
-CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement) : _pConfigurableElement(pConfigurableElement), _bValid(false)
+CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet)
+    : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet), _bValid(false)
 {
+    // Size blackboard
     _blackboard.setSize(_pConfigurableElement->getFootPrint());
 }
 
@@ -46,11 +48,22 @@ void CAreaConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Apply data to current
-void CAreaConfiguration::restore(CParameterBlackboard* pMainBlackboard) const
+bool CAreaConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, string& strError) const
 {
     assert(_bValid);
 
     pMainBlackboard->restoreFrom(&_blackboard, _pConfigurableElement->getOffset());
+
+    // Synchronize if required
+    if (bSync) {
+
+        if (!_pSyncerSet->sync(*pMainBlackboard, false, strError)) {
+
+            return false;
+        }
+    }
+
+    return true;
 }
 
 // Ensure validity
@@ -91,7 +104,7 @@ void CAreaConfiguration::validateAgainst(const CAreaConfiguration* pValidAreaCon
 }
 
 // XML configuration settings parsing
-bool CAreaConfiguration::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext)
+bool CAreaConfiguration::serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElementContent, CConfigurationAccessContext& configurationAccessContext)
 {
     // Assign blackboard to configuration context
     configurationAccessContext.setParameterBlackboard(&_blackboard);
@@ -100,7 +113,7 @@ bool CAreaConfiguration::serializeXmlSettings(CXmlElement& xmlConfigurationSetti
     configurationAccessContext.setBaseOffset(_pConfigurableElement->getOffset());
 
     // Parse configuration settings (element contents)
-    if (_pConfigurableElement->serializeXmlSettings(xmlConfigurationSettingsElementContent, configurationAccessContext)) {
+    if (_pConfigurableElement->serializeXmlSettings(xmlConfigurableElementSettingsElementContent, configurationAccessContext)) {
 
         if (!configurationAccessContext.serializeOut()) {
 

@@ -103,8 +103,6 @@ const char* gacSystemSchemasSubFolder = "Schemas";
 
 // Remote command parser array
 const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandParserItems[] = {
-    /// Help
-    { "help", &CParameterMgr::helpCommandProcess, 0, "", "Show commands description and usage" },
     /// Version
     { "version", &CParameterMgr::versionCommandProcess, 0, "", "Show version" },
     /// Status
@@ -129,6 +127,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "createDomain", &CParameterMgr::createDomainCommmandProcess, 1, "<domain>", "Create new configurable domain" },
     { "deleteDomain", &CParameterMgr::deleteDomainCommmandProcess, 1, "<domain>", "Delete configurable domain" },
     { "renameDomain", &CParameterMgr::renameDomainCommmandProcess, 2, "<domain> <new name>", "Rename configurable domain" },
+    { "setSequenceAwareness", &CParameterMgr::setSequenceAwarenessCommmandProcess, 1, "<domain> true|false*", "Set configurable domain sequence awareness" },
+    { "getSequenceAwareness", &CParameterMgr::getSequenceAwarenessCommmandProcess, 1, "<domain>", "Get configurable domain sequence awareness" },
     { "listDomainElements", &CParameterMgr::listDomainElementsCommmandProcess, 1, "<domain>", "List elements associated to configurable domain" },
     { "addElement", &CParameterMgr::addElementCommmandProcess, 2, "<domain> <elem path>", "Associate element at given path to configurable domain" },
     { "removeElement", &CParameterMgr::removeElementCommmandProcess, 2, "<domain> <elem path>", "Dissociate element at given path from configurable domain" },
@@ -140,6 +140,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "renameConfiguration", &CParameterMgr::renameConfigurationCommmandProcess, 3, "<domain> <configuration> <new name>", "Rename domain configuration" },
     { "saveConfiguration", &CParameterMgr::saveConfigurationCommmandProcess, 2, "<domain> <configuration>", "Save current settings into configuration" },
     { "restoreConfiguration", &CParameterMgr::restoreConfigurationCommmandProcess, 2, "<domain> <configuration>", "Restore current settings from configuration" },
+    { "setElementSequence", &CParameterMgr::setElementSequenceCommmandProcess, 2, "<domain> <configuration> <elem path list>", "Set element application order for configuration" },
+    { "getElementSequence", &CParameterMgr::getElementSequenceCommmandProcess, 2, "<domain> <configuration>", "Get element application order for configuration" },
     /// Elements/Parameters
     { "listElements", &CParameterMgr::listElementsCommmandProcess, 1, "<elem path>|/", "List elements under element at given path or root" },
     { "listParameters", &CParameterMgr::listParametersCommmandProcess, 1, "<elem path>|/", "List parameters under element at given path or root" },
@@ -193,6 +195,22 @@ CParameterMgr::CParameterMgr(const string& strParameterFrameworkConfigurationFol
 
     // Feed element library
     feedElementLibraries();
+
+    _pCommandHandler = new CCommandHandler(this);
+
+    // Add command parsers
+    uint32_t uiRemoteCommandParserItem;
+
+    for (uiRemoteCommandParserItem = 0; uiRemoteCommandParserItem < guiNbRemoteCommandParserItems; uiRemoteCommandParserItem++) {
+
+        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gastRemoteCommandParserItems[uiRemoteCommandParserItem];
+
+        _pCommandHandler->addCommandParser(pRemoteCommandParserItem->_pcCommandName,
+                                           pRemoteCommandParserItem->_pfnParser,
+                                           pRemoteCommandParserItem->_uiMinArgumentCount,
+                                           pRemoteCommandParserItem->_pcHelp,
+                                           pRemoteCommandParserItem->_pcDescription);
+    }
 }
 
 CParameterMgr::~CParameterMgr()
@@ -246,6 +264,21 @@ void CParameterMgr::nestLog() const
 void CParameterMgr::unnestLog() const
 {
     _uiLogDepth--;
+}
+
+// Version
+string CParameterMgr::getVersion() const
+{
+    string strVersion;
+
+    // Major
+    strVersion = toString(guiEditionMajor) + ".";
+    // Minor
+    strVersion += toString(guiEditionMinor) + ".";
+    // Revision
+    strVersion += toString(guiRevision);
+
+    return strVersion;
 }
 
 bool CParameterMgr::load(string& strError)
@@ -464,6 +497,9 @@ bool CParameterMgr::loadSettings(string& strError)
     // Selection criteria definition for rule creation
     xmlDomainSerializingContext.setSelectionCriteriaDefinition(getConstSelectionCriteria()->getSelectionCriteriaDefinition());
 
+    // Auto validation of configurations if no binary settings provided
+    xmlDomainSerializingContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
+
     log("Importing configurable domains from file %s %s settings", strXmlConfigurationDomainsFilePath.c_str(), pBinarySettingsFileLocation ? "without" : "with");
 
     // Do parse
@@ -581,119 +617,20 @@ bool CParameterMgr::applyConfigurations(string& strError)
     return true;
 }
 
-// Command processing
-bool CParameterMgr::remoteCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
-{
-    log("Processing remote command: \"%s\"", remoteCommand.getCommand().c_str());
-
-    // Dispatch
-    uint32_t uiRemoteCommandParserItem;
-
-    for (uiRemoteCommandParserItem = 0; uiRemoteCommandParserItem < guiNbRemoteCommandParserItems; uiRemoteCommandParserItem++) {
-
-        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gastRemoteCommandParserItems[uiRemoteCommandParserItem];
-
-        if (string(pRemoteCommandParserItem->_pcCommandName) == remoteCommand.getCommand()) {
-
-            // Check enough arguments supplied
-            if (remoteCommand.getArgumentCount() < pRemoteCommandParserItem->_uiMinArgumentCount) {
-
-                strResult = string("Not enough arguments supplied\nUsage:\n") + pRemoteCommandParserItem->usage();
-
-                return false;
-            }
-
-            switch ((this->*pRemoteCommandParserItem->_pfnParser)(remoteCommand, strResult)) {
-            case EDone:
-                strResult = "Done";
-            case ESucceeded:
-                return true;
-            case EShowUsgae:
-                strResult = pRemoteCommandParserItem->usage();
-                // Fall through intentionally
-            case EFailed:
-                return false;
-            default:
-                assert(0);
-            }
-        }
-    }
-    // Not found
-    strResult = "Command not found!";
-
-    return false;
-}
-
-// Max command usage length, use for formatting
-void CParameterMgr::setMaxCommandUsageLength()
-{
-    // Show usages
-    uint32_t uiRemoteCommandParserItem;
-
-    for (uiRemoteCommandParserItem = 0; uiRemoteCommandParserItem < guiNbRemoteCommandParserItems; uiRemoteCommandParserItem++) {
-
-        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gastRemoteCommandParserItems[uiRemoteCommandParserItem];
-
-        uint32_t uiRemoteCommandUsageLength = pRemoteCommandParserItem->usage().length();
-
-        if (uiRemoteCommandUsageLength > _uiMaxCommandUsageLength) {
-
-            _uiMaxCommandUsageLength = uiRemoteCommandUsageLength;
-        }
-    }
-}
-
 /////////////////// Remote command parsers
-/// Help
-CParameterMgr::CommandStatus CParameterMgr::helpCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
-{
-    (void)remoteCommand;
-
-    strResult = "\n";
-
-    // Show usages
-    uint32_t uiRemoteCommandParserItem;
-
-    for (uiRemoteCommandParserItem = 0; uiRemoteCommandParserItem < guiNbRemoteCommandParserItems; uiRemoteCommandParserItem++) {
-
-        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gastRemoteCommandParserItems[uiRemoteCommandParserItem];
-
-        string strUsage = pRemoteCommandParserItem->usage();
-
-        strResult += strUsage;
-
-        // Align
-        uint32_t uiToSpacesAdd = _uiMaxCommandUsageLength + 5 - strUsage.length();
-
-        while (uiToSpacesAdd--) {
-
-            strResult += " ";
-        }
-
-        strResult += string("=> ") + string(pRemoteCommandParserItem->_pcDescription) + "\n";
-
-    }
-    return ESucceeded;
-}
-
 /// Version
-CParameterMgr::CommandStatus CParameterMgr::versionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::versionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
-    // Show versions
-    // Major
-    strResult = toString(guiEditionMajor) + ".";
-    // Minor
-    strResult += toString(guiEditionMinor) + ".";
-    // Revision
-    strResult += toString(guiRevision);
+    // Show version
+    strResult = getVersion();
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
 /// Status
-CParameterMgr::CommandStatus CParameterMgr::statusCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
     // System class
@@ -745,42 +682,42 @@ CParameterMgr::CommandStatus CParameterMgr::statusCommandProcess(const IRemoteCo
     getSelectionCriteria()->listSelectionCriteria(strSelectionCriteria, false);
     strResult += strSelectionCriteria;
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
 /// Tuning Mode
-CParameterMgr::CommandStatus CParameterMgr::setTuningModeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setTuningModeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     if (remoteCommand.getArgument(0) == "on") {
 
         if (setTuningMode(true, strResult)) {
 
-            return EDone;
+            return CCommandHandler::EDone;
         }
     } else if (remoteCommand.getArgument(0) == "off") {
 
         if (setTuningMode(false, strResult)) {
 
-            return EDone;
+            return CCommandHandler::EDone;
         }
     } else {
         // Show usage
-        return EShowUsgae;
+        return CCommandHandler::EShowUsage;
     }
-    return EFailed;
+    return CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::getTuningModeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getTuningModeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     strResult = tuningModeOn() ? "on" : "off";
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
 /// Value Space
-CParameterMgr::CommandStatus CParameterMgr::setValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)strResult;
 
@@ -788,32 +725,32 @@ CParameterMgr::CommandStatus CParameterMgr::setValueSpaceCommmandProcess(const I
 
         setValueSpace(true);
 
-        return EDone;
+        return CCommandHandler::EDone;
 
     } else if (remoteCommand.getArgument(0) == "real") {
 
         setValueSpace(false);
 
-        return EDone;
+        return CCommandHandler::EDone;
 
     } else {
         // Show usage
-        return EShowUsgae;
+        return CCommandHandler::EShowUsage;
     }
-    return EFailed;
+    return CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::getValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     strResult = valueSpaceIsRaw() ? "raw" : "real";
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
 /// Output Raw Format
-CParameterMgr::CommandStatus CParameterMgr::setOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)strResult;
 
@@ -821,156 +758,226 @@ CParameterMgr::CommandStatus CParameterMgr::setOutputRawFormatCommmandProcess(co
 
         setOutputRawFormat(true);
 
-        return EDone;
+        return CCommandHandler::EDone;
 
     } else if (remoteCommand.getArgument(0) == "dec") {
 
         setOutputRawFormat(false);
 
-        return EDone;
+        return CCommandHandler::EDone;
 
     } else {
         // Show usage
-        return EShowUsgae;
+        return CCommandHandler::EShowUsage;
     }
-    return EFailed;
+    return CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::getOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     strResult = outputRawFormatIsHex() ? "hex" : "dec";
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
 /// Sync
-CParameterMgr::CommandStatus CParameterMgr::setAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     if (remoteCommand.getArgument(0) == "on") {
 
         if (setAutoSync(true, strResult)) {
 
-            return EDone;
+            return CCommandHandler::EDone;
         }
     } else if (remoteCommand.getArgument(0) == "off") {
 
         if (setAutoSync(false, strResult)) {
 
-            return EDone;
+            return CCommandHandler::EDone;
         }
     } else {
         // Show usage
-        return EShowUsgae;
+        return CCommandHandler::EShowUsage;
     }
-    return EFailed;
+    return CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::getAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     strResult = autoSyncOn() ? "on" : "off";
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::syncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::syncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
-    return sync(strResult) ? EDone : EFailed;
+    return sync(strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 /// Criteria
-CParameterMgr::CommandStatus CParameterMgr::listCriteriaCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     getSelectionCriteria()->listSelectionCriteria(strResult, true);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
 /// Domains
-CParameterMgr::CommandStatus CParameterMgr::listDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
-    getConfigurableDomains()->listChildren(strResult);
+    getConfigurableDomains()->listDomains(strResult);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::createDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::createDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createDomain(remoteCommand.getArgument(0), strResult) ? EDone : EFailed;
+    return createDomain(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::deleteDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return deleteDomain(remoteCommand.getArgument(0), strResult) ? EDone : EFailed;
+    return deleteDomain(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::renameDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return getConfigurableDomains()->renameDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? EDone : EFailed;
+    return getConfigurableDomains()->renameDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::listDomainElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setSequenceAwarenessCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return getConfigurableDomains()->listDomainElements(remoteCommand.getArgument(0), strResult) ? ESucceeded : EFailed;
+    // Check tuning mode
+    if (!checkTuningModeOn(strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    // Set property
+    bool bSequenceAware;
+
+    if (remoteCommand.getArgument(1) == "true") {
+
+        bSequenceAware = true;
+
+    } else if (remoteCommand.getArgument(1) == "false") {
+
+        bSequenceAware = false;
+
+    } else {
+        // Show usage
+        return CCommandHandler::EShowUsage;
+    }
+
+    return getConfigurableDomains()->setSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::addElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSequenceAwarenessCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return addConfigurableElementToDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? EDone : EFailed;
+    // Get property
+    bool bSequenceAware;
+
+    if (!getConfigurableDomains()->getSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    strResult = bSequenceAware ? "true" : "false";
+
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::removeElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listDomainElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return removeConfigurableElementFromDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? EDone : EFailed;
+    return getConfigurableDomains()->listDomainElements(remoteCommand.getArgument(0), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::splitDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::addElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return split(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? EDone : EFailed;
+    return addConfigurableElementToDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::removeElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    return removeConfigurableElementFromDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::splitDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    return split(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 /// Configurations
-CParameterMgr::CommandStatus CParameterMgr::listConfigurationsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listConfigurationsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return getConfigurableDomains()->listConfigurations(remoteCommand.getArgument(0), strResult) ? ESucceeded : EFailed;
+    return getConfigurableDomains()->listConfigurations(remoteCommand.getArgument(0), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::createConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::createConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? EDone : EFailed;
+    return createConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::deleteConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return deleteConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? EDone : EFailed;
+    return deleteConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::renameConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return getConfigurableDomains()->renameConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), remoteCommand.getArgument(2), strResult) ? EDone : EFailed;
+    return getConfigurableDomains()->renameConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), remoteCommand.getArgument(2), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::saveConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::saveConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return saveConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? EDone : EFailed;
+    return saveConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::restoreConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? EDone : EFailed;
+    return restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    // Check tuning mode
+    if (!checkTuningModeOn(strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    // Build configurable element path list
+    vector<string> astrNewElementSequence;
+
+    uint32_t uiArgument;
+
+    for (uiArgument = 2; uiArgument < remoteCommand.getArgumentCount(); uiArgument++) {
+
+        astrNewElementSequence.push_back(remoteCommand.getArgument(uiArgument));
+    }
+
+    // Delegate to configurable domains
+    return getConfigurableDomains()->setElementSequence(remoteCommand.getArgument(0), remoteCommand.getArgument(1), astrNewElementSequence, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSequenceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    // Delegate to configurable domains
+    return getConfigurableDomains()->getElementSequence(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
 }
 
 /// Elements/Parameters
-CParameterMgr::CommandStatus CParameterMgr::listElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     CElementLocator elementLocator(getSystemClass(), false);
 
@@ -978,7 +985,7 @@ CParameterMgr::CommandStatus CParameterMgr::listElementsCommmandProcess(const IR
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
 
     strResult = string("\n");
@@ -994,11 +1001,11 @@ CParameterMgr::CommandStatus CParameterMgr::listElementsCommmandProcess(const IR
     // Return sub-elements
     strResult += pLocatedElement->listQualifiedPaths(false);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
 /// Elements/Parameters
-CParameterMgr::CommandStatus CParameterMgr::listParametersCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listParametersCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     CElementLocator elementLocator(getSystemClass(), false);
 
@@ -1006,7 +1013,7 @@ CParameterMgr::CommandStatus CParameterMgr::listParametersCommmandProcess(const 
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
 
     strResult = string("\n");
@@ -1022,10 +1029,10 @@ CParameterMgr::CommandStatus CParameterMgr::listParametersCommmandProcess(const 
     // Return sub-elements
     strResult += pLocatedElement->listQualifiedPaths(true);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::dumpElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
@@ -1033,7 +1040,7 @@ CParameterMgr::CommandStatus CParameterMgr::dumpElementCommmandProcess(const IRe
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
 
     string strError;
@@ -1043,10 +1050,10 @@ CParameterMgr::CommandStatus CParameterMgr::dumpElementCommmandProcess(const IRe
     // Dump elements
     pLocatedElement->dumpContent(strResult, parameterAccessContext);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::getElementSizeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSizeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
@@ -1054,7 +1061,7 @@ CParameterMgr::CommandStatus CParameterMgr::getElementSizeCommmandProcess(const 
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
 
     // Converted to actual sizable element
@@ -1063,10 +1070,10 @@ CParameterMgr::CommandStatus CParameterMgr::getElementSizeCommmandProcess(const 
     // Get size as string
     strResult = pConfigurableElement->getFootprintAsString();
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::showPropertiesCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showPropertiesCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
@@ -1074,7 +1081,7 @@ CParameterMgr::CommandStatus CParameterMgr::showPropertiesCommmandProcess(const 
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
 
     // Convert element
@@ -1083,29 +1090,29 @@ CParameterMgr::CommandStatus CParameterMgr::showPropertiesCommmandProcess(const 
     // Return element properties
     pConfigurableElement->showProperties(strResult);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::getParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     string strValue;
 
     if (!getValue(remoteCommand.getArgument(0), strValue, strResult)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
     // Succeeded
     strResult = strValue;
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return setValue(remoteCommand.getArgument(0), remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1), strResult) ? EDone : EFailed;
+    return setValue(remoteCommand.getArgument(0), remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
@@ -1113,7 +1120,7 @@ CParameterMgr::CommandStatus CParameterMgr::listBelongingDomainsCommmandProcess(
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
 
     // Convert element
@@ -1122,10 +1129,10 @@ CParameterMgr::CommandStatus CParameterMgr::listBelongingDomainsCommmandProcess(
     // Return element belonging domains
     pConfigurableElement->listBelongingDomains(strResult);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::listAssociatedDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listAssociatedDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
@@ -1133,7 +1140,7 @@ CParameterMgr::CommandStatus CParameterMgr::listAssociatedDomainsCommmandProcess
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
 
     // Convert element
@@ -1142,65 +1149,65 @@ CParameterMgr::CommandStatus CParameterMgr::listAssociatedDomainsCommmandProcess
     // Return element belonging domains
     pConfigurableElement->listAssociatedDomains(strResult);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::listAssociatedElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listAssociatedElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     getConfigurableDomains()->listAssociatedElements(strResult);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::listConflictingElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listConflictingElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     getConfigurableDomains()->listConflictingElements(strResult);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::listRogueElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listRogueElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     getSystemClass()->listRogueElements(strResult);
 
-    return ESucceeded;
+    return CCommandHandler::ESucceeded;
 }
 
 /// Settings Import/Export
-CParameterMgr::CommandStatus CParameterMgr::exportConfigurableDomainsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportConfigurableDomainsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return exportDomainsXml(remoteCommand.getArgument(0), false, strResult) ? EDone : EFailed;
+    return exportDomainsXml(remoteCommand.getArgument(0), false, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::importConfigurableDomainsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importConfigurableDomainsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), false, strResult) ? EDone : EFailed;
+    return importDomainsXml(remoteCommand.getArgument(0), false, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::exportConfigurableDomainsWithSettingsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportConfigurableDomainsWithSettingsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return exportDomainsXml(remoteCommand.getArgument(0), true, strResult) ? EDone : EFailed;
+    return exportDomainsXml(remoteCommand.getArgument(0), true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), true, strResult) ? EDone : EFailed;
+    return importDomainsXml(remoteCommand.getArgument(0), true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return exportDomainsBinary(remoteCommand.getArgument(0), strResult) ? EDone : EFailed;
+    return exportDomainsBinary(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CommandStatus CParameterMgr::importSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return importDomainsBinary(remoteCommand.getArgument(0), strResult) ? EDone : EFailed;
+    return importDomainsBinary(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 // User set/get parameters
@@ -1516,7 +1523,7 @@ bool CParameterMgr::removeConfigurableElementFromDomain(const string& strDomain,
 
     if (!elementLocator.locate(strConfigurableElementPath, &pLocatedElement, strError)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
 
     // Convert element
@@ -1540,7 +1547,7 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
 
     if (!elementLocator.locate(strConfigurableElementPath, &pLocatedElement, strError)) {
 
-        return EFailed;
+        return CCommandHandler::EFailed;
     }
 
     // Convert element
@@ -1622,7 +1629,7 @@ bool CParameterMgr::exportDomainsXml(const string& strFileName, bool bWithSettin
     }
 
     // Compose
-    xmlComposer.compose(pConfigurableDomains);
+    xmlComposer.compose(pConfigurableDomains, "parameter-framework", getVersion());
 
     // Close composer
     if (!xmlComposer.close()) {
@@ -1664,11 +1671,7 @@ bool CParameterMgr::exportDomainsBinary(const string& strFileName, string& strEr
 
         return false;
     }
-    // Check tuning mode
-    if (!checkTuningModeOn(strError)) {
 
-        return false;
-    }
     // Root element
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
@@ -1774,10 +1777,7 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
         }
 
         // Create server
-        _pRemoteProcessorServer = pfnCreateRemoteProcessorServer(_pSystemClassConfiguration->getServerPort(), this);
-
-        // Compute max command usage length
-        setMaxCommandUsageLength();
+        _pRemoteProcessorServer = pfnCreateRemoteProcessorServer(_pSystemClassConfiguration->getServerPort(), _pCommandHandler);
 
         log("Starting remote processor server on port %d", _pSystemClassConfiguration->getServerPort());
         // Start

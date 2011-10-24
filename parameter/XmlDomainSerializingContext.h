@@ -51,13 +51,13 @@ public:
     void setOutputRawFormat(bool bIsHex);
     bool outputRawFormatIsHex();
 
-    // ParameterBlackboard
-    const CParameterBlackboard* getParameterBlackboard() const;
-
     // Criteria defintion
     void setSelectionCriteriaDefinition(const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition);
     const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
 
+    // Auto validation of configurations
+    void setAutoValidationRequired(bool bAutoValidationRequired);
+    bool autoValidationRequired() const;
 private:
     // Indicate wheter or not to import settings
     bool _bWithSettings;
@@ -67,4 +67,6 @@ private:
     bool _bOutputRawFormatIsHex;
     // Criteria defintion
     const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
+    // Auto validation of configurations
+    bool _bAutoValidationRequired;
 };

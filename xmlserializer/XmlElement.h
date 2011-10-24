@@ -68,6 +68,7 @@ public:
     bool getParentElement(CXmlElement& parentElement) const;
 
     // Setters
+    void setAttributeBoolean(const string& strAttributeName, bool bValue);
     void setAttributeString(const string& strAttributeName, const string& strValue);
     void setNameAttribute(const string& strValue);
     void setTextContent(const string& strContent);

@@ -63,6 +63,7 @@ private:
     string _strFileName;
     // Serialization direction
     bool _bOut;
+    // Data size
     uint32_t _uiDataSize;
     // System structure checksum
     uint8_t _uiStructureChecksum;

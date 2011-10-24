@@ -31,7 +31,7 @@
 #pragma once
 
 #include <pthread.h>
-#include "RemoteCommandHandler.h"
+#include "RemoteCommandHandlerTemplate.h"
 #include "PathNavigator.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
@@ -51,7 +51,7 @@ class CConfigurableDomains;
 class IRemoteProcessorServerInterface;
 class CBackSynchronizer;
 
-class CParameterMgr : private CElement, private IRemoteCommandHandler
+class CParameterMgr : private CElement
 {
     enum ChildElement {
         EFrameworkConfiguration,
@@ -64,16 +64,10 @@ class CParameterMgr : private CElement, private IRemoteCommandHandler
         EParameterCreationLibrary,
         EParameterConfigurationLibrary
     };
-    // Remote command execution status
-    enum CommandStatus {
-        EDone,
-        ESucceeded,
-        EFailed,
-        EShowUsgae
-    };
+    typedef TRemoteCommandHandlerTemplate<CParameterMgr> CCommandHandler;
 
     // Remote command parsers
-    typedef CommandStatus (CParameterMgr::*RemoteCommandParser)(const IRemoteCommand& remoteCommand, string& strResult);
+    typedef CCommandHandler::CommandStatus (CParameterMgr::*RemoteCommandParser)(const IRemoteCommand& remoteCommand, string& strResult);
 
     // Parser descriptions
     struct SRemoteCommandParserItem
@@ -83,18 +77,11 @@ class CParameterMgr : private CElement, private IRemoteCommandHandler
         uint32_t _uiMinArgumentCount;
         const char* _pcHelp;
         const char* _pcDescription;
-
-        // Usage
-        string usage() const
-        {
-            return string(_pcCommandName) + " " + _pcHelp;
-        }
     };
-
     // Version
-    static const uint32_t guiEditionMajor = 0x0;
-    static const uint32_t guiEditionMinor = 0x2;
-    static const uint32_t guiRevision = 0x1;
+    static const uint32_t guiEditionMajor = 0x1;
+    static const uint32_t guiEditionMinor = 0x0;
+    static const uint32_t guiRevision = 0x0;
 public:
     // Logger interface
     class ILogger
@@ -180,68 +167,70 @@ private:
     virtual void nestLog() const;
     virtual void unnestLog() const;
 
-    // From IRemoteCommandHandler: return true on success, fill result in any cases
-    virtual bool remoteCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    // Version
+    string getVersion() const;
 
     ////////////////:: Remote command parsers
-    /// Help
-    CommandStatus helpCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Version
-    CommandStatus versionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus versionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Status
-    CommandStatus statusCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus statusCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Tuning Mode
-    CommandStatus setTuningModeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus getTuningModeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus setTuningModeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getTuningModeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Value Space
-    CommandStatus setValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus getValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus setValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getValueSpaceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Output Raw Format
-    CommandStatus setOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus getOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus setOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getOutputRawFormatCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Sync
-    CommandStatus setAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus getAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus syncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus setAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getAutoSyncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus syncCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Criteria
-    CommandStatus listCriteriaCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listCriteriaCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Domains
-    CommandStatus listDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus createDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus deleteDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus renameDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus listDomainElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus addElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus removeElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus splitDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus createDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus deleteDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus renameDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus setSequenceAwarenessCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getSequenceAwarenessCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listDomainElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus addElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus removeElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus splitDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Configurations
-    CommandStatus listConfigurationsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus createConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus deleteConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus renameConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus saveConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus restoreConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listConfigurationsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus createConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus deleteConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus renameConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus saveConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus restoreConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus setElementSequenceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getElementSequenceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Elements/Parameters
-    CommandStatus listElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus listParametersCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus dumpElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus getElementSizeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus showPropertiesCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus getParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus listAssociatedDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listParametersCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus dumpElementCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getElementSizeCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus showPropertiesCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listAssociatedDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Browse
-    CommandStatus listAssociatedElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus listConflictingElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus listRogueElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listAssociatedElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listConflictingElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus listRogueElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Settings Import/Export
-    CommandStatus exportConfigurableDomainsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus importConfigurableDomainsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus exportConfigurableDomainsWithSettingsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CommandStatus importSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus exportConfigurableDomainsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus importConfigurableDomainsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus exportConfigurableDomainsWithSettingsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus importSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
 
     // Max command usage length, use for formatting
     void setMaxCommandUsageLength();
@@ -317,6 +306,9 @@ private:
 
     // Whole system structure checksum
     uint8_t _uiStructureChecksum;
+
+    // Command Handler
+    CCommandHandler* _pCommandHandler;
 
     // Remote Processor Server
     IRemoteProcessorServerInterface* _pRemoteProcessorServer;

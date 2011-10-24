@@ -38,6 +38,7 @@ class CAreaConfiguration;
 class CParameterBlackboard;
 class CConfigurationAccessContext;
 class CCompoundRule;
+class CSyncerSet;
 
 class CDomainConfiguration : public CBinarySerializableElement
 {
@@ -50,13 +51,17 @@ public:
     virtual ~CDomainConfiguration();
 
     // Configurable Elements association
-    void addConfigurableElement(const CConfigurableElement* pConfigurableElement);
+    void addConfigurableElement(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet);
     void removeConfigurableElement(const CConfigurableElement* pConfigurableElement);
+
+    // Sequence management
+    bool setElementSequence(const vector<string>& astrNewElementSequence, string& strError);
+    void getElementSequence(string& strResult) const;
 
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
     // Apply data to current
-    void restore(CParameterBlackboard* pMainBlackboard) const;
+    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, string& strError) const;
     // Ensure validity for configurable element area configuration
     void validate(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard);
     // Ensure validity of all area configurations
@@ -75,7 +80,8 @@ public:
     void split(CConfigurableElement* pFromConfigurableElement);
 
     // XML configuration settings parsing/composing
-    bool serializeXmlSettings(const CConfigurableElement* pConfigurableElement, CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext);
+    bool parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext);
+    void composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext) const;
 
     // Presence of application condition
     bool hasRule() const;
@@ -91,12 +97,25 @@ public:
 private:
     // Returns true if children dynamic creation is to be dealt with (here, will allow child deletion upon clean)
     virtual bool childrenAreDynamic() const;
+    // XML configuration settings serializing
+    bool serializeConfigurableElementSettings(CAreaConfiguration* pAreaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlSerializingContext& serializingContext, bool bSerializeOut);
     // AreaConfiguration retrieval from configurable element
     CAreaConfiguration* getAreaConfiguration(const CConfigurableElement* pConfigurableElement) const;
+    // AreaConfiguration retrieval from present area configurations
+    CAreaConfiguration* findAreaConfiguration(const string& strConfigurableElementPath) const;
+    // AreaConfiguration retrieval from given area configuration list
+    CAreaConfiguration* findAreaConfiguration(const string& strConfigurableElementPath, const list<CAreaConfiguration*>& areaConfigurationList) const;
+    // Area configuration ordering
+    void reorderAreaConfigurations(const list<CAreaConfiguration*>& areaConfigurationList);
+    // Find area configuration rank from regular list: for ordered list maintainance
+    uint32_t getAreaConfigurationRank(const CAreaConfiguration* pAreaConfiguration) const;
+    // Find area configuration from regular list based on rank: for ordered list maintainance
+    CAreaConfiguration* getAreaConfiguration(uint32_t uiAreaConfigurationRank) const;
 
     // Rule
     const CCompoundRule* getRule() const;
 
     // AreaConfigurations
     list<CAreaConfiguration*> _areaConfigurationList;
+    list<CAreaConfiguration*> _orderedAreaConfigurationList;
 };

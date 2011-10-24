@@ -47,10 +47,13 @@ public:
     bool createDomain(const string& strName, string& strError);
     bool deleteDomain(const string& strName, string& strError);
     bool renameDomain(const string& strName, const string& strNewName, string& strError);
+    bool setSequenceAwareness(const string& strDomain, bool bSequenceAware, string& strError);
+    bool getSequenceAwareness(const string& strDomain, bool& bSequenceAware, string& strError) const;
     bool listDomainElements(const string& strDomain, string& strResult) const;
     bool split(const string& strDomain, CConfigurableElement* pConfigurableElement, string& strError);
     void listAssociatedElements(string& strResult) const;
     void listConflictingElements(string& strResult) const;
+    void listDomains(string& strResult) const;
     /// Configurations
     bool listConfigurations(const string& strDomain, string& strResult) const;
     bool createConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError);
@@ -58,6 +61,8 @@ public:
     bool renameConfiguration(const string& strDomain, const string& strConfigurationName, const string& strNewConfigurationName, string& strError);
     bool restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError);
     bool saveConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError);
+    bool setElementSequence(const string& strDomain, const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError);
+    bool getElementSequence(const string& strDomain, const string& strConfiguration, string& strResult) const;
 
     // Last applied configurations
     void listLastAppliedConfigurations(string& strResult) const;
@@ -76,7 +81,7 @@ public:
     void validate(const CParameterBlackboard* pMainBlackboard);
 
     // Configuration application if required
-    bool apply(CParameterBlackboard* pParameterBlackboard, bool bForce, string& strError);
+    bool apply(CParameterBlackboard* pParameterBlackboard, bool bForce, string& strError) const;
 
     // Class kind
     virtual string getKind() const;

@@ -32,6 +32,7 @@
 
 #include "ParameterBlackboard.h"
 #include "BinaryStream.h"
+#include "SyncerSet.h"
 
 using namespace std;
 
@@ -42,13 +43,13 @@ class CConfigurationAccessContext;
 class CAreaConfiguration
 {
 public:
-    CAreaConfiguration(const CConfigurableElement* pConfigurableElement);
+    CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet);
 
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
 
     // Apply data to current
-    void restore(CParameterBlackboard* pMainBlackboard) const;
+    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, string& strError) const;
 
     // Ensure validity
     void validate(const CParameterBlackboard* pMainBlackboard);
@@ -69,7 +70,7 @@ public:
     void copyToInner(CAreaConfiguration* pToAreaConfiguration) const;
 
     // XML configuration settings parsing/composing
-    bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext);
+    bool serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElementContent, CConfigurationAccessContext& configurationAccessContext);
 
     // Serialization
     void serialize(CBinaryStream& binaryStream);
@@ -77,13 +78,18 @@ public:
     // Data size
     uint32_t getSize() const;
 private:
-    // Associated configurable element
-    const CConfigurableElement* _pConfigurableElement;
     // Store validity
     void setValid(bool bValid);
 
+    // Associated configurable element
+    const CConfigurableElement* _pConfigurableElement;
+
+    // Syncer set (required for immediate synchronization)
+    const CSyncerSet* _pSyncerSet;
+
     // Configurable element settings
     CParameterBlackboard _blackboard;
+
     // Area configuration validity (invalid area configurations can't be restored)
     bool _bValid;
 };

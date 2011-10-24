@@ -34,7 +34,7 @@
 #include <assert.h>
 
 #ifdef SIMULATION
-const char* gpcParameterFrameworkConfigurationFolderPath = "/home/pat/Documents/gingerbread2/hardware/intel/PRIVATE/parameter-framework/XML";
+const char* gpcParameterFrameworkConfigurationFolderPath = "/home/pat/Documents/gingerbread3/hardware/intel/PRIVATE/parameter-framework/XML";
 #else
 const char* gpcParameterFrameworkConfigurationFolderPath = "/etc/parameter-framework";
 #endif

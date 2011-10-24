@@ -33,7 +33,7 @@
 #define base CXmlElementSerializingContext
 
 CXmlDomainSerializingContext::CXmlDomainSerializingContext(string& strError, bool bWithSettings)
-    : base(strError), _bWithSettings(bWithSettings), _bValueSpaceIsRaw(false), _bOutputRawFormatIsHex(false), _pSelectionCriteriaDefinition(NULL)
+    : base(strError), _bWithSettings(bWithSettings), _bValueSpaceIsRaw(false), _bOutputRawFormatIsHex(false), _pSelectionCriteriaDefinition(NULL), _bAutoValidationRequired(true)
 {
 }
 
@@ -74,4 +74,15 @@ void CXmlDomainSerializingContext::setSelectionCriteriaDefinition(const CSelecti
 const CSelectionCriteriaDefinition* CXmlDomainSerializingContext::getSelectionCriteriaDefinition() const
 {
     return _pSelectionCriteriaDefinition;
+}
+
+// Auto validation of configurations
+void CXmlDomainSerializingContext::setAutoValidationRequired(bool bAutoValidationRequired)
+{
+    _bAutoValidationRequired = bAutoValidationRequired;
+}
+
+bool CXmlDomainSerializingContext::autoValidationRequired() const
+{
+    return _bAutoValidationRequired;
 }

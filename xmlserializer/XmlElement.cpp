@@ -194,6 +194,12 @@ bool CXmlElement::getParentElement(CXmlElement& parentElement) const
 }
 
 // Setters
+void CXmlElement::setAttributeBoolean(const string& strAttributeName, bool bValue)
+{
+    setAttributeString(strAttributeName, bValue ? "true" : "false");
+}
+
+
 void CXmlElement::setAttributeString(const string& strAttributeName, const string& strValue)
 {
     xmlNewProp(_pXmlElement, BAD_CAST strAttributeName.c_str(), BAD_CAST strValue.c_str());

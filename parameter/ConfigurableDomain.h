@@ -34,6 +34,7 @@
 #include "SyncerSet.h"
 #include <list>
 #include <set>
+#include <map>
 
 class CConfigurableElement;
 class CDomainConfiguration;
@@ -42,9 +43,14 @@ class CParameterBlackboard;
 class CConfigurableDomain : public CBinarySerializableElement
 {
     typedef list<CConfigurableElement*>::const_iterator ConfigurableElementListIterator;
+    typedef map<const CConfigurableElement*, CSyncerSet*>::const_iterator ConfigurableElementToSyncerSetMapIterator;
 public:
     CConfigurableDomain(const string& strName);
     virtual ~CConfigurableDomain();
+
+    // Sequence awareness
+    void setSequenceAwareness(bool bSequenceAware);
+    bool getSequenceAwareness() const;
 
     // Configuration Management
     bool createConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError);
@@ -52,6 +58,8 @@ public:
     bool renameConfiguration(const string& strName, const string& strNewName, string& strError);
     bool restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError);
     bool saveConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError);
+    bool setElementSequence(const string& strName, const vector<string>& astrNewElementSequence, string& strError);
+    bool getElementSequence(const string& strName, string& strResult) const;
 
     // Last applied configuration
     string getLastAppliedConfigurationName() const;
@@ -71,7 +79,7 @@ public:
     void validate(const CParameterBlackboard* pMainBlackboard);
 
     // Configuration application if required
-    void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForced);
+    bool apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForced, string& strError) const;
 
     // Return applicable configuration validity for given configurable element
     bool isApplicableConfigurationValid(const CConfigurableElement* pConfigurableElement) const;
@@ -126,21 +134,29 @@ private:
     // XML parsing
     bool parseDomainConfigurations(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
     bool parseConfigurableElements(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
-    bool parseConfigurableElementConfigurations(const CConfigurableElement* pConfigurableElement, CXmlElement& xmlConfigurableElementElement, CXmlSerializingContext& serializingContext);
-    bool serializeConfigurableElementConfiguration(CDomainConfiguration* pDomainConfiguration, const CConfigurableElement* pConfigurableElement, CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext, bool bSerializeOut);
+    bool parseSettings(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     // XML composing
     void composeDomainConfigurations(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
-    void composeConfigurableElements(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
-    void composeConfigurableElementConfigurations(const CConfigurableElement* pConfigurableElement, CXmlElement& xmlConfigurableElementElement, CXmlSerializingContext& serializingContext) const;
+    void composeConfigurableElements(CXmlElement& xmlElement) const;
+    void composeSettings(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
+    // Syncer set retrieval from configurable element
+    CSyncerSet* getSyncerSet(const CConfigurableElement* pConfigurableElement) const;
 
     // Configurable elements
     list<CConfigurableElement*> _configurableElementList;
+
+    // Associated syncer sets
+    map<const CConfigurableElement*, CSyncerSet*> _configurableElementToSyncerSetMap;
+
+    // Sequence awareness
+    bool _bSequenceAware;
 
     // Syncer set used to ensure propoer synchronization of restored configurable elements
     CSyncerSet _syncerSet;
 
     // Last applied configuration
-    const CDomainConfiguration* _pLastAppliedConfiguration;
+    mutable const CDomainConfiguration* _pLastAppliedConfiguration;
 };
 

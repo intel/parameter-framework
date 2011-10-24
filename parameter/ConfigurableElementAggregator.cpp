@@ -71,7 +71,7 @@ bool CConfigurableElementAggregator::doAggregate(const CConfigurableElement* pCo
 
         return true;
     } else {
-        // Add rogue children if any
+        // Add children if any
         aggregateList.insert(aggregateList.end(), childAggregateElementList.begin(), childAggregateElementList.end());
 
         return false;

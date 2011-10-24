@@ -66,7 +66,7 @@ void CConfigurableDomains::validate(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Configuration application if required
-bool CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, bool bForce, string& strError)
+bool CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, bool bForce, string& strError) const
 {
    CAutoLog autoLog(this, "Applying configurations");
 
@@ -74,17 +74,38 @@ bool CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, boo
     CSyncerSet syncerSet;
 
     // Delegate to domains
+
+    // Start with sequence unaware domains
     uint32_t uiChild;
     uint32_t uiNbConfigurableDomains = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
 
-        CConfigurableDomain* pChildConfigurableDomain = static_cast<CConfigurableDomain*>(getChild(uiChild));
+        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
 
-        pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce);
+        if (!pChildConfigurableDomain->getSequenceAwareness() && !pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce, strError)) {
+
+            return false;
+        }
     }
     // Synchronize
-    return syncerSet.sync(*pParameterBlackboard, false, strError);
+    if (!syncerSet.sync(*pParameterBlackboard, false, strError)) {
+
+        return false;
+    }
+
+    // Then deal with sequence aware domains
+    for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
+
+        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
+
+        if (pChildConfigurableDomain->getSequenceAwareness() && !pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce, strError)) {
+
+            return false;
+        }
+    }
+
+    return true;
 }
 
 // From IXmlSource
@@ -161,6 +182,38 @@ bool CConfigurableDomains::renameDomain(const string& strName, const string& str
 
     // Rename
     return pConfigurableDomain->rename(strNewName, strError);
+}
+
+bool CConfigurableDomains::setSequenceAwareness(const string& strDomain, bool bSequenceAware, string& strError)
+{
+    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+
+    if (!pConfigurableDomain) {
+
+        strError = "Configurable domain not found";
+
+        return false;
+    }
+
+    pConfigurableDomain->setSequenceAwareness(bSequenceAware);
+
+    return true;
+}
+
+bool CConfigurableDomains::getSequenceAwareness(const string& strDomain, bool& bSequenceAware, string& strError) const
+{
+    const CConfigurableDomain* pConfigurableDomain = static_cast<const CConfigurableDomain*>(findChild(strDomain));
+
+    if (!pConfigurableDomain) {
+
+        strError = "Configurable domain not found";
+
+        return false;
+    }
+
+    bSequenceAware = pConfigurableDomain->getSequenceAwareness();
+
+    return true;
 }
 
 /// Configurations
@@ -310,6 +363,29 @@ void CConfigurableDomains::listConflictingElements(string& strResult) const
     }
 }
 
+void CConfigurableDomains::listDomains(string& strResult) const
+{
+    strResult = "\n";
+
+    // List domains
+    uint32_t uiChild;
+    uint32_t uiNbConfigurableDomains = getNbChildren();
+
+    for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
+
+        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
+
+        // Name
+        strResult += pChildConfigurableDomain->getName();
+
+        // Sequence awareness
+        if (pChildConfigurableDomain->getSequenceAwareness()) {
+
+            strResult += " [sequence aware]\n";
+        }
+    }
+}
+
 // Gather configurable elements owned by any domain
 void CConfigurableDomains::gatherAllOwnedConfigurableElements(set<const CConfigurableElement*>& configurableElementSet) const
 {
@@ -355,6 +431,37 @@ bool CConfigurableDomains::saveConfiguration(const string& strDomain, const stri
     }
     // Delegate
     return pConfigurableDomain->saveConfiguration(strConfiguration, pMainBlackboard, strError);
+}
+
+bool CConfigurableDomains::setElementSequence(const string& strDomain, const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError)
+{
+    // Find domain
+    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+
+    if (!pConfigurableDomain) {
+
+        strError = "Configurable domain " + strDomain + " not found";
+
+        return false;
+    }
+
+    // Delegate to domain
+    return pConfigurableDomain->setElementSequence(strConfiguration, astrNewElementSequence, strError);
+}
+
+bool CConfigurableDomains::getElementSequence(const string& strDomain, const string& strConfiguration, string& strResult) const
+{
+    // Find domain
+    const CConfigurableDomain* pConfigurableDomain = static_cast<const CConfigurableDomain*>(findChild(strDomain));
+
+    if (!pConfigurableDomain) {
+
+        strResult = "Configurable domain " + strDomain + " not found";
+
+        return false;
+    }
+    // Delegate to domain
+    return pConfigurableDomain->getElementSequence(strConfiguration, strResult);
 }
 
 // Last applied configurations
