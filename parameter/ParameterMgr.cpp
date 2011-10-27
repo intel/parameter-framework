@@ -64,6 +64,7 @@
 #include "BitParameterBlockType.h"
 #include "BitParameterType.h"
 #include "StringParameterType.h"
+#include "EnumParameterType.h"
 #include "RemoteProcessorServerInterface.h"
 #include "ElementLocator.h"
 #include "AutoLog.h"
@@ -1754,6 +1755,7 @@ void CParameterMgr::feedElementLibraries()
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CParameterBlockType>("ParameterBlock"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBooleanParameterType>("BooleanParameter"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CIntegerParameterType>("IntegerParameter"));
+    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CEnumParameterType>("EnumParameter"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CFixedPointParameterType>("FixedPointParameter"));
     pParameterCreationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CXmlFileIncluderElement>("SubsystemInclude"));
 

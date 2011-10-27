@@ -85,7 +85,8 @@ LOCAL_SRC_FILES:= \
         BaseParameter.cpp \
         AutoLock.cpp \
         StringParameterType.cpp \
-        StringParameter.cpp
+        StringParameter.cpp \
+        EnumParameterType.cpp
 
 
 LOCAL_MODULE:= libparameter
