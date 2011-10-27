@@ -30,11 +30,26 @@
  */
 #include <dlfcn.h>
 #include <dirent.h>
+#include <algorithm>
+#include <ctype.h>
 #include "SystemClass.h"
 #include "SubsystemLibrary.h"
 #include "AutoLog.h"
 
 #define base CConfigurableElement
+
+// A plugin file name is of the form:
+// lib<type>-subsystem.so
+// The plugin symbol is of the form:
+// get<TYPE>SusbystemBuilder
+
+// Plugin file naming
+const char* gpcPluginPattern = "-subsystem.so";
+const char* gpcLibraryPrefix = "lib";
+
+// Plugin symbol naming
+const char* gpcPluginSymbolPrefix = "get";
+const char* gpcPluginSymbolSuffix = "SusbystemBuilder";
 
 // Used by subsystem plugins
 typedef void (*GetSusbystemBuilder)(CSubsystemLibrary*);
@@ -115,11 +130,26 @@ bool CSystemClass::loadSubsystems(string& strError, const vector<string>& astrPl
             return false;
         }
 
-        GetSusbystemBuilder pfnGetSusbystemBuilder = (GetSusbystemBuilder)dlsym(lib_handle, "getSusbystemBuilder");
+        // Extract plugin type out of file name
+        string strPluginPattern = gpcPluginPattern;
+        string strLibraryPrefix = gpcLibraryPrefix;
+        // Remove folder
+        int32_t iSlashPos = strPluginFileName.rfind('/') + 1 + strLibraryPrefix.length();
+        // Get type
+        string strPluginType = strPluginFileName.substr(iSlashPos, strPluginFileName.length() - iSlashPos - strPluginPattern.length());
+
+        // Make it upper case
+        std::transform(strPluginType.begin(), strPluginType.end(), strPluginType.begin(), ::toupper);
+
+        // Get plugin symbol
+        string strPluginSymbol = gpcPluginSymbolPrefix + strPluginType + gpcPluginSymbolSuffix;
+
+        // Load symbol from library
+        GetSusbystemBuilder pfnGetSusbystemBuilder = (GetSusbystemBuilder)dlsym(lib_handle, strPluginSymbol.c_str());
 
         if (!pfnGetSusbystemBuilder) {
 
-            strError = "Subsystem plugin " + strPluginFileName + " does not contain getSusbystemBuilder symbol.";
+            strError = "Subsystem plugin " + strPluginFileName + " does not contain " + strPluginSymbol + " symbol.";
 
             _pSubsystemLibrary->clean();
 
@@ -145,14 +175,14 @@ bool CSystemClass::getPluginFiles(const string& strPluginPath, vector<string>& a
         return false;
     }
 
-    const string strPluginPattern("-subsystem.so");
+    const string strPluginPattern(gpcPluginPattern);
 
     // Parse it and load plugins
     while ((dp = readdir(dirp)) != NULL) {
 
         string strFileName(dp->d_name);
 
-        // Check file name ends with "-susbsystem.so"
+        // Check file name ends with pattern
         size_t uiPatternPos = strFileName.rfind(strPluginPattern, -1);
 
         if (uiPatternPos != (size_t)-1 && uiPatternPos == strFileName.size() - strPluginPattern.size()) {
