@@ -439,20 +439,7 @@ CAreaConfiguration* CDomainConfiguration::getAreaConfiguration(const CConfigurab
 // AreaConfiguration retrieval from present area configurations
 CAreaConfiguration* CDomainConfiguration::findAreaConfiguration(const string& strConfigurableElementPath) const
 {
-    AreaConfigurationListIterator it;
-
-    for (it = _areaConfigurationList.begin(); it != _areaConfigurationList.end(); ++it) {
-
-        CAreaConfiguration* pAreaConfiguration = *it;
-
-        if (pAreaConfiguration->getConfigurableElement()->getPath() == strConfigurableElementPath) {
-
-            return pAreaConfiguration;
-        }
-    }
-
-    // Not found
-    return NULL;
+    return findAreaConfiguration(strConfigurableElementPath, _areaConfigurationList);
 }
 
 // AreaConfiguration retrieval from given area configuration list

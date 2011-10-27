@@ -60,6 +60,10 @@ public:
     void setAutoSync(bool bAutoSync);
     bool getAutoSync() const;
 
+    // Dynamic access
+    void setDynamicAccess(bool bDynamicAccess);
+    bool isDynamicAccess() const;
+
 private:
     // Blackboard
     CParameterBlackboard* _pParameterBlackboard;
@@ -71,5 +75,7 @@ private:
     bool _bBigEndianSubsystem;
     // Automatic synchronization to HW
     bool _bAutoSync;
+    // Dynamic access
+    bool _bDynamicAccess;
 };
 

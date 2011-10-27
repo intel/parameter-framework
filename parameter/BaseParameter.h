@@ -53,4 +53,7 @@ protected:
     // Actual value access (to be implemented by derived)
     virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const = 0;
     virtual void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const = 0;
+
+    // Dynamic access checking
+    bool checkForDynamicAccess(CParameterAccessContext& parameterAccessContext) const;
 };

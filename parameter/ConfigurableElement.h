@@ -79,6 +79,9 @@ public:
     // Elements with no domains
     void listRogueElements(string& strResult) const;
 
+    // Belonging to no domains
+    bool isRogue() const;
+
     // Footprint as string
     string getFootprintAsString() const;
 

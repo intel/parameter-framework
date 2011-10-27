@@ -617,6 +617,19 @@ bool CParameterMgr::applyConfigurations(string& strError)
     return true;
 }
 
+// Dynamic parameter handling
+bool CParameterMgr::setValue(const string& strPath, const string& strValue, bool bRawValueSpace, string& strError)
+{
+    // Delegate to low level functionality
+    return doSetValue(strPath, strValue, bRawValueSpace, true, strError);
+}
+
+bool CParameterMgr::getValue(const string& strPath, string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, string& strError) const
+{
+    // Delegate to low level functionality
+    return doGetValue(strPath, strValue, bRawValueSpace, bHexOutputRawFormat, true, strError);
+}
+
 /////////////////// Remote command parsers
 /// Version
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::versionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1219,73 +1232,14 @@ bool CParameterMgr::setValue(const string& strPath, const string& strValue, stri
         return false;
     }
 
-    CPathNavigator pathNavigator(strPath);
-
-    if (!pathNavigator.isPathValid()) {
-
-        strError = "Path not well formed";
-
-        return false;
-    }
-
-    string* pStrChildName = pathNavigator.next();
-
-    if (!pStrChildName) {
-
-        strError = "Non settable element";
-
-        return false;
-    }
-
-    if (*pStrChildName != getSystemClass()->getName()) {
-
-        strError = "Path not found";
-
-        return false;
-    }
-
-    // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
-
-    // Set auto sync
-    parameterAccessContext.setAutoSync(_bAutoSyncOn);
-
-    // Do the set
-    return getSystemClass()->setValue(pathNavigator, strValue, parameterAccessContext);
+    // Delegate to low level functionality
+    return doSetValue(strPath, strValue, _bValueSpaceIsRaw, false, strError);
 }
 
 bool CParameterMgr::getValue(const string& strPath, string& strValue, string& strError) const
 {
-    CPathNavigator pathNavigator(strPath);
-
-    if (!pathNavigator.isPathValid()) {
-
-        strError = "Path not well formed";
-
-        return false;
-    }
-
-    string* pStrChildName = pathNavigator.next();
-
-    if (!pStrChildName) {
-
-        strError = "Non settable element";
-
-        return false;
-    }
-
-    if (*pStrChildName != getConstSystemClass()->getName()) {
-
-        strError = "Path not found";
-
-        return false;
-    }
-
-    // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
-
-    // Do the get
-    return getConstSystemClass()->getValue(pathNavigator, strValue, parameterAccessContext);
+    // Delegate to low level functionality
+    return doGetValue(strPath, strValue, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, false, strError);
 }
 
 // Tuning mode
@@ -1690,6 +1644,84 @@ bool CParameterMgr::checkTuningModeOn(string& strError) const
         return false;
     }
     return true;
+}
+
+// Parameter access
+bool CParameterMgr::doSetValue(const string& strPath, const string& strValue, bool bRawValueSpace, bool bDynamicAccess, string& strError)
+{
+    CPathNavigator pathNavigator(strPath);
+
+    if (!pathNavigator.isPathValid()) {
+
+        strError = "Path not well formed";
+
+        return false;
+    }
+
+    string* pStrChildName = pathNavigator.next();
+
+    if (!pStrChildName) {
+
+        strError = "Non settable element";
+
+        return false;
+    }
+
+    if (*pStrChildName != getSystemClass()->getName()) {
+
+        strError = "Path not found";
+
+        return false;
+    }
+
+    // Define context
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, bRawValueSpace, false);
+
+    // Set auto sync
+    parameterAccessContext.setAutoSync(_bAutoSyncOn);
+
+    // Set dynamic access
+    parameterAccessContext.setDynamicAccess(bDynamicAccess);
+
+    // Do the set
+    return getSystemClass()->setValue(pathNavigator, strValue, parameterAccessContext);
+}
+
+bool CParameterMgr::doGetValue(const string& strPath, string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, bool bDynamicAccess, string& strError) const
+{
+    CPathNavigator pathNavigator(strPath);
+
+    if (!pathNavigator.isPathValid()) {
+
+        strError = "Path not well formed";
+
+        return false;
+    }
+
+    string* pStrChildName = pathNavigator.next();
+
+    if (!pStrChildName) {
+
+        strError = "Non settable element";
+
+        return false;
+    }
+
+    if (*pStrChildName != getConstSystemClass()->getName()) {
+
+        strError = "Path not found";
+
+        return false;
+    }
+
+    // Define context
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, bRawValueSpace, bHexOutputRawFormat);
+
+    // Set dynamic access
+    parameterAccessContext.setDynamicAccess(bDynamicAccess);
+
+    // Do the get
+    return getConstSystemClass()->getValue(pathNavigator, strValue, parameterAccessContext);
 }
 
 // Dynamic creation library feeding

@@ -34,6 +34,9 @@
 
 using namespace std;
 
+const char* gpcParameter = "/Audio/MSIC/SOUND_CARD/PLAYBACK_ROGUE/HEADPHONE/VOLUME";
+const char* gpcParameterValue = "51 53";
+
 int main(int argc, char *argv[])
 {
     if (argc < 2) {
@@ -55,6 +58,36 @@ int main(int argc, char *argv[])
 
         return -1;
     }
+
+    // Get parameter
+    string strValue;
+
+    if (!examplePlatform.getValue(gpcParameter, strValue, strError)) {
+
+        cerr << "Unable to get parameter: " << strError << endl;
+
+        return -1;
+    }
+    cout << gpcParameter << " = " << strValue << endl;
+
+    // Change parameter
+    cout << "Setting " << gpcParameter << " to " << gpcParameterValue << endl;
+
+    if (!examplePlatform.setValue(gpcParameter, gpcParameterValue, strError)) {
+
+        cerr << "Unable to set parameter: " << strError << endl;
+
+        return -1;
+    }
+
+    // Check parameter
+    if (!examplePlatform.getValue(gpcParameter, strValue, strError)) {
+
+        cerr << "Unable to get parameter: " << strError << endl;
+
+        return -1;
+    }
+    cout << gpcParameter << " = " << strValue << endl;
 
     // Change criteria
 

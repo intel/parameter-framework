@@ -35,13 +35,13 @@
 CParameterAccessContext::CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex) :
     base(strError), _pParameterBlackboard(pParameterBlackboard),
     _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
-    _bBigEndianSubsystem(false), _bAutoSync(true)
+    _bBigEndianSubsystem(false), _bAutoSync(true), _bDynamicAccess(false)
 {
 }
 
 CParameterAccessContext::CParameterAccessContext(string& strError) :
     base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(true)
+    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(true), _bDynamicAccess(false)
 {
 }
 
@@ -97,5 +97,16 @@ void CParameterAccessContext::setAutoSync(bool bAutoSync)
 
 bool CParameterAccessContext::getAutoSync() const
 {
-    return _bAutoSync;
+    return _bAutoSync || _bDynamicAccess;
+}
+
+// Dynamic access
+void CParameterAccessContext::setDynamicAccess(bool bDynamicAccess)
+{
+    _bDynamicAccess = bDynamicAccess;
+}
+
+bool CParameterAccessContext::isDynamicAccess() const
+{
+    return _bDynamicAccess;
 }

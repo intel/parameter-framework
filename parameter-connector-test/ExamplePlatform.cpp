@@ -124,3 +124,13 @@ bool CExamplePlatform::setState(CExamplePlatform::State eState, string& strError
     return _pParameterMgrPlatformConnector->applyConfigurations(strError);
 }
 
+// Dynamic parameter access
+bool CExamplePlatform::setValue(const string& strPath, const string& strValue, string& strError)
+{
+    return _pParameterMgrPlatformConnector->setValue(strPath, strValue, strError);
+}
+
+bool CExamplePlatform::getValue(const string& strPath, string& strValue, string& strError) const
+{
+    return _pParameterMgrPlatformConnector->getValue(strPath, strValue, strError);
+}

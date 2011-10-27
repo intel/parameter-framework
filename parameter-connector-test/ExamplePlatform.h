@@ -60,6 +60,10 @@ public:
     // State
     bool setState(State eState, string& strError);
 
+    // Dynamic parameter access
+    bool setValue(const string& strPath, const string& strValue, string& strError);
+    bool getValue(const string& strPath, string& strValue, string& strError) const;
+
 private:
     // The connector
     CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;

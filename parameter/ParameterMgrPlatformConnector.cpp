@@ -34,7 +34,7 @@
 #include <assert.h>
 
 #ifdef SIMULATION
-const char* gpcParameterFrameworkConfigurationFolderPath = "/home/pat/Documents/gingerbread3/hardware/intel/PRIVATE/parameter-framework/XML";
+const char* gpcParameterFrameworkConfigurationFolderPath = "/home/pat/Documents/gingerbread2/hardware/intel/PRIVATE/parameter-framework/XML";
 #else
 const char* gpcParameterFrameworkConfigurationFolderPath = "/etc/parameter-framework";
 #endif
@@ -81,6 +81,17 @@ bool CParameterMgrPlatformConnector::applyConfigurations(string& strError)
     assert(_bStarted);
 
     return _pParameterMgr->applyConfigurations(strError);
+}
+
+// Dynamic parameter handling
+bool CParameterMgrPlatformConnector::setValue(const string& strPath, const string& strValue, string& strError, bool bRawValueSpace)
+{
+    return _pParameterMgr->setValue(strPath, strValue, bRawValueSpace, strError);
+}
+
+bool CParameterMgrPlatformConnector::getValue(const string& strPath, string& strValue, string& strError, bool bRawValueSpace, bool bHexOutputRawFormat) const
+{
+    return _pParameterMgr->getValue(strPath, strValue, bRawValueSpace, bHexOutputRawFormat, strError);
 }
 
 // Logging

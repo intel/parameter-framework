@@ -110,6 +110,10 @@ public:
     // Configuration application
     bool applyConfigurations(string& strError);
 
+    // Dynamic parameter handling
+    bool setValue(const string& strPath, const string& strValue, bool bRawValueSpace, string& strError);
+    bool getValue(const string& strPath, string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, string& strError) const;
+
     //////////// Tuning /////////////
     // Tuning mode
     bool setTuningMode(bool bOn, string& strError);
@@ -237,6 +241,10 @@ private:
 
     // For tuning, check we're in tuning mode
     bool checkTuningModeOn(string& strError) const;
+
+    // Parameter access
+    bool doSetValue(const string& strPath, const string& strValue, bool bRawValueSpace, bool bDynamicAccess, string& strError);
+    bool doGetValue(const string& strPath, string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, bool bDynamicAccess, string& strError) const;
 
     // Framework global configuration loading
     bool loadFrameworkConfiguration(string& strError);

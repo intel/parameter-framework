@@ -353,6 +353,12 @@ void CConfigurableElement::listRogueElements(string& strResult) const
     }
 }
 
+// Belonging to no domains
+bool CConfigurableElement::isRogue() const
+{
+    return !getBelongingDomainCount();
+}
+
 // Footprint as string
 string CConfigurableElement::getFootprintAsString() const
 {

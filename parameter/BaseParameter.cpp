@@ -88,6 +88,12 @@ bool CBaseParameter::setValue(CPathNavigator& pathNavigator, const string& strVa
         return false;
     }
 
+    // Check for dynamic access
+    if (!checkForDynamicAccess(parameterContext)) {
+
+        return false;
+    }
+
     // Set Value
     if (!doSetValue(strValue, getOffset(), parameterContext)) {
 
@@ -115,8 +121,29 @@ bool CBaseParameter::getValue(CPathNavigator& pathNavigator, string& strValue, C
         return false;
     }
 
+    // Check for dynamic access
+    if (!checkForDynamicAccess(parameterContext)) {
+
+        return false;
+    }
+
     // Get Value
     doGetValue(strValue, getOffset(), parameterContext);
+
+    return true;
+}
+
+// Dynamic access checking
+bool CBaseParameter::checkForDynamicAccess(CParameterAccessContext& parameterAccessContext) const
+{
+    // Check for dynamic access
+    if (parameterAccessContext.isDynamicAccess() && !isRogue()) {
+
+        // Parameter is not rogue
+        parameterAccessContext.setError("Parameter " + getPath() + " is not rogue");
+
+        return false;
+    }
 
     return true;
 }

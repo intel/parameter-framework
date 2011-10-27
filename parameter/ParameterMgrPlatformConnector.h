@@ -49,15 +49,19 @@ public:
     // Selection criterion retrieval
     ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
 
-    // Configuration application
-    bool applyConfigurations(std::string& strError);
-
     // Logging
     // Should be called before start
     void setLogger(ILogger* pLogger);
 
     // Start
     bool start(std::string& strError);
+
+    // Configuration application
+    bool applyConfigurations(std::string& strError);
+
+    // Dynamic parameter handling
+    bool setValue(const std::string& strPath, const std::string& strValue, std::string& strError, bool bRawValueSpace = false);
+    bool getValue(const std::string& strPath, std::string& strValue, std::string& strError, bool bRawValueSpace = false, bool bHexOutputRawFormat = false) const;
 
 private:
     // Private logging

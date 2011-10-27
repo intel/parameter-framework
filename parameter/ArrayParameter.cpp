@@ -104,6 +104,12 @@ bool CArrayParameter::setValue(CPathNavigator& pathNavigator, const string& strV
         return false;
     }
 
+    // Check for dynamic access
+    if (!checkForDynamicAccess(parameterContext)) {
+
+        return false;
+    }
+
     if (uiStartIndex == (uint32_t)-1) {
 
         // No index provided, start with 0
@@ -136,6 +142,13 @@ bool CArrayParameter::getValue(CPathNavigator& pathNavigator, string& strValue, 
 
         return false;
     }
+
+    // Check for dynamic access
+    if (!checkForDynamicAccess(parameterContext)) {
+
+        return false;
+    }
+
     if (uiIndex == (uint32_t)-1) {
 
         // Whole array requested
@@ -274,6 +287,8 @@ void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParam
     uint32_t uiSize = getSize();
     uint32_t uiOffset = getOffset() - uiBaseOffset;
     uint32_t uiArrayLength = getArrayLength();
+
+    strValues.clear();
 
     bool bFirst = true;
 
