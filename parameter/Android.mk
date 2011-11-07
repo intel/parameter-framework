@@ -53,7 +53,6 @@ LOCAL_SRC_FILES:= \
         KindElement.cpp \
         ElementLibrarySet.cpp \
         ErrorContext.cpp \
-        SystemClassConfiguration.cpp \
         AreaConfiguration.cpp \
         DomainConfiguration.cpp \
         ConfigurableDomain.cpp \

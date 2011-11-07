@@ -47,7 +47,7 @@ class CConfigurableElement : public CElement
     friend class CDomainConfiguration;
     typedef list<const CConfigurableDomain*>::const_iterator ConfigurableDomainListConstIterator;
 public:
-    CConfigurableElement(const string& strName);
+    CConfigurableElement(const string& strName = "");
     virtual ~CConfigurableElement();
 
     // Offset in main blackboard

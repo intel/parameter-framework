@@ -36,7 +36,7 @@
 
 #define base CBinarySerializableElement
 
-CConfigurableDomains::CConfigurableDomains(const string& strSystemClassName) : base(strSystemClassName)
+CConfigurableDomains::CConfigurableDomains()
 {
 }
 

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:attributeGroup name="Nameable">
+		<xs:attribute name="Name" type="xs:NCName" use="required"/>
+		<xs:attribute name="Description" type="xs:string" use="optional"/>
+	</xs:attributeGroup>
+	<xs:simpleType name="SizeType">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:pattern value="8|16|32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attributeGroup name="IntegerParameterAttributes">
+		<xs:attribute name="Size" type="SizeType" use="required"/>
+		<xs:attribute name="Min" type="xs:integer" use="optional"/>
+		<xs:attribute name="Max" type="xs:integer" use="optional"/>
+		<xs:attribute name="Signed" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ArrayLengthAttribute">
+		<xs:attribute name="ArrayLength" type="xs:nonNegativeInteger" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:complexType name="Parameter" abstract="true">
+		<xs:attributeGroup ref="Nameable"/>
+		<xs:attribute name="Mapping" type="xs:string" use="optional"/>
+		<xs:attributeGroup ref="ArrayLengthAttribute"/>
+	</xs:complexType>
+	<xs:element name="BooleanParameter">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Parameter">
+					<xs:attribute name="Size" fixed="8"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="IntegerParameterType">
+		<xs:complexContent>
+			<xs:extension base="Parameter">
+				<xs:attributeGroup ref="IntegerParameterAttributes"/>
+				<xs:attribute name="Unit" type="xs:token" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="IntegerParameter" type="IntegerParameterType"/>
+	<xs:complexType name="EnumParameterType">
+		<xs:complexContent>
+			<xs:extension base="Parameter">
+				<xs:sequence>
+					<xs:element name="ValuePair" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:attribute name="Literal" type="xs:NMTOKEN" use="required"/>
+							<xs:attribute name="Numerical" use="required">					
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="0|[+-]?[1-9][0-9]*"/>
+										<xs:pattern value="0x[0-9a-fA-F]+"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="Size" type="SizeType" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="EnumParameter" type="EnumParameterType">
+		<xs:unique name="LiteralUniqueness">
+			<xs:selector xpath="ValuePair"/>
+			<xs:field xpath="@Literal"/>
+		</xs:unique>
+		<xs:unique name="NumericalUniqueness">
+			<xs:selector xpath="ValuePair"/>
+			<xs:field xpath="@Numerical"/>
+		</xs:unique>		
+	</xs:element>
+	<xs:complexType name="FixedPointParameterType">
+		<xs:complexContent>
+			<xs:extension base="Parameter">
+				<xs:attribute name="Size" type="SizeType" use="required"/>
+				<xs:attribute name="Integral" type="xs:nonNegativeInteger" use="required"/>
+				<xs:attribute name="Fractional" type="xs:nonNegativeInteger" use="required"/>
+				<xs:attribute name="Unit" type="xs:token" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FixedPointParameter" type="FixedPointParameterType"/>
+	<xs:complexType name="BitParameterType">
+		<xs:attributeGroup ref="Nameable"/>
+		<xs:attribute name="Size" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:positiveInteger">
+					<xs:maxInclusive value="32"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Pos" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:nonNegativeInteger">
+					<xs:maxInclusive value="31"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="BitParameterBlock">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="BitParameter" type="BitParameterType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="Nameable"/>
+			<xs:attribute name="Size" type="SizeType" use="required"/>
+			<xs:attribute name="Mapping" type="xs:string" use="optional"/>
+		</xs:complexType>
+		<xs:unique name="BitParameterBlockSubElementsUniqueness">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@Name"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="StringParameter">
+		<xs:complexType>
+			<xs:attributeGroup ref="Nameable"/>
+			<xs:attribute name="Mapping" type="xs:string" use="optional"/>
+			<xs:attribute name="MaxLength" type="xs:nonNegativeInteger" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:group name="ParameterBlockGroup">
+		<xs:choice>
+			<xs:element ref="BooleanParameter"/>
+			<xs:element ref="IntegerParameter"/>
+			<xs:element ref="EnumParameter"/>
+			<xs:element ref="FixedPointParameter"/>
+			<xs:element ref="BitParameterBlock"/>
+			<xs:element ref="StringParameter"/>
+			<xs:element name="ParameterBlock" type="ParameterBlockType">
+				<xs:unique name="ParameterBlockSubElementsUniqueness">
+					<xs:selector xpath="*"/>
+					<xs:field xpath="@Name"/>
+				</xs:unique>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="ParameterBlockType">
+		<xs:sequence>
+			<xs:group ref="ParameterBlockGroup" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="Nameable"/>
+		<xs:attributeGroup ref="ArrayLengthAttribute"/>
+		<xs:attribute name="Mapping" type="xs:string" use="optional"/>
+	</xs:complexType>
+</xs:schema>

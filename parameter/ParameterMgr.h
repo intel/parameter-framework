@@ -80,7 +80,7 @@ class CParameterMgr : private CElement
     };
     // Version
     static const uint32_t guiEditionMajor = 0x1;
-    static const uint32_t guiEditionMinor = 0x0;
+    static const uint32_t guiEditionMinor = 0x1;
     static const uint32_t guiRevision = 0x0;
 public:
     // Logger interface
@@ -91,7 +91,7 @@ public:
     };
 
     // Construction
-    CParameterMgr(const string& strParameterFrameworkConfigurationFolderPath, const string& strSystemClassName);
+    CParameterMgr(const string& strConfigurationFilePath);
     virtual ~CParameterMgr();
 
     // Logging
@@ -303,14 +303,12 @@ private:
     CElementLibrarySet* _pElementLibrarySet;
 
     // XML parsing, object creation handling
-    string _strParameterFrameworkConfigurationFolderPath; // Root folder for framework configuration
+    string _strXmlConfigurationFilePath; // Configuration file path
+    string _strXmlConfigurationFolderPath; // Root folder for configuration file
     string _strSchemaFolderLocation; // Place where schemas stand
 
     // Subsystem plugin location
     vector<string> _astrPluginFolderPaths;
-
-    // System Class Configuration
-    const CSystemClassConfiguration* _pSystemClassConfiguration;
 
     // Whole system structure checksum
     uint8_t _uiStructureChecksum;

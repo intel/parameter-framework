@@ -55,7 +55,6 @@
 #include "ParameterFrameworkConfiguration.h"
 #include "FrameworkConfigurationGroup.h"
 #include "FrameworkConfigurationLocation.h"
-#include "SystemClassConfiguration.h"
 #include "ConfigurableDomains.h"
 #include "ConfigurableDomain.h"
 #include "DomainConfiguration.h"
@@ -88,7 +87,7 @@ const char* gacSystemSchemasSubFolder = "Schemas";
 
 // Config File System looks normally like this:
 // ---------------------------------------------
-//├── ParameterFrameworkConfiguration.xml
+//├── <ParameterFrameworkConfiguration>.xml
 //├── Schemas
 //│   └── *.xsd
 //├── Settings
@@ -168,16 +167,14 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
 // Remote command parsers array Size
 const uint32_t CParameterMgr::guiNbRemoteCommandParserItems = sizeof(gastRemoteCommandParserItems) / sizeof(gastRemoteCommandParserItems[0]);
 
-CParameterMgr::CParameterMgr(const string& strParameterFrameworkConfigurationFolderPath, const string& strSystemClassName) :
+CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _bTuningModeIsOn(false),
     _bValueSpaceIsRaw(false),
     _bOutputRawFormatIsHex(false),
     _bAutoSyncOn(true),
     _pMainParameterBlackboard(new CParameterBlackboard),
     _pElementLibrarySet(new CElementLibrarySet),
-    _strParameterFrameworkConfigurationFolderPath(strParameterFrameworkConfigurationFolderPath),
-    _strSchemaFolderLocation(strParameterFrameworkConfigurationFolderPath + "/" + gacSystemSchemasSubFolder),
-    _pSystemClassConfiguration(NULL),
+    _strXmlConfigurationFilePath(strConfigurationFilePath),
     _uiStructureChecksum(0),
     _pRemoteProcessorServer(NULL),
     _uiMaxCommandUsageLength(0),
@@ -191,8 +188,8 @@ CParameterMgr::CParameterMgr(const string& strParameterFrameworkConfigurationFol
     // Deal with children
     addChild(new CParameterFrameworkConfiguration);
     addChild(new CSelectionCriteria);
-    addChild(new CSystemClass(strSystemClassName));
-    addChild(new CConfigurableDomains(strSystemClassName));
+    addChild(new CSystemClass);
+    addChild(new CConfigurableDomains);
 
     // Feed element library
     feedElementLibraries();
@@ -212,6 +209,16 @@ CParameterMgr::CParameterMgr(const string& strParameterFrameworkConfigurationFol
                                            pRemoteCommandParserItem->_pcHelp,
                                            pRemoteCommandParserItem->_pcDescription);
     }
+
+    // Configuration file folder
+    uint32_t uiSlashPos = _strXmlConfigurationFilePath.rfind('/', -1);
+
+    assert(uiSlashPos != (uint32_t)-1);
+
+    _strXmlConfigurationFolderPath = _strXmlConfigurationFilePath.substr(0, uiSlashPos);
+
+    // Schema absolute folder location
+    _strSchemaFolderLocation = _strXmlConfigurationFolderPath + "/" + gacSystemSchemasSubFolder;
 }
 
 CParameterMgr::~CParameterMgr()
@@ -348,18 +355,19 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
 {
     CAutoLog autoLog(this, "Loading framework configuration");
 
-    // Get Xml config file name
-    string strXmlConfigurationFilePath = _strParameterFrameworkConfigurationFolderPath + "/" + gacParameterFrameworkConfigurationFileName;
-
     // Parse Structure XML file
     CXmlElementSerializingContext elementSerializingContext(strError);
 
-    if (!xmlParse(elementSerializingContext, getFrameworkConfiguration(), strXmlConfigurationFilePath, _strParameterFrameworkConfigurationFolderPath, EFrameworkConfigurationLibrary)) {
+    if (!xmlParse(elementSerializingContext, getFrameworkConfiguration(), _strXmlConfigurationFilePath, _strXmlConfigurationFolderPath, EFrameworkConfigurationLibrary)) {
 
         return false;
     }
+    // Set class name to system class and configurable domains
+    getSystemClass()->setName(getConstFrameworkConfiguration()->getSystemClassName());
+    getConfigurableDomains()->setName(getConstFrameworkConfiguration()->getSystemClassName());
+
     // Get subsystem plugins folders element
-    const CFrameworkConfigurationGroup* pSubsystemPluginFolders= static_cast<const CFrameworkConfigurationGroup*>(getConstFrameworkConfiguration()->findChild("SubsystemPluginFolders"));
+    const CFrameworkConfigurationGroup* pSubsystemPluginFolders = static_cast<const CFrameworkConfigurationGroup*>(getConstFrameworkConfiguration()->findChild("SubsystemPluginFolders"));
 
     if (!pSubsystemPluginFolders) {
 
@@ -378,32 +386,16 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
         return false;
     }
 
+    // Collect plugin paths
     for (uiPluginFolderLocation = 0; uiPluginFolderLocation < uiNbPluginFolderLocations; uiPluginFolderLocation++) {
 
         const CFrameworkConfigurationLocation* pSubsystemPluginLocation = static_cast<const CFrameworkConfigurationLocation*>(pSubsystemPluginFolders->getChild(uiPluginFolderLocation));
 
-        _astrPluginFolderPaths.push_back(pSubsystemPluginLocation->getFilePath(_strParameterFrameworkConfigurationFolderPath));
+        _astrPluginFolderPaths.push_back(pSubsystemPluginLocation->getFilePath(_strXmlConfigurationFilePath));
     }
 
-    // Get configuration for current system class
-    const CFrameworkConfigurationGroup* pParameterConfigurationGroup = static_cast<const CFrameworkConfigurationGroup*>(getConstFrameworkConfiguration()->findChildOfKind("ParameterConfiguration"));
-
-    if (!pParameterConfigurationGroup) {
-
-        strError = "Parameter Framework Configuration: couldn't find ParameterConfiguration element";
-
-        return false;
-    }
-    _pSystemClassConfiguration = static_cast<const CSystemClassConfiguration*>(pParameterConfigurationGroup->findChild(getSystemClass()->getName()));
-
-    if (!_pSystemClassConfiguration) {
-
-        strError = "No framework configuration found for SystemClass " + getSystemClass()->getName();
-
-        return false;
-    }
     // Log tuning availability
-    log("Tuning %s", _pSystemClassConfiguration->isTuningAllowed() ? "allowed" : "prohibited");
+    log("Tuning %s", getConstFrameworkConfiguration()->isTuningAllowed() ? "allowed" : "prohibited");
 
     return true;
 }
@@ -416,7 +408,7 @@ bool CParameterMgr::loadStructure(string& strError)
     CAutoLog autoLog(this, "Loading " + pSystemClass->getName() + " system class structure");
 
     // Get structure description element
-    const CFrameworkConfigurationLocation* pStructureDescriptionFileLocation = static_cast<const CFrameworkConfigurationLocation*>(_pSystemClassConfiguration->findChildOfKind("StructureDescriptionFileLocation"));
+    const CFrameworkConfigurationLocation* pStructureDescriptionFileLocation = static_cast<const CFrameworkConfigurationLocation*>(getConstFrameworkConfiguration()->findChildOfKind("StructureDescriptionFileLocation"));
 
     if (!pStructureDescriptionFileLocation) {
 
@@ -426,10 +418,10 @@ bool CParameterMgr::loadStructure(string& strError)
     }
 
     // Get Xml structure folder
-    string strXmlStructureFolder = pStructureDescriptionFileLocation->getFolderPath(_strParameterFrameworkConfigurationFolderPath);
+    string strXmlStructureFolder = pStructureDescriptionFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
 
     // Get Xml structure file name
-    string strXmlStructureFilePath = pStructureDescriptionFileLocation->getFilePath(_strParameterFrameworkConfigurationFolderPath);
+    string strXmlStructureFilePath = pStructureDescriptionFileLocation->getFilePath(_strXmlConfigurationFolderPath);
 
     // Parse Structure XML file
     CXmlParameterSerializingContext parameterBuildContext(strError);
@@ -455,7 +447,7 @@ bool CParameterMgr::loadSettings(string& strError)
     CAutoLog autoLog(this, "Loading settings");
 
     // Get settings configuration element
-    const CFrameworkConfigurationGroup* pParameterConfigurationGroup = static_cast<const CFrameworkConfigurationGroup*>(_pSystemClassConfiguration->findChildOfKind("SettingsConfiguration"));
+    const CFrameworkConfigurationGroup* pParameterConfigurationGroup = static_cast<const CFrameworkConfigurationGroup*>(getConstFrameworkConfiguration()->findChildOfKind("SettingsConfiguration"));
 
     if (!pParameterConfigurationGroup) {
 
@@ -471,7 +463,7 @@ bool CParameterMgr::loadSettings(string& strError)
     if (pBinarySettingsFileLocation) {
 
         // Get Xml binary settings file name
-        strXmlBinarySettingsFilePath = pBinarySettingsFileLocation->getFilePath(_strParameterFrameworkConfigurationFolderPath);
+        strXmlBinarySettingsFilePath = pBinarySettingsFileLocation->getFilePath(_strXmlConfigurationFolderPath);
     }
 
     // Get configurable domains element
@@ -487,10 +479,10 @@ bool CParameterMgr::loadSettings(string& strError)
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
     // Get Xml configuration domains file name
-    string strXmlConfigurationDomainsFilePath = pConfigurableDomainsFileLocation->getFilePath(_strParameterFrameworkConfigurationFolderPath);
+    string strXmlConfigurationDomainsFilePath = pConfigurableDomainsFileLocation->getFilePath(_strXmlConfigurationFolderPath);
 
     // Get Xml configuration domains folder
-    string strXmlConfigurationDomainsFolder = pConfigurableDomainsFileLocation->getFolderPath(_strParameterFrameworkConfigurationFolderPath);
+    string strXmlConfigurationDomainsFolder = pConfigurableDomainsFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
 
     // Parse configuration domains XML file (ask to read settings from XML file if they are not provided as binary)
     CXmlDomainSerializingContext xmlDomainSerializingContext(strError, !pBinarySettingsFileLocation);
@@ -1247,7 +1239,7 @@ bool CParameterMgr::getValue(const string& strPath, string& strValue, string& st
 bool CParameterMgr::setTuningMode(bool bOn, string& strError)
 {
     // Tuning allowed?
-    if (bOn && !_pSystemClassConfiguration->isTuningAllowed()) {
+    if (bOn && !getConstFrameworkConfiguration()->isTuningAllowed()) {
 
         strError = "Tuning prohibited";
 
@@ -1700,8 +1692,6 @@ void CParameterMgr::feedElementLibraries()
     pFrameworkConfigurationLibrary->addElementBuilder(new TElementBuilderTemplate<CParameterFrameworkConfiguration>("ParameterFrameworkConfiguration"));
     pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>("SubsystemPluginFolders"));
     pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("PluginFolderLocation"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>("ParameterConfiguration"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CSystemClassConfiguration>("SystemClassConfiguration"));
     pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("StructureDescriptionFileLocation"));
     pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>("SettingsConfiguration"));
     pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("ConfigurableDomainsFileLocation"));
@@ -1744,7 +1734,7 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
     CAutoLog autoLog(this, "Handling remote processing interface");
 
     // Start server if tuning allowed
-    if (_pSystemClassConfiguration->isTuningAllowed()) {
+    if (getConstFrameworkConfiguration()->isTuningAllowed()) {
 
         log("Loading remote processor library");
 
@@ -1777,9 +1767,9 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
         }
 
         // Create server
-        _pRemoteProcessorServer = pfnCreateRemoteProcessorServer(_pSystemClassConfiguration->getServerPort(), _pCommandHandler);
+        _pRemoteProcessorServer = pfnCreateRemoteProcessorServer(getConstFrameworkConfiguration()->getServerPort(), _pCommandHandler);
 
-        log("Starting remote processor server on port %d", _pSystemClassConfiguration->getServerPort());
+        log("Starting remote processor server on port %d", getConstFrameworkConfiguration()->getServerPort());
         // Start
         if (!_pRemoteProcessorServer->start()) {
 

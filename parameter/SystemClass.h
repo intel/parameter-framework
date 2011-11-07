@@ -38,7 +38,7 @@ class CSubsystemLibrary;
 class CSystemClass : public CConfigurableElement
 {
 public:
-    CSystemClass(const string& strName);
+    CSystemClass();
     virtual ~CSystemClass();
 
     // Called from parent before actual init

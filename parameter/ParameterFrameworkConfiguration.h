@@ -37,8 +37,25 @@ class CParameterFrameworkConfiguration : public CElement
 public:
     CParameterFrameworkConfiguration();
 
-    virtual string getKind() const;
+    // System class name
+    const string& getSystemClassName() const;
 
+    // Tuning allowed
+    bool isTuningAllowed() const;
+
+    // Server port
+    uint16_t getServerPort() const;
+
+    // From IXmlSink
+    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 private:
+    virtual string getKind() const;
     virtual bool childrenAreDynamic() const;
+
+    // System class name
+    string _strSystemClassName;
+    // Tuning allowed
+    bool _bTuningAllowed;
+    // Server port
+    uint16_t _uiServerPort;
 };

@@ -54,7 +54,7 @@ const char* gpcPluginSymbolSuffix = "SusbystemBuilder";
 // Used by subsystem plugins
 typedef void (*GetSusbystemBuilder)(CSubsystemLibrary*);
 
-CSystemClass::CSystemClass(const string& strName) : base(strName), _pSubsystemLibrary(new CSubsystemLibrary)
+CSystemClass::CSystemClass() : _pSubsystemLibrary(new CSubsystemLibrary)
 {
 }
 
@@ -85,7 +85,7 @@ bool CSystemClass::loadSubsystems(string& strError, const vector<string>& astrPl
     for (uiFolderLocation = 0; uiFolderLocation < astrPluginFolderPaths.size(); uiFolderLocation++) {
 
         // Folder for current SystemClass
-        string strPluginPath = astrPluginFolderPaths[uiFolderLocation] + "/" + getName() + "/";
+        string strPluginPath = astrPluginFolderPaths[uiFolderLocation] + "/";
 
         // Get plugin list
         getPluginFiles(strPluginPath, astrPluginFiles);

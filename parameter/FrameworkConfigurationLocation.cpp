@@ -44,7 +44,7 @@ bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXm
 
     if (_strPath.empty()) {
 
-        serializingContext.setError("Empty Path attribute in elememnt " + xmlElement.getPath());
+        serializingContext.setError("Empty Path attribute in element " + xmlElement.getPath());
 
         return false;
     }
@@ -66,15 +66,11 @@ string CFrameworkConfigurationLocation::getFolderPath(const string& strBaseFolde
 {
     uint32_t uiSlashPos = _strPath.rfind('/', -1);
 
-    string strFolderPath = ".";
-
     if (isPathRelative()) {
 
         if (uiSlashPos != (uint32_t)-1) {
 
-            strFolderPath = _strPath.substr(0, uiSlashPos);
-
-            return strBaseFolder + "/" + strFolderPath;
+            return strBaseFolder + "/" + _strPath.substr(0, uiSlashPos);
 
         } else {
 
@@ -84,9 +80,7 @@ string CFrameworkConfigurationLocation::getFolderPath(const string& strBaseFolde
 
         assert(uiSlashPos != (uint32_t)-1);
 
-        strFolderPath = _strPath.substr(0, uiSlashPos);
-
-        return strFolderPath;
+        return _strPath.substr(0, uiSlashPos);
     }
 }
 

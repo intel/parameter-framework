@@ -33,15 +33,9 @@
 #include "ParameterMgrLogger.h"
 #include <assert.h>
 
-#ifdef SIMULATION
-const char* gpcParameterFrameworkConfigurationFolderPath = "/home/pat/Documents/gingerbread2/hardware/intel/PRIVATE/parameter-framework/XML";
-#else
-const char* gpcParameterFrameworkConfigurationFolderPath = "/etc/parameter-framework";
-#endif
-
 // Construction
-CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(const string& strSystemClassName)
-    : _pParameterMgr(new CParameterMgr(gpcParameterFrameworkConfigurationFolderPath, strSystemClassName)), _bStarted(false), _pLogger(NULL)
+CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(const string& strConfigurationFilePath)
+    : _pParameterMgr(new CParameterMgr(strConfigurationFilePath)), _bStarted(false), _pLogger(NULL)
 {
     // Logging
     _pParameterMgrLogger = new CParameterMgrLogger(this);

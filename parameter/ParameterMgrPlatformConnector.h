@@ -39,7 +39,7 @@ public:
     };
 
     // Construction
-    CParameterMgrPlatformConnector(const std::string& strSystemClassName);
+    CParameterMgrPlatformConnector(const std::string& strConfigurationFilePath);
     ~CParameterMgrPlatformConnector(); // Not virtual since not supposed to be derived!
 
     // Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Samuel Gravez (Siemens VDO S.A.S.) -->
+<xs:schema  xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="FileIncluderType">
+		<xs:annotation>
+			<xs:documentation>Element type used to import a root element from a file.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="Path" type="xs:anyURI" use="required">
+			<xs:annotation>
+				<xs:documentation>Path to the file to import.
+This path may be absolute or relative to the path of the includer file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

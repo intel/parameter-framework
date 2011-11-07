@@ -40,7 +40,7 @@ class CSyncerSet;
 class CConfigurableDomains : public CBinarySerializableElement
 {
 public:
-    CConfigurableDomains(const string& strSystemClassName);
+    CConfigurableDomains();
 
     // Configuration/Domains handling
     /// Domains

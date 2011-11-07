@@ -59,6 +59,7 @@ public:
 
     // Name / Path
     const string& getName() const;
+    void setName(const string& strName);
     bool rename(const string& strName, string& strError);
     string getPath() const;
     string getQualifiedPath() const;
@@ -111,8 +112,6 @@ public:
 protected:
     // Content dumping
     virtual void logValue(string& strValue, CErrorContext& errorContext) const;
-    // Name setting
-    void setName(const string& strName);
     // Utility to underline
     static void appendTitle(string& strTo, const string& strTitle);
 

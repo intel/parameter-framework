@@ -36,7 +36,7 @@
 class CBinarySerializableElement : public CElement
 {
 public:
-    CBinarySerializableElement(const string& strName);
+    CBinarySerializableElement(const string& strName = "");
 
     // Serialization
     virtual void binarySerialize(CBinaryStream& binaryStream);
