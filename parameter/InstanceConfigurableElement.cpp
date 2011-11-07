@@ -68,9 +68,16 @@ bool CInstanceConfigurableElement::map(IMapper& mapper, string& strError)
     // Begin
     if (bHasMappingData) {
 
-        if (!mapper.mapBegin(this, strError)) {
+        bool bKeepDiving;
+
+        if (!mapper.mapBegin(this, bKeepDiving, strError)) {
 
             return false;
+        }
+        // Go on through children?
+        if (!bKeepDiving) {
+
+            return true;
         }
     }
 

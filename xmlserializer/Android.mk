@@ -22,9 +22,8 @@ LOCAL_C_INCLUDES +=
 LOCAL_C_INCLUDES += \
 	external/stlport/stlport/ \
 	external/libxml2/include/ \
-	external/webkit/WebCore/icu/ \
+	external/webkit/Source/WebCore/icu/ \
 	bionic/libstdc++ \
-	external/icu4c/common \
 	bionic/
 
 LOCAL_C_INCLUDES += 

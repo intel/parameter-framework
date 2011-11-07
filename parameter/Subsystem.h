@@ -84,7 +84,7 @@ private:
     void getMappingError(string& strError, const string& strKey, const string& strMessage, const CInstanceConfigurableElement* pInstanceConfigurableElement);
 
     // From IMapper
-    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, string& strError);
+    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError);
     virtual void mapEnd();
 
     // Mapping generic context handling

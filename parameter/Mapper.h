@@ -39,6 +39,6 @@ class CInstanceConfigurableElement;
 class IMapper
 {
 public:
-    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, string& strError) = 0;
+    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError) = 0;
     virtual void mapEnd() = 0;
 };

@@ -249,7 +249,7 @@ bool CSubsystem::handleSubsystemObjectCreation(CInstanceConfigurableElement* pIn
 
         if (pInstanceConfigurableElement->getMappingData(strKey, pStrValue)) {
 
-            // First check context consistensy (required ancestors must have been set prior to object creation)
+            // First check context consistency (required ancestors must have been set prior to object creation)
             uint32_t uiAncestorKey;
             uint32_t uiAncestorMask = pSubsystemObjectCreator->getAncestorMask();
 
@@ -271,7 +271,7 @@ bool CSubsystem::handleSubsystemObjectCreation(CInstanceConfigurableElement* pIn
             // Then check configurable element size is correct
             if (pInstanceConfigurableElement->getFootPrint() > pSubsystemObjectCreator->getMaxConfigurableElementSize()) {
 
-                string strSizeError = "Size should not exceed " + pInstanceConfigurableElement->getFootprintAsString();
+                string strSizeError = "Size should not exceed " + pSubsystemObjectCreator->getMaxConfigurableElementSize();
 
                 getMappingError(strError, strKey, strSizeError, pInstanceConfigurableElement);
 
@@ -293,11 +293,11 @@ bool CSubsystem::handleSubsystemObjectCreation(CInstanceConfigurableElement* pIn
 // Generic error handling from derived subsystem classes
 void CSubsystem::getMappingError(string& strError, const string& strKey, const string& strMessage, const CInstanceConfigurableElement* pInstanceConfigurableElement)
 {
-    strError = getName() + " " + getKind() + " mapping:\n" + strKey + " error : \"" + strMessage + "\" for element " + pInstanceConfigurableElement->getPath();
+    strError = getName() + " " + getKind() + " mapping:\n" + strKey + " error: \"" + strMessage + "\" for element " + pInstanceConfigurableElement->getPath();
 }
 
 // From IMapper
-bool CSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, string& strError)
+bool CSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError)
 {
     // Get current context
     CMappingContext context = _contextStack.top();
@@ -310,27 +310,34 @@ bool CSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableEle
 
             return false;
         }
-        break;
+
+        // Push context
+        _contextStack.push(context);
+
+        // Keep diving
+        bKeepDiving = true;
+
+        return true;
+
     case CInstanceConfigurableElement::EParameterBlock:
     case CInstanceConfigurableElement::EBitParameterBlock:
     case CInstanceConfigurableElement::EParameter:
     case CInstanceConfigurableElement::EStringParameter:
-    {
+
         if (!handleSubsystemObjectCreation(pInstanceConfigurableElement, context, strError)) {
 
             return false;
         }
-        break;
-    }
+
+        // Done
+        bKeepDiving = false;
+
+        return true;
+
     default:
         assert(0);
         return false;
     }
-
-    // Push context
-    _contextStack.push(context);
-
-    return true;
 }
 
 void CSubsystem::mapEnd()
