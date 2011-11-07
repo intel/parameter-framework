@@ -38,10 +38,10 @@
 #define base CRule
 
 const CSelectionCriterionRule::SMatchingRuleDescription CSelectionCriterionRule::_astMatchesWhen[CSelectionCriterionRule::ENbMatchesWhen] = {
-    { "Is", false },
-    { "IsNot", false },
-    { "Includes", true },
-    { "Excludes", true }
+    { "Is", true },
+    { "IsNot", true },
+    { "Includes", false },
+    { "Excludes", false }
 };
 
 CSelectionCriterionRule::CSelectionCriterionRule() : _pSelectionCriterion(NULL), _eMatchesWhen(CSelectionCriterionRule::EIs), _iMatchValue(0)
@@ -156,9 +156,9 @@ bool CSelectionCriterionRule::setMatchesWhen(const string& strMatchesWhen, strin
             const ISelectionCriterionTypeInterface* pSelectionCriterionType = _pSelectionCriterion->getCriterionType();
 
             // Check compatibility if relevant
-            if (pSelectionCriterionType->isTypeInclusive() && !pstMatchingRuleDescription->bInclusiveTypeCompatible) {
+            if (!pSelectionCriterionType->isTypeInclusive() && !pstMatchingRuleDescription->bExclusiveTypeCompatible) {
 
-                strError = "Value incompatible with inclusive kind of type";
+                strError = "Value incompatible with exclusive kind of type";
 
                 return false;
             }

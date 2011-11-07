@@ -49,7 +49,7 @@ class CSelectionCriterionRule : public CRule
     struct SMatchingRuleDescription
     {
         const char* pcMatchesWhen;
-        bool bInclusiveTypeCompatible;
+        bool bExclusiveTypeCompatible;
     };
 
 public:
