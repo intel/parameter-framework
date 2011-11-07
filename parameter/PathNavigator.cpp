@@ -50,6 +50,35 @@ bool CPathNavigator::isPathValid() const
     return _bValid;
 }
 
+// Navigate through
+bool CPathNavigator::navigateThrough(const string& strItemName, string& strError)
+{
+    if (!_bValid) {
+
+        strError = "Path not well formed";
+
+        return false;
+    }
+
+    string* pStrChildName = next();
+
+    if (!pStrChildName) {
+
+        strError = "Path not complete";
+
+        return false;
+    }
+
+    if (*pStrChildName != strItemName) {
+
+        strError = "Path not found";
+
+        return false;
+    }
+
+    return true;
+}
+
 string* CPathNavigator::next()
 {
     if (_uiCurrentIndex < _astrItems.size()) {

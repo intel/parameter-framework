@@ -1652,31 +1652,14 @@ bool CParameterMgr::doSetValue(const string& strPath, const string& strValue, bo
 {
     CPathNavigator pathNavigator(strPath);
 
-    if (!pathNavigator.isPathValid()) {
-
-        strError = "Path not well formed";
-
-        return false;
-    }
-
-    string* pStrChildName = pathNavigator.next();
-
-    if (!pStrChildName) {
-
-        strError = "Non settable element";
-
-        return false;
-    }
-
-    if (*pStrChildName != getSystemClass()->getName()) {
-
-        strError = "Path not found";
+    // Nagivate through system class
+    if (!pathNavigator.navigateThrough(getSystemClass()->getName(), strError)) {
 
         return false;
     }
 
     // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, bRawValueSpace, false);
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, bRawValueSpace);
 
     // Set auto sync
     parameterAccessContext.setAutoSync(_bAutoSyncOn);
@@ -1692,25 +1675,8 @@ bool CParameterMgr::doGetValue(const string& strPath, string& strValue, bool bRa
 {
     CPathNavigator pathNavigator(strPath);
 
-    if (!pathNavigator.isPathValid()) {
-
-        strError = "Path not well formed";
-
-        return false;
-    }
-
-    string* pStrChildName = pathNavigator.next();
-
-    if (!pStrChildName) {
-
-        strError = "Non settable element";
-
-        return false;
-    }
-
-    if (*pStrChildName != getConstSystemClass()->getName()) {
-
-        strError = "Path not found";
+    // Nagivate through system class
+    if (!pathNavigator.navigateThrough(getConstSystemClass()->getName(), strError)) {
 
         return false;
     }

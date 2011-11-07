@@ -37,7 +37,7 @@ class CParameterBlackboard;
 class CParameterAccessContext : public CErrorContext
 {
 public:
-    CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex);
+    CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex = false);
     CParameterAccessContext(string& strError);
 
     // ParameterBlackboard

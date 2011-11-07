@@ -41,10 +41,16 @@ class CPathNavigator
 public:
     CPathNavigator(const string& strPath);
 
+    // Path validity
     bool isPathValid() const;
 
+    // Navigate through
+    bool navigateThrough(const string& strItemName, string& strError);
+
+    // Nagivate
     string* next();
 
+    // Current path
     string getCurrentPath() const;
 
 private:
