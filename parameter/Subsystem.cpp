@@ -182,7 +182,7 @@ void CSubsystem::logValue(string& strValue, CErrorContext& errorContext) const
     return base::logValue(strValue, errorContext);
 }
 
-// Used for simulation only
+// Used for simulation and virtual subsystems
 void CSubsystem::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
 {
     // Deal with Endianness

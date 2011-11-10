@@ -56,7 +56,7 @@ uint32_t CStringParameter::getSize() const
     return static_cast<const CStringParameterType*>(getTypeElement())->getMaxLength() + 1;
 }
 
-// Used for simulation only
+// Used for simulation and virtual subsystems
 void CStringParameter::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
 {
     // Write blackboard

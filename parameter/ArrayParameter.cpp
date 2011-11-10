@@ -171,7 +171,7 @@ void CArrayParameter::logValue(string& strValue, CErrorContext& errorContext) co
     getValues(0, strValue, parameterContext);
 }
 
-// Used for simulation only
+// Used for simulation and virtual subsystems
 void CArrayParameter::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
 {
     // Get default value from type

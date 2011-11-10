@@ -48,7 +48,7 @@ public:
     // XML configuration settings parsing/composing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 protected:
-    // Used for simulation only
+    // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
     // Actual value access

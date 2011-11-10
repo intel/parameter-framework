@@ -45,7 +45,7 @@ public:
     // Type
     virtual Type getType() const;
 protected:
-    // Used for simulation only
+    // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
     // Actual value access

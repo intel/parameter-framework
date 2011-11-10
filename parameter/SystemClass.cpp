@@ -35,6 +35,8 @@
 #include "SystemClass.h"
 #include "SubsystemLibrary.h"
 #include "AutoLog.h"
+#include "VirtualSubsystem.h"
+#include "NamedElementBuilderTemplate.h"
 
 #define base CConfigurableElement
 
@@ -159,6 +161,9 @@ bool CSystemClass::loadSubsystems(string& strError, const vector<string>& astrPl
         // Fill library
         pfnGetSusbystemBuilder(_pSubsystemLibrary);
     }
+
+    // Add virtual subsystem builder
+    _pSubsystemLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CVirtualSubsystem>("Virtual"));
 
     return true;
 }

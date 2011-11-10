@@ -73,7 +73,7 @@ uint32_t CParameter::getSize() const
     return static_cast<const CParameterType*>(getTypeElement())->getSize();
 }
 
-// Used for simulation only
+// Used for simulation and virtual subsystems
 void CParameter::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
 {
     // Get default value from type

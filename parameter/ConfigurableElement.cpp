@@ -173,7 +173,7 @@ bool CConfigurableElement::getValue(CPathNavigator& pathNavigator, string& strVa
     return pChild->getValue(pathNavigator, strValue, parameterContext);
 }
 
-// Used for simulation only
+// Used for simulation and virtual subsystems
 void CConfigurableElement::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
 {
     // Propagate to children

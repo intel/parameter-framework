@@ -56,7 +56,7 @@ uint32_t CBitParameterBlock::getSize() const
     return static_cast<const CBitParameterBlockType*>(getTypeElement())->getSize();
 }
 
-// Used for simulation only
+// Used for simulation and virtual subsystems
 void CBitParameterBlock::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
 {
     // Get default value from type
