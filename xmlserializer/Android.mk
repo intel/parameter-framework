@@ -24,6 +24,7 @@ LOCAL_C_INCLUDES += \
 	external/libxml2/include/ \
 	external/webkit/WebCore/icu/ \
 	bionic/libstdc++ \
+	external/icu4c/common \
 	bionic/
 
 LOCAL_C_INCLUDES += 
