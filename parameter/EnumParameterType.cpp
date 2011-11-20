@@ -97,7 +97,8 @@ bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
     return true;
 }
 
-bool CEnumParameterType::asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+// Conversion (tuning)
+bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     int32_t iData;
 
@@ -141,7 +142,7 @@ bool CEnumParameterType::asInteger(const string& strValue, uint32_t& uiValue, CP
     return true;
 }
 
-void CEnumParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
+bool CEnumParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Take care of format
     if (parameterAccessContext.valueSpaceIsRaw()) {
@@ -179,6 +180,35 @@ void CEnumParameterType::asString(const uint32_t& uiValue, string& strValue, CPa
         // Literal display requested (should succeed)
         getLiteral(iValue, strValue);
     }
+    return true;
+}
+
+// Value access
+bool CEnumParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    if (!isValid(iUserValue)) {
+
+        parameterAccessContext.setError("Invalid value");
+
+        return false;
+    }
+    uiValue = iUserValue;
+
+    return true;
+}
+
+bool CEnumParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)parameterAccessContext;
+
+    int32_t iValue = uiValue;
+
+    // Sign extend
+    signExtend(iValue);
+
+    iUserValue = iValue;
+
+    return true;
 }
 
 // Default value handling (simulation only)

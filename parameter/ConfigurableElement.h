@@ -85,9 +85,14 @@ public:
     // Footprint as string
     string getFootprintAsString() const;
 
+    // Belonging subsystem
+    virtual const CSubsystem* getBelongingSubsystem() const;
+
+    // Check element is a parameter
+    virtual bool isParameter() const;
+
     // Parameter access
-    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const;
-    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const;
+    virtual bool accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
@@ -114,9 +119,6 @@ private:
     // Belonging domains
     void getBelongingDomains(list<const CConfigurableDomain*>& configurableDomainList) const;
     void listDomains(const list<const CConfigurableDomain*>& configurableDomainList, string& strResult, bool bVertical) const;
-
-    // Belonging subsystem
-    virtual const CSubsystem* getBelongingSubsystem() const;
 
     // Check parent is still of current type (by structure knowledge)
     bool isOfConfigurableElementType(const CElement* pParent) const;

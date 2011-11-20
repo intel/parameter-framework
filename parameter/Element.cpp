@@ -212,7 +212,7 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
 
             if (!pChild) {
 
-                elementSerializingContext.setError("XML Path not found: " + xmlElement.getPath());
+                elementSerializingContext.setError("Unable to handle XML element: " + childElement.getPath());
 
                 return false;
             }

@@ -44,9 +44,13 @@ public:
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
-    // Conversion
-    bool asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    void asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const;
+    /// Conversion
+    // String
+    bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    void fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    // Integer
+    bool toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    void fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
 
     // Bit Size
     uint32_t getBitSize() const;

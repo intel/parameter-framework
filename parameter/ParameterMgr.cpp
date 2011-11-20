@@ -75,6 +75,7 @@
 #include <strings.h>
 #include <dlfcn.h>
 #include <assert.h>
+#include "ParameterHandle.h"
 
 #define base CElement
 
@@ -182,8 +183,8 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _uiLogDepth(0)
 {
     // Tuning Mode Mutex
-    bzero(&_tuningModeMutex, sizeof(_tuningModeMutex));
-    pthread_mutex_init(&_tuningModeMutex, NULL);
+    bzero(&_blackboardMutex, sizeof(_blackboardMutex));
+    pthread_mutex_init(&_blackboardMutex, NULL);
 
     // Deal with children
     addChild(new CParameterFrameworkConfiguration);
@@ -229,7 +230,7 @@ CParameterMgr::~CParameterMgr()
     delete _pElementLibrarySet;
 
     // Tuning Mode Mutex
-    pthread_mutex_destroy(&_tuningModeMutex);
+    pthread_mutex_destroy(&_blackboardMutex);
 }
 
 string CParameterMgr::getKind() const
@@ -594,7 +595,7 @@ bool CParameterMgr::applyConfigurations(string& strError)
     CAutoLog autoLog(this, "Configuration application request");
 
     // Lock state
-    CAutoLock autoLock(&_tuningModeMutex);
+    CAutoLock autoLock(&_blackboardMutex);
 
     if (!_bTuningModeIsOn) {
 
@@ -611,16 +612,39 @@ bool CParameterMgr::applyConfigurations(string& strError)
 }
 
 // Dynamic parameter handling
-bool CParameterMgr::setValue(const string& strPath, const string& strValue, bool bRawValueSpace, string& strError)
+CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, string& strError)
 {
-    // Delegate to low level functionality
-    return doSetValue(strPath, strValue, bRawValueSpace, true, strError);
-}
+    CPathNavigator pathNavigator(strPath);
 
-bool CParameterMgr::getValue(const string& strPath, string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, string& strError) const
-{
-    // Delegate to low level functionality
-    return doGetValue(strPath, strValue, bRawValueSpace, bHexOutputRawFormat, true, strError);
+    // Nagivate through system class
+    if (!pathNavigator.navigateThrough(getConstSystemClass()->getName(), strError)) {
+
+        return false;
+    }
+
+    // Find element
+    const CElement* pElement = getConstSystemClass()->findDescendant(pathNavigator);
+
+    if (!pElement) {
+
+        strError = "Path not found";
+
+        return false;
+    }
+
+    // Check found element is a parameter
+    const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pElement);
+
+    if (!pConfigurableElement->isParameter()) {
+
+        // Element is not parameter
+        strError = "Not a parameter";
+
+        return false;
+    }
+
+    // Convert as parameter and return new handle
+    return new CParameterHandle(static_cast<const CBaseParameter*>(pElement), this);
 }
 
 /////////////////// Remote command parsers
@@ -1103,7 +1127,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommman
 {
     string strValue;
 
-    if (!getValue(remoteCommand.getArgument(0), strValue, strResult)) {
+    if (!accessValue(remoteCommand.getArgument(0), strValue, false, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1115,7 +1139,15 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommman
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return setValue(remoteCommand.getArgument(0), remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    // Check tuning mode
+    if (!checkTuningModeOn(strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+    // Get value to set
+    string strValue = remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1);
+
+    return accessValue(remoteCommand.getArgument(0), strValue, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1217,22 +1249,24 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importSettingsCommm
 }
 
 // User set/get parameters
-bool CParameterMgr::setValue(const string& strPath, const string& strValue, string& strError)
+bool CParameterMgr::accessValue(const string& strPath, string& strValue, bool bSet, string& strError)
 {
-    // Check tuning mode
-    if (!checkTuningModeOn(strError)) {
+    // Lock state
+    CAutoLock autoLock(&_blackboardMutex);
+
+    CPathNavigator pathNavigator(strPath);
+
+    // Nagivate through system class
+    if (!pathNavigator.navigateThrough(getConstSystemClass()->getName(), strError)) {
 
         return false;
     }
 
-    // Delegate to low level functionality
-    return doSetValue(strPath, strValue, _bValueSpaceIsRaw, false, strError);
-}
+    // Define context
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
-bool CParameterMgr::getValue(const string& strPath, string& strValue, string& strError) const
-{
-    // Delegate to low level functionality
-    return doGetValue(strPath, strValue, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, false, strError);
+    // Do the get
+    return getConstSystemClass()->accessValue(pathNavigator, strValue, bSet, parameterAccessContext);
 }
 
 // Tuning mode
@@ -1246,7 +1280,7 @@ bool CParameterMgr::setTuningMode(bool bOn, string& strError)
         return false;
     }
     // Lock state
-    CAutoLock autoLock(&_tuningModeMutex);
+    CAutoLock autoLock(&_blackboardMutex);
 
     // Warn domains about exiting tuning mode
     if (!bOn && _bTuningModeIsOn) {
@@ -1639,48 +1673,16 @@ bool CParameterMgr::checkTuningModeOn(string& strError) const
     return true;
 }
 
-// Parameter access
-bool CParameterMgr::doSetValue(const string& strPath, const string& strValue, bool bRawValueSpace, bool bDynamicAccess, string& strError)
+// Tuning mutex dynamic parameter handling
+pthread_mutex_t* CParameterMgr::getBlackboardMutex()
 {
-    CPathNavigator pathNavigator(strPath);
-
-    // Nagivate through system class
-    if (!pathNavigator.navigateThrough(getSystemClass()->getName(), strError)) {
-
-        return false;
-    }
-
-    // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, bRawValueSpace);
-
-    // Set auto sync
-    parameterAccessContext.setAutoSync(_bAutoSyncOn);
-
-    // Set dynamic access
-    parameterAccessContext.setDynamicAccess(bDynamicAccess);
-
-    // Do the set
-    return getSystemClass()->setValue(pathNavigator, strValue, parameterAccessContext);
+    return &_blackboardMutex;
 }
 
-bool CParameterMgr::doGetValue(const string& strPath, string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, bool bDynamicAccess, string& strError) const
+// Blackboard reference (dynamic parameter handling)
+CParameterBlackboard* CParameterMgr::getParameterBlackboard()
 {
-    CPathNavigator pathNavigator(strPath);
-
-    // Nagivate through system class
-    if (!pathNavigator.navigateThrough(getConstSystemClass()->getName(), strError)) {
-
-        return false;
-    }
-
-    // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, bRawValueSpace, bHexOutputRawFormat);
-
-    // Set dynamic access
-    parameterAccessContext.setDynamicAccess(bDynamicAccess);
-
-    // Do the get
-    return getConstSystemClass()->getValue(pathNavigator, strValue, parameterAccessContext);
+    return _pMainParameterBlackboard;
 }
 
 // Dynamic creation library feeding

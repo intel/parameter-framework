@@ -65,7 +65,7 @@ void CStringParameter::setDefaultValues(CParameterAccessContext& parameterAccess
     pBlackboard->writeString("", getOffset());
 }
 
-// Actual parameter access
+// Actual parameter access (tuning)
 bool CStringParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
 {
     if (strValue.length() >= getSize()) {
@@ -94,4 +94,3 @@ void CStringParameter::doGetValue(string& strValue, uint32_t uiOffset, CParamete
 
     strValue = pcValue;
 }
-

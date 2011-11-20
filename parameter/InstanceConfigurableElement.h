@@ -72,6 +72,12 @@ public:
 
     // Element properties
     virtual void showProperties(string& strResult) const;
+
+    // Scalar or Array?
+    bool isScalar() const;
+
+    // Array Length
+    uint32_t getArrayLength() const;
 protected:
     // Syncer
     virtual ISyncer* getSyncer() const;

@@ -42,10 +42,22 @@ public:
 
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
+
+    // Value access
+    // Boolean
+    virtual bool accessAsBooleanArray(vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    // Integer
+    virtual bool accessAsIntegerArray(vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    // Signed Integer Access
+    virtual bool accessAsSignedIntegerArray(vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    // Double Access
+    virtual bool accessAsDoubleArray(vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    // String Access
+    virtual bool accessAsStringArray(vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
 protected:
     // User set/get
-    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const;
-    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const;
+    virtual bool accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
     virtual void logValue(string& strValue, CErrorContext& errorContext) const;
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
@@ -56,9 +68,22 @@ private:
     // Array length
     uint32_t getArrayLength() const;
     // Common set value processing
-    bool setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, const string& strValue, CParameterAccessContext& parameterContext) const;
+    bool setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, const string& strValue, CParameterAccessContext& parameterAccessContext) const;
     // Log / get values common
-    void getValues(uint32_t uiBaseOffset, string& strValues, CParameterAccessContext& parameterContext) const;
+    void getValues(uint32_t uiBaseOffset, string& strValues, CParameterAccessContext& parameterAccessContext) const;
     // Index retrieval from user set/get request
-    bool getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex, CParameterAccessContext& parameterContext) const;
+    bool getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex, CParameterAccessContext& parameterAccessContext) const;
+
+    /// Value access
+    // Generic Access
+    template <typename type>
+    bool accessValues(vector<type>& values, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    template <typename type>
+    bool setValues(const vector<type>& values, CParameterAccessContext& parameterAccessContext) const;
+    template <typename type>
+    bool getValues(vector<type>& values, CParameterAccessContext& parameterAccessContext) const;
+    template <typename type>
+    bool doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    template <typename type>
+    bool doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
 };

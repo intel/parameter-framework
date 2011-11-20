@@ -60,8 +60,77 @@ uint32_t CBitParameter::getFootPrint() const
     return 0;
 }
 
-// Actual parameter access
+// Actual parameter access (tuning)
 bool CBitParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+{
+    return doSet(strValue, uiOffset, parameterAccessContext);
+}
+
+void CBitParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+{
+    doGet(strValue, uiOffset, parameterAccessContext);
+}
+
+/// Value access
+// Boolean access
+bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    // Check boolean access validity here
+    if (static_cast<const CBitParameterType*>(getTypeElement())->getBitSize() != 1) {
+
+        parameterAccessContext.setError("Type mismatch");
+        // Append parameter path to error
+        parameterAccessContext.appendToError(" " + getPath());
+
+        return false;
+    }
+
+    // Rely on integer access
+    uint32_t uiValue;
+
+    if (bSet) {
+
+        uiValue = bValue;
+    }
+
+    if (!accessAsInteger(uiValue, bSet, parameterAccessContext)) {
+
+        return false;
+    }
+
+    if (!bSet) {
+
+        bValue = uiValue != 0;
+    }
+
+    return true;
+}
+
+// Integer Access
+bool CBitParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    uint32_t uiOffset = getOffset();
+
+    if (bSet) {
+
+        // Set and sync
+        if (!doSet(uiValue, uiOffset, parameterAccessContext) || !sync(parameterAccessContext)) {
+
+            // Append parameter path to error
+            parameterAccessContext.appendToError(" " + getPath());
+
+            return false;
+        }
+    } else {
+
+        // Convert
+        doGet(uiValue, uiOffset, parameterAccessContext);
+    }
+    return true;
+}
+
+template <typename type>
+bool CBitParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiData = 0;
 
@@ -72,7 +141,7 @@ bool CBitParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParam
     pBlackboard->readInteger(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     // Convert
-    if (!static_cast<const CBitParameterType*>(getTypeElement())->asInteger(strValue, uiData, parameterAccessContext)) {
+    if (!static_cast<const CBitParameterType*>(getTypeElement())->toBlackboard(value, uiData, parameterAccessContext)) {
 
         return false;
     }
@@ -82,7 +151,8 @@ bool CBitParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParam
     return true;
 }
 
-void CBitParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+template <typename type>
+void CBitParameter::doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiData = 0;
 
@@ -93,6 +163,5 @@ void CBitParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAc
     pBlackboard->readInteger(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
     // Convert
-    static_cast<const CBitParameterType*>(getTypeElement())->asString(uiData, strValue, parameterAccessContext);
+    static_cast<const CBitParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);
 }
-

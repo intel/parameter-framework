@@ -32,16 +32,22 @@
 
 #define base CErrorContext
 
-CParameterAccessContext::CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex) :
-    base(strError), _pParameterBlackboard(pParameterBlackboard),
+CParameterAccessContext::CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex)
+    : base(strError), _pParameterBlackboard(pParameterBlackboard),
     _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
-    _bBigEndianSubsystem(false), _bAutoSync(true), _bDynamicAccess(false)
+    _bBigEndianSubsystem(false), _bAutoSync(true)
 {
 }
 
-CParameterAccessContext::CParameterAccessContext(string& strError) :
-    base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(true), _bDynamicAccess(false)
+CParameterAccessContext::CParameterAccessContext(string& strError, bool bBigEndianSubsystem, CParameterBlackboard* pParameterBlackboard)
+    : base(strError), _pParameterBlackboard(pParameterBlackboard), _bValueSpaceIsRaw(false),
+    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(bBigEndianSubsystem), _bAutoSync(true)
+{
+}
+
+CParameterAccessContext::CParameterAccessContext(string& strError)
+    : base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false),
+    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(true)
 {
 }
 
@@ -97,16 +103,5 @@ void CParameterAccessContext::setAutoSync(bool bAutoSync)
 
 bool CParameterAccessContext::getAutoSync() const
 {
-    return _bAutoSync || _bDynamicAccess;
-}
-
-// Dynamic access
-void CParameterAccessContext::setDynamicAccess(bool bDynamicAccess)
-{
-    _bDynamicAccess = bDynamicAccess;
-}
-
-bool CParameterAccessContext::isDynamicAccess() const
-{
-    return _bDynamicAccess;
+    return _bAutoSync;
 }

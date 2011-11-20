@@ -112,6 +112,18 @@ void CInstanceConfigurableElement::showProperties(string& strResult) const
     _pTypeElement->showProperties(strResult);
 }
 
+// Scalar or Array?
+bool CInstanceConfigurableElement::isScalar() const
+{
+    return _pTypeElement->isScalar();
+}
+
+// Array Length
+uint32_t CInstanceConfigurableElement::getArrayLength() const
+{
+    return _pTypeElement->getArrayLength();
+}
+
 // Sync to HW
 void CInstanceConfigurableElement::setSyncer(ISyncer* pSyncer)
 {

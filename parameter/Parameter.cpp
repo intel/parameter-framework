@@ -55,7 +55,6 @@ bool CParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsEleme
     return base::serializeXmlSettings(xmlConfigurationSettingsElementContent, configurationAccessContext);
 }
 
-
 // Value space handling for configuration import
 void CParameter::handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
 {
@@ -86,16 +85,79 @@ void CParameter::setDefaultValues(CParameterAccessContext& parameterAccessContex
     pBlackboard->writeInteger(&uiDefaultValue, getSize(), getOffset(), parameterAccessContext.isBigEndianSubsystem());
 }
 
-// Actual parameter access
+/// Actual parameter access
+// String access
 bool CParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+{
+    return doSet(strValue, uiOffset, parameterAccessContext);
+}
+
+void CParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+{
+    doGet(strValue, uiOffset, parameterAccessContext);
+}
+
+// Boolean access
+bool CParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    return doAccess(bValue, bSet, parameterAccessContext);
+}
+
+// Integer Access
+bool CParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    return doAccess(uiValue, bSet, parameterAccessContext);
+}
+
+// Signed Integer Access
+bool CParameter::accessAsSignedInteger(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    return doAccess(iValue, bSet, parameterAccessContext);
+}
+
+// Double Access
+bool CParameter::accessAsDouble(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    return doAccess(dValue, bSet, parameterAccessContext);
+}
+
+// Generic Access
+template <typename type>
+bool CParameter::doAccess(type& value, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    bool bSuccess;
+
+    if (bSet) {
+
+        if  (doSet(value, getOffset(), parameterAccessContext)) {
+
+            // Synchronize
+            bSuccess = sync(parameterAccessContext);
+        } else {
+
+            bSuccess = false;
+        }
+    } else {
+
+        bSuccess = doGet(value, getOffset(), parameterAccessContext);
+    }
+    if (!bSuccess) {
+
+        // Append parameter path to error
+        parameterAccessContext.appendToError(" " + getPath());
+    }
+    return bSuccess;
+}
+
+template <typename type>
+bool CParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiData;
 
-    if (!static_cast<const CParameterType*>(getTypeElement())->asInteger(strValue, uiData, parameterAccessContext)) {
+    if (!static_cast<const CParameterType*>(getTypeElement())->toBlackboard(value, uiData, parameterAccessContext)) {
 
         return false;
     }
-
     // Write blackboard
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
@@ -105,7 +167,8 @@ bool CParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParamete
     return true;
 }
 
-void CParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+template <typename type>
+bool CParameter::doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiData = 0;
 
@@ -115,6 +178,5 @@ void CParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAcces
     // Beware this code works on little endian architectures only!
     pBlackboard->readInteger(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
 
-    static_cast<const CParameterType*>(getTypeElement())->asString(uiData, strValue, parameterAccessContext);
+    return static_cast<const CParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);
 }
-

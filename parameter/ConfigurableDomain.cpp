@@ -32,7 +32,6 @@
 #include "DomainConfiguration.h"
 #include "ConfigurableElement.h"
 #include "ConfigurationAccessContext.h"
-#include "Subsystem.h"
 #include "XmlDomainSerializingContext.h"
 #include <assert.h>
 
@@ -243,17 +242,15 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
         string strConfigurableElementPath = xmlConfigurableElementElement.getAttributeString("Path");
 
         CPathNavigator pathNavigator(strConfigurableElementPath);
-
-        string* pStrChildName = pathNavigator.next();
+        string strError;
 
         // Is there an element and does it match system class name?
-        if (!pStrChildName || *pStrChildName != pSystemClassElement->getName()) {
+        if (!pathNavigator.navigateThrough(pSystemClassElement->getName(), strError)) {
 
-            serializingContext.setError("Could not find configurable element of path " + strConfigurableElementPath + " from ConfigurableDomain description " + getName());
+            serializingContext.setError("Could not find configurable element of path " + strConfigurableElementPath + " from ConfigurableDomain description " + getName() + " (" + strError + ")");
 
             return false;
         }
-
         // Browse system class for configurable element
         CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pSystemClassElement->findDescendant(pathNavigator));
 
@@ -264,7 +261,6 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
             return false;
         }
         // Add found element to domain
-        string strError;
         if (!addConfigurableElement(pConfigurableElement, NULL, strError)) {
 
             serializingContext.setError(strError);

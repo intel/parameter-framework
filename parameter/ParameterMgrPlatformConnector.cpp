@@ -78,14 +78,11 @@ bool CParameterMgrPlatformConnector::applyConfigurations(string& strError)
 }
 
 // Dynamic parameter handling
-bool CParameterMgrPlatformConnector::setValue(const string& strPath, const string& strValue, string& strError, bool bRawValueSpace)
+CParameterHandle* CParameterMgrPlatformConnector::createParameterHandle(const string& strPath, string& strError) const
 {
-    return _pParameterMgr->setValue(strPath, strValue, bRawValueSpace, strError);
-}
+    assert(_bStarted);
 
-bool CParameterMgrPlatformConnector::getValue(const string& strPath, string& strValue, string& strError, bool bRawValueSpace, bool bHexOutputRawFormat) const
-{
-    return _pParameterMgr->getValue(strPath, strValue, bRawValueSpace, bHexOutputRawFormat, strError);
+    return _pParameterMgr->createParameterHandle(strPath, strError);
 }
 
 // Logging

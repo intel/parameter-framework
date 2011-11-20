@@ -127,13 +127,13 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
 }
 
 // Parameter access
-bool CConfigurableElement::setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const
+bool CConfigurableElement::accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     string* pStrChildName = pathNavigator.next();
 
     if (!pStrChildName) {
 
-        parameterContext.setError("Non settable element");
+        parameterAccessContext.setError("Non accessible element");
 
         return false;
     }
@@ -142,35 +142,12 @@ bool CConfigurableElement::setValue(CPathNavigator& pathNavigator, const string&
 
     if (!pChild) {
 
-        parameterContext.setError("Path not found: " + pathNavigator.getCurrentPath());
+        parameterAccessContext.setError("Path not found: " + pathNavigator.getCurrentPath());
 
         return false;
     }
 
-    return pChild->setValue(pathNavigator, strValue, parameterContext);
-}
-
-bool CConfigurableElement::getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const
-{
-    string* pStrChildName = pathNavigator.next();
-
-    if (!pStrChildName) {
-
-        parameterContext.setError("Non gettable element");
-
-        return false;
-    }
-
-    const CConfigurableElement* pChild = static_cast<const CConfigurableElement*>(findChild(*pStrChildName));
-
-    if (!pChild) {
-
-        parameterContext.setError("Path not found: " + pathNavigator.getCurrentPath());
-
-        return false;
-    }
-
-    return pChild->getValue(pathNavigator, strValue, parameterContext);
+    return pChild->accessValue(pathNavigator, strValue, bSet, parameterAccessContext);
 }
 
 // Used for simulation and virtual subsystems
@@ -488,6 +465,13 @@ const CSubsystem* CConfigurableElement::getBelongingSubsystem() const
 
     return static_cast<const CConfigurableElement*>(pParent)->getBelongingSubsystem();
 }
+
+// Check element is a parameter
+bool CConfigurableElement::isParameter() const
+{
+    return false;
+}
+
 
 // Check parent is still of current type (by structure knowledge)
 bool CConfigurableElement::isOfConfigurableElementType(const CElement* pParent) const

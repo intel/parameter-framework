@@ -35,6 +35,7 @@
 #include "ParameterAccessContext.h"
 #include "ConfigurationAccessContext.h"
 #include "ParameterBlackboard.h"
+#include <assert.h>
 
 #define base CParameter
 
@@ -95,80 +96,91 @@ bool CArrayParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettings
 }
 
 // User set/get
-bool CArrayParameter::setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const
-{
-    uint32_t uiStartIndex;
-
-    if (!getIndex(pathNavigator, uiStartIndex, parameterContext)) {
-
-        return false;
-    }
-
-    // Check for dynamic access
-    if (!checkForDynamicAccess(parameterContext)) {
-
-        return false;
-    }
-
-    if (uiStartIndex == (uint32_t)-1) {
-
-        // No index provided, start with 0
-        uiStartIndex = 0;
-    }
-
-    // Actually set values
-    if (!setValues(uiStartIndex, 0, strValue, parameterContext)) {
-
-        return false;
-    }
-
-    // Synchronize
-    if (parameterContext.getAutoSync() && !sync(parameterContext)) {
-
-        // Append parameter path to error
-        parameterContext.appendToError(" " + getPath());
-
-        return false;
-    }
-
-    return true;
-}
-
-bool CArrayParameter::getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const
+bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiIndex;
 
-    if (!getIndex(pathNavigator, uiIndex, parameterContext)) {
+    if (!getIndex(pathNavigator, uiIndex, parameterAccessContext)) {
 
         return false;
     }
 
-    // Check for dynamic access
-    if (!checkForDynamicAccess(parameterContext)) {
+    if (bSet) {
+        // Set
+        if (uiIndex == (uint32_t)-1) {
 
-        return false;
-    }
+            // No index provided, start with 0
+            uiIndex = 0;
+        }
 
-    if (uiIndex == (uint32_t)-1) {
+        // Actually set values
+        if (!setValues(uiIndex, 0, strValue, parameterAccessContext)) {
 
-        // Whole array requested
-        getValues(0, strValue, parameterContext);
+            return false;
+        }
 
+        // Synchronize
+        if (parameterAccessContext.getAutoSync() && !sync(parameterAccessContext)) {
+
+            // Append parameter path to error
+            parameterAccessContext.appendToError(" " + getPath());
+
+            return false;
+        }
     } else {
-        // Scalar requested
-        doGetValue(strValue, getOffset() + uiIndex * getSize(), parameterContext);
+        // Get
+        if (uiIndex == (uint32_t)-1) {
+
+            // Whole array requested
+            getValues(0, strValue, parameterAccessContext);
+
+        } else {
+            // Scalar requested
+            doGetValue(strValue, getOffset() + uiIndex * getSize(), parameterAccessContext);
+        }
     }
 
     return true;
 }
 
+// Boolean
+bool CArrayParameter::accessAsBooleanArray(vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    return accessValues(abValues, bSet, parameterAccessContext);
+}
+
+// Integer
+bool CArrayParameter::accessAsIntegerArray(vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    return accessValues(auiValues, bSet, parameterAccessContext);
+}
+
+// Signed Integer Access
+bool CArrayParameter::accessAsSignedIntegerArray(vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    return accessValues(aiValues, bSet, parameterAccessContext);
+}
+
+// Double Access
+bool CArrayParameter::accessAsDoubleArray(vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    return accessValues(adValues, bSet, parameterAccessContext);
+}
+
+// String Access
+bool CArrayParameter::accessAsStringArray(vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    return accessValues(astrValues, bSet, parameterAccessContext);
+}
+
+// Dump
 void CArrayParameter::logValue(string& strValue, CErrorContext& errorContext) const
 {
     // Parameter context
-    CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
+    CParameterAccessContext& parameterAccessContext = static_cast<CParameterAccessContext&>(errorContext);
 
     // Dump values
-    getValues(0, strValue, parameterContext);
+    getValues(0, strValue, parameterAccessContext);
 }
 
 // Used for simulation and virtual subsystems
@@ -197,7 +209,7 @@ void CArrayParameter::setDefaultValues(CParameterAccessContext& parameterAccessC
 }
 
 // Index from path
-bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex, CParameterAccessContext& parameterContext) const
+bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex, CParameterAccessContext& parameterAccessContext) const
 {
     uiIndex = (uint32_t)-1;
 
@@ -212,7 +224,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
 
         if (!iss) {
 
-            parameterContext.setError("Expected numerical expression as last item in " + pathNavigator.getCurrentPath());
+            parameterAccessContext.setError("Expected numerical expression as last item in " + pathNavigator.getCurrentPath());
 
             return false;
         }
@@ -222,7 +234,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
 
             oss << "Provided index out of range (max is " << getArrayLength() - 1 << ")";
 
-            parameterContext.setError(oss.str());
+            parameterAccessContext.setError(oss.str());
 
             return false;
         }
@@ -233,7 +245,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
         if (pStrChildName) {
 
             // Should be leaf element
-            parameterContext.setError("Path not found: " + pathNavigator.getCurrentPath());
+            parameterAccessContext.setError("Path not found: " + pathNavigator.getCurrentPath());
 
             return false;
         }
@@ -243,7 +255,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
 }
 
 // Common set value processing
-bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, const string& strValue, CParameterAccessContext& parameterContext) const
+bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, const string& strValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Deal with value(s)
     Tokenizer tok(strValue, DEFAULT_DELIMITER + ",");
@@ -252,10 +264,10 @@ bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, co
     uint32_t uiNbValues = astrValues.size();
 
     // Check number of provided values
-    if (uiNbValues + uiStartIndex >  getArrayLength()) {
+    if (uiNbValues + uiStartIndex > getArrayLength()) {
 
         // Out of bounds
-        parameterContext.setError("Too many values provided");
+        parameterAccessContext.setError("Too many values provided");
 
         return false;
     }
@@ -267,10 +279,10 @@ bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, co
 
     for (uiValueIndex = 0; uiValueIndex < uiNbValues; uiValueIndex++) {
 
-        if (!doSetValue(astrValues[uiValueIndex], uiOffset, parameterContext)) {
+        if (!doSetValue(astrValues[uiValueIndex], uiOffset, parameterAccessContext)) {
 
             // Append parameter path to error
-            parameterContext.appendToError(" " + getPath() + "/" + toString(uiValueIndex + uiStartIndex));
+            parameterAccessContext.appendToError(" " + getPath() + "/" + toString(uiValueIndex + uiStartIndex));
 
             return false;
         }
@@ -281,7 +293,7 @@ bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, co
 }
 
 // Common get value processing
-void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParameterAccessContext& parameterContext) const
+void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiValueIndex;
     uint32_t uiSize = getSize();
@@ -295,7 +307,7 @@ void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParam
     for (uiValueIndex = 0; uiValueIndex < uiArrayLength; uiValueIndex++) {
         string strReadValue;
 
-        doGetValue(strReadValue, uiOffset, parameterContext);
+        doGetValue(strReadValue, uiOffset, parameterAccessContext);
 
         if (!bFirst) {
 
@@ -310,3 +322,113 @@ void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParam
         uiOffset += uiSize;
     }
 }
+
+// Generic Access
+template <typename type>
+bool CArrayParameter::accessValues(vector<type>& values, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    bool bSuccess;
+
+    if (bSet) {
+
+        if  (setValues(values, parameterAccessContext)) {
+
+            // Synchronize
+            bSuccess = sync(parameterAccessContext);
+        } else {
+
+            bSuccess = false;
+        }
+    } else {
+
+        bSuccess = getValues(values, parameterAccessContext);
+    }
+    if (!bSuccess) {
+
+        // Append parameter path to error
+        parameterAccessContext.appendToError(" " + getPath());
+    }
+    return bSuccess;
+}
+
+template <typename type>
+bool CArrayParameter::setValues(const vector<type>& values, CParameterAccessContext& parameterAccessContext) const
+{
+    uint32_t uiNbValues = getArrayLength();
+    uint32_t uiValueIndex;
+    uint32_t uiSize = getSize();
+    uint32_t uiOffset = getOffset();
+
+    assert(values.size() == uiNbValues);
+
+    // Process
+    for (uiValueIndex = 0; uiValueIndex < uiNbValues; uiValueIndex++) {
+
+        if (!doSet(values[uiValueIndex], uiOffset, parameterAccessContext)) {
+
+            return false;
+        }
+
+        uiOffset += uiSize;
+    }
+
+   return true;
+}
+
+template <typename type>
+bool CArrayParameter::getValues(vector<type>& values, CParameterAccessContext& parameterAccessContext) const
+{
+    uint32_t uiNbValues = getArrayLength();
+    uint32_t uiValueIndex;
+    uint32_t uiSize = getSize();
+    uint32_t uiOffset = getOffset();
+
+    values.clear();
+
+    for (uiValueIndex = 0; uiValueIndex < uiNbValues; uiValueIndex++) {
+        type readValue;
+
+        if (!doGet(readValue, uiOffset, parameterAccessContext)) {
+
+            return false;
+        }
+
+        values.push_back(readValue);
+
+        uiOffset += uiSize;
+    }
+    return true;
+}
+
+template <typename type>
+bool CArrayParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+{
+    uint32_t uiData;
+
+    if (!static_cast<const CParameterType*>(getTypeElement())->toBlackboard(value, uiData, parameterAccessContext)) {
+
+        return false;
+    }
+    // Write blackboard
+    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+
+    // Beware this code works on little endian architectures only!
+    pBlackboard->writeInteger(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+
+    return true;
+}
+
+template <typename type>
+bool CArrayParameter::doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+{
+    uint32_t uiData = 0;
+
+    // Read blackboard
+    const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+
+    // Beware this code works on little endian architectures only!
+    pBlackboard->readInteger(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+
+    return static_cast<const CParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);
+}
+

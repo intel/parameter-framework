@@ -33,6 +33,7 @@
 #include "ParameterAccessContext.h"
 #include "ConfigurationAccessContext.h"
 #include "ParameterBlackboard.h"
+#include <assert.h>
 
 #define base CInstanceConfigurableElement
 
@@ -73,77 +74,153 @@ bool CBaseParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsE
 void CBaseParameter::logValue(string& strValue, CErrorContext& errorContext) const
 {
     // Parameter context
-    CParameterAccessContext& parameterContext = static_cast<CParameterAccessContext&>(errorContext);
+    CParameterAccessContext& parameterAccessContext = static_cast<CParameterAccessContext&>(errorContext);
 
     // Dump value
-    doGetValue(strValue, getOffset(), parameterContext);
+    doGetValue(strValue, getOffset(), parameterAccessContext);
+}
+
+// Check element is a parameter
+bool CBaseParameter::isParameter() const
+{
+    return true;
+}
+
+/// Value access
+// Boolean access
+bool CBaseParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)bValue;
+    (void)bSet;
+
+    parameterAccessContext.setError("Unsupported conversion");
+
+    return false;
+}
+
+bool CBaseParameter::accessAsBooleanArray(vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)abValues;
+    (void)bSet;
+
+    parameterAccessContext.setError("Unsupported conversion");
+
+    return false;
+}
+
+// Integer Access
+bool CBaseParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)uiValue;
+    (void)bSet;
+
+    parameterAccessContext.setError("Unsupported conversion");
+
+    return false;
+}
+
+bool CBaseParameter::accessAsIntegerArray(vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)auiValues;
+    (void)bSet;
+
+    parameterAccessContext.setError("Unsupported conversion");
+
+    return false;
+}
+
+// Signed Integer Access
+bool CBaseParameter::accessAsSignedInteger(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)iValue;
+    (void)bSet;
+
+    parameterAccessContext.setError("Unsupported conversion");
+
+    return false;
+}
+
+bool CBaseParameter::accessAsSignedIntegerArray(vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)aiValues;
+    (void)bSet;
+
+    parameterAccessContext.setError("Unsupported conversion");
+
+    return false;
+}
+
+// Double Access
+bool CBaseParameter::accessAsDouble(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)dValue;
+    (void)bSet;
+
+    parameterAccessContext.setError("Unsupported conversion");
+
+    return false;
+}
+
+bool CBaseParameter::accessAsDoubleArray(vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)adValues;
+    (void)bSet;
+
+    parameterAccessContext.setError("Unsupported conversion");
+
+    return false;
+}
+
+// String Access
+bool CBaseParameter::accessAsString(string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    if (bSet) {
+
+        // Set Value
+        if (!doSetValue(strValue, getOffset(), parameterAccessContext)) {
+
+            // Append parameter path to error
+            parameterAccessContext.appendToError(" " + getPath());
+
+            return false;
+        }
+        // Synchronize
+        if (parameterAccessContext.getAutoSync() && !sync(parameterAccessContext)) {
+
+            // Append parameter path to error
+            parameterAccessContext.appendToError(" " + getPath());
+
+            return false;
+        }
+
+    } else {
+        // Get Value
+        doGetValue(strValue, getOffset(), parameterAccessContext);
+    }
+
+    return true;
+}
+
+bool CBaseParameter::accessAsStringArray(vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)astrValues;
+    (void)bSet;
+    (void)parameterAccessContext;
+
+    // Generic string array access to scalar parameter must have been filtered out before
+    assert(0);
+
+    return false;
 }
 
 // Parameter Access
-bool CBaseParameter::setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const
+bool CBaseParameter::accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     // Check path validity
-    if (!checkPathExhausted(pathNavigator, parameterContext)) {
+    if (!checkPathExhausted(pathNavigator, parameterAccessContext)) {
 
         return false;
     }
 
-    // Check for dynamic access
-    if (!checkForDynamicAccess(parameterContext)) {
-
-        return false;
-    }
-
-    // Set Value
-    if (!doSetValue(strValue, getOffset(), parameterContext)) {
-
-        // Append parameter path to error
-        parameterContext.appendToError(" " + getPath());
-
-        return false;
-    }
-    // Synchronize
-    if (parameterContext.getAutoSync() && !sync(parameterContext)) {
-
-        // Append parameter path to error
-        parameterContext.appendToError(" " + getPath());
-
-        return false;
-    }
-    return true;
-}
-
-bool CBaseParameter::getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const
-{
-    // Check path validity
-    if (!checkPathExhausted(pathNavigator, parameterContext)) {
-
-        return false;
-    }
-
-    // Check for dynamic access
-    if (!checkForDynamicAccess(parameterContext)) {
-
-        return false;
-    }
-
-    // Get Value
-    doGetValue(strValue, getOffset(), parameterContext);
-
-    return true;
-}
-
-// Dynamic access checking
-bool CBaseParameter::checkForDynamicAccess(CParameterAccessContext& parameterAccessContext) const
-{
-    // Check for dynamic access
-    if (parameterAccessContext.isDynamicAccess() && !isRogue()) {
-
-        // Parameter is not rogue
-        parameterAccessContext.setError("Parameter " + getPath() + " is not rogue");
-
-        return false;
-    }
-
-    return true;
+    return accessAsString(strValue, bSet, parameterAccessContext);
 }

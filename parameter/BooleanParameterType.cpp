@@ -47,7 +47,8 @@ string CBooleanParameterType::getKind() const
     return "BooleanParameter";
 }
 
-bool CBooleanParameterType::asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+// Tuning interface
+bool CBooleanParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     if (strValue == "1" || strValue == "0x1") {
 
@@ -76,7 +77,7 @@ bool CBooleanParameterType::asInteger(const string& strValue, uint32_t& uiValue,
     return true;
 }
 
-void CBooleanParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
+bool CBooleanParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
 
@@ -84,4 +85,47 @@ void CBooleanParameterType::asString(const uint32_t& uiValue, string& strValue, 
     }
 
     strValue += uiValue ? "1" : "0";
+
+    return true;
+}
+
+// Value access
+bool CBooleanParameterType::toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)parameterAccessContext;
+
+    uiValue = bUserValue;
+
+    return true;
+}
+
+bool CBooleanParameterType::fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)parameterAccessContext;
+
+    bUserValue = uiValue != 0;
+
+    return true;
+}
+
+// Integer
+bool CBooleanParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    if (uiUserValue > 1) {
+
+        parameterAccessContext.setError("Value out of range");
+    }
+
+    uiValue = uiUserValue;
+
+    return true;
+}
+
+bool CBooleanParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)parameterAccessContext;
+
+    uiUserValue = uiValue != 0;
+
+    return true;
 }

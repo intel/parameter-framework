@@ -31,6 +31,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <vector>
 
 #include "InstanceConfigurableElement.h"
 
@@ -44,16 +45,37 @@ public:
 
     // XML configuration settings parsing/composing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
+
+    // Check element is a parameter
+    virtual bool isParameter() const;
+
+    /// Value access
+    // Boolean access
+    virtual bool accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessAsBooleanArray(vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    // Integer Access
+    virtual bool accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessAsIntegerArray(vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    // Signed Integer Access
+    virtual bool accessAsSignedInteger(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessAsSignedIntegerArray(vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    // Double Access
+    virtual bool accessAsDouble(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessAsDoubleArray(vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    // String Access
+    bool accessAsString(string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessAsStringArray(vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
 protected:
     // Parameter Access
-    virtual bool setValue(CPathNavigator& pathNavigator, const string& strValue, CParameterAccessContext& parameterContext) const;
-    virtual bool getValue(CPathNavigator& pathNavigator, string& strValue, CParameterAccessContext& parameterContext) const;
+    virtual bool accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
     virtual void logValue(string& strValue, CErrorContext& errorContext) const;
 
     // Actual value access (to be implemented by derived)
     virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const = 0;
     virtual void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const = 0;
-
-    // Dynamic access checking
-    bool checkForDynamicAccess(CParameterAccessContext& parameterAccessContext) const;
 };

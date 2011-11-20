@@ -38,7 +38,17 @@ public:
     CBooleanParameterType(const string& strName);
     virtual ~CBooleanParameterType();
 
+    // Kind
     virtual string getKind() const;
-    virtual bool asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual void asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const;
+
+    /// Conversion
+    // String
+    virtual bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    // Boolean
+    virtual bool toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    // Integer
+    virtual bool toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
 };

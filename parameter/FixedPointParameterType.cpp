@@ -108,7 +108,7 @@ bool CFixedPointParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerial
     return base::fromXml(xmlElement, serializingContext);
 }
 
-bool CFixedPointParameterType::asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CFixedPointParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Hexa
     bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
@@ -138,9 +138,7 @@ bool CFixedPointParameterType::asInteger(const string& strValue, uint32_t& uiVal
         double dData = strtod(strValue.c_str(), NULL);
 
         // Do the conversion
-        iData = (int32_t)(dData * (1UL << _uiFractional) + 0.5F - (double)(dData < 0));
-        // Left justify
-        iData <<= getSize() * 8 - getUtilSizeInBits();
+        iData = asInteger(dData);
     }
 
     // Check integrity
@@ -157,7 +155,7 @@ bool CFixedPointParameterType::asInteger(const string& strValue, uint32_t& uiVal
     return true;
 }
 
-void CFixedPointParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
+bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     int32_t iData = uiValue;
 
@@ -183,18 +181,52 @@ void CFixedPointParameterType::asString(const uint32_t& uiValue, string& strValu
         }
     } else {
 
-        // Sign extend
-        signExtend(iData);
-
-        // Unjustify
-        iData >>= getSize() * 8 - getUtilSizeInBits();
-
-        double dData = (double)iData / (1UL << _uiFractional);
+        // Conversion
+        double dData = asDouble(iData);
 
         strStream << dData;
     }
 
     strValue = strStream.str();
+
+    return true;
+}
+
+// Value access
+bool CFixedPointParameterType::toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    // Do the conversion
+    int32_t iData = asInteger(dUserValue);
+
+    // Check integrity
+    if (!isConsistent(iData)) {
+
+        // Illegal value provided
+        parameterAccessContext.setError("Value out of range");
+
+        return false;
+    }
+
+    uiValue = iData;
+
+    return true;
+}
+
+bool CFixedPointParameterType::fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)parameterAccessContext;
+
+    int32_t iData = uiValue;
+
+    // Check consistency
+    assert(isEncodable(iData));
+
+    // Sign extend
+    signExtend(iData);
+
+    dUserValue = asDouble(iData);
+
+    return true;
 }
 
 // Util size
@@ -257,3 +289,21 @@ bool CFixedPointParameterType::isConsistent(uint32_t uiData) const
     return bIsValueExpectedNegative ? !(~uiData >> uiShift) : !(uiData >> uiShift);
 }
 
+// Data conversion
+int32_t CFixedPointParameterType::asInteger(double dValue) const
+{
+    // Do the conversion
+    int32_t iData = (int32_t)(dValue * (1UL << _uiFractional) + 0.5F - (double)(dValue < 0));
+    // Left justify
+    iData <<= getSize() * 8 - getUtilSizeInBits();
+
+    return iData;
+}
+
+double CFixedPointParameterType::asDouble(int32_t iValue) const
+{
+    // Unjustify
+    iValue >>= getSize() * 8 - getUtilSizeInBits();
+    // Convert
+    return (double)iValue / (1UL << _uiFractional);
+}

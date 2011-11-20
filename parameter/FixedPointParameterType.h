@@ -44,9 +44,13 @@ public:
     // Value space handling for configuration import
     virtual void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
 
-    // Conversion
-    virtual bool asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual void asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const;
+    /// Conversion
+    // String
+    virtual bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    // Double
+    virtual bool toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
 
     // Element properties
     virtual void showProperties(string& strResult) const;
@@ -60,6 +64,9 @@ private:
     string getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const;
     // Check data is consistent with available range, with respect to its sign
     bool isConsistent(uint32_t uiData) const;
+    // Data conversion
+    int32_t asInteger(double dValue) const;
+    double asDouble(int32_t iValue) const;
 
     // Integral part in Q notation
     uint32_t _uiIntegral;

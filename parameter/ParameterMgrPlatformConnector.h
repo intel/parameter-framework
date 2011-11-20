@@ -23,6 +23,7 @@
 
 #include "SelectionCriterionTypeInterface.h"
 #include "SelectionCriterionInterface.h"
+#include "ParameterHandle.h"
 
 class CParameterMgr;
 class CParameterMgrLogger;
@@ -60,8 +61,9 @@ public:
     bool applyConfigurations(std::string& strError);
 
     // Dynamic parameter handling
-    bool setValue(const std::string& strPath, const std::string& strValue, std::string& strError, bool bRawValueSpace = false);
-    bool getValue(const std::string& strPath, std::string& strValue, std::string& strError, bool bRawValueSpace = false, bool bHexOutputRawFormat = false) const;
+    // Returned objects are owned by clients
+    // Must be cassed after successfull start
+    CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError) const;
 
 private:
     // Private logging

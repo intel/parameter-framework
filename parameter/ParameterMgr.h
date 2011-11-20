@@ -50,6 +50,7 @@ class CParameterBlackboard;
 class CConfigurableDomains;
 class IRemoteProcessorServerInterface;
 class CBackSynchronizer;
+class CParameterHandle;
 
 class CParameterMgr : private CElement
 {
@@ -64,9 +65,10 @@ class CParameterMgr : private CElement
         EParameterCreationLibrary,
         EParameterConfigurationLibrary
     };
-    typedef TRemoteCommandHandlerTemplate<CParameterMgr> CCommandHandler;
 
     // Remote command parsers
+    typedef TRemoteCommandHandlerTemplate<CParameterMgr> CCommandHandler;
+
     typedef CCommandHandler::CommandStatus (CParameterMgr::*RemoteCommandParser)(const IRemoteCommand& remoteCommand, string& strResult);
 
     // Parser descriptions
@@ -79,9 +81,12 @@ class CParameterMgr : private CElement
         const char* _pcDescription;
     };
     // Version
-    static const uint32_t guiEditionMajor = 0x1;
-    static const uint32_t guiEditionMinor = 0x1;
+    static const uint32_t guiEditionMajor = 0x2;
+    static const uint32_t guiEditionMinor = 0x0;
     static const uint32_t guiRevision = 0x0;
+
+    // Parameter handle friendship
+    friend class CParameterHandle;
 public:
     // Logger interface
     class ILogger
@@ -111,8 +116,7 @@ public:
     bool applyConfigurations(string& strError);
 
     // Dynamic parameter handling
-    bool setValue(const string& strPath, const string& strValue, bool bRawValueSpace, string& strError);
-    bool getValue(const string& strPath, string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, string& strError) const;
+    CParameterHandle* createParameterHandle(const string& strPath, string& strError);
 
     //////////// Tuning /////////////
     // Tuning mode
@@ -133,8 +137,7 @@ public:
     bool sync(string& strError);
 
     // User set/get parameters
-    bool setValue(const string& strPath, const string& strValue, string& strError);
-    bool getValue(const string& strPath, string& strValue, string& strError) const;
+    bool accessValue(const string& strPath, string& strValue, bool bSet, string& strError);
 
     ////////// Configuration/Domains handling //////////////
     // Creation/Deletion
@@ -242,8 +245,14 @@ private:
     // For tuning, check we're in tuning mode
     bool checkTuningModeOn(string& strError) const;
 
+    // Blackboard (dynamic parameter handling)
+    pthread_mutex_t* getBlackboardMutex();
+
+    // Blackboard reference (dynamic parameter handling)
+    CParameterBlackboard* getParameterBlackboard();
+
     // Parameter access
-    bool doSetValue(const string& strPath, const string& strValue, bool bRawValueSpace, bool bDynamicAccess, string& strError);
+    bool doSetValue(const string& strPath, const string& strValue, bool bRawValueSpace, bool bDynamicAccess, string& strError) const;
     bool doGetValue(const string& strPath, string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, bool bDynamicAccess, string& strError) const;
 
     // Framework global configuration loading
@@ -328,8 +337,8 @@ private:
     // Maximum command usage length
     uint32_t _uiMaxCommandUsageLength;
 
-    // Tuning mode mutex
-    pthread_mutex_t _tuningModeMutex;
+    // Blackboard access mutex
+    pthread_mutex_t _blackboardMutex;
 
     // Logging
     ILogger* _pLogger;

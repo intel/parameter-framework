@@ -44,11 +44,25 @@ public:
 
     // Type
     virtual Type getType() const;
+
+    /// Value access
+    // Boolean access
+    virtual bool accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    // Integer Access
+    virtual bool accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 private:
     // Size
     uint32_t getBelongingBlockSize() const;
 
-    // Actual Access
+    // String Access
     virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
     virtual void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+
+    // Generic Access
+    template <typename type>
+    bool doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    template <typename type>
+    void doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+
 };

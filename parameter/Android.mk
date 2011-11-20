@@ -9,7 +9,8 @@ LOCAL_COPY_HEADERS_TO := parameter
 LOCAL_COPY_HEADERS := \
         ParameterMgrPlatformConnector.h \
         SelectionCriterionTypeInterface.h \
-        SelectionCriterionInterface.h
+        SelectionCriterionInterface.h \
+        ParameterHandle.h
 
 LOCAL_SRC_FILES:= \
         Subsystem.cpp \
@@ -87,7 +88,8 @@ LOCAL_SRC_FILES:= \
         StringParameter.cpp \
         EnumParameterType.cpp \
         VirtualSubsystem.cpp \
-        VirtualSyncer.cpp
+        VirtualSyncer.cpp \
+        ParameterHandle.cpp
 
 
 LOCAL_MODULE:= libparameter

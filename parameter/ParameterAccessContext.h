@@ -38,6 +38,7 @@ class CParameterAccessContext : public CErrorContext
 {
 public:
     CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex = false);
+    CParameterAccessContext(string& strError, bool bBigEndianSubsystem, CParameterBlackboard* pParameterBlackboard);
     CParameterAccessContext(string& strError);
 
     // ParameterBlackboard
@@ -60,10 +61,6 @@ public:
     void setAutoSync(bool bAutoSync);
     bool getAutoSync() const;
 
-    // Dynamic access
-    void setDynamicAccess(bool bDynamicAccess);
-    bool isDynamicAccess() const;
-
 private:
     // Blackboard
     CParameterBlackboard* _pParameterBlackboard;
@@ -75,7 +72,5 @@ private:
     bool _bBigEndianSubsystem;
     // Automatic synchronization to HW
     bool _bAutoSync;
-    // Dynamic access
-    bool _bDynamicAccess;
 };
 

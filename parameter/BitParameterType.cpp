@@ -94,7 +94,7 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
 }
 
 // Conversion
-bool CBitParameterType::asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Hexa
     bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
@@ -129,7 +129,7 @@ bool CBitParameterType::asInteger(const string& strValue, uint32_t& uiValue, CPa
     return true;
 }
 
-void CBitParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
+void CBitParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiConvertedValue = (uiValue & getMask()) >> _uiBitPos;
 
@@ -145,6 +145,30 @@ void CBitParameterType::asString(const uint32_t& uiValue, string& strValue, CPar
     strStream << uiConvertedValue;
 
     strValue = strStream.str();
+}
+
+// Value access
+// Integer
+bool CBitParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    if (uiUserValue > getMaxValue()) {
+
+        parameterAccessContext.setError("Value out of range");
+
+        return false;
+    }
+
+    // Do bitwise RMW operation
+    uiValue = (uiValue & ~getMask()) | (uiUserValue << _uiBitPos);
+
+    return true;
+}
+
+void CBitParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    (void)parameterAccessContext;
+
+    uiUserValue = (uiValue & getMask()) >> _uiBitPos;
 }
 
 // Bit Size

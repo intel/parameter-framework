@@ -113,7 +113,7 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
             _uiMax = xmlElement.getAttributeInteger("Max");
         } else {
 
-            _uiMax = -1L >> (8 * sizeof(uint32_t) - uiSizeInBits);
+            _uiMax = (uint32_t)-1L >> (8 * sizeof(uint32_t) - uiSizeInBits);
         }
     }
 
@@ -121,7 +121,8 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
     return base::fromXml(xmlElement, serializingContext);
 }
 
-bool CIntegerParameterType::asInteger(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+// Conversion (tuning)
+bool CIntegerParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Hexa
     bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
@@ -162,7 +163,7 @@ bool CIntegerParameterType::asInteger(const string& strValue, uint32_t& uiValue,
     return true;
 }
 
-void CIntegerParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Check consistency
     assert(isEncodable(uiValue));
@@ -192,6 +193,82 @@ void CIntegerParameterType::asString(const uint32_t& uiValue, string& strValue, 
     }
 
     strValue = strStream.str();
+
+    return true;
+}
+
+// Value access
+// Integer
+bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    if (_bSigned) {
+
+        parameterAccessContext.setError("Parameter is signed");
+
+        return false;
+    }
+    if (uiUserValue < _uiMin || uiUserValue > _uiMax) {
+
+        parameterAccessContext.setError("Value out of range");
+
+        return false;
+    }
+    // Do assign
+    uiValue = uiUserValue;
+
+    return true;
+}
+
+bool CIntegerParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    if (_bSigned) {
+
+        parameterAccessContext.setError("Parameter is signed");
+
+        return false;
+    }
+    uiUserValue = uiValue;
+
+    return true;
+}
+
+// Signed Integer
+bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    if (!_bSigned) {
+
+        parameterAccessContext.setError("Parameter is unsigned");
+
+        return false;
+    }
+    if (iUserValue < (int32_t)_uiMin || iUserValue > (int32_t)_uiMax) {
+
+        parameterAccessContext.setError("Value out of range");
+
+        return false;
+    }
+    // Do assign
+    uiValue = iUserValue;
+
+    return true;
+}
+
+bool CIntegerParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    if (!_bSigned) {
+
+        parameterAccessContext.setError("Parameter is unsigned");
+
+        return false;
+    }
+    int32_t iValue = uiValue;
+
+    // Sign extend
+    signExtend(iValue);
+
+    iUserValue = iValue;
+
+    return true;
 }
 
 // Default value handling (simulation only)

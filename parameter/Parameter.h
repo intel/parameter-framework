@@ -47,6 +47,18 @@ public:
 
     // XML configuration settings parsing/composing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
+
+    // Boolean access
+    virtual bool accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    // Integer Access
+    virtual bool accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    // Signed Integer Access
+    virtual bool accessAsSignedInteger(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    // Double Access
+    virtual bool accessAsDouble(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 protected:
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
@@ -60,4 +72,12 @@ protected:
 
     // Size
     uint32_t getSize() const;
+private:
+    // Generic Access
+    template <typename type>
+    bool doAccess(type& value, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    template <typename type>
+    bool doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    template <typename type>
+    bool doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
 };

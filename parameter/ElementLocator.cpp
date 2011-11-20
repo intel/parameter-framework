@@ -35,7 +35,6 @@ CElementLocator::CElementLocator(CElement* pSubRootElement, bool bStrict) : _pSu
 {
 }
 
-
 // Locate element
 bool CElementLocator::locate(const string& strPath, CElement** ppElement, string& strError)
 {
