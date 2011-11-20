@@ -184,6 +184,15 @@ string CElement::toString(int32_t iValue)
     return ostr.str();
 }
 
+string CElement::toString(double dValue)
+{
+    ostringstream ostr;
+
+    ostr << dValue;
+
+    return ostr.str();
+}
+
 // Content dumping
 void CElement::logValue(string& strValue, CErrorContext& errorContext) const
 {

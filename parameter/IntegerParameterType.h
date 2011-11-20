@@ -32,6 +32,8 @@
 
 #include "ParameterType.h"
 
+class CParameterAdaptation;
+
 class CIntegerParameterType : public CParameterType
 {
 public:
@@ -50,6 +52,9 @@ public:
     // Signed Integer
     virtual bool toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     virtual bool fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    // Double
+    virtual bool toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
 
     // Default value handling (simulation only)
     virtual uint32_t getDefaultValue() const;
@@ -60,8 +65,14 @@ public:
     // CElement
     virtual string getKind() const;
 private:
+    // Returns true if children dynamic creation is to be dealt with
+    virtual bool childrenAreDynamic() const;
+
     // Range checking
     template <typename type> bool checkValueAgainstRange(const string& strValue, type value, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const;
+
+    // Adaptation element retrieval
+    const CParameterAdaptation* getParameterAdaptation() const;
 
     // Signing
     bool _bSigned;

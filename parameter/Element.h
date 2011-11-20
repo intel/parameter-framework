@@ -103,6 +103,7 @@ public:
     // Conversion utilities
     static string toString(uint32_t uiValue);
     static string toString(int32_t iValue);
+    static string toString(double dValue);
 
     // Checksum for integrity checks
     uint8_t computeStructureChecksum() const;

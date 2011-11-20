@@ -34,6 +34,7 @@
 #include <iomanip>
 #include "ParameterAccessContext.h"
 #include <assert.h>
+#include "ParameterAdaptation.h"
 
 #define base CParameterType
 
@@ -41,9 +42,16 @@ CIntegerParameterType::CIntegerParameterType(const string& strName) : base(strNa
 {
 }
 
+// Kind
 string CIntegerParameterType::getKind() const
 {
     return "IntegerParameter";
+}
+
+// Deal with adaption node
+bool CIntegerParameterType::childrenAreDynamic() const
+{
+    return true;
 }
 
 // Element properties
@@ -65,6 +73,17 @@ void CIntegerParameterType::showProperties(string& strResult) const
     strResult += "Max: ";
     strResult += _bSigned ? toString((int32_t)_uiMax) : toString(_uiMax);
     strResult += "\n";
+
+    // Check if there's an adaptation object available
+    const CParameterAdaptation* pParameterAdaption = getParameterAdaptation();
+
+    if (pParameterAdaption) {
+
+        // Display adaptation properties
+        strResult += "Adaptation:\n";
+
+        pParameterAdaption->showProperties(strResult);
+    }
 }
 
 bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
@@ -227,6 +246,7 @@ bool CIntegerParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiVal
 
         return false;
     }
+    // Do assign
     uiUserValue = uiValue;
 
     return true;
@@ -266,7 +286,80 @@ bool CIntegerParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue
     // Sign extend
     signExtend(iValue);
 
+    // Do assign
     iUserValue = iValue;
+
+    return true;
+}
+
+// Double
+bool CIntegerParameterType::toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    // Check if there's an adaptation object available
+    const CParameterAdaptation* pParameterAdaption = getParameterAdaptation();
+
+    if (!pParameterAdaption) {
+
+        // Reject request and let upper class handle the error
+        return base::toBlackboard(dUserValue, uiValue, parameterAccessContext);
+    }
+
+    // Do the conversion
+    int64_t iConvertedValue = pParameterAdaption->fromUserValue(dUserValue);
+
+    // Check against range
+    if (_bSigned) {
+
+        if (iConvertedValue < (int32_t)_uiMin || iConvertedValue > (int32_t)_uiMax) {
+
+            parameterAccessContext.setError("Value out of range");
+
+            return false;
+        }
+    } else {
+
+        if (iConvertedValue < _uiMin || iConvertedValue > _uiMax) {
+
+            parameterAccessContext.setError("Value out of range");
+
+            return false;
+        }
+    }
+
+    // Do assign
+    uiValue = (uint32_t)iConvertedValue;
+
+    return true;
+}
+
+bool CIntegerParameterType::fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    // Check if there's an adaptation object available
+    const CParameterAdaptation* pParameterAdaption = getParameterAdaptation();
+
+    if (!pParameterAdaption) {
+
+        // Reject request and let upper class handle the error
+        return base::fromBlackboard(dUserValue, uiValue, parameterAccessContext);
+    }
+
+    int64_t iValueToConvert;
+
+    // Deal with signed data
+    if (_bSigned) {
+
+        int32_t iValue = uiValue;
+
+        signExtend(iValue);
+
+        iValueToConvert = iValue;
+    } else {
+
+        iValueToConvert = uiValue;
+    }
+
+    // Do the conversion
+    dUserValue = pParameterAdaption->toUserValue(iValueToConvert);
 
     return true;
 }
@@ -305,4 +398,10 @@ template <typename type> bool CIntegerParameterType::checkValueAgainstRange(cons
         return false;
     }
     return true;
+}
+
+// Adaptation element retrieval
+const CParameterAdaptation* CIntegerParameterType::getParameterAdaptation() const
+{
+    return static_cast<const CParameterAdaptation*>(findChildOfKind("Adaptation"));
 }

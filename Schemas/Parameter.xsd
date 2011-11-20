@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:attributeGroup name="Nameable">
-		<xs:attribute name="Name" type="xs:NCName" use="required"/>
+		<xs:attribute name="Name" type="xs:NMTOKEN" use="required"/>
 		<xs:attribute name="Description" type="xs:string" use="optional"/>
 	</xs:attributeGroup>
 	<xs:simpleType name="SizeType">
@@ -18,6 +18,19 @@
 	<xs:attributeGroup name="ArrayLengthAttribute">
 		<xs:attribute name="ArrayLength" type="xs:nonNegativeInteger" use="optional" default="0"/>
 	</xs:attributeGroup>
+	<xs:complexType name="Adaptation">
+		<xs:attribute name="Offset" type="xs:integer" default="0"/>
+	</xs:complexType>
+	<xs:element name="LinearAdaptation">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Adaptation">
+					<xs:attribute name="SlopeNumerator" type="xs:double" default="1"/>
+					<xs:attribute name="SlopeDenominator" type="xs:double" default="1"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 	<xs:complexType name="Parameter" abstract="true">
 		<xs:attributeGroup ref="Nameable"/>
 		<xs:attribute name="Mapping" type="xs:string" use="optional"/>
@@ -35,6 +48,9 @@
 	<xs:complexType name="IntegerParameterType">
 		<xs:complexContent>
 			<xs:extension base="Parameter">
+				<xs:choice minOccurs="0">
+					<xs:element ref="LinearAdaptation"/>
+				</xs:choice>
 				<xs:attributeGroup ref="IntegerParameterAttributes"/>
 				<xs:attribute name="Unit" type="xs:token" use="optional"/>
 			</xs:extension>
@@ -48,7 +64,7 @@
 					<xs:element name="ValuePair" maxOccurs="unbounded">
 						<xs:complexType>
 							<xs:attribute name="Literal" type="xs:NMTOKEN" use="required"/>
-							<xs:attribute name="Numerical" use="required">					
+							<xs:attribute name="Numerical" use="required">
 								<xs:simpleType>
 									<xs:restriction base="xs:string">
 										<xs:pattern value="0|[+-]?[1-9][0-9]*"/>
@@ -71,7 +87,7 @@
 		<xs:unique name="NumericalUniqueness">
 			<xs:selector xpath="ValuePair"/>
 			<xs:field xpath="@Numerical"/>
-		</xs:unique>		
+		</xs:unique>
 	</xs:element>
 	<xs:complexType name="FixedPointParameterType">
 		<xs:complexContent>

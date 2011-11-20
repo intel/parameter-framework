@@ -79,6 +79,8 @@ public:
     // Default value handling (simulation only)
     virtual uint32_t getDefaultValue() const;
 protected:
+    // Object creation
+    virtual void populate(CElement* pElement) const;
     // Size
     void setSize(uint32_t uiSize);
     // Sign extension

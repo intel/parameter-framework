@@ -43,6 +43,13 @@ CParameterType::~CParameterType()
 {
 }
 
+// Object creation
+void CParameterType::populate(CElement* pElement) const
+{
+    (void)pElement;
+    // Prevent further digging for instantiaton since we're leaf on the strcture tree
+}
+
 // Size
 void CParameterType::setSize(uint32_t uiSize)
 {

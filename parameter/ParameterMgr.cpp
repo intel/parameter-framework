@@ -76,6 +76,7 @@
 #include <dlfcn.h>
 #include <assert.h>
 #include "ParameterHandle.h"
+#include "LinearParameterAdaptation.h"
 
 #define base CElement
 
@@ -1713,6 +1714,7 @@ void CParameterMgr::feedElementLibraries()
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CParameterBlockType>("ParameterBlock"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBooleanParameterType>("BooleanParameter"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CIntegerParameterType>("IntegerParameter"));
+    pParameterCreationLibrary->addElementBuilder(new TElementBuilderTemplate<CLinearParameterAdaptation>("LinearAdaptation"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CEnumParameterType>("EnumParameter"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CFixedPointParameterType>("FixedPointParameter"));
     pParameterCreationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CXmlFileIncluderElement>("SubsystemInclude"));

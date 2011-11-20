@@ -89,7 +89,9 @@ LOCAL_SRC_FILES:= \
         EnumParameterType.cpp \
         VirtualSubsystem.cpp \
         VirtualSyncer.cpp \
-        ParameterHandle.cpp
+        ParameterHandle.cpp \
+        ParameterAdaptation.cpp \
+        LinearParameterAdaptation.cpp
 
 
 LOCAL_MODULE:= libparameter
