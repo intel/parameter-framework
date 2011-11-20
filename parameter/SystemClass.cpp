@@ -37,6 +37,7 @@
 #include "AutoLog.h"
 #include "VirtualSubsystem.h"
 #include "NamedElementBuilderTemplate.h"
+#include <assert.h>
 
 #define base CConfigurableElement
 
@@ -80,7 +81,7 @@ bool CSystemClass::loadSubsystems(string& strError, const vector<string>& astrPl
     CAutoLog autoLlog(this, "Loading subsystem plugins");
 
     // Plugin list
-    vector<string> astrPluginFiles;
+    list<string> lstrPluginFiles;
 
     uint32_t uiFolderLocation;
 
@@ -90,77 +91,40 @@ bool CSystemClass::loadSubsystems(string& strError, const vector<string>& astrPl
         string strPluginPath = astrPluginFolderPaths[uiFolderLocation] + "/";
 
         // Get plugin list
-        getPluginFiles(strPluginPath, astrPluginFiles);
+        getPluginFiles(strPluginPath, lstrPluginFiles);
     }
     // Check at least one subsystem plugin available
-    if (!astrPluginFiles.size()) {
+    if (!lstrPluginFiles.size()) {
 
         // No plugin found?
-        strError = "No subsystem plugin found";
+        log("No subsystem plugin found");
 
-        return false;
+        // Don't bail out now that we have virtual subsystems
     }
 
-    // Actually load plugins
-    uint32_t uiPlugin;
     // Start clean
     _pSubsystemLibrary->clean();
 
-    for (uiPlugin = 0; uiPlugin < astrPluginFiles.size(); uiPlugin++) {
+    // Actually load plugins
+    while (lstrPluginFiles.size()) {
 
-        string strPluginFileName = astrPluginFiles[uiPlugin];
+        // Because plugins might depend on one another, loading will be done
+        // as an iteration process that finishes successfully when the remaining
+        // list of plugins to load gets empty or unsuccessfully if the loading
+        // process failed to load at least one of them
 
-        log("Loading subsystem plugin path \"%s\"", strPluginFileName.c_str());
+        // Attempt to load the complete list
+        if (!loadPlugins(lstrPluginFiles, strError)) {
 
-        void* lib_handle = dlopen(strPluginFileName.c_str(), RTLD_LAZY);
+            // Display the list of plugins we were unable to load
 
-        if (!lib_handle) {
-
-            // Return error
-            const char* pcError = dlerror();
-
-            if (pcError) {
-
-                strError = pcError;
-            } else {
-
-                strError = "Unable to load subsystem plugin " + strPluginFileName;
-            }
-
+            // Leave clean
             _pSubsystemLibrary->clean();
 
             return false;
         }
-
-        // Extract plugin type out of file name
-        string strPluginPattern = gpcPluginPattern;
-        string strLibraryPrefix = gpcLibraryPrefix;
-        // Remove folder
-        int32_t iSlashPos = strPluginFileName.rfind('/') + 1 + strLibraryPrefix.length();
-        // Get type
-        string strPluginType = strPluginFileName.substr(iSlashPos, strPluginFileName.length() - iSlashPos - strPluginPattern.length());
-
-        // Make it upper case
-        std::transform(strPluginType.begin(), strPluginType.end(), strPluginType.begin(), ::toupper);
-
-        // Get plugin symbol
-        string strPluginSymbol = gpcPluginSymbolPrefix + strPluginType + gpcPluginSymbolSuffix;
-
-        // Load symbol from library
-        GetSusbystemBuilder pfnGetSusbystemBuilder = (GetSusbystemBuilder)dlsym(lib_handle, strPluginSymbol.c_str());
-
-        if (!pfnGetSusbystemBuilder) {
-
-            strError = "Subsystem plugin " + strPluginFileName + " does not contain " + strPluginSymbol + " symbol.";
-
-            _pSubsystemLibrary->clean();
-
-            return false;
-        }
-
-        // Fill library
-        pfnGetSusbystemBuilder(_pSubsystemLibrary);
     }
+    log("All subsystem plugins successfully loaded");
 
     // Add virtual subsystem builder
     _pSubsystemLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CVirtualSubsystem>("Virtual"));
@@ -168,7 +132,8 @@ bool CSystemClass::loadSubsystems(string& strError, const vector<string>& astrPl
     return true;
 }
 
-bool CSystemClass::getPluginFiles(const string& strPluginPath, vector<string>& astrPluginFiles) const
+// Subsystem plugins
+bool CSystemClass::getPluginFiles(const string& strPluginPath, list<string>& lstrPluginFiles) const
 {
     log("Seeking subsystem plugins from folder \"%s\"", strPluginPath.c_str());
 
@@ -192,12 +157,101 @@ bool CSystemClass::getPluginFiles(const string& strPluginPath, vector<string>& a
 
         if (uiPatternPos != (size_t)-1 && uiPatternPos == strFileName.size() - strPluginPattern.size()) {
             // Found plugin
-            astrPluginFiles.push_back(strPluginPath + strFileName);
+            lstrPluginFiles.push_back(strPluginPath + strFileName);
         }
     }
 
     // Close plugin folder
     closedir(dirp);
+
+    return true;
+}
+
+// Plugin symbol computation
+string CSystemClass::getPluginSymbol(const string& strPluginPath)
+{
+    // Extract plugin type out of file name
+    string strPluginPattern = gpcPluginPattern;
+    string strLibraryPrefix = gpcLibraryPrefix;
+
+    // Remove folder
+    int32_t iSlashPos = strPluginPath.rfind('/') + 1 + strLibraryPrefix.length();
+
+    // Get type
+    string strPluginType = strPluginPath.substr(iSlashPos, strPluginPath.length() - iSlashPos - strPluginPattern.length());
+
+    // Make it upper case
+    std::transform(strPluginType.begin(), strPluginType.end(), strPluginType.begin(), ::toupper);
+
+    // Get plugin symbol
+    return gpcPluginSymbolPrefix + strPluginType + gpcPluginSymbolSuffix;
+}
+
+// Plugin loading
+bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, string& strError)
+{
+    assert(lstrPluginFiles.size());
+
+    bool bAtLeastOneSybsystemPluginSuccessfullyLoaded = false;
+
+    list<string>::iterator it = lstrPluginFiles.begin();
+
+    while (it != lstrPluginFiles.end()) {
+
+        string strPluginFileName = *it;
+
+        log("Attempting to load subsystem plugin path \"%s\"", strPluginFileName.c_str());
+
+        // Load attempt
+        void* lib_handle = dlopen(strPluginFileName.c_str(), RTLD_LAZY);
+
+        if (!lib_handle) {
+
+            // Failed
+            log("Plugin load failed, proceeding on with remaining ones");
+
+            // Next plugin
+            ++it;
+
+            continue;
+        }
+
+        // Get plugin symbol
+        string strPluginSymbol = getPluginSymbol(strPluginFileName);
+
+        // Load symbol from library
+        GetSusbystemBuilder pfnGetSusbystemBuilder = (GetSusbystemBuilder)dlsym(lib_handle, strPluginSymbol.c_str());
+
+        if (!pfnGetSusbystemBuilder) {
+
+            strError = "Subsystem plugin " + strPluginFileName + " does not contain " + strPluginSymbol + " symbol.";
+
+            return false;
+        }
+
+        // Fill library
+        pfnGetSusbystemBuilder(_pSubsystemLibrary);
+
+        // Account for this success
+        bAtLeastOneSybsystemPluginSuccessfullyLoaded = true;
+
+        // Remove successfully loaded plugin from list and select next
+        lstrPluginFiles.erase(it++);
+    }
+
+    // Check for success
+    if (!bAtLeastOneSybsystemPluginSuccessfullyLoaded) {
+
+        // Return list of plugins we were unable to load
+        strError = "Unable to load the following plugins:\n";
+
+        for (it = lstrPluginFiles.begin(); it != lstrPluginFiles.end(); ++it) {
+
+            strError += *it + "\n";
+        }
+
+        return false;
+    }
 
     return true;
 }

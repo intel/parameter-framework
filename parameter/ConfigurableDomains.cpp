@@ -381,8 +381,9 @@ void CConfigurableDomains::listDomains(string& strResult) const
         // Sequence awareness
         if (pChildConfigurableDomain->getSequenceAwareness()) {
 
-            strResult += " [sequence aware]\n";
+            strResult += " [sequence aware]";
         }
+        strResult += "\n";
     }
 }
 

@@ -31,7 +31,7 @@
 #pragma once
 
 #include "ConfigurableElement.h"
-#include <vector>
+#include <list>
 
 class CSubsystemLibrary;
 
@@ -54,7 +54,13 @@ private:
     virtual bool childrenAreDynamic() const;
 
     // Subsystem plugins
-    bool getPluginFiles(const string& strPluginPath, vector<string>& astrPluginFiles) const;
+    bool getPluginFiles(const string& strPluginPath, list<string>& lstrPluginFiles) const;
+
+    // Plugin symbol computation
+    static string getPluginSymbol(const string& strPluginPath);
+
+    // Plugin loading
+    bool loadPlugins(list<string>& lstrPluginFiles, string& strError);
 
     // ref only
     CSubsystemLibrary* _pSubsystemLibrary;
