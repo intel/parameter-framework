@@ -45,5 +45,10 @@ protected:
     virtual ISyncer* getSyncer() const;
 
 private:
+    // From IMapper
+    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError);
+    virtual void mapEnd();
+
+    // Subsystem level dummy syncer
     CVirtualSyncer* _pVirtualSyncer;
 };

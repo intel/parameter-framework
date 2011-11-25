@@ -48,3 +48,22 @@ ISyncer* CVirtualSubsystem::getSyncer() const
 {
     return _pVirtualSyncer;
 }
+
+// From IMapper
+bool CVirtualSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError)
+{
+    (void)pInstanceConfigurableElement;
+    (void)strError;
+
+    // Do nothing: prevent any subsystem object from being mapped
+
+    // Stop diving
+    bKeepDiving = false;
+
+    return true;
+}
+
+void CVirtualSubsystem::mapEnd()
+{
+    // Do nothing
+}
