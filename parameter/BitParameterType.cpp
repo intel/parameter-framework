@@ -37,7 +37,7 @@
 
 #define base CTypeElement
 
-CBitParameterType::CBitParameterType(const string& strName) : base(strName), _uiBitPos(0), _uiBitSize(0)
+CBitParameterType::CBitParameterType(const string& strName) : base(strName), _uiBitPos(0), _uiBitSize(0), _uiMax(uint32_t(-1))
 {
 }
 
@@ -60,6 +60,11 @@ void CBitParameterType::showProperties(string& strResult) const
     // Bit size
     strResult += "Bit size: ";
     strResult += toString(_uiBitSize);
+    strResult += "\n";
+
+    // Max
+    strResult += "Max: ";
+    strResult += toString(_uiMax);
     strResult += "\n";
 }
 
@@ -89,6 +94,27 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
         return false;
     }
 
+    // Max
+    if (xmlElement.hasAttribute("Max")) {
+
+        _uiMax = xmlElement.getAttributeInteger("Max");
+
+        if (_uiMax > getMaxEncodableValue()) {
+
+            // Max value exceeded
+            ostringstream strStream;
+
+            strStream << "Max attribute inconsistent with maximum encodable size (" << getMaxEncodableValue() << ") for " + getKind();
+
+            serializingContext.setError(strStream.str());
+
+            return false;
+        }
+    } else {
+
+        _uiMax = getMaxEncodableValue();
+    }
+
     // Base
     return base::fromXml(xmlElement, serializingContext);
 }
@@ -102,7 +128,7 @@ bool CBitParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, 
     // Get value
     uint32_t uiConvertedValue = strtoul(strValue.c_str(), NULL, 0);
 
-    if (uiConvertedValue > getMaxValue()) {
+    if (uiConvertedValue > _uiMax) {
 
         // Range exceeded
         ostringstream strStream;
@@ -116,7 +142,7 @@ bool CBitParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, 
 
             strStream << "0, ";
         }
-        strStream << getMaxValue() << "] for " + getKind();
+        strStream << _uiMax << "] for " + getKind();
 
         parameterAccessContext.setError(strStream.str());
 
@@ -151,7 +177,7 @@ void CBitParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue
 // Integer
 bool CBitParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    if (uiUserValue > getMaxValue()) {
+    if (uiUserValue > _uiMax) {
 
         parameterAccessContext.setError("Value out of range");
 
@@ -183,15 +209,15 @@ CInstanceConfigurableElement* CBitParameterType::doInstantiate() const
 }
 
 // Max value
-uint32_t CBitParameterType::getMaxValue() const
+uint32_t CBitParameterType::getMaxEncodableValue() const
 {
-    return (1 << _uiBitSize) - 1;
+    return (uint32_t)-1L >> (8 * sizeof(uint32_t) - _uiBitSize);
 }
 
 // Biwise mask
 uint32_t CBitParameterType::getMask() const
 {
-    return getMaxValue() << _uiBitPos;
+    return getMaxEncodableValue() << _uiBitPos;
 }
 
 // Check data has no bit set outside available range

@@ -620,7 +620,7 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
     // Nagivate through system class
     if (!pathNavigator.navigateThrough(getConstSystemClass()->getName(), strError)) {
 
-        return false;
+        return NULL;
     }
 
     // Find element
@@ -630,7 +630,7 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
 
         strError = "Path not found";
 
-        return false;
+        return NULL;
     }
 
     // Check found element is a parameter
@@ -641,7 +641,7 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
         // Element is not parameter
         strError = "Not a parameter";
 
-        return false;
+        return NULL;
     }
 
     // Convert as parameter and return new handle

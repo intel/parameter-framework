@@ -116,6 +116,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+		<xs:attribute name="Max" type="xs:integer" use="optional"/>
 	</xs:complexType>
 	<xs:element name="BitParameterBlock">
 		<xs:complexType>

@@ -63,8 +63,8 @@ public:
 private:
     // Instantiation
     virtual CInstanceConfigurableElement* doInstantiate() const;
-    // Max value
-    uint32_t getMaxValue() const;
+    // Max encodable value
+    uint32_t getMaxEncodableValue() const;
     // Biwise mask
     uint32_t getMask() const;
     // Check data has no bit set outside available range
@@ -74,4 +74,6 @@ private:
     uint32_t _uiBitPos;
     // Size in bits
     uint32_t _uiBitSize;
+    // Max value
+    uint32_t _uiMax;
 };
