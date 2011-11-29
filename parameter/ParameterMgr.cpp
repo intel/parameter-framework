@@ -126,6 +126,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "listCriteria", &CParameterMgr::listCriteriaCommmandProcess, 0, "", "List selection criteria" },
     /// Domains
     { "listDomains", &CParameterMgr::listDomainsCommmandProcess, 0, "", "List configurable domains" },
+    { "dumpDomains", &CParameterMgr::dumpDomainsCommmandProcess, 0, "", "Show all domains and configurations, including applicability conditions" },
     { "createDomain", &CParameterMgr::createDomainCommmandProcess, 1, "<domain>", "Create new configurable domain" },
     { "deleteDomain", &CParameterMgr::deleteDomainCommmandProcess, 1, "<domain>", "Delete configurable domain" },
     { "renameDomain", &CParameterMgr::renameDomainCommmandProcess, 2, "<domain> <new name>", "Rename configurable domain" },
@@ -142,8 +143,11 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "renameConfiguration", &CParameterMgr::renameConfigurationCommmandProcess, 3, "<domain> <configuration> <new name>", "Rename domain configuration" },
     { "saveConfiguration", &CParameterMgr::saveConfigurationCommmandProcess, 2, "<domain> <configuration>", "Save current settings into configuration" },
     { "restoreConfiguration", &CParameterMgr::restoreConfigurationCommmandProcess, 2, "<domain> <configuration>", "Restore current settings from configuration" },
-    { "setElementSequence", &CParameterMgr::setElementSequenceCommmandProcess, 2, "<domain> <configuration> <elem path list>", "Set element application order for configuration" },
+    { "setElementSequence", &CParameterMgr::setElementSequenceCommmandProcess, 3, "<domain> <configuration> <elem path list>", "Set element application order for configuration" },
     { "getElementSequence", &CParameterMgr::getElementSequenceCommmandProcess, 2, "<domain> <configuration>", "Get element application order for configuration" },
+    { "setRule", &CParameterMgr::setRuleCommmandProcess, 3, "<domain> <configuration> <rule>", "Set configuration application rule" },
+    { "clearRule", &CParameterMgr::clearRuleCommmandProcess, 2, "<domain> <configuration>", "Clear configuration application rule" },
+    { "getRule", &CParameterMgr::getRuleCommmandProcess, 2, "<domain> <configuration>", "Get configuration application rule" },
     /// Elements/Parameters
     { "listElements", &CParameterMgr::listElementsCommmandProcess, 1, "<elem path>|/", "List elements under element at given path or root" },
     { "listParameters", &CParameterMgr::listParametersCommmandProcess, 1, "<elem path>|/", "List parameters under element at given path or root" },
@@ -951,7 +955,21 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::splitDomainCommmand
 /// Configurations
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listConfigurationsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return getConfigurableDomains()->listConfigurations(remoteCommand.getArgument(0), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return getConstConfigurableDomains()->listConfigurations(remoteCommand.getArgument(0), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)remoteCommand;
+
+    // Dummy error context
+    string strError;
+    CErrorContext errorContext(strError);
+
+    // Dump
+    getConstConfigurableDomains()->dumpContent(strResult, errorContext);
+
+    return CCommandHandler::ESucceeded;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::createConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1005,6 +1023,24 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSequenceC
 {
     // Delegate to configurable domains
     return getConfigurableDomains()->getElementSequence(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setRuleCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    // Delegate to configurable domains
+    return getConfigurableDomains()->setApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1), remoteCommand.packArguments(2, remoteCommand.getArgumentCount() - 2), getConstSelectionCriteria()->getSelectionCriteriaDefinition(), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::clearRuleCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    // Delegate to configurable domains
+    return getConfigurableDomains()->clearApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getRuleCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    // Delegate to configurable domains
+    return getConfigurableDomains()->getApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
 }
 
 /// Elements/Parameters
@@ -1451,7 +1487,7 @@ bool CParameterMgr::restoreConfiguration(const string& strDomain, const string& 
     }
 
     // Delegate to configurable domains
-    return getConfigurableDomains()->restoreConfiguration(strDomain, strConfiguration, _pMainParameterBlackboard, _bAutoSyncOn, strError);
+    return getConstConfigurableDomains()->restoreConfiguration(strDomain, strConfiguration, _pMainParameterBlackboard, _bAutoSyncOn, strError);
 }
 
 bool CParameterMgr::saveConfiguration(const string& strDomain, const string& strConfiguration, string& strError)

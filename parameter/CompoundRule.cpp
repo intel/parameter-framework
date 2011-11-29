@@ -29,8 +29,15 @@
  * </auto_header>
  */
 #include "CompoundRule.h"
+#include "RuleParser.h"
 
 #define base CRule
+
+// Types
+const char* CCompoundRule::_apcTypes[2] = {
+    "Any",
+    "All"
+};
 
 CCompoundRule::CCompoundRule() : _bTypeAll(false)
 {
@@ -46,6 +53,68 @@ string CCompoundRule::getKind() const
 bool CCompoundRule::childrenAreDynamic() const
 {
     return true;
+}
+
+// Content dumping
+void CCompoundRule::logValue(string& strValue, CErrorContext& errorContext) const
+{
+    (void)errorContext;
+
+    // Type
+    strValue = _apcTypes[_bTypeAll];
+}
+
+// Parse
+bool CCompoundRule::parse(CRuleParser& ruleParser, string& strError)
+{
+    // Get rule type
+    uint32_t uiType;
+
+    for (uiType = 0;  uiType < 2; uiType++) {
+
+        if (ruleParser.getType() == _apcTypes[uiType]) {
+
+            // Set type
+            _bTypeAll = uiType != 0;
+
+            return true;
+        }
+    }
+
+    // Failed
+    strError = "Unknown compound rule type: ";
+    strError += ruleParser.getType();
+
+    return false;
+}
+
+// Dump
+void CCompoundRule::dump(string& strResult) const
+{
+    strResult += _apcTypes[_bTypeAll];
+    strResult += "{";
+
+    // Children
+    uint32_t uiChild;
+    uint32_t uiNbChildren = getNbChildren();
+    bool bFirst = true;
+
+    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
+
+        if (!bFirst) {
+
+            strResult += ", ";
+        }
+
+        // Dump inner rule
+        const CRule* pRule = static_cast<const CRule*>(getChild(uiChild));
+
+        pRule->dump(strResult);
+
+        bFirst = false;
+    }
+
+    strResult += "}";
 }
 
 // Rule check
@@ -70,7 +139,7 @@ bool CCompoundRule::matches() const
 bool CCompoundRule::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Get type
-    _bTypeAll = xmlElement.getAttributeBoolean("Type", "All");
+    _bTypeAll = xmlElement.getAttributeBoolean("Type", _apcTypes[true]);
 
     // Base
     return base::fromXml(xmlElement, serializingContext);
@@ -80,7 +149,7 @@ bool CCompoundRule::fromXml(const CXmlElement& xmlElement, CXmlSerializingContex
 void CCompoundRule::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Set type
-    xmlElement.setAttributeString("Type", _bTypeAll ? "All" : "Any");
+    xmlElement.setAttributeString("Type", _apcTypes[_bTypeAll]);
 
     // Base
     base::toXml(xmlElement, serializingContext);

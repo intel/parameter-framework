@@ -139,19 +139,9 @@ bool CConfigurableDomains::createDomain(const string& strName, string& strError)
 
 bool CConfigurableDomains::deleteDomain(const string& strName, string& strError)
 {
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strName));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strName, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain not found";
-
-        return false;
-    }
-
-    // Check domain has no rule (prevent accidental loss of data)
-    if (pConfigurableDomain->hasRules()) {
-
-        strError = "Deletion of domain containing configurations with application rules is not supported to prevent any accitental loss of data.\nPlease consider a direct modification of the XML file.";
 
         return false;
     }
@@ -169,11 +159,9 @@ bool CConfigurableDomains::deleteDomain(const string& strName, string& strError)
 
 bool CConfigurableDomains::renameDomain(const string& strName, const string& strNewName, string& strError)
 {
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strName));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strName, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain not found";
 
         return false;
     }
@@ -186,11 +174,9 @@ bool CConfigurableDomains::renameDomain(const string& strName, const string& str
 
 bool CConfigurableDomains::setSequenceAwareness(const string& strDomain, bool bSequenceAware, string& strError)
 {
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain not found";
 
         return false;
     }
@@ -202,11 +188,9 @@ bool CConfigurableDomains::setSequenceAwareness(const string& strDomain, bool bS
 
 bool CConfigurableDomains::getSequenceAwareness(const string& strDomain, bool& bSequenceAware, string& strError) const
 {
-    const CConfigurableDomain* pConfigurableDomain = static_cast<const CConfigurableDomain*>(findChild(strDomain));
+    const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain not found";
 
         return false;
     }
@@ -219,11 +203,9 @@ bool CConfigurableDomains::getSequenceAwareness(const string& strDomain, bool& b
 /// Configurations
 bool CConfigurableDomains::listConfigurations(const string& strDomain, string& strResult) const
 {
-    const CElement* pConfigurableDomain = findChild(strDomain);
+    const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strResult);
 
     if (!pConfigurableDomain) {
-
-        strResult = "Configurable domain not found";
 
         return false;
     }
@@ -236,11 +218,9 @@ bool CConfigurableDomains::listConfigurations(const string& strDomain, string& s
 bool CConfigurableDomains::createConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -251,11 +231,9 @@ bool CConfigurableDomains::createConfiguration(const string& strDomain, const st
 bool CConfigurableDomains::deleteConfiguration(const string& strDomain, const string& strConfiguration, string& strError)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -266,11 +244,9 @@ bool CConfigurableDomains::deleteConfiguration(const string& strDomain, const st
 bool CConfigurableDomains::renameConfiguration(const string& strDomain, const string& strConfigurationName, const string& strNewConfigurationName, string& strError)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -281,11 +257,9 @@ bool CConfigurableDomains::renameConfiguration(const string& strDomain, const st
 bool CConfigurableDomains::listDomainElements(const string& strDomain, string& strResult) const
 {
     // Find domain
-    const CConfigurableDomain* pConfigurableDomain = static_cast<const CConfigurableDomain*>(findChild(strDomain));
+    const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strResult);
 
     if (!pConfigurableDomain) {
-
-        strResult = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -298,11 +272,9 @@ bool CConfigurableDomains::listDomainElements(const string& strDomain, string& s
 bool CConfigurableDomains::split(const string& strDomain, CConfigurableElement* pConfigurableElement, string& strError)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -403,14 +375,12 @@ void CConfigurableDomains::gatherAllOwnedConfigurableElements(set<const CConfigu
 }
 
 // Config restore
-bool CConfigurableDomains::restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError)
+bool CConfigurableDomains::restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError) const
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -422,11 +392,9 @@ bool CConfigurableDomains::restoreConfiguration(const string& strDomain, const s
 bool CConfigurableDomains::saveConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -437,11 +405,9 @@ bool CConfigurableDomains::saveConfiguration(const string& strDomain, const stri
 bool CConfigurableDomains::setElementSequence(const string& strDomain, const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -453,16 +419,53 @@ bool CConfigurableDomains::setElementSequence(const string& strDomain, const str
 bool CConfigurableDomains::getElementSequence(const string& strDomain, const string& strConfiguration, string& strResult) const
 {
     // Find domain
-    const CConfigurableDomain* pConfigurableDomain = static_cast<const CConfigurableDomain*>(findChild(strDomain));
+    const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strResult);
 
     if (!pConfigurableDomain) {
-
-        strResult = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
     // Delegate to domain
     return pConfigurableDomain->getElementSequence(strConfiguration, strResult);
+}
+
+bool CConfigurableDomains::setApplicationRule(const string& strDomain, const string& strConfiguration, const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError)
+{
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
+
+    if (!pConfigurableDomain) {
+
+        return false;
+    }
+
+    // Delegate to domain
+    return pConfigurableDomain->setApplicationRule(strConfiguration, strApplicationRule, pSelectionCriteriaDefinition, strError);
+}
+
+bool CConfigurableDomains::clearApplicationRule(const string& strDomain, const string& strConfiguration, string& strError)
+{
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
+
+    if (!pConfigurableDomain) {
+
+        return false;
+    }
+
+    // Delegate to domain
+    return pConfigurableDomain->clearApplicationRule(strConfiguration, strError);
+}
+
+bool CConfigurableDomains::getApplicationRule(const string& strDomain, const string& strConfiguration, string& strResult) const
+{
+    const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strResult);
+
+    if (!pConfigurableDomain) {
+
+        return false;
+    }
+
+    // Delegate to domain
+    return pConfigurableDomain->getApplicationRule(strConfiguration, strResult);
 }
 
 // Last applied configurations
@@ -484,11 +487,9 @@ void CConfigurableDomains::listLastAppliedConfigurations(string& strResult) cons
 bool CConfigurableDomains::addConfigurableElementToDomain(const string& strDomain, CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, string& strError)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -499,11 +500,9 @@ bool CConfigurableDomains::addConfigurableElementToDomain(const string& strDomai
 bool CConfigurableDomains::removeConfigurableElementFromDomain(const string& strDomain, CConfigurableElement* pConfigurableElement, string& strError)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
 
         return false;
     }
@@ -532,4 +531,35 @@ bool CConfigurableDomains::serializeSettings(const string& strBinarySettingsFile
     binarySettingsStream.close();
 
     return true;
+}
+
+// Domain retrieval
+CConfigurableDomain* CConfigurableDomains::findConfigurableDomain(const string& strDomain, string& strError)
+{
+    // Find domain
+    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
+
+    if (!pConfigurableDomain) {
+
+        strError = "Configurable domain " + strDomain + " not found";
+
+        return NULL;
+    }
+
+    return pConfigurableDomain;
+}
+
+const CConfigurableDomain* CConfigurableDomains::findConfigurableDomain(const string& strDomain, string& strError) const
+{
+    // Find domain
+    const CConfigurableDomain* pConfigurableDomain = static_cast<const CConfigurableDomain*>(findChild(strDomain));
+
+    if (!pConfigurableDomain) {
+
+        strError = "Configurable domain " + strDomain + " not found";
+
+        return NULL;
+    }
+
+    return pConfigurableDomain;
 }

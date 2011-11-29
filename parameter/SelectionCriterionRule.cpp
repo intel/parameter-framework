@@ -33,6 +33,7 @@
 #include "XmlDomainSerializingContext.h"
 #include "SelectionCriteriaDefinition.h"
 #include "SelectionCriterionTypeInterface.h"
+#include "RuleParser.h"
 #include <assert.h>
 
 #define base CRule
@@ -52,6 +53,78 @@ CSelectionCriterionRule::CSelectionCriterionRule() : _pSelectionCriterion(NULL),
 string CSelectionCriterionRule::getKind() const
 {
     return "SelectionCriterionRule";
+}
+
+// Content dumping
+void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& errorContext) const
+{
+    (void)errorContext;
+
+    // Dump rule
+    dump(strValue);
+}
+
+// Parse
+bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
+{
+    // Criterion
+    _pSelectionCriterion = ruleParser.getSelectionCriteriaDefinition()->getSelectionCriterion(ruleParser.getType());
+
+    // Check existence
+    if (!_pSelectionCriterion) {
+
+        strError = "Couldn't find selection criterion " + ruleParser.getType();
+
+        return false;
+    }
+
+    // Verb
+    string strMatchesWhen;
+
+    if (!ruleParser.next(strMatchesWhen, strError)) {
+
+        return false;
+    }
+    // Value
+    string strValue;
+
+    if (!ruleParser.next(strValue, strError)) {
+
+        return false;
+    }
+
+    // Matches when
+    if (!setMatchesWhen(strMatchesWhen, strError)) {
+
+        strError = "Verb error: " + strError;
+
+        return false;
+    }
+
+    // Value
+    if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
+
+        strError = "Value error: " + strError;
+
+        return false;
+    }
+
+    return true;
+}
+
+// Dump
+void CSelectionCriterionRule::dump(string& strResult) const
+{
+    // Criterion
+    strResult += _pSelectionCriterion->getName();
+    strResult += " ";
+    // Verb
+    strResult += _astMatchesWhen[_eMatchesWhen].pcMatchesWhen;
+    strResult += " ";
+    // Value
+    string strValue;
+    _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, strValue);
+    strResult += strValue;
 }
 
 // Rule check

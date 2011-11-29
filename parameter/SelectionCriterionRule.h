@@ -55,6 +55,12 @@ class CSelectionCriterionRule : public CRule
 public:
     CSelectionCriterionRule();
 
+    // Parse
+    virtual bool parse(CRuleParser& ruleParser, string& strError);
+
+    // Dump
+    virtual void dump(string& strResult) const;
+
     // Rule check
     virtual bool matches() const;
 
@@ -66,6 +72,9 @@ public:
 
     // Class kind
     virtual string getKind() const;
+protected:
+    // Content dumping
+    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
 private:
     // XML MatchesWhen attribute parsing
     bool setMatchesWhen(const string& strMatchesWhen, string& strError);

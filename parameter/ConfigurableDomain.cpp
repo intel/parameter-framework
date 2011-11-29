@@ -73,6 +73,24 @@ bool CConfigurableDomain::childrenAreDynamic() const
     return true;
 }
 
+// Content dumping
+void CConfigurableDomain::logValue(string& strValue, CErrorContext& errorContext) const
+{
+    (void)errorContext;
+
+    strValue = "{";
+
+    // Sequence awareness
+    strValue += "Sequence aware: ";
+    strValue += _bSequenceAware ? "yes" : "no";
+
+    // Last applied configuration
+    strValue += ", Last applied configuration: ";
+    strValue += _pLastAppliedConfiguration ? _pLastAppliedConfiguration->getName() : "<none>";
+
+    strValue += "}";
+}
+
 // Sequence awareness
 void CConfigurableDomain::setSequenceAwareness(bool bSequenceAware)
 {
@@ -460,25 +478,6 @@ bool CConfigurableDomain::isApplicableConfigurationValid(const CConfigurableElem
     return pApplicableDomainConfiguration && pApplicableDomainConfiguration->isValid(pConfigurableElement);
 }
 
-// Presence of application condition on any configuration
-bool CConfigurableDomain::hasRules() const
-{
-    // Delegate to configurations
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
-
-        const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(getChild(uiChild));
-
-        if (pDomainConfiguration->hasRule()) {
-
-            return true;
-        }
-    }
-    return false;
-}
-
 // In case configurable element was removed
 void CConfigurableDomain::computeSyncSet()
 {
@@ -541,19 +540,9 @@ bool CConfigurableDomain::createConfiguration(const string& strName, const CPara
 
 bool CConfigurableDomain::deleteConfiguration(const string& strName, string& strError)
 {
-    CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(findChild(strName));
+    CDomainConfiguration* pDomainConfiguration = findConfiguration(strName, strError);
 
     if (!pDomainConfiguration) {
-
-        strError = "Configuration not found";
-
-        return false;
-    }
-
-    // Check configuration has no rule (prevent accidental loss of data)
-    if (pDomainConfiguration->hasRule()) {
-
-        strError = "Deletion of configuration containing application rules is not supported to prevent any accitental loss of data.\nPlease consider a direct modification of the XML file.";
 
         return false;
     }
@@ -593,11 +582,9 @@ void CConfigurableDomain::listAssociatedToElements(string& strResult) const
 
 bool CConfigurableDomain::renameConfiguration(const string& strName, const string& strNewName, string& strError)
 {
-    CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(findChild(strName));
+    CDomainConfiguration* pDomainConfiguration = findConfiguration(strName, strError);
 
     if (!pDomainConfiguration) {
-
-        strError = "Configuration not found";
 
         return false;
     }
@@ -607,14 +594,11 @@ bool CConfigurableDomain::renameConfiguration(const string& strName, const strin
     return pDomainConfiguration->rename(strNewName, strError);
 }
 
-bool CConfigurableDomain::restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError)
+bool CConfigurableDomain::restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError) const
 {
-    // Find Domain configuration
-    const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(findChild(strName));
+    const CDomainConfiguration* pDomainConfiguration = findConfiguration(strName, strError);
 
     if (!pDomainConfiguration) {
-
-        strError = "Domain configuration " + strName + " not found";
 
         return false;
     }
@@ -636,11 +620,9 @@ bool CConfigurableDomain::restoreConfiguration(const string& strName, CParameter
 bool CConfigurableDomain::saveConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError)
 {
     // Find Domain configuration
-    CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(findChild(strName));
+    CDomainConfiguration* pDomainConfiguration = findConfiguration(strName, strError);
 
     if (!pDomainConfiguration) {
-
-        strError = "Domain configuration " + strName + " not found";
 
         return false;
     }
@@ -652,14 +634,12 @@ bool CConfigurableDomain::saveConfiguration(const string& strName, const CParame
     return true;
 }
 
-bool CConfigurableDomain::setElementSequence(const string& strName, const vector<string>& astrNewElementSequence, string& strError)
+bool CConfigurableDomain::setElementSequence(const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError)
 {
     // Find Domain configuration
-    CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(findChild(strName));
+    CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strError);
 
     if (!pDomainConfiguration) {
-
-        strError = "Domain configuration " + strName + " not found";
 
         return false;
     }
@@ -668,20 +648,64 @@ bool CConfigurableDomain::setElementSequence(const string& strName, const vector
     return pDomainConfiguration->setElementSequence(astrNewElementSequence, strError);
 }
 
-bool CConfigurableDomain::getElementSequence(const string& strName, string& strResult) const
+bool CConfigurableDomain::getElementSequence(const string& strConfiguration, string& strResult) const
 {
     // Find Domain configuration
-    const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(findChild(strName));
+    const CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strResult);
 
     if (!pDomainConfiguration) {
-
-        strResult = "Domain configuration " + strName + " not found";
 
         return false;
     }
 
     // Delegate to configuration
     pDomainConfiguration->getElementSequence(strResult);
+
+    return true;
+}
+
+bool CConfigurableDomain::setApplicationRule(const string& strConfiguration, const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError)
+{
+    // Find Domain configuration
+    CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strError);
+
+    if (!pDomainConfiguration) {
+
+        return false;
+    }
+
+    // Delegate to configuration
+    return pDomainConfiguration->setApplicationRule(strApplicationRule, pSelectionCriteriaDefinition, strError);
+}
+
+bool CConfigurableDomain::clearApplicationRule(const string& strConfiguration, string& strError)
+{
+    // Find Domain configuration
+    CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strError);
+
+    if (!pDomainConfiguration) {
+
+        return false;
+    }
+
+    // Delegate to configuration
+    pDomainConfiguration->clearApplicationRule();
+
+    return true;
+}
+
+bool CConfigurableDomain::getApplicationRule(const string& strConfiguration, string& strResult) const
+{
+    // Find Domain configuration
+    const CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strResult);
+
+    if (!pDomainConfiguration) {
+
+        return false;
+    }
+
+    // Delegate to configuration
+    pDomainConfiguration->getApplicationRule(strResult);
 
     return true;
 }
@@ -982,4 +1006,31 @@ CSyncerSet* CConfigurableDomain::getSyncerSet(const CConfigurableElement* pConfi
     assert(mapIt != _configurableElementToSyncerSetMap.end());
 
     return mapIt->second;
+}
+
+// Configuration retrieval
+CDomainConfiguration* CConfigurableDomain::findConfiguration(const string& strConfiguration, string& strError)
+{
+    CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(findChild(strConfiguration));
+
+    if (!pDomainConfiguration) {
+
+        strError = "Domain configuration " + strConfiguration + " not found";
+
+        return NULL;
+    }
+    return pDomainConfiguration;
+}
+
+const CDomainConfiguration* CConfigurableDomain::findConfiguration(const string& strConfiguration, string& strError) const
+{
+    const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(findChild(strConfiguration));
+
+    if (!pDomainConfiguration) {
+
+        strError = "Domain configuration " + strConfiguration + " not found";
+
+        return NULL;
+    }
+    return pDomainConfiguration;
 }

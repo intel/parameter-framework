@@ -37,6 +37,12 @@ class CCompoundRule : public CRule
 public:
     CCompoundRule();
 
+    // Parse
+    virtual bool parse(CRuleParser& ruleParser, string& strError);
+
+    // Dump
+    virtual void dump(string& strResult) const;
+
     // Rule check
     virtual bool matches() const;
 
@@ -48,10 +54,16 @@ public:
 
     // Class kind
     virtual string getKind() const;
+protected:
+    // Content dumping
+    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
 private:
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
 
     // Type
     bool _bTypeAll;
+
+    // Types
+    static const char* _apcTypes[];
 };

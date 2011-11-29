@@ -91,7 +91,8 @@ LOCAL_SRC_FILES:= \
         VirtualSyncer.cpp \
         ParameterHandle.cpp \
         ParameterAdaptation.cpp \
-        LinearParameterAdaptation.cpp
+        LinearParameterAdaptation.cpp \
+        RuleParser.cpp
 
 
 LOCAL_MODULE:= libparameter

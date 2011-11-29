@@ -82,7 +82,7 @@ class CParameterMgr : private CElement
     };
     // Version
     static const uint32_t guiEditionMajor = 0x2;
-    static const uint32_t guiEditionMinor = 0x0;
+    static const uint32_t guiEditionMinor = 0x1;
     static const uint32_t guiRevision = 0x0;
 
     // Parameter handle friendship
@@ -210,6 +210,7 @@ private:
     CCommandHandler::CommandStatus splitDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Configurations
     CCommandHandler::CommandStatus listConfigurationsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus dumpDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus createConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus deleteConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus renameConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
@@ -217,6 +218,9 @@ private:
     CCommandHandler::CommandStatus restoreConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus setElementSequenceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus getElementSequenceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus setRuleCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus clearRuleCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getRuleCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Elements/Parameters
     CCommandHandler::CommandStatus listElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus listParametersCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);

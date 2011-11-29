@@ -36,6 +36,8 @@
 class CParameterBlackboard;
 class CConfigurableElement;
 class CSyncerSet;
+class CConfigurableDomain;
+class CSelectionCriteriaDefinition;
 
 class CConfigurableDomains : public CBinarySerializableElement
 {
@@ -59,10 +61,13 @@ public:
     bool createConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError);
     bool deleteConfiguration(const string& strDomain, const string& strConfiguration, string& strError);
     bool renameConfiguration(const string& strDomain, const string& strConfigurationName, const string& strNewConfigurationName, string& strError);
-    bool restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError);
+    bool restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError) const;
     bool saveConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError);
     bool setElementSequence(const string& strDomain, const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError);
     bool getElementSequence(const string& strDomain, const string& strConfiguration, string& strResult) const;
+    bool setApplicationRule(const string& strDomain, const string& strConfiguration, const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError);
+    bool clearApplicationRule(const string& strDomain, const string& strConfiguration, string& strError);
+    bool getApplicationRule(const string& strDomain, const string& strConfiguration, string& strResult) const;
 
     // Last applied configurations
     void listLastAppliedConfigurations(string& strResult) const;
@@ -90,5 +95,8 @@ private:
     virtual bool childrenAreDynamic() const;
     // Gather owned configurable elements owned by any domain
     void gatherAllOwnedConfigurableElements(set<const CConfigurableElement*>& configurableElementSet) const;
+    // Domain retrieval
+    CConfigurableDomain* findConfigurableDomain(const string& strDomain, string& strError);
+    const CConfigurableDomain* findConfigurableDomain(const string& strDomain, string& strError) const;
 };
 

@@ -36,6 +36,7 @@
 #include "XmlDomainSerializingContext.h"
 #include "ConfigurationAccessContext.h"
 #include <assert.h>
+#include "RuleParser.h"
 
 #define base CBinarySerializableElement
 
@@ -282,6 +283,47 @@ void CDomainConfiguration::getElementSequence(string& strResult) const
     }
 }
 
+// Application rule
+bool CDomainConfiguration::setApplicationRule(const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError)
+{
+    // Parser
+    CRuleParser ruleParser(strApplicationRule, pSelectionCriteriaDefinition);
+
+    // Attempt to parse it
+    if (!ruleParser.parse(NULL, strError)) {
+
+        return false;
+    }
+    // Replace compound rule
+    setRule(ruleParser.grabRootRule());
+
+    return true;
+}
+
+void CDomainConfiguration::clearApplicationRule()
+{
+    // Replace compound rule
+    setRule(NULL);
+}
+
+void CDomainConfiguration::getApplicationRule(string& strResult) const
+{
+    // Rule
+    const CCompoundRule* pRule = getRule();
+
+    if (pRule) {
+        // Start clear
+        strResult.clear();
+
+        // Dump rule
+        pRule->dump(strResult);
+
+    } else {
+
+        strResult = "<none>";
+    }
+}
+
 // Save data from current
 void CDomainConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 {
@@ -518,12 +560,6 @@ CAreaConfiguration* CDomainConfiguration::getAreaConfiguration(uint32_t uiAreaCo
     return NULL;
 }
 
-// Presence of application condition
-bool CDomainConfiguration::hasRule() const
-{
-    return !!getRule();
-}
-
 // Rule
 const CCompoundRule* CDomainConfiguration::getRule() const
 {
@@ -532,6 +568,33 @@ const CCompoundRule* CDomainConfiguration::getRule() const
         return static_cast<const CCompoundRule*>(getChild(ECompoundRule));
     }
     return NULL;
+}
+
+CCompoundRule* CDomainConfiguration::getRule()
+{
+    if (getNbChildren()) {
+        // Rule created
+        return static_cast<CCompoundRule*>(getChild(ECompoundRule));
+    }
+    return NULL;
+}
+
+void CDomainConfiguration::setRule(CCompoundRule* pRule)
+{
+    CCompoundRule* pOldRule = getRule();
+
+    if (pOldRule) {
+        // Remove previous rule
+        removeChild(pOldRule);
+
+        delete pOldRule;
+    }
+
+    // Set new one
+    if (pRule) {
+        // Chain
+        addChild(pRule);
+    }
 }
 
 // Serialization

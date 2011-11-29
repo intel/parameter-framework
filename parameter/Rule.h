@@ -32,11 +32,19 @@
 
 #include "Element.h"
 
+class CRuleParser;
+
 class CRule : public CElement
 {
 
 public:
     CRule();
+
+    // Parse
+    virtual bool parse(CRuleParser& ruleParser, string& strError) = 0;
+
+    // Dump
+    virtual void dump(string& strResult) const = 0;
 
     // Rule check
     virtual bool matches() const = 0;

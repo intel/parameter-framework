@@ -39,6 +39,7 @@ class CParameterBlackboard;
 class CConfigurationAccessContext;
 class CCompoundRule;
 class CSyncerSet;
+class CSelectionCriteriaDefinition;
 
 class CDomainConfiguration : public CBinarySerializableElement
 {
@@ -57,6 +58,11 @@ public:
     // Sequence management
     bool setElementSequence(const vector<string>& astrNewElementSequence, string& strError);
     void getElementSequence(string& strResult) const;
+
+    // Application rule
+    bool setApplicationRule(const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError);
+    void clearApplicationRule();
+    void getApplicationRule(string& strResult) const;
 
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
@@ -82,9 +88,6 @@ public:
     // XML configuration settings parsing/composing
     bool parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext);
     void composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext) const;
-
-    // Presence of application condition
-    bool hasRule() const;
 
     // Serialization
     virtual void binarySerialize(CBinaryStream& binaryStream);
@@ -114,6 +117,8 @@ private:
 
     // Rule
     const CCompoundRule* getRule() const;
+    CCompoundRule* getRule();
+    void setRule(CCompoundRule* pRule);
 
     // AreaConfigurations
     list<CAreaConfiguration*> _areaConfigurationList;

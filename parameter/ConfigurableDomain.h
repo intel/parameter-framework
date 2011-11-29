@@ -39,6 +39,7 @@
 class CConfigurableElement;
 class CDomainConfiguration;
 class CParameterBlackboard;
+class CSelectionCriteriaDefinition;
 
 class CConfigurableDomain : public CBinarySerializableElement
 {
@@ -56,10 +57,13 @@ public:
     bool createConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError);
     bool deleteConfiguration(const string& strName, string& strError);
     bool renameConfiguration(const string& strName, const string& strNewName, string& strError);
-    bool restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError);
+    bool restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError) const;
     bool saveConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError);
-    bool setElementSequence(const string& strName, const vector<string>& astrNewElementSequence, string& strError);
-    bool getElementSequence(const string& strName, string& strResult) const;
+    bool setElementSequence(const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError);
+    bool getElementSequence(const string& strConfiguration, string& strResult) const;
+    bool setApplicationRule(const string& strConfiguration, const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError);
+    bool clearApplicationRule(const string& strConfiguration, string& strError);
+    bool getApplicationRule(const string& strConfiguration, string& strResult) const;
 
     // Last applied configuration
     string getLastAppliedConfigurationName() const;
@@ -84,9 +88,6 @@ public:
     // Return applicable configuration validity for given configurable element
     bool isApplicableConfigurationValid(const CConfigurableElement* pConfigurableElement) const;
 
-    // Presence of application condition on any configuration
-    bool hasRules() const;
-
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
@@ -95,6 +96,9 @@ public:
 
     // Class kind
     virtual string getKind() const;
+protected:
+    // Content dumping
+    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
 private:
     // Returns true if children dynamic creation is to be dealt with (here, will allow child deletion upon clean)
     virtual bool childrenAreDynamic() const;
@@ -143,6 +147,10 @@ private:
 
     // Syncer set retrieval from configurable element
     CSyncerSet* getSyncerSet(const CConfigurableElement* pConfigurableElement) const;
+
+    // Configuration retrieval
+    CDomainConfiguration* findConfiguration(const string& strConfiguration, string& strError);
+    const CDomainConfiguration* findConfiguration(const string& strConfiguration, string& strError) const;
 
     // Configurable elements
     list<CConfigurableElement*> _configurableElementList;
