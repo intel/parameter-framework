@@ -164,9 +164,6 @@ void CFixedPointParameterType::asString(const uint32_t& uiValue, string& strValu
     // Check consistency
     assert(isEncodable(iData));
 
-    // Sign extend
-    signExtend(iData);
-
     // Format
     ostringstream strStream;
 
@@ -179,9 +176,15 @@ void CFixedPointParameterType::asString(const uint32_t& uiValue, string& strValu
             strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << (uint32_t)iData;
         } else {
 
+            // Sign extend
+            signExtend(iData);
+
             strStream << iData;
         }
     } else {
+
+        // Sign extend
+        signExtend(iData);
 
         // Unjustify
         iData >>= getSize() * 8 - getUtilSizeInBits();

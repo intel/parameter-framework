@@ -33,6 +33,7 @@
 #include <sstream>
 #include <iomanip>
 #include "ParameterAccessContext.h"
+#include <assert.h>
 
 #define base CParameterType
 
@@ -163,6 +164,9 @@ bool CIntegerParameterType::asInteger(const string& strValue, uint32_t& uiValue,
 
 void CIntegerParameterType::asString(const uint32_t& uiValue, string& strValue, CParameterAccessContext& parameterAccessContext) const
 {
+    // Check consistency
+    assert(isEncodable(uiValue));
+
     // Format
     ostringstream strStream;
 
@@ -170,7 +174,7 @@ void CIntegerParameterType::asString(const uint32_t& uiValue, string& strValue, 
     if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
 
         // Hexa display with unecessary bits cleared out
-        strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(uiValue);
+        strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << uiValue;
     } else {
 
         if (_bSigned) {
