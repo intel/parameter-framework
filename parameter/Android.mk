@@ -92,7 +92,8 @@ LOCAL_SRC_FILES:= \
         ParameterHandle.cpp \
         ParameterAdaptation.cpp \
         LinearParameterAdaptation.cpp \
-        RuleParser.cpp
+        RuleParser.cpp \
+        EnumValuePair.cpp
 
 
 LOCAL_MODULE:= libparameter

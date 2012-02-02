@@ -30,44 +30,27 @@
  */
 #pragma once
 
-#include "ParameterType.h"
+#include "Element.h"
 
-#include <list>
-
-class CEnumParameterType : public CParameterType
+class CEnumValuePair : public CElement
 {
 public:
-    CEnumParameterType(const string& strName);
+    CEnumValuePair();
+
+    // Numerical
+    int32_t getNumerical() const;
+    string getNumericalAsString() const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
-    /// Conversion
-    // String
-    virtual bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    // Integer
-    virtual bool toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
-
-    // Default value handling (simulation only)
-    virtual uint32_t getDefaultValue() const;
-
-    // Element properties
-    virtual void showProperties(string& strResult) const;
-
     // CElement
     virtual string getKind() const;
+protected:
+    // Content dumping
+    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
 private:
-    // Returns true if children dynamic creation is to be dealt with
-    virtual bool childrenAreDynamic() const;
-    // Check string is a number
-    static bool isNumber(const string& strValue);
-
-    // Literal - numerical conversions
-    bool getLiteral(int32_t iNumerical, string& strLiteral) const;
-    bool getNumerical(const string& strLiteral, int32_t& iNumerical) const;
-
-    // Numerical validity
-    bool isValid(int32_t iNumerical) const;
+    // Numerical
+    int32_t _iNumerical;
 };
+

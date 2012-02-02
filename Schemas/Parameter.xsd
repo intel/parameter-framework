@@ -63,7 +63,7 @@
 				<xs:sequence>
 					<xs:element name="ValuePair" maxOccurs="unbounded">
 						<xs:complexType>
-							<xs:attribute name="Literal" type="xs:NMTOKEN" use="required"/>
+							<xs:attribute name="Literal" type="xs:string" use="required"/>
 							<xs:attribute name="Numerical" use="required">
 								<xs:simpleType>
 									<xs:restriction base="xs:string">

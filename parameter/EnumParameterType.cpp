@@ -35,6 +35,7 @@
 #include <ctype.h>
 #include <assert.h>
 #include "ParameterAccessContext.h"
+#include "EnumValuePair.h"
 
 #define base CParameterType
 
@@ -47,6 +48,11 @@ string CEnumParameterType::getKind() const
     return "EnumParameter";
 }
 
+bool CEnumParameterType::childrenAreDynamic() const
+{
+    return true;
+}
+
 // Element properties
 void CEnumParameterType::showProperties(string& strResult) const
 {
@@ -55,14 +61,17 @@ void CEnumParameterType::showProperties(string& strResult) const
     strResult += "Value Pairs:\n";
 
     // Show all value pairs
-    ValuePairListIterator it;
+    uint32_t uiChild;
+    uint32_t uiNbChildren = getNbChildren();
 
-    for (it = _valuePairList.begin(); it != _valuePairList.end(); ++it) {
+    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
+
+        const CEnumValuePair* pValuePair = static_cast<const CEnumValuePair*>(getChild(uiChild));
 
         strResult += "\tLiteral: \"";
-        strResult += it->_strLiteral;
+        strResult += pValuePair->getName();
         strResult += "\", Numerical: ";
-        strResult += toString(it->_iNumerical);
+        strResult += pValuePair->getNumericalAsString();
         strResult += "\n";
     }
 }
@@ -75,26 +84,8 @@ bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
     // Size
     setSize(uiSizeInBits / 8);
 
-    // Get value pairs
-    CXmlElement::CChildIterator it(xmlElement);
-
-    CXmlElement xmlValuePairElement;
-
-    while (it.next(xmlValuePairElement)) {
-
-        _valuePairList.push_back(SValuePair(xmlValuePairElement.getAttributeString("Literal"), xmlValuePairElement.getAttributeSignedInteger("Numerical")));
-    }
-
-    // Check value pair list
-    if (_valuePairList.empty()) {
-
-        serializingContext.setError("No Value pairs provided for element " + xmlElement.getPath());
-
-        return false;
-    }
-
-    // Don't dig
-    return true;
+    // Base
+    return base::fromXml(xmlElement, serializingContext);
 }
 
 // Conversion (tuning)
@@ -214,10 +205,13 @@ bool CEnumParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, C
 // Default value handling (simulation only)
 uint32_t CEnumParameterType::getDefaultValue() const
 {
-    assert(!_valuePairList.empty());
+    if (!getNbChildren()) {
 
-    // Return first item
-    return _valuePairList.front()._iNumerical;
+        return 0;
+    }
+
+    // Return first available numerical
+    return static_cast<const CEnumValuePair*>(getChild(0))->getNumerical();
 }
 
 // Check string is a number
@@ -231,47 +225,59 @@ bool CEnumParameterType::isNumber(const string& strValue)
 // Literal - numerical conversions
 bool CEnumParameterType::getLiteral(int32_t iNumerical, string& strLiteral) const
 {
-    ValuePairListIterator it;
+    uint32_t uiChild;
+    uint32_t uiNbChildren = getNbChildren();
 
-    for (it = _valuePairList.begin(); it != _valuePairList.end(); ++it) {
+    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        if (it->_iNumerical == iNumerical) {
+        const CEnumValuePair* pValuePair = static_cast<const CEnumValuePair*>(getChild(uiChild));
 
-            strLiteral = it->_strLiteral;
+        if (pValuePair->getNumerical() == iNumerical) {
+
+            strLiteral = pValuePair->getName();
 
             return true;
         }
     }
+
     return false;
 }
 
 bool CEnumParameterType::getNumerical(const string& strLiteral, int32_t& iNumerical) const
 {
-    ValuePairListIterator it;
+    uint32_t uiChild;
+    uint32_t uiNbChildren = getNbChildren();
 
-    for (it = _valuePairList.begin(); it != _valuePairList.end(); ++it) {
+    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        if (it->_strLiteral == strLiteral) {
+        const CEnumValuePair* pValuePair = static_cast<const CEnumValuePair*>(getChild(uiChild));
 
-            iNumerical = it->_iNumerical;
+        if (pValuePair->getName() == strLiteral) {
+
+            iNumerical = pValuePair->getNumerical();
 
             return true;
         }
     }
+
     return false;
 }
 
 // Numerical validity
 bool CEnumParameterType::isValid(int32_t iNumerical) const
 {
-    ValuePairListIterator it;
+    uint32_t uiChild;
+    uint32_t uiNbChildren = getNbChildren();
 
-    for (it = _valuePairList.begin(); it != _valuePairList.end(); ++it) {
+    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        if (it->_iNumerical == iNumerical) {
+        const CEnumValuePair* pValuePair = static_cast<const CEnumValuePair*>(getChild(uiChild));
+
+        if (pValuePair->getNumerical() == iNumerical) {
 
             return true;
         }
     }
+
     return false;
 }

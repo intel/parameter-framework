@@ -31,7 +31,7 @@
 #include "XmlComposer.h"
 #include <libxml/parser.h>
 #include <libxml/tree.h>
-#include <time.h>
+#include <sys/time.h>
 
 #define base CXmlSerializer
 

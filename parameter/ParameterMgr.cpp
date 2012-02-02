@@ -77,6 +77,7 @@
 #include <assert.h>
 #include "ParameterHandle.h"
 #include "LinearParameterAdaptation.h"
+#include "EnumValuePair.h"
 
 #define base CElement
 
@@ -1302,6 +1303,12 @@ bool CParameterMgr::accessValue(const string& strPath, string& strValue, bool bS
     // Define context
     CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
+    // Auto Sync
+    if (bSet) {
+
+        parameterAccessContext.setAutoSync(_bAutoSyncOn);
+    }
+
     // Do the get
     return getConstSystemClass()->accessValue(pathNavigator, strValue, bSet, parameterAccessContext);
 }
@@ -1752,6 +1759,7 @@ void CParameterMgr::feedElementLibraries()
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CIntegerParameterType>("IntegerParameter"));
     pParameterCreationLibrary->addElementBuilder(new TElementBuilderTemplate<CLinearParameterAdaptation>("LinearAdaptation"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CEnumParameterType>("EnumParameter"));
+    pParameterCreationLibrary->addElementBuilder(new TElementBuilderTemplate<CEnumValuePair>("ValuePair"));
     pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CFixedPointParameterType>("FixedPointParameter"));
     pParameterCreationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CXmlFileIncluderElement>("SubsystemInclude"));
 

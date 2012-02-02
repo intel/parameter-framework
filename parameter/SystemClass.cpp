@@ -208,7 +208,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, string& strError)
         if (!lib_handle) {
 
             // Failed
-            log("Plugin load failed, proceeding on with remaining ones");
+            log("Plugin load failed: %s, proceeding on with remaining ones", dlerror());
 
             // Next plugin
             ++it;
