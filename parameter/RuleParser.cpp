@@ -121,8 +121,20 @@ bool CRuleParser::parse(CCompoundRule* pParentRule, string& strError)
             // Go on
             break;
         }
-        case EDone:
-            return true;
+        case EDone: {
+            // If the current state is EDone, check that at least one rule has been found.
+            if (_pRootRule) {
+
+                // At least one rule found
+                return true;
+            } else {
+
+                strError = "Syntax error, no rule found";
+
+                return false;
+            }
+
+        }
         default:
             assert(0);
             return false;
