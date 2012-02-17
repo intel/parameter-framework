@@ -50,7 +50,9 @@ LOCAL_SRC_FILES:= \
         XmlFileIncluderElement.cpp \
         ParameterFrameworkConfiguration.cpp \
         FrameworkConfigurationGroup.cpp \
+        SubsystemPlugins.cpp \
         FrameworkConfigurationLocation.cpp \
+        PluginLocation.cpp \
         KindElement.cpp \
         ElementLibrarySet.cpp \
         ErrorContext.cpp \

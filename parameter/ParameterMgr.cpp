@@ -54,6 +54,8 @@
 #include "XmlFileIncluderElement.h"
 #include "ParameterFrameworkConfiguration.h"
 #include "FrameworkConfigurationGroup.h"
+#include "PluginLocation.h"
+#include "SubsystemPlugins.h"
 #include "FrameworkConfigurationLocation.h"
 #include "ConfigurableDomains.h"
 #include "ConfigurableDomain.h"
@@ -182,6 +184,7 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _pMainParameterBlackboard(new CParameterBlackboard),
     _pElementLibrarySet(new CElementLibrarySet),
     _strXmlConfigurationFilePath(strConfigurationFilePath),
+    _pSubsystemPlugins(NULL),
     _uiStructureChecksum(0),
     _pRemoteProcessorServer(NULL),
     _uiMaxCommandUsageLength(0),
@@ -307,7 +310,7 @@ bool CParameterMgr::load(string& strError)
     }
 
     // Load subsystems
-    if (!getSystemClass()->loadSubsystems(strError, _astrPluginFolderPaths)) {
+    if (!getSystemClass()->loadSubsystems(strError, _pSubsystemPlugins)) {
 
         return false;
     }
@@ -373,32 +376,14 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
     getSystemClass()->setName(getConstFrameworkConfiguration()->getSystemClassName());
     getConfigurableDomains()->setName(getConstFrameworkConfiguration()->getSystemClassName());
 
-    // Get subsystem plugins folders element
-    const CFrameworkConfigurationGroup* pSubsystemPluginFolders = static_cast<const CFrameworkConfigurationGroup*>(getConstFrameworkConfiguration()->findChild("SubsystemPluginFolders"));
+    // Get subsystem plugins elements
+    _pSubsystemPlugins = static_cast<const CSubsystemPlugins*>(getConstFrameworkConfiguration()->findChild("SubsystemPlugins"));
 
-    if (!pSubsystemPluginFolders) {
+    if (!_pSubsystemPlugins) {
 
-        strError = "Parameter Framework Configuration: couldn't find SubsystemPluginFolders element";
-
-        return false;
-    }
-    // Get plugin locations
-    uint32_t uiPluginFolderLocation;
-    uint32_t uiNbPluginFolderLocations = pSubsystemPluginFolders->getNbChildren();
-
-    if (!uiNbPluginFolderLocations) {
-
-        strError = "Parameter Framework Configuration: couldn't find any PluginFolderLocation element";
+        strError = "Parameter Framework Configuration: couldn't find SubsystemPlugins element";
 
         return false;
-    }
-
-    // Collect plugin paths
-    for (uiPluginFolderLocation = 0; uiPluginFolderLocation < uiNbPluginFolderLocations; uiPluginFolderLocation++) {
-
-        const CFrameworkConfigurationLocation* pSubsystemPluginLocation = static_cast<const CFrameworkConfigurationLocation*>(pSubsystemPluginFolders->getChild(uiPluginFolderLocation));
-
-        _astrPluginFolderPaths.push_back(pSubsystemPluginLocation->getFilePath(_strXmlConfigurationFilePath));
     }
 
     // Log tuning availability
@@ -1736,8 +1721,8 @@ void CParameterMgr::feedElementLibraries()
     CElementLibrary* pFrameworkConfigurationLibrary = new CElementLibrary;
 
     pFrameworkConfigurationLibrary->addElementBuilder(new TElementBuilderTemplate<CParameterFrameworkConfiguration>("ParameterFrameworkConfiguration"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>("SubsystemPluginFolders"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("PluginFolderLocation"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CSubsystemPlugins>("SubsystemPlugins"));
+    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CPluginLocation>("Location"));
     pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("StructureDescriptionFileLocation"));
     pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>("SettingsConfiguration"));
     pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("ConfigurableDomainsFileLocation"));

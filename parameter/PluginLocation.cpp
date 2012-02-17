@@ -28,43 +28,43 @@
  * 
  * </auto_header>
  */
-#pragma once
+#include "PluginLocation.h"
 
-#include "ConfigurableElement.h"
-#include "SubsystemPlugins.h"
-#include <list>
+#define base CKindElement
 
-class CSubsystemLibrary;
-
-class CSystemClass : public CConfigurableElement
+CPluginLocation::CPluginLocation(const string& strName, const string& strKind) : base(strName, strKind)
 {
-public:
-    CSystemClass();
-    virtual ~CSystemClass();
 
-    // Called from parent before actual init
-    bool loadSubsystems(string& strError, const CSubsystemPlugins* pSubsystemPlugins);
-    // Subsystem factory
-    const CSubsystemLibrary* getSubsystemLibrary() const;
+}
 
-    // base
-    virtual bool init(string& strError);
-    virtual string getKind() const;
+const string& CPluginLocation::getFolder() const
+{
+    return _strFolder;
+}
 
-private:
-    // base
-    virtual bool childrenAreDynamic() const;
+const list<string>& CPluginLocation::getPluginList() const
+{
+    return _pluginList;
+}
 
-    // Subsystem plugins
-    bool getPluginFiles(const string& strPluginPath, list<string>& lstrPluginFiles) const;
+bool CPluginLocation::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext)
+{
+    (void) serializingContext;
 
-    // Plugin symbol computation
-    static string getPluginSymbol(const string& strPluginPath);
+    // Retrieve folder
+    _strFolder = xmlElement.getAttributeString("Folder");
 
-    // Plugin loading
-    bool loadPlugins(list<string>& lstrPluginFiles, string& strError);
+    // Get Info from children
+    CXmlElement::CChildIterator childIterator(xmlElement);
 
-    // Subsystem factory
-    CSubsystemLibrary* _pSubsystemLibrary;
-};
+    CXmlElement xmlPluginElement;
 
+    while (childIterator.next(xmlPluginElement)) {
+
+        // Fill Plugin List
+        _pluginList.push_back(xmlPluginElement.getAttributeString("Name"));
+    }
+
+    // Don't dig
+    return true;
+}

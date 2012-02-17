@@ -29,42 +29,26 @@
  * </auto_header>
  */
 #pragma once
-
-#include "ConfigurableElement.h"
-#include "SubsystemPlugins.h"
 #include <list>
+#include "KindElement.h"
 
-class CSubsystemLibrary;
-
-class CSystemClass : public CConfigurableElement
+class CPluginLocation : public CKindElement
 {
+
 public:
-    CSystemClass();
-    virtual ~CSystemClass();
+    CPluginLocation(const string& strName, const string& strKind);
 
-    // Called from parent before actual init
-    bool loadSubsystems(string& strError, const CSubsystemPlugins* pSubsystemPlugins);
-    // Subsystem factory
-    const CSubsystemLibrary* getSubsystemLibrary() const;
+    // From IXmlSink
+    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
-    // base
-    virtual bool init(string& strError);
-    virtual string getKind() const;
+    // Folder
+    const string& getFolder() const;
+
+    // Plugin list
+    const list<string>& getPluginList() const;
 
 private:
-    // base
-    virtual bool childrenAreDynamic() const;
+    string _strFolder;
+    list<string> _pluginList;
 
-    // Subsystem plugins
-    bool getPluginFiles(const string& strPluginPath, list<string>& lstrPluginFiles) const;
-
-    // Plugin symbol computation
-    static string getPluginSymbol(const string& strPluginPath);
-
-    // Plugin loading
-    bool loadPlugins(list<string>& lstrPluginFiles, string& strError);
-
-    // Subsystem factory
-    CSubsystemLibrary* _pSubsystemLibrary;
 };
-

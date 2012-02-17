@@ -51,6 +51,7 @@ class CConfigurableDomains;
 class IRemoteProcessorServerInterface;
 class CBackSynchronizer;
 class CParameterHandle;
+class CSubsystemPlugins;
 
 class CParameterMgr : private CElement
 {
@@ -321,7 +322,7 @@ private:
     string _strSchemaFolderLocation; // Place where schemas stand
 
     // Subsystem plugin location
-    vector<string> _astrPluginFolderPaths;
+    const CSubsystemPlugins* _pSubsystemPlugins;
 
     // Whole system structure checksum
     uint8_t _uiStructureChecksum;

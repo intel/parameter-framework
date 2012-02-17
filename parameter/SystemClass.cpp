@@ -38,6 +38,7 @@
 #include "VirtualSubsystem.h"
 #include "NamedElementBuilderTemplate.h"
 #include <assert.h>
+#include "PluginLocation.h"
 
 #define base CConfigurableElement
 
@@ -76,22 +77,33 @@ string CSystemClass::getKind() const
     return "SystemClass";
 }
 
-bool CSystemClass::loadSubsystems(string& strError, const vector<string>& astrPluginFolderPaths)
+bool CSystemClass::loadSubsystems(string& strError, const CSubsystemPlugins* pSubsystemPlugins)
 {
     CAutoLog autoLlog(this, "Loading subsystem plugins");
 
     // Plugin list
     list<string> lstrPluginFiles;
 
-    uint32_t uiFolderLocation;
+    uint32_t uiPluginLocation;
 
-    for (uiFolderLocation = 0; uiFolderLocation < astrPluginFolderPaths.size(); uiFolderLocation++) {
+    for (uiPluginLocation = 0; uiPluginLocation <  pSubsystemPlugins->getNbChildren(); uiPluginLocation++) {
 
-        // Folder for current SystemClass
-        string strPluginPath = astrPluginFolderPaths[uiFolderLocation] + "/";
+        // Get Folder for current Plugin Location
+        const CPluginLocation* pPluginLocation = static_cast<const CPluginLocation*>(pSubsystemPlugins->getChild(uiPluginLocation));
 
-        // Get plugin list
-        getPluginFiles(strPluginPath, lstrPluginFiles);
+        const string& strFolder = pPluginLocation->getFolder();
+
+        // Iterator on Plugin List:
+        list<string>::const_iterator it;
+
+        const list<string>& pluginList = pPluginLocation->getPluginList();
+
+        for (it = pluginList.begin(); it != pluginList.end(); ++it) {
+
+            // Fill Plugin files list
+            lstrPluginFiles.push_back(strFolder + "/" + *it);
+        }
+
     }
     // Check at least one subsystem plugin available
     if (!lstrPluginFiles.size()) {
@@ -128,41 +140,6 @@ bool CSystemClass::loadSubsystems(string& strError, const vector<string>& astrPl
 
     // Add virtual subsystem builder
     _pSubsystemLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CVirtualSubsystem>("Virtual"));
-
-    return true;
-}
-
-// Subsystem plugins
-bool CSystemClass::getPluginFiles(const string& strPluginPath, list<string>& lstrPluginFiles) const
-{
-    log("Seeking subsystem plugins from folder \"%s\"", strPluginPath.c_str());
-
-    DIR *dirp;
-    struct dirent *dp;
-
-    if ((dirp = opendir(strPluginPath.c_str())) == NULL) {
-
-        return false;
-    }
-
-    const string strPluginPattern(gpcPluginPattern);
-
-    // Parse it and load plugins
-    while ((dp = readdir(dirp)) != NULL) {
-
-        string strFileName(dp->d_name);
-
-        // Check file name ends with pattern
-        size_t uiPatternPos = strFileName.rfind(strPluginPattern, -1);
-
-        if (uiPatternPos != (size_t)-1 && uiPatternPos == strFileName.size() - strPluginPattern.size()) {
-            // Found plugin
-            lstrPluginFiles.push_back(strPluginPath + strFileName);
-        }
-    }
-
-    // Close plugin folder
-    closedir(dirp);
 
     return true;
 }

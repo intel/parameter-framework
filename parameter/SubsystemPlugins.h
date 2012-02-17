@@ -30,41 +30,16 @@
  */
 #pragma once
 
-#include "ConfigurableElement.h"
-#include "SubsystemPlugins.h"
+#include "KindElement.h"
 #include <list>
 
-class CSubsystemLibrary;
-
-class CSystemClass : public CConfigurableElement
+class CSubsystemPlugins : public CKindElement
 {
+
 public:
-    CSystemClass();
-    virtual ~CSystemClass();
-
-    // Called from parent before actual init
-    bool loadSubsystems(string& strError, const CSubsystemPlugins* pSubsystemPlugins);
-    // Subsystem factory
-    const CSubsystemLibrary* getSubsystemLibrary() const;
-
-    // base
-    virtual bool init(string& strError);
-    virtual string getKind() const;
+    CSubsystemPlugins(const string& strName, const string& strKind);
 
 private:
-    // base
     virtual bool childrenAreDynamic() const;
 
-    // Subsystem plugins
-    bool getPluginFiles(const string& strPluginPath, list<string>& lstrPluginFiles) const;
-
-    // Plugin symbol computation
-    static string getPluginSymbol(const string& strPluginPath);
-
-    // Plugin loading
-    bool loadPlugins(list<string>& lstrPluginFiles, string& strError);
-
-    // Subsystem factory
-    CSubsystemLibrary* _pSubsystemLibrary;
 };
-

@@ -3,11 +3,20 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:complexType name="ConfigurationFilePath">
         <xs:attribute name="Path" type="xs:anyURI" use="required"/>
-    </xs:complexType>
-	<xs:element name="SubsystemPluginFolders">
+    </xs:complexType> 
+    <xs:complexType name="PluginFile">
+        <xs:attribute name="Name" type="xs:NMTOKEN" use="required"/>
+    </xs:complexType> 
+    <xs:complexType name="PluginLocation">
+            <xs:sequence>
+                <xs:element name="Plugin" type="PluginFile" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="Folder" type="xs:anyURI" use="required"/>     
+    </xs:complexType> 
+    <xs:element name="SubsystemPlugins">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="PluginFolderLocation" type="ConfigurationFilePath" maxOccurs="unbounded"/>
+                <xs:element name="Location" type="PluginLocation" maxOccurs="unbounded" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -20,7 +29,7 @@
     <xs:element name="ParameterFrameworkConfiguration">
         <xs:complexType>
             <xs:sequence>
-            	<xs:element ref="SubsystemPluginFolders"/>
+                <xs:element ref="SubsystemPlugins" />
             	<xs:element name="StructureDescriptionFileLocation" type="ConfigurationFilePath"/>
             	<xs:element name="SettingsConfiguration" type="SettingsConfigurationType" minOccurs="0"/>
             </xs:sequence>

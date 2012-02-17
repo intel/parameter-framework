@@ -28,43 +28,16 @@
  * 
  * </auto_header>
  */
-#pragma once
-
-#include "ConfigurableElement.h"
 #include "SubsystemPlugins.h"
-#include <list>
 
-class CSubsystemLibrary;
+#define base CKindElement
 
-class CSystemClass : public CConfigurableElement
+CSubsystemPlugins::CSubsystemPlugins(const string& strName, const string& strKind) : base(strName, strKind)
 {
-public:
-    CSystemClass();
-    virtual ~CSystemClass();
+}
 
-    // Called from parent before actual init
-    bool loadSubsystems(string& strError, const CSubsystemPlugins* pSubsystemPlugins);
-    // Subsystem factory
-    const CSubsystemLibrary* getSubsystemLibrary() const;
-
-    // base
-    virtual bool init(string& strError);
-    virtual string getKind() const;
-
-private:
-    // base
-    virtual bool childrenAreDynamic() const;
-
-    // Subsystem plugins
-    bool getPluginFiles(const string& strPluginPath, list<string>& lstrPluginFiles) const;
-
-    // Plugin symbol computation
-    static string getPluginSymbol(const string& strPluginPath);
-
-    // Plugin loading
-    bool loadPlugins(list<string>& lstrPluginFiles, string& strError);
-
-    // Subsystem factory
-    CSubsystemLibrary* _pSubsystemLibrary;
-};
+bool CSubsystemPlugins::childrenAreDynamic() const
+{
+    return true;
+}
 
