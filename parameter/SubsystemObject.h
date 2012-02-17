@@ -34,6 +34,7 @@
 #include <stdint.h>
 
 class CInstanceConfigurableElement;
+class CMappingContext;
 
 class CSubsystemObject : public ISyncer
 {
@@ -63,6 +64,9 @@ protected:
     void blackboardWrite(const void* pvData, uint32_t uiSize);
     // Logging
     void log(const string& strMessage, ...) const;
+    // Mapping formatting
+    static string formatMappingValue(const string& strMappingValue, uint32_t uiFirstAmendKey, uint32_t uiNbAmendKeys, const CMappingContext& context);
+
 private:
     // Instance element to sync from/to
     CInstanceConfigurableElement* _pInstanceConfigurableElement;

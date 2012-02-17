@@ -31,6 +31,7 @@
 #include "SubsystemObject.h"
 #include "InstanceConfigurableElement.h"
 #include "ParameterBlackboard.h"
+#include "MappingContext.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -175,4 +176,39 @@ void CSubsystemObject::log(const string& strMessage, ...) const
     va_end(listPointer);
 
     _pInstanceConfigurableElement->log(acBuffer);
+}
+
+// Amendment
+string CSubsystemObject::formatMappingValue(const string& strMappingValue, uint32_t uiFirstAmendKey, uint32_t uiNbAmendKeys, const CMappingContext& context)
+{
+    string strFormattedValue = strMappingValue;
+    // Search for amendment (only one supported for now)
+    size_t uiPercentPos = strFormattedValue.find('%', 0);
+
+    // Amendment limited to one digit (values from 1 to 9)
+    assert((uiNbAmendKeys > 0) && (uiNbAmendKeys <= 9));
+
+    // Check we found one and that there's room for value
+    if (uiPercentPos != string::npos && uiPercentPos < strFormattedValue.size() - 1) {
+
+        // Get Amend number
+        uint32_t uiAmendNumber = strFormattedValue[uiPercentPos + 1] - '0';
+
+        // Valid?
+        if (uiAmendNumber && uiAmendNumber <= uiNbAmendKeys) {
+
+            uint32_t uiAmendType = uiFirstAmendKey + uiAmendNumber - 1;
+
+            // Set?
+            if (context.iSet(uiAmendType)) {
+
+                // Get Amend value
+                string strAmendValue = context.getItem(uiAmendType);
+
+                // Make the amendment
+                strFormattedValue = strFormattedValue.substr(0, uiPercentPos) + strAmendValue + strFormattedValue.substr(uiPercentPos + 2, strFormattedValue.size() - uiPercentPos - 2);
+            }
+        }
+    }
+    return strFormattedValue;
 }
