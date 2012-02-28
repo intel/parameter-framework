@@ -212,3 +212,9 @@ string CSubsystemObject::formatMappingValue(const string& strMappingValue, uint3
     }
     return strFormattedValue;
 }
+
+// Configurable element retrieval
+const CInstanceConfigurableElement* CSubsystemObject::getConfigurableElement() const
+{
+    return _pInstanceConfigurableElement;
+}
