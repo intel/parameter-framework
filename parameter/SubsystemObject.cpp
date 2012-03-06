@@ -182,6 +182,7 @@ void CSubsystemObject::log(const string& strMessage, ...) const
 string CSubsystemObject::formatMappingValue(const string& strMappingValue, uint32_t uiFirstAmendKey, uint32_t uiNbAmendKeys, const CMappingContext& context)
 {
     string strFormattedValue = strMappingValue;
+
     // Search for amendment (only one supported for now)
     size_t uiPercentPos = strFormattedValue.find('%', 0);
 
@@ -202,11 +203,16 @@ string CSubsystemObject::formatMappingValue(const string& strMappingValue, uint3
             // Set?
             if (context.iSet(uiAmendType)) {
 
-                // Get Amend value
+                // Make the amendment on the part of the string after the current Amend
+                string strEndOfLine = strFormattedValue.substr(uiPercentPos + 2, strFormattedValue.size() - uiPercentPos - 2);
+                string strEndOfLineAmended = formatMappingValue(strEndOfLine, uiFirstAmendKey, uiNbAmendKeys, context);
+
+                // Get current Amend value
                 string strAmendValue = context.getItem(uiAmendType);
 
                 // Make the amendment
-                strFormattedValue = strFormattedValue.substr(0, uiPercentPos) + strAmendValue + strFormattedValue.substr(uiPercentPos + 2, strFormattedValue.size() - uiPercentPos - 2);
+                strFormattedValue = strFormattedValue.substr(0, uiPercentPos) + strAmendValue + strEndOfLineAmended;
+
             }
         }
     }
