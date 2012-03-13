@@ -110,6 +110,12 @@ bool CParameterMgrPlatformConnector::start(string& strError)
     return true;
 }
 
+// Started state
+bool CParameterMgrPlatformConnector::isStarted() const
+{
+    return _bStarted;
+}
+
 // Private logging
 void CParameterMgrPlatformConnector::doLog(const string& strLog)
 {

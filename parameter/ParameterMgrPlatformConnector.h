@@ -57,6 +57,9 @@ public:
     // Start
     bool start(std::string& strError);
 
+    // Started state
+    bool isStarted() const;
+
     // Configuration application
     bool applyConfigurations(std::string& strError);
 
