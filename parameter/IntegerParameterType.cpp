@@ -35,6 +35,7 @@
 #include "ParameterAccessContext.h"
 #include <assert.h>
 #include "ParameterAdaptation.h"
+#include <errno.h>
 
 #define base CParameterType
 
@@ -147,45 +148,55 @@ bool CIntegerParameterType::toBlackboard(const string& strValue, uint32_t& uiVal
     bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
 
     // Get value
-    int32_t iData;
+    int64_t iData;
 
+    // Reset errno to check if it is updated during the conversion (strtol/strtoul)
+    errno = 0;
+    char *pcStrEnd;
+
+    // Convert the input string
     if (_bSigned) {
 
-        iData = strtoul(strValue.c_str(), NULL, 0);
+        iData = strtoll(strValue.c_str(), &pcStrEnd, 0);
     } else {
 
-        iData = strtol(strValue.c_str(), NULL, 0);
+        iData = strtoull(strValue.c_str(), &pcStrEnd, 0);
     }
 
-    if (bValueProvidedAsHexa && isEncodable(iData)) {
 
-        // Sign extend
-        signExtend(iData);
-    }
+    // Conversion error when the input string does not contain any digit or the number is out of range (int32_t type)
+    bool bConversionSucceeded = !errno && (strValue.c_str() != pcStrEnd);
+
     // Check against Min / Max
     if (_bSigned) {
 
-        if (!checkValueAgainstRange<int32_t>(strValue, iData, parameterAccessContext, bValueProvidedAsHexa)) {
+        if (bConversionSucceeded && bValueProvidedAsHexa && isEncodable((uint64_t)iData, !bValueProvidedAsHexa)) {
+
+            // Sign extend
+            signExtend(iData);
+        }
+
+        if (!checkValueAgainstRange<int64_t>(strValue, iData, (int32_t)_uiMin, (int32_t)_uiMax, parameterAccessContext, bValueProvidedAsHexa, bConversionSucceeded)) {
 
             return false;
         }
     } else {
 
-        if (!checkValueAgainstRange<uint32_t>(strValue, iData, parameterAccessContext, bValueProvidedAsHexa)) {
+        if (!checkValueAgainstRange<uint64_t>(strValue, iData, _uiMin, _uiMax, parameterAccessContext, bValueProvidedAsHexa, bConversionSucceeded)) {
 
             return false;
         }
     }
 
-    uiValue = iData;
+    uiValue = (uint32_t)iData;
 
     return true;
 }
 
 bool CIntegerParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    // Check consistency
-    assert(isEncodable(uiValue));
+    // Check unsigned value is encodable
+    assert(isEncodable(uiValue, false));
 
     // Format
     ostringstream strStream;
@@ -371,9 +382,9 @@ uint32_t CIntegerParameterType::getDefaultValue() const
 }
 
 // Range checking
-template <typename type> bool CIntegerParameterType::checkValueAgainstRange(const string& strValue, type value, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const
+template <typename type> bool CIntegerParameterType::checkValueAgainstRange(const string& strValue, type value, type minValue, type maxValue, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const
 {
-    if ((type)value < (type)_uiMin || (type)value > (type)_uiMax) {
+    if (!bConversionSucceeded || value < minValue || value > maxValue) {
 
         ostringstream strStream;
 
@@ -382,13 +393,13 @@ template <typename type> bool CIntegerParameterType::checkValueAgainstRange(cons
         if (bHexaValue) {
 
             // Format Min
-            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(_uiMin);
+            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(minValue);
             // Format Max
-            strStream << ", 0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(_uiMax);
+            strStream << ", 0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(maxValue);
 
         } else {
 
-            strStream << (type)_uiMin << ", " <<  (type)_uiMax;
+            strStream << minValue << ", " <<  maxValue;
         }
 
         strStream << "] for " << getKind();

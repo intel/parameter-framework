@@ -85,14 +85,22 @@ protected:
     void setSize(uint32_t uiSize);
     // Sign extension
     void signExtend(int32_t& iData) const;
-    // Check data has no bit set outside available range (based on byte size)
-    bool isEncodable(uint32_t uiData) const;
+    void signExtend(int64_t& iData) const;
+    // Check data has no bit set outside available range (based on byte size) and
+    // check data is consistent with available range, with respect to its sign
+    bool isEncodable(uint32_t uiData, bool bIsSigned) const;
+    bool isEncodable(uint64_t uiData, bool bIsSigned) const;
     // Remove all bits set outside available range
     uint32_t makeEncodable(uint32_t uiData) const;
 
 private:
     // Instantiation
     virtual CInstanceConfigurableElement* doInstantiate() const;
+    // Generic Access
+    template <typename type>
+    void doSignExtend(type& data) const;
+    template <typename type>
+    bool doIsEncodable(type data, bool bIsSigned) const;
 
     // Size in bytes
     uint32_t _uiSize;

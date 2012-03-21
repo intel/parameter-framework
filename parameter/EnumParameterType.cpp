@@ -36,6 +36,7 @@
 #include <assert.h>
 #include "ParameterAccessContext.h"
 #include "EnumValuePair.h"
+#include <errno.h>
 
 #define base CParameterType
 
@@ -91,7 +92,7 @@ bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
 // Conversion (tuning)
 bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    int32_t iData;
+    int64_t iData;
 
     if (isNumber(strValue)) {
 
@@ -100,18 +101,34 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
         // Hexa
         bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
 
-        // Get value
-        iData = strtol(strValue.c_str(), NULL, 0);
+        errno = 0;
+        char *pcStrEnd;
 
-        if (bValueProvidedAsHexa && isEncodable(iData)) {
+        // Get value
+        iData = strtoll(strValue.c_str(), &pcStrEnd, 0);
+
+        // Conversion error when the input string does not contain any digit or the number is out of range (int32_t type)
+        bool bConversionSucceeded = !errno && (strValue.c_str() != pcStrEnd);
+
+
+        if (!bConversionSucceeded || !isEncodable((uint64_t)iData, !bValueProvidedAsHexa)) {
+
+            // Illegal value provided
+            parameterAccessContext.setError("Provided value out of bound");
+
+            return false;
+        }
+
+        if (bValueProvidedAsHexa) {
 
             // Sign extend
             signExtend(iData);
         }
         // Check validity
-        if (!isValid(iData)) {
+        string strError;
+        if (!isValid(iData, parameterAccessContext)) {
 
-            parameterAccessContext.setError("Provided value not part of numerical space");
+            parameterAccessContext.setError(strError);
 
             return false;
         }
@@ -119,16 +136,18 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
         // Literal value provided
 
         // Check validity
-        if (!getNumerical(strValue, iData)) {
+        int iNumerical;
+        if (!getNumerical(strValue, iNumerical)) {
 
             parameterAccessContext.setError("Provided value not part of lexical space");
 
             return false;
         }
+        iData = iNumerical;
     }
 
     // Return data
-    uiValue = iData;
+    uiValue = (uint32_t)iData;
 
     return true;
 }
@@ -177,9 +196,7 @@ bool CEnumParameterType::fromBlackboard(string& strValue, const uint32_t& uiValu
 // Value access
 bool CEnumParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    if (!isValid(iUserValue)) {
-
-        parameterAccessContext.setError("Invalid value");
+    if (!isValid(iUserValue, parameterAccessContext)) {
 
         return false;
     }
@@ -243,7 +260,7 @@ bool CEnumParameterType::getLiteral(int32_t iNumerical, string& strLiteral) cons
     return false;
 }
 
-bool CEnumParameterType::getNumerical(const string& strLiteral, int32_t& iNumerical) const
+bool CEnumParameterType::getNumerical(const string& strLiteral, int& iNumerical) const
 {
     uint32_t uiChild;
     uint32_t uiNbChildren = getNbChildren();
@@ -263,9 +280,10 @@ bool CEnumParameterType::getNumerical(const string& strLiteral, int32_t& iNumeri
     return false;
 }
 
-// Numerical validity
-bool CEnumParameterType::isValid(int32_t iNumerical) const
+// Numerical validity of the enum value
+bool CEnumParameterType::isValid(int iNumerical, CParameterAccessContext& parameterAccessContext) const
 {
+    // Check that the value is part of the allowed values for this kind of enum
     uint32_t uiChild;
     uint32_t uiNbChildren = getNbChildren();
 
@@ -278,6 +296,8 @@ bool CEnumParameterType::isValid(int32_t iNumerical) const
             return true;
         }
     }
+
+    parameterAccessContext.setError("Provided value not part of numerical space");
 
     return false;
 }

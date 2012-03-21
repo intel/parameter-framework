@@ -66,8 +66,8 @@ private:
 
     // Literal - numerical conversions
     bool getLiteral(int32_t iNumerical, string& strLiteral) const;
-    bool getNumerical(const string& strLiteral, int32_t& iNumerical) const;
+    bool getNumerical(const string& strLiteral, int& iNumerical) const;
 
     // Numerical validity
-    bool isValid(int32_t iNumerical) const;
+    bool isValid(int iNumerical, CParameterAccessContext& parameterAccessContext) const;
 };

@@ -97,7 +97,7 @@ void CParameterType::showProperties(string& strResult) const
     }
 
     // Scalar size
-    strResult += "Scalar size: " + toString(_uiSize) + " byte(s) \n";
+    strResult += "Scalar size: " + toString(getSize()) + " byte(s) \n";
 }
 
 // Default value handling (simulation only)
@@ -118,40 +118,77 @@ CInstanceConfigurableElement* CParameterType::doInstantiate() const
     }
 }
 
-// Sign extension
+// Sign extension (32 bits)
 void CParameterType::signExtend(int32_t& iData) const
 {
-    uint32_t uiSizeInBits = _uiSize * 8;
-    uint32_t uiShift = 8 * sizeof(iData) - uiSizeInBits;
+    doSignExtend(iData);
+}
+
+// Sign extension (64 bits)
+void CParameterType::signExtend(int64_t& iData) const
+{
+    doSignExtend(iData);
+}
+
+// Generic sign extension
+template <typename type>
+void CParameterType::doSignExtend(type& data) const
+{
+    uint32_t uiSizeInBits = getSize() * 8;
+    uint32_t uiShift = 8 * sizeof(data) - uiSizeInBits;
 
     if (uiShift) {
 
-        iData = (iData << uiShift) >> uiShift;
+        data = (data << uiShift) >> uiShift;
     }
 }
 
-// Check data has no bit set outside available range
-bool CParameterType::isEncodable(uint32_t uiData) const
+// Check data has no bit set outside available range (32 bits)
+bool CParameterType::isEncodable(uint32_t uiData, bool bIsSigned) const
 {
-    uint32_t uiSizeInBits = _uiSize * 8;
+    return doIsEncodable(uiData, bIsSigned);
+}
 
-    if (uiSizeInBits == 8 * sizeof(uiData)) {
+// Check data has no bit set outside available range (64 bits)
+bool CParameterType::isEncodable(uint64_t uiData, bool bIsSigned) const
+{
+    return doIsEncodable(uiData, bIsSigned);
+}
 
+// Generic encodability check
+template <typename type>
+bool CParameterType::doIsEncodable(type data, bool bIsSigned) const
+{
+    if (getSize() == sizeof(data)) {
+        // Prevent inappropriate shifts
         return true;
     }
 
-    // Check high bits are clean
-    return !(uiData >> uiSizeInBits);
+    uint32_t uiShift = getSize() * 8;
+
+    if (!bIsSigned) {
+
+        // Check high bits are clean
+        return !(data >> uiShift);
+
+    } else {
+
+        // Negative value?
+        bool bIsValueExpectedNegative = (data & (1 << (uiShift - 1))) != 0;
+
+        // Check high bits are clean
+        return bIsValueExpectedNegative ? !(~data >> uiShift) : !(data >> uiShift);
+    }
 }
 
 // Remove all bits set outside available range
 uint32_t CParameterType::makeEncodable(uint32_t uiData) const
 {
-    if (_uiSize == sizeof(uint32_t)) {
+    if (getSize() == sizeof(uint32_t)) {
 
         return uiData;
     }
-    uint32_t uiSizeInBits = _uiSize * 8;
+    uint32_t uiSizeInBits = getSize() * 8;
 
     uint32_t uiMask = (1 << uiSizeInBits) - 1;
 

@@ -60,10 +60,12 @@ public:
 private:
     // Util size
     uint32_t getUtilSizeInBits() const;
+    // Range computation
+    void getRange(double& dMin, double& dMax) const;
     // Out of range error
     string getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const;
-    // Check data is consistent with available range, with respect to its sign
-    bool isConsistent(uint32_t uiData) const;
+    // Check if data is encodable
+    bool checkValueAgainstRange(double dValue) const;
     // Data conversion
     int32_t asInteger(double dValue) const;
     double asDouble(int32_t iValue) const;

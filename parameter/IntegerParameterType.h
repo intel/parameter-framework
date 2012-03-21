@@ -69,7 +69,7 @@ private:
     virtual bool childrenAreDynamic() const;
 
     // Range checking
-    template <typename type> bool checkValueAgainstRange(const string& strValue, type value, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const;
+    template <typename type> bool checkValueAgainstRange(const string& strValue, type value, type minValue, type maxValue, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const;
 
     // Adaptation element retrieval
     const CParameterAdaptation* getParameterAdaptation() const;

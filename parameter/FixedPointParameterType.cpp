@@ -37,6 +37,7 @@
 #include "Parameter.h"
 #include "ParameterAccessContext.h"
 #include "ConfigurationAccessContext.h"
+#include <errno.h>
 
 #define base CParameterType
 
@@ -122,36 +123,57 @@ bool CFixedPointParameterType::toBlackboard(const string& strValue, uint32_t& ui
         return false;
     }
 
-    int32_t iData;
+    int64_t iData;
 
     if (parameterAccessContext.valueSpaceIsRaw()) {
+        errno = 0;
+        char *pcStrEnd;
 
         // Get data in integer form
-        iData = strtol(strValue.c_str(), NULL, 0);
+        iData = strtoll(strValue.c_str(), &pcStrEnd, 0);
 
-        if (bValueProvidedAsHexa && isEncodable(iData)) {
+        // Conversion error when the input string does not contain any digit or the number is out of range
+        bool bConversionSucceeded = !errno && (strValue.c_str() != pcStrEnd);
+
+        if (!bConversionSucceeded || !isEncodable((uint64_t)iData, !bValueProvidedAsHexa)) {
+
+            // Illegal value provided
+            parameterAccessContext.setError(getOutOfRangeError(strValue, parameterAccessContext.valueSpaceIsRaw(), bValueProvidedAsHexa));
+
+            return false;
+        }
+        if (bValueProvidedAsHexa) {
 
             // Sign extend
             signExtend(iData);
         }
 
     } else {
-        double dData = strtod(strValue.c_str(), NULL);
+        errno = 0;
+        char *pcStrEnd;
+
+        double dData = strtod(strValue.c_str(), &pcStrEnd);
+
+        // Conversion error when the input string does not contain any digit or the number is out of range (int32_t type)
+        bool bConversionSucceeded = !errno && (strValue.c_str() != pcStrEnd);
+
+        // Check encodability
+        if (!bConversionSucceeded || !checkValueAgainstRange(dData)) {
+
+            // Illegal value provided
+            parameterAccessContext.setError(getOutOfRangeError(strValue, parameterAccessContext.valueSpaceIsRaw(), bValueProvidedAsHexa));
+
+            return false;
+        }
 
         // Do the conversion
         iData = asInteger(dData);
     }
 
-    // Check integrity
-    if (!isConsistent(iData)) {
+    // check that the data is encodable and can be safely written to the blackboard
+    assert(isEncodable((unsigned long int)iData, true));
 
-        // Illegal value provided
-        parameterAccessContext.setError(getOutOfRangeError(strValue, parameterAccessContext.valueSpaceIsRaw(), bValueProvidedAsHexa));
-
-        return false;
-    }
-
-    uiValue = iData;
+    uiValue = (uint32_t)iData;
 
     return true;
 }
@@ -160,8 +182,8 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
 {
     int32_t iData = uiValue;
 
-    // Check consistency
-    assert(isEncodable(iData));
+    // Check encodability
+    assert(isEncodable((uint32_t)iData, false));
 
     // Format
     ostringstream strStream;
@@ -202,17 +224,20 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
 // Value access
 bool CFixedPointParameterType::toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    // Do the conversion
-    int32_t iData = asInteger(dUserValue);
-
-    // Check integrity
-    if (!isConsistent(iData)) {
+    // Check that the value is within the allowed range for this type
+    if (!checkValueAgainstRange(dUserValue)) {
 
         // Illegal value provided
         parameterAccessContext.setError("Value out of range");
 
         return false;
     }
+
+    // Do the conversion
+    int32_t iData = asInteger(dUserValue);
+
+    // Check integrity
+    assert(isEncodable((uint32_t)iData, true));
 
     uiValue = iData;
 
@@ -225,8 +250,8 @@ bool CFixedPointParameterType::fromBlackboard(double& dUserValue, uint32_t uiVal
 
     int32_t iData = uiValue;
 
-    // Check consistency
-    assert(isEncodable(iData));
+    // Check unsigned value is encodable
+    assert(isEncodable(uiValue, false));
 
     // Sign extend
     signExtend(iData);
@@ -242,12 +267,17 @@ uint32_t CFixedPointParameterType::getUtilSizeInBits() const
     return _uiIntegral + _uiFractional + 1;
 }
 
+// Compute the range for the type (minimum and maximum values)
+void CFixedPointParameterType::getRange(double& dMin, double& dMax) const
+{
+    dMax = (double)((1UL << (_uiIntegral + _uiFractional)) - 1) / (1UL << _uiFractional);
+    dMin = -(double)(1UL << (_uiIntegral + _uiFractional)) / (1UL << _uiFractional);
+}
+
 // Out of range error
 string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const
 {
-    // Min/Max computation
-    int32_t iMax = (1L << (getSize() * 8 - 1)) - 1;
-    int32_t iMin = -iMax - 1;
+
 
     ostringstream strStream;
 
@@ -255,8 +285,17 @@ string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool
 
     if (!bRawValueSpace) {
 
-        strStream << "real range [" << (double)iMin / (1UL << _uiFractional) << ", "<< (double)iMax / (1UL << _uiFractional) << "]";
+        // Min/Max computation
+        double dMin = 0;
+        double dMax = 0;
+        getRange(dMin, dMax);
+
+        strStream << "real range [" << dMin << ", "<< dMax << "]";
     } else {
+
+        // Min/Max computation
+        int32_t iMax = (1L << (getSize() * 8 - 1)) - 1;
+        int32_t iMin = -iMax - 1;
 
         strStream << "raw range [";
 
@@ -279,21 +318,14 @@ string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool
     return strStream.str();
 }
 
-// Check data is consistent with available range, with respect to its sign
-bool CFixedPointParameterType::isConsistent(uint32_t uiData) const
+// Check that the value is within available range for this type
+bool CFixedPointParameterType::checkValueAgainstRange(double dValue) const
 {
-    uint32_t uiShift = getSize() * 8;
+    double dMin = 0;
+    double dMax = 0;
+    getRange(dMin, dMax);
 
-    if (uiShift == 8 * sizeof(uiData)) {
-        // Prevent inappropriate shifts
-        return true;
-    }
-
-    // Negative value?
-    bool bIsValueExpectedNegative = (uiData & (1 << (uiShift - 1))) != 0;
-
-    // Check high bits are clean
-    return bIsValueExpectedNegative ? !(~uiData >> uiShift) : !(uiData >> uiShift);
+    return (dValue <= dMax) && (dValue >= dMin);
 }
 
 // Data conversion
