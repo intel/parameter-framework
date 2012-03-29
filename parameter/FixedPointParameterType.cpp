@@ -33,6 +33,7 @@
 #include <sstream>
 #include <iomanip>
 #include <assert.h>
+#include <math.h>
 #include "Parameter.h"
 #include "ParameterAccessContext.h"
 #include "ConfigurationAccessContext.h"
@@ -181,10 +182,14 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
         }
     } else {
 
+        // Sign extend
+        signExtend(iData);
+
         // Conversion
         double dData = asDouble(iData);
 
-        strStream << dData;
+        // Set up the precision of the display and notation type
+        strStream << fixed << setprecision((_uiFractional + 1) * log10(2.0)) << dData;
     }
 
     strValue = strStream.str();
