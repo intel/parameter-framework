@@ -27,8 +27,8 @@
 	<xs:complexType name="IntegerParameterType">
 		<xs:simpleContent>
 			<xs:restriction base="ParameterType">
-				<xs:pattern value="(0|[+-]?[1-9][0-9]*[\s]*)+"/>
-				<xs:pattern value="(0x[0-9a-fA-F]+\s*)+"/>
+				<xs:pattern value="(0|([+-]?[1-9][0-9]*))(\s+(0|([+-]?[1-9][0-9]*)))*"/>
+				<xs:pattern value="(0x[0-9a-fA-F]+)(\s+(0x[0-9a-fA-F]+))*"/>
 				<xs:attribute name="ValueSpace" use="prohibited"/>
 			</xs:restriction>
 		</xs:simpleContent>
@@ -43,9 +43,8 @@
 	<xs:complexType name="FixedPointParameterType">
 		<xs:simpleContent>
 			<xs:restriction base="ParameterType">
-				<xs:pattern value="((0|[+-]?[1-9][0-9]*)\s*)+"/>
-				<xs:pattern value="(0\.0|[+-]?([1-9][0-9]*|0)(\.[0-9]+)?\s*)+"/>
-				<xs:pattern value="(0x[0-9a-fA-F]+\s*)+"/>
+				<xs:pattern value="((0|[+-]?0\.[0-9]+|(([+-]?[1-9][0-9]*)(\.[0-9]+)?))(e[+-]?[0-9]+)?)(\s+(0|[+-]?0\.[0-9]+|(([+-]?[1-9][0-9]*)(\.[0-9]+)?))(e[+-]?[0-9]+)?)*"/>
+				<xs:pattern value="(0x[0-9a-fA-F]+)(\s+(0x[0-9a-fA-F]+))*"/>
 			</xs:restriction>
 		</xs:simpleContent>
 	</xs:complexType>
