@@ -1513,7 +1513,7 @@ bool CParameterMgr::addConfigurableElementToDomain(const string& strDomain, cons
     }
 
     // Convert element
-    CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+    CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
 
     // Delegate
     return getConfigurableDomains()->addConfigurableElementToDomain(strDomain, pConfigurableElement, _pMainParameterBlackboard, strError);
@@ -1537,7 +1537,7 @@ bool CParameterMgr::removeConfigurableElementFromDomain(const string& strDomain,
     }
 
     // Convert element
-    CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+    CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
 
     // Delegate
     return getConfigurableDomains()->removeConfigurableElementFromDomain(strDomain, pConfigurableElement, strError);
@@ -1561,7 +1561,7 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
     }
 
     // Convert element
-    CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+    CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
 
     // Delegate
     return getConfigurableDomains()->split(strDomain, pConfigurableElement, strError);
