@@ -235,6 +235,7 @@ CParameterMgr::~CParameterMgr()
 {
     // Children
     delete _pRemoteProcessorServer;
+    delete _pCommandHandler;
     delete _pMainParameterBlackboard;
     delete _pElementLibrarySet;
 
