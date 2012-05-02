@@ -53,6 +53,9 @@ public:
 private:
     //////////////// Remote command parsers
     /// Selection Criterion
+    CCommandHandler::CommandStatus createExclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus createInclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+
     CCommandHandler::CommandStatus createExclusiveSelectionCriterionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus createInclusiveSelectionCriterionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus startParameterMgrCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
@@ -60,6 +63,9 @@ private:
     CCommandHandler::CommandStatus applyConfigurationsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
 
     // Commands
+    bool createExclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult);
+    bool createInclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult);
+
     bool createExclusiveSelectionCriterion(const string& strName, uint32_t uiNbValues, string& strResult);
     bool createInclusiveSelectionCriterion(const string& strName, uint32_t uiNbValues, string& strResult);
     bool setCriterionState(const string& strName, uint32_t uiState, string& strResult);

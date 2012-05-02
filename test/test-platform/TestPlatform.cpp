@@ -31,6 +31,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <sstream>
+#include <assert.h>
 #include "TestPlatform.h"
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteProcessorServer.h"
@@ -54,8 +55,12 @@ CTestPlatform::CTestPlatform(const string& strClass) :
     _pCommandHandler = new CCommandHandler(this);
 
     // Add command parsers
+    _pCommandHandler->addCommandParser("createExclusiveSelectionCriterionFromStateList", &CTestPlatform::createExclusiveSelectionCriterionFromStateListCommandProcess, 2, "<name> <stateList>", "Create inclusive selection criterion from state name list");
+    _pCommandHandler->addCommandParser("createInclusiveSelectionCriterionFromStateList", &CTestPlatform::createInclusiveSelectionCriterionFromStateListCommandProcess, 2, "<name> <stateList>", "Create exclusive selection criterion from state name list");
+
     _pCommandHandler->addCommandParser("createExclusiveSelectionCriterion", &CTestPlatform::createExclusiveSelectionCriterionCommandProcess, 2, "<name> <nbStates>", "Create inclusive selection criterion");
     _pCommandHandler->addCommandParser("createInclusiveSelectionCriterion", &CTestPlatform::createInclusiveSelectionCriterionCommandProcess, 2, "<name> <nbStates>", "Create exclusive selection criterion");
+
     _pCommandHandler->addCommandParser("start", &CTestPlatform::startParameterMgrCommandProcess, 0, "", "Start ParameterMgr");
     _pCommandHandler->addCommandParser("setCriterionState", &CTestPlatform::setCriterionStateCommandProcess, 2, "<name> <state>", "Set the current state of a selection criterion");
     _pCommandHandler->addCommandParser("applyConfigurations", &CTestPlatform::applyConfigurationsCommandProcess, 0, "", "Apply configurations selected by current selection criteria states");
@@ -89,6 +94,16 @@ bool CTestPlatform::load(std::string& strError)
 
 //////////////// Remote command parsers
 /// Selection Criterion
+CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createExclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    return createExclusiveSelectionCriterionFromStateList(remoteCommand.getArgument(0), remoteCommand, strResult) ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+}
+
+CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createInclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    return createInclusiveSelectionCriterionFromStateList(remoteCommand.getArgument(0), remoteCommand, strResult) ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+}
+
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createExclusiveSelectionCriterionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     return createExclusiveSelectionCriterion(remoteCommand.getArgument(0), strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0), strResult) ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
@@ -118,6 +133,73 @@ CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::applyConfigurations
 }
 
 //////////////// Remote command handlers
+
+bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult)
+{
+
+    assert (_pParameterMgrPlatformConnector != NULL);
+
+    ISelectionCriterionTypeInterface* pCriterionType = _pParameterMgrPlatformConnector->createSelectionCriterionType(false);
+
+    assert(pCriterionType != NULL);
+
+    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1 ;
+    uint32_t uiState;
+
+    for (uiState = 0; uiState < uiNbStates; uiState++) {
+
+        const std::string& strValue = remoteCommand.getArgument(uiState + 1);
+
+        if (!pCriterionType->addValuePair(uiState, strValue)) {
+
+            strResult = "Unable to add value: " + strValue;
+
+            return false;
+        }
+    }
+
+    _pParameterMgrPlatformConnector->createSelectionCriterion(strName, pCriterionType);
+
+    return true;
+}
+
+bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult)
+{
+    assert (_pParameterMgrPlatformConnector != NULL);
+
+    ISelectionCriterionTypeInterface* pCriterionType = _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
+
+    assert(pCriterionType != NULL);
+
+    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1 ;
+
+    if (uiNbStates > 32) {
+
+        strResult = "Maximum number of states for inclusive criterion is 32";
+
+        return false;
+    }
+
+    uint32_t uiState;
+
+    for (uiState = 0; uiState < uiNbStates; uiState++) {
+
+        const std::string& strValue = remoteCommand.getArgument(uiState + 1);
+
+        if (!pCriterionType->addValuePair(0x1 << uiState, strValue)) {
+
+            strResult = "Unable to add value: " + strValue;
+
+            return false;
+        }
+    }
+
+    _pParameterMgrPlatformConnector->createSelectionCriterion(strName, pCriterionType);
+
+    return true;
+}
+
+
 bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName, uint32_t uiNbStates, string& strResult)
 {
     ISelectionCriterionTypeInterface* pCriterionType = _pParameterMgrPlatformConnector->createSelectionCriterionType(false);
