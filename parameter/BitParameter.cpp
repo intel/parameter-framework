@@ -34,6 +34,7 @@
 #include "ConfigurationAccessContext.h"
 #include "ParameterBlackboard.h"
 #include "BitParameterBlock.h"
+#include "BitwiseAreaConfiguration.h"
 
 #define base CBaseParameter
 
@@ -56,7 +57,7 @@ uint32_t CBitParameter::getBelongingBlockSize() const
 // Instantiation, allocation
 uint32_t CBitParameter::getFootPrint() const
 {
-    // Allocation made on parent side
+    // Allocation done at parent level
     return 0;
 }
 
@@ -164,4 +165,17 @@ void CBitParameter::doGet(type& value, uint32_t uiOffset, CParameterAccessContex
 
     // Convert
     static_cast<const CBitParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);
+}
+
+// AreaConfiguration creation
+CAreaConfiguration* CBitParameter::createAreaConfiguration(const CSyncerSet* pSyncerSet) const
+{
+    return new CBitwiseAreaConfiguration(this, pSyncerSet);
+}
+
+// Access from area configuration
+uint32_t CBitParameter::merge(uint32_t uiOriginData, uint32_t uiNewData) const
+{
+    // Convert
+    return static_cast<const CBitParameterType*>(getTypeElement())->merge(uiOriginData, uiNewData);
 }

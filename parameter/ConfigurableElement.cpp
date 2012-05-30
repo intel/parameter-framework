@@ -34,6 +34,7 @@
 #include "ConfigurableDomain.h"
 #include "ConfigurationAccessContext.h"
 #include "ConfigurableElementAggregator.h"
+#include "AreaConfiguration.h"
 #include <assert.h>
 
 #define base CElement
@@ -124,6 +125,12 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
     }
     // Done
     return true;
+}
+
+// AreaConfiguration creation
+CAreaConfiguration* CConfigurableElement::createAreaConfiguration(const CSyncerSet* pSyncerSet) const
+{
+    return new CAreaConfiguration(this, pSyncerSet);
 }
 
 // Parameter access
@@ -225,7 +232,7 @@ ISyncer* CConfigurableElement::getSyncer() const
 
         return static_cast<const CConfigurableElement*>(pParent)->getSyncer();
     }
-    return false;
+    return NULL;
 }
 
 // Syncer set (me, ascendant or descendant ones)

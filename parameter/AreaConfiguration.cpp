@@ -41,10 +41,17 @@ CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurable
     _blackboard.setSize(_pConfigurableElement->getFootPrint());
 }
 
+CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, uint32_t uiSize)
+    : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet), _bValid(false)
+{
+    // Size blackboard
+    _blackboard.setSize(uiSize);
+}
+
 // Save data from current
 void CAreaConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 {
-    pMainBlackboard->saveTo(&_blackboard, _pConfigurableElement->getOffset());
+    copyFrom(pMainBlackboard, _pConfigurableElement->getOffset());
 }
 
 // Apply data to current
@@ -52,7 +59,7 @@ bool CAreaConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSy
 {
     assert(_bValid);
 
-    pMainBlackboard->restoreFrom(&_blackboard, _pConfigurableElement->getOffset());
+    copyTo(pMainBlackboard, _pConfigurableElement->getOffset());
 
     // Synchronize if required
     if (bSync) {
@@ -131,23 +138,21 @@ const CConfigurableElement* CAreaConfiguration::getConfigurableElement() const
     return _pConfigurableElement;
 }
 
-// Configuration merging (we assume from element is descendant of this)
-void CAreaConfiguration::copyFromInner(const CAreaConfiguration* pFromAreaConfiguration)
+void CAreaConfiguration::copyToOuter(CAreaConfiguration* pToAreaConfiguration) const
 {
-    assert(pFromAreaConfiguration->getConfigurableElement()->isDescendantOf(_pConfigurableElement));
+    assert(_pConfigurableElement->isDescendantOf(pToAreaConfiguration->getConfigurableElement()));
 
-    _blackboard.restoreFrom(&pFromAreaConfiguration->_blackboard, pFromAreaConfiguration->getConfigurableElement()->getOffset() - _pConfigurableElement->getOffset());
+    copyTo(&pToAreaConfiguration->_blackboard, _pConfigurableElement->getOffset() - pToAreaConfiguration->getConfigurableElement()->getOffset());
 }
 
-// Configuration splitting
-void CAreaConfiguration::copyToInner(CAreaConfiguration* pToAreaConfiguration) const
+void CAreaConfiguration::copyFromOuter(const CAreaConfiguration* pFromAreaConfiguration)
 {
-    assert(pToAreaConfiguration->getConfigurableElement()->isDescendantOf(_pConfigurableElement));
+    assert(_pConfigurableElement->isDescendantOf(pFromAreaConfiguration->getConfigurableElement()));
 
-    _blackboard.saveTo(&pToAreaConfiguration->_blackboard, pToAreaConfiguration->getConfigurableElement()->getOffset() - _pConfigurableElement->getOffset());
+    copyFrom(&pFromAreaConfiguration->_blackboard, _pConfigurableElement->getOffset() - pFromAreaConfiguration->getConfigurableElement()->getOffset());
 
     // Inner becomes valid
-    pToAreaConfiguration->setValid(true);
+    setValid(true);
 }
 
 // Serialization
@@ -175,4 +180,14 @@ void CAreaConfiguration::setValid(bool bValid)
     _bValid = bValid;
 }
 
+// Blackboard copies
+void CAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const
+{
+    pToBlackboard->restoreFrom(&_blackboard, uiOffset);
+}
+
+void CAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset)
+{
+   pFromBlackboard->saveTo(&_blackboard, uiOffset);
+}
 

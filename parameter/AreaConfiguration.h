@@ -64,10 +64,10 @@ public:
     const CConfigurableElement* getConfigurableElement() const;
 
     // Configuration merging
-    void copyFromInner(const CAreaConfiguration* pFromAreaConfiguration);
+    virtual void copyToOuter(CAreaConfiguration* pToAreaConfiguration) const;
 
     // Configuration splitting
-    void copyToInner(CAreaConfiguration* pToAreaConfiguration) const;
+    virtual void copyFromOuter(const CAreaConfiguration* pFromAreaConfiguration);
 
     // XML configuration settings parsing/composing
     bool serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElementContent, CConfigurationAccessContext& configurationAccessContext);
@@ -77,18 +77,28 @@ public:
 
     // Data size
     uint32_t getSize() const;
+
+protected:
+    CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, uint32_t uiSize);
+
 private:
+    // Blackboard copies
+    virtual void copyTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const;
+    virtual void copyFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset);
+
     // Store validity
     void setValid(bool bValid);
 
+protected:
     // Associated configurable element
     const CConfigurableElement* _pConfigurableElement;
 
-    // Syncer set (required for immediate synchronization)
-    const CSyncerSet* _pSyncerSet;
-
     // Configurable element settings
     CParameterBlackboard _blackboard;
+
+private:
+    // Syncer set (required for immediate synchronization)
+    const CSyncerSet* _pSyncerSet;
 
     // Area configuration validity (invalid area configurations can't be restored)
     bool _bValid;

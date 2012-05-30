@@ -67,6 +67,7 @@ LOCAL_SRC_FILES:= \
         XmlParameterSerializingContext.cpp \
         XmlDomainSerializingContext.cpp \
         BinarySerializableElement.cpp \
+        BitwiseAreaConfiguration.cpp \
         BitParameterBlockType.cpp \
         BitParameterBlock.cpp \
         BitParameterType.cpp \

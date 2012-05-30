@@ -51,9 +51,16 @@ public:
 
     // Integer Access
     virtual bool accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-private:
+
+    // AreaConfiguration creation
+    virtual CAreaConfiguration* createAreaConfiguration(const CSyncerSet* pSyncerSet) const;
+
     // Size
     uint32_t getBelongingBlockSize() const;
+
+    // Access from area configuration
+    uint32_t merge(uint32_t uiOriginData, uint32_t uiNewData) const;
+private:
 
     // String Access
     virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;

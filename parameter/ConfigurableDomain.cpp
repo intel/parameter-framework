@@ -356,14 +356,7 @@ bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigur
     log("Adding configurable element \"%s\" into domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
 
     // Do add
-    doAddConfigurableElement(pConfigurableElement);
-
-    // Ensure area validity for that configurable element (if main blackboard provided)
-    if (pMainBlackboard) {
-
-        // Need to validate against main blackboard
-        validateAreas(pConfigurableElement, pMainBlackboard);
-    }
+    doAddConfigurableElement(pConfigurableElement, pMainBlackboard);
 
     return true;
 }
@@ -931,7 +924,7 @@ void CConfigurableDomain::mergeConfigurations(CConfigurableElement* pToConfigura
 }
 
 // Configurable elements association
-void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfigurableElement)
+void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfigurableElement, const CParameterBlackboard *pMainBlackboard)
 {
     // Inform configurable element
     pConfigurableElement->addAttachedConfigurableDomain(this);
@@ -959,7 +952,14 @@ void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfig
         pDomainConfiguration->addConfigurableElement(pConfigurableElement, pSyncerSet);
     }
 
-    // Already associated descended configurable elements need a merge of their configuration data
+    // Ensure area validity for that configurable element (if main blackboard provided)
+    if (pMainBlackboard) {
+
+        // Need to validate against main blackboard
+        validateAreas(pConfigurableElement, pMainBlackboard);
+    }
+
+    // Already associated descendend configurable elements need a merge of their configuration data
     mergeAlreadyAssociatedDescendantConfigurableElements(pConfigurableElement);
 
     // Add to list

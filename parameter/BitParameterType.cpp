@@ -197,6 +197,12 @@ void CBitParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, 
     uiUserValue = (uiValue & getMask()) >> _uiBitPos;
 }
 
+// Access from area configuration
+uint32_t CBitParameterType::merge(uint32_t uiOriginData, uint32_t uiNewData) const
+{
+    return (uiOriginData & ~getMask()) | (uiNewData & getMask());
+}
+
 // Bit Size
 uint32_t CBitParameterType::getBitSize() const
 {

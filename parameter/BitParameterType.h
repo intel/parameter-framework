@@ -51,6 +51,8 @@ public:
     // Integer
     bool toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     void fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    // Access from area configuration
+    uint32_t merge(uint32_t uiOriginData, uint32_t uiNewData) const;
 
     // Bit Size
     uint32_t getBitSize() const;

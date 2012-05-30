@@ -40,6 +40,7 @@ class ISyncer;
 class CSubsystem;
 class CConfigurationAccessContext;
 class CParameterAccessContext;
+class CAreaConfiguration;
 
 class CConfigurableElement : public CElement
 {
@@ -90,6 +91,9 @@ public:
 
     // Check element is a parameter
     virtual bool isParameter() const;
+
+    // AreaConfiguration creation
+    virtual CAreaConfiguration* createAreaConfiguration(const CSyncerSet* pSyncerSet) const;
 
     // Parameter access
     virtual bool accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;

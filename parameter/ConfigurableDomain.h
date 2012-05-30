@@ -132,7 +132,7 @@ private:
     void mergeConfigurations(CConfigurableElement* pToConfigurableElement, CConfigurableElement* pFromConfigurableElement);
 
     // Configurable elements association
-    void doAddConfigurableElement(CConfigurableElement* pConfigurableElement);
+    void doAddConfigurableElement(CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard = NULL);
     void doRemoveConfigurableElement(CConfigurableElement* pConfigurableElement, bool bRecomputeSyncSet);
 
     // XML parsing

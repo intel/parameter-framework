@@ -212,7 +212,7 @@ bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfigurati
 // Configurable Elements association
 void CDomainConfiguration::addConfigurableElement(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet)
 {
-    CAreaConfiguration* pAreaConfiguration = new CAreaConfiguration(pConfigurableElement, pSyncerSet);
+    CAreaConfiguration* pAreaConfiguration = pConfigurableElement->createAreaConfiguration(pSyncerSet);
 
     _areaConfigurationList.push_back(pAreaConfiguration);
     _orderedAreaConfigurationList.push_back(pAreaConfiguration);
@@ -433,7 +433,7 @@ void CDomainConfiguration::merge(CConfigurableElement* pToConfigurableElement, C
     const CAreaConfiguration* pAreaConfigurationToMergeFrom = getAreaConfiguration(pFromConfigurableElement);
 
     // Do the merge
-    pAreaConfigurationToMergeTo->copyFromInner(pAreaConfigurationToMergeFrom);
+    pAreaConfigurationToMergeFrom->copyToOuter(pAreaConfigurationToMergeTo);
 }
 
 // Domain splitting
@@ -454,7 +454,7 @@ void CDomainConfiguration::split(CConfigurableElement* pFromConfigurableElement)
         CAreaConfiguration* pChildAreaConfiguration = getAreaConfiguration(pToChildConfigurableElement);
 
         // Do the copy
-        pAreaConfigurationToSplitFrom->copyToInner(pChildAreaConfiguration);
+        pChildAreaConfiguration->copyFromOuter(pAreaConfigurationToSplitFrom);
     }
 }
 
