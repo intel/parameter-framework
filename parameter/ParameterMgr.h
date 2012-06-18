@@ -144,6 +144,7 @@ public:
     // Creation/Deletion
     bool createDomain(const string& strName, string& strError);
     bool deleteDomain(const string& strName, string& strError);
+    bool deleteAllDomains(string& strError);
     bool createConfiguration(const string& strDomain, const string& strConfiguration, string& strError);
     bool deleteConfiguration(const string& strDomain, const string& strConfiguration, string& strError);
 
@@ -202,6 +203,7 @@ private:
     CCommandHandler::CommandStatus listDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus createDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus deleteDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus deleteAllDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus renameDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus setSequenceAwarenessCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus getSequenceAwarenessCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);

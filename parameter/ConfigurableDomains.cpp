@@ -157,6 +157,14 @@ bool CConfigurableDomains::deleteDomain(const string& strName, string& strError)
     return true;
 }
 
+void CConfigurableDomains::deleteAllDomains()
+{
+    log("Deleting all configurable domains");
+
+    //remove Children
+    clean();
+}
+
 bool CConfigurableDomains::renameDomain(const string& strName, const string& strNewName, string& strError)
 {
     CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strName, strError);

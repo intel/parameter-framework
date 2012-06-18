@@ -48,6 +48,7 @@ public:
     /// Domains
     bool createDomain(const string& strName, string& strError);
     bool deleteDomain(const string& strName, string& strError);
+    void deleteAllDomains();
     bool renameDomain(const string& strName, const string& strNewName, string& strError);
     bool setSequenceAwareness(const string& strDomain, bool bSequenceAware, string& strError);
     bool getSequenceAwareness(const string& strDomain, bool& bSequenceAware, string& strError) const;

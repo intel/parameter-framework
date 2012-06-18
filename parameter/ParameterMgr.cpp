@@ -132,6 +132,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "dumpDomains", &CParameterMgr::dumpDomainsCommmandProcess, 0, "", "Show all domains and configurations, including applicability conditions" },
     { "createDomain", &CParameterMgr::createDomainCommmandProcess, 1, "<domain>", "Create new configurable domain" },
     { "deleteDomain", &CParameterMgr::deleteDomainCommmandProcess, 1, "<domain>", "Delete configurable domain" },
+    { "deleteAllDomains", &CParameterMgr::deleteAllDomainsCommmandProcess, 0, "", "Delete all configurable domains" },
     { "renameDomain", &CParameterMgr::renameDomainCommmandProcess, 2, "<domain> <new name>", "Rename configurable domain" },
     { "setSequenceAwareness", &CParameterMgr::setSequenceAwarenessCommmandProcess, 1, "<domain> true|false*", "Set configurable domain sequence awareness" },
     { "getSequenceAwareness", &CParameterMgr::getSequenceAwarenessCommmandProcess, 1, "<domain>", "Get configurable domain sequence awareness" },
@@ -872,6 +873,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteDomainCommman
     return deleteDomain(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteAllDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)remoteCommand;
+
+    return deleteAllDomains(strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+}
+
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     return getConfigurableDomains()->renameDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
@@ -1445,6 +1453,20 @@ bool CParameterMgr::deleteDomain(const string& strName, string& strError)
 
     // Delegate to configurable domains
     return getConfigurableDomains()->deleteDomain(strName, strError);
+}
+
+bool CParameterMgr::deleteAllDomains(string& strError)
+{
+    // Check tuning mode
+    if (!checkTuningModeOn(strError)) {
+
+        return false;
+    }
+
+    // Delegate to configurable domains
+    getConfigurableDomains()->deleteAllDomains();
+
+    return true;
 }
 
 bool CParameterMgr::createConfiguration(const string& strDomain, const string& strConfiguration, string& strError)
