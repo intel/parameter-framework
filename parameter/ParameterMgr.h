@@ -32,6 +32,8 @@
 #include "Element.h"
 #include <map>
 #include <vector>
+#include "XmlDocSink.h"
+#include "XmlDocSource.h"
 
 
 class CElementLibrarySet;
@@ -159,6 +161,10 @@ public:
     bool importDomainsBinary(const string& strFileName, string& strError);
     bool exportDomainsBinary(const string& strFileName, string& strError);
 
+    // GUI command XML send
+    bool getDomainsXMLString(string& strResult, bool bWithSettings);
+    bool getSystemClassXMLString(string& strResult);
+
     // Introspect
     void logStructureContent(string& strContent) const;
 
@@ -242,6 +248,9 @@ private:
     CCommandHandler::CommandStatus importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus importSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    /// GUI commands
+    CCommandHandler::CommandStatus getSystemClassXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getDomainsXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
 
     // Max command usage length, use for formatting
     void setMaxCommandUsageLength();

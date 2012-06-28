@@ -62,3 +62,12 @@ CInstanceConfigurableElement* CBitParameterBlockType::doInstantiate() const
 {
     return new CBitParameterBlock(getName(), this);
 }
+
+// From IXmlSource
+void CBitParameterBlockType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    // Size
+    xmlElement.setAttributeString("Size", toString(_uiSize * 8));
+
+    base::toXml(xmlElement, serializingContext);
+}

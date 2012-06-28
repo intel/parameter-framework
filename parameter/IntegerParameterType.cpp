@@ -428,3 +428,33 @@ const CParameterAdaptation* CIntegerParameterType::getParameterAdaptation() cons
 {
     return static_cast<const CParameterAdaptation*>(findChildOfKind("Adaptation"));
 }
+
+// From IXmlSource
+void CIntegerParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    // Sign
+    xmlElement.setAttributeBoolean("Signed", _bSigned);
+
+    if (_bSigned) {
+
+        // Mininmum
+        xmlElement.setAttributeString("Min", toString((int32_t)_uiMin));
+
+        // Maximum
+        xmlElement.setAttributeString("Max", toString((int32_t)_uiMax));
+
+    } else {
+
+        // Minimum
+        xmlElement.setAttributeString("Min", toString(_uiMin));
+
+        // Maximum
+        xmlElement.setAttributeString("Max", toString(_uiMax));
+    }
+
+    // Size
+    xmlElement.setAttributeString("Size", toString(getSize() * 8));
+
+    base::toXml(xmlElement, serializingContext);
+
+}

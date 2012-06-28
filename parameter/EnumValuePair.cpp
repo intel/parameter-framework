@@ -67,3 +67,15 @@ void CEnumValuePair::logValue(string& strValue, CErrorContext& errorContext) con
     // Convert value
     strValue = getNumericalAsString();
 }
+
+// From IXmlSource
+void CEnumValuePair::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    // Literal
+    xmlElement.setAttributeString("Literal", this->getName());
+
+    // Numerical
+    xmlElement.setAttributeString("Numerical", getNumericalAsString());
+
+    base::toXml(xmlElement, serializingContext);
+}

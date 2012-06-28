@@ -68,3 +68,12 @@ uint32_t CStringParameterType::getMaxLength() const
 {
     return _uiMaxLength;
 }
+
+// From IXmlSource
+void CStringParameterType::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+{
+    // MaxLength
+    xmlElement.setAttributeInteger("MaxLength", _uiMaxLength);
+
+    base::toXml(xmlElement, serializingContext);
+}

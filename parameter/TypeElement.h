@@ -48,6 +48,9 @@ public:
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
+    // From IXmlSource
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
     // Scalar or Array?
     bool isScalar() const;
 

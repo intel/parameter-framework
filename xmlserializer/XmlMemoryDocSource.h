@@ -1,8 +1,8 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel 
+ * Copyright © 2011 Intel
  * Corporation All Rights Reserved.
- * 
+ *
  * The source code contained or described herein and all documents related to
  * the source code ("Material") are owned by Intel Corporation or its suppliers
  * or licensors. Title to the Material remains with Intel Corporation or its
@@ -12,42 +12,48 @@
  * treaty provisions. No part of the Material may be used, copied, reproduced,
  * modified, published, uploaded, posted, transmitted, distributed, or
  * disclosed in any way without Intel’s prior express written permission.
- * 
+ *
  * No license under any patent, copyright, trade secret or other intellectual
  * property right is granted to or conferred upon you by disclosure or delivery
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- * 
- * CREATED: 2011-06-01
- * UPDATED: 2011-07-27
+ *
+ * CREATED: 2012-08-10
  */
+
 #pragma once
 
-#include "TypeElement.h"
+#include "XmlDocSource.h"
+#include "XmlSource.h"
 
-class CBitParameterBlockType : public CTypeElement
+class CXmlMemoryDocSource : public CXmlDocSource
 {
 public:
-    CBitParameterBlockType(const string& strName);
+    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType, const string& strXmlSchemaFile, const string& strProduct, const string& strVersion);
 
-    // Size
-    uint32_t getSize() const;
+    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType);
 
-    // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
-
-    // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
-
-    // CElement
-    virtual string getKind() const;
+    virtual bool populate(CXmlSerializingContext& serializingContext);
 private:
-    virtual bool childrenAreDynamic() const;
-    // Instantiation
-    virtual CInstanceConfigurableElement* doInstantiate() const;
 
-    // Size in bytes
-    uint32_t _uiSize;
+    // initialize root element
+    void init();
+
+    // Xml Source
+    const IXmlSource* _pXmlSource;
+
+    // Schema file
+    string _strXmlSchemaFile;
+
+    // Boolean used to specify if a header should be added in the Xml Doc
+    bool _bWithHeader;
+
+    // Product and version info
+    string _strProduct;
+    string _strVersion;
+
+    // Get the current system time
+    static string getTimeAsString();
+
 };
-

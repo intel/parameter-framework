@@ -25,6 +25,7 @@
 #include "XmlElement.h"
 #include <libxml/tree.h>
 #include <stdlib.h>
+#include <sstream>
 
 CXmlElement::CXmlElement(_xmlNode* pXmlElement) : _pXmlElement(pXmlElement)
 {
@@ -197,6 +198,13 @@ void CXmlElement::setAttributeBoolean(const string& strAttributeName, bool bValu
 void CXmlElement::setAttributeString(const string& strAttributeName, const string& strValue)
 {
     xmlNewProp(_pXmlElement, BAD_CAST strAttributeName.c_str(), BAD_CAST strValue.c_str());
+}
+
+void CXmlElement::setAttributeInteger(const string& strAttributeName, uint32_t uiValue)
+{
+   ostringstream strStream;
+   strStream << uiValue;
+   setAttributeString(strAttributeName, strStream.str());
 }
 
 void CXmlElement::setNameAttribute(const string& strValue)

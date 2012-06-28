@@ -23,7 +23,6 @@
  * UPDATED: 2011-07-27
  */
 #include "ParameterMgr.h"
-#include "XmlParser.h"
 #include "XmlParameterSerializingContext.h"
 #include "XmlElementSerializingContext.h"
 #include "SystemClass.h"
@@ -54,7 +53,6 @@
 #include "ConfigurableDomains.h"
 #include "ConfigurableDomain.h"
 #include "DomainConfiguration.h"
-#include "XmlComposer.h"
 #include "XmlDomainSerializingContext.h"
 #include "BitParameterBlockType.h"
 #include "BitParameterType.h"
@@ -74,6 +72,11 @@
 #include "ParameterHandle.h"
 #include "LinearParameterAdaptation.h"
 #include "EnumValuePair.h"
+#include "XmlFileDocSink.h"
+#include "XmlFileDocSource.h"
+#include "XmlStringDocSink.h"
+#include "XmlMemoryDocSink.h"
+#include "XmlMemoryDocSource.h"
 
 #define base CElement
 
@@ -166,7 +169,10 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "exportDomainsWithSettingsXML", &CParameterMgr::exportConfigurableDomainsWithSettingsToXMLCommmandProcess, 1, "<file path> ", "Export domains including settings to XML file" },
     { "importDomainsWithSettingsXML", &CParameterMgr::importConfigurableDomainsWithSettingsFromXMLCommmandProcess, 1, "<file path>", "Import domains including settings from XML file" },
     { "exportSettings", &CParameterMgr::exportSettingsCommmandProcess, 1, "<file path>", "Export settings to binary file" },
-    { "importSettings", &CParameterMgr::importSettingsCommmandProcess, 1, "<file path>", "Import settings from binary file" }
+    { "importSettings", &CParameterMgr::importSettingsCommmandProcess, 1, "<file path>", "Import settings from binary file" },
+    { "getDomainsXML", &CParameterMgr::getDomainsXMLCommmandProcess, 0 ,"", "Print domains including settings as XML" },
+    /// Structure Export
+    { "getSystemClassXML", &CParameterMgr::getSystemClassXMLCommmandProcess, 0 ,"", "Print parameter structure as XML" }
 };
 // Remote command parsers array Size
 const uint32_t CParameterMgr::guiNbRemoteCommandParserItems = sizeof(gastRemoteCommandParserItems) / sizeof(gastRemoteCommandParserItems[0]);
@@ -510,39 +516,16 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
     // Get Schema file associated to root element
     string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pRootElement->getKind() + ".xsd";
 
-    // Parse Structure XML file
-    CXmlParser parser(strXmlFilePath, strXmlSchemaFilePath, pRootElement->getKind(), elementSerializingContext);
-
-    if (!parser.open()) {
-
-        return false;
-    }
-
-    // Check Root element name attribute (if any)
-    string strRootElementName = parser.getRootElementAttributeString(strNameAttrituteName);
-
-    if (!strRootElementName.empty() && strRootElementName != pRootElement->getName()) {
-
-        elementSerializingContext.setError("Error: Wrong XML structure file " + strXmlFilePath);
-        elementSerializingContext.appendLineToError(pRootElement->getKind() + " element " + pRootElement->getName() + " mismatches expected " + pRootElement->getKind() + " type " + pRootElement->getName());
-
-        return false;
-    }
+    CXmlFileDocSource fileDocSource(strXmlFilePath, strXmlSchemaFilePath, pRootElement->getKind(), pRootElement->getName(), strNameAttrituteName);
 
     // Start clean
     pRootElement->clean();
 
-    // Parse
-    if (!parser.parse(pRootElement)) {
+    CXmlMemoryDocSink memorySink(pRootElement);
 
-        // Cleanup
+    if (!memorySink.process(fileDocSource, elementSerializingContext)) {
+        //Cleanup
         pRootElement->clean();
-
-        return false;
-    }
-
-    // Close parser
-    if (!parser.close()) {
 
         return false;
     }
@@ -1274,6 +1257,32 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importSettingsCommm
     return importDomainsBinary(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
+/// GUI commands
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getDomainsXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)remoteCommand;
+
+    if (!getDomainsXMLString(strResult, true)) {
+
+        return CCommandHandler::EFailed;
+    }
+    // Succeeded
+    return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSystemClassXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)remoteCommand;
+
+    if (!getSystemClassXMLString(strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+    // Succeeded
+    return CCommandHandler::ESucceeded;
+}
+
 // User set/get parameters
 bool CParameterMgr::accessValue(const string& strPath, string& strValue, bool bSet, string& strError)
 {
@@ -1646,21 +1655,13 @@ bool CParameterMgr::exportDomainsXml(const string& strFileName, bool bWithSettin
     // Output raw format
     xmlDomainSerializingContext.setOutputRawFormat(_bOutputRawFormatIsHex);
 
-    // Instantiate composer
-    CXmlComposer xmlComposer(strFileName, strXmlSchemaFilePath, pConfigurableDomains->getKind(), xmlDomainSerializingContext);
+    // Use a doc source by loading data from instantiated Configurable Domains
+    CXmlMemoryDocSource memorySource(pConfigurableDomains, pConfigurableDomains->getKind(), strXmlSchemaFilePath, "parameter-framework", getVersion());
 
-    // Open composer
-    if (!xmlComposer.open()) {
+    // Use a doc sink to write the doc data in a file
+    CXmlFileDocSink fileSink(strFileName);
 
-        return false;
-    }
-
-    // Compose
-    xmlComposer.compose(pConfigurableDomains, "parameter-framework", getVersion());
-
-    // Close composer
-    if (!xmlComposer.close()) {
-
+    if (!fileSink.process(memorySource, xmlDomainSerializingContext)) {
         return false;
     }
 
@@ -1890,4 +1891,64 @@ const CConfigurableDomains* CParameterMgr::getConstConfigurableDomains()
 const CConfigurableDomains* CParameterMgr::getConstConfigurableDomains() const
 {
     return static_cast<const CConfigurableDomains*>(getChild(EConfigurableDomains));
+}
+
+/// GUI commands functions
+
+bool CParameterMgr::getDomainsXMLString(string& strResult, bool bWithSettings)
+{
+
+    // Root element
+    const CConfigurableDomains* pConfigurableDomains = getConstConfigurableDomains();
+
+    // Get Schema file associated to root element
+    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pConfigurableDomains->getKind() + ".xsd";
+
+    string strError;
+
+    // Context
+    CXmlDomainSerializingContext xmlDomainSerializingContext(strError, bWithSettings);
+
+    // Value space
+    xmlDomainSerializingContext.setValueSpaceRaw(_bValueSpaceIsRaw);
+
+    // Output raw format
+    xmlDomainSerializingContext.setOutputRawFormat(_bOutputRawFormatIsHex);
+
+    // Use a doc source by loading data from instantiated Configurable Domains
+    CXmlMemoryDocSource memorySource(pConfigurableDomains, pConfigurableDomains->getKind(), strXmlSchemaFilePath, "parameter-framework", getVersion());
+
+    // Use a doc sink the write the doc data in a string
+    CXmlStringDocSink stringSink(strResult);
+
+    if (!stringSink.process(memorySource, xmlDomainSerializingContext)) {
+        strResult = strError;
+
+        return false;
+    }
+
+    return true;
+}
+
+bool CParameterMgr::getSystemClassXMLString(string& strResult)
+{
+    // Root element
+    const CSystemClass* pSystemClass = getSystemClass();
+
+    string strError;
+
+    CXmlSerializingContext xmlSerializingContext(strError);
+
+    // Use a doc source by loading data from instantiated Configurable Domains
+    CXmlMemoryDocSource memorySource(pSystemClass, pSystemClass->getKind());
+
+    // Use a doc sink that write the doc data in a string
+    CXmlStringDocSink stringSink(strResult);
+
+    if (!stringSink.process(memorySource, xmlSerializingContext)) {
+        strResult = strError;
+        return false;
+    }
+
+    return true;
 }

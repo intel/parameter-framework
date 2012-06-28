@@ -39,6 +39,9 @@ public:
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
+    // From IXmlSource
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
     // Element properties
     virtual void showProperties(string& strResult) const;
 

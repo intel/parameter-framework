@@ -125,3 +125,14 @@ CMappingData* CTypeElement::getMappingData()
     }
     return _pMappingData;
 }
+
+// From IXmlSource
+void CTypeElement::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    if (!isScalar()) {
+
+        xmlElement.setAttributeInteger("ArrayLength", getArrayLength());
+    }
+
+    base::toXml(xmlElement, serializingContext);
+}

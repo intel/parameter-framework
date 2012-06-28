@@ -67,6 +67,7 @@ public:
     void setNameAttribute(const string& strValue);
     void setTextContent(const string& strContent);
     void setComment(const string& strComment);
+    void setAttributeInteger(const string& strAttributeName, uint32_t uiValue);
 
     // Child creation
     void createChild(CXmlElement& childElement, const string& strType);

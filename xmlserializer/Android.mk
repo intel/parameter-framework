@@ -5,11 +5,15 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 
 LOCAL_SRC_FILES:= \
-        XmlParser.cpp \
         XmlElement.cpp \
-        XmlComposer.cpp \
         XmlSerializingContext.cpp \
-        XmlSerializer.cpp
+        XmlDocSource.cpp \
+        XmlDocSink.cpp \
+        XmlMemoryDocSink.cpp \
+        XmlMemoryDocSource.cpp \
+        XmlStringDocSink.cpp \
+        XmlFileDocSink.cpp \
+        XmlFileDocSource.cpp
 
 LOCAL_MODULE:= libxmlserializer
 

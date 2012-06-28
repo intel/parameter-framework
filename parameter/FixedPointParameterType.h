@@ -34,6 +34,9 @@ public:
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
+    // From IXmlSource
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
     // XML Serialization value space handling
     // Value space handling for configuration import
     virtual void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;

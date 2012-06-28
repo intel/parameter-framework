@@ -64,6 +64,9 @@ public:
     bool accessAsString(string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
     virtual bool accessAsStringArray(vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
+    // From IXmlSource
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
 protected:
     // Parameter Access
     virtual bool accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;

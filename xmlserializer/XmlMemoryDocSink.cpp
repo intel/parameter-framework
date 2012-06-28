@@ -1,8 +1,8 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel 
+ * Copyright © 2011 Intel
  * Corporation All Rights Reserved.
- * 
+ *
  * The source code contained or described herein and all documents related to
  * the source code ("Material") are owned by Intel Corporation or its suppliers
  * or licensors. Title to the Material remains with Intel Corporation or its
@@ -12,38 +12,33 @@
  * treaty provisions. No part of the Material may be used, copied, reproduced,
  * modified, published, uploaded, posted, transmitted, distributed, or
  * disclosed in any way without Intel’s prior express written permission.
- * 
+ *
  * No license under any patent, copyright, trade secret or other intellectual
  * property right is granted to or conferred upon you by disclosure or delivery
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- * 
- * CREATED: 2011-06-01
- * UPDATED: 2011-07-27
+ *
+ * CREATED: 2012-08-10
  */
-#pragma once
 
-#include "XmlSerializer.h"
-#include "XmlSource.h"
+#include "XmlMemoryDocSink.h"
 
-struct _xmlDoc;
-struct _xmlNode;
+#define base CXmlDocSink
 
-class CXmlComposer : public CXmlSerializer
+CXmlMemoryDocSink::CXmlMemoryDocSink(IXmlSink* pXmlSink):
+        _pXmlSink(pXmlSink)
 {
-public:
-    CXmlComposer(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType, CXmlSerializingContext& serializingContext);
-    virtual ~CXmlComposer();
+}
 
-    // open / close
-    virtual bool open();
-    virtual bool close();
+bool CXmlMemoryDocSink::doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext)
+{
 
-    // Composing contents
-    void compose(const IXmlSource* pXmlSource, const string& strProduct, const string& strVersion);
+    CXmlElement docElement;
+    xmlDocSource.getRootElement(docElement);
 
-private:
-    static string getTimeAsString();
-};
+    // Load the structure from the XML Sink
+    _pXmlSink->fromXml(docElement, serializingContext);
 
+    return true;
+}

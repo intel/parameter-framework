@@ -218,3 +218,10 @@ bool CBaseParameter::accessValue(CPathNavigator& pathNavigator, string& strValue
 
     return accessAsString(strValue, bSet, parameterAccessContext);
 }
+
+void CBaseParameter::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+
+    // Delegate to type element
+    getTypeElement()->toXml(xmlElement, serializingContext);
+}

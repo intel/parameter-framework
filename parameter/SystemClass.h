@@ -45,6 +45,9 @@ public:
     virtual bool init(string& strError);
     virtual string getKind() const;
 
+    // From IXmlSource
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
 private:
     CSystemClass(const CSystemClass&);
     CSystemClass& operator=(const CSystemClass&);

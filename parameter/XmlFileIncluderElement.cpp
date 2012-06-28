@@ -23,7 +23,8 @@
  * UPDATED: 2011-07-27
  */
 #include "XmlFileIncluderElement.h"
-#include "XmlParser.h"
+#include "XmlFileDocSource.h"
+#include "XmlMemoryDocSink.h"
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
 #include <assert.h>
@@ -52,17 +53,13 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Instantiate parser
     string strIncludedElementType = getIncludedElementType();
 
-    CXmlParser parser(strPath, elementSerializingContext.getXmlSchemaPathFolder() + "/" + strIncludedElementType + ".xsd", strIncludedElementType, elementSerializingContext);
-
-    if (!parser.open()) {
-
-        return false;
-    }
+    // Use a doc source that load data from a file
+    CXmlFileDocSource fileDocSource(strPath, elementSerializingContext.getXmlSchemaPathFolder() + "/" + strIncludedElementType + ".xsd", strIncludedElementType);
 
     // Get top level element
     CXmlElement childElement;
 
-    parser.getRootElement(childElement);
+    fileDocSource.getRootElement(childElement);
 
     // Create child element
     CElement* pChild = elementSerializingContext.getElementLibrary()->createElement(childElement);
@@ -78,7 +75,10 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
         return false;
     }
 
-    if (!parser.parse(pChild)) {
+    // Use a doc sink that instantiate the structure from the doc source
+    CXmlMemoryDocSink memorySink(pChild);
+
+    if (!memorySink.process(fileDocSource, elementSerializingContext)) {
 
         return false;
     }

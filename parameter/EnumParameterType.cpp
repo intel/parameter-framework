@@ -333,3 +333,11 @@ bool CEnumParameterType::isValid(int iNumerical, CParameterAccessContext& parame
 
     return false;
 }
+// From IXmlSource
+void CEnumParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    // Size
+    xmlElement.setAttributeString("Size", toString(getSize() * 8));
+
+    base::toXml(xmlElement, serializingContext);
+}

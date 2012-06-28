@@ -1,8 +1,8 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel 
+ * Copyright © 2011 Intel
  * Corporation All Rights Reserved.
- * 
+ *
  * The source code contained or described herein and all documents related to
  * the source code ("Material") are owned by Intel Corporation or its suppliers
  * or licensors. Title to the Material remains with Intel Corporation or its
@@ -12,57 +12,52 @@
  * treaty provisions. No part of the Material may be used, copied, reproduced,
  * modified, published, uploaded, posted, transmitted, distributed, or
  * disclosed in any way without Intel’s prior express written permission.
- * 
+ *
  * No license under any patent, copyright, trade secret or other intellectual
  * property right is granted to or conferred upon you by disclosure or delivery
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- * 
- * CREATED: 2011-06-01
- * UPDATED: 2011-07-27
+ *
+ * CREATED: 2012-08-10
  */
+
 #pragma once
 
-#include "XmlElement.h"
-#include "XmlSerializingContext.h"
+#include "XmlDocSource.h"
+#include "XmlSource.h"
 
-struct _xmlDoc;
-struct _xmlNode;
+struct _xmlError;
 
-class CXmlSerializer
+class CXmlFileDocSource : public CXmlDocSource
 {
 public:
-    CXmlSerializer(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType, CXmlSerializingContext& serializingContext);
-    virtual ~CXmlSerializer();
+    CXmlFileDocSource(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType, const string& strRootElementName, const string& strNameAttrituteName);
 
-    // Open/Close
-    virtual bool open();
-    virtual bool close();
+    CXmlFileDocSource(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType);
 
-    // Root element
-    void getRootElement(CXmlElement& xmlRootElement) const;
-    string getRootElementName() const;
-    string getRootElementAttributeString(const string& strAttributeName) const;
-protected:
+
+    // CXmlDocSource method implemented
+    virtual bool populate(CXmlSerializingContext& serializingContext);
+
+private:
+
+    // Validation of the document with the xsd file
+    bool isInstanceDocumentValid();
+
+    static void schemaValidityStructuredErrorFunc(void* pUserData, _xmlError* pError);
+
     // Instance file
     string _strXmlInstanceFile;
-
     // Schema file
     string _strXmlSchemaFile;
-
-    // Root element type
+    // Element type info
     string _strRootElementType;
+    // Element name info
+    string _strRootElementName;
+    // Element name attribute info
+    string _strNameAttrituteName;
 
-    // Serializing context
-    CXmlSerializingContext& _serializingContext;
+    bool _bNameCheck;
 
-    // XML document
-    _xmlDoc* _pDoc;
-
-    // Root node
-    _xmlNode* _pRootNode;
-
-    // libxml2 library cleanup
-    static bool _bLibXml2CleanupScheduled;
 };

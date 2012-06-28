@@ -233,3 +233,19 @@ bool CBitParameterType::isEncodable(uint32_t uiData) const
 
     return true;
 }
+
+// From IXmlSource
+void CBitParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    // Position
+    xmlElement.setAttributeString("Pos", toString(_uiBitPos));
+
+    // Size
+    xmlElement.setAttributeString("Size", toString(_uiBitSize));
+
+    // Maximum
+    xmlElement.setAttributeString("Max", toString(_uiMax));
+
+    base::toXml(xmlElement, serializingContext);
+
+}

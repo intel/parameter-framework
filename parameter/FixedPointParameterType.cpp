@@ -340,3 +340,18 @@ double CFixedPointParameterType::asDouble(int32_t iValue) const
     // Convert
     return (double)iValue / (1UL << _uiFractional);
 }
+
+// From IXmlSource
+void CFixedPointParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    // Size
+    xmlElement.setAttributeString("Size", toString(getSize() * 8));
+
+    // Integral
+    xmlElement.setAttributeString("Integral", toString(_uiIntegral));
+
+    // Fractional
+    xmlElement.setAttributeString("Fractional", toString(_uiFractional));
+
+    base::toXml(xmlElement, serializingContext);
+}
