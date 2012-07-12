@@ -165,6 +165,9 @@ public:
     // CElement
     virtual string getKind() const;
 private:
+    CParameterMgr(const CParameterMgr&);
+    CParameterMgr& operator=(const CParameterMgr&);
+
     // Logging (done by root)
     virtual void doLog(const string& strLog) const;
     virtual void nestLog() const;

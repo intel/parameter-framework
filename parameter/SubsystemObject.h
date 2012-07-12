@@ -64,6 +64,9 @@ protected:
     const CInstanceConfigurableElement* getConfigurableElement() const;
 
 private:
+    CSubsystemObject(const CSubsystemObject&);
+    CSubsystemObject& operator=(const CSubsystemObject&);
+
     // Instance element to sync from/to
     CInstanceConfigurableElement* _pInstanceConfigurableElement;
     // Data size

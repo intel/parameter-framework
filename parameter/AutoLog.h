@@ -33,6 +33,8 @@ public:
     ~CAutoLog();
 
 private:
+    CAutoLog(const CAutoLog&);
+    CAutoLog& operator=(const CAutoLog&);
     // Logger element
     const CElement* _pElement;
     // Context

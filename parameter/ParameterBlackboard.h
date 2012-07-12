@@ -55,6 +55,9 @@ public:
     // Serialization
     void serialize(CBinaryStream& binaryStream);
 private:
+    CParameterBlackboard(const CParameterBlackboard&);
+    CParameterBlackboard& operator=(const CParameterBlackboard&);
+
     uint8_t* _pucData;
     uint32_t _uiSize;
 };

@@ -67,6 +67,9 @@ protected:
     // Subsystem object creator publication (strong reference)
     void addSubsystemObjectFactory(CSubsystemObjectCreator* pSubsystemObjectCreator);
 private:
+    CSubsystem(const CSubsystem&);
+    CSubsystem& operator=(const CSubsystem&);
+
     // Belonging subsystem
     virtual const CSubsystem* getBelongingSubsystem() const;
 

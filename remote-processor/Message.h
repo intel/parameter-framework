@@ -53,6 +53,8 @@ protected:
     // Remaining data size
     uint32_t getRemainingDataSize() const;
 private:
+    CMessage(const CMessage&);
+    CMessage& operator=(const CMessage&);
     // Data allocation
     void allocateData(uint32_t uiDataSize);
     // Fill data to send

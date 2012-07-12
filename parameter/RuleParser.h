@@ -68,6 +68,9 @@ public:
     CCompoundRule* grabRootRule();
 private:
 
+    CRuleParser(const CRuleParser&);
+    CRuleParser& operator=(const CRuleParser&);
+
     // Rule definition
     string _strApplicationRule;
     // Criteria defintion

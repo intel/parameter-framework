@@ -69,6 +69,8 @@ public:
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError) const;
 
 private:
+    CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector&);
+    CParameterMgrPlatformConnector& operator=(const CParameterMgrPlatformConnector&);
     // Private logging
     void doLog(const std::string& strLog);
 

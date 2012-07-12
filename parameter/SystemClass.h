@@ -46,6 +46,8 @@ public:
     virtual string getKind() const;
 
 private:
+    CSystemClass(const CSystemClass&);
+    CSystemClass& operator=(const CSystemClass&);
     // base
     virtual bool childrenAreDynamic() const;
 

@@ -58,6 +58,8 @@ protected:
     // Object creation
     virtual void populate(CElement* pElement) const;
 private:
+    CTypeElement(const CTypeElement&);
+    CTypeElement& operator=(const CTypeElement&);
     // Actual instance creation
     virtual CInstanceConfigurableElement* doInstantiate() const = 0;
 

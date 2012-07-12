@@ -50,6 +50,8 @@ public:
     // Direction
     bool isOut() const;
 private:
+    CBinaryStream(const CBinaryStream&);
+    CBinaryStream& operator=(const CBinaryStream&);
     // Checksum
     uint8_t computeChecksum() const;
 
