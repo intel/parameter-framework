@@ -1,6 +1,4 @@
-/* <auto_header>
- * <FILENAME>
- * 
+/* 
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -21,12 +19,8 @@
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
  * 
- *  AUTHOR: Patrick Benavoli (patrickx.benavoli@intel.com)
  * CREATED: 2011-06-01
  * UPDATED: 2011-07-27
- * 
- * 
- * </auto_header>
  */
 #pragma once
 
