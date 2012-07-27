@@ -90,7 +90,7 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
 
     if (isNumber(strValue)) {
 
-        // Numerical value provided
+        /// Numerical value provided
 
         // Hexa
         bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
@@ -104,11 +104,8 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
         // Conversion error when the input string does not contain any digit or the number is out of range (int32_t type)
         bool bConversionSucceeded = !errno && (strValue.c_str() != pcStrEnd);
 
-
-        if (!bConversionSucceeded || !isEncodable((uint64_t)iData, !bValueProvidedAsHexa)) {
-
-            // Illegal value provided
-            parameterAccessContext.setError("Provided value out of bound");
+        // Check validity against type
+        if (!checkValueAgainstRange(strValue, iData, parameterAccessContext, bValueProvidedAsHexa, bConversionSucceeded)) {
 
             return false;
         }
@@ -118,7 +115,8 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
             // Sign extend
             signExtend(iData);
         }
-        // Check validity
+
+        // Check validity against lexical space
         string strError;
         if (!isValid(iData, parameterAccessContext)) {
 
@@ -127,9 +125,9 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
             return false;
         }
     } else {
-        // Literal value provided
+        /// Literal value provided
 
-        // Check validity
+        // Check validity against lexical space
         int iNumerical;
         if (!getNumerical(strValue, iNumerical)) {
 
@@ -138,11 +136,51 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
             return false;
         }
         iData = iNumerical;
+
+        // Check validity against type
+        if (!checkValueAgainstRange(strValue, iData, parameterAccessContext, false, isEncodable((uint64_t)iData, true))) {
+
+            return false;
+        }
     }
 
     // Return data
     uiValue = (uint32_t)iData;
 
+    return true;
+}
+
+// Range checking
+bool CEnumParameterType::checkValueAgainstRange(const string& strValue, int64_t value, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const
+{
+    // Enums are always signed, it means we have one less util bit
+    int64_t maxValue = (1 << (getSize() * 8 - 1)) - 1;
+    int64_t minValue = -maxValue - 1;
+
+    if (!bConversionSucceeded || value < minValue || value > maxValue) {
+
+        ostringstream strStream;
+
+        strStream << "Value " << strValue << " standing out of admitted range [";
+
+        if (bHexaValue) {
+
+            // Format Min
+            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(minValue);
+            // Format Max
+            strStream << ", 0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(maxValue);
+
+        } else {
+
+            strStream << minValue << ", " <<  maxValue;
+        }
+
+        strStream << "] for " << getKind();
+
+        parameterAccessContext.setError(strStream.str());
+
+        return false;
+    }
     return true;
 }
 

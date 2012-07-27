@@ -64,4 +64,7 @@ private:
 
     // Numerical validity
     bool isValid(int iNumerical, CParameterAccessContext& parameterAccessContext) const;
+
+    // Range validity
+    bool checkValueAgainstRange(const string& strValue, int64_t value, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const;
 };
