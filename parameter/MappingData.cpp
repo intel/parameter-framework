@@ -42,10 +42,26 @@ bool CMappingData::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext
 
     while (!(strMappingElement = mappingTok.next()).empty()) {
 
-        Tokenizer keyValueTok(strMappingElement, ":");
+        string::size_type iFistDelimiterOccurrence = strMappingElement.find_first_of(':');
 
-        string strKey = keyValueTok.next();
-        string strValue = keyValueTok.next();
+        string strKey, strValue;
+
+        if (iFistDelimiterOccurrence == string::npos) {
+
+            // There is no delimiter in the mapping field,
+            // it means that no value has been provided
+            strKey = strMappingElement;
+            strValue = "";
+
+        } else {
+
+            // Get mapping key
+            strKey = strMappingElement.substr(0, iFistDelimiterOccurrence);
+
+            // Get mapping value
+            strValue = strMappingElement.substr(iFistDelimiterOccurrence + 1);
+
+        }
 
         if (!addValue(strKey, strValue)) {
 
