@@ -141,42 +141,30 @@ bool CIntegerParameterType::toBlackboard(const string& strValue, uint32_t& uiVal
     // Hexa
     bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
 
-    // Get value
+    // Get integer value from the string provided
     int64_t iData;
 
-    // Reset errno to check if it is updated during the conversion (strtol/strtoul)
-    errno = 0;
-    char *pcStrEnd;
+    if (!convertValueFromString(strValue, iData, parameterAccessContext)) {
 
-    // Convert the input string
-    if (_bSigned) {
-
-        iData = strtoll(strValue.c_str(), &pcStrEnd, 0);
-    } else {
-
-        iData = strtoull(strValue.c_str(), &pcStrEnd, 0);
+        return false;
     }
-
-
-    // Conversion error when the input string does not contain any digit or the number is out of range (int32_t type)
-    bool bConversionSucceeded = !errno && (strValue.c_str() != pcStrEnd);
 
     // Check against Min / Max
     if (_bSigned) {
 
-        if (bConversionSucceeded && bValueProvidedAsHexa && isEncodable((uint64_t)iData, !bValueProvidedAsHexa)) {
+        if (bValueProvidedAsHexa && isEncodable((uint64_t)iData, !bValueProvidedAsHexa)) {
 
             // Sign extend
             signExtend(iData);
         }
 
-        if (!checkValueAgainstRange<int64_t>(strValue, iData, (int32_t)_uiMin, (int32_t)_uiMax, parameterAccessContext, bValueProvidedAsHexa, bConversionSucceeded)) {
+        if (!checkValueAgainstRange<int64_t>(strValue, iData, (int32_t)_uiMin, (int32_t)_uiMax, parameterAccessContext, bValueProvidedAsHexa)) {
 
             return false;
         }
     } else {
 
-        if (!checkValueAgainstRange<uint64_t>(strValue, iData, _uiMin, _uiMax, parameterAccessContext, bValueProvidedAsHexa, bConversionSucceeded)) {
+        if (!checkValueAgainstRange<uint64_t>(strValue, iData, _uiMin, _uiMax, parameterAccessContext, bValueProvidedAsHexa)) {
 
             return false;
         }
@@ -375,10 +363,40 @@ uint32_t CIntegerParameterType::getDefaultValue() const
     return _uiMin;
 }
 
+// Convert value provided by the user as a string into an int64
+bool CIntegerParameterType::convertValueFromString(const string& strValue, int64_t& iData, CParameterAccessContext& parameterAccessContext) const {
+
+    // Reset errno to check if it is updated during the conversion (strtol/strtoul)
+    errno = 0;
+    char *pcStrEnd;
+
+    // Convert the input string
+    if (_bSigned) {
+
+        iData = strtoll(strValue.c_str(), &pcStrEnd, 0);
+    } else {
+
+        iData = strtoull(strValue.c_str(), &pcStrEnd, 0);
+    }
+
+    // Conversion error when the input string does not contain only digits or the number is out of range (int32_t type)
+    if (errno || (*pcStrEnd != '\0')) {
+
+        string strError;
+        strError =  "Impossible to convert value " + strValue + " for " + getKind();
+
+        parameterAccessContext.setError(strError);
+
+        return false;
+    }
+
+    return true;
+}
+
 // Range checking
-template <typename type> bool CIntegerParameterType::checkValueAgainstRange(const string& strValue, type value, type minValue, type maxValue, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const
+template <typename type> bool CIntegerParameterType::checkValueAgainstRange(const string& strValue, type value, type minValue, type maxValue, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const
 {
-    if (!bConversionSucceeded || value < minValue || value > maxValue) {
+    if (value < minValue || value > maxValue) {
 
         ostringstream strStream;
 

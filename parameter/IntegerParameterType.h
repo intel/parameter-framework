@@ -62,8 +62,11 @@ private:
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
 
+    // Conversion from string
+    bool convertValueFromString(const string& strValue, int64_t& iData, CParameterAccessContext& parameterAccessContext) const;
+
     // Range checking
-    template <typename type> bool checkValueAgainstRange(const string& strValue, type value, type minValue, type maxValue, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const;
+    template <typename type> bool checkValueAgainstRange(const string& strValue, type value, type minValue, type maxValue, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const;
 
     // Adaptation element retrieval
     const CParameterAdaptation* getParameterAdaptation() const;
