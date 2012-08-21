@@ -30,6 +30,7 @@
 #include "TestPlatform.h"
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteProcessorServer.h"
+#include <errno.h>
 
 class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnector::ILogger
 {
@@ -118,7 +119,29 @@ CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::startParameterMgrCo
 
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::setCriterionStateCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return setCriterionState(remoteCommand.getArgument(0), strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0), strResult) ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+
+    bool bSuccess;
+
+    const char * pcState = remoteCommand.getArgument(1).c_str();
+
+    char *pcStrEnd;
+
+    // Reset errno to check if it is updated during the conversion (strtol/strtoul)
+    errno = 0;
+
+    uint32_t state = strtoul(pcState , &pcStrEnd, 0);
+
+    if (!errno && (*pcStrEnd == '\0')) {
+        // Sucessfull conversion, set criterion state by numerical state
+        bSuccess = setCriterionState(remoteCommand.getArgument(0), state , strResult ) ;
+
+    } else {
+        // Conversion failed, set criterion state by lexical state
+        bSuccess = setCriterionStateByLexicalSpace(remoteCommand , strResult );
+    }
+
+    return bSuccess ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+
 }
 
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::applyConfigurationsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -270,3 +293,60 @@ bool CTestPlatform::setCriterionState(const string& strName, uint32_t uiState, s
     return true;
 }
 
+bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, string& strResult)
+{
+
+    // Get criterion name
+    std::string strCriterionName = remoteCommand.getArgument(0);
+
+    ISelectionCriterionInterface* pCriterion = _pParameterMgrPlatformConnector->getSelectionCriterion(strCriterionName);
+
+    if (!pCriterion) {
+
+        strResult = "Unable to retrieve selection criterion: " + strCriterionName;
+
+        return false;
+    }
+
+    // Get criterion type
+    const ISelectionCriterionTypeInterface* pCriterionType = pCriterion->getCriterionType();
+
+    // Get substate number, the first argument (index 0) is the criterion name
+    uint32_t uiNbSubStates = remoteCommand.getArgumentCount() - 1;
+
+    // Check that exclusive criterion has only one substate
+    if (!pCriterionType->isTypeInclusive() && uiNbSubStates != 1) {
+
+        strResult = "Exclusive criterion " + strCriterionName + " can only have one state";
+
+        return false;
+    }
+
+    /// Translate lexical state to numerical state
+    uint32_t uiNumericalState = 0;
+    uint32_t uiLexicalSubStateIndex;
+
+    // Parse lexical substates
+    for (uiLexicalSubStateIndex = 1; uiLexicalSubStateIndex <= uiNbSubStates; uiLexicalSubStateIndex++) {
+
+        int iNumericalSubState;
+
+        const std::string& strLexicalSubState = remoteCommand.getArgument(uiLexicalSubStateIndex);
+
+        // Translate lexical to numerical substate
+        if (!pCriterionType->getNumericalValue(strLexicalSubState, iNumericalSubState)) {
+
+            strResult = "Unable to find lexical state \"" + strLexicalSubState + "\" in criteria " + strCriterionName;
+
+            return false;
+        }
+
+        // Aggregate numerical substates
+        uiNumericalState |= iNumericalSubState;
+    }
+
+    // Set criterion new state
+    pCriterion->setCriterionState(uiNumericalState);
+
+    return true;
+}

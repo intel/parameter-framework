@@ -64,6 +64,7 @@ private:
     bool createExclusiveSelectionCriterion(const string& strName, uint32_t uiNbValues, string& strResult);
     bool createInclusiveSelectionCriterion(const string& strName, uint32_t uiNbValues, string& strResult);
     bool setCriterionState(const string& strName, uint32_t uiState, string& strResult);
+    bool setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, string& strResult);
 
     // Connector
     CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;
