@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -55,6 +55,9 @@ public:
 
     // Base
     virtual string getKind() const;
+
+    // Reset the modified status of the children
+    void resetModifiedStatus();
 private:
     // Children access
     CSelectionCriterionLibrary* getSelectionCriterionLibrary();

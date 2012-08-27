@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -576,6 +576,13 @@ bool CParameterMgr::applyConfigurations(string& strError)
 
             return false;
         }
+
+        // Reset the modified status of the current criteria to indicate that a new configuration has been applied
+        getSelectionCriteria()->resetModifiedStatus();
+
+    } else {
+
+        log("Warning: Configurations were not applied because the TuningMode is on");
     }
 
     return true;

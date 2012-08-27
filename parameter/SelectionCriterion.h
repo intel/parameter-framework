@@ -45,6 +45,9 @@ public:
     virtual string getCriterionName() const;
     // Type
     virtual const ISelectionCriterionTypeInterface* getCriterionType() const;
+    // Modified status
+    bool hasBeenModified() const;
+    void resetModifiedStatus();
 
     /// Match methods
     bool is(int iState) const;
@@ -62,5 +65,7 @@ private:
     int _iState;
     // Type
     const CSelectionCriterionType* _pType;
+    // Counter to know how many modifications have been applied to this criterion
+    uint8_t _uiNbModifications;
 };
 

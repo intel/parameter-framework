@@ -46,5 +46,8 @@ public:
 
     // Base
     virtual string getKind() const;
+
+    // Reset the modified status of the children
+    void resetModifiedStatus();
 };
 

@@ -62,6 +62,12 @@ void CSelectionCriteria::listSelectionCriteria(string& strResult, bool bWithType
     getSelectionCriteriaDefinition()->listSelectionCriteria(strResult, bWithTypeInfo);
 }
 
+// Reset the modified status of the children
+void CSelectionCriteria::resetModifiedStatus()
+{
+    getSelectionCriteriaDefinition()->resetModifiedStatus();
+}
+
 // Children access
 CSelectionCriterionLibrary* CSelectionCriteria::getSelectionCriterionLibrary()
 {

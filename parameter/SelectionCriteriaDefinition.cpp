@@ -70,3 +70,18 @@ void CSelectionCriteriaDefinition::listSelectionCriteria(string& strResult, bool
     }
 }
 
+// Reset the modified status of the children
+void CSelectionCriteriaDefinition::resetModifiedStatus()
+{
+    // Propagate
+    uint32_t uiNbChildren = getNbChildren();
+    uint32_t uiChild;
+    CSelectionCriterion* pSelectionCriterion;
+
+    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
+
+        pSelectionCriterion = static_cast<CSelectionCriterion*>(getChild(uiChild));
+
+        pSelectionCriterion->resetModifiedStatus();
+    }
+}
