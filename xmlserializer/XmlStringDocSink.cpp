@@ -32,7 +32,8 @@ CXmlStringDocSink::CXmlStringDocSink(string& strResult):
 {
 }
 
-bool CXmlStringDocSink::doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext)
+bool CXmlStringDocSink::doProcess(CXmlDocSource& xmlDocSource,
+                                  CXmlSerializingContext& serializingContext)
 {
     (void)serializingContext;
 

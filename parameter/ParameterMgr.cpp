@@ -1,4 +1,4 @@
-/*
+ /*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -74,6 +74,7 @@
 #include "XmlFileDocSink.h"
 #include "XmlFileDocSource.h"
 #include "XmlStringDocSink.h"
+#include "XmlStringDocSource.h"
 #include "XmlMemoryDocSink.h"
 #include "XmlMemoryDocSource.h"
 #include "Utility.h"
@@ -244,12 +245,16 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<file path>", "Export settings to binary file" },
     { "importSettings", &CParameterMgr::importSettingsCommmandProcess, 1,
             "<file path>", "Import settings from binary file" },
-    { "getDomainsXML", &CParameterMgr::getDomainsXMLCommmandProcess, 0 ,
+    { "getDomainsWithSettingsXML",
+            &CParameterMgr::getConfigurableDomainsWithSettingsXMLCommmandProcess, 0,
             "", "Print domains including settings as XML" },
-
+    { "setDomainsWithSettingsXML",
+            &CParameterMgr::setConfigurableDomainsWithSettingsXMLCommmandProcess, 1,
+            "<xml configurable domains>", "Import domains including settings from XML string" },
     /// Structure Export
     { "getSystemClassXML", &CParameterMgr::getSystemClassXMLCommmandProcess, 0 ,
             "", "Print parameter structure as XML" }
+
 };
 
 // Remote command parsers array Size
@@ -1362,24 +1367,35 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setConfigurationPar
 }
 
 /// Settings Import/Export
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportConfigurableDomainsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus
+        CParameterMgr::exportConfigurableDomainsToXMLCommmandProcess(
+                const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return exportDomainsXml(remoteCommand.getArgument(0), false, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    string strFileName = remoteCommand.getArgument(0);
+    return exportDomainsXml(strFileName, false, true, strResult) ?
+            CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importConfigurableDomainsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus
+        CParameterMgr::importConfigurableDomainsFromXMLCommmandProcess(
+                const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), false, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return importDomainsXml(remoteCommand.getArgument(0), false, true, strResult) ?
+            CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportConfigurableDomainsWithSettingsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus
+        CParameterMgr::exportConfigurableDomainsWithSettingsToXMLCommmandProcess(
+                const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return exportDomainsXml(remoteCommand.getArgument(0), true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    string strFileName = remoteCommand.getArgument(0);
+    return exportDomainsXml(strFileName, true, true, strResult) ?
+            CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return importDomainsXml(remoteCommand.getArgument(0), true, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1392,13 +1408,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importSettingsCommm
     return importDomainsBinary(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-/// GUI commands
-
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getDomainsXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus
+        CParameterMgr::getConfigurableDomainsWithSettingsXMLCommmandProcess(
+                const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
-    if (!getDomainsXMLString(strResult, true)) {
+    if (!exportDomainsXml(strResult, true, false, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1406,7 +1422,17 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getDomainsXMLCommma
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSystemClassXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus
+        CParameterMgr::setConfigurableDomainsWithSettingsXMLCommmandProcess(
+                const IRemoteCommand& remoteCommand, string& strResult)
+{
+    return importDomainsXml(remoteCommand.getArgument(0), true, false, strResult) ?
+            CCommandHandler::EDone : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus
+        CParameterMgr::getSystemClassXMLCommmandProcess(
+                const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
@@ -1801,8 +1827,8 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
     return getConfigurableDomains()->split(strDomain, pConfigurableElement, strError);
 }
 
-// XML Import/Export
-bool CParameterMgr::importDomainsXml(const string& strFileName, bool bWithSettings, string& strError)
+bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSettings,
+                                     bool bFromFile, string& strError)
 {
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
@@ -1811,7 +1837,7 @@ bool CParameterMgr::importDomainsXml(const string& strFileName, bool bWithSettin
     }
 
     // check path is absolute
-    if (strFileName[0] != '/') {
+    if (bFromFile && strXmlSource[0] != '/') {
 
         strError = "Please provide absolute path";
 
@@ -1823,25 +1849,67 @@ bool CParameterMgr::importDomainsXml(const string& strFileName, bool bWithSettin
     // Context
     CXmlDomainSerializingContext xmlDomainSerializingContext(strError, bWithSettings);
 
-    // Secltion criteria definition for rule creation
-    xmlDomainSerializingContext.setSelectionCriteriaDefinition(getConstSelectionCriteria()->getSelectionCriteriaDefinition());
+    // Selection criteria definition for rule creation
+    xmlDomainSerializingContext.setSelectionCriteriaDefinition(
+            getConstSelectionCriteria()->getSelectionCriteriaDefinition());
 
-    // Parse
-    if (!xmlParse(xmlDomainSerializingContext, pConfigurableDomains, strFileName, "", EParameterConfigurationLibrary, "SystemClassName")) {
+    // Init serializing context
+    xmlDomainSerializingContext.set(
+            _pElementLibrarySet->getElementLibrary(EParameterConfigurationLibrary),
+            "", _strSchemaFolderLocation);
 
-        return false;
+    // Get Schema file associated to root element
+    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" +
+                                  pConfigurableDomains->getKind() + ".xsd";
+
+    // Xml Source
+    CXmlDocSource* pSource;
+
+    if (bFromFile) {
+
+        // when importing from a file strXmlSource is the file name
+        pSource = new CXmlFileDocSource(strXmlSource, strXmlSchemaFilePath,
+                                        pConfigurableDomains->getKind(),
+                                        pConfigurableDomains->getName(), "SystemClassName");
+
+    } else {
+
+        // when importing from an xml string, strXmlSource contains the string
+        pSource = new CXmlStringDocSource(strXmlSource, strXmlSchemaFilePath,
+                                          pConfigurableDomains->getKind(),
+                                          pConfigurableDomains->getName(), "SystemClassName");
+
+    }
+    // Start clean
+    pConfigurableDomains->clean();
+
+    // Use a doc sink that instantiate Configurable Domains from the given doc source
+    CXmlMemoryDocSink memorySink(pConfigurableDomains);
+
+    bool bProcessSuccess = memorySink.process(*pSource, xmlDomainSerializingContext);
+
+    if (!bProcessSuccess) {
+
+        //Cleanup
+        pConfigurableDomains->clean();
+
+    } else {
+
+        // Validate domains after XML import
+        pConfigurableDomains->validate(_pMainParameterBlackboard);
+
     }
 
-    // Validate domains after XML import
-    pConfigurableDomains->validate(_pMainParameterBlackboard);
+    delete pSource;
 
-    return true;
+    return bProcessSuccess;
 }
 
-bool CParameterMgr::exportDomainsXml(const string& strFileName, bool bWithSettings, string& strError) const
+bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, bool bToFile,
+                                     string& strError) const
 {
     // check path is absolute
-    if (strFileName[0] != '/') {
+    if (bToFile && strXmlDest[0] != '/') {
 
         strError = "Please provide absolute path";
 
@@ -1852,7 +1920,8 @@ bool CParameterMgr::exportDomainsXml(const string& strFileName, bool bWithSettin
     const CConfigurableDomains* pConfigurableDomains = getConstConfigurableDomains();
 
     // Get Schema file associated to root element
-    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pConfigurableDomains->getKind() + ".xsd";
+    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" +
+                                  pConfigurableDomains->getKind() + ".xsd";
 
     // Context
     CXmlDomainSerializingContext xmlDomainSerializingContext(strError, bWithSettings);
@@ -1864,16 +1933,27 @@ bool CParameterMgr::exportDomainsXml(const string& strFileName, bool bWithSettin
     xmlDomainSerializingContext.setOutputRawFormat(_bOutputRawFormatIsHex);
 
     // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(pConfigurableDomains, pConfigurableDomains->getKind(), strXmlSchemaFilePath, "parameter-framework", getVersion());
+    CXmlMemoryDocSource memorySource(pConfigurableDomains, pConfigurableDomains->getKind(),
+                                     strXmlSchemaFilePath, "parameter-framework", getVersion());
 
-    // Use a doc sink to write the doc data in a file
-    CXmlFileDocSink fileSink(strFileName);
+    // Xml Sink
+    CXmlDocSink* pSink;
 
-    if (!fileSink.process(memorySource, xmlDomainSerializingContext)) {
-        return false;
+    if (bToFile) {
+
+        // Use a doc sink to write the doc data in a file
+        pSink = new CXmlFileDocSink(strXmlDest);
+
+    } else {
+
+        // Use a doc sink to write the doc data in a string
+        pSink = new CXmlStringDocSink(strXmlDest);
     }
 
-    return true;
+    bool bProcessSuccess = pSink->process(memorySource, xmlDomainSerializingContext);
+
+    delete pSink;
+    return bProcessSuccess;
 }
 
 // Binary Import/Export
@@ -2116,42 +2196,6 @@ void CParameterMgr::doApplyConfigurations(bool bForce)
     getSelectionCriteria()->resetModifiedStatus();
 }
 
-/// GUI commands functions
-bool CParameterMgr::getDomainsXMLString(string& strResult, bool bWithSettings)
-{
-
-    // Root element
-    const CConfigurableDomains* pConfigurableDomains = getConstConfigurableDomains();
-
-    // Get Schema file associated to root element
-    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pConfigurableDomains->getKind() + ".xsd";
-
-    string strError;
-
-    // Context
-    CXmlDomainSerializingContext xmlDomainSerializingContext(strError, bWithSettings);
-
-    // Value space
-    xmlDomainSerializingContext.setValueSpaceRaw(_bValueSpaceIsRaw);
-
-    // Output raw format
-    xmlDomainSerializingContext.setOutputRawFormat(_bOutputRawFormatIsHex);
-
-    // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(pConfigurableDomains, pConfigurableDomains->getKind(), strXmlSchemaFilePath, "parameter-framework", getVersion());
-
-    // Use a doc sink the write the doc data in a string
-    CXmlStringDocSink stringSink(strResult);
-
-    if (!stringSink.process(memorySource, xmlDomainSerializingContext)) {
-        strResult = strError;
-
-        return false;
-    }
-
-    return true;
-}
-
 bool CParameterMgr::getSystemClassXMLString(string& strResult)
 {
     // Root element
@@ -2167,10 +2211,13 @@ bool CParameterMgr::getSystemClassXMLString(string& strResult)
     // Use a doc sink that write the doc data in a string
     CXmlStringDocSink stringSink(strResult);
 
-    if (!stringSink.process(memorySource, xmlSerializingContext)) {
+    bool bProcessSuccess = stringSink.process(memorySource, xmlSerializingContext);
+
+    if (!bProcessSuccess) {
+
         strResult = strError;
-        return false;
+
     }
 
-    return true;
+    return bProcessSuccess;
 }

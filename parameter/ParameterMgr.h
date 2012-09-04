@@ -159,16 +159,50 @@ public:
     bool removeConfigurableElementFromDomain(const string& strDomain, const string& strConfigurableElementPath, string& strError);
     bool split(const string& strDomain, const string& strConfigurableElementPath, string& strError);
 
-    // XML Import/Export
-    bool importDomainsXml(const string& strFileName, bool bWithSettings, string& strError);
-    bool exportDomainsXml(const string& strFileName, bool bWithSettings, string& strError) const;
+    /**
+      * Method that imports Configurable Domains from an Xml source.
+      *
+      * @param[in] strXmlSource a string containing an xml description or a path to an xml file
+      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * xml description
+      * @param[in] bFromFile a boolean that determines if the source is an xml description in
+      * strXmlSource or contained in a file. In that case strXmlSource is just the file path.
+      * @param[out] strError is used as the error output
+      *
+      * @return false if any error occures
+      */
+    bool importDomainsXml(const string& strXmlSource, bool bWithSettings, bool bFromFile,
+                          string& strError);
+
+    /**
+      * Method that exports Configurable Domains to an Xml destination.
+      * If bToFile is false, the xml description from the xml document will be written
+      * in strXmlDest. Otherwise it will be written in a file located at the path in strXmlDest
+      *
+      * @param[in:out] strXmlDest a string containing an xml description or a path to an xml file
+      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * xml description
+      * @param[in] bToFile a boolean that determines if the destination is an xml description in
+      * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
+      * @param[out] strError is used as the error output
+      *
+      * @return false if any error occures
+      */
+    bool exportDomainsXml(string& strXmlDest, bool bWithSettings, bool bToFile,
+                          string& strError) const;
 
     // Binary Import/Export
     bool importDomainsBinary(const string& strFileName, string& strError);
     bool exportDomainsBinary(const string& strFileName, string& strError);
 
-    // GUI command XML send
-    bool getDomainsXMLString(string& strResult, bool bWithSettings);
+    /**
+      * Method that creates an Xml description of the instanciated parameter structure contained
+      * in SystemClass.
+      *
+      * @param[out] strResult contains the xml description of SystemClass or the errors if any
+      *
+      * @return false if any error occures during the creation of the xml description
+      */
     bool getSystemClassXMLString(string& strResult);
 
     // Introspect
@@ -257,9 +291,42 @@ private:
     CCommandHandler::CommandStatus importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus importSettingsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    /// GUI commands
-    CCommandHandler::CommandStatus getSystemClassXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CCommandHandler::CommandStatus getDomainsXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+
+    /**
+      * Command handler method for getConfigurableDomainWithSettings command.
+      *
+      * @param[in] remoteCommand contains the arguments of the received command.
+      * @param[out] strResult a string containing the result of the command
+      *
+      * @return CCommandHandler::ESucceeded if command succeeded or CCommandHandler::EFailed
+      * in the other case
+      */
+    CCommandHandler::CommandStatus getConfigurableDomainsWithSettingsXMLCommmandProcess(
+            const IRemoteCommand& remoteCommand, string& strResult);
+
+    /**
+      * Command handler method for setConfigurableDomainWithSettings command.
+      *
+      * @param[in] remoteCommand contains the arguments of the received command.
+      * @param[out] strResult a string containing the result of the command
+      *
+      * @return CCommandHandler::ESucceeded if command succeeded or CCommandHandler::EFailed
+      * in the other case
+      */
+    CCommandHandler::CommandStatus setConfigurableDomainsWithSettingsXMLCommmandProcess(
+            const IRemoteCommand& remoteCommand, string& strResult);
+
+    /**
+      * Command handler method for getSystemClass command.
+      *
+      * @param[in] remoteCommand contains the arguments of the received command.
+      * @param[out] strResult a string containing the result of the command
+      *
+      * @return CCommandHandler::ESucceeded if command succeeded or CCommandHandler::EFailed
+      * in the other case
+      */
+    CCommandHandler::CommandStatus getSystemClassXMLCommmandProcess(
+            const IRemoteCommand& remoteCommand, string& strResult);
 
     // Max command usage length, use for formatting
     void setMaxCommandUsageLength();

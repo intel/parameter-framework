@@ -44,6 +44,14 @@ public:
     virtual const string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const;
 
 private:
+
+    /**
+      * Constant character array.
+      * This value defines the delimiters used to separate the arguments
+      * in the request command.
+      */
+    static const char* const gacDelimiters;
+
     // Fill data to send
     virtual void fillDataToSend();
     // Collect received data

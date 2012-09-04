@@ -1,6 +1,6 @@
 /*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel
+ * Copyright © 2013 Intel
  * Corporation All Rights Reserved.
  *
  * The source code contained or described herein and all documents related to
@@ -18,8 +18,6 @@
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- *
- * CREATED: 2012-08-10
  */
 
 #include "XmlFileDocSink.h"
@@ -32,10 +30,12 @@ CXmlFileDocSink::CXmlFileDocSink(const string& strXmlInstanceFile):
 {
 }
 
-bool CXmlFileDocSink::doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext)
+bool CXmlFileDocSink::doProcess(CXmlDocSource& xmlDocSource,
+                                CXmlSerializingContext& serializingContext)
 {
     // Write file (formatted)
-    if (xmlSaveFormatFileEnc(_strXmlInstanceFile.c_str(), xmlDocSource.getDoc(), "UTF-8", 1) == -1) {
+    if (xmlSaveFormatFileEnc(_strXmlInstanceFile.c_str(),
+                             xmlDocSource.getDoc(), "UTF-8", 1) == -1) {
 
         serializingContext.setError("Could not write file " + _strXmlInstanceFile);
 

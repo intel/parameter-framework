@@ -1,6 +1,6 @@
 /*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel
+ * Copyright © 2013 Intel
  * Corporation All Rights Reserved.
  *
  * The source code contained or described herein and all documents related to
@@ -18,49 +18,64 @@
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- *
- * CREATED: 2012-08-10
  */
 
 #pragma once
-
 #include "XmlDocSource.h"
-#include "XmlSource.h"
+#include <string>
 
-struct _xmlError;
-
+/**
+  * Source class that read a file to get an xml document.
+  * Its base class will validate the document.
+  */
 class CXmlFileDocSource : public CXmlDocSource
 {
 public:
-    CXmlFileDocSource(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType, const string& strRootElementName, const string& strNameAttrituteName);
-
+    /**
+      * Constructor
+      *
+      * @param[in] strXmlInstanceFile a string containing the path to the xml file
+      * @param[in] strXmlSchemaFile a string containing the path to the schema file
+      * @param[in] strRootElementType a string containing the root element type
+      * @param[in] strRootElementName a string containing the root element name
+      * @param[in] strNameAttributeName a string containing the name of the root name attribute
+      */
+    CXmlFileDocSource(const string& strXmlInstanceFile,
+                      const string& strXmlSchemaFile,
+                      const string& strRootElementType,
+                      const string& strRootElementName,
+                      const string& strNameAttrituteName);
+    /**
+      * Constructor
+      *
+      * @param[in] strXmlInstanceFile a string containing the path to the xml file
+      * @param[in] strXmlSchemaFile a string containing the path to the schema file
+      * @param[in] strRootElementType a string containing the root element type
+      */
     CXmlFileDocSource(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType);
 
-
-    // CXmlDocSource method implemented
+    /**
+      * CXmlDocSource method implementation.
+      *
+      * @param[out] serializingContext is used as error output
+      *
+      * @return false if any error occurs
+      */
     virtual bool populate(CXmlSerializingContext& serializingContext);
 
-    // Check that the file exists and is readable
+    /**
+      * Method that checks that the file exists and is readable.
+      *
+      * @param[out] serializingContext is used as error output
+      *
+      * @return false if any error occurs during the parsing
+      */
     virtual bool isParsable(CXmlSerializingContext& serializingContext) const;
 
 private:
 
-    // Validation of the document with the xsd file
-    bool isInstanceDocumentValid();
-
-    static void schemaValidityStructuredErrorFunc(void* pUserData, _xmlError* pError);
-
-    // Instance file
+    /**
+      * Instance file
+      */
     string _strXmlInstanceFile;
-    // Schema file
-    string _strXmlSchemaFile;
-    // Element type info
-    string _strRootElementType;
-    // Element name info
-    string _strRootElementName;
-    // Element name attribute info
-    string _strNameAttrituteName;
-
-    bool _bNameCheck;
-
 };

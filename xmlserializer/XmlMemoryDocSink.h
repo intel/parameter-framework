@@ -1,6 +1,6 @@
 /*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel
+ * Copyright © 2013 Intel
  * Corporation All Rights Reserved.
  *
  * The source code contained or described herein and all documents related to
@@ -19,21 +19,37 @@
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
  *
- * CREATED: 2012-08-10
  */
 
 #pragma once
-
 #include "XmlDocSink.h"
 #include "XmlSink.h"
 
+/**
+  * Sink class used to parse an xml document and instanciate parameter-framework structures.
+  */
 class CXmlMemoryDocSink : public CXmlDocSink
 {
 public:
+    /**
+      * Constructor
+      *
+      * @param[out] pXmlSink a pointer to a parameter-framework structure that can parse an xml
+      * description to instanciate itself
+      */
     CXmlMemoryDocSink(IXmlSink* pXmlSink);
 
 private:
-    // Source processing
+    /**
+      * Implementation of CXmlDocSink::doProcess()
+      * Parse the Xml document contained in xmlDocSource to instanciate the parameter-framework
+      * structures.
+      *
+      * @param[in] xmlDocSource is the source containing the Xml document
+      * @param[out] serializingContext is used as error output
+      *
+      * @return false if any error occurs
+      */
     virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
 
     // Xml Sink

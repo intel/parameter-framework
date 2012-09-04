@@ -1,6 +1,6 @@
 /*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel
+ * Copyright © 2013 Intel
  * Corporation All Rights Reserved.
  *
  * The source code contained or described herein and all documents related to
@@ -19,24 +19,46 @@
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
  *
- * CREATED: 2012-08-10
  */
 
 #pragma once
-
 #include "XmlDocSource.h"
 #include "XmlSerializingContext.h"
 
+/**
+  * The CXmlDocSink class defines how to use a CXmlDocSource.
+  * The interaction between the xml source and xml sink is defined
+  * in the process method of CXmlDocSink. One can subclass CXmlDocSink
+  * for different purpose by implementing the doProcess method and then
+  * use it with any existing implementation of CXmlDocSource.
+  */
 class CXmlDocSink
 {
 public:
     CXmlDocSink();
 
-    // Source processing
+    /**
+      * Method to be called to use an xmlDocSource.
+      * Any subclass of XmlDocSink must implement the doProcess
+      * method that will define how to use the xmlDocSource.
+      *
+      * @param[in] xmlDocSource a CXmlDocSource reference
+      * @param[in] serializingContext a CXmlSerializing Context reference
+      *
+      * @return true is there was no error during the processing of xmlDocSource
+      */
     bool process(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
     virtual ~CXmlDocSink() {}
 
 private:
-    // Handle for subclasses to process the source
+    /**
+      * Handle for subclasses to process the source.
+      * This method will define what to do with the xmlDocSource.
+      *
+      * @param[in] xmlDocSource a CXmlDocSource reference
+      * @param[in] serializingContext a CXmlSerializing Context reference
+      *
+      * @return true is there was no error during the processing of xmlDocSource
+      */
     virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext) = 0;
 };

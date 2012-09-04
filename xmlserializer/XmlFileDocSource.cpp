@@ -24,62 +24,31 @@
 
 #include "XmlFileDocSource.h"
 #include <libxml/parser.h>
-#include <libxml/xmlschemas.h>
 
 #define base CXmlDocSource
 
-
-
-CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType, const string& strRootElementName, const string& strNameAttrituteName) :
-        base(xmlReadFile(strXmlInstanceFile.c_str(), NULL, 0)), _strXmlInstanceFile(strXmlInstanceFile), _strXmlSchemaFile(strXmlSchemaFile), _strRootElementType(strRootElementType), _strRootElementName(strRootElementName), _strNameAttrituteName(strNameAttrituteName), _bNameCheck(true)
+CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
+                                     const string& strXmlSchemaFile,
+                                     const string& strRootElementType,
+                                     const string& strRootElementName,
+                                     const string& strNameAttrituteName) :
+        base(xmlReadFile(strXmlInstanceFile.c_str(),NULL, 0),
+             strXmlSchemaFile,
+             strRootElementType,
+             strRootElementName,
+             strNameAttrituteName),
+        _strXmlInstanceFile(strXmlInstanceFile)
 {
 }
 
-CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType) :
-        base(xmlReadFile(strXmlInstanceFile.c_str(), NULL, 0)), _strXmlInstanceFile(strXmlInstanceFile), _strXmlSchemaFile(strXmlSchemaFile), _strRootElementType(strRootElementType), _strRootElementName(""), _strNameAttrituteName(""), _bNameCheck(false)
+CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
+                                     const string& strXmlSchemaFile,
+                                     const string& strRootElementType) :
+        base(xmlReadFile(strXmlInstanceFile.c_str(), NULL, 0),
+             strXmlSchemaFile,
+             strRootElementType),
+        _strXmlInstanceFile(strXmlInstanceFile)
 {
-}
-
-bool CXmlFileDocSource::populate(CXmlSerializingContext& serializingContext)
-{
-    // Check that the doc has been created
-    if (!isParsable(serializingContext)) {
-
-        return false;
-    }
-
-    // Validate
-    if (!isInstanceDocumentValid()) {
-
-        serializingContext.setError("Document " + _strXmlInstanceFile + " is not valid");
-
-        return false;
-    }
-
-    // Check Root element type
-    if (getRootElementName() != _strRootElementType) {
-
-        serializingContext.setError("Error: Wrong XML structure file " + _strXmlInstanceFile);
-        serializingContext.appendLineToError("Root Element " + getRootElementName() + " mismatches expected type " + _strRootElementType);
-
-        return false;
-    }
-
-    // Check Root element name attribute (if any)
-    if (_bNameCheck) {
-
-        string strRootElementNameCheck = getRootElementAttributeString(_strNameAttrituteName);
-
-        if (!_strRootElementName.empty() && strRootElementNameCheck != _strRootElementName) {
-
-            serializingContext.setError("Error: Wrong XML structure file " + _strXmlInstanceFile);
-            serializingContext.appendLineToError(_strRootElementType + " element " + _strRootElementName + " mismatches expected " + _strRootElementType + " type " + strRootElementNameCheck);
-
-            return false;
-        }
-    }
-
-    return true;
 }
 
 bool CXmlFileDocSource::isParsable(CXmlSerializingContext& serializingContext) const
@@ -95,68 +64,15 @@ bool CXmlFileDocSource::isParsable(CXmlSerializingContext& serializingContext) c
     return true;
 }
 
-bool CXmlFileDocSource::isInstanceDocumentValid()
+bool CXmlFileDocSource::populate(CXmlSerializingContext& serializingContext)
 {
-#ifdef LIBXML_SCHEMAS_ENABLED
-    xmlDocPtr pSchemaDoc = xmlReadFile(_strXmlSchemaFile.c_str(), NULL, XML_PARSE_NONET);
+    if (!base::validate(serializingContext)) {
 
-    if (!pSchemaDoc) {
-        // Unable to load Schema
+        // Add the file's name in the error message
+        serializingContext.appendLineToError("File : " + _strXmlInstanceFile);
+
         return false;
     }
 
-    xmlSchemaParserCtxtPtr pParserCtxt = xmlSchemaNewDocParserCtxt(pSchemaDoc);
-
-    if (!pParserCtxt) {
-
-        // Unable to create schema context
-        xmlFreeDoc(pSchemaDoc);
-        return false;
-    }
-
-    // Get Schema
-    xmlSchemaPtr pSchema = xmlSchemaParse(pParserCtxt);
-
-    if (!pSchema) {
-
-        // Invalid Schema
-        xmlSchemaFreeParserCtxt(pParserCtxt);
-        xmlFreeDoc(pSchemaDoc);
-        return false;
-    }
-    xmlSchemaValidCtxtPtr pValidationCtxt = xmlSchemaNewValidCtxt(pSchema);
-
-    if (!pValidationCtxt) {
-
-        // Unable to create validation context
-        xmlSchemaFree(pSchema);
-        xmlSchemaFreeParserCtxt(pParserCtxt);
-        xmlFreeDoc(pSchemaDoc);
-        return false;
-    }
-
-    xmlSetStructuredErrorFunc(this, schemaValidityStructuredErrorFunc);
-    //xmlSchemaSetValidErrors(pValidationCtxt, schemaValidityErrorFunc, schemaValidityWarningFunc, NULL);
-
-    bool isDocValid = xmlSchemaValidateDoc(pValidationCtxt, _pDoc) == 0;
-
-    xmlSchemaFreeValidCtxt(pValidationCtxt);
-    xmlSchemaFree(pSchema);
-    xmlSchemaFreeParserCtxt(pParserCtxt);
-    xmlFreeDoc(pSchemaDoc);
-
-    return isDocValid;
-#else
     return true;
-#endif
-}
-
-void CXmlFileDocSource::schemaValidityStructuredErrorFunc(void* pUserData, _xmlError* pError)
-{
-    (void)pUserData;
-
-#ifdef LIBXML_SCHEMAS_ENABLED
-    // Display message
-    puts(pError->message);
-#endif
 }

@@ -1,6 +1,6 @@
 /*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel
+ * Copyright © 2013 Intel
  * Corporation All Rights Reserved.
  *
  * The source code contained or described herein and all documents related to
@@ -18,8 +18,6 @@
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- *
- * CREATED: 2012-08-10
  */
 
 #include "XmlMemoryDocSource.h"
@@ -28,14 +26,22 @@
 
 #define base CXmlDocSource
 
-CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType, const string& strXmlSchemaFile, const string& strProduct, const string& strVersion):
-     base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())), _pXmlSource(pXmlSource), _strXmlSchemaFile(strXmlSchemaFile), _bWithHeader(true), _strProduct(strProduct), _strVersion(strVersion)
+CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
+                                         const string& strRootElementType,
+                                         const string& strXmlSchemaFile,
+                                         const string& strProduct,
+                                         const string& strVersion):
+     base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
+     _pXmlSource(pXmlSource), _strXmlSchemaFile(strXmlSchemaFile), _bWithHeader(true),
+     _strProduct(strProduct), _strVersion(strVersion)
 {
     init();
 }
 
-CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType):
-    base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())), _pXmlSource(pXmlSource), _bWithHeader(false)
+CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
+                                         const string& strRootElementType):
+    base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
+    _pXmlSource(pXmlSource), _bWithHeader(false)
 {
     init();
 }
@@ -52,7 +58,9 @@ void CXmlMemoryDocSource::init()
 bool CXmlMemoryDocSource::populate(CXmlSerializingContext& serializingContext)
 {
 #ifndef LIBXML_TREE_ENABLED
-    serializingContext.setError("XML file exporting feature unsupported on this image. This easiest way to activate it is to do a global recompilation with LIBXML_TREE_ENABLED compiler switch set");
+    serializingContext.setError("XML file exporting feature unsupported on this image. " +
+                                "This easiest way to activate it is to do a global " +
+                                "recompilation with LIBXML_TREE_ENABLED compiler switch set");
 
     return false;
 #endif

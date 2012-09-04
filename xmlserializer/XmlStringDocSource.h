@@ -22,38 +22,39 @@
  */
 
 #pragma once
-#include "XmlDocSink.h"
+#include "XmlDocSource.h"
 #include <string>
 
 /**
-  * Sink class that save the content of any CXmlDocSource into a file.
-  * The file path is defined in the constructor.
+  * Source class that get an xml document from a string.
+  * Its base class will check the validity of the document.
   */
-class CXmlFileDocSink : public CXmlDocSink
+class CXmlStringDocSource : public CXmlDocSource
 {
 public:
     /**
       * Constructor
       *
-      * @param[in] strXmlInstanceFile defines the path used to save the file.
+      * @param[in] strXmlInput a string containing an xml description
+      * @param[in] strXmlSchemaFile a string containing the path to the schema file
+      * @param[in] strRootElementType a string containing the root element type
+      * @param[in] strRootElementName a string containing the root element name
+      * @param[in] strNameAttributeName a string containing the name of the root name attribute
       */
-    CXmlFileDocSink(const string& strXmlInstanceFile);
+    CXmlStringDocSource(const string& strXmlInput,
+                        const string& strXmlSchemaFile,
+                        const string& strRootElementType,
+                        const string& strRootElementName,
+                        const string& strNameAttrituteName);
 
-private:
     /**
-      * Implementation of CXmlDocSink::doProcess()
-      * Write the content of the xmlDocSource to the file opened in strXmlInstanceFile using
-      * UTF-8 encoding
+      * CXmlDocSource method implementation.
       *
-      * @param[in] xmlDocSource is the source containing the Xml document
       * @param[out] serializingContext is used as error output
       *
       * @return false if any error occurs
       */
-    virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
-
-    /**
-      * Name of the instance file
-      */
-    string _strXmlInstanceFile;
+    virtual bool populate(CXmlSerializingContext& serializingContext);
 };
+
+

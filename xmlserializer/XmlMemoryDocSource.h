@@ -1,6 +1,6 @@
 /*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel
+ * Copyright © 2013 Intel
  * Corporation All Rights Reserved.
  *
  * The source code contained or described herein and all documents related to
@@ -19,34 +19,73 @@
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
  *
- * CREATED: 2012-08-10
  */
 
 #pragma once
-
+#include <string>
 #include "XmlDocSource.h"
 #include "XmlSource.h"
 
+using std::string;
+
+/**
+  * Source class that uses parameter-framework's structures to create an xml document
+  */
 class CXmlMemoryDocSource : public CXmlDocSource
 {
 public:
-    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType, const string& strXmlSchemaFile, const string& strProduct, const string& strVersion);
+    /**
+      * Constructor
+      *
+      * @param[in] pXmlSource a pointer to a parameter-framework structure that can generate
+      * an xml description of itself
+      * @param[in] strRootElementType a string containing the root element type
+      * @param[in] strXmlSchemaFile a string containing the path to the schema file
+      * @param[in] strProduct a string containing the product name
+      * @param[in] strVersion a string containing the version number
+      */
+    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType,
+                        const string& strXmlSchemaFile, const string& strProduct,
+                        const string& strVersion);
 
+    /**
+      * Constructor
+      *
+      * @param[in] pXmlSource a pointer to a parameter-framework structure that can generate
+      * an xml description of itself
+      * @param[in] strRootElementType a string containing the root element type
+      */
     CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType);
 
+    /**
+      * Implementation of CXmlDocSource::populate() method.
+      * Method that popuplates the Xml document using the IXmlSource given in the constructor.
+      *
+      * @param[out] serializingContext is used as error output
+      *
+      * @return false if any error occurs
+      */
     virtual bool populate(CXmlSerializingContext& serializingContext);
 private:
 
-    // initialize root element
+    /**
+      * Initialize root element
+      */
     void init();
 
-    // Xml Source
+    /**
+      * Xml Source
+      */
     const IXmlSource* _pXmlSource;
 
-    // Schema file
+    /**
+      * Schema file
+      */
     string _strXmlSchemaFile;
 
-    // Boolean used to specify if a header should be added in the Xml Doc
+    /**
+      * Boolean used to specify if a header should be added in the Xml Doc
+      */
     bool _bWithHeader;
 
     // Product and version info

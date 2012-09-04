@@ -30,6 +30,8 @@
 
 #define base CMessage
 
+const char* const CRequestMessage::gacDelimiters = " \t\n\v\f\r";
+
 CRequestMessage::CRequestMessage(const string& strCommand) : base(ECommandRequest), _strCommand(strCommand)
 {
 }
@@ -152,7 +154,9 @@ string CRequestMessage::trim(const string& strToTrim)
     // Trim string
     string strTrimmed = strToTrim;
 
-    strTrimmed.erase(remove_if(strTrimmed.begin(), strTrimmed.end(), ::isspace), strTrimmed.end());
+    strTrimmed.erase(strTrimmed.find_last_not_of(gacDelimiters) + 1 );
+
+    strTrimmed.erase(0, strTrimmed.find_first_not_of(gacDelimiters));
 
     return strTrimmed;
 }

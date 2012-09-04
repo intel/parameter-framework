@@ -1,6 +1,6 @@
 /*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel
+ * Copyright © 2013 Intel
  * Corporation All Rights Reserved.
  *
  * The source code contained or described herein and all documents related to
@@ -18,8 +18,6 @@
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- *
- * CREATED: 2012-08-10
  */
 
 #include "XmlMemoryDocSink.h"
@@ -31,7 +29,8 @@ CXmlMemoryDocSink::CXmlMemoryDocSink(IXmlSink* pXmlSink):
 {
 }
 
-bool CXmlMemoryDocSink::doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext)
+bool CXmlMemoryDocSink::doProcess(CXmlDocSource& xmlDocSource,
+                                  CXmlSerializingContext& serializingContext)
 {
 
     CXmlElement docElement;

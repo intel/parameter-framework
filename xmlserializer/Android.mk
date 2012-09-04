@@ -12,7 +12,8 @@ COMMON_SRC_FILES := \
         XmlMemoryDocSource.cpp \
         XmlStringDocSink.cpp \
         XmlFileDocSink.cpp \
-        XmlFileDocSource.cpp
+        XmlFileDocSource.cpp \
+        XmlStringDocSource.cpp
 
 COMMON_MODULE := libxmlserializer
 

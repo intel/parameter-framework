@@ -18,20 +18,27 @@
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- *
  */
 
-#include "XmlDocSink.h"
+#include "XmlStringDocSource.h"
+#include <libxml/parser.h>
 
-CXmlDocSink::CXmlDocSink()
+#define base CXmlDocSource
+
+CXmlStringDocSource::CXmlStringDocSource(const string& strXmlInput,
+                                         const string& strXmlSchemaFile,
+                                         const string& strRootElementType,
+                                         const string& strRootElementName,
+                                         const string& strNameAttrituteName) :
+    base(xmlReadMemory(strXmlInput.c_str(), strXmlInput.size(), "", NULL, 0),
+            strXmlSchemaFile,
+            strRootElementType,
+            strRootElementName,
+            strNameAttrituteName)
 {
 }
 
-bool CXmlDocSink::process(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext)
+bool CXmlStringDocSource::populate(CXmlSerializingContext &serializingContext)
 {
-    if (!xmlDocSource.populate(serializingContext)) {
-        return false;
-    }
-
-    return doProcess(xmlDocSource, serializingContext);
+    return validate(serializingContext);
 }
