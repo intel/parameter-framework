@@ -678,13 +678,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
     strResult += strSubsystemList;
 
     /// Last applied configurations
-    appendTitle(strResult, "Last applied configurations:");
+    appendTitle(strResult, "Last Applied [Pending] Configurations:");
     string strLastAppliedConfigurations;
     getConfigurableDomains()->listLastAppliedConfigurations(strLastAppliedConfigurations);
     strResult += strLastAppliedConfigurations;
 
     /// Criteria states
-    appendTitle(strResult, "Selection criteria:");
+    appendTitle(strResult, "Selection Criteria:");
     string strSelectionCriteria;
     getSelectionCriteria()->listSelectionCriteria(strSelectionCriteria, false);
     strResult += strSelectionCriteria;

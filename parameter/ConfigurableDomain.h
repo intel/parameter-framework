@@ -59,8 +59,11 @@ public:
     bool clearApplicationRule(const string& strConfiguration, string& strError);
     bool getApplicationRule(const string& strConfiguration, string& strResult) const;
 
-    // Last applied configuration
+    // Last applied configuration name
     string getLastAppliedConfigurationName() const;
+
+    // Pending configuration name
+    string getPendingConfigurationName() const;
 
     // Associated Configurable elements
     void gatherConfigurableElements(set<const CConfigurableElement*>& configurableElementSet) const;
@@ -90,10 +93,18 @@ public:
 
     // Class kind
     virtual string getKind() const;
+
 protected:
     // Content dumping
     virtual void logValue(string& strValue, CErrorContext& errorContext) const;
+
 private:
+    // Get pending configuration
+    const CDomainConfiguration* getPendingConfiguration() const;
+
+    // Search for an applicable configuration
+    const CDomainConfiguration* findApplicableDomainConfiguration() const;
+
     // Returns true if children dynamic creation is to be dealt with (here, will allow child deletion upon clean)
     virtual bool childrenAreDynamic() const;
 
@@ -112,8 +123,6 @@ private:
     // Search for a valid configuration for given configurable element
     const CDomainConfiguration* findValidDomainConfiguration(const CConfigurableElement* pConfigurableElement) const;
 
-    // Search for an applicable configuration
-    const CDomainConfiguration* findApplicableDomainConfiguration() const;
 
     // In case configurable element was removed
     void computeSyncSet();

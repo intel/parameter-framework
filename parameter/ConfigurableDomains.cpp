@@ -481,7 +481,7 @@ void CConfigurableDomains::listLastAppliedConfigurations(string& strResult) cons
 
         const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
 
-        strResult += pChildConfigurableDomain->getName() + ": " + pChildConfigurableDomain->getLastAppliedConfigurationName() + "\n";
+        strResult += pChildConfigurableDomain->getName() + ": " + pChildConfigurableDomain->getLastAppliedConfigurationName() + " [" + pChildConfigurableDomain->getPendingConfigurationName() + "]\n";
     }
 }
 

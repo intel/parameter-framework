@@ -420,6 +420,23 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement, stri
     return true;
 }
 
+// Check if there is a pending configuration for this domain: i.e. an applicable configuration different from the last applied configuration
+const CDomainConfiguration* CConfigurableDomain::getPendingConfiguration() const
+{
+    const CDomainConfiguration* pApplicableDomainConfiguration = findApplicableDomainConfiguration();
+
+    if (pApplicableDomainConfiguration) {
+
+        // Check not the last one before applying
+        if (!_pLastAppliedConfiguration || (_pLastAppliedConfiguration != pApplicableDomainConfiguration)) {
+
+            return pApplicableDomainConfiguration;
+        }
+    }
+
+    return NULL;
+}
+
 // Configuration application if required
 bool CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce, string& strError) const
 {
@@ -703,6 +720,18 @@ string CConfigurableDomain::getLastAppliedConfigurationName() const
     if (_pLastAppliedConfiguration) {
 
         return _pLastAppliedConfiguration->getName();
+    }
+    return "<none>";
+}
+
+// Pending configuration
+string CConfigurableDomain::getPendingConfigurationName() const
+{
+    const CDomainConfiguration* pPendingConfiguration = getPendingConfiguration();
+
+    if (pPendingConfiguration) {
+
+        return pPendingConfiguration->getName();
     }
     return "<none>";
 }
