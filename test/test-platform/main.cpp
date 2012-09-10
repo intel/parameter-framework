@@ -26,6 +26,7 @@
 #include <semaphore.h>
 #include "TestPlatform.h"
 #include <semaphore.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -37,11 +38,13 @@ const char* gpcParameterFrameworkConfigurationFolderPath = "/etc/parameter-frame
 #endif
 */
 
+const int iDefaultPortNumber = 5001;
+
 int main(int argc, char *argv[])
 {
     if (argc < 2) {
 
-        cerr << "Missing arguments" << endl;
+        cerr << "Missing arguments: test-platform <file path> [port number, default " << iDefaultPortNumber << "]" << endl;
 
         return -1;
     }
@@ -49,7 +52,7 @@ int main(int argc, char *argv[])
     string strError;
 
     // Create param mgr
-    CTestPlatform testPlatform(argv[1]);
+    CTestPlatform testPlatform(argv[1], argc > 2 ? atoi(argv[2]) : iDefaultPortNumber);
 
     // Start platformmgr
     if (!testPlatform.load(strError)) {

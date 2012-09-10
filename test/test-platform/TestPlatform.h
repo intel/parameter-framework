@@ -39,7 +39,7 @@ class CTestPlatform
 {
     typedef TRemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
 public:
-    CTestPlatform(const string &strclass);
+    CTestPlatform(const string &strclass, int iPortNumber);
     virtual ~CTestPlatform();
 
     // Init

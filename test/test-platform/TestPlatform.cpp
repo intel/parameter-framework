@@ -44,7 +44,7 @@ public:
 };
 
 
-CTestPlatform::CTestPlatform(const string& strClass) :
+CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
     _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
     _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger)
 {
@@ -62,7 +62,7 @@ CTestPlatform::CTestPlatform(const string& strClass) :
     _pCommandHandler->addCommandParser("applyConfigurations", &CTestPlatform::applyConfigurationsCommandProcess, 0, "", "Apply configurations selected by current selection criteria states");
 
     // Create server
-    _pRemoteProcessorServer = new CRemoteProcessorServer(5001, _pCommandHandler);
+    _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber, _pCommandHandler);
 
     _pParameterMgrPlatformConnector->setLogger(_pParameterMgrPlatformConnectorLogger);
 }
