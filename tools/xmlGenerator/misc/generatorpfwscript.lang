@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!--
+
+ copy to /usr/share/gtksourceview-2.0/language-specs/
+ restart gedit
+ and select View/Highlight Mode/Markup/GeneratorPFWscript
+
+-->
+<language id="generatorpfwscript" _name="GeneratorPFWscript" version="2.0" _section="Markup">
+  <metadata>
+    <property name="mimetypes">text/plain</property>
+    <property name="globs">.pfw</property>
+    <property name="line-comment-start">#</property>
+  </metadata>
+
+  <styles>
+    <style id="entry-type" _name="Field" map-to="def:identifier"/>
+     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="boolean" _name="Boolean Value" map-to="def:boolean"/>
+    <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
+    <style id="hexadecimal" _name="Hexadecimal number" map-to="def:base-n-integer"/>
+    <style id="path"  _name="Data Type"           map-to="def:type"/>
+    <style id="char"  _name="Character"           map-to="def:character"/>
+  </styles>
+
+  <!--default-regex-options case-sensitive="True"/-->
+
+  <definitions>
+
+    <context id="entry-type" style-ref="entry-type" >
+      <suffix>:</suffix>
+
+      <keyword>supDomain</keyword>
+      <keyword>domain</keyword>
+      <keyword>rule</keyword>
+      <keyword>supConf</keyword>
+      <keyword>conf</keyword>
+      <keyword>rule</keyword>
+      <keyword>component</keyword>
+    </context>
+
+    <context id="keywords" style-ref="keyword">
+      <keyword>Is</keyword>
+      <keyword>IsNot</keyword>
+      <keyword>Includes</keyword>
+      <keyword>Excludes</keyword>
+      <keyword>ALL</keyword>
+      <keyword>ANY</keyword>
+      <keyword>sequenceAware</keyword>
+    </context>
+
+    <context id="path" style-ref="path">
+        <match extended="true">
+            \s*(/[^\s=]*)
+        </match>
+    </context>
+
+    <context id="number" style-ref="decimal">
+      <match extended="true">
+      (?&lt;![\w\.])
+      (([0-9]+)|([0-9]+\.[0-9]+([Ee][-]?[0-9]+)?))
+      (?![\w\.])
+      </match>
+    </context>
+
+    <context id="boolean" style-ref="boolean">
+      <keyword>False</keyword>
+      <keyword>True</keyword>
+    </context>
+
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+      <start>#</start>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
+    <context id="hexadecimal" style-ref="hexadecimal">
+      <match extended="true">
+      (?&lt;![\w\.])
+      \$[0-9a-fA-F]*
+      (?![\w\.])
+      </match>
+    </context>
+
+    <context id="char" style-ref="keyword">
+        <match >([=])</match>
+    </context>
+
+    <context id="generatorpfwscript">
+      <include>
+        <context ref="entry-type"/>
+        <context ref="path"/>
+        <context ref="keywords"/>
+        <context ref="line-comment"/>
+        <context ref="boolean"/>
+        <context ref="number"/>
+        <context ref="hexadecimal"/>
+        <context ref="char"/>
+      </include>
+    </context>
+  </definitions>
+</language>
