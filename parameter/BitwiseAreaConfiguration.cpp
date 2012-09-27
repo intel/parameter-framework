@@ -16,8 +16,8 @@ void CBitwiseAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, uint
     // Beware this code works on little endian architectures only!
     const CBitParameter* pBitParameter = static_cast<const CBitParameter*>(_pConfigurableElement);
 
-    uint32_t uiSrcData = 0;
-    uint32_t uiDstData = 0;
+    uint64_t uiSrcData = 0;
+    uint64_t uiDstData = 0;
 
     /// Read/modify/write
 
@@ -39,8 +39,8 @@ void CBitwiseAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackb
     // Beware this code works on little endian architectures only!
     const CBitParameter* pBitParameter = static_cast<const CBitParameter*>(_pConfigurableElement);
 
-    uint32_t uiSrcData = 0;
-    uint32_t uiDstData = 0;
+    uint64_t uiSrcData = 0;
+    uint64_t uiDstData = 0;
 
     /// Read/modify/write
 

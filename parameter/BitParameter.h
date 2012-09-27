@@ -44,7 +44,7 @@ public:
     virtual bool accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // Integer Access
-    virtual bool accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessAsInteger(uint64_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // AreaConfiguration creation
     virtual CAreaConfiguration* createAreaConfiguration(const CSyncerSet* pSyncerSet) const;
@@ -53,7 +53,7 @@ public:
     uint32_t getBelongingBlockSize() const;
 
     // Access from area configuration
-    uint32_t merge(uint32_t uiOriginData, uint32_t uiNewData) const;
+    uint64_t merge(uint64_t uiOriginData, uint64_t uiNewData) const;
 private:
 
     // String Access

@@ -31,7 +31,7 @@
 
 #define base CTypeElement
 
-CBitParameterType::CBitParameterType(const string& strName) : base(strName), _uiBitPos(0), _uiBitSize(0), _uiMax(uint32_t(-1))
+CBitParameterType::CBitParameterType(const string& strName) : base(strName), _uiBitPos(0), _uiBitSize(0), _uiMax(uint64_t(-1))
 {
 }
 
@@ -114,13 +114,13 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
 }
 
 // Conversion
-bool CBitParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameterType::toBlackboard(const string& strValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Hexa
     bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
 
     // Get value
-    uint32_t uiConvertedValue = strtoul(strValue.c_str(), NULL, 0);
+    uint64_t uiConvertedValue = strtoull(strValue.c_str(), NULL, 0);
 
     if (uiConvertedValue > _uiMax) {
 
@@ -149,9 +149,9 @@ bool CBitParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, 
     return true;
 }
 
-void CBitParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+void CBitParameterType::fromBlackboard(string& strValue, const uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    uint32_t uiConvertedValue = (uiValue & getMask()) >> _uiBitPos;
+    uint64_t uiConvertedValue = (uiValue & getMask()) >> _uiBitPos;
 
     // Format
     ostringstream strStream;
@@ -169,7 +169,7 @@ void CBitParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue
 
 // Value access
 // Integer
-bool CBitParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     if (uiUserValue > _uiMax) {
 
@@ -184,7 +184,7 @@ bool CBitParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CP
     return true;
 }
 
-void CBitParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+void CBitParameterType::fromBlackboard(uint64_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     (void)parameterAccessContext;
 
@@ -192,7 +192,7 @@ void CBitParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, 
 }
 
 // Access from area configuration
-uint32_t CBitParameterType::merge(uint32_t uiOriginData, uint32_t uiNewData) const
+uint64_t CBitParameterType::merge(uint64_t uiOriginData, uint64_t uiNewData) const
 {
     return (uiOriginData & ~getMask()) | (uiNewData & getMask());
 }
@@ -209,19 +209,19 @@ CInstanceConfigurableElement* CBitParameterType::doInstantiate() const
 }
 
 // Max value
-uint32_t CBitParameterType::getMaxEncodableValue() const
+uint64_t CBitParameterType::getMaxEncodableValue() const
 {
-    return (uint32_t)-1L >> (8 * sizeof(uint32_t) - _uiBitSize);
+    return (uint64_t)-1L >> (8 * sizeof(uint64_t) - _uiBitSize);
 }
 
 // Biwise mask
-uint32_t CBitParameterType::getMask() const
+uint64_t CBitParameterType::getMask() const
 {
     return getMaxEncodableValue() << _uiBitPos;
 }
 
 // Check data has no bit set outside available range
-bool CBitParameterType::isEncodable(uint32_t uiData) const
+bool CBitParameterType::isEncodable(uint64_t uiData) const
 {
     uint32_t uiShift = 8 * sizeof(uiData) - _uiBitSize;
 

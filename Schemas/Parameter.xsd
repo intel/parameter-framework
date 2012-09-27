@@ -9,6 +9,11 @@
 			<xs:pattern value="8|16|32"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="SizeType64">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:pattern value="8|16|32|64"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:attributeGroup name="IntegerParameterAttributes">
 		<xs:attribute name="Size" type="SizeType" use="required"/>
 		<xs:attribute name="Min" type="xs:integer" use="optional"/>
@@ -105,14 +110,14 @@
 		<xs:attribute name="Size" use="required">
 			<xs:simpleType>
 				<xs:restriction base="xs:positiveInteger">
-					<xs:maxInclusive value="32"/>
+					<xs:maxInclusive value="64"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
 		<xs:attribute name="Pos" use="required">
 			<xs:simpleType>
 				<xs:restriction base="xs:nonNegativeInteger">
-					<xs:maxInclusive value="31"/>
+					<xs:maxInclusive value="63"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -124,7 +129,7 @@
 				<xs:element name="BitParameter" type="BitParameterType" maxOccurs="unbounded"/>
 			</xs:sequence>
 			<xs:attributeGroup ref="Nameable"/>
-			<xs:attribute name="Size" type="SizeType" use="required"/>
+			<xs:attribute name="Size" type="SizeType64" use="required"/>
 			<xs:attribute name="Mapping" type="xs:string" use="optional"/>
 		</xs:complexType>
 		<xs:unique name="BitParameterBlockSubElementsUniqueness">

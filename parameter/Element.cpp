@@ -169,6 +169,15 @@ string CElement::toString(uint32_t uiValue)
     return ostr.str();
 }
 
+string CElement::toString(uint64_t uiValue)
+{
+    ostringstream ostr;
+
+    ostr << uiValue;
+
+    return ostr.str();
+}
+
 string CElement::toString(int32_t iValue)
 {
     ostringstream ostr;

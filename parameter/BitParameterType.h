@@ -42,13 +42,13 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
     /// Conversion
     // String
-    bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    void fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    bool toBlackboard(const string& strValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    void fromBlackboard(string& strValue, const uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Integer
-    bool toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    void fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    bool toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    void fromBlackboard(uint64_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Access from area configuration
-    uint32_t merge(uint32_t uiOriginData, uint32_t uiNewData) const;
+    uint64_t merge(uint64_t uiOriginData, uint64_t uiNewData) const;
 
     // Bit Size
     uint32_t getBitSize() const;
@@ -62,16 +62,16 @@ private:
     // Instantiation
     virtual CInstanceConfigurableElement* doInstantiate() const;
     // Max encodable value
-    uint32_t getMaxEncodableValue() const;
+    uint64_t getMaxEncodableValue() const;
     // Biwise mask
-    uint32_t getMask() const;
+    uint64_t getMask() const;
     // Check data has no bit set outside available range
-    bool isEncodable(uint32_t uiData) const;
+    bool isEncodable(uint64_t uiData) const;
 
     // Pos in bits
     uint32_t _uiBitPos;
     // Size in bits
     uint32_t _uiBitSize;
     // Max value
-    uint32_t _uiMax;
+    uint64_t _uiMax;
 };

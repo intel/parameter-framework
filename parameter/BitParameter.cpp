@@ -81,7 +81,7 @@ bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCon
     }
 
     // Rely on integer access
-    uint32_t uiValue;
+    uint64_t uiValue;
 
     if (bSet) {
 
@@ -102,7 +102,7 @@ bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCon
 }
 
 // Integer Access
-bool CBitParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameter::accessAsInteger(uint64_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiOffset = getOffset();
 
@@ -127,7 +127,7 @@ bool CBitParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAcce
 template <typename type>
 bool CBitParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
 {
-    uint32_t uiData = 0;
+    uint64_t uiData = 0;
 
     // Read/modify/write
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
@@ -149,7 +149,7 @@ bool CBitParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext
 template <typename type>
 void CBitParameter::doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
 {
-    uint32_t uiData = 0;
+    uint64_t uiData = 0;
 
     // Read blackboard
     const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
@@ -168,7 +168,7 @@ CAreaConfiguration* CBitParameter::createAreaConfiguration(const CSyncerSet* pSy
 }
 
 // Access from area configuration
-uint32_t CBitParameter::merge(uint32_t uiOriginData, uint32_t uiNewData) const
+uint64_t CBitParameter::merge(uint64_t uiOriginData, uint64_t uiNewData) const
 {
     // Convert
     return static_cast<const CBitParameterType*>(getTypeElement())->merge(uiOriginData, uiNewData);
