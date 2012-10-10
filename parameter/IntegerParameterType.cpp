@@ -213,12 +213,6 @@ bool CIntegerParameterType::fromBlackboard(string& strValue, const uint32_t& uiV
 // Integer
 bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    if (_bSigned) {
-
-        parameterAccessContext.setError("Parameter is signed");
-
-        return false;
-    }
     if (uiUserValue < _uiMin || uiUserValue > _uiMax) {
 
         parameterAccessContext.setError("Value out of range");
@@ -233,12 +227,6 @@ bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue
 
 bool CIntegerParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    if (_bSigned) {
-
-        parameterAccessContext.setError("Parameter is signed");
-
-        return false;
-    }
     // Do assign
     uiUserValue = uiValue;
 
@@ -248,12 +236,6 @@ bool CIntegerParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiVal
 // Signed Integer
 bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    if (!_bSigned) {
-
-        parameterAccessContext.setError("Parameter is unsigned");
-
-        return false;
-    }
     if (iUserValue < (int32_t)_uiMin || iUserValue > (int32_t)_uiMax) {
 
         parameterAccessContext.setError("Value out of range");
@@ -268,12 +250,6 @@ bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, 
 
 bool CIntegerParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    if (!_bSigned) {
-
-        parameterAccessContext.setError("Parameter is unsigned");
-
-        return false;
-    }
     int32_t iValue = uiValue;
 
     // Sign extend
