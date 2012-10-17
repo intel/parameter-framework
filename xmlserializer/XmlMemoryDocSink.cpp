@@ -27,7 +27,7 @@
 #define base CXmlDocSink
 
 CXmlMemoryDocSink::CXmlMemoryDocSink(IXmlSink* pXmlSink):
-        _pXmlSink(pXmlSink)
+    _pXmlSink(pXmlSink)
 {
 }
 
@@ -38,7 +38,5 @@ bool CXmlMemoryDocSink::doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingCo
     xmlDocSource.getRootElement(docElement);
 
     // Load the structure from the XML Sink
-    _pXmlSink->fromXml(docElement, serializingContext);
-
-    return true;
+    return _pXmlSink->fromXml(docElement, serializingContext);
 }
