@@ -40,6 +40,9 @@ public:
     // CXmlDocSource method implemented
     virtual bool populate(CXmlSerializingContext& serializingContext);
 
+    // Check that the file exists and is readable
+    virtual bool isParsable(CXmlSerializingContext& serializingContext) const;
+
 private:
 
     // Validation of the document with the xsd file

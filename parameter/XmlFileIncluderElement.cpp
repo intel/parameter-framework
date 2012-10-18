@@ -56,6 +56,11 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Use a doc source that load data from a file
     CXmlFileDocSource fileDocSource(strPath, elementSerializingContext.getXmlSchemaPathFolder() + "/" + strIncludedElementType + ".xsd", strIncludedElementType);
 
+    if (!fileDocSource.isParsable(elementSerializingContext)) {
+
+        return false;
+    }
+
     // Get top level element
     CXmlElement childElement;
 

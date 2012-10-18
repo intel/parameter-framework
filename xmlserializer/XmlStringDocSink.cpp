@@ -41,6 +41,11 @@ bool CXmlStringDocSink::doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingCo
     int iSize;
     xmlDocDumpFormatMemoryEnc(xmlDocSource.getDoc(), &pcDumpedDoc, &iSize, "UTF-8", 1);
 
+    if (!pcDumpedDoc) {
+
+        return false;
+    }
+
     _strResult.append((const char*)pcDumpedDoc);
 
     xmlFree(pcDumpedDoc);

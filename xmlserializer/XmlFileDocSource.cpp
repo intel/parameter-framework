@@ -43,9 +43,7 @@ CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile, const str
 bool CXmlFileDocSource::populate(CXmlSerializingContext& serializingContext)
 {
     // Check that the doc has been created
-    if (!_pDoc) {
-
-        serializingContext.setError("Could not parse file " + _strXmlInstanceFile);
+    if (!isParsable(serializingContext)) {
 
         return false;
     }
@@ -79,6 +77,19 @@ bool CXmlFileDocSource::populate(CXmlSerializingContext& serializingContext)
 
             return false;
         }
+    }
+
+    return true;
+}
+
+bool CXmlFileDocSource::isParsable(CXmlSerializingContext& serializingContext) const
+{
+    // Check that the doc has been created
+    if (!_pDoc) {
+
+        serializingContext.setError("Could not parse file " + _strXmlInstanceFile);
+
+        return false;
     }
 
     return true;
