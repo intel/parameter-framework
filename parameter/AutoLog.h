@@ -29,7 +29,7 @@
 class CAutoLog
 {
 public:
-    CAutoLog(const CElement* pElement, const string& strContext);
+    CAutoLog(const CElement* pElement, const string& strContext, bool bLogOn = true);
     ~CAutoLog();
 
 private:
@@ -39,5 +39,7 @@ private:
     const CElement* _pElement;
     // Context
     string _strContext;
+    // Log on
+    bool _bLogOn;
 };
 

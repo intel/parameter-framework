@@ -27,6 +27,7 @@
 #include "XmlMemoryDocSink.h"
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
+#include "AutoLog.h"
 #include <assert.h>
 
 #define base CKindElement
@@ -53,41 +54,45 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Instantiate parser
     string strIncludedElementType = getIncludedElementType();
 
-    // Use a doc source that load data from a file
-    CXmlFileDocSource fileDocSource(strPath, elementSerializingContext.getXmlSchemaPathFolder() + "/" + strIncludedElementType + ".xsd", strIncludedElementType);
+    {
+        // Open a log section titled with loading file path
+        CAutoLog autolog(this, "Loading " + strPath);
 
-    if (!fileDocSource.isParsable(elementSerializingContext)) {
+        // Use a doc source that load data from a file
+        CXmlFileDocSource fileDocSource(strPath, elementSerializingContext.getXmlSchemaPathFolder() + "/" + strIncludedElementType + ".xsd", strIncludedElementType);
 
-        return false;
+        if (!fileDocSource.isParsable(elementSerializingContext)) {
+
+            return false;
+        }
+
+        // Get top level element
+        CXmlElement childElement;
+
+        fileDocSource.getRootElement(childElement);
+
+        // Create child element
+        CElement* pChild = elementSerializingContext.getElementLibrary()->createElement(childElement);
+
+        if (pChild) {
+
+            // Store created child!
+            getParent()->addChild(pChild);
+        } else {
+
+            elementSerializingContext.setError("Unable to create XML element " + childElement.getPath());
+
+            return false;
+        }
+
+        // Use a doc sink that instantiate the structure from the doc source
+        CXmlMemoryDocSink memorySink(pChild);
+
+        if (!memorySink.process(fileDocSource, elementSerializingContext)) {
+
+            return false;
+        }
     }
-
-    // Get top level element
-    CXmlElement childElement;
-
-    fileDocSource.getRootElement(childElement);
-
-    // Create child element
-    CElement* pChild = elementSerializingContext.getElementLibrary()->createElement(childElement);
-
-    if (pChild) {
-
-        // Store created child!
-        getParent()->addChild(pChild);
-    } else {
-
-        elementSerializingContext.setError("Unable to create XML element " + childElement.getPath());
-
-        return false;
-    }
-
-    // Use a doc sink that instantiate the structure from the doc source
-    CXmlMemoryDocSink memorySink(pChild);
-
-    if (!memorySink.process(fileDocSource, elementSerializingContext)) {
-
-        return false;
-    }
-
     // Detach from parent
     getParent()->removeChild(this);
 

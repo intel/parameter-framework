@@ -332,19 +332,21 @@ bool CParameterMgr::load(string& strError)
     // Back synchronization for areas in parameter blackboard not covered by any domain
     CBackSynchronizer* pBackSynchronizer = createBackSynchronizer(strError);
 
-    log("Main blackboard back synchronization");
-
     // Back-synchronize
-    if (!pBackSynchronizer->sync()) {
+    {
+        CAutoLog autoLog(this, "Main blackboard back synchronization");
+
+        if (!pBackSynchronizer->sync()) {
+            // Get rid of back synchronizer
+            delete pBackSynchronizer;
+
+            strError = "Main blackboard back synchronization failed: " + strError;
+
+            return false;
+        }
         // Get rid of back synchronizer
         delete pBackSynchronizer;
-
-        strError = "Main blackboard back synchronization failed: " + strError;
-
-        return false;
     }
-    // Get rif of back synchronizer
-    delete pBackSynchronizer;
 
     // We're done loading the settings and back synchronizing
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
@@ -420,7 +422,7 @@ bool CParameterMgr::loadStructure(string& strError)
     // Parse Structure XML file
     CXmlParameterSerializingContext parameterBuildContext(strError);
 
-    log("Importing system structure from file %s", strXmlStructureFilePath.c_str());
+    CAutoLog autolog(pSystemClass, "Importing system structure from file " + strXmlStructureFilePath);
 
     if (!xmlParse(parameterBuildContext, pSystemClass, strXmlStructureFilePath, strXmlStructureFolder, EParameterCreationLibrary)) {
 

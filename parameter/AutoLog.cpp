@@ -24,20 +24,23 @@
  */
 #include "AutoLog.h"
 
-CAutoLog::CAutoLog(const CElement* pElement, const string& strContext) : _pElement(pElement), _strContext(strContext)
+CAutoLog::CAutoLog(const CElement* pElement, const string& strContext, bool bLogOn)
+    : _pElement(pElement), _strContext(strContext), _bLogOn(bLogOn)
 {
-    // Log
-    _pElement->doLog(_strContext + " {");
-
-    // Nest
-    _pElement->nestLog();
+    if (_bLogOn) {
+        // Log
+        _pElement->doLog(_strContext + " {");
+        // Nest
+        _pElement->nestLog();
+    }
 }
 
 CAutoLog::~CAutoLog()
 {
-    // Unnest
-    _pElement->unnestLog();
-
-    // Log
-    _pElement->doLog( "} " + _strContext);
+    if (_bLogOn) {
+        // Unnest
+        _pElement->unnestLog();
+        // Log
+        _pElement->doLog( "} " + _strContext);
+    }
 }
