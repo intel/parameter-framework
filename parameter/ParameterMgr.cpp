@@ -355,6 +355,21 @@ bool CParameterMgr::load(string& strError)
     // We need to ensure all domains are valid
     pConfigurableDomains->validate(_pMainParameterBlackboard);
 
+    // Log selection criterion states
+    {
+        CAutoLog autoLog(this, "Criterion states");
+
+        const CSelectionCriteria* selectionCriteria = getConstSelectionCriteria();
+
+        list<string> lstrSelectionCriteron;
+        selectionCriteria->listSelectionCriteria(lstrSelectionCriteron, true, false);
+
+        string strSelectionCriteron;
+        CUtility::concatenate(lstrSelectionCriteron, strSelectionCriteron);
+
+        log_info("%s", strSelectionCriteron.c_str());
+    }
+
     // At initialization, check subsystems that need resync
     doApplyConfigurations(true);
 
@@ -673,9 +688,10 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
 
     /// Criteria states
     appendTitle(strResult, "Selection Criteria:");
-    string strSelectionCriteria;
-    getSelectionCriteria()->listSelectionCriteria(strSelectionCriteria, false);
-    strResult += strSelectionCriteria;
+    list<string> lstrSelectionCriteria;
+    getSelectionCriteria()->listSelectionCriteria(lstrSelectionCriteria, false, true);
+    // Concatenate the criterion list as the command result
+    CUtility::concatenate(lstrSelectionCriteria, strResult);
 
     return CCommandHandler::ESucceeded;
 }
@@ -820,7 +836,12 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommman
 {
     (void)remoteCommand;
 
-    getSelectionCriteria()->listSelectionCriteria(strResult, true);
+    list<string> lstrResult;
+
+    getSelectionCriteria()->listSelectionCriteria(lstrResult, true, true);
+
+    // Concatenate the criterion list as the command result
+    CUtility::concatenate(lstrResult, strResult);
 
     return CCommandHandler::ESucceeded;
 }

@@ -55,7 +55,7 @@ void CSelectionCriterion::setCriterionState(int iState)
 
         _iState = iState;
 
-        log_info("Selection criterion changed event: %s", getFormattedDescription(false).c_str());
+        log_info("Selection criterion changed event: %s", getFormattedDescription(false, false).c_str());
 
         // Check if the previous criterion value has been taken into account (i.e. at least one Configuration was applied
         // since the last criterion change)
@@ -108,35 +108,56 @@ bool CSelectionCriterion::excludes(int iState) const
 }
 
 /// User request
-string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo) const
+string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const
 {
     string strFormattedDescription;
 
-    if (bWithTypeInfo) {
+    if (bHumanReadable) {
 
-        // Display type info
-        appendTitle(strFormattedDescription, getName() + ":");
+        if (bWithTypeInfo) {
 
-        // States
-        strFormattedDescription += "Possible states ";
+            // Display type info
+            appendTitle(strFormattedDescription, getName() + ":");
 
-        // Type Kind
-        strFormattedDescription += "(";
-        strFormattedDescription += _pType->isTypeInclusive() ? "Inclusive" : "Exclusive";
-        strFormattedDescription += "): ";
+            // States
+            strFormattedDescription += "Possible states ";
 
-        // States
-        strFormattedDescription += _pType->listPossibleValues() + "\n";
+            // Type Kind
+            strFormattedDescription += "(";
+            strFormattedDescription += _pType->isTypeInclusive() ? "Inclusive" : "Exclusive";
+            strFormattedDescription += "): ";
+
+            // States
+            strFormattedDescription += _pType->listPossibleValues() + "\n";
+
+            // Current State
+            strFormattedDescription += "Current state";
+        } else {
+            // Name only
+            strFormattedDescription = getName();
+        }
 
         // Current State
-        strFormattedDescription += "Current state";
+        strFormattedDescription += " = " + _pType->getFormattedState(_iState);
     } else {
-        // Name only
-        strFormattedDescription = getName();
+        // Name
+        strFormattedDescription = "Criterion name: " + getName();
+
+        if (bWithTypeInfo) {
+            // Type Kind
+            strFormattedDescription += ", type kind: ";
+            strFormattedDescription +=  _pType->isTypeInclusive() ? "inclusive" : "exclusive";
+        }
+
+        // Current State
+        strFormattedDescription += ", current state: " +
+                                   _pType->getFormattedState(_iState);
+
+         if (bWithTypeInfo) {
+            // States
+            strFormattedDescription += ", states: " +
+                                       _pType->listPossibleValues();
+        }
     }
-
-    // Current State
-    strFormattedDescription += " = " + _pType->getFormattedState(_iState);
-
     return strFormattedDescription;
 }

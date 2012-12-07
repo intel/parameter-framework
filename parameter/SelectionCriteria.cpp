@@ -57,9 +57,9 @@ CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const string& str
 }
 
 // List available criteria
-void CSelectionCriteria::listSelectionCriteria(string& strResult, bool bWithTypeInfo) const
+void CSelectionCriteria::listSelectionCriteria(list<string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
 {
-    getSelectionCriteriaDefinition()->listSelectionCriteria(strResult, bWithTypeInfo);
+    getSelectionCriteriaDefinition()->listSelectionCriteria(lstrResult, bWithTypeInfo, bHumanReadable);
 }
 
 // Reset the modified status of the children

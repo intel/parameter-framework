@@ -56,7 +56,7 @@ public:
     bool excludes(int iState) const;
 
     /// User request
-    string getFormattedDescription(bool bWithTypeInfo) const;
+    string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
 
     /// From CElement
     virtual string getKind() const;

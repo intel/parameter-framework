@@ -42,7 +42,7 @@ public:
     CSelectionCriterion* getSelectionCriterion(const string& strName);
 
     // List available criteria
-    void listSelectionCriteria(string& strResult, bool bWithTypeInfo) const;
+    void listSelectionCriteria(list<string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const;
 
     // Base
     virtual string getKind() const;

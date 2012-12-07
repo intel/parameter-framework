@@ -24,6 +24,7 @@
  */
 #pragma once
 
+#include <list>
 #include "Element.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
@@ -51,7 +52,7 @@ public:
     const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
 
     // List available criteria
-    void listSelectionCriteria(string& strResult, bool bWithTypeInfo) const;
+    void listSelectionCriteria(list<string>& strResult, bool bWithTypeInfo, bool bHumanReadable) const;
 
     // Base
     virtual string getKind() const;

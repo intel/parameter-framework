@@ -62,7 +62,7 @@ CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const s
 }
 
 // List available criteria
-void CSelectionCriteriaDefinition::listSelectionCriteria(string& strResult, bool bWithTypeInfo) const
+void CSelectionCriteriaDefinition::listSelectionCriteria(list<string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
 {
     // Propagate
     uint32_t uiNbChildren = getNbChildren();
@@ -72,7 +72,7 @@ void CSelectionCriteriaDefinition::listSelectionCriteria(string& strResult, bool
 
         const CSelectionCriterion* pSelectionCriterion = static_cast<const CSelectionCriterion*>(getChild(uiChild));
 
-        strResult += pSelectionCriterion->getFormattedDescription(bWithTypeInfo) + "\n";
+        lstrResult.push_back(pSelectionCriterion->getFormattedDescription(bWithTypeInfo, bHumanReadable));
     }
 }
 

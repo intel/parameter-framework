@@ -23,13 +23,13 @@
  * UPDATED: 2011-07-27
  */
 #include "Element.h"
+#include "XmlElementSerializingContext.h"
+#include "ElementLibrary.h"
+#include "ErrorContext.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <sstream>
-#include "XmlElementSerializingContext.h"
-#include "ElementLibrary.h"
-#include "ErrorContext.h"
 
 CElement::CElement(const string& strName) : _strName(strName), _pParent(NULL)
 {
