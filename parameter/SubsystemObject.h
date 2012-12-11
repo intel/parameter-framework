@@ -30,14 +30,11 @@
 class CInstanceConfigurableElement;
 class CMappingContext;
 
-class CSubsystemObject : public ISyncer
+class CSubsystemObject : private ISyncer
 {
 public:
     CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement);
     virtual ~CSubsystemObject();
-
-    // from ISyncer
-    virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError);
 
 protected:
     // Blackboard data location
@@ -57,15 +54,21 @@ protected:
     void blackboardRead(void* pvData, uint32_t uiSize);
     void blackboardWrite(const void* pvData, uint32_t uiSize);
     // Logging
-    void log(const string& strMessage, ...) const;
+    void log_info(const string& strMessage, ...) const;
+    void log_warning(const string& strMessage, ...) const;
     // Mapping formatting
     static string formatMappingValue(const string& strMappingValue, uint32_t uiFirstAmendKey, uint32_t uiNbAmendKeys, const CMappingContext& context);
     // Configurable element retrieval
     const CInstanceConfigurableElement* getConfigurableElement() const;
 
 private:
+    // from ISyncer
+    virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError);
+
     CSubsystemObject(const CSubsystemObject&);
-    CSubsystemObject& operator=(const CSubsystemObject&);
+
+    // Define affection operator
+    const CSubsystemObject& operator=(const CSubsystemObject&);
 
     // Instance element to sync from/to
     CInstanceConfigurableElement* _pInstanceConfigurableElement;

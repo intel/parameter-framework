@@ -41,7 +41,7 @@ bool CSelectionCriterionType::addValuePair(int iValue, const string& strValue)
     // Check 1 bit set only for inclusive types
     if (_bInclusive && (!iValue || (iValue & (iValue - 1)))) {
 
-        log("Rejecting value pair association: 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
+        log_warning("Rejecting value pair association: 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
 
         return false;
     }
@@ -49,7 +49,7 @@ bool CSelectionCriterionType::addValuePair(int iValue, const string& strValue)
     // Check already inserted
     if (_numToLitMap.find(strValue) != _numToLitMap.end()) {
 
-        log("Rejecting value pair association (literal already present): 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
+        log_warning("Rejecting value pair association (literal already present): 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
 
         return false;
     }

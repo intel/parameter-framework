@@ -41,7 +41,7 @@ CElement::~CElement()
 }
 
 // Logging
-void CElement::log(const string& strMessage, ...) const
+void CElement::log_info(const string& strMessage, ...) const
 {
     char acBuffer[512];
     va_list listPointer;
@@ -52,15 +52,29 @@ void CElement::log(const string& strMessage, ...) const
 
     va_end(listPointer);
 
-    doLog(acBuffer);
+    doLog(false, acBuffer);
 }
 
-void CElement::doLog(const string& strLog) const
+void CElement::log_warning(const string& strMessage, ...) const
+{
+    char acBuffer[512];
+    va_list listPointer;
+
+    va_start(listPointer, strMessage);
+
+    vsnprintf(acBuffer, sizeof(acBuffer), strMessage.c_str(), listPointer);
+
+    va_end(listPointer);
+
+    doLog(true, acBuffer);
+}
+
+void CElement::doLog(bool bIsWarning, const string& strLog) const
 {
     assert(_pParent);
 
     // Propagate till root
-    _pParent->doLog(strLog);
+    _pParent->doLog(bIsWarning, strLog);
 }
 
 void CElement::nestLog() const

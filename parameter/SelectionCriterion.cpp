@@ -55,13 +55,13 @@ void CSelectionCriterion::setCriterionState(int iState)
 
         _iState = iState;
 
-        log("Selection criterion changed event: %s", getFormattedDescription(false).c_str());
+        log_info("Selection criterion changed event: %s", getFormattedDescription(false).c_str());
 
         // Check if the previous criterion value has been taken into account (i.e. at least one Configuration was applied
         // since the last criterion change)
-        if (_uiNbModifications > 0) {
+        if (_uiNbModifications != 0) {
 
-            log("Warning: Selection criterion \"%s\" has been modified %d time(s) without any configuration application", getName().c_str(), _uiNbModifications);
+            log_warning("Selection criterion \"%s\" has been modified %d time(s) without any configuration application", getName().c_str(), _uiNbModifications);
         }
 
         // Track the number of modifications for this criterion

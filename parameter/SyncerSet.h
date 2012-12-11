@@ -26,6 +26,7 @@
 
 #include <set>
 #include <string>
+#include <list>
 
 using namespace std;
 
@@ -46,7 +47,7 @@ public:
     void clear();
 
     // Sync
-    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError) const;
+    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, list<string>* plstrError) const;
 
 private:
     set<ISyncer*> _syncerSet;

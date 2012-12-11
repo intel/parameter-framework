@@ -458,7 +458,7 @@ const CSubsystem* CConfigurableElement::getBelongingSubsystem() const
 {
     const CElement* pParent = getParent();
 
-    // Stop at sytem class
+    // Stop at system class
     if (!pParent->getParent()) {
 
         return NULL;

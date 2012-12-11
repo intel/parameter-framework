@@ -333,8 +333,10 @@ void CDomainConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Apply data to current
-bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, string& strError) const
+bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, list<string>* plstrError) const
 {
+    bool bSuccess = true;
+
     AreaConfigurationListIterator it;
 
     // Just propagate to areas
@@ -342,13 +344,10 @@ bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool b
 
         const CAreaConfiguration* pAreaConfiguration = *it;
 
-        if (!pAreaConfiguration->restore(pMainBlackboard, bSync, strError)) {
-
-            return false;
-        }
+        bSuccess &= pAreaConfiguration->restore(pMainBlackboard, bSync, plstrError);
     }
 
-    return true;
+    return bSuccess;
 }
 
 // Ensure validity for configurable element area configuration

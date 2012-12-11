@@ -51,7 +51,7 @@ public:
     bool createConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError);
     bool deleteConfiguration(const string& strName, string& strError);
     bool renameConfiguration(const string& strName, const string& strNewName, string& strError);
-    bool restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError) const;
+    bool restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, list<string>& strError) const;
     bool saveConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError);
     bool setElementSequence(const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError);
     bool getElementSequence(const string& strConfiguration, string& strResult) const;
@@ -80,7 +80,7 @@ public:
     void validate(const CParameterBlackboard* pMainBlackboard);
 
     // Configuration application if required
-    bool apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForced, string& strError) const;
+    void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForced) const;
 
     // Return applicable configuration validity for given configurable element
     bool isApplicableConfigurationValid(const CConfigurableElement* pConfigurableElement) const;

@@ -45,7 +45,8 @@ public:
     virtual ~CElement();
 
     // Logging
-    void log(const string& strMessage, ...) const;
+    void log_info(const string& strMessage, ...) const;
+    void log_warning(const string& strMessage, ...) const;
 
     // Description
     void setDescription(const string& strDescription);
@@ -119,7 +120,7 @@ protected:
     const CElement* getRoot() const;
 private:
     // Logging (done by root)
-    virtual void doLog(const string& strLog) const;
+    virtual void doLog(bool bIsWarning, const string& strLog) const;
     virtual void nestLog() const;
     virtual void unnestLog() const;
     // Returns Name or Kind if no Name

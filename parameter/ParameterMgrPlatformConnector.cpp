@@ -64,11 +64,11 @@ ISelectionCriterionInterface* CParameterMgrPlatformConnector::getSelectionCriter
 }
 
 // Configuration application
-bool CParameterMgrPlatformConnector::applyConfigurations(string& strError)
+void CParameterMgrPlatformConnector::applyConfigurations()
 {
     assert(_bStarted);
 
-    return _pParameterMgr->applyConfigurations(strError);
+    _pParameterMgr->applyConfigurations();
 }
 
 // Dynamic parameter handling
@@ -93,6 +93,7 @@ bool CParameterMgrPlatformConnector::start(string& strError)
 
         return false;
     }
+
     // Init flow
     if (!_pParameterMgr->init(strError)) {
 
@@ -111,10 +112,10 @@ bool CParameterMgrPlatformConnector::isStarted() const
 }
 
 // Private logging
-void CParameterMgrPlatformConnector::doLog(const string& strLog)
+void CParameterMgrPlatformConnector::doLog(bool bIsWarning, const string& strLog)
 {
     if (_pLogger) {
 
-        _pLogger->log(strLog);
+        _pLogger->log(bIsWarning, strLog);
     }
 }

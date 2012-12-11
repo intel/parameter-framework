@@ -27,19 +27,25 @@
 #include <stdlib.h>
 #include <sstream>
 #include <assert.h>
+#include <errno.h>
 #include "TestPlatform.h"
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteProcessorServer.h"
-#include <errno.h>
 
 class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnector::ILogger
 {
 public:
     CParameterMgrPlatformConnectorLogger() {}
 
-    virtual void log(const string& strLog) {
+    virtual void log(bool bIsWarning, const string& strLog) {
 
-        cout << strLog << endl;
+        if (bIsWarning) {
+
+            cerr << strLog << endl;
+        } else {
+
+            cout << strLog << endl;
+        }
     }
 };
 
@@ -92,29 +98,34 @@ bool CTestPlatform::load(std::string& strError)
 /// Selection Criterion
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createExclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createExclusiveSelectionCriterionFromStateList(remoteCommand.getArgument(0), remoteCommand, strResult) ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+    return createExclusiveSelectionCriterionFromStateList(remoteCommand.getArgument(0), remoteCommand, strResult) ?
+            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createInclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createInclusiveSelectionCriterionFromStateList(remoteCommand.getArgument(0), remoteCommand, strResult) ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+    return createInclusiveSelectionCriterionFromStateList(remoteCommand.getArgument(0), remoteCommand, strResult) ?
+            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createExclusiveSelectionCriterionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createExclusiveSelectionCriterion(remoteCommand.getArgument(0), strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0), strResult) ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+    return createExclusiveSelectionCriterion(remoteCommand.getArgument(0), strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0), strResult) ?
+            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createInclusiveSelectionCriterionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createInclusiveSelectionCriterion(remoteCommand.getArgument(0), strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0), strResult) ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+    return createInclusiveSelectionCriterion(remoteCommand.getArgument(0), strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0), strResult) ?
+            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
-
 
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::startParameterMgrCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
-    return _pParameterMgrPlatformConnector->start(strResult) ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+
+    return _pParameterMgrPlatformConnector->start(strResult) ?
+            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::setCriterionStateCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -147,7 +158,11 @@ CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::setCriterionStateCo
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::applyConfigurationsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
-    return _pParameterMgrPlatformConnector->applyConfigurations(strResult) ?  CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+    (void)strResult;
+
+    _pParameterMgrPlatformConnector->applyConfigurations();
+
+    return CTestPlatform::CCommandHandler::EDone;
 }
 
 //////////////// Remote command handlers

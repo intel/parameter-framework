@@ -90,7 +90,7 @@ void CConfigurableDomain::setSequenceAwareness(bool bSequenceAware)
 {
     if (_bSequenceAware != bSequenceAware) {
 
-        log("Making domain \"%s\" sequence %s", getName().c_str(), bSequenceAware ? "aware" : "unaware");
+        log_info("Making domain \"%s\" sequence %s", getName().c_str(), bSequenceAware ? "aware" : "unaware");
 
         _bSequenceAware = bSequenceAware;
     }
@@ -347,7 +347,7 @@ bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigur
 
         return false;
     }
-    log("Adding configurable element \"%s\" into domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
+    log_info("Adding configurable element \"%s\" into domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
 
     // Do add
     doAddConfigurableElement(pConfigurableElement, pMainBlackboard);
@@ -364,7 +364,7 @@ bool CConfigurableDomain::removeConfigurableElement(CConfigurableElement* pConfi
 
         return false;
     }
-    log("Removing configurable element \"%s\" from domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
+    log_info("Removing configurable element \"%s\" from domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
 
     // Do remove
     doRemoveConfigurableElement(pConfigurableElement, true);
@@ -382,7 +382,7 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement, stri
 
         return false;
     }
-    log("Splitting configurable element \"%s\" domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
+    log_info("Splitting configurable element \"%s\" domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
 
     // Create sub domain areas for all configurable element's children
     uint32_t uiNbConfigurableElementChildren = pConfigurableElement->getNbChildren();
@@ -438,7 +438,7 @@ const CDomainConfiguration* CConfigurableDomain::getPendingConfiguration() const
 }
 
 // Configuration application if required
-bool CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce, string& strError) const
+void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce) const
 {
     if (bForce) {
         // Force a configuration restore by forgetting about last applied configuration
@@ -451,13 +451,10 @@ bool CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyn
         // Check not the last one before applying
         if (!_pLastAppliedConfiguration || _pLastAppliedConfiguration != pApplicableDomainConfiguration) {
 
-            log("Applying configuration \"%s\" from domain \"%s\"", pApplicableDomainConfiguration->getName().c_str(), getName().c_str());
+            log_info("Applying configuration \"%s\" from domain \"%s\"", pApplicableDomainConfiguration->getName().c_str(), getName().c_str());
 
             // Do the restore
-            if (!pApplicableDomainConfiguration->restore(pParameterBlackboard, _bSequenceAware, strError)) {
-
-                return false;
-            }
+            pApplicableDomainConfiguration->restore(pParameterBlackboard, _bSequenceAware, NULL);
 
             // Record last applied configuration
             _pLastAppliedConfiguration = pApplicableDomainConfiguration;
@@ -470,8 +467,6 @@ bool CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyn
             }
         }
     }
-
-    return true;
 }
 
 // Return applicable configuration validity for given configurable element
@@ -509,7 +504,7 @@ bool CConfigurableDomain::createConfiguration(const string& strName, const CPara
 
         return false;
     }
-    log("Creating domain configuration \"%s\" into domain \"%s\"", strName.c_str(), getName().c_str());
+    log_info("Creating domain configuration \"%s\" into domain \"%s\"", strName.c_str(), getName().c_str());
 
     // Creation
     CDomainConfiguration* pDomainConfiguration = new CDomainConfiguration(strName);
@@ -551,7 +546,7 @@ bool CConfigurableDomain::deleteConfiguration(const string& strName, string& str
         return false;
     }
 
-    log("Deleting configuration \"%s\" from domain \"%s\"", strName.c_str(), getName().c_str());
+    log_info("Deleting configuration \"%s\" from domain \"%s\"", strName.c_str(), getName().c_str());
 
     // Was the last applied?
     if (pDomainConfiguration == _pLastAppliedConfiguration) {
@@ -592,33 +587,37 @@ bool CConfigurableDomain::renameConfiguration(const string& strName, const strin
 
         return false;
     }
-    log("Renaming domain \"%s\"'s configuration \"%s\" to \"%s\"", getName().c_str(), strName.c_str(), strNewName.c_str());
+    log_info("Renaming domain \"%s\"'s configuration \"%s\" to \"%s\"", getName().c_str(), strName.c_str(), strNewName.c_str());
 
     // Rename
     return pDomainConfiguration->rename(strNewName, strError);
 }
 
-bool CConfigurableDomain::restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError) const
+bool CConfigurableDomain::restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, list<string>& lstrError) const
 {
+    string strError;
+
     const CDomainConfiguration* pDomainConfiguration = findConfiguration(strName, strError);
 
     if (!pDomainConfiguration) {
 
+        lstrError.push_back(strError);
         return false;
     }
-    log("Restoring domain \"%s\"'s configuration \"%s\" to parameter blackboard", getName().c_str(), pDomainConfiguration->getName().c_str());
+    log_info("Restoring domain \"%s\"'s configuration \"%s\" to parameter blackboard", getName().c_str(), pDomainConfiguration->getName().c_str());
 
     // Delegate
-    if (!pDomainConfiguration->restore(pMainBlackboard, _bSequenceAware && bAutoSync, strError)) {
-
-        return false;
-    }
+    bool bSuccess = pDomainConfiguration->restore(pMainBlackboard, bAutoSync && _bSequenceAware, &lstrError);
 
     // Record last applied configuration
     _pLastAppliedConfiguration = pDomainConfiguration;
 
     // Synchronize
-    return !bAutoSync || _syncerSet.sync(*pMainBlackboard, false, strError);
+    if (bAutoSync && !_bSequenceAware) {
+
+        bSuccess &= _syncerSet.sync(*pMainBlackboard, false, &lstrError);
+    }
+    return bSuccess;
 }
 
 bool CConfigurableDomain::saveConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError)
@@ -630,7 +629,7 @@ bool CConfigurableDomain::saveConfiguration(const string& strName, const CParame
 
         return false;
     }
-    log("Saving domain \"%s\"'s configuration \"%s\" from parameter blackboard", getName().c_str(), pDomainConfiguration->getName().c_str());
+    log_info("Saving domain \"%s\"'s configuration \"%s\" from parameter blackboard", getName().c_str(), pDomainConfiguration->getName().c_str());
 
     // Delegate
     pDomainConfiguration->save(pMainBlackboard);
@@ -739,7 +738,7 @@ string CConfigurableDomain::getPendingConfigurationName() const
 // Ensure validity on whole domain from main blackboard
 void CConfigurableDomain::validate(const CParameterBlackboard* pMainBlackboard)
 {
-    log("Validating whole domain \"" + getName() + "\" against main blackboard");
+    log_info("Validating whole domain \"" + getName() + "\" against main blackboard");
 
     // Propagate
     uint32_t uiNbConfigurations = getNbChildren();
@@ -756,7 +755,7 @@ void CConfigurableDomain::validate(const CParameterBlackboard* pMainBlackboard)
 // Ensure validity on areas related to configurable element
 void CConfigurableDomain::validateAreas(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard)
 {
-    log("Validating domain \"" + getName() + "\" against main blackboard for configurable element \"" + pConfigurableElement->getPath() + "\"");
+    log_info("Validating domain \"" + getName() + "\" against main blackboard for configurable element \"" + pConfigurableElement->getPath() + "\"");
 
     // Propagate
     uint32_t uiNbConfigurations = getNbChildren();
@@ -798,7 +797,7 @@ void CConfigurableDomain::autoValidateAreas(const CConfigurableElement* pConfigu
         return;
     }
 
-    log("Auto validating domain \"" + getName() + "\" against configuration \"" + pValidDomainConfiguration->getName() + "\" for configurable element " + pConfigurableElement->getPath());
+    log_info("Auto validating domain \"" + getName() + "\" against configuration \"" + pValidDomainConfiguration->getName() + "\" for configurable element " + pConfigurableElement->getPath());
 
     // Validate all other configurations against found one, if any
     uint32_t uiNbConfigurations = getNbChildren();
@@ -910,7 +909,7 @@ void CConfigurableDomain::mergeAlreadyAssociatedDescendantConfigurableElements(C
 
         if (pConfigurablePotentialDescendantElement->isDescendantOf(pNewConfigurableElement)) {
 
-            log("In domain \"%s\", merging descendant configurable element's configurations \"%s\" into its ascendant \"%s\" ones", getName().c_str(), pConfigurablePotentialDescendantElement->getName().c_str(), pNewConfigurableElement->getName().c_str());
+            log_info("In domain \"%s\", merging descendant configurable element's configurations \"%s\" into its ascendant \"%s\" ones", getName().c_str(), pConfigurablePotentialDescendantElement->getName().c_str(), pNewConfigurableElement->getName().c_str());
 
             // Merge configuration data
             mergeConfigurations(pNewConfigurableElement, pConfigurablePotentialDescendantElement);

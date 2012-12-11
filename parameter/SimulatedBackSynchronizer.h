@@ -32,11 +32,13 @@ class CParameterBlackboard;
 class CSimulatedBackSynchronizer : public CBackSynchronizer
 {
 public:
-    CSimulatedBackSynchronizer(const CConfigurableElement* pConfigurableElement, string& strError, CParameterBlackboard* pParameterBlackboard);
+    CSimulatedBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard);
 
     // Back synchronization
     virtual bool sync();
 private:
+    // Fake error for parameter context creation
+    string _strError;
     // Parameter context
     CParameterAccessContext _parameterAccessContext;
 };

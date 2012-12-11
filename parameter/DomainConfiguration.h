@@ -61,7 +61,7 @@ public:
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
     // Apply data to current
-    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, string& strError) const;
+    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, list<string>* plstrError = NULL) const;
     // Ensure validity for configurable element area configuration
     void validate(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard);
     // Ensure validity of all area configurations

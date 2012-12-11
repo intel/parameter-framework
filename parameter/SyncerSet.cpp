@@ -51,8 +51,12 @@ void CSyncerSet::clear()
     _syncerSet.clear();
 }
 
-bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError) const
+bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard, bool bBack, list<string>* plstrError) const
 {
+    bool bSuccess = true;
+
+    string strError;
+
     // Propagate
     SyncerSetConstIterator it;
 
@@ -62,8 +66,12 @@ bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard, bool bBack, str
 
         if (!pSyncer->sync(parameterBlackboard, bBack, strError)) {
 
-            return false;
+            if (plstrError) {
+
+                plstrError->push_back(strError);
+            }
+            bSuccess = false;
         }
     }
-    return true;
+    return bSuccess;
 }

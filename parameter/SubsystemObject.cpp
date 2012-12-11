@@ -93,6 +93,7 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
         if (!accessHW(true, strError)) {
 
             strError = "Unable to back synchronize configurable element " + _pInstanceConfigurableElement->getPath() + ": " + strError;
+            log_warning(strError);
 
             return false;
         }
@@ -103,6 +104,7 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
         if (!accessHW(false, strError)) {
 
             strError = "Unable to synchronize configurable element " + _pInstanceConfigurableElement->getPath() + ": " + strError;
+            log_warning(strError);
 
             return false;
         }
@@ -158,7 +160,7 @@ void CSubsystemObject::blackboardWrite(const void* pvData, uint32_t uiSize)
 }
 
 // Logging
-void CSubsystemObject::log(const string& strMessage, ...) const
+void CSubsystemObject::log_info(const string& strMessage, ...) const
 {
     char acBuffer[512];
     va_list listPointer;
@@ -169,7 +171,21 @@ void CSubsystemObject::log(const string& strMessage, ...) const
 
     va_end(listPointer);
 
-    _pInstanceConfigurableElement->log(acBuffer);
+    _pInstanceConfigurableElement->log_info(acBuffer);
+}
+
+void CSubsystemObject::log_warning(const string& strMessage, ...) const
+{
+    char acBuffer[512];
+    va_list listPointer;
+
+    va_start(listPointer, strMessage);
+
+    vsnprintf(acBuffer, sizeof(acBuffer), strMessage.c_str(), listPointer);
+
+    va_end(listPointer);
+
+    _pInstanceConfigurableElement->log_warning(acBuffer);
 }
 
 // Amendment

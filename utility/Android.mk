@@ -3,7 +3,9 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 
-LOCAL_SRC_FILES:= Tokenizer.cpp
+LOCAL_SRC_FILES:= \
+    Tokenizer.cpp \
+    Utility.cpp
 
 LOCAL_MODULE:= libutility
 

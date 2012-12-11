@@ -30,7 +30,7 @@
 class CHardwareBackSynchronizer : public CBackSynchronizer
 {
 public:
-    CHardwareBackSynchronizer(const CConfigurableElement* pConfigurableElement, string& strError, CParameterBlackboard* pParameterBlackboard);
+    CHardwareBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard);
 
     // Back synchronization
     virtual bool sync();
@@ -38,8 +38,6 @@ public:
 private:
     // Back syncer set
     CSyncerSet _backSyncerSet;
-    // Error
-    string& _strError;
     // Parameter blackboard
     CParameterBlackboard* _pParameterBlackboard;
 };

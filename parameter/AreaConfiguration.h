@@ -43,7 +43,7 @@ public:
     void save(const CParameterBlackboard* pMainBlackboard);
 
     // Apply data to current
-    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, string& strError) const;
+    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, list<string>* plstrError) const;
 
     // Ensure validity
     void validate(const CParameterBlackboard* pMainBlackboard);

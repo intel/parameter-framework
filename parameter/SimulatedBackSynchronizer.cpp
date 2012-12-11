@@ -27,8 +27,8 @@
 
 #define base CBackSynchronizer
 
-CSimulatedBackSynchronizer::CSimulatedBackSynchronizer(const CConfigurableElement* pConfigurableElement, string& strError, CParameterBlackboard* pParameterBlackboard)
-    : base(pConfigurableElement), _parameterAccessContext(strError)
+CSimulatedBackSynchronizer::CSimulatedBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard)
+    : base(pConfigurableElement), _parameterAccessContext(_strError)
 {
     _parameterAccessContext.setParameterBlackboard(pParameterBlackboard);
 }

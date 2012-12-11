@@ -21,6 +21,7 @@
  */
 #pragma once
 
+#include <list>
 #include "SelectionCriterionTypeInterface.h"
 #include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
@@ -36,7 +37,7 @@ public:
     class ILogger
     {
     public:
-        virtual void log(const std::string& strLog) = 0;
+        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
     };
 
     // Construction
@@ -61,7 +62,7 @@ public:
     bool isStarted() const;
 
     // Configuration application
-    bool applyConfigurations(std::string& strError);
+    void applyConfigurations();
 
     // Dynamic parameter handling
     // Returned objects are owned by clients
@@ -72,7 +73,7 @@ private:
     CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector&);
     CParameterMgrPlatformConnector& operator=(const CParameterMgrPlatformConnector&);
     // Private logging
-    void doLog(const std::string& strLog);
+    void doLog(bool bIsWarning, const std::string& strLog);
 
     // Implementation
     CParameterMgr* _pParameterMgr;

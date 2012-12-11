@@ -26,11 +26,12 @@
 #include "ParameterMgrPlatformConnector.h"
 
 
-CParameterMgrLogger::CParameterMgrLogger(CParameterMgrPlatformConnector *pParameterMgrPlatformConnector) : _pParameterMgrPlatformConnector(pParameterMgrPlatformConnector)
+CParameterMgrLogger::CParameterMgrLogger(CParameterMgrPlatformConnector *pParameterMgrPlatformConnector) :
+        _pParameterMgrPlatformConnector(pParameterMgrPlatformConnector)
 {
 }
 
-void CParameterMgrLogger::log(const string &strLog)
+void CParameterMgrLogger::log(bool bIsWarning, const string &strLog)
 {
-    _pParameterMgrPlatformConnector->doLog(strLog);
+    _pParameterMgrPlatformConnector->doLog(bIsWarning, strLog);
 }

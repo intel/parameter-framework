@@ -49,22 +49,14 @@ void CAreaConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Apply data to current
-bool CAreaConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, string& strError) const
+bool CAreaConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, list<string>* plstrError) const
 {
     assert(_bValid);
 
     copyTo(pMainBlackboard, _pConfigurableElement->getOffset());
 
     // Synchronize if required
-    if (bSync) {
-
-        if (!_pSyncerSet->sync(*pMainBlackboard, false, strError)) {
-
-            return false;
-        }
-    }
-
-    return true;
+    return !bSync || _pSyncerSet->sync(*pMainBlackboard, false, plstrError);
 }
 
 // Ensure validity

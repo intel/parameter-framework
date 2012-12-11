@@ -25,13 +25,14 @@
 #pragma once
 
 #include <pthread.h>
+#include <map>
+#include <vector>
+#include <list>
 #include "RemoteCommandHandlerTemplate.h"
 #include "PathNavigator.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
 #include "Element.h"
-#include <map>
-#include <vector>
 #include "XmlDocSink.h"
 #include "XmlDocSource.h"
 
@@ -89,7 +90,7 @@ public:
     class ILogger
     {
     public:
-        virtual void log(const std::string& strLog) = 0;
+        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
     };
 
     // Construction
@@ -110,7 +111,7 @@ public:
     CSelectionCriterion* getSelectionCriterion(const string& strName);
 
     // Configuration application
-    bool applyConfigurations(string& strError);
+    void applyConfigurations();
 
     // Dynamic parameter handling
     CParameterHandle* createParameterHandle(const string& strPath, string& strError);
@@ -145,7 +146,7 @@ public:
     bool deleteConfiguration(const string& strDomain, const string& strConfiguration, string& strError);
 
     // Save/Restore
-    bool restoreConfiguration(const string& strDomain, const string& strConfiguration, string& strError);
+    bool restoreConfiguration(const string& strDomain, const string& strConfiguration, list<string>& strError);
     bool saveConfiguration(const string& strDomain, const string& strConfiguration, string& strError);
 
     // Configurable element - domain association
@@ -170,12 +171,13 @@ public:
 
     // CElement
     virtual string getKind() const;
+
 private:
     CParameterMgr(const CParameterMgr&);
     CParameterMgr& operator=(const CParameterMgr&);
 
     // Logging (done by root)
-    virtual void doLog(const string& strLog) const;
+    virtual void doLog(bool bIsWarning, const string& strLog) const;
     virtual void nestLog() const;
     virtual void unnestLog() const;
 
@@ -304,7 +306,7 @@ private:
     bool handleRemoteProcessingInterface(string& strError);
 
     // Back synchronization
-    CBackSynchronizer* createBackSynchronizer(string& strError) const;
+    CBackSynchronizer* createBackSynchronizer() const;
 
     // Tuning
     bool _bTuningModeIsOn;

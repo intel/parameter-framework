@@ -29,7 +29,7 @@ CAutoLog::CAutoLog(const CElement* pElement, const string& strContext, bool bLog
 {
     if (_bLogOn) {
         // Log
-        _pElement->doLog(_strContext + " {");
+        _pElement->doLog(false, _strContext + " {");
         // Nest
         _pElement->nestLog();
     }
@@ -41,6 +41,6 @@ CAutoLog::~CAutoLog()
         // Unnest
         _pElement->unnestLog();
         // Log
-        _pElement->doLog( "} " + _strContext);
+        _pElement->doLog(false, "} " + _strContext);
     }
 }

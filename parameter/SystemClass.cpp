@@ -73,7 +73,7 @@ string CSystemClass::getKind() const
 
 bool CSystemClass::loadSubsystems(string& strError, const CSubsystemPlugins* pSubsystemPlugins)
 {
-    CAutoLog autoLlog(this, "Loading subsystem plugins");
+    CAutoLog autoLlog_info(this, "Loading subsystem plugins");
 
     // Plugin list
     list<string> lstrPluginFiles;
@@ -103,7 +103,7 @@ bool CSystemClass::loadSubsystems(string& strError, const CSubsystemPlugins* pSu
     if (!lstrPluginFiles.size()) {
 
         // No plugin found?
-        log("No subsystem plugin found");
+        log_warning("No subsystem plugin found");
 
         // Don't bail out now that we have virtual subsystems
     }
@@ -130,7 +130,7 @@ bool CSystemClass::loadSubsystems(string& strError, const CSubsystemPlugins* pSu
             return false;
         }
     }
-    log("All subsystem plugins successfully loaded");
+    log_info("All subsystem plugins successfully loaded");
 
     // Add virtual subsystem builder
     _pSubsystemLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CVirtualSubsystem>("Virtual"));
@@ -171,7 +171,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, string& strError)
 
         string strPluginFileName = *it;
 
-        log("Attempting to load subsystem plugin path \"%s\"", strPluginFileName.c_str());
+        log_info("Attempting to load subsystem plugin path \"%s\"", strPluginFileName.c_str());
 
         // Load attempt
         void* lib_handle = dlopen(strPluginFileName.c_str(), RTLD_LAZY);
@@ -179,7 +179,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, string& strError)
         if (!lib_handle) {
 
             // Failed
-            log("Plugin load failed: %s, proceeding on with remaining ones", dlerror());
+            log_warning("Plugin load failed: %s, proceeding on with remaining ones", dlerror());
 
             // Next plugin
             ++it;

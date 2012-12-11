@@ -37,7 +37,7 @@ string CSelectionCriteriaDefinition::getKind() const
 // Selection Criterion creation
 CSelectionCriterion* CSelectionCriteriaDefinition::createSelectionCriterion(const string& strName, const CSelectionCriterionType* pSelectionCriterionType)
 {
-    log("Creating %s selection criterion \"%s\" - possible states : %s",
+    log_info("Creating %s selection criterion \"%s\" - possible states : %s",
         pSelectionCriterionType->isTypeInclusive() ? "inclusive" : "exclusive",
         strName.c_str(),
         pSelectionCriterionType->listPossibleValues().c_str()

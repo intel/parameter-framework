@@ -26,6 +26,8 @@
 
 #include "BinarySerializableElement.h"
 #include <set>
+#include <list>
+
 
 class CParameterBlackboard;
 class CConfigurableElement;
@@ -56,7 +58,7 @@ public:
     bool createConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError);
     bool deleteConfiguration(const string& strDomain, const string& strConfiguration, string& strError);
     bool renameConfiguration(const string& strDomain, const string& strConfigurationName, const string& strNewConfigurationName, string& strError);
-    bool restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError) const;
+    bool restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, list<string>& lstrError) const;
     bool saveConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError);
     bool setElementSequence(const string& strDomain, const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError);
     bool getElementSequence(const string& strDomain, const string& strConfiguration, string& strResult) const;
@@ -81,7 +83,7 @@ public:
     void validate(const CParameterBlackboard* pMainBlackboard);
 
     // Configuration application if required
-    bool apply(CParameterBlackboard* pParameterBlackboard, bool bForce, string& strError) const;
+    void apply(CParameterBlackboard* pParameterBlackboard, bool bForce) const;
 
     // Class kind
     virtual string getKind() const;

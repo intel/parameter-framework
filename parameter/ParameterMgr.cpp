@@ -77,6 +77,7 @@
 #include "XmlStringDocSink.h"
 #include "XmlMemoryDocSink.h"
 #include "XmlMemoryDocSource.h"
+#include "Utility.h"
 
 #define base CElement
 
@@ -256,7 +257,7 @@ void CParameterMgr::setLogger(CParameterMgr::ILogger* pLogger)
 }
 
 // Logging
-void CParameterMgr::doLog(const string& strLog) const
+void CParameterMgr::doLog(bool bIsWarning, const string& strLog) const
 {
     if (_pLogger) {
 
@@ -272,7 +273,7 @@ void CParameterMgr::doLog(const string& strLog) const
         }
 
         // Log
-        _pLogger->log(strIndent + strLog);
+        _pLogger->log(bIsWarning, strIndent + strLog);
     }
 }
 
@@ -330,7 +331,7 @@ bool CParameterMgr::load(string& strError)
     }
 
     // Back synchronization for areas in parameter blackboard not covered by any domain
-    CBackSynchronizer* pBackSynchronizer = createBackSynchronizer(strError);
+    CBackSynchronizer* pBackSynchronizer = createBackSynchronizer();
 
     // Back-synchronize
     {
@@ -340,7 +341,7 @@ bool CParameterMgr::load(string& strError)
             // Get rid of back synchronizer
             delete pBackSynchronizer;
 
-            strError = "Main blackboard back synchronization failed: " + strError;
+            strError = "Main blackboard back synchronization failed";
 
             return false;
         }
@@ -356,10 +357,7 @@ bool CParameterMgr::load(string& strError)
 
     // Ensure application of currently selected configurations
     // Force-apply configurations
-    if (!pConfigurableDomains->apply(_pMainParameterBlackboard, true, strError)) {
-
-        return false;
-    }
+    pConfigurableDomains->apply(_pMainParameterBlackboard, true);
 
     // Start remote processor server if appropriate
     return handleRemoteProcessingInterface(strError);
@@ -391,7 +389,7 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
     }
 
     // Log tuning availability
-    log("Tuning %s", getConstFrameworkConfiguration()->isTuningAllowed() ? "allowed" : "prohibited");
+    log_info("Tuning %s", getConstFrameworkConfiguration()->isTuningAllowed() ? "allowed" : "prohibited");
 
     return true;
 }
@@ -489,7 +487,7 @@ bool CParameterMgr::loadSettings(string& strError)
     // Auto validation of configurations if no binary settings provided
     xmlDomainSerializingContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
 
-    log("Importing configurable domains from file %s %s settings", strXmlConfigurationDomainsFilePath.c_str(), pBinarySettingsFileLocation ? "without" : "with");
+    log_info("Importing configurable domains from file %s %s settings", strXmlConfigurationDomainsFilePath.c_str(), pBinarySettingsFileLocation ? "without" : "with");
 
     // Do parse
     if (!xmlParse(xmlDomainSerializingContext, pConfigurableDomains, strXmlConfigurationDomainsFilePath, strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary, "SystemClassName")) {
@@ -562,7 +560,7 @@ CSelectionCriterion* CParameterMgr::getSelectionCriterion(const string& strName)
 }
 
 // Selection criteria changed event
-bool CParameterMgr::applyConfigurations(string& strError)
+void CParameterMgr::applyConfigurations()
 {
     CAutoLog autoLog(this, "Configuration application request");
 
@@ -572,22 +570,15 @@ bool CParameterMgr::applyConfigurations(string& strError)
     if (!_bTuningModeIsOn) {
 
         // Apply configuration(s)
-        if (!getConfigurableDomains()->apply(_pMainParameterBlackboard, false, strError)) {
-
-            log("Failed to apply configurations!");
-
-            return false;
-        }
+        getConfigurableDomains()->apply(_pMainParameterBlackboard, false);
 
         // Reset the modified status of the current criteria to indicate that a new configuration has been applied
         getSelectionCriteria()->resetModifiedStatus();
 
     } else {
 
-        log("Warning: Configurations were not applied because the TuningMode is on");
+        log_warning("Configurations were not applied because the TuningMode is on");
     }
-
-    return true;
 }
 
 // Dynamic parameter handling
@@ -975,7 +966,14 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::saveConfigurationCo
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    list<string> lstrResult;
+    if (!restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), lstrResult)) {
+        //Concatenate the error list as the command result
+        CUtility::concatenate(lstrResult, strResult);
+
+        return  CCommandHandler::EFailed;
+    }
+    return CCommandHandler::EDone;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1337,10 +1335,8 @@ bool CParameterMgr::setTuningMode(bool bOn, string& strError)
 
         // Ensure application of currently selected configurations
         // Force-apply configurations
-        if (!getConfigurableDomains()->apply(_pMainParameterBlackboard, true, strError)) {
+        getConfigurableDomains()->apply(_pMainParameterBlackboard, true);
 
-            return false;
-        }
         // Turn auto sync back on
         _bAutoSyncOn = true;
     }
@@ -1428,8 +1424,16 @@ bool CParameterMgr::sync(string& strError)
     CSyncerSet syncerSet;
     // ... from system class
     getConstSystemClass()->fillSyncerSet(syncerSet);
+
     // Sync
-    return syncerSet.sync(*_pMainParameterBlackboard, false, strError);
+    list<string> lstrError;
+    if (! syncerSet.sync(*_pMainParameterBlackboard, false, &lstrError)){
+
+        CUtility::concatenate(lstrError, strError);
+        return false;
+    };
+
+    return true;
 }
 
 // Content dump
@@ -1505,16 +1509,18 @@ bool CParameterMgr::deleteConfiguration(const string& strDomain, const string& s
     return getConfigurableDomains()->deleteConfiguration(strDomain, strConfiguration, strError);
 }
 
-bool CParameterMgr::restoreConfiguration(const string& strDomain, const string& strConfiguration, string& strError)
+bool CParameterMgr::restoreConfiguration(const string& strDomain, const string& strConfiguration, list<string>& lstrError)
 {
+    string strError;
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
 
+        lstrError.push_back(strError);
         return false;
     }
 
     // Delegate to configurable domains
-    return getConstConfigurableDomains()->restoreConfiguration(strDomain, strConfiguration, _pMainParameterBlackboard, _bAutoSyncOn, strError);
+    return getConstConfigurableDomains()->restoreConfiguration(strDomain, strConfiguration, _pMainParameterBlackboard, _bAutoSyncOn, lstrError);
 }
 
 bool CParameterMgr::saveConfiguration(const string& strDomain, const string& strConfiguration, string& strError)
@@ -1796,7 +1802,7 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
     // Start server if tuning allowed
     if (getConstFrameworkConfiguration()->isTuningAllowed()) {
 
-        log("Loading remote processor library");
+        log_info("Loading remote processor library");
 
         // Load library
         void* lib_handle = dlopen("libremote-processor.so", RTLD_NOW);
@@ -1829,7 +1835,7 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
         // Create server
         _pRemoteProcessorServer = pfnCreateRemoteProcessorServer(getConstFrameworkConfiguration()->getServerPort(), _pCommandHandler);
 
-        log("Starting remote processor server on port %d", getConstFrameworkConfiguration()->getServerPort());
+        log_info("Starting remote processor server on port %d", getConstFrameworkConfiguration()->getServerPort());
         // Start
         if (!_pRemoteProcessorServer->start()) {
 
@@ -1843,15 +1849,15 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
 }
 
 // Back synchronization
-CBackSynchronizer* CParameterMgr::createBackSynchronizer(string& strError) const
+CBackSynchronizer* CParameterMgr::createBackSynchronizer() const
 {
 #ifdef SIMULATION
     // In simulation, back synchronization of the blackboard won't probably work
     // We need to ensure though the blackboard is initialized with valid data
-    return new CSimulatedBackSynchronizer(getConstSystemClass(), strError, _pMainParameterBlackboard);
+    return new CSimulatedBackSynchronizer(getConstSystemClass(), _pMainParameterBlackboard);
 #else
     // Real back synchronizer from subsystems
-    return new CHardwareBackSynchronizer(getConstSystemClass(), strError, _pMainParameterBlackboard);
+    return new CHardwareBackSynchronizer(getConstSystemClass(), _pMainParameterBlackboard);
 #endif
 }
 

@@ -22,6 +22,7 @@
  * CREATED: 2011-06-01
  * UPDATED: 2011-07-27
  */
+#include <cassert>
 #include "ConfigurableDomains.h"
 #include "ConfigurableDomain.h"
 #include "ConfigurableElement.h"
@@ -60,8 +61,9 @@ void CConfigurableDomains::validate(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Configuration application if required
-bool CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, bool bForce, string& strError) const
+void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, bool bForce) const
 {
+
    CAutoLog autoLog(this, "Applying configurations");
 
     // Syncer set
@@ -77,29 +79,24 @@ bool CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, boo
 
         const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
 
-        if (!pChildConfigurableDomain->getSequenceAwareness() && !pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce, strError)) {
-
-            return false;
+        if (!pChildConfigurableDomain->getSequenceAwareness()) {
+            // Apply sequence unaware domain
+            pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce);
         }
     }
-    // Synchronize
-    if (!syncerSet.sync(*pParameterBlackboard, false, strError)) {
-
-        return false;
-    }
+    // Synchronize sequence unaware domains
+    syncerSet.sync(*pParameterBlackboard, false, NULL);
 
     // Then deal with sequence aware domains
     for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
 
         const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
 
-        if (pChildConfigurableDomain->getSequenceAwareness() && !pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce, strError)) {
-
-            return false;
+        if (pChildConfigurableDomain->getSequenceAwareness()) {
+            // Apply sequence aware domain
+            pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce);
         }
     }
-
-    return true;
 }
 
 // From IXmlSource
@@ -123,7 +120,7 @@ bool CConfigurableDomains::createDomain(const string& strName, string& strError)
         return false;
     }
 
-    log("Creating configurable domain \"%s\"", strName.c_str());
+    log_info("Creating configurable domain \"%s\"", strName.c_str());
 
     // Creation/Hierarchy
     addChild(new CConfigurableDomain(strName));
@@ -140,7 +137,7 @@ bool CConfigurableDomains::deleteDomain(const string& strName, string& strError)
         return false;
     }
 
-    log("Deleting configurable domain \"%s\"", strName.c_str());
+    log_info("Deleting configurable domain \"%s\"", strName.c_str());
 
     // Hierarchy
     removeChild(pConfigurableDomain);
@@ -153,7 +150,7 @@ bool CConfigurableDomains::deleteDomain(const string& strName, string& strError)
 
 void CConfigurableDomains::deleteAllDomains()
 {
-    log("Deleting all configurable domains");
+    log_info("Deleting all configurable domains");
 
     //remove Children
     clean();
@@ -168,7 +165,7 @@ bool CConfigurableDomains::renameDomain(const string& strName, const string& str
         return false;
     }
 
-    log("Renaming configurable domain \"%s\" to \"%s\"", strName.c_str(), strNewName.c_str());
+    log_info("Renaming configurable domain \"%s\" to \"%s\"", strName.c_str(), strNewName.c_str());
 
     // Rename
     return pConfigurableDomain->rename(strNewName, strError);
@@ -377,17 +374,19 @@ void CConfigurableDomains::gatherAllOwnedConfigurableElements(set<const CConfigu
 }
 
 // Config restore
-bool CConfigurableDomains::restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, string& strError) const
+bool CConfigurableDomains::restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, list<string>& lstrError) const
 {
+    string strError;
     // Find domain
     const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
     if (!pConfigurableDomain) {
 
+        lstrError.push_back(strError);
         return false;
     }
     // Delegate
-    return pConfigurableDomain->restoreConfiguration(strConfiguration, pMainBlackboard, bAutoSync, strError);
+    return pConfigurableDomain->restoreConfiguration(strConfiguration, pMainBlackboard, bAutoSync, lstrError);
 }
 
 // Config save

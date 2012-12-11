@@ -27,8 +27,8 @@
 
 #define base CBackSynchronizer
 
-CHardwareBackSynchronizer::CHardwareBackSynchronizer(const CConfigurableElement* pConfigurableElement, string& strError, CParameterBlackboard* pParameterBlackboard)
-    : base(pConfigurableElement), _strError(strError), _pParameterBlackboard(pParameterBlackboard)
+CHardwareBackSynchronizer::CHardwareBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard)
+    : base(pConfigurableElement), _pParameterBlackboard(pParameterBlackboard)
 {
     // Fill back syncer set
     list<const CConfigurableElement*>::const_iterator it;
@@ -45,5 +45,5 @@ CHardwareBackSynchronizer::CHardwareBackSynchronizer(const CConfigurableElement*
 bool CHardwareBackSynchronizer::sync()
 {
     // Perform back synchronization
-    return _backSyncerSet.sync(*_pParameterBlackboard, true, _strError);
+    return _backSyncerSet.sync(*_pParameterBlackboard, true, NULL);
 }
