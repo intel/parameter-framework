@@ -49,6 +49,12 @@ public:
     // Susbsystem Endianness
     bool isBigEndian() const;
 
+    // Susbsystem sanity
+    virtual bool isAlive() const;
+
+    // Resynchronization after subsystem restart needed
+    virtual bool needResync(bool bClear);
+
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 

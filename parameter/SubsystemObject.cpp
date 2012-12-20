@@ -23,8 +23,10 @@
  * UPDATED: 2011-07-27
  */
 #include "SubsystemObject.h"
+#include "Subsystem.h"
 #include "InstanceConfigurableElement.h"
 #include "ParameterBlackboard.h"
+#include "ParameterAccessContext.h"
 #include "MappingContext.h"
 #include <assert.h>
 #include <stdlib.h>
@@ -74,6 +76,18 @@ string CSubsystemObject::asString(uint32_t uiValue)
     return ostr.str();
 }
 
+// Default back synchronization
+void CSubsystemObject::setDefaultValues(CParameterBlackboard& parameterBlackboard) const
+{
+    string strError;
+
+    // Create access context
+    CParameterAccessContext parameterAccessContext(strError, &parameterBlackboard, false);
+
+    // Just implement back synchronization with default values
+    _pInstanceConfigurableElement->setDefaultValues(parameterAccessContext);
+}
+
 // Synchronization
 bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError)
 {
@@ -86,29 +100,34 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
     return true;
 #endif
 
-    // Synchronize to/from HW
-    if (bBack) {
+    // Retrieve subsystem
+    const CSubsystem* pSubsystem = _pInstanceConfigurableElement->getBelongingSubsystem();
 
-        // Read from HW
-        if (!accessHW(true, strError)) {
+    // Get it's health insdicator
+    bool bIsSubsystemAlive = pSubsystem->isAlive();
 
-            strError = "Unable to back synchronize configurable element " + _pInstanceConfigurableElement->getPath() + ": " + strError;
-            log_warning(strError);
+    // Check subsystem health
+    if (!bIsSubsystemAlive) {
 
-            return false;
-        }
-
-    } else {
-
-        // Send to HW
-        if (!accessHW(false, strError)) {
-
-            strError = "Unable to synchronize configurable element " + _pInstanceConfigurableElement->getPath() + ": " + strError;
-            log_warning(strError);
-
-            return false;
-        }
+        strError = "Susbsystem not alive";
     }
+
+    // Synchronize to/from HW
+    if (!bIsSubsystemAlive || !accessHW(bBack, strError)) {
+
+        strError = string("Unable to ") + (bBack ? "back" : "forward") + " synchronize configurable element " +
+                _pInstanceConfigurableElement->getPath() + ": " + strError;
+
+        log_warning(strError);
+
+        // Fall back to parameter default initialization
+        if (bBack) {
+
+           setDefaultValues(parameterBlackboard);
+        }
+        return false;
+    }
+
     return true;
 }
 

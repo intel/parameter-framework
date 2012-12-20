@@ -61,17 +61,13 @@ void CConfigurableDomains::validate(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Configuration application if required
-void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, bool bForce) const
+void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce) const
 {
-
    CAutoLog autoLog(this, "Applying configurations");
 
-    // Syncer set
-    CSyncerSet syncerSet;
+    /// Delegate to domains
 
-    // Delegate to domains
-
-    // Start with sequence unaware domains
+    // Start with domains that can be synchronized all at once (with passed syncer set)
     uint32_t uiChild;
     uint32_t uiNbConfigurableDomains = getNbChildren();
 
@@ -79,23 +75,19 @@ void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, boo
 
         const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
 
-        if (!pChildConfigurableDomain->getSequenceAwareness()) {
-            // Apply sequence unaware domain
-            pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce);
-        }
+        // Apply and collect syncers when relevant
+        pChildConfigurableDomain->apply(pParameterBlackboard, &syncerSet, bForce);
     }
-    // Synchronize sequence unaware domains
+    // Synchronize those collected syncers
     syncerSet.sync(*pParameterBlackboard, false, NULL);
 
-    // Then deal with sequence aware domains
+    // Then deal with domains that need to synchronize along apply
     for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
 
         const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
 
-        if (pChildConfigurableDomain->getSequenceAwareness()) {
-            // Apply sequence aware domain
-            pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce);
-        }
+        // Apply and synchronize when relevant
+        pChildConfigurableDomain->apply(pParameterBlackboard, NULL, bForce);
     }
 }
 

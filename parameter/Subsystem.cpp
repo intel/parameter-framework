@@ -74,6 +74,20 @@ bool CSubsystem::isBigEndian() const
     return _bBigEndian;
 }
 
+// Susbsystem sanity
+bool CSubsystem::isAlive() const
+{
+    return true;
+}
+
+// Resynchronization after subsystem restart needed
+bool CSubsystem::needResync(bool bClear)
+{
+    (void)bClear;
+
+    return false;
+}
+
 // From IXmlSink
 bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {

@@ -83,7 +83,7 @@ public:
     void validate(const CParameterBlackboard* pMainBlackboard);
 
     // Configuration application if required
-    void apply(CParameterBlackboard* pParameterBlackboard, bool bForce) const;
+    void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce) const;
 
     // Class kind
     virtual string getKind() const;

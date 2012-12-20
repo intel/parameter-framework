@@ -41,6 +41,9 @@ public:
     // Subsystem factory
     const CSubsystemLibrary* getSubsystemLibrary() const;
 
+    // Fill syncer-set with syncers from subsytems that need resync
+    void checkForSubsystemsToResync(CSyncerSet& syncerSet);
+
     // base
     virtual bool init(string& strError);
     virtual string getKind() const;

@@ -80,7 +80,7 @@ public:
     void validate(const CParameterBlackboard* pMainBlackboard);
 
     // Configuration application if required
-    void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForced) const;
+    void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet* pSyncerSet, bool bForced) const;
 
     // Return applicable configuration validity for given configurable element
     bool isApplicableConfigurationValid(const CConfigurableElement* pConfigurableElement) const;

@@ -438,8 +438,15 @@ const CDomainConfiguration* CConfigurableDomain::getPendingConfiguration() const
 }
 
 // Configuration application if required
-void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce) const
+void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet* pSyncerSet, bool bForce) const
 {
+    // Apply configuration only if the blackboard will
+    // be synchronized either now or by syncerSet.
+    if(!pSyncerSet ^ _bSequenceAware) {
+        // The configuration can not be syncronised
+        return;
+    }
+
     if (bForce) {
         // Force a configuration restore by forgetting about last applied configuration
         _pLastAppliedConfiguration = NULL;
@@ -451,19 +458,24 @@ void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyn
         // Check not the last one before applying
         if (!_pLastAppliedConfiguration || _pLastAppliedConfiguration != pApplicableDomainConfiguration) {
 
-            log_info("Applying configuration \"%s\" from domain \"%s\"", pApplicableDomainConfiguration->getName().c_str(), getName().c_str());
+            log_info("Applying configuration \"%s\" from domain \"%s\"",
+                     pApplicableDomainConfiguration->getName().c_str(),
+                     getName().c_str());
+
+            // Check if we need to synchronize during restore
+            bool bSync = !pSyncerSet && _bSequenceAware;
 
             // Do the restore
-            pApplicableDomainConfiguration->restore(pParameterBlackboard, _bSequenceAware, NULL);
+            pApplicableDomainConfiguration->restore(pParameterBlackboard, bSync, NULL);
 
             // Record last applied configuration
             _pLastAppliedConfiguration = pApplicableDomainConfiguration;
 
-            // Check we did not already sync the changes
-            if (!_bSequenceAware) {
+            // Check we need to provide syncer set to caller
+            if (pSyncerSet && !_bSequenceAware) {
 
                 // Since we applied changes, add our own sync set to the given one
-                syncerSet += _syncerSet;
+                *pSyncerSet += _syncerSet;
             }
         }
     }

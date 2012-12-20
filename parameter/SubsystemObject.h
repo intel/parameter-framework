@@ -65,6 +65,10 @@ private:
     // from ISyncer
     virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError);
 
+    // Default back synchronization
+    void setDefaultValues(CParameterBlackboard& parameterBlackboard) const;
+
+    // Prevent unsupported operators
     CSubsystemObject(const CSubsystemObject&);
 
     // Define affection operator

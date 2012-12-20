@@ -355,9 +355,8 @@ bool CParameterMgr::load(string& strError)
     // We need to ensure all domains are valid
     pConfigurableDomains->validate(_pMainParameterBlackboard);
 
-    // Ensure application of currently selected configurations
-    // Force-apply configurations
-    pConfigurableDomains->apply(_pMainParameterBlackboard, true);
+    // At initialization, check subsystems that need resync
+    doApplyConfigurations(true);
 
     // Start remote processor server if appropriate
     return handleRemoteProcessingInterface(strError);
@@ -559,7 +558,7 @@ CSelectionCriterion* CParameterMgr::getSelectionCriterion(const string& strName)
     return getSelectionCriteria()->getSelectionCriterion(strName);
 }
 
-// Selection criteria changed event
+// Configuration application
 void CParameterMgr::applyConfigurations()
 {
     CAutoLog autoLog(this, "Configuration application request");
@@ -570,11 +569,7 @@ void CParameterMgr::applyConfigurations()
     if (!_bTuningModeIsOn) {
 
         // Apply configuration(s)
-        getConfigurableDomains()->apply(_pMainParameterBlackboard, false);
-
-        // Reset the modified status of the current criteria to indicate that a new configuration has been applied
-        getSelectionCriteria()->resetModifiedStatus();
-
+        doApplyConfigurations(false);
     } else {
 
         log_warning("Configurations were not applied because the TuningMode is on");
@@ -1335,7 +1330,7 @@ bool CParameterMgr::setTuningMode(bool bOn, string& strError)
 
         // Ensure application of currently selected configurations
         // Force-apply configurations
-        getConfigurableDomains()->apply(_pMainParameterBlackboard, true);
+        doApplyConfigurations(true);
 
         // Turn auto sync back on
         _bAutoSyncOn = true;
@@ -1908,8 +1903,22 @@ const CConfigurableDomains* CParameterMgr::getConstConfigurableDomains() const
     return static_cast<const CConfigurableDomains*>(getChild(EConfigurableDomains));
 }
 
-/// GUI commands functions
+// Apply configurations
+void CParameterMgr::doApplyConfigurations(bool bForce)
+{
+    CSyncerSet syncerSet;
 
+    // Check subsystems that need resync
+    getSystemClass()->checkForSubsystemsToResync(syncerSet);
+
+    // Ensure application of currently selected configurations
+    getConfigurableDomains()->apply(_pMainParameterBlackboard, syncerSet, bForce);
+
+    // Reset the modified status of the current criteria to indicate that a new configuration has been applied
+    getSelectionCriteria()->resetModifiedStatus();
+}
+
+/// GUI commands functions
 bool CParameterMgr::getDomainsXMLString(string& strResult, bool bWithSettings)
 {
 

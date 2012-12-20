@@ -227,6 +227,8 @@ bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue
 
 bool CIntegerParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
 {
+    (void)parameterAccessContext;
+
     // Do assign
     uiUserValue = uiValue;
 
@@ -250,6 +252,8 @@ bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, 
 
 bool CIntegerParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
 {
+    (void)parameterAccessContext;
+
     int32_t iValue = uiValue;
 
     // Sign extend

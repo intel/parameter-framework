@@ -299,6 +299,9 @@ private:
     const CConfigurableDomains* getConstConfigurableDomains();
     const CConfigurableDomains* getConstConfigurableDomains() const;
 
+    // Apply configurations
+    void doApplyConfigurations(bool bForce);
+
     // Dynamic object creation libraries feeding
     void feedElementLibraries();
 
