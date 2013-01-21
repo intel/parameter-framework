@@ -37,7 +37,7 @@ public:
     CBackSynchronizer(const CConfigurableElement* pConfigurableElement);
 
     // Back synchronization
-    virtual bool sync() = 0;
+    virtual void sync() = 0;
 
 protected:
     // Aggegate list

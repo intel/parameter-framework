@@ -33,7 +33,7 @@ public:
     CHardwareBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard);
 
     // Back synchronization
-    virtual bool sync();
+    virtual void sync();
 
 private:
     // Back syncer set

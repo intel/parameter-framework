@@ -337,14 +337,8 @@ bool CParameterMgr::load(string& strError)
     {
         CAutoLog autoLog(this, "Main blackboard back synchronization");
 
-        if (!pBackSynchronizer->sync()) {
-            // Get rid of back synchronizer
-            delete pBackSynchronizer;
+        pBackSynchronizer->sync();
 
-            strError = "Main blackboard back synchronization failed";
-
-            return false;
-        }
         // Get rid of back synchronizer
         delete pBackSynchronizer;
     }

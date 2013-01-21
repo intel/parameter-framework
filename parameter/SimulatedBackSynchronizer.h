@@ -35,7 +35,7 @@ public:
     CSimulatedBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard);
 
     // Back synchronization
-    virtual bool sync();
+    virtual void sync();
 private:
     // Fake error for parameter context creation
     string _strError;

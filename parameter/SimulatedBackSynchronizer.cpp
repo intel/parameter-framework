@@ -34,7 +34,7 @@ CSimulatedBackSynchronizer::CSimulatedBackSynchronizer(const CConfigurableElemen
 }
 
 // Back synchronization
-bool CSimulatedBackSynchronizer::sync()
+void CSimulatedBackSynchronizer::sync()
 {
     // Set default values to simulate back synchronization
     list<const CConfigurableElement*>::const_iterator it;
@@ -45,5 +45,4 @@ bool CSimulatedBackSynchronizer::sync()
 
         pConfigurableElement->setDefaultValues(_parameterAccessContext);
     }
-    return true;
 }

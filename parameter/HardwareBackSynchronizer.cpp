@@ -42,8 +42,8 @@ CHardwareBackSynchronizer::CHardwareBackSynchronizer(const CConfigurableElement*
 }
 
 // Back synchronization
-bool CHardwareBackSynchronizer::sync()
+void CHardwareBackSynchronizer::sync()
 {
     // Perform back synchronization
-    return _backSyncerSet.sync(*_pParameterBlackboard, true, NULL);
+    _backSyncerSet.sync(*_pParameterBlackboard, true, NULL);
 }
