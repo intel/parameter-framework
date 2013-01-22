@@ -29,6 +29,7 @@
 
 class CInstanceConfigurableElement;
 class CMappingContext;
+class CSubsystem;
 
 class CSubsystemObject : private ISyncer
 {
@@ -60,6 +61,8 @@ protected:
     static string formatMappingValue(const string& strMappingValue, uint32_t uiFirstAmendKey, uint32_t uiNbAmendKeys, const CMappingContext& context);
     // Configurable element retrieval
     const CInstanceConfigurableElement* getConfigurableElement() const;
+    // Belonging Subsystem retrieval
+    const CSubsystem* getSubsystem() const;
 
 private:
     // from ISyncer

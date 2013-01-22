@@ -253,3 +253,9 @@ const CInstanceConfigurableElement* CSubsystemObject::getConfigurableElement() c
 {
     return _pInstanceConfigurableElement;
 }
+
+// Belonging Subsystem retrieval
+const CSubsystem* CSubsystemObject::getSubsystem() const
+{
+    return _pInstanceConfigurableElement->getBelongingSubsystem();
+}
