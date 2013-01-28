@@ -58,34 +58,29 @@ bool CInstanceConfigurableElement::getMappingData(const string& strKey, const st
 bool CInstanceConfigurableElement::map(IMapper& mapper, string& strError)
 {
     bool bHasMappingData = getTypeElement()->hasMappingData();
+    bool bKeepDiving = true;
 
     // Begin
-    if (bHasMappingData) {
+    if (bHasMappingData && !mapper.mapBegin(this, bKeepDiving, strError)) {
 
-        bool bKeepDiving;
-
-        if (!mapper.mapBegin(this, bKeepDiving, strError)) {
-
-            return false;
-        }
-        // Go on through children?
-        if (!bKeepDiving) {
-
-            return true;
-        }
+        return false;
     }
 
-    // Map children
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    // Go on through children?
+    if (bKeepDiving) {
 
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
+        // Map children
+        uint32_t uiNbChildren = getNbChildren();
+        uint32_t uiChild;
 
-        CInstanceConfigurableElement* pInstanceConfigurableChildElement = static_cast<CInstanceConfigurableElement*>(getChild(uiChild));
+        for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        if (!pInstanceConfigurableChildElement->map(mapper, strError)) {
+            CInstanceConfigurableElement* pInstanceConfigurableChildElement = static_cast<CInstanceConfigurableElement*>(getChild(uiChild));
 
-            return false;
+            if (!pInstanceConfigurableChildElement->map(mapper, strError)) {
+
+                return false;
+            }
         }
     }
 

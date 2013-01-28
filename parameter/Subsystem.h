@@ -85,14 +85,42 @@ private:
     // Generic subsystem mapping error handling
     void getMappingError(string& strError, const string& strKey, const string& strMessage, const CInstanceConfigurableElement* pInstanceConfigurableElement);
 
-    // From IMapper
+    /**
+     * Handle a configurable element mapping.
+     *
+     * Add context mappings to the context and instantiate a subsystem object if needed.
+     *
+     * @param[in:out] pInstanceConfigurableElement The configurable element
+     * @param[out] bKeepDiving Keep diving for mapping keys
+                   Is set to true if a subsystem object (tree leave) has been instantiated.
+                   Undetermined on error
+     * @param[out] strError String filled with an human readable error on error,
+                   left unmodified otherwise
+     *
+     * @return true on success, false on failure
+     */
     virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError);
     virtual void mapEnd();
 
     // Mapping generic context handling
     bool handleMappingContext(const CInstanceConfigurableElement* pInstanceConfigurableElement, CMappingContext& context, string& strError);
-    // Subsystem object creation handling
-    bool handleSubsystemObjectCreation(CInstanceConfigurableElement* pInstanceConfigurableElement, CMappingContext& context, string& strError);
+
+    /**
+     * Looks if a subsystem object needs to be instantiated for the given configurable
+     * element, then instantiate it if needed.
+     *
+     * @param[in:out] pInstanceConfigurableElement The configurable element to check
+     *            for instanciation
+     * @param[in] context The mapping values container
+     * @param[out] bHasCreatedSubsystemObject If a subsystem object has been instantiated.
+                   Undetermined on error
+     * @param[out] strError String filled with an human readable error on error,
+                   left unmodified otherwise
+     *
+     * @return true on success, false on failure
+     */
+    bool handleSubsystemObjectCreation(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                                       CMappingContext& context, bool& bHasCreatedSubsystemObject, string& strError);
 
     // Subsystem context mapping keys
     vector<string> _contextMappingKeyArray;

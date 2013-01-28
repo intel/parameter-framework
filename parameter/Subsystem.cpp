@@ -233,10 +233,13 @@ bool CSubsystem::handleMappingContext(const CInstanceConfigurableElement* pInsta
     return true;
 }
 
-// Creation handling
-bool CSubsystem::handleSubsystemObjectCreation(CInstanceConfigurableElement* pInstanceConfigurableElement, CMappingContext& context, string& strError)
+// Subsystem object creation handling
+bool CSubsystem::handleSubsystemObjectCreation(
+        CInstanceConfigurableElement* pInstanceConfigurableElement,
+        CMappingContext& context, bool& bHasCreatedSubsystemObject, string& strError)
 {
     uint32_t uiItem;
+    bHasCreatedSubsystemObject = false;
 
     for (uiItem = 0; uiItem < _subsystemObjectCreatorArray.size(); uiItem++) {
 
@@ -281,13 +284,16 @@ bool CSubsystem::handleSubsystemObjectCreation(CInstanceConfigurableElement* pIn
             // Do create object and keep its track
             _subsystemObjectList.push_back(pSubsystemObjectCreator->objectCreate(*pStrValue, pInstanceConfigurableElement, context));
 
-            // Done
-            return true;
+            // Indicate subsytem creation to caller
+            bHasCreatedSubsystemObject = true;
+
+            // The subsystem Object has been instantiated, no need to continue looking for an
+            // instantiation mapping
+            break;
         }
     }
-    getMappingError(strError, "Mapping key", "Not found", pInstanceConfigurableElement);
 
-    return false;
+    return true;
 }
 
 // Generic error handling from derived subsystem classes
@@ -297,46 +303,64 @@ void CSubsystem::getMappingError(string& strError, const string& strKey, const s
 }
 
 // From IMapper
-bool CSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError)
+// Handle a configurable element mapping
+bool CSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                          bool& bKeepDiving, string& strError)
 {
     // Get current context
     CMappingContext context = _contextStack.top();
 
+    // Add mapping in context
+    if (!handleMappingContext(pInstanceConfigurableElement, context, strError)) {
+
+        return false;
+    }
+
+    // Push context
+    _contextStack.push(context);
+
+    // Assume diving by default
+    bKeepDiving = true;
+
+    // Deal with ambiguous usage of parameter blocks
+    bool bShouldCreateSubsystemObject = true;
+
     switch(pInstanceConfigurableElement->getType()) {
 
-    case CInstanceConfigurableElement::EComponent:
+        case CInstanceConfigurableElement::EComponent:
+            return true;
 
-        if (!handleMappingContext(pInstanceConfigurableElement, context, strError)) {
+        case CInstanceConfigurableElement::EParameterBlock:
+            // Subsystem object creation is optional in parameter blocks
+            bShouldCreateSubsystemObject = false;
+            // No break
+        case CInstanceConfigurableElement::EBitParameterBlock:
+        case CInstanceConfigurableElement::EParameter:
+        case CInstanceConfigurableElement::EStringParameter:
 
+            bool bHasCreatedSubsystemObject;
+
+            if (!handleSubsystemObjectCreation(pInstanceConfigurableElement, context,
+                                               bHasCreatedSubsystemObject, strError)) {
+
+                return false;
+            }
+            // Check for creation error
+            if (bShouldCreateSubsystemObject && !bHasCreatedSubsystemObject) {
+
+                getMappingError(strError, "Not found",
+                                "Subsystem object mapping key is missing",
+                                pInstanceConfigurableElement);
+                return false;
+            }
+            // Not created and no error, keep diving
+            bKeepDiving = !bHasCreatedSubsystemObject;
+
+            return true;
+
+        default:
+            assert(0);
             return false;
-        }
-
-        // Push context
-        _contextStack.push(context);
-
-        // Keep diving
-        bKeepDiving = true;
-
-        return true;
-
-    case CInstanceConfigurableElement::EParameterBlock:
-    case CInstanceConfigurableElement::EBitParameterBlock:
-    case CInstanceConfigurableElement::EParameter:
-    case CInstanceConfigurableElement::EStringParameter:
-
-        if (!handleSubsystemObjectCreation(pInstanceConfigurableElement, context, strError)) {
-
-            return false;
-        }
-
-        // Done
-        bKeepDiving = false;
-
-        return true;
-
-    default:
-        assert(0);
-        return false;
     }
 }
 
