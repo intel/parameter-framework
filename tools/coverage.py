@@ -816,26 +816,34 @@ class ArgumentParser:
 	def __init__(self):
 
 		try:
-			# As argparse is only in the stdlib since python 3.2, testing its availability
+			# As argparse is only in the stdlib since python 3.2,
+			# testing its availability
 			import argparse
 
 		except ImportError:
-			logger.warning("Unable to import argparse (argument parseur module), ")
+			logger.warning("Unable to import argparse "
+						"(parser for command-line options and arguments), ")
 			logger.warning("using default argument values:")
 
-			self.inputFile = sys.stdin
 			logger.warning("InputFile: stdin")
+			self.inputFile = sys.stdin
 
-			self.outputFile = sys.stdout
 			logger.warning("OutputFile: stdout")
+			self.outputFile = sys.stdout
 
-			self.domainsFile = sys.argv[1]
-			logger.warning("Domain file: " + self.domainsFile)
+			try:
+				self.domainsFile = sys.argv[1]
+			except IndexError as ex:
+				logger.fatal("No domain file provided (first argument)")
+				raise ex
+			else:
+				logger.warning("Domain file: " + self.domainsFile)
 
+			logger.warning("Output format: xml")
 			self.XMLreport = True
-			logger.warning("OutputFormat: xml")
 
-			self.debugLevel = 0
+			logger.warning("Debug level: error")
+			self.debugLevel = logging.WARNING
 		else :
 
 			myArgParser = argparse.ArgumentParser(description='Generate PFW report')
@@ -897,7 +905,15 @@ class ArgumentParser:
 
 def main():
 
-	commandLineArguments = ArgumentParser()
+	errorDuringLogParsing = -1
+	errorDuringArgumentParsing = 1
+
+	try:
+		commandLineArguments = ArgumentParser()
+	except LookupError as ex:
+		logger.error("Error during argument parsing")
+		logger.debug(str(ex))
+		sys.exit(errorDuringArgumentParsing)
 
 	# Setting logger level
 	logger.setLevel(commandLineArguments.debugLevel)
@@ -907,23 +923,25 @@ def main():
 	# Create tree from XML
 	dom = xml.dom.minidom.parse(commandLineArguments.domainsFile)
 
+	# Create element tree
 	root = Root("Coverage", dom)
 
+	# Parse PFW events
 	parser = ParsePFWlog(root.domains, root.criteria)
+
 	try:
 		parser.parsePFWlog(commandLineArguments.inputFile.readlines())
 	except Exception as ex:
-		sys.stderr.write("Error during parsing log file %s:\n%s\n" %
+		logger.fatal("Error during parsing log file %s:\n%s\n" %
 			(commandLineArguments.inputFile, ex))
+		sys.exit(errorDuringLogParsing)
 
+	# Output report
 	outputFile = commandLineArguments.outputFile
 
 	if not commandLineArguments.XMLreport :
-
 		outputFile.write("%s\n" % root.dump(withCoverage=True, withNbUse=True))
-
 	else :
-
 		outputFile.write(root.exportToXML().toprettyxml())
 
 
