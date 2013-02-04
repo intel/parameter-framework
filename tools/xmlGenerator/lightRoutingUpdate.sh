@@ -25,7 +25,7 @@
 # It only works if you have an parameter running with criterion compatible
 # with the .pfw
 
-set -eu
+set -eu -o pipefail
 
 adbShell="adb shell"
 parameterCommandAccess="eval parameter"
@@ -44,7 +44,7 @@ adbShellForward () {
         echo 'exit'
      )|
         # adb shell can not handle a too fast input, create artificial delay :(
-        while read line; do echo  "$line"; sleep 0.03; done |
+        while read line; do echo  "$line"; sleep 0.04; done |
         $adbShell |
         # keep only the -3line, the output of "echo $?"
         tee /dev/stderr | tail -3 | sed '1{s/\r//;q}' |
@@ -56,7 +56,7 @@ adbShellForward () {
 function parameterExecute ()
 {
     echo "   \$ $parameter $@"
-    result="$($parameter $@)"
+    result="$($parameter $@ | sed 's/\r$//')"
 
     if [[ "$result" != "Done"* ]]; then
          echo "$result"
@@ -68,6 +68,13 @@ function parameterExecute ()
 # Clean tmp file
 rm "$tmpfile" || true
 
+if test $# -eq 0
+then
+    domainFile="$(realpath "$PFWtest_DomainFile")"
+else
+    domainFile="$1"
+fi
+
 #################
 # Configure PFW #
 #################
@@ -77,7 +84,7 @@ parameterExecute setAutoSync off
 
 
 echo "Delete routing domains"
-for domain in $(parameterExecute listDomains |grep -io "^Routing.[^ ]*")
+for domain in $(parameterExecute listDomains |grep -io '^Routing.[^ ]*')
 do
     echo "Will delete domain $domain"
     echo "deleteDomain $domain" >> "$tmpfile"
@@ -87,18 +94,25 @@ done
 # Generate PFW commands #
 #########################
 
-echo "Generate domain commands from file $(realpath $PFWtest_DomainFile)"
-m4 "$PFWtest_DomainFile" | $(dirname $0)/PFWScriptGenerator.py --pfw  >> "$tmpfile"
+echo "Generate domain commands from file $(realpath $domainFile)"
+m4 "$domainFile" | $(dirname $0)/PFWScriptGenerator.py --pfw  >> "$tmpfile"
 
 
 sed -i -e':a' \
-  -e '/\\$/{
-      s/.$//;
-      N;
-      s/\n *//;
-      ta};' \
-  -e '/^$/d;'  -e 's/^ *//' \
-  -e 's/^.*$/'"$parameterCommandAccess"' "\0"\;/' "$tmpfile"
+  -e '# look for line finishing wih \
+      /\\$/{
+        # Delete the last char (\)
+        s/\\$//;
+        # Append the next line and delete the \n separator
+        N;
+        s/\n/ /;
+        # Jump back to the expression begining
+        ta;
+      };' \
+  -e '/^$/d;# delete empty lines' \
+  -e 's/^ *//;# delete leading space' \
+  -e 's/  */ /g;# delete multiple spaces' \
+  -e 's/^.*$/'"$parameterCommandAccess"' "\0"\;/;# Add a prefix ($parameterCommandAccess) on each line' "$tmpfile"
 
 echo "Execute commands"
 adbShellForward "$tmpfile"
@@ -112,16 +126,16 @@ parameterExecute setTuningMode off
 #####################
 
 # Output file is the input file with the xml extension
-outputFile="$(realpath "$(echo $PFWtest_DomainFile | sed 's#\.pfw$#.xml#')")"
+outputFile="$(echo "$domainFile" | sed 's#\.pfw$#.xml#')"
 
 # Test if diferent from .pfw file (we do not whant to overwrite it)
-if test "$outputFile" == "$PFWtest_DomainFile"
+if test "$outputFile" == "$domainFile"
 then
     outputFile="${outputFile}.xml"
 fi
 
 echo "Output file: $outputFile"
-parameterExecute getDomainsXML |sed 's/\r//' > "$outputFile"
+$parameter getDomainsXML |sed 's/\r//' > "$outputFile"
 
 
 echo "The media serveur PFW domains have been change, please restart it to restore old domains"
