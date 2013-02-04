@@ -358,10 +358,7 @@ bool CParameterMgr::load(string& strError)
         list<string> lstrSelectionCriteron;
         selectionCriteria->listSelectionCriteria(lstrSelectionCriteron, true, false);
 
-        string strSelectionCriteron;
-        CUtility::concatenate(lstrSelectionCriteron, strSelectionCriteron);
-
-        log_info("%s", strSelectionCriteron.c_str());
+        log_table(false, lstrSelectionCriteron);
     }
 
     // At initialization, check subsystems that need resync

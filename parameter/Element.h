@@ -27,6 +27,7 @@
 #include <string>
 #include <vector>
 #include <stdint.h>
+#include <list>
 #include "XmlSink.h"
 #include "XmlSource.h"
 
@@ -47,6 +48,7 @@ public:
     // Logging
     void log_info(const string& strMessage, ...) const;
     void log_warning(const string& strMessage, ...) const;
+    void log_table(bool bIsWarning, const list<string> lstrMessage) const;
 
     // Description
     void setDescription(const string& strDescription);

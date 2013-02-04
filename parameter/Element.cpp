@@ -69,6 +69,19 @@ void CElement::log_warning(const string& strMessage, ...) const
     doLog(true, acBuffer);
 }
 
+// Log each element of the string list
+void CElement::log_table(bool bIsWarning, const list<string> lstrMessage) const
+{
+    list<string>::const_iterator iterator(lstrMessage.begin());
+    list<string>::const_iterator end(lstrMessage.end());
+
+    while (iterator != end) {
+        // Log current list element
+        doLog(bIsWarning, iterator->c_str());
+        ++iterator;
+    }
+}
+
 void CElement::doLog(bool bIsWarning, const string& strLog) const
 {
     assert(_pParent);
