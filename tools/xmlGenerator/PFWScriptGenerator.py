@@ -231,20 +231,22 @@ class Element:
             # If no exception was raised, add child to child list
 
             if append :
-                position = len(self.children)
+                self.children.append(child)
             else :
-                position = 0
-
-            self.children.insert(position , child)
+                self.children.insert(0, child)
 
         except ValueError:
             # the child class is not in the white list
             raise ChildNotPermitedError("", self, child)
 
     def addChildren(self, children, append=True) :
-        """add a list of child"""
-        for child in children :
-            self.addChild(child, append)
+        """Add a list of child"""
+        if append:
+            # Add children at the end of the child list
+            self.children.extend(children)
+        else:
+            # Add children at the begining of the child list
+            self.children = children + self.children
 
     def childrenToXML(self, prefix=""):
         """return XML printed children"""
@@ -350,10 +352,10 @@ class ElementWithRuleInheritance(ElementWithInheritance):
         # get context rules
         contextRules = context.getRules()
 
-        # adopt rules of the context
-        self.addChildren(contextRules)
+        # adopt rules of the beginning of the context
+        self.addChildren(contextRules, append=False)
 
-        # add previously extract rules the context
+        # add previously extract rules to the context
         contextRules += childRules
 
 
