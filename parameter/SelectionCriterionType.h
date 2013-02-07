@@ -46,7 +46,7 @@ public:
     string listPossibleValues() const;
 
     // Formatted state
-    string getFormattedState(int iValue) const;
+    virtual string getFormattedState(int iValue) const;
 
     // From CElement
     virtual string getKind() const;

@@ -30,5 +30,6 @@ public:
     virtual bool getNumericalValue(const std::string& strValue, int& iValue) const = 0;
     virtual bool getLiteralValue(int iValue, std::string& strValue) const = 0;
     virtual bool isTypeInclusive() const = 0;
+    virtual std::string getFormattedState(int iValue) const = 0;
 };
 
