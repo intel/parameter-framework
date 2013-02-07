@@ -50,7 +50,7 @@ sed -nr -e 's#^pcm.(.*)\{.*$#\1#; t save;
         b next;
         :save;h;b' \
     \
-    -e ':next; s/.*name "(.*)" value ([^}]*).*/\1 = \2 # /; t pcm;
+    -e ':next; s/.*name\s+"(.*)"\s+value\s+([^}]*).*/\1 = \2 # /; t pcm;
         b;
         :pcm; G;s/\n//p;' -- "$file" |
     sort | \
