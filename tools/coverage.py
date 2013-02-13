@@ -40,13 +40,23 @@ FORMAT = '%(levelname)s: %(message)s'
 logging.basicConfig(stream=sys.stderr, level=logging.WARNING, format=FORMAT)
 logger = logging.getLogger("Coverage")
 
-class ChildNotFoundError(Exception):
+class CustomError(Exception):
+	pass
+
+class ChildError(CustomError):
 	def __init__(self, parent, child):
 		self.parent = parent
 		self.child = child
+
+class ChildNotFoundError(ChildError):
 	def __str__(self):
-		return ("Unable to find child %s in parent %s" %
-				(self.parent, self.child))
+		return ("Unable to find the child %s in %s" %
+				(self.child, self.parent))
+
+class DuplicatedChildError(ChildError):
+	def __str__(self):
+		return ("Add existing child %s in %s. Did you restart de PFW ?" %
+				(self.child, self.parent))
 
 class Element():
 	"""Root class for all coverage elements"""
@@ -104,7 +114,7 @@ class Element():
 		for child in self.children :
 			self.debug("  - %s" % child)
 
-		raise ChildNotFoundError(self, child)
+		raise ChildNotFoundError(self, childName)
 
 
 	def addChild(self, child):
@@ -198,18 +208,20 @@ class Element():
 		return domElement
 
 	def _XMLaddAttributes(self, domElement):
-		attributes = {
-				"Name": self.name,
-				"NbUse": str(self.nbUse)
-				}
+		attributes = self._getXMLAttributes()
 
 		coverage = self._getCoverage()
-		if coverage :
-			attributes["coverage"] = self._number2percent(coverage)
+		if coverage != None :
+			attributes["Coverage"] = self._number2percent(coverage)
 
 		for key, value in attributes.items():
 			domElement.setAttribute(key, value)
 
+	def _getXMLAttributes(self):
+		return {
+				"Name": self.name,
+				"NbUse": str(self.nbUse)
+				}
 
 	def _incNbUse(self):
 		self.nbUse += 1
@@ -460,7 +472,7 @@ class CriteronStates(Element):
 
 		currentcriteria.parentUsed()
 
-class IneligibleConfigurationAppliedError(Exception):
+class IneligibleConfigurationAppliedError(CustomError):
 
 	def __init__(self, configuration, criteria):
 		self.configuration = configuration
@@ -468,10 +480,10 @@ class IneligibleConfigurationAppliedError(Exception):
 
 	def __str__(self):
 
-		return ("Applying ineligible configuration %s from domain %s."
-			"Configuration rule:\n%s\n"
-			"Criteria:\n%s\n" %
-			(self.configuration, configuration.rootRule.dump(), criteria))
+		return ("Applying ineligible %s, "
+			"rule:\n%s\n"
+			"Criteria current state:\n%s" %
+			(self.configuration, self.configuration.rootRule.dump(), self.criteria.dump()))
 
 
 class Configuration(FromDomElement, DomPopulatedElement):
@@ -508,12 +520,9 @@ class Configuration(FromDomElement, DomPopulatedElement):
 		# Propagate to rules
 		if not self.rootRule.usedIfApplicable(criteria) :
 
-			self.debug("Applied (parent: %s) "
-						"but rule does not match current criteria." % self.parent.name,
+			self.debug("Applied but rule does not match current "
+                       "criteria (parent: %s) " % self.parent.name,
 					logging.FATAL)
-
-			self.debug("Rule :\n%s" % self.rootRule.dump(), logging.INFO)
-			self.debug("Current criteria:\n%s" % criteria.export().dump(), logging.INFO)
 
 			raise IneligibleConfigurationAppliedError(self, criteria.export())
 
@@ -583,11 +592,11 @@ class CriterionState(Element):
 
 class Criterion(Element):
 	tag = "Criterion"
+	inclusivenessTranslate = {True: "Inclusive", False: "Exclusive"}
+
 	def __init__(self, name, isInclusif, stateNamesList, currentStateNamesList):
 		super().__init__(name)
 		self.isInclusif = isInclusif
-
-		assert(stateNamesList)
 
 		for state in stateNamesList :
 			self.addChild(CriterionState(state))
@@ -596,7 +605,7 @@ class Criterion(Element):
 
 		# Set current state as provided
 		self.currentState = [self.getChildFromName(childName)
-				for childName in currentStateNamesList]
+							for childName in currentStateNamesList]
 
 	def childUsed(self, child):
 		self.currentState = child
@@ -605,8 +614,7 @@ class Criterion(Element):
 	def changeState(self, subStateNames):
 		self.debug("Changing state from: %s to: %s" % (
 					list(self._getElementNames(self.currentState)),
-					subStateNames),
-				logging.INFO)
+					subStateNames))
 
 		assert(len(subStateNames) > 0 or self.isInclusif)
 
@@ -637,11 +645,15 @@ class Criterion(Element):
 
 
 	def stateIs(self, subStateNames):
-
 		if len(self.currentState) != 1 :
 			return False
 		else :
 			return self.stateIncludes(subStateNames)
+
+	def _getXMLAttributes(self):
+		attributes = super()._getXMLAttributes()
+		attributes["Type"] = self.inclusivenessTranslate[self.isInclusif]
+		return attributes
 
 
 class Criteria(Element):
@@ -656,13 +668,18 @@ class Criteria(Element):
 			exported.addChild(child.export())
 		return exported
 
-class ConfigAppliedWithoutCriteriaError(Exception):
+	def addChild(self, child):
+		if child in self.children:
+			raise DuplicatedChildError(self, child)
+		super().addChild(child)
+
+class ConfigAppliedWithoutCriteriaError(CustomError):
 	def __init__(self, configurationName, domainName):
 		self.configurationName = configurationName
 		self.domainName = domainName
 	def __str__(self):
-		return ("Applying configuration %s from domain %s before declaring criteria" %
-				self.configurationName, self.domainName)
+		return ('Applying configuration "%s" from domain "%s" before declaring criteria' %
+				(self.configurationName, self.domainName))
 
 class ParsePFWlog():
 	MATCH = "match"
@@ -684,7 +701,7 @@ class ParsePFWlog():
 				])
 		matchCriterionCreationLine = re.compile(criterionCreationRegext).match
 
-		changingCriterionRegext = r""".*Selection criterion changed event: (.*) = ([^\n\r]*)"""
+		changingCriterionRegext = r""".*Selection criterion changed event: Criterion name: (.*), current state: ([^\n\r]*)"""
 		matchChangingCriterionLine = re.compile(changingCriterionRegext).match
 
 		self.lineLogTypes = [
@@ -735,19 +752,22 @@ class ParsePFWlog():
 
 		newCriterionState = self._formatCriterionList(newCriterionSubStateNames, "|")
 
+		logger.info("Changing criterion %s to %s" % (criterionName , newCriterionState))
+
 		path = [criterionName]
 		changeCriterionOperation = lambda criterion : criterion.changeState(newCriterionState)
 		self.criteria.operationOnChild(path, changeCriterionOperation)
 
 	def _configApplication(self, matchConfig):
+		# Unpack
+		configurationName, domainName = matchConfig.group(1, 2)
+
 		# Check that at least one criterion exist
 		if not self.criteria.hasChildren() :
 			logger.error("Applying configuration before declaring criteria")
 			logger.info("Is the log starting at PFW boot ?")
 			raise ConfigAppliedWithoutCriteriaError(configurationName, domainName)
 
-		# Unpack
-		configurationName, domainName = matchConfig.group(1, 2)
 		# Change criterion state
 		path = [domainName, configurationName]
 		usedOperation = lambda element : element.used(self.criteria)
@@ -766,7 +786,6 @@ class ParsePFWlog():
 		return False
 
 	def parsePFWlog(self, lines):
-
 		for lineLog in lines:
 
 			logger.debug("Parsing line :%s" % lineLog.rstrip())
@@ -822,13 +841,13 @@ class ArgumentParser:
 
 		except ImportError:
 			logger.warning("Unable to import argparse "
-						"(parser for command-line options and arguments), ")
-			logger.warning("using default argument values:")
+						   "(parser for command-line options and arguments), "
+						   "using default argument values:")
 
-			logger.warning("InputFile: stdin")
+			logger.warning(" - InputFile: stdin")
 			self.inputFile = sys.stdin
 
-			logger.warning("OutputFile: stdout")
+			logger.warning(" - OutputFile: stdout")
 			self.outputFile = sys.stdout
 
 			try:
@@ -837,13 +856,13 @@ class ArgumentParser:
 				logger.fatal("No domain file provided (first argument)")
 				raise ex
 			else:
-				logger.warning("Domain file: " + self.domainsFile)
+				logger.warning(" - Domain file: " + self.domainsFile)
 
-			logger.warning("Output format: xml")
+			logger.warning(" - Output format: xml")
 			self.XMLreport = True
 
-			logger.warning("Debug level: error")
-			self.debugLevel = logging.WARNING
+			logger.warning(" - Debug level: error")
+			self.debugLevel = logging.INFO
 		else :
 
 			myArgParser = argparse.ArgumentParser(description='Generate PFW report')
@@ -931,8 +950,8 @@ def main():
 
 	try:
 		parser.parsePFWlog(commandLineArguments.inputFile.readlines())
-	except Exception as ex:
-		logger.fatal("Error during parsing log file %s:\n%s\n" %
+	except CustomError as ex:
+		logger.fatal("Error during parsing log file %s: %s" %
 			(commandLineArguments.inputFile, ex))
 		sys.exit(errorDuringLogParsing)
 
