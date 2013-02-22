@@ -28,26 +28,24 @@
 set -eu -o pipefail
 
 adbShell="adb shell"
-parameterCommandAccess="eval parameter"
+parameterCommandAccess="eval remote-process localhost 5000"
 parameter="$adbShell $parameterCommandAccess"
 
 tmpfile="/tmp/pfw_commands"
+target_tmpfile="/data/pfw_commands"
 
 
 adbShellForward () {
+
+    echo 'echo $?; exit' >> "$1"
+
     # Send commands
-    (
-        echo 'PS1="# "'
-        echo 'set -xeu'
-        cat "$1"
-        echo 'echo $?'
-        echo 'exit'
-     )|
-        # adb shell can not handle a too fast input, create artificial delay :(
-        while read line; do echo  "$line"; sleep 0.04; done |
-        $adbShell |
-        # keep only the -3line, the output of "echo $?"
-        tee /dev/stderr | tail -3 | sed '1{s/\r//;q}' |
+    adb push "$1" "$target_tmpfile"
+    $adbShell chmod 700 "$target_tmpfile"
+
+    $adbShell "$target_tmpfile" |
+        # keep only the -2 line, the output of "echo $?"
+        tee /dev/stderr | tail -2 | sed '1{s/\r//;q}' |
         # stop if $? != 0 (as of set -e)
         xargs test 0 -eq 2> /dev/null
 
@@ -65,77 +63,88 @@ function parameterExecute ()
     return 0
 }
 
-# Clean tmp file
-rm "$tmpfile" || true
+function log ()
+{
+    echo "$@" >&2
+}
 
-if test $# -eq 0
-then
-    domainFile="$(realpath "$PFWtest_DomainFile")"
-else
-    domainFile="$1"
-fi
+# Clean tmp file
+echo > "${tmpfile}"
 
 #################
 # Configure PFW #
 #################
 
-parameterExecute setTuningMode on
-parameterExecute setAutoSync off
+echo "setTuningMode on" >> "${tmpfile}"
+echo "setAutoSync off"  >> "${tmpfile}"
 
 
-echo "Delete routing domains"
+log "Delete routing domains"
 for domain in $(parameterExecute listDomains |grep -io '^Routing.[^ ]*')
 do
-    echo "Will delete domain $domain"
-    echo "deleteDomain $domain" >> "$tmpfile"
+    log "Will delete domain $domain"
+    echo "deleteDomain $domain" >> "${tmpfile}"
 done
 
 #########################
 # Generate PFW commands #
 #########################
 
-echo "Generate domain commands from file $(realpath $domainFile)"
-m4 "$domainFile" | $(dirname $0)/PFWScriptGenerator.py --pfw  >> "$tmpfile"
+log "Generate domain commands from file(s): $*"
+m4 "$@" \
+    | $(dirname $0)/PFWScriptGenerator.py --pfw  >> "${tmpfile}"
 
 
-sed -i -e':a' \
-  -e '# look for line finishing wih \
+echo "setAutoSync off" >> "${tmpfile}"
+echo "setTuningMode off" >> "${tmpfile}"
+
+sed -i -e':a
+      # look for line finishing with \
       /\\$/{
         # Delete the last char (\)
         s/\\$//;
         # Append the next line and delete the \n separator
         N;
         s/\n/ /;
-        # Jump back to the expression begining
+        # Jump back to the expression beginning
         ta;
-      };' \
-  -e '/^$/d;# delete empty lines' \
-  -e 's/^ *//;# delete leading space' \
-  -e 's/  */ /g;# delete multiple spaces' \
-  -e 's/^.*$/'"$parameterCommandAccess"' "\0"\;/;# Add a prefix ($parameterCommandAccess) on each line' "$tmpfile"
+      };
+      # delete empty lines;
+      /^$/d
+      # delete leading space
+      s/^ *//
+      # delete multiple spaces
+      s/  */ /g;
+      # Prefix each line with "$parameterCommandAccess
+      '"s/^/$parameterCommandAccess /" \
+  "${tmpfile}"
 
-echo "Execute commands"
-adbShellForward "$tmpfile"
+echo "set -xeu" > "${tmpfile}2"
+cat "${tmpfile}" >> "${tmpfile}2"
 
+log "Execute commands"
+adbShellForward "${tmpfile}2"
 
-parameterExecute setAutoSync off
-parameterExecute setTuningMode off
 
 #####################
 # Generate xml file #
 #####################
 
-# Output file is the input file with the xml extension
-outputFile="$(echo "$domainFile" | sed 's#\.pfw$#.xml#')"
+outputFilePath="domains.xml"
 
-# Test if diferent from .pfw file (we do not whant to overwrite it)
-if test "$outputFile" == "$domainFile"
+if test $# -ne 0
 then
-    outputFile="${outputFile}.xml"
+    # Output file is the input file with the xml extension
+    outputFilePath="${1%.*}.xml"
+    if test "$outputFilePath" == "$1"
+    then
+        # There is a conflict
+        outputFilePath="${1}.xml"
+    fi
 fi
 
-echo "Output file: $outputFile"
-$parameter getDomainsXML |sed 's/\r//' > "$outputFile"
+log "Output file: $outputFilePath"
+$parameter getDomainsXML |sed 's/\r//' > "$outputFilePath"
 
 
-echo "The media serveur PFW domains have been change, please restart it to restore old domains"
+log "The media server PFW domains have been change, please restart it to restore old domains"
