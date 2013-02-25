@@ -108,7 +108,7 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
         }
 
         // Actually set values
-        if (!setValues(uiIndex, 0, strValue, parameterAccessContext)) {
+        if (!setValues(uiIndex, parameterAccessContext.getBaseOffset(), strValue, parameterAccessContext)) {
 
             return false;
         }
@@ -126,7 +126,7 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
         if (uiIndex == (uint32_t)-1) {
 
             // Whole array requested
-            getValues(0, strValue, parameterAccessContext);
+            getValues(parameterAccessContext.getBaseOffset(), strValue, parameterAccessContext);
 
         } else {
             // Scalar requested

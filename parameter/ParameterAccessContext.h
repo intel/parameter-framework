@@ -24,6 +24,7 @@
  */
 #pragma once
 
+#include <stdint.h>
 #include "ErrorContext.h"
 
 class CParameterBlackboard;
@@ -31,8 +32,8 @@ class CParameterBlackboard;
 class CParameterAccessContext : public CErrorContext
 {
 public:
-    CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex = false);
-    CParameterAccessContext(string& strError, bool bBigEndianSubsystem, CParameterBlackboard* pParameterBlackboard);
+    CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex = false, uint32_t uiOffsetBase = 0);
+    CParameterAccessContext(string& strError, bool bBigEndianSubsystem, CParameterBlackboard* pParameterBlackboard, uint32_t uiOffsetBase = 0);
     CParameterAccessContext(string& strError);
 
     // ParameterBlackboard
@@ -55,6 +56,10 @@ public:
     void setAutoSync(bool bAutoSync);
     bool getAutoSync() const;
 
+    // Base offset for blackboard access
+    void setBaseOffset(uint32_t uiBaseOffset);
+    uint32_t getBaseOffset() const;
+
 private:
     // Blackboard
     CParameterBlackboard* _pParameterBlackboard;
@@ -66,5 +71,7 @@ private:
     bool _bBigEndianSubsystem;
     // Automatic synchronization to HW
     bool _bAutoSync;
+    // Base offset where parameters are stored in configuration blackboards
+    uint32_t _uiBaseOffset;
 };
 

@@ -60,6 +60,6 @@ void CBitParameterBlock::setDefaultValues(CParameterAccessContext& parameterAcce
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->writeInteger(&uiDefaultValue, getSize(), getOffset(), parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->writeInteger(&uiDefaultValue, getSize(), getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext.isBigEndianSubsystem());
 }
 

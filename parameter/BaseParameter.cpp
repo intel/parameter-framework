@@ -171,7 +171,7 @@ bool CBaseParameter::accessAsString(string& strValue, bool bSet, CParameterAcces
     if (bSet) {
 
         // Set Value
-        if (!doSetValue(strValue, getOffset(), parameterAccessContext)) {
+        if (!doSetValue(strValue, getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext)) {
 
             // Append parameter path to error
             parameterAccessContext.appendToError(" " + getPath());
@@ -189,7 +189,7 @@ bool CBaseParameter::accessAsString(string& strValue, bool bSet, CParameterAcces
 
     } else {
         // Get Value
-        doGetValue(strValue, getOffset(), parameterAccessContext);
+        doGetValue(strValue, getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext);
     }
 
     return true;

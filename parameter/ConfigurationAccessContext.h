@@ -25,7 +25,6 @@
 #pragma once
 
 #include "ParameterAccessContext.h"
-#include <stdint.h>
 
 class CConfigurationAccessContext : public CParameterAccessContext
 {
@@ -35,14 +34,8 @@ public:
     // Serialization direction
     bool serializeOut() const;
 
-    // Base offset for blackboard access
-    void setBaseOffset(uint32_t uiBaseOffset);
-    uint32_t getBaseOffset() const;
-
 private:
     // Serialization direction
     bool _bSerializeOut;
-    // Base offset where parameters are stored in configuration blackboards
-    uint32_t _uiBaseOffset;
 };
 

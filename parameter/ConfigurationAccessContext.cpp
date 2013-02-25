@@ -26,7 +26,9 @@
 
 #define base CParameterAccessContext
 
-CConfigurationAccessContext::CConfigurationAccessContext(string& strError, bool bSerializeOut) : base(strError), _bSerializeOut(bSerializeOut), _uiBaseOffset(0)
+CConfigurationAccessContext::CConfigurationAccessContext(string& strError, bool bSerializeOut) :
+    base(strError),
+    _bSerializeOut(bSerializeOut)
 {
 }
 
@@ -34,15 +36,4 @@ CConfigurationAccessContext::CConfigurationAccessContext(string& strError, bool 
 bool CConfigurationAccessContext::serializeOut() const
 {
     return _bSerializeOut;
-}
-
-// Base offset for blackboard access
-void CConfigurationAccessContext::setBaseOffset(uint32_t uiBaseOffset)
-{
-    _uiBaseOffset = uiBaseOffset;
-}
-
-uint32_t CConfigurationAccessContext::getBaseOffset() const
-{
-    return _uiBaseOffset;
 }

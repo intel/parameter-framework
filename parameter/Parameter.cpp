@@ -76,7 +76,7 @@ void CParameter::setDefaultValues(CParameterAccessContext& parameterAccessContex
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->writeInteger(&uiDefaultValue, getSize(), getOffset(), parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->writeInteger(&uiDefaultValue, getSize(), getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext.isBigEndianSubsystem());
 }
 
 /// Actual parameter access
@@ -123,7 +123,7 @@ bool CParameter::doAccess(type& value, bool bSet, CParameterAccessContext& param
 
     if (bSet) {
 
-        if  (doSet(value, getOffset(), parameterAccessContext)) {
+        if  (doSet(value, getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext)) {
 
             // Synchronize
             bSuccess = sync(parameterAccessContext);
@@ -133,7 +133,7 @@ bool CParameter::doAccess(type& value, bool bSet, CParameterAccessContext& param
         }
     } else {
 
-        bSuccess = doGet(value, getOffset(), parameterAccessContext);
+        bSuccess = doGet(value, getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext);
     }
     if (!bSuccess) {
 

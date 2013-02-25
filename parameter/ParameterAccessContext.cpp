@@ -26,22 +26,22 @@
 
 #define base CErrorContext
 
-CParameterAccessContext::CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex)
+CParameterAccessContext::CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex, uint32_t uiBaseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard),
     _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
-    _bBigEndianSubsystem(false), _bAutoSync(true)
+    _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(uiBaseOffset)
 {
 }
 
-CParameterAccessContext::CParameterAccessContext(string& strError, bool bBigEndianSubsystem, CParameterBlackboard* pParameterBlackboard)
+CParameterAccessContext::CParameterAccessContext(string& strError, bool bBigEndianSubsystem, CParameterBlackboard* pParameterBlackboard, uint32_t uiBaseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(bBigEndianSubsystem), _bAutoSync(true)
+    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(bBigEndianSubsystem), _bAutoSync(true), _uiBaseOffset(uiBaseOffset)
 {
 }
 
 CParameterAccessContext::CParameterAccessContext(string& strError)
     : base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(true)
+    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(0)
 {
 }
 
@@ -54,6 +54,18 @@ CParameterBlackboard* CParameterAccessContext::getParameterBlackboard()
 void CParameterAccessContext::setParameterBlackboard(CParameterBlackboard* pBlackboard)
 {
     _pParameterBlackboard = pBlackboard;
+    _uiBaseOffset = 0;
+}
+
+// Base offset for blackboard access
+void CParameterAccessContext::setBaseOffset(uint32_t uiBaseOffset)
+{
+    _uiBaseOffset = uiBaseOffset;
+}
+
+uint32_t CParameterAccessContext::getBaseOffset() const
+{
+    return _uiBaseOffset;
 }
 
 // Value Space
