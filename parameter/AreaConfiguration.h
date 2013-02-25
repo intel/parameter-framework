@@ -72,6 +72,10 @@ public:
     // Data size
     uint32_t getSize() const;
 
+    // Fetch the Configuration Blackboard
+    CParameterBlackboard& getBlackboard();
+    const CParameterBlackboard& getBlackboard() const;
+
 protected:
     CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, uint32_t uiSize);
 

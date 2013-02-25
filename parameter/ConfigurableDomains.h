@@ -73,6 +73,14 @@ public:
     bool addConfigurableElementToDomain(const string& strDomain, CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, string& strError);
     bool removeConfigurableElementFromDomain(const string& strDomain, CConfigurableElement* pConfigurableElement, string& strError);
 
+    // Configuration Blackboard for element
+    CParameterBlackboard* findConfigurationBlackboard(const string& strDomain,
+                                     const string& strConfiguration,
+                                     const CConfigurableElement* pConfigurableElement,
+                                     uint32_t& uiBaseOffset,
+                                     bool& bIsLastApplied,
+                                     string& strError) const;
+
     // Binary settings load/store
     bool serializeSettings(const string& strBinarySettingsFilePath, bool bOut, uint8_t uiStructureChecksum, string& strError);
 

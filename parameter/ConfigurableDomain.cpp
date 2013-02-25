@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -370,6 +370,64 @@ bool CConfigurableDomain::removeConfigurableElement(CConfigurableElement* pConfi
     doRemoveConfigurableElement(pConfigurableElement, true);
 
     return true;
+}
+
+/**
+* Blackboard Configuration and Base Offset retrieval.
+*
+* This method fetches the Blackboard associated to the ConfigurableElement
+* given in parameter, for a specific Configuration. The ConfigurableElement
+* must belong to the Domain. If a Blackboard is found, the base offset of
+* the ConfigurableElement is returned as well. This base offset corresponds to
+* the offset of the ancestor of the ConfigurableElement associated to the Configuration.
+*
+* @param[in] strConfiguration                           Name of the Configuration.
+* @param[in] pCandidateDescendantConfigurableElement    Pointer to a CConfigurableElement that
+*                                                       belongs to the Domain.
+* @param[out] uiBaseOffset                              The base offset of the CConfigurableElement.
+* @param[out] bIsLastApplied                            Boolean indicating that the Configuration is
+*                                                       the last one applied of the Domain.
+* @param[out] strError                                  Error message
+*
+* return Pointer to the Blackboard of the Configuration.
+*/
+CParameterBlackboard* CConfigurableDomain::findConfigurationBlackboard(const string& strConfiguration,
+                                                                       const CConfigurableElement* pCandidateDescendantConfigurableElement,
+                                                                       uint32_t& uiBaseOffset,
+                                                                       bool& bIsLastApplied,
+                                                                       string& strError) const
+{
+    // Find Configuration
+    const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(findChild(strConfiguration));
+
+    if (!pDomainConfiguration) {
+
+        strError = "Domain configuration " + strConfiguration + " not found";
+
+        return NULL;
+    }
+
+    // Parse all configurable elements
+    ConfigurableElementListIterator it;
+
+    for (it = _configurableElementList.begin(); it != _configurableElementList.end(); ++it) {
+
+        const CConfigurableElement* pAssociatedConfigurableElement = *it;
+
+        // Check if the the associated element is the configurable element or one of its ancestors
+        if ((pCandidateDescendantConfigurableElement == pAssociatedConfigurableElement) ||
+            (pCandidateDescendantConfigurableElement->isDescendantOf(pAssociatedConfigurableElement))) {
+
+            uiBaseOffset = pAssociatedConfigurableElement->getOffset();
+            bIsLastApplied = (pDomainConfiguration == _pLastAppliedConfiguration);
+
+            return pDomainConfiguration->getBlackboard(pAssociatedConfigurableElement);
+        }
+    }
+
+    strError = "Element not associated to the Domain";
+
+    return NULL;
 }
 
 // Domain splitting

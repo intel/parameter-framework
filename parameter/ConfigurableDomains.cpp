@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -501,6 +501,36 @@ bool CConfigurableDomains::removeConfigurableElementFromDomain(const string& str
     }
     // Delegate
     return pConfigurableDomain->removeConfigurableElement(pConfigurableElement, strError);
+}
+
+CParameterBlackboard* CConfigurableDomains::findConfigurationBlackboard(const string& strDomain,
+                                                       const string& strConfiguration,
+                                                       const CConfigurableElement* pConfigurableElement,
+                                                       uint32_t& uiBaseOffset,
+                                                       bool& bIsLastApplied,
+                                                       string& strError) const
+{
+    log_info("Find configuration blackboard for Domain:%s, Configuration:%s, Element:%s",
+             strDomain.c_str(), strConfiguration.c_str(), pConfigurableElement->getPath().c_str());
+
+    // Find domain
+    const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
+
+    if (!pConfigurableDomain) {
+
+        return NULL;
+    }
+
+    // Check that element belongs to the domain
+    if (!pConfigurableElement->belongsTo(pConfigurableDomain)) {
+
+        strError = "Element \"" + pConfigurableElement->getPath() + "\" does not belong to domain \"" + strDomain + "\"";
+
+        return NULL;
+    }
+
+    // Find Configuration Blackboard and Base Offset
+    return pConfigurableDomain->findConfigurationBlackboard(strConfiguration, pConfigurableElement, uiBaseOffset, bIsLastApplied, strError);
 }
 
 // Binary settings load/store

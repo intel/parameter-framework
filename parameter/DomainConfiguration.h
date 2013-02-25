@@ -58,6 +58,9 @@ public:
     void clearApplicationRule();
     void getApplicationRule(string& strResult) const;
 
+    // Get Blackboard for an element of the domain
+    CParameterBlackboard* getBlackboard(const CConfigurableElement* pConfigurableElement) const;
+
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
     // Apply data to current
@@ -91,6 +94,7 @@ public:
 
     // Class kind
     virtual string getKind() const;
+
 private:
     // Returns true if children dynamic creation is to be dealt with (here, will allow child deletion upon clean)
     virtual bool childrenAreDynamic() const;

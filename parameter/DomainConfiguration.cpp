@@ -318,6 +318,37 @@ void CDomainConfiguration::getApplicationRule(string& strResult) const
     }
 }
 
+/**
+ * Get the Configuration Blackboard.
+ *
+ * Fetch the Configuration Blackboard related to the ConfigurableElement given in parameter. This
+ * Element is used to retrieve the correct AreaConfiguration where the Blackboard is stored.
+ *
+ * @param[in] pConfigurableElement      A pointer to a ConfigurableElement that is part of the
+ *                                      Domain. This must have been checked previously, as an
+ *                                      assertion is performed.
+ *
+ * return Pointer to the Blackboard of the Configuration.
+ */
+CParameterBlackboard* CDomainConfiguration::getBlackboard(const CConfigurableElement* pConfigurableElement) const
+{
+    AreaConfigurationListIterator it;
+
+    for (it = _areaConfigurationList.begin(); it != _areaConfigurationList.end(); ++it) {
+
+        CAreaConfiguration* pAreaConfiguration = *it;
+
+        // Check if the Element is associated with the Domain
+        if (pAreaConfiguration->getConfigurableElement() == pConfigurableElement) {
+
+            return &pAreaConfiguration->getBlackboard();
+        }
+    }
+
+    assert(0);
+    return NULL;
+}
+
 // Save data from current
 void CDomainConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 {

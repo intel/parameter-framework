@@ -42,7 +42,6 @@
 #include "FixedPointParameterType.h"
 #include "ParameterBlackboard.h"
 #include "Parameter.h"
-#include "ParameterBlackboard.h"
 #include "ParameterAccessContext.h"
 #include "XmlFileIncluderElement.h"
 #include "ParameterFrameworkConfiguration.h"
@@ -160,6 +159,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "setParameter", &CParameterMgr::setParameterCommmandProcess, 2, "<param path> <value>", "Set value for parameter at given path" },
     { "listBelongingDomains", &CParameterMgr::listBelongingDomainsCommmandProcess, 1, "<elem path>", "List domain(s) element at given path belongs to" },
     { "listAssociatedDomains", &CParameterMgr::listAssociatedDomainsCommmandProcess, 1, "<elem path>", "List domain(s) element at given path is associated to" },
+    { "getConfigurationParameter", &CParameterMgr::getConfigurationParameterCommmandProcess, 3, "<domain> <configuration> <param path>", "Get value for parameter at given path from configuration" },
+    { "setConfigurationParameter", &CParameterMgr::setConfigurationParameterCommmandProcess, 4, "<domain> <configuration> <param path> <value>", "Set value for parameter at given path to configuration" },
     /// Browse
     { "listAssociatedElements", &CParameterMgr::listAssociatedElementsCommmandProcess, 0, "", "List element sub-trees associated to at least one configurable domain" },
     { "listConflictingElements", &CParameterMgr::listConflictingElementsCommmandProcess, 0, "", "List element sub-trees contained in more than one configurable domain" },
@@ -1150,7 +1151,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommman
 {
     string strValue;
 
-    if (!accessValue(remoteCommand.getArgument(0), strValue, false, strResult)) {
+    if (!accessParameterValue(remoteCommand.getArgument(0), strValue, false, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1170,7 +1171,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setParameterCommman
     // Get value to set
     string strValue = remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1);
 
-    return accessValue(remoteCommand.getArgument(0), strValue, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return accessParameterValue(remoteCommand.getArgument(0), strValue, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1240,6 +1241,35 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listRogueElementsCo
     return CCommandHandler::ESucceeded;
 }
 
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getConfigurationParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    string strOutputValue;
+    string strError;
+
+    if (!accessConfigurationValue(remoteCommand.getArgument(0), remoteCommand.getArgument(1), remoteCommand.getArgument(2), strOutputValue, false, strError)) {
+
+        strResult = strError;
+        return CCommandHandler::EFailed;
+    }
+    // Succeeded
+    strResult = strOutputValue;
+
+    return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setConfigurationParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    // Get value to set
+    string strValue = remoteCommand.packArguments(3, remoteCommand.getArgumentCount() - 3);
+
+    bool bSuccess = accessConfigurationValue(remoteCommand.getArgument(0),
+                                            remoteCommand.getArgument(1),
+                                            remoteCommand.getArgument(2),
+                                            strValue, true, strResult);
+
+    return bSuccess ? CCommandHandler::EDone : CCommandHandler::EFailed;
+}
+
 /// Settings Import/Export
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportConfigurableDomainsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
@@ -1297,8 +1327,70 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSystemClassXMLCo
     return CCommandHandler::ESucceeded;
 }
 
+// User set/get parameters in main BlackBoard
+bool CParameterMgr::accessParameterValue(const string& strPath, string& strValue, bool bSet, string& strError)
+{
+    // Define context
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
+
+    return accessValue(parameterAccessContext, strPath, strValue, bSet, strError);
+}
+
+// User set/get parameters in specific Configuration BlackBoard
+bool CParameterMgr::accessConfigurationValue(const string& strDomain, const string& strConfiguration, const string& strPath, string& strValue, bool bSet, string& strError)
+{
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement* pLocatedElement = NULL;
+
+    if (!elementLocator.locate(strPath, &pLocatedElement, strError)) {
+
+        return false;
+    }
+
+    // Convert element
+    const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+
+    // Get the Configuration blackboard and the Base Offset of the configurable element in this blackboard
+    uint32_t uiBaseOffset;
+    bool bIsLastApplied;
+
+    CParameterBlackboard* pConfigurationBlackboard = getConstConfigurableDomains()->findConfigurationBlackboard(strDomain, strConfiguration, pConfigurableElement, uiBaseOffset, bIsLastApplied, strError);
+
+    if (!pConfigurationBlackboard) {
+
+        return false;
+    }
+
+    log_info("Element %s in Domain %s, offset: %d, base offset: %d", strPath.c_str(), strDomain.c_str(), pConfigurableElement->getOffset(), uiBaseOffset);
+
+    /// Update the Configuration Blackboard
+
+    // Define Configuration context using Base Offset
+    CParameterAccessContext parameterAccessContext(strError, pConfigurationBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, uiBaseOffset);
+
+    // Access Value in the Configuration Blackboard
+    if (!accessValue(parameterAccessContext, strPath, strValue, bSet, strError)) {
+
+        return false;
+    }
+
+    /// If the Configuration is the last one applied, update the Main Blackboard as well
+
+    if (bIsLastApplied) {
+
+        // Define Main context
+        parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
+
+        // Access Value in the Main Blackboard
+        return accessValue(parameterAccessContext, strPath, strValue, bSet, strError);
+    }
+
+    return true;
+}
+
 // User set/get parameters
-bool CParameterMgr::accessValue(const string& strPath, string& strValue, bool bSet, string& strError)
+bool CParameterMgr::accessValue(CParameterAccessContext& parameterAccessContext, const string& strPath, string& strValue, bool bSet, string& strError)
 {
     // Lock state
     CAutoLock autoLock(&_blackboardMutex);
@@ -1310,9 +1402,6 @@ bool CParameterMgr::accessValue(const string& strPath, string& strValue, bool bS
 
         return false;
     }
-
-    // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     // Auto Sync
     if (bSet) {

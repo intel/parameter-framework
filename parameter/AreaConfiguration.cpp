@@ -160,6 +160,16 @@ uint32_t CAreaConfiguration::getSize() const
     return _blackboard.getSize();
 }
 
+CParameterBlackboard& CAreaConfiguration::getBlackboard()
+{
+    return _blackboard;
+}
+
+const CParameterBlackboard& CAreaConfiguration::getBlackboard() const
+{
+     return _blackboard;
+}
+
 // Store validity
 void CAreaConfiguration::setValid(bool bValid)
 {

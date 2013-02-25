@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -72,6 +72,13 @@ public:
     // Configurable elements association
     bool addConfigurableElement(CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, string& strError);
     bool removeConfigurableElement(CConfigurableElement* pConfigurableElement, string& strError);
+
+    // Blackboard Configuration and Base Offset retrieval
+    CParameterBlackboard* findConfigurationBlackboard(const string& strConfiguration,
+                                                      const CConfigurableElement* pConfigurableElement,
+                                                      uint32_t& uiBaseOffset,
+                                                      bool& bIsLastApplied,
+                                                      string& strError) const;
 
     // Domain splitting
     bool split(CConfigurableElement* pConfigurableElement, string& strError);

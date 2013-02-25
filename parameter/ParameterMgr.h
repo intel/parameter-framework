@@ -49,6 +49,7 @@ class IRemoteProcessorServerInterface;
 class CBackSynchronizer;
 class CParameterHandle;
 class CSubsystemPlugins;
+class CParameterAccessContext;
 
 class CParameterMgr : private CElement
 {
@@ -135,7 +136,9 @@ public:
     bool sync(string& strError);
 
     // User set/get parameters
-    bool accessValue(const string& strPath, string& strValue, bool bSet, string& strError);
+    bool accessValue(CParameterAccessContext& parameterAccessContext, const string& strPath, string& strValue, bool bSet, string& strError);
+    bool accessParameterValue(const string& strPath, string& strValue, bool bSet, string& strError);
+    bool accessConfigurationValue(const string &strDomain, const string &stConfiguration, const string& strPath, string& strValue, bool bSet, string& strError);
 
     ////////// Configuration/Domains handling //////////////
     // Creation/Deletion
@@ -237,6 +240,8 @@ private:
     CCommandHandler::CommandStatus showPropertiesCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus getParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus getConfigurationParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus setConfigurationParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus listAssociatedDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     /// Browse
