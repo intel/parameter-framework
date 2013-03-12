@@ -34,4 +34,7 @@ class ISyncer
 {
 public:
     virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError) = 0;
+
+protected:
+    virtual ~ISyncer() {}
 };

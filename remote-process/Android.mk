@@ -9,7 +9,6 @@ COMMON_SRC_FILES := \
 COMMON_MODULE := remote-process
 COMMON_MODULE_TAGS := optional
 
-COMMON_CFLAGS := -Wno-non-virtual-dtor
 
 COMMON_C_INCLUDES := \
     $(LOCAL_PATH)/../remote-processor/
@@ -27,7 +26,6 @@ LOCAL_MODULE := $(COMMON_MODULE)
 LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
 
 LOCAL_CFLAGS += $(COMMON_CFLAGS)
-
 LOCAL_C_INCLUDES += \
     $(COMMON_C_INCLUDES) \
     external/stlport/stlport/ \

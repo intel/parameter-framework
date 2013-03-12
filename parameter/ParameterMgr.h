@@ -92,6 +92,8 @@ public:
     {
     public:
         virtual void log(bool bIsWarning, const std::string& strLog) = 0;
+    protected:
+        virtual ~ILogger() {}
     };
 
     // Construction

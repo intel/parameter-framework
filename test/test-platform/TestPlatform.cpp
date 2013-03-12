@@ -49,7 +49,6 @@ public:
     }
 };
 
-
 CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
     _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
     _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger)

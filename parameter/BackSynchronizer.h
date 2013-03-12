@@ -38,10 +38,12 @@ public:
 
     // Back synchronization
     virtual void sync() = 0;
+    virtual ~CBackSynchronizer() {}
 
 protected:
     // Aggegate list
     list<const CConfigurableElement*> _needingBackSyncList;
+
 private:
     // Aggegator
     CConfigurableElementAggregator _configurableElementAggregator;

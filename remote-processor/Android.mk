@@ -16,10 +16,7 @@ COMMON_SRC_FILES := \
 COMMON_MODULE := libremote-processor
 COMMON_MODULE_TAGS := optional
 
-COMMON_CFLAGS := -Wno-non-virtual-dtor
-
 COMMON_LDLIBS := -lpthread
-
 #############################
 # Target build
 

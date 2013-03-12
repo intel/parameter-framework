@@ -34,4 +34,7 @@ public:
     virtual bool start() = 0;
     virtual void stop() = 0;
     virtual bool isStarted() const = 0;
+
+    /* FIXME this was missing but is explicitly called */
+    virtual ~IRemoteProcessorServerInterface() {}
 };

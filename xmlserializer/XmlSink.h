@@ -31,4 +31,7 @@ class IXmlSink
 {
 public:
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) = 0;
+
+protected:
+    virtual ~IXmlSink() {}
 };

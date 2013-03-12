@@ -43,6 +43,8 @@ public:
     // Object creation
     virtual CSubsystemObject* objectCreate(const string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context) const = 0;
 
+    virtual ~CSubsystemObjectCreator() {}
+
 private:
     // Mapping key
     string _strMappingKey;

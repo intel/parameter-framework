@@ -31,4 +31,7 @@ class IXmlSource
 {
 public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const = 0;
+
+protected:
+    virtual ~IXmlSource() {}
 };

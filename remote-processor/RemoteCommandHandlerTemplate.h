@@ -217,3 +217,4 @@ private:
     std::vector<CRemoteCommandParserItem*> _remoteCommandParserVector;
     uint32_t _uiMaxCommandUsageLength;
 };
+

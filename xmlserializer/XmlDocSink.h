@@ -34,6 +34,7 @@ public:
 
     // Source processing
     bool process(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
+    virtual ~CXmlDocSink() {}
 
 private:
     // Handle for subclasses to process the source

@@ -100,8 +100,6 @@ COMMON_SRC_FILES := \
 COMMON_MODULE := libparameter
 COMMON_MODULE_TAGS := optional
 
-COMMON_CFLAGS := -Wno-non-virtual-dtor
-
 COMMON_C_INCLUDES := \
     $(LOCAL_PATH)/include/ \
     $(LOCAL_PATH)/../utility/ \
@@ -110,7 +108,6 @@ COMMON_C_INCLUDES := \
 
 COMMON_SHARED_LIBRARIES := libicuuc
 COMMON_STATIC_LIBRARIES := libxmlserializer libutility libxml2
-
 #############################
 # Target build
 

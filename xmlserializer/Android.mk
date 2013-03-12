@@ -18,8 +18,6 @@ COMMON_MODULE := libxmlserializer
 
 COMMON_MODULE_TAGS := optional
 
-COMMON_CFLAGS := -Wno-non-virtual-dtor
-
 COMMON_C_INCLUDES := \
     external/libxml2/include/ \
     external/webkit/Source/WebCore/icu/ \
