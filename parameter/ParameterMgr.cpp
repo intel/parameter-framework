@@ -1333,6 +1333,12 @@ bool CParameterMgr::accessParameterValue(const string& strPath, string& strValue
     // Define context
     CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
+    // Activate the auto synchronization with the hardware
+    if (bSet) {
+
+        parameterAccessContext.setAutoSync(_bAutoSyncOn);
+    }
+
     return accessValue(parameterAccessContext, strPath, strValue, bSet, strError);
 }
 
@@ -1366,7 +1372,7 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
 
     /// Update the Configuration Blackboard
 
-    // Define Configuration context using Base Offset
+    // Define Configuration context using Base Offset and keep Auto Sync off to prevent access to HW
     CParameterAccessContext parameterAccessContext(strError, pConfigurationBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, uiBaseOffset);
 
     // Access Value in the Configuration Blackboard
@@ -1381,6 +1387,12 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
 
         // Define Main context
         parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
+
+        // Activate the auto synchronization with the hardware
+        if (bSet) {
+
+            parameterAccessContext.setAutoSync(_bAutoSyncOn);
+        }
 
         // Access Value in the Main Blackboard
         return accessValue(parameterAccessContext, strPath, strValue, bSet, strError);
@@ -1401,12 +1413,6 @@ bool CParameterMgr::accessValue(CParameterAccessContext& parameterAccessContext,
     if (!pathNavigator.navigateThrough(getConstSystemClass()->getName(), strError)) {
 
         return false;
-    }
-
-    // Auto Sync
-    if (bSet) {
-
-        parameterAccessContext.setAutoSync(_bAutoSyncOn);
     }
 
     // Do the get

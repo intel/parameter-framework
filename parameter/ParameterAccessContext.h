@@ -32,8 +32,15 @@ class CParameterBlackboard;
 class CParameterAccessContext : public CErrorContext
 {
 public:
-    CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex = false, uint32_t uiOffsetBase = 0);
-    CParameterAccessContext(string& strError, bool bBigEndianSubsystem, CParameterBlackboard* pParameterBlackboard, uint32_t uiOffsetBase = 0);
+    CParameterAccessContext(string& strError,
+                            CParameterBlackboard* pParameterBlackboard,
+                            bool bValueSpaceIsRaw,
+                            bool bOutputRawFormatIsHex = false,
+                            uint32_t uiOffsetBase = 0);
+    CParameterAccessContext(string& strError,
+                            bool bBigEndianSubsystem,
+                            CParameterBlackboard* pParameterBlackboard,
+                            uint32_t uiOffsetBase = 0);
     CParameterAccessContext(string& strError);
 
     // ParameterBlackboard

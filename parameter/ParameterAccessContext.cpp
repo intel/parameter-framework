@@ -26,22 +26,30 @@
 
 #define base CErrorContext
 
-CParameterAccessContext::CParameterAccessContext(string& strError, CParameterBlackboard* pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex, uint32_t uiBaseOffset)
+CParameterAccessContext::CParameterAccessContext(string& strError,
+                                                 CParameterBlackboard* pParameterBlackboard,
+                                                 bool bValueSpaceIsRaw,
+                                                 bool bOutputRawFormatIsHex,
+                                                 uint32_t uiBaseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard),
     _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
-    _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(uiBaseOffset)
+    _bBigEndianSubsystem(false), _bAutoSync(false), _uiBaseOffset(uiBaseOffset)
 {
 }
 
-CParameterAccessContext::CParameterAccessContext(string& strError, bool bBigEndianSubsystem, CParameterBlackboard* pParameterBlackboard, uint32_t uiBaseOffset)
+CParameterAccessContext::CParameterAccessContext(string& strError,
+                                                 bool bBigEndianSubsystem,
+                                                 CParameterBlackboard* pParameterBlackboard,
+                                                 uint32_t uiBaseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(bBigEndianSubsystem), _bAutoSync(true), _uiBaseOffset(uiBaseOffset)
+    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(bBigEndianSubsystem), _bAutoSync(false),
+    _uiBaseOffset(uiBaseOffset)
 {
 }
 
 CParameterAccessContext::CParameterAccessContext(string& strError)
     : base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(0)
+    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(false), _uiBaseOffset(0)
 {
 }
 
