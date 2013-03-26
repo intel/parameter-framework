@@ -492,12 +492,12 @@ class Operator (Rule) :
         script += context.getPrefix() + \
                     self.PFWCommandRule + " " + \
                     context.getDomainName() + " " + \
-                    context.getConfigurationName() + " '"  # add a ' for bash quote
+                    context.getConfigurationName() + " "
 
         # add the rule
         script += self.PFWSyntax (context.getNewLinePrefix())
 
-        script += "'\n"  # close the ' bash quote
+        script += "\n"
 
         return script
 
