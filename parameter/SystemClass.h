@@ -41,8 +41,19 @@ public:
     // Subsystem factory
     const CSubsystemLibrary* getSubsystemLibrary() const;
 
-    // Fill syncer-set with syncers from subsytems that need resync
+    /**
+      * Look for subsystems that need to be resynchronized.
+      * Consume the need to be resynchronized
+      * and fill a syncer set with all syncers that need to be resynchronized
+      *
+      * @param[out] syncerSet The syncer set to fill
+      */
     void checkForSubsystemsToResync(CSyncerSet& syncerSet);
+
+    /**
+      * Reset subsystems need to resync flag.
+      */
+    void cleanSubsystemsNeedToResync();
 
     // base
     virtual bool init(string& strError);

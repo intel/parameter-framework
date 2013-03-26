@@ -362,6 +362,9 @@ bool CParameterMgr::load(string& strError)
         log_table(false, lstrSelectionCriteron);
     }
 
+    // Subsystem can not ask for resync as they have not been synced yet
+    getSystemClass()->cleanSubsystemsNeedToResync();
+
     // At initialization, check subsystems that need resync
     doApplyConfigurations(true);
 

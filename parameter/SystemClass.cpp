@@ -232,7 +232,6 @@ const CSubsystemLibrary* CSystemClass::getSubsystemLibrary() const
     return _pSubsystemLibrary;
 }
 
-// Fill syncer-set with syncers from subsytems that need resync
 void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet)
 {
     uint32_t uiNbChildren = getNbChildren();
@@ -249,6 +248,20 @@ void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet)
             // get all subsystem syncers
             pSubsystem->fillSyncerSet(syncerSet);
         }
+    }
+}
+
+void CSystemClass::cleanSubsystemsNeedToResync()
+{
+    uint32_t uiNbChildren = getNbChildren();
+    uint32_t uiChild;
+
+    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
+
+        CSubsystem* pSubsystem = static_cast<CSubsystem*>(getChild(uiChild));
+
+        // Consume the need for a resync
+        pSubsystem->needResync(true);
     }
 }
 
