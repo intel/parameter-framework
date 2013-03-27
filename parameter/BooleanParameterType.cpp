@@ -73,12 +73,12 @@ bool CBooleanParameterType::toBlackboard(const string& strValue, uint32_t& uiVal
 
 bool CBooleanParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
+    strValue = uiValue ? "1" : "0";
+
     if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
 
-        strValue = "0x";
+        strValue = "0x" + strValue;
     }
-
-    strValue += uiValue ? "1" : "0";
 
     return true;
 }
