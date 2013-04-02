@@ -243,7 +243,8 @@ bool CSubsystem::handleSubsystemObjectCreation(
 
     for (uiItem = 0; uiItem < _subsystemObjectCreatorArray.size(); uiItem++) {
 
-        const CSubsystemObjectCreator* pSubsystemObjectCreator = _subsystemObjectCreatorArray[uiItem];
+        const CSubsystemObjectCreator* pSubsystemObjectCreator =
+                _subsystemObjectCreatorArray[uiItem];
 
         // Mapping key
         string strKey = pSubsystemObjectCreator->getMappingKey();
@@ -252,7 +253,8 @@ bool CSubsystem::handleSubsystemObjectCreation(
 
         if (pInstanceConfigurableElement->getMappingData(strKey, pStrValue)) {
 
-            // First check context consistency (required ancestors must have been set prior to object creation)
+            // First check context consistency
+            // (required ancestors must have been set prior to object creation)
             uint32_t uiAncestorKey;
             uint32_t uiAncestorMask = pSubsystemObjectCreator->getAncestorMask();
 
@@ -265,16 +267,19 @@ bool CSubsystem::handleSubsystemObjectCreation(
                 // Check ancestor was provided
                 if (!context.iSet(uiAncestorKey)) {
 
-                    getMappingError(strError, strKey, _contextMappingKeyArray[uiAncestorKey] + " not set", pInstanceConfigurableElement);
+                    getMappingError(strError, strKey, _contextMappingKeyArray[uiAncestorKey] +
+                                    " not set", pInstanceConfigurableElement);
 
                     return false;
                 }
             }
 
             // Then check configurable element size is correct
-            if (pInstanceConfigurableElement->getFootPrint() > pSubsystemObjectCreator->getMaxConfigurableElementSize()) {
+            if (pInstanceConfigurableElement->getFootPrint() >
+                pSubsystemObjectCreator->getMaxConfigurableElementSize()) {
 
-                string strSizeError = "Size should not exceed " + pSubsystemObjectCreator->getMaxConfigurableElementSize();
+                string strSizeError = "Size should not exceed " +
+                                      pSubsystemObjectCreator->getMaxConfigurableElementSize();
 
                 getMappingError(strError, strKey, strSizeError, pInstanceConfigurableElement);
 
@@ -282,7 +287,8 @@ bool CSubsystem::handleSubsystemObjectCreation(
             }
 
             // Do create object and keep its track
-            _subsystemObjectList.push_back(pSubsystemObjectCreator->objectCreate(*pStrValue, pInstanceConfigurableElement, context));
+            _subsystemObjectList.push_back(pSubsystemObjectCreator->objectCreate(
+                    *pStrValue, pInstanceConfigurableElement, context));
 
             // Indicate subsytem creation to caller
             bHasCreatedSubsystemObject = true;
@@ -297,9 +303,13 @@ bool CSubsystem::handleSubsystemObjectCreation(
 }
 
 // Generic error handling from derived subsystem classes
-void CSubsystem::getMappingError(string& strError, const string& strKey, const string& strMessage, const CInstanceConfigurableElement* pInstanceConfigurableElement)
+void CSubsystem::getMappingError(string& strError, const string& strKey, const string& strMessage,
+                                 const CInstanceConfigurableElement* pInstanceConfigurableElement)
 {
-    strError = getName() + " " + getKind() + " mapping:\n" + strKey + " error: \"" + strMessage + "\" for element " + pInstanceConfigurableElement->getPath();
+    strError = getName() + " " + getKind() + " "
+               "mapping:\n" + strKey + " "
+               "error: \"" + strMessage + "\" "
+               "for element " + pInstanceConfigurableElement->getPath();
 }
 
 // From IMapper

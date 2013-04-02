@@ -82,8 +82,18 @@ private:
     // Mapping execution
     bool mapSubsystemElements(string& strError);
 
-    // Generic subsystem mapping error handling
-    void getMappingError(string& strError, const string& strKey, const string& strMessage, const CInstanceConfigurableElement* pInstanceConfigurableElement);
+    /**
+     * Generic subsystem mapping error handling
+     *
+     * Format an human readable error string from a key and a message in case of mapping error
+     *
+     * @param[out] strError The formated error string
+     * @param[in] strKey The key on which the error refers
+     * @param[in] strMessage The error message
+     * @param[in] pInstanceConfigurableElement The element on wich the error refers
+     */
+    void getMappingError(string& strError, const string& strKey, const string& strMessage,
+                         const CInstanceConfigurableElement* pInstanceConfigurableElement);
 
     /**
      * Handle a configurable element mapping.

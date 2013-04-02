@@ -75,7 +75,8 @@ bool CInstanceConfigurableElement::map(IMapper& mapper, string& strError)
 
         for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-            CInstanceConfigurableElement* pInstanceConfigurableChildElement = static_cast<CInstanceConfigurableElement*>(getChild(uiChild));
+            CInstanceConfigurableElement* pInstanceConfigurableChildElement =
+                    static_cast<CInstanceConfigurableElement*>(getChild(uiChild));
 
             if (!pInstanceConfigurableChildElement->map(mapper, strError)) {
 
