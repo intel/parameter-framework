@@ -689,7 +689,7 @@ class Configuration (ElementWithRuleInheritance, ElementWithTag) :
 class GroupConfiguration (Configuration) :
     tag = "GroupConfiguration"
     optionNames = ["Name"]
-    match = re.compile(r"supConf *:").match
+    match = re.compile(r"(supConf|confGroup|confType) *:").match
     childWhiteList = ["Rule", "Operator", "GroupConfiguration", "Configuration", "GroupPath"]
 
     def composition (self, context) :
@@ -889,8 +889,7 @@ class Domain (ElementWithRuleInheritance, ElementWithTag) :
 
 class GroupDomain (Domain) :
     tag = "groupDomain"
-
-    match = re.compile(r"supDomain *:").match
+    match = re.compile(r"(supDomain|domainGroup) *:").match
     childWhiteList = ["GroupDomain", "Domain", "GroupConfiguration", "Rule", "Operator"]
     def toXML(self, context="") :
         return self.childrenToXML(context)
