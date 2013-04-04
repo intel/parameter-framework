@@ -46,7 +46,7 @@ public:
     CMappingContext(const CMappingContext& from);
 
     // Affectation
-    const CMappingContext& operator=(const CMappingContext& right);
+    CMappingContext& operator=(const CMappingContext& right);
 
     // Item access
     bool setItem(uint32_t uiItemType, const string* pStrItem);

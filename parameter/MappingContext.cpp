@@ -45,7 +45,7 @@ CMappingContext::CMappingContext(const CMappingContext& from) : _pstItemArray(ne
 }
 
 // Affectation
-const CMappingContext& CMappingContext::operator=(const CMappingContext& right)
+CMappingContext& CMappingContext::operator=(const CMappingContext& right)
 {
     if (&right != this) {
 
