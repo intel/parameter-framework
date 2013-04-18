@@ -30,14 +30,14 @@
 
 using namespace std;
 
-// <program> <target> <port> <cmd> <arg>*
+// hostname port command [argument[s]]
 int main(int argc, char *argv[])
 {
     // Enough args?
     if (argc < 4) {
 
         cerr << "Missing arguments" << endl;
-        cerr << "Usage: " << argv[0] << " <target> <port> <cmd> <arg>*" << endl;
+        cerr << "Usage: " << argv[0] << " hostname port command [argument[s]]" << endl;
 
         return -1;
     }
