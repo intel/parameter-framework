@@ -123,7 +123,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "getAutoSync", &CParameterMgr::getAutoSyncCommmandProcess, 0, "", "Show Auto Sync state" },
     { "sync", &CParameterMgr::syncCommmandProcess, 0, "", "Synchronize current settings to hardware while in Tuning Mode and Auto Sync off" },
     /// Criteria
-    { "listCriteria", &CParameterMgr::listCriteriaCommmandProcess, 0, "", "List selection criteria" },
+    { "listCriteria", &CParameterMgr::listCriteriaCommmandProcess, 0, "[csv]", "List selection criteria" },
     /// Domains
     { "listDomains", &CParameterMgr::listDomainsCommmandProcess, 0, "", "List configurable domains" },
     { "dumpDomains", &CParameterMgr::dumpDomainsCommmandProcess, 0, "", "Show all domains and configurations, including applicability conditions" },
@@ -831,9 +831,21 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommman
 {
     (void)remoteCommand;
 
-    list<string> lstrResult;
+    bool humanReadable = true;
 
-    getSelectionCriteria()->listSelectionCriteria(lstrResult, true, true);
+    // Look for optional arguments
+    if (remoteCommand.getArgumentCount() >= 1) {
+
+        // If csv is provided, format the criterion list in Commas Separated Value pairs
+        if (remoteCommand.getArgument(0) == "csv") {
+            humanReadable = false;
+        } else {
+            return CCommandHandler::EShowUsage;
+        }
+    }
+
+    list<string> lstrResult;
+    getSelectionCriteria()->listSelectionCriteria(lstrResult, true, humanReadable);
 
     // Concatenate the criterion list as the command result
     CUtility::concatenate(lstrResult, strResult);
