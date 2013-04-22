@@ -347,7 +347,6 @@ bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigur
 
         return false;
     }
-    log_info("Adding configurable element \"%s\" into domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
 
     // Do add
     doAddConfigurableElement(pConfigurableElement, pMainBlackboard);
@@ -808,7 +807,6 @@ string CConfigurableDomain::getPendingConfigurationName() const
 // Ensure validity on whole domain from main blackboard
 void CConfigurableDomain::validate(const CParameterBlackboard* pMainBlackboard)
 {
-    log_info("Validating whole domain \"" + getName() + "\" against main blackboard");
 
     // Propagate
     uint32_t uiNbConfigurations = getNbChildren();
@@ -866,8 +864,6 @@ void CConfigurableDomain::autoValidateAreas(const CConfigurableElement* pConfigu
 
         return;
     }
-
-    log_info("Auto validating domain \"" + getName() + "\" against configuration \"" + pValidDomainConfiguration->getName() + "\" for configurable element " + pConfigurableElement->getPath());
 
     // Validate all other configurations against found one, if any
     uint32_t uiNbConfigurations = getNbChildren();

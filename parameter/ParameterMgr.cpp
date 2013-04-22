@@ -408,7 +408,7 @@ bool CParameterMgr::loadStructure(string& strError)
     // Retrieve system to load structure to
     CSystemClass* pSystemClass = getSystemClass();
 
-    CAutoLog autoLog(this, "Loading " + pSystemClass->getName() + " system class structure");
+    log_info("Loading " + pSystemClass->getName() + " system class structure");
 
     // Get structure description element
     const CFrameworkConfigurationLocation* pStructureDescriptionFileLocation = static_cast<const CFrameworkConfigurationLocation*>(getConstFrameworkConfiguration()->findChildOfKind("StructureDescriptionFileLocation"));
