@@ -139,11 +139,12 @@ bool CSubsystemObject::sendToHW(string& strError)
     return false;
 }
 
-bool CSubsystemObject::receiveFromHW(string& strError)
+bool CSubsystemObject::receiveFromHW(string& )
 {
-    strError = "Receive from HW interface not implemented at subsystsem level!";
+    // Back synchronization is not supported at subsystem level.
+    // Rely on blackboard content
 
-    return false;
+    return true;
 }
 
 // Fall back HW access
