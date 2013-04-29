@@ -27,8 +27,8 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES += \
     $(common_c_includes) \
-    external/stlport/stlport/ \
-    bionic/libstdc++ \
+    $(call include-path-for, stlport) \
+    $(call include-path-for, libstdc++)/.. \
     bionic/
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libstlport

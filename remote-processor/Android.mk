@@ -28,7 +28,7 @@ LOCAL_MODULE := $(common_module)
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES += \
-    external/stlport/stlport/ \
+    $(call include-path-for, stlport) \
     bionic/
 
 LOCAL_SHARED_LIBRARIES := libstlport

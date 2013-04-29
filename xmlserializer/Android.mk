@@ -20,8 +20,8 @@ common_module := libxmlserializer
 common_module_tags := optional
 
 common_c_includes := \
-    external/libxml2/include/ \
-    external/webkit/Source/WebCore/icu/ \
+    $(call include-path-for, libxml2) \
+    $(call include-path-for, webcore-icu) \
 
 common_shared_libraries := libicuuc
 common_static_libraries := libxml2
@@ -40,7 +40,7 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES += \
     $(common_c_includes) \
-    external/stlport/stlport/ \
+    $(call include-path-for, stlport) \
     bionic/
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libstlport

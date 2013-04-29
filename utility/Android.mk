@@ -21,8 +21,8 @@ LOCAL_MODULE := $(common_module)
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES += \
-    external/stlport/stlport/ \
-    bionic/
+    $(call include-path-for, stlport) \
+    bionic
 
 include $(BUILD_STATIC_LIBRARY)
 
