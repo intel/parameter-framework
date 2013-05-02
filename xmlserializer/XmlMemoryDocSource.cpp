@@ -67,26 +67,10 @@ bool CXmlMemoryDocSource::populate(CXmlSerializingContext& serializingContext)
 
         // Schema location
         docElement.setAttributeString("xsi:noNamespaceSchemaLocation", _strXmlSchemaFile);
-
-        // Comment for date/time
-        docElement.setComment(string(" Exported on ") + getTimeAsString() + " from " + _strProduct + " version " + _strVersion + " ");
     }
 
     // Compose the xml document
     _pXmlSource->toXml(docElement, serializingContext);
 
     return true;
-}
-
-string CXmlMemoryDocSource::getTimeAsString()
-{
-    char acBuf[200];
-    time_t t;
-    struct tm *tmp;
-    t = time(NULL);
-    tmp = localtime(&t);
-
-    strftime(acBuf, sizeof(acBuf), "%F, %T", tmp);
-
-    return acBuf;
 }

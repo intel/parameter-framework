@@ -52,8 +52,4 @@ private:
     // Product and version info
     string _strProduct;
     string _strVersion;
-
-    // Get the current system time
-    static string getTimeAsString();
-
 };
