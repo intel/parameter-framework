@@ -1,10 +1,9 @@
 LOCAL_PATH := $(call my-dir)
 
-include $(CLEAR_VARS)
+####################
+# Common definitions
 
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
-
-LOCAL_SRC_FILES := \
+COMMON_SRC_FILES := \
         XmlElement.cpp \
         XmlSerializingContext.cpp \
         XmlDocSource.cpp \
@@ -15,28 +14,64 @@ LOCAL_SRC_FILES := \
         XmlFileDocSink.cpp \
         XmlFileDocSource.cpp
 
-LOCAL_MODULE := libxmlserializer
+COMMON_MODULE := libxmlserializer
 
-LOCAL_MODULE_TAGS := optional
+COMMON_MODULE_TAGS := optional
 
-TARGET_ERROR_FLAGS += -Wno-non-virtual-dtor
+COMMON_ERROR_FLAGS := -Wno-non-virtual-dtor
 
-LOCAL_C_INCLUDES +=
+COMMON_C_INCLUDES := \
+    external/libxml2/include/ \
+    external/webkit/Source/WebCore/icu/ \
+
+COMMON_SHARED_LIBRARIES := libicuuc
+COMMON_STATIC_LIBRARIES := libxml2
+
+COMMON_LDLIBS := -Lexternal/libxml2/lib
+
+#############################
+# Target build
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+
+LOCAL_MODULE := $(COMMON_MODULE)
+LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+
+TARGET_ERROR_FLAGS += $(COMMON_ERROR_FLAGS)
 
 LOCAL_C_INCLUDES += \
-	external/stlport/stlport/ \
-	external/libxml2/include/ \
-	external/webkit/Source/WebCore/icu/ \
-	bionic/libstdc++ \
-	bionic/
+    $(COMMON_C_INCLUDES) \
+    external/stlport/stlport/ \
+    bionic/libstdc++ \
+    bionic/
 
-LOCAL_C_INCLUDES +=
+LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES) libstlport
+LOCAL_STATIC_LIBRARIES := $(COMMON_STATIC_LIBRARIES)
 
-LOCAL_SHARED_LIBRARIES := libstlport libicuuc
-LOCAL_STATIC_LIBRARIES := libxml2
-
-LOCAL_LDLIBS += -Lexternal/libxml2/lib
-
+LOCAL_LDLIBS += $(COMMON_LDLIBS)
 
 include $(BUILD_SHARED_LIBRARY)
 
+##############################
+# Host build
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+
+LOCAL_MODULE := $(COMMON_MODULE)
+LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+
+TARGET_ERROR_FLAGS += $(COMMON_ERROR_FLAGS)
+
+LOCAL_C_INCLUDES += \
+    $(COMMON_C_INCLUDES)
+
+LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES)
+LOCAL_STATIC_LIBRARIES := $(COMMON_STATIC_LIBRARIES)
+
+LOCAL_LDLIBS += $(COMMON_LDLIBS)
+
+include $(BUILD_HOST_SHARED_LIBRARY)
