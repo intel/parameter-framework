@@ -1,10 +1,10 @@
-LOCAL_PATH:= $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 
-LOCAL_SRC_FILES:= \
+LOCAL_SRC_FILES := \
         XmlElement.cpp \
         XmlSerializingContext.cpp \
         XmlDocSource.cpp \
@@ -15,7 +15,7 @@ LOCAL_SRC_FILES:= \
         XmlFileDocSink.cpp \
         XmlFileDocSource.cpp
 
-LOCAL_MODULE:= libxmlserializer
+LOCAL_MODULE := libxmlserializer
 
 LOCAL_MODULE_TAGS := optional
 
@@ -30,7 +30,7 @@ LOCAL_C_INCLUDES += \
 	bionic/libstdc++ \
 	bionic/
 
-LOCAL_C_INCLUDES += 
+LOCAL_C_INCLUDES +=
 
 LOCAL_SHARED_LIBRARIES := libstlport libicuuc
 LOCAL_STATIC_LIBRARIES := libxml2

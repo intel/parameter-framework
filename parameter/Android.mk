@@ -1,4 +1,4 @@
-LOCAL_PATH:= $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
@@ -12,7 +12,7 @@ LOCAL_COPY_HEADERS := \
         SelectionCriterionInterface.h \
         ParameterHandle.h
 
-LOCAL_SRC_FILES:= \
+LOCAL_SRC_FILES := \
         Subsystem.cpp \
         PathNavigator.cpp \
         Element.cpp \
@@ -99,7 +99,7 @@ LOCAL_SRC_FILES:= \
         EnumValuePair.cpp
 
 
-LOCAL_MODULE:= libparameter
+LOCAL_MODULE := libparameter
 
 LOCAL_MODULE_TAGS := optional
 
@@ -112,12 +112,12 @@ LOCAL_C_INCLUDES += \
 	bionic/libstdc++ \
 	bionic/
 
-LOCAL_C_INCLUDES += 
+LOCAL_C_INCLUDES +=
 
 LOCAL_SHARED_LIBRARIES := libstlport libdl libxmlserializer
 LOCAL_STATIC_LIBRARIES := libutility
 
-LOCAL_LDLIBS += 
+LOCAL_LDLIBS +=
 LOCAL_LDFLAGS +=
 
 include $(BUILD_SHARED_LIBRARY)
