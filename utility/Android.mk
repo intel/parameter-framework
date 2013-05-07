@@ -1,31 +1,40 @@
 LOCAL_PATH := $(call my-dir)
 
-include $(CLEAR_VARS)
+####################
+# Common definitions
 
-
-LOCAL_SRC_FILES := \
+COMMON_SRC_FILES := \
     Tokenizer.cpp \
     Utility.cpp
 
-LOCAL_MODULE := libutility
+COMMON_MODULE := libutility
+COMMON_MODULE_TAGS := optional
 
-LOCAL_MODULE_TAGS :=
+#############################
+# Target build
 
+include $(CLEAR_VARS)
 
-LOCAL_C_INCLUDES +=
+LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
 
+LOCAL_MODULE := $(COMMON_MODULE)
+LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
 
 LOCAL_C_INCLUDES += \
-	external/stlport/stlport/ \
-	bionic/libstdc++ \
-	bionic/
-
-LOCAL_C_INCLUDES +=
-
-LOCAL_SHARED_LIBRARIES :=
-
-LOCAL_LDLIBS +=
-
+    external/stlport/stlport/ \
+    bionic/libstdc++ \
+    bionic/
 
 include $(BUILD_STATIC_LIBRARY)
 
+##############################
+# Host build
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+
+LOCAL_MODULE := $(COMMON_MODULE)
+LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+
+include $(BUILD_HOST_STATIC_LIBRARY)
