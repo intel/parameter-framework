@@ -1,18 +1,17 @@
 LOCAL_PATH := $(call my-dir)
 
-include $(CLEAR_VARS)
+####################
+# Common definitions
 
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+COMMON_COPY_HEADERS_TO := parameter
 
-LOCAL_COPY_HEADERS_TO := parameter
-
-LOCAL_COPY_HEADERS := \
+COMMON_COPY_HEADERS := \
         ParameterMgrPlatformConnector.h \
         SelectionCriterionTypeInterface.h \
         SelectionCriterionInterface.h \
         ParameterHandle.h
 
-LOCAL_SRC_FILES := \
+COMMON_SRC_FILES := \
         Subsystem.cpp \
         PathNavigator.cpp \
         Element.cpp \
@@ -98,27 +97,68 @@ LOCAL_SRC_FILES := \
         RuleParser.cpp \
         EnumValuePair.cpp
 
+COMMON_MODULE := libparameter
+COMMON_MODULE_TAGS := optional
 
-LOCAL_MODULE := libparameter
+COMMON_ERROR_FLAGS := -Wno-non-virtual-dtor
 
-LOCAL_MODULE_TAGS := optional
+COMMON_C_INCLUDES := \
+    $(LOCAL_PATH)/../utility/ \
+    $(LOCAL_PATH)/../xmlserializer/ \
+    $(LOCAL_PATH)/../remote-processor/
 
-TARGET_ERROR_FLAGS += -Wno-non-virtual-dtor
+COMMON_SHARED_LIBRARIES := libicuuc libxmlserializer
+COMMON_STATIC_LIBRARIES := libutility libxml2
 
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/../utility/ $(LOCAL_PATH)/../xmlserializer/ $(LOCAL_PATH)/../remote-processor/
+#############################
+# Target build
+
+include $(CLEAR_VARS)
+
+LOCAL_COPY_HEADERS_TO := $(COMMON_COPY_HEADERS_TO)
+LOCAL_COPY_HEADERS := $(COMMON_COPY_HEADERS)
+
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+
+LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+
+LOCAL_MODULE := $(COMMON_MODULE)
+LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+
+TARGET_ERROR_FLAGS += $(COMMON_ERROR_FLAGS)
 
 LOCAL_C_INCLUDES += \
-	external/stlport/stlport/ \
-	bionic/libstdc++ \
-	bionic/
+    $(COMMON_C_INCLUDES) \
+    external/stlport/stlport/ \
+    bionic/libstdc++ \
+    bionic/
 
-LOCAL_C_INCLUDES +=
-
-LOCAL_SHARED_LIBRARIES := libstlport libdl libxmlserializer
-LOCAL_STATIC_LIBRARIES := libutility
-
-LOCAL_LDLIBS +=
-LOCAL_LDFLAGS +=
+LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES) libdl libstlport
+LOCAL_STATIC_LIBRARIES := $(COMMON_STATIC_LIBRARIES)
 
 include $(BUILD_SHARED_LIBRARY)
 
+##############################
+# Host build
+
+include $(CLEAR_VARS)
+
+LOCAL_COPY_HEADERS_TO := $(COMMON_COPY_HEADERS_TO)
+LOCAL_COPY_HEADERS := $(COMMON_COPY_HEADERS)
+
+LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+
+LOCAL_MODULE := $(COMMON_MODULE)
+LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+
+TARGET_ERROR_FLAGS += $(COMMON_ERROR_FLAGS)
+
+LOCAL_C_INCLUDES += \
+    $(COMMON_C_INCLUDES)
+
+LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES)
+LOCAL_STATIC_LIBRARIES := $(COMMON_STATIC_LIBRARIES)
+
+LOCAL_LDLIBS += -ldl
+
+include $(BUILD_HOST_SHARED_LIBRARY)
