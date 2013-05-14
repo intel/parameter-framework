@@ -107,8 +107,8 @@ COMMON_C_INCLUDES := \
     $(LOCAL_PATH)/../xmlserializer/ \
     $(LOCAL_PATH)/../remote-processor/
 
-COMMON_SHARED_LIBRARIES := libicuuc libxmlserializer
-COMMON_STATIC_LIBRARIES := libutility libxml2
+COMMON_SHARED_LIBRARIES := libicuuc
+COMMON_STATIC_LIBRARIES := libxmlserializer libutility libxml2
 
 #############################
 # Target build
