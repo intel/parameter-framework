@@ -50,6 +50,7 @@ class CBackSynchronizer;
 class CParameterHandle;
 class CSubsystemPlugins;
 class CParameterAccessContext;
+class CConfigurableElement;
 
 class CParameterMgr : private CElement
 {
@@ -116,6 +117,17 @@ public:
     // Configuration application
     void applyConfigurations();
 
+    /**
+     * Returns the CConfigurableElement corresponding to the path given in argument.
+     *
+     * @param[in] strPath A string representing a path to an element.
+     * @param[out] strError Error message
+     *
+     * @return A const pointer to the corresponding CConfigurableElement.
+     * On error, NULL is returned and the error is explained in strError.
+     */
+    const CConfigurableElement* getConfigurableElement(const string& strPath,
+                                                       string& strError) const;
     // Dynamic parameter handling
     CParameterHandle* createParameterHandle(const string& strPath, string& strError);
 
@@ -140,6 +152,15 @@ public:
     // User set/get parameters
     bool accessValue(CParameterAccessContext& parameterAccessContext, const string& strPath, string& strValue, bool bSet, string& strError);
     bool accessParameterValue(const string& strPath, string& strValue, bool bSet, string& strError);
+    /**
+     * Returns the element mapping corresponding to the path given in parameter.
+     *
+     * @param[in] strPath Path of an element
+     * @param[out] strValue A sting containing the mapping
+     *
+     * @return true if a mapping was found for this element
+     */
+    bool getParameterMapping(const string& strPath, string& strValue) const;
     bool accessConfigurationValue(const string &strDomain, const string &stConfiguration, const string& strPath, string& strValue, bool bSet, string& strError);
 
     ////////// Configuration/Domains handling //////////////
@@ -280,6 +301,8 @@ private:
     CCommandHandler::CommandStatus setConfigurationParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus listBelongingDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus listAssociatedDomainsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CCommandHandler::CommandStatus showMappingCommmandProcess(const IRemoteCommand& remoteCommand,
+                                                              string& strResult);
     /// Browse
     CCommandHandler::CommandStatus listAssociatedElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus listConflictingElementsCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult);

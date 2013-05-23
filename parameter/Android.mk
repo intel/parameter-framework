@@ -83,6 +83,7 @@ common_src_files := \
         SimulatedBackSynchronizer.cpp \
         MappingContext.cpp \
         SubsystemObject.cpp \
+        FormattedSubsystemObject.cpp \
         SubsystemObjectCreator.cpp \
         BaseParameter.cpp \
         AutoLock.cpp \

@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -79,6 +79,21 @@ public:
 
     // Array Length
     uint32_t getArrayLength() const;
+
+    /**
+     * Get the list of all the ancestors that have a mapping.
+     *
+     * The mapping is represented as a string of all the mapping data (key:value) defined in the
+     * context of the element.
+     * In this class, the method is generic and calls its parent getListOfElementsWithMappings(...)
+     * method.
+     *
+     * @param[in:out] configurableElementPath List of all the ConfigurableElements found
+     * that have a mapping. Elements are added at the end of the list, so the root Element will be
+     * the last one.
+     */
+    virtual void getListOfElementsWithMapping(list<const CConfigurableElement*>&
+                                               configurableElementPath) const;
 protected:
     // Syncer
     virtual ISyncer* getSyncer() const;

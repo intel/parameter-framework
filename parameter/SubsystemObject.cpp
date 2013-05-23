@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -47,6 +47,12 @@ CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfig
 CSubsystemObject::~CSubsystemObject()
 {
     _pInstanceConfigurableElement->unsetSyncer();
+}
+
+string CSubsystemObject::getFormattedMappingValue() const
+{
+    // Default formatted mapping value is empty
+    return "";
 }
 
 // Blackboard data location
@@ -134,13 +140,15 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
 // Sync to/from HW
 bool CSubsystemObject::sendToHW(string& strError)
 {
-    strError = "Send to HW interface not implemented at subsystsem level!";
+    strError = "Send to HW interface not implemented at subsystem level";
 
     return false;
 }
 
-bool CSubsystemObject::receiveFromHW(string& )
+bool CSubsystemObject::receiveFromHW(string& strError)
 {
+    (void)strError;
+
     // Back synchronization is not supported at subsystem level.
     // Rely on blackboard content
 
@@ -208,53 +216,11 @@ void CSubsystemObject::log_warning(const string& strMessage, ...) const
     _pInstanceConfigurableElement->log_warning(acBuffer);
 }
 
-// Amendment
-string CSubsystemObject::formatMappingValue(const string& strMappingValue, uint32_t uiFirstAmendKey, uint32_t uiNbAmendKeys, const CMappingContext& context)
-{
-    string strFormattedValue = strMappingValue;
-
-    // Search for amendment (only one supported for now)
-    size_t uiPercentPos = strFormattedValue.find('%', 0);
-
-    // Amendment limited to one digit (values from 1 to 9)
-    assert((uiNbAmendKeys > 0) && (uiNbAmendKeys <= 9));
-
-    // Check we found one and that there's room for value
-    if (uiPercentPos != string::npos && uiPercentPos < strFormattedValue.size() - 1) {
-
-        // Get Amend number
-        uint32_t uiAmendNumber = strFormattedValue[uiPercentPos + 1] - '0';
-
-        // Valid?
-        if (uiAmendNumber && uiAmendNumber <= uiNbAmendKeys) {
-
-            uint32_t uiAmendType = uiFirstAmendKey + uiAmendNumber - 1;
-
-            // Set?
-            if (context.iSet(uiAmendType)) {
-
-                // Make the amendment on the part of the string after the current Amend
-                string strEndOfLine = strFormattedValue.substr(uiPercentPos + 2, strFormattedValue.size() - uiPercentPos - 2);
-                string strEndOfLineAmended = formatMappingValue(strEndOfLine, uiFirstAmendKey, uiNbAmendKeys, context);
-
-                // Get current Amend value
-                string strAmendValue = context.getItem(uiAmendType);
-
-                // Make the amendment
-                strFormattedValue = strFormattedValue.substr(0, uiPercentPos) + strAmendValue + strEndOfLineAmended;
-
-            }
-        }
-    }
-    return strFormattedValue;
-}
-
 // Configurable element retrieval
 const CInstanceConfigurableElement* CSubsystemObject::getConfigurableElement() const
 {
     return _pInstanceConfigurableElement;
 }
-
 // Belonging Subsystem retrieval
 const CSubsystem* CSubsystemObject::getSubsystem() const
 {

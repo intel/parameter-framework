@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -37,6 +37,16 @@ public:
     CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement);
     virtual ~CSubsystemObject();
 
+    /**
+     * Return the mapping value of the SubystemObject.
+     *
+     * @return A string containing the mapping value
+     */
+    virtual string getFormattedMappingValue() const;
+
+    // Configurable element retrieval
+    const CInstanceConfigurableElement* getConfigurableElement() const;
+
 protected:
     // Blackboard data location
     uint8_t* getBlackboardLocation() const;
@@ -57,10 +67,6 @@ protected:
     // Logging
     void log_info(const string& strMessage, ...) const;
     void log_warning(const string& strMessage, ...) const;
-    // Mapping formatting
-    static string formatMappingValue(const string& strMappingValue, uint32_t uiFirstAmendKey, uint32_t uiNbAmendKeys, const CMappingContext& context);
-    // Configurable element retrieval
-    const CInstanceConfigurableElement* getConfigurableElement() const;
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
 

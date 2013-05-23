@@ -91,6 +91,23 @@ public:
 
     // Parameter access
     virtual bool accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    /**
+     * Get the list of all the ancestors that have a mapping.
+     *
+     * The mapping is represented as a string of all the mapping data (key:value) defined in the
+     * context of the element.
+     * In this class, the method is generic and calls its parent getListOfElementsWithMappings(...)
+     * method.
+     *
+     * @param[in:out] configurableElementPath List of all the ConfigurableElements found
+     * that have a mapping. Elements are added at the end of the list, so the root Element will be
+     * the last one.
+     *
+     */
+    virtual void getListOfElementsWithMapping(list<const CConfigurableElement*>&
+                                               configurableElementPath) const;
+
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
@@ -106,6 +123,7 @@ protected:
     virtual void fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const;
     // Configuration Domain local search
     bool containsConfigurableDomain(const CConfigurableDomain* pConfigurableDomain) const;
+
 private:
     // Configurable domain association
     void addAttachedConfigurableDomain(const CConfigurableDomain* pConfigurableDomain);

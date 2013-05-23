@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -98,6 +98,19 @@ bool CInstanceConfigurableElement::map(IMapper& mapper, string& strError)
         mapper.mapEnd();
     }
     return true;
+}
+
+void CInstanceConfigurableElement::getListOfElementsWithMapping(
+        list<const CConfigurableElement*>& configurableElementPath) const
+{
+    const CTypeElement* pTypeElement = getTypeElement();
+
+    if (pTypeElement && pTypeElement->hasMappingData()) {
+
+        configurableElementPath.push_back(this);
+    }
+
+    base::getListOfElementsWithMapping(configurableElementPath);
 }
 
 // Element properties

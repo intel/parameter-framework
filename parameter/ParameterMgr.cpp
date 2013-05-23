@@ -1,4 +1,4 @@
- /*
+     /*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -71,6 +71,7 @@
 #include "ParameterHandle.h"
 #include "LinearParameterAdaptation.h"
 #include "EnumValuePair.h"
+#include "Subsystem.h"
 #include "XmlFileDocSink.h"
 #include "XmlFileDocSource.h"
 #include "XmlStringDocSink.h"
@@ -221,6 +222,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "setConfigurationParameter", &CParameterMgr::setConfigurationParameterCommmandProcess, 4,
             "<domain> <configuration> <param path> <value>",
             "Set value for parameter at given path to configuration" },
+    { "showMapping", &CParameterMgr::showMappingCommmandProcess, 1,
+            "<elem path>", "Show mapping for an element at given path" },
 
     /// Browse
     { "listAssociatedElements", &CParameterMgr::listAssociatedElementsCommmandProcess, 0,
@@ -671,8 +674,9 @@ void CParameterMgr::applyConfigurations()
     }
 }
 
-// Dynamic parameter handling
-CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, string& strError)
+// Get the configurableElement corresponding to the given path
+const CConfigurableElement* CParameterMgr::getConfigurableElement(const string& strPath,
+                                                                  string& strError) const
 {
     CPathNavigator pathNavigator(strPath);
 
@@ -695,6 +699,21 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
     // Check found element is a parameter
     const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pElement);
 
+    return pConfigurableElement;
+}
+
+// Dynamic parameter handling
+CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, string& strError)
+{
+    const CConfigurableElement* pConfigurableElement = getConfigurableElement(strPath, strError);
+
+    if (!pConfigurableElement) {
+
+        // Element not found
+        strError = "Element not found";
+        return NULL;
+    }
+
     if (!pConfigurableElement->isParameter()) {
 
         // Element is not parameter
@@ -704,7 +723,7 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
     }
 
     // Convert as parameter and return new handle
-    return new CParameterHandle(static_cast<const CBaseParameter*>(pElement), this);
+    return new CParameterHandle(static_cast<const CBaseParameter*>(pConfigurableElement), this);
 }
 
 /////////////////// Remote command parsers
@@ -1372,6 +1391,18 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setConfigurationPar
     return bSuccess ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showMappingCommmandProcess(
+        const IRemoteCommand& remoteCommand,
+        string& strResult)
+{
+    if (!getParameterMapping(remoteCommand.getArgument(0), strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    return CCommandHandler::ESucceeded;
+}
+
 /// Settings Import/Export
 CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::exportConfigurableDomainsToXMLCommmandProcess(
@@ -1465,6 +1496,42 @@ bool CParameterMgr::accessParameterValue(const string& strPath, string& strValue
     return accessValue(parameterAccessContext, strPath, strValue, bSet, strError);
 }
 
+// User get parameter mapping
+bool CParameterMgr::getParameterMapping(const string& strPath, string& strResult) const
+{
+    CPathNavigator pathNavigator(strPath);
+
+    // Nagivate through system class
+    if (!pathNavigator.navigateThrough(getConstSystemClass()->getName(), strResult)) {
+
+        return false;
+    }
+
+    // Get the ConfigurableElement corresponding to strPath
+    const CConfigurableElement* pConfigurableElement = getConfigurableElement(strPath, strResult);
+    if (!pConfigurableElement) {
+
+        return false;
+    }
+
+    // Find the list of the ancestors of the current ConfigurableElement that have a mapping
+    list<const CConfigurableElement*> configurableElementPath;
+    pConfigurableElement->getListOfElementsWithMapping(configurableElementPath);
+
+    // Get the Subsystem containing the ConfigurableElement
+    const CSubsystem* pSubsystem = pConfigurableElement->getBelongingSubsystem();
+    if (!pSubsystem) {
+
+        strResult = "Unable to find the Subsystem containing the parameter";
+        return false;
+    }
+
+    // Fetch the mapping corresponding to the ConfigurableElement
+    strResult = pSubsystem->getMapping(configurableElementPath);
+
+    return true;
+}
+
 // User set/get parameters in specific Configuration BlackBoard
 bool CParameterMgr::accessConfigurationValue(const string& strDomain, const string& strConfiguration, const string& strPath, string& strValue, bool bSet, string& strError)
 {
@@ -1534,6 +1601,8 @@ bool CParameterMgr::accessValue(CParameterAccessContext& parameterAccessContext,
 
     // Nagivate through system class
     if (!pathNavigator.navigateThrough(getConstSystemClass()->getName(), strError)) {
+
+        parameterAccessContext.setError(strError);
 
         return false;
     }

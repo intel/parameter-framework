@@ -1,4 +1,4 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
  * Copyright © 2011 Intel 
  * Corporation All Rights Reserved.
@@ -149,6 +149,20 @@ bool CConfigurableElement::accessValue(CPathNavigator& pathNavigator, string& st
     }
 
     return pChild->accessValue(pathNavigator, strValue, bSet, parameterAccessContext);
+}
+
+void CConfigurableElement::getListOfElementsWithMapping(
+        list<const CConfigurableElement*>& configurableElementPath) const
+{
+    // Check parent
+    const CElement* pParent = getParent();
+    if (isOfConfigurableElementType(pParent)) {
+
+        const CConfigurableElement* pConfigurableElement =
+                static_cast<const CConfigurableElement*>(pParent);
+
+        pConfigurableElement->getListOfElementsWithMapping(configurableElementPath);
+    }
 }
 
 // Used for simulation and virtual subsystems
