@@ -56,6 +56,18 @@ bool CComponentInstance::hasMappingData() const
     return base::hasMappingData() || (_pComponentType && _pComponentType->hasMappingData());
 }
 
+string CComponentInstance::getFormattedMapping() const
+{
+    // Try myself first then associated component type
+    string strValue = base::getFormattedMapping();
+    if (_pComponentType) {
+
+        strValue += _pComponentType->getFormattedMapping();
+    }
+
+    return strValue;
+}
+
 bool CComponentInstance::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Context

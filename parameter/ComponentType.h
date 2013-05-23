@@ -39,6 +39,12 @@ public:
     // Mapping info
     virtual bool getMappingData(const string& strKey, const string*& pStrValue) const;
     virtual bool hasMappingData() const;
+    /**
+     * Returns the mapping associated to the current TypeElement instance
+     *
+     * @return A string containing the mapping as a comma separated key value pairs
+     */
+    virtual string getFormattedMapping() const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);

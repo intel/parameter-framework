@@ -24,23 +24,43 @@
 
 #include "Utility.h"
 
-// Concatenate string list
-void CUtility::concatenate(const std::list<std::string>& lstr, std::string& strOutput, const std::string& strSeparator)
+#include <sstream>
+#include <iterator>
+
+// Format string list
+void CUtility::asString(const std::list<std::string>& lstr,
+                        std::string& strOutput,
+                        const std::string& strSeparator)
 {
-    bool bStart = true;
+    std::ostringstream ostrFormatedList;
 
-    std::list<std::string>::const_iterator iterator(lstr.begin());
-    std::list<std::string>::const_iterator end(lstr.end());
+    std::copy(lstr.begin(), lstr.end(),
+              std::ostream_iterator<std::string>(ostrFormatedList, strSeparator.c_str()));
 
-    while (iterator != end) {
+    strOutput = ostrFormatedList.str();
 
-        if (bStart) {
-            // Do not add a separator before first element
-            bStart = false;
-        } else {
-            // Add the separator bettween each element
-            strOutput += strSeparator;
-        }
-        strOutput += *iterator++;
+    // Remove last separator
+    if (strOutput.size() > strSeparator.size()) {
+
+        strOutput.erase(strOutput.size() - strSeparator.size());
     }
 }
+
+// Format string map
+void CUtility::asString(const std::map<std::string, std::string>& mapStr,
+                        std::string& strOutput,
+                        const std::string& strItemSeparator,
+                        const std::string& strKeyValueSeparator)
+{
+    std::list<std::string> listKeysValues;
+
+    std::map<std::string, std::string>::const_iterator iter;
+
+    for(iter = mapStr.begin(); iter != mapStr.end(); ++iter) {
+
+        listKeysValues.push_back(iter->first + strKeyValueSeparator + iter->second);
+    }
+
+    CUtility::asString(listKeysValues, strOutput, strItemSeparator);
+}
+

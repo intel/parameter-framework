@@ -24,6 +24,7 @@
  */
 #include "MappingData.h"
 #include "Tokenizer.h"
+#include "Utility.h"
 #include <assert.h>
 
 CMappingData::CMappingData()
@@ -84,6 +85,15 @@ bool CMappingData::getValue(const string& strkey, const string*& pStrValue) cons
         return true;
     }
     return false;
+}
+
+string CMappingData::asString() const
+{
+    string strValue;
+
+    CUtility::asString(_keyToValueMap, strValue, ", ", ":");
+
+    return strValue;
 }
 
 bool CMappingData::addValue(const string& strkey, const string& strValue)

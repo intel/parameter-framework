@@ -42,6 +42,13 @@ public:
     virtual bool getMappingData(const string& strKey, const string*& pStrValue) const;
     virtual bool hasMappingData() const;
 
+    /**
+     * Returns the mapping associated to the current TypeElement instance
+     *
+     * @return A string containing the mapping as a comma separated key value pairs
+     */
+    virtual string getFormattedMapping() const;
+
     // Element properties
     virtual void showProperties(string& strResult) const;
 

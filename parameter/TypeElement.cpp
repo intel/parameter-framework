@@ -126,6 +126,15 @@ CMappingData* CTypeElement::getMappingData()
     return _pMappingData;
 }
 
+string CTypeElement::getFormattedMapping() const
+{
+    if (_pMappingData) {
+
+        return _pMappingData->asString();
+    }
+    return "";
+}
+
 // From IXmlSource
 void CTypeElement::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {

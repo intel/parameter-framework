@@ -27,12 +27,36 @@
 
 #include <string>
 #include <list>
+#include <map>
 
 class CUtility
 {
 public:
-    // Concatenate string list
-    static void concatenate(const std::list<std::string>& lstr, std::string& strOutput, const std::string& separator = "\n");
+    /**
+    * Format the items of a map into a string as a list of key-value pairs. The map must be
+    * composed of pairs of strings.
+    *
+    * @param[in] mapStr A map of strings
+    * @param[out] strOutput The output string
+    * @param[in] separator The separator to use between each item
+    */
+    static void asString(const std::list<std::string>& lstr,
+                         std::string& strOutput,
+                         const std::string& separator = "\n");
+
+    /**
+     * Format the items of a map into a string as a list of key-value pairs. The map must be
+     * composed of pairs of strings.
+     *
+     * @param[in] mapStr A map of strings
+     * @param[out] strOutput The output string
+     * @param[in] strItemSeparator The separator to use between each item (key-value pair)
+     * @param[in] strKeyValueSeparator The separator to use between key and value
+     */
+    static void asString(const std::map<std::string, std::string>& mapStr,
+                         std::string& strOutput,
+                         const std::string& strItemSeparator = ", ",
+                         const std::string& strKeyValueSeparator = ":");
 };
 
 #endif // UTILITY_H

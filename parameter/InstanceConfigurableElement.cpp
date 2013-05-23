@@ -55,6 +55,13 @@ bool CInstanceConfigurableElement::getMappingData(const string& strKey, const st
     return getTypeElement()->getMappingData(strKey, pStrValue);
 }
 
+// Returns the formatted mapping
+string CInstanceConfigurableElement::getFormattedMapping() const
+{
+    // Delegate
+    return getTypeElement()->getFormattedMapping();
+}
+
 bool CInstanceConfigurableElement::map(IMapper& mapper, string& strError)
 {
     bool bHasMappingData = getTypeElement()->hasMappingData();

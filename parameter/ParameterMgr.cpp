@@ -771,7 +771,9 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
     list<string> lstrSelectionCriteria;
     getSelectionCriteria()->listSelectionCriteria(lstrSelectionCriteria, false, true);
     // Concatenate the criterion list as the command result
-    CUtility::concatenate(lstrSelectionCriteria, strResult);
+    string strCriteriaStates;
+    CUtility::asString(lstrSelectionCriteria, strCriteriaStates);
+    strResult += strCriteriaStates;
 
     return CCommandHandler::ESucceeded;
 }
@@ -933,7 +935,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommman
     getSelectionCriteria()->listSelectionCriteria(lstrResult, true, humanReadable);
 
     // Concatenate the criterion list as the command result
-    CUtility::concatenate(lstrResult, strResult);
+    CUtility::asString(lstrResult, strResult);
 
     return CCommandHandler::ESucceeded;
 }
@@ -1077,7 +1079,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfiguratio
     list<string> lstrResult;
     if (!restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), lstrResult)) {
         //Concatenate the error list as the command result
-        CUtility::concatenate(lstrResult, strResult);
+        CUtility::asString(lstrResult, strResult);
 
         return  CCommandHandler::EFailed;
     }
@@ -1652,7 +1654,7 @@ bool CParameterMgr::sync(string& strError)
     list<string> lstrError;
     if (! syncerSet.sync(*_pMainParameterBlackboard, false, &lstrError)){
 
-        CUtility::concatenate(lstrError, strError);
+        CUtility::asString(lstrError, strError);
         return false;
     };
 

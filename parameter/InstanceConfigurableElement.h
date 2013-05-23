@@ -48,8 +48,15 @@ public:
     // Instantiated type
     const CTypeElement* getTypeElement() const;
 
-    // Mapping info
     bool getMappingData(const string& strKey, const string*& pStrValue) const;
+
+    /**
+     * Returns the mapping data associated to the type element of the current
+     * InstanceConfigurableElement, as a formatted string
+     *
+     * @return A string containing the formatted mapping
+     */
+    string getFormattedMapping() const;
 
     // From CElement
     virtual string getKind() const;

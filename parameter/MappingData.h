@@ -42,6 +42,13 @@ public:
     // Query
     bool getValue(const string& strkey, const string*& pStrValue) const;
 
+    /**
+     * Formats the mapping as a list of comma-space separated key:value pairs
+     *
+     * @return the formatted string
+     */
+    string asString() const;
+
 private:
     bool addValue(const string& strkey, const string& strValue);
 
