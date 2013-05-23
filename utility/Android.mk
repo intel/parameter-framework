@@ -22,7 +22,6 @@ LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
 
 LOCAL_C_INCLUDES += \
     external/stlport/stlport/ \
-    bionic/libstdc++ \
     bionic/
 
 include $(BUILD_STATIC_LIBRARY)

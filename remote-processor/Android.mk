@@ -34,7 +34,6 @@ TARGET_ERROR_FLAGS += $(COMMON_ERROR_FLAGS)
 
 LOCAL_C_INCLUDES += \
     external/stlport/stlport/ \
-    bionic/libstdc++ \
     bionic/
 
 LOCAL_SHARED_LIBRARIES := libstlport

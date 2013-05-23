@@ -130,7 +130,6 @@ TARGET_ERROR_FLAGS += $(COMMON_ERROR_FLAGS)
 LOCAL_C_INCLUDES += \
     $(COMMON_C_INCLUDES) \
     external/stlport/stlport/ \
-    bionic/libstdc++ \
     bionic/
 
 LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES) libdl libstlport
