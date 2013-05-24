@@ -6,10 +6,10 @@ LOCAL_PATH := $(call my-dir)
 COMMON_COPY_HEADERS_TO := parameter
 
 COMMON_COPY_HEADERS := \
-        ParameterMgrPlatformConnector.h \
-        SelectionCriterionTypeInterface.h \
-        SelectionCriterionInterface.h \
-        ParameterHandle.h
+        include/ParameterMgrPlatformConnector.h \
+        include/SelectionCriterionTypeInterface.h \
+        include/SelectionCriterionInterface.h \
+        include/ParameterHandle.h
 
 COMMON_SRC_FILES := \
         Subsystem.cpp \
@@ -103,6 +103,7 @@ COMMON_MODULE_TAGS := optional
 COMMON_CFLAGS := -Wno-non-virtual-dtor
 
 COMMON_C_INCLUDES := \
+    $(LOCAL_PATH)/include/ \
     $(LOCAL_PATH)/../utility/ \
     $(LOCAL_PATH)/../xmlserializer/ \
     $(LOCAL_PATH)/../remote-processor/
