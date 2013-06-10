@@ -761,12 +761,22 @@ class ParsePFWlog():
 					" with current state: " + str(currentcriterionStateList) +
 					", possible states:" + str(criterionStateList))
 
-		self.criteria.addChild(Criterion(
+		try:
+			self.criteria.addChild(Criterion(
 					criterionName,
 					criterionIsInclusif,
 					criterionStateList,
 					currentcriterionStateList
 				))
+		except self.criteria.DuplicatedCriterionError as ex:
+			logger.debug(ex)
+			logger.warning("Reseting criterion %s. Did you reset the PFW ?" % criterionName)
+			self.criteria.operationOnChild(
+				[criterionName],
+				lambda criterion: criterion.reset()
+			)
+
+
 
 	def _changingCriterion(self, matchChangingCriterion):
 		# Unpack
