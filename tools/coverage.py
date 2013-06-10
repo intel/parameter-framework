@@ -468,23 +468,27 @@ class CriteronStates(Element):
 
 		currentcriteria.parentUsed()
 
-class IneligibleConfigurationAppliedError(CustomError):
-
-	def __init__(self, configuration, criteria):
-		self.configuration = configuration
-		self.criteria = criteria
-
-	def __str__(self):
-
-		return ("Applying ineligible %s, "
-			"rule:\n%s\n"
-			"Criteria current state:\n%s" %
-			(self.configuration, self.configuration.rootRule.dump(), self.criteria.dump()))
 
 
 class Configuration(FromDomElement, DomPopulatedElement):
 	tag = "Configuration"
 	childClasses = []
+
+	class IneligibleConfigurationAppliedError(CustomError):
+
+		def __init__(self, configuration, criteria):
+			self.configuration = configuration
+			self.criteria = criteria
+
+		def __str__(self):
+
+			return ("Applying ineligible %s, "
+				"rule:\n%s\n"
+				"Criteria current state:\n%s" % (
+					self.configuration,
+					self.configuration.rootRule.dump(withCoverage=False, withNbUse=False),
+					self.criteria.dump(withCoverage=False, withNbUse=False)
+					))
 
 	def __init__(self, DomElement):
 		super().__init__(DomElement)
@@ -520,7 +524,7 @@ class Configuration(FromDomElement, DomPopulatedElement):
                        "criteria (parent: %s) " % self.parent.name,
 					logging.FATAL)
 
-			raise IneligibleConfigurationAppliedError(self, criteria.export())
+			raise self.IneligibleConfigurationAppliedError(self, criteria.export())
 
 	def _dumpPropagate(self, withCoverage, withNbUse):
 		self.debug("Going to ask %s for description" % self.rootRule)
