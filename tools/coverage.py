@@ -707,10 +707,11 @@ class ParsePFWlog():
 	MATCH = "match"
 	ACTION = "action"
 
-	def __init__(self, domains, criteria):
+	def __init__(self, domains, criteria, ErrorsToIgnore=()):
 
 		self.domains = domains;
 		self.criteria = criteria;
+		self.ErrorsToIgnore = ErrorsToIgnore
 
 		configApplicationRegext = r""".*Applying configuration "(.*)" from domain "([^"]*)"""
 		matchConfigApplicationLine = re.compile(configApplicationRegext).match
@@ -811,22 +812,41 @@ class ParsePFWlog():
 
 
 	def _digest(self, lineLogType, lineLog):
+
 		match = lineLogType[self.MATCH](lineLog)
 		if match :
 			lineLogType[self.ACTION](match)
 			return True
 		return False
 
+
 	def parsePFWlog(self, lines):
-		for lineLog in lines:
+		for lineNb, lineLog in enumerate(lines):
 
 			logger.debug("Parsing line :%s" % lineLog.rstrip())
 
 			digested = (self._digest(lineLogType, lineLog)
 					for lineLogType in self.lineLogTypes)
 
-			if not any(digested):
-				logger.debug("Line does not match, dropped")
+			try:
+				success = any(digested)
+
+			# Catch some exception in order to print the current parsing line,
+			# then raise the exception again if not continue of error
+			except CustomError as ex:
+				logger.error('Error raised while parsing line %s: "%s"' %
+							(lineNb, repr(lineLog)))
+
+				# If exception is a subclass of ErrorsToIgnore, log it and continue
+				# otherwise raise it again.
+				if not issubclass(type(ex), self.ErrorsToIgnore):
+					raise ex
+				else:
+					logger.error('Ignoring exception:"%s", '
+								'can not guarantee database integrity' % ex)
+			else:
+				if not success:
+					logger.debug("Line does not match, dropped")
 
 
 class Root(Element):
@@ -937,6 +957,21 @@ class ArgumentParser:
 						help="raw coverage output report"
 					)
 
+			myArgParser.add_argument(
+						'--ignore-incoherent-criterion-state',
+						dest="incoherentCriterionFlag",
+						action='store_true',
+						help="ignore criterion transition to incoherent state"
+					)
+
+			myArgParser.add_argument(
+						'--ignore-ineligible-configuration-application',
+						dest="ineligibleConfigurationApplicationFlag",
+						action='store_true',
+						help="ignore application of configuration with a false rule "
+						"(not applicable configuration)"
+					)
+
 			# Process command line arguments
 			options = myArgParser.parse_args()
 
@@ -951,6 +986,16 @@ class ArgumentParser:
 			# Setting logger level
 			levelCapped = min(options.debugLevel, len(self.levelTranslate) - 1)
 			self.debugLevel = self.levelTranslate[levelCapped]
+
+			# Setting ignore options
+			errorToIgnore = []
+			if options.ineligibleConfigurationApplicationFlag :
+				errorToIgnore.append(Configuration.IneligibleConfigurationAppliedError)
+
+			if options.incoherentCriterionFlag:
+				errorToIgnore.append(Criterion.ChangeRequestToNonAccessibleState)
+
+			self.errorToIgnore = tuple(errorToIgnore)
 
 
 
@@ -978,7 +1023,7 @@ def main():
 	root = Root("Coverage", dom)
 
 	# Parse PFW events
-	parser = ParsePFWlog(root.domains, root.criteria)
+	parser = ParsePFWlog(root.domains, root.criteria, commandLineArguments.errorToIgnore)
 
 	try:
 		parser.parsePFWlog(commandLineArguments.inputFile.readlines())
@@ -996,7 +1041,7 @@ def main():
 		outputFile.write(root.exportToXML().toprettyxml())
 
 
-# Execute main function if the python interpreter is running this module as the main program
 if __name__ == "__main__" :
+	""" Execute main if the python interpreter is running this module as the main program """
 	main()
 
