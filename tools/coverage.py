@@ -244,8 +244,6 @@ class Element():
 		return self.nbUse > 0
 
 	def operationOnChild(self, path, operation):
-		# Stop if path is not consume yet but there is no child
-		assert(self.children or not path)
 
 		if path:
 			return self._operationPropagate(path, operation)
