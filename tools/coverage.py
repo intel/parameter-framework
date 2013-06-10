@@ -678,6 +678,9 @@ class Criterion(Element):
 class Criteria(Element):
 	tag = "Criteria"
 
+	class DuplicatedCriterionError(DuplicatedChildError):
+		pass
+
 	def export(self):
 		self.debug("Exporting criteria")
 		assert(self.children)
@@ -689,7 +692,7 @@ class Criteria(Element):
 
 	def addChild(self, child):
 		if child in self.children:
-			raise DuplicatedChildError(self, child)
+			raise self.DuplicatedCriterionError(self, child)
 		super().addChild(child)
 
 class ConfigAppliedWithoutCriteriaError(CustomError):
