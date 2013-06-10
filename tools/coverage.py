@@ -522,7 +522,7 @@ class Configuration(FromDomElement, DomPopulatedElement):
 
 			self.debug("Applied but rule does not match current "
                        "criteria (parent: %s) " % self.parent.name,
-					logging.FATAL)
+					logging.ERROR)
 
 			raise self.IneligibleConfigurationAppliedError(self, criteria.export())
 
@@ -882,7 +882,7 @@ class ArgumentParser:
 
 	Result of parsing are the class attributes.
 	"""
-	levelTranslate = [logging.WARNING, logging.INFO, logging.DEBUG]
+	levelTranslate = [logging.ERROR, logging.WARNING, logging.INFO, logging.DEBUG]
 
 	def __init__(self):
 
@@ -914,7 +914,7 @@ class ArgumentParser:
 			self.XMLreport = True
 
 			logger.warning(" - Debug level: error")
-			self.debugLevel = logging.INFO
+			self.debugLevel = logging.ERROR
 		else :
 
 			myArgParser = argparse.ArgumentParser(description='Generate PFW report')
