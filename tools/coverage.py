@@ -594,7 +594,18 @@ class Criterion(Element):
 	tag = "Criterion"
 	inclusivenessTranslate = {True: "Inclusive", False: "Exclusive"}
 
-	def __init__(self, name, isInclusif, stateNamesList, currentStateNamesList):
+	class ChangeRequestToNonAccessibleState(CustomError):
+		def __init__(self, requestedState, detail):
+			self.requestedState = requestedState
+			self.detail = detail
+
+		def __str__(self):
+			return ("Change request to non accessible state %s. Detail: %s" %
+				(self.requestedState, self.detail))
+
+	def __init__(self, name, isInclusif,
+				stateNamesList, currentStateNamesList,
+				ignoreIntegrity=False):
 		super().__init__(name)
 		self.isInclusif = isInclusif
 
@@ -602,21 +613,21 @@ class Criterion(Element):
 			self.addChild(CriterionState(state))
 
 		self.currentState = []
+		self.initStateNamesList = list(currentStateNamesList)
+		self.changeState(self.initStateNamesList, ignoreIntegrity)
 
-		# Set current state as provided
-		self.currentState = [self.getChildFromName(childName)
-							for childName in currentStateNamesList]
+	def reset(self):
+		# Set current state as provided at initialisation
+		self.changeState(self.initStateNamesList, ignoreIntegrity=True)
 
-	def childUsed(self, child):
-		self.currentState = child
-		super().childUsed(child)
-
-	def changeState(self, subStateNames):
+	def changeState(self, subStateNames, ignoreIntegrity=False):
 		self.debug("Changing state from: %s to: %s" % (
 					list(self._getElementNames(self.currentState)),
 					subStateNames))
 
-		assert(len(subStateNames) > 0 or self.isInclusif)
+		if not ignoreIntegrity and not self.isIntegre(subStateNames):
+			raise self.ChangeRequestToNonAccessibleState(subStateNames,
+				"An exclusive criterion must have a non empty state")
 
 		newCurrentState = []
 		for subStateName in subStateNames :
@@ -629,9 +640,17 @@ class Criterion(Element):
 		self._incNbUse()
 		self._tellParentThatChildUsed()
 
+	def isIntegre(self, subStateNames):
+		return self.isInclusif or len(subStateNames) == 1
+
+	def childUsed(self, child):
+		self.currentState = child
+		super().childUsed(child)
+
 	def export(self):
 		subStateNames = self._getElementNames(self.currentState)
-		return Criterion(self.name, self.isInclusif, subStateNames, subStateNames)
+		return Criterion(self.name, self.isInclusif, subStateNames, subStateNames,
+			ignoreIntegrity=True)
 
 	def stateIncludes(self, subStateName):
 		subStateCurrentNames = list(self._getElementNames(self.currentState))
