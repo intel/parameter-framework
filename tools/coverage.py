@@ -76,12 +76,7 @@ class Element():
 		return  "%s (%s)" % (self.name, self.tag)
 
 	def __eq__(self, compared):
-		self.debug(lambda : "Comparing:\n%s" % self.dump())
-		self.debug(lambda : "With:\n%s" % compared.dump())
-		result = self.name == compared.name and self.children == compared.children
-		self.debug("Result is %s" % result)
-		return result
-
+		return (self.name == compared.name) and (self.children == compared.children)
 
 	def getName(self, default=""):
 		return self.name or default
