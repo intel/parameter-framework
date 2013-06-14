@@ -135,22 +135,26 @@ class Element():
 
 
 	def _getCoverage(self):
+		"""Return the coverage of the element between 0 and 1
 
-		coverageDependance = list(self._getCoverageDependance())
+		If the element has no coverage dependency (usually child) return 0 or 1.
+		otherwise the element coverage is the dependency coverage average"""
+		coverageDependanceElements = list(self._getCoverageDependanceElements())
 
-		nbcoverageDependence = len(coverageDependance)
+		nbcoverageDependence = len(coverageDependanceElements)
 
 		if nbcoverageDependence == 0:
-			# Coverage makes no sense without any dependence
-			return None
+			if self.nbUse == 0:
+				return 0
+			else:
+				return 1
 
-		nbcoverageDependanceUsed = len([element
-				for element in coverageDependance
-				if element.hasBeenUsed()])
+		coverageDependenceValues = (depElement._getCoverage()
+				for depElement in coverageDependanceElements)
 
-		return nbcoverageDependanceUsed / nbcoverageDependence
+		return sum(coverageDependenceValues) / nbcoverageDependence
 
-	def _getCoverageDependance(self):
+	def _getCoverageDependanceElements(self):
 		return self.children
 
 	def _coverageFormating(self, coverage):
@@ -437,7 +441,7 @@ class RootRule(DomPopulatedElement, Rule):
 		# A configuration can only have one or no rule
 		assert(len(self.children) <= 1)
 
-	def _getCoverageDependance(self):
+	def _getCoverageDependanceElements(self):
 		return self._getDescendants()
 
 
