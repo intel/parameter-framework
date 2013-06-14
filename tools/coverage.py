@@ -374,8 +374,11 @@ class Rule(Element):
 
 
 	def _isApplicable(self, criteria, childApplicability):
-		# Forcing evaluation of all child by the list creation
-		return all(list(childApplicability))
+		"""Return the rule applicability depending on children applicability.
+
+		If at least one child is applicable, return true"""
+		# Lazy evaluation as in the PFW
+		return all(childApplicability)
 
 
 class CriterionRule(FromDomElement, DomPopulatedElement, Rule):
@@ -426,8 +429,8 @@ class CompoundRule(FromDomElement, DomPopulatedElement, Rule):
 		if self.ofTypeAll :
 			applicability = super()._isApplicable(criteria, childApplicability)
 		else:
-			# Forcing evaluation of all child by the list creation
-			applicability = any(list(childApplicability))
+			# Lazy evaluation as in the PFW
+			applicability = any(childApplicability)
 
 		return applicability
 
