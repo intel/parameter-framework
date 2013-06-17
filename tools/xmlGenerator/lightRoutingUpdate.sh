@@ -144,7 +144,15 @@ then
 fi
 
 log "Output file: $outputFilePath"
-$parameter getDomainsXML |sed 's/\r//' > "$outputFilePath"
+
+parameter_execute_if_exist () {
+    $parameter help | grep --quiet --word $1 || return $?
+    $parameter $1 | sed 's/\r//'
+}
+
+parameter_execute_if_exist getDomainsWithSettingsXML > "$outputFilePath" ||
+    # Fall back on old command
+    parameter_execute_if_exist getDomainsXML > "$outputFilePath"
 
 
 log "The media server PFW domains have been change, please restart it to restore old domains"
