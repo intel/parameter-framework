@@ -253,7 +253,11 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<xml configurable domains>", "Import domains including settings from XML string" },
     /// Structure Export
     { "getSystemClassXML", &CParameterMgr::getSystemClassXMLCommmandProcess, 0 ,
-            "", "Print parameter structure as XML" }
+            "", "Print parameter structure as XML" },
+    /// Deprecated Commands
+    { "getDomainsXML",
+            &CParameterMgr::getConfigurableDomainsWithSettingsXMLCommmandProcess, 0,
+            "", "DEPRECATED COMMAND, please use getDomainsWithSettingsXML" },
 
 };
 
