@@ -195,8 +195,10 @@ class Element():
 				str(dumpedDescription) for dumpedDescription in
 						self._dumpDescription(withCoverage, withNbUse))
 
-	def exportToXML(self):
-		domElement = xml.dom.minidom.Element(self.tag)
+	def exportToXML(self, domElement=None):
+		if domElement == None:
+			domElement = xml.dom.minidom.Element(self.tag)
+
 		self._XMLaddAttributes(domElement)
 
 		for child in self.children :
@@ -852,7 +854,7 @@ class ParsePFWlog():
 
 
 class Root(Element):
-	tag = "Root"
+	tag = "CoverageReport"
 	def __init__(self, name, dom):
 		super().__init__(name)
 		# Create domain tree
@@ -866,11 +868,8 @@ class Root(Element):
 	def exportToXML(self):
 		"""Export tree to an xml document"""
 		impl = xml.dom.minidom.getDOMImplementation()
-		newdoc = impl.createDocument(None, self.name, None)
-		XMLDocElement = newdoc.documentElement
-
-		for child in self.children:
-			XMLDocElement.appendChild(child.exportToXML())
+		newdoc = impl.createDocument(namespaceURI=None, qualifiedName=self.tag, doctype=None)
+		super().exportToXML(newdoc.documentElement)
 
 		return newdoc
 
@@ -1022,7 +1021,7 @@ def main():
 	dom = xml.dom.minidom.parse(commandLineArguments.domainsFile)
 
 	# Create element tree
-	root = Root("Coverage", dom)
+	root = Root("DomainCoverage", dom)
 
 	# Parse PFW events
 	parser = ParsePFWlog(root.domains, root.criteria, commandLineArguments.errorToIgnore)
