@@ -3,35 +3,35 @@ LOCAL_PATH := $(call my-dir)
 ####################
 # Common definitions
 
-COMMON_SRC_FILES := \
+common_src_files := \
         main.cpp
 
-COMMON_MODULE := remote-process
-COMMON_MODULE_TAGS := optional
+common_module := remote-process
+common_module_tags := optional
 
 
-COMMON_C_INCLUDES := \
+common_c_includes := \
     $(LOCAL_PATH)/../remote-processor/
 
-COMMON_SHARED_LIBRARIES := libremote-processor
+common_shared_libraries := libremote-processor
 
 #############################
 # Target build
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+LOCAL_SRC_FILES := $(common_src_files)
 
-LOCAL_MODULE := $(COMMON_MODULE)
-LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_CFLAGS += $(COMMON_CFLAGS)
+LOCAL_CFLAGS += $(common_cflags)
 LOCAL_C_INCLUDES += \
-    $(COMMON_C_INCLUDES) \
+    $(common_c_includes) \
     external/stlport/stlport/ \
     bionic/
 
-LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES) libstlport
+LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libstlport
 
 
 include $(BUILD_EXECUTABLE)
@@ -41,17 +41,17 @@ include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+LOCAL_SRC_FILES := $(common_src_files)
 
-LOCAL_MODULE := $(COMMON_MODULE)_host
-LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_CFLAGS += $(COMMON_CFLAGS)
+LOCAL_CFLAGS += $(common_cflags)
 
 LOCAL_C_INCLUDES += \
-    $(COMMON_C_INCLUDES)
+    $(common_c_includes)
 
-LOCAL_SHARED_LIBRARIES := $(foreach SHARED_LIBRARY,$(COMMON_SHARED_LIBRARIES), \
-    $(SHARED_LIBRARY)_host)
+LOCAL_SHARED_LIBRARIES := $(foreach shared_library, $(common_shared_libraries), \
+    $(shared_library)_host)
 
 include $(BUILD_HOST_EXECUTABLE)

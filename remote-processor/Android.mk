@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 ####################
 # Common definitions
 
-COMMON_SRC_FILES := \
+common_src_files := \
         Socket.cpp \
         ListeningSocket.cpp \
         ConnectionSocket.cpp \
@@ -13,21 +13,21 @@ COMMON_SRC_FILES := \
         RemoteProcessorServer.cpp \
         RemoteProcessorServerBuilder.cpp
 
-COMMON_MODULE := libremote-processor
-COMMON_MODULE_TAGS := optional
+common_module := libremote-processor
+common_module_tags := optional
 
-COMMON_LDLIBS := -lpthread
+common_ldlibs := -lpthread
 #############################
 # Target build
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+LOCAL_SRC_FILES := $(common_src_files)
 
-LOCAL_MODULE := $(COMMON_MODULE)
-LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_CFLAGS += $(COMMON_CFLAGS)
+LOCAL_CFLAGS += $(common_cflags)
 
 LOCAL_C_INCLUDES += \
     external/stlport/stlport/ \
@@ -35,7 +35,7 @@ LOCAL_C_INCLUDES += \
 
 LOCAL_SHARED_LIBRARIES := libstlport
 
-LOCAL_LDLIBS += $(COMMON_LDLIBS)
+LOCAL_LDLIBS += $(common_ldlibs)
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -44,13 +44,13 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+LOCAL_SRC_FILES := $(common_src_files)
 
-LOCAL_MODULE := $(COMMON_MODULE)_host
-LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_CFLAGS += $(COMMON_CFLAGS)
+LOCAL_CFLAGS += $(common_cflags)
 
-LOCAL_LDLIBS += $(COMMON_LDLIBS)
+LOCAL_LDLIBS += $(common_ldlibs)
 
 include $(BUILD_HOST_SHARED_LIBRARY)

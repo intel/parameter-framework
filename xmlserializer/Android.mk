@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 ####################
 # Common definitions
 
-COMMON_SRC_FILES := \
+common_src_files := \
         XmlElement.cpp \
         XmlSerializingContext.cpp \
         XmlDocSource.cpp \
@@ -15,40 +15,40 @@ COMMON_SRC_FILES := \
         XmlFileDocSource.cpp \
         XmlStringDocSource.cpp
 
-COMMON_MODULE := libxmlserializer
+common_module := libxmlserializer
 
-COMMON_MODULE_TAGS := optional
+common_module_tags := optional
 
-COMMON_C_INCLUDES := \
+common_c_includes := \
     external/libxml2/include/ \
     external/webkit/Source/WebCore/icu/ \
 
-COMMON_SHARED_LIBRARIES := libicuuc
-COMMON_STATIC_LIBRARIES := libxml2
+common_shared_libraries := libicuuc
+common_static_libraries := libxml2
 
-COMMON_LDLIBS := -Lexternal/libxml2/lib
+common_ldlibs := -Lexternal/libxml2/lib
 
 #############################
 # Target build
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+LOCAL_SRC_FILES := $(common_src_files)
 
-LOCAL_MODULE := $(COMMON_MODULE)
-LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_CFLAGS += $(COMMON_CFLAGS)
+LOCAL_CFLAGS += $(common_cflags)
 
 LOCAL_C_INCLUDES += \
-    $(COMMON_C_INCLUDES) \
+    $(common_c_includes) \
     external/stlport/stlport/ \
     bionic/
 
-LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES) libstlport
-LOCAL_STATIC_LIBRARIES := $(COMMON_STATIC_LIBRARIES)
+LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libstlport
+LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 
-LOCAL_LDLIBS += $(COMMON_LDLIBS)
+LOCAL_LDLIBS += $(common_ldlibs)
 
 include $(BUILD_STATIC_LIBRARY)
 
@@ -57,19 +57,19 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+LOCAL_SRC_FILES := $(common_src_files)
 
-LOCAL_MODULE := $(COMMON_MODULE)_host
-LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_CFLAGS += $(COMMON_CFLAGS)
+LOCAL_CFLAGS += $(common_cflags)
 
 LOCAL_C_INCLUDES += \
-    $(COMMON_C_INCLUDES)
+    $(common_c_includes)
 
-LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES)
-LOCAL_STATIC_LIBRARIES := $(COMMON_STATIC_LIBRARIES)
+LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
+LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 
-LOCAL_LDLIBS += $(COMMON_LDLIBS)
+LOCAL_LDLIBS += $(common_ldlibs)
 
 include $(BUILD_HOST_STATIC_LIBRARY)

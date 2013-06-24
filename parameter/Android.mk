@@ -3,15 +3,15 @@ LOCAL_PATH := $(call my-dir)
 ####################
 # Common definitions
 
-COMMON_COPY_HEADERS_TO := parameter
+common_copy_headers_to := parameter
 
-COMMON_COPY_HEADERS := \
+common_copy_headers := \
         include/ParameterMgrPlatformConnector.h \
         include/SelectionCriterionTypeInterface.h \
         include/SelectionCriterionInterface.h \
         include/ParameterHandle.h
 
-COMMON_SRC_FILES := \
+common_src_files := \
         Subsystem.cpp \
         PathNavigator.cpp \
         Element.cpp \
@@ -97,41 +97,41 @@ COMMON_SRC_FILES := \
         RuleParser.cpp \
         EnumValuePair.cpp
 
-COMMON_MODULE := libparameter
-COMMON_MODULE_TAGS := optional
+common_module := libparameter
+common_module_tags := optional
 
-COMMON_C_INCLUDES := \
+common_c_includes := \
     $(LOCAL_PATH)/include/ \
     $(LOCAL_PATH)/../utility/ \
     $(LOCAL_PATH)/../xmlserializer/ \
     $(LOCAL_PATH)/../remote-processor/
 
-COMMON_SHARED_LIBRARIES := libicuuc
-COMMON_STATIC_LIBRARIES := libxml2
+common_shared_libraries := libicuuc
+common_static_libraries := libxml2
 #############################
 # Target build
 
 include $(CLEAR_VARS)
 
-LOCAL_COPY_HEADERS_TO := $(COMMON_COPY_HEADERS_TO)
-LOCAL_COPY_HEADERS := $(COMMON_COPY_HEADERS)
+LOCAL_COPY_HEADERS_TO := $(common_copy_headers_to)
+LOCAL_COPY_HEADERS := $(common_copy_headers)
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 
-LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+LOCAL_SRC_FILES := $(common_src_files)
 
-LOCAL_MODULE := $(COMMON_MODULE)
-LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_CFLAGS += $(COMMON_CFLAGS)
+LOCAL_CFLAGS += $(common_cflags)
 
 LOCAL_C_INCLUDES += \
-    $(COMMON_C_INCLUDES) \
+    $(common_c_includes) \
     external/stlport/stlport/ \
     bionic/
 
-LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES) libdl libstlport
-LOCAL_STATIC_LIBRARIES := libxmlserializer libutility $(COMMON_STATIC_LIBRARIES)
+LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libdl libstlport
+LOCAL_STATIC_LIBRARIES := libxmlserializer libutility $(common_static_libraries)
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -140,21 +140,21 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_COPY_HEADERS_TO := $(COMMON_COPY_HEADERS_TO)
-LOCAL_COPY_HEADERS := $(COMMON_COPY_HEADERS)
+LOCAL_COPY_HEADERS_TO := $(common_copy_headers_to)
+LOCAL_COPY_HEADERS := $(common_copy_headers)
 
-LOCAL_SRC_FILES := $(COMMON_SRC_FILES)
+LOCAL_SRC_FILES := $(common_src_files)
 
-LOCAL_MODULE := $(COMMON_MODULE)_host
-LOCAL_MODULE_TAGS := $(COMMON_MODULE_TAGS)
+LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_CFLAGS += $(COMMON_CFLAGS)
+LOCAL_CFLAGS += $(common_cflags)
 
 LOCAL_C_INCLUDES += \
-    $(COMMON_C_INCLUDES)
+    $(common_c_includes)
 
-LOCAL_SHARED_LIBRARIES := $(COMMON_SHARED_LIBRARIES)
-LOCAL_STATIC_LIBRARIES := libxmlserializer_host libutility_host $(COMMON_STATIC_LIBRARIES)
+LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
+LOCAL_STATIC_LIBRARIES := libxmlserializer_host libutility_host $(common_static_libraries)
 
 LOCAL_LDLIBS += -ldl
 
