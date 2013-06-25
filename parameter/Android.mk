@@ -123,8 +123,6 @@ LOCAL_SRC_FILES := $(common_src_files)
 LOCAL_MODULE := $(common_module)
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_CFLAGS += $(common_cflags)
-
 LOCAL_C_INCLUDES += \
     $(common_c_includes) \
     external/stlport/stlport/ \
@@ -147,8 +145,6 @@ LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)_host
 LOCAL_MODULE_TAGS := $(common_module_tags)
-
-LOCAL_CFLAGS += $(common_cflags)
 
 LOCAL_C_INCLUDES += \
     $(common_c_includes)
