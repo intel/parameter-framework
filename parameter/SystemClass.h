@@ -1,8 +1,8 @@
-/* 
+/*
  * INTEL CONFIDENTIAL
- * Copyright © 2011 Intel 
+ * Copyright © 2011 Intel
  * Corporation All Rights Reserved.
- * 
+ *
  * The source code contained or described herein and all documents related to
  * the source code ("Material") are owned by Intel Corporation or its suppliers
  * or licensors. Title to the Material remains with Intel Corporation or its
@@ -12,13 +12,13 @@
  * treaty provisions. No part of the Material may be used, copied, reproduced,
  * modified, published, uploaded, posted, transmitted, distributed, or
  * disclosed in any way without Intel’s prior express written permission.
- * 
+ *
  * No license under any patent, copyright, trade secret or other intellectual
  * property right is granted to or conferred upon you by disclosure or delivery
  * of the Materials, either expressly, by implication, inducement, estoppel or
  * otherwise. Any license under such intellectual property rights must be
  * express and approved by Intel in writing.
- * 
+ *
  * CREATED: 2011-06-01
  * UPDATED: 2011-07-27
  */
@@ -36,8 +36,18 @@ public:
     CSystemClass();
     virtual ~CSystemClass();
 
-    // Called from parent before actual init
-    bool loadSubsystems(string& strError, const CSubsystemPlugins* pSubsystemPlugins);
+    /** Load subsystem plugin and fill the corresponding libraries.
+     *
+     * @param[out] strError is filled with new line separated errors if the function returns false,
+     *                         undefined otherwise.
+     * @param[in] pSubsystemPlugins The plugins to load.
+     * @param[in] bVirtualSubsystemFallback If a subsystem can not be found, use the virtual one.
+     *
+     * @return true if the plugins succesfully started or that a fallback is available,
+               false otherwise.
+     */
+    bool loadSubsystems(string& strError, const CSubsystemPlugins* pSubsystemPlugins,
+                        bool bVirtualSubsystemFallback = false);
     // Subsystem factory
     const CSubsystemLibrary* getSubsystemLibrary() const;
 
@@ -68,14 +78,18 @@ private:
     // base
     virtual bool childrenAreDynamic() const;
 
-    // Subsystem plugins
-    bool getPluginFiles(const string& strPluginPath, list<string>& lstrPluginFiles) const;
-
     // Plugin symbol computation
     static string getPluginSymbol(const string& strPluginPath);
 
-    // Plugin loading
-    bool loadPlugins(list<string>& lstrPluginFiles, string& strError);
+    /** Load subsystem plugin shared libraries.
+     *
+     * @param[in:out] lstrPluginFiles is the path list of the plugins shared libraries to load.
+     *                Successfully loaded plugins are removed from the list.
+     * @param[out] lstrError is the list of error that occured during loadings.
+     *
+     * @return true if at least one plugin has been succesfully loaded, false otherwise.
+     */
+    bool loadPlugins(list<string>& lstrPluginFiles, list<string>& lstrError);
 
     // Subsystem factory
     CSubsystemLibrary* _pSubsystemLibrary;
