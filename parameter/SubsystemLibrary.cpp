@@ -25,15 +25,6 @@
 #include "SubsystemLibrary.h"
 #include "XmlElement.h"
 
-
-CSubsystemLibrary::CSubsystemLibrary()
-{
-}
-
-CSubsystemLibrary::~CSubsystemLibrary()
-{
-}
-
 string CSubsystemLibrary::getBuilderType(const CXmlElement& xmlElement) const
 {
     // Xml element's name attribute

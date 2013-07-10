@@ -24,15 +24,15 @@
  */
 #pragma once
 
-#include "ElementLibrary.h"
+#include "DefaultElementLibrary.h"
+#include "VirtualSubsystem.h"
+#include "NamedElementBuilderTemplate.h"
+#include <string>
 
-class CSubsystemLibrary : public CElementLibrary
+class CSubsystemLibrary :
+        public CDefaultElementLibrary<TNamedElementBuilderTemplate<CVirtualSubsystem> >
 {
-public:
-    CSubsystemLibrary();
-    virtual ~CSubsystemLibrary();
-
 private:
     // Builder type (based on element's name attribute)
-    virtual string getBuilderType(const CXmlElement& xmlElement) const;
+    virtual std::string getBuilderType(const CXmlElement& xmlElement) const;
 };

@@ -57,12 +57,12 @@ CElement* CElementLibrary::createElement(const CXmlElement& xmlElement) const
     return NULL;
 }
 
-void CElementLibrary::addElementBuilder(string type, const CElementBuilder *pElementBuilder)
+void CElementLibrary::addElementBuilder(const std::string& type, const CElementBuilder *pElementBuilder)
 {
     _elementBuilderMap[type] = pElementBuilder;
 }
 
-string CElementLibrary::getBuilderType(const CXmlElement& xmlElement) const
+std::string CElementLibrary::getBuilderType(const CXmlElement& xmlElement) const
 {
     // Defaulting to xml element name
     return xmlElement.getType();
