@@ -280,7 +280,8 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _pRemoteProcessorServer(NULL),
     _uiMaxCommandUsageLength(0),
     _pLogger(NULL),
-    _uiLogDepth(0)
+    _uiLogDepth(0),
+    _bFailOnMissingSubsystem(true)
 {
     // Tuning Mode Mutex
     bzero(&_blackboardMutex, sizeof(_blackboardMutex));
@@ -402,7 +403,8 @@ bool CParameterMgr::load(string& strError)
     }
 
     // Load subsystems
-    if (!getSystemClass()->loadSubsystems(strError, _pSubsystemPlugins)) {
+    if (!getSystemClass()->loadSubsystems(strError,
+                                          _pSubsystemPlugins, !_bFailOnMissingSubsystem)) {
 
         return false;
     }
@@ -726,6 +728,15 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
     return new CParameterHandle(static_cast<const CBaseParameter*>(pConfigurableElement), this);
 }
 
+void CParameterMgr::setFailureOnMissingSubsystem(bool bFail)
+{
+    _bFailOnMissingSubsystem = bFail;
+}
+
+bool CParameterMgr::getFailureOnMissingSubsystem() const
+{
+    return _bFailOnMissingSubsystem;
+}
 /////////////////// Remote command parsers
 /// Version
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::versionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)

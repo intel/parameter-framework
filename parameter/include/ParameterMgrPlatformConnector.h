@@ -21,7 +21,6 @@
  */
 #pragma once
 
-#include <list>
 #include "SelectionCriterionTypeInterface.h"
 #include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
@@ -51,7 +50,7 @@ public:
     ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive = false);
     ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType);
     // Selection criterion retrieval
-    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
+    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName) const;
 
     // Logging
     // Should be called before start
@@ -70,6 +69,24 @@ public:
     // Returned objects are owned by clients
     // Must be cassed after successfull start
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError) const;
+
+    /** Should start fail in case of missing subsystems.
+      *
+      * Will fail if called on started instance.
+      * @param[in] bFail: If set to true,  parameterMgr start will fail on missing subsystems
+      *                   If set to false, missing subsystems will fallbacks on virtual subsystem
+      * @param[out] strError a string describing the error if the function failed,
+                             unmodified otherwise.
+      *
+      * @return false if unable to set, true otherwise.
+      */
+    bool setFailureOnMissingSubsystem(bool bFail, std::string& strError);
+
+    /** Would start fail in case of missing subsystems.
+      *
+      * @return if the subsystem load will fail on missing subsystem.
+      */
+    bool getFailureOnMissingSubsystem();
 
 private:
     CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector&);

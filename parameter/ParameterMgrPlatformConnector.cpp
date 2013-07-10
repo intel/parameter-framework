@@ -28,8 +28,9 @@
 #include <assert.h>
 
 // Construction
-CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(const string& strConfigurationFilePath)
-    : _pParameterMgr(new CParameterMgr(strConfigurationFilePath)), _bStarted(false), _pLogger(NULL)
+CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
+        const string& strConfigurationFilePath) :
+    _pParameterMgr(new CParameterMgr(strConfigurationFilePath)), _bStarted(false), _pLogger(NULL)
 {
     // Logging
     _pParameterMgrLogger = new CParameterMgrLogger(this);
@@ -58,7 +59,7 @@ ISelectionCriterionInterface* CParameterMgrPlatformConnector::createSelectionCri
 }
 
 // Selection criterion retrieval
-ISelectionCriterionInterface* CParameterMgrPlatformConnector::getSelectionCriterion(const string& strName)
+ISelectionCriterionInterface* CParameterMgrPlatformConnector::getSelectionCriterion(const string& strName) const
 {
     return _pParameterMgr->getSelectionCriterion(strName);
 }
@@ -83,6 +84,23 @@ CParameterHandle* CParameterMgrPlatformConnector::createParameterHandle(const st
 void CParameterMgrPlatformConnector::setLogger(CParameterMgrPlatformConnector::ILogger* pLogger)
 {
     _pLogger = pLogger;
+}
+
+bool CParameterMgrPlatformConnector::setFailureOnMissingSubsystem(bool bFail, string &strError)
+{
+    if (_bStarted) {
+
+        strError = "Can not set missing subsystem policy while running";
+        return false;
+    }
+
+    _pParameterMgr->setFailureOnMissingSubsystem(bFail);
+    return true;
+}
+
+bool CParameterMgrPlatformConnector::getFailureOnMissingSubsystem()
+{
+    return _pParameterMgr->getFailureOnMissingSubsystem();
 }
 
 // Start

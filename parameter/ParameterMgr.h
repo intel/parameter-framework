@@ -104,7 +104,13 @@ public:
     // Logging
     void setLogger(ILogger* pLogger);
 
-    // Init
+    /** Load plugins, structures and settings from the config file given.
+      *
+      * @param[out] strError is a string describing the error if an error occurred
+      *                      undefined otherwise.
+      *
+      * @return true if no error occurred, false otherwise.
+      */
     bool load(string& strError);
     virtual bool init(string& strError);
 
@@ -130,6 +136,20 @@ public:
                                                        string& strError) const;
     // Dynamic parameter handling
     CParameterHandle* createParameterHandle(const string& strPath, string& strError);
+
+    /** Should start fail in case of missing subsystems.
+      * Will fail if called on started instance.
+      *
+      * @param[in] bFail: If set to true,  parameterMgr start will fail on missing subsystems
+      *                   If set to false, missing subsystems will fallback on virtual subsystem
+      */
+    void setFailureOnMissingSubsystem(bool bFail);
+
+    /** Would start fail in case of missing subsystems.
+      *
+      * @return true if the subsystem will fail on missing subsystem, false otherwise.
+      */
+    bool getFailureOnMissingSubsystem() const;
 
     //////////// Tuning /////////////
     // Tuning mode
@@ -458,5 +478,10 @@ private:
     // Logging
     ILogger* _pLogger;
     mutable uint32_t _uiLogDepth;
+
+    /** If set to true, missing subsystem will abort parameterMgr start.
+      * If set to false, missing subsystem will fallback on virtual subsystem.
+      */
+    bool _bFailOnMissingSubsystem;
 };
 
