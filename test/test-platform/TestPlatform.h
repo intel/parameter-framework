@@ -24,9 +24,9 @@
  */
 #pragma once
 
+#include "RemoteCommandHandlerTemplate.h"
 #include <string>
 #include <list>
-#include "RemoteCommandHandlerTemplate.h"
 
 using namespace std;
 
@@ -56,6 +56,27 @@ private:
     CCommandHandler::CommandStatus startParameterMgrCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus setCriterionStateCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
     CCommandHandler::CommandStatus applyConfigurationsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+
+    /** Callback to set if the PFW start should fail in case of missing subsystems.
+     *
+     * @param[in] remoteCommand contains the arguments of the received command.
+     * @param[out] strResult a string containing the result of the command.
+     *
+     * @return CCommandHandler::ESucceeded if command succeeded
+     *         or CCommandHandler::EFailed otherwise
+     */
+    CCommandHandler::CommandStatus setFailureOnMissingSubsystemCommandProcess(
+            const IRemoteCommand& remoteCommand, string& strResult);
+    /** Callback to get if the PFW start should fail in case of missing subsystems.
+     *
+     * @param[in] remoteCommand contains the arguments of the received command.
+     * @param[out] strResult a string containing the result of the command.
+     *
+     * @return CCommandHandler::ESucceeded if command succeeded
+     *         or CCommandHandler::EFailed otherwise
+     */
+    CCommandHandler::CommandStatus getFailureOnMissingSubsystemCommandProcess(
+            const IRemoteCommand& remoteCommand, string& strResult);
 
     // Commands
     bool createExclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult);

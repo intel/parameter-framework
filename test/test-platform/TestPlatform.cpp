@@ -28,6 +28,7 @@
 #include <sstream>
 #include <assert.h>
 #include <errno.h>
+#include <convert.hpp>
 #include "TestPlatform.h"
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteProcessorServer.h"
@@ -63,8 +64,18 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
     _pCommandHandler->addCommandParser("createInclusiveSelectionCriterion", &CTestPlatform::createInclusiveSelectionCriterionCommandProcess, 2, "<name> <nbStates>", "Create exclusive selection criterion");
 
     _pCommandHandler->addCommandParser("start", &CTestPlatform::startParameterMgrCommandProcess, 0, "", "Start ParameterMgr");
+
     _pCommandHandler->addCommandParser("setCriterionState", &CTestPlatform::setCriterionStateCommandProcess, 2, "<name> <state>", "Set the current state of a selection criterion");
     _pCommandHandler->addCommandParser("applyConfigurations", &CTestPlatform::applyConfigurationsCommandProcess, 0, "", "Apply configurations selected by current selection criteria states");
+
+    _pCommandHandler->addCommandParser("setFailureOnMissingSubsystem",
+                                       &CTestPlatform::setFailureOnMissingSubsystemCommandProcess,
+                                       1, "true|false", "Set policy for missing subsystems, "
+                                       "either abort start or fallback on virtual subsystem");
+    _pCommandHandler->addCommandParser("getMissingSubsystemPolicy",
+                                       &CTestPlatform::getFailureOnMissingSubsystemCommandProcess,
+                                       0, "", "Get policy for missing subsystems, "
+                                       "either abort start or fallback on virtual subsystem");
 
     // Create server
     _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber, _pCommandHandler);
@@ -125,6 +136,35 @@ CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::startParameterMgrCo
 
     return _pParameterMgrPlatformConnector->start(strResult) ?
             CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+}
+
+CTestPlatform::CCommandHandler::CommandStatus
+    CTestPlatform::setFailureOnMissingSubsystemCommandProcess(
+        const IRemoteCommand& remoteCommand, string& strResult)
+{
+    const string& strAbort = remoteCommand.getArgument(0);
+
+    bool bFail;
+
+    if(!audio_comms::utilities::convertTo(strAbort, bFail)) {
+        return CTestPlatform::CCommandHandler::EShowUsage;
+    }
+
+    return _pParameterMgrPlatformConnector->setFailureOnMissingSubsystem(bFail, strResult) ?
+            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+}
+
+CTestPlatform::CCommandHandler::CommandStatus
+    CTestPlatform::getFailureOnMissingSubsystemCommandProcess(
+        const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)remoteCommand;
+    (void)strResult;
+
+    strResult = _pParameterMgrPlatformConnector->getFailureOnMissingSubsystem() ?
+                "true":"false";
+
+    return  CTestPlatform::CCommandHandler::EDone;
 }
 
 CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::setCriterionStateCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)

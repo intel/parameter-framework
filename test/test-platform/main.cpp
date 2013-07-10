@@ -22,11 +22,14 @@
  * CREATED: 2011-11-25
  * UPDATED: 2011-11-25
  */
-#include <iostream>
-#include <semaphore.h>
+
 #include "TestPlatform.h"
+
+#include <iostream>
+#include <cstdlib>
+extern "C" {
 #include <semaphore.h>
-#include <stdlib.h>
+}
 
 using namespace std;
 
