@@ -78,6 +78,16 @@ private:
     // base
     virtual bool childrenAreDynamic() const;
 
+    /** Load shared libraries subsystem plugins.
+     *
+     * @param[out] lstrError is the list of error that occured during loadings.
+     * @param[in] pSubsystemPlugins The plugins to load.
+     *
+     * @return true if all plugins have been succesfully loaded, false otherwises.
+     */
+    bool loadSubsystemsFromSharedLibraries(list<string>& lstrError,
+                                           const CSubsystemPlugins* pSubsystemPlugins);
+
     // Plugin symbol computation
     static string getPluginSymbol(const string& strPluginPath);
 
@@ -88,6 +98,8 @@ private:
      * @param[out] lstrError is the list of error that occured during loadings.
      *
      * @return true if at least one plugin has been succesfully loaded, false otherwise.
+     *         When false is returned, some plugins MIHGT have been loaded
+     *         but the lstrPluginFiles is accurate.
      */
     bool loadPlugins(list<string>& lstrPluginFiles, list<string>& lstrError);
 

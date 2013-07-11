@@ -75,10 +75,43 @@ string CSystemClass::getKind() const
 }
 
 bool CSystemClass::loadSubsystems(string& strError,
-        const CSubsystemPlugins* pSubsystemPlugins, bool bVirtualSubsystemFallback)
+                                  const CSubsystemPlugins* pSubsystemPlugins,
+                                  bool bVirtualSubsystemFallback)
 {
     CAutoLog autoLog_info(this, "Loading subsystem plugins");
 
+    // Start clean
+    _pSubsystemLibrary->clean();
+
+    // Add virtual subsystem builder
+    _pSubsystemLibrary->addElementBuilder("Virtual",
+                                          new TNamedElementBuilderTemplate<CVirtualSubsystem>());
+    // Set virtual subsytem as builder fallback if required
+    _pSubsystemLibrary->enableDefaultMechanism(bVirtualSubsystemFallback);
+
+    // Add subsystem defined in shared libraries
+    list<string> lstrError;
+    bool bLoadPluginsSuccess = loadSubsystemsFromSharedLibraries(lstrError, pSubsystemPlugins);
+
+    if (bLoadPluginsSuccess) {
+        log_info("All subsystem plugins successfully loaded");
+    } else {
+        // Log plugin as warning if no fallback available
+        log_table(!bVirtualSubsystemFallback, lstrError);
+    }
+
+    if (!bVirtualSubsystemFallback) {
+        // Any problem reported is an error as there is no fallback.
+        // Fill strError for caller.
+        CUtility::asString(lstrError, strError);
+    }
+
+    return bLoadPluginsSuccess || bVirtualSubsystemFallback;
+}
+
+bool CSystemClass::loadSubsystemsFromSharedLibraries(list<string>& lstrError,
+                                                     const CSubsystemPlugins* pSubsystemPlugins)
+{
     // Plugin list
     list<string> lstrPluginFiles;
 
@@ -103,13 +136,8 @@ bool CSystemClass::loadSubsystems(string& strError,
         }
     }
 
-    // Start clean
-    _pSubsystemLibrary->clean();
-    list<string> lstrError;
-
-    bool bLoadPluginsSuccess = true;
     // Actually load plugins
-    while (lstrPluginFiles.size()) {
+    while (!lstrPluginFiles.empty()) {
 
         // Because plugins might depend on one another, loading will be done
         // as an iteration process that finishes successfully when the remaining
@@ -124,26 +152,16 @@ bool CSystemClass::loadSubsystems(string& strError,
         }
     }
 
-    if (lstrPluginFiles.empty()) {
-        log_info("All subsystem plugins successfully loaded");
-    } else {
-        // Log plugin as warning if fallback available, error otherwise
-        log_table(bVirtualSubsystemFallback, lstrError);
-    }
-    if (!bVirtualSubsystemFallback) {
-        // Any problem reported is an error as there is no fallback.
-        // Fill strError for caller.
-        CUtility::asString(lstrError, strError);
+    if (!lstrPluginFiles.empty()) {
+        // Unable to load at least one plugin
+        string strPluginUnloaded;
+        CUtility::asString(lstrPluginFiles, strPluginUnloaded, ", ");
+
+        lstrError.push_back("Unable to load the folowings plugings: " + strPluginUnloaded + ".");
+        return false;
     }
 
-    // Add virtual subsystem builder
-    _pSubsystemLibrary->addElementBuilder("Virtual",
-                                          new TNamedElementBuilderTemplate<CVirtualSubsystem>());
-
-    // Set virtual subsytem as builder fallback
-    _pSubsystemLibrary->enableDefaultMechanism(bVirtualSubsystemFallback);
-
-    return bLoadPluginsSuccess || bVirtualSubsystemFallback;
+    return true;
 }
 
 // Plugin symbol computation
