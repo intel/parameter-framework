@@ -24,8 +24,27 @@ LOCAL_PATH := $(call my-dir)
 # Scripts are not compiled so the prebuild mechanism is used to export them.
 
 include $(CLEAR_VARS)
+LOCAL_MODULE := PFWScriptGenerator.py
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_IS_HOST_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE := hostConfig.py
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_IS_HOST_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := hostDomainGenerator.sh
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_REQUIRED_MODULES :=  \
+    PFWScriptGenerator.py \
+    hostConfig.py \
+    test-platform_host \
+    remote-process_host
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_IS_HOST_MODULE := true
 include $(BUILD_PREBUILT)
