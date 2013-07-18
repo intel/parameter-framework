@@ -281,7 +281,8 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _uiMaxCommandUsageLength(0),
     _pLogger(NULL),
     _uiLogDepth(0),
-    _bFailOnMissingSubsystem(true)
+    _bFailOnMissingSubsystem(true),
+    _bFailOnFailedSettingsLoad(true)
 {
     // Tuning Mode Mutex
     bzero(&_blackboardMutex, sizeof(_blackboardMutex));
@@ -537,6 +538,27 @@ bool CParameterMgr::loadStructure(string& strError)
 
 bool CParameterMgr::loadSettings(string& strError)
 {
+    string strLoadError;
+    bool success = loadSettingsFromConfigFile(strLoadError);
+
+    if (!success && !_bFailOnFailedSettingsLoad) {
+        // Load can not fail, ie continue but log the load errors
+        log_info(strLoadError);
+        log_info("Failed to load settings, continue without domains.");
+        success = true;
+    }
+
+    if (!success) {
+        // Propagate the litteral error only if the function fails
+        strError = strLoadError;
+        return false;
+    }
+
+    return true;
+}
+
+bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
+{
     CAutoLog autoLog(this, "Loading settings");
 
     // Get settings configuration element
@@ -567,7 +589,7 @@ bool CParameterMgr::loadSettings(string& strError)
         strError = "No ConfigurableDomainsFileLocation element found for SystemClass " + getSystemClass()->getName();
 
         return false;
-    }    
+    }
     // Get destination root element
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
@@ -736,6 +758,15 @@ void CParameterMgr::setFailureOnMissingSubsystem(bool bFail)
 bool CParameterMgr::getFailureOnMissingSubsystem() const
 {
     return _bFailOnMissingSubsystem;
+}
+
+void CParameterMgr::setFailureOnFailedSettingsLoad(bool bFail)
+{
+    _bFailOnFailedSettingsLoad = bFail;
+}
+bool CParameterMgr::getFailureOnFailedSettingsLoad()
+{
+    return _bFailOnFailedSettingsLoad;
 }
 /////////////////// Remote command parsers
 /// Version

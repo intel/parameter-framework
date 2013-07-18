@@ -73,6 +73,7 @@ public:
     /** Should start fail in case of missing subsystems.
       *
       * Will fail if called on started instance.
+      *
       * @param[in] bFail: If set to true,  parameterMgr start will fail on missing subsystems
       *                   If set to false, missing subsystems will fallbacks on virtual subsystem
       * @param[out] strError a string describing the error if the function failed,
@@ -87,6 +88,23 @@ public:
       * @return if the subsystem load will fail on missing subsystem.
       */
     bool getFailureOnMissingSubsystem();
+
+    /** Should start fail in failed settings load.
+      *
+      * Will fail if called on started instance.
+      *
+      * @param[in] bFail: If set to true, parameterMgr start will fail on failed settings load.
+      *                   If set to false, failed settings load will be ignored.
+      * @param[out] strResult a string containing the result of the command.
+      *
+      * @return false if unable to set, true otherwise.
+      */
+    bool setFailureOnFailedSettingsLoad(bool bFail, std::string& strError);
+    /** Would start fail in case of failed settings load.
+      *
+      * @return failure on failed settings load policy state.
+      */
+    bool getFailureOnFailedSettingsLoad();
 
 private:
     CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector&);

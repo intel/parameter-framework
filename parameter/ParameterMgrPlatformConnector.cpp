@@ -103,6 +103,24 @@ bool CParameterMgrPlatformConnector::getFailureOnMissingSubsystem()
     return _pParameterMgr->getFailureOnMissingSubsystem();
 }
 
+bool CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad(
+        bool bFail, std::string& strError)
+{
+    if (_bStarted) {
+
+        strError = "Can not set failure on failed settings load policy while running";
+        return false;
+    }
+
+    _pParameterMgr->setFailureOnFailedSettingsLoad(bFail);
+    return true;
+}
+
+bool CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad()
+{
+    return _pParameterMgr->getFailureOnFailedSettingsLoad();
+}
+
 // Start
 bool CParameterMgrPlatformConnector::start(string& strError)
 {

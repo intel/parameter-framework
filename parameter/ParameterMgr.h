@@ -138,10 +138,9 @@ public:
     CParameterHandle* createParameterHandle(const string& strPath, string& strError);
 
     /** Should start fail in case of missing subsystems.
-      * Will fail if called on started instance.
       *
-      * @param[in] bFail: If set to true,  parameterMgr start will fail on missing subsystems
-      *                   If set to false, missing subsystems will fallback on virtual subsystem
+      * @param[in] bFail: If set to true,  parameterMgr start will fail on missing subsystems.
+      *                   If set to false, missing subsystems will fallback on virtual subsystem.
       */
     void setFailureOnMissingSubsystem(bool bFail);
 
@@ -150,6 +149,18 @@ public:
       * @return true if the subsystem will fail on missing subsystem, false otherwise.
       */
     bool getFailureOnMissingSubsystem() const;
+
+    /** Should start fail in failed settings load.
+      *
+      * @param[in] bFail: If set to true, parameterMgr start will fail on failed settings load.
+      *                   If set to false, failed settings load will be ignored.
+      */
+    void setFailureOnFailedSettingsLoad(bool bFail);
+    /** Would start fail in case of failed settings load.
+      *
+      * @return failure on failed settings load policy state.
+      */
+    bool getFailureOnFailedSettingsLoad();
 
     //////////// Tuning /////////////
     // Tuning mode
@@ -395,6 +406,7 @@ private:
 
     // System class Structure loading
     bool loadSettings(string& strError);
+    bool loadSettingsFromConfigFile(string& strError);
 
     // Parse XML file into Root element
     bool xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement, const string& strXmlFilePath, const string& strXmlFolder, ElementLibrary eElementLibrary, const string& strNameAttrituteName = "Name");
@@ -483,5 +495,10 @@ private:
       * If set to false, missing subsystem will fallback on virtual subsystem.
       */
     bool _bFailOnMissingSubsystem;
+    /** If set to true, unparsable or discording domains will abort parameterMgr start.
+      * If set to false, unparsable or discording domains
+      *                 will continue the parameterMgr start with no domains.
+      */
+    bool _bFailOnFailedSettingsLoad;
 };
 
