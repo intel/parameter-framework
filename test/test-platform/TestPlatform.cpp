@@ -57,23 +57,43 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
     _pCommandHandler = new CCommandHandler(this);
 
     // Add command parsers
-    _pCommandHandler->addCommandParser("createExclusiveSelectionCriterionFromStateList", &CTestPlatform::createExclusiveSelectionCriterionFromStateListCommandProcess, 2, "<name> <stateList>", "Create inclusive selection criterion from state name list");
-    _pCommandHandler->addCommandParser("createInclusiveSelectionCriterionFromStateList", &CTestPlatform::createInclusiveSelectionCriterionFromStateListCommandProcess, 2, "<name> <stateList>", "Create exclusive selection criterion from state name list");
+    _pCommandHandler->addCommandParser(
+                "createExclusiveSelectionCriterionFromStateList",
+                &CTestPlatform::createExclusiveSelectionCriterionFromStateList,
+                2, "<name> <stateList>",
+                "Create inclusive selection criterion from state name list");
+    _pCommandHandler->addCommandParser(
+                "createInclusiveSelectionCriterionFromStateList",
+                &CTestPlatform::createInclusiveSelectionCriterionFromStateList,
+                2, "<name> <stateList>",
+                "Create exclusive selection criterion from state name list");
 
-    _pCommandHandler->addCommandParser("createExclusiveSelectionCriterion", &CTestPlatform::createExclusiveSelectionCriterionCommandProcess, 2, "<name> <nbStates>", "Create inclusive selection criterion");
-    _pCommandHandler->addCommandParser("createInclusiveSelectionCriterion", &CTestPlatform::createInclusiveSelectionCriterionCommandProcess, 2, "<name> <nbStates>", "Create exclusive selection criterion");
+    _pCommandHandler->addCommandParser(
+                "createExclusiveSelectionCriterion",
+                &CTestPlatform::createExclusiveSelectionCriterion,
+                2, "<name> <nbStates>", "Create inclusive selection criterion");
+    _pCommandHandler->addCommandParser(
+                "createInclusiveSelectionCriterion",
+                &CTestPlatform::createInclusiveSelectionCriterion,
+                2, "<name> <nbStates>", "Create exclusive selection criterion");
 
-    _pCommandHandler->addCommandParser("start", &CTestPlatform::startParameterMgrCommandProcess, 0, "", "Start ParameterMgr");
+    _pCommandHandler->addCommandParser("start", &CTestPlatform::startParameterMgr,
+                                       0, "", "Start ParameterMgr");
 
-    _pCommandHandler->addCommandParser("setCriterionState", &CTestPlatform::setCriterionStateCommandProcess, 2, "<name> <state>", "Set the current state of a selection criterion");
-    _pCommandHandler->addCommandParser("applyConfigurations", &CTestPlatform::applyConfigurationsCommandProcess, 0, "", "Apply configurations selected by current selection criteria states");
+    _pCommandHandler->addCommandParser("setCriterionState", &CTestPlatform::setCriterionState,
+                                       2, "<name> <state>",
+                                       "Set the current state of a selection criterion");
+    _pCommandHandler->addCommandParser(
+                "applyConfigurations",
+                &CTestPlatform::applyConfigurations,
+                0, "", "Apply configurations selected by current selection criteria states");
 
     _pCommandHandler->addCommandParser("setFailureOnMissingSubsystem",
-                                       &CTestPlatform::setFailureOnMissingSubsystemCommandProcess,
+                                       &CTestPlatform::setFailureOnMissingSubsystem,
                                        1, "true|false", "Set policy for missing subsystems, "
                                        "either abort start or fallback on virtual subsystem");
     _pCommandHandler->addCommandParser("getMissingSubsystemPolicy",
-                                       &CTestPlatform::getFailureOnMissingSubsystemCommandProcess,
+                                       &CTestPlatform::getFailureOnMissingSubsystem,
                                        0, "", "Get policy for missing subsystems, "
                                        "either abort start or fallback on virtual subsystem");
 
@@ -106,31 +126,44 @@ bool CTestPlatform::load(std::string& strError)
 
 //////////////// Remote command parsers
 /// Selection Criterion
-CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createExclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CTestPlatform::CommandReturn CTestPlatform::createExclusiveSelectionCriterionFromStateList(
+        const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createExclusiveSelectionCriterionFromStateList(remoteCommand.getArgument(0), remoteCommand, strResult) ?
+    return createExclusiveSelectionCriterionFromStateList(
+                remoteCommand.getArgument(0), remoteCommand, strResult) ?
             CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createInclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterionFromStateList(
+        const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createInclusiveSelectionCriterionFromStateList(remoteCommand.getArgument(0), remoteCommand, strResult) ?
+    return createInclusiveSelectionCriterionFromStateList(
+                remoteCommand.getArgument(0), remoteCommand, strResult) ?
             CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createExclusiveSelectionCriterionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CTestPlatform::CommandReturn CTestPlatform::createExclusiveSelectionCriterion(
+        const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createExclusiveSelectionCriterion(remoteCommand.getArgument(0), strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0), strResult) ?
+    return createExclusiveSelectionCriterion(
+                remoteCommand.getArgument(0),
+                strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
+                strResult) ?
             CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::createInclusiveSelectionCriterionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterion(
+        const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createInclusiveSelectionCriterion(remoteCommand.getArgument(0), strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0), strResult) ?
+    return createInclusiveSelectionCriterion(
+                remoteCommand.getArgument(0),
+                strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
+                strResult) ?
             CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::startParameterMgrCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CTestPlatform::CommandReturn CTestPlatform::startParameterMgr(
+        const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
@@ -138,8 +171,7 @@ CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::startParameterMgrCo
             CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-CTestPlatform::CCommandHandler::CommandStatus
-    CTestPlatform::setFailureOnMissingSubsystemCommandProcess(
+CTestPlatform::CommandReturn CTestPlatform::setFailureOnMissingSubsystem(
         const IRemoteCommand& remoteCommand, string& strResult)
 {
     const string& strAbort = remoteCommand.getArgument(0);
@@ -154,8 +186,7 @@ CTestPlatform::CCommandHandler::CommandStatus
             CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-CTestPlatform::CCommandHandler::CommandStatus
-    CTestPlatform::getFailureOnMissingSubsystemCommandProcess(
+CTestPlatform::CommandReturn CTestPlatform::getFailureOnMissingSubsystem(
         const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
@@ -167,7 +198,8 @@ CTestPlatform::CCommandHandler::CommandStatus
     return  CTestPlatform::CCommandHandler::EDone;
 }
 
-CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::setCriterionStateCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
+        const IRemoteCommand& remoteCommand, string& strResult)
 {
 
     bool bSuccess;
@@ -194,7 +226,7 @@ CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::setCriterionStateCo
 
 }
 
-CTestPlatform::CCommandHandler::CommandStatus CTestPlatform::applyConfigurationsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
     (void)strResult;

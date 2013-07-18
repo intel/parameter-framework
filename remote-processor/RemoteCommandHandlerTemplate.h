@@ -7,15 +7,21 @@ template <class CCommandParser>
 class TRemoteCommandHandlerTemplate : public IRemoteCommandHandler
 {
 public:
-    // Remote command execution status
+    /** Remote command parser execution return status */
     enum CommandStatus {
-        EDone,
-        ESucceeded,
-        EFailed,
-        EShowUsage
+        EDone, /** Command succeded, return "Done" */
+        ESucceeded, /** Command succeeded */
+        EFailed, /** Command failed */
+        EShowUsage /** Command failed, show usage */
     };
 
-    // Remote command parsers
+    /** Type of the remote command callbacks
+     *
+     * @param[in] remoteCommand contains the arguments of the received command.
+     * @param[out] strResult a string containing the result of the command.
+     *
+     * @return the command execution status, @see CommandStatus
+     */
     typedef CommandStatus (CCommandParser::*RemoteCommandParser)(const IRemoteCommand& remoteCommand, std::string& strResult);
 
 private:

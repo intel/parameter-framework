@@ -38,6 +38,7 @@ class ISelectionCriterionInterface;
 class CTestPlatform
 {
     typedef TRemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
+    typedef CCommandHandler::CommandStatus CommandReturn;
 public:
     CTestPlatform(const string &strclass, int iPortNumber);
     virtual ~CTestPlatform();
@@ -48,34 +49,61 @@ public:
 private:
     //////////////// Remote command parsers
     /// Selection Criterion
-    CCommandHandler::CommandStatus createExclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CCommandHandler::CommandStatus createInclusiveSelectionCriterionFromStateListCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CommandReturn createExclusiveSelectionCriterionFromStateList(
+            const IRemoteCommand& remoteCommand, string& strResult);
+    CommandReturn createInclusiveSelectionCriterionFromStateList(
+            const IRemoteCommand& remoteCommand, string& strResult);
 
-    CCommandHandler::CommandStatus createExclusiveSelectionCriterionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CCommandHandler::CommandStatus createInclusiveSelectionCriterionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CCommandHandler::CommandStatus startParameterMgrCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CCommandHandler::CommandStatus setCriterionStateCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
-    CCommandHandler::CommandStatus applyConfigurationsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult);
+    CommandReturn createExclusiveSelectionCriterion(
+            const IRemoteCommand& remoteCommand, string& strResult);
+    CommandReturn createInclusiveSelectionCriterion(
+            const IRemoteCommand& remoteCommand, string& strResult);
+
+    /** Callback to set a criterion's value, see ISelectionCriterionInterface::setCriterionState.
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
+     *
+     * @param[in] remoteCommand the first argument should be the name of the criterion to set.
+     *                          if the criterion is provided in lexical space,
+     *                              the folowing arguments should be criterion new values
+     *                          if the criterion is provided in numerical space,
+     *                              the second argument should be the criterion new value
+     */
+    CommandReturn setCriterionState(
+            const IRemoteCommand& remoteCommand, string& strResult);
+
+    /** Callback to start the PFW, see CParameterMgrPlatformConnector::start.
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
+     *
+     * @param[in] remoteCommand is ignored
+     */
+    CommandReturn startParameterMgr(
+            const IRemoteCommand& remoteCommand, string& strResult);
+
+    /** Callback to apply PFW configuration, see CParameterMgrPlatformConnector::applyConfiguration.
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
+     *
+     * @param[in] remoteCommand is ignored
+     *
+     * @return EDone (never fails)
+     */
+    CommandReturn applyConfigurations(
+            const IRemoteCommand& remoteCommand, string& strResult);
 
     /** Callback to set if the PFW start should fail in case of missing subsystems.
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
-     * @param[in] remoteCommand contains the arguments of the received command.
-     * @param[out] strResult a string containing the result of the command.
-     *
-     * @return CCommandHandler::ESucceeded if command succeeded
-     *         or CCommandHandler::EFailed otherwise
+     * @param[in] remoteCommand the first argument should be ether "on" or "off".
      */
-    CCommandHandler::CommandStatus setFailureOnMissingSubsystemCommandProcess(
+    CommandReturn setFailureOnMissingSubsystem(
             const IRemoteCommand& remoteCommand, string& strResult);
     /** Callback to get if the PFW start should fail in case of missing subsystems.
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
-     * @param[in] remoteCommand contains the arguments of the received command.
-     * @param[out] strResult a string containing the result of the command.
+     * @param[in] remoteCommand is ignored
      *
-     * @return CCommandHandler::ESucceeded if command succeeded
-     *         or CCommandHandler::EFailed otherwise
+     * @return EDone (never fails)
      */
-    CCommandHandler::CommandStatus getFailureOnMissingSubsystemCommandProcess(
+    CommandReturn getFailureOnMissingSubsystem(
             const IRemoteCommand& remoteCommand, string& strResult);
 
     // Commands
