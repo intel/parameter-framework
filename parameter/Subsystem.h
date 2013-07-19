@@ -160,7 +160,7 @@ private:
 
     /**
      * Find the mapping data defined for the CInstanceConfigurableElement given in parameter, that
-     * corresponds to Susbystem level mapping (Susbystem level mapping keys are defined in
+     * corresponds to Subsystem level mapping (Subsystem level mapping keys are defined in
      * CSubsystemObjectCreator classes).
      * The CInstanceConfigurableElement might as well contain local mapping data.
      *
@@ -169,7 +169,7 @@ private:
      * @param[out] strMappingKey Mapping key defined at the Subsystem level
      * @param[out] strMappingValue Mapping value contained in pInstanceConfigurableElement
      */
-    void findSusbystemLevelMappingKeyValue(
+    void findSubsystemLevelMappingKeyValue(
             const CInstanceConfigurableElement* pInstanceConfigurableElement,
             string& strMappingKey,
             string& strMappingValue) const;

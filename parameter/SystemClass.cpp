@@ -39,7 +39,7 @@
 // A plugin file name is of the form:
 // lib<type>-subsystem.so
 // The plugin symbol is of the form:
-// get<TYPE>SusbystemBuilder
+// get<TYPE>SubsystemBuilder
 
 // Plugin file naming
 const char* gpcPluginPattern = "-subsystem.so";
@@ -47,10 +47,10 @@ const char* gpcLibraryPrefix = "lib";
 
 // Plugin symbol naming
 const char* gpcPluginSymbolPrefix = "get";
-const char* gpcPluginSymbolSuffix = "SusbystemBuilder";
+const char* gpcPluginSymbolSuffix = "SubsystemBuilder";
 
 // Used by subsystem plugins
-typedef void (*GetSusbystemBuilder)(CSubsystemLibrary*);
+typedef void (*GetSubsystemBuilder)(CSubsystemLibrary*);
 
 CSystemClass::CSystemClass() : _pSubsystemLibrary(new CSubsystemLibrary)
 {
@@ -191,9 +191,9 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, string& strError)
         string strPluginSymbol = getPluginSymbol(strPluginFileName);
 
         // Load symbol from library
-        GetSusbystemBuilder pfnGetSusbystemBuilder = (GetSusbystemBuilder)dlsym(lib_handle, strPluginSymbol.c_str());
+        GetSubsystemBuilder pfnGetSubsystemBuilder = (GetSubsystemBuilder)dlsym(lib_handle, strPluginSymbol.c_str());
 
-        if (!pfnGetSusbystemBuilder) {
+        if (!pfnGetSubsystemBuilder) {
 
             strError = "Subsystem plugin " + strPluginFileName + " does not contain " + strPluginSymbol + " symbol.";
 
@@ -201,7 +201,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, string& strError)
         }
 
         // Fill library
-        pfnGetSusbystemBuilder(_pSubsystemLibrary);
+        pfnGetSubsystemBuilder(_pSubsystemLibrary);
 
         // Account for this success
         bAtLeastOneSybsystemPluginSuccessfullyLoaded = true;

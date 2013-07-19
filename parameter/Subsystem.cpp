@@ -213,7 +213,7 @@ const CSubsystemObject* CSubsystem::findSubsystemObjectFromConfigurableElement(
     return pSubsystemObject;
 }
 
-void CSubsystem::findSusbystemLevelMappingKeyValue(
+void CSubsystem::findSubsystemLevelMappingKeyValue(
         const CInstanceConfigurableElement* pInstanceConfigurableElement,
         string& strMappingKey,
         string& strMappingValue) const
@@ -255,7 +255,7 @@ string CSubsystem::getFormattedSubsystemMappingData(
     // Find SubsystemCreator mapping key
     string strMappingKey;
     string strMappingValue; // mapping value where amends are not replaced by their value
-    findSusbystemLevelMappingKeyValue(pInstanceConfigurableElement, strMappingKey, strMappingValue);
+    findSubsystemLevelMappingKeyValue(pInstanceConfigurableElement, strMappingKey, strMappingValue);
 
     // Find SubSystemObject mapping value (with amends replaced by their value)
     return strMappingKey + ":" + pSubsystemObject->getFormattedMappingValue();
