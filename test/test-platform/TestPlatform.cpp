@@ -88,14 +88,27 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
                 &CTestPlatform::applyConfigurations,
                 0, "", "Apply configurations selected by current selection criteria states");
 
-    _pCommandHandler->addCommandParser("setFailureOnMissingSubsystem",
-                                       &CTestPlatform::setFailureOnMissingSubsystem,
-                                       1, "true|false", "Set policy for missing subsystems, "
-                                       "either abort start or fallback on virtual subsystem");
-    _pCommandHandler->addCommandParser("getMissingSubsystemPolicy",
-                                       &CTestPlatform::getFailureOnMissingSubsystem,
-                                       0, "", "Get policy for missing subsystems, "
-                                       "either abort start or fallback on virtual subsystem");
+    _pCommandHandler->addCommandParser(
+            "setFailureOnMissingSubsystem",
+            &CTestPlatform::setter<&CParameterMgrPlatformConnector::setFailureOnMissingSubsystem>,
+            1, "true|false", "Set policy for missing subsystems, "
+            "either abort start or fallback on virtual subsystem.");
+    _pCommandHandler->addCommandParser(
+            "getMissingSubsystemPolicy",
+            &CTestPlatform::getter<&CParameterMgrPlatformConnector::getFailureOnMissingSubsystem>,
+            0, "", "Get policy for missing subsystems, "
+            "either abort start or fallback on virtual subsystem.");
+
+    _pCommandHandler->addCommandParser(
+            "setFailureOnFailedSettingsLoad",
+            &CTestPlatform::setter<&CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad>,
+            1, "true|false",
+            "Set policy for failed settings load, either abort start or continue without domains.");
+    _pCommandHandler->addCommandParser(
+            "getFailedSettingsLoadPolicy",
+            &CTestPlatform::getter<&CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad>,
+            0, "",
+            "Get policy for failed settings load, either abort start or continue without domains.");
 
     // Create server
     _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber, _pCommandHandler);
@@ -171,7 +184,8 @@ CTestPlatform::CommandReturn CTestPlatform::startParameterMgr(
             CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-CTestPlatform::CommandReturn CTestPlatform::setFailureOnMissingSubsystem(
+template<CTestPlatform::setter_t setFunction>
+CTestPlatform::CommandReturn CTestPlatform::setter(
         const IRemoteCommand& remoteCommand, string& strResult)
 {
     const string& strAbort = remoteCommand.getArgument(0);
@@ -182,18 +196,18 @@ CTestPlatform::CommandReturn CTestPlatform::setFailureOnMissingSubsystem(
         return CTestPlatform::CCommandHandler::EShowUsage;
     }
 
-    return _pParameterMgrPlatformConnector->setFailureOnMissingSubsystem(bFail, strResult) ?
+    return (_pParameterMgrPlatformConnector->*setFunction)(bFail, strResult) ?
             CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-CTestPlatform::CommandReturn CTestPlatform::getFailureOnMissingSubsystem(
+template<CTestPlatform::getter_t getFunction>
+CTestPlatform::CommandReturn CTestPlatform::getter(
         const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
     (void)strResult;
 
-    strResult = _pParameterMgrPlatformConnector->getFailureOnMissingSubsystem() ?
-                "true":"false";
+    strResult = (_pParameterMgrPlatformConnector->*getFunction)() ? "true" : "false";
 
     return  CTestPlatform::CCommandHandler::EDone;
 }

@@ -24,13 +24,13 @@
  */
 #pragma once
 
+#include "ParameterMgrPlatformConnector.h"
 #include "RemoteCommandHandlerTemplate.h"
 #include <string>
 #include <list>
 
 using namespace std;
 
-class CParameterMgrPlatformConnector;
 class CParameterMgrPlatformConnectorLogger;
 class CRemoteProcessorServer;
 class ISelectionCriterionInterface;
@@ -89,22 +89,36 @@ private:
     CommandReturn applyConfigurations(
             const IRemoteCommand& remoteCommand, string& strResult);
 
-    /** Callback to set if the PFW start should fail in case of missing subsystems.
+    /** The type of a CParameterMgrPlatformConnector boolean setter. */
+    typedef bool (CParameterMgrPlatformConnector::*setter_t)(bool, string&);
+    /** Template callback to create a _pParameterMgrPlatformConnector boolean setter callback.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
+     * Convert the remoteCommand first argument to a boolean and call the
+     * template parameter function with this value.
+     *
+     * @tparam the boolean setter method.
      * @param[in] remoteCommand the first argument should be ether "on" or "off".
      */
-    CommandReturn setFailureOnMissingSubsystem(
+    template<setter_t setFunction>
+    CommandReturn setter(
             const IRemoteCommand& remoteCommand, string& strResult);
-    /** Callback to get if the PFW start should fail in case of missing subsystems.
+
+    /** The type of a CParameterMgrPlatformConnector boolean getter. */
+    typedef bool (CParameterMgrPlatformConnector::*getter_t)();
+    /** Template callback to create a ParameterMgrPlatformConnector boolean getter callback.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
+     * Convert to boolean returned by the template parameter function converted to a
+     * string ("True", "False") and return it.
+     *
+     * @tparam the boolean getter method.
      * @param[in] remoteCommand is ignored
      *
      * @return EDone (never fails)
      */
-    CommandReturn getFailureOnMissingSubsystem(
-            const IRemoteCommand& remoteCommand, string& strResult);
+    template<getter_t getFunction>
+    CommandReturn getter(const IRemoteCommand& remoteCommand, string& strResult);
 
     // Commands
     bool createExclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult);
