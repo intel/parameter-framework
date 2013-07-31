@@ -36,14 +36,16 @@
 
 #define base CConfigurableElement
 
-// A plugin file name is of the form:
-// lib<type>-subsystem.so
-// The plugin symbol is of the form:
-// get<TYPE>SubsystemBuilder
-
+/**
+ * A plugin file name is of the form:
+ * lib<type>-subsystem.so or lib<type>-subsystem._host.so
+ *
+ * The plugin symbol is of the form:
+ * get<TYPE>SubsystemBuilder
+*/
 // Plugin file naming
-const char* gpcPluginPattern = "-subsystem.so";
-const char* gpcLibraryPrefix = "lib";
+const char* gpcPluginSuffix = "-subsystem";
+const char* gpcPluginPrefix = "lib";
 
 // Plugin symbol naming
 const char* gpcPluginSymbolPrefix = "get";
@@ -142,14 +144,17 @@ bool CSystemClass::loadSubsystems(string& strError, const CSubsystemPlugins* pSu
 string CSystemClass::getPluginSymbol(const string& strPluginPath)
 {
     // Extract plugin type out of file name
-    string strPluginPattern = gpcPluginPattern;
-    string strLibraryPrefix = gpcLibraryPrefix;
+    string strPluginSuffix = gpcPluginSuffix;
+    string strPluginPrefix = gpcPluginPrefix;
 
-    // Remove folder
-    int32_t iSlashPos = strPluginPath.rfind('/') + 1 + strLibraryPrefix.length();
+    // Remove folder and library prefix
+    size_t iPluginTypePos = strPluginPath.rfind('/') + 1 + strPluginPrefix.length();
 
-    // Get type
-    string strPluginType = strPluginPath.substr(iSlashPos, strPluginPath.length() - iSlashPos - strPluginPattern.length());
+    // Get index of -subsystem.so or -subsystem_host.so suffix
+    size_t iSubsystemPos = strPluginPath.find(strPluginSuffix, iPluginTypePos);
+
+    // Get type (between iPluginTypePos and iSubsystemPos)
+    string strPluginType = strPluginPath.substr(iPluginTypePos, iSubsystemPos - iPluginTypePos);
 
     // Make it upper case
     std::transform(strPluginType.begin(), strPluginType.end(), strPluginType.begin(), ::toupper);
