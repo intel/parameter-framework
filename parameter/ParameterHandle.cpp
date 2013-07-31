@@ -87,7 +87,7 @@ bool CParameterHandle::setAsBoolean(bool bValue, string& strError)
     return _pBaseParameter->accessAsBoolean(bValue, true, parameterAccessContext);
 }
 
-bool CParameterHandle::getAsBoolean(bool bValue, string& strError) const
+bool CParameterHandle::getAsBoolean(bool& bValue, string& strError) const
 {
     // Check operation validity
     if (!checkAccessValidity(false, 0, strError)) {

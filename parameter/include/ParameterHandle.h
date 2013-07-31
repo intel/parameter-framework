@@ -45,7 +45,16 @@ public:
 
     // Boolean access
     bool setAsBoolean(bool bValue, std::string& strError);
-    bool getAsBoolean(bool bValue, std::string& strError) const;
+
+    /**
+     * Fetch the parameter value as a boolean.
+     *
+     * @param bValue Reference to a boolean variable where the value will be stored
+     * @param strError Error message if a problem occured
+     *
+     * @return true on success, false otherwise
+     */
+    bool getAsBoolean(bool& bValue, std::string& strError) const;
     bool setAsBooleanArray(const std::vector<bool>& abValues, std::string& strError);
     bool getAsBooleanArray(std::vector<bool>& abValues, std::string& strError) const;
 
