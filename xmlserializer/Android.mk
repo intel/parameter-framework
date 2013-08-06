@@ -19,6 +19,12 @@ common_module := libxmlserializer
 
 common_module_tags := optional
 
+# Do not use the '-Werror' flag because of a compilation issue in libxml
+common_cflags := \
+        -Wall \
+        -Wextra \
+        -Wno-unused-parameter
+
 common_c_includes := \
     $(call include-path-for, libxml2) \
     $(call include-path-for, webcore-icu) \
@@ -37,6 +43,8 @@ LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)
 LOCAL_MODULE_TAGS := $(common_module_tags)
+
+LOCAL_CFLAGS := $(common_cflags)
 
 LOCAL_C_INCLUDES += \
     $(common_c_includes) \
@@ -59,6 +67,8 @@ LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)_host
 LOCAL_MODULE_TAGS := $(common_module_tags)
+
+LOCAL_CFLAGS := $(common_cflags)
 
 LOCAL_C_INCLUDES += \
     $(common_c_includes)

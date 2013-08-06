@@ -101,6 +101,12 @@ common_src_files := \
 common_module := libparameter
 common_module_tags := optional
 
+common_cflags := \
+        -Wall \
+        -Werror \
+        -Wextra \
+        -Wno-unused-parameter
+
 common_c_includes := \
     $(LOCAL_PATH)/include/ \
     $(LOCAL_PATH)/../utility/ \
@@ -118,6 +124,8 @@ LOCAL_COPY_HEADERS_TO := $(common_copy_headers_to)
 LOCAL_COPY_HEADERS := $(common_copy_headers)
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+
+LOCAL_CFLAGS := $(common_cflags)
 
 LOCAL_SRC_FILES := $(common_src_files)
 
@@ -141,6 +149,8 @@ include $(CLEAR_VARS)
 
 LOCAL_COPY_HEADERS_TO := $(common_copy_headers_to)
 LOCAL_COPY_HEADERS := $(common_copy_headers)
+
+LOCAL_CFLAGS := $(common_cflags)
 
 LOCAL_SRC_FILES := $(common_src_files)
 
