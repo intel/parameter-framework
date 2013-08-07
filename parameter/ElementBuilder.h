@@ -29,12 +29,7 @@
 class CElementBuilder
 {
 public:
-    CElementBuilder(const string& strType);
-    virtual ~CElementBuilder();
-
-    const string& getType() const;
+    virtual ~CElementBuilder() {};
 
     virtual CElement* createElement(const CXmlElement& xmlElement) const = 0;
-private:
-    string _strType;
 };

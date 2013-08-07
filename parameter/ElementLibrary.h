@@ -35,15 +35,21 @@ class CElementBuilder;
 
 class CElementLibrary
 {
-    typedef map<string, CElementBuilder*>::iterator ElementBuilderMapIterator;
-    typedef map<string, CElementBuilder*>::const_iterator ElementBuilderMapConstIterator;
+    typedef map<string, const CElementBuilder*> ElementBuilderMap;
+    typedef ElementBuilderMap::iterator ElementBuilderMapIterator;
+    typedef ElementBuilderMap::const_iterator ElementBuilderMapConstIterator;
 
 public:
     CElementLibrary();
     virtual ~CElementLibrary();
 
-    // Filling
-    void addElementBuilder(CElementBuilder* pElementBuilder);
+    /** Add a xml tag and it's corresponding builder in the library.
+       *
+       * @param[in] xmlTag is the tag of an xml element that can be given to the builder to
+       *               create a new element.
+       * @param[in] pElementBuilder is the tag associated element builder.
+       */
+    void addElementBuilder(string type, const CElementBuilder *pElementBuilder);
     void clean();
 
     // Instantiation
@@ -54,5 +60,5 @@ private:
     virtual string getBuilderType(const CXmlElement& xmlElement) const;
 
     // Builders
-    map<string, CElementBuilder*> _elementBuilderMap;
+    ElementBuilderMap _elementBuilderMap;
 };

@@ -57,9 +57,9 @@ CElement* CElementLibrary::createElement(const CXmlElement& xmlElement) const
     return NULL;
 }
 
-void CElementLibrary::addElementBuilder(CElementBuilder* pElementBuilder)
+void CElementLibrary::addElementBuilder(string type, const CElementBuilder *pElementBuilder)
 {
-    _elementBuilderMap[pElementBuilder->getType()] = pElementBuilder;
+    _elementBuilderMap[type] = pElementBuilder;
 }
 
 string CElementLibrary::getBuilderType(const CXmlElement& xmlElement) const

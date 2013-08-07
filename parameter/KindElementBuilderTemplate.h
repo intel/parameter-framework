@@ -30,7 +30,7 @@ template <class ElementType>
 class TKindElementBuilderTemplate : public CElementBuilder
 {
 public:
-    TKindElementBuilderTemplate(const string& strType) : CElementBuilder(strType) {}
+    TKindElementBuilderTemplate() : CElementBuilder() {}
 
     virtual CElement* createElement(const CXmlElement& xmlElement) const
     {

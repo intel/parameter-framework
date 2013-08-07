@@ -135,7 +135,8 @@ bool CSystemClass::loadSubsystems(string& strError, const CSubsystemPlugins* pSu
     log_info("All subsystem plugins successfully loaded");
 
     // Add virtual subsystem builder
-    _pSubsystemLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CVirtualSubsystem>("Virtual"));
+    _pSubsystemLibrary->addElementBuilder("Virtual",
+                                          new TNamedElementBuilderTemplate<CVirtualSubsystem>());
 
     return true;
 }

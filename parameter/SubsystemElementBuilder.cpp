@@ -25,7 +25,8 @@
 #include "SubsystemElementBuilder.h"
 #include "SubsystemLibrary.h"
 
-CSubsystemElementBuilder::CSubsystemElementBuilder(const CSubsystemLibrary* pSubsystemLibrary) : CElementBuilder("Subsystem"), _pSubsystemLibrary(pSubsystemLibrary)
+CSubsystemElementBuilder::CSubsystemElementBuilder(const CSubsystemLibrary* pSubsystemLibrary) :
+    CElementBuilder(), _pSubsystemLibrary(pSubsystemLibrary)
 {
 }
 

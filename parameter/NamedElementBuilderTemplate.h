@@ -30,7 +30,7 @@ template <class ElementType>
 class TNamedElementBuilderTemplate : public CElementBuilder
 {
 public:
-    TNamedElementBuilderTemplate(const string& strType) : CElementBuilder(strType) {}
+    TNamedElementBuilderTemplate() : CElementBuilder() {}
 
     virtual CElement* createElement(const CXmlElement& xmlElement) const
     {

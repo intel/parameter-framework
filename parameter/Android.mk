@@ -16,7 +16,6 @@ common_src_files := \
         PathNavigator.cpp \
         Element.cpp \
         SystemClass.cpp \
-        ElementBuilder.cpp \
         Component.cpp \
         ParameterMgr.cpp \
         SelectionCriteria.cpp \

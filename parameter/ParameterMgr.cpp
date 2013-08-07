@@ -2101,43 +2101,43 @@ void CParameterMgr::feedElementLibraries()
     // Global Configuration handling
     CElementLibrary* pFrameworkConfigurationLibrary = new CElementLibrary;
 
-    pFrameworkConfigurationLibrary->addElementBuilder(new TElementBuilderTemplate<CParameterFrameworkConfiguration>("ParameterFrameworkConfiguration"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CSubsystemPlugins>("SubsystemPlugins"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CPluginLocation>("Location"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("StructureDescriptionFileLocation"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>("SettingsConfiguration"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("ConfigurableDomainsFileLocation"));
-    pFrameworkConfigurationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>("BinarySettingsFileLocation"));
+    pFrameworkConfigurationLibrary->addElementBuilder("ParameterFrameworkConfiguration", new TElementBuilderTemplate<CParameterFrameworkConfiguration>());
+    pFrameworkConfigurationLibrary->addElementBuilder("SubsystemPlugins", new TKindElementBuilderTemplate<CSubsystemPlugins>());
+    pFrameworkConfigurationLibrary->addElementBuilder("Location", new TKindElementBuilderTemplate<CPluginLocation>());
+    pFrameworkConfigurationLibrary->addElementBuilder("StructureDescriptionFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
+    pFrameworkConfigurationLibrary->addElementBuilder("SettingsConfiguration", new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>());
+    pFrameworkConfigurationLibrary->addElementBuilder("ConfigurableDomainsFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
+    pFrameworkConfigurationLibrary->addElementBuilder("BinarySettingsFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
 
     _pElementLibrarySet->addElementLibrary(pFrameworkConfigurationLibrary);
 
     // Parameter creation
     CElementLibrary* pParameterCreationLibrary = new CElementLibrary;
 
-    pParameterCreationLibrary->addElementBuilder(new CSubsystemElementBuilder(getSystemClass()->getSubsystemLibrary()));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CComponentType>("ComponentType"));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CComponentInstance>("Component"));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBitParameterType>("BitParameter"));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBitParameterBlockType>("BitParameterBlock"));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CStringParameterType>("StringParameter"));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CParameterBlockType>("ParameterBlock"));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CBooleanParameterType>("BooleanParameter"));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CIntegerParameterType>("IntegerParameter"));
-    pParameterCreationLibrary->addElementBuilder(new TElementBuilderTemplate<CLinearParameterAdaptation>("LinearAdaptation"));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CEnumParameterType>("EnumParameter"));
-    pParameterCreationLibrary->addElementBuilder(new TElementBuilderTemplate<CEnumValuePair>("ValuePair"));
-    pParameterCreationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CFixedPointParameterType>("FixedPointParameter"));
-    pParameterCreationLibrary->addElementBuilder(new TKindElementBuilderTemplate<CXmlFileIncluderElement>("SubsystemInclude"));
+    pParameterCreationLibrary->addElementBuilder("Subsystem", new CSubsystemElementBuilder(getSystemClass()->getSubsystemLibrary()));
+    pParameterCreationLibrary->addElementBuilder("ComponentType", new TNamedElementBuilderTemplate<CComponentType>());
+    pParameterCreationLibrary->addElementBuilder("Component", new TNamedElementBuilderTemplate<CComponentInstance>());
+    pParameterCreationLibrary->addElementBuilder("BitParameter", new TNamedElementBuilderTemplate<CBitParameterType>());
+    pParameterCreationLibrary->addElementBuilder("BitParameterBlock", new TNamedElementBuilderTemplate<CBitParameterBlockType>());
+    pParameterCreationLibrary->addElementBuilder("StringParameter", new TNamedElementBuilderTemplate<CStringParameterType>());
+    pParameterCreationLibrary->addElementBuilder("ParameterBlock", new TNamedElementBuilderTemplate<CParameterBlockType>());
+    pParameterCreationLibrary->addElementBuilder("BooleanParameter", new TNamedElementBuilderTemplate<CBooleanParameterType>());
+    pParameterCreationLibrary->addElementBuilder("IntegerParameter", new TNamedElementBuilderTemplate<CIntegerParameterType>());
+    pParameterCreationLibrary->addElementBuilder("LinearAdaptation", new TElementBuilderTemplate<CLinearParameterAdaptation>());
+    pParameterCreationLibrary->addElementBuilder("EnumParameter", new TNamedElementBuilderTemplate<CEnumParameterType>());
+    pParameterCreationLibrary->addElementBuilder("ValuePair", new TElementBuilderTemplate<CEnumValuePair>());
+    pParameterCreationLibrary->addElementBuilder("FixedPointParameter", new TNamedElementBuilderTemplate<CFixedPointParameterType>());
+    pParameterCreationLibrary->addElementBuilder("SubsystemInclude", new TKindElementBuilderTemplate<CXmlFileIncluderElement>());
 
     _pElementLibrarySet->addElementLibrary(pParameterCreationLibrary);
 
     // Parameter Configuration Domains creation
     CElementLibrary* pParameterConfigurationLibrary = new CElementLibrary;
 
-    pParameterConfigurationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CConfigurableDomain>("ConfigurableDomain"));
-    pParameterConfigurationLibrary->addElementBuilder(new TNamedElementBuilderTemplate<CDomainConfiguration>("Configuration"));
-    pParameterConfigurationLibrary->addElementBuilder(new TElementBuilderTemplate<CCompoundRule>("CompoundRule"));
-    pParameterConfigurationLibrary->addElementBuilder(new TElementBuilderTemplate<CSelectionCriterionRule>("SelectionCriterionRule"));
+    pParameterConfigurationLibrary->addElementBuilder("ConfigurableDomain", new TNamedElementBuilderTemplate<CConfigurableDomain>());
+    pParameterConfigurationLibrary->addElementBuilder("Configuration", new TNamedElementBuilderTemplate<CDomainConfiguration>());
+    pParameterConfigurationLibrary->addElementBuilder("CompoundRule", new TElementBuilderTemplate<CCompoundRule>());
+    pParameterConfigurationLibrary->addElementBuilder("SelectionCriterionRule", new TElementBuilderTemplate<CSelectionCriterionRule>());
 
     _pElementLibrarySet->addElementLibrary(pParameterConfigurationLibrary);
 }
