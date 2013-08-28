@@ -154,7 +154,7 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
 bool CEnumParameterType::checkValueAgainstRange(const string& strValue, int64_t value, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const
 {
     // Enums are always signed, it means we have one less util bit
-    int64_t maxValue = (1 << (getSize() * 8 - 1)) - 1;
+    int64_t maxValue = getMaxValue<uint64_t>();
     int64_t minValue = -maxValue - 1;
 
     if (!bConversionSucceeded || value < minValue || value > maxValue) {

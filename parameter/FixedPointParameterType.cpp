@@ -271,8 +271,6 @@ void CFixedPointParameterType::getRange(double& dMin, double& dMax) const
 // Out of range error
 string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const
 {
-
-
     ostringstream strStream;
 
     strStream << "Value " << strValue << " standing out of admitted ";
@@ -288,7 +286,7 @@ string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool
     } else {
 
         // Min/Max computation
-        int32_t iMax = (1L << (getSize() * 8 - 1)) - 1;
+        int32_t iMax = getMaxValue<uint32_t>();
         int32_t iMin = -iMax - 1;
 
         strStream << "raw range [";

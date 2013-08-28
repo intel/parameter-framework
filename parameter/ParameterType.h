@@ -25,6 +25,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <limits>
 
 #include "TypeElement.h"
 
@@ -86,6 +87,15 @@ protected:
     bool isEncodable(uint64_t uiData, bool bIsSigned) const;
     // Remove all bits set outside available range
     uint32_t makeEncodable(uint32_t uiData) const;
+
+    /** Compute max value according to the parameter type */
+    template <typename type>
+    type getMaxValue() const
+    {
+        return getSize() < sizeof(type) ?
+                    (static_cast<type>(1) << (getSize() * numeric_limits<unsigned char>::digits - 1)) - 1 :
+                    numeric_limits<type>::max();
+    }
 
 private:
     // Instantiation
