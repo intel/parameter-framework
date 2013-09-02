@@ -33,6 +33,7 @@ class CMappingContext
 {
     // Item structure
     struct SItem {
+        const string* strKey;
         const string* strItem;
         bool bSet;
     };
@@ -49,10 +50,28 @@ public:
     CMappingContext& operator=(const CMappingContext& right);
 
     // Item access
-    bool setItem(uint32_t uiItemType, const string* pStrItem);
+    /**
+     * Set context mapping item key and value.
+     *
+     * @param[in] uiItemType Mapping item index.
+     * @param[in] pStrKey Mapping item key name.
+     * @param[in] pStrItem Mapping item value.
+     *
+     * @return False if already set, true else.
+     */
+    bool setItem(uint32_t uiItemType, const string* pStrKey, const string* pStrItem);
     const string& getItem(uint32_t uiItemType) const;
     uint32_t getItemAsInteger(uint32_t uiItemType) const;
+    /**
+     * Get mapping item value from its key name.
+     *
+     * @param[in] strKey Mapping item key name.
+     *
+     * @return Mapping item value pointer if found, NULL else.
+     */
+    const string* getItem(const string& strKey) const;
     bool iSet(uint32_t uiItemType) const;
+
 private:
     // Item array
     SItem* _pstItemArray;

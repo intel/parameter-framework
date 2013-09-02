@@ -23,6 +23,7 @@
  * UPDATED: 2011-07-27
  */
 #include "MappingContext.h"
+#include <assert.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -66,15 +67,27 @@ CMappingContext& CMappingContext::operator=(const CMappingContext& right)
 }
 
 // Item access
-bool CMappingContext::setItem(uint32_t uiItemType, const string* pStrItem)
+bool CMappingContext::setItem(uint32_t uiItemType, const string* pStrKey, const string* pStrItem)
 {
+    uint32_t uiIndex;
+
     // Do some checks
+    for (uiIndex = 0; uiIndex < _uiNbItemTypes; uiIndex++) {
+
+        // Does key already exist ?
+        assert(_pstItemArray[uiIndex].strKey != pStrKey);
+    }
+
     if (_pstItemArray[uiItemType].bSet) {
 
         // Already set!
         return false;
     }
-    // Get item value
+
+    // Set item key
+    _pstItemArray[uiItemType].strKey = pStrKey;
+
+    // Set item value
     _pstItemArray[uiItemType].strItem = pStrItem;
 
     // Now is set
@@ -96,6 +109,22 @@ uint32_t CMappingContext::getItemAsInteger(uint32_t uiItemType) const
     }
 
     return strtoul(_pstItemArray[uiItemType].strItem->c_str(), NULL, 0);
+}
+
+const string* CMappingContext::getItem(const string& strKey) const
+{
+    uint32_t uiItemType;
+
+    for (uiItemType = 0; uiItemType < _uiNbItemTypes; uiItemType++) {
+
+        if (_pstItemArray[uiItemType].strKey != NULL &&
+            strKey == *_pstItemArray[uiItemType].strKey) {
+
+            return _pstItemArray[uiItemType].strItem;
+        }
+    }
+
+    return NULL;
 }
 
 bool CMappingContext::iSet(uint32_t uiItemType) const

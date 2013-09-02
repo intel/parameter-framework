@@ -189,13 +189,12 @@ private:
      * Feed context with mapping data of the current element
      *
      * @param[in] pInstanceConfigurableElement The element containing mapping data
-     * @param[in] contextMappingKeyArray The list of keys of the context mapping
      * @param[out] context The context mapping to update with the current element mapping values
      * @param[out] strError The formated error string
+     *
      * @return true on success
      */
     bool handleMappingContext(const CInstanceConfigurableElement* pInstanceConfigurableElement,
-                              const vector<string>& contextMappingKeyArray,
                               CMappingContext& context,
                               string& strError) const;
 

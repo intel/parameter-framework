@@ -335,21 +335,20 @@ const
 // Mapping generic context handling
 bool CSubsystem::handleMappingContext(
         const CInstanceConfigurableElement* pInstanceConfigurableElement,
-        const vector<string>& contextMappingKeyArray,
         CMappingContext& context,
         string& strError) const
 {
     // Feed context with found mapping data
     uint32_t uiItem;
 
-    for (uiItem = 0; uiItem < contextMappingKeyArray.size(); uiItem++) {
+    for (uiItem = 0; uiItem < _contextMappingKeyArray.size(); uiItem++) {
 
-        string strKey = contextMappingKeyArray[uiItem];
+        const string& strKey = _contextMappingKeyArray[uiItem];
         const string* pStrValue;
 
         if (pInstanceConfigurableElement->getMappingData(strKey, pStrValue)) {
             // Assign item to context
-            if (!context.setItem(uiItem, pStrValue)) {
+            if (!context.setItem(uiItem, &strKey, pStrValue)) {
 
                 strError = getMappingError(strKey, "Already set", pInstanceConfigurableElement);
 
@@ -438,7 +437,7 @@ bool CSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableEle
     CMappingContext context = _contextStack.top();
 
     // Add mapping in context
-    if (!handleMappingContext(pInstanceConfigurableElement, _contextMappingKeyArray, context,
+    if (!handleMappingContext(pInstanceConfigurableElement, context,
                               strError)) {
 
         return false;
