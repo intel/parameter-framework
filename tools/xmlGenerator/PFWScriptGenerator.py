@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python2
 # -*-coding:utf-8 -*
 
 # INTEL CONFIDENTIAL
@@ -26,6 +26,8 @@ import re
 import sys
 import copy
 import imp
+from itertools import izip
+from itertools import imap
 
 try:
     import argparse
@@ -156,7 +158,7 @@ class PFWScriptContext ():
 class Options () :
     """handle element options"""
     def __init__(self, options=[], optionNames=[]) :
-        self.options = dict(zip(optionNames, options))
+        self.options = dict(izip(optionNames, options))
         # print(options,optionNames,self.options)
 
 
@@ -185,7 +187,7 @@ class Options () :
 """Definition of all element class"""
 # ====================================================
 
-class Element:
+class Element(object):
     """ implement a basic element
 
     It is the class base for all other elements as Domain, Configuration..."""
@@ -219,7 +221,7 @@ class Element:
         options = line.split(self.optionDelimiter, len(self.optionNames) - 1)
 
         # get ride of leftover spaces
-        optionsStrip = list(map(str.strip, options))
+        optionsStrip = list(imap(str.strip, options))
 
         return optionsStrip
 
@@ -321,7 +323,7 @@ class ElementWithTag (Element):
     """Element of this class are declared with a tag  => line == "tag: .*" """
     def extractOptions(self, line) :
         lineWithoutTag = line.split(":", 1)[-1].strip()
-        options = super().extractOptions(lineWithoutTag)
+        options = super(ElementWithTag, self).extractOptions(lineWithoutTag)
         return options
 
 # ----------------------------------------------------------
@@ -338,7 +340,7 @@ class ElementWithInheritance(Element):
         self.Inheritance(contextCopy)
 
         # call the propagate method of all children
-        super().propagate(contextCopy)
+        super(ElementWithInheritance, self).propagate(contextCopy)
 
 
 class ElementWithRuleInheritance(ElementWithInheritance):
@@ -561,7 +563,7 @@ class Configuration (ElementWithRuleInheritance, ElementWithTag) :
         # make all needed composition
         self.composition(context)
 
-        super().propagate(context)
+        super(Configuration, self).propagate(context)
 
     def Inheritance (self, context) :
         """make configuration name and rule inheritance"""
@@ -703,7 +705,7 @@ class GroupConfiguration (Configuration) :
         selfCopy = self.copy()
 
         # make all needed composition
-        super().composition(context)
+        super(GroupConfiguration, self).composition(context)
 
         # add the copy in context for futur configuration composition
         context.getConfigurations().append(selfCopy)
@@ -757,7 +759,7 @@ class Domain (ElementWithRuleInheritance, ElementWithTag) :
         """ propagate name, sequenceAwareness and rule to children"""
 
         # call the propagate method of all children
-        super().propagate(context)
+        super(Domain, self).propagate(context)
 
         self.checkConfigurableElementUnicity()
 
@@ -793,7 +795,7 @@ class Domain (ElementWithRuleInheritance, ElementWithTag) :
 
     def extractOptions(self, line) :
         """Extract options from the definition line"""
-        options = super().extractOptions(line)
+        options = super(Domain, self).extractOptions(line)
 
         sequenceAwareIndex = self.optionNames.index(self.sequenceAwareKeyword)
 
@@ -973,7 +975,7 @@ class CommentWarning(MySyntaxWarning):
 class ChildNotPermitedError(MySyntaxError):
     def __init__(self, line, fatherElement, childElement):
         self.comment = "syntax error in %(line)s, " + fatherElement.tag + " should not have a " + childElement.tag + " child."
-        super().__init__(line)
+        super(ChildNotPermitedError, self).__init__(line)
 
 
 class UnknownElementTypeError(MySyntaxError):
@@ -987,7 +989,7 @@ class SpaceInIndentationError(MySyntaxError):
 """Class creating the DOM elements from a stream"""
 # ============================================
 
-class ElementsFactory  :
+class ElementsFactory(object)  :
     """Element factory, return an instance of the first matching element
 
     Test each element list in elementClass and instanciate it if it's methode match returns True
@@ -1023,7 +1025,7 @@ class ElementsFactory  :
 
 #------------------------------------------------------
 
-class Parser :
+class Parser(object) :
     """Class implementing the parser"""
     def __init__(self):
         self.rankPattern = re.compile(r"^([\t ]*)(.*)")
@@ -1088,12 +1090,12 @@ the rest is the rest of the line."""
                 context.append(myelement)
                 context[-2].addChild(myelement)
 
-            except MySyntaxWarning as ex:
+            except MySyntaxWarning, ex:
                 ex.setLine(line, num + 1)
                 if verbose :
-                    print(ex, file=sys.stderr)
+                    print >>sys.stderr, ex
 
-            except MySyntaxError as ex :
+            except MySyntaxError, ex :
                 ex.setLine(line, num + 1)
                 raise
 
@@ -1103,7 +1105,7 @@ the rest is the rest of the line."""
 # command line argument parser
 # ============================
 
-class ArgparseArgumentParser :
+class ArgparseArgumentParser(object) :
     """class that parse command line arguments with argparse library
 
     result of parsing are the class atributs"""
@@ -1161,7 +1163,7 @@ class ArgparseArgumentParser :
             self.raw = options.rawFlag
 
 
-class OptParseArgumentParser :
+class OptParseArgumentParser(object) :
     """class that parse command line arguments with optparse library
 
     result of parsing are the class atributs"""
@@ -1233,7 +1235,7 @@ class OptParseArgumentParser :
 
 def printE(s):
     """print in stderr"""
-    print(str(s), file=sys.stderr)
+    print >>sys.stderr, str(s)
 
 def main ():
 
@@ -1254,7 +1256,7 @@ def main ():
     try:
         myroot = myparser.parse(options.inputFile, options.debug)
 
-    except MySyntaxError as ex :
+    except MySyntaxError, ex :
         printE(ex)
         printE("EXIT ON FAILURE")
         exit (2)
@@ -1265,7 +1267,7 @@ def main ():
             try :
                 myroot.propagate()
 
-            except MyPropagationError as ex :
+            except MyPropagationError, ex :
                 printE(ex)
                 printE("EXIT ON FAILURE")
                 exit(1)
