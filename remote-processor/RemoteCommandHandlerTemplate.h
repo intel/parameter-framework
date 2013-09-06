@@ -9,10 +9,10 @@ class TRemoteCommandHandlerTemplate : public IRemoteCommandHandler
 public:
     /** Remote command parser execution return status */
     enum CommandStatus {
-        EDone, /** Command succeded, return "Done" */
-        ESucceeded, /** Command succeeded */
-        EFailed, /** Command failed */
-        EShowUsage /** Command failed, show usage */
+        EDone, /**< Command succeded, return "Done" */
+        ESucceeded, /**< Command succeeded */
+        EFailed, /**< Command failed */
+        EShowUsage /**< Command failed, show usage */
     };
 
     /** Type of the remote command callbacks

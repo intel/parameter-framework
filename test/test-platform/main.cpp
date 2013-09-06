@@ -27,19 +27,9 @@
 
 #include <iostream>
 #include <cstdlib>
-extern "C" {
 #include <semaphore.h>
-}
 
 using namespace std;
-
-/*#ifdef SIMULATION
-//const char* gpcParameterFrameworkConfigurationFolderPath = "/home/pat/projects/qt/parameter-framework/XML";
-const char* gpcParameterFrameworkConfigurationFolderPath = "/home/pat/Documents/gingerbread/hardware/intel/PRIVATE/parameter-framework/XML";
-#else
-const char* gpcParameterFrameworkConfigurationFolderPath = "/etc/parameter-framework";
-#endif
-*/
 
 const int iDefaultPortNumber = 5001;
 
