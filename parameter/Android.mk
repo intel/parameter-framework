@@ -149,7 +149,7 @@ include $(CLEAR_VARS)
 LOCAL_COPY_HEADERS_TO := $(common_copy_headers_to)
 LOCAL_COPY_HEADERS := $(common_copy_headers)
 
-LOCAL_CFLAGS := $(common_cflags)
+LOCAL_CFLAGS := $(common_cflags) -O0 -ggdb
 
 LOCAL_SRC_FILES := $(common_src_files)
 
