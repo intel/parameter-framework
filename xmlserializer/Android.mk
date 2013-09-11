@@ -28,6 +28,7 @@ common_cflags := \
 common_c_includes := \
     $(call include-path-for, libxml2) \
     $(call include-path-for, webcore-icu) \
+    $(call include-path-for, icu4c-common)
 
 common_shared_libraries := libicuuc
 common_static_libraries := libxml2
