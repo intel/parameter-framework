@@ -69,6 +69,13 @@ PFWSocket=5000
 tmpFile=$(mktemp)
 testPlatformPID=0
 
+# [Workaround]
+# The build system does not preserve execution right in external prebuild
+for file in "$testPlatform" "$remoteProcess" "$hostConfig" "$PFWScriptGenerator"
+do
+    chmod +x "${HostRoot}/bin/${file}"
+done
+
 # Set environment paths
 export LD_LIBRARY_PATH="$HostRoot/lib:${LD_LIBRARY_PATH:-}"
 
