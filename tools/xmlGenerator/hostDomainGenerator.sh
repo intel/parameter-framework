@@ -124,7 +124,7 @@ retry() {
 
 # Configure the PFW main config file for simulation
 formatConfigFile () {
-    "$hostConfig" $PFWSocket "$(dirname "$1")" <"$1"
+    "$hostConfig" $PFWSocket "$(readlink -f "$(dirname "$1")")" <"$1"
 }
 
 # The initTestPlatform starts a testPlatform instance with the config file given in argument.
@@ -208,7 +208,7 @@ PFWSendCommand="$remoteProcess $PFWHost $PFWSocket"
 
 $PFWSendCommand setTuningMode on
 
-# Send the xml domain tunning file
+echo "Send the xml domain tunning file: $xmlDomainFilePath"
 $PFWSendCommand setDomainsWithSettingsXML "$(cat $xmlDomainFilePath)"
 
 # Send the extended domain description routing files converted to pfw commands
