@@ -127,11 +127,20 @@ formatConfigFile () {
     "$hostConfig" $PFWSocket "$(readlink -f "$(dirname "$1")")" <"$1"
 }
 
+# Test if socket is currently used
+portIsInUse () {
+    port=$1
+    test $(ss -an src :${port}  | wc --lines) -gt 1
+}
+
 # The initTestPlatform starts a testPlatform instance with the config file given in argument.
 # It will also set the PFWSocket global variable to the PFW remote processor listening socket.
 initTestPlatform () {
     # Format the PFW config file
     formatConfigFile "$1" >"$tmpFile"
+
+    # Check port is free
+    ! portIsInUse $TPSocket || return 4
 
     # Start test platform
     $testPlatform "$tmpFile" $TPSocket 2>&5 &
@@ -161,6 +170,10 @@ launchTestPlatform () {
 
     $TPSendCommand setFailureOnMissingSubsystem false
     $TPSendCommand setFailureOnFailedSettingsLoad false
+
+    # Check port is free
+    ! portIsInUse $PFWSocket || return 5
+
     $TPSendCommand start
     if ! retry "$remoteProcess $PFWHost $PFWSocket help" 2 0.1
     then
