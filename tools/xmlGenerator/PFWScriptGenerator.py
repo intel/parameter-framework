@@ -400,8 +400,8 @@ class Path (ElementWithInheritance) :
 
         return context.getPrefix() + \
                 self.PFWCommandParameter + " " + \
-                self.getName() + " " + \
-                self.option.getOption("value") + "\n"
+                self.getName() + " '" + \
+                self.option.getOption("value") + "'\n"
 
     def Inheritance (self, context) :
         """check for path name inheritance"""

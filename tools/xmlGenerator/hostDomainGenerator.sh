@@ -252,8 +252,12 @@ PFWSendCommand="$remoteProcess $PFWHost $PFWSocket"
 
 $PFWSendCommand setTuningMode on
 
-echo "Send the xml domain tunning file: $xmlDomainFilePath"
-$PFWSendCommand setDomainsWithSettingsXML "$(cat $xmlDomainFilePath)"
+# Send the xml domain tunning file
+if test -s "$xmlDomainFilePath"
+then
+    echo "Send the xml domain tunning file: $xmlDomainFilePath"
+    $PFWSendCommand setDomainsWithSettingsXML "$(cat $xmlDomainFilePath)"
+fi
 
 # Send the extended domain description routing files converted to pfw commands
 m4 "$@" |
