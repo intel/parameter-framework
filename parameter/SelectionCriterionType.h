@@ -38,6 +38,16 @@ public:
 
     // From ISelectionCriterionTypeInterface
     virtual bool addValuePair(int iValue, const string& strValue);
+    /**
+     * Retrieve the numerical value from the string representation of the criterion type.
+     *
+     * @param[in] strValue: criterion type value represented as a stream. If the criterion is
+     *                      inclusive, it supports more than one criterion type value delimited
+     *                      by the "|" symbol.
+     * @param[out] iValue: criterion type value represented as an integer.
+     *
+     * @return true if integer value retrieved from the string one, false otherwise.
+     */
     virtual bool getNumericalValue(const string& strValue, int& iValue) const;
     virtual bool getLiteralValue(int iValue, string& strValue) const;
     virtual bool isTypeInclusive() const;
@@ -51,8 +61,19 @@ public:
     // From CElement
     virtual string getKind() const;
 private:
-
+    /**
+     * Retrieve the numerical value from the string representation of the criterion type.
+     *
+     * @param[in] strValue: criterion type value represented as a stream. If the criterion is
+     *                      inclusive, it expects only one criterion type value.
+     * @param[out] iValue: criterion type value represented as an integer.
+     *
+     * @return true if integer value retrieved from the string one, false otherwise.
+     */
+    bool getAtomicNumericalValue(const string& strValue, int& iValue) const;
     bool _bInclusive;
     map<string, int> _numToLitMap;
+
+    static const std::string _strDelimiter; /**< Inclusive criterion type delimiter. */
 };
 

@@ -99,7 +99,9 @@ bool CSelectionCriterion::isNot(int iState) const
 
 bool CSelectionCriterion::includes(int iState) const
 {
-    return (_iState & iState) != 0;
+    // For inclusive criterion, Includes checks if ALL the bit sets in iState are set in the
+    // current _iState.
+    return (_iState & iState) == iState;
 }
 
 bool CSelectionCriterion::excludes(int iState) const

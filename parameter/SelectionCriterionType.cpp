@@ -23,11 +23,19 @@
  * UPDATED: 2011-07-27
  */
 #include "SelectionCriterionType.h"
+#include "Tokenizer.h"
 
 #define base CElement
 
+const string CSelectionCriterionType::_strDelimiter = "|";
+
 CSelectionCriterionType::CSelectionCriterionType(bool bIsInclusive) : _bInclusive(bIsInclusive)
 {
+    // For inclusive criterion type, appends the pair none,0 by default.
+    if (_bInclusive) {
+
+        _numToLitMap["none"] = 0;
+    }
 }
 
 string CSelectionCriterionType::getKind() const
@@ -59,6 +67,30 @@ bool CSelectionCriterionType::addValuePair(int iValue, const string& strValue)
 }
 
 bool CSelectionCriterionType::getNumericalValue(const string& strValue, int& iValue) const
+{
+    if (_bInclusive) {
+
+        Tokenizer tok(strValue, _strDelimiter);
+        vector<string> astrValues = tok.split();
+        uint32_t uiNbValues = astrValues.size();
+        int iResult = 0;
+        uint32_t uiValueIndex;
+
+        // Looping on each string delimited by "|" token and adding the associated value
+        for (uiValueIndex = 0; uiValueIndex < uiNbValues; uiValueIndex++) {
+
+            if (!getAtomicNumericalValue(astrValues[uiValueIndex], iResult)) {
+
+                return false;
+            }
+            iValue |= iResult;
+        }
+        return true;
+    }
+    return getAtomicNumericalValue(strValue, iValue);
+}
+
+bool CSelectionCriterionType::getAtomicNumericalValue(const string& strValue, int& iValue) const
 {
     NumToLitMapConstIt it = _numToLitMap.find(strValue);
 
