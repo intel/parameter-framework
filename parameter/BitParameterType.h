@@ -58,6 +58,14 @@ public:
 
     // CElement
     virtual string getKind() const;
+
+    /**
+     * Get the position of the bit within the bit parameter block.
+     * It corresponds to the "pos" attribute found in the XML file.
+     *
+     * @return position of the bit.
+     */
+    uint32_t getBitPos() const { return _uiBitPos; }
 private:
     // Instantiation
     virtual CInstanceConfigurableElement* doInstantiate() const;
