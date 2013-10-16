@@ -65,6 +65,7 @@ TargetRoot="$ANDROID_PRODUCT_OUT/system"
 # Global variables
 TPSocket=5003
 PFWSocket=5000
+PFWStartTimeout=60
 
 tmpFile=$(mktemp)
 testPlatformPID=0
@@ -82,6 +83,7 @@ export LD_LIBRARY_PATH="$HostRoot/lib:${LD_LIBRARY_PATH:-}"
 # Setup clean trap, it will be called automatically on exit
 clean_up () {
     status=$?
+
     echo "Clean sub process: $testPlatformPID"
     test $testPlatformPID != 0 && kill $testPlatformPID 2>&1
     rm "$tmpFile"
@@ -140,7 +142,9 @@ initTestPlatform () {
     formatConfigFile "$1" >"$tmpFile"
 
     # Check port is free
+    echo "Checking port $TPSocket for TestPlatform"
     ! portIsInUse $TPSocket || return 4
+    echo "Port $TPSocket is available for TestPlatform"
 
     # Start test platform
     $testPlatform "$tmpFile" $TPSocket 2>&5 &
@@ -172,7 +176,9 @@ launchTestPlatform () {
     $TPSendCommand setFailureOnFailedSettingsLoad false
 
     # Check port is free
+    echo "Checking port $PFWSocket for PFW"
     ! portIsInUse $PFWSocket || return 5
+    echo "Port $PFWSocket is available for PFW"
 
     $TPSendCommand start
     if ! retry "$remoteProcess $PFWHost $PFWSocket help" 2 0.1
@@ -215,7 +221,20 @@ deleteEscapedNewLines () {
 linkLibrary libremote-processor_host.so libremote-processor.so
 
 # Start test platform and the PFW
+#
+# Creation of a critical section to ensure that the startup of the PFW (involving
+# sockets creation to communicate with the test platform and the PFW) is serialized
+# between potential concurrent execution of this script
+#
+# Acquire an exclusive lock on the file descriptor 200
+exec 200>/var/lock/.hostDomainGenerator.lockfile
+flock --timeout $PFWStartTimeout 200
+
+# Start the pfw using different socket if it fails
 safeStartPFW
+
+# Release the lock
+flock --unlock 200
 
 PFWSendCommand="$remoteProcess $PFWHost $PFWSocket"
 
