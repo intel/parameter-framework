@@ -74,7 +74,7 @@ LOCAL_CFLAGS := $(common_cflags)
 LOCAL_C_INCLUDES += \
     $(common_c_includes)
 
-LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
+LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
 LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 
 LOCAL_LDLIBS += $(common_ldlibs)

@@ -159,7 +159,7 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 LOCAL_C_INCLUDES += \
     $(common_c_includes)
 
-LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
+LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
 LOCAL_STATIC_LIBRARIES := libxmlserializer_host libutility_host $(common_static_libraries)
 
 LOCAL_LDLIBS += -ldl
