@@ -455,8 +455,6 @@ bool CSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableEle
     switch(pInstanceConfigurableElement->getType()) {
 
         case CInstanceConfigurableElement::EComponent:
-            return true;
-
         case CInstanceConfigurableElement::EParameterBlock:
             // Subsystem object creation is optional in parameter blocks
             bShouldCreateSubsystemObject = false;
