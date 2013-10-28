@@ -49,4 +49,12 @@ LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_IS_HOST_MODULE := true
 include $(BUILD_PREBUILT)
 
+include $(CLEAR_VARS)
+LOCAL_MODULE := lightRoutingUpdate.sh
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_REQUIRED_MODULES :=  \
+    PFWScriptGenerator.py
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_IS_HOST_MODULE := true
+include $(BUILD_PREBUILT)
 ##################################################
