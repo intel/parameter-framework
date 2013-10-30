@@ -132,7 +132,7 @@ formatConfigFile () {
 # Test if socket is currently used
 portIsInUse () {
     port=$1
-    test $(ss -an src :${port}  | wc --lines) -gt 1
+    test $(ss -an | grep ":${port}" | wc --lines) -gt 0
 }
 
 # The initTestPlatform starts a testPlatform instance with the config file given in argument.
