@@ -64,7 +64,7 @@ private:
      *
      * @param[in] remoteCommand the first argument should be the name of the criterion to set.
      *                          if the criterion is provided in lexical space,
-     *                              the folowing arguments should be criterion new values
+     *                              the following arguments should be criterion new values
      *                          if the criterion is provided in numerical space,
      *                              the second argument should be the criterion new value
      */
