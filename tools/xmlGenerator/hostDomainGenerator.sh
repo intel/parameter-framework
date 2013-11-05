@@ -69,6 +69,7 @@ PFWStartTimeout=60
 
 tmpFile=$(mktemp)
 testPlatformPID=0
+lockFile="/var/lock/.hostDomainGenerator.lockfile"
 
 # [Workaround]
 # The build system does not preserve execution right in external prebuild
@@ -87,6 +88,10 @@ clean_up () {
     echo "Clean sub process: $testPlatformPID"
     test $testPlatformPID != 0 && kill $testPlatformPID 2>&1
     rm "$tmpFile"
+
+    # Delete the lockfile
+    rm -f $lockFile
+
     return $status
 }
 
@@ -227,7 +232,11 @@ linkLibrary libremote-processor_host.so libremote-processor.so
 # between potential concurrent execution of this script
 #
 # Acquire an exclusive lock on the file descriptor 200
-exec 200>/var/lock/.hostDomainGenerator.lockfile
+# The file used for locking must be created with non restrictive permissions, so
+# that the script can be used by multiple users.
+exec 200>$lockFile
+chmod -f 777 $lockFile || true
+
 flock --timeout $PFWStartTimeout 200
 
 # Start the pfw using different socket if it fails
