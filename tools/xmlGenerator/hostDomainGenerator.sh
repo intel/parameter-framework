@@ -85,12 +85,15 @@ export LD_LIBRARY_PATH="$HostRoot/lib:${LD_LIBRARY_PATH:-}"
 clean_up () {
     status=$?
 
-    echo "Clean sub process: $testPlatformPID"
-    test $testPlatformPID != 0 && kill $testPlatformPID 2>&1
-    rm "$tmpFile"
+    if test $testPlatformPID != 0
+    then
+        echo "Clean sub process: $testPlatformPID"
+        kill $testPlatformPID 2>&1
+    fi
+    rm "$tmpFile" || true
 
     # Delete the lockfile
-    rm -f $lockFile
+    rm -f $lockFile || true
 
     return $status
 }
