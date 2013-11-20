@@ -74,6 +74,7 @@
 				</xs:unique>
 			</xs:element>
 			<xs:element name="StringParameter" type="StringParameterType"/>
+			<xs:element name="Component" type="ParameterBlockType"/>
 			<xs:element name="ParameterBlock" type="ParameterBlockType">
 				<xs:unique name="ParameterBlockSubElementsUniqueness">
 					<xs:selector xpath="*"/>

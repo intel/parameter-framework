@@ -152,6 +152,7 @@
 			<xs:element ref="FixedPointParameter"/>
 			<xs:element ref="BitParameterBlock"/>
 			<xs:element ref="StringParameter"/>
+			<xs:element name="Component" type="ComponentInstance"/>
 			<xs:element name="ParameterBlock" type="ParameterBlockType">
 				<xs:unique name="ParameterBlockSubElementsUniqueness">
 					<xs:selector xpath="*"/>

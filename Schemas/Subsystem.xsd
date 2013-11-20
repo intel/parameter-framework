@@ -12,10 +12,9 @@
 	</xs:complexType>
 	<xs:complexType name="ComponentType">
 		<xs:sequence>
-			<xs:choice maxOccurs="unbounded">
+			<xs:sequence maxOccurs="unbounded">
 				<xs:group ref="ParameterBlockGroup"/>
-				<xs:element name="Component" type="ComponentInstance"/>
-			</xs:choice>
+			</xs:sequence>
 		</xs:sequence>
 		<xs:attributeGroup ref="Nameable"/>
 		<xs:attribute name="Extends" use="optional"/>
@@ -38,10 +37,9 @@
 			<xs:element name="InstanceDefinition">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:choice maxOccurs="unbounded">
+						<xs:sequence maxOccurs="unbounded">
 							<xs:group ref="ParameterBlockGroup"/>
-							<xs:element name="Component" type="ComponentInstance"/>
-						</xs:choice>
+						</xs:sequence>
 					</xs:sequence>
 				</xs:complexType>
 				<xs:unique name="InstanceDefintionSubElementsUniqueness">

@@ -47,10 +47,9 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:group name="ComponentGroup">
-		<xs:choice>
+		<xs:sequence>
 			<xs:group ref="ParameterBlockGroup"/>
-			<xs:element name="Component" type="ComponentType"/>
-		</xs:choice>
+		</xs:sequence>
 	</xs:group>
 	<xs:complexType name="ComponentType">
 		<xs:sequence>
