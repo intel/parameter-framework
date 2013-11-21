@@ -49,7 +49,7 @@ bool CPathNavigator::navigateThrough(const string& strItemName, string& strError
 {
     if (!_bValid) {
 
-        strError = "Path not well formed";
+        strError = "Path not well formed: " + getCurrentPath();
 
         return false;
     }
@@ -58,14 +58,16 @@ bool CPathNavigator::navigateThrough(const string& strItemName, string& strError
 
     if (!pStrChildName) {
 
-        strError = "Path not complete";
+        strError = "Path not complete: " + getCurrentPath() +
+                   ", trying to access to " + strItemName;
 
         return false;
     }
 
     if (*pStrChildName != strItemName) {
 
-        strError = "Path not found";
+        strError = "Path not found: " + getCurrentPath() +
+                   ", expected: " + strItemName + " but found: " + *pStrChildName;
 
         return false;
     }

@@ -715,7 +715,7 @@ const CConfigurableElement* CParameterMgr::getConfigurableElement(const string& 
 
     if (!pElement) {
 
-        strError = "Path not found";
+        strError = "Path not found: " + strPath;
 
         return NULL;
     }
@@ -734,14 +734,14 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
     if (!pConfigurableElement) {
 
         // Element not found
-        strError = "Element not found";
+        strError = "Element not found: " + strPath;
         return NULL;
     }
 
     if (!pConfigurableElement->isParameter()) {
 
         // Element is not parameter
-        strError = "Not a parameter";
+        strError = "Not a parameter: " + strPath;
 
         return NULL;
     }

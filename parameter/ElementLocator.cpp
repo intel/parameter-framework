@@ -48,7 +48,7 @@ bool CElementLocator::locate(const string& strPath, CElement** ppElement, string
 
         if (_bStrict) {
 
-            strError = "Path not found";
+            strError = "Path not found: " + strPath;
 
             return false;
         }
@@ -58,7 +58,7 @@ bool CElementLocator::locate(const string& strPath, CElement** ppElement, string
 
     if (*pStrChildName != _pSubRootElement->getName()) {
 
-        strError = "Path not found";
+        strError = "Path not found: " + strPath;
 
         return false;
     }
@@ -68,7 +68,7 @@ bool CElementLocator::locate(const string& strPath, CElement** ppElement, string
 
     if (!*ppElement) {
 
-        strError = "Path not found";
+        strError = "Path not found: " + strPath;
 
         return false;
     }
