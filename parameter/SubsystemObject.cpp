@@ -190,30 +190,34 @@ void CSubsystemObject::blackboardWrite(const void* pvData, uint32_t uiSize)
 // Logging
 void CSubsystemObject::log_info(const string& strMessage, ...) const
 {
-    char acBuffer[512];
+    char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vsnprintf(acBuffer, sizeof(acBuffer), strMessage.c_str(), listPointer);
+    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
 
     va_end(listPointer);
 
-    _pInstanceConfigurableElement->log_info(acBuffer);
+    _pInstanceConfigurableElement->log_info(pacBuffer);
+
+    free(pacBuffer);
 }
 
 void CSubsystemObject::log_warning(const string& strMessage, ...) const
 {
-    char acBuffer[512];
+    char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vsnprintf(acBuffer, sizeof(acBuffer), strMessage.c_str(), listPointer);
+    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
 
     va_end(listPointer);
 
-    _pInstanceConfigurableElement->log_warning(acBuffer);
+    _pInstanceConfigurableElement->log_warning(pacBuffer);
+
+    free(pacBuffer);
 }
 
 // Configurable element retrieval

@@ -29,6 +29,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 #include <sstream>
 
 CElement::CElement(const string& strName) : _strName(strName), _pParent(NULL)
@@ -43,30 +44,34 @@ CElement::~CElement()
 // Logging
 void CElement::log_info(const string& strMessage, ...) const
 {
-    char acBuffer[512];
+    char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vsnprintf(acBuffer, sizeof(acBuffer), strMessage.c_str(), listPointer);
+    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
 
     va_end(listPointer);
 
-    doLog(false, acBuffer);
+    doLog(false, pacBuffer);
+
+    free(pacBuffer);
 }
 
 void CElement::log_warning(const string& strMessage, ...) const
 {
-    char acBuffer[512];
+    char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vsnprintf(acBuffer, sizeof(acBuffer), strMessage.c_str(), listPointer);
+    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
 
     va_end(listPointer);
 
-    doLog(true, acBuffer);
+    doLog(true, pacBuffer);
+
+    free(pacBuffer);
 }
 
 // Log each element of the string list
