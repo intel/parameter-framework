@@ -35,6 +35,7 @@ public:
     CRequestMessage();
 
     // Command Name
+    void setCommand(const string& strCommand);
     virtual const string& getCommand() const;
 
     // Arguments
@@ -58,8 +59,6 @@ private:
     virtual void collectReceivedData();
     // Size
     virtual uint32_t getDataSize() const;
-    // Command
-    void setCommand(const string& strCommand);
     // Trim input string
     static string trim(const string& strToTrim);
 
