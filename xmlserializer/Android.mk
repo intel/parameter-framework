@@ -57,6 +57,8 @@ LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 
 LOCAL_LDLIBS += $(common_ldlibs)
 
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+
 include $(BUILD_STATIC_LIBRARY)
 
 ##############################
@@ -78,5 +80,7 @@ LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
 LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 
 LOCAL_LDLIBS += $(common_ldlibs)
+
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
 include $(BUILD_HOST_STATIC_LIBRARY)
