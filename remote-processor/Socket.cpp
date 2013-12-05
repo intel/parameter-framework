@@ -31,11 +31,19 @@
 #include <strings.h>
 #include <fcntl.h>
 #include <netinet/in.h>
+#include <netinet/tcp.h>
 #include <sys/time.h>
 
 CSocket::CSocket() : _iSockFd(socket(AF_INET, SOCK_STREAM, 0))
 {
     assert(_iSockFd != -1);
+
+    int iNoDelay = 1;
+    // (see man 7 tcp)
+    // Setting TCP_NODELAY allows us sending commands and responses as soon as
+    // they are ready to be sent, instead of waiting for more data on the
+    // socket.
+    setsockopt(_iSockFd, IPPROTO_TCP, TCP_NODELAY, (char *)&iNoDelay, sizeof(iNoDelay));
 }
 
 CSocket::CSocket(int iSockId) : _iSockFd(iSockId)
