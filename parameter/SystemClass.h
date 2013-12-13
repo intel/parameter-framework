@@ -105,5 +105,6 @@ private:
 
     // Subsystem factory
     CSubsystemLibrary* _pSubsystemLibrary;
+    list<void*> _subsystemLibraries; /**< Contains the list of all open plugin libs. */
 };
 

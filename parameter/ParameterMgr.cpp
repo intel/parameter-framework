@@ -276,6 +276,7 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _pElementLibrarySet(new CElementLibrarySet),
     _strXmlConfigurationFilePath(strConfigurationFilePath),
     _pSubsystemPlugins(NULL),
+    _handleLibRemoteProcessor(NULL),
     _uiStructureChecksum(0),
     _pRemoteProcessorServer(NULL),
     _uiMaxCommandUsageLength(0),
@@ -331,6 +332,11 @@ CParameterMgr::~CParameterMgr()
     delete _pCommandHandler;
     delete _pMainParameterBlackboard;
     delete _pElementLibrarySet;
+
+    // Close remote processor library
+    if (_handleLibRemoteProcessor != NULL) {
+        dlclose(_handleLibRemoteProcessor);
+    }
 
     // Tuning Mode Mutex
     pthread_mutex_destroy(&_blackboardMutex);
@@ -2195,9 +2201,9 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
         log_info("Loading remote processor library");
 
         // Load library
-        void* lib_handle = dlopen("libremote-processor.so", RTLD_NOW);
+        _handleLibRemoteProcessor = dlopen("libremote-processor.so", RTLD_NOW);
 
-        if (!lib_handle) {
+        if (!_handleLibRemoteProcessor) {
 
             // Return error
             const char* pcError = dlerror();
@@ -2213,7 +2219,7 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
             return false;
         }
 
-        CreateRemoteProcessorServer pfnCreateRemoteProcessorServer = (CreateRemoteProcessorServer)dlsym(lib_handle, "createRemoteProcessorServer");
+        CreateRemoteProcessorServer pfnCreateRemoteProcessorServer = (CreateRemoteProcessorServer)dlsym(_handleLibRemoteProcessor, "createRemoteProcessorServer");
 
         if (!pfnCreateRemoteProcessorServer) {
 

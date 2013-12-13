@@ -62,6 +62,13 @@ CSystemClass::CSystemClass() : _pSubsystemLibrary(new CSubsystemLibrary)
 CSystemClass::~CSystemClass()
 {
     delete _pSubsystemLibrary;
+
+    // Close all previously opened libraries
+    while (!_subsystemLibraries.empty())
+    {
+      dlclose(_subsystemLibraries.back());
+      _subsystemLibraries.pop_back();
+    }
 }
 
 bool CSystemClass::childrenAreDynamic() const
@@ -215,6 +222,9 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
 
             continue;
         }
+
+        // Store libraries handles
+        _subsystemLibraries.push_back(lib_handle);
 
         // Get plugin symbol
         string strPluginSymbol = getPluginSymbol(strPluginFileName);
