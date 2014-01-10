@@ -30,6 +30,7 @@
 #include <assert.h>
 #include <netdb.h>
 #include <strings.h>
+#include <sstream>
 
 #include <stdio.h>
 #include <errno.h>
@@ -54,14 +55,18 @@ bool CListeningSocket::listen(uint16_t uiPort)
     // Bind
     if (bind(getFd(), (struct sockaddr*)&server_addr, sizeof(struct sockaddr)) == -1) {
 
-        perror("CListeningSocket::listen::bind");
+        ostringstream oss;
+        oss << "CListeningSocket::listen::bind port " << uiPort;
+        perror(oss.str().c_str());
 
         return false;
     }
 
     if (::listen(getFd(), 5) == -1) {
 
-        perror("CListeningSocket::listen::bind");
+        ostringstream oss;
+        oss << "CListeningSocket::listen::bind port " << uiPort;
+        perror(oss.str().c_str());
 
         return false;
     }

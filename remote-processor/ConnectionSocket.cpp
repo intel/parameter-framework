@@ -28,6 +28,7 @@
 #include <netinet/in.h>
 #include <stdio.h>
 #include <errno.h>
+#include <sstream>
 
 #define base CSocket
 
@@ -57,7 +58,9 @@ bool CConnectionSocket::connect(const string& strRemote, uint16_t uiPort, string
     // Connect
     if (::connect(getFd(), (struct sockaddr *)&server_addr, sizeof(struct sockaddr))) {
 
-        perror("CConnectionSocket::connect::connect");
+        ostringstream oss;
+        oss << "CConnectionSocket::connect::connect on port: " << uiPort;
+        perror(oss.str().c_str());
 
         strError = "Unable to connnect to target :-(";
 

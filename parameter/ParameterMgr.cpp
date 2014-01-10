@@ -79,6 +79,7 @@
 #include "XmlMemoryDocSink.h"
 #include "XmlMemoryDocSource.h"
 #include "Utility.h"
+#include <sstream>
 
 #define base CElement
 
@@ -2235,7 +2236,10 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
         // Start
         if (!_pRemoteProcessorServer->start()) {
 
-            strError = "Unable to start remote processor server";
+            ostringstream oss;
+            oss << "ParameterMgr: Unable to start remote processor server on port "
+                << getConstFrameworkConfiguration()->getServerPort();
+            strError = oss.str();
 
             return false;
         }
