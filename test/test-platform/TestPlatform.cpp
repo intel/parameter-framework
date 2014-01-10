@@ -29,6 +29,7 @@
 #include <assert.h>
 #include <errno.h>
 #include <convert.hpp>
+#include <sstream>
 #include "TestPlatform.h"
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteProcessorServer.h"
@@ -53,6 +54,7 @@ public:
 CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exitSemaphore) :
     _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
     _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger),
+    _portNumber(iPortNumber),
     _exitSemaphore(exitSemaphore)
 {
     _pCommandHandler = new CCommandHandler(this);
@@ -146,7 +148,9 @@ bool CTestPlatform::load(std::string& strError)
     // Start remote processor server
     if (!_pRemoteProcessorServer->start()) {
 
-        strError = "Unable to start remote processor server";
+        ostringstream oss;
+        oss << "TestPlatform: Unable to start remote processor server on port " << _portNumber;
+        strError = oss.str();
 
         return false;
     }
