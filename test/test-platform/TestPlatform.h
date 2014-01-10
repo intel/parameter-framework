@@ -28,6 +28,7 @@
 #include "RemoteCommandHandlerTemplate.h"
 #include <string>
 #include <list>
+#include <semaphore.h>
 
 using namespace std;
 
@@ -40,7 +41,7 @@ class CTestPlatform
     typedef TRemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
     typedef CCommandHandler::CommandStatus CommandReturn;
 public:
-    CTestPlatform(const string &strclass, int iPortNumber);
+    CTestPlatform(const string &strclass, int iPortNumber, sem_t& exitSemaphore);
     virtual ~CTestPlatform();
 
     // Init
@@ -89,6 +90,14 @@ private:
     CommandReturn applyConfigurations(
             const IRemoteCommand& remoteCommand, string& strResult);
 
+    /** Callback to exit the test-platform.
+     *
+     * @param[in] remoteCommand is ignored
+     *
+     * @return EDone (never fails)
+     */
+    CommandReturn exit(const IRemoteCommand& remoteCommand, string& strResult);
+
     /** The type of a CParameterMgrPlatformConnector boolean setter. */
     typedef bool (CParameterMgrPlatformConnector::*setter_t)(bool, string&);
     /** Template callback to create a _pParameterMgrPlatformConnector boolean setter callback.
@@ -112,7 +121,7 @@ private:
      * Convert to boolean returned by the template parameter function converted to a
      * string ("True", "False") and return it.
      *
-     * @tparam the boolean getter method.
+     * @param the boolean getter method.
      * @param[in] remoteCommand is ignored
      *
      * @return EDone (never fails)
@@ -140,5 +149,8 @@ private:
 
     // Remote Processor Server
     CRemoteProcessorServer* _pRemoteProcessorServer;
+
+    // Semaphore used by calling thread to avoid exiting
+    sem_t& _exitSemaphore;
 };
 

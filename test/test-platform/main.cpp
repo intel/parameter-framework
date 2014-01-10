@@ -44,13 +44,20 @@ int main(int argc, char *argv[])
 
     string strError;
 
+    // Init semaphore
+    sem_t sem;
+
+    sem_init(&sem, false, 0);
+
     // Create param mgr
-    CTestPlatform testPlatform(argv[1], argc > 2 ? atoi(argv[2]) : iDefaultPortNumber);
+    CTestPlatform testPlatform(argv[1], argc > 2 ? atoi(argv[2]) : iDefaultPortNumber, sem);
 
     // Start platformmgr
     if (!testPlatform.load(strError)) {
 
         cerr << strError << endl;
+
+        sem_destroy(&sem);
 
         return -1;
     }
@@ -58,10 +65,6 @@ int main(int argc, char *argv[])
     // Change criteria
 
     // Block here
-    sem_t sem;
-
-    sem_init(&sem, false, 0);
-
     sem_wait(&sem);
 
     sem_destroy(&sem);

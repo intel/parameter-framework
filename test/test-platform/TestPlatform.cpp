@@ -50,13 +50,16 @@ public:
     }
 };
 
-CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
+CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exitSemaphore) :
     _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
-    _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger)
+    _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger),
+    _exitSemaphore(exitSemaphore)
 {
     _pCommandHandler = new CCommandHandler(this);
 
     // Add command parsers
+    _pCommandHandler->addCommandParser("exit", &CTestPlatform::exit,
+                                       0, "", "Exit TestPlatform");
     _pCommandHandler->addCommandParser(
                 "createExclusiveSelectionCriterionFromStateList",
                 &CTestPlatform::createExclusiveSelectionCriterionFromStateList,
@@ -122,6 +125,20 @@ CTestPlatform::~CTestPlatform()
     delete _pCommandHandler;
     delete _pParameterMgrPlatformConnectorLogger;
     delete _pParameterMgrPlatformConnector;
+}
+
+CTestPlatform::CommandReturn CTestPlatform::exit(
+        const IRemoteCommand& remoteCommand, string& strResult)
+{
+    (void)remoteCommand;
+
+    // Stop local server
+    _pRemoteProcessorServer->stop();
+
+    // Release the main blocking semaphore to quit application
+    sem_post(&_exitSemaphore);
+
+    return CTestPlatform::CCommandHandler::EDone;
 }
 
 bool CTestPlatform::load(std::string& strError)
