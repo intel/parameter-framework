@@ -55,9 +55,11 @@ remoteProcess="remote-process_host"
 
 hostConfig="hostConfig.py"
 PFWScriptGenerator="PFWScriptGenerator.py"
+portAllocator="portAllocator.py"
 
 TPHost=localhost
 PFWHost=localhost
+TPCreated=false
 
 HostRoot="$ANDROID_HOST_OUT"
 TargetRoot="$ANDROID_PRODUCT_OUT/system"
@@ -68,12 +70,10 @@ PFWSocket=5000
 PFWStartTimeout=60
 
 tmpFile=$(mktemp)
-testPlatformPID=0
-lockFile="/var/lock/.hostDomainGenerator.lockfile"
 
 # [Workaround]
 # The build system does not preserve execution right in external prebuild
-for file in "$testPlatform" "$remoteProcess" "$hostConfig" "$PFWScriptGenerator"
+for file in "$testPlatform" "$remoteProcess" "$hostConfig" "$PFWScriptGenerator" "$portAllocator"
 do
     chmod +x "${HostRoot}/bin/${file}"
 done
@@ -85,16 +85,17 @@ export LD_LIBRARY_PATH="$HostRoot/lib:${LD_LIBRARY_PATH:-}"
 clean_up () {
     status=$?
 
-    if test $testPlatformPID != 0
+    # Exit the test-platform only if it was created by this process
+    if $TPCreated
     then
-        echo "Clean sub process: $testPlatformPID"
-        kill $testPlatformPID 2>&1
+        echo "Exiting test-platform listening on port $TPSocket"
+        $remoteProcess $TPHost $TPSocket exit
     fi
+
+    echo "Cleaning $tmpFile ..."
     rm "$tmpFile" || true
 
-    # Delete the lockfile
-    rm -f $lockFile || true
-
+    echo "Cleaning status: $status ..."
     return $status
 }
 
@@ -108,12 +109,22 @@ linkLibrary () {
     local src="$1"
     local dest="$2"
     local path=$(find $HostRoot/lib -name "$src")
-    if test "$(basename "$path")" != "$dest"
+
+    # Check that both names are different, otherwise there is an error
+    if ! test "$(basename "$path")" != "$dest"
     then
-        ln -fs "$src" "$(dirname "$path")/$dest"
-    else
+        echo "Cannot link $dest to $src !"
         return 1
     fi
+
+    # Check that destination file does not already exist
+    if ! test -f "$(dirname "$path")/$dest"
+    then
+        # Create the symlink. Do not force if it has been created after the previous
+        # test, in this case simply ignore the error
+        ln -s "$src" "$(dirname "$path")/$dest" || true
+    fi
+    return 0
 }
 
 # The retry function will execute the provided command nbRety times util success.
@@ -137,34 +148,25 @@ formatConfigFile () {
     "$hostConfig" $PFWSocket "$(readlink -f "$(dirname "$1")")" <"$1"
 }
 
-# Test if socket is currently used
-portIsInUse () {
-    port=$1
-    test $(ss -an | grep ":${port}" | wc --lines) -gt 0
-}
-
 # The initTestPlatform starts a testPlatform instance with the config file given in argument.
 # It will also set the PFWSocket global variable to the PFW remote processor listening socket.
 initTestPlatform () {
     # Format the PFW config file
     formatConfigFile "$1" >"$tmpFile"
 
-    # Check port is free
-    echo "Checking port $TPSocket for TestPlatform"
-    ! portIsInUse $TPSocket || return 4
-    echo "Port $TPSocket is available for TestPlatform"
-
     # Start test platform
-    $testPlatform "$tmpFile" $TPSocket 2>&5 &
-    testPlatformPID=$!
+    echo "Starting test-platform on port $TPSocket ..."
+    $testPlatform -d "$tmpFile" $TPSocket 2>&5
 
-    if ! retry "$remoteProcess $TPHost $TPSocket help" 2 0.1
+    res=$?
+    if test $res -ne 0
     then
         echo "Unable to launch the simulation platform (using socket $TPSocket)" >&5
         return 4
-    else
-        echo "Test platform successfuly loaded!"
     fi
+
+    echo "Test platform successfuly loaded!"
+    return 0
 }
 
 # Execute a command for each input line, stopping in case of error
@@ -183,25 +185,40 @@ launchTestPlatform () {
     $TPSendCommand setFailureOnMissingSubsystem false
     $TPSendCommand setFailureOnFailedSettingsLoad false
 
-    # Check port is free
-    echo "Checking port $PFWSocket for PFW"
-    ! portIsInUse $PFWSocket || return 5
-    echo "Port $PFWSocket is available for PFW"
-
+    echo "Asking test-platform (port $TPSocket) to start a new PFW instance (listening on port $PFWSocket) ..."
     $TPSendCommand start
-    if ! retry "$remoteProcess $PFWHost $PFWSocket help" 2 0.1
+    res=$?
+    if test $res -ne 0
     then
-        echo "Unable to launch the parameter framework (using socket $PFWSocket)" >&5
+        echo "Unable to launch the parameter framework (using port $PFWSocket)" >&5
         return 5
-    else
-        echo "Parameter framework successfully started!"
+    fi
+
+    echo "Parameter framework successfully started!"
+    return 0
+}
+
+startPFW () {
+    # Init the test-platform
+    initTestPlatform "$PFWconfigurationFilePath" || return 1
+    TPCreated=true
+
+    # Ask the test-platform to start the PFW
+    if ! launchTestPlatform "$CriterionFilePath"
+    then
+        # If PFW didn't start, exit the current test-platform, and return failure in
+        # order to choose new socket ports
+        echo "Exiting test-platform listening on port $TPSocket"
+        $remoteProcess $TPHost $TPSocket exit
+        TPCreated=false
+        return 1
     fi
 }
 
-
-startPFW () {
-    initTestPlatform "$PFWconfigurationFilePath" &&
-        launchTestPlatform "$CriterionFilePath"
+# Get a new pair of available ports for TP and PFW sockets
+changeSocketsPorts() {
+    TPSocket=$($portAllocator) || return 1
+    PFWSocket=$($portAllocator) || return 1
 }
 
 # Start the pfw using different socket if it fails
@@ -209,15 +226,19 @@ safeStartPFW () {
     local retry=0
     local nbRetry=10
 
+    # Choose a new pair of socket ports
+    changeSocketsPorts
+    echo "Trying to start test-platform and PFW, with socket $TPSocket and $PFWSocket"
+
     while ! startPFW
     do
         (($retry < $nbRetry)) || return 1
         retry=$(($retry + 1))
 
-        clean_up || true
-        TPSocket=$(($TPSocket + 10))
-        PFWSocket=$(($PFWSocket + 10))
-        echo "unable to start PFW, try again with socket $TPSocket and $PFWSocket"
+        # Choose a new pair of socket ports
+        changeSocketsPorts || continue
+
+        echo "Unable to start PFW, try again with socket $TPSocket and $PFWSocket"
     done
 }
 
@@ -229,24 +250,8 @@ deleteEscapedNewLines () {
 linkLibrary libremote-processor_host.so libremote-processor.so
 
 # Start test platform and the PFW
-#
-# Creation of a critical section to ensure that the startup of the PFW (involving
-# sockets creation to communicate with the test platform and the PFW) is serialized
-# between potential concurrent execution of this script
-#
-# Acquire an exclusive lock on the file descriptor 200
-# The file used for locking must be created with non restrictive permissions, so
-# that the script can be used by multiple users.
-exec 200>$lockFile
-chmod -f 777 $lockFile || true
-
-flock --timeout $PFWStartTimeout 200
-
 # Start the pfw using different socket if it fails
 safeStartPFW
-
-# Release the lock
-flock --unlock 200
 
 PFWSendCommand="$remoteProcess $PFWHost $PFWSocket"
 
