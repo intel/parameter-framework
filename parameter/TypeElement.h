@@ -64,6 +64,15 @@ public:
     // Array Length
     uint32_t getArrayLength() const;
 
+    /**
+     * Converts size optimized integer input data (int8, int16, int32) to plain int
+     *
+     * @param[in] iSizeOptimizedData the data to convert
+     *
+     * @return the data with int type
+     */
+    virtual int toPlainInteger(int iSizeOptimizedData) const;
+
 protected:
     // Object creation
     virtual void populate(CElement* pElement) const;

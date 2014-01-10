@@ -59,8 +59,12 @@ public:
     // Element properties
     virtual void showProperties(string& strResult) const;
 
+    // Integer conversion
+    virtual int toPlainInteger(int iSizeOptimizedData) const;
+
     // CElement
     virtual string getKind() const;
+
 private:
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;

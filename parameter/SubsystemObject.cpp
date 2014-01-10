@@ -28,6 +28,7 @@
 #include "ParameterBlackboard.h"
 #include "ParameterAccessContext.h"
 #include "MappingContext.h"
+#include "ParameterType.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -80,6 +81,23 @@ string CSubsystemObject::asString(uint32_t uiValue)
     ostr << uiValue;
 
     return ostr.str();
+}
+
+int CSubsystemObject::toPlainInteger(
+        const CInstanceConfigurableElement *instanceConfigurableElement,
+        int sizeOptimizedData)
+{
+    if (instanceConfigurableElement) {
+
+        // Get actual element type
+        const CTypeElement *typeElement =
+            static_cast<const CParameterType *>(instanceConfigurableElement->getTypeElement());
+
+        // Do the extension
+        return typeElement->toPlainInteger(sizeOptimizedData);
+    }
+
+    return sizeOptimizedData;
 }
 
 // Default back synchronization

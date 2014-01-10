@@ -56,6 +56,17 @@ protected:
     static uint32_t asInteger(const string& strValue);
     static string asString(uint32_t uiValue);
 
+    /**
+     * Conversion of int8, int16, int32 to int (taking care of sign extension)
+     *
+     * @param[in] instanceConfigurableElement pointer to configurable element instance
+     * @param[in] sizeOptimizedData data to convert
+     *
+     * @return the data converted to int
+     */
+    int toPlainInteger(const CInstanceConfigurableElement *instanceConfigurableElement,
+                       int sizeOptimizedData);
+
     // Sync to/from HW
     virtual bool sendToHW(string& strError);
     virtual bool receiveFromHW(string& strError);

@@ -343,6 +343,16 @@ uint32_t CIntegerParameterType::getDefaultValue() const
     return _uiMin;
 }
 
+int CIntegerParameterType::toPlainInteger(int iSizeOptimizedData) const
+{
+    if (_bSigned) {
+
+        signExtend(iSizeOptimizedData);
+    }
+
+    return base::toPlainInteger(iSizeOptimizedData);
+}
+
 // Convert value provided by the user as a string into an int64
 bool CIntegerParameterType::convertValueFromString(const string& strValue, int64_t& iData, CParameterAccessContext& parameterAccessContext) const {
 

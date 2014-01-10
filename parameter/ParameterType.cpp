@@ -112,13 +112,11 @@ CInstanceConfigurableElement* CParameterType::doInstantiate() const
     }
 }
 
-// Sign extension (32 bits)
 void CParameterType::signExtend(int32_t& iData) const
 {
     doSignExtend(iData);
 }
 
-// Sign extension (64 bits)
 void CParameterType::signExtend(int64_t& iData) const
 {
     doSignExtend(iData);

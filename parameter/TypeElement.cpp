@@ -49,6 +49,11 @@ uint32_t CTypeElement::getArrayLength() const
     return _uiArrayLength;
 }
 
+int CTypeElement::toPlainInteger(int iSizeOptimizedData) const
+{
+    return iSizeOptimizedData;
+}
+
 bool CTypeElement::getMappingData(const string& strKey, const string*& pStrValue) const
 {
     if (_pMappingData) {

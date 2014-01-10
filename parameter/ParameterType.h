@@ -73,14 +73,27 @@ public:
 
     // Default value handling (simulation only)
     virtual uint32_t getDefaultValue() const;
+
+    /**
+     * Sign extension (32 bits)
+     *
+     * @param[in:out] iData the data which will be sign extended
+     */
+    void signExtend(int32_t& iData) const;
+
+    /**
+     * Sign extension (64 bits)
+     *
+     * @param[in:out] iData the data which will be sign extended
+     */
+    void signExtend(int64_t& iData) const;
+
 protected:
     // Object creation
     virtual void populate(CElement* pElement) const;
     // Size
     void setSize(uint32_t uiSize);
-    // Sign extension
-    void signExtend(int32_t& iData) const;
-    void signExtend(int64_t& iData) const;
+
     // Check data has no bit set outside available range (based on byte size) and
     // check data is consistent with available range, with respect to its sign
     bool isEncodable(uint32_t uiData, bool bIsSigned) const;
