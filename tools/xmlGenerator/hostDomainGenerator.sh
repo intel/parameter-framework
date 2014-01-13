@@ -32,13 +32,13 @@ set -ueo pipefail
 
 # Leave standard output unmodified
 exec 4>&1
-# If the verbose long option is provided, output info log lines prefixed on stderr.
-if test "$1" == --verbose
+# If the nonverbose long option is provided, do not output info log lines prefixed on stderr.
+if test "$1" == --nonverbose
 then
     shift
-    exec 1> >(sed 's/^/Info: /' >&2)
-else
     exec 1>/dev/null
+else
+    exec 1> >(sed 's/^/Info: /' >&2)
 fi
 # Prefix all warning and error log lines and redirect them to stderr
 exec 5> >(sed 's/^/Warning: /' >&2)
