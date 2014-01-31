@@ -4,6 +4,14 @@
 		<xs:attribute name="Name" type="xs:NMTOKEN" use="required"/>
 		<xs:attribute name="Description" type="xs:string" use="optional"/>
 	</xs:attributeGroup>
+	<xs:attributeGroup name="TypedNameable">
+		<xs:attributeGroup ref="Nameable"/>
+		<xs:attribute name="Type" type="xs:NMTOKEN" use="required"/>
+	</xs:attributeGroup>
+	<xs:complexType name="ComponentInstance">
+		<xs:attributeGroup ref="TypedNameable"/>
+		<xs:attribute name="Mapping" use="optional"/>
+	</xs:complexType>
 	<xs:simpleType name="SizeType">
 		<xs:restriction base="xs:positiveInteger">
 			<xs:pattern value="8|16|32"/>

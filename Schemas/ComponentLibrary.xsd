@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2005/08/xml.xsd"/>
+    <xs:include schemaLocation="ComponentTypeSet.xsd"/>
+    <xs:element name="ComponentLibrary" type="ComponentTypeSetType">
+        <xs:key name="ComponentTypeUniqueness">
+            <xs:selector xpath=".//ComponentType"/>
+            <xs:field xpath="@Name"/>
+        </xs:key>
+        <xs:keyref name="ComponentTypeNotFound" refer="ComponentTypeUniqueness">
+            <xs:selector xpath=".//ComponentType/Component"/>
+            <xs:field xpath="@Type"/>
+        </xs:keyref>
+    </xs:element>
+</xs:schema>

@@ -73,6 +73,17 @@ public:
     virtual bool isParsable(CXmlSerializingContext& serializingContext) const;
 
 private:
+    /**
+     * Read xml file
+     *
+     * This function reads an xml file and processes eventual included files
+     * WARNING: to compile this function, libxml2 has to be compiled with LIBXML_XINCLUDE_ENABLED
+     *
+     * @param[in] strFileName the file name
+     *
+     * @return a pointer to generated xml document object
+     */
+    static _xmlDoc* readFile(const string& strFileName);
 
     /**
       * Instance file

@@ -120,6 +120,18 @@ protected:
     CElement* findAscendantOfKind(const string& strKind);
     CElement* getRoot();
     const CElement* getRoot() const;
+
+    /**
+     * Creates a child CElement from a child XML Element
+     *
+     * @param[in] childElement the XML element to create CElement from
+     * @param[in] elementSerializingContext the serializing context
+     *
+     * @return child a pointer on the CElement object that has been added to the tree
+     */
+    CElement* createChild(const CXmlElement& childElement,
+                          CXmlSerializingContext& elementSerializingContext);
+
 private:
     // Logging (done by root)
     virtual void doLog(bool bIsWarning, const string& strLog) const;

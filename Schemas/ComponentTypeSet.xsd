@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2005/08/xml.xsd"/>
+    <xs:include schemaLocation="Parameter.xsd"/>
+    <xs:complexType name="ComponentType">
+        <xs:sequence>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:group ref="ParameterBlockGroup"/>
+            </xs:sequence>
+        </xs:sequence>
+        <xs:attributeGroup ref="Nameable"/>
+        <xs:attribute name="Extends" use="optional"/>
+        <xs:attribute name="Mapping" use="optional"/>
+    </xs:complexType>
+    <xs:group name="ComponentTypeSetGroup">
+        <xs:choice>
+            <xs:element name="ComponentLibrary" type="ComponentTypeSetType"/>
+            <xs:element name="ComponentTypeSet" type="ComponentTypeSetType"/>
+            <xs:element name="ComponentType" type="ComponentType">
+                <xs:unique name="ComponentTypeSubElementsUniqueness">
+                    <xs:selector xpath="*"/>
+                    <xs:field xpath="@Name"/>
+                </xs:unique>
+            </xs:element>
+        </xs:choice>
+    </xs:group>
+    <xs:complexType name="ComponentTypeSetType">
+        <xs:sequence>
+            <xs:group ref="ComponentTypeSetGroup" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute ref="xml:base"/>
+    </xs:complexType>
+    <xs:element name="ComponentTypeSet" type="ComponentTypeSetType">
+        <xs:unique name="ComponentTypeUniquenessInComponentTypeSet">
+            <xs:selector xpath=".//ComponentType"/>
+            <xs:field xpath="@Name"/>
+        </xs:unique>
+    </xs:element>
+</xs:schema>

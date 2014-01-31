@@ -263,15 +263,9 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
 
         } else {
             // Child needs creation
-            pChild = elementSerializingContext.getElementLibrary()->createElement(childElement);
+            pChild = createChild(childElement, serializingContext);
 
-            if (pChild) {
-
-                // Store created child!
-                addChild(pChild);
-            } else {
-
-                elementSerializingContext.setError("Unable to create XML element " + childElement.getPath());
+            if (!pChild) {
 
                 return false;
             }
@@ -401,6 +395,29 @@ CElement* CElement::getLastChild()
     assert(uiNbChildren);
 
     return _childArray[uiNbChildren - 1];
+}
+
+CElement* CElement::createChild(const CXmlElement& childElement,
+                                CXmlSerializingContext& serializingContext)
+{
+    // Context
+    CXmlElementSerializingContext& elementSerializingContext =
+            static_cast<CXmlElementSerializingContext&>(serializingContext);
+
+    // Child needs creation
+    CElement* pChild = elementSerializingContext.getElementLibrary()->createElement(childElement);
+
+    if (!pChild) {
+
+        elementSerializingContext.setError(
+                    "Unable to create XML element " + childElement.getPath());
+
+        return NULL;
+    }
+    // Store created child!
+    addChild(pChild);
+
+    return pChild;
 }
 
 bool CElement::removeChild(CElement* pChild)

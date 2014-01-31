@@ -38,6 +38,10 @@ public:
     const CComponentType* getComponentType(const string& strName) const;
 
     virtual string getKind() const;
+
+    // From IXmlSink
+    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+
 private:
     virtual bool childrenAreDynamic() const;
 };

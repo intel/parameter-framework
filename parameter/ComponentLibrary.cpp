@@ -45,3 +45,35 @@ const CComponentType* CComponentLibrary::getComponentType(const string& strName)
     return static_cast<const CComponentType*>(findChild(strName));
 }
 
+bool CComponentLibrary::fromXml(const CXmlElement& xmlElement,
+                                CXmlSerializingContext& serializingContext)
+{
+    CXmlElement childElement;
+
+    CXmlElement::CChildIterator it(xmlElement);
+
+    // XML populate all component libraries
+    while (it.next(childElement)) {
+
+        // Filter component library/type set elements
+        if (childElement.getType() == "ComponentLibrary" ||
+            childElement.getType() == "ComponentTypeSet") {
+
+            if (!fromXml(childElement, serializingContext)) {
+
+                return false;
+            }
+        } else {
+            // Regular child creation and populating
+            CElement* pChild = createChild(childElement, serializingContext);
+
+            if (!pChild || !pChild->fromXml(childElement, serializingContext)) {
+
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+

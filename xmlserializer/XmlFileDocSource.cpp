@@ -24,6 +24,7 @@
 
 #include "XmlFileDocSource.h"
 #include <libxml/parser.h>
+#include <libxml/xinclude.h>
 
 #define base CXmlDocSource
 
@@ -32,7 +33,7 @@ CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
                                      const string& strRootElementType,
                                      const string& strRootElementName,
                                      const string& strNameAttrituteName) :
-        base(xmlReadFile(strXmlInstanceFile.c_str(),NULL, 0),
+        base(readFile(strXmlInstanceFile),
              strXmlSchemaFile,
              strRootElementType,
              strRootElementName,
@@ -44,7 +45,7 @@ CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
 CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
                                      const string& strXmlSchemaFile,
                                      const string& strRootElementType) :
-        base(xmlReadFile(strXmlInstanceFile.c_str(), NULL, 0),
+        base(readFile(strXmlInstanceFile),
              strXmlSchemaFile,
              strRootElementType),
         _strXmlInstanceFile(strXmlInstanceFile)
@@ -66,7 +67,7 @@ bool CXmlFileDocSource::isParsable(CXmlSerializingContext& serializingContext) c
 
 bool CXmlFileDocSource::populate(CXmlSerializingContext& serializingContext)
 {
-    if (!base::validate(serializingContext)) {
+    if (!validate(serializingContext)) {
 
         // Add the file's name in the error message
         serializingContext.appendLineToError("File : " + _strXmlInstanceFile);
@@ -75,4 +76,24 @@ bool CXmlFileDocSource::populate(CXmlSerializingContext& serializingContext)
     }
 
     return true;
+}
+
+_xmlDoc* CXmlFileDocSource::readFile(const string& strFileName)
+{
+    // Read xml file
+    xmlDocPtr pDoc = xmlReadFile(strFileName.c_str(), NULL, 0);
+
+    if (!pDoc) {
+
+        return NULL;
+    }
+    // Process file inclusion
+    // WARNING: this symbol is available if libxml2 has been compiled with LIBXML_XINCLUDE_ENABLED
+    if (xmlXIncludeProcess(pDoc) < 0) {
+
+        xmlFreeDoc(pDoc);
+        return NULL;
+    }
+
+    return pDoc;
 }
