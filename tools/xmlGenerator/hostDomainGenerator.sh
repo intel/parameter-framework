@@ -64,8 +64,8 @@ hostConfig="hostConfig.py"
 PFWScriptGenerator="PFWScriptGenerator.py"
 portAllocator="portAllocator.py"
 
-TPHost=localhost
-PFWHost=localhost
+TPHost=127.0.0.1
+PFWHost=127.0.0.1
 TPCreated=false
 
 HostRoot="$ANDROID_HOST_OUT"
