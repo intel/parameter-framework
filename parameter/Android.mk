@@ -166,7 +166,7 @@ LOCAL_C_INCLUDES += \
     bionic/
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libdl libstlport
-LOCAL_STATIC_LIBRARIES := libxmlserializer libutility $(common_static_libraries)
+LOCAL_STATIC_LIBRARIES := libxmlserializer libpfw_utility $(common_static_libraries)
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -189,7 +189,7 @@ LOCAL_C_INCLUDES += \
     $(common_c_includes)
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
-LOCAL_STATIC_LIBRARIES := libxmlserializer_host libutility_host $(common_static_libraries)
+LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host $(common_static_libraries)
 
 LOCAL_LDLIBS += -ldl
 
@@ -206,7 +206,7 @@ LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
 LOCAL_STATIC_LIBRARIES := \
     libxmlserializer \
-    libutility \
+    libpfw_utility \
     $(common_static_libraries)
 
 include $(BUILD_STATIC_LIBRARY)
@@ -222,7 +222,7 @@ LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
 LOCAL_STATIC_LIBRARIES := \
     libxmlserializer_host \
-    libutility_host \
+    libpfw_utility_host \
     $(common_static_libraries)
 
 include $(BUILD_HOST_STATIC_LIBRARY)

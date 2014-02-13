@@ -47,7 +47,7 @@ common_c_includes := \
     $(LOCAL_PATH)/../remote-processor/
 
 common_shared_libraries := libremote-processor
-common_static_libraries := libutility
+common_static_libraries := libpfw_utility
 
 #############################
 # Target build

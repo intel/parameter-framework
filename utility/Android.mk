@@ -36,7 +36,7 @@ common_src_files := \
     Utility.cpp \
     NaiveTokenizer.cpp
 
-common_module := libutility
+common_module := libpfw_utility
 common_module_tags := optional
 
 common_cflags := \
