@@ -33,7 +33,8 @@ LOCAL_PATH := $(call my-dir)
 
 common_src_files := \
     Tokenizer.cpp \
-    Utility.cpp
+    Utility.cpp \
+    NaiveTokenizer.cpp
 
 common_module := libutility
 common_module_tags := optional

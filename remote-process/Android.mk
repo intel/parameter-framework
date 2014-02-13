@@ -47,7 +47,7 @@ common_c_includes := \
     $(LOCAL_PATH)/../remote-processor/
 
 common_shared_libraries := libremote-processor
-common_static_libraries := libaudiocomms_naive_tokenizer
+common_static_libraries := libutility
 
 #############################
 # Target build
@@ -89,6 +89,7 @@ LOCAL_C_INCLUDES += \
 
 LOCAL_SHARED_LIBRARIES := $(foreach shared_library, $(common_shared_libraries), \
     $(shared_library)_host)
-LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
+LOCAL_STATIC_LIBRARIES := $(foreach static_library, $(common_static_libraries), \
+    $(static_library)_host)
 
 include $(BUILD_HOST_EXECUTABLE)
