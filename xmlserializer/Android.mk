@@ -54,9 +54,9 @@ common_cflags := \
         -Wno-unused-parameter
 
 common_c_includes := \
-    $(call include-path-for, libxml2) \
-    $(call include-path-for, webcore-icu) \
-    $(call include-path-for, icu4c-common)
+    external/libxml2/include \
+    external/webkit/Source/WebCore/icu \
+    external/icu4c/common \
 
 common_shared_libraries := libicuuc
 common_static_libraries := libxml2
@@ -77,7 +77,7 @@ LOCAL_CFLAGS := $(common_cflags)
 
 LOCAL_C_INCLUDES += \
     $(common_c_includes) \
-    $(call include-path-for, stlport) \
+    external/stlport/stlport \
     bionic/
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libstlport

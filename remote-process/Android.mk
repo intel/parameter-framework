@@ -63,7 +63,7 @@ LOCAL_CFLAGS := $(common_cflags)
 
 LOCAL_C_INCLUDES += \
     $(common_c_includes) \
-    $(call include-path-for, stlport) \
+    external/stlport/stlport \
     bionic/
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libstlport

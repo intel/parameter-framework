@@ -60,7 +60,7 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 LOCAL_CFLAGS := $(common_cflags)
 
 LOCAL_C_INCLUDES += \
-    $(call include-path-for, stlport) \
+    external/stlport/stlport \
     bionic
 
 include $(BUILD_STATIC_LIBRARY)
