@@ -57,7 +57,6 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 LOCAL_C_INCLUDES += \
     $(common_c_includes) \
     external/stlport/stlport \
-    bionic/libstdc++ \
     bionic/
 
 LOCAL_STATIC_LIBRARIES := libaudio_comms_convert

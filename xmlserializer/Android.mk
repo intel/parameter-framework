@@ -55,7 +55,6 @@ common_cflags := \
 
 common_c_includes := \
     external/libxml2/include \
-    external/webkit/Source/WebCore/icu \
     external/icu4c/common \
 
 common_shared_libraries := libicuuc
