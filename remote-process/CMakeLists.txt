@@ -6,3 +6,5 @@ include_directories("${PROJECT_SOURCE_DIR}/remote-processor")
 include_directories("${PROJECT_SOURCE_DIR}/utility")
 
 target_link_libraries(remote-process remote-processor pfw_utility)
+
+install(TARGETS remote-process RUNTIME DESTINATION bin)

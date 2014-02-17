@@ -174,3 +174,5 @@ include_directories("${PROJECT_SOURCE_DIR}/utility")
 include_directories("${PROJECT_SOURCE_DIR}/remote-processor")
 
 target_link_libraries(parameter xmlserializer pfw_utility)
+
+install(TARGETS parameter LIBRARY DESTINATION lib)

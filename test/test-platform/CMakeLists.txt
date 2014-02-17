@@ -10,3 +10,5 @@ include_directories("${PROJECT_SOURCE_DIR}/remote-processor")
 include_directories("${PROJECT_SOURCE_DIR}/utility")
 
 target_link_libraries(test-platform parameter remote-processor)
+
+install(TARGETS test-platform RUNTIME DESTINATION bin)

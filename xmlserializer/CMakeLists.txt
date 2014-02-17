@@ -14,3 +14,5 @@ include(FindLibXml2)
 # TODO: check for the "XInclude" feature in libxml2
 include_directories(${LIBXML2_INCLUDE_DIR})
 target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
+
+install(TARGETS xmlserializer LIBRARY DESTINATION lib)

@@ -12,3 +12,5 @@ include(FindThreads)
 # TODO: use the "prefer pthread" option; check if we are using pthread (what to
 # do else ?)
 target_link_libraries(remote-processor ${CMAKE_THREAD_LIBS_INIT})
+
+install(TARGETS remote-processor LIBRARY DESTINATION lib)
