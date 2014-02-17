@@ -218,7 +218,7 @@ CTestPlatform::CommandReturn CTestPlatform::setter(
 
     bool bFail;
 
-    if(!audio_comms::utilities::convertTo(strAbort, bFail)) {
+    if(!convertTo(strAbort, bFail)) {
         return CTestPlatform::CCommandHandler::EShowUsage;
     }
 
