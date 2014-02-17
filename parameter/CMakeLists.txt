@@ -173,6 +173,7 @@ include_directories("${PROJECT_SOURCE_DIR}/xmlserializer")
 include_directories("${PROJECT_SOURCE_DIR}/utility")
 include_directories("${PROJECT_SOURCE_DIR}/remote-processor")
 
+# No need to link with libremote-processor: it is accessed via dlopen()
 target_link_libraries(parameter xmlserializer pfw_utility)
 
 install(TARGETS parameter LIBRARY DESTINATION lib)
