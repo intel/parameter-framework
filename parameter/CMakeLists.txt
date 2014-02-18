@@ -168,10 +168,11 @@ add_library(parameter SHARED
     RuleParser.cpp
     EnumValuePair.cpp)
 
-include_directories("include")
-include_directories("${PROJECT_SOURCE_DIR}/xmlserializer")
-include_directories("${PROJECT_SOURCE_DIR}/utility")
-include_directories("${PROJECT_SOURCE_DIR}/remote-processor")
+include_directories(
+    include
+    "${PROJECT_SOURCE_DIR}/xmlserializer"
+    "${PROJECT_SOURCE_DIR}/utility"
+    "${PROJECT_SOURCE_DIR}/remote-processor")
 
 # No need to link with libremote-processor: it is accessed via dlopen()
 target_link_libraries(parameter xmlserializer pfw_utility)

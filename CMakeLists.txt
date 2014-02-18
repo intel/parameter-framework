@@ -8,7 +8,7 @@ endif(COMMAND cmake_policy)
 
 project(parameter-framework)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra") # -Wno-unused-parameter
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
 
 add_subdirectory(xmlserializer)
 add_subdirectory(parameter)
