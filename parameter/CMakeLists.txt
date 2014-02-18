@@ -178,3 +178,103 @@ include_directories(
 target_link_libraries(parameter xmlserializer pfw_utility)
 
 install(TARGETS parameter LIBRARY DESTINATION lib)
+# TODO: Check if all of these files are truly needed
+# TODO: export client headers and core (plugin) headers separately
+install(FILES
+    ## Client headers
+    # include/ParameterHandle.h
+    # include/ParameterMgrPlatformConnector.h
+    # include/SelectionCriterionInterface.h
+    # include/SelectionCriterionTypeInterface.h
+    ## Core (plugin) headers
+    AreaConfiguration.h
+    ArrayParameter.h
+    AutoLock.h
+    AutoLog.h
+    BackSynchronizer.h
+    BaseParameter.h
+    BinarySerializableElement.h
+    BinaryStream.h
+    BitParameter.h
+    BitParameterBlock.h
+    BitParameterBlockType.h
+    BitParameterType.h
+    BitwiseAreaConfiguration.h
+    BooleanParameterType.h
+    Component.h
+    ComponentInstance.h
+    ComponentLibrary.h
+    ComponentType.h
+    CompoundRule.h
+    ConfigurableDomain.h
+    ConfigurableDomains.h
+    ConfigurableElement.h
+    ConfigurableElementAggregator.h
+    ConfigurationAccessContext.h
+    DefaultElementLibrary.h
+    DomainConfiguration.h
+    Element.h
+    ElementBuilder.h
+    ElementBuilderTemplate.h
+    ElementLibrary.h
+    ElementLibrarySet.h
+    ElementLocator.h
+    EnumParameterType.h
+    EnumValuePair.h
+    ErrorContext.h
+    FixedPointParameterType.h
+    FormattedSubsystemObject.h
+    FrameworkConfigurationGroup.h
+    FrameworkConfigurationLocation.h
+    HardwareBackSynchronizer.h
+    InstanceConfigurableElement.h
+    InstanceDefinition.h
+    IntegerParameterType.h
+    KindElement.h
+    KindElementBuilderTemplate.h
+    LinearParameterAdaptation.h
+    Mapper.h
+    MappingContext.h
+    MappingData.h
+    NamedElementBuilderTemplate.h
+    Parameter.h
+    ParameterAccessContext.h
+    ParameterAdaptation.h
+    ParameterBlackboard.h
+    ParameterBlock.h
+    ParameterBlockType.h
+    ParameterFrameworkConfiguration.h
+    ParameterMgr.h
+    ParameterMgrLogger.h
+    ParameterType.h
+    PathNavigator.h
+    PluginLocation.h
+    Rule.h
+    RuleParser.h
+    SelectionCriteria.h
+    SelectionCriteriaDefinition.h
+    SelectionCriterion.h
+    SelectionCriterionLibrary.h
+    SelectionCriterionRule.h
+    SelectionCriterionType.h
+    SimulatedBackSynchronizer.h
+    StringParameter.h
+    StringParameterType.h
+    Subsystem.h
+    SubsystemElementBuilder.h
+    SubsystemLibrary.h
+    SubsystemObject.h
+    SubsystemObjectCreator.h
+    SubsystemObjectFactory.h
+    SubsystemPlugins.h
+    Syncer.h
+    SyncerSet.h
+    SystemClass.h
+    TypeElement.h
+    VirtualSubsystem.h
+    VirtualSyncer.h
+    XmlDomainSerializingContext.h
+    XmlElementSerializingContext.h
+    XmlFileIncluderElement.h
+    XmlParameterSerializingContext.h
+    DESTINATION "include/parameter")

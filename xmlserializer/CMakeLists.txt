@@ -16,3 +16,9 @@ include_directories(${LIBXML2_INCLUDE_DIR})
 target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
 
 install(TARGETS xmlserializer LIBRARY DESTINATION lib)
+install(FILES
+    XmlSink.h
+    XmlSource.h
+    XmlElement.h
+    XmlSerializingContext.h
+    DESTINATION "include/xmlserializer")
