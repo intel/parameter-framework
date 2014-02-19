@@ -11,9 +11,17 @@ add_library(xmlserializer SHARED
     XmlStringDocSource.cpp)
 
 include(FindLibXml2)
+if(NOT LIBXML2_FOUND)
+    message(SEND_ERROR "
+    libxml2 NOT found.  The parameter-framework wont compile.
+    Please install the development package (e.g. libxml2-dev on debian-based
+    Linux distributions).")
+endif(NOT LIBXML2_FOUND)
 # TODO: check for the "XInclude" feature in libxml2 (how to ?)
+
 include_directories(${LIBXML2_INCLUDE_DIR})
 target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LIBXML2_DEFINITIONS}")
 
 install(TARGETS xmlserializer LIBRARY DESTINATION lib)
 install(FILES
