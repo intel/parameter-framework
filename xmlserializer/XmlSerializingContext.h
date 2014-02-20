@@ -31,18 +31,16 @@
 
 #include <string>
 
-using namespace std;
-
 class CXmlSerializingContext
 {
 public:
-    CXmlSerializingContext(string& strError);
+    CXmlSerializingContext(std::string& strError);
 
     // Error
-    void setError(const string& strError);
-    void appendLineToError(const string& strAppend);
-    const string& getError() const;
+    void setError(const std::string& strError);
+    void appendLineToError(const std::string& strAppend);
+    const std::string& getError() const;
 
 private:
-    string& _strError;
+    std::string& _strError;
 };

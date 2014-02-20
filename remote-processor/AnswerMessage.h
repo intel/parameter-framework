@@ -34,11 +34,11 @@
 class CAnswerMessage : public CMessage
 {
 public:
-    CAnswerMessage(const string& strAnswer, bool bSuccess);
+    CAnswerMessage(const std::string& strAnswer, bool bSuccess);
     CAnswerMessage();
 
     // Answer
-    const string& getAnswer() const;
+    const std::string& getAnswer() const;
 
     // Status
     bool success() const;
@@ -50,9 +50,9 @@ private:
     // Size
     virtual uint32_t getDataSize() const;
     // Answer
-    void setAnswer(const string& strAnswer);
+    void setAnswer(const std::string& strAnswer);
 
     // Answer
-    string _strAnswer;
+    std::string _strAnswer;
 };
 

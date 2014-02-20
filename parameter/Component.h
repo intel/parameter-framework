@@ -31,10 +31,12 @@
 
 #include "InstanceConfigurableElement.h"
 
+#include <string>
+
 class CComponent : public CInstanceConfigurableElement
 {
 public:
-    CComponent(const string& strName, const CTypeElement* pTypeElement);
+    CComponent(const std::string& strName, const CTypeElement* pTypeElement);
 
     // Type
     virtual Type getType() const;

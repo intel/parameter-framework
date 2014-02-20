@@ -30,8 +30,7 @@
 #pragma once
 
 #include <list>
-
-using namespace std;
+#include <string>
 
 class CConfigurableElement;
 
@@ -42,17 +41,17 @@ public:
     typedef bool (CConfigurableElement::*MatchesAggregationCriterion)() const;
 
     // Constructor
-    CConfigurableElementAggregator(list<const CConfigurableElement*>& aggregateList, MatchesAggregationCriterion pfnMatchesAggregationCriterion);
+    CConfigurableElementAggregator(std::list<const CConfigurableElement*>& aggregateList, MatchesAggregationCriterion pfnMatchesAggregationCriterion);
 
     // Aggregate
     void aggegate(const CConfigurableElement* pConfigurableElement);
 
 private:
     // Recursive aggregate
-    bool doAggregate(const CConfigurableElement* pConfigurableElement, list<const CConfigurableElement*>& aggregateList);
+    bool doAggregate(const CConfigurableElement* pConfigurableElement, std::list<const CConfigurableElement*>& aggregateList);
 
     // Aggegate list
-    list<const CConfigurableElement*>& _aggregateList;
+    std::list<const CConfigurableElement*>& _aggregateList;
 
     // Matching check method
     MatchesAggregationCriterion _pfnMatchesAggregationCriterion;

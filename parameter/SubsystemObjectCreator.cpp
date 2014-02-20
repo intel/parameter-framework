@@ -29,6 +29,8 @@
  */
 #include "SubsystemObjectCreator.h"
 
+using std::string;
+
 CSubsystemObjectCreator::CSubsystemObjectCreator(const string& strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize)
     : _strMappingKey(strMappingKey), _uiAncestorIdMask(uiAncestorIdMask), _uiMaxConfigurableElementSize(uiMaxConfigurableElementSize)
 {

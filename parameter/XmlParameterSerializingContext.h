@@ -31,12 +31,14 @@
 
 #include "XmlElementSerializingContext.h"
 
+#include <string>
+
 class CComponentLibrary;
 
 class CXmlParameterSerializingContext : public CXmlElementSerializingContext
 {
 public:
-    CXmlParameterSerializingContext(string& strError);
+    CXmlParameterSerializingContext(std::string& strError);
 
     // ComponentLibrary
     void setComponentLibrary(const CComponentLibrary* pComponentLibrary);

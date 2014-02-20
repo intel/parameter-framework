@@ -32,6 +32,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+using std::string;
+
 CMappingContext::CMappingContext(uint32_t uiNbItemTypes) : _pstItemArray(new CMappingContext::SItem[uiNbItemTypes]), _uiNbItemTypes(uiNbItemTypes)
 {
     // Clear items

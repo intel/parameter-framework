@@ -31,10 +31,12 @@
 
 #include "ParameterType.h"
 
+#include <string>
+
 class CFixedPointParameterType : public CParameterType
 {
 public:
-    CFixedPointParameterType(const string& strName);
+    CFixedPointParameterType(const std::string& strName);
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -48,24 +50,24 @@ public:
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Double
     virtual bool toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     virtual bool fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     // Util size
     uint32_t getUtilSizeInBits() const;
     // Range computation
     void getRange(double& dMin, double& dMax) const;
     // Out of range error
-    string getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const;
+    std::string getOutOfRangeError(const std::string& strValue, bool bRawValueSpace, bool bHexaValue) const;
     // Check if data is encodable
     bool checkValueAgainstRange(double dValue) const;
     // Data conversion

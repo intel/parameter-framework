@@ -31,6 +31,8 @@
 #include "ConfigurableElement.h"
 #include "ParameterAccessContext.h"
 
+using std::string;
+
 CVirtualSyncer::CVirtualSyncer(const CConfigurableElement* pConfigurableElement) : _pConfigurableElement(pConfigurableElement)
 {
 }

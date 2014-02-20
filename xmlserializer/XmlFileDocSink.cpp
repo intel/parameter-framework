@@ -33,7 +33,7 @@
 
 #define base CXmlDocSink
 
-CXmlFileDocSink::CXmlFileDocSink(const string& strXmlInstanceFile):
+CXmlFileDocSink::CXmlFileDocSink(const std::string& strXmlInstanceFile):
      _strXmlInstanceFile(strXmlInstanceFile)
 {
 }

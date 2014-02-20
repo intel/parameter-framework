@@ -32,6 +32,8 @@
 #include "ParameterMgrLogger.h"
 #include <assert.h>
 
+using std::string;
+
 // Construction
 CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
         const string& strConfigurationFilePath) :

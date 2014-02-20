@@ -31,7 +31,7 @@
 
 #define base CInstanceConfigurableElement
 
-CParameterBlock::CParameterBlock(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
+CParameterBlock::CParameterBlock(const std::string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
 {
 }
 

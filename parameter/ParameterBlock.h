@@ -31,10 +31,12 @@
 
 #include "InstanceConfigurableElement.h"
 
+#include <string>
+
 class CParameterBlock : public CInstanceConfigurableElement
 {
 public:
-    CParameterBlock(const string& strName, const CTypeElement* pTypeElement);
+    CParameterBlock(const std::string& strName, const CTypeElement* pTypeElement);
 
     // Type
     virtual Type getType() const;

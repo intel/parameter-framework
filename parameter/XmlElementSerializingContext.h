@@ -31,26 +31,28 @@
 
 #include "XmlSerializingContext.h"
 
+#include <string>
+
 class CElementLibrary;
 
 class CXmlElementSerializingContext : public CXmlSerializingContext
 {
 public:
-    CXmlElementSerializingContext(string& strError);
+    CXmlElementSerializingContext(std::string& strError);
 
     // Init
-    void set(const CElementLibrary* pElementLibrary, const string& strXmlFolder, const string& strXmlSchemaFolder);
+    void set(const CElementLibrary* pElementLibrary, const std::string& strXmlFolder, const std::string& strXmlSchemaFolder);
 
     // ElementLibrary
     const CElementLibrary* getElementLibrary() const;
 
     // XML File Path
-    const string& getXmlFolder() const;
+    const std::string& getXmlFolder() const;
 
     // Schema Path
-    const string& getXmlSchemaPathFolder() const;
+    const std::string& getXmlSchemaPathFolder() const;
 private:
     const CElementLibrary* _pElementLibrary;
-    string _strXmlFolder;
-    string _strXmlSchemaFolder;
+    std::string _strXmlFolder;
+    std::string _strXmlSchemaFolder;
 };

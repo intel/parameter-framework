@@ -31,7 +31,7 @@
 
 #define base CKindElement
 
-CSubsystemPlugins::CSubsystemPlugins(const string& strName, const string& strKind) : base(strName, strKind)
+CSubsystemPlugins::CSubsystemPlugins(const std::string& strName, const std::string& strKind) : base(strName, strKind)
 {
 }
 

@@ -34,28 +34,30 @@
 
 #include "TypeElement.h"
 
+#include <string>
+
 class CParameterAccessContext;
 class CConfigurationAccessContext;
 
 class CParameterType : public CTypeElement
 {
 public:
-    CParameterType(const string& strName);
+    CParameterType(const std::string& strName);
     virtual ~CParameterType();
 
     // Size
     uint32_t getSize() const;
 
     // Unit
-    string getUnit() const;
+    std::string getUnit() const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     /// Conversions
     // String
-    virtual bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const = 0;
-    virtual bool fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const = 0;
+    virtual bool toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const = 0;
+    virtual bool fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const = 0;
     // Boolean
     virtual bool toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     virtual bool fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
@@ -74,7 +76,7 @@ public:
     virtual void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // Default value handling (simulation only)
     virtual uint32_t getDefaultValue() const;
@@ -111,8 +113,8 @@ protected:
     type getMaxValue() const
     {
         return getSize() < sizeof(type) ?
-                    (static_cast<type>(1) << (getSize() * numeric_limits<unsigned char>::digits - 1)) - 1 :
-                    numeric_limits<type>::max();
+                    (static_cast<type>(1) << (getSize() * std::numeric_limits<unsigned char>::digits - 1)) - 1 :
+                    std::numeric_limits<type>::max();
     }
 
 private:
@@ -127,5 +129,5 @@ private:
     // Size in bytes
     uint32_t _uiSize;
     // Unit
-    string _strUnit;
+    std::string _strUnit;
 };

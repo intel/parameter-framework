@@ -33,14 +33,12 @@
 
 #include <string>
 
-using namespace std;
-
 class CConnectionSocket : public CSocket
 {
 public:
     CConnectionSocket();
 
     // Connection
-    bool connect(const string& strRemote, uint16_t uiPort, string& strError);
+    bool connect(const std::string& strRemote, uint16_t uiPort, std::string& strError);
 };
 

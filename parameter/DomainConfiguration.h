@@ -31,6 +31,7 @@
 
 #include "BinarySerializableElement.h"
 #include <list>
+#include <string>
 
 class CConfigurableElement;
 class CAreaConfiguration;
@@ -45,9 +46,9 @@ class CDomainConfiguration : public CBinarySerializableElement
     enum ChildElementType {
         ECompoundRule
     };
-    typedef list<CAreaConfiguration*>::const_iterator AreaConfigurationListIterator;
+    typedef std::list<CAreaConfiguration*>::const_iterator AreaConfigurationListIterator;
 public:
-    CDomainConfiguration(const string& strName);
+    CDomainConfiguration(const std::string& strName);
     virtual ~CDomainConfiguration();
 
     // Configurable Elements association
@@ -55,13 +56,13 @@ public:
     void removeConfigurableElement(const CConfigurableElement* pConfigurableElement);
 
     // Sequence management
-    bool setElementSequence(const vector<string>& astrNewElementSequence, string& strError);
-    void getElementSequence(string& strResult) const;
+    bool setElementSequence(const std::vector<std::string>& astrNewElementSequence, std::string& strError);
+    void getElementSequence(std::string& strResult) const;
 
     // Application rule
-    bool setApplicationRule(const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError);
+    bool setApplicationRule(const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
     void clearApplicationRule();
-    void getApplicationRule(string& strResult) const;
+    void getApplicationRule(std::string& strResult) const;
 
     // Get Blackboard for an element of the domain
     CParameterBlackboard* getBlackboard(const CConfigurableElement* pConfigurableElement) const;
@@ -69,7 +70,7 @@ public:
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
     // Apply data to current
-    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, list<string>* plstrError = NULL) const;
+    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<std::string>* plstrError = NULL) const;
     // Ensure validity for configurable element area configuration
     void validate(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard);
     // Ensure validity of all area configurations
@@ -98,7 +99,7 @@ public:
     virtual uint32_t getDataSize() const;
 
     // Class kind
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
 private:
     // Returns true if children dynamic creation is to be dealt with (here, will allow child deletion upon clean)
@@ -108,14 +109,14 @@ private:
     // AreaConfiguration retrieval from configurable element
     CAreaConfiguration* getAreaConfiguration(const CConfigurableElement* pConfigurableElement) const;
     // AreaConfiguration retrieval from present area configurations
-    CAreaConfiguration* findAreaConfiguration(const string& strConfigurableElementPath) const;
-    // AreaConfiguration retrieval from given area configuration list
-    CAreaConfiguration* findAreaConfiguration(const string& strConfigurableElementPath, const list<CAreaConfiguration*>& areaConfigurationList) const;
+    CAreaConfiguration* findAreaConfiguration(const std::string& strConfigurableElementPath) const;
+    // AreaConfiguration retrieval from given area configuration std::list
+    CAreaConfiguration* findAreaConfiguration(const std::string& strConfigurableElementPath, const std::list<CAreaConfiguration*>& areaConfigurationList) const;
     // Area configuration ordering
-    void reorderAreaConfigurations(const list<CAreaConfiguration*>& areaConfigurationList);
-    // Find area configuration rank from regular list: for ordered list maintainance
+    void reorderAreaConfigurations(const std::list<CAreaConfiguration*>& areaConfigurationList);
+    // Find area configuration rank from regular std::list: for ordered std::list maintainance
     uint32_t getAreaConfigurationRank(const CAreaConfiguration* pAreaConfiguration) const;
-    // Find area configuration from regular list based on rank: for ordered list maintainance
+    // Find area configuration from regular std::list based on rank: for ordered std::list maintainance
     CAreaConfiguration* getAreaConfiguration(uint32_t uiAreaConfigurationRank) const;
 
     // Rule
@@ -124,6 +125,6 @@ private:
     void setRule(CCompoundRule* pRule);
 
     // AreaConfigurations
-    list<CAreaConfiguration*> _areaConfigurationList;
-    list<CAreaConfiguration*> _orderedAreaConfigurationList;
+    std::list<CAreaConfiguration*> _areaConfigurationList;
+    std::list<CAreaConfiguration*> _orderedAreaConfigurationList;
 };

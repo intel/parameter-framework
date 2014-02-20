@@ -35,7 +35,7 @@ CSelectionCriterionLibrary::CSelectionCriterionLibrary()
 {
 }
 
-string CSelectionCriterionLibrary::getKind() const
+std::string CSelectionCriterionLibrary::getKind() const
 {
     return "SelectionCriterionLibrary";
 }

@@ -32,6 +32,8 @@
 
 #define base CSubsystem
 
+using std::string;
+
 CVirtualSubsystem::CVirtualSubsystem(const string& strName)
     : base(strName), _pVirtualSyncer(new CVirtualSyncer(this))
 {

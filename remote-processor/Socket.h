@@ -32,8 +32,6 @@
 #include <string>
 #include <stdint.h>
 
-using namespace std;
-
 struct sockaddr_in;
 struct in_addr;
 

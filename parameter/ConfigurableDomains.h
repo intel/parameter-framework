@@ -32,6 +32,7 @@
 #include "BinarySerializableElement.h"
 #include <set>
 #include <list>
+#include <string>
 
 
 class CParameterBlackboard;
@@ -47,47 +48,47 @@ public:
 
     // Configuration/Domains handling
     /// Domains
-    bool createDomain(const string& strName, string& strError);
-    bool deleteDomain(const string& strName, string& strError);
+    bool createDomain(const std::string& strName, std::string& strError);
+    bool deleteDomain(const std::string& strName, std::string& strError);
     void deleteAllDomains();
-    bool renameDomain(const string& strName, const string& strNewName, string& strError);
-    bool setSequenceAwareness(const string& strDomain, bool bSequenceAware, string& strError);
-    bool getSequenceAwareness(const string& strDomain, bool& bSequenceAware, string& strError) const;
-    bool listDomainElements(const string& strDomain, string& strResult) const;
-    bool split(const string& strDomain, CConfigurableElement* pConfigurableElement, string& strError);
-    void listAssociatedElements(string& strResult) const;
-    void listConflictingElements(string& strResult) const;
-    void listDomains(string& strResult) const;
+    bool renameDomain(const std::string& strName, const std::string& strNewName, std::string& strError);
+    bool setSequenceAwareness(const std::string& strDomain, bool bSequenceAware, std::string& strError);
+    bool getSequenceAwareness(const std::string& strDomain, bool& bSequenceAware, std::string& strError) const;
+    bool listDomainElements(const std::string& strDomain, std::string& strResult) const;
+    bool split(const std::string& strDomain, CConfigurableElement* pConfigurableElement, std::string& strError);
+    void listAssociatedElements(std::string& strResult) const;
+    void listConflictingElements(std::string& strResult) const;
+    void listDomains(std::string& strResult) const;
     /// Configurations
-    bool listConfigurations(const string& strDomain, string& strResult) const;
-    bool createConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError);
-    bool deleteConfiguration(const string& strDomain, const string& strConfiguration, string& strError);
-    bool renameConfiguration(const string& strDomain, const string& strConfigurationName, const string& strNewConfigurationName, string& strError);
-    bool restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, list<string>& lstrError) const;
-    bool saveConfiguration(const string& strDomain, const string& strConfiguration, const CParameterBlackboard* pMainBlackboard, string& strError);
-    bool setElementSequence(const string& strDomain, const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError);
-    bool getElementSequence(const string& strDomain, const string& strConfiguration, string& strResult) const;
-    bool setApplicationRule(const string& strDomain, const string& strConfiguration, const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError);
-    bool clearApplicationRule(const string& strDomain, const string& strConfiguration, string& strError);
-    bool getApplicationRule(const string& strDomain, const string& strConfiguration, string& strResult) const;
+    bool listConfigurations(const std::string& strDomain, std::string& strResult) const;
+    bool createConfiguration(const std::string& strDomain, const std::string& strConfiguration, const CParameterBlackboard* pMainBlackboard, std::string& strError);
+    bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
+    bool renameConfiguration(const std::string& strDomain, const std::string& strConfigurationName, const std::string& strNewConfigurationName, std::string& strError);
+    bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<std::string>& lstrError) const;
+    bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, const CParameterBlackboard* pMainBlackboard, std::string& strError);
+    bool setElementSequence(const std::string& strDomain, const std::string& strConfiguration, const std::vector<std::string>& astrNewElementSequence, std::string& strError);
+    bool getElementSequence(const std::string& strDomain, const std::string& strConfiguration, std::string& strResult) const;
+    bool setApplicationRule(const std::string& strDomain, const std::string& strConfiguration, const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
+    bool clearApplicationRule(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
+    bool getApplicationRule(const std::string& strDomain, const std::string& strConfiguration, std::string& strResult) const;
 
     // Last applied configurations
-    void listLastAppliedConfigurations(string& strResult) const;
+    void listLastAppliedConfigurations(std::string& strResult) const;
 
     // Configurable element - domain association
-    bool addConfigurableElementToDomain(const string& strDomain, CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, string& strError);
-    bool removeConfigurableElementFromDomain(const string& strDomain, CConfigurableElement* pConfigurableElement, string& strError);
+    bool addConfigurableElementToDomain(const std::string& strDomain, CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, std::string& strError);
+    bool removeConfigurableElementFromDomain(const std::string& strDomain, CConfigurableElement* pConfigurableElement, std::string& strError);
 
     // Configuration Blackboard for element
-    CParameterBlackboard* findConfigurationBlackboard(const string& strDomain,
-                                     const string& strConfiguration,
+    CParameterBlackboard* findConfigurationBlackboard(const std::string& strDomain,
+                                     const std::string& strConfiguration,
                                      const CConfigurableElement* pConfigurableElement,
                                      uint32_t& uiBaseOffset,
                                      bool& bIsLastApplied,
-                                     string& strError) const;
+                                     std::string& strError) const;
 
     // Binary settings load/store
-    bool serializeSettings(const string& strBinarySettingsFilePath, bool bOut, uint8_t uiStructureChecksum, string& strError);
+    bool serializeSettings(const std::string& strBinarySettingsFilePath, bool bOut, uint8_t uiStructureChecksum, std::string& strError);
 
     // From IXmlSource
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
@@ -99,14 +100,14 @@ public:
     void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce) const;
 
     // Class kind
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
     // Gather owned configurable elements owned by any domain
-    void gatherAllOwnedConfigurableElements(set<const CConfigurableElement*>& configurableElementSet) const;
+    void gatherAllOwnedConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const;
     // Domain retrieval
-    CConfigurableDomain* findConfigurableDomain(const string& strDomain, string& strError);
-    const CConfigurableDomain* findConfigurableDomain(const string& strDomain, string& strError) const;
+    CConfigurableDomain* findConfigurableDomain(const std::string& strDomain, std::string& strError);
+    const CConfigurableDomain* findConfigurableDomain(const std::string& strDomain, std::string& strError) const;
 };
 

@@ -32,7 +32,7 @@
 
 #define base CParameterType
 
-CBooleanParameterType::CBooleanParameterType(const string& strName) : base(strName)
+CBooleanParameterType::CBooleanParameterType(const std::string& strName) : base(strName)
 {
     setSize(1);
 }
@@ -41,13 +41,13 @@ CBooleanParameterType::~CBooleanParameterType()
 {
 }
 
-string CBooleanParameterType::getKind() const
+std::string CBooleanParameterType::getKind() const
 {
     return "BooleanParameter";
 }
 
 // Tuning interface
-bool CBooleanParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBooleanParameterType::toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     if (strValue == "1" || strValue == "0x1") {
 
@@ -76,7 +76,7 @@ bool CBooleanParameterType::toBlackboard(const string& strValue, uint32_t& uiVal
     return true;
 }
 
-bool CBooleanParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBooleanParameterType::fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     strValue = uiValue ? "1" : "0";
 

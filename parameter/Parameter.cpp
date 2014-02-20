@@ -35,6 +35,8 @@
 
 #define base CBaseParameter
 
+using std::string;
+
 CParameter::CParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
 {
 }

@@ -37,6 +37,8 @@
 #include <stdlib.h>
 #include <sstream>
 
+using std::string;
+
 CElement::CElement(const string& strName) : _strName(strName), _pParent(NULL)
 {
 }
@@ -80,10 +82,10 @@ void CElement::log_warning(const string& strMessage, ...) const
 }
 
 // Log each element of the string list
-void CElement::log_table(bool bIsWarning, const list<string> lstrMessage) const
+void CElement::log_table(bool bIsWarning, const std::list<string> lstrMessage) const
 {
-    list<string>::const_iterator iterator(lstrMessage.begin());
-    list<string>::const_iterator end(lstrMessage.end());
+    std::list<string>::const_iterator iterator(lstrMessage.begin());
+    std::list<string>::const_iterator end(lstrMessage.end());
 
     while (iterator != end) {
         // Log current list element
@@ -199,7 +201,7 @@ void CElement::showProperties(string& strResult) const
 // Conversion utilities
 string CElement::toString(uint32_t uiValue)
 {
-    ostringstream ostr;
+    std::ostringstream ostr;
 
     ostr << uiValue;
 
@@ -208,7 +210,7 @@ string CElement::toString(uint32_t uiValue)
 
 string CElement::toString(uint64_t uiValue)
 {
-    ostringstream ostr;
+    std::ostringstream ostr;
 
     ostr << uiValue;
 
@@ -217,7 +219,7 @@ string CElement::toString(uint64_t uiValue)
 
 string CElement::toString(int32_t iValue)
 {
-    ostringstream ostr;
+    std::ostringstream ostr;
 
     ostr << iValue;
 
@@ -226,7 +228,7 @@ string CElement::toString(int32_t iValue)
 
 string CElement::toString(double dValue)
 {
-    ostringstream ostr;
+    std::ostringstream ostr;
 
     ostr << dValue;
 

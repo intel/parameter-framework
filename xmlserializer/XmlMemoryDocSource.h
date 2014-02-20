@@ -33,8 +33,6 @@
 #include "XmlDocSource.h"
 #include "XmlSource.h"
 
-using std::string;
-
 /**
   * Source class that uses parameter-framework's structures to create an xml document
   */
@@ -46,23 +44,23 @@ public:
       *
       * @param[in] pXmlSource a pointer to a parameter-framework structure that can generate
       * an xml description of itself
-      * @param[in] strRootElementType a string containing the root element type
-      * @param[in] strXmlSchemaFile a string containing the path to the schema file
-      * @param[in] strProduct a string containing the product name
-      * @param[in] strVersion a string containing the version number
+      * @param[in] strRootElementType a std::string containing the root element type
+      * @param[in] strXmlSchemaFile a std::string containing the path to the schema file
+      * @param[in] strProduct a std::string containing the product name
+      * @param[in] strVersion a std::string containing the version number
       */
-    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType,
-                        const string& strXmlSchemaFile, const string& strProduct,
-                        const string& strVersion);
+    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const std::string& strRootElementType,
+                        const std::string& strXmlSchemaFile, const std::string& strProduct,
+                        const std::string& strVersion);
 
     /**
       * Constructor
       *
       * @param[in] pXmlSource a pointer to a parameter-framework structure that can generate
       * an xml description of itself
-      * @param[in] strRootElementType a string containing the root element type
+      * @param[in] strRootElementType a std::string containing the root element type
       */
-    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType);
+    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const std::string& strRootElementType);
 
     /**
       * Implementation of CXmlDocSource::populate() method.
@@ -88,7 +86,7 @@ private:
     /**
       * Schema file
       */
-    string _strXmlSchemaFile;
+    std::string _strXmlSchemaFile;
 
     /**
       * Boolean used to specify if a header should be added in the Xml Doc
@@ -96,6 +94,6 @@ private:
     bool _bWithHeader;
 
     // Product and version info
-    string _strProduct;
-    string _strVersion;
+    std::string _strProduct;
+    std::string _strVersion;
 };

@@ -31,6 +31,8 @@
 #include "ParameterMgrPlatformConnector.h"
 
 
+using std::string;
+
 CParameterMgrLogger::CParameterMgrLogger(CParameterMgrPlatformConnector *pParameterMgrPlatformConnector) :
         _pParameterMgrPlatformConnector(pParameterMgrPlatformConnector)
 {

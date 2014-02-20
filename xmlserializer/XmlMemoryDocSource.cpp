@@ -35,10 +35,10 @@
 #define base CXmlDocSource
 
 CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
-                                         const string& strRootElementType,
-                                         const string& strXmlSchemaFile,
-                                         const string& strProduct,
-                                         const string& strVersion):
+                                         const std::string& strRootElementType,
+                                         const std::string& strXmlSchemaFile,
+                                         const std::string& strProduct,
+                                         const std::string& strVersion):
      base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
      _pXmlSource(pXmlSource), _strXmlSchemaFile(strXmlSchemaFile), _bWithHeader(true),
      _strProduct(strProduct), _strVersion(strVersion)
@@ -47,7 +47,7 @@ CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
 }
 
 CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
-                                         const string& strRootElementType):
+                                         const std::string& strRootElementType):
     base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
     _pXmlSource(pXmlSource), _bWithHeader(false)
 {

@@ -31,10 +31,12 @@
 
 #include "Element.h"
 
+#include <string>
+
 class CAutoLog
 {
 public:
-    CAutoLog(const CElement* pElement, const string& strContext, bool bLogOn = true);
+    CAutoLog(const CElement* pElement, const std::string& strContext, bool bLogOn = true);
     ~CAutoLog();
 
 private:
@@ -43,7 +45,7 @@ private:
     // Logger element
     const CElement* _pElement;
     // Context
-    string _strContext;
+    std::string _strContext;
     // Log on
     bool _bLogOn;
 };

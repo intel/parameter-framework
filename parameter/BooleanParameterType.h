@@ -31,19 +31,21 @@
 
 #include "ParameterType.h"
 
+#include <string>
+
 class CBooleanParameterType : public CParameterType
 {
 public:
-    CBooleanParameterType(const string& strName);
+    CBooleanParameterType(const std::string& strName);
     virtual ~CBooleanParameterType();
 
     // Kind
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Boolean
     virtual bool toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     virtual bool fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;

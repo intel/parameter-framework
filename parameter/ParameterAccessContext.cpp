@@ -31,7 +31,7 @@
 
 #define base CErrorContext
 
-CParameterAccessContext::CParameterAccessContext(string& strError,
+CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  CParameterBlackboard* pParameterBlackboard,
                                                  bool bValueSpaceIsRaw,
                                                  bool bOutputRawFormatIsHex,
@@ -42,7 +42,7 @@ CParameterAccessContext::CParameterAccessContext(string& strError,
 {
 }
 
-CParameterAccessContext::CParameterAccessContext(string& strError,
+CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  bool bBigEndianSubsystem,
                                                  CParameterBlackboard* pParameterBlackboard,
                                                  uint32_t uiBaseOffset)
@@ -52,7 +52,7 @@ CParameterAccessContext::CParameterAccessContext(string& strError,
 {
 }
 
-CParameterAccessContext::CParameterAccessContext(string& strError)
+CParameterAccessContext::CParameterAccessContext(std::string& strError)
     : base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false),
     _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(false), _uiBaseOffset(0)
 {

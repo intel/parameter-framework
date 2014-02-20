@@ -31,7 +31,7 @@
 
 #define base CKindElement
 
-CFrameworkConfigurationGroup::CFrameworkConfigurationGroup(const string& strName, const string& strKind) : base(strName, strKind)
+CFrameworkConfigurationGroup::CFrameworkConfigurationGroup(const std::string& strName, const std::string& strKind) : base(strName, strKind)
 {
 }
 

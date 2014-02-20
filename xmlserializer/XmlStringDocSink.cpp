@@ -33,7 +33,7 @@
 
 #define base CXmlDocSink
 
-CXmlStringDocSink::CXmlStringDocSink(string& strResult):
+CXmlStringDocSink::CXmlStringDocSink(std::string& strResult):
       _strResult(strResult)
 {
 }

@@ -34,11 +34,11 @@
 
 #define base CXmlDocSource
 
-CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
-                                     const string& strXmlSchemaFile,
-                                     const string& strRootElementType,
-                                     const string& strRootElementName,
-                                     const string& strNameAttrituteName) :
+CXmlFileDocSource::CXmlFileDocSource(const std::string& strXmlInstanceFile,
+                                     const std::string& strXmlSchemaFile,
+                                     const std::string& strRootElementType,
+                                     const std::string& strRootElementName,
+                                     const std::string& strNameAttrituteName) :
         base(readFile(strXmlInstanceFile),
              strXmlSchemaFile,
              strRootElementType,
@@ -48,9 +48,9 @@ CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
 {
 }
 
-CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
-                                     const string& strXmlSchemaFile,
-                                     const string& strRootElementType) :
+CXmlFileDocSource::CXmlFileDocSource(const std::string& strXmlInstanceFile,
+                                     const std::string& strXmlSchemaFile,
+                                     const std::string& strRootElementType) :
         base(readFile(strXmlInstanceFile),
              strXmlSchemaFile,
              strRootElementType),
@@ -84,7 +84,7 @@ bool CXmlFileDocSource::populate(CXmlSerializingContext& serializingContext)
     return true;
 }
 
-_xmlDoc* CXmlFileDocSource::readFile(const string& strFileName)
+_xmlDoc* CXmlFileDocSource::readFile(const std::string& strFileName)
 {
     // Read xml file
     xmlDocPtr pDoc = xmlReadFile(strFileName.c_str(), NULL, 0);

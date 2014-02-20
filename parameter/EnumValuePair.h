@@ -38,7 +38,7 @@ public:
 
     // Numerical
     int32_t getNumerical() const;
-    string getNumericalAsString() const;
+    std::string getNumericalAsString() const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -47,10 +47,10 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 protected:
     // Content dumping
-    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
+    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 private:
     // Numerical
     int32_t _iNumerical;

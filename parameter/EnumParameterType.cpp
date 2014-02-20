@@ -39,6 +39,8 @@
 
 #define base CParameterType
 
+using std::string;
+
 CEnumParameterType::CEnumParameterType(const string& strName) : base(strName)
 {
 }
@@ -164,16 +166,16 @@ bool CEnumParameterType::checkValueAgainstRange(const string& strValue, int64_t 
 
     if (!bConversionSucceeded || value < minValue || value > maxValue) {
 
-        ostringstream strStream;
+	std::ostringstream strStream;
 
         strStream << "Value " << strValue << " standing out of admitted range [";
 
         if (bHexaValue) {
 
             // Format Min
-            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(minValue);
+            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(minValue);
             // Format Max
-            strStream << ", 0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(maxValue);
+            strStream << ", 0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(maxValue);
 
         } else {
 
@@ -195,13 +197,13 @@ bool CEnumParameterType::fromBlackboard(string& strValue, const uint32_t& uiValu
     if (parameterAccessContext.valueSpaceIsRaw()) {
 
         // Format
-        ostringstream strStream;
+	std::ostringstream strStream;
 
         // Numerical format requested
         if (parameterAccessContext.outputRawFormatIsHex()) {
 
             // Hexa display with unecessary bits cleared out
-            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(uiValue);
+            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(uiValue);
 
             strValue = strStream.str();
         } else {

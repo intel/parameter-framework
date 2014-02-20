@@ -31,11 +31,11 @@
 
 #define base CElement
 
-CKindElement::CKindElement(const string& strName, const string& strKind) : base(strName), _strKind(strKind)
+CKindElement::CKindElement(const std::string& strName, const std::string& strKind) : base(strName), _strKind(strKind)
 {
 }
 
-string CKindElement::getKind() const
+std::string CKindElement::getKind() const
 {
     return _strKind;
 }

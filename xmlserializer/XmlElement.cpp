@@ -32,6 +32,9 @@
 #include <stdlib.h>
 #include <sstream>
 
+using std::string;
+using std::ostringstream;
+
 CXmlElement::CXmlElement(_xmlNode* pXmlElement) : _pXmlElement(pXmlElement)
 {
 }

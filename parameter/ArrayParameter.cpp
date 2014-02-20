@@ -38,6 +38,8 @@
 
 #define base CParameter
 
+using std::string;
+
 CArrayParameter::CArrayParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
 {
 }
@@ -143,31 +145,31 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
 }
 
 // Boolean
-bool CArrayParameter::accessAsBooleanArray(vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::accessAsBooleanArray(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(abValues, bSet, parameterAccessContext);
 }
 
 // Integer
-bool CArrayParameter::accessAsIntegerArray(vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::accessAsIntegerArray(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(auiValues, bSet, parameterAccessContext);
 }
 
 // Signed Integer Access
-bool CArrayParameter::accessAsSignedIntegerArray(vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::accessAsSignedIntegerArray(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(aiValues, bSet, parameterAccessContext);
 }
 
 // Double Access
-bool CArrayParameter::accessAsDoubleArray(vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::accessAsDoubleArray(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(adValues, bSet, parameterAccessContext);
 }
 
 // String Access
-bool CArrayParameter::accessAsStringArray(vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::accessAsStringArray(std::vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(astrValues, bSet, parameterAccessContext);
 }
@@ -217,7 +219,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
     if (pStrChildName) {
 
         // Check index is numeric
-        istringstream iss(*pStrChildName);
+	std::istringstream iss(*pStrChildName);
 
         iss >> uiIndex;
 
@@ -229,7 +231,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
         }
 
         if (uiIndex >= getArrayLength()) {
-            ostringstream oss;
+	    std::ostringstream oss;
 
             oss << "Provided index out of range (max is " << getArrayLength() - 1 << ")";
 
@@ -259,7 +261,7 @@ bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, co
     // Deal with value(s)
     Tokenizer tok(strValue, DEFAULT_DELIMITER + ",");
 
-    vector<string> astrValues = tok.split();
+    std::vector<string> astrValues = tok.split();
     uint32_t uiNbValues = astrValues.size();
 
     // Check number of provided values
@@ -324,7 +326,7 @@ void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParam
 
 // Generic Access
 template <typename type>
-bool CArrayParameter::accessValues(vector<type>& values, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::accessValues(std::vector<type>& values, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     bool bSuccess;
 
@@ -351,7 +353,7 @@ bool CArrayParameter::accessValues(vector<type>& values, bool bSet, CParameterAc
 }
 
 template <typename type>
-bool CArrayParameter::setValues(const vector<type>& values, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::setValues(const std::vector<type>& values, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiNbValues = getArrayLength();
     uint32_t uiValueIndex;
@@ -375,7 +377,7 @@ bool CArrayParameter::setValues(const vector<type>& values, CParameterAccessCont
 }
 
 template <typename type>
-bool CArrayParameter::getValues(vector<type>& values, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::getValues(std::vector<type>& values, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiNbValues = getArrayLength();
     uint32_t uiValueIndex;

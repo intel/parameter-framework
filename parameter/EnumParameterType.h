@@ -32,11 +32,12 @@
 #include "ParameterType.h"
 
 #include <list>
+#include <string>
 
 class CEnumParameterType : public CParameterType
 {
 public:
-    CEnumParameterType(const string& strName);
+    CEnumParameterType(const std::string& strName);
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -46,8 +47,8 @@ public:
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Integer
     virtual bool toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     virtual bool fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
@@ -56,23 +57,23 @@ public:
     virtual uint32_t getDefaultValue() const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
-    // Check string is a number
-    static bool isNumber(const string& strValue);
+    // Check std::string is a number
+    static bool isNumber(const std::string& strValue);
 
     // Literal - numerical conversions
-    bool getLiteral(int32_t iNumerical, string& strLiteral) const;
-    bool getNumerical(const string& strLiteral, int& iNumerical) const;
+    bool getLiteral(int32_t iNumerical, std::string& strLiteral) const;
+    bool getNumerical(const std::string& strLiteral, int& iNumerical) const;
 
     // Numerical validity
     bool isValid(int iNumerical, CParameterAccessContext& parameterAccessContext) const;
 
     // Range validity
-    bool checkValueAgainstRange(const string& strValue, int64_t value, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const;
+    bool checkValueAgainstRange(const std::string& strValue, int64_t value, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const;
 };

@@ -30,7 +30,7 @@
 #include "SubsystemLibrary.h"
 #include "XmlElement.h"
 
-string CSubsystemLibrary::getBuilderType(const CXmlElement& xmlElement) const
+std::string CSubsystemLibrary::getBuilderType(const CXmlElement& xmlElement) const
 {
     // Xml element's name attribute
     return xmlElement.getAttributeString("Type");

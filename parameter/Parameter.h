@@ -33,10 +33,12 @@
 
 #include "BaseParameter.h"
 
+#include <string>
+
 class CParameter : public CBaseParameter
 {
 public:
-    CParameter(const string& strName, const CTypeElement* pTypeElement);
+    CParameter(const std::string& strName, const CTypeElement* pTypeElement);
 
     // Instantiation, allocation
     virtual uint32_t getFootPrint() const;
@@ -63,8 +65,8 @@ protected:
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
     // Actual value access
-    virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
-    virtual void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool doSetValue(const std::string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    virtual void doGetValue(std::string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
 
     // Value space handling for configuration import
     void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;

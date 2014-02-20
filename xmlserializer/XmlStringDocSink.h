@@ -33,20 +33,18 @@
 #include "XmlDocSink.h"
 #include "XmlSource.h"
 
-using std::string;
-
 /**
-  * Sink class that writes the content of any CXmlDocSource into a string.
-  * A reference to an empty string is given in the constructor.
+  * Sink class that writes the content of any CXmlDocSource into a std::string.
+  * A reference to an empty std::string is given in the constructor.
   */
 class CXmlStringDocSink : public CXmlDocSink
 {
 public:
     /** Constructor
       *
-      * @param[out] strResult a reference to a string that will be filled by the doProcess method
+      * @param[out] strResult a reference to a std::string that will be filled by the doProcess method
       */
-    CXmlStringDocSink(string& strResult);
+    CXmlStringDocSink(std::string& strResult);
 
 private:
     /** Implementation of CXmlDocSink::doProcess()
@@ -60,8 +58,8 @@ private:
     virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
 
     /**
-      * Result string containing the XML informations
+      * Result std::string containing the XML informations
       */
-    string& _strResult;
+    std::string& _strResult;
 };
 

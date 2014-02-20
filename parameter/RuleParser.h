@@ -32,8 +32,6 @@
 #include <string>
 #include <stdint.h>
 
-using namespace std;
-
 class CCompoundRule;
 class CSelectionCriteriaDefinition;
 
@@ -51,20 +49,20 @@ public:
         ENbStatuses
     };
 
-    CRuleParser(const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition);
+    CRuleParser(const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition);
     ~CRuleParser();
 
     // Parse
-    bool parse(CCompoundRule* pParentRule, string& strError);
+    bool parse(CCompoundRule* pParentRule, std::string& strError);
 
     // Iterate
-    bool iterate(string& strError);
+    bool iterate(std::string& strError);
 
     // Next word
-    bool next(string& strNext, string& strError);
+    bool next(std::string& strNext, std::string& strError);
 
     // Rule type
-    const string& getType() const;
+    const std::string& getType() const;
 
     // Criteria defintion
     const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
@@ -77,7 +75,7 @@ private:
     CRuleParser& operator=(const CRuleParser&);
 
     // Rule definition
-    string _strApplicationRule;
+    std::string _strApplicationRule;
     // Criteria defintion
     const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
     // Iterator
@@ -85,7 +83,7 @@ private:
     // Deepness
     uint32_t _uiCurrentDeepness;
     // Current Type
-    string _strRuleType;
+    std::string _strRuleType;
     // Status
     Status _eStatus;
     // Root rule

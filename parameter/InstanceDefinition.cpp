@@ -36,7 +36,7 @@ CInstanceDefinition::CInstanceDefinition()
 {
 }
 
-string CInstanceDefinition::getKind() const
+std::string CInstanceDefinition::getKind() const
 {
     return "InstanceDefinition";
 }

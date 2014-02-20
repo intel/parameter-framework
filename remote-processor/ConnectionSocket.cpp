@@ -37,6 +37,8 @@
 
 #define base CSocket
 
+using std::string;
+
 CConnectionSocket::CConnectionSocket()
 {
 }
@@ -63,7 +65,7 @@ bool CConnectionSocket::connect(const string& strRemote, uint16_t uiPort, string
     // Connect
     if (::connect(getFd(), (struct sockaddr *)&server_addr, sizeof(struct sockaddr))) {
 
-        ostringstream oss;
+	std::ostringstream oss;
         oss << "CConnectionSocket::connect::connect on port: " << uiPort;
         perror(oss.str().c_str());
 

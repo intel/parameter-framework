@@ -40,6 +40,8 @@
 #include <sstream>
 #include <stdarg.h>
 
+using std::string;
+
 CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement)
     : _pInstanceConfigurableElement(pInstanceConfigurableElement),
       _uiDataSize(pInstanceConfigurableElement->getFootPrint()),
@@ -81,7 +83,7 @@ uint32_t CSubsystemObject::asInteger(const string& strValue)
 
 string CSubsystemObject::asString(uint32_t uiValue)
 {
-    ostringstream ostr;
+    std::ostringstream ostr;
 
     ostr << uiValue;
 

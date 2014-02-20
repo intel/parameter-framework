@@ -32,11 +32,11 @@
 
 #define base CTypeElement
 
-CParameterBlockType::CParameterBlockType(const string& strName) : base(strName)
+CParameterBlockType::CParameterBlockType(const std::string& strName) : base(strName)
 {
 }
 
-string CParameterBlockType::getKind() const
+std::string CParameterBlockType::getKind() const
 {
     return "ParameterBlock";
 }

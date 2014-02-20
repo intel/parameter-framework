@@ -36,6 +36,8 @@
 
 #define base CBinarySerializableElement
 
+using std::string;
+
 CConfigurableDomain::CConfigurableDomain(const string& strName) : base(strName), _bSequenceAware(false), _pLastAppliedConfiguration(NULL)
 {
 }
@@ -667,7 +669,7 @@ bool CConfigurableDomain::renameConfiguration(const string& strName, const strin
     return pDomainConfiguration->rename(strNewName, strError);
 }
 
-bool CConfigurableDomain::restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, list<string>& lstrError) const
+bool CConfigurableDomain::restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<string>& lstrError) const
 {
     string strError;
 
@@ -711,7 +713,7 @@ bool CConfigurableDomain::saveConfiguration(const string& strName, const CParame
     return true;
 }
 
-bool CConfigurableDomain::setElementSequence(const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError)
+bool CConfigurableDomain::setElementSequence(const string& strConfiguration, const std::vector<string>& astrNewElementSequence, string& strError)
 {
     // Find Domain configuration
     CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strError);
@@ -944,7 +946,7 @@ const CDomainConfiguration* CConfigurableDomain::findApplicableDomainConfigurati
 }
 
 // Gather set of configurable elements
-void CConfigurableDomain::gatherConfigurableElements(set<const CConfigurableElement*>& configurableElementSet) const
+void CConfigurableDomain::gatherConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const
 {
     // Insert all configurable elements
     configurableElementSet.insert(_configurableElementList.begin(), _configurableElementList.end());
@@ -969,7 +971,7 @@ bool CConfigurableDomain::containsConfigurableElement(const CConfigurableElement
 // Merge any descended configurable element to this one with this one
 void CConfigurableDomain::mergeAlreadyAssociatedDescendantConfigurableElements(CConfigurableElement* pNewConfigurableElement)
 {
-    list<CConfigurableElement*> mergedConfigurableElementList;
+    std::list<CConfigurableElement*> mergedConfigurableElementList;
 
     ConfigurableElementListIterator it;
 

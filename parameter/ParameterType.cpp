@@ -34,6 +34,8 @@
 
 #define base CTypeElement
 
+using std::string;
+
 CParameterType::CParameterType(const string& strName) : base(strName), _uiSize(0)
 {
 }

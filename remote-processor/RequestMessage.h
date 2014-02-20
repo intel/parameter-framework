@@ -32,22 +32,23 @@
 #include "Message.h"
 #include "RemoteCommand.h"
 #include <vector>
+#include <string>
 
 class CRequestMessage : public CMessage, public IRemoteCommand
 {
 public:
-    CRequestMessage(const string& strCommand);
+    CRequestMessage(const std::string& strCommand);
     CRequestMessage();
 
     // Command Name
-    void setCommand(const string& strCommand);
-    virtual const string& getCommand() const;
+    void setCommand(const std::string& strCommand);
+    virtual const std::string& getCommand() const;
 
     // Arguments
-    virtual void addArgument(const string& strArgument);
+    virtual void addArgument(const std::string& strArgument);
     virtual uint32_t getArgumentCount() const;
-    virtual const string& getArgument(uint32_t uiArgument) const;
-    virtual const string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const;
+    virtual const std::string& getArgument(uint32_t uiArgument) const;
+    virtual const std::string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const;
 
 private:
 
@@ -64,12 +65,12 @@ private:
     virtual void collectReceivedData();
     // Size
     virtual uint32_t getDataSize() const;
-    // Trim input string
-    static string trim(const string& strToTrim);
+    // Trim input std::string
+    static std::string trim(const std::string& strToTrim);
 
     // Command
-    string _strCommand;
+    std::string _strCommand;
     // Arguments
-    vector<string> _argumentVector;
+    std::vector<std::string> _argumentVector;
 };
 

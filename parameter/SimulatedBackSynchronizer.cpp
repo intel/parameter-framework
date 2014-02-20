@@ -42,7 +42,7 @@ CSimulatedBackSynchronizer::CSimulatedBackSynchronizer(const CConfigurableElemen
 void CSimulatedBackSynchronizer::sync()
 {
     // Set default values to simulate back synchronization
-    list<const CConfigurableElement*>::const_iterator it;
+    std::list<const CConfigurableElement*>::const_iterator it;
 
     for (it = _needingBackSyncList.begin(); it != _needingBackSyncList.end(); ++it) {
 

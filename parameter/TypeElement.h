@@ -30,6 +30,7 @@
 #pragma once
 
 #include "Element.h"
+#include <string>
 
 class CMappingData;
 class CInstanceConfigurableElement;
@@ -37,25 +38,25 @@ class CInstanceConfigurableElement;
 class CTypeElement : public CElement
 {
 public:
-    CTypeElement(const string& strName = "");
+    CTypeElement(const std::string& strName = "");
     virtual ~CTypeElement();
 
     // Instantiation
     CInstanceConfigurableElement* instantiate() const;
 
     // Mapping info
-    virtual bool getMappingData(const string& strKey, const string*& pStrValue) const;
+    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
     virtual bool hasMappingData() const;
 
     /**
      * Returns the mapping associated to the current TypeElement instance
      *
-     * @return A string containing the mapping as a comma separated key value pairs
+     * @return A std::string containing the mapping as a comma separated key value pairs
      */
-    virtual string getFormattedMapping() const;
+    virtual std::string getFormattedMapping() const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);

@@ -33,16 +33,14 @@
 #include <string>
 #include <fstream>
 
-using namespace std;
-
 class CBinaryStream
 {
 public:
-    CBinaryStream(const string& strFileName, bool bOut, uint32_t uiDataSize, uint8_t uiStructureChecksum);
+    CBinaryStream(const std::string& strFileName, bool bOut, uint32_t uiDataSize, uint8_t uiStructureChecksum);
     ~CBinaryStream();
 
     // Open close
-    bool open(string& strError);
+    bool open(std::string& strError);
     void close();
 
     // Seek
@@ -61,7 +59,7 @@ private:
     uint8_t computeChecksum() const;
 
     // File name
-    string _strFileName;
+    std::string _strFileName;
     // Serialization direction
     bool _bOut;
     // Data size
@@ -71,7 +69,7 @@ private:
     // Read/Write data
     uint8_t* _puiData;
     // File
-    fstream _fileStream;
+    std::fstream _fileStream;
     // Ops in faile
     uint32_t _uiPos;
     // File state

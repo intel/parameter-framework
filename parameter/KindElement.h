@@ -31,13 +31,15 @@
 
 #include "Element.h"
 
+#include <string>
+
 class CKindElement : public CElement
 {
 public:
-    CKindElement(const string& strName, const string& strKind);
+    CKindElement(const std::string& strName, const std::string& strKind);
 
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
 
-    string _strKind;
+    std::string _strKind;
 };

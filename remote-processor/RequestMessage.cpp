@@ -35,6 +35,8 @@
 
 #define base CMessage
 
+using std::string;
+
 const char* const CRequestMessage::gacDelimiters = " \t\n\v\f\r";
 
 CRequestMessage::CRequestMessage(const string& strCommand) : base(ECommandRequest), _strCommand(strCommand)

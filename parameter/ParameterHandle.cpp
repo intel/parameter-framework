@@ -35,6 +35,8 @@
 #include "ParameterMgr.h"
 #include "AutoLock.h"
 
+using std::string;
+
 CParameterHandle::CParameterHandle(const CBaseParameter* pParameter, CParameterMgr* pParameterMgr)
     : _pBaseParameter(pParameter), _pParameterMgr(pParameterMgr), _bBigEndianSubsystem(pParameter->getBelongingSubsystem()->isBigEndian())
 {
@@ -108,7 +110,7 @@ bool CParameterHandle::getAsBoolean(bool& bValue, string& strError) const
     return _pBaseParameter->accessAsBoolean(bValue, false, parameterAccessContext);
 }
 
-bool CParameterHandle::setAsBooleanArray(const vector<bool>& abValues, string& strError)
+bool CParameterHandle::setAsBooleanArray(const std::vector<bool>& abValues, string& strError)
 {
     // Check operation validity
     if (!checkAccessValidity(true, abValues.size(), strError)) {
@@ -128,12 +130,12 @@ bool CParameterHandle::setAsBooleanArray(const vector<bool>& abValues, string& s
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
-    vector<bool> abUserValues = abValues;
+    std::vector<bool> abUserValues = abValues;
 
     return _pBaseParameter->accessAsBooleanArray(abUserValues, true, parameterAccessContext);
 }
 
-bool CParameterHandle::getAsBooleanArray(vector<bool>& abValues, string& strError) const
+bool CParameterHandle::getAsBooleanArray(std::vector<bool>& abValues, string& strError) const
 {
     // Check operation validity
     if (!checkAccessValidity(false, -1, strError)) {
@@ -188,7 +190,7 @@ bool CParameterHandle::getAsInteger(uint32_t& uiValue, string& strError) const
     return _pBaseParameter->accessAsInteger(uiValue, false, parameterAccessContext);
 }
 
-bool CParameterHandle::setAsIntegerArray(const vector<uint32_t>& auiValues, string& strError)
+bool CParameterHandle::setAsIntegerArray(const std::vector<uint32_t>& auiValues, string& strError)
 {
     // Check operation validity
     if (!checkAccessValidity(true, auiValues.size(), strError)) {
@@ -208,12 +210,12 @@ bool CParameterHandle::setAsIntegerArray(const vector<uint32_t>& auiValues, stri
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
-    vector<uint32_t> auiUserValues = auiValues;
+    std::vector<uint32_t> auiUserValues = auiValues;
 
     return _pBaseParameter->accessAsIntegerArray(auiUserValues, true, parameterAccessContext);
 }
 
-bool CParameterHandle::getAsIntegerArray(vector<uint32_t>& auiValues, string& strError) const
+bool CParameterHandle::getAsIntegerArray(std::vector<uint32_t>& auiValues, string& strError) const
 {
     // Check operation validity
     if (!checkAccessValidity(false, -1, strError)) {
@@ -268,7 +270,7 @@ bool CParameterHandle::getAsSignedInteger(int32_t& iValue, string& strError) con
     return _pBaseParameter->accessAsSignedInteger(iValue, false, parameterAccessContext);
 }
 
-bool CParameterHandle::setAsSignedIntegerArray(const vector<int32_t>& aiValues, string& strError)
+bool CParameterHandle::setAsSignedIntegerArray(const std::vector<int32_t>& aiValues, string& strError)
 {
     // Check operation validity
     if (!checkAccessValidity(true, aiValues.size(), strError)) {
@@ -288,12 +290,12 @@ bool CParameterHandle::setAsSignedIntegerArray(const vector<int32_t>& aiValues, 
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
-    vector<int32_t> aiUserValues = aiValues;
+    std::vector<int32_t> aiUserValues = aiValues;
 
     return _pBaseParameter->accessAsSignedIntegerArray(aiUserValues, true, parameterAccessContext);
 }
 
-bool CParameterHandle::getAsSignedIntegerArray(vector<int32_t>& aiValues, string& strError) const
+bool CParameterHandle::getAsSignedIntegerArray(std::vector<int32_t>& aiValues, string& strError) const
 {
     // Check operation validity
     if (!checkAccessValidity(false, -1, strError)) {
@@ -348,7 +350,7 @@ bool CParameterHandle::getAsDouble(double& dValue, string& strError) const
     return _pBaseParameter->accessAsDouble(dValue, false, parameterAccessContext);
 }
 
-bool CParameterHandle::setAsDoubleArray(const vector<double>& adValues, string& strError)
+bool CParameterHandle::setAsDoubleArray(const std::vector<double>& adValues, string& strError)
 {
     // Check operation validity
     if (!checkAccessValidity(true, adValues.size(), strError)) {
@@ -368,12 +370,12 @@ bool CParameterHandle::setAsDoubleArray(const vector<double>& adValues, string& 
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
-    vector<double> adUserValues = adValues;
+    std::vector<double> adUserValues = adValues;
 
     return _pBaseParameter->accessAsDoubleArray(adUserValues, true, parameterAccessContext);
 }
 
-bool CParameterHandle::getAsDoubleArray(vector<double>& adValues, string& strError) const
+bool CParameterHandle::getAsDoubleArray(std::vector<double>& adValues, string& strError) const
 {
     // Check operation validity
     if (!checkAccessValidity(false, -1, strError)) {
@@ -431,7 +433,7 @@ bool CParameterHandle::getAsString(string& strValue, string& strError) const
     return _pBaseParameter->accessAsString(strValue, false, parameterAccessContext);
 }
 
-bool CParameterHandle::setAsStringArray(const vector<string>& astrValues, string& strError)
+bool CParameterHandle::setAsStringArray(const std::vector<string>& astrValues, string& strError)
 {
     // Check operation validity
     if (!checkAccessValidity(true, astrValues.size(), strError)) {
@@ -451,12 +453,12 @@ bool CParameterHandle::setAsStringArray(const vector<string>& astrValues, string
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
-    vector<string> astrUserValues = astrValues;
+    std::vector<string> astrUserValues = astrValues;
 
     return _pBaseParameter->accessAsStringArray(astrUserValues, true, parameterAccessContext);
 }
 
-bool CParameterHandle::getAsStringArray(vector<string>& astrValues, string& strError) const
+bool CParameterHandle::getAsStringArray(std::vector<string>& astrValues, string& strError) const
 {
     // Check operation validity
     if (!checkAccessValidity(false, -1, strError)) {

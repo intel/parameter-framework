@@ -31,10 +31,12 @@
 
 #include "ParameterAccessContext.h"
 
+#include <string>
+
 class CConfigurationAccessContext : public CParameterAccessContext
 {
 public:
-    CConfigurationAccessContext(string& strError, bool bSerializeOut);
+    CConfigurationAccessContext(std::string& strError, bool bSerializeOut);
 
     // Serialization direction
     bool serializeOut() const;

@@ -32,6 +32,9 @@
 #include "ConfigurableElement.h"
 #include "TypeElement.h"
 
+#include <list>
+#include <string>
+
 class IMapper;
 class CParameterBlackboard;
 class CParameterAccessContext;
@@ -48,23 +51,23 @@ public:
         EComponent
     };
 
-    CInstanceConfigurableElement(const string& strName, const CTypeElement* pTypeElement);
+    CInstanceConfigurableElement(const std::string& strName, const CTypeElement* pTypeElement);
 
     // Instantiated type
     const CTypeElement* getTypeElement() const;
 
-    bool getMappingData(const string& strKey, const string*& pStrValue) const;
+    bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
 
     /**
      * Returns the mapping data associated to the type element of the current
-     * InstanceConfigurableElement, as a formatted string
+     * InstanceConfigurableElement, as a formatted std::string
      *
-     * @return A string containing the formatted mapping
+     * @return A std::string containing the formatted mapping
      */
-    string getFormattedMapping() const;
+    std::string getFormattedMapping() const;
 
     // From CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
     // Syncer to/from HW
     void setSyncer(ISyncer* pSyncer);
@@ -74,10 +77,10 @@ public:
     virtual Type getType() const = 0;
 
     // Mapping execution
-    bool map(IMapper& mapper, string& strError);
+    bool map(IMapper& mapper, std::string& strError);
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // Scalar or Array?
     bool isScalar() const;
@@ -88,7 +91,7 @@ public:
     /**
      * Get the list of all the ancestors that have a mapping.
      *
-     * The mapping is represented as a string of all the mapping data (key:value) defined in the
+     * The mapping is represented as a std::string of all the mapping data (key:value) defined in the
      * context of the element.
      * In this class, the method is generic and calls its parent getListOfElementsWithMappings(...)
      * method.
@@ -97,7 +100,7 @@ public:
      * that have a mapping. Elements are added at the end of the list, so the root Element will be
      * the last one.
      */
-    virtual void getListOfElementsWithMapping(list<const CConfigurableElement*>&
+    virtual void getListOfElementsWithMapping(std::list<const CConfigurableElement*>&
                                                configurableElementPath) const;
 protected:
     // Syncer

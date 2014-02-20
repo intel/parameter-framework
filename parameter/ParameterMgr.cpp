@@ -88,6 +88,11 @@
 
 #define base CElement
 
+using std::string;
+using std::list;
+using std::vector;
+using std::ostringstream;
+
 // Used for remote processor server creation
 typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
 
@@ -1168,7 +1173,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceC
     }
 
     // Build configurable element path list
-    vector<string> astrNewElementSequence;
+    std::vector<string> astrNewElementSequence;
 
     uint32_t uiArgument;
 

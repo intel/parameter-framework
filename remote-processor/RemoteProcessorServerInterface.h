@@ -31,8 +31,6 @@
 
 #include "RequestMessage.h"
 
-using namespace std;
-
 class IRemoteProcessorServerInterface
 {
 public:

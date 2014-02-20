@@ -30,12 +30,12 @@
 #include "PathNavigator.h"
 #include "Tokenizer.h"
 
-CPathNavigator::CPathNavigator(const string& strPath) : _uiCurrentIndex(0)
+CPathNavigator::CPathNavigator(const std::string& strPath) : _uiCurrentIndex(0)
 {
     init(strPath);
 }
 
-void CPathNavigator::init(const string& strPath)
+void CPathNavigator::init(const std::string& strPath)
 {
     Tokenizer tokenizer(strPath, "/");
 
@@ -50,7 +50,7 @@ bool CPathNavigator::isPathValid() const
 }
 
 // Navigate through
-bool CPathNavigator::navigateThrough(const string& strItemName, string& strError)
+bool CPathNavigator::navigateThrough(const std::string& strItemName, std::string& strError)
 {
     if (!_bValid) {
 
@@ -59,7 +59,7 @@ bool CPathNavigator::navigateThrough(const string& strItemName, string& strError
         return false;
     }
 
-    string* pStrChildName = next();
+    std::string* pStrChildName = next();
 
     if (!pStrChildName) {
 
@@ -80,7 +80,7 @@ bool CPathNavigator::navigateThrough(const string& strItemName, string& strError
     return true;
 }
 
-string* CPathNavigator::next()
+std::string* CPathNavigator::next()
 {
     if (_uiCurrentIndex < _astrItems.size()) {
 
@@ -90,9 +90,9 @@ string* CPathNavigator::next()
     return NULL;
 }
 
-string CPathNavigator::getCurrentPath() const
+std::string CPathNavigator::getCurrentPath() const
 {
-    string strPath = "/";
+    std::string strPath = "/";
 
     if (!_uiCurrentIndex) {
 
@@ -112,7 +112,7 @@ string CPathNavigator::getCurrentPath() const
 }
 
 
-bool CPathNavigator::checkPathFormat(const string& strUpl)
+bool CPathNavigator::checkPathFormat(const std::string& strUpl)
 {
     return strUpl[0] == '/';
 }

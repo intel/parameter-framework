@@ -34,6 +34,8 @@
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
 
+#include <string>
+
 class CSelectionCriterionLibrary;
 class CSelectionCriteriaDefinition;
 class ISelectionCriterionObserver;
@@ -49,18 +51,18 @@ public:
 
     // Selection Criteria/Type creation
     CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
-    CSelectionCriterion* createSelectionCriterion(const string& strName, const CSelectionCriterionType* pSelectionCriterionType);
+    CSelectionCriterion* createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType);
     // Selection criterion retrieval
-    CSelectionCriterion* getSelectionCriterion(const string& strName);
+    CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 
     // Selection Criterion definition
     const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
 
     // List available criteria
-    void listSelectionCriteria(list<string>& strResult, bool bWithTypeInfo, bool bHumanReadable) const;
+    void listSelectionCriteria(std::list<std::string>& strResult, bool bWithTypeInfo, bool bHumanReadable) const;
 
     // Base
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
     // Reset the modified status of the children
     void resetModifiedStatus();

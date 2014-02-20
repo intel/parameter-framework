@@ -40,12 +40,12 @@ bool CComponentLibrary::childrenAreDynamic() const
     return true;
 }
 
-string CComponentLibrary::getKind() const
+std::string CComponentLibrary::getKind() const
 {
     return "ComponentLibrary";
 }
 
-const CComponentType* CComponentLibrary::getComponentType(const string& strName) const
+const CComponentType* CComponentLibrary::getComponentType(const std::string& strName) const
 {
     return static_cast<const CComponentType*>(findChild(strName));
 }

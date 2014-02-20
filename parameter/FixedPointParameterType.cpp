@@ -40,6 +40,8 @@
 
 #define base CParameterType
 
+using std::string;
+
 CFixedPointParameterType::CFixedPointParameterType(const string& strName) : base(strName), _uiIntegral(0), _uiFractional(0)
 {
 }
@@ -185,7 +187,7 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
     assert(isEncodable((uint32_t)iData, false));
 
     // Format
-    ostringstream strStream;
+    std::ostringstream strStream;
 
     // Raw formatting?
     if (parameterAccessContext.valueSpaceIsRaw()) {
@@ -193,7 +195,7 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
         // Hexa formatting?
         if (parameterAccessContext.outputRawFormatIsHex()) {
 
-            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << (uint32_t)iData;
+            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << (uint32_t)iData;
         } else {
 
             // Sign extend
@@ -212,7 +214,7 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
         // Set up the precision of the display and notation type
         int iPrecision = (_uiFractional  * log10(2.0)) + 1;
         int iFactor = pow(10.0, iPrecision);
-        strStream << fixed << ((int64_t)(dData * iFactor)) / (double)iFactor;
+        strStream << std::fixed << ((int64_t)(dData * iFactor)) / (double)iFactor;
     }
 
     strValue = strStream.str();
@@ -276,7 +278,7 @@ void CFixedPointParameterType::getRange(double& dMin, double& dMax) const
 // Out of range error
 string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const
 {
-    ostringstream strStream;
+    std::ostringstream strStream;
 
     strStream << "Value " << strValue << " standing out of admitted ";
 
@@ -299,9 +301,9 @@ string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool
         if (bHexaValue) {
 
             // Format Min
-            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(iMin);
+            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(iMin);
             // Format Max
-            strStream << ", 0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(iMax);
+            strStream << ", 0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(iMax);
 
         } else {
 

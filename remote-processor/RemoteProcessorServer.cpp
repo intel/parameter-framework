@@ -37,6 +37,8 @@
 #include "AnswerMessage.h"
 #include "RemoteCommandHandler.h"
 
+using std::string;
+
 CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
     _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL), _ulThreadId(0)
 {

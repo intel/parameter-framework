@@ -32,6 +32,8 @@
 #include "BackSynchronizer.h"
 #include "ParameterAccessContext.h"
 
+#include <string>
+
 class CParameterBlackboard;
 
 class CSimulatedBackSynchronizer : public CBackSynchronizer
@@ -43,7 +45,7 @@ public:
     virtual void sync();
 private:
     // Fake error for parameter context creation
-    string _strError;
+    std::string _strError;
     // Parameter context
     CParameterAccessContext _parameterAccessContext;
 };

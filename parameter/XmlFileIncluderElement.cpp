@@ -37,7 +37,7 @@
 
 #define base CKindElement
 
-CXmlFileIncluderElement::CXmlFileIncluderElement(const string& strName, const string& strKind) : base(strName, strKind)
+CXmlFileIncluderElement::CXmlFileIncluderElement(const std::string& strName, const std::string& strKind) : base(strName, strKind)
 {
 }
 
@@ -48,7 +48,7 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     CXmlElementSerializingContext& elementSerializingContext = static_cast<CXmlElementSerializingContext&>(serializingContext);
 
     // Parse included document
-    string strPath = xmlElement.getAttributeString("Path");
+    std::string strPath = xmlElement.getAttributeString("Path");
 
     // Relative path?
     if (strPath[0] != '/') {
@@ -57,7 +57,7 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     }
 
     // Instantiate parser
-    string strIncludedElementType = getIncludedElementType();
+    std::string strIncludedElementType = getIncludedElementType();
 
     {
         // Open a log section titled with loading file path
@@ -108,9 +108,9 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
 }
 
 // Element type
-string CXmlFileIncluderElement::getIncludedElementType() const
+std::string CXmlFileIncluderElement::getIncludedElementType() const
 {
-    string strKind = getKind();
+    std::string strKind = getKind();
 
     int iPosToRemoveFrom = strKind.rfind("Include", -1);
 

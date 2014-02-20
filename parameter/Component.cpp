@@ -33,7 +33,7 @@
 
 #define base CInstanceConfigurableElement
 
-CComponent::CComponent(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
+CComponent::CComponent(const std::string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
 {
 }
 
