@@ -1,4 +1,4 @@
-add_executable(remote-process main.cpp) # TODO: WIN32 ?
+add_executable(remote-process main.cpp)
 
 # TODO: separate remote-processor's includes in half (public/private)
 # And use only public headers here

@@ -1,4 +1,4 @@
-add_executable(test-platform # WIN32 ?
+add_executable(test-platform
     main.cpp
     TestPlatform.cpp)
 
