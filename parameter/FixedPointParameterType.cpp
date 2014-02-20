@@ -170,7 +170,7 @@ bool CFixedPointParameterType::toBlackboard(const string& strValue, uint32_t& ui
     }
 
     // check that the data is encodable and can be safely written to the blackboard
-    assert(isEncodable((unsigned long int)iData, true));
+    assert(isEncodable((uint32_t)iData, true));
 
     uiValue = (uint32_t)iData;
 
