@@ -32,11 +32,11 @@
 
 #define base CElement
 
-CSelectionCriterion::CSelectionCriterion(const string& strName, const CSelectionCriterionType* pType) : base(strName), _iState(0), _pType(pType), _uiNbModifications(0)
+CSelectionCriterion::CSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pType) : base(strName), _iState(0), _pType(pType), _uiNbModifications(0)
 {
 }
 
-string CSelectionCriterion::getKind() const
+std::string CSelectionCriterion::getKind() const
 {
     return "SelectionCriterion";
 }
@@ -80,7 +80,7 @@ int CSelectionCriterion::getCriterionState() const
 }
 
 // Name
-string CSelectionCriterion::getCriterionName() const
+std::string CSelectionCriterion::getCriterionName() const
 {
     return getName();
 }
@@ -115,9 +115,9 @@ bool CSelectionCriterion::excludes(int iState) const
 }
 
 /// User request
-string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const
+std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const
 {
-    string strFormattedDescription;
+    std::string strFormattedDescription;
 
     if (bHumanReadable) {
 

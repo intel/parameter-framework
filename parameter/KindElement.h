@@ -31,18 +31,20 @@
 
 #include "Element.h"
 
+#include <string>
+
 class CKindElement : public CElement
 {
 public:
-    CKindElement(const string& strName, const string& strKind) : CElement(strName), _strKind(strKind)
+    CKindElement(const std::string& strName, const std::string& strKind) : CElement(strName), _strKind(strKind)
     {
     }
 
-    virtual string getKind() const
+    virtual std::string getKind() const
     {
         return _strKind;
     }
 private:
 
-    string _strKind;
+    std::string _strKind;
 };

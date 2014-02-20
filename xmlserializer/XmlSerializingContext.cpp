@@ -29,22 +29,22 @@
  */
 #include "XmlSerializingContext.h"
 
-CXmlSerializingContext::CXmlSerializingContext(string& strError) : _strError(strError)
+CXmlSerializingContext::CXmlSerializingContext(std::string& strError) : _strError(strError)
 {
 }
 
 // Error
-void CXmlSerializingContext::setError(const string& strError)
+void CXmlSerializingContext::setError(const std::string& strError)
 {
     _strError = strError;
 }
 
-void CXmlSerializingContext::appendLineToError(const string& strAppend)
+void CXmlSerializingContext::appendLineToError(const std::string& strAppend)
 {
     _strError += "\n" + strAppend;
 }
 
-const string& CXmlSerializingContext::getError() const
+const std::string& CXmlSerializingContext::getError() const
 {
     return _strError;
 }

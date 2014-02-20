@@ -29,22 +29,22 @@
  */
 #include "ErrorContext.h"
 
-CErrorContext::CErrorContext(string& strError) : _strError(strError)
+CErrorContext::CErrorContext(std::string& strError) : _strError(strError)
 {
 }
 
 // Error
-void CErrorContext::setError(const string& strError)
+void CErrorContext::setError(const std::string& strError)
 {
     _strError = strError;
 }
 
-void CErrorContext::appendToError(const string& strAppend)
+void CErrorContext::appendToError(const std::string& strAppend)
 {
     _strError += strAppend;
 }
 
-const string& CErrorContext::getError() const
+const std::string& CErrorContext::getError() const
 {
     return _strError;
 }

@@ -32,6 +32,8 @@
 
 #define base CRule
 
+using std::string;
+
 // Types
 const char* CCompoundRule::_apcTypes[2] = {
     "Any",

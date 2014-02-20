@@ -31,6 +31,8 @@
 
 #define base CElement
 
+using std::string;
+
 CParameterAdaptation::CParameterAdaptation(const string& strType) : base(strType), _iOffset(0)
 {
 }

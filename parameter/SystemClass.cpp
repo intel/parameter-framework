@@ -42,6 +42,9 @@
 
 #define base CConfigurableElement
 
+using std::list;
+using std::string;
+
 /**
  * A plugin file name is of the form:
  * lib<type>-subsystem.so or lib<type>-subsystem._host.so

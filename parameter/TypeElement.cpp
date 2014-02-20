@@ -35,7 +35,7 @@
 
 #define base CElement
 
-CTypeElement::CTypeElement(const string& strName) : base(strName), _uiArrayLength(0), _pMappingData(NULL)
+CTypeElement::CTypeElement(const std::string& strName) : base(strName), _uiArrayLength(0), _pMappingData(NULL)
 {
 }
 
@@ -59,7 +59,7 @@ int CTypeElement::toPlainInteger(int iSizeOptimizedData) const
     return iSizeOptimizedData;
 }
 
-bool CTypeElement::getMappingData(const string& strKey, const string*& pStrValue) const
+bool CTypeElement::getMappingData(const std::string& strKey, const std::string*& pStrValue) const
 {
     if (_pMappingData) {
 
@@ -74,7 +74,7 @@ bool CTypeElement::hasMappingData() const
 }
 
 // Element properties
-void CTypeElement::showProperties(string& strResult) const
+void CTypeElement::showProperties(std::string& strResult) const
 {
     (void)strResult;
     // Prevent base from being called in that context!
@@ -136,7 +136,7 @@ CMappingData* CTypeElement::getMappingData()
     return _pMappingData;
 }
 
-string CTypeElement::getFormattedMapping() const
+std::string CTypeElement::getFormattedMapping() const
 {
     if (_pMappingData) {
 

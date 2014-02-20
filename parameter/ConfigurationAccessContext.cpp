@@ -31,6 +31,8 @@
 
 #define base CParameterAccessContext
 
+using std::string;
+
 CConfigurationAccessContext::CConfigurationAccessContext(string& strError, bool bSerializeOut) :
     base(strError),
     _bSerializeOut(bSerializeOut)

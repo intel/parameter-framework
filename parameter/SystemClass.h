@@ -32,6 +32,7 @@
 #include "ConfigurableElement.h"
 #include "SubsystemPlugins.h"
 #include <list>
+#include <string>
 
 class CSubsystemLibrary;
 
@@ -51,7 +52,7 @@ public:
      * @return true if the plugins succesfully started or that a fallback is available,
                false otherwise.
      */
-    bool loadSubsystems(string& strError, const CSubsystemPlugins* pSubsystemPlugins,
+    bool loadSubsystems(std::string& strError, const CSubsystemPlugins* pSubsystemPlugins,
                         bool bVirtualSubsystemFallback = false);
     // Subsystem factory
     const CSubsystemLibrary* getSubsystemLibrary() const;
@@ -71,8 +72,8 @@ public:
     void cleanSubsystemsNeedToResync();
 
     // base
-    virtual bool init(string& strError);
-    virtual string getKind() const;
+    virtual bool init(std::string& strError);
+    virtual std::string getKind() const;
 
     // From IXmlSource
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
@@ -90,11 +91,11 @@ private:
      *
      * @return true if all plugins have been succesfully loaded, false otherwises.
      */
-    bool loadSubsystemsFromSharedLibraries(list<string>& lstrError,
+    bool loadSubsystemsFromSharedLibraries(std::list<std::string>& lstrError,
                                            const CSubsystemPlugins* pSubsystemPlugins);
 
     // Plugin symbol computation
-    static string getPluginSymbol(const string& strPluginPath);
+    static std::string getPluginSymbol(const std::string& strPluginPath);
 
     /** Load subsystem plugin shared libraries.
      *
@@ -106,10 +107,10 @@ private:
      *         When false is returned, some plugins MIHGT have been loaded
      *         but the lstrPluginFiles is accurate.
      */
-    bool loadPlugins(list<string>& lstrPluginFiles, list<string>& lstrError);
+    bool loadPlugins(std::list<std::string>& lstrPluginFiles, std::list<std::string>& lstrError);
 
     // Subsystem factory
     CSubsystemLibrary* _pSubsystemLibrary;
-    list<void*> _subsystemLibraries; /**< Contains the list of all open plugin libs. */
+    std::list<void*> _subsystemLibraries; /**< Contains the list of all open plugin libs. */
 };
 

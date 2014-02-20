@@ -33,7 +33,7 @@
 #include <string>
 
 /**
-  * Source class that get an xml document from a string.
+  * Source class that get an xml document from a std::string.
   * Its base class will check the validity of the document.
   */
 class CXmlStringDocSource : public CXmlDocSource
@@ -49,11 +49,11 @@ public:
       * @param[in] strNameAttributeName a string containing the name of the root name attribute
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlStringDocSource(const string& strXmlInput,
-                        const string& strXmlSchemaFile,
-                        const string& strRootElementType,
-                        const string& strRootElementName,
-                        const string& strNameAttrituteName,
+    CXmlStringDocSource(const std::string& strXmlInput,
+                        const std::string& strXmlSchemaFile,
+                        const std::string& strRootElementType,
+                        const std::string& strRootElementName,
+                        const std::string& strNameAttrituteName,
                         bool bValidateWithSchema);
 
     /**

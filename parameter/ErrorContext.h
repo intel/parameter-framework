@@ -31,20 +31,18 @@
 
 #include <string>
 
-using namespace std;
-
 class CErrorContext
 {
 public:
-    CErrorContext(string& strError);
+    CErrorContext(std::string& strError);
 
     // Error
-    void setError(const string& strError);
-    void appendToError(const string& strAppend);
-    const string& getError() const;
+    void setError(const std::string& strError);
+    void appendToError(const std::string& strAppend);
+    const std::string& getError() const;
 
 private:
     // Error reference
-    string& _strError;
+    std::string& _strError;
 };
 

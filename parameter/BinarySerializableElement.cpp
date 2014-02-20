@@ -31,6 +31,8 @@
 
 #define base CElement
 
+using std::string;
+
 CBinarySerializableElement::CBinarySerializableElement(const string& strName) : base(strName)
 {
 }

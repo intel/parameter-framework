@@ -34,13 +34,13 @@ CSelectionCriteriaDefinition::CSelectionCriteriaDefinition()
 {
 }
 
-string CSelectionCriteriaDefinition::getKind() const
+std::string CSelectionCriteriaDefinition::getKind() const
 {
     return "SelectionCriteriaDefinition";
 }
 
 // Selection Criterion creation
-CSelectionCriterion* CSelectionCriteriaDefinition::createSelectionCriterion(const string& strName, const CSelectionCriterionType* pSelectionCriterionType)
+CSelectionCriterion* CSelectionCriteriaDefinition::createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType)
 {
     CSelectionCriterion* pSelectionCriterion = new CSelectionCriterion(strName, pSelectionCriterionType);
 
@@ -50,18 +50,18 @@ CSelectionCriterion* CSelectionCriteriaDefinition::createSelectionCriterion(cons
 }
 
 // Selection Criterion access
-const CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const string& strName) const
+const CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const std::string& strName) const
 {
     return static_cast<const CSelectionCriterion*>(findChild(strName));
 }
 
-CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const string& strName)
+CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const std::string& strName)
 {
     return static_cast<CSelectionCriterion*>(findChild(strName));
 }
 
 // List available criteria
-void CSelectionCriteriaDefinition::listSelectionCriteria(list<string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
+void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
 {
     // Propagate
     uint32_t uiNbChildren = getNbChildren();

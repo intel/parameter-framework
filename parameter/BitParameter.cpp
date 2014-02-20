@@ -37,6 +37,8 @@
 
 #define base CBaseParameter
 
+using std::string;
+
 CBitParameter::CBitParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
 {
 }

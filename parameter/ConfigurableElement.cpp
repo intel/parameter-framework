@@ -38,7 +38,7 @@
 
 #define base CElement
 
-CConfigurableElement::CConfigurableElement(const string& strName) : base(strName), _uiOffset(0)
+CConfigurableElement::CConfigurableElement(const std::string& strName) : base(strName), _uiOffset(0)
 {
 }
 
@@ -133,9 +133,9 @@ CAreaConfiguration* CConfigurableElement::createAreaConfiguration(const CSyncerS
 }
 
 // Parameter access
-bool CConfigurableElement::accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CConfigurableElement::accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
-    string* pStrChildName = pathNavigator.next();
+    std::string* pStrChildName = pathNavigator.next();
 
     if (!pStrChildName) {
 
@@ -157,7 +157,7 @@ bool CConfigurableElement::accessValue(CPathNavigator& pathNavigator, string& st
 }
 
 void CConfigurableElement::getListOfElementsWithMapping(
-        list<const CConfigurableElement*>& configurableElementPath) const
+        std::list<const CConfigurableElement*>& configurableElementPath) const
 {
     // Check parent
     const CElement* pParent = getParent();
@@ -186,7 +186,7 @@ void CConfigurableElement::setDefaultValues(CParameterAccessContext& parameterAc
 }
 
 // Element properties
-void CConfigurableElement::showProperties(string& strResult) const
+void CConfigurableElement::showProperties(std::string& strResult) const
 {
     base::showProperties(strResult);
 
@@ -303,7 +303,7 @@ bool CConfigurableElement::belongsTo(const CConfigurableDomain* pConfigurableDom
 }
 
 // Belonging domains
-void CConfigurableElement::getBelongingDomains(list<const CConfigurableDomain*>& configurableDomainList) const
+void CConfigurableElement::getBelongingDomains(std::list<const CConfigurableDomain*>& configurableDomainList) const
 {
     configurableDomainList.insert(configurableDomainList.end(), _configurableDomainList.begin(), _configurableDomainList.end());
 
@@ -316,10 +316,10 @@ void CConfigurableElement::getBelongingDomains(list<const CConfigurableDomain*>&
     }
 }
 
-void CConfigurableElement::listBelongingDomains(string& strResult, bool bVertical) const
+void CConfigurableElement::listBelongingDomains(std::string& strResult, bool bVertical) const
 {
     // Get belonging domain list
-    list<const CConfigurableDomain*> configurableDomainList;
+    std::list<const CConfigurableDomain*> configurableDomainList;
 
     getBelongingDomains(configurableDomainList);
 
@@ -328,19 +328,19 @@ void CConfigurableElement::listBelongingDomains(string& strResult, bool bVertica
 }
 
 // Elements with no domains
-void CConfigurableElement::listRogueElements(string& strResult) const
+void CConfigurableElement::listRogueElements(std::string& strResult) const
 {
     strResult = "\n";
 
     // Get rogue element aggregate list (no associated domain)
-    list<const CConfigurableElement*> rogueElementList;
+    std::list<const CConfigurableElement*> rogueElementList;
 
     CConfigurableElementAggregator configurableElementAggregator(rogueElementList, &CConfigurableElement::hasNoDomainAssociated);
 
     configurableElementAggregator.aggegate(this);
 
-    // Build list as string
-    list<const CConfigurableElement*>::const_iterator it;
+    // Build list as std::string
+    std::list<const CConfigurableElement*>::const_iterator it;
 
     for (it = rogueElementList.begin(); it != rogueElementList.end(); ++it) {
 
@@ -357,7 +357,7 @@ bool CConfigurableElement::isRogue() const
 }
 
 // Footprint as string
-string CConfigurableElement::getFootprintAsString() const
+std::string CConfigurableElement::getFootprintAsString() const
 {
     // Get size as string
     return toString(getFootPrint()) + " byte(s)";
@@ -395,7 +395,7 @@ bool CConfigurableElement::hasNoValidDomainAssociated() const
 }
 
 // Owning domains
-void CConfigurableElement::listAssociatedDomains(string& strResult, bool bVertical) const
+void CConfigurableElement::listAssociatedDomains(std::string& strResult, bool bVertical) const
 {
     // Fill list
     listDomains(_configurableDomainList, strResult, bVertical);
@@ -404,14 +404,14 @@ void CConfigurableElement::listAssociatedDomains(string& strResult, bool bVertic
 uint32_t CConfigurableElement::getBelongingDomainCount() const
 {
     // Get belonging domain list
-    list<const CConfigurableDomain*> configurableDomainList;
+    std::list<const CConfigurableDomain*> configurableDomainList;
 
     getBelongingDomains(configurableDomainList);
 
     return configurableDomainList.size();
 }
 
-void CConfigurableElement::listDomains(const list<const CConfigurableDomain*>& configurableDomainList, string& strResult, bool bVertical) const
+void CConfigurableElement::listDomains(const std::list<const CConfigurableDomain*>& configurableDomainList, std::string& strResult, bool bVertical) const
 {
     if (bVertical && configurableDomainList.empty()) {
 

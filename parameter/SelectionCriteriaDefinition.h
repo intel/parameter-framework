@@ -40,17 +40,17 @@ public:
     CSelectionCriteriaDefinition();
 
     // Selection Criterion creation
-    CSelectionCriterion* createSelectionCriterion(const string& strName, const CSelectionCriterionType* pSelectionCriterionType);
+    CSelectionCriterion* createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType);
 
     // Selection Criterion access
-    const CSelectionCriterion* getSelectionCriterion(const string& strName) const;
-    CSelectionCriterion* getSelectionCriterion(const string& strName);
+    const CSelectionCriterion* getSelectionCriterion(const std::string& strName) const;
+    CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 
     // List available criteria
-    void listSelectionCriteria(list<string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const;
+    void listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const;
 
     // Base
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
     // Reset the modified status of the children
     void resetModifiedStatus();

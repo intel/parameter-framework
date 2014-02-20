@@ -31,13 +31,15 @@
 
 #include "Element.h"
 
+#include <string>
+
 class CParameterFrameworkConfiguration : public CElement
 {
 public:
     CParameterFrameworkConfiguration();
 
     // System class name
-    const string& getSystemClassName() const;
+    const std::string& getSystemClassName() const;
 
     // Tuning allowed
     bool isTuningAllowed() const;
@@ -48,11 +50,11 @@ public:
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 private:
-    virtual string getKind() const;
+    virtual std::string getKind() const;
     virtual bool childrenAreDynamic() const;
 
     // System class name
-    string _strSystemClassName;
+    std::string _strSystemClassName;
     // Tuning allowed
     bool _bTuningAllowed;
     // Server port

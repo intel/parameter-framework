@@ -31,6 +31,8 @@
 
 #define base CXmlElementSerializingContext
 
+using std::string;
+
 CXmlParameterSerializingContext::CXmlParameterSerializingContext(string& strError) : base(strError)
 {
 }

@@ -36,48 +36,48 @@
 
 class CSelectionCriterionType : public CElement, public ISelectionCriterionTypeInterface
 {
-    typedef map<string, int>::const_iterator NumToLitMapConstIt;
+    typedef std::map<std::string, int>::const_iterator NumToLitMapConstIt;
 
 public:
     CSelectionCriterionType(bool bIsInclusive);
 
     // From ISelectionCriterionTypeInterface
-    virtual bool addValuePair(int iValue, const string& strValue);
+    virtual bool addValuePair(int iValue, const std::string& strValue);
     /**
-     * Retrieve the numerical value from the string representation of the criterion type.
+     * Retrieve the numerical value from the std::string representation of the criterion type.
      *
      * @param[in] strValue: criterion type value represented as a stream. If the criterion is
      *                      inclusive, it supports more than one criterion type value delimited
      *                      by the "|" symbol.
      * @param[out] iValue: criterion type value represented as an integer.
      *
-     * @return true if integer value retrieved from the string one, false otherwise.
+     * @return true if integer value retrieved from the std::string one, false otherwise.
      */
-    virtual bool getNumericalValue(const string& strValue, int& iValue) const;
-    virtual bool getLiteralValue(int iValue, string& strValue) const;
+    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const;
+    virtual bool getLiteralValue(int iValue, std::string& strValue) const;
     virtual bool isTypeInclusive() const;
 
     // Value list
-    string listPossibleValues() const;
+    std::string listPossibleValues() const;
 
     // Formatted state
-    virtual string getFormattedState(int iValue) const;
+    virtual std::string getFormattedState(int iValue) const;
 
     // From CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     /**
-     * Retrieve the numerical value from the string representation of the criterion type.
+     * Retrieve the numerical value from the std::string representation of the criterion type.
      *
      * @param[in] strValue: criterion type value represented as a stream. If the criterion is
      *                      inclusive, it expects only one criterion type value.
      * @param[out] iValue: criterion type value represented as an integer.
      *
-     * @return true if integer value retrieved from the string one, false otherwise.
+     * @return true if integer value retrieved from the std::string one, false otherwise.
      */
-    bool getAtomicNumericalValue(const string& strValue, int& iValue) const;
+    bool getAtomicNumericalValue(const std::string& strValue, int& iValue) const;
     bool _bInclusive;
-    map<string, int> _numToLitMap;
+    std::map<std::string, int> _numToLitMap;
 
     static const std::string _strDelimiter; /**< Inclusive criterion type delimiter. */
 };

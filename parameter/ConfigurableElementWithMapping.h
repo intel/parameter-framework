@@ -40,7 +40,7 @@
  */
 class CConfigurableElementWithMapping : public CConfigurableElement {
 public:
-    CConfigurableElementWithMapping(const string& strName) : CConfigurableElement(strName) {}
+    CConfigurableElementWithMapping(const std::string& strName) : CConfigurableElement(strName) {}
     virtual ~CConfigurableElementWithMapping() {}
 
     /**

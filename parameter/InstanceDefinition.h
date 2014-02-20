@@ -31,6 +31,8 @@
 
 #include "TypeElement.h"
 
+#include <string>
+
 class CInstanceDefinition : public CTypeElement
 {
 public:
@@ -38,7 +40,7 @@ public:
 
     void createInstances(CElement* pFatherElement);
 
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     virtual bool childrenAreDynamic() const;
     virtual CInstanceConfigurableElement* doInstantiate() const;

@@ -29,6 +29,8 @@
  */
 #include "AutoLog.h"
 
+using std::string;
+
 CAutoLog::CAutoLog(const CElement* pElement, const string& strContext, bool bLogOn)
     : _pElement(pElement), _strContext(strContext), _bLogOn(bLogOn)
 {

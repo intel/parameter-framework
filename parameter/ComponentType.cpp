@@ -35,11 +35,11 @@
 
 #define base CTypeElement
 
-CComponentType::CComponentType(const string& strName) : base(strName), _pExtendsComponentType(NULL)
+CComponentType::CComponentType(const std::string& strName) : base(strName), _pExtendsComponentType(NULL)
 {
 }
 
-string CComponentType::getKind() const
+std::string CComponentType::getKind() const
 {
     return "ComponentType";
 }
@@ -49,7 +49,7 @@ bool CComponentType::childrenAreDynamic() const
     return true;
 }
 
-bool CComponentType::getMappingData(const string& strKey, const string*& pStrValue) const
+bool CComponentType::getMappingData(const std::string& strKey, const std::string*& pStrValue) const
 {
     // Try myself first then extended component type
     return base::getMappingData(strKey, pStrValue) || (_pExtendsComponentType && _pExtendsComponentType->getMappingData(strKey, pStrValue));
@@ -61,10 +61,10 @@ bool CComponentType::hasMappingData() const
     return base::hasMappingData() || (_pExtendsComponentType && _pExtendsComponentType->hasMappingData());
 }
 
-string CComponentType::getFormattedMapping() const
+std::string CComponentType::getFormattedMapping() const
 {
     // Try myself first then associated component type
-    string strValue = base::getFormattedMapping();
+    std::string strValue = base::getFormattedMapping();
     if (_pExtendsComponentType) {
 
         strValue += _pExtendsComponentType->getFormattedMapping();
@@ -89,7 +89,7 @@ bool CComponentType::fromXml(const CXmlElement& xmlElement, CXmlSerializingConte
     // Check for Extends attribute (extensions will be populated after and not before)
     if (xmlElement.hasAttribute("Extends")) {
 
-        string strExtendsType = xmlElement.getAttributeString("Extends");
+        std::string strExtendsType = xmlElement.getAttributeString("Extends");
 
         _pExtendsComponentType = pComponentLibrary->getComponentType(strExtendsType);
 

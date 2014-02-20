@@ -38,8 +38,6 @@
 
 #include "PathNavigator.h"
 
-using namespace std;
-
 class CXmlElementSerializingContext;
 class CErrorContext;
 
@@ -47,45 +45,45 @@ class CElement : public IXmlSink, public IXmlSource
 {
     friend class CAutoLog;
 public:
-    CElement(const string& strName = "");
+    CElement(const std::string& strName = "");
     virtual ~CElement();
 
     // Logging
-    void log_info(const string& strMessage, ...) const;
-    void log_warning(const string& strMessage, ...) const;
-    void log_table(bool bIsWarning, const list<string> lstrMessage) const;
+    void log_info(const std::string& strMessage, ...) const;
+    void log_warning(const std::string& strMessage, ...) const;
+    void log_table(bool bIsWarning, const std::list<std::string> lstrMessage) const;
 
     // Description
-    void setDescription(const string& strDescription);
-    const string& getDescription() const;
+    void setDescription(const std::string& strDescription);
+    const std::string& getDescription() const;
 
     // Name / Path
-    const string& getName() const;
-    void setName(const string& strName);
-    bool rename(const string& strName, string& strError);
-    string getPath() const;
-    string getQualifiedPath() const;
+    const std::string& getName() const;
+    void setName(const std::string& strName);
+    bool rename(const std::string& strName, std::string& strError);
+    std::string getPath() const;
+    std::string getQualifiedPath() const;
 
     // Creation / build
-    virtual bool init(string& strError);
+    virtual bool init(std::string& strError);
     virtual void clean();
 
     // Children management
     void addChild(CElement* pChild);
     bool removeChild(CElement* pChild);
-    void listChildren(string& strChildList) const;
-    string listQualifiedPaths(bool bDive, uint32_t uiLevel = 0) const;
-    void listChildrenPaths(string& strChildPathList) const;
+    void listChildren(std::string& strChildList) const;
+    std::string listQualifiedPaths(bool bDive, uint32_t uiLevel = 0) const;
+    void listChildrenPaths(std::string& strChildPathList) const;
 
     // Hierarchy query
     uint32_t getNbChildren() const;
-    CElement* findChildOfKind(const string& strKind);
-    const CElement* findChildOfKind(const string& strKind) const;
+    CElement* findChildOfKind(const std::string& strKind);
+    const CElement* findChildOfKind(const std::string& strKind) const;
     const CElement* getParent() const;
     const CElement* getChild(uint32_t uiIndex) const;
     CElement* getChild(uint32_t uiIndex);
-    const CElement* findChild(const string& strName) const;
-    CElement* findChild(const string& strName);
+    const CElement* findChild(const std::string& strName) const;
+    CElement* findChild(const std::string& strName);
     const CElement* findDescendant(CPathNavigator& pathNavigator) const;
     CElement* findDescendant(CPathNavigator& pathNavigator);
     bool isDescendantOf(const CElement* pCandidateAscendant) const;
@@ -97,32 +95,32 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     // Content structure dump
-    void dumpContent(string& strContent, CErrorContext& errorContext, const uint32_t uiDepth = 0) const;
+    void dumpContent(std::string& strContent, CErrorContext& errorContext, const uint32_t uiDepth = 0) const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // Conversion utilities
-    static string toString(uint32_t uiValue);
-    static string toString(uint64_t uiValue);
-    static string toString(int32_t iValue);
-    static string toString(double dValue);
+    static std::string toString(uint32_t uiValue);
+    static std::string toString(uint64_t uiValue);
+    static std::string toString(int32_t iValue);
+    static std::string toString(double dValue);
 
     // Checksum for integrity checks
     uint8_t computeStructureChecksum() const;
 
     // Class kind
-    virtual string getKind() const = 0;
+    virtual std::string getKind() const = 0;
 protected:
     // Content dumping
-    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
+    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
     // Utility to underline
-    static void appendTitle(string& strTo, const string& strTitle);
+    static void appendTitle(std::string& strTo, const std::string& strTitle);
 
     // Hierarchy
     CElement* getLastChild();
     CElement* getParent();
-    CElement* findAscendantOfKind(const string& strKind);
+    CElement* findAscendantOfKind(const std::string& strKind);
     CElement* getRoot();
     const CElement* getRoot() const;
 
@@ -139,11 +137,11 @@ protected:
 
 private:
     // Logging (done by root)
-    virtual void doLog(bool bIsWarning, const string& strLog) const;
+    virtual void doLog(bool bIsWarning, const std::string& strLog) const;
     virtual void nestLog() const;
     virtual void unnestLog() const;
     // Returns Name or Kind if no Name
-    string getPathName() const;
+    std::string getPathName() const;
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
     // House keeping
@@ -154,16 +152,16 @@ private:
     void setXmlNameAttribute(CXmlElement& xmlElement) const;
 
     // Name
-    string _strName;
+    std::string _strName;
 
     // Description
-    string _strDescription;
+    std::string _strDescription;
 
     // Child iterators
-    typedef vector<CElement*>::iterator ChildArrayIterator;
-    typedef vector<CElement*>::reverse_iterator ChildArrayReverseIterator;
+    typedef std::vector<CElement*>::iterator ChildArrayIterator;
+    typedef std::vector<CElement*>::reverse_iterator ChildArrayReverseIterator;
     // Children
-    vector<CElement*> _childArray;
+    std::vector<CElement*> _childArray;
     // Parent
     CElement* _pParent;
 };

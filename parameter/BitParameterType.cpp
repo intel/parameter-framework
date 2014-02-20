@@ -36,6 +36,8 @@
 
 #define base CTypeElement
 
+using std::string;
+
 CBitParameterType::CBitParameterType(const string& strName) : base(strName), _uiBitPos(0), _uiBitSize(0), _uiMax(uint64_t(-1))
 {
 }
@@ -84,7 +86,7 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
     if (_uiBitPos + _uiBitSize > uiParentBlockBitSize) {
 
         // Range exceeded
-        ostringstream strStream;
+	std::ostringstream strStream;
 
         strStream << "Pos and Size attributes inconsistent with maximum container element size (" << uiParentBlockBitSize << " bits) for " + getKind();
 
@@ -101,7 +103,7 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
         if (_uiMax > getMaxEncodableValue()) {
 
             // Max value exceeded
-            ostringstream strStream;
+	    std::ostringstream strStream;
 
             strStream << "Max attribute inconsistent with maximum encodable size (" << getMaxEncodableValue() << ") for " + getKind();
 
@@ -130,13 +132,13 @@ bool CBitParameterType::toBlackboard(const string& strValue, uint64_t& uiValue, 
     if (uiConvertedValue > _uiMax) {
 
         // Range exceeded
-        ostringstream strStream;
+	std::ostringstream strStream;
 
         strStream << "Value " << strValue << " standing out of admitted range [";
 
         if (bValueProvidedAsHexa) {
 
-            strStream << "0x0, " << "0x" << hex << uppercase;
+            strStream << "0x0, " << "0x" << std::hex << std::uppercase;
         } else {
 
             strStream << "0, ";
@@ -159,12 +161,12 @@ void CBitParameterType::fromBlackboard(string& strValue, const uint64_t& uiValue
     uint64_t uiConvertedValue = (uiValue & getMask()) >> _uiBitPos;
 
     // Format
-    ostringstream strStream;
+    std::ostringstream strStream;
 
     // Take care of format
     if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
 
-        strStream << "0x" << hex << uppercase;
+        strStream << "0x" << std::hex << std::uppercase;
     }
 
     strStream << uiConvertedValue;

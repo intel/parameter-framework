@@ -32,6 +32,8 @@
 #include "Syncer.h"
 #include <stdint.h>
 
+#include <string>
+
 class CInstanceConfigurableElement;
 class CMappingContext;
 class CSubsystem;
@@ -45,9 +47,9 @@ public:
     /**
      * Return the mapping value of the SubystemObject.
      *
-     * @return A string containing the mapping value
+     * @return A std::string containing the mapping value
      */
-    virtual string getFormattedMappingValue() const;
+    virtual std::string getFormattedMappingValue() const;
 
     // Configurable element retrieval
     const CInstanceConfigurableElement* getConfigurableElement() const;
@@ -58,8 +60,8 @@ protected:
     // Size
     uint32_t getSize() const;
     // Conversion utility
-    static uint32_t asInteger(const string& strValue);
-    static string asString(uint32_t uiValue);
+    static uint32_t asInteger(const std::string& strValue);
+    static std::string asString(uint32_t uiValue);
 
     /**
      * Conversion of int8, int16, int32 to int (taking care of sign extension)
@@ -73,22 +75,22 @@ protected:
                        int sizeOptimizedData);
 
     // Sync to/from HW
-    virtual bool sendToHW(string& strError);
-    virtual bool receiveFromHW(string& strError);
+    virtual bool sendToHW(std::string& strError);
+    virtual bool receiveFromHW(std::string& strError);
     // Fall back HW access
-    virtual bool accessHW(bool bReceive, string& strError);
+    virtual bool accessHW(bool bReceive, std::string& strError);
     // Blackboard access from subsystems
     void blackboardRead(void* pvData, uint32_t uiSize);
     void blackboardWrite(const void* pvData, uint32_t uiSize);
     // Logging
-    void log_info(const string& strMessage, ...) const;
-    void log_warning(const string& strMessage, ...) const;
+    void log_info(const std::string& strMessage, ...) const;
+    void log_warning(const std::string& strMessage, ...) const;
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
 
 private:
     // from ISyncer
-    virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError);
+    virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::string& strError);
 
     // Default back synchronization
     void setDefaultValues(CParameterBlackboard& parameterBlackboard) const;

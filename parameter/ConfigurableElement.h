@@ -45,9 +45,9 @@ class CConfigurableElement : public CElement
 {
     friend class CConfigurableDomain;
     friend class CDomainConfiguration;
-    typedef list<const CConfigurableDomain*>::const_iterator ConfigurableDomainListConstIterator;
+    typedef std::list<const CConfigurableDomain*>::const_iterator ConfigurableDomainListConstIterator;
 public:
-    CConfigurableElement(const string& strName = "");
+    CConfigurableElement(const std::string& strName = "");
     virtual ~CConfigurableElement();
 
     // Offset in main blackboard
@@ -64,7 +64,7 @@ public:
     bool belongsTo(const CConfigurableDomain* pConfigurableDomain) const;
 
     // Belonging domains
-    void listBelongingDomains(string& strResult, bool bVertical = true) const;
+    void listBelongingDomains(std::string& strResult, bool bVertical = true) const;
 
     // Matching check for domain association
     bool hasNoDomainAssociated() const;
@@ -73,17 +73,17 @@ public:
     bool hasNoValidDomainAssociated() const;
 
     // Owning domains
-    void listAssociatedDomains(string& strResult, bool bVertical = true) const;
+    void listAssociatedDomains(std::string& strResult, bool bVertical = true) const;
     uint32_t getBelongingDomainCount() const;
 
     // Elements with no domains
-    void listRogueElements(string& strResult) const;
+    void listRogueElements(std::string& strResult) const;
 
     // Belonging to no domains
     bool isRogue() const;
 
     // Footprint as string
-    string getFootprintAsString() const;
+    std::string getFootprintAsString() const;
 
     // Belonging subsystem
     virtual const CSubsystem* getBelongingSubsystem() const;
@@ -95,12 +95,12 @@ public:
     virtual CAreaConfiguration* createAreaConfiguration(const CSyncerSet* pSyncerSet) const;
 
     // Parameter access
-    virtual bool accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     /**
      * Get the list of all the ancestors that have a mapping.
      *
-     * The mapping is represented as a string of all the mapping data (key:value) defined in the
+     * The mapping is represented as a std::string of all the mapping data (key:value) defined in the
      * context of the element.
      * In this class, the method is generic and calls its parent getListOfElementsWithMappings(...)
      * method.
@@ -110,14 +110,14 @@ public:
      * the last one.
      *
      */
-    virtual void getListOfElementsWithMapping(list<const CConfigurableElement*>&
+    virtual void getListOfElementsWithMapping(std::list<const CConfigurableElement*>&
                                                configurableElementPath) const;
 
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
@@ -138,8 +138,8 @@ private:
     bool belongsToDomainAscending(const CConfigurableDomain* pConfigurableDomain) const;
 
     // Belonging domains
-    void getBelongingDomains(list<const CConfigurableDomain*>& configurableDomainList) const;
-    void listDomains(const list<const CConfigurableDomain*>& configurableDomainList, string& strResult, bool bVertical) const;
+    void getBelongingDomains(std::list<const CConfigurableDomain*>& configurableDomainList) const;
+    void listDomains(const std::list<const CConfigurableDomain*>& configurableDomainList, std::string& strResult, bool bVertical) const;
 
     // Check parent is still of current type (by structure knowledge)
     bool isOfConfigurableElementType(const CElement* pParent) const;
@@ -148,6 +148,6 @@ private:
     uint32_t _uiOffset;
 
     // Associated configurable domains
-    list<const CConfigurableDomain*> _configurableDomainList;
+    std::list<const CConfigurableDomain*> _configurableDomainList;
 };
 

@@ -31,12 +31,14 @@
 
 #include "Subsystem.h"
 
+#include <string>
+
 class CVirtualSyncer;
 
 class CVirtualSubsystem : public CSubsystem
 {
 public:
-    CVirtualSubsystem(const string& strName);
+    CVirtualSubsystem(const std::string& strName);
     virtual ~CVirtualSubsystem();
 
 protected:
@@ -45,7 +47,7 @@ protected:
 
 private:
     // From IMapper
-    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError);
+    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, std::string& strError);
     virtual void mapEnd();
 
     // Subsystem level dummy syncer

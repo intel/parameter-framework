@@ -33,11 +33,9 @@
 #include <string>
 #include <map>
 
-using namespace std;
-
 class CMappingData : public IXmlSink
 {
-    typedef map<string, string>::const_iterator KeyToValueMapConstIterator;
+    typedef std::map<std::string, std::string>::const_iterator KeyToValueMapConstIterator;
 public:
     CMappingData();
 
@@ -45,17 +43,17 @@ public:
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     // Query
-    bool getValue(const string& strkey, const string*& pStrValue) const;
+    bool getValue(const std::string& strkey, const std::string*& pStrValue) const;
 
     /**
      * Formats the mapping as a list of comma-space separated key:value pairs
      *
-     * @return the formatted string
+     * @return the formatted std::string
      */
-    string asString() const;
+    std::string asString() const;
 
 private:
-    bool addValue(const string& strkey, const string& strValue);
+    bool addValue(const std::string& strkey, const std::string& strValue);
 
-    map<string, string> _keyToValueMap;
+    std::map<std::string, std::string> _keyToValueMap;
 };

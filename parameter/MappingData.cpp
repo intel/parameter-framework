@@ -40,19 +40,19 @@ bool CMappingData::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext
 {
     assert(xmlElement.hasAttribute("Mapping"));
 
-    string strMapping = xmlElement.getAttributeString("Mapping");
+    std::string strMapping = xmlElement.getAttributeString("Mapping");
 
     Tokenizer mappingTok(strMapping, ",");
 
-    string strMappingElement;
+    std::string strMappingElement;
 
     while (!(strMappingElement = mappingTok.next()).empty()) {
 
-        string::size_type iFistDelimiterOccurrence = strMappingElement.find_first_of(':');
+        std::string::size_type iFistDelimiterOccurrence = strMappingElement.find_first_of(':');
 
-        string strKey, strValue;
+        std::string strKey, strValue;
 
-        if (iFistDelimiterOccurrence == string::npos) {
+        if (iFistDelimiterOccurrence == std::string::npos) {
 
             // There is no delimiter in the mapping field,
             // it means that no value has been provided
@@ -79,7 +79,7 @@ bool CMappingData::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext
     return true;
 }
 
-bool CMappingData::getValue(const string& strkey, const string*& pStrValue) const
+bool CMappingData::getValue(const std::string& strkey, const std::string*& pStrValue) const
 {
     KeyToValueMapConstIterator it = _keyToValueMap.find(strkey);
 
@@ -92,16 +92,16 @@ bool CMappingData::getValue(const string& strkey, const string*& pStrValue) cons
     return false;
 }
 
-string CMappingData::asString() const
+std::string CMappingData::asString() const
 {
-    string strValue;
+    std::string strValue;
 
     CUtility::asString(_keyToValueMap, strValue, ", ", ":");
 
     return strValue;
 }
 
-bool CMappingData::addValue(const string& strkey, const string& strValue)
+bool CMappingData::addValue(const std::string& strkey, const std::string& strValue)
 {
     if (_keyToValueMap.find(strkey) != _keyToValueMap.end()) {
 

@@ -31,17 +31,19 @@
 
 #include "KindElement.h"
 
+#include <string>
+
 // Class used to parse <ElementType>Include elements
 class CXmlFileIncluderElement : public CKindElement
 {
 public:
-    CXmlFileIncluderElement(const string& strName,
-                            const string& strKind,
+    CXmlFileIncluderElement(const std::string& strName,
+                            const std::string& strKind,
                             bool bValidateWithSchemas);
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 private:
     // Element type
-    string getIncludedElementType() const;
+    std::string getIncludedElementType() const;
     bool _bValidateSchemasOnStart;
 };

@@ -45,24 +45,24 @@ public:
      * Builds a new CFormattedSubsystemObject instance, using a simple mapping value without Amends.
      *
      * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.
-     * @param[in] strFormattedMapping A string corresponding to the mapping of the element. The
-     * string does not contain any Amend (%) and does not need to be formatted.
+     * @param[in] strFormattedMapping A std::string corresponding to the mapping of the element. The
+     * std::string does not contain any Amend (%) and does not need to be formatted.
      */
     CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
-                              const string& strFormattedMapping);
+                              const std::string& strFormattedMapping);
 
     /**
      * Builds a new CFormattedSubsystemObject instance, using a mapping value containing Amends.
      *
      * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.
-     * @param[in] strMappingValue A string corresponding to the mapping of the element. The
-     * string contains Amend (%) and needs to be formatted with information from the context.
+     * @param[in] strMappingValue A std::string corresponding to the mapping of the element. The
+     * std::string contains Amend (%) and needs to be formatted with information from the context.
      * @param[in] uiFirstAmendKey Index of the first Amend key
      * @param[in] uiNbAmendKeys Number of Amends
      * @param[in] context Contains values associated to Amend keys
      */
     CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
-                              const string& strMappingValue,
+                              const std::string& strMappingValue,
                               uint32_t uiFirstAmendKey,
                               uint32_t uiNbAmendKeys,
                               const CMappingContext& context);
@@ -71,9 +71,9 @@ public:
     /**
      * Returns the formatted mapping value associated to the element.
      *
-     * @return A string containing the mapping
+     * @return A std::string containing the mapping
      */
-    virtual string getFormattedMappingValue() const;
+    virtual std::string getFormattedMappingValue() const;
 
 private:
 
@@ -89,24 +89,24 @@ private:
     /**
      * Generic mapping formatting
      *
-     * Format a string from mapping data and its context, replacing amendments by their value
+     * Format a std::string from mapping data and its context, replacing amendments by their value
      *
-     * @param[in] strMappingValue The input mapping string containing amendments
+     * @param[in] strMappingValue The input mapping std::string containing amendments
      * @param[in] context uiFirstAmendKey The index of the first Amend key in the key list of the
      * context
      * @param[in] uiNbAmendKeys Number of Amend keys in the context
      * @param[in] context The context containing Amend values
      *
-     * @return The formatted string, corresponding to the input strMappingValue where %n have been
+     * @return The formatted std::string, corresponding to the input strMappingValue where %n have been
      * replaced by their value
      */
-    static string formatMappingValue(const string& strMappingValue,
+    static std::string formatMappingValue(const std::string& strMappingValue,
                                      uint32_t uiFirstAmendKey,
                                      uint32_t uiNbAmendKeys,
                                      const CMappingContext& context);
 
     /**
-     * string containing the formatted mapping value
+     * std::string containing the formatted mapping value
      */
-    string _strFormattedMappingValue;
+    std::string _strFormattedMappingValue;
 };

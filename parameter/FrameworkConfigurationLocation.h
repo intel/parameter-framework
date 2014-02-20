@@ -31,16 +31,18 @@
 
 #include "KindElement.h"
 
+#include <string>
+
 class CFrameworkConfigurationLocation : public CKindElement
 {
 public:
-    CFrameworkConfigurationLocation(const string& strName, const string& strKind);
+    CFrameworkConfigurationLocation(const std::string& strName, const std::string& strKind);
 
     // File path
-    string getFilePath(const string& strBaseFolder) const;
+    std::string getFilePath(const std::string& strBaseFolder) const;
 
     // Folder path
-    string getFolderPath(const string& strBaseFolder) const;
+    std::string getFolderPath(const std::string& strBaseFolder) const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -49,5 +51,5 @@ private:
     bool isPathRelative() const;
 
     // Path
-    string _strPath;
+    std::string _strPath;
 };

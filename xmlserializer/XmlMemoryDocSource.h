@@ -33,8 +33,6 @@
 #include "XmlDocSource.h"
 #include "XmlSource.h"
 
-using std::string;
-
 /**
   * Source class that uses parameter-framework's structures to create an xml document
   */
@@ -52,9 +50,9 @@ public:
       * @param[in] strVersion a string containing the version number
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType,
-                        const string& strXmlSchemaFile, const string& strProduct,
-                        const string& strVersion,
+    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const std::string& strRootElementType,
+                        const std::string& strXmlSchemaFile, const std::string& strProduct,
+                        const std::string& strVersion,
                         bool bValidateWithSchema);
 
     /**
@@ -65,7 +63,7 @@ public:
       * @param[in] strRootElementType a string containing the root element type
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType, bool bValidateWithSchema);
+    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const std::string& strRootElementType, bool bValidateWithSchema);
 
     /**
       * Implementation of CXmlDocSource::populate() method.
@@ -91,7 +89,7 @@ private:
     /**
       * Schema file
       */
-    string _strXmlSchemaFile;
+    std::string _strXmlSchemaFile;
 
     /**
       * Boolean used to specify if a header should be added in the Xml Doc
@@ -99,6 +97,6 @@ private:
     bool _bWithHeader;
 
     // Product and version info
-    string _strProduct;
-    string _strVersion;
+    std::string _strProduct;
+    std::string _strVersion;
 };

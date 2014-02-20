@@ -56,11 +56,11 @@ void CSyncerSet::clear()
     _syncerSet.clear();
 }
 
-bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard, bool bBack, list<string>* plstrError) const
+bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::list<std::string>* plstrError) const
 {
     bool bSuccess = true;
 
-    string strError;
+    std::string strError;
 
     // Propagate
     SyncerSetConstIterator it;

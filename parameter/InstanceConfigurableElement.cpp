@@ -37,11 +37,11 @@
 
 #define base CConfigurableElementWithMapping
 
-CInstanceConfigurableElement::CInstanceConfigurableElement(const string& strName, const CTypeElement* pTypeElement) : base(strName), _pTypeElement(pTypeElement), _pSyncer(NULL)
+CInstanceConfigurableElement::CInstanceConfigurableElement(const std::string& strName, const CTypeElement* pTypeElement) : base(strName), _pTypeElement(pTypeElement), _pSyncer(NULL)
 {
 }
 
-string CInstanceConfigurableElement::getKind() const
+std::string CInstanceConfigurableElement::getKind() const
 {
     // Delegate
     return _pTypeElement->getKind();
@@ -54,20 +54,20 @@ const CTypeElement* CInstanceConfigurableElement::getTypeElement() const
 }
 
 // Mapping
-bool CInstanceConfigurableElement::getMappingData(const string& strKey, const string*& pStrValue) const
+bool CInstanceConfigurableElement::getMappingData(const std::string& strKey, const std::string*& pStrValue) const
 {
     // Delegate
     return getTypeElement()->getMappingData(strKey, pStrValue);
 }
 
 // Returns the formatted mapping
-string CInstanceConfigurableElement::getFormattedMapping() const
+std::string CInstanceConfigurableElement::getFormattedMapping() const
 {
     // Delegate
     return getTypeElement()->getFormattedMapping();
 }
 
-bool CInstanceConfigurableElement::map(IMapper& mapper, string& strError)
+bool CInstanceConfigurableElement::map(IMapper& mapper, std::string& strError)
 {
     bool bHasMappingData = getTypeElement()->hasMappingData();
     bool bKeepDiving = true;
@@ -106,7 +106,7 @@ bool CInstanceConfigurableElement::map(IMapper& mapper, string& strError)
 }
 
 void CInstanceConfigurableElement::getListOfElementsWithMapping(
-        list<const CConfigurableElement*>& configurableElementPath) const
+        std::list<const CConfigurableElement*>& configurableElementPath) const
 {
     const CTypeElement* pTypeElement = getTypeElement();
 
@@ -119,7 +119,7 @@ void CInstanceConfigurableElement::getListOfElementsWithMapping(
 }
 
 // Element properties
-void CInstanceConfigurableElement::showProperties(string& strResult) const
+void CInstanceConfigurableElement::showProperties(std::string& strResult) const
 {
     base::showProperties(strResult);
 
@@ -191,7 +191,7 @@ bool CInstanceConfigurableElement::sync(CParameterAccessContext& parameterAccess
 
         return false;
     }
-    string strError;
+    std::string strError;
 
     if (!pSyncer->sync(*parameterAccessContext.getParameterBlackboard(), false, strError)) {
 
@@ -205,7 +205,7 @@ bool CInstanceConfigurableElement::sync(CParameterAccessContext& parameterAccess
 // Check parameter access path well formed for leaf elements
 bool CInstanceConfigurableElement::checkPathExhausted(CPathNavigator& pathNavigator, CErrorContext& errorContext)
 {
-    string* pStrChildName = pathNavigator.next();
+    std::string* pStrChildName = pathNavigator.next();
 
     if (pStrChildName) {
 

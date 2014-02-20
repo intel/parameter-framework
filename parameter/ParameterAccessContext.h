@@ -31,22 +31,23 @@
 
 #include <stdint.h>
 #include "ErrorContext.h"
+#include <string>
 
 class CParameterBlackboard;
 
 class CParameterAccessContext : public CErrorContext
 {
 public:
-    CParameterAccessContext(string& strError,
+    CParameterAccessContext(std::string& strError,
                             CParameterBlackboard* pParameterBlackboard,
                             bool bValueSpaceIsRaw,
                             bool bOutputRawFormatIsHex = false,
                             uint32_t uiOffsetBase = 0);
-    CParameterAccessContext(string& strError,
+    CParameterAccessContext(std::string& strError,
                             bool bBigEndianSubsystem,
                             CParameterBlackboard* pParameterBlackboard,
                             uint32_t uiOffsetBase = 0);
-    CParameterAccessContext(string& strError);
+    CParameterAccessContext(std::string& strError);
 
     // ParameterBlackboard
     CParameterBlackboard* getParameterBlackboard();

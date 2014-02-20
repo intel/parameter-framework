@@ -32,6 +32,8 @@
 #include "SelectionCriterionRule.h"
 #include <assert.h>
 
+using std::string;
+
 // Matches
 const char* CRuleParser::_acDelimiters[CRuleParser::ENbStatuses] = {
     "{",    // EInit

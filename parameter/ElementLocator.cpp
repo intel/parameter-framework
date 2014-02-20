@@ -30,6 +30,8 @@
 #include "ElementLocator.h"
 #include "PathNavigator.h"
 
+using std::string;
+
 CElementLocator::CElementLocator(CElement* pSubRootElement, bool bStrict) : _pSubRootElement(pSubRootElement), _bStrict(bStrict)
 {
 }

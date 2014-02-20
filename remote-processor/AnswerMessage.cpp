@@ -33,6 +33,8 @@
 
 #define base CMessage
 
+using std::string;
+
 CAnswerMessage::CAnswerMessage(const string& strAnswer, bool bSuccess) : base(bSuccess ? ESuccessAnswer : EFailureAnswer), _strAnswer(strAnswer)
 {
 }

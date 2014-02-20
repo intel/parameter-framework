@@ -31,10 +31,12 @@
 
 #include "KindElement.h"
 
+#include <string>
+
 class CFrameworkConfigurationGroup : public CKindElement
 {
 public:
-    CFrameworkConfigurationGroup(const string& strName, const string& strKind) : CKindElement(strName, strKind)
+    CFrameworkConfigurationGroup(const std::string& strName, const std::string& strKind) : CKindElement(strName, strKind)
     {
     }
 

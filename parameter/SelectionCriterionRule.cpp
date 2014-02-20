@@ -37,6 +37,8 @@
 
 #define base CRule
 
+using std::string;
+
 const CSelectionCriterionRule::SMatchingRuleDescription CSelectionCriterionRule::_astMatchesWhen[CSelectionCriterionRule::ENbMatchesWhen] = {
     { "Is", true },
     { "IsNot", true },

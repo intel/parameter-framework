@@ -35,6 +35,8 @@
 
 #define base CSubsystemObject
 
+using std::string;
+
 CFormattedSubsystemObject::CFormattedSubsystemObject(
         CInstanceConfigurableElement* pInstanceConfigurableElement)
     : base(pInstanceConfigurableElement)

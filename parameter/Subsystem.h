@@ -33,7 +33,9 @@
 #include "ConfigurableElementWithMapping.h"
 #include "Mapper.h"
 #include "MappingContext.h"
+#include <list>
 #include <stack>
+#include <string>
 #include <vector>
 
 class CInstanceDefinition;
@@ -46,9 +48,9 @@ class CMappingData;
 class CSubsystem : public CConfigurableElementWithMapping, private IMapper
 {
     // Subsystem objects iterator
-    typedef list<CSubsystemObject*>::const_iterator SubsystemObjectListIterator;
+    typedef std::list<CSubsystemObject*>::const_iterator SubsystemObjectListIterator;
 public:
-    CSubsystem(const string& strName);
+    CSubsystem(const std::string& strName);
     virtual ~CSubsystem();
 
     // From IXmlSink
@@ -67,36 +69,36 @@ public:
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 
     // from CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
     virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
 
     /**
      * Fetch mapping data of an element.
      *
-     * The mapping is represented as a string of all the mapping data (key:value) defined in the
+     * The mapping is represented as a std::string of all the mapping data (key:value) defined in the
      * context of the element.
      * This method gathers the mapping data found in each Element of the configurableElementPath
-     * list to format the resulting string.
+     * list to format the resulting std::string.
      *
      * @param[in] configurableElementPath List of all the ConfigurableElements found
      * that have a mapping. Elements are added at the end of the list, so the root Element will be
      * the last one.
      *
-     * @return Formatted string of the mapping data
+     * @return Formatted std::string of the mapping data
      */
-    virtual string getMapping(list<const CConfigurableElement*>& configurableElementPath) const;
+    virtual std::string getMapping(std::list<const CConfigurableElement*>& configurableElementPath) const;
 
 protected:
     // Parameter access
-    virtual bool accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
+    virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
     /// Functionality intendedn for derived Subsystems
     // Subsystem context mapping keys publication
-    void addContextMappingKey(const string& strMappingKey);
+    void addContextMappingKey(const std::string& strMappingKey);
     // Subsystem object creator publication (strong reference)
     void addSubsystemObjectFactory(CSubsystemObjectCreator* pSubsystemObjectCreator);
 private:
@@ -107,7 +109,7 @@ private:
     virtual const CSubsystem* getBelongingSubsystem() const;
 
     // Mapping execution
-    bool mapSubsystemElements(string& strError);
+    bool mapSubsystemElements(std::string& strError);
 
     /**
      * Handle a configurable element mapping.
@@ -123,24 +125,24 @@ private:
      *
      * @return true on success, false on failure
      */
-    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError);
+    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, std::string& strError);
     virtual void mapEnd();
 
     // Mapping access
     /**
      * Generic mapping error handling
      *
-     * Format an human readable error string from a key and a message in case of mapping error
+     * Format an human readable error std::string from a key and a message in case of mapping error
      *
      * @param[in] strKey The key on which the error refers
      * @param[in] strMessage The error message
      * @param[in] pConfigurableElementWithMapping The element on which the error refers
      *
-     * returns The formated error string
+     * returns The formated error std::string
      */
-    string getMappingError(
-            const string& strKey,
-            const string& strMessage,
+    std::string getMappingError(
+            const std::string& strKey,
+            const std::string& strMessage,
             const CConfigurableElementWithMapping* pConfigurableElementWithMapping) const;
 
     /**
@@ -153,8 +155,8 @@ private:
      *
      * @return String containing the formatted mapping
      */
-    string formatMappingDataList(
-            const list<const CConfigurableElement*>& configurableElementPath) const;
+    std::string formatMappingDataList(
+            const std::list<const CConfigurableElement*>& configurableElementPath) const;
 
     /**
      * Find the SubystemObject which contains a specific CInstanceConfigurableElement.
@@ -181,8 +183,8 @@ private:
      */
     void findSubsystemLevelMappingKeyValue(
             const CInstanceConfigurableElement* pInstanceConfigurableElement,
-            string& strMappingKey,
-            string& strMappingValue) const;
+            std::string& strMappingKey,
+            std::string& strMappingValue) const;
 
     /**
      * Formats the mapping of a SubsystemObject
@@ -191,7 +193,7 @@ private:
      *
      * @return String containing the formatted mapping
      */
-    string getFormattedSubsystemMappingData(
+    std::string getFormattedSubsystemMappingData(
             const CInstanceConfigurableElement* pInstanceConfigurableElement) const;
     /**
      * Generic context handling
@@ -200,14 +202,14 @@ private:
      *
      * @param[in] pConfigurableElementWithMapping The element containing mapping data
      * @param[out] context The context mapping to update with the current element mapping values
-     * @param[out] strError The formated error string
+     * @param[out] strError The formated error std::string
      *
      * @return true on success
      */
     bool handleMappingContext(
             const CConfigurableElementWithMapping* pConfigurableElementWithMapping,
             CMappingContext& context,
-            string& strError) const;
+            std::string& strError) const;
 
     /**
      * Looks if a subsystem object needs to be instantiated for the given configurable
@@ -225,19 +227,19 @@ private:
      */
     bool handleSubsystemObjectCreation(CInstanceConfigurableElement* pInstanceConfigurableElement,
                                        CMappingContext& context, bool& bHasCreatedSubsystemObject,
-                                       string& strError);
+                                       std::string& strError);
 
     // Subsystem context mapping keys
-    vector<string> _contextMappingKeyArray;
+    std::vector<std::string> _contextMappingKeyArray;
 
     // Subsystem object creator map
-    vector<CSubsystemObjectCreator*> _subsystemObjectCreatorArray;
+    std::vector<CSubsystemObjectCreator*> _subsystemObjectCreatorArray;
 
     // Subsystem sync objects (house keeping)
-    list<CSubsystemObject*> _subsystemObjectList;
+    std::list<CSubsystemObject*> _subsystemObjectList;
 
     // Mapping Context stack
-    stack<CMappingContext> _contextStack;
+    std::stack<CMappingContext> _contextStack;
 
     // Subelements
     CComponentLibrary* _pComponentLibrary;

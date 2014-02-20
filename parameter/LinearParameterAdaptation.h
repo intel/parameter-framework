@@ -31,6 +31,8 @@
 
 #include "ParameterAdaptation.h"
 
+#include <string>
+
 class CLinearParameterAdaptation : public CParameterAdaptation
 {
 public:
@@ -41,7 +43,7 @@ public:
     virtual double toUserValue(int64_t iValue) const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);

@@ -28,26 +28,27 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #pragma once
-#include <list>
 #include "KindElement.h"
+#include <list>
+#include <string>
 
 class CPluginLocation : public CKindElement
 {
 
 public:
-    CPluginLocation(const string& strName, const string& strKind);
+    CPluginLocation(const std::string& strName, const std::string& strKind);
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     // Folder
-    const string& getFolder() const;
+    const std::string& getFolder() const;
 
     // Plugin list
-    const list<string>& getPluginList() const;
+    const std::list<std::string>& getPluginList() const;
 
 private:
-    string _strFolder;
-    list<string> _pluginList;
+    std::string _strFolder;
+    std::list<std::string> _pluginList;
 
 };

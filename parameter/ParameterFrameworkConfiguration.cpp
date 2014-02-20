@@ -36,7 +36,7 @@ CParameterFrameworkConfiguration::CParameterFrameworkConfiguration()
 {
 }
 
-string CParameterFrameworkConfiguration::getKind() const
+std::string CParameterFrameworkConfiguration::getKind() const
 {
     return "ParameterFrameworkConfiguration";
 }
@@ -47,7 +47,7 @@ bool CParameterFrameworkConfiguration::childrenAreDynamic() const
 }
 
 // System class name
-const string& CParameterFrameworkConfiguration::getSystemClassName() const
+const std::string& CParameterFrameworkConfiguration::getSystemClassName() const
 {
     return _strSystemClassName;
 }

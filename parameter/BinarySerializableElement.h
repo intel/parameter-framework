@@ -32,10 +32,12 @@
 #include "Element.h"
 #include "BinaryStream.h"
 
+#include <string>
+
 class CBinarySerializableElement : public CElement
 {
 public:
-    CBinarySerializableElement(const string& strName = "");
+    CBinarySerializableElement(const std::string& strName = "");
 
     // Serialization
     virtual void binarySerialize(CBinaryStream& binaryStream);

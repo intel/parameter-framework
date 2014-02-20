@@ -33,10 +33,12 @@
 
 #include "TypeElement.h"
 
+#include <string>
+
 class CStringParameterType : public CTypeElement
 {
 public:
-    CStringParameterType(const string& strName);
+    CStringParameterType(const std::string& strName);
 
     // Max length
     uint32_t getMaxLength() const;
@@ -48,10 +50,10 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     // Instantiation
     virtual CInstanceConfigurableElement* doInstantiate() const;

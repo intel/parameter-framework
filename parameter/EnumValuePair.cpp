@@ -31,6 +31,8 @@
 
 #define base CElement
 
+using std::string;
+
 CEnumValuePair::CEnumValuePair() : _iNumerical(0)
 {
 }

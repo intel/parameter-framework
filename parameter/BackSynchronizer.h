@@ -31,9 +31,7 @@
 
 #include "ConfigurableElementAggregator.h"
 #include "ConfigurableElement.h"
-#include <string>
-
-using namespace std;
+#include <list>
 
 class CParameterBlackboard;
 
@@ -52,8 +50,8 @@ public:
     virtual ~CBackSynchronizer() {}
 
 protected:
-    // Aggegate list
-    list<const CConfigurableElement*> _needingBackSyncList;
+    // Aggregate list
+    std::list<const CConfigurableElement*> _needingBackSyncList;
 
 private:
     // Aggegator

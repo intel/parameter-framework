@@ -31,13 +31,15 @@
 
 #include "TypeElement.h"
 
+#include <string>
+
 class CParameterBlockType : public CTypeElement
 {
 public:
-    CParameterBlockType(const string& strName);
+    CParameterBlockType(const std::string& strName);
 
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     virtual bool childrenAreDynamic() const;
     // Instantiation
@@ -45,6 +47,6 @@ private:
     // Population
     virtual void populate(CElement* pElement) const;
     // Creating sub blocks with indexes
-    static string computeChildName(uint32_t uiChild);
+    static std::string computeChildName(uint32_t uiChild);
 };
 
