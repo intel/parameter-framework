@@ -34,8 +34,15 @@
 class CAutoLock
 {
 public:
-    CAutoLock(pthread_mutex_t* pMutex);
-    ~CAutoLock();
+    CAutoLock(pthread_mutex_t* pMutex) : _pMutex(pMutex)
+    {
+         pthread_mutex_lock(_pMutex);
+    }
+
+    ~CAutoLock()
+    {
+	 pthread_mutex_unlock(_pMutex);
+    }
 
 private:
     pthread_mutex_t* _pMutex;

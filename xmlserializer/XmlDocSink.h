@@ -42,8 +42,6 @@
 class CXmlDocSink
 {
 public:
-    CXmlDocSink();
-
     /**
       * Method to be called to use an xmlDocSource.
       * Any subclass of XmlDocSink must implement the doProcess
@@ -54,7 +52,15 @@ public:
       *
       * @return true is there was no error during the processing of xmlDocSource
       */
-    bool process(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
+    bool process(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext)
+    {
+        if (!xmlDocSource.populate(serializingContext)) {
+	    return false;
+	}
+
+	return doProcess(xmlDocSource, serializingContext);
+    }
+
     virtual ~CXmlDocSink() {}
 
 private:

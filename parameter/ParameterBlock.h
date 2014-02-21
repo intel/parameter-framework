@@ -36,9 +36,14 @@
 class CParameterBlock : public CInstanceConfigurableElement
 {
 public:
-    CParameterBlock(const std::string& strName, const CTypeElement* pTypeElement);
+    CParameterBlock(const std::string& strName, const CTypeElement* pTypeElement) :
+	    CInstanceConfigurableElement(strName, pTypeElement)
+    {}
 
     // Type
-    virtual Type getType() const;
+    virtual Type getType() const
+    {
+        return EParameterBlock;
+    }
 };
 

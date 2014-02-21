@@ -36,9 +36,13 @@
 class CKindElement : public CElement
 {
 public:
-    CKindElement(const std::string& strName, const std::string& strKind);
+    CKindElement(const std::string& strName, const std::string& strKind) : CElement(strName), _strKind(strKind)
+    {}
 
-    virtual std::string getKind() const;
+    virtual std::string getKind() const
+    {
+        return _strKind;
+    }
 private:
 
     std::string _strKind;

@@ -39,8 +39,6 @@ class CRule : public CElement
 {
 
 public:
-    CRule();
-
     // Parse
     virtual bool parse(CRuleParser& ruleParser, std::string& strError) = 0;
 

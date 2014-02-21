@@ -3,7 +3,6 @@ add_library(parameter SHARED
     PathNavigator.cpp
     Element.cpp
     SystemClass.cpp
-    Component.cpp
     ParameterMgr.cpp
     SelectionCriteria.cpp
     SelectionCriterionLibrary.cpp
@@ -11,10 +10,8 @@ add_library(parameter SHARED
     SelectionCriterionType.cpp
     ElementLibrary.cpp
     SubsystemElementBuilder.cpp
-    SubsystemLibrary.cpp
     SelectionCriterion.cpp
     ComponentLibrary.cpp
-    ParameterBlock.cpp
     ConfigurableElement.cpp
     MappingData.cpp
     ParameterBlackboard.cpp
@@ -34,11 +31,8 @@ add_library(parameter SHARED
     ParameterAccessContext.cpp
     XmlFileIncluderElement.cpp
     ParameterFrameworkConfiguration.cpp
-    FrameworkConfigurationGroup.cpp
-    SubsystemPlugins.cpp
     FrameworkConfigurationLocation.cpp
     PluginLocation.cpp
-    KindElement.cpp
     ElementLibrarySet.cpp
     ErrorContext.cpp
     AreaConfiguration.cpp
@@ -60,11 +54,9 @@ add_library(parameter SHARED
     ElementLocator.cpp
     ParameterMgrLogger.cpp
     AutoLog.cpp
-    Rule.cpp
     CompoundRule.cpp
     SelectionCriterionRule.cpp
     ConfigurableElementAggregator.cpp
-    BackSynchronizer.cpp
     HardwareBackSynchronizer.cpp
     SimulatedBackSynchronizer.cpp
     MappingContext.cpp
@@ -72,7 +64,6 @@ add_library(parameter SHARED
     FormattedSubsystemObject.cpp
     SubsystemObjectCreator.cpp
     BaseParameter.cpp
-    AutoLock.cpp
     StringParameterType.cpp
     StringParameter.cpp
     EnumParameterType.cpp
@@ -87,7 +78,6 @@ add_library(parameter SHARED
     PathNavigator.cpp
     Element.cpp
     SystemClass.cpp
-    Component.cpp
     ParameterMgr.cpp
     SelectionCriteria.cpp
     SelectionCriterionLibrary.cpp
@@ -95,10 +85,8 @@ add_library(parameter SHARED
     SelectionCriterionType.cpp
     ElementLibrary.cpp
     SubsystemElementBuilder.cpp
-    SubsystemLibrary.cpp
     SelectionCriterion.cpp
     ComponentLibrary.cpp
-    ParameterBlock.cpp
     ConfigurableElement.cpp
     MappingData.cpp
     ParameterBlackboard.cpp
@@ -118,11 +106,8 @@ add_library(parameter SHARED
     ParameterAccessContext.cpp
     XmlFileIncluderElement.cpp
     ParameterFrameworkConfiguration.cpp
-    FrameworkConfigurationGroup.cpp
-    SubsystemPlugins.cpp
     FrameworkConfigurationLocation.cpp
     PluginLocation.cpp
-    KindElement.cpp
     ElementLibrarySet.cpp
     ErrorContext.cpp
     AreaConfiguration.cpp
@@ -144,11 +129,9 @@ add_library(parameter SHARED
     ElementLocator.cpp
     ParameterMgrLogger.cpp
     AutoLog.cpp
-    Rule.cpp
     CompoundRule.cpp
     SelectionCriterionRule.cpp
     ConfigurableElementAggregator.cpp
-    BackSynchronizer.cpp
     HardwareBackSynchronizer.cpp
     SimulatedBackSynchronizer.cpp
     MappingContext.cpp
@@ -156,7 +139,6 @@ add_library(parameter SHARED
     FormattedSubsystemObject.cpp
     SubsystemObjectCreator.cpp
     BaseParameter.cpp
-    AutoLock.cpp
     StringParameterType.cpp
     StringParameter.cpp
     EnumParameterType.cpp

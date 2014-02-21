@@ -2,7 +2,6 @@ add_library(xmlserializer SHARED
     XmlElement.cpp
     XmlSerializingContext.cpp
     XmlDocSource.cpp
-    XmlDocSink.cpp
     XmlMemoryDocSink.cpp
     XmlMemoryDocSource.cpp
     XmlStringDocSink.cpp
