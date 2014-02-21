@@ -37,8 +37,6 @@ class CRule : public CElement
 {
 
 public:
-    CRule();
-
     // Parse
     virtual bool parse(CRuleParser& ruleParser, string& strError) = 0;
 

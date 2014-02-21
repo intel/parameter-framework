@@ -30,15 +30,16 @@
 #pragma once
 
 #include "SubsystemObjectCreator.h"
+#include <string>
 
 template <class SubsystemObjectType>
 class TSubsystemObjectFactory : public CSubsystemObjectCreator
 {
 public:
-    TSubsystemObjectFactory(const string& strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize = -1) : CSubsystemObjectCreator(strMappingKey, uiAncestorIdMask, uiMaxConfigurableElementSize) {}
+    TSubsystemObjectFactory(const std::string& strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize = -1) : CSubsystemObjectCreator(strMappingKey, uiAncestorIdMask, uiMaxConfigurableElementSize) {}
 
     // Object creation
-    virtual CSubsystemObject* objectCreate(const string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context) const
+    virtual CSubsystemObject* objectCreate(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context) const
     {
         return new SubsystemObjectType(strMappingValue, pInstanceConfigurableElement, context);
     }

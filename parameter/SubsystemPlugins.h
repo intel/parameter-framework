@@ -36,9 +36,13 @@ class CSubsystemPlugins : public CKindElement
 {
 
 public:
-    CSubsystemPlugins(const string& strName, const string& strKind);
+    CSubsystemPlugins(const string& strName, const string& strKind) : CKindElement(strName, strKind)
+    {
+    }
 
 private:
-    virtual bool childrenAreDynamic() const;
-
+    virtual bool childrenAreDynamic() const
+    {
+        return true;
+    }
 };

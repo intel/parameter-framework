@@ -34,8 +34,15 @@
 class CFrameworkConfigurationGroup : public CKindElement
 {
 public:
-    CFrameworkConfigurationGroup(const string& strName, const string& strKind);
+    CFrameworkConfigurationGroup(const string& strName, const string& strKind) : CKindElement(strName, strKind)
+    {
+    }
 
 private:
-    virtual bool childrenAreDynamic() const;
+    virtual bool childrenAreDynamic() const
+    {
+        return true;
+    }
+
+
 };

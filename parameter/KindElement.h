@@ -34,9 +34,14 @@
 class CKindElement : public CElement
 {
 public:
-    CKindElement(const string& strName, const string& strKind);
+    CKindElement(const string& strName, const string& strKind) : CElement(strName), _strKind(strKind)
+    {
+    }
 
-    virtual string getKind() const;
+    virtual string getKind() const
+    {
+        return _strKind;
+    }
 private:
 
     string _strKind;

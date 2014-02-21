@@ -35,7 +35,6 @@ common_src_files := \
         XmlElement.cpp \
         XmlSerializingContext.cpp \
         XmlDocSource.cpp \
-        XmlDocSink.cpp \
         XmlMemoryDocSink.cpp \
         XmlMemoryDocSource.cpp \
         XmlStringDocSink.cpp \
