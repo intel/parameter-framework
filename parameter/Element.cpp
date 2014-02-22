@@ -199,7 +199,7 @@ void CElement::showProperties(string& strResult) const
 }
 
 // Conversion utilities
-string CElement::toString(uint32_t uiValue)
+string toString(uint32_t uiValue)
 {
     std::ostringstream ostr;
 
@@ -208,7 +208,7 @@ string CElement::toString(uint32_t uiValue)
     return ostr.str();
 }
 
-string CElement::toString(uint64_t uiValue)
+string toString(uint64_t uiValue)
 {
     std::ostringstream ostr;
 
@@ -217,7 +217,7 @@ string CElement::toString(uint64_t uiValue)
     return ostr.str();
 }
 
-string CElement::toString(int32_t iValue)
+string toString(int32_t iValue)
 {
     std::ostringstream ostr;
 
@@ -226,7 +226,7 @@ string CElement::toString(int32_t iValue)
     return ostr.str();
 }
 
-string CElement::toString(double dValue)
+string toString(double dValue)
 {
     std::ostringstream ostr;
 

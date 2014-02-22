@@ -41,6 +41,12 @@
 class CXmlElementSerializingContext;
 class CErrorContext;
 
+    // Conversion utilities
+std::string toString(uint32_t uiValue);
+std::string toString(uint64_t uiValue);
+std::string toString(int32_t iValue);
+std::string toString(double dValue);
+
 class CElement : public IXmlSink, public IXmlSource
 {
     friend class CAutoLog;
@@ -99,12 +105,6 @@ public:
 
     // Element properties
     virtual void showProperties(std::string& strResult) const;
-
-    // Conversion utilities
-    static std::string toString(uint32_t uiValue);
-    static std::string toString(uint64_t uiValue);
-    static std::string toString(int32_t iValue);
-    static std::string toString(double dValue);
 
     // Checksum for integrity checks
     uint8_t computeStructureChecksum() const;
