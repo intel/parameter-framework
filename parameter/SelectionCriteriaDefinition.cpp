@@ -32,6 +32,7 @@
 
 CSelectionCriteriaDefinition::CSelectionCriteriaDefinition()
 {
+    __addChild(new std::vector<CSelectionCriterion *>);
 }
 
 std::string CSelectionCriteriaDefinition::getKind() const
@@ -44,7 +45,9 @@ CSelectionCriterion* CSelectionCriteriaDefinition::createSelectionCriterion(cons
 {
     CSelectionCriterion* pSelectionCriterion = new CSelectionCriterion(strName, pSelectionCriterionType);
 
-    addChild(pSelectionCriterion);
+    std::vector<CSelectionCriterion *> *v = __getChild<std::vector<CSelectionCriterion *> *>();
+
+    v->push_back(pSelectionCriterion);
 
     return pSelectionCriterion;
 }
@@ -78,14 +81,13 @@ void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string>&
 // Reset the modified status of the children
 void CSelectionCriteriaDefinition::resetModifiedStatus()
 {
+    std::vector<CSelectionCriterion *> *v = __getChild<std::vector<CSelectionCriterion *> *>();
+
+    uint32_t uiIndex;
+
     // Propagate
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
-    CSelectionCriterion* pSelectionCriterion;
-
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-        pSelectionCriterion = static_cast<CSelectionCriterion*>(getChild(uiChild));
+    for (uiIndex = 0; uiIndex < v->size(); uiIndex++) {
+        CSelectionCriterion *pSelectionCriterion = v->at(uiIndex);
 
         pSelectionCriterion->resetModifiedStatus();
     }

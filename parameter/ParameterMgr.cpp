@@ -301,10 +301,10 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     pthread_mutex_init(&_blackboardMutex, NULL);
 
     // Deal with children
-    addChild(new CParameterFrameworkConfiguration);
-    addChild(new CSelectionCriteria);
-    addChild(new CSystemClass);
-    addChild(new CConfigurableDomains);
+    __addChild(new CParameterFrameworkConfiguration);
+    __addChild(new CSelectionCriteria);
+    __addChild(new CSystemClass);
+    __addChild(new CConfigurableDomains);
 
     // Feed element library
     feedElementLibraries();
@@ -2274,7 +2274,7 @@ CBackSynchronizer* CParameterMgr::createBackSynchronizer() const
 // Children typwise access
 CParameterFrameworkConfiguration* CParameterMgr::getFrameworkConfiguration()
 {
-    return static_cast<CParameterFrameworkConfiguration*>(getChild(EFrameworkConfiguration));
+    return __getChild<CParameterFrameworkConfiguration*>();
 }
 
 const CParameterFrameworkConfiguration* CParameterMgr::getConstFrameworkConfiguration()
@@ -2284,38 +2284,38 @@ const CParameterFrameworkConfiguration* CParameterMgr::getConstFrameworkConfigur
 
 CSelectionCriteria* CParameterMgr::getSelectionCriteria()
 {
-    return static_cast<CSelectionCriteria*>(getChild(ESelectionCriteria));
+    return __getChild<CSelectionCriteria*>();
 }
 
 const CSelectionCriteria* CParameterMgr::getConstSelectionCriteria()
 {
-    return static_cast<const CSelectionCriteria*>(getChild(ESelectionCriteria));
+    return __getChild<const CSelectionCriteria*>();
 }
 
 CSystemClass* CParameterMgr::getSystemClass()
 {
-    return static_cast<CSystemClass*>(getChild(ESystemClass));
+    return __getChild<CSystemClass*>();
 }
 
 const CSystemClass* CParameterMgr::getConstSystemClass() const
 {
-    return static_cast<const CSystemClass*>(getChild(ESystemClass));
+    return __getChild<const CSystemClass*>();
 }
 
 // Configurable Domains
 CConfigurableDomains* CParameterMgr::getConfigurableDomains()
 {
-    return static_cast<CConfigurableDomains*>(getChild(EConfigurableDomains));
+    return __getChild<CConfigurableDomains*>();
 }
 
 const CConfigurableDomains* CParameterMgr::getConstConfigurableDomains()
 {
-    return static_cast<const CConfigurableDomains*>(getChild(EConfigurableDomains));
+    return __getChild<CConfigurableDomains*>();
 }
 
 const CConfigurableDomains* CParameterMgr::getConstConfigurableDomains() const
 {
-    return static_cast<const CConfigurableDomains*>(getChild(EConfigurableDomains));
+    return __getChild<CConfigurableDomains*>();
 }
 
 // Apply configurations

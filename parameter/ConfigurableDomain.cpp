@@ -319,7 +319,7 @@ bool CConfigurableDomain::parseSettings(const CXmlElement& xmlElement, CXmlSeria
 
     while (it.next(xmlConfigurationSettingsElement)) {
         // Get domain configuration
-        CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(findChild(xmlConfigurationSettingsElement.getNameAttribute()));
+        CDomainConfiguration* pDomainConfiguration = __getChild<CDomainConfiguration *>();
 
         if (!pDomainConfiguration) {
 
@@ -404,7 +404,7 @@ CParameterBlackboard* CConfigurableDomain::findConfigurationBlackboard(const str
                                                                        string& strError) const
 {
     // Find Configuration
-    const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(findChild(strConfiguration));
+    const CDomainConfiguration* pDomainConfiguration = __getChild<CDomainConfiguration *>();
 
     if (!pDomainConfiguration) {
 
@@ -574,7 +574,7 @@ void CConfigurableDomain::computeSyncSet()
 bool CConfigurableDomain::createConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError)
 {
     // Already exists?
-    if (findChild(strName)) {
+    if (__getChild<CDomainConfiguration *>()) {
 
         strError = "Already existing configuration";
 
@@ -1106,7 +1106,7 @@ CSyncerSet* CConfigurableDomain::getSyncerSet(const CConfigurableElement* pConfi
 // Configuration retrieval
 CDomainConfiguration* CConfigurableDomain::findConfiguration(const string& strConfiguration, string& strError)
 {
-    CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(findChild(strConfiguration));
+    CDomainConfiguration* pDomainConfiguration = __getChild<CDomainConfiguration *>();
 
     if (!pDomainConfiguration) {
 
@@ -1119,7 +1119,7 @@ CDomainConfiguration* CConfigurableDomain::findConfiguration(const string& strCo
 
 const CDomainConfiguration* CConfigurableDomain::findConfiguration(const string& strConfiguration, string& strError) const
 {
-    const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(findChild(strConfiguration));
+    const CDomainConfiguration* pDomainConfiguration = __getChild<CDomainConfiguration *>();
 
     if (!pDomainConfiguration) {
 

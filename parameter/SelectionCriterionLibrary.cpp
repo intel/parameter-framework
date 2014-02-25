@@ -45,7 +45,7 @@ CSelectionCriterionType* CSelectionCriterionLibrary::createSelectionCriterionTyp
 {
     CSelectionCriterionType* pSelectionCriterionType = new CSelectionCriterionType(bIsInclusive);
 
-    addChild(pSelectionCriterionType);
+    __addChild(pSelectionCriterionType);
 
     return pSelectionCriterionType;
 }

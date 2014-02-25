@@ -35,7 +35,9 @@
 #include <list>
 #include "XmlSink.h"
 #include "XmlSource.h"
+#include<typelist.h>
 
+#include <typelist.h>
 #include "PathNavigator.h"
 
 class CXmlElementSerializingContext;
@@ -164,4 +166,27 @@ private:
     std::vector<CElement*> _childArray;
     // Parent
     CElement* _pParent;
+};
+
+
+template <class T>
+class _CElement : public CElement
+{
+	public:
+	void *_childs[Size<T>::value];
+
+	template <class D>
+	D __getChild() {
+		return reinterpret_cast<D>(_childs[IndexOf<T, D>::is]);
+	}
+
+	template <class D>
+	const D __getChild() const {
+		return reinterpret_cast<const D>(_childs[IndexOf<T, D>::is]);
+	}
+
+	template <class D>
+	void __addChild(D d) {
+		_childs[IndexOf<T, D>::is] = reinterpret_cast<void *>(d);
+	}
 };

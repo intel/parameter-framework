@@ -31,8 +31,9 @@
 
 #include "Element.h"
 #include "SelectionCriterionType.h"
+#include "typelist.h"
 
-class CSelectionCriterionLibrary : public CElement
+class CSelectionCriterionLibrary : public _CElement<TYPELIST1(CSelectionCriterionType *)>
 {
 public:
     CSelectionCriterionLibrary();

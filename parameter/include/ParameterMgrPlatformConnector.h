@@ -39,6 +39,7 @@ class CParameterMgrLogger;
 class CParameterMgrPlatformConnector
 {
     friend class CParameterMgrLogger;
+    ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType);
 public:
     // Logger interface
     class ILogger
@@ -56,7 +57,6 @@ public:
     // Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
     // Should be called before start
     ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive = false);
-    ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType);
     // Selection criterion retrieval
     ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName) const;
 

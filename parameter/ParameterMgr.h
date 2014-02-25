@@ -40,6 +40,7 @@
 #include "Element.h"
 #include "XmlDocSink.h"
 #include "XmlDocSource.h"
+#include <typelist.h>
 
 #include <string>
 
@@ -58,7 +59,7 @@ class CSubsystemPlugins;
 class CParameterAccessContext;
 class CConfigurableElement;
 
-class CParameterMgr : private CElement
+class CParameterMgr : private _CElement<TYPELIST4(CParameterFrameworkConfiguration *, CSelectionCriteria *, CSystemClass *, CConfigurableDomains *) >
 {
     enum ChildElement {
         EFrameworkConfiguration,

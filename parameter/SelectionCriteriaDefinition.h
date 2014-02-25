@@ -31,10 +31,12 @@
 
 #include "Element.h"
 #include "SelectionCriterion.h"
+#include "typelist.h"
+#include <vector>
 
 class ISelectionCriterionObserver;
 
-class CSelectionCriteriaDefinition : public CElement
+class CSelectionCriteriaDefinition : public _CElement<TYPELIST1(std::vector<CSelectionCriterion *> *)>
 {
 public:
     CSelectionCriteriaDefinition();
