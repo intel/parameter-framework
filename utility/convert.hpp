@@ -34,6 +34,7 @@
 #include <sstream>
 #include <string>
 #include <stdint.h>
+#include <cmath>
 
 /* details namespace is here to hide implementation details to header end user. It
  * is NOT intended to be used outside. */
@@ -53,32 +54,15 @@ template<> struct ConvertionAllowed<int32_t> {};
 template<> struct ConvertionAllowed<uint16_t> {};
 template<> struct ConvertionAllowed<int16_t> {};
 template<> struct ConvertionAllowed<float> {};
+template<> struct ConvertionAllowed<double> {};
 
-} // namespace details
-
-/**
- * Convert a string to a given type.
- *
- * This template function read the value of the type T in the given string.
- * The function does not allow to have white spaces around the value to parse
- * and tries to parse the whole string, which means that if some bytes were not
- * read in the string, the function fails.
- * Hexadecimal representation (ie numbers starting with 0x) is supported only
- * for integral types conversions.
- * Result may be modified, even in case of failure.
- *
- * @param[in]  str    the string to parse.
- * @param[out] result reference to object where to store the result.
- *
- * @return true if conversion was successful, false otherwise.
- */
 template<typename T>
 static inline bool convertTo(const std::string &str, T &result)
 {
     /* Check that conversion to that type is allowed.
      * If this fails, this means that this template was not intended to be used
      * with this type, thus that the result is undefined. */
-    details::ConvertionAllowed<T>();
+    ConvertionAllowed<T>();
 
     if (str.find_first_of(std::string("\r\n\t\v ")) != std::string::npos) {
         return false;
@@ -110,6 +94,29 @@ static inline bool convertTo(const std::string &str, T &result)
 
     return ss.eof() && !ss.fail() && !ss.bad();
 }
+} // namespace details
+
+/**
+ * Convert a string to a given type.
+ *
+ * This template function read the value of the type T in the given string.
+ * The function does not allow to have white spaces around the value to parse
+ * and tries to parse the whole string, which means that if some bytes were not
+ * read in the string, the function fails.
+ * Hexadecimal representation (ie numbers starting with 0x) is supported only
+ * for integral types conversions.
+ * Result may be modified, even in case of failure.
+ *
+ * @param[in]  str    the string to parse.
+ * @param[out] result reference to object where to store the result.
+ *
+ * @return true if conversion was successful, false otherwise.
+ */
+template<typename T>
+static inline bool convertTo(const std::string &str, T &result)
+{
+    return details::convertTo<T>(str, result);
+}
 
 /**
  * Specialization for int16_t of convertTo template function.
@@ -139,6 +146,66 @@ inline bool convertTo<int16_t>(const std::string &str, int16_t &result)
     }
 
     result = static_cast<int16_t>(res);
+    return true;
+}
+
+/**
+ * Specialization for float of convertTo template function.
+ *
+ * This function follows the same paradigm than it's generic version and is
+ * based on it but makes furthers checks on the returned value.
+ *
+ * The specific implementation is made necessary because the stlport conversion
+ * from string to float behaves differently than GNU STL: overflow produce
+ * +/-Infinity rather than an error.
+ *
+ * @param[in]  str    the string to parse.
+ * @param[out] result reference to object where to store the result.
+ *
+ * @return true if conversion was successful, false otherwise.
+ */
+template<>
+inline bool convertTo<float>(const std::string &str, float &result)
+{
+    if (!details::convertTo(str, result)) {
+        return false;
+    }
+
+    if (std::abs(result) == std::numeric_limits<float>::infinity() ||
+        result == std::numeric_limits<float>::quiet_NaN()) {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Specialization for double of convertTo template function.
+ *
+ * This function follows the same paradigm than it's generic version and is
+ * based on it but makes furthers checks on the returned value.
+ *
+ * The specific implementation is made necessary because the stlport conversion
+ * from string to double behaves differently than GNU STL: overflow produce
+ * +/-Infinity rather than an error.
+ *
+ * @param[in]  str    the string to parse.
+ * @param[out] result reference to object where to store the result.
+ *
+ * @return true if conversion was successful, false otherwise.
+ */
+template<>
+inline bool convertTo<double>(const std::string &str, double &result)
+{
+    if (!details::convertTo(str, result)) {
+        return false;
+    }
+
+    if (std::abs(result) == std::numeric_limits<double>::infinity() ||
+        result == std::numeric_limits<double>::quiet_NaN()) {
+        return false;
+    }
+
     return true;
 }
 
