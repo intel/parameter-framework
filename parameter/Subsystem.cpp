@@ -38,9 +38,9 @@
 #include <assert.h>
 #include <sstream>
 
-#define base CConfigurableElement
+#define base CConfigurableElementWithMapping
 
-CSubsystem::CSubsystem(const string& strName) : base(strName), _pComponentLibrary(new CComponentLibrary), _pInstanceDefinition(new CInstanceDefinition), _bBigEndian(false)
+CSubsystem::CSubsystem(const string& strName) : base(strName), _pComponentLibrary(new CComponentLibrary), _pInstanceDefinition(new CInstanceDefinition), _bBigEndian(false), _pMappingData(NULL)
 {
     // Note: A subsystem contains instance components
     // InstanceDefintion and ComponentLibrary objects are then not chosen to be children
@@ -68,6 +68,8 @@ CSubsystem::~CSubsystem()
     // Order matters!
     delete _pInstanceDefinition;
     delete _pComponentLibrary;
+
+    delete _pMappingData;
 }
 
 string CSubsystem::getKind() const
@@ -105,6 +107,16 @@ bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& 
     parameterBuildContext.setComponentLibrary(_pComponentLibrary);
 
     CXmlElement childElement;
+
+    // Manage mapping attribute
+    if (xmlElement.hasAttribute("Mapping")) {
+
+        _pMappingData = new CMappingData;
+        if (!_pMappingData->fromXml(xmlElement, serializingContext)) {
+
+            return false;
+        }
+    }
 
     // XML populate ComponentLibrary
     xmlElement.getChildElement("ComponentLibrary", childElement);
@@ -152,7 +164,11 @@ bool CSubsystem::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsEleme
 bool CSubsystem::mapSubsystemElements(string& strError)
 {
     // Default mapping context
-    _contextStack.push(CMappingContext(_contextMappingKeyArray.size()));
+    CMappingContext context(_contextMappingKeyArray.size());
+    // Add Subsystem-level mapping data, which will be propagated to all children
+    handleMappingContext(this, context, strError);
+
+    _contextStack.push(context);
 
     // Map all instantiated subelements in subsystem
     uint32_t uiNbChildren = getNbChildren();
@@ -326,20 +342,30 @@ void CSubsystem::addSubsystemObjectFactory(CSubsystemObjectCreator* pSubsystemOb
 }
 
 // Generic error handling from derived subsystem classes
-string CSubsystem::getMappingError(const string& strKey,
-                                   const string& strMessage,
-                                   const CInstanceConfigurableElement* pInstanceConfigurableElement)
-const
+string CSubsystem::getMappingError(
+        const string& strKey,
+        const string& strMessage,
+        const CConfigurableElementWithMapping* pConfigurableElementWithMapping) const
 {
     return getName() + " " + getKind() + " " +
             "mapping:\n" + strKey + " " +
             "error: \"" + strMessage + "\" " +
-            "for element " + pInstanceConfigurableElement->getPath();
+            "for element " + pConfigurableElementWithMapping->getPath();
+}
+
+
+bool CSubsystem::getMappingData(const std::string& strKey, const std::string*& pStrValue) const
+{
+    if (_pMappingData) {
+
+        return _pMappingData->getValue(strKey, pStrValue);
+    }
+    return false;
 }
 
 // Mapping generic context handling
 bool CSubsystem::handleMappingContext(
-        const CInstanceConfigurableElement* pInstanceConfigurableElement,
+        const CConfigurableElementWithMapping* pConfigurableElementWithMapping,
         CMappingContext& context,
         string& strError) const
 {
@@ -351,11 +377,11 @@ bool CSubsystem::handleMappingContext(
         const string& strKey = _contextMappingKeyArray[uiItem];
         const string* pStrValue;
 
-        if (pInstanceConfigurableElement->getMappingData(strKey, pStrValue)) {
+        if (pConfigurableElementWithMapping->getMappingData(strKey, pStrValue)) {
             // Assign item to context
             if (!context.setItem(uiItem, &strKey, pStrValue)) {
 
-                strError = getMappingError(strKey, "Already set", pInstanceConfigurableElement);
+                strError = getMappingError(strKey, "Already set", pConfigurableElementWithMapping);
 
                 return false;
             }

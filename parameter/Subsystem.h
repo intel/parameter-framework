@@ -30,6 +30,7 @@
 #pragma once
 
 #include "ConfigurableElement.h"
+#include "ConfigurableElementWithMapping.h"
 #include "Mapper.h"
 #include "MappingContext.h"
 #include <stack>
@@ -40,8 +41,9 @@ class CComponentLibrary;
 class CSubsystemObject;
 class CSubsystemObjectCreator;
 class CInstanceConfigurableElement;
+class CMappingData;
 
-class CSubsystem : public CConfigurableElement, private IMapper
+class CSubsystem : public CConfigurableElementWithMapping, private IMapper
 {
     // Subsystem objects iterator
     typedef list<CSubsystemObject*>::const_iterator SubsystemObjectListIterator;
@@ -66,6 +68,8 @@ public:
 
     // from CElement
     virtual string getKind() const;
+
+    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
 
     /**
      * Fetch mapping data of an element.
@@ -130,13 +134,14 @@ private:
      *
      * @param[in] strKey The key on which the error refers
      * @param[in] strMessage The error message
-     * @param[in] pInstanceConfigurableElement The element on wich the error refers
+     * @param[in] pConfigurableElementWithMapping The element on which the error refers
      *
      * returns The formated error string
      */
-    string getMappingError(const string& strKey,
-                           const string& strMessage,
-                           const CInstanceConfigurableElement* pInstanceConfigurableElement) const;
+    string getMappingError(
+            const string& strKey,
+            const string& strMessage,
+            const CConfigurableElementWithMapping* pConfigurableElementWithMapping) const;
 
     /**
      * Format the mapping data of the ConfigurableElements that have been gathered through recursive
@@ -193,15 +198,16 @@ private:
      *
      * Feed context with mapping data of the current element
      *
-     * @param[in] pInstanceConfigurableElement The element containing mapping data
+     * @param[in] pConfigurableElementWithMapping The element containing mapping data
      * @param[out] context The context mapping to update with the current element mapping values
      * @param[out] strError The formated error string
      *
      * @return true on success
      */
-    bool handleMappingContext(const CInstanceConfigurableElement* pInstanceConfigurableElement,
-                              CMappingContext& context,
-                              string& strError) const;
+    bool handleMappingContext(
+            const CConfigurableElementWithMapping* pConfigurableElementWithMapping,
+            CMappingContext& context,
+            string& strError) const;
 
     /**
      * Looks if a subsystem object needs to be instantiated for the given configurable
@@ -239,4 +245,7 @@ private:
 
     // Endianness
     bool _bBigEndian;
+
+    //! Contains the mapping info at Subsystem level
+    CMappingData* _pMappingData;
 };

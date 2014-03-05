@@ -29,14 +29,14 @@
  */
 #pragma once
 
-#include "ConfigurableElement.h"
+#include "ConfigurableElementWithMapping.h"
 #include "TypeElement.h"
 
 class IMapper;
 class CParameterBlackboard;
 class CParameterAccessContext;
 
-class CInstanceConfigurableElement : public CConfigurableElement
+class CInstanceConfigurableElement : public CConfigurableElementWithMapping
 {
 public:
     enum Type {
@@ -53,7 +53,7 @@ public:
     // Instantiated type
     const CTypeElement* getTypeElement() const;
 
-    bool getMappingData(const string& strKey, const string*& pStrValue) const;
+    virtual bool getMappingData(const string& strKey, const string*& pStrValue) const;
 
     /**
      * Returns the mapping data associated to the type element of the current
