@@ -267,8 +267,8 @@ $PFWSendCommand setTuningMode on
 # Send the xml domain tunning file
 if test -s "$xmlDomainFilePath"
 then
-    echo "Send the xml domain tunning file: $xmlDomainFilePath"
-    $PFWSendCommand setDomainsWithSettingsXML "$(cat $xmlDomainFilePath)"
+    echo "Import the xml domain tunning file: $(readlink -e $xmlDomainFilePath)"
+    $PFWSendCommand importDomainsWithSettingsXML "$(readlink -e $xmlDomainFilePath)"
 fi
 
 # Send the extended domain description routing files converted to pfw commands
