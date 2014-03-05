@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a48b940a3ba127dc0008f9680968e7afb" title="CConfigurableDomains::getKind" alt="" coords="353,5,561,35"/>
+<area shape="rect" id="node5" href="$classCXmlDomainSerializingContext.html#a35a492cc88df2179d6f101c35b1d01ac" title="CXmlDomainSerializingContext::setValueSpaceRaw" alt="" coords="293,59,621,88"/>
+<area shape="rect" id="node7" href="$classCXmlDomainSerializingContext.html#acc75ba7d2bd8f90ab0d19ec70c3b8d29" title="CXmlDomainSerializingContext::setOutputRawFormat" alt="" coords="288,112,627,141"/>
+</map>

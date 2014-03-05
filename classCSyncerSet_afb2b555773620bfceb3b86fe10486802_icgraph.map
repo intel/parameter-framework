@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a62dc1c21261688d3078234e18db0a8e8" title="CAreaConfiguration::restore" alt="" coords="229,5,413,35"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#a1c13db0dbfb1a375d8a9632b06d08b36" title="CConfigurableDomain::restoreConfiguration" alt="" coords="184,59,459,88"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomains.html#ab8f2aa74fe0ed3e98fa052587d6c417d" title="CConfigurableDomains::apply" alt="" coords="224,112,419,141"/>
+<area shape="rect" id="node9" href="$classCHardwareBackSynchronizer.html#abc01484c03230247c0a8a3982140b652" title="CHardwareBackSynchronizer::sync" alt="" coords="207,165,436,195"/>
+<area shape="rect" id="node11" href="$classCParameterMgr.html#ac227818fa1c5f13e68017ff55500e8a2" title="CParameterMgr::sync" alt="" coords="247,219,396,248"/>
+</map>

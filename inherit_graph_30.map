@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classCMessage.html" title="CMessage" alt="" coords="29,5,115,35"/>
+<area shape="rect" id="node3" href="$classCAnswerMessage.html" title="CAnswerMessage" alt="" coords="191,5,319,35"/>
+<area shape="rect" id="node5" href="$classCRequestMessage.html" title="CRequestMessage" alt="" coords="188,59,321,88"/>
+<area shape="rect" id="node6" href="$classIRemoteCommand.html" title="IRemoteCommand" alt="" coords="7,59,137,88"/>
+</map>

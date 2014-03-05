@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCBitParameterType.html#a76b208c42677a4a7a90494f348924403" title="CBitParameterType::fromXml" alt="" coords="312,5,507,35"/>
+<area shape="rect" id="node5" href="$classCComponentType.html#a962c2716cd757893d0a1dafc84d538da" title="CComponentType::fromXml" alt="" coords="664,109,848,139"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomain.html#aa1fdeb04cae19531f2588e0419b53b84" title="CConfigurableDomain::fromXml" alt="" coords="307,341,512,371"/>
+<area shape="rect" id="node9" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType::handleValueSpaceAttribute" alt="" coords="236,395,583,424"/>
+<area shape="rect" id="node11" href="$classCIntegerParameterType.html#a8d8e329f5f61b6e50108e7fe1a7f7446" title="CIntegerParameterType::fromXml" alt="" coords="300,448,519,477"/>
+<area shape="rect" id="node13" href="$classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e" title="CLinearParameterAdaptation::fromXml" alt="" coords="633,264,879,293"/>
+<area shape="rect" id="node15" href="$classCMappingData.html#af6c3dc0a3f49fa81435761978f842bc8" title="CMappingData::fromXml" alt="" coords="673,163,839,192"/>
+<area shape="rect" id="node17" href="$classCParameterAdaptation.html#af811befee14dc953020bb319e72a6796" title="CParameterAdaptation::fromXml" alt="" coords="304,501,515,531"/>
+<area shape="rect" id="node19" href="$classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66" title="CTypeElement::fromXml" alt="" coords="327,555,492,584"/>
+<area shape="rect" id="node21" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="332,237,487,267"/>
+<area shape="rect" id="node27" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="304,109,515,139"/>
+</map>

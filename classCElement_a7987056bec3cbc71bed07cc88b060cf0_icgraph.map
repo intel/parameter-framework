@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCBitParameter.html#a5fcbaa6052e15453764a1a83da160c10" title="CBitParameter::getBelongingBlockSize" alt="" coords="245,5,496,35"/>
+<area shape="rect" id="node5" href="$classCBitParameterType.html#a76b208c42677a4a7a90494f348924403" title="CBitParameterType::fromXml" alt="" coords="273,59,468,88"/>
+<area shape="rect" id="node7" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance::fromXml" alt="" coords="268,112,473,141"/>
+<area shape="rect" id="node9" href="$classCConfigurableElement.html#a29bfc2166fe321a2b84dda9d0ef032b9" title="Get the list of all the ancestors that have a mapping." alt="" coords="199,189,543,219"/>
+<area shape="rect" id="node12" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement::getSyncer" alt="" coords="261,243,480,272"/>
+<area shape="rect" id="node14" href="$classCConfigurableElement.html#a1e30831c0d3ce07df6d0f6730ba04654" title="CConfigurableElement::getBelongingSubsystem" alt="" coords="220,296,521,325"/>
+<area shape="rect" id="node16" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement::fromXml" alt="" coords="257,349,484,379"/>
+</map>

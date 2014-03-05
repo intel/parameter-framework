@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration::serializeXmlSettings" alt="" coords="729,80,991,109"/>
+<area shape="rect" id="node5" href="$classCArrayParameter.html#a192ed81d047795b1823cab20337ad283" title="CArrayParameter::serializeXmlSettings" alt="" coords="380,40,631,69"/>
+<area shape="rect" id="node7" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serializeXmlSettings" alt="" coords="381,93,629,122"/>
+<area shape="rect" id="node9" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement::serializeXmlSettings" alt="" coords="365,170,645,200"/>
+<area shape="rect" id="node13" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType::handleValueSpaceAttribute" alt="" coords="332,224,679,253"/>
+</map>

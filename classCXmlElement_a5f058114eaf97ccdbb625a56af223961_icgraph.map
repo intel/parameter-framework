@@ -1,0 +1,17 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCBitParameterBlockType.html#a4d3f66cff415a8f8ef825092b92ed787" title="CBitParameterBlockType::toXml" alt="" coords="336,5,547,35"/>
+<area shape="rect" id="node5" href="$classCBitParameterType.html#aec2c699920b9ab28fa560721b0fb9e05" title="CBitParameterType::toXml" alt="" coords="352,59,531,88"/>
+<area shape="rect" id="node7" href="$classCCompoundRule.html#a39df5f49ea5dea5b888d0983a01b2f2a" title="CCompoundRule::toXml" alt="" coords="360,112,523,141"/>
+<area shape="rect" id="node9" href="$classCConfigurableDomains.html#a5860b741035feefdee06566ec1ab94b0" title="CConfigurableDomains::toXml" alt="" coords="343,165,540,195"/>
+<area shape="rect" id="node11" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration::composeSettings" alt="" coords="311,219,572,248"/>
+<area shape="rect" id="node13" href="$classCEnumParameterType.html#a657fc941f16df1059a7f1377aa85b258" title="CEnumParameterType::toXml" alt="" coords="343,272,540,301"/>
+<area shape="rect" id="node15" href="$classCEnumValuePair.html#af7f3d59a079b449b72e6e0eb5dd8fedc" title="CEnumValuePair::toXml" alt="" coords="360,325,523,355"/>
+<area shape="rect" id="node17" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType::handleValueSpaceAttribute" alt="" coords="268,379,615,408"/>
+<area shape="rect" id="node19" href="$classCFixedPointParameterType.html#ac9e0de762e60d0cfce00122bdbef137e" title="CFixedPointParameterType::toXml" alt="" coords="329,432,553,461"/>
+<area shape="rect" id="node21" href="$classCIntegerParameterType.html#a26c10292fad5a8e6603dc0673f813d69" title="CIntegerParameterType::toXml" alt="" coords="664,537,867,567"/>
+<area shape="rect" id="node23" href="$classCSelectionCriterionRule.html#aa31aa27a5aba096913b6f5d1e59a9360" title="CSelectionCriterionRule::toXml" alt="" coords="340,536,543,565"/>
+<area shape="rect" id="node25" href="$classCXmlElement.html#a758ce9e5a7886e3da0fda1d06c95cb66" title="CXmlElement::setAttributeBoolean" alt="" coords="329,589,553,619"/>
+<area shape="rect" id="node28" href="$classCXmlElement.html#ae8beacdbc73815734d8c4f9098fc05ec" title="CXmlElement::setAttributeInteger" alt="" coords="332,643,551,672"/>
+<area shape="rect" id="node30" href="$classCXmlElement.html#a554eadbec62a61eaff948cd81e22527b" title="CXmlElement::setNameAttribute" alt="" coords="335,696,548,725"/>
+<area shape="rect" id="node32" href="$classCXmlMemoryDocSource.html#a941e6505f7a09e355b06c98875a8e30e" title="Implementation of CXmlDocSource::populate() method." alt="" coords="329,749,553,779"/>
+</map>

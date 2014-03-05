@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a3a77775be8a0df31842b5857a238789e" title="CConfigurableDomain::setSequenceAwareness" alt="" coords="201,5,500,35"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#a36444865371ec1fbbc43fb1a5a09a3bf" title="CConfigurableDomain::removeConfigurableElement" alt="" coords="189,59,512,88"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomain.html#ab46c928e95685ce035fcde43b15fc454" title="CConfigurableDomain::split" alt="" coords="260,112,441,141"/>
+<area shape="rect" id="node9" href="$classCConfigurableDomain.html#a928805e163719f902c207c061ab3b1c2" title="CConfigurableDomain::apply" alt="" coords="256,165,445,195"/>
+<area shape="rect" id="node11" href="$classCConfigurableDomain.html#ab8039deaa1c8023554407ba8257069f1" title="CConfigurableDomain::createConfiguration" alt="" coords="216,219,485,248"/>
+<area shape="rect" id="node13" href="$classCConfigurableDomain.html#ae599d24a2fb8509496460f13212b98f7" title="CConfigurableDomain::deleteConfiguration" alt="" coords="216,272,485,301"/>
+<area shape="rect" id="node15" href="$classCConfigurableDomain.html#a01492c7dee6c846d75bcdb7a8967343e" title="CConfigurableDomain::renameConfiguration" alt="" coords="212,325,489,355"/>
+<area shape="rect" id="node17" href="$classCConfigurableDomain.html#a1c13db0dbfb1a375d8a9632b06d08b36" title="CConfigurableDomain::restoreConfiguration" alt="" coords="213,379,488,408"/>
+<area shape="rect" id="node19" href="$classCConfigurableDomain.html#aab893d1fbb26ce85f2e6851504dc526d" title="CConfigurableDomain::saveConfiguration" alt="" coords="220,432,481,461"/>
+<area shape="rect" id="node21" href="$classCConfigurableDomains.html#a69e2aaab262d12be37c68ddf7566eeca" title="Domains." alt="" coords="228,485,473,515"/>
+<area shape="rect" id="node23" href="$classCConfigurableDomains.html#a5624356eafb691b199045889169700c7" title="CConfigurableDomains::deleteDomain" alt="" coords="228,539,473,568"/>
+<area shape="rect" id="node25" href="$classCConfigurableDomains.html#a4fc3d6b09acd45d1d94f9191b01bf4c0" title="CConfigurableDomains::deleteAllDomains" alt="" coords="217,592,484,621"/>
+<area shape="rect" id="node27" href="$classCConfigurableDomains.html#ad5697c9cf8ba73bd615c51786535dfdf" title="CConfigurableDomains::renameDomain" alt="" coords="224,645,477,675"/>
+<area shape="rect" id="node29" href="$classCConfigurableDomains.html#a8d1b51c480639cb2a7dfc1c81e32d06f" title="CConfigurableDomains::findConfigurationBlackboard" alt="" coords="187,699,515,728"/>
+<area shape="rect" id="node31" href="$classCParameterMgr.html#ad969fe876378e0527be0b20b0188ae18" title="CParameterMgr::accessConfigurationValue" alt="" coords="563,725,837,755"/>
+<area shape="rect" id="node34" href="$classCSelectionCriterion.html#a83e33a27a1094e00154018756c0be2dc" title="From ISelectionCriterionInterface." alt="" coords="231,803,471,832"/>
+<area shape="rect" id="node36" href="$classCSubsystemObject.html#a245bbca860198ad65a63f00999ba0d83" title="CSubsystemObject::log_info" alt="" coords="256,856,445,885"/>
+<area shape="rect" id="node38" href="$classCSystemClass.html#abd29b15c1d00ee010433ed1f13aafc32" title="Load subsystem plugin and fill the corresponding libraries." alt="" coords="243,909,459,939"/>
+<area shape="rect" id="node40" href="$classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" title="Look for subsystems that need to be resynchronized." alt="" coords="197,963,504,992"/>
+</map>

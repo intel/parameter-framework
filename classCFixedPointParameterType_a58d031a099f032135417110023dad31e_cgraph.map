@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a32a3255da1b10a29698ecf33dc693edb" title="CXmlElement::getAttributeInteger" alt="" coords="301,5,520,35"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="577,32,788,61"/>
+<area shape="rect" id="node7" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="304,109,517,139"/>
+<area shape="rect" id="node9" href="$classCFixedPointParameterType.html#ae9b48934e686faecefd25163ba3921f3" title="CFixedPointParameterType::getKind" alt="" coords="293,163,528,192"/>
+<area shape="rect" id="node11" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="333,240,488,269"/>
+<area shape="rect" id="node15" href="$classCParameterType.html#a001697bcc5a0c57d1e8021cd3898313a" title="CParameterType::setSize" alt="" coords="324,293,497,323"/>
+</map>

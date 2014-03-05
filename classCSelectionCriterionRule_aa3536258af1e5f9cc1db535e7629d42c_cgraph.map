@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="359,5,569,35"/>
+<area shape="rect" id="node5" href="$classCXmlDomainSerializingContext.html#a75a5b3ed965ef3671bc0cec5bcc5295a" title="CXmlDomainSerializingContext::getSelectionCriteriaDefinition" alt="" coords="273,59,655,88"/>
+<area shape="rect" id="node7" href="$classCSelectionCriteriaDefinition.html#a144df71c22caefe90086d2a2a878dcfe" title="CSelectionCriteriaDefinition::getSelectionCriterion" alt="" coords="308,112,620,141"/>
+<area shape="rect" id="node9" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="357,165,571,195"/>
+<area shape="rect" id="node11" href="$classCSelectionCriterionRule.html#abe9fe67a6a2eae27e239070d173d04e0" title="CSelectionCriterionRule::getKind" alt="" coords="357,219,571,248"/>
+<area shape="rect" id="node13" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="387,296,541,325"/>
+<area shape="rect" id="node16" href="$classCSelectionCriterion.html#a3551b612a002f7cc311f21be1685f794" title="CSelectionCriterion::getCriterionType" alt="" coords="345,349,583,379"/>
+<area shape="rect" id="node18" href="$classISelectionCriterionTypeInterface.html#aa28678ff4fb9acb1e216f1edaccdf85f" title="ISelectionCriterionTypeInterface::getNumericalValue" alt="" coords="301,403,627,432"/>
+</map>

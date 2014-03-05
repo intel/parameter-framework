@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCBitParameterType.html#a76b208c42677a4a7a90494f348924403" title="CBitParameterType::fromXml" alt="" coords="312,5,507,35"/>
+<area shape="rect" id="node5" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance::fromXml" alt="" coords="307,59,512,88"/>
+<area shape="rect" id="node7" href="$classCComponentType.html#a962c2716cd757893d0a1dafc84d538da" title="CComponentType::fromXml" alt="" coords="317,112,501,141"/>
+<area shape="rect" id="node9" href="$classCDomainConfiguration.html#afbcd309cfae933c862f24368b5c9eab5" title="CDomainConfiguration::parseSettings" alt="" coords="288,165,531,195"/>
+<area shape="rect" id="node11" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="599,244,735,273"/>
+<area shape="rect" id="node14" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element." alt="" coords="332,269,487,299"/>
+<area shape="rect" id="node17" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType::fromXml" alt="" coords="289,323,529,352"/>
+<area shape="rect" id="node19" href="$classCFrameworkConfigurationLocation.html#a2e9a4fed347353201cd0272de4952841" title="CFrameworkConfigurationLocation::fromXml" alt="" coords="269,376,549,405"/>
+<area shape="rect" id="node21" href="$classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e" title="CLinearParameterAdaptation::fromXml" alt="" coords="287,429,532,459"/>
+<area shape="rect" id="node23" href="$classCMappingData.html#af6c3dc0a3f49fa81435761978f842bc8" title="CMappingData::fromXml" alt="" coords="327,483,492,512"/>
+<area shape="rect" id="node25" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule::fromXml" alt="" coords="300,536,519,565"/>
+<area shape="rect" id="node27" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="332,589,487,619"/>
+<area shape="rect" id="node29" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement::fromXml" alt="" coords="296,643,523,672"/>
+<area shape="rect" id="node31" href="$classCXmlDocSource.html#a4d08ccf335301baa0300764c700019f1" title="Method that validates the Xml doc contained in pDoc." alt="" coords="323,696,496,725"/>
+<area shape="rect" id="node33" href="$classCXmlFileDocSource.html#a17c090e2c82b6d7c2970e868aafb949b" title="Method that checks that the file exists and is readable." alt="" coords="304,749,515,779"/>
+<area shape="rect" id="node35" href="$classCXmlMemoryDocSource.html#a941e6505f7a09e355b06c98875a8e30e" title="Implementation of CXmlDocSource::populate() method." alt="" coords="297,803,521,832"/>
+</map>

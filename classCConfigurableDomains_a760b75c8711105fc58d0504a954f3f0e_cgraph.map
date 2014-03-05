@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCBinarySerializableElement.html#af291be4ac902bdc4b0401cc7f9298618" title="CBinarySerializableElement::getDataSize" alt="" coords="321,29,585,59"/>
+<area shape="rect" id="node6" href="$classCBinaryStream.html#a7b9be5bae56a189c6ec68f14659a9fcb" title="CBinaryStream::open" alt="" coords="380,83,527,112"/>
+<area shape="rect" id="node8" href="$classCBinarySerializableElement.html#a1b023138703ff0807ae1a25724f1f7d4" title="CBinarySerializableElement::binarySerialize" alt="" coords="315,160,592,189"/>
+<area shape="rect" id="node11" href="$classCBinaryStream.html#aafcf30671f90cecb81901ba557a288a5" title="CBinaryStream::close" alt="" coords="379,213,528,243"/>
+</map>

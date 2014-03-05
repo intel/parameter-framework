@@ -1,0 +1,20 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance::fromXml" alt="" coords="317,5,523,35"/>
+<area shape="rect" id="node5" href="$classCComponentType.html#a962c2716cd757893d0a1dafc84d538da" title="CComponentType::fromXml" alt="" coords="328,59,512,88"/>
+<area shape="rect" id="node7" href="$classCDomainConfiguration.html#afbcd309cfae933c862f24368b5c9eab5" title="CDomainConfiguration::parseSettings" alt="" coords="299,112,541,141"/>
+<area shape="rect" id="node9" href="$classCEnumValuePair.html#a75b1589707a64d5cf13145acde4dad03" title="CEnumValuePair::fromXml" alt="" coords="677,191,856,220"/>
+<area shape="rect" id="node11" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType::fromXml" alt="" coords="647,560,887,589"/>
+<area shape="rect" id="node13" href="$classCFrameworkConfigurationLocation.html#a2e9a4fed347353201cd0272de4952841" title="CFrameworkConfigurationLocation::fromXml" alt="" coords="280,269,560,299"/>
+<area shape="rect" id="node15" href="$classCMappingData.html#af6c3dc0a3f49fa81435761978f842bc8" title="CMappingData::fromXml" alt="" coords="337,323,503,352"/>
+<area shape="rect" id="node17" href="$classCParameterFrameworkConfiguration.html#a9d9882f3de792f4f5a84e8a3c095e2dd" title="CParameterFrameworkConfiguration::fromXml" alt="" coords="621,799,912,828"/>
+<area shape="rect" id="node19" href="$classCParameterType.html#a51d4793d6f0ab5f9c03644a88727c612" title="CParameterType::fromXml" alt="" coords="331,427,509,456"/>
+<area shape="rect" id="node21" href="$classCPluginLocation.html#a078d8017417c36f89f9d05b5e4d1b33b" title="CPluginLocation::fromXml" alt="" coords="333,480,507,509"/>
+<area shape="rect" id="node23" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule::fromXml" alt="" coords="311,533,529,563"/>
+<area shape="rect" id="node25" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement::fromXml" alt="" coords="307,587,533,616"/>
+<area shape="rect" id="node27" href="$classCXmlDocSource.html#acdd9a50ee8b10f77bcf57a30d5b49de4" title="Getter method." alt="" coords="268,640,572,669"/>
+<area shape="rect" id="node29" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="313,693,527,723"/>
+<area shape="rect" id="node31" href="$classCXmlElement.html#ab32b567cae912ddf859a7073417c3846" title="CXmlElement::getAttributeBoolean" alt="" coords="308,851,532,880"/>
+<area shape="rect" id="node34" href="$classCXmlElement.html#a32a3255da1b10a29698ecf33dc693edb" title="CXmlElement::getAttributeInteger" alt="" coords="311,747,529,776"/>
+<area shape="rect" id="node38" href="$classCXmlElement.html#acc23106e11d2677364536781554dc96e" title="CXmlElement::getAttributeSignedInteger" alt="" coords="291,216,549,245"/>
+<area shape="rect" id="node41" href="$classCXmlElement.html#a454aa3b2c3c69a2378ae0460bd2bbecc" title="CXmlElement::getAttributeDouble" alt="" coords="311,904,529,933"/>
+</map>

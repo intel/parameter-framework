@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCElement.html#a60abb7f8cc873cf16ccb64758128d2cf" title="CElement::findChild" alt="" coords="429,5,568,35"/>
+<area shape="rect" id="node5" href="$classCElement.html#a7653fbad5491138533ac0fa889ffecd9" title="CElement::isDescendantOf" alt="" coords="408,83,589,112"/>
+<area shape="rect" id="node8" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement::getOffset" alt="" coords="392,136,605,165"/>
+<area shape="rect" id="node10" href="$classCDomainConfiguration.html#af62bcfe2b30d19e292a8aa4ddba3cd89" title="Get the Configuration Blackboard." alt="" coords="376,189,621,219"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::fromXml" alt="" coords="739,69,933,98"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement::serializeXmlSettings" alt="" coords="219,81,499,110"/>
+<area shape="rect" id="node8" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="553,133,689,162"/>
+<area shape="rect" id="node12" href="$classTKindElementBuilderTemplate.html#ac3ba2f71d8e05f0c63aa8a32acb5b615" title="TKindElementBuilderTemplate::createElement" alt="" coords="213,185,504,214"/>
+<area shape="rect" id="node14" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="281,262,436,292"/>
+<area shape="rect" id="node18" href="$classCXmlElement.html#a6dff4e5d3d2e5203b4740fb24f0e845e" title="CXmlElement::getChildElement" alt="" coords="256,316,461,345"/>
+</map>

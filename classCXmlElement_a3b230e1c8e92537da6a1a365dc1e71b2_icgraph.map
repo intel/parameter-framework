@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c" title="Method that returns the root element of the Xml tree." alt="" coords="256,5,477,35"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="260,59,473,88"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#a73ccc36f9ec1c25f1baade31b9e0ae01" title="CXmlElement::createChild" alt="" coords="279,112,455,141"/>
+<area shape="rect" id="node9" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator::next" alt="" coords="255,165,479,195"/>
+</map>

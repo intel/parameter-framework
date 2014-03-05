@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a5f058114eaf97ccdbb625a56af223961" title="CXmlElement::setAttributeString" alt="" coords="305,5,516,35"/>
+<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="340,59,481,88"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterion.html#a3551b612a002f7cc311f21be1685f794" title="CSelectionCriterion::getCriterionType" alt="" coords="292,112,529,141"/>
+<area shape="rect" id="node9" href="$classISelectionCriterionTypeInterface.html#a11719cbf09ffcc4e58bb0892253ae466" title="ISelectionCriterionTypeInterface::getLiteralValue" alt="" coords="260,165,561,195"/>
+</map>

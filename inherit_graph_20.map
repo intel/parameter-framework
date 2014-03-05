@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classCSocket.html" title="CSocket" alt="" coords="7,32,79,61"/>
+<area shape="rect" id="node3" href="$classCConnectionSocket.html" title="CConnectionSocket" alt="" coords="128,5,267,35"/>
+<area shape="rect" id="node5" href="$classCListeningSocket.html" title="CListeningSocket" alt="" coords="135,59,260,88"/>
+</map>

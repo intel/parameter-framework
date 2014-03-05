@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator::next" alt="" coords="193,5,417,35"/>
+<area shape="rect" id="node5" href="$classCElement.html#a3665106b575e8c07040dfc28b01e697c" title="CElement::findChildOfKind" alt="" coords="216,59,395,88"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="732,176,889,205"/>
+<area shape="rect" id="node9" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="468,163,681,192"/>
+<area shape="rect" id="node11" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="497,240,652,269"/>
+<area shape="rect" id="node15" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element." alt="" coords="228,213,383,243"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#ae84c6459b7b261fb81026c9ebe9140f8" title="CAreaConfiguration::copyToOuter" alt="" coords="371,5,589,35"/>
+<area shape="rect" id="node5" href="$classCAreaConfiguration.html#aa66ebde5e339fbea35c7a5f46403c770" title="CAreaConfiguration::copyFromOuter" alt="" coords="363,59,597,88"/>
+<area shape="rect" id="node7" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration::composeSettings" alt="" coords="349,112,611,141"/>
+<area shape="rect" id="node9" href="$classCDomainConfiguration.html#a4ecd4a951693764f8ef03de82ed4e18c" title="CDomainConfiguration::getElementSequence" alt="" coords="337,165,623,195"/>
+<area shape="rect" id="node11" href="$classCDomainConfiguration.html#af62bcfe2b30d19e292a8aa4ddba3cd89" title="Get the Configuration Blackboard." alt="" coords="357,219,603,248"/>
+</map>

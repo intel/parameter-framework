@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCArrayParameter.html#a0f14dcf5fee31e8fdc4420cdab2fb1a3" title="CArrayParameter::accessValue" alt="" coords="277,5,483,35"/>
+<area shape="rect" id="node5" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serializeXmlSettings" alt="" coords="256,59,504,88"/>
+<area shape="rect" id="node7" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAsString" alt="" coords="269,112,491,141"/>
+<area shape="rect" id="node9" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access." alt="" coords="555,191,776,220"/>
+<area shape="rect" id="node11" href="$classCBitParameter.html#a6f4d06e327fb0b816c08e383177a82fc" title="CBitParameter::accessAsInteger" alt="" coords="273,216,487,245"/>
+<area shape="rect" id="node14" href="$classCBooleanParameterType.html#a40f6be7bea1db9744867bc2de57045f3" title="Conversion." alt="" coords="255,269,505,299"/>
+</map>

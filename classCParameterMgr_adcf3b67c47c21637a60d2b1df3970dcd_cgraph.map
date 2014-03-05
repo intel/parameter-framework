@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCXmlDomainSerializingContext.html#a9ebecbc67632b86c1e482d9018cb6795" title="CXmlDomainSerializingContext::setSelectionCriteriaDefinition" alt="" coords="289,5,671,35"/>
+<area shape="rect" id="node5" href="$classCXmlElementSerializingContext.html#a3a5128c848dd2dfc263a8901fbb8419a" title="CXmlElementSerializingContext::set" alt="" coords="363,59,597,88"/>
+<area shape="rect" id="node7" href="$classCElementLibrarySet.html#a301363ecb3eb99b4f9391f307e0f946a" title="CElementLibrarySet::getElementLibrary" alt="" coords="355,112,605,141"/>
+<area shape="rect" id="node9" href="$classCConfigurableDomains.html#a48b940a3ba127dc0008f9680968e7afb" title="CConfigurableDomains::getKind" alt="" coords="376,165,584,195"/>
+<area shape="rect" id="node11" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="409,219,551,248"/>
+<area shape="rect" id="node13" href="$classCElement.html#ae40b0165e010c310cc58c7d9fa174f64" title="CElement::clean" alt="" coords="421,272,539,301"/>
+<area shape="rect" id="node15" href="$classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91" title="Method to be called to use an xmlDocSource." alt="" coords="401,325,559,355"/>
+<area shape="rect" id="node17" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains::validate" alt="" coords="375,379,585,408"/>
+</map>

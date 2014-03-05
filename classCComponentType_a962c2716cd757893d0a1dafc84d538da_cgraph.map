@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCXmlParameterSerializingContext.html#a1ca5ee65e05cff3a9a453d8b0ff8fd09" title="CXmlParameterSerializingContext::getComponentLibrary" alt="" coords="241,5,593,35"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="643,109,824,139"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="312,109,523,139"/>
+<area shape="rect" id="node10" href="$classCComponentLibrary.html#a776156d1fa8332e93e0354fbeb1ef6b2" title="CComponentLibrary::getComponentType" alt="" coords="288,163,547,192"/>
+<area shape="rect" id="node12" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="311,216,524,245"/>
+<area shape="rect" id="node14" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="340,293,495,323"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="360,5,571,35"/>
+<area shape="rect" id="node5" href="$classCXmlElementSerializingContext.html#a5b554140f8c2ca7047f6f0f7fa8ef6e3" title="CXmlElementSerializingContext::getXmlFolder" alt="" coords="319,59,612,88"/>
+<area shape="rect" id="node7" href="$classCXmlElementSerializingContext.html#a0691a9da062b3950f316853cf9e8e391" title="CXmlElementSerializingContext::getXmlSchemaPathFolder" alt="" coords="281,112,649,141"/>
+<area shape="rect" id="node9" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext::getElementLibrary" alt="" coords="304,165,627,195"/>
+<area shape="rect" id="node11" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="360,219,571,248"/>
+<area shape="rect" id="node13" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="393,272,537,301"/>
+<area shape="rect" id="node15" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="396,325,535,355"/>
+<area shape="rect" id="node17" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="359,379,572,408"/>
+<area shape="rect" id="node19" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="388,456,543,485"/>
+<area shape="rect" id="node22" href="$classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91" title="Method to be called to use an xmlDocSource." alt="" coords="387,509,544,539"/>
+<area shape="rect" id="node24" href="$classCElement.html#a4aec98bde47367325cf332a5dc471eb9" title="CElement::removeChild" alt="" coords="385,563,545,592"/>
+</map>

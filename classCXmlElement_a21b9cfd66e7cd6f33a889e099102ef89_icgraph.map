@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement::serializeXmlSettings" alt="" coords="348,29,628,59"/>
+<area shape="rect" id="node6" href="$classTKindElementBuilderTemplate.html#ac3ba2f71d8e05f0c63aa8a32acb5b615" title="TKindElementBuilderTemplate::createElement" alt="" coords="343,83,633,112"/>
+<area shape="rect" id="node8" href="$classTNamedElementBuilderTemplate.html#aeea1d55d89397b522b13651a6e51a3e3" title="TNamedElementBuilderTemplate\&lt; CVirtualSubsystem \&gt;::createElement" alt="" coords="267,136,709,165"/>
+<area shape="rect" id="node10" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="411,213,565,243"/>
+<area shape="rect" id="node13" href="$classCXmlElement.html#a05b0e7940054542157b3292cfd1efe44" title="CXmlElement::getChildElement" alt="" coords="385,267,591,296"/>
+</map>

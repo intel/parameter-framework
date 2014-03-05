@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="345,5,527,35"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#ab32b567cae912ddf859a7073417c3846" title="CXmlElement::getAttributeBoolean" alt="" coords="324,59,548,88"/>
+<area shape="rect" id="node7" href="$classCXmlDomainSerializingContext.html#a40f7b79dcb6d3c466ee45083928665f0" title="CXmlDomainSerializingContext::autoValidationRequired" alt="" coords="263,112,609,141"/>
+</map>
