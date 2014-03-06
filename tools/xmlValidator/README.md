@@ -1,13 +1,14 @@
 # xmlValidator tool
 
 This tool can be used to check if the `.xml` files you have written are
-following the `.xsd` schemas we provided you.
-By doing so, you are *ensured* that your configuration is *fully compatible* with the `parameter-framework`.
+following the `.xsd` schemas provided by the PFW.  By doing so, you are *ensured*
+that your configuration is *fully compatible* with the `parameter-framework`.
 
 It scans all directories and subdirectories for `.xml` files and checks them
 with `.xsd` from a *schemas* directory you specified for the script.
 
 ## Usage
+
 To run xmlValidator, just start it from the commandline with:
 
     python xmlValidator.py <xmlRootDirectory> <xsdDirectory>
@@ -66,8 +67,10 @@ And we will get the following output on the commandline:
 
 
 ## Install requirements
-In order to use this tool, you must have the following packages installed:
 
-* `python`
+In order to use this tool, you must have the following packages (these
+are the names on a debian-based distribution):
+
+* `python` (2.7 or later)
 * `python-lxml`
-* `libpython2.7`
+* `libpython2.7` or later
