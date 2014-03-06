@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="317,5,523,35"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a572c3882f6e39220d967bed9430bf88e" title="CBaseParameter::accessAsStringArray" alt="" coords="293,59,547,88"/>
+<map id="CParameterHandle::setAsStringArray" name="CParameterHandle::setAsStringArray">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="265,5,471,35"/>
+<area shape="rect" id="node5" href="$classCBaseParameter.html#a572c3882f6e39220d967bed9430bf88e" title="CBaseParameter::accessAs\lStringArray" alt="" coords="275,58,461,105"/>
 </map>

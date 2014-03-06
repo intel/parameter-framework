@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType::fromXml" alt="" coords="301,5,541,35"/>
-<area shape="rect" id="node5" href="$classCFixedPointParameterType.html#ace3b6df8494301af1d193ba3ac7ba9f0" title="Conversion." alt="" coords="288,59,555,88"/>
+<map id="CFixedPointParameterType::getKind" name="CFixedPointParameterType::getKind">
+<area shape="rect" id="node3" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType\l::fromXml" alt="" coords="239,5,420,51"/>
+<area shape="rect" id="node5" href="$classCFixedPointParameterType.html#ace3b6df8494301af1d193ba3ac7ba9f0" title="Conversion. " alt="" coords="239,74,420,121"/>
 </map>

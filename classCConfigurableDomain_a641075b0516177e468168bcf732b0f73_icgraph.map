@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a377772d6c1155fc054ca35900c3a2e92" title="CConfigurableDomains::getSequenceAwareness" alt="" coords="352,5,659,35"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a080570d1c345be66540f9fea7452e307" title="CConfigurableDomains::listDomains" alt="" coords="388,59,623,88"/>
+<map id="CConfigurableDomain::getSequenceAwareness" name="CConfigurableDomain::getSequenceAwareness">
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a377772d6c1155fc054ca35900c3a2e92" title="CConfigurableDomains\l::getSequenceAwareness" alt="" coords="224,5,395,51"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a080570d1c345be66540f9fea7452e307" title="CConfigurableDomains\l::listDomains" alt="" coords="231,74,388,121"/>
 </map>

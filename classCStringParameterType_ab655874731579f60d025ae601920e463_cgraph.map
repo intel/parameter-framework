@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement.html#ae8beacdbc73815734d8c4f9098fc05ec" title="CXmlElement::setAttributeInteger" alt="" coords="251,5,469,35"/>
+<map id="CStringParameterType::toXml" name="CStringParameterType::toXml">
+<area shape="rect" id="node3" href="$classCXmlElement.html#ae8beacdbc73815734d8c4f9098fc05ec" title="CXmlElement::setAttribute\lInteger" alt="" coords="208,5,387,51"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a5f058114eaf97ccdbb625a56af223961" title="CXmlElement::setAttribute\lString" alt="" coords="435,5,613,51"/>
 </map>

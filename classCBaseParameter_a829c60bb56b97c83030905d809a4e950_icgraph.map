@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBaseParameter.html#a9297ff69dfad31b357e08444b667b4f4" title="CBaseParameter::accessValue" alt="" coords="280,5,485,35"/>
-<area shape="rect" id="node5" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="279,59,487,88"/>
-<area shape="rect" id="node7" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="279,112,487,141"/>
+<map id="CBaseParameter::accessAsString" name="CBaseParameter::accessAsString">
+<area shape="rect" id="node3" href="$classCBaseParameter.html#a9297ff69dfad31b357e08444b667b4f4" title="CBaseParameter::accessValue" alt="" coords="245,5,451,35"/>
+<area shape="rect" id="node5" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="244,59,452,88"/>
+<area shape="rect" id="node7" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="244,112,452,141"/>
 </map>

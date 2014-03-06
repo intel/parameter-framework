@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#aacdd6d54c10cd1494a820d78be779362" title="CElement::toString" alt="" coords="613,5,747,35"/>
-<area shape="rect" id="node5" href="$classCParameterAdaptation.html#a125ca1409135eb35a6ea529fdc5e9855" title="CParameterAdaptation::showProperties" alt="" coords="313,31,564,60"/>
+<map id="CIntegerParameterType::showProperties" name="CIntegerParameterType::showProperties">
+<area shape="rect" id="node3" href="$classCElement.html#aacdd6d54c10cd1494a820d78be779362" title="CElement::toString" alt="" coords="423,5,556,35"/>
+<area shape="rect" id="node5" href="$classCParameterAdaptation.html#a125ca1409135eb35a6ea529fdc5e9855" title="CParameterAdaptation\l::showProperties" alt="" coords="216,53,371,99"/>
+<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="419,61,560,91"/>
 </map>

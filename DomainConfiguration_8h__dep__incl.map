@@ -1,4 +1,4 @@
-<map id="G" name="G">
+<map id="parameter/DomainConfiguration.h" name="parameter/DomainConfiguration.h">
 <area shape="rect" id="node3" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="5,83,232,112"/>
 <area shape="rect" id="node5" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="256,83,485,112"/>
 <area shape="rect" id="node7" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="509,83,699,112"/>

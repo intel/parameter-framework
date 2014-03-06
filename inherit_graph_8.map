@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node1" href="$classCElementLibrary.html" title="CElementLibrary" alt="" coords="7,32,124,61"/>
-<area shape="rect" id="node3" href="$classCDefaultElementLibrary.html" title="Factory that creates an element given an xml element." alt="" coords="268,5,593,35"/>
-<area shape="rect" id="node5" href="$classCDefaultElementLibrary.html" title="CDefaultElementLibrary\&lt; TNamedElementBuilderTemplate\&lt; CVirtualSubsystem \&gt; \&gt;" alt="" coords="173,59,688,88"/>
-<area shape="rect" id="node7" href="$classCSubsystemLibrary.html" title="CSubsystemLibrary" alt="" coords="737,59,873,88"/>
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classCElementLibrary.html" title="CElementLibrary" alt="" coords="7,53,124,83"/>
+<area shape="rect" id="node3" href="$classCDefaultElementLibrary.html" title="Factory that creates an element given an xml element. " alt="" coords="193,5,380,51"/>
+<area shape="rect" id="node5" href="$classCDefaultElementLibrary.html" title="CDefaultElementLibrary\l\&lt; TNamedElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt; \&gt;" alt="" coords="173,75,400,139"/>
+<area shape="rect" id="node7" href="$classCSubsystemLibrary.html" title="CSubsystemLibrary" alt="" coords="449,92,585,121"/>
 </map>

@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCDefaultElementLibrary.html" title="Factory that creates an element given an xml element." alt="" coords="176,5,501,35"/>
-<area shape="rect" id="node5" href="$classCDefaultElementLibrary.html" title="CDefaultElementLibrary\&lt; TNamedElementBuilderTemplate\&lt; CVirtualSubsystem \&gt; \&gt;" alt="" coords="907,33,1421,63"/>
+<map id="CElementLibrary" name="CElementLibrary">
+<area shape="rect" id="node3" href="$classCDefaultElementLibrary.html" title="Factory that creates an element given an xml element. " alt="" coords="176,7,363,54"/>
+<area shape="rect" id="node5" href="$classCDefaultElementLibrary.html" title="CDefaultElementLibrary\l\&lt; TNamedElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt; \&gt;" alt="" coords="621,33,848,97"/>
 </map>

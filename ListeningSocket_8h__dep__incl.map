@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$ListeningSocket_8cpp.html" title="remote&#45;processor/ListeningSocket.cpp" alt="" coords="5,83,251,112"/>
-<area shape="rect" id="node5" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessorServer.cpp" alt="" coords="275,83,568,112"/>
+<map id="remote&#45;processor/ListeningSocket.h" name="remote&#45;processor/ListeningSocket.h">
+<area shape="rect" id="node3" href="$ListeningSocket_8cpp.html" title="remote&#45;processor/Listening\lSocket.cpp" alt="" coords="5,102,184,149"/>
+<area shape="rect" id="node5" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="208,102,440,149"/>
 </map>

@@ -1,9 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBitParameterType.html#a1501579be4ef9d112274031973146b2e" title="CBitParameterType::fromBlackboard" alt="" coords="407,5,641,35"/>
-<area shape="rect" id="node5" href="$classCBooleanParameterType.html#aaa9f0486a7cbf065bd23a987355be7ff" title="CBooleanParameterType::fromBlackboard" alt="" coords="391,59,657,88"/>
-<area shape="rect" id="node7" href="$classCEnumParameterType.html#a6ce804b25dac7358397d7cb0d9248f1c" title="CEnumParameterType::fromBlackboard" alt="" coords="397,112,651,141"/>
-<area shape="rect" id="node9" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType::handleValueSpaceAttribute" alt="" coords="351,165,697,195"/>
-<area shape="rect" id="node11" href="$classCFixedPointParameterType.html#ace3b6df8494301af1d193ba3ac7ba9f0" title="Conversion." alt="" coords="391,219,657,248"/>
-<area shape="rect" id="node13" href="$classCFixedPointParameterType.html#aa1bf6ab7bbb3f8ca3111b37450751d98" title="CFixedPointParameterType::fromBlackboard" alt="" coords="383,272,665,301"/>
-<area shape="rect" id="node15" href="$classCIntegerParameterType.html#a2d5410d61e8ec5b0214252aec20d4d1f" title="CIntegerParameterType::fromBlackboard" alt="" coords="395,325,653,355"/>
+<map id="CParameterAccessContext::valueSpaceIsRaw" name="CParameterAccessContext::valueSpaceIsRaw">
+<area shape="rect" id="node3" href="$classCBitParameterType.html#a1501579be4ef9d112274031973146b2e" title="CBitParameterType::\lfromBlackboard" alt="" coords="259,5,403,51"/>
+<area shape="rect" id="node5" href="$classCBooleanParameterType.html#aaa9f0486a7cbf065bd23a987355be7ff" title="CBooleanParameterType\l::fromBlackboard" alt="" coords="247,74,415,121"/>
+<area shape="rect" id="node7" href="$classCEnumParameterType.html#a6ce804b25dac7358397d7cb0d9248f1c" title="CEnumParameterType\l::fromBlackboard" alt="" coords="253,143,408,190"/>
+<area shape="rect" id="node9" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType\l::handleValueSpaceAttribute" alt="" coords="237,213,424,259"/>
+<area shape="rect" id="node11" href="$classCFixedPointParameterType.html#ace3b6df8494301af1d193ba3ac7ba9f0" title="Conversion. " alt="" coords="240,282,421,329"/>
+<area shape="rect" id="node13" href="$classCFixedPointParameterType.html#aa1bf6ab7bbb3f8ca3111b37450751d98" title="CFixedPointParameterType\l::fromBlackboard" alt="" coords="240,351,421,398"/>
+<area shape="rect" id="node15" href="$classCIntegerParameterType.html#a2d5410d61e8ec5b0214252aec20d4d1f" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="251,421,411,467"/>
 </map>

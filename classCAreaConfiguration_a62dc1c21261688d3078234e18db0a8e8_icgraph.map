@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#ab5da4b09e98d012145c3b71816a2e153" title="CDomainConfiguration::restore" alt="" coords="237,5,440,35"/>
+<map id="CAreaConfiguration::restore" name="CAreaConfiguration::restore">
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#ab5da4b09e98d012145c3b71816a2e153" title="CDomainConfiguration\l::restore" alt="" coords="189,39,344,86"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#a928805e163719f902c207c061ab3b1c2" title="CConfigurableDomain\l::apply" alt="" coords="393,5,543,51"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomain.html#a1c13db0dbfb1a375d8a9632b06d08b36" title="CConfigurableDomain\l::restoreConfiguration" alt="" coords="393,74,543,121"/>
 </map>

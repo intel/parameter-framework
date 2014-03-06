@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCEnumValuePair.html#a8936c702786702895a231eac2137f518" title="CEnumValuePair::getNumericalAsString" alt="" coords="236,5,492,35"/>
+<map id="CEnumValuePair::logValue" name="CEnumValuePair::logValue">
+<area shape="rect" id="node3" href="$classCEnumValuePair.html#a8936c702786702895a231eac2137f518" title="CEnumValuePair::getNumerical\lAsString" alt="" coords="236,5,441,51"/>
+<area shape="rect" id="node5" href="$classCElement.html#aacdd6d54c10cd1494a820d78be779362" title="CElement::toString" alt="" coords="491,13,624,43"/>
 </map>

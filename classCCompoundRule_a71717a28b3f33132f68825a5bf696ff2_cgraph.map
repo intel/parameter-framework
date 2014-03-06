@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement.html#ab32b567cae912ddf859a7073417c3846" title="CXmlElement::getAttributeBoolean" alt="" coords="233,5,457,35"/>
+<map id="CCompoundRule::fromXml" name="CCompoundRule::fromXml">
+<area shape="rect" id="node3" href="$classCXmlElement.html#ab32b567cae912ddf859a7073417c3846" title="CXmlElement::getAttribute\lBoolean" alt="" coords="232,5,411,51"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="459,5,637,51"/>
 </map>

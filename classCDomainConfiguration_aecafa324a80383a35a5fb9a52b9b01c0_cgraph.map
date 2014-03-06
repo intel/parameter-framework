@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#ad655f6277ec602be7fb9ce0f586555df" title="CAreaConfiguration::validateAgainst" alt="" coords="305,5,537,35"/>
+<map id="CDomainConfiguration::validateAgainst" name="CDomainConfiguration::validateAgainst">
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#ad655f6277ec602be7fb9ce0f586555df" title="CAreaConfiguration\l::validateAgainst" alt="" coords="208,39,344,86"/>
+<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917" title="CAreaConfiguration\l::isValid" alt="" coords="403,5,539,51"/>
+<area shape="rect" id="node7" href="$classCParameterBlackboard.html#ad6a2b3fd050432c1e050347222544915" title="CParameterBlackboard\l::restoreFrom" alt="" coords="392,74,549,121"/>
 </map>

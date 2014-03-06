@@ -1,5 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="333,5,467,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="515,84,656,113"/>
-<area shape="rect" id="node7" href="$classCElement.html#a7bfa625419c4a9ab40f2c83c46a9ce70" title="CElement::rename" alt="" coords="335,109,465,139"/>
+<map id="CConfigurableDomain::renameConfiguration" name="CConfigurableDomain::renameConfiguration">
+<area shape="rect" id="node3" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="205,5,339,35"/>
+<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="401,56,543,85"/>
+<area shape="rect" id="node7" href="$classCElement.html#a7bfa625419c4a9ab40f2c83c46a9ce70" title="CElement::rename" alt="" coords="207,109,337,139"/>
+<area shape="rect" id="node9" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="387,109,557,139"/>
+<area shape="rect" id="node11" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="404,163,540,192"/>
+<area shape="rect" id="node14" href="$classCElement.html#a9d1ea66f1d2c179e204291fa59c6fcaa" title="CElement::setName" alt="" coords="401,216,543,245"/>
 </map>

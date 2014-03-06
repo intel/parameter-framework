@@ -1,6 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConnectionSocket.html#a91f5151ce596dcb130339c8c78213908" title="CConnectionSocket::connect" alt="" coords="191,5,383,35"/>
-<area shape="rect" id="node5" href="$classCListeningSocket.html#abfe1b7413fdc5d0cb8606f79ffea6bce" title="CListeningSocket::CListeningSocket" alt="" coords="169,59,404,88"/>
-<area shape="rect" id="node7" href="$classCListeningSocket.html#acff2692663749656e0ba960cb5726154" title="CListeningSocket::listen" alt="" coords="205,112,368,141"/>
-<area shape="rect" id="node9" href="$classCListeningSocket.html#a1d210e65ed39067165dfc9442466dbf3" title="CListeningSocket::accept" alt="" coords="201,165,372,195"/>
+<map id="CSocket::getFd" name="CSocket::getFd">
+<area shape="rect" id="node3" href="$classCConnectionSocket.html#a91f5151ce596dcb130339c8c78213908" title="CConnectionSocket::\lconnect" alt="" coords="192,5,339,51"/>
+<area shape="rect" id="node5" href="$classCListeningSocket.html#abfe1b7413fdc5d0cb8606f79ffea6bce" title="CListeningSocket::CListening\lSocket" alt="" coords="168,74,363,121"/>
+<area shape="rect" id="node7" href="$classCListeningSocket.html#acff2692663749656e0ba960cb5726154" title="CListeningSocket::listen" alt="" coords="184,144,347,173"/>
+<area shape="rect" id="node11" href="$classCListeningSocket.html#a1d210e65ed39067165dfc9442466dbf3" title="CListeningSocket::accept" alt="" coords="180,197,351,227"/>
+<area shape="rect" id="node9" href="$classCRemoteProcessorServer.html#aaad65a562e84d640771e52aa4a095861" title="CRemoteProcessorServer\l::start" alt="" coords="412,135,585,182"/>
 </map>

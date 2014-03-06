@@ -1,4 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElementLocator.html#aa887048674b224356ea784fa6b5e3968" title="CElementLocator::locate" alt="" coords="536,5,701,35"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a12adc0972c24dc227d608a4e5b1d2cc3" title="CConfigurableDomains::removeConfigurableElementFromDomain" alt="" coords="417,59,820,88"/>
+<map id="CParameterMgr::removeConfigurableElementFromDomain" name="CParameterMgr::removeConfigurableElementFromDomain">
+<area shape="rect" id="node3" href="$classCElementLocator.html#aa887048674b224356ea784fa6b5e3968" title="CElementLocator::locate" alt="" coords="308,133,473,163"/>
+<area shape="rect" id="node15" href="$classCConfigurableDomains.html#a12adc0972c24dc227d608a4e5b1d2cc3" title="CConfigurableDomains\l::removeConfigurableElement\lFromDomain" alt="" coords="293,207,488,271"/>
+<area shape="rect" id="node5" href="$classCPathNavigator.html#ac63504ec6203e15a9ca4a15e9775bfe8" title="CPathNavigator::isPathValid" alt="" coords="539,5,728,35"/>
+<area shape="rect" id="node7" href="$classCPathNavigator.html#afa8e9e639cd97f64439f4e95def21270" title="CPathNavigator::next" alt="" coords="780,119,927,148"/>
+<area shape="rect" id="node9" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="783,201,924,231"/>
+<area shape="rect" id="node11" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="544,133,723,163"/>
+<area shape="rect" id="node17" href="$classCConfigurableDomain.html#a36444865371ec1fbbc43fb1a5a09a3bf" title="CConfigurableDomain\l::removeConfigurableElement" alt="" coords="536,237,731,283"/>
 </map>

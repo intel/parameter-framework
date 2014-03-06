@@ -1,4 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$BackSynchronizer_8h.html" title="BackSynchronizer.h" alt="" coords="5,83,144,112"/>
-<area shape="rect" id="node5" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="168,83,349,112"/>
+<map id="parameter/SimulatedBackSynchronizer.h" name="parameter/SimulatedBackSynchronizer.h">
+<area shape="rect" id="node3" href="$BackSynchronizer_8h.html" title="BackSynchronizer.h" alt="" coords="129,83,268,112"/>
+<area shape="rect" id="node9" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="292,83,473,112"/>
+<area shape="rect" id="node5" href="$ConfigurableElementAggregator_8h.html" title="ConfigurableElementAggregator.h" alt="" coords="5,160,221,189"/>
+<area shape="rect" id="node13" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="384,160,491,189"/>
 </map>

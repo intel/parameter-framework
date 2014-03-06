@@ -1,3 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement::fillSyncerSet" alt="" coords="389,29,624,59"/>
+<map id="CConfigurableElement::fillSyncerSetFromDescendant" name="CConfigurableElement::fillSyncerSetFromDescendant">
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="260,66,412,113"/>
+<area shape="rect" id="node5" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="484,5,687,51"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#ac227818fa1c5f13e68017ff55500e8a2" title="CParameterMgr::sync" alt="" coords="511,75,660,104"/>
+<area shape="rect" id="node9" href="$classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" title="Look for subsystems that need to be resynchronized. " alt="" coords="463,127,708,174"/>
 </map>

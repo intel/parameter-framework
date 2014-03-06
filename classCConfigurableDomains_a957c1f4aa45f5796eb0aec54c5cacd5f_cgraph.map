@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#a02b31686cf4461fa304053d8072f7340" title="CElement::listChildren" alt="" coords="321,5,473,35"/>
+<map id="CConfigurableDomains::listConfigurations" name="CConfigurableDomains::listConfigurations">
+<area shape="rect" id="node3" href="$classCElement.html#a02b31686cf4461fa304053d8072f7340" title="CElement::listChildren" alt="" coords="212,32,364,61"/>
+<area shape="rect" id="node5" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="413,5,584,35"/>
+<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="428,59,569,88"/>
 </map>

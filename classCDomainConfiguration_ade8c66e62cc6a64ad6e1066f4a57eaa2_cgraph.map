@@ -1,3 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#ae84c6459b7b261fb81026c9ebe9140f8" title="CAreaConfiguration::copyToOuter" alt="" coords="253,5,472,35"/>
+<map id="CDomainConfiguration::merge" name="CDomainConfiguration::merge">
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#ae84c6459b7b261fb81026c9ebe9140f8" title="CAreaConfiguration\l::copyToOuter" alt="" coords="208,82,344,129"/>
+<area shape="rect" id="node5" href="$classCElement.html#a7653fbad5491138533ac0fa889ffecd9" title="CElement::isDescendantOf" alt="" coords="393,29,575,59"/>
+<area shape="rect" id="node8" href="$classCAreaConfiguration.html#a1f85dedf12591c3f43830a00e5c352df" title="CAreaConfiguration\l::getConfigurableElement" alt="" coords="400,82,568,129"/>
+<area shape="rect" id="node10" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="408,151,560,198"/>
 </map>

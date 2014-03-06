@@ -1,8 +1,16 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator::next" alt="" coords="193,5,417,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a3665106b575e8c07040dfc28b01e697c" title="CElement::findChildOfKind" alt="" coords="216,59,395,88"/>
-<area shape="rect" id="node7" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="732,176,889,205"/>
-<area shape="rect" id="node9" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="468,163,681,192"/>
-<area shape="rect" id="node11" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="497,240,652,269"/>
-<area shape="rect" id="node15" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element." alt="" coords="228,213,383,243"/>
+<map id="CElement::fromXml" name="CElement::fromXml">
+<area shape="rect" id="node3" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator\l::next" alt="" coords="192,5,384,51"/>
+<area shape="rect" id="node7" href="$classCElement.html#a3665106b575e8c07040dfc28b01e697c" title="CElement::findChildOfKind" alt="" coords="199,412,377,441"/>
+<area shape="rect" id="node11" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="720,72,877,101"/>
+<area shape="rect" id="node13" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext\l::setError" alt="" coords="457,378,617,425"/>
+<area shape="rect" id="node15" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="460,149,615,179"/>
+<area shape="rect" id="node26" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="211,255,365,284"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="955,71,1155,100"/>
+<area shape="rect" id="node9" href="$classCElement.html#aeed805fdf6faa98d8b54628177ddedc7" title="CElement::getKind" alt="" coords="472,448,603,477"/>
+<area shape="rect" id="node18" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="708,179,889,208"/>
+<area shape="rect" id="node20" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="692,232,905,261"/>
+<area shape="rect" id="node22" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="692,125,905,155"/>
+<area shape="rect" id="node28" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext\l::getElementLibrary" alt="" coords="433,202,641,249"/>
+<area shape="rect" id="node30" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="432,272,643,301"/>
+<area shape="rect" id="node34" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="468,325,607,355"/>
 </map>

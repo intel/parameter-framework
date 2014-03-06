@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="19,5,99,35"/>
+<map id="CKindElement" name="CKindElement">
+<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="56,83,136,112"/>
+<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="5,5,80,35"/>
+<area shape="rect" id="node6" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="104,5,195,35"/>
 </map>

@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#aa5b08c5e916aafe1cc8626754d4dedda" title="CDomainConfiguration::getApplicationRule" alt="" coords="217,5,487,35"/>
+<map id="CCompoundRule::dump" name="CCompoundRule::dump">
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#aa5b08c5e916aafe1cc8626754d4dedda" title="CDomainConfiguration\l::getApplicationRule" alt="" coords="216,5,371,51"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#ace11fe233992ee38c9b0471177ecc9cd" title="CConfigurableDomain\l::getApplicationRule" alt="" coords="420,5,569,51"/>
 </map>

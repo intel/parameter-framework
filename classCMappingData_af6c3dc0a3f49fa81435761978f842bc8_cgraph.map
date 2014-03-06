@@ -1,7 +1,10 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="485,32,667,61"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="224,32,435,61"/>
-<area shape="rect" id="node8" href="$classTokenizer.html#a9c7241ad13ef914fbd2fe7be768c31b8" title="Tokenizer::next" alt="" coords="273,85,385,114"/>
-<area shape="rect" id="node10" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="223,138,436,168"/>
-<area shape="rect" id="node12" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="252,216,407,245"/>
+<map id="CMappingData::fromXml" name="CMappingData::fromXml">
+<area shape="rect" id="node3" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="923,60,1104,89"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="696,51,875,98"/>
+<area shape="rect" id="node8" href="$classTokenizer.html#a9c7241ad13ef914fbd2fe7be768c31b8" title="Tokenizer::next" alt="" coords="247,71,359,100"/>
+<area shape="rect" id="node10" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext\l::setError" alt="" coords="223,123,383,170"/>
+<area shape="rect" id="node12" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="225,217,380,247"/>
+<area shape="rect" id="node14" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="461,259,619,288"/>
+<area shape="rect" id="node17" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="433,81,647,111"/>
+<area shape="rect" id="node20" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="433,155,647,184"/>
 </map>

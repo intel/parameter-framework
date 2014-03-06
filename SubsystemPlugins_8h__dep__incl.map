@@ -1,5 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$SystemClass_8h.html" title="parameter/SystemClass.h" alt="" coords="5,83,179,112"/>
-<area shape="rect" id="node5" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="59,160,248,189"/>
-<area shape="rect" id="node8" href="$SubsystemPlugins_8cpp.html" title="parameter/SubsystemPlugins.cpp" alt="" coords="253,83,472,112"/>
+<map id="parameter/SubsystemPlugins.h" name="parameter/SubsystemPlugins.h">
+<area shape="rect" id="node3" href="$SystemClass_8h.html" title="parameter/SystemClass.h" alt="" coords="137,83,311,112"/>
+<area shape="rect" id="node5" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="5,160,195,189"/>
+<area shape="rect" id="node10" href="$SubsystemPlugins_8cpp.html" title="parameter/SubsystemPlugins.cpp" alt="" coords="335,83,553,112"/>
+<area shape="rect" id="node7" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="219,160,405,189"/>
 </map>

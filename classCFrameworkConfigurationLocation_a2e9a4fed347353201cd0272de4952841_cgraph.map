@@ -1,5 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="336,5,547,35"/>
-<area shape="rect" id="node5" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="335,59,548,88"/>
-<area shape="rect" id="node7" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="364,136,519,165"/>
+<map id="CFrameworkConfigurationLocation::fromXml" name="CFrameworkConfigurationLocation::fromXml">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="752,9,931,55"/>
+<area shape="rect" id="node7" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext\l::setError" alt="" coords="279,130,439,177"/>
+<area shape="rect" id="node9" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="281,77,436,107"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="979,48,1160,77"/>
+<area shape="rect" id="node11" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="517,129,675,159"/>
+<area shape="rect" id="node14" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="489,25,703,55"/>
+<area shape="rect" id="node17" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="489,183,703,212"/>
 </map>

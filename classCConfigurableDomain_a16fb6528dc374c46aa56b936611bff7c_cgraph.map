@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement.html#a758ce9e5a7886e3da0fda1d06c95cb66" title="CXmlElement::setAttributeBoolean" alt="" coords="247,5,471,35"/>
+<map id="CConfigurableDomain::toXml" name="CConfigurableDomain::toXml">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a758ce9e5a7886e3da0fda1d06c95cb66" title="CXmlElement::setAttribute\lBoolean" alt="" coords="205,5,384,51"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a5f058114eaf97ccdbb625a56af223961" title="CXmlElement::setAttribute\lString" alt="" coords="432,5,611,51"/>
 </map>

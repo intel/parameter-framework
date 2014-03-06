@@ -1,9 +1,14 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlParameterSerializingContext.html#a1ca5ee65e05cff3a9a453d8b0ff8fd09" title="CXmlParameterSerializingContext::getComponentLibrary" alt="" coords="263,5,615,35"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="333,59,544,88"/>
-<area shape="rect" id="node7" href="$classCComponentLibrary.html#a776156d1fa8332e93e0354fbeb1ef6b2" title="CComponentLibrary::getComponentType" alt="" coords="309,112,568,141"/>
-<area shape="rect" id="node9" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="332,165,545,195"/>
-<area shape="rect" id="node11" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="361,243,516,272"/>
-<area shape="rect" id="node14" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="367,296,511,325"/>
-<area shape="rect" id="node16" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="368,349,509,379"/>
+<map id="CComponentInstance::fromXml" name="CComponentInstance::fromXml">
+<area shape="rect" id="node3" href="$classCXmlParameterSerializingContext.html#a1ca5ee65e05cff3a9a453d8b0ff8fd09" title="CXmlParameterSerializing\lContext::getComponentLibrary" alt="" coords="203,5,403,51"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="715,175,893,222"/>
+<area shape="rect" id="node9" href="$classCComponentLibrary.html#a776156d1fa8332e93e0354fbeb1ef6b2" title="CComponentLibrary::\lgetComponentType" alt="" coords="229,125,376,171"/>
+<area shape="rect" id="node13" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext\l::setError" alt="" coords="223,194,383,241"/>
+<area shape="rect" id="node15" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="225,288,380,317"/>
+<area shape="rect" id="node26" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="231,341,375,371"/>
+<area shape="rect" id="node28" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="232,395,373,424"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="941,237,1123,267"/>
+<area shape="rect" id="node11" href="$classCElement.html#a60abb7f8cc873cf16ccb64758128d2cf" title="CElement::findChild" alt="" coords="489,131,628,160"/>
+<area shape="rect" id="node17" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="480,341,637,371"/>
+<area shape="rect" id="node20" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="452,184,665,213"/>
+<area shape="rect" id="node23" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="452,237,665,267"/>
 </map>

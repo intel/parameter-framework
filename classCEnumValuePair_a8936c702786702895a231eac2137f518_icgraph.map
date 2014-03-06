@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCEnumParameterType.html#a357a75d33c975db29cba8004eb47f743" title="CEnumParameterType::showProperties" alt="" coords="312,5,565,35"/>
-<area shape="rect" id="node5" href="$classCEnumValuePair.html#aea004e93e68b7d154b87a0d540cf1e78" title="CEnumValuePair::logValue" alt="" coords="349,59,528,88"/>
-<area shape="rect" id="node7" href="$classCEnumValuePair.html#af7f3d59a079b449b72e6e0eb5dd8fedc" title="CEnumValuePair::toXml" alt="" coords="357,112,520,141"/>
+<map id="CEnumValuePair::getNumericalAsString" name="CEnumValuePair::getNumericalAsString">
+<area shape="rect" id="node3" href="$classCEnumParameterType.html#a357a75d33c975db29cba8004eb47f743" title="CEnumParameterType\l::showProperties" alt="" coords="275,5,429,51"/>
+<area shape="rect" id="node5" href="$classCEnumValuePair.html#aea004e93e68b7d154b87a0d540cf1e78" title="CEnumValuePair::logValue" alt="" coords="263,75,441,104"/>
+<area shape="rect" id="node7" href="$classCEnumValuePair.html#af7f3d59a079b449b72e6e0eb5dd8fedc" title="CEnumValuePair::toXml" alt="" coords="271,128,433,157"/>
 </map>

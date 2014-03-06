@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7" title="CParameterAccessContext::valueSpaceIsRaw" alt="" coords="308,5,604,35"/>
-<area shape="rect" id="node5" href="$classCParameterAccessContext.html#aca36a91f58c3aa138dab5f1823347502" title="CParameterAccessContext::outputRawFormatIsHex" alt="" coords="292,59,620,88"/>
+<map id="CBitParameterType::fromBlackboard" name="CBitParameterType::fromBlackboard">
+<area shape="rect" id="node3" href="$classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7" title="CParameterAccessContext\l::valueSpaceIsRaw" alt="" coords="201,5,383,51"/>
+<area shape="rect" id="node5" href="$classCParameterAccessContext.html#aca36a91f58c3aa138dab5f1823347502" title="CParameterAccessContext\l::outputRawFormatIsHex" alt="" coords="201,74,383,121"/>
 </map>

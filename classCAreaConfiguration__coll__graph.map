@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="5,5,157,35"/>
-<area shape="rect" id="node4" href="$classCParameterBlackboard.html" title="CParameterBlackboard" alt="" coords="181,5,339,35"/>
+<map id="CAreaConfiguration" name="CAreaConfiguration">
+<area shape="rect" id="node2" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="5,85,157,115"/>
+<area shape="rect" id="node4" href="$classCElement.html" title="CElement" alt="" coords="41,5,121,35"/>
+<area shape="rect" id="node6" href="$classCParameterBlackboard.html" title="CParameterBlackboard" alt="" coords="181,85,339,115"/>
 </map>

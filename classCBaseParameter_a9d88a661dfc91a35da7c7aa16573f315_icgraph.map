@@ -1,5 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serializeXmlSettings" alt="" coords="255,5,503,35"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#ad4a1a626032f3774b896ce07ef201900" title="CBaseParameter::logValue" alt="" coords="289,59,468,88"/>
-<area shape="rect" id="node7" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAsString" alt="" coords="268,112,489,141"/>
+<map id="CBaseParameter::doGetValue" name="CBaseParameter::doGetValue">
+<area shape="rect" id="node3" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="259,5,437,51"/>
+<area shape="rect" id="node5" href="$classCBaseParameter.html#ad4a1a626032f3774b896ce07ef201900" title="CBaseParameter::logValue" alt="" coords="259,75,437,104"/>
+<area shape="rect" id="node7" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAs\lString" alt="" coords="255,127,441,174"/>
+<area shape="rect" id="node9" href="$classCBaseParameter.html#a9297ff69dfad31b357e08444b667b4f4" title="CBaseParameter::accessValue" alt="" coords="493,83,699,112"/>
+<area shape="rect" id="node11" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="492,136,700,165"/>
+<area shape="rect" id="node13" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="492,189,700,219"/>
 </map>

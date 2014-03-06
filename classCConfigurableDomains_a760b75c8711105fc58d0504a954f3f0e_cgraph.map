@@ -1,6 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBinarySerializableElement.html#af291be4ac902bdc4b0401cc7f9298618" title="CBinarySerializableElement::getDataSize" alt="" coords="321,29,585,59"/>
-<area shape="rect" id="node6" href="$classCBinaryStream.html#a7b9be5bae56a189c6ec68f14659a9fcb" title="CBinaryStream::open" alt="" coords="380,83,527,112"/>
-<area shape="rect" id="node8" href="$classCBinarySerializableElement.html#a1b023138703ff0807ae1a25724f1f7d4" title="CBinarySerializableElement::binarySerialize" alt="" coords="315,160,592,189"/>
-<area shape="rect" id="node11" href="$classCBinaryStream.html#aafcf30671f90cecb81901ba557a288a5" title="CBinaryStream::close" alt="" coords="379,213,528,243"/>
+<map id="CConfigurableDomains::serializeSettings" name="CConfigurableDomains::serializeSettings">
+<area shape="rect" id="node3" href="$classCBinarySerializableElement.html#af291be4ac902bdc4b0401cc7f9298618" title="CBinarySerializableElement\l::getDataSize" alt="" coords="211,29,395,75"/>
+<area shape="rect" id="node10" href="$classCBinaryStream.html#a7b9be5bae56a189c6ec68f14659a9fcb" title="CBinaryStream::open" alt="" coords="229,192,376,221"/>
+<area shape="rect" id="node12" href="$classCBinarySerializableElement.html#a1b023138703ff0807ae1a25724f1f7d4" title="CBinarySerializableElement\l::binarySerialize" alt="" coords="211,122,395,169"/>
+<area shape="rect" id="node17" href="$classCBinaryStream.html#aafcf30671f90cecb81901ba557a288a5" title="CBinaryStream::close" alt="" coords="228,245,377,275"/>
+<area shape="rect" id="node5" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="443,48,613,77"/>
+<area shape="rect" id="node7" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="460,111,596,140"/>
 </map>

@@ -1,4 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node5" href="$classCLinearParameterAdaptation.html" title="CLinearParameterAdaptation" alt="" coords="5,160,195,189"/>
-<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="60,5,140,35"/>
+<map id="CParameterAdaptation" name="CParameterAdaptation">
+<area shape="rect" id="node9" href="$classCLinearParameterAdaptation.html" title="CLinearParameterAdaptation" alt="" coords="5,237,195,267"/>
+<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="60,83,140,112"/>
+<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="9,5,84,35"/>
+<area shape="rect" id="node6" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="108,5,199,35"/>
 </map>

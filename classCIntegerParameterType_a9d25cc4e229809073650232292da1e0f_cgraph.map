@@ -1,5 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCIntegerParameterType.html#aa4fb8f296abb0ee6b169a8fa4dcf4415" title="Conversion." alt="" coords="301,5,547,35"/>
-<area shape="rect" id="node5" href="$classCParameterAdaptation.html#ab04215618b616e4b3fc331bd66a90589" title="CParameterAdaptation::fromUserValue" alt="" coords="300,59,548,88"/>
-<area shape="rect" id="node7" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="344,112,504,141"/>
+<map id="CIntegerParameterType::toBlackboard" name="CIntegerParameterType::toBlackboard">
+<area shape="rect" id="node3" href="$classCParameterAdaptation.html#ab04215618b616e4b3fc331bd66a90589" title="CParameterAdaptation\l::fromUserValue" alt="" coords="219,5,373,51"/>
+<area shape="rect" id="node5" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="216,75,376,104"/>
 </map>

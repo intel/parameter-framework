@@ -1,4 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#aacdd6d54c10cd1494a820d78be779362" title="CElement::toString" alt="" coords="383,5,516,35"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a6bc3e14e1da435b74e38ea3e95a31e62" title="CConfigurableElement::getFootPrint" alt="" coords="333,83,565,112"/>
+<map id="CConfigurableElement::getFootprintAsString" name="CConfigurableElement::getFootprintAsString">
+<area shape="rect" id="node3" href="$classCElement.html#aacdd6d54c10cd1494a820d78be779362" title="CElement::toString" alt="" coords="219,5,352,35"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a6bc3e14e1da435b74e38ea3e95a31e62" title="CConfigurableElement\l::getFootPrint" alt="" coords="209,82,361,129"/>
+<area shape="rect" id="node7" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="411,64,581,93"/>
+<area shape="rect" id="node9" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="428,117,564,147"/>
 </map>

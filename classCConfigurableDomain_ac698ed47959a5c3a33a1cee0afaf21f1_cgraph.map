@@ -1,6 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#a60abb7f8cc873cf16ccb64758128d2cf" title="CElement::findChild" alt="" coords="429,5,568,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a7653fbad5491138533ac0fa889ffecd9" title="CElement::isDescendantOf" alt="" coords="408,83,589,112"/>
-<area shape="rect" id="node8" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement::getOffset" alt="" coords="392,136,605,165"/>
-<area shape="rect" id="node10" href="$classCDomainConfiguration.html#af62bcfe2b30d19e292a8aa4ddba3cd89" title="Get the Configuration Blackboard." alt="" coords="376,189,621,219"/>
+<map id="CConfigurableDomain::findConfigurationBlackboard" name="CConfigurableDomain::findConfigurationBlackboard">
+<area shape="rect" id="node3" href="$classCElement.html#a60abb7f8cc873cf16ccb64758128d2cf" title="CElement::findChild" alt="" coords="271,5,409,35"/>
+<area shape="rect" id="node5" href="$classCElement.html#a7653fbad5491138533ac0fa889ffecd9" title="CElement::isDescendantOf" alt="" coords="249,83,431,112"/>
+<area shape="rect" id="node8" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="264,135,416,182"/>
+<area shape="rect" id="node10" href="$classCDomainConfiguration.html#af62bcfe2b30d19e292a8aa4ddba3cd89" title="Get the Configuration Blackboard. " alt="" coords="263,205,417,251"/>
+<area shape="rect" id="node12" href="$classCAreaConfiguration.html#a1f85dedf12591c3f43830a00e5c352df" title="CAreaConfiguration\l::getConfigurableElement" alt="" coords="481,170,649,217"/>
+<area shape="rect" id="node14" href="$classCAreaConfiguration.html#af01dc3ba15a4deb4a713cb2d4f9b1faa" title="CAreaConfiguration\l::getBlackboard" alt="" coords="497,239,633,286"/>
 </map>

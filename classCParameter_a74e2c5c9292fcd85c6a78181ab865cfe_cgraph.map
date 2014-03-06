@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameter.html#a7e66c668b2fabb20c8659c21423f4a29" title="CParameter::handleValueSpaceAttribute" alt="" coords="273,5,529,35"/>
+<map id="CParameter::serializeXmlSettings" name="CParameter::serializeXmlSettings">
+<area shape="rect" id="node3" href="$classCParameter.html#a7e66c668b2fabb20c8659c21423f4a29" title="CParameter::handleValueSpace\lAttribute" alt="" coords="224,5,432,51"/>
+<area shape="rect" id="node5" href="$classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421" title="CInstanceConfigurableElement\l::getTypeElement" alt="" coords="480,5,683,51"/>
 </map>

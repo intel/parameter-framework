@@ -1,5 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec" title="Create and return an element instanciated depending on an xmlElement." alt="" coords="264,5,517,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element." alt="" coords="313,59,468,88"/>
-<area shape="rect" id="node7" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement::fromXml" alt="" coords="277,112,504,141"/>
+<map id="CElementLibrary::createElement" name="CElementLibrary::createElement">
+<area shape="rect" id="node3" href="$classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec" title="Create and return an element instanciated depending on an xmlElement. " alt="" coords="269,5,429,51"/>
+<area shape="rect" id="node7" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="272,75,427,104"/>
+<area shape="rect" id="node15" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="264,127,435,174"/>
+<area shape="rect" id="node5" href="$classCSubsystemElementBuilder.html#ab93319cc2de998b9d0674c2530e01e35" title="CSubsystemElementBuilder\l::createElement" alt="" coords="483,5,669,51"/>
+<area shape="rect" id="node9" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="717,103,864,150"/>
+<area shape="rect" id="node11" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="508,149,644,179"/>
 </map>

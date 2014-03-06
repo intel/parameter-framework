@@ -1,3 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSelectionCriterionRule.html#aa135cc2d5e84c49d4119fe553eb1d434" title="CSelectionCriterionRule::dump" alt="" coords="275,5,477,35"/>
+<map id="CSelectionCriterionRule::logValue" name="CSelectionCriterionRule::logValue">
+<area shape="rect" id="node3" href="$classCSelectionCriterionRule.html#aa135cc2d5e84c49d4119fe553eb1d434" title="CSelectionCriterionRule\l::dump" alt="" coords="216,58,379,105"/>
+<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="461,5,603,35"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterion.html#a3551b612a002f7cc311f21be1685f794" title="CSelectionCriterion\l::getCriterionType" alt="" coords="465,58,599,105"/>
+<area shape="rect" id="node9" href="$classISelectionCriterionTypeInterface.html#a11719cbf09ffcc4e58bb0892253ae466" title="ISelectionCriterionTypeInterface\l::getLiteralValue" alt="" coords="428,127,636,174"/>
 </map>

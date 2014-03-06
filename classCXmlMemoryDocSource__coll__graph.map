@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node2" href="$classCXmlDocSource.html" title="The CXmlDocSource is used by CXmlDocSink." alt="" coords="28,5,148,35"/>
+<map id="CXmlMemoryDocSource" name="CXmlMemoryDocSource">
+<area shape="rect" id="node2" href="$classCXmlDocSource.html" title="The CXmlDocSource is used by CXmlDocSink. " alt="" coords="173,101,293,131"/>
+<area shape="rect" id="node4" href="$classbool.html" title="bool" alt="" coords="5,5,51,35"/>
 </map>

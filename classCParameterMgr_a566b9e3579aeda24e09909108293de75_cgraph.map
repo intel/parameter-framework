@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#ab31dc95946a04359f9cb1e723a5c4460" title="CConfigurableDomains::restoreConfiguration" alt="" coords="293,5,576,35"/>
+<map id="CParameterMgr::restoreConfiguration" name="CParameterMgr::restoreConfiguration">
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#ab31dc95946a04359f9cb1e723a5c4460" title="CConfigurableDomains\l::restoreConfiguration" alt="" coords="293,5,451,51"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#a1c13db0dbfb1a375d8a9632b06d08b36" title="CConfigurableDomain\l::restoreConfiguration" alt="" coords="500,5,649,51"/>
 </map>

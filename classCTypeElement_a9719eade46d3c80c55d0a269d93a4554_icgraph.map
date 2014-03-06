@@ -1,3 +1,3 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSubsystemObject.html#a754574ad36ea1f8ef4bb9f41be6030a6" title="Conversion of int8, int16, int32 to int (taking care of sign extension)" alt="" coords="251,5,475,35"/>
+<map id="CTypeElement::toPlainInteger" name="CTypeElement::toPlainInteger">
+<area shape="rect" id="node3" href="$classCSubsystemObject.html#a754574ad36ea1f8ef4bb9f41be6030a6" title="Conversion of int8, int16, int32 to int (taking care of sign extension) " alt="" coords="251,5,435,51"/>
 </map>

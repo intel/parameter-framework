@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBinaryStream.html#a362955618d8b9cbb753d59ea9e85a124" title="CBinaryStream::isOut" alt="" coords="268,5,417,35"/>
-<area shape="rect" id="node5" href="$classCBinaryStream.html#aae22e30790460521f9967d2a480d9ee8" title="CBinaryStream::write" alt="" coords="269,59,416,88"/>
-<area shape="rect" id="node7" href="$classCBinaryStream.html#a3dbd7c97a6564a16f8097a863f068f59" title="CBinaryStream::read" alt="" coords="271,112,415,141"/>
+<map id="CParameterBlackboard::serialize" name="CParameterBlackboard::serialize">
+<area shape="rect" id="node3" href="$classCBinaryStream.html#a362955618d8b9cbb753d59ea9e85a124" title="CBinaryStream::isOut" alt="" coords="212,5,361,35"/>
+<area shape="rect" id="node5" href="$classCBinaryStream.html#aae22e30790460521f9967d2a480d9ee8" title="CBinaryStream::write" alt="" coords="213,59,360,88"/>
+<area shape="rect" id="node7" href="$classCBinaryStream.html#a3dbd7c97a6564a16f8097a863f068f59" title="CBinaryStream::read" alt="" coords="215,112,359,141"/>
 </map>

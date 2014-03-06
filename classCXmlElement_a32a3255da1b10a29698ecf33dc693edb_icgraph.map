@@ -1,10 +1,11 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBitParameterBlockType.html#a71df01e5ca9d73091f7b5845185915a4" title="CBitParameterBlockType::fromXml" alt="" coords="304,5,531,35"/>
-<area shape="rect" id="node5" href="$classCBitParameterType.html#a76b208c42677a4a7a90494f348924403" title="CBitParameterType::fromXml" alt="" coords="320,59,515,88"/>
-<area shape="rect" id="node7" href="$classCEnumParameterType.html#a9822e2ea066ea375f50bdc9c46808da2" title="CEnumParameterType::fromXml" alt="" coords="312,112,523,141"/>
-<area shape="rect" id="node9" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType::fromXml" alt="" coords="297,165,537,195"/>
-<area shape="rect" id="node11" href="$classCIntegerParameterType.html#a8d8e329f5f61b6e50108e7fe1a7f7446" title="CIntegerParameterType::fromXml" alt="" coords="308,219,527,248"/>
-<area shape="rect" id="node13" href="$classCParameterFrameworkConfiguration.html#a9d9882f3de792f4f5a84e8a3c095e2dd" title="CParameterFrameworkConfiguration::fromXml" alt="" coords="272,272,563,301"/>
-<area shape="rect" id="node15" href="$classCStringParameterType.html#a756cad076226c0ef05f99e4d19efae53" title="CStringParameterType::fromXml" alt="" coords="312,325,523,355"/>
-<area shape="rect" id="node17" href="$classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66" title="CTypeElement::fromXml" alt="" coords="335,379,500,408"/>
+<map id="CXmlElement::getAttributeInteger" name="CXmlElement::getAttributeInteger">
+<area shape="rect" id="node3" href="$classCBitParameterBlockType.html#a71df01e5ca9d73091f7b5845185915a4" title="CBitParameterBlockType\l::fromXml" alt="" coords="264,5,435,51"/>
+<area shape="rect" id="node5" href="$classCBitParameterType.html#a76b208c42677a4a7a90494f348924403" title="CBitParameterType::\lfromXml" alt="" coords="277,74,421,121"/>
+<area shape="rect" id="node7" href="$classCEnumParameterType.html#a9822e2ea066ea375f50bdc9c46808da2" title="CEnumParameterType\l::fromXml" alt="" coords="272,143,427,190"/>
+<area shape="rect" id="node9" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType\l::fromXml" alt="" coords="259,213,440,259"/>
+<area shape="rect" id="node11" href="$classCIntegerParameterType.html#a8d8e329f5f61b6e50108e7fe1a7f7446" title="CIntegerParameterType\l::fromXml" alt="" coords="269,282,429,329"/>
+<area shape="rect" id="node13" href="$classCParameterFrameworkConfiguration.html#a9d9882f3de792f4f5a84e8a3c095e2dd" title="CParameterFrameworkConfiguration\l::fromXml" alt="" coords="232,351,467,398"/>
+<area shape="rect" id="node15" href="$classCStringParameterType.html#a756cad076226c0ef05f99e4d19efae53" title="CStringParameterType\l::fromXml" alt="" coords="272,421,427,467"/>
+<area shape="rect" id="node17" href="$classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66" title="CTypeElement::fromXml" alt="" coords="267,491,432,520"/>
+<area shape="rect" id="node19" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="515,491,669,520"/>
 </map>

@@ -1,4 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node5" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="68,83,188,112"/>
-<area shape="rect" id="node8" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="212,83,308,112"/>
+<map id="xmlserializer/XmlMemoryDocSource.h" name="xmlserializer/XmlMemoryDocSource.h">
+<area shape="rect" id="node5" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="41,101,161,131"/>
+<area shape="rect" id="node14" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="185,101,281,131"/>
+<area shape="rect" id="node7" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="71,179,175,208"/>
+<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="199,179,361,208"/>
 </map>

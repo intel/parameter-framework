@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4f0ca37c7f635e2a138b441b5467e9b2" title="CConfigurableDomains::saveConfiguration" alt="" coords="281,5,551,35"/>
+<map id="CParameterMgr::saveConfiguration" name="CParameterMgr::saveConfiguration">
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4f0ca37c7f635e2a138b441b5467e9b2" title="CConfigurableDomains\l::saveConfiguration" alt="" coords="280,5,437,51"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#aab893d1fbb26ce85f2e6851504dc526d" title="CConfigurableDomain\l::saveConfiguration" alt="" coords="487,5,636,51"/>
 </map>

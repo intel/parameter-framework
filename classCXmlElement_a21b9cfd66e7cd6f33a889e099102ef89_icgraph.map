@@ -1,7 +1,18 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement::serializeXmlSettings" alt="" coords="348,29,628,59"/>
-<area shape="rect" id="node6" href="$classTKindElementBuilderTemplate.html#ac3ba2f71d8e05f0c63aa8a32acb5b615" title="TKindElementBuilderTemplate::createElement" alt="" coords="343,83,633,112"/>
-<area shape="rect" id="node8" href="$classTNamedElementBuilderTemplate.html#aeea1d55d89397b522b13651a6e51a3e3" title="TNamedElementBuilderTemplate\&lt; CVirtualSubsystem \&gt;::createElement" alt="" coords="267,136,709,165"/>
-<area shape="rect" id="node10" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="411,213,565,243"/>
-<area shape="rect" id="node13" href="$classCXmlElement.html#a05b0e7940054542157b3292cfd1efe44" title="CXmlElement::getChildElement" alt="" coords="385,267,591,296"/>
+<map id="CXmlElement::getNameAttribute" name="CXmlElement::getNameAttribute">
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="316,41,468,87"/>
+<area shape="rect" id="node8" href="$classTKindElementBuilderTemplate.html#ac3ba2f71d8e05f0c63aa8a32acb5b615" title="TKindElementBuilderTemplate\l::createElement" alt="" coords="293,146,491,193"/>
+<area shape="rect" id="node10" href="$classTNamedElementBuilderTemplate.html#aeea1d55d89397b522b13651a6e51a3e3" title="TNamedElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt;::createElement" alt="" coords="267,215,517,262"/>
+<area shape="rect" id="node12" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="315,309,469,339"/>
+<area shape="rect" id="node37" href="$classCXmlElement.html#a05b0e7940054542157b3292cfd1efe44" title="CXmlElement::getChildElement" alt="" coords="289,363,495,392"/>
+<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="603,5,752,51"/>
+<area shape="rect" id="node14" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance\l::fromXml" alt="" coords="603,74,752,121"/>
+<area shape="rect" id="node16" href="$classCComponentType.html#a962c2716cd757893d0a1dafc84d538da" title="CComponentType::fromXml" alt="" coords="585,144,769,173"/>
+<area shape="rect" id="node18" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="839,223,975,252"/>
+<area shape="rect" id="node21" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="600,248,755,277"/>
+<area shape="rect" id="node24" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType\l::fromXml" alt="" coords="587,301,768,347"/>
+<area shape="rect" id="node26" href="$classCFrameworkConfigurationLocation.html#a2e9a4fed347353201cd0272de4952841" title="CFrameworkConfigurationLocation\l::fromXml" alt="" coords="567,370,788,417"/>
+<area shape="rect" id="node28" href="$classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e" title="CLinearParameterAdaptation\l::fromXml" alt="" coords="583,439,772,486"/>
+<area shape="rect" id="node30" href="$classCMappingData.html#af6c3dc0a3f49fa81435761978f842bc8" title="CMappingData::fromXml" alt="" coords="595,509,760,539"/>
+<area shape="rect" id="node32" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule\l::fromXml" alt="" coords="596,562,759,609"/>
+<area shape="rect" id="node34" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="592,631,763,678"/>
 </map>

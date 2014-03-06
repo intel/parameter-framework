@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCRemoteProcessorServer.html#aaad65a562e84d640771e52aa4a095861" title="CRemoteProcessorServer::start" alt="" coords="193,5,401,35"/>
+<map id="CTestPlatform::load" name="CTestPlatform::load">
+<area shape="rect" id="node3" href="$classCRemoteProcessorServer.html#aaad65a562e84d640771e52aa4a095861" title="CRemoteProcessorServer\l::start" alt="" coords="193,5,367,51"/>
+<area shape="rect" id="node5" href="$classCListeningSocket.html#acff2692663749656e0ba960cb5726154" title="CListeningSocket::listen" alt="" coords="417,13,580,43"/>
 </map>

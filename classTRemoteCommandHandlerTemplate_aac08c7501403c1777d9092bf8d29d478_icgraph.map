@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a5883bc270ce19e3a9b5eb43d1ceb8f01" title="CParameterMgr::CParameterMgr" alt="" coords="537,5,751,35"/>
-<area shape="rect" id="node5" href="$classTRemoteCommandHandlerTemplate.html#ac49d209322cdf4872f0fb9b3209588cc" title="TRemoteCommandHandlerTemplate::TRemoteCommandHandlerTemplate" alt="" coords="416,59,872,88"/>
-<area shape="rect" id="node7" href="$classCTestPlatform.html#a2b1562e150289caaa78e7e501792310f" title="CTestPlatform::CTestPlatform" alt="" coords="544,112,744,141"/>
+<map id="TRemoteCommandHandlerTemplate::addCommandParser" name="TRemoteCommandHandlerTemplate::addCommandParser">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a5883bc270ce19e3a9b5eb43d1ceb8f01" title="CParameterMgr::CParameterMgr" alt="" coords="303,5,516,35"/>
+<area shape="rect" id="node5" href="$classTRemoteCommandHandlerTemplate.html#ac49d209322cdf4872f0fb9b3209588cc" title="TRemoteCommandHandlerTemplate\l::TRemoteCommandHandlerTemplate" alt="" coords="288,58,531,105"/>
+<area shape="rect" id="node7" href="$classCTestPlatform.html#a2b1562e150289caaa78e7e501792310f" title="CTestPlatform::CTestPlatform" alt="" coords="309,128,509,157"/>
 </map>

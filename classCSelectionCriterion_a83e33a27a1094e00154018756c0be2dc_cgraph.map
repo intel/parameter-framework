@@ -1,6 +1,10 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="373,5,507,35"/>
-<area shape="rect" id="node5" href="$classCSelectionCriterion.html#a3afa01dd539342d06b32df29bc545721" title="User request." alt="" coords="297,59,583,88"/>
-<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="632,85,773,115"/>
-<area shape="rect" id="node9" href="$classCElement.html#ad86ac25de059162ef66e28bb23d46c9c" title="CElement::log_warning" alt="" coords="361,163,519,192"/>
+<map id="CSelectionCriterion::setCriterionState" name="CSelectionCriterion::setCriterionState">
+<area shape="rect" id="node3" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="209,5,343,35"/>
+<area shape="rect" id="node5" href="$classCSelectionCriterion.html#a3afa01dd539342d06b32df29bc545721" title="User request. " alt="" coords="189,109,363,155"/>
+<area shape="rect" id="node9" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="423,29,564,59"/>
+<area shape="rect" id="node17" href="$classCElement.html#ad86ac25de059162ef66e28bb23d46c9c" title="CElement::log_warning" alt="" coords="197,179,355,208"/>
+<area shape="rect" id="node7" href="$classCElement.html#ab6b753c7c292ac4ce60429aa8922b6e7" title="CElement::appendTitle" alt="" coords="416,83,571,112"/>
+<area shape="rect" id="node11" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="412,135,575,182"/>
+<area shape="rect" id="node13" href="$classCSelectionCriterionType.html#adbeed0acb1d01b554038224a5a55b9b9" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="412,205,575,251"/>
+<area shape="rect" id="node15" href="$classCSelectionCriterionType.html#a35686d518e91c08221d21d9c0ed35428" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="412,274,575,321"/>
 </map>

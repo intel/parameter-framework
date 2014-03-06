@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node5" href="$classCArrayParameter.html" title="CArrayParameter" alt="" coords="5,160,128,189"/>
-<area shape="rect" id="node2" href="$classCBaseParameter.html" title="CBaseParameter" alt="" coords="5,5,128,35"/>
+<map id="CParameter" name="CParameter">
+<area shape="rect" id="node7" href="$classCArrayParameter.html" title="CArrayParameter" alt="" coords="45,237,168,267"/>
+<area shape="rect" id="node2" href="$classCBaseParameter.html" title="CBaseParameter" alt="" coords="45,83,168,112"/>
+<area shape="rect" id="node4" href="$classCInstanceConfigurableElement.html" title="CInstanceConfigurableElement" alt="" coords="5,5,208,35"/>
 </map>

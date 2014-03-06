@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement::serializeXmlSettings" alt="" coords="267,29,547,59"/>
-<area shape="rect" id="node6" href="$classCSystemClass.html#a4e9f43ec2f65b73973237be5a72baeea" title="CSystemClass::toXml" alt="" coords="331,83,483,112"/>
+<map id="CXmlElement::setNameAttribute" name="CXmlElement::setNameAttribute">
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="268,29,420,75"/>
+<area shape="rect" id="node8" href="$classCSystemClass.html#a4e9f43ec2f65b73973237be5a72baeea" title="CSystemClass::toXml" alt="" coords="268,99,420,128"/>
+<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="469,29,619,75"/>
 </map>

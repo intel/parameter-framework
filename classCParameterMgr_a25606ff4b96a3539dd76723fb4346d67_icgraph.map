@@ -1,12 +1,12 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a" title="CParameterHandle::setAsBoolean" alt="" coords="295,5,516,35"/>
-<area shape="rect" id="node5" href="$classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344" title="CParameterHandle::setAsBooleanArray" alt="" coords="279,59,532,88"/>
-<area shape="rect" id="node7" href="$classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3" title="CParameterHandle::setAsInteger" alt="" coords="299,112,512,141"/>
-<area shape="rect" id="node9" href="$classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33" title="CParameterHandle::setAsIntegerArray" alt="" coords="283,165,528,195"/>
-<area shape="rect" id="node11" href="$classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" title="CParameterHandle::setAsSignedInteger" alt="" coords="279,219,532,248"/>
-<area shape="rect" id="node13" href="$classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da" title="CParameterHandle::setAsSignedIntegerArray" alt="" coords="263,272,548,301"/>
-<area shape="rect" id="node15" href="$classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87" title="CParameterHandle::setAsDouble" alt="" coords="297,325,513,355"/>
-<area shape="rect" id="node17" href="$classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8" title="CParameterHandle::setAsDoubleArray" alt="" coords="283,379,528,408"/>
-<area shape="rect" id="node19" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="301,432,509,461"/>
-<area shape="rect" id="node21" href="$classCParameterHandle.html#a729342719068a9b0a730c32d3fb55e79" title="CParameterHandle::setAsStringArray" alt="" coords="285,485,525,515"/>
+<map id="CParameterMgr::tuningModeOn" name="CParameterMgr::tuningModeOn">
+<area shape="rect" id="node3" href="$classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a" title="CParameterHandle::setAsBoolean" alt="" coords="263,5,484,35"/>
+<area shape="rect" id="node5" href="$classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344" title="CParameterHandle::setAsBoolean\lArray" alt="" coords="263,58,484,105"/>
+<area shape="rect" id="node7" href="$classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3" title="CParameterHandle::setAsInteger" alt="" coords="267,128,480,157"/>
+<area shape="rect" id="node9" href="$classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33" title="CParameterHandle::setAsInteger\lArray" alt="" coords="267,181,480,227"/>
+<area shape="rect" id="node11" href="$classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" title="CParameterHandle::setAsSigned\lInteger" alt="" coords="267,250,480,297"/>
+<area shape="rect" id="node13" href="$classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da" title="CParameterHandle::setAsSigned\lIntegerArray" alt="" coords="267,319,480,366"/>
+<area shape="rect" id="node15" href="$classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87" title="CParameterHandle::setAsDouble" alt="" coords="265,389,481,419"/>
+<area shape="rect" id="node17" href="$classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8" title="CParameterHandle::setAsDouble\lArray" alt="" coords="265,442,481,489"/>
+<area shape="rect" id="node19" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="269,512,477,541"/>
+<area shape="rect" id="node21" href="$classCParameterHandle.html#a729342719068a9b0a730c32d3fb55e79" title="CParameterHandle::setAsString\lArray" alt="" coords="269,565,477,611"/>
 </map>

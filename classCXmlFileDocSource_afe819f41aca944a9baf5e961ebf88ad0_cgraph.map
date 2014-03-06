@@ -1,4 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlDocSource.html#a4d08ccf335301baa0300764c700019f1" title="Method that validates the Xml doc contained in pDoc." alt="" coords="253,5,427,35"/>
-<area shape="rect" id="node5" href="$classCXmlSerializingContext.html#a49442d0837272f30b5fe8e311151ad7b" title="CXmlSerializingContext::appendLineToError" alt="" coords="476,32,753,61"/>
+<map id="CXmlFileDocSource::populate" name="CXmlFileDocSource::populate">
+<area shape="rect" id="node3" href="$classCXmlDocSource.html#a4d08ccf335301baa0300764c700019f1" title="Method that validates the Xml doc contained in pDoc. " alt="" coords="203,136,376,165"/>
+<area shape="rect" id="node9" href="$classCXmlSerializingContext.html#a49442d0837272f30b5fe8e311151ad7b" title="CXmlSerializingContext\l::appendLineToError" alt="" coords="473,197,633,243"/>
+<area shape="rect" id="node5" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext\l::setError" alt="" coords="473,5,633,51"/>
+<area shape="rect" id="node7" href="$classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81" title="Getter method. " alt="" coords="425,75,681,104"/>
+<area shape="rect" id="node11" href="$classCXmlDocSource.html#acdd9a50ee8b10f77bcf57a30d5b49de4" title="Getter method. " alt="" coords="443,127,664,174"/>
 </map>

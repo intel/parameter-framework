@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCRuleParser.html#ac741b7f66a80e711e799577079466a07" title="CRuleParser::parse" alt="" coords="196,5,332,35"/>
+<map id="CRuleParser::iterate" name="CRuleParser::iterate">
+<area shape="rect" id="node3" href="$classCRuleParser.html#ac741b7f66a80e711e799577079466a07" title="CRuleParser::parse" alt="" coords="196,13,332,43"/>
+<area shape="rect" id="node5" href="$classCDomainConfiguration.html#a3934726d7dcfdd240c8beea57f268fd4" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="381,5,536,51"/>
 </map>

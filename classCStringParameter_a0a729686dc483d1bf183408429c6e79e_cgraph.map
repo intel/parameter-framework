@@ -1,6 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCStringParameter.html#af2990a24d1de91c5cfd760eb8b7ecffd" title="CStringParameter::getSize" alt="" coords="333,5,512,35"/>
-<area shape="rect" id="node5" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="343,59,503,88"/>
-<area shape="rect" id="node7" href="$classCParameterAccessContext.html#ad354dd5bf2a88f4ed4197be9a59fda20" title="CParameterAccessContext::getParameterBlackboard" alt="" coords="256,112,589,141"/>
-<area shape="rect" id="node9" href="$classCParameterBlackboard.html#a8b3fc6d721104f252219e1d4e99bd5b2" title="CParameterBlackboard::writeString" alt="" coords="309,165,536,195"/>
+<map id="CStringParameter::doSetValue" name="CStringParameter::doSetValue">
+<area shape="rect" id="node3" href="$classCStringParameter.html#af2990a24d1de91c5cfd760eb8b7ecffd" title="CStringParameter::getSize" alt="" coords="259,13,437,43"/>
+<area shape="rect" id="node7" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="268,67,428,96"/>
+<area shape="rect" id="node9" href="$classCParameterAccessContext.html#ad354dd5bf2a88f4ed4197be9a59fda20" title="CParameterAccessContext\l::getParameterBlackboard" alt="" coords="257,119,439,166"/>
+<area shape="rect" id="node11" href="$classCParameterBlackboard.html#a8b3fc6d721104f252219e1d4e99bd5b2" title="CParameterBlackboard\l::writeString" alt="" coords="269,189,427,235"/>
+<area shape="rect" id="node5" href="$classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421" title="CInstanceConfigurableElement\l::getTypeElement" alt="" coords="488,5,691,51"/>
 </map>

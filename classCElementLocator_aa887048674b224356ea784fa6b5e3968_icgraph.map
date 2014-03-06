@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#ad969fe876378e0527be0b20b0188ae18" title="CParameterMgr::accessConfigurationValue" alt="" coords="265,5,540,35"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#a911fff638343b5079e038ac8553b27c5" title="CParameterMgr::addConfigurableElementToDomain" alt="" coords="241,59,564,88"/>
-<area shape="rect" id="node7" href="$classCParameterMgr.html#a11c9c3048e2daae093af4bf47a0d516e" title="CParameterMgr::removeConfigurableElementFromDomain" alt="" coords="223,112,583,141"/>
-<area shape="rect" id="node9" href="$classCParameterMgr.html#ac6c176a0e8101cd96b93a6f10f77b459" title="CParameterMgr::split" alt="" coords="329,165,476,195"/>
+<map id="CElementLocator::locate" name="CElementLocator::locate">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#ad969fe876378e0527be0b20b0188ae18" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="223,5,463,51"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a911fff638343b5079e038ac8553b27c5" title="CParameterMgr::addConfigurable\lElementToDomain" alt="" coords="235,74,451,121"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#a11c9c3048e2daae093af4bf47a0d516e" title="CParameterMgr::removeConfigurable\lElementFromDomain" alt="" coords="224,143,461,190"/>
+<area shape="rect" id="node9" href="$classCParameterMgr.html#ac6c176a0e8101cd96b93a6f10f77b459" title="CParameterMgr::split" alt="" coords="269,213,416,243"/>
 </map>

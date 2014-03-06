@@ -1,5 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSelectionCriteria.html#a5bf6211b2ae3cb76f32ec29e6adbab27" title="CSelectionCriteria::getSelectionCriterion" alt="" coords="367,5,623,35"/>
-<area shape="rect" id="node5" href="$classCSelectionCriterionRule.html#acdf7494ba957f261a3c98bc121c954d9" title="CSelectionCriterionRule::parse" alt="" coords="393,59,596,88"/>
-<area shape="rect" id="node7" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule::fromXml" alt="" coords="385,112,604,141"/>
+<map id="CSelectionCriteriaDefinition::getSelectionCriterion" name="CSelectionCriteriaDefinition::getSelectionCriterion">
+<area shape="rect" id="node3" href="$classCSelectionCriteria.html#a5bf6211b2ae3cb76f32ec29e6adbab27" title="CSelectionCriteria\l::getSelectionCriterion" alt="" coords="244,5,393,51"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterionRule.html#acdf7494ba957f261a3c98bc121c954d9" title="CSelectionCriterionRule\l::parse" alt="" coords="237,74,400,121"/>
+<area shape="rect" id="node11" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule\l::fromXml" alt="" coords="237,143,400,190"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#aa91192606684db22892a23fddc2cd93e" title="CParameterMgr::getSelection\lCriterion" alt="" coords="448,5,643,51"/>
+<area shape="rect" id="node9" href="$classCRuleParser.html#ac741b7f66a80e711e799577079466a07" title="CRuleParser::parse" alt="" coords="477,83,613,112"/>
 </map>

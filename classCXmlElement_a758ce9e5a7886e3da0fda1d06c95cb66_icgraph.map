@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a16fb6528dc374c46aa56b936611bff7c" title="CConfigurableDomain::toXml" alt="" coords="285,5,477,35"/>
-<area shape="rect" id="node5" href="$classCIntegerParameterType.html#a26c10292fad5a8e6603dc0673f813d69" title="CIntegerParameterType::toXml" alt="" coords="280,59,483,88"/>
+<map id="CXmlElement::setAttributeBoolean" name="CXmlElement::setAttributeBoolean">
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a16fb6528dc374c46aa56b936611bff7c" title="CConfigurableDomain\l::toXml" alt="" coords="239,5,388,51"/>
+<area shape="rect" id="node5" href="$classCIntegerParameterType.html#a26c10292fad5a8e6603dc0673f813d69" title="CIntegerParameterType\l::toXml" alt="" coords="233,74,393,121"/>
 </map>

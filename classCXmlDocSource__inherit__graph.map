@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlFileDocSource.html" title="Source class that read a file to get an xml document." alt="" coords="5,83,147,112"/>
-<area shape="rect" id="node5" href="$classCXmlMemoryDocSource.html" title="Source class that uses parameter&#45;framework&#39;s structures to create an xml document." alt="" coords="171,83,336,112"/>
-<area shape="rect" id="node7" href="$classCXmlStringDocSource.html" title="Source class that get an xml document from a string." alt="" coords="360,83,515,112"/>
+<map id="CXmlDocSource" name="CXmlDocSource">
+<area shape="rect" id="node3" href="$classCXmlFileDocSource.html" title="Source class that read a file to get an xml document. " alt="" coords="5,83,147,112"/>
+<area shape="rect" id="node5" href="$classCXmlMemoryDocSource.html" title="Source class that uses parameter&#45;framework&#39;s structures to create an xml document. " alt="" coords="171,83,336,112"/>
+<area shape="rect" id="node7" href="$classCXmlStringDocSource.html" title="Source class that get an xml document from a string. " alt="" coords="360,83,515,112"/>
 </map>

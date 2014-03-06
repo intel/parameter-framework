@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="57,5,137,35"/>
+<map id="CBinarySerializableElement" name="CBinarySerializableElement">
+<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="57,83,137,112"/>
+<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="7,5,81,35"/>
+<area shape="rect" id="node6" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="105,5,196,35"/>
 </map>

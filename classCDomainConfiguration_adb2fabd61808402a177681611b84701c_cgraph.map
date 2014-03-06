@@ -1,6 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBinaryStream.html#a362955618d8b9cbb753d59ea9e85a124" title="CBinaryStream::isOut" alt="" coords="543,57,692,86"/>
-<area shape="rect" id="node5" href="$classCBinaryStream.html#aae22e30790460521f9967d2a480d9ee8" title="CBinaryStream::write" alt="" coords="324,29,471,58"/>
-<area shape="rect" id="node7" href="$classCBinaryStream.html#a3dbd7c97a6564a16f8097a863f068f59" title="CBinaryStream::read" alt="" coords="325,82,469,112"/>
-<area shape="rect" id="node9" href="$classCAreaConfiguration.html#af6fe64c1853ab6ecc7be1a7348a43aed" title="CAreaConfiguration::serialize" alt="" coords="301,136,493,165"/>
+<map id="CDomainConfiguration::binarySerialize" name="CDomainConfiguration::binarySerialize">
+<area shape="rect" id="node3" href="$classCBinaryStream.html#a362955618d8b9cbb753d59ea9e85a124" title="CBinaryStream::isOut" alt="" coords="599,5,748,35"/>
+<area shape="rect" id="node5" href="$classCBinaryStream.html#aae22e30790460521f9967d2a480d9ee8" title="CBinaryStream::write" alt="" coords="600,80,747,109"/>
+<area shape="rect" id="node7" href="$classCBinaryStream.html#a3dbd7c97a6564a16f8097a863f068f59" title="CBinaryStream::read" alt="" coords="601,161,745,191"/>
+<area shape="rect" id="node9" href="$classCAreaConfiguration.html#af6fe64c1853ab6ecc7be1a7348a43aed" title="CAreaConfiguration\l::serialize" alt="" coords="208,57,344,103"/>
+<area shape="rect" id="node11" href="$classCParameterBlackboard.html#ad96ba821eb1035b06a5a30ef7377da39" title="CParameterBlackboard\l::serialize" alt="" coords="392,57,549,103"/>
 </map>

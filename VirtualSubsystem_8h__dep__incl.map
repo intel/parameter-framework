@@ -1,5 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="5,83,205,112"/>
-<area shape="rect" id="node5" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="80,160,267,189"/>
-<area shape="rect" id="node8" href="$VirtualSubsystem_8cpp.html" title="parameter/VirtualSubsystem.cpp" alt="" coords="280,83,491,112"/>
+<map id="parameter/VirtualSubsystem.h" name="parameter/VirtualSubsystem.h">
+<area shape="rect" id="node3" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="447,83,647,112"/>
+<area shape="rect" id="node11" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="677,169,864,199"/>
+<area shape="rect" id="node14" href="$VirtualSubsystem_8cpp.html" title="parameter/VirtualSubsystem.cpp" alt="" coords="764,83,975,112"/>
+<area shape="rect" id="node5" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="5,169,195,199"/>
+<area shape="rect" id="node7" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="219,161,416,207"/>
+<area shape="rect" id="node9" href="$SubsystemLibrary_8cpp.html" title="parameter/SubsystemLibrary.cpp" alt="" coords="440,169,653,199"/>
 </map>

@@ -1,4 +1,4 @@
-<map id="G" name="G">
+<map id="CSocket" name="CSocket">
 <area shape="rect" id="node3" href="$classCConnectionSocket.html" title="CConnectionSocket" alt="" coords="5,83,144,112"/>
 <area shape="rect" id="node5" href="$classCListeningSocket.html" title="CListeningSocket" alt="" coords="168,83,293,112"/>
 </map>

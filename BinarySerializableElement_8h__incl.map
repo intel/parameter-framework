@@ -1,4 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="28,83,108,112"/>
-<area shape="rect" id="node5" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="132,83,244,112"/>
+<map id="parameter/BinarySerializableElement.h" name="parameter/BinarySerializableElement.h">
+<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="311,101,391,131"/>
+<area shape="rect" id="node22" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="5,179,117,208"/>
+<area shape="rect" id="node13" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="253,179,336,208"/>
+<area shape="rect" id="node15" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="360,179,456,208"/>
+<area shape="rect" id="node17" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="480,179,595,208"/>
 </map>

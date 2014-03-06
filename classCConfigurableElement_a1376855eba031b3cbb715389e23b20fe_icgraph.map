@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#ac37a7da1bb20a8cfcae0ffa0519021ff" title="CParameterMgr::createParameterHandle" alt="" coords="285,5,544,35"/>
+<map id="CConfigurableElement::isParameter" name="CConfigurableElement::isParameter">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#ac37a7da1bb20a8cfcae0ffa0519021ff" title="CParameterMgr::createParameter\lHandle" alt="" coords="208,5,427,51"/>
+<area shape="rect" id="node5" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="476,5,697,51"/>
 </map>

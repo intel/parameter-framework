@@ -1,21 +1,31 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCArrayParameter.html#a0f14dcf5fee31e8fdc4420cdab2fb1a3" title="CArrayParameter::accessValue" alt="" coords="248,5,453,35"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serializeXmlSettings" alt="" coords="227,59,475,88"/>
-<area shape="rect" id="node7" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAsString" alt="" coords="240,112,461,141"/>
-<area shape="rect" id="node9" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access." alt="" coords="563,191,784,220"/>
-<area shape="rect" id="node11" href="$classCBitParameter.html#a6f4d06e327fb0b816c08e383177a82fc" title="CBitParameter::accessAsInteger" alt="" coords="244,216,457,245"/>
-<area shape="rect" id="node14" href="$classCConfigurableDomain.html#abe3723d7a6b19d0b4d114646cf318678" title="CConfigurableDomain::addConfigurableElement" alt="" coords="201,269,500,299"/>
-<area shape="rect" id="node16" href="$classCConfigurableDomain.html#a36444865371ec1fbbc43fb1a5a09a3bf" title="CConfigurableDomain::removeConfigurableElement" alt="" coords="189,323,512,352"/>
-<area shape="rect" id="node18" href="$classCConfigurableDomain.html#ab46c928e95685ce035fcde43b15fc454" title="CConfigurableDomain::split" alt="" coords="260,376,441,405"/>
-<area shape="rect" id="node20" href="$classCConfigurableDomain.html#a4c028f881a73428708661a5cb29df772" title="CConfigurableDomain::listAssociatedToElements" alt="" coords="196,429,505,459"/>
-<area shape="rect" id="node22" href="$classCConfigurableDomains.html#a3d662d5fc3db315d82b27557894f6e25" title="CConfigurableDomains::listAssociatedElements" alt="" coords="200,483,501,512"/>
-<area shape="rect" id="node24" href="$classCConfigurableDomains.html#ac0769fe6d112db23e45ef152110655cb" title="CConfigurableDomains::listConflictingElements" alt="" coords="201,536,500,565"/>
-<area shape="rect" id="node26" href="$classCConfigurableDomains.html#a8d1b51c480639cb2a7dfc1c81e32d06f" title="CConfigurableDomains::findConfigurationBlackboard" alt="" coords="187,589,515,619"/>
-<area shape="rect" id="node28" href="$classCConfigurableElement.html#a79ddc2b37135b1262d13cc9414ee084a" title="CConfigurableElement::listRogueElements" alt="" coords="216,643,485,672"/>
-<area shape="rect" id="node30" href="$classCDomainConfiguration.html#afbcd309cfae933c862f24368b5c9eab5" title="CDomainConfiguration::parseSettings" alt="" coords="229,696,472,725"/>
-<area shape="rect" id="node32" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration::composeSettings" alt="" coords="220,749,481,779"/>
-<area shape="rect" id="node34" href="$classCDomainConfiguration.html#a4ecd4a951693764f8ef03de82ed4e18c" title="CDomainConfiguration::getElementSequence" alt="" coords="208,803,493,832"/>
-<area shape="rect" id="node36" href="$classCElement.html#aaf6bcdc485dcd2ac051b19ec493831d1" title="CElement::listChildrenPaths" alt="" coords="257,856,444,885"/>
-<area shape="rect" id="node39" href="$classCElement.html#a893e7d2d24391fd0279245c7bda1e468" title="CElement::getQualifiedPath" alt="" coords="259,909,443,939"/>
-<area shape="rect" id="node41" href="$classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af" title="CParameterHandle::getPath" alt="" coords="257,963,444,992"/>
+<map id="CElement::getPath" name="CElement::getPath">
+<area shape="rect" id="node3" href="$classCArrayParameter.html#a0f14dcf5fee31e8fdc4420cdab2fb1a3" title="CArrayParameter::accessValue" alt="" coords="192,5,397,35"/>
+<area shape="rect" id="node5" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="205,58,384,105"/>
+<area shape="rect" id="node7" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAs\lString" alt="" coords="201,127,388,174"/>
+<area shape="rect" id="node15" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access. " alt="" coords="461,239,683,268"/>
+<area shape="rect" id="node17" href="$classCBitParameter.html#a6f4d06e327fb0b816c08e383177a82fc" title="CBitParameter::accessAsInteger" alt="" coords="188,248,401,277"/>
+<area shape="rect" id="node20" href="$classCConfigurableDomain.html#abe3723d7a6b19d0b4d114646cf318678" title="CConfigurableDomain\l::addConfigurableElement" alt="" coords="209,301,380,347"/>
+<area shape="rect" id="node24" href="$classCConfigurableDomain.html#a36444865371ec1fbbc43fb1a5a09a3bf" title="CConfigurableDomain\l::removeConfigurableElement" alt="" coords="197,370,392,417"/>
+<area shape="rect" id="node28" href="$classCConfigurableDomain.html#ab46c928e95685ce035fcde43b15fc454" title="CConfigurableDomain\l::split" alt="" coords="220,439,369,486"/>
+<area shape="rect" id="node32" href="$classCConfigurableDomain.html#a4c028f881a73428708661a5cb29df772" title="CConfigurableDomain\l::listAssociatedToElements" alt="" coords="204,509,385,555"/>
+<area shape="rect" id="node36" href="$classCConfigurableDomains.html#a3d662d5fc3db315d82b27557894f6e25" title="CConfigurableDomains\l::listAssociatedElements" alt="" coords="212,578,377,625"/>
+<area shape="rect" id="node38" href="$classCConfigurableDomains.html#ac0769fe6d112db23e45ef152110655cb" title="CConfigurableDomains\l::listConflictingElements" alt="" coords="213,647,376,694"/>
+<area shape="rect" id="node40" href="$classCConfigurableDomains.html#a8d1b51c480639cb2a7dfc1c81e32d06f" title="CConfigurableDomains\l::findConfigurationBlackboard" alt="" coords="199,717,391,763"/>
+<area shape="rect" id="node44" href="$classCConfigurableElement.html#a79ddc2b37135b1262d13cc9414ee084a" title="CConfigurableElement\l::listRogueElements" alt="" coords="219,786,371,833"/>
+<area shape="rect" id="node46" href="$classCDomainConfiguration.html#afbcd309cfae933c862f24368b5c9eab5" title="CDomainConfiguration\l::parseSettings" alt="" coords="217,855,372,902"/>
+<area shape="rect" id="node48" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration\l::composeSettings" alt="" coords="217,925,372,971"/>
+<area shape="rect" id="node50" href="$classCDomainConfiguration.html#a4ecd4a951693764f8ef03de82ed4e18c" title="CDomainConfiguration\l::getElementSequence" alt="" coords="217,994,372,1041"/>
+<area shape="rect" id="node54" href="$classCElement.html#aaf6bcdc485dcd2ac051b19ec493831d1" title="CElement::listChildrenPaths" alt="" coords="201,1064,388,1093"/>
+<area shape="rect" id="node57" href="$classCElement.html#a893e7d2d24391fd0279245c7bda1e468" title="CElement::getQualifiedPath" alt="" coords="203,1117,387,1147"/>
+<area shape="rect" id="node62" href="$classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af" title="CParameterHandle::getPath" alt="" coords="201,1171,388,1200"/>
+<area shape="rect" id="node9" href="$classCBaseParameter.html#a9297ff69dfad31b357e08444b667b4f4" title="CBaseParameter::accessValue" alt="" coords="469,79,675,108"/>
+<area shape="rect" id="node11" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="468,132,676,161"/>
+<area shape="rect" id="node13" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="468,185,676,215"/>
+<area shape="rect" id="node22" href="$classCConfigurableDomains.html#a145ce5d3767fec7d9be387ce480e5daf" title="CConfigurableDomains\l::addConfigurableElementToDomain" alt="" coords="456,291,688,338"/>
+<area shape="rect" id="node26" href="$classCConfigurableDomains.html#a12adc0972c24dc227d608a4e5b1d2cc3" title="CConfigurableDomains\l::removeConfigurableElement\lFromDomain" alt="" coords="475,361,669,425"/>
+<area shape="rect" id="node30" href="$classCConfigurableDomains.html#a4e439e424f32eb140e3578efc8c04d2b" title="CConfigurableDomains\l::split" alt="" coords="493,449,651,495"/>
+<area shape="rect" id="node34" href="$classCConfigurableDomains.html#aaf0ff99db022e68cd974d23ba8f500a3" title="CConfigurableDomains\l::listDomainElements" alt="" coords="493,518,651,565"/>
+<area shape="rect" id="node42" href="$classCParameterMgr.html#ad969fe876378e0527be0b20b0188ae18" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="452,717,692,763"/>
+<area shape="rect" id="node52" href="$classCConfigurableDomain.html#a321e36f13709849faff76ecd0d15c7af" title="CConfigurableDomain\l::getElementSequence" alt="" coords="495,994,649,1041"/>
+<area shape="rect" id="node59" href="$classCElement.html#a740c0b65f45d681c3d87196d72dd578c" title="CElement::listQualifiedPaths" alt="" coords="477,1117,667,1147"/>
 </map>

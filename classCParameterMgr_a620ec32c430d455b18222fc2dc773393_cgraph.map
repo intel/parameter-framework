@@ -1,3 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a760b75c8711105fc58d0504a954f3f0e" title="CConfigurableDomains::serializeSettings" alt="" coords="301,5,563,35"/>
+<map id="CParameterMgr::exportDomainsBinary" name="CParameterMgr::exportDomainsBinary">
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a760b75c8711105fc58d0504a954f3f0e" title="CConfigurableDomains\l::serializeSettings" alt="" coords="264,133,421,179"/>
+<area shape="rect" id="node5" href="$classCBinarySerializableElement.html#af291be4ac902bdc4b0401cc7f9298618" title="CBinarySerializableElement\l::getDataSize" alt="" coords="469,29,653,75"/>
+<area shape="rect" id="node8" href="$classCBinaryStream.html#a7b9be5bae56a189c6ec68f14659a9fcb" title="CBinaryStream::open" alt="" coords="488,99,635,128"/>
+<area shape="rect" id="node10" href="$classCBinarySerializableElement.html#a1b023138703ff0807ae1a25724f1f7d4" title="CBinarySerializableElement\l::binarySerialize" alt="" coords="469,175,653,222"/>
+<area shape="rect" id="node13" href="$classCBinaryStream.html#aafcf30671f90cecb81901ba557a288a5" title="CBinaryStream::close" alt="" coords="487,245,636,275"/>
 </map>

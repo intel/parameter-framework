@@ -1,5 +1,10 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="416,5,587,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="433,59,569,88"/>
-<area shape="rect" id="node7" href="$classCSelectionCriterion.html#a3afa01dd539342d06b32df29bc545721" title="User request." alt="" coords="359,112,644,141"/>
+<map id="CSelectionCriteriaDefinition::listSelectionCriteria" name="CSelectionCriteriaDefinition::listSelectionCriteria">
+<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="239,5,409,35"/>
+<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="256,59,392,88"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterion.html#a3afa01dd539342d06b32df29bc545721" title="User request. " alt="" coords="237,111,411,158"/>
+<area shape="rect" id="node9" href="$classCElement.html#ab6b753c7c292ac4ce60429aa8922b6e7" title="CElement::appendTitle" alt="" coords="464,5,619,35"/>
+<area shape="rect" id="node11" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="471,59,612,88"/>
+<area shape="rect" id="node13" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="460,111,623,158"/>
+<area shape="rect" id="node15" href="$classCSelectionCriterionType.html#adbeed0acb1d01b554038224a5a55b9b9" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="460,181,623,227"/>
+<area shape="rect" id="node17" href="$classCSelectionCriterionType.html#a35686d518e91c08221d21d9c0ed35428" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="460,250,623,297"/>
 </map>

@@ -1,6 +1,13 @@
-<map id="G" name="G">
-<area shape="rect" id="node5" href="$classCInstanceConfigurableElement.html" title="CInstanceConfigurableElement" alt="" coords="5,160,208,189"/>
-<area shape="rect" id="node7" href="$classCSubsystem.html" title="CSubsystem" alt="" coords="232,160,331,189"/>
-<area shape="rect" id="node9" href="$classCSystemClass.html" title="CSystemClass" alt="" coords="355,160,464,189"/>
-<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="241,5,321,35"/>
+<map id="CConfigurableElement" name="CConfigurableElement">
+<area shape="rect" id="node9" href="$classCInstanceConfigurableElement.html" title="CInstanceConfigurableElement" alt="" coords="265,237,468,267"/>
+<area shape="rect" id="node19" href="$classCSubsystem.html" title="CSubsystem" alt="" coords="549,237,648,267"/>
+<area shape="rect" id="node23" href="$classCSystemClass.html" title="CSystemClass" alt="" coords="672,237,781,267"/>
+<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="559,83,639,112"/>
+<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="508,5,583,35"/>
+<area shape="rect" id="node6" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="607,5,697,35"/>
+<area shape="rect" id="node11" href="$classCBaseParameter.html" title="CBaseParameter" alt="" coords="5,315,128,344"/>
+<area shape="rect" id="node13" href="$classCBitParameterBlock.html" title="CBitParameterBlock" alt="" coords="152,315,293,344"/>
+<area shape="rect" id="node15" href="$classCComponent.html" title="CComponent" alt="" coords="317,315,416,344"/>
+<area shape="rect" id="node17" href="$classCParameterBlock.html" title="CParameterBlock" alt="" coords="440,315,565,344"/>
+<area shape="rect" id="node21" href="$classCVirtualSubsystem.html" title="CVirtualSubsystem" alt="" coords="589,315,723,344"/>
 </map>

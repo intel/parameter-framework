@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#a9290474ef9b53d55245352ccdfb8ca53" title="CElement::dumpContent" alt="" coords="193,5,359,35"/>
+<map id="CElement::logValue" name="CElement::logValue">
+<area shape="rect" id="node3" href="$classCElement.html#a9290474ef9b53d55245352ccdfb8ca53" title="CElement::dumpContent" alt="" coords="193,13,359,43"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a1cbb34a4d41b395c9671263658bf3820" title="CParameterMgr::logStructure\lContent" alt="" coords="408,5,600,51"/>
 </map>

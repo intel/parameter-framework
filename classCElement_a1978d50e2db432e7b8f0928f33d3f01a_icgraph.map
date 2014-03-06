@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::fromXml" alt="" coords="192,29,387,59"/>
+<map id="CElement::fromXml" name="CElement::fromXml">
+<area shape="rect" id="node3" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="192,21,339,67"/>
+<area shape="rect" id="node5" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="387,29,541,59"/>
 </map>

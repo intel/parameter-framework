@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBaseParameter.html#a231e9def106391b96fb0671f4214f105" title="CBaseParameter::accessAsSignedInteger" alt="" coords="311,5,577,35"/>
+<map id="CParameterHandle::getAsSignedInteger" name="CParameterHandle::getAsSignedInteger">
+<area shape="rect" id="node3" href="$classCBaseParameter.html#a231e9def106391b96fb0671f4214f105" title="CBaseParameter::accessAs\lSignedInteger" alt="" coords="271,5,457,51"/>
+<area shape="rect" id="node5" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="507,13,667,43"/>
 </map>

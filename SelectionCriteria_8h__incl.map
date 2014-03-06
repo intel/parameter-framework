@@ -1,5 +1,10 @@
-<map id="G" name="G">
-<area shape="rect" id="node5" href="$Element_8h.html" title="Element.h" alt="" coords="137,237,217,267"/>
-<area shape="rect" id="node8" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="95,160,260,189"/>
-<area shape="rect" id="node11" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="204,83,340,112"/>
+<map id="parameter/SelectionCriteria.h" name="parameter/SelectionCriteria.h">
+<area shape="rect" id="node5" href="$Element_8h.html" title="Element.h" alt="" coords="315,237,395,267"/>
+<area shape="rect" id="node23" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="592,160,757,189"/>
+<area shape="rect" id="node32" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="276,83,412,112"/>
+<area shape="rect" id="node14" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="67,315,149,344"/>
+<area shape="rect" id="node16" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="224,315,320,344"/>
+<area shape="rect" id="node18" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="344,315,459,344"/>
+<area shape="rect" id="node29" href="$SelectionCriterionTypeInterface_8h.html" title="SelectionCriterionTypeInterface.h" alt="" coords="540,237,756,267"/>
+<area shape="rect" id="node36" href="$SelectionCriterionInterface_8h.html" title="SelectionCriterionInterface.h" alt="" coords="381,160,568,189"/>
 </map>

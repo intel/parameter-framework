@@ -1,3 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$AreaConfiguration_8h.html" title="AreaConfiguration.h" alt="" coords="59,83,195,112"/>
+<map id="parameter/BitwiseAreaConfiguration.h" name="parameter/BitwiseAreaConfiguration.h">
+<area shape="rect" id="node3" href="$AreaConfiguration_8h.html" title="AreaConfiguration.h" alt="" coords="132,83,268,112"/>
+<area shape="rect" id="node5" href="$ParameterBlackboard_8h.html" title="ParameterBlackboard.h" alt="" coords="5,160,163,189"/>
+<area shape="rect" id="node7" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="85,237,197,267"/>
+<area shape="rect" id="node10" href="$SyncerSet_8h.html" title="SyncerSet.h" alt="" coords="237,160,331,189"/>
 </map>

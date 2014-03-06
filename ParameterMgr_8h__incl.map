@@ -1,9 +1,13 @@
-<map id="G" name="G">
-<area shape="rect" id="node11" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="648,160,885,189"/>
-<area shape="rect" id="node14" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="100,315,215,344"/>
-<area shape="rect" id="node17" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="307,160,472,189"/>
-<area shape="rect" id="node19" href="$Element_8h.html" title="Element.h" alt="" coords="155,237,235,267"/>
-<area shape="rect" id="node25" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="228,83,364,112"/>
-<area shape="rect" id="node31" href="$XmlDocSink_8h.html" title="XmlDocSink.h" alt="" coords="895,83,1001,112"/>
-<area shape="rect" id="node33" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="909,160,1029,189"/>
+<map id="parameter/ParameterMgr.h" name="parameter/ParameterMgr.h">
+<area shape="rect" id="node11" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="155,237,392,267"/>
+<area shape="rect" id="node18" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="464,315,579,344"/>
+<area shape="rect" id="node24" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="568,160,733,189"/>
+<area shape="rect" id="node26" href="$Element_8h.html" title="Element.h" alt="" coords="573,237,653,267"/>
+<area shape="rect" id="node38" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="703,83,839,112"/>
+<area shape="rect" id="node48" href="$XmlDocSink_8h.html" title="XmlDocSink.h" alt="" coords="1171,83,1277,112"/>
+<area shape="rect" id="node50" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="1120,160,1240,189"/>
+<area shape="rect" id="node14" href="$RemoteCommandHandler_8h.html" title="RemoteCommandHandler.h" alt="" coords="205,315,389,344"/>
+<area shape="rect" id="node35" href="$SelectionCriterionTypeInterface_8h.html" title="SelectionCriterionTypeInterface.h" alt="" coords="728,237,944,267"/>
+<area shape="rect" id="node42" href="$SelectionCriterionInterface_8h.html" title="SelectionCriterionInterface.h" alt="" coords="808,160,995,189"/>
+<area shape="rect" id="node52" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="1171,237,1333,267"/>
 </map>

@@ -1,3 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#aab893d1fbb26ce85f2e6851504dc526d" title="CConfigurableDomain::saveConfiguration" alt="" coords="327,5,588,35"/>
+<map id="CConfigurableDomains::saveConfiguration" name="CConfigurableDomains::saveConfiguration">
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#aab893d1fbb26ce85f2e6851504dc526d" title="CConfigurableDomain\l::saveConfiguration" alt="" coords="212,50,361,97"/>
+<area shape="rect" id="node5" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="421,5,555,35"/>
+<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="417,59,559,88"/>
+<area shape="rect" id="node9" href="$classCDomainConfiguration.html#aff0adeb0eb6645ef3ae8a4b75c4a7892" title="CDomainConfiguration\l::save" alt="" coords="411,111,565,158"/>
 </map>

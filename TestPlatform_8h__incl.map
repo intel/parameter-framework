@@ -1,4 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$ParameterMgrPlatformConnector_8h.html" title="ParameterMgrPlatformConnector.h" alt="" coords="5,83,229,112"/>
-<area shape="rect" id="node5" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="253,83,491,112"/>
+<map id="test/test&#45;platform/TestPlatform.h" name="test/test&#45;platform/TestPlatform.h">
+<area shape="rect" id="node3" href="$ParameterMgrPlatformConnector_8h.html" title="ParameterMgrPlatformConnector.h" alt="" coords="44,101,268,131"/>
+<area shape="rect" id="node18" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="431,179,668,208"/>
+<area shape="rect" id="node5" href="$SelectionCriterionTypeInterface_8h.html" title="SelectionCriterionTypeInterface.h" alt="" coords="23,256,239,285"/>
+<area shape="rect" id="node9" href="$SelectionCriterionInterface_8h.html" title="SelectionCriterionInterface.h" alt="" coords="63,179,249,208"/>
+<area shape="rect" id="node13" href="$ParameterHandle_8h.html" title="ParameterHandle.h" alt="" coords="273,179,407,208"/>
+<area shape="rect" id="node21" href="$RemoteCommandHandler_8h.html" title="RemoteCommandHandler.h" alt="" coords="456,256,640,285"/>
 </map>

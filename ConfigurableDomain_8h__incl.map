@@ -1,4 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$BinarySerializableElement_8h.html" title="BinarySerializableElement.h" alt="" coords="5,83,189,112"/>
-<area shape="rect" id="node5" href="$SyncerSet_8h.html" title="SyncerSet.h" alt="" coords="264,83,357,112"/>
+<map id="parameter/ConfigurableDomain.h" name="parameter/ConfigurableDomain.h">
+<area shape="rect" id="node3" href="$BinarySerializableElement_8h.html" title="BinarySerializableElement.h" alt="" coords="37,83,221,112"/>
+<area shape="rect" id="node14" href="$SyncerSet_8h.html" title="SyncerSet.h" alt="" coords="296,83,389,112"/>
+<area shape="rect" id="node5" href="$Element_8h.html" title="Element.h" alt="" coords="141,160,221,189"/>
+<area shape="rect" id="node11" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="5,160,117,189"/>
 </map>

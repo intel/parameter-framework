@@ -1,4 +1,4 @@
-<map id="G" name="G">
+<map id="CElement::dumpContent" name="CElement::dumpContent">
 <area shape="rect" id="node3" href="$classCElement.html#aeed805fdf6faa98d8b54628177ddedc7" title="CElement::getKind" alt="" coords="227,5,357,35"/>
 <area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="221,59,363,88"/>
 <area shape="rect" id="node7" href="$classCElement.html#a7bcf23c48b816e20d43800ad52549291" title="CElement::logValue" alt="" coords="223,112,361,141"/>

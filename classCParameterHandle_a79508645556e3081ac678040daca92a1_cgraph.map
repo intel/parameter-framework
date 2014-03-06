@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBaseParameter.html#ad6c3b121c92cabe717272fba5ccb6956" title="Value access." alt="" coords="277,5,512,35"/>
+<map id="CParameterHandle::getAsBoolean" name="CParameterHandle::getAsBoolean">
+<area shape="rect" id="node3" href="$classCBaseParameter.html#ad6c3b121c92cabe717272fba5ccb6956" title="Value access. " alt="" coords="279,5,465,51"/>
+<area shape="rect" id="node5" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="515,13,675,43"/>
 </map>

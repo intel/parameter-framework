@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSelectionCriteria.html#a5bf6211b2ae3cb76f32ec29e6adbab27" title="CSelectionCriteria::getSelectionCriterion" alt="" coords="297,5,553,35"/>
+<map id="CParameterMgr::getSelectionCriterion" name="CParameterMgr::getSelectionCriterion">
+<area shape="rect" id="node3" href="$classCSelectionCriteria.html#a5bf6211b2ae3cb76f32ec29e6adbab27" title="CSelectionCriteria\l::getSelectionCriterion" alt="" coords="249,39,399,86"/>
+<area shape="rect" id="node5" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="449,5,647,51"/>
+<area shape="rect" id="node7" href="$classCSelectionCriteriaDefinition.html#a144df71c22caefe90086d2a2a878dcfe" title="CSelectionCriteriaDefinition\l::getSelectionCriterion" alt="" coords="457,74,639,121"/>
 </map>

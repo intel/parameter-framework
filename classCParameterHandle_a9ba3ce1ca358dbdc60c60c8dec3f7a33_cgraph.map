@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="328,5,533,35"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a526f792c679a90023ccc8a365ba0a2e6" title="CBaseParameter::accessAsIntegerArray" alt="" coords="301,59,560,88"/>
+<map id="CParameterHandle::setAsIntegerArray" name="CParameterHandle::setAsIntegerArray">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="271,5,476,35"/>
+<area shape="rect" id="node5" href="$classCBaseParameter.html#a526f792c679a90023ccc8a365ba0a2e6" title="CBaseParameter::accessAs\lIntegerArray" alt="" coords="280,58,467,105"/>
+<area shape="rect" id="node7" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="525,67,685,96"/>
 </map>

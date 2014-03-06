@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a01a82bb9c4cf79c7260553f776a5fe5b" title="Load plugins, structures and settings from the config file given." alt="" coords="368,5,515,35"/>
+<map id="CSystemClass::cleanSubsystemsNeedToResync" name="CSystemClass::cleanSubsystemsNeedToResync">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a01a82bb9c4cf79c7260553f776a5fe5b" title="Load plugins, structures and settings from the config file given. " alt="" coords="277,13,424,43"/>
+<area shape="rect" id="node5" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="473,5,695,51"/>
 </map>

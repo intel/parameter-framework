@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSelectionCriterion.html#a3afa01dd539342d06b32df29bc545721" title="User request." alt="" coords="335,5,620,35"/>
+<map id="CSelectionCriterionType::listPossibleValues" name="CSelectionCriterionType::listPossibleValues">
+<area shape="rect" id="node3" href="$classCSelectionCriterion.html#a3afa01dd539342d06b32df29bc545721" title="User request. " alt="" coords="219,39,392,86"/>
+<area shape="rect" id="node5" href="$classCSelectionCriteriaDefinition.html#a3363b99661d653352cb198bf31a3858d" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="441,5,623,51"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterion.html#a83e33a27a1094e00154018756c0be2dc" title="From ISelectionCriterionInterface. " alt="" coords="465,74,599,121"/>
 </map>

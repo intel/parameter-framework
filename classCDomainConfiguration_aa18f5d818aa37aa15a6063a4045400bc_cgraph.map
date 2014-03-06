@@ -1,3 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCCompoundRule.html#a92c9b3e8a2c0b240af3bf85e4b2630d8" title="CCompoundRule::matches" alt="" coords="287,5,465,35"/>
+<map id="CDomainConfiguration::isApplicable" name="CDomainConfiguration::isApplicable">
+<area shape="rect" id="node3" href="$classCCompoundRule.html#a92c9b3e8a2c0b240af3bf85e4b2630d8" title="CCompoundRule::matches" alt="" coords="209,59,388,88"/>
+<area shape="rect" id="node5" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="437,5,608,35"/>
+<area shape="rect" id="node7" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="455,59,591,88"/>
+<area shape="rect" id="node9" href="$classCRule.html#aaeeed8a6ca4a3e87ee75282df22fa01a" title="CRule::matches" alt="" coords="464,112,581,141"/>
 </map>

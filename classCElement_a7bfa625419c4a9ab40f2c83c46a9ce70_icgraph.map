@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a01492c7dee6c846d75bcdb7a8967343e" title="CConfigurableDomain::renameConfiguration" alt="" coords="185,5,463,35"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomains.html#ad5697c9cf8ba73bd615c51786535dfdf" title="CConfigurableDomains::renameDomain" alt="" coords="197,59,451,88"/>
+<map id="CElement::rename" name="CElement::rename">
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a01492c7dee6c846d75bcdb7a8967343e" title="CConfigurableDomain\l::renameConfiguration" alt="" coords="188,5,337,51"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomains.html#ad5697c9cf8ba73bd615c51786535dfdf" title="CConfigurableDomains\l::renameDomain" alt="" coords="184,74,341,121"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomains.html#ae76bd719dec42bc4c2ab782d039927a1" title="CConfigurableDomains\l::renameConfiguration" alt="" coords="389,5,547,51"/>
 </map>

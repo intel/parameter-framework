@@ -1,6 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node5" href="$classCConfigurableDomain.html" title="CConfigurableDomain" alt="" coords="5,160,155,189"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomains.html" title="CConfigurableDomains" alt="" coords="179,160,336,189"/>
-<area shape="rect" id="node9" href="$classCDomainConfiguration.html" title="CDomainConfiguration" alt="" coords="360,160,515,189"/>
-<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="217,5,297,35"/>
+<map id="CBinarySerializableElement" name="CBinarySerializableElement">
+<area shape="rect" id="node9" href="$classCConfigurableDomain.html" title="CConfigurableDomain" alt="" coords="5,237,155,267"/>
+<area shape="rect" id="node11" href="$classCConfigurableDomains.html" title="CConfigurableDomains" alt="" coords="179,237,336,267"/>
+<area shape="rect" id="node13" href="$classCDomainConfiguration.html" title="CDomainConfiguration" alt="" coords="360,237,515,267"/>
+<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="217,83,297,112"/>
+<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="167,5,241,35"/>
+<area shape="rect" id="node6" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="265,5,356,35"/>
 </map>

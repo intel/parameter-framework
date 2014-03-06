@@ -1,5 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#ae84c6459b7b261fb81026c9ebe9140f8" title="CAreaConfiguration::copyToOuter" alt="" coords="289,5,508,35"/>
-<area shape="rect" id="node5" href="$classCAreaConfiguration.html#aa66ebde5e339fbea35c7a5f46403c770" title="CAreaConfiguration::copyFromOuter" alt="" coords="281,59,516,88"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomain.html#ac698ed47959a5c3a33a1cee0afaf21f1" title="Blackboard Configuration and Base Offset retrieval." alt="" coords="239,112,559,141"/>
+<map id="CElement::isDescendantOf" name="CElement::isDescendantOf">
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#ae84c6459b7b261fb81026c9ebe9140f8" title="CAreaConfiguration\l::copyToOuter" alt="" coords="267,5,403,51"/>
+<area shape="rect" id="node7" href="$classCAreaConfiguration.html#aa66ebde5e339fbea35c7a5f46403c770" title="CAreaConfiguration\l::copyFromOuter" alt="" coords="267,74,403,121"/>
+<area shape="rect" id="node11" href="$classCConfigurableDomain.html#ac698ed47959a5c3a33a1cee0afaf21f1" title="Blackboard Configuration and Base Offset retrieval. " alt="" coords="239,143,431,190"/>
+<area shape="rect" id="node5" href="$classCDomainConfiguration.html#ade8c66e62cc6a64ad6e1066f4a57eaa2" title="CDomainConfiguration\l::merge" alt="" coords="480,5,635,51"/>
+<area shape="rect" id="node9" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration\l::split" alt="" coords="480,74,635,121"/>
 </map>

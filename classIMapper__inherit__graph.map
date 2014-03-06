@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSubsystem.html" title="CSubsystem" alt="" coords="5,83,104,112"/>
+<map id="IMapper" name="IMapper">
+<area shape="rect" id="node3" href="$classCSubsystem.html" title="CSubsystem" alt="" coords="23,83,121,112"/>
+<area shape="rect" id="node5" href="$classCVirtualSubsystem.html" title="CVirtualSubsystem" alt="" coords="5,160,139,189"/>
 </map>

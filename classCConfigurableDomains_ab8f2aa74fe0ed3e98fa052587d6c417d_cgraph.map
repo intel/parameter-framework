@@ -1,6 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="260,5,431,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="277,59,413,88"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomain.html#a928805e163719f902c207c061ab3b1c2" title="CConfigurableDomain::apply" alt="" coords="251,112,440,141"/>
-<area shape="rect" id="node9" href="$classCSyncerSet.html#afb2b555773620bfceb3b86fe10486802" title="CSyncerSet::sync" alt="" coords="281,165,409,195"/>
+<map id="CConfigurableDomains::apply" name="CConfigurableDomains::apply">
+<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="211,5,381,35"/>
+<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="228,59,364,88"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomain.html#a928805e163719f902c207c061ab3b1c2" title="CConfigurableDomain\l::apply" alt="" coords="221,111,371,158"/>
+<area shape="rect" id="node15" href="$classCSyncerSet.html#afb2b555773620bfceb3b86fe10486802" title="CSyncerSet::sync" alt="" coords="232,181,360,211"/>
+<area shape="rect" id="node9" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="440,67,573,96"/>
+<area shape="rect" id="node11" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="436,120,577,149"/>
+<area shape="rect" id="node13" href="$classCDomainConfiguration.html#ab5da4b09e98d012145c3b71816a2e153" title="CDomainConfiguration\l::restore" alt="" coords="429,173,584,219"/>
 </map>

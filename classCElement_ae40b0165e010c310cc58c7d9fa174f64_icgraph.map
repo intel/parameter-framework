@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4fc3d6b09acd45d1d94f9191b01bf4c0" title="CConfigurableDomains::deleteAllDomains" alt="" coords="173,5,440,35"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#adcf3b67c47c21637a60d2b1df3970dcd" title="Method that imports Configurable Domains from an Xml source." alt="" coords="191,59,423,88"/>
+<map id="CElement::clean" name="CElement::clean">
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4fc3d6b09acd45d1d94f9191b01bf4c0" title="CConfigurableDomains\l::deleteAllDomains" alt="" coords="212,5,369,51"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#adcf3b67c47c21637a60d2b1df3970dcd" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="175,75,407,104"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a3a1c3b22aa59418c7c0b074b686d34b2" title="CParameterMgr::deleteAll\lDomains" alt="" coords="457,5,628,51"/>
 </map>

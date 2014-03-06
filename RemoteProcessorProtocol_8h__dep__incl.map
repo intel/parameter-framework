@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$AnswerMessage_8cpp.html" title="remote&#45;processor/AnswerMessage.cpp" alt="" coords="5,83,253,112"/>
-<area shape="rect" id="node5" href="$Message_8cpp.html" title="remote&#45;processor/Message.cpp" alt="" coords="277,83,483,112"/>
-<area shape="rect" id="node7" href="$RequestMessage_8cpp.html" title="remote&#45;processor/RequestMessage.cpp" alt="" coords="507,83,760,112"/>
+<map id="remote&#45;processor/RemoteProcessorProtocol.h" name="remote&#45;processor/RemoteProcessorProtocol.h">
+<area shape="rect" id="node3" href="$AnswerMessage_8cpp.html" title="remote&#45;processor/AnswerMessage.cpp" alt="" coords="5,111,253,140"/>
+<area shape="rect" id="node5" href="$Message_8cpp.html" title="remote&#45;processor/Message.cpp" alt="" coords="277,111,483,140"/>
+<area shape="rect" id="node7" href="$RequestMessage_8cpp.html" title="remote&#45;processor/Request\lMessage.cpp" alt="" coords="507,102,683,149"/>
 </map>

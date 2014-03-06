@@ -1,4 +1,4 @@
-<map id="G" name="G">
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classIMapper.html" title="IMapper" alt="" coords="485,32,555,61"/>
 <area shape="rect" id="node3" href="$classCSubsystem.html" title="CSubsystem" alt="" coords="748,32,847,61"/>
 <area shape="rect" id="node5" href="$classCVirtualSubsystem.html" title="CVirtualSubsystem" alt="" coords="983,5,1116,35"/>

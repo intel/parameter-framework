@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#ae24cba98f5c852467043603e5b68d729" title="CParameterMgr::createSelectionCriterion" alt="" coords="424,5,685,35"/>
+<map id="CParameterMgrPlatformConnector::createSelectionCriterion" name="CParameterMgrPlatformConnector::createSelectionCriterion">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#ae24cba98f5c852467043603e5b68d729" title="CParameterMgr::createSelection\lCriterion" alt="" coords="279,5,489,51"/>
+<area shape="rect" id="node5" href="$classCSelectionCriteria.html#a3df24dd0721ce6cfca5123881c678436" title="CSelectionCriteria\l::createSelectionCriterion" alt="" coords="540,5,708,51"/>
 </map>

@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#ac37a7da1bb20a8cfcae0ffa0519021ff" title="CParameterMgr::createParameterHandle" alt="" coords="421,5,680,35"/>
+<map id="CParameterMgrPlatformConnector::createParameterHandle" name="CParameterMgrPlatformConnector::createParameterHandle">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#ac37a7da1bb20a8cfcae0ffa0519021ff" title="CParameterMgr::createParameter\lHandle" alt="" coords="277,39,496,86"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a810d966739ee83e81f1a65f87faa60e3" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="544,5,757,51"/>
+<area shape="rect" id="node7" href="$classCConfigurableElement.html#a1376855eba031b3cbb715389e23b20fe" title="CConfigurableElement\l::isParameter" alt="" coords="575,74,727,121"/>
 </map>

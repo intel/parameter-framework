@@ -1,4 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$RemoteCommandHandlerTemplate_8h.html" title="remote&#45;processor/RemoteCommandHandlerTemplate.h" alt="" coords="5,83,347,112"/>
-<area shape="rect" id="node5" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessorServer.cpp" alt="" coords="371,83,664,112"/>
+<map id="remote&#45;processor/RemoteCommandHandler.h" name="remote&#45;processor/RemoteCommandHandler.h">
+<area shape="rect" id="node3" href="$RemoteCommandHandlerTemplate_8h.html" title="remote&#45;processor/RemoteCommand\lHandlerTemplate.h" alt="" coords="63,102,295,149"/>
+<area shape="rect" id="node9" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="319,102,551,149"/>
+<area shape="rect" id="node5" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="5,207,181,236"/>
+<area shape="rect" id="node7" href="$TestPlatform_8h.html" title="test/test&#45;platform\l/TestPlatform.h" alt="" coords="205,198,325,245"/>
 </map>

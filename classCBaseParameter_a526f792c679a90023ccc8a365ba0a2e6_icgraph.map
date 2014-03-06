@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33" title="CParameterHandle::setAsIntegerArray" alt="" coords="313,5,559,35"/>
-<area shape="rect" id="node5" href="$classCParameterHandle.html#a7c0ff4aa61fbf1b5408107543f575666" title="CParameterHandle::getAsIntegerArray" alt="" coords="313,59,559,88"/>
+<map id="CBaseParameter::accessAsIntegerArray" name="CBaseParameter::accessAsIntegerArray">
+<area shape="rect" id="node3" href="$classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33" title="CParameterHandle::setAsInteger\lArray" alt="" coords="244,5,457,51"/>
+<area shape="rect" id="node5" href="$classCParameterHandle.html#a7c0ff4aa61fbf1b5408107543f575666" title="CParameterHandle::getAsInteger\lArray" alt="" coords="244,74,457,121"/>
 </map>

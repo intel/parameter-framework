@@ -1,8 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElementLibrary.html#a3b7e9918b93da30066b5dc21c92623f3" title="CElementLibrary::clean" alt="" coords="349,5,507,35"/>
-<area shape="rect" id="node5" href="$classCElementLibrary.html#a4c445bfb8eee5e5f4534499760add2d0" title="Add a xml tag and it&#39;s corresponding builder in the library." alt="" coords="311,59,545,88"/>
-<area shape="rect" id="node7" href="$classCDefaultElementLibrary.html#aff3b8240cb76aa7e63f59d2471b9aa6e" title="Enable the default builder fallback mechanism." alt="" coords="271,112,585,141"/>
-<area shape="rect" id="node9" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="361,165,495,195"/>
-<area shape="rect" id="node11" href="$classCElement.html#ad8a74b1abb86fc6aad95e0a8c8a27e17" title="CElement::log_table" alt="" coords="359,219,497,248"/>
-<area shape="rect" id="node13" href="$classCUtility.html#a61d8ac9daba8e70320e5da0af931bdae" title="Format the items of a map into a string as a list of key&#45;value pairs." alt="" coords="367,272,489,301"/>
+<map id="CSystemClass::loadSubsystems" name="CSystemClass::loadSubsystems">
+<area shape="rect" id="node3" href="$classCElementLibrary.html#a3b7e9918b93da30066b5dc21c92623f3" title="CElementLibrary::clean" alt="" coords="289,5,447,35"/>
+<area shape="rect" id="node5" href="$classCElementLibrary.html#a4c445bfb8eee5e5f4534499760add2d0" title="Add a xml tag and it&#39;s corresponding builder in the library. " alt="" coords="271,58,465,105"/>
+<area shape="rect" id="node7" href="$classCDefaultElementLibrary.html#aff3b8240cb76aa7e63f59d2471b9aa6e" title="Enable the default builder fallback mechanism. " alt="" coords="280,127,456,174"/>
+<area shape="rect" id="node9" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="301,197,435,227"/>
+<area shape="rect" id="node11" href="$classCElement.html#ad8a74b1abb86fc6aad95e0a8c8a27e17" title="CElement::log_table" alt="" coords="299,251,437,280"/>
+<area shape="rect" id="node13" href="$classCUtility.html#a61d8ac9daba8e70320e5da0af931bdae" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="307,304,429,333"/>
 </map>

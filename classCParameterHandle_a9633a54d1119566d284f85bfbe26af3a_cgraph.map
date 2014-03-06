@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="292,5,497,35"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#ad6c3b121c92cabe717272fba5ccb6956" title="Value access." alt="" coords="277,59,512,88"/>
+<map id="CParameterHandle::setAsBoolean" name="CParameterHandle::setAsBoolean">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="279,5,484,35"/>
+<area shape="rect" id="node5" href="$classCBaseParameter.html#ad6c3b121c92cabe717272fba5ccb6956" title="Value access. " alt="" coords="288,58,475,105"/>
+<area shape="rect" id="node7" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="533,67,693,96"/>
 </map>

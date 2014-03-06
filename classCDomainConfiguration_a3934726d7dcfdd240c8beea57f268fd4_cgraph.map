@@ -1,4 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCRuleParser.html#ac741b7f66a80e711e799577079466a07" title="CRuleParser::parse" alt="" coords="351,5,487,35"/>
-<area shape="rect" id="node5" href="$classCRuleParser.html#a89407cd2535589d81d1d5beba1e51544" title="CRuleParser::grabRootRule" alt="" coords="327,59,511,88"/>
+<map id="CDomainConfiguration::setApplicationRule" name="CDomainConfiguration::setApplicationRule">
+<area shape="rect" id="node3" href="$classCRuleParser.html#ac741b7f66a80e711e799577079466a07" title="CRuleParser::parse" alt="" coords="233,85,369,115"/>
+<area shape="rect" id="node13" href="$classCRuleParser.html#a89407cd2535589d81d1d5beba1e51544" title="CRuleParser::grabRootRule" alt="" coords="209,139,393,168"/>
+<area shape="rect" id="node5" href="$classCRuleParser.html#a727734d96ef60cf2ef6e18b74749fae0" title="CRuleParser::iterate" alt="" coords="453,5,595,35"/>
+<area shape="rect" id="node7" href="$classCCompoundRule.html#a4401b0ecc5879b7d4dac9ccd2c60c3f5" title="CCompoundRule::parse" alt="" coords="443,59,605,88"/>
+<area shape="rect" id="node9" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="455,112,593,141"/>
+<area shape="rect" id="node11" href="$classCSelectionCriterionRule.html#acdf7494ba957f261a3c98bc121c954d9" title="CSelectionCriterionRule\l::parse" alt="" coords="443,165,605,211"/>
 </map>

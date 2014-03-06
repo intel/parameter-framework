@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement::getOffset" alt="" coords="239,5,452,35"/>
-<area shape="rect" id="node5" href="$classCSyncerSet.html#afb2b555773620bfceb3b86fe10486802" title="CSyncerSet::sync" alt="" coords="281,59,409,88"/>
+<map id="CAreaConfiguration::restore" name="CAreaConfiguration::restore">
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="191,5,343,51"/>
+<area shape="rect" id="node5" href="$classCSyncerSet.html#afb2b555773620bfceb3b86fe10486802" title="CSyncerSet::sync" alt="" coords="203,75,331,104"/>
+<area shape="rect" id="node7" href="$classISyncer.html#a1d21537371d08c5bdb8411b44b6273e7" title="ISyncer::sync" alt="" coords="393,75,495,104"/>
 </map>

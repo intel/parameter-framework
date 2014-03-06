@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#ad5929cbe47434a4b6c9195c0a27723f6" title="CDomainConfiguration::isValid" alt="" coords="391,5,591,35"/>
+<map id="CConfigurableDomain::isApplicableConfigurationValid" name="CConfigurableDomain::isApplicableConfigurationValid">
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#ad5929cbe47434a4b6c9195c0a27723f6" title="CDomainConfiguration\l::isValid" alt="" coords="232,14,387,61"/>
+<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917" title="CAreaConfiguration\l::isValid" alt="" coords="435,14,571,61"/>
 </map>

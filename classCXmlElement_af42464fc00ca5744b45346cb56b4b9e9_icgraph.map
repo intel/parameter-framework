@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCArrayParameter.html#a192ed81d047795b1823cab20337ad283" title="CArrayParameter::serializeXmlSettings" alt="" coords="256,5,507,35"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serializeXmlSettings" alt="" coords="257,59,505,88"/>
+<map id="CXmlElement::getTextContent" name="CXmlElement::getTextContent">
+<area shape="rect" id="node3" href="$classCArrayParameter.html#a192ed81d047795b1823cab20337ad283" title="CArrayParameter::serialize\lXmlSettings" alt="" coords="256,5,435,51"/>
+<area shape="rect" id="node5" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="256,74,435,121"/>
 </map>

@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" title="Look for subsystems that need to be resynchronized." alt="" coords="236,5,543,35"/>
-<area shape="rect" id="node5" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag." alt="" coords="232,59,547,88"/>
+<map id="CSubsystem::needResync" name="CSubsystem::needResync">
+<area shape="rect" id="node3" href="$classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" title="Look for subsystems that need to be resynchronized. " alt="" coords="233,5,479,51"/>
+<area shape="rect" id="node5" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag. " alt="" coords="245,74,467,121"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#a01a82bb9c4cf79c7260553f776a5fe5b" title="Load plugins, structures and settings from the config file given. " alt="" coords="528,83,675,112"/>
 </map>

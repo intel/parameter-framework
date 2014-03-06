@@ -1,5 +1,6 @@
-<map id="G" name="G">
+<map id="CElement::toXml" name="CElement::toXml">
 <area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="180,5,351,35"/>
 <area shape="rect" id="node5" href="$classCXmlElement.html#a73ccc36f9ec1c25f1baade31b9e0ae01" title="CXmlElement::createChild" alt="" coords="177,59,353,88"/>
-<area shape="rect" id="node7" href="$classCElement.html#aeed805fdf6faa98d8b54628177ddedc7" title="CElement::getKind" alt="" coords="200,112,331,141"/>
+<area shape="rect" id="node9" href="$classCElement.html#aeed805fdf6faa98d8b54628177ddedc7" title="CElement::getKind" alt="" coords="200,112,331,141"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="403,59,603,88"/>
 </map>

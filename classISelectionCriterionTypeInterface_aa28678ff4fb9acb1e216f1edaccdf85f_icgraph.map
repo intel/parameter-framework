@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSelectionCriterionRule.html#acdf7494ba957f261a3c98bc121c954d9" title="CSelectionCriterionRule::parse" alt="" coords="389,5,592,35"/>
-<area shape="rect" id="node5" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule::fromXml" alt="" coords="381,59,600,88"/>
+<map id="ISelectionCriterionTypeInterface::getNumericalValue" name="ISelectionCriterionTypeInterface::getNumericalValue">
+<area shape="rect" id="node3" href="$classCSelectionCriterionRule.html#acdf7494ba957f261a3c98bc121c954d9" title="CSelectionCriterionRule\l::parse" alt="" coords="264,5,427,51"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule\l::fromXml" alt="" coords="264,74,427,121"/>
+<area shape="rect" id="node5" href="$classCRuleParser.html#ac741b7f66a80e711e799577079466a07" title="CRuleParser::parse" alt="" coords="476,13,612,43"/>
 </map>

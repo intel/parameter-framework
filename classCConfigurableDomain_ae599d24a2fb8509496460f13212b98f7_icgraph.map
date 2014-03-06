@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a8a47486776b65e9a5f8237f21d607a0f" title="CConfigurableDomains::deleteConfiguration" alt="" coords="325,5,603,35"/>
+<map id="CConfigurableDomain::deleteConfiguration" name="CConfigurableDomain::deleteConfiguration">
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a8a47486776b65e9a5f8237f21d607a0f" title="CConfigurableDomains\l::deleteConfiguration" alt="" coords="205,5,363,51"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a5bd75bc7d3259272db66ad0c59cb515e" title="CParameterMgr::deleteConfiguration" alt="" coords="411,13,645,43"/>
 </map>

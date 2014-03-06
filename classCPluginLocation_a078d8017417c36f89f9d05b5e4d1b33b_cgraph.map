@@ -1,4 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="237,5,448,35"/>
-<area shape="rect" id="node5" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator::next" alt="" coords="231,59,455,88"/>
+<map id="CPluginLocation::fromXml" name="CPluginLocation::fromXml">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="236,5,415,51"/>
+<area shape="rect" id="node7" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator\l::next" alt="" coords="229,74,421,121"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="479,13,660,43"/>
+<area shape="rect" id="node9" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="469,83,669,112"/>
 </map>

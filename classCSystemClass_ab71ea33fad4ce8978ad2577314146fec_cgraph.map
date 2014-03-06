@@ -1,8 +1,10 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="392,5,563,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="409,59,545,88"/>
-<area shape="rect" id="node7" href="$classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4" title="CSubsystem::needResync" alt="" coords="388,112,567,141"/>
-<area shape="rect" id="node9" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="411,165,544,195"/>
-<area shape="rect" id="node11" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="407,219,548,248"/>
-<area shape="rect" id="node13" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement::fillSyncerSet" alt="" coords="360,272,595,301"/>
+<map id="CSystemClass::checkForSubsystemsToResync" name="CSystemClass::checkForSubsystemsToResync">
+<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="781,32,952,61"/>
+<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="799,156,935,185"/>
+<area shape="rect" id="node7" href="$classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4" title="CSubsystem::needResync" alt="" coords="301,122,480,152"/>
+<area shape="rect" id="node9" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="324,176,457,205"/>
+<area shape="rect" id="node11" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="320,229,461,258"/>
+<area shape="rect" id="node13" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="315,52,467,99"/>
+<area shape="rect" id="node15" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="555,134,707,180"/>
+<area shape="rect" id="node17" href="$classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78" title="CConfigurableElement\l::fillSyncerSetFromDescendant" alt="" coords="529,64,732,111"/>
 </map>

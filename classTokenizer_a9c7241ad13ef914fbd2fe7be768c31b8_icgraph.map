@@ -1,4 +1,5 @@
-<map id="G" name="G">
+<map id="Tokenizer::next" name="Tokenizer::next">
 <area shape="rect" id="node3" href="$classCMappingData.html#af6c3dc0a3f49fa81435761978f842bc8" title="CMappingData::fromXml" alt="" coords="167,5,332,35"/>
 <area shape="rect" id="node5" href="$classTokenizer.html#a6c9b350c01903b62e03d787f21696e58" title="Tokenizer::split" alt="" coords="195,59,304,88"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterionType.html#a8436becd27f961838b96e37272a30f43" title="Retrieve the numerical value from the string representation of the criterion type. " alt="" coords="383,50,545,97"/>
 </map>

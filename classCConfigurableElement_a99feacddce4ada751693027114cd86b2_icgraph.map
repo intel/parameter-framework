@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node4" href="$classCParameterMgr.html#afbd8b76c1b400a4c5d8a9e7d3e2b6f2d" title="CParameterMgr::accessValue" alt="" coords="291,29,488,59"/>
+<map id="CConfigurableElement::accessValue" name="CConfigurableElement::accessValue">
+<area shape="rect" id="node4" href="$classCParameterMgr.html#afbd8b76c1b400a4c5d8a9e7d3e2b6f2d" title="CParameterMgr::accessValue" alt="" coords="208,48,405,77"/>
+<area shape="rect" id="node6" href="$classCParameterMgr.html#a208f04b17d2a9a2e460cace0b85483cb" title="CParameterMgr::accessParameter\lValue" alt="" coords="463,5,687,51"/>
+<area shape="rect" id="node8" href="$classCParameterMgr.html#ad969fe876378e0527be0b20b0188ae18" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="455,74,695,121"/>
 </map>

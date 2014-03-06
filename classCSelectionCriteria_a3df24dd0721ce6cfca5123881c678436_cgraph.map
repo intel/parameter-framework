@@ -1,4 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria::getSelectionCriteriaDefinition" alt="" coords="341,5,645,35"/>
-<area shape="rect" id="node5" href="$classCSelectionCriteriaDefinition.html#a9a8e8782f10c79230e967220c74a738d" title="CSelectionCriteriaDefinition::createSelectionCriterion" alt="" coords="328,59,659,88"/>
+<map id="CSelectionCriteria::createSelectionCriterion" name="CSelectionCriteria::createSelectionCriterion">
+<area shape="rect" id="node3" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="225,5,423,51"/>
+<area shape="rect" id="node7" href="$classCSelectionCriteriaDefinition.html#a9a8e8782f10c79230e967220c74a738d" title="CSelectionCriteriaDefinition\l::createSelectionCriterion" alt="" coords="233,74,415,121"/>
+<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="473,13,609,43"/>
+<area shape="rect" id="node9" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="472,83,611,112"/>
 </map>

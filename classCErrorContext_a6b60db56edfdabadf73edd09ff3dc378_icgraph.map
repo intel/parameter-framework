@@ -1,24 +1,45 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCBaseParameter.html#ad6c3b121c92cabe717272fba5ccb6956" title="Value access." alt="" coords="264,5,499,35"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a7b43545563414d0a1ab15e67e6a0a9ee" title="CBaseParameter::accessAsBooleanArray" alt="" coords="248,59,515,88"/>
-<area shape="rect" id="node7" href="$classCBaseParameter.html#a8386194eb61f9dcdf1fee382f4517dd2" title="CBaseParameter::accessAsInteger" alt="" coords="268,112,495,141"/>
-<area shape="rect" id="node9" href="$classCBaseParameter.html#a526f792c679a90023ccc8a365ba0a2e6" title="CBaseParameter::accessAsIntegerArray" alt="" coords="252,165,511,195"/>
-<area shape="rect" id="node11" href="$classCBaseParameter.html#a231e9def106391b96fb0671f4214f105" title="CBaseParameter::accessAsSignedInteger" alt="" coords="248,219,515,248"/>
-<area shape="rect" id="node13" href="$classCBaseParameter.html#a4acf1732b2e7fa4d6a817ed91d6cdeb1" title="CBaseParameter::accessAsSignedIntegerArray" alt="" coords="232,272,531,301"/>
-<area shape="rect" id="node15" href="$classCBaseParameter.html#a6082bac12d32dbf326cb7799ad7596d6" title="CBaseParameter::accessAsDouble" alt="" coords="267,325,496,355"/>
-<area shape="rect" id="node17" href="$classCBaseParameter.html#a99c193e5e799af893b721c49f1baecf4" title="CBaseParameter::accessAsDoubleArray" alt="" coords="252,379,511,408"/>
-<area shape="rect" id="node19" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access." alt="" coords="271,432,492,461"/>
-<area shape="rect" id="node21" href="$classCBitParameterType.html#ad62658a6597e950025fcb8ebba688a8e" title="Conversion." alt="" coords="271,485,492,515"/>
-<area shape="rect" id="node23" href="$classCBooleanParameterType.html#a40f6be7bea1db9744867bc2de57045f3" title="Conversion." alt="" coords="256,539,507,568"/>
-<area shape="rect" id="node25" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement::serializeXmlSettings" alt="" coords="241,616,521,645"/>
-<area shape="rect" id="node28" href="$classCConfigurableElement.html#a99feacddce4ada751693027114cd86b2" title="CConfigurableElement::accessValue" alt="" coords="264,693,499,723"/>
-<area shape="rect" id="node31" href="$classCParameterMgr.html#afbd8b76c1b400a4c5d8a9e7d3e2b6f2d" title="CParameterMgr::accessValue" alt="" coords="597,720,795,749"/>
-<area shape="rect" id="node33" href="$classCEnumParameterType.html#aa2921e756e5e250f39e551ade7a30422" title="Conversion." alt="" coords="263,797,500,827"/>
-<area shape="rect" id="node35" href="$classCFixedPointParameterType.html#ace3b6df8494301af1d193ba3ac7ba9f0" title="Conversion." alt="" coords="248,851,515,880"/>
-<area shape="rect" id="node37" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="CInstanceConfigurableElement::sync" alt="" coords="263,904,500,933"/>
-<area shape="rect" id="node39" href="$classCInstanceConfigurableElement.html#a4355916fa36efbe5fb62894d0a5dc95f" title="CInstanceConfigurableElement::checkPathExhausted" alt="" coords="215,957,548,987"/>
-<area shape="rect" id="node41" href="$classCIntegerParameterType.html#a82c7004851a017781f8bec9a1f175e73" title="CIntegerParameterType::toBlackboard" alt="" coords="259,1011,504,1040"/>
-<area shape="rect" id="node44" href="$classCParameterType.html#a04a0fd09f23eba9e4295109b080be04f" title="CParameterType::toBlackboard" alt="" coords="279,1064,484,1093"/>
-<area shape="rect" id="node46" href="$classCParameterType.html#a149691bdd9d67a12d736e0c756b1ee56" title="CParameterType::fromBlackboard" alt="" coords="272,1117,491,1147"/>
-<area shape="rect" id="node48" href="$classCStringParameter.html#a0a729686dc483d1bf183408429c6e79e" title="CStringParameter::doSetValue" alt="" coords="281,1171,481,1200"/>
+<map id="CErrorContext::setError" name="CErrorContext::setError">
+<area shape="rect" id="node3" href="$classCBaseParameter.html#ad6c3b121c92cabe717272fba5ccb6956" title="Value access. " alt="" coords="231,50,417,97"/>
+<area shape="rect" id="node9" href="$classCBaseParameter.html#a7b43545563414d0a1ab15e67e6a0a9ee" title="CBaseParameter::accessAs\lBooleanArray" alt="" coords="231,181,417,227"/>
+<area shape="rect" id="node15" href="$classCBaseParameter.html#a8386194eb61f9dcdf1fee382f4517dd2" title="CBaseParameter::accessAs\lInteger" alt="" coords="231,295,417,342"/>
+<area shape="rect" id="node21" href="$classCBaseParameter.html#a526f792c679a90023ccc8a365ba0a2e6" title="CBaseParameter::accessAs\lIntegerArray" alt="" coords="231,426,417,473"/>
+<area shape="rect" id="node27" href="$classCBaseParameter.html#a231e9def106391b96fb0671f4214f105" title="CBaseParameter::accessAs\lSignedInteger" alt="" coords="231,565,417,611"/>
+<area shape="rect" id="node33" href="$classCBaseParameter.html#a4acf1732b2e7fa4d6a817ed91d6cdeb1" title="CBaseParameter::accessAs\lSignedIntegerArray" alt="" coords="231,699,417,746"/>
+<area shape="rect" id="node39" href="$classCBaseParameter.html#a6082bac12d32dbf326cb7799ad7596d6" title="CBaseParameter::accessAs\lDouble" alt="" coords="231,769,417,815"/>
+<area shape="rect" id="node45" href="$classCBaseParameter.html#a99c193e5e799af893b721c49f1baecf4" title="CBaseParameter::accessAs\lDoubleArray" alt="" coords="231,838,417,885"/>
+<area shape="rect" id="node51" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access. " alt="" coords="755,1224,976,1253"/>
+<area shape="rect" id="node53" href="$classCBitParameterType.html#ad62658a6597e950025fcb8ebba688a8e" title="Conversion. " alt="" coords="252,958,396,1005"/>
+<area shape="rect" id="node55" href="$classCBooleanParameterType.html#a40f6be7bea1db9744867bc2de57045f3" title="Conversion. " alt="" coords="240,1027,408,1074"/>
+<area shape="rect" id="node57" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="248,1121,400,1167"/>
+<area shape="rect" id="node62" href="$classCConfigurableElement.html#a99feacddce4ada751693027114cd86b2" title="CConfigurableElement\l::accessValue" alt="" coords="248,1214,400,1261"/>
+<area shape="rect" id="node65" href="$classCParameterMgr.html#afbd8b76c1b400a4c5d8a9e7d3e2b6f2d" title="CParameterMgr::accessValue" alt="" coords="496,1252,693,1281"/>
+<area shape="rect" id="node67" href="$classCEnumParameterType.html#aa2921e756e5e250f39e551ade7a30422" title="Conversion. " alt="" coords="247,1334,401,1381"/>
+<area shape="rect" id="node69" href="$classCFixedPointParameterType.html#ace3b6df8494301af1d193ba3ac7ba9f0" title="Conversion. " alt="" coords="233,1403,415,1450"/>
+<area shape="rect" id="node71" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="CInstanceConfigurableElement\l::sync" alt="" coords="223,1473,425,1519"/>
+<area shape="rect" id="node82" href="$classCInstanceConfigurableElement.html#a4355916fa36efbe5fb62894d0a5dc95f" title="CInstanceConfigurableElement\l::checkPathExhausted" alt="" coords="223,1542,425,1589"/>
+<area shape="rect" id="node85" href="$classCIntegerParameterType.html#a82c7004851a017781f8bec9a1f175e73" title="CIntegerParameterType\l::toBlackboard" alt="" coords="244,1611,404,1658"/>
+<area shape="rect" id="node88" href="$classCParameterType.html#a04a0fd09f23eba9e4295109b080be04f" title="CParameterType::toBlackboard" alt="" coords="221,1681,427,1711"/>
+<area shape="rect" id="node90" href="$classCParameterType.html#a149691bdd9d67a12d736e0c756b1ee56" title="CParameterType::fromBlackboard" alt="" coords="215,1735,433,1764"/>
+<area shape="rect" id="node92" href="$classCStringParameter.html#a0a729686dc483d1bf183408429c6e79e" title="CStringParameter::doSetValue" alt="" coords="224,1788,424,1817"/>
+<area shape="rect" id="node5" href="$classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a" title="CParameterHandle::setAsBoolean" alt="" coords="484,5,705,35"/>
+<area shape="rect" id="node7" href="$classCParameterHandle.html#a79508645556e3081ac678040daca92a1" title="Fetch the parameter value as a boolean. " alt="" coords="484,59,705,88"/>
+<area shape="rect" id="node11" href="$classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344" title="CParameterHandle::setAsBoolean\lArray" alt="" coords="484,111,705,158"/>
+<area shape="rect" id="node13" href="$classCParameterHandle.html#a04e958d57b5d5fe405ed6023ac33ca74" title="CParameterHandle::getAsBoolean\lArray" alt="" coords="484,181,705,227"/>
+<area shape="rect" id="node17" href="$classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3" title="CParameterHandle::setAsInteger" alt="" coords="488,251,701,280"/>
+<area shape="rect" id="node19" href="$classCParameterHandle.html#ae783161c39a930f49344ef7c746abb96" title="CParameterHandle::getAsInteger" alt="" coords="488,304,701,333"/>
+<area shape="rect" id="node23" href="$classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33" title="CParameterHandle::setAsInteger\lArray" alt="" coords="488,357,701,403"/>
+<area shape="rect" id="node25" href="$classCParameterHandle.html#a7c0ff4aa61fbf1b5408107543f575666" title="CParameterHandle::getAsInteger\lArray" alt="" coords="488,426,701,473"/>
+<area shape="rect" id="node29" href="$classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" title="CParameterHandle::setAsSigned\lInteger" alt="" coords="488,495,701,542"/>
+<area shape="rect" id="node31" href="$classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3" title="CParameterHandle::getAsSigned\lInteger" alt="" coords="488,565,701,611"/>
+<area shape="rect" id="node35" href="$classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da" title="CParameterHandle::setAsSigned\lIntegerArray" alt="" coords="488,634,701,681"/>
+<area shape="rect" id="node37" href="$classCParameterHandle.html#aa5355efed0fc007cade9a7aa208925c6" title="CParameterHandle::getAsSigned\lIntegerArray" alt="" coords="488,703,701,750"/>
+<area shape="rect" id="node41" href="$classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87" title="CParameterHandle::setAsDouble" alt="" coords="487,773,703,803"/>
+<area shape="rect" id="node43" href="$classCParameterHandle.html#a69a79e016d6031fba2084d8ebbc32bc9" title="CParameterHandle::getAsDouble" alt="" coords="487,827,703,856"/>
+<area shape="rect" id="node47" href="$classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8" title="CParameterHandle::setAsDouble\lArray" alt="" coords="487,879,703,926"/>
+<area shape="rect" id="node49" href="$classCParameterHandle.html#a56a3b97c9480755ddd34cb565a9bbf8f" title="CParameterHandle::getAsDouble\lArray" alt="" coords="487,949,703,995"/>
+<area shape="rect" id="node59" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="520,1121,669,1167"/>
+<area shape="rect" id="node73" href="$classCArrayParameter.html#a0f14dcf5fee31e8fdc4420cdab2fb1a3" title="CArrayParameter::accessValue" alt="" coords="492,1376,697,1405"/>
+<area shape="rect" id="node75" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAs\lString" alt="" coords="501,1482,688,1529"/>
+<area shape="rect" id="node79" href="$classCBitParameter.html#a6f4d06e327fb0b816c08e383177a82fc" title="CBitParameter::accessAsInteger" alt="" coords="488,1429,701,1459"/>
+<area shape="rect" id="node77" href="$classCBaseParameter.html#a9297ff69dfad31b357e08444b667b4f4" title="CBaseParameter::accessValue" alt="" coords="763,1520,968,1549"/>
 </map>

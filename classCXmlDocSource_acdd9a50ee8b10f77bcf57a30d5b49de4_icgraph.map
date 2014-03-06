@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlDocSource.html#a4d08ccf335301baa0300764c700019f1" title="Method that validates the Xml doc contained in pDoc." alt="" coords="360,5,533,35"/>
+<map id="CXmlDocSource::getRootElementAttributeString" name="CXmlDocSource::getRootElementAttributeString">
+<area shape="rect" id="node3" href="$classCXmlDocSource.html#a4d08ccf335301baa0300764c700019f1" title="Method that validates the Xml doc contained in pDoc. " alt="" coords="277,48,451,77"/>
+<area shape="rect" id="node5" href="$classCXmlFileDocSource.html#afe819f41aca944a9baf5e961ebf88ad0" title="CXmlDocSource method implementation. " alt="" coords="501,5,651,51"/>
+<area shape="rect" id="node7" href="$classCXmlStringDocSource.html#abeaa41d05c805d042f06faaca65b7b1d" title="CXmlDocSource method implementation. " alt="" coords="499,74,653,121"/>
 </map>

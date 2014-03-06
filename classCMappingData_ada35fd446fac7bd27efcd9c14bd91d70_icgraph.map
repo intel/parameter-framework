@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCTypeElement.html#ae473a9a964cec34bc16fd894120909ff" title="CTypeElement::getMappingData" alt="" coords="223,29,433,59"/>
+<map id="CMappingData::getValue" name="CMappingData::getValue">
+<area shape="rect" id="node3" href="$classCTypeElement.html#ae473a9a964cec34bc16fd894120909ff" title="CTypeElement::getMappingData" alt="" coords="223,44,433,73"/>
+<area shape="rect" id="node5" href="$classCInstanceConfigurableElement.html#a84417ad84d08a8ab7cda4912b07b69fd" title="CInstanceConfigurableElement\l::getMappingData" alt="" coords="483,5,685,51"/>
+<area shape="rect" id="node8" href="$classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66" title="CTypeElement::fromXml" alt="" coords="501,75,667,104"/>
 </map>

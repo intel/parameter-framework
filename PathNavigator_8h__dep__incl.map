@@ -1,6 +1,25 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$Element_8h.html" title="parameter/Element.h" alt="" coords="5,83,147,112"/>
-<area shape="rect" id="node5" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="41,160,217,189"/>
-<area shape="rect" id="node7" href="$ElementLocator_8cpp.html" title="parameter/ElementLocator.cpp" alt="" coords="221,83,421,112"/>
-<area shape="rect" id="node10" href="$PathNavigator_8cpp.html" title="parameter/PathNavigator.cpp" alt="" coords="445,83,637,112"/>
+<map id="parameter/PathNavigator.h" name="parameter/PathNavigator.h">
+<area shape="rect" id="node3" href="$Element_8h.html" title="parameter/Element.h" alt="" coords="1703,83,1844,112"/>
+<area shape="rect" id="node26" href="$ElementLocator_8cpp.html" title="parameter/ElementLocator.cpp" alt="" coords="2815,265,3015,295"/>
+<area shape="rect" id="node38" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="2024,361,2200,391"/>
+<area shape="rect" id="node57" href="$PathNavigator_8cpp.html" title="parameter/PathNavigator.cpp" alt="" coords="3296,83,3488,112"/>
+<area shape="rect" id="node5" href="$ConfigurableElement_8h.html" title="parameter/ConfigurableElement.h" alt="" coords="2123,169,2339,199"/>
+<area shape="rect" id="node7" href="$TypeElement_8h.html" title="parameter/TypeElement.h" alt="" coords="2363,169,2533,199"/>
+<area shape="rect" id="node9" href="$AutoLog_8h.html" title="parameter/AutoLog.h" alt="" coords="2819,169,2960,199"/>
+<area shape="rect" id="node11" href="$BinarySerializableElement_8h.html" title="parameter/BinarySerializable\lElement.h" alt="" coords="2984,161,3171,207"/>
+<area shape="rect" id="node13" href="$ComponentLibrary_8h.html" title="parameter/ComponentLibrary.h" alt="" coords="5,169,205,199"/>
+<area shape="rect" id="node15" href="$Rule_8h.html" title="parameter/Rule.h" alt="" coords="229,169,352,199"/>
+<area shape="rect" id="node17" href="$ElementLibrary_8h.html" title="parameter/ElementLibrary.h" alt="" coords="376,169,557,199"/>
+<area shape="rect" id="node19" href="$Element_8cpp.html" title="parameter/Element.cpp" alt="" coords="452,265,609,295"/>
+<area shape="rect" id="node21" href="$ElementBuilder_8h.html" title="parameter/ElementBuilder.h" alt="" coords="632,169,813,199"/>
+<area shape="rect" id="node24" href="$ElementLocator_8h.html" title="parameter/ElementLocator.h" alt="" coords="2608,169,2795,199"/>
+<area shape="rect" id="node28" href="$EnumValuePair_8h.html" title="parameter/EnumValuePair.h" alt="" coords="888,169,1072,199"/>
+<area shape="rect" id="node30" href="$KindElement_8h.html" title="parameter/KindElement.h" alt="" coords="1096,169,1264,199"/>
+<area shape="rect" id="node32" href="$ParameterAdaptation_8h.html" title="parameter/ParameterAdaptation.h" alt="" coords="1288,169,1504,199"/>
+<area shape="rect" id="node34" href="$ParameterFrameworkConfiguration_8h.html" title="parameter/ParameterFramework\lConfiguration.h" alt="" coords="1528,161,1736,207"/>
+<area shape="rect" id="node36" href="$SelectionCriterionType_8h.html" title="parameter/SelectionCriterion\lType.h" alt="" coords="1811,161,1997,207"/>
+<area shape="rect" id="node40" href="$SelectionCriterion_8h.html" title="parameter/SelectionCriterion.h" alt="" coords="1936,265,2133,295"/>
+<area shape="rect" id="node43" href="$SelectionCriteria_8h.html" title="parameter/SelectionCriteria.h" alt="" coords="1753,361,1943,391"/>
+<area shape="rect" id="node45" href="$SelectionCriteriaDefinition_8h.html" title="parameter/SelectionCriteria\lDefinition.h" alt="" coords="2352,353,2531,399"/>
+<area shape="rect" id="node48" href="$SelectionCriterionLibrary_8h.html" title="parameter/SelectionCriterion\lLibrary.h" alt="" coords="1624,257,1811,303"/>
 </map>

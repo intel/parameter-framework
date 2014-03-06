@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSyncerSet.html#afb2b555773620bfceb3b86fe10486802" title="CSyncerSet::sync" alt="" coords="287,5,415,35"/>
+<map id="CHardwareBackSynchronizer::sync" name="CHardwareBackSynchronizer::sync">
+<area shape="rect" id="node3" href="$classCSyncerSet.html#afb2b555773620bfceb3b86fe10486802" title="CSyncerSet::sync" alt="" coords="249,13,377,43"/>
+<area shape="rect" id="node5" href="$classISyncer.html#a1d21537371d08c5bdb8411b44b6273e7" title="ISyncer::sync" alt="" coords="428,13,529,43"/>
 </map>

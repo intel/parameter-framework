@@ -1,6 +1,10 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$AreaConfiguration_8h.html" title="AreaConfiguration.h" alt="" coords="5,83,141,112"/>
-<area shape="rect" id="node5" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="69,160,181,189"/>
-<area shape="rect" id="node7" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="216,83,371,112"/>
-<area shape="rect" id="node9" href="$ConfigurationAccessContext_8h.html" title="ConfigurationAccessContext.h" alt="" coords="395,83,595,112"/>
+<map id="parameter/AreaConfiguration.cpp" name="parameter/AreaConfiguration.cpp">
+<area shape="rect" id="node3" href="$AreaConfiguration_8h.html" title="AreaConfiguration.h" alt="" coords="141,83,277,112"/>
+<area shape="rect" id="node7" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="5,237,117,267"/>
+<area shape="rect" id="node14" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="333,83,488,112"/>
+<area shape="rect" id="node20" href="$ConfigurationAccessContext_8h.html" title="ConfigurationAccessContext.h" alt="" coords="512,83,712,112"/>
+<area shape="rect" id="node5" href="$ParameterBlackboard_8h.html" title="ParameterBlackboard.h" alt="" coords="99,160,256,189"/>
+<area shape="rect" id="node10" href="$SyncerSet_8h.html" title="SyncerSet.h" alt="" coords="280,160,373,189"/>
+<area shape="rect" id="node16" href="$Element_8h.html" title="Element.h" alt="" coords="448,160,528,189"/>
+<area shape="rect" id="node22" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="552,160,733,189"/>
 </map>

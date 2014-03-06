@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#ac4b3452fdb54f26e2106afc2878de443" title="CConfigurableDomain::setElementSequence" alt="" coords="344,5,627,35"/>
+<map id="CConfigurableDomains::setElementSequence" name="CConfigurableDomains::setElementSequence">
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#ac4b3452fdb54f26e2106afc2878de443" title="CConfigurableDomain\l::setElementSequence" alt="" coords="211,5,365,51"/>
+<area shape="rect" id="node5" href="$classCDomainConfiguration.html#ab78ce42dce46486dc3a340efed0d1806" title="CDomainConfiguration\l::setElementSequence" alt="" coords="413,5,568,51"/>
 </map>

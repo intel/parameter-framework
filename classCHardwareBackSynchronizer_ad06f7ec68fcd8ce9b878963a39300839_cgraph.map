@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement::fillSyncerSet" alt="" coords="429,5,664,35"/>
+<map id="CHardwareBackSynchronizer::CHardwareBackSynchronizer" name="CHardwareBackSynchronizer::CHardwareBackSynchronizer">
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="257,51,409,98"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="485,5,637,51"/>
+<area shape="rect" id="node7" href="$classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78" title="CConfigurableElement\l::fillSyncerSetFromDescendant" alt="" coords="460,98,663,145"/>
 </map>

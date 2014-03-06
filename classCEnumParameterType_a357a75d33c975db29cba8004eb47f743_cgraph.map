@@ -1,6 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="351,5,521,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="368,59,504,88"/>
-<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="365,112,507,141"/>
-<area shape="rect" id="node9" href="$classCEnumValuePair.html#a8936c702786702895a231eac2137f518" title="CEnumValuePair::getNumericalAsString" alt="" coords="308,165,564,195"/>
+<map id="CEnumParameterType::showProperties" name="CEnumParameterType::showProperties">
+<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="227,5,397,35"/>
+<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="244,59,380,88"/>
+<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="241,112,383,141"/>
+<area shape="rect" id="node9" href="$classCEnumValuePair.html#a8936c702786702895a231eac2137f518" title="CEnumValuePair::getNumerical\lAsString" alt="" coords="209,165,415,211"/>
+<area shape="rect" id="node11" href="$classCElement.html#aacdd6d54c10cd1494a820d78be779362" title="CElement::toString" alt="" coords="464,173,597,203"/>
 </map>

@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCStringParameter.html#a76f587f59ddcfd51704f55fd2fa88485" title="CStringParameter::setDefaultValues" alt="" coords="280,5,515,35"/>
-<area shape="rect" id="node5" href="$classCStringParameter.html#a0a729686dc483d1bf183408429c6e79e" title="CStringParameter::doSetValue" alt="" coords="297,59,497,88"/>
+<map id="CParameterBlackboard::writeString" name="CParameterBlackboard::writeString">
+<area shape="rect" id="node3" href="$classCStringParameter.html#a76f587f59ddcfd51704f55fd2fa88485" title="CStringParameter::setDefault\lValues" alt="" coords="215,5,409,51"/>
+<area shape="rect" id="node5" href="$classCStringParameter.html#a0a729686dc483d1bf183408429c6e79e" title="CStringParameter::doSetValue" alt="" coords="212,75,412,104"/>
 </map>

@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#afc1d1702f9553c6339bce6a649960ff3" title="CInstanceConfigurableElement::getKind" alt="" coords="241,5,495,35"/>
+<map id="CParameterHandle::getKind" name="CParameterHandle::getKind">
+<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#afc1d1702f9553c6339bce6a649960ff3" title="CInstanceConfigurableElement\l::getKind" alt="" coords="240,5,443,51"/>
+<area shape="rect" id="node5" href="$classCElement.html#aeed805fdf6faa98d8b54628177ddedc7" title="CElement::getKind" alt="" coords="492,13,623,43"/>
 </map>

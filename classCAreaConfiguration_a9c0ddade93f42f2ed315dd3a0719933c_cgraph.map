@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration::save" alt="" coords="244,5,415,35"/>
+<map id="CAreaConfiguration::validate" name="CAreaConfiguration::validate">
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="189,5,325,51"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="375,5,527,51"/>
 </map>

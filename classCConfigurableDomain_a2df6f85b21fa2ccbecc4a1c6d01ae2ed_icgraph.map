@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains::validate" alt="" coords="256,5,467,35"/>
+<map id="CConfigurableDomain::validate" name="CConfigurableDomain::validate">
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="205,23,363,70"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a01a82bb9c4cf79c7260553f776a5fe5b" title="Load plugins, structures and settings from the config file given. " alt="" coords="455,5,601,35"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#adcf3b67c47c21637a60d2b1df3970dcd" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="412,59,644,88"/>
 </map>

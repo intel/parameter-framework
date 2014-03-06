@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a12adc0972c24dc227d608a4e5b1d2cc3" title="CConfigurableDomains::removeConfigurableElementFromDomain" alt="" coords="377,5,780,35"/>
+<map id="CConfigurableDomain::removeConfigurableElement" name="CConfigurableDomain::removeConfigurableElement">
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a12adc0972c24dc227d608a4e5b1d2cc3" title="CConfigurableDomains\l::removeConfigurableElement\lFromDomain" alt="" coords="248,5,443,69"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a11c9c3048e2daae093af4bf47a0d516e" title="CParameterMgr::removeConfigurable\lElementFromDomain" alt="" coords="492,14,729,61"/>
 </map>

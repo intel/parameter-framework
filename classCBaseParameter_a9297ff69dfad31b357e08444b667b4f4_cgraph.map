@@ -1,4 +1,15 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#a4355916fa36efbe5fb62894d0a5dc95f" title="CInstanceConfigurableElement::checkPathExhausted" alt="" coords="260,5,593,35"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAsString" alt="" coords="316,59,537,88"/>
+<map id="CBaseParameter::accessValue" name="CBaseParameter::accessValue">
+<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#a4355916fa36efbe5fb62894d0a5dc95f" title="CInstanceConfigurableElement\l::checkPathExhausted" alt="" coords="259,75,461,122"/>
+<area shape="rect" id="node11" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAs\lString" alt="" coords="267,346,453,393"/>
+<area shape="rect" id="node5" href="$classCPathNavigator.html#afa8e9e639cd97f64439f4e95def21270" title="CPathNavigator::next" alt="" coords="541,5,688,35"/>
+<area shape="rect" id="node7" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="768,311,928,340"/>
+<area shape="rect" id="node9" href="$classCPathNavigator.html#acf16d0d71932122c082aa77862edb9fe" title="CPathNavigator::getCurrentPath" alt="" coords="509,109,720,139"/>
+<area shape="rect" id="node13" href="$classCBaseParameter.html#a1a6c4d30c3b0b320afad7a7622770fd4" title="CBaseParameter::doSetValue" alt="" coords="516,163,713,192"/>
+<area shape="rect" id="node15" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="539,215,691,262"/>
+<area shape="rect" id="node17" href="$classCParameterAccessContext.html#a8373a015bb145386732483ee3f6bdf63" title="CParameterAccessContext\l::getBaseOffset" alt="" coords="524,285,705,331"/>
+<area shape="rect" id="node19" href="$classCErrorContext.html#a734a4bbdc05bd3f62e9f26b5e598fe28" title="CErrorContext::appendToError" alt="" coords="516,355,713,384"/>
+<area shape="rect" id="node21" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="548,432,681,461"/>
+<area shape="rect" id="node24" href="$classCParameterAccessContext.html#ad073ad9ca128b5504f8a4a1d844c4e00" title="CParameterAccessContext\l::getAutoSync" alt="" coords="524,485,705,531"/>
+<area shape="rect" id="node26" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="CInstanceConfigurableElement\l::sync" alt="" coords="513,554,716,601"/>
+<area shape="rect" id="node29" href="$classCBaseParameter.html#a9d88a661dfc91a35da7c7aa16573f315" title="CBaseParameter::doGetValue" alt="" coords="516,624,713,653"/>
 </map>

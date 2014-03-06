@@ -1,6 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node15" href="$convert_8hpp.html" title="convert.hpp" alt="" coords="515,83,605,112"/>
-<area shape="rect" id="node18" href="$TestPlatform_8h.html" title="TestPlatform.h" alt="" coords="629,83,736,112"/>
-<area shape="rect" id="node20" href="$ParameterMgrPlatformConnector_8h.html" title="ParameterMgrPlatformConnector.h" alt="" coords="616,160,840,189"/>
-<area shape="rect" id="node23" href="$RemoteProcessorServer_8h.html" title="RemoteProcessorServer.h" alt="" coords="811,83,987,112"/>
+<map id="test/test&#45;platform/TestPlatform.cpp" name="test/test&#45;platform/TestPlatform.cpp">
+<area shape="rect" id="node15" href="$convert_8hpp.html" title="convert.hpp" alt="" coords="336,101,427,131"/>
+<area shape="rect" id="node24" href="$TestPlatform_8h.html" title="TestPlatform.h" alt="" coords="583,101,689,131"/>
+<area shape="rect" id="node26" href="$ParameterMgrPlatformConnector_8h.html" title="ParameterMgrPlatformConnector.h" alt="" coords="311,179,535,208"/>
+<area shape="rect" id="node36" href="$RemoteProcessorServer_8h.html" title="RemoteProcessorServer.h" alt="" coords="748,101,924,131"/>
+<area shape="rect" id="node28" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="559,179,796,208"/>
+<area shape="rect" id="node41" href="$RemoteProcessorServerInterface_8h.html" title="RemoteProcessorServerInterface.h" alt="" coords="1188,179,1415,208"/>
 </map>

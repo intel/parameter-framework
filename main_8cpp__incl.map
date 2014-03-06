@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$TestPlatform_8h.html" title="TestPlatform.h" alt="" coords="5,83,112,112"/>
+<map id="test/test&#45;platform/main.cpp" name="test/test&#45;platform/main.cpp">
+<area shape="rect" id="node3" href="$TestPlatform_8h.html" title="TestPlatform.h" alt="" coords="505,101,612,131"/>
+<area shape="rect" id="node5" href="$ParameterMgrPlatformConnector_8h.html" title="ParameterMgrPlatformConnector.h" alt="" coords="5,179,229,208"/>
+<area shape="rect" id="node7" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="253,179,491,208"/>
 </map>

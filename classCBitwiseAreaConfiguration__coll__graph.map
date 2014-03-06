@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html" title="CAreaConfiguration" alt="" coords="27,5,163,35"/>
+<map id="CBitwiseAreaConfiguration" name="CBitwiseAreaConfiguration">
+<area shape="rect" id="node2" href="$classCAreaConfiguration.html" title="CAreaConfiguration" alt="" coords="103,101,239,131"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="5,5,157,35"/>
+<area shape="rect" id="node6" href="$classCParameterBlackboard.html" title="CParameterBlackboard" alt="" coords="181,5,339,35"/>
 </map>

@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCPathNavigator.html#acf16d0d71932122c082aa77862edb9fe" title="CPathNavigator::getCurrentPath" alt="" coords="272,5,483,35"/>
-<area shape="rect" id="node5" href="$classCPathNavigator.html#afa8e9e639cd97f64439f4e95def21270" title="CPathNavigator::next" alt="" coords="304,59,451,88"/>
+<map id="CPathNavigator::navigateThrough" name="CPathNavigator::navigateThrough">
+<area shape="rect" id="node3" href="$classCPathNavigator.html#acf16d0d71932122c082aa77862edb9fe" title="CPathNavigator::getCurrentPath" alt="" coords="227,5,437,35"/>
+<area shape="rect" id="node5" href="$classCPathNavigator.html#afa8e9e639cd97f64439f4e95def21270" title="CPathNavigator::next" alt="" coords="259,59,405,88"/>
 </map>

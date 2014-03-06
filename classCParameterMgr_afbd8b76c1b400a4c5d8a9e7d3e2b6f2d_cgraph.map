@@ -1,6 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCPathNavigator.html#a744164dcc919914f94b53945fe57077f" title="CPathNavigator::navigateThrough" alt="" coords="260,5,479,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="299,59,440,88"/>
-<area shape="rect" id="node7" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="536,149,696,179"/>
-<area shape="rect" id="node9" href="$classCConfigurableElement.html#a99feacddce4ada751693027114cd86b2" title="CConfigurableElement::accessValue" alt="" coords="252,187,487,216"/>
+<map id="CParameterMgr::accessValue" name="CParameterMgr::accessValue">
+<area shape="rect" id="node3" href="$classCPathNavigator.html#a744164dcc919914f94b53945fe57077f" title="CPathNavigator::navigate\lThrough" alt="" coords="252,5,423,51"/>
+<area shape="rect" id="node9" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="267,219,408,248"/>
+<area shape="rect" id="node11" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="497,167,657,196"/>
+<area shape="rect" id="node13" href="$classCConfigurableElement.html#a99feacddce4ada751693027114cd86b2" title="CConfigurableElement\l::accessValue" alt="" coords="261,98,413,145"/>
+<area shape="rect" id="node5" href="$classCPathNavigator.html#acf16d0d71932122c082aa77862edb9fe" title="CPathNavigator::getCurrentPath" alt="" coords="472,7,683,36"/>
+<area shape="rect" id="node7" href="$classCPathNavigator.html#afa8e9e639cd97f64439f4e95def21270" title="CPathNavigator::next" alt="" coords="504,60,651,89"/>
+<area shape="rect" id="node17" href="$classCElement.html#a60abb7f8cc873cf16ccb64758128d2cf" title="CElement::findChild" alt="" coords="508,113,647,143"/>
 </map>

@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a01a82bb9c4cf79c7260553f776a5fe5b" title="Load plugins, structures and settings from the config file given." alt="" coords="304,5,451,35"/>
+<map id="CSelectionCriteria::listSelectionCriteria" name="CSelectionCriteria::listSelectionCriteria">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a01a82bb9c4cf79c7260553f776a5fe5b" title="Load plugins, structures and settings from the config file given. " alt="" coords="197,13,344,43"/>
+<area shape="rect" id="node5" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="393,5,615,51"/>
 </map>

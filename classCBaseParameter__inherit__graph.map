@@ -1,6 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node5" href="$classCBitParameter.html" title="CBitParameter" alt="" coords="5,160,112,189"/>
-<area shape="rect" id="node7" href="$classCParameter.html" title="CParameter" alt="" coords="136,160,227,189"/>
-<area shape="rect" id="node9" href="$classCStringParameter.html" title="CStringParameter" alt="" coords="251,160,376,189"/>
-<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html" title="CInstanceConfigurableElement" alt="" coords="80,5,283,35"/>
+<map id="CBaseParameter" name="CBaseParameter">
+<area shape="rect" id="node7" href="$classCBitParameter.html" title="CBitParameter" alt="" coords="5,237,112,267"/>
+<area shape="rect" id="node9" href="$classCParameter.html" title="CParameter" alt="" coords="136,237,227,267"/>
+<area shape="rect" id="node13" href="$classCStringParameter.html" title="CStringParameter" alt="" coords="251,237,376,267"/>
+<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html" title="CInstanceConfigurableElement" alt="" coords="80,83,283,112"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="105,5,257,35"/>
+<area shape="rect" id="node11" href="$classCArrayParameter.html" title="CArrayParameter" alt="" coords="120,315,243,344"/>
 </map>

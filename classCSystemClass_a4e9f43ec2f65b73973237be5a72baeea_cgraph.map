@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement.html#a554eadbec62a61eaff948cd81e22527b" title="CXmlElement::setNameAttribute" alt="" coords="208,5,421,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="244,59,385,88"/>
+<map id="CSystemClass::toXml" name="CSystemClass::toXml">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a554eadbec62a61eaff948cd81e22527b" title="CXmlElement::setNameAttribute" alt="" coords="208,13,421,43"/>
+<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="244,67,385,96"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a5f058114eaf97ccdbb625a56af223961" title="CXmlElement::setAttribute\lString" alt="" coords="469,5,648,51"/>
 </map>

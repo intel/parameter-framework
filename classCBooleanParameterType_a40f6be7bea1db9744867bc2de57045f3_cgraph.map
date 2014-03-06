@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="337,5,497,35"/>
-<area shape="rect" id="node5" href="$classCErrorContext.html#a734a4bbdc05bd3f62e9f26b5e598fe28" title="CErrorContext::appendToError" alt="" coords="319,59,516,88"/>
-<area shape="rect" id="node7" href="$classCBooleanParameterType.html#a49acb4d5347288c2581e03d4ae662ea1" title="CBooleanParameterType::getKind" alt="" coords="308,112,527,141"/>
+<map id="CBooleanParameterType::toBlackboard" name="CBooleanParameterType::toBlackboard">
+<area shape="rect" id="node3" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="241,5,401,35"/>
+<area shape="rect" id="node5" href="$classCErrorContext.html#a734a4bbdc05bd3f62e9f26b5e598fe28" title="CErrorContext::appendToError" alt="" coords="223,59,420,88"/>
+<area shape="rect" id="node7" href="$classCBooleanParameterType.html#a49acb4d5347288c2581e03d4ae662ea1" title="CBooleanParameterType\l::getKind" alt="" coords="237,111,405,158"/>
 </map>

@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator::next" alt="" coords="287,5,511,35"/>
+<map id="CXmlElement::getNbChildElements" name="CXmlElement::getNbChildElements">
+<area shape="rect" id="node3" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator\l::next" alt="" coords="285,5,477,51"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="525,13,725,43"/>
 </map>

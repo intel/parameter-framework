@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#adc8ff567677828757de60232ab9b24c2" title="Returns the element mapping corresponding to the path given in parameter." alt="" coords="359,5,607,35"/>
-<area shape="rect" id="node5" href="$classCSubsystemObject.html#ae18b34938c86c5eca33f8b5036404a7c" title="CSubsystemObject::getSubsystem" alt="" coords="369,59,596,88"/>
+<map id="CConfigurableElement::getBelongingSubsystem" name="CConfigurableElement::getBelongingSubsystem">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#adc8ff567677828757de60232ab9b24c2" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="239,5,439,51"/>
+<area shape="rect" id="node5" href="$classCSubsystemObject.html#ae18b34938c86c5eca33f8b5036404a7c" title="CSubsystemObject::getSubsystem" alt="" coords="225,75,452,104"/>
 </map>

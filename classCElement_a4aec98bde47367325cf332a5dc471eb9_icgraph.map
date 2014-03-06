@@ -1,5 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#ae599d24a2fb8509496460f13212b98f7" title="CConfigurableDomain::deleteConfiguration" alt="" coords="217,5,487,35"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a5624356eafb691b199045889169700c7" title="CConfigurableDomains::deleteDomain" alt="" coords="229,59,475,88"/>
-<area shape="rect" id="node7" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement::fromXml" alt="" coords="239,112,465,141"/>
+<map id="CElement::removeChild" name="CElement::removeChild">
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#ae599d24a2fb8509496460f13212b98f7" title="CConfigurableDomain\l::deleteConfiguration" alt="" coords="227,5,376,51"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomains.html#a5624356eafb691b199045889169700c7" title="CConfigurableDomains\l::deleteDomain" alt="" coords="223,74,380,121"/>
+<area shape="rect" id="node11" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="216,143,387,190"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a8a47486776b65e9a5f8237f21d607a0f" title="CConfigurableDomains\l::deleteConfiguration" alt="" coords="457,5,615,51"/>
+<area shape="rect" id="node9" href="$classCParameterMgr.html#a4edb788f313c3f1b29fb2145e366d977" title="CParameterMgr::deleteDomain" alt="" coords="435,83,637,112"/>
 </map>

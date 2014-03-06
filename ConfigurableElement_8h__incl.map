@@ -1,3 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="35,83,115,112"/>
+<map id="parameter/ConfigurableElement.h" name="parameter/ConfigurableElement.h">
+<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="266,83,346,112"/>
+<area shape="rect" id="node13" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="24,160,107,189"/>
+<area shape="rect" id="node15" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="131,160,227,189"/>
+<area shape="rect" id="node17" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="302,160,416,189"/>
 </map>

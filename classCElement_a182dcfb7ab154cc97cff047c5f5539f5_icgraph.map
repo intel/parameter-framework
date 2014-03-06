@@ -1,4 +1,10 @@
-<map id="G" name="G">
-<area shape="rect" id="node4" href="$classCElementLocator.html#aa887048674b224356ea784fa6b5e3968" title="CElementLocator::locate" alt="" coords="280,5,445,35"/>
-<area shape="rect" id="node6" href="$classCParameterMgr.html#a810d966739ee83e81f1a65f87faa60e3" title="Returns the CConfigurableElement corresponding to the path given in argument." alt="" coords="232,59,493,88"/>
+<map id="CElement::findDescendant" name="CElement::findDescendant">
+<area shape="rect" id="node4" href="$classCElementLocator.html#aa887048674b224356ea784fa6b5e3968" title="CElementLocator::locate" alt="" coords="256,152,421,181"/>
+<area shape="rect" id="node14" href="$classCParameterMgr.html#a810d966739ee83e81f1a65f87faa60e3" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="232,266,445,313"/>
+<area shape="rect" id="node6" href="$classCParameterMgr.html#ad969fe876378e0527be0b20b0188ae18" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="495,5,735,51"/>
+<area shape="rect" id="node8" href="$classCParameterMgr.html#a911fff638343b5079e038ac8553b27c5" title="CParameterMgr::addConfigurable\lElementToDomain" alt="" coords="507,74,723,121"/>
+<area shape="rect" id="node10" href="$classCParameterMgr.html#a11c9c3048e2daae093af4bf47a0d516e" title="CParameterMgr::removeConfigurable\lElementFromDomain" alt="" coords="496,143,733,190"/>
+<area shape="rect" id="node12" href="$classCParameterMgr.html#ac6c176a0e8101cd96b93a6f10f77b459" title="CParameterMgr::split" alt="" coords="541,213,688,243"/>
+<area shape="rect" id="node16" href="$classCParameterMgr.html#ac37a7da1bb20a8cfcae0ffa0519021ff" title="CParameterMgr::createParameter\lHandle" alt="" coords="505,266,724,313"/>
+<area shape="rect" id="node18" href="$classCParameterMgr.html#adc8ff567677828757de60232ab9b24c2" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="515,335,715,382"/>
 </map>

@@ -1,5 +1,26 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$ParameterAccessContext_8h.html" title="parameter/ParameterAccessContext.h" alt="" coords="5,83,251,112"/>
-<area shape="rect" id="node5" href="$Element_8cpp.html" title="parameter/Element.cpp" alt="" coords="275,83,432,112"/>
-<area shape="rect" id="node7" href="$ErrorContext_8cpp.html" title="parameter/ErrorContext.cpp" alt="" coords="456,83,637,112"/>
+<map id="parameter/ErrorContext.h" name="parameter/ErrorContext.h">
+<area shape="rect" id="node3" href="$ParameterAccessContext_8h.html" title="parameter/ParameterAccess\lContext.h" alt="" coords="1556,83,1743,130"/>
+<area shape="rect" id="node55" href="$Element_8cpp.html" title="parameter/Element.cpp" alt="" coords="1767,92,1924,121"/>
+<area shape="rect" id="node57" href="$ErrorContext_8cpp.html" title="parameter/ErrorContext.cpp" alt="" coords="1948,92,2129,121"/>
+<area shape="rect" id="node5" href="$ConfigurationAccessContext_8h.html" title="parameter/ConfigurationAccess\lContext.h" alt="" coords="693,179,899,226"/>
+<area shape="rect" id="node7" href="$ArrayParameter_8cpp.html" title="parameter/ArrayParameter.cpp" alt="" coords="5,284,205,313"/>
+<area shape="rect" id="node9" href="$BaseParameter_8cpp.html" title="parameter/BaseParameter.cpp" alt="" coords="229,284,427,313"/>
+<area shape="rect" id="node11" href="$BitParameter_8cpp.html" title="parameter/BitParameter.cpp" alt="" coords="451,284,635,313"/>
+<area shape="rect" id="node13" href="$FixedPointParameterType_8cpp.html" title="parameter/FixedPointParameter\lType.cpp" alt="" coords="659,275,864,322"/>
+<area shape="rect" id="node15" href="$Parameter_8cpp.html" title="parameter/Parameter.cpp" alt="" coords="888,284,1056,313"/>
+<area shape="rect" id="node17" href="$StringParameter_8cpp.html" title="parameter/StringParameter.cpp" alt="" coords="1080,284,1283,313"/>
+<area shape="rect" id="node19" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="1307,284,1480,313"/>
+<area shape="rect" id="node24" href="$BitParameterBlock_8cpp.html" title="parameter/BitParameterBlock.cpp" alt="" coords="1075,188,1293,217"/>
+<area shape="rect" id="node26" href="$BitParameterType_8cpp.html" title="parameter/BitParameterType.cpp" alt="" coords="1317,188,1531,217"/>
+<area shape="rect" id="node28" href="$BooleanParameterType_8cpp.html" title="parameter/BooleanParameter\lType.cpp" alt="" coords="1555,179,1744,226"/>
+<area shape="rect" id="node30" href="$EnumParameterType_8cpp.html" title="parameter/EnumParameterType.cpp" alt="" coords="1768,188,2000,217"/>
+<area shape="rect" id="node33" href="$InstanceConfigurableElement_8cpp.html" title="parameter/InstanceConfigurable\lElement.cpp" alt="" coords="2024,179,2229,226"/>
+<area shape="rect" id="node35" href="$IntegerParameterType_8cpp.html" title="parameter/IntegerParameter\lType.cpp" alt="" coords="2253,179,2437,226"/>
+<area shape="rect" id="node38" href="$ParameterAccessContext_8cpp.html" title="parameter/ParameterAccess\lContext.cpp" alt="" coords="2461,179,2648,226"/>
+<area shape="rect" id="node40" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="2672,188,2883,217"/>
+<area shape="rect" id="node42" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="3024,284,3213,313"/>
+<area shape="rect" id="node44" href="$SimulatedBackSynchronizer_8h.html" title="parameter/SimulatedBackSynchronizer.h" alt="" coords="2907,188,3165,217"/>
+<area shape="rect" id="node47" href="$ParameterType_8cpp.html" title="parameter/ParameterType.cpp" alt="" coords="3240,188,3437,217"/>
+<area shape="rect" id="node51" href="$SubsystemObject_8cpp.html" title="parameter/SubsystemObject.cpp" alt="" coords="3461,188,3675,217"/>
+<area shape="rect" id="node53" href="$VirtualSyncer_8cpp.html" title="parameter/VirtualSyncer.cpp" alt="" coords="3699,188,3885,217"/>
 </map>

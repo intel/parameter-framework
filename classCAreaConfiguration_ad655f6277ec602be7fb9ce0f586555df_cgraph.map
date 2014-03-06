@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917" title="CAreaConfiguration::isValid" alt="" coords="315,5,496,35"/>
-<area shape="rect" id="node5" href="$classCParameterBlackboard.html#ad6a2b3fd050432c1e050347222544915" title="CParameterBlackboard::restoreFrom" alt="" coords="288,59,523,88"/>
+<map id="CAreaConfiguration::validateAgainst" name="CAreaConfiguration::validateAgainst">
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917" title="CAreaConfiguration\l::isValid" alt="" coords="200,5,336,51"/>
+<area shape="rect" id="node5" href="$classCParameterBlackboard.html#ad6a2b3fd050432c1e050347222544915" title="CParameterBlackboard\l::restoreFrom" alt="" coords="189,74,347,121"/>
 </map>

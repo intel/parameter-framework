@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCRuleParser.html#ac741b7f66a80e711e799577079466a07" title="CRuleParser::parse" alt="" coords="257,5,393,35"/>
+<map id="CSelectionCriterionRule::parse" name="CSelectionCriterionRule::parse">
+<area shape="rect" id="node3" href="$classCRuleParser.html#ac741b7f66a80e711e799577079466a07" title="CRuleParser::parse" alt="" coords="217,13,353,43"/>
+<area shape="rect" id="node5" href="$classCDomainConfiguration.html#a3934726d7dcfdd240c8beea57f268fd4" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="403,5,557,51"/>
 </map>

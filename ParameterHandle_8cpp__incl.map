@@ -1,8 +1,20 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$ParameterHandle_8h.html" title="ParameterHandle.h" alt="" coords="5,83,139,112"/>
-<area shape="rect" id="node5" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="163,83,344,112"/>
-<area shape="rect" id="node7" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="368,83,491,112"/>
-<area shape="rect" id="node9" href="$Subsystem_8h.html" title="Subsystem.h" alt="" coords="515,83,613,112"/>
-<area shape="rect" id="node13" href="$ParameterMgr_8h.html" title="ParameterMgr.h" alt="" coords="731,83,845,112"/>
-<area shape="rect" id="node15" href="$AutoLock_8h.html" title="AutoLock.h" alt="" coords="869,83,957,112"/>
+<map id="parameter/ParameterHandle.cpp" name="parameter/ParameterHandle.cpp">
+<area shape="rect" id="node3" href="$ParameterHandle_8h.html" title="ParameterHandle.h" alt="" coords="597,392,731,421"/>
+<area shape="rect" id="node11" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="155,315,336,344"/>
+<area shape="rect" id="node17" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="1435,83,1557,112"/>
+<area shape="rect" id="node38" href="$Subsystem_8h.html" title="Subsystem.h" alt="" coords="288,160,387,189"/>
+<area shape="rect" id="node53" href="$ParameterMgr_8h.html" title="ParameterMgr.h" alt="" coords="773,83,888,112"/>
+<area shape="rect" id="node82" href="$AutoLock_8h.html" title="AutoLock.h" alt="" coords="461,83,549,112"/>
+<area shape="rect" id="node14" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="163,392,269,421"/>
+<area shape="rect" id="node21" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="1223,160,1425,189"/>
+<area shape="rect" id="node23" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="1013,237,1168,267"/>
+<area shape="rect" id="node25" href="$Element_8h.html" title="Element.h" alt="" coords="867,315,947,344"/>
+<area shape="rect" id="node32" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="755,392,869,421"/>
+<area shape="rect" id="node41" href="$Mapper_8h.html" title="Mapper.h" alt="" coords="5,315,80,344"/>
+<area shape="rect" id="node44" href="$MappingContext_8h.html" title="MappingContext.h" alt="" coords="445,392,573,421"/>
+<area shape="rect" id="node61" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="1395,315,1632,344"/>
+<area shape="rect" id="node65" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="773,237,939,267"/>
+<area shape="rect" id="node70" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="901,160,1037,189"/>
+<area shape="rect" id="node76" href="$XmlDocSink_8h.html" title="XmlDocSink.h" alt="" coords="611,160,717,189"/>
+<area shape="rect" id="node78" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="477,237,597,267"/>
 </map>

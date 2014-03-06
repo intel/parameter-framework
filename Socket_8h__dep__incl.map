@@ -1,6 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$ConnectionSocket_8h.html" title="remote&#45;processor/ConnectionSocket.h" alt="" coords="5,83,251,112"/>
-<area shape="rect" id="node5" href="$ListeningSocket_8h.html" title="remote&#45;processor/ListeningSocket.h" alt="" coords="275,83,504,112"/>
-<area shape="rect" id="node7" href="$Message_8cpp.html" title="remote&#45;processor/Message.cpp" alt="" coords="528,83,733,112"/>
-<area shape="rect" id="node9" href="$Socket_8cpp.html" title="remote&#45;processor/Socket.cpp" alt="" coords="757,83,949,112"/>
+<map id="remote&#45;processor/Socket.h" name="remote&#45;processor/Socket.h">
+<area shape="rect" id="node3" href="$ConnectionSocket_8h.html" title="remote&#45;processor/Connection\lSocket.h" alt="" coords="5,83,197,130"/>
+<area shape="rect" id="node7" href="$ListeningSocket_8h.html" title="remote&#45;processor/Listening\lSocket.h" alt="" coords="221,83,400,130"/>
+<area shape="rect" id="node13" href="$Message_8cpp.html" title="remote&#45;processor/Message.cpp" alt="" coords="424,92,629,121"/>
+<area shape="rect" id="node15" href="$Socket_8cpp.html" title="remote&#45;processor/Socket.cpp" alt="" coords="653,92,845,121"/>
+<area shape="rect" id="node5" href="$ConnectionSocket_8cpp.html" title="remote&#45;processor/Connection\lSocket.cpp" alt="" coords="5,179,197,226"/>
+<area shape="rect" id="node9" href="$ListeningSocket_8cpp.html" title="remote&#45;processor/Listening\lSocket.cpp" alt="" coords="221,179,400,226"/>
+<area shape="rect" id="node11" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="424,179,656,226"/>
 </map>

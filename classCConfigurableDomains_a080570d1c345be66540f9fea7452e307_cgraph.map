@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="352,5,523,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="369,59,505,88"/>
-<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="367,112,508,141"/>
-<area shape="rect" id="node9" href="$classCConfigurableDomain.html#a641075b0516177e468168bcf732b0f73" title="CConfigurableDomain::getSequenceAwareness" alt="" coords="288,165,587,195"/>
+<map id="CConfigurableDomains::listDomains" name="CConfigurableDomains::listDomains">
+<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="211,5,381,35"/>
+<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="228,59,364,88"/>
+<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="225,112,367,141"/>
+<area shape="rect" id="node9" href="$classCConfigurableDomain.html#a641075b0516177e468168bcf732b0f73" title="CConfigurableDomain\l::getSequenceAwareness" alt="" coords="211,165,381,211"/>
 </map>

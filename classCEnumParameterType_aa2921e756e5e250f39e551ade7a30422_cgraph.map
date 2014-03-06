@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterType.html#ac32b37965ef213b6a8df9656b37596df" title="Sign extension (32 bits)" alt="" coords="296,5,491,35"/>
-<area shape="rect" id="node5" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="313,59,473,88"/>
-<area shape="rect" id="node7" href="$classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a" title="CParameterType::isEncodable" alt="" coords="293,112,493,141"/>
+<map id="CEnumParameterType::toBlackboard" name="CEnumParameterType::toBlackboard">
+<area shape="rect" id="node3" href="$classCParameterType.html#ac32b37965ef213b6a8df9656b37596df" title="Sign extension (32 bits) " alt="" coords="211,5,405,35"/>
+<area shape="rect" id="node5" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="228,59,388,88"/>
+<area shape="rect" id="node7" href="$classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a" title="CParameterType::isEncodable" alt="" coords="208,112,408,141"/>
 </map>

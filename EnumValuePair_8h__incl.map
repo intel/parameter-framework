@@ -1,3 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="57,83,137,112"/>
+<map id="parameter/EnumValuePair.h" name="parameter/EnumValuePair.h">
+<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="223,83,303,112"/>
+<area shape="rect" id="node13" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="361,160,444,189"/>
+<area shape="rect" id="node15" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="468,160,564,189"/>
+<area shape="rect" id="node17" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="111,160,225,189"/>
 </map>

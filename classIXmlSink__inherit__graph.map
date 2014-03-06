@@ -1,4 +1,19 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCElement.html" title="CElement" alt="" coords="5,83,85,112"/>
-<area shape="rect" id="node5" href="$classCMappingData.html" title="CMappingData" alt="" coords="109,83,219,112"/>
+<map id="IXmlSink" name="IXmlSink">
+<area shape="rect" id="node3" href="$classCElement.html" title="CElement" alt="" coords="143,379,223,408"/>
+<area shape="rect" id="node35" href="$classCMappingData.html" title="CMappingData" alt="" coords="128,432,237,461"/>
+<area shape="rect" id="node5" href="$classCBinarySerializableElement.html" title="CBinarySerializableElement" alt="" coords="311,5,495,35"/>
+<area shape="rect" id="node7" href="$classCComponentLibrary.html" title="CComponentLibrary" alt="" coords="333,59,472,88"/>
+<area shape="rect" id="node9" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="327,112,479,141"/>
+<area shape="rect" id="node11" href="$classCEnumValuePair.html" title="CEnumValuePair" alt="" coords="341,165,464,195"/>
+<area shape="rect" id="node13" href="$classCKindElement.html" title="CKindElement" alt="" coords="349,219,456,248"/>
+<area shape="rect" id="node15" href="$classCParameterAdaptation.html" title="CParameterAdaptation" alt="" coords="325,272,480,301"/>
+<area shape="rect" id="node17" href="$classCParameterFrameworkConfiguration.html" title="CParameterFrameworkConfiguration" alt="" coords="285,325,520,355"/>
+<area shape="rect" id="node19" href="$classCParameterMgr.html" title="CParameterMgr" alt="" coords="345,379,460,408"/>
+<area shape="rect" id="node21" href="$classCRule.html" title="CRule" alt="" coords="373,432,432,461"/>
+<area shape="rect" id="node23" href="$classCSelectionCriteria.html" title="CSelectionCriteria" alt="" coords="339,485,467,515"/>
+<area shape="rect" id="node25" href="$classCSelectionCriteriaDefinition.html" title="CSelectionCriteriaDefinition" alt="" coords="312,539,493,568"/>
+<area shape="rect" id="node27" href="$classCSelectionCriterion.html" title="CSelectionCriterion" alt="" coords="336,592,469,621"/>
+<area shape="rect" id="node29" href="$classCSelectionCriterionLibrary.html" title="CSelectionCriterionLibrary" alt="" coords="316,645,489,675"/>
+<area shape="rect" id="node31" href="$classCSelectionCriterionType.html" title="CSelectionCriterionType" alt="" coords="321,699,484,728"/>
+<area shape="rect" id="node33" href="$classCTypeElement.html" title="CTypeElement" alt="" coords="348,752,457,781"/>
 </map>

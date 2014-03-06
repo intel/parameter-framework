@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration::split" alt="" coords="288,5,475,35"/>
+<map id="CAreaConfiguration::copyFromOuter" name="CAreaConfiguration::copyFromOuter">
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration\l::split" alt="" coords="189,5,344,51"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#ab46c928e95685ce035fcde43b15fc454" title="CConfigurableDomain\l::split" alt="" coords="393,5,543,51"/>
 </map>

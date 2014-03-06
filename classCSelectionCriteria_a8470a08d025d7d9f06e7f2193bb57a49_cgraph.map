@@ -1,4 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria::getSelectionCriteriaDefinition" alt="" coords="308,5,612,35"/>
-<area shape="rect" id="node5" href="$classCSelectionCriteriaDefinition.html#afd90c898acdd1251a4b5ffd931c46b2b" title="CSelectionCriteriaDefinition::resetModifiedStatus" alt="" coords="307,59,613,88"/>
+<map id="CSelectionCriteria::resetModifiedStatus" name="CSelectionCriteria::resetModifiedStatus">
+<area shape="rect" id="node3" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="201,5,399,51"/>
+<area shape="rect" id="node7" href="$classCSelectionCriteriaDefinition.html#afd90c898acdd1251a4b5ffd931c46b2b" title="CSelectionCriteriaDefinition\l::resetModifiedStatus" alt="" coords="209,74,391,121"/>
+<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="465,21,601,51"/>
+<area shape="rect" id="node9" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="448,79,619,108"/>
+<area shape="rect" id="node12" href="$classCSelectionCriterion.html#a1faf6f53f52122588d3b012e29e7d635" title="CSelectionCriterion\l::resetModifiedStatus" alt="" coords="460,131,607,178"/>
 </map>

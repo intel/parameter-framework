@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="361,5,572,35"/>
+<map id="CXmlDocSource::getRootElementAttributeString" name="CXmlDocSource::getRootElementAttributeString">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="277,5,456,51"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="504,13,685,43"/>
 </map>

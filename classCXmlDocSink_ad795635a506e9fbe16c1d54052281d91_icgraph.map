@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#adcf3b67c47c21637a60d2b1df3970dcd" title="Method that imports Configurable Domains from an Xml source." alt="" coords="215,5,447,35"/>
-<area shape="rect" id="node5" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement::fromXml" alt="" coords="217,59,444,88"/>
+<map id="CXmlDocSink::process" name="CXmlDocSink::process">
+<area shape="rect" id="node3" href="$classCParameterMgr.html#adcf3b67c47c21637a60d2b1df3970dcd" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="215,5,447,35"/>
+<area shape="rect" id="node5" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="245,58,416,105"/>
 </map>

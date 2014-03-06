@@ -1,8 +1,12 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classCXmlElement.html#a32a3255da1b10a29698ecf33dc693edb" title="CXmlElement::getAttributeInteger" alt="" coords="301,5,520,35"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttributeString" alt="" coords="577,32,788,61"/>
-<area shape="rect" id="node7" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext::setError" alt="" coords="304,109,517,139"/>
-<area shape="rect" id="node9" href="$classCFixedPointParameterType.html#ae9b48934e686faecefd25163ba3921f3" title="CFixedPointParameterType::getKind" alt="" coords="293,163,528,192"/>
-<area shape="rect" id="node11" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="333,240,488,269"/>
-<area shape="rect" id="node15" href="$classCParameterType.html#a001697bcc5a0c57d1e8021cd3898313a" title="CParameterType::setSize" alt="" coords="324,293,497,323"/>
+<map id="CFixedPointParameterType::fromXml" name="CFixedPointParameterType::fromXml">
+<area shape="rect" id="node3" href="$classCXmlElement.html#a32a3255da1b10a29698ecf33dc693edb" title="CXmlElement::getAttribute\lInteger" alt="" coords="488,5,667,51"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="733,91,912,138"/>
+<area shape="rect" id="node9" href="$classCXmlSerializingContext.html#aa0773dcfd7257dfc12f2f4701d6c5425" title="CXmlSerializingContext\l::setError" alt="" coords="249,125,409,171"/>
+<area shape="rect" id="node11" href="$classCFixedPointParameterType.html#ae9b48934e686faecefd25163ba3921f3" title="CFixedPointParameterType\l::getKind" alt="" coords="239,194,420,241"/>
+<area shape="rect" id="node13" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="252,288,407,317"/>
+<area shape="rect" id="node25" href="$classCParameterType.html#a001697bcc5a0c57d1e8021cd3898313a" title="CParameterType::setSize" alt="" coords="243,341,416,371"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="960,187,1141,216"/>
+<area shape="rect" id="node15" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="499,325,656,355"/>
+<area shape="rect" id="node18" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="471,140,684,169"/>
+<area shape="rect" id="node21" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="471,221,684,251"/>
 </map>

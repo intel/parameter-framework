@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$TestPlatform_8cpp.html" title="test/test&#45;platform/TestPlatform.cpp" alt="" coords="5,83,229,112"/>
-<area shape="rect" id="node5" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessorServer.cpp" alt="" coords="253,83,547,112"/>
-<area shape="rect" id="node7" href="$RemoteProcessorServerBuilder_8cpp.html" title="remote&#45;processor/RemoteProcessorServerBuilder.cpp" alt="" coords="571,83,904,112"/>
+<map id="remote&#45;processor/RemoteProcessorServer.h" name="remote&#45;processor/RemoteProcessorServer.h">
+<area shape="rect" id="node3" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="5,102,131,149"/>
+<area shape="rect" id="node5" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="155,102,387,149"/>
+<area shape="rect" id="node7" href="$RemoteProcessorServerBuilder_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServerBuilder.cpp" alt="" coords="411,102,643,149"/>
 </map>
