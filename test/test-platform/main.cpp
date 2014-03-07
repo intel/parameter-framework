@@ -153,10 +153,25 @@ static bool startDaemonTestPlatform(const char *filePath, int portNumber, string
     }
 }
 
-static void usage()
+static void showUsage()
 {
-    cerr << "Invalid arguments: test-platform [-d] <file path> [port number, default "
+    cerr << "test-platform [-dh] <file path> [port number, default "
          << iDefaultPortNumber << "]" << endl;
+}
+
+static void showInvalidUsage()
+{
+    cerr << "Invalid arguments: ";
+    showUsage();
+}
+
+static void showHelp()
+{
+    showUsage();
+    cerr << "<file path> must be a valid .xml file, oftenly ParameterFrameworkConfiguration.xml" << endl;
+    cerr << "Arguments:" << endl
+        << "    -d  starts as a deamon" << endl
+        << "    -h  display this help and exit" << endl;
 }
 
 int main(int argc, char *argv[])
@@ -174,15 +189,17 @@ int main(int argc, char *argv[])
     int indexFilePath = 1;
 
     // Handle the -d option
-    while ((opt = getopt(argc, argv, "d")) != -1) {
+    while ((opt = getopt(argc, argv, "dh")) != -1) {
         switch (opt) {
         case 'd':
             isDaemon = true;
             indexFilePath = 2;
             break;
-
+        case 'h':
+            showHelp();
+            return 0;
         default:
-            usage();
+            showInvalidUsage();
             return -1;
         }
     }
@@ -190,7 +207,7 @@ int main(int argc, char *argv[])
     // Check the number of arguments
     if ((argc < indexFilePath + 1) || (argc > indexFilePath + 2)) {
 
-        usage();
+        showInvalidUsage();
         return -1;
     }
 
