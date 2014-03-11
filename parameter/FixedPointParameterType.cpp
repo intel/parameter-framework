@@ -197,9 +197,27 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
         double dData = asDouble(iData);
 
         // Set up the precision of the display and notation type
+        // For a Qn.m number, the step between each storable number is 2^(-m).
+        // Hence, on a decimal representation, the Dth digit after the decimal
+        // point can take all possible values (1..9) - meaning that it is
+        // significant - only if
+        //
+        //         2^(-m) <= 10^(-D)
+        //             -m <= log2(10^(-D))
+        //             -m <= log10(10^(-D)) / log10(2)
+        //             -m <= -D / log10(2)
+        //   m * log10(2) >= D
+        //
+        // Conversly, the Dth digit can be represented if
+        //
+        //   D <= m * log10(2)
+        //
+        // Since floor(x) <= x, we can write (replacing D with iPrecision and m
+        // with _uiFractional) this next line.
+        // (we add 1 to avoid losing precision even though this last digit is
+        // not 100% significant)
         int iPrecision = (_uiFractional  * log10(2.0)) + 1;
-        int iFactor = pow(10.0, iPrecision);
-        strStream << fixed << ((int64_t)(dData * iFactor)) / (double)iFactor;
+        strStream << fixed << setprecision(iPrecision) << dData;
     }
 
     strValue = strStream.str();
@@ -316,8 +334,11 @@ bool CFixedPointParameterType::checkValueAgainstRange(double dValue) const
 int32_t CFixedPointParameterType::asInteger(double dValue) const
 {
     // Do the conversion
-    int32_t iData = (int32_t)(dValue * (1UL << _uiFractional) + 0.5F - (double)(dValue < 0));
+    // For Qn.m number, multiply by 2^n and round to the nearest integer
+    int32_t iData = (int32_t)(round(dValue * (1UL << _uiFractional)));
     // Left justify
+    // For a Qn.m number, shift 32 - (n + m + 1) bits to the left (the rest of
+    // the bits aren't used)
     iData <<= getSize() * 8 - getUtilSizeInBits();
 
     return iData;
