@@ -19,3 +19,4 @@ add_subdirectory(remote-process)
 add_subdirectory(test/test-platform)
 
 add_subdirectory(tools/xmlGenerator)
+add_subdirectory(tools/xmlValidator)
