@@ -34,7 +34,7 @@
 
 extern "C"
 {
-void getSkeletonSusbystemBuilder(CSubsystemLibrary* pSubsystemLibrary)
+void getSKELETONSubsystemBuilder(CSubsystemLibrary* pSubsystemLibrary)
 {
     pSubsystemLibrary->addElementBuilder("Skeleton", new TNamedElementBuilderTemplate<CSkeletonSubsystem>());
 }
