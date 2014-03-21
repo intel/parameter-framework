@@ -34,6 +34,15 @@
 
 extern "C"
 {
+/**
+ * CARE: the naming convention used in the parameter framework:
+ *
+ * A plugin file name is of the form:
+ * lib<type>-subsystem.so or lib<type>-subsystem._host.so
+ *
+ * The plugin symbol is of the form:
+ * get<TYPE>SubsystemBuilder
+*/
 void getSKELETONSubsystemBuilder(CSubsystemLibrary* pSubsystemLibrary)
 {
     pSubsystemLibrary->addElementBuilder("Skeleton", new TNamedElementBuilderTemplate<CSkeletonSubsystem>());
