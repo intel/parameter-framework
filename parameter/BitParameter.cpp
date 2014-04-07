@@ -113,12 +113,17 @@ bool CBitParameter::accessAsInteger(uint64_t& uiValue, bool bSet, CParameterAcce
 
     if (bSet) {
 
-        // Set and sync
-        if (!doSet(uiValue, uiOffset, parameterAccessContext) || !sync(parameterAccessContext)) {
+        // Set Value
+        if (!doSet(uiValue, uiOffset, parameterAccessContext)) {
 
             // Append parameter path to error
             parameterAccessContext.appendToError(" " + getPath());
+            return false;
+        }
+        // Synchronize
+        if (!sync(parameterAccessContext)) {
 
+            parameterAccessContext.appendToError(" " + getPath());
             return false;
         }
     } else {

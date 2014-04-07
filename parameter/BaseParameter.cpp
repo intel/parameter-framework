@@ -51,7 +51,6 @@ bool CBaseParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsE
 
             // Append parameter path to error
             configurationAccessContext.appendToError(" " + getPath());
-
             return false;
         }
     } else {
@@ -180,15 +179,13 @@ bool CBaseParameter::accessAsString(string& strValue, bool bSet, CParameterAcces
 
             // Append parameter path to error
             parameterAccessContext.appendToError(" " + getPath());
-
             return false;
         }
         // Synchronize
-        if (parameterAccessContext.getAutoSync() && !sync(parameterAccessContext)) {
+        if (!sync(parameterAccessContext)) {
 
             // Append parameter path to error
             parameterAccessContext.appendToError(" " + getPath());
-
             return false;
         }
 

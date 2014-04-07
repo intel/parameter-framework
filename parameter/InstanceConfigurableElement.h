@@ -104,8 +104,18 @@ protected:
     virtual ISyncer* getSyncer() const;
     // Syncer set (descendant)
     virtual void fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const;
-    // Sync
+
+    /**
+     * Performs the sync if the AutoSync is enabled.
+     * If AutoSync is disabled, any call to sync will returns true, even if synchronization has not
+     * been done. It will happen when the AutoSync will be switched back on.
+     *
+     * @param[in:out] parameterAccessContext Parameter access context object
+     *
+     * @return true if the synchronization succeded or if the AutoSync is off, false otherwise.
+     */
     bool sync(CParameterAccessContext& parameterAccessContext) const;
+
     // Check parameter access path well formed for leaf elements
     static bool checkPathExhausted(CPathNavigator& pathNavigator, CErrorContext& errorContext);
 private:

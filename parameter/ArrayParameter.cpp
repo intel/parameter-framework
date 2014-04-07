@@ -119,11 +119,10 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
         }
 
         // Synchronize
-        if (parameterAccessContext.getAutoSync() && !sync(parameterAccessContext)) {
+        if (!sync(parameterAccessContext)) {
 
             // Append parameter path to error
             parameterAccessContext.appendToError(" " + getPath());
-
             return false;
         }
     } else {
@@ -326,28 +325,31 @@ void CArrayParameter::getValues(uint32_t uiBaseOffset, string& strValues, CParam
 template <typename type>
 bool CArrayParameter::accessValues(vector<type>& values, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
-    bool bSuccess;
-
     if (bSet) {
 
-        if  (setValues(values, parameterAccessContext)) {
+        // Set Value
+        if (!setValues(values, parameterAccessContext)) {
 
-            // Synchronize
-            bSuccess = sync(parameterAccessContext);
-        } else {
+            // Append parameter path to error
+            parameterAccessContext.appendToError(" " + getPath());
+            return false;
+        }
+        if (!sync(parameterAccessContext)) {
 
-            bSuccess = false;
+            // Append parameter path to error
+            parameterAccessContext.appendToError(" " + getPath());
+            return false;
         }
     } else {
+        // Get Value
+        if (!getValues(values, parameterAccessContext)) {
 
-        bSuccess = getValues(values, parameterAccessContext);
+            // Append parameter path to error
+            parameterAccessContext.appendToError(" " + getPath());
+            return false;
+        }
     }
-    if (!bSuccess) {
-
-        // Append parameter path to error
-        parameterAccessContext.appendToError(" " + getPath());
-    }
-    return bSuccess;
+    return true;
 }
 
 template <typename type>

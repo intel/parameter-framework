@@ -175,9 +175,14 @@ void CInstanceConfigurableElement::fillSyncerSetFromDescendant(CSyncerSet& synce
     }
 }
 
-// Sync
 bool CInstanceConfigurableElement::sync(CParameterAccessContext& parameterAccessContext) const
 {
+    if (!parameterAccessContext.getAutoSync()) {
+
+        // AutoSync is disabled, do not perform the sync.
+        // This is not an error, but the expected behavior so return true anyway.
+        return true;
+    }
     ISyncer* pSyncer = getSyncer();
 
     if (!pSyncer) {
@@ -211,4 +216,3 @@ bool CInstanceConfigurableElement::checkPathExhausted(CPathNavigator& pathNaviga
     }
     return true;
 }
-
