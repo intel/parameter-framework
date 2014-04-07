@@ -49,8 +49,7 @@ bool CBaseParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsE
         // Write to blackboard
         if (!doSetValue(xmlConfigurationSettingsElementContent.getTextContent(), getOffset() - configurationAccessContext.getBaseOffset(), configurationAccessContext)) {
 
-            // Append parameter path to error
-            configurationAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(configurationAccessContext);
             return false;
         }
     } else {
@@ -177,15 +176,13 @@ bool CBaseParameter::accessAsString(string& strValue, bool bSet, CParameterAcces
         // Set Value
         if (!doSetValue(strValue, getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext)) {
 
-            // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
         // Synchronize
         if (!sync(parameterAccessContext)) {
 
-            // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
 
@@ -226,4 +223,11 @@ void CBaseParameter::toXml(CXmlElement& xmlElement, CXmlSerializingContext& seri
 
     // Delegate to type element
     getTypeElement()->toXml(xmlElement, serializingContext);
+}
+
+
+void CBaseParameter::appendParameterPathToError(CParameterAccessContext& parameterAccessContext)
+const
+{
+    parameterAccessContext.appendToError(" " + getPath());
 }

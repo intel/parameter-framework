@@ -79,8 +79,7 @@ bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCon
     if (static_cast<const CBitParameterType*>(getTypeElement())->getBitSize() != 1) {
 
         parameterAccessContext.setError("Type mismatch");
-        // Append parameter path to error
-        parameterAccessContext.appendToError(" " + getPath());
+        appendParameterPathToError(parameterAccessContext);
 
         return false;
     }
@@ -116,14 +115,13 @@ bool CBitParameter::accessAsInteger(uint64_t& uiValue, bool bSet, CParameterAcce
         // Set Value
         if (!doSet(uiValue, uiOffset, parameterAccessContext)) {
 
-            // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
         // Synchronize
         if (!sync(parameterAccessContext)) {
 
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
     } else {

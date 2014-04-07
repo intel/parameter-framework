@@ -121,8 +121,7 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
         // Synchronize
         if (!sync(parameterAccessContext)) {
 
-            // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
     } else {
@@ -330,22 +329,19 @@ bool CArrayParameter::accessValues(vector<type>& values, bool bSet, CParameterAc
         // Set Value
         if (!setValues(values, parameterAccessContext)) {
 
-            // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
         if (!sync(parameterAccessContext)) {
 
-            // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
     } else {
         // Get Value
         if (!getValues(values, parameterAccessContext)) {
 
-            // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
     }

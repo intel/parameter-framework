@@ -130,15 +130,14 @@ bool CParameter::doAccess(type& value, bool bSet,
         if (!doSet(value, getOffset() - parameterAccessContext.getBaseOffset(),
                    parameterAccessContext)) {
 
-            // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
 
         }
         // Synchronize
         if (!sync(parameterAccessContext)){
 
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
     } else {
@@ -146,8 +145,7 @@ bool CParameter::doAccess(type& value, bool bSet,
         if (!doGet(value, getOffset() - parameterAccessContext.getBaseOffset(),
                    parameterAccessContext)) {
 
-            // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath());
+            appendParameterPathToError(parameterAccessContext);
             return false;
         }
     }
