@@ -112,8 +112,7 @@ bool CFixedPointParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerial
 
 bool CFixedPointParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    // Hexa
-    bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
+    bool bValueProvidedAsHexa = isHexadecimal(strValue);
 
     // Check data integrity
     if (bValueProvidedAsHexa && !parameterAccessContext.valueSpaceIsRaw()) {
@@ -123,45 +122,59 @@ bool CFixedPointParameterType::toBlackboard(const string& strValue, uint32_t& ui
         return false;
     }
 
-    uint32_t uiData;
-
     if (parameterAccessContext.valueSpaceIsRaw()) {
 
-        if (!convertTo(strValue, uiData) || !isEncodable(uiData, !bValueProvidedAsHexa)) {
-
-            // Illegal value provided
-            parameterAccessContext.setError(getOutOfRangeError(strValue, parameterAccessContext.valueSpaceIsRaw(), bValueProvidedAsHexa));
-
-            return false;
-        }
         if (bValueProvidedAsHexa) {
 
-            // Sign extend
-            signExtend((int32_t&)uiData);
+            return convertFromHexadecimal(strValue, uiValue, parameterAccessContext);
+
         }
-
-    } else {
-        double dData;
-
-        // Check encodability
-        if (!convertTo(strValue, dData) || !checkValueAgainstRange(dData)) {
-
-            // Illegal value provided
-            parameterAccessContext.setError(getOutOfRangeError(strValue, parameterAccessContext.valueSpaceIsRaw(), bValueProvidedAsHexa));
-
-            return false;
-        }
-
-        // Do the conversion
-        uiData = (uint32_t)asInteger(dData);
+        return convertFromDecimal(strValue, uiValue, parameterAccessContext);
     }
+    return convertFromQiQf(strValue, uiValue, parameterAccessContext);
+}
 
-    // check that the data is encodable and can be safely written to the blackboard
-    assert(isEncodable(uiData, true));
+void CFixedPointParameterType::setOutOfRangeError(const string& strValue, CParameterAccessContext& parameterAccessContext) const
+{
+    ostringstream strStream;
 
-    uiValue = uiData;
+    strStream << "Value " << strValue << " standing out of admitted ";
 
-    return true;
+    if (!parameterAccessContext.valueSpaceIsRaw()) {
+
+        // Min/Max computation
+        double dMin = 0;
+        double dMax = 0;
+        getRange(dMin, dMax);
+
+        strStream << "real range [" << dMin << ", " << dMax << "]";
+    } else {
+
+        // Min/Max computation
+        int32_t iMax = getMaxValue<uint32_t>();
+        int32_t iMin = -iMax - 1;
+
+        strStream << "raw range [";
+
+        if (isHexadecimal(strValue)) {
+
+            // Format Min
+            strStream << "0x" << hex << uppercase <<
+                setw(getSize() * 2) << setfill('0') << makeEncodable(iMin);
+            // Format Max
+            strStream << ", 0x" << hex << uppercase <<
+                setw(getSize() * 2) << setfill('0') << makeEncodable(iMax);
+
+        } else {
+
+            strStream << iMin << ", " << iMax;
+        }
+
+        strStream << "]";
+    }
+    strStream << " for " << getKind();
+
+    parameterAccessContext.setError(strStream.str());
 }
 
 bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
@@ -278,46 +291,58 @@ void CFixedPointParameterType::getRange(double& dMin, double& dMax) const
     dMin = -(double)(1UL << (_uiIntegral + _uiFractional)) / (1UL << _uiFractional);
 }
 
-// Out of range error
-string CFixedPointParameterType::getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const
+bool CFixedPointParameterType::isHexadecimal(const string& strValue) const
 {
-    ostringstream strStream;
+    return !strValue.compare(0, 2, "0x");
+}
 
-    strStream << "Value " << strValue << " standing out of admitted ";
+bool CFixedPointParameterType::convertFromHexadecimal(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    // For hexadecimal representation, we need full 32 bit range conversion.
+    uint32_t uiData;
+    if (!convertTo(strValue, uiData) || !isEncodable(uiData, false)) {
 
-    if (!bRawValueSpace) {
-
-        // Min/Max computation
-        double dMin = 0;
-        double dMax = 0;
-        getRange(dMin, dMax);
-
-        strStream << "real range [" << dMin << ", "<< dMax << "]";
-    } else {
-
-        // Min/Max computation
-        int32_t iMax = getMaxValue<uint32_t>();
-        int32_t iMin = -iMax - 1;
-
-        strStream << "raw range [";
-
-        if (bHexaValue) {
-
-            // Format Min
-            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(iMin);
-            // Format Max
-            strStream << ", 0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << makeEncodable(iMax);
-
-        } else {
-
-            strStream << iMin << ", " << iMax;
-        }
-
-        strStream << "]";
+        setOutOfRangeError(strValue, parameterAccessContext);
+        return false;
     }
-    strStream <<  " for " << getKind();
+    signExtend((int32_t&)uiData);
 
-    return strStream.str();
+    // check that the data is encodable and can been safely written to the blackboard
+    assert(isEncodable(uiData, true));
+    uiValue = uiData;
+
+    return true;
+}
+
+bool CFixedPointParameterType::convertFromDecimal(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    int32_t iData;
+
+    if (!convertTo(strValue, iData) || !isEncodable((uint32_t)iData, true)) {
+
+        setOutOfRangeError(strValue, parameterAccessContext);
+        return false;
+    }
+    uiValue = static_cast<uint32_t>(iData);
+
+    return true;
+}
+
+bool CFixedPointParameterType::convertFromQiQf(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+{
+    double dData;
+
+    if (!convertTo(strValue, dData) || !checkValueAgainstRange(dData)) {
+
+        setOutOfRangeError(strValue, parameterAccessContext);
+        return false;
+    }
+    uiValue = static_cast<uint32_t>(asInteger(dData));
+
+    // check that the data is encodable and has been safely written to the blackboard
+    assert(isEncodable(uiValue, true));
+
+    return true;
 }
 
 // Check that the value is within available range for this type
@@ -327,7 +352,13 @@ bool CFixedPointParameterType::checkValueAgainstRange(double dValue) const
     double dMax = 0;
     getRange(dMin, dMax);
 
-    return (dValue <= dMax) && (dValue >= dMin);
+    /**
+     * Bijective transformation is only ensured in raw format.
+     * So, as the double stored in the XML may be significant, and as the std::setprecision used
+     * may round up, double representation may go outside the range.
+     */
+    int32_t rawValue = asInteger(dValue);
+    return (rawValue <= asInteger(dMax)) && (rawValue >= asInteger(dMin));
 }
 
 // Data conversion

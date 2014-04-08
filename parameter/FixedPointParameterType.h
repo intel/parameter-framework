@@ -64,8 +64,69 @@ private:
     uint32_t getUtilSizeInBits() const;
     // Range computation
     void getRange(double& dMin, double& dMax) const;
-    // Out of range error
-    string getOutOfRangeError(const string& strValue, bool bRawValueSpace, bool bHexaValue) const;
+
+    /**
+     * Checks if a string has the written representation of an hexadecimal number (Which is
+     * the prefix "Ox" in C++).
+     *
+     * @param[in] strValue Parameter read from the XML file representated as a string.
+     *
+     * @return true if the string is written as hexa, false otherwise.
+     */
+    bool isHexadecimal(const string& strValue) const;
+
+    /**
+     * Convert a decimal raw represented string into an unsigned long integer.
+     * In case of a failing conversion or encodability, this function set the error to
+     * illegal value provided and gives the range allowed for the parameter.
+     *
+     * @param[in] strValue Parameter read from the XML file representated as a string in decimal
+     *                     raw format
+     * @param[out] uiValue Parameter representated as a long unsigned integer.
+     * @param[in:out] parameterAccessContext Parameter access context.
+     *
+     * @return true if the string was successfully converted, false otherwise.
+     */
+    bool convertFromDecimal(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+
+    /**
+     * Convert an hexadecimal raw represented string into an unsigned long integer.
+     * In case of a failing conversion or encodability, this function set the error to
+     * illegal value provided and gives the range allowed for the parameter.
+     *
+     * @param[in] strValue Parameter read from the XML file representated as a string in hexadecimal
+     *                     raw format
+     * @param[out] uiValue Parameter representated as a long unsigned integer.
+     * @param[in:out] parameterAccessContext Parameter access context.
+     *
+     * @return true if the string was successfully converted, false otherwise.
+     */
+    bool convertFromHexadecimal(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+
+    /**
+     * Convert a QI QF represented string into an unsigned long integer.
+     * In case of a failing conversion or encodability, this function set the error to
+     * illegal value provided and gives the range allowed for the parameter.
+     *
+     * @param[in] strValue Parameter read from the XML file representated as a string in QIQF
+     *                     representation.
+     * @param[out] uiValue Parameter representated as a long unsigned integer.
+     * @param[in:out] parameterAccessContext Parameter access context.
+     *
+     * @return true if the string was successfully converted, false otherwise.
+     */
+    bool convertFromQiQf(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+
+    /**
+     * Set the out of range error.
+     * In case of a failing conversion or encodability, this function set the error to
+     * illegal value provided and gives the range allowed for the parameter.
+     *
+     * @param[in] strValue Parameter read from the XML file representated as a string
+     * @param[in:out] parameterAccessContext Parameter Access Context
+     */
+    void setOutOfRangeError(const string& strValue, CParameterAccessContext& parameterAccessContext) const;
+
     // Check if data is encodable
     bool checkValueAgainstRange(double dValue) const;
     // Data conversion
