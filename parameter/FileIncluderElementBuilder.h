@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2014, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,19 +29,29 @@
  */
 #pragma once
 
-#include "KindElement.h"
+#include "ElementBuilder.h"
+#include "XmlFileIncluderElement.h"
 
-// Class used to parse <ElementType>Include elements
-class CXmlFileIncluderElement : public CKindElement
+/** This is the XmlFileIncluderElement builder class
+ *
+ * It is builds the XmlFileIncluderElement with
+ * a mandatory option specific to xml:
+ *  whether it should be validated with schemas or not
+ */
+class CFileIncluderElementBuilder : public CElementBuilder
 {
 public:
-    CXmlFileIncluderElement(const string& strName,
-                            const string& strKind,
-                            bool bValidateWithSchemas);
-    // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    CFileIncluderElementBuilder(bool bValidateWithSchemas) :
+        CElementBuilder(),
+        _bValidateWithSchemas(bValidateWithSchemas)
+    {}
+
+    virtual CElement *createElement(const CXmlElement &xmlElement) const
+    {
+        return new CXmlFileIncluderElement(xmlElement.getNameAttribute(),
+                                           xmlElement.getType(), _bValidateWithSchemas);
+    }
+
 private:
-    // Element type
-    string getIncludedElementType() const;
-    bool _bValidateSchemasOnStart;
+    bool _bValidateWithSchemas;
 };

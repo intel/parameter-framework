@@ -191,6 +191,7 @@ launchTestPlatform () {
 
     $TPSendCommand setFailureOnMissingSubsystem false
     $TPSendCommand setFailureOnFailedSettingsLoad false
+    $TPSendCommand setValidateSchemasOnStart false
 
     echo "Asking test-platform (port $TPSocket) to start a new PFW instance (listening on port $PFWSocket) ..."
     $TPSendCommand start

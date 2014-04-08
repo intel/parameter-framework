@@ -126,6 +126,24 @@ bool CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad()
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
 }
 
+bool CParameterMgrPlatformConnector::setValidateSchemasOnStart(
+    bool bValidate, std::string& strError)
+{
+    if (_bStarted) {
+
+        strError = "Can not enable xml validation after the start of the parameter-framework";
+        return false;
+    }
+
+    _pParameterMgr->setValidateSchemasOnStart(bValidate);
+    return true;
+}
+
+bool CParameterMgrPlatformConnector::getValidateSchemasOnStart()
+{
+    return _pParameterMgr->getValidateSchemasOnStart();
+}
+
 // Start
 bool CParameterMgrPlatformConnector::start(string& strError)
 {

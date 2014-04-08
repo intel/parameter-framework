@@ -36,9 +36,12 @@
 #include <assert.h>
 
 #define base CKindElement
-
-CXmlFileIncluderElement::CXmlFileIncluderElement(const string& strName, const string& strKind) : base(strName, strKind)
+CXmlFileIncluderElement::CXmlFileIncluderElement(const string& strName,
+                                                 const string& strKind,
+                                                 bool bValidateWithSchemas) : base(strName,
+                                                                                   strKind)
 {
+    _bValidateSchemasOnStart = bValidateWithSchemas;
 }
 
 // From IXmlSink
@@ -58,13 +61,18 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
 
     // Instantiate parser
     string strIncludedElementType = getIncludedElementType();
-
     {
         // Open a log section titled with loading file path
         CAutoLog autolog(this, "Loading " + strPath);
 
         // Use a doc source that load data from a file
-        CXmlFileDocSource fileDocSource(strPath, elementSerializingContext.getXmlSchemaPathFolder() + "/" + strIncludedElementType + ".xsd", strIncludedElementType);
+        string strPathToXsdFile = elementSerializingContext.getXmlSchemaPathFolder() + "/" +
+                               strIncludedElementType + ".xsd";
+
+        CXmlFileDocSource fileDocSource(strPath,
+                                        strPathToXsdFile,
+                                        strIncludedElementType,
+                                        _bValidateSchemasOnStart);
 
         if (!fileDocSource.isParsable(elementSerializingContext)) {
 
