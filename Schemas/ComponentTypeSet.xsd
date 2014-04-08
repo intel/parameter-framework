@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2005/08/xml.xsd"/>
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="W3cXmlAttributes.xsd"/>
     <xs:include schemaLocation="Parameter.xsd"/>
     <xs:complexType name="ComponentType">
         <xs:sequence>
