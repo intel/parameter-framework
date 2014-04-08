@@ -37,12 +37,14 @@ CXmlStringDocSource::CXmlStringDocSource(const string& strXmlInput,
                                          const string& strXmlSchemaFile,
                                          const string& strRootElementType,
                                          const string& strRootElementName,
-                                         const string& strNameAttrituteName) :
+                                         const string& strNameAttrituteName,
+                                         bool bValidateWithSchema) :
     base(xmlReadMemory(strXmlInput.c_str(), strXmlInput.size(), "", NULL, 0),
-            strXmlSchemaFile,
-            strRootElementType,
-            strRootElementName,
-            strNameAttrituteName)
+         strXmlSchemaFile,
+         strRootElementType,
+         strRootElementName,
+         strNameAttrituteName,
+         bValidateWithSchema)
 {
 }
 

@@ -38,8 +38,10 @@ CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
                                          const string& strRootElementType,
                                          const string& strXmlSchemaFile,
                                          const string& strProduct,
-                                         const string& strVersion):
-     base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
+                                         const string& strVersion,
+                                         bool bValidateWithSchema):
+     base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str()),
+             bValidateWithSchema),
      _pXmlSource(pXmlSource), _strXmlSchemaFile(strXmlSchemaFile), _bWithHeader(true),
      _strProduct(strProduct), _strVersion(strVersion)
 {
@@ -47,8 +49,10 @@ CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
 }
 
 CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
-                                         const string& strRootElementType):
-    base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
+                                         const string& strRootElementType,
+                                         bool bValidateWithSchema):
+    base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str()),
+            bValidateWithSchema),
     _pXmlSource(pXmlSource), _bWithHeader(false)
 {
     init();

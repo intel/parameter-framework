@@ -47,12 +47,14 @@ public:
       * @param[in] strRootElementType a string containing the root element type
       * @param[in] strRootElementName a string containing the root element name
       * @param[in] strNameAttributeName a string containing the name of the root name attribute
+      * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
     CXmlStringDocSource(const string& strXmlInput,
                         const string& strXmlSchemaFile,
                         const string& strRootElementType,
                         const string& strRootElementName,
-                        const string& strNameAttrituteName);
+                        const string& strNameAttrituteName,
+                        bool bValidateWithSchema);
 
     /**
       * CXmlDocSource method implementation.

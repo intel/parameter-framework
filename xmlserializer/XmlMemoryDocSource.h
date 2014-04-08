@@ -50,10 +50,12 @@ public:
       * @param[in] strXmlSchemaFile a string containing the path to the schema file
       * @param[in] strProduct a string containing the product name
       * @param[in] strVersion a string containing the version number
+      * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
     CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType,
                         const string& strXmlSchemaFile, const string& strProduct,
-                        const string& strVersion);
+                        const string& strVersion,
+                        bool bValidateWithSchema);
 
     /**
       * Constructor
@@ -61,8 +63,9 @@ public:
       * @param[in] pXmlSource a pointer to a parameter-framework structure that can generate
       * an xml description of itself
       * @param[in] strRootElementType a string containing the root element type
+      * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType);
+    CXmlMemoryDocSource(const IXmlSource* pXmlSource, const string& strRootElementType, bool bValidateWithSchema);
 
     /**
       * Implementation of CXmlDocSource::populate() method.

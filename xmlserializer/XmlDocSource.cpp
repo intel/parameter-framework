@@ -36,14 +36,16 @@
 // Schedule for libxml2 library
 bool CXmlDocSource::_bLibXml2CleanupScheduled;
 
-CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, _xmlNode *pRootNode):
+CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, _xmlNode *pRootNode,
+                             bool bValidateWithSchema) :
       _pDoc(pDoc),
       _pRootNode(pRootNode),
       _strXmlSchemaFile(""),
       _strRootElementType(""),
       _strRootElementName(""),
       _strNameAttrituteName(""),
-      _bNameCheck(false)
+      _bNameCheck(false),
+      _bValidateWithSchema(bValidateWithSchema)
 {
     init();
 }
@@ -59,20 +61,41 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
     _strRootElementType(strRootElementType),
     _strRootElementName(strRootElementName),
     _strNameAttrituteName(strNameAttrituteName),
-    _bNameCheck(true)
+    _bNameCheck(true),
+    _bValidateWithSchema(false)
 {
     init();
 }
 
 CXmlDocSource::CXmlDocSource(_xmlDoc* pDoc,
                              const string& strXmlSchemaFile,
-                             const string& strRootElementType) :
+                             const string& strRootElementType,
+                             bool bValidateWithSchema) :
     _pDoc(pDoc), _pRootNode(NULL),
     _strXmlSchemaFile(strXmlSchemaFile),
     _strRootElementType(strRootElementType),
     _strRootElementName(""),
     _strNameAttrituteName(""),
-    _bNameCheck(false)
+    _bNameCheck(false),
+    _bValidateWithSchema(bValidateWithSchema)
+{
+    init();
+}
+
+CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
+                             const string& strXmlSchemaFile,
+                             const string& strRootElementType,
+                             const string& strRootElementName,
+                             const string& strNameAttrituteName,
+                             bool bValidateWithSchema) :
+    _pDoc(pDoc),
+    _pRootNode(NULL),
+    _strXmlSchemaFile(strXmlSchemaFile),
+    _strRootElementType(strRootElementType),
+    _strRootElementName(strRootElementName),
+    _strNameAttrituteName(strNameAttrituteName),
+    _bNameCheck(true),
+    _bValidateWithSchema(bValidateWithSchema)
 {
     init();
 }
@@ -118,12 +141,15 @@ bool CXmlDocSource::validate(CXmlSerializingContext& serializingContext)
         return false;
     }
 
-    // Validate
-    if (!isInstanceDocumentValid()) {
+    // Validate if necessary
+    if (_bValidateWithSchema)
+    {
+        if (!isInstanceDocumentValid()) {
 
-        serializingContext.setError("Document is not valid");
+            serializingContext.setError("Document is not valid");
 
-        return false;
+            return false;
+        }
     }
 
     // Check Root element type

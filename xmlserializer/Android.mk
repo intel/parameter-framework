@@ -60,8 +60,6 @@ common_c_includes := \
 common_shared_libraries := libicuuc
 common_static_libraries := libxml2
 
-common_ldlibs := -Lexternal/libxml2/lib
-
 #############################
 # Target build
 
@@ -82,8 +80,6 @@ LOCAL_C_INCLUDES += \
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libstlport
 LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 
-LOCAL_LDLIBS += $(common_ldlibs)
-
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
 include $(BUILD_STATIC_LIBRARY)
@@ -100,13 +96,10 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_CFLAGS := $(common_cflags)
 
-LOCAL_C_INCLUDES += \
-    $(common_c_includes)
+LOCAL_C_INCLUDES += $(common_c_includes)
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
-LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
-
-LOCAL_LDLIBS += $(common_ldlibs)
+LOCAL_STATIC_LIBRARIES := libxml2-schemas
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
