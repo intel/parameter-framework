@@ -222,7 +222,9 @@ void CSubsystemObject::log_info(const string& strMessage, ...) const
 
     va_end(listPointer);
 
-    _pInstanceConfigurableElement->log_info(pacBuffer);
+    if (pacBuffer != NULL) {
+        _pInstanceConfigurableElement->log_info(pacBuffer);
+    }
 
     free(pacBuffer);
 }
@@ -238,7 +240,9 @@ void CSubsystemObject::log_warning(const string& strMessage, ...) const
 
     va_end(listPointer);
 
-    _pInstanceConfigurableElement->log_warning(pacBuffer);
+    if (pacBuffer != NULL) {
+        _pInstanceConfigurableElement->log_warning(pacBuffer);
+    }
 
     free(pacBuffer);
 }

@@ -219,9 +219,13 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
 
         if (!lib_handle) {
 
+            const char *err = dlerror();
             // Failed
-            lstrError.push_back("Plugin load failed: " + string(dlerror()));
-
+            if (err == NULL) {
+                lstrError.push_back("dlerror failed");
+            } else {
+                lstrError.push_back("Plugin load failed: " + string(err));
+            }
             // Next plugin
             ++it;
 

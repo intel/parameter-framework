@@ -58,7 +58,9 @@ void CElement::log_info(const string& strMessage, ...) const
 
     va_end(listPointer);
 
-    doLog(false, pacBuffer);
+    if (pacBuffer != NULL) {
+        doLog(false, pacBuffer);
+    }
 
     free(pacBuffer);
 }
@@ -74,7 +76,9 @@ void CElement::log_warning(const string& strMessage, ...) const
 
     va_end(listPointer);
 
-    doLog(true, pacBuffer);
+    if (pacBuffer != NULL) {
+        doLog(true, pacBuffer);
+    }
 
     free(pacBuffer);
 }
