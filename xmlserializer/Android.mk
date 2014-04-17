@@ -96,6 +96,12 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_CFLAGS := $(common_cflags)
 
+# We must enforce this flag, otherwise schemas are never used.
+# This is due to the fact that libxml2-schemas.a is compiled
+# with those features enabled, but the xmlversion.h does
+# not include those defines.
+LOCAL_CFLAGS += -DLIBXML_SCHEMAS_ENABLED
+
 LOCAL_C_INCLUDES += $(common_c_includes)
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
