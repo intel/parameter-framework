@@ -52,6 +52,11 @@ exec 5> >(sed "s/^/($$) Warning: /" >&2)
 exec 2> >(sed "s/^/($$) Error: /" >&2)
 
 # Get script arguments
+validationEnabled="false"
+if [ "$1" = "--validate" ]; then
+    validationEnabled="true"
+    shift
+fi
 PFWconfigurationFilePath="$1"; shift
 CriterionFilePath="$1"; shift
 xmlDomainFilePath="$1"; shift
@@ -76,7 +81,8 @@ TPSocket=5003
 PFWSocket=5000
 PFWStartTimeout=60
 
-tmpFile=$(mktemp)
+tmpDir=$(mktemp -d)
+tmpFile=$(mktemp --tmpdir="$tmpDir")
 
 # [Workaround]
 # The build system does not preserve execution right in external prebuild
@@ -111,6 +117,12 @@ clean_up () {
 
     echo "Cleaning $tmpFile ..."
     rm "$tmpFile" || true
+
+    if [ "$validationEnabled" = "true" ]; then
+        echo "Cleaning $tmpDir/Schemas ..."
+        rm -r "$tmpDir/Schemas" || true
+        rmdir "$tmpDir" || true
+    fi
 
     echo "Cleaning status: $status ..."
     return $status
@@ -201,7 +213,7 @@ launchTestPlatform () {
 
     $TPSendCommand setFailureOnMissingSubsystem false
     $TPSendCommand setFailureOnFailedSettingsLoad false
-    $TPSendCommand setValidateSchemasOnStart false
+    $TPSendCommand setValidateSchemasOnStart $validationEnabled
 
     echo "Asking test-platform (port $TPSocket) to start a new PFW instance (listening on port $PFWSocket) ..."
     $TPSendCommand start
@@ -263,6 +275,15 @@ safeStartPFW () {
 deleteEscapedNewLines () {
     sed -r ':a;/\\$/{N;s/\\\n//;ba}'
 }
+
+copySchemaFiles() {
+    cp -r "$HostRoot"/etc/parameter-framework/Schemas "$tmpDir/Schemas"
+}
+
+# Copy the schema files needed for validation
+if [ "$validationEnabled" = "true" ]; then
+    copySchemaFiles
+fi
 
 # The PFW looks for a libremote-processor.so library, not a libremote-processor_host.so
 linkLibrary libremote-processor_host.so libremote-processor.so
