@@ -45,11 +45,11 @@ then
     shift
     exec 1>/dev/null
 else
-    exec 1> >(sed 's/^/Info: /' >&2)
+    exec 1> >(sed "s/^/($$) Info: /" >&2)
 fi
 # Prefix all warning and error log lines and redirect them to stderr
-exec 5> >(sed 's/^/Warning: /' >&2)
-exec 2> >(sed 's/^/Error: /' >&2)
+exec 5> >(sed "s/^/($$) Warning: /" >&2)
+exec 2> >(sed "s/^/($$) Error: /" >&2)
 
 # Get script arguments
 PFWconfigurationFilePath="$1"; shift
@@ -91,6 +91,16 @@ export LD_LIBRARY_PATH="$HostRoot/lib:${LD_LIBRARY_PATH:-}"
 # Setup clean trap, it will be called automatically on exit
 clean_up () {
     status=$?
+    set +e # An error should not abort clean up
+
+    ( if test $status -ne 0
+    then
+        echo "$0 is exiting on error, printing debug information."
+        echo "Test platform port: $TPSocket"
+        echo "PFW port: $PFWSocket"
+        netstat --program --all --numeric --extend --tcp
+        ps -ejHlf
+    fi ) >&5
 
     # Exit the test-platform only if it was created by this process
     if $TPCreated
