@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -29,6 +29,7 @@
  */
 #include "RemoteProcessorServer.h"
 #include "ListeningSocket.h"
+#include <iostream>
 #include <assert.h>
 #include <poll.h>
 #include <unistd.h>
@@ -163,10 +164,13 @@ void CRemoteProcessorServer::handleNewConnection()
         // Create command message
         CRequestMessage requestMessage;
 
+        string strError;
         ///// Receive command
-        if (!requestMessage.serialize(pClientSocket, false)) {
+        if (!requestMessage.serialize(pClientSocket, false, strError)) {
 
-            // Bail out
+            if (!pClientSocket->hasPeerDisconnected()) {
+                cout << "Error while receiving message: " << strError << endl;
+            }
             break;
         }
 
@@ -191,9 +195,10 @@ void CRemoteProcessorServer::handleNewConnection()
         CAnswerMessage answerMessage(strResult, bSuccess);
 
         ///// Send answer
-        if (!answerMessage.serialize(pClientSocket, true)) {
+        if (!answerMessage.serialize(pClientSocket, true, strError)) {
 
             // Bail out
+            cout << "Error while sending message: " << strError << endl;
             break;
         }
     }

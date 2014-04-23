@@ -113,6 +113,8 @@ bool CSocket::read(void* pvData, uint32_t uiSize)
         switch (iAccessedSize) {
         case 0:
             // recv return value is 0 when the peer has performed an orderly shutdown.
+            _disconnected = true;
+            errno = ECONNRESET; // Warn the client that the client disconnected.
             return false;
 
         case -1:
@@ -141,6 +143,10 @@ bool CSocket::write(const void* pvData, uint32_t uiSize)
         int32_t iAccessedSize = ::send(_iSockFd, &pucData[uiOffset], uiSize, MSG_NOSIGNAL);
 
         if (iAccessedSize == -1) {
+            if (errno == ECONNRESET) {
+                // Peer has disconnected
+                _disconnected = true;
+            }
             // errno == EINTR => The send system call was interrupted, try again
             if (errno != EINTR) {
                 return false;
@@ -157,4 +163,8 @@ bool CSocket::write(const void* pvData, uint32_t uiSize)
 int CSocket::getFd() const
 {
     return _iSockFd;
+}
+
+bool CSocket::hasPeerDisconnected() {
+    return _disconnected;
 }

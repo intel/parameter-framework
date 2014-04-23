@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -43,8 +43,17 @@ public:
     CMessage();
     virtual ~CMessage();
 
-    // Send/Receive
-    bool serialize(CSocket* pSocket, bool bOut);
+    /** Write or read the message on pSocket.
+     *
+     * @param[in,out] pSocket is the socket on wich IO operation will be made.
+     * @param[in] bOut if true message should be read,
+     *                 if false it should be written.
+     * @param[out] strError on failure, a string explaining the error,
+     *                      on success, undefined.
+     *
+     * @return true on success, false on failure.
+     */
+    bool serialize(CSocket* pSocket, bool bOut, std::string &strError);
 
 protected:
     // Msg Id

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -37,6 +37,14 @@ using namespace std;
 struct sockaddr_in;
 struct in_addr;
 
+/** Readable and writable socket.
+ *
+ * The class does not encapsulate completely it's internal file descriptor as
+ * it can be retrieve by the getFd method.
+ *
+ * This "feature" means that it's state consistency can not
+ * be enforced by the class but rather by clients.
+ */
 class CSocket
 {
 public:
@@ -50,16 +58,56 @@ public:
     // Communication timeout
     void setTimeout(uint32_t uiMilliseconds);
 
-    // Read
+    /* Read data
+     *
+     * On failure errno will be set appropriately (see send).
+     * If the client disconnects, false will be returned and
+     *     - hasPeerDisconnected will return true
+     *     - errno is set to ECONNRESET.
+     * @param[in] pvData - on success: will contain the sent data
+     *                  - on failure: undefined
+     * @param[in] uiSize size of the data to receive.
+     *
+     * @return true if all data could be read, false otherwise.
+     */
     bool read(void* pvData, uint32_t uiSize);
-    // Write
+
+    /* Write data
+     *
+     * On failure errno will be set (see recv)
+     * @param[in] pvData data to send.
+     * @param[in] uiSize is the size of the data to send.
+     *
+     * @return true if all data could be read, false otherwise.
+     */
     bool write(const void* pvData, uint32_t uiSize);
 
-    // Fd
+    /** @return the managed file descriptor.
+     *
+     * The client can then bind/connect/accept/listen/... the socket.
+     */
     int getFd() const;
+
+    /** @return true if the peer has disconnected.
+     *
+     * The internal fd is returned by getFd and clients can use it for
+     * bind/connect/read/write/... as a result it's state can not be tracked.
+     *
+     * Thus hasPeerDisconnected returns true only if the disconnection
+     * was notified during a call to CSocket::write or CSocket::read.
+     */
+    bool hasPeerDisconnected();
+
 protected:
     // Socket address init
     void initSockAddrIn(struct sockaddr_in* pSockAddrIn, uint32_t uiInAddr, uint16_t uiPort) const;
 private:
     int _iSockFd;
+    /** If the peer disconnected.
+     *
+     * This is not the state of _iSockFd (connected/disconnected)
+     *
+     * See hasPeerDisconnected for more details.
+     */
+    bool _disconnected;
 };

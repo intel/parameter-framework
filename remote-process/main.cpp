@@ -98,17 +98,19 @@ public:
 
 bool sendAndDisplayCommand(CConnectionSocket &connectionSocket, CRequestMessage &requestMessage)
 {
-    if (!requestMessage.serialize(&connectionSocket, true)) {
+    string strError;
 
-        cerr << "Unable to send command to target" << endl;
+    if (!requestMessage.serialize(&connectionSocket, true, strError)) {
+
+        cerr << "Unable to send command to target: " << strError << endl;
         return false;
     }
 
     ///// Get answer
     CAnswerMessage answerMessage;
-    if (!answerMessage.serialize(&connectionSocket, false)) {
+    if (!answerMessage.serialize(&connectionSocket, false, strError)) {
 
-        cerr << "No answer received from target" << endl;
+        cerr << "Unable to received answer from target: " << strError << endl;
         return false;
     }
 
