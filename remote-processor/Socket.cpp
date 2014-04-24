@@ -111,6 +111,9 @@ bool CSocket::read(void* pvData, uint32_t uiSize)
 
         if (!iAccessedSize || iAccessedSize == -1) {
 
+            // recv return value is 0 when the peer has performed an orderly shutdown.
+            // -1 if an error occurred
+            // In both case the read could not be achieve
             return false;
         }
         uiSize -= iAccessedSize;
@@ -129,7 +132,8 @@ bool CSocket::write(const void* pvData, uint32_t uiSize)
 
         int32_t iAccessedSize = ::send(_iSockFd, &pucData[uiOffset], uiSize, MSG_NOSIGNAL);
 
-        if (!iAccessedSize || iAccessedSize == -1) {
+        // Return value of 0 is not an error
+        if (iAccessedSize == -1) {
 
             return false;
         }
