@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -34,6 +34,7 @@
 #include <assert.h>
 #include <netdb.h>
 #include <strings.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
@@ -109,15 +110,22 @@ bool CSocket::read(void* pvData, uint32_t uiSize)
 
         int32_t iAccessedSize = ::recv(_iSockFd, &pucData[uiOffset], uiSize, MSG_NOSIGNAL);
 
-        if (!iAccessedSize || iAccessedSize == -1) {
-
+        switch (iAccessedSize) {
+        case 0:
             // recv return value is 0 when the peer has performed an orderly shutdown.
-            // -1 if an error occurred
-            // In both case the read could not be achieve
             return false;
+
+        case -1:
+            // errno == EINTR => The recv system call was interrupted, try again
+            if (errno != EINTR) {
+                return false;
+            }
+            break;
+
+        default:
+            uiSize -= iAccessedSize;
+            uiOffset += iAccessedSize;
         }
-        uiSize -= iAccessedSize;
-        uiOffset += iAccessedSize;
     }
     return true;
 }
@@ -132,13 +140,15 @@ bool CSocket::write(const void* pvData, uint32_t uiSize)
 
         int32_t iAccessedSize = ::send(_iSockFd, &pucData[uiOffset], uiSize, MSG_NOSIGNAL);
 
-        // Return value of 0 is not an error
         if (iAccessedSize == -1) {
-
-            return false;
+            // errno == EINTR => The send system call was interrupted, try again
+            if (errno != EINTR) {
+                return false;
+            }
+        } else {
+            uiSize -= iAccessedSize;
+            uiOffset += iAccessedSize;
         }
-        uiSize -= iAccessedSize;
-        uiOffset += iAccessedSize;
     }
     return true;
 }
