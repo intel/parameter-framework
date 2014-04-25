@@ -124,7 +124,7 @@ uint32_t CMessage::getRemainingDataSize() const
 }
 
 // Send/Receive
-bool CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
+CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
 {
     if (bOut) {
 
@@ -142,8 +142,10 @@ bool CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
 
         if (!pSocket->write(&uiSyncWord, sizeof(uiSyncWord))) {
 
-            strError += string("Sync write failed: ") + strerror(errno);
-            return false;
+            if (pSocket->hasPeerDisconnected()) {
+                return peerDisconnected;
+            }
+            return error;
         }
 
         // Size
@@ -152,21 +154,21 @@ bool CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
         if (!pSocket->write(&uiSize, sizeof(uiSize))) {
 
             strError += string("Size write failed: ") + strerror(errno);
-            return false;
+            return error;
         }
 
         // Msg Id
         if (!pSocket->write(&_ucMsgId, sizeof(_ucMsgId))) {
 
             strError += string("Msg write failed: ") + strerror(errno);
-            return false;
+            return error;
         }
 
         // Data
         if (!pSocket->write(_pucData, _uiDataSize)) {
 
             strError = string("Data write failed: ") + strerror(errno);
-            return false;
+            return error;
         }
 
         // Checksum
@@ -175,7 +177,7 @@ bool CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
         if (!pSocket->write(&ucChecksum, sizeof(ucChecksum))) {
 
             strError = string("Checksum write failed: ") + strerror(errno);
-            return false;
+            return error;
         }
 
     } else {
@@ -185,14 +187,17 @@ bool CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
         if (!pSocket->read(&uiSyncWord, sizeof(uiSyncWord))) {
 
             strError = string("Sync read failed: ") + strerror(errno);
-            return false;
+            if (pSocket->hasPeerDisconnected()) {
+                return peerDisconnected;
+            }
+            return error;
         }
 
         // Check Sync word
         if (uiSyncWord != SYNC_WORD) {
 
             strError = "Sync word incorrect";
-            return false;
+            return error;
         }
 
         // Size
@@ -201,14 +206,14 @@ bool CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
         if (!pSocket->read(&uiSize, sizeof(uiSize))) {
 
             strError = string("Size read failed: ") + strerror(errno);
-            return false;
+            return error;
         }
 
         // Msg Id
         if (!pSocket->read(&_ucMsgId, sizeof(_ucMsgId))) {
 
             strError = string("Msg id read failed: ") + strerror(errno);
-            return false;
+            return error;
         }
 
         // Data
@@ -220,7 +225,7 @@ bool CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
         if (!pSocket->read(_pucData, _uiDataSize)) {
 
             strError = string("Data read failed: ") + strerror(errno);
-            return false;
+            return error;
         }
 
         // Checksum
@@ -229,20 +234,20 @@ bool CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
         if (!pSocket->read(&ucChecksum, sizeof(ucChecksum))) {
 
             strError = string("Checksum read failed: ") + strerror(errno);
-            return false;
+            return error;
         }
         // Compare
         if (ucChecksum != computeChecksum()) {
 
             strError = "Received checksum != computed checksum";
-            return false;
+            return error;
         }
 
         // Collect data in derived
         collectReceivedData();
     }
 
-    return true;
+    return success;
 }
 
 // Checksum

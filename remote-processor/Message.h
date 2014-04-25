@@ -43,6 +43,12 @@ public:
     CMessage();
     virtual ~CMessage();
 
+    enum Result {
+        success,
+        peerDisconnected,
+        error
+    };
+
     /** Write or read the message on pSocket.
      *
      * @param[in,out] pSocket is the socket on wich IO operation will be made.
@@ -51,9 +57,11 @@ public:
      * @param[out] strError on failure, a string explaining the error,
      *                      on success, undefined.
      *
-     * @return true on success, false on failure.
+     * @return success if a correct message could be recv/send
+     *         peerDisconnected if the peer disconnected before the first socket access.
+     *         error if the message could not be read/write for any other reason
      */
-    bool serialize(CSocket* pSocket, bool bOut, std::string &strError);
+    Result serialize(CSocket* pSocket, bool bOut, std::string &strError);
 
 protected:
     // Msg Id

@@ -30,6 +30,7 @@
 #include "RemoteProcessorServer.h"
 #include "ListeningSocket.h"
 #include <iostream>
+#include <memory>
 #include <assert.h>
 #include <poll.h>
 #include <unistd.h>
@@ -147,15 +148,15 @@ void CRemoteProcessorServer::run()
 // New connection
 void CRemoteProcessorServer::handleNewConnection()
 {
-    CSocket* pClientSocket = _pListeningSocket->accept();
+    const auto_ptr<CSocket> clientSocket(_pListeningSocket->accept());
 
-    if (!pClientSocket) {
+    if (clientSocket.get() == NULL) {
 
         return;
     }
 
     // Set timeout
-    pClientSocket->setTimeout(5000);
+    clientSocket->setTimeout(5000);
 
     // Process all incoming requests from the client
     while (true) {
@@ -166,12 +167,18 @@ void CRemoteProcessorServer::handleNewConnection()
 
         string strError;
         ///// Receive command
-        if (!requestMessage.serialize(pClientSocket, false, strError)) {
+        CRequestMessage::Result res;
+        res = requestMessage.serialize(clientSocket.get(), false, strError);
 
-            if (!pClientSocket->hasPeerDisconnected()) {
-                cout << "Error while receiving message: " << strError << endl;
-            }
-            break;
+        switch (res) {
+        case CRequestMessage::error:
+            cout << "Error while receiving message: " << strError << endl;
+            // fall through
+        case CRequestMessage::peerDisconnected:
+            // Consider peer disconnection as normal, no log
+            return; // Bail out
+        case CRequestMessage::success:
+            break; // No error, continue
         }
 
         // Actually process the request
@@ -195,13 +202,17 @@ void CRemoteProcessorServer::handleNewConnection()
         CAnswerMessage answerMessage(strResult, bSuccess);
 
         ///// Send answer
-        if (!answerMessage.serialize(pClientSocket, true, strError)) {
+        res = answerMessage.serialize(clientSocket.get(), true, strError);
 
-            // Bail out
-            cout << "Error while sending message: " << strError << endl;
-            break;
+        switch (res) {
+        case CRequestMessage::peerDisconnected:
+            // Peer should not disconnect while waiting for an answer
+            // Fall through to log the error and bail out
+        case CRequestMessage::error:
+            cout << "Error while receiving message: " << strError << endl;
+            return; // Bail out
+        case CRequestMessage::success:
+            break; // No error, continue
         }
     }
-    // Remove client socket
-    delete pClientSocket;
 }
