@@ -147,7 +147,8 @@ void CFixedPointParameterType::setOutOfRangeError(const string& strValue, CParam
         double dMax = 0;
         getRange(dMin, dMax);
 
-        strStream << "real range [" << dMin << ", " << dMax << "]";
+        strStream << fixed << setprecision(_uiFractional)
+                  << "real range [" << dMin << ", " << dMax << "]";
     } else {
 
         // Min/Max computation
@@ -209,28 +210,7 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
         // Conversion
         double dData = asDouble(iData);
 
-        // Set up the precision of the display and notation type
-        // For a Qn.m number, the step between each storable number is 2^(-m).
-        // Hence, on a decimal representation, the Dth digit after the decimal
-        // point can take all possible values (1..9) - meaning that it is
-        // significant - only if
-        //
-        //         2^(-m) <= 10^(-D)
-        //             -m <= log2(10^(-D))
-        //             -m <= log10(10^(-D)) / log10(2)
-        //             -m <= -D / log10(2)
-        //   m * log10(2) >= D
-        //
-        // Conversly, the Dth digit can be represented if
-        //
-        //   D <= m * log10(2)
-        //
-        // Since floor(x) <= x, we can write (replacing D with iPrecision and m
-        // with _uiFractional) this next line.
-        // (we add 1 to avoid losing precision even though this last digit is
-        // not 100% significant)
-        int iPrecision = (_uiFractional  * log10(2.0)) + 1;
-        strStream << fixed << setprecision(iPrecision) << dData;
+        strStream << fixed << setprecision(_uiFractional) << dData;
     }
 
     strValue = strStream.str();
