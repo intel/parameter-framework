@@ -20,19 +20,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-# Phony package containing XSD files
-##################################################
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := parameter-framework.schemas
-LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
-LOCAL_REQUIRED_MODULES := \
-    ParameterFrameworkConfiguration.xsd \
-    ConfigurableDomains.xsd \
-    SystemClass.xsd
-include $(BUILD_PHONY_PACKAGE)
-
 # Resources are not compiled so the prebuild mechanism is used to export them.
 # Schemas are only used by host, in order to validate xml files
 ##################################################
