@@ -104,18 +104,18 @@ private:
     bool convertFromHexadecimal(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
 
     /**
-     * Convert a QI QF represented string into an unsigned long integer.
+     * Convert a Qn.m represented string into an unsigned long integer.
      * In case of a failing conversion or encodability, this function set the error to
      * illegal value provided and gives the range allowed for the parameter.
      *
-     * @param[in] strValue Parameter read from the XML file representated as a string in QIQF
+     * @param[in] strValue Parameter read from the XML file representated as a string in Qn.m
      *                     representation.
      * @param[out] uiValue Parameter representated as a long unsigned integer.
      * @param[in:out] parameterAccessContext Parameter access context.
      *
      * @return true if the string was successfully converted, false otherwise.
      */
-    bool convertFromQiQf(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    bool convertFromQnm(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
 
     /**
      * Set the out of range error.
@@ -129,9 +129,25 @@ private:
 
     // Check if data is encodable
     bool checkValueAgainstRange(double dValue) const;
-    // Data conversion
-    int32_t asInteger(double dValue) const;
-    double asDouble(int32_t iValue) const;
+
+    /**
+     * Convert a double towards a Qn.m representation which is stored in binary format.
+     * This value is rounded if the double is not encodable in the corresponding Qn.m format.
+     *
+     * @param[in] dValue the double which should be converted.
+     *
+     * @return the integer which contains the converted Qn.m number.
+     */
+    int32_t doubleToBinaryQnm(double dValue) const;
+
+    /**
+     * Convert a Qn.m binary number towards its double representation.
+     *
+     * @param[in] iValue the integer which contains the Qn.m number which should be converted.
+     *
+     * @return the double which contains the double representation of iValue.
+     */
+    double binaryQnmToDouble(int32_t iValue) const;
 
     // Integral part in Q notation
     uint32_t _uiIntegral;

@@ -131,7 +131,7 @@ bool CFixedPointParameterType::toBlackboard(const string& strValue, uint32_t& ui
         }
         return convertFromDecimal(strValue, uiValue, parameterAccessContext);
     }
-    return convertFromQiQf(strValue, uiValue, parameterAccessContext);
+    return convertFromQnm(strValue, uiValue, parameterAccessContext);
 }
 
 void CFixedPointParameterType::setOutOfRangeError(const string& strValue, CParameterAccessContext& parameterAccessContext) const
@@ -208,7 +208,7 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
         signExtend(iData);
 
         // Conversion
-        double dData = asDouble(iData);
+        double dData = binaryQnmToDouble(iData);
 
         strStream << fixed << setprecision(_uiFractional) << dData;
     }
@@ -231,7 +231,7 @@ bool CFixedPointParameterType::toBlackboard(double dUserValue, uint32_t& uiValue
     }
 
     // Do the conversion
-    int32_t iData = asInteger(dUserValue);
+    int32_t iData = doubleToBinaryQnm(dUserValue);
 
     // Check integrity
     assert(isEncodable((uint32_t)iData, true));
@@ -253,7 +253,7 @@ bool CFixedPointParameterType::fromBlackboard(double& dUserValue, uint32_t uiVal
     // Sign extend
     signExtend(iData);
 
-    dUserValue = asDouble(iData);
+    dUserValue = binaryQnmToDouble(iData);
 
     return true;
 }
@@ -308,7 +308,8 @@ bool CFixedPointParameterType::convertFromDecimal(const string& strValue, uint32
     return true;
 }
 
-bool CFixedPointParameterType::convertFromQiQf(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CFixedPointParameterType::convertFromQnm(const string& strValue, uint32_t& uiValue,
+                                              CParameterAccessContext& parameterAccessContext) const
 {
     double dData;
 
@@ -317,7 +318,7 @@ bool CFixedPointParameterType::convertFromQiQf(const string& strValue, uint32_t&
         setOutOfRangeError(strValue, parameterAccessContext);
         return false;
     }
-    uiValue = static_cast<uint32_t>(asInteger(dData));
+    uiValue = static_cast<uint32_t>(doubleToBinaryQnm(dData));
 
     // check that the data is encodable and has been safely written to the blackboard
     assert(isEncodable(uiValue, true));
@@ -336,11 +337,10 @@ bool CFixedPointParameterType::checkValueAgainstRange(double dValue) const
 }
 
 // Data conversion
-int32_t CFixedPointParameterType::asInteger(double dValue) const
+int32_t CFixedPointParameterType::doubleToBinaryQnm(double dValue) const
 {
-    // Do the conversion
     // For Qn.m number, multiply by 2^n and round to the nearest integer
-    int32_t iData = (int32_t)(round(dValue * (1UL << _uiFractional)));
+    int32_t iData = static_cast<int32_t>(round(dValue * (1UL << _uiFractional)));
     // Left justify
     // For a Qn.m number, shift 32 - (n + m + 1) bits to the left (the rest of
     // the bits aren't used)
@@ -349,12 +349,12 @@ int32_t CFixedPointParameterType::asInteger(double dValue) const
     return iData;
 }
 
-double CFixedPointParameterType::asDouble(int32_t iValue) const
+
+double CFixedPointParameterType::binaryQnmToDouble(int32_t iValue) const
 {
     // Unjustify
     iValue >>= getSize() * 8 - getUtilSizeInBits();
-    // Convert
-    return (double)iValue / (1UL << _uiFractional);
+    return static_cast<double>(iValue) / (1UL << _uiFractional);
 }
 
 // From IXmlSource
