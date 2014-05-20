@@ -39,28 +39,28 @@ include $(BUILD_PHONY_PACKAGE)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ParameterFrameworkConfiguration.xsd
-LOCAL_SRC_FILES := ParameterFrameworkConfiguration.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ConfigurableDomains.xsd
-LOCAL_SRC_FILES := ConfigurableDomains.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 LOCAL_REQUIRED_MODULES := \
     ParameterSettings.xsd
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := SystemClass.xsd
-LOCAL_SRC_FILES := SystemClass.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 LOCAL_REQUIRED_MODULES := \
     FileIncluder.xsd \
     Subsystem.xsd
@@ -68,36 +68,36 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ParameterSettings.xsd
-LOCAL_SRC_FILES := ParameterSettings.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := FileIncluder.xsd
-LOCAL_SRC_FILES := FileIncluder.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := Subsystem.xsd
-LOCAL_SRC_FILES := Subsystem.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 LOCAL_REQUIRED_MODULES := \
     ComponentLibrary.xsd
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ComponentLibrary.xsd
-LOCAL_SRC_FILES := ComponentLibrary.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 LOCAL_REQUIRED_MODULES := \
     ComponentTypeSet.xsd \
     W3cXmlAttributes.xsd
@@ -105,10 +105,10 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ComponentTypeSet.xsd
-LOCAL_SRC_FILES := ComponentTypeSet.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 LOCAL_REQUIRED_MODULES := \
     Parameter.xsd \
     W3cXmlAttributes.xsd
@@ -116,17 +116,17 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := W3cXmlAttributes.xsd
-LOCAL_SRC_FILES := W3cXmlAttributes.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := Parameter.xsd
-LOCAL_SRC_FILES := Parameter.xsd
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
-LOCAL_MODULE_CLASS = ETC
 include $(BUILD_PREBUILT)
 ##################################################
