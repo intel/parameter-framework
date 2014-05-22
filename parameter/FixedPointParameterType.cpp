@@ -332,13 +332,7 @@ bool CFixedPointParameterType::checkValueAgainstRange(double dValue) const
     double dMax = 0;
     getRange(dMin, dMax);
 
-    /**
-     * Bijective transformation is only ensured in raw format.
-     * So, as the double stored in the XML may be significant, and as the std::setprecision used
-     * may round up, double representation may go outside the range.
-     */
-    int32_t rawValue = asInteger(dValue);
-    return (rawValue <= asInteger(dMax)) && (rawValue >= asInteger(dMin));
+    return (dValue <= dMax) && (dValue >= dMin);
 }
 
 // Data conversion
