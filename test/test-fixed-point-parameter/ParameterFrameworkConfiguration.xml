@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParameterFrameworkConfiguration SystemClassName="Test" ServerPort="5066" TuningAllowed="true">
+    <SubsystemPlugins>
+    </SubsystemPlugins>
+    <StructureDescriptionFileLocation Path="TestClass.xml"/>
+</ParameterFrameworkConfiguration>
