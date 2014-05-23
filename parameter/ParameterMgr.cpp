@@ -1638,6 +1638,15 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
     // Define Configuration context using Base Offset and keep Auto Sync off to prevent access to HW
     CParameterAccessContext parameterAccessContext(strError, pConfigurationBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, uiBaseOffset);
 
+    // Deactivate the auto synchronization with the hardware during the Configuration Blackboard
+    // access (only Main Blackboard shall be synchronized, Configurations Blackboards are copied
+    // into the Main Blackboard each time a configuration is restored but they are not synchronized
+    // directly).
+    if (bSet) {
+
+        parameterAccessContext.setAutoSync(false);
+    }
+
     // Access Value in the Configuration Blackboard
     if (!accessValue(parameterAccessContext, strPath, strValue, bSet, strError)) {
 
