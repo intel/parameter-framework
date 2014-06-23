@@ -194,3 +194,36 @@ LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host $(common_sta
 LOCAL_LDLIBS += -ldl
 
 include $(BUILD_HOST_SHARED_LIBRARY)
+
+################################
+# Export includes for plugins (Target build)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := $(common_module)_includes
+
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+
+LOCAL_STATIC_LIBRARIES := \
+    libxmlserializer \
+    libpfw_utility \
+    $(common_static_libraries)
+
+include $(BUILD_STATIC_LIBRARY)
+
+################################
+# Export includes for plugins (Host build)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := $(common_module)_includes_host
+
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+
+LOCAL_STATIC_LIBRARIES := \
+    libxmlserializer_host \
+    libpfw_utility_host \
+    $(common_static_libraries)
+
+include $(BUILD_HOST_STATIC_LIBRARY)
+
