@@ -45,13 +45,18 @@ then
     shift
     exec 1>/dev/null
 else
-    exec 1> >(sed 's/^/Info: /' >&2)
+    exec 1> >(sed "s/^/($$) Info: /" >&2)
 fi
 # Prefix all warning and error log lines and redirect them to stderr
-exec 5> >(sed 's/^/Warning: /' >&2)
-exec 2> >(sed 's/^/Error: /' >&2)
+exec 5> >(sed "s/^/($$) Warning: /" >&2)
+exec 2> >(sed "s/^/($$) Error: /" >&2)
 
 # Get script arguments
+validationEnabled="false"
+if [ "$1" = "--validate" ]; then
+    validationEnabled="true"
+    shift
+fi
 PFWconfigurationFilePath="$1"; shift
 CriterionFilePath="$1"; shift
 xmlDomainFilePath="$1"; shift
@@ -64,8 +69,8 @@ hostConfig="hostConfig.py"
 PFWScriptGenerator="PFWScriptGenerator.py"
 portAllocator="portAllocator.py"
 
-TPHost=localhost
-PFWHost=localhost
+TPHost=127.0.0.1
+PFWHost=127.0.0.1
 TPCreated=false
 
 HostRoot="$ANDROID_HOST_OUT"
@@ -76,7 +81,8 @@ TPSocket=5003
 PFWSocket=5000
 PFWStartTimeout=60
 
-tmpFile=$(mktemp)
+tmpDir=$(mktemp -d)
+tmpFile=$(mktemp --tmpdir="$tmpDir")
 
 # [Workaround]
 # The build system does not preserve execution right in external prebuild
@@ -91,6 +97,16 @@ export LD_LIBRARY_PATH="$HostRoot/lib:${LD_LIBRARY_PATH:-}"
 # Setup clean trap, it will be called automatically on exit
 clean_up () {
     status=$?
+    set +e # An error should not abort clean up
+
+    ( if test $status -ne 0
+    then
+        echo "$0 is exiting on error, printing debug information."
+        echo "Test platform port: $TPSocket"
+        echo "PFW port: $PFWSocket"
+        netstat --program --all --numeric --extend --tcp
+        ps -ejHlf
+    fi ) >&5
 
     # Exit the test-platform only if it was created by this process
     if $TPCreated
@@ -101,6 +117,12 @@ clean_up () {
 
     echo "Cleaning $tmpFile ..."
     rm "$tmpFile" || true
+
+    if [ "$validationEnabled" = "true" ]; then
+        echo "Cleaning $tmpDir/Schemas ..."
+        rm -r "$tmpDir/Schemas" || true
+        rmdir "$tmpDir" || true
+    fi
 
     echo "Cleaning status: $status ..."
     return $status
@@ -191,6 +213,7 @@ launchTestPlatform () {
 
     $TPSendCommand setFailureOnMissingSubsystem false
     $TPSendCommand setFailureOnFailedSettingsLoad false
+    $TPSendCommand setValidateSchemasOnStart $validationEnabled
 
     echo "Asking test-platform (port $TPSocket) to start a new PFW instance (listening on port $PFWSocket) ..."
     $TPSendCommand start
@@ -253,6 +276,15 @@ deleteEscapedNewLines () {
     sed -r ':a;/\\$/{N;s/\\\n//;ba}'
 }
 
+copySchemaFiles() {
+    cp -r "$HostRoot"/etc/parameter-framework/Schemas "$tmpDir/Schemas"
+}
+
+# Copy the schema files needed for validation
+if [ "$validationEnabled" = "true" ]; then
+    copySchemaFiles
+fi
+
 # The PFW looks for a libremote-processor.so library, not a libremote-processor_host.so
 linkLibrary libremote-processor_host.so libremote-processor.so
 
@@ -267,8 +299,8 @@ $PFWSendCommand setTuningMode on
 # Send the xml domain tunning file
 if test -s "$xmlDomainFilePath"
 then
-    echo "Send the xml domain tunning file: $xmlDomainFilePath"
-    $PFWSendCommand setDomainsWithSettingsXML "$(cat $xmlDomainFilePath)"
+    echo "Import the xml domain tunning file: $(readlink -e $xmlDomainFilePath)"
+    $PFWSendCommand importDomainsWithSettingsXML "$(readlink -e $xmlDomainFilePath)"
 fi
 
 # Send the extended domain description routing files converted to pfw commands

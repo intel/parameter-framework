@@ -1,4 +1,4 @@
-     /*
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -36,8 +36,10 @@
 #include "NamedElementBuilderTemplate.h"
 #include "KindElementBuilderTemplate.h"
 #include "ElementBuilderTemplate.h"
+#include "XmlFileIncluderElement.h"
 #include "SelectionCriterionType.h"
 #include "SubsystemElementBuilder.h"
+#include "FileIncluderElementBuilder.h"
 #include "SelectionCriteria.h"
 #include "ComponentType.h"
 #include "ComponentInstance.h"
@@ -289,7 +291,9 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _pLogger(NULL),
     _uiLogDepth(0),
     _bFailOnMissingSubsystem(true),
-    _bFailOnFailedSettingsLoad(true)
+    _bFailOnFailedSettingsLoad(true),
+    _bValidateSchemasOnStart(false)
+
 {
     // Tuning Mode Mutex
     bzero(&_blackboardMutex, sizeof(_blackboardMutex));
@@ -300,9 +304,6 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     addChild(new CSelectionCriteria);
     addChild(new CSystemClass);
     addChild(new CConfigurableDomains);
-
-    // Feed element library
-    feedElementLibraries();
 
     _pCommandHandler = new CCommandHandler(this);
 
@@ -408,6 +409,8 @@ string CParameterMgr::getVersion() const
 bool CParameterMgr::load(string& strError)
 {
     CAutoLog autoLog(this, "Loading");
+
+    feedElementLibraries();
 
     // Load Framework configuration
     if (!loadFrameworkConfiguration(strError)) {
@@ -644,12 +647,16 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
 bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement, const string& strXmlFilePath, const string& strXmlFolder, CParameterMgr::ElementLibrary eElementLibrary, const string& strNameAttrituteName)
 {
     // Init serializing context
-    elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(eElementLibrary), strXmlFolder, _strSchemaFolderLocation);
+    elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(
+                                      eElementLibrary), strXmlFolder, _strSchemaFolderLocation);
 
     // Get Schema file associated to root element
     string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pRootElement->getKind() + ".xsd";
 
-    CXmlFileDocSource fileDocSource(strXmlFilePath, strXmlSchemaFilePath, pRootElement->getKind(), pRootElement->getName(), strNameAttrituteName);
+    CXmlFileDocSource fileDocSource(strXmlFilePath, strXmlSchemaFilePath,
+                                    pRootElement->getKind(),
+                                    pRootElement->getName(), strNameAttrituteName,
+                                    _bValidateSchemasOnStart);
 
     // Start clean
     pRootElement->clean();
@@ -776,10 +783,22 @@ void CParameterMgr::setFailureOnFailedSettingsLoad(bool bFail)
 {
     _bFailOnFailedSettingsLoad = bFail;
 }
+
 bool CParameterMgr::getFailureOnFailedSettingsLoad()
 {
     return _bFailOnFailedSettingsLoad;
 }
+
+void CParameterMgr::setValidateSchemasOnStart(bool bValidate)
+{
+    _bValidateSchemasOnStart = bValidate;
+}
+
+bool CParameterMgr::getValidateSchemasOnStart() const
+{
+    return _bValidateSchemasOnStart;
+}
+
 /////////////////// Remote command parsers
 /// Version
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::versionCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1619,6 +1638,15 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
     // Define Configuration context using Base Offset and keep Auto Sync off to prevent access to HW
     CParameterAccessContext parameterAccessContext(strError, pConfigurationBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, uiBaseOffset);
 
+    // Deactivate the auto synchronization with the hardware during the Configuration Blackboard
+    // access (only Main Blackboard shall be synchronized, Configurations Blackboards are copied
+    // into the Main Blackboard each time a configuration is restored but they are not synchronized
+    // directly).
+    if (bSet) {
+
+        parameterAccessContext.setAutoSync(false);
+    }
+
     // Access Value in the Configuration Blackboard
     if (!accessValue(parameterAccessContext, strPath, strValue, bSet, strError)) {
 
@@ -1999,14 +2027,16 @@ bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSetti
         // when importing from a file strXmlSource is the file name
         pSource = new CXmlFileDocSource(strXmlSource, strXmlSchemaFilePath,
                                         pConfigurableDomains->getKind(),
-                                        pConfigurableDomains->getName(), "SystemClassName");
+                                        pConfigurableDomains->getName(), "SystemClassName",
+                                        _bValidateSchemasOnStart);
 
     } else {
 
         // when importing from an xml string, strXmlSource contains the string
         pSource = new CXmlStringDocSource(strXmlSource, strXmlSchemaFilePath,
                                           pConfigurableDomains->getKind(),
-                                          pConfigurableDomains->getName(), "SystemClassName");
+                                          pConfigurableDomains->getName(), "SystemClassName",
+                                          _bValidateSchemasOnStart);
 
     }
     // Start clean
@@ -2063,7 +2093,8 @@ bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, boo
 
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(pConfigurableDomains, pConfigurableDomains->getKind(),
-                                     strXmlSchemaFilePath, "parameter-framework", getVersion());
+                                     strXmlSchemaFilePath, "parameter-framework",
+                                     getVersion(), _bValidateSchemasOnStart);
 
     // Xml Sink
     CXmlDocSink* pSink;
@@ -2181,7 +2212,7 @@ void CParameterMgr::feedElementLibraries()
     pParameterCreationLibrary->addElementBuilder("EnumParameter", new TNamedElementBuilderTemplate<CEnumParameterType>());
     pParameterCreationLibrary->addElementBuilder("ValuePair", new TElementBuilderTemplate<CEnumValuePair>());
     pParameterCreationLibrary->addElementBuilder("FixedPointParameter", new TNamedElementBuilderTemplate<CFixedPointParameterType>());
-    pParameterCreationLibrary->addElementBuilder("SubsystemInclude", new TKindElementBuilderTemplate<CXmlFileIncluderElement>());
+    pParameterCreationLibrary->addElementBuilder("SubsystemInclude", new CFileIncluderElementBuilder(_bValidateSchemasOnStart));
 
     _pElementLibrarySet->addElementLibrary(pParameterCreationLibrary);
 
@@ -2338,7 +2369,8 @@ bool CParameterMgr::getSystemClassXMLString(string& strResult)
     CXmlSerializingContext xmlSerializingContext(strError);
 
     // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(pSystemClass, pSystemClass->getKind());
+    CXmlMemoryDocSource memorySource(pSystemClass, pSystemClass->getKind(),
+                                     _bValidateSchemasOnStart);
 
     // Use a doc sink that write the doc data in a string
     CXmlStringDocSink stringSink(strResult);

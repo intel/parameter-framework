@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2014, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,28 +27,29 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#pragma once
 
-#include "XmlStringDocSource.h"
-#include <libxml/parser.h>
+#include "ConfigurableElement.h"
+#include <string>
 
-#define base CXmlDocSource
+/**
+ * Base class for all Configurable Elements that can have a Mapping attribute.
+ *
+ * This class acts as an interface: it doesn't implement anything but only
+ * declares getMappingData as pure virtual fonction.
+ */
+class CConfigurableElementWithMapping : public CConfigurableElement {
+public:
+    CConfigurableElementWithMapping(const string& strName) : CConfigurableElement(strName) {}
+    virtual ~CConfigurableElementWithMapping() {}
 
-CXmlStringDocSource::CXmlStringDocSource(const string& strXmlInput,
-                                         const string& strXmlSchemaFile,
-                                         const string& strRootElementType,
-                                         const string& strRootElementName,
-                                         const string& strNameAttrituteName,
-                                         bool bValidateWithSchema) :
-    base(xmlReadMemory(strXmlInput.c_str(), strXmlInput.size(), "", NULL, 0),
-         strXmlSchemaFile,
-         strRootElementType,
-         strRootElementName,
-         strNameAttrituteName,
-         bValidateWithSchema)
-{
-}
-
-bool CXmlStringDocSource::populate(CXmlSerializingContext &serializingContext)
-{
-    return validate(serializingContext);
-}
+    /**
+     * Get the value associated to a mapping key in the object's mapping
+     *
+     * @param[in] strKey the mapping key
+     * @param[out] pStrValue the associated value
+     *
+     * @return true if @p strKey is found in the object's mapping, false if not
+     */
+    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const = 0;
+};

@@ -52,8 +52,9 @@ public:
       *
       * @param[out] pDoc a pointer to the xml document that will be filled by the class
       * @param[in] pRootNode a pointer to the root element of the document.
+      * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc* pDoc, _xmlNode* pRootNode = NULL);
+    CXmlDocSource(_xmlDoc* pDoc, _xmlNode* pRootNode = NULL, bool bValidateWithSchema = false);
 
     /**
       * Constructor
@@ -76,8 +77,26 @@ public:
       * @param[out] pDoc a pointer to the xml document that will be filled by the class
       * @param[in] strXmlSchemaFile a string containing the path to the schema file
       * @param[in] strRootElementType a string containing the root element type
+      * @param[in] strRootElementName a string containing the root element name
+      * @param[in] strNameAttributeName a string containing the name of the root name attribute
+      * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc* pDoc, const string& strXmlSchemaFile, const string& strRootElementType);
+    CXmlDocSource(_xmlDoc* pDoc,
+                           const string& strXmlSchemaFile,
+                           const string& strRootElementType,
+                           const string& strRootElementName,
+                           const string& strNameAttrituteName,
+                             bool bValidateWithSchema);
+
+    /**
+      * Constructor
+      *
+      * @param[out] pDoc a pointer to the xml document that will be filled by the class
+      * @param[in] strXmlSchemaFile a string containing the path to the schema file
+      * @param[in] strRootElementType a string containing the root element type
+      */
+    CXmlDocSource(_xmlDoc* pDoc, const string& strXmlSchemaFile, const string& strRootElementType,
+                             bool bValidateWithSchema);
 
     /**
       * Destructor
@@ -197,4 +216,9 @@ private:
       * Boolean that enables the root element name attribute check
       */
     bool _bNameCheck;
+
+    /**
+      * Boolean that enables the validation via xsd files
+      */
+    bool _bValidateWithSchema;
 };

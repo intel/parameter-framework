@@ -35,11 +35,13 @@
 class CXmlFileIncluderElement : public CKindElement
 {
 public:
-    CXmlFileIncluderElement(const string& strName, const string& strKind);
-
+    CXmlFileIncluderElement(const string& strName,
+                            const string& strKind,
+                            bool bValidateWithSchemas);
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 private:
     // Element type
     string getIncludedElementType() const;
+    bool _bValidateSchemasOnStart;
 };

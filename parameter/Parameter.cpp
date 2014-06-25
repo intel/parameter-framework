@@ -122,30 +122,34 @@ bool CParameter::accessAsDouble(double& dValue, bool bSet, CParameterAccessConte
 
 // Generic Access
 template <typename type>
-bool CParameter::doAccess(type& value, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::doAccess(type& value, bool bSet,
+                          CParameterAccessContext& parameterAccessContext) const
 {
-    bool bSuccess;
-
     if (bSet) {
+        // set value
+        if (!doSet(value, getOffset() - parameterAccessContext.getBaseOffset(),
+                   parameterAccessContext)) {
 
-        if  (doSet(value, getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext)) {
+            appendParameterPathToError(parameterAccessContext);
+            return false;
 
-            // Synchronize
-            bSuccess = sync(parameterAccessContext);
-        } else {
+        }
+        // Synchronize
+        if (!sync(parameterAccessContext)){
 
-            bSuccess = false;
+            appendParameterPathToError(parameterAccessContext);
+            return false;
         }
     } else {
+        // get value
+        if (!doGet(value, getOffset() - parameterAccessContext.getBaseOffset(),
+                   parameterAccessContext)) {
 
-        bSuccess = doGet(value, getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext);
+            appendParameterPathToError(parameterAccessContext);
+            return false;
+        }
     }
-    if (!bSuccess) {
-
-        // Append parameter path to error
-        parameterAccessContext.appendToError(" " + getPath());
-    }
-    return bSuccess;
+    return true;
 }
 
 template <typename type>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2014, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,28 +27,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#pragma once
 
-#include "XmlStringDocSource.h"
-#include <libxml/parser.h>
+#include "ElementBuilder.h"
+#include "XmlFileIncluderElement.h"
 
-#define base CXmlDocSource
-
-CXmlStringDocSource::CXmlStringDocSource(const string& strXmlInput,
-                                         const string& strXmlSchemaFile,
-                                         const string& strRootElementType,
-                                         const string& strRootElementName,
-                                         const string& strNameAttrituteName,
-                                         bool bValidateWithSchema) :
-    base(xmlReadMemory(strXmlInput.c_str(), strXmlInput.size(), "", NULL, 0),
-         strXmlSchemaFile,
-         strRootElementType,
-         strRootElementName,
-         strNameAttrituteName,
-         bValidateWithSchema)
+/** This is the XmlFileIncluderElement builder class
+ *
+ * It is builds the XmlFileIncluderElement with
+ * a mandatory option specific to xml:
+ *  whether it should be validated with schemas or not
+ */
+class CFileIncluderElementBuilder : public CElementBuilder
 {
-}
+public:
+    CFileIncluderElementBuilder(bool bValidateWithSchemas) :
+        CElementBuilder(),
+        _bValidateWithSchemas(bValidateWithSchemas)
+    {}
 
-bool CXmlStringDocSource::populate(CXmlSerializingContext &serializingContext)
-{
-    return validate(serializingContext);
-}
+    virtual CElement *createElement(const CXmlElement &xmlElement) const
+    {
+        return new CXmlFileIncluderElement(xmlElement.getNameAttribute(),
+                                           xmlElement.getType(), _bValidateWithSchemas);
+    }
+
+private:
+    bool _bValidateWithSchemas;
+};

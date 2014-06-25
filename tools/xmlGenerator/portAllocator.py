@@ -32,8 +32,8 @@ import sys, socket
 
 serversock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
-    # Create a listening socket on a random available port
-    serversock.bind(('localhost',0))
+    # Create a listening socket on a random available port on localhost
+    serversock.bind(('127.0.0.1',0))
     serversock.listen(0)
 
     # Print the chosen port
@@ -41,7 +41,7 @@ try:
     serversock.close()
 
 except socket.error, (errno,message):
-    print("Socket creation error " + str(errno) + ": " + message)
+    sys.stderr.write("portAllocator: Socket creation error " + str(errno) + ": " + message + '\n')
     if serversock:
         serversock.close()
     sys.exit(1)

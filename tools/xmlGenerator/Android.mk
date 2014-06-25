@@ -61,7 +61,17 @@ LOCAL_REQUIRED_MODULES :=  \
     hostConfig.py \
     portAllocator.py \
     test-platform_host \
-    remote-process_host
+    remote-process_host \
+    ParameterFrameworkConfiguration.xsd \
+    ConfigurableDomains.xsd \
+    SystemClass.xsd \
+    ParameterSettings.xsd \
+    FileIncluder.xsd \
+    Subsystem.xsd \
+    ComponentLibrary.xsd \
+    ComponentTypeSet.xsd \
+    W3cXmlAttributes.xsd \
+    Parameter.xsd
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_IS_HOST_MODULE := true
 include $(BUILD_PREBUILT)

@@ -114,6 +114,23 @@ public:
       */
     bool getFailureOnFailedSettingsLoad();
 
+    /** Should .xml files be validated on start ?
+     *
+     * @param[in] bValidate:
+     *     If set to true, parameterMgr will abort when being unable to validate .xml files
+     *     If set to false, no .xml/xsd validation will happen (default behaviour)
+     * @param[out] strResult a string containing the result of the command.
+     *
+     * @return false if unable to set, true otherwise.
+     */
+    bool setValidateSchemasOnStart(bool bValidate, std::string &strError);
+
+    /** Would .xml files be validated on start?
+     *
+     * @return areSchemasValidated
+     */
+    bool getValidateSchemasOnStart();
+
 private:
     CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector&);
     CParameterMgrPlatformConnector& operator=(const CParameterMgrPlatformConnector&);
@@ -129,4 +146,3 @@ private:
     // Private logging
     CParameterMgrLogger* _pParameterMgrLogger;
 };
-

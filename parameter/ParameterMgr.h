@@ -167,6 +167,24 @@ public:
       */
     bool getFailureOnFailedSettingsLoad();
 
+    /** Should .xml files be validated on start ?
+     *
+     * @param[in] bValidate:
+     *     If set to true, parameterMgr will report an error
+     *         when being unable to validate .xml files
+     *     If set to false, no .xml/xsd validation will happen
+     *     (default behaviour)
+     *
+     * @return false if unable to set, true otherwise.
+     */
+    void setValidateSchemasOnStart(bool bValidate);
+
+    /** Would .xml files be validated on start?
+     *
+     * @return areSchemasValidated
+     */
+    bool getValidateSchemasOnStart() const;
+
     //////////// Tuning /////////////
     // Tuning mode
     bool setTuningMode(bool bOn, string& strError);
@@ -508,5 +526,12 @@ private:
       *                 will continue the parameterMgr start with no domains.
       */
     bool _bFailOnFailedSettingsLoad;
+
+    /**
+     * If set to true, parameterMgr will report an error
+     *     when being unable to validate .xml files
+     * If set to false, no .xml/xsd validation will happen (default behaviour)
+     */
+    bool _bValidateSchemasOnStart;
 };
 

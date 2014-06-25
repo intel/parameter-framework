@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 #include <strings.h>
 #include <iostream>
 #include <stdlib.h>
@@ -119,6 +120,17 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exi
             &CTestPlatform::getter<&CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad>,
             0, "",
             "Get policy for failed settings load, either abort start or continue without domains.");
+
+    _pCommandHandler->addCommandParser(
+            "setValidateSchemasOnStart",
+            &CTestPlatform::setter<&CParameterMgrPlatformConnector::setValidateSchemasOnStart>,
+            1, "true|false",
+            "Set policy for schema validation based on .xsd files (false by default).");
+    _pCommandHandler->addCommandParser(
+            "getValidateSchemasOnStart",
+            &CTestPlatform::getter<&CParameterMgrPlatformConnector::getValidateSchemasOnStart>,
+            0, "",
+            "Get policy for schema validation based on .xsd files.");
 
     // Create server
     _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber, _pCommandHandler);

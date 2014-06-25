@@ -80,4 +80,11 @@ protected:
     // Actual value access (to be implemented by derived)
     virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const = 0;
     virtual void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const = 0;
+
+    /**
+     * Append the parameter path to the error.
+     *
+     * @param[in:out] parameterAccessContext Parameter Access Context object.
+     */
+    void appendParameterPathToError(CParameterAccessContext& parameterAccessContext) const;
 };

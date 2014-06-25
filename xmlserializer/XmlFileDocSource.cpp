@@ -38,22 +38,26 @@ CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
                                      const string& strXmlSchemaFile,
                                      const string& strRootElementType,
                                      const string& strRootElementName,
-                                     const string& strNameAttrituteName) :
+                                     const string& strNameAttrituteName,
+                                     bool bValidateWithSchema) :
         base(readFile(strXmlInstanceFile),
              strXmlSchemaFile,
              strRootElementType,
              strRootElementName,
-             strNameAttrituteName),
+             strNameAttrituteName,
+             bValidateWithSchema),
         _strXmlInstanceFile(strXmlInstanceFile)
 {
 }
 
 CXmlFileDocSource::CXmlFileDocSource(const string& strXmlInstanceFile,
                                      const string& strXmlSchemaFile,
-                                     const string& strRootElementType) :
+                                     const string& strRootElementType,
+                                     bool bValidateWithSchema) :
         base(readFile(strXmlInstanceFile),
              strXmlSchemaFile,
-             strRootElementType),
+             strRootElementType,
+             bValidateWithSchema),
         _strXmlInstanceFile(strXmlInstanceFile)
 {
 }

@@ -86,6 +86,9 @@ string CXmlElement::getAttributeString(const string &strAttributeName) const
         return "";
     }
     xmlChar* pucXmlValue = xmlGetProp((xmlNode*)_pXmlElement, (const xmlChar*)strAttributeName.c_str());
+    if (pucXmlValue == NULL) {
+        return "";
+    }
 
     string strValue((const char*)pucXmlValue);
 
@@ -130,6 +133,9 @@ double CXmlElement::getAttributeDouble(const string &strAttributeName) const
 string CXmlElement::getTextContent() const
 {
     xmlChar* pucXmlContent = xmlNodeGetContent(_pXmlElement);
+    if (pucXmlContent == NULL) {
+        return "";
+    }
 
     string strContent((const char*)pucXmlContent);
 
