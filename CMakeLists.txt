@@ -17,3 +17,5 @@ add_subdirectory(remote-processor)
 
 add_subdirectory(remote-process)
 add_subdirectory(test/test-platform)
+
+add_subdirectory(tools/xmlGenerator)
