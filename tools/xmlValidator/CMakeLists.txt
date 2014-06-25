@@ -1,0 +1,1 @@
+INSTALL(PROGRAMS xmlValidator.py DESTINATION bin)
