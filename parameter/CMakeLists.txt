@@ -190,10 +190,12 @@ install(FILES
     AutoLog.h
     BitParameterBlockType.h
     ConfigurableElement.h
+    ConfigurableElementWithMapping.h
     DefaultElementLibrary.h
     Element.h
     ElementBuilder.h
     ElementLibrary.h
+    FileIncluderElementBuilder.h
     FormattedSubsystemObject.h
     InstanceConfigurableElement.h
     Mapper.h
