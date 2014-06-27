@@ -59,10 +59,7 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_CFLAGS := $(common_cflags)
 
-LOCAL_C_INCLUDES += \
-    external/stlport/stlport \
-    bionic
-
+include external/stlport/libstlport.mk
 include $(BUILD_STATIC_LIBRARY)
 
 ##############################
