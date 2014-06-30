@@ -159,14 +159,12 @@ LOCAL_SRC_FILES := $(common_src_files)
 LOCAL_MODULE := $(common_module)
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_C_INCLUDES += \
-    $(common_c_includes) \
-    external/stlport/stlport \
-    bionic/
+LOCAL_C_INCLUDES := $(common_c_includes)
 
-LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libdl libstlport
+LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libdl
 LOCAL_STATIC_LIBRARIES := libxmlserializer libpfw_utility libxml2
 
+include external/stlport/libstlport.mk
 include $(BUILD_SHARED_LIBRARY)
 
 ##############################
