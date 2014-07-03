@@ -111,6 +111,6 @@ private:
 
     // Subsystem factory
     CSubsystemLibrary* _pSubsystemLibrary;
-    std::list<void*> _subsystemLibraries; /**< Contains the list of all open plugin libs. */
+    std::list<void*> _subsystemLibraryHandleList; /**< Contains the list of all open plugin libs. */
 };
 

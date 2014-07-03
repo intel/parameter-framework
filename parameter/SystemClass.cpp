@@ -71,11 +71,16 @@ CSystemClass::~CSystemClass()
 {
     delete _pSubsystemLibrary;
 
-    // Close all previously opened libraries
-    while (!_subsystemLibraries.empty())
-    {
-      dlclose(_subsystemLibraries.back());
-      _subsystemLibraries.pop_back();
+    // Destroy child subsystems *before* unloading the libraries (otherwise crashes will occur
+    // as unmapped code will be referenced)
+    clean();
+
+    // Close all previously opened subsystem libraries
+    list<void*>::const_iterator it;
+
+    for (it = _subsystemLibraryHandleList.begin(); it != _subsystemLibraryHandleList.end(); ++it) {
+
+        dlclose(*it);
     }
 }
 
@@ -238,7 +243,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
         }
 
         // Store libraries handles
-        _subsystemLibraries.push_back(lib_handle);
+        _subsystemLibraryHandleList.push_back(lib_handle);
 
         // Get plugin symbol
         string strPluginSymbol = getPluginSymbol(strPluginFileName);
