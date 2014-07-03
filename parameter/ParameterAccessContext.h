@@ -57,9 +57,20 @@ public:
     void setValueSpaceRaw(bool bIsRaw);
     bool valueSpaceIsRaw() const;
 
-    // Output Raw Format for user get value interpretation
+    /**
+     * Assigns Output Raw Format for user get value interpretation.
+     *
+     * @param[in] bIsHex "true" for hexadecimal, "false" for decimal
+     *
+     */
     void setOutputRawFormat(bool bIsHex);
-    bool outputRawFormatIsHex();
+    /**
+     * Returns Output Raw Format for user get value interpretation.
+     *
+     * @return "true" for hexadecimal, "false" for decimal
+     *
+     */
+    bool outputRawFormatIsHex() const;
 
     // Endianness
     void setBigEndianSubsystem(bool bBigEndian);

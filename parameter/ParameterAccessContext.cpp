@@ -98,7 +98,7 @@ void CParameterAccessContext::setOutputRawFormat(bool bIsHex)
     _bOutputRawFormatIsHex = bIsHex;
 }
 
-bool CParameterAccessContext::outputRawFormatIsHex()
+bool CParameterAccessContext::outputRawFormatIsHex() const
 {
     return _bOutputRawFormatIsHex;
 }
