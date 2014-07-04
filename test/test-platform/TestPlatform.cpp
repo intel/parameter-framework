@@ -462,30 +462,35 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
     }
 
     /// Translate lexical state to numerical state
-    uint32_t uiNumericalState = 0;
+    int iNumericalState = 0;
     uint32_t uiLexicalSubStateIndex;
 
     // Parse lexical substates
+    std::string strLexicalState = "";
     for (uiLexicalSubStateIndex = 1; uiLexicalSubStateIndex <= uiNbSubStates; uiLexicalSubStateIndex++) {
-
-        int iNumericalSubState;
-
-        const std::string& strLexicalSubState = remoteCommand.getArgument(uiLexicalSubStateIndex);
-
-        // Translate lexical to numerical substate
-        if (!pCriterionType->getNumericalValue(strLexicalSubState, iNumericalSubState)) {
-
-            strResult = "Unable to find lexical state \"" + strLexicalSubState + "\" in criteria " + strCriterionName;
-
-            return false;
+        /*
+         * getNumericalValue method from ISelectionCriterionTypeInterface strip his parameter
+         * first parameter based on | sign. In case that the user uses multiple parameters
+         * to set InclusiveCriterion value, we aggregate all desired values to be sure
+         * they will be handled correctly.
+         */
+        if (uiLexicalSubStateIndex != 1) {
+            strLexicalState += "|";
         }
+        strLexicalState += remoteCommand.getArgument(uiLexicalSubStateIndex);
+    }
 
-        // Aggregate numerical substates
-        uiNumericalState |= iNumericalSubState;
+    // Translate lexical to numerical substate
+    if (!pCriterionType->getNumericalValue(strLexicalState, iNumericalState)) {
+
+        strResult = "Unable to find lexical state \""
+            + strLexicalState + "\" in criteria " + strCriterionName;
+
+        return false;
     }
 
     // Set criterion new state
-    pCriterion->setCriterionState(uiNumericalState);
+    pCriterion->setCriterionState(iNumericalState);
 
     return true;
 }
