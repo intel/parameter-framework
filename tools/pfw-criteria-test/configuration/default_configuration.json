@@ -1,0 +1,21 @@
+{
+    "PFWtest_PrefixCommand" : "adb shell",
+    "PFWtest_TestPlatformHost" : "localhost 5001",
+    "PFWtest_ParameterFramworkHost" : "localhost 5000",
+    "PFWtest_RouteStateCriterionName":"RoutageState",
+    "PFWtest_TestPlatformCommand":"test-platform",
+    "PFWtest_RemoteProcessCommand":"remote-process",
+    "PFWtest_PFWConfFile" : "/etc/parameter-framework/ParameterFrameworkConfiguration.xml",
+    "PFWtest_PlayCmd" : "alsa_aplay",
+    "PFWtest_PlayedMedia" : "/sdcard/Music/pfw-criteria-test_s16_48k_stereo.wav",
+    "PFWtest_PlayCmdArgs" : "-Dhw:1,0",
+    "PFWtest_LoopbackCmdArgs" : "-Dhw:1,0 -f S16 -r 48000 -c2",
+    "PFWtest_CaptureCmd" : "alsa_arecord",
+    "PFWtest_CaptureCmdArgs" : "-Dhw:1,0 -f S16_LE",
+    "PFWtest_CapturedMedia" : "/sdcard/Music/PFWtest.wav",
+    "PFWtest_CriterionFile" : "../../../../../../../../../device/intel/common/parameter-framework/AudioCriteria.txt",
+    "PFWtest_LogFile" : "tmp.log",
+    "PFWtest_ATCmd_Register" : "\\\"AT+COPS=0\\r\\n\\\"",
+    "PFWtest_ATCmd_Call" : "\\\"ATD0000000000;\\r\\n\\\"",
+    "PFWtest_GsmTty" : "/dev/gsmtty5"
+}
