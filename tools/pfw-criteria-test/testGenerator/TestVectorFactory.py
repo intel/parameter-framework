@@ -53,7 +53,9 @@ class TestVectorFactory:
                     newCriterion.currentValue = rawCriterions[criterionClass.__name__]
                 except KeyError as e:
                     self.__logger.warning(
-                            "Error {}: Missing Criterion {}".format(e,criterionClass.__name__))
+                            "Warning {}: Missing Criterion {}, default value applied".format(
+                                e,criterionClass.__name__))
+                    newCriterion.currentValue = newCriterion.noValue
                 criterions.append(newCriterion)
 
         return TestVector(name, criterions, testType)
