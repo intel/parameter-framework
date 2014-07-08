@@ -23,18 +23,18 @@
 class Criterion:
     """ A simple class that defines common criterions attributes """
 
-    def __init__(self, allowedValues):
-        """
-            The init function of the Criterion classes
-
-            :param allowedValues: The lexical states list the
-            criterion can take.
-            :type allowedValues: a string list
-        """
-        self._allowedValues = allowedValues
-
     @property
     def allowedValues(self):
+        """
+            The getter of the allowedValues attribute
+
+            :return: allowedValues attribute : The lexical states list the
+            criterion can take.
+            :rtype: string list
+        """
+
+        # _allowedValues variable is created in CriterionClassFactory
+        # when creating dynamic child classes
         return self._allowedValues
 
     @property

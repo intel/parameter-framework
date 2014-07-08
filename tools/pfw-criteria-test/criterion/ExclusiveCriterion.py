@@ -31,8 +31,8 @@ class ExclusiveCriterion(Criterion):
     This types of criterion can only have one value at a time
     """
 
-    def __init__(self, allowedValues):
-        super().__init__(allowedValues)
+    def __init__(self):
+        super().__init__()
         self.__currentValue = None
 
 

@@ -36,9 +36,10 @@ class CriterionClassFactory:
 
         def __init__(self):
             """ Init Function of a Criterion Child Function, allowedValues are fixed """
-            Base.__init__(self,values)
+            Base.__init__(self)
 
-        return type(name,(Base,),{"__init__":__init__}) # TODO : make an attribute allowedValues
+        # Creation of the class with allowed values (allows to have only one instance of the list)
+        return type(name,(Base,),{"__init__":__init__, "_allowedValues":values})
 
 
     def generateCriteriaClasses(self):

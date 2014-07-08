@@ -31,10 +31,9 @@ class InclusiveCriterion(Criterion):
     This types of criterion can have several values at the same time
     """
 
-    def __init__(self, allowedValues):
-        super().__init__(allowedValues)
+    def __init__(self):
+        super().__init__()
         self.__currentValues = set()
-
 
     @property
     def currentValue(self):
