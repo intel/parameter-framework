@@ -71,6 +71,14 @@ public:
     void setTextContent(const std::string& strContent);
     void setComment(const std::string& strComment);
     void setAttributeInteger(const std::string& strAttributeName, uint32_t uiValue);
+    /**
+      * Set attribute with signed integer
+      *
+      * @param[in] strAttributeName The attribute name
+      * @param[in] iValue The attribute value
+      *
+      */
+    void setAttributeSignedInteger(const std::string& strAttributeName, int32_t iValue);
 
     // Child creation
     void createChild(CXmlElement& childElement, const std::string& strType);

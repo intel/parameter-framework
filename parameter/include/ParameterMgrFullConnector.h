@@ -259,16 +259,6 @@ public:
     bool exportSingleDomainXml(std::string& strXmlDest, const std::string& strDomainName, bool bWithSettings,
                                bool bToFile, std::string& strError) const;
 
-    /**
-      * Method that creates an Xml description of the instanciated parameter structure contained
-      * in SystemClass.
-      *
-      * @param[out] strResult contains the xml description of SystemClass or the errors if any
-      *
-      * @return false if any error occures during the creation of the xml description
-      */
-    bool getSystemClassXMLString(std::string& strResult);
-
 private:
     // disallow copying because this class manages raw pointers' lifecycle
     CParameterMgrFullConnector(const CParameterMgrFullConnector&);

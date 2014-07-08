@@ -203,3 +203,26 @@ std::string CSelectionCriterionType::getFormattedState(int iValue) const
 
     return strFormattedState;
 }
+
+// From IXmlSource
+void CSelectionCriterionType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    // Type Kind
+    xmlElement.setAttributeString("Kind", isTypeInclusive() ? "Inclusive" : "Exclusive");
+
+    // Value pairs as children
+    NumToLitMapConstIt it;
+
+    for (it = _numToLitMap.begin(); it != _numToLitMap.end(); ++it) {
+
+        CXmlElement childValuePairElement;
+
+        xmlElement.createChild(childValuePairElement, "ValuePair");
+        // Literal
+        childValuePairElement.setAttributeString("Literal", it->first);
+        // Numerical
+        childValuePairElement.setAttributeSignedInteger("Numerical", it->second);
+    }
+
+    base::toXml(xmlElement, serializingContext);
+}

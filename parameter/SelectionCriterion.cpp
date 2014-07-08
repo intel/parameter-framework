@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 #include "SelectionCriterion.h"
 #include "AutoLog.h"
 
@@ -167,4 +168,16 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
         }
     }
     return strFormattedDescription;
+}
+
+// XML export
+void CSelectionCriterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    // Current Value
+    xmlElement.setAttributeString("Value", _pType->getFormattedState(_iState));
+
+    // Serialize Type node
+    _pType->toXml(xmlElement, serializingContext);
+
+    base::toXml(xmlElement, serializingContext);
 }

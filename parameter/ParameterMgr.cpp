@@ -87,8 +87,11 @@
 #include "XmlStringDocSource.h"
 #include "XmlMemoryDocSink.h"
 #include "XmlMemoryDocSource.h"
+#include "SelectionCriteriaDefinition.h"
 #include "Utility.h"
 #include <sstream>
+#include <algorithm>
+#include <ctype.h>
 #include <memory>
 
 #define base CElement
@@ -160,7 +163,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
 
     /// Criteria
     { "listCriteria", &CParameterMgr::listCriteriaCommmandProcess, 0,
-            "[csv]", "List selection criteria" },
+            "[CSV|XML]", "List selection criteria" },
 
     /// Domains
     { "listDomains", &CParameterMgr::listDomainsCommmandProcess, 0,
@@ -1083,28 +1086,52 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::syncCommmandProcess
 /// Criteria
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    (void)remoteCommand;
+    if (remoteCommand.getArgumentCount() > 1) {
 
-    bool humanReadable = true;
+        return CCommandHandler::EShowUsage;
+    }
+
+    string strOutputFormat;
 
     // Look for optional arguments
-    if (remoteCommand.getArgumentCount() >= 1) {
+    if (remoteCommand.getArgumentCount() == 1) {
 
-        // If csv is provided, format the criterion list in Commas Separated Value pairs
-        if (remoteCommand.getArgument(0) == "csv") {
-            humanReadable = false;
-        } else {
+        // Get requested format
+        strOutputFormat = remoteCommand.getArgument(0);
+
+        // Capitalize
+        std::transform(strOutputFormat.begin(), strOutputFormat.end(), strOutputFormat.begin(), ::toupper);
+
+        if (strOutputFormat != "XML" && strOutputFormat != "CSV") {
+
             return CCommandHandler::EShowUsage;
         }
     }
 
-    list<string> lstrResult;
-    getSelectionCriteria()->listSelectionCriteria(lstrResult, true, humanReadable);
+    if (strOutputFormat == "XML") {
+        // Get Root element where to export from
+        const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition = getConstSelectionCriteria()->getSelectionCriteriaDefinition();
 
-    // Concatenate the criterion list as the command result
-    CUtility::asString(lstrResult, strResult);
+        if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria", false, strResult)) {
 
-    return CCommandHandler::ESucceeded;
+            return CCommandHandler::EFailed;
+        }
+
+        // Succeeded
+        return CCommandHandler::ESucceeded;
+    } else {
+
+        // Requested format will be either CSV or human readable based on strOutputFormat content
+        bool bHumanReadable = strOutputFormat.empty();
+
+        list<string> lstrResult;
+        getSelectionCriteria()->listSelectionCriteria(lstrResult, true, bHumanReadable);
+
+        // Concatenate the criterion list as the command result
+        CUtility::asString(lstrResult, strResult);
+
+        return CCommandHandler::ESucceeded;
+    }
 }
 
 /// Domains
@@ -1646,7 +1673,10 @@ CParameterMgr::CCommandHandler::CommandStatus
 {
     (void)remoteCommand;
 
-    if (!getSystemClassXMLString(strResult)) {
+    // Get Root element where to export from
+    const CSystemClass* pSystemClass = getSystemClass();
+
+    if (!exportElementToXMLString(pSystemClass, pSystemClass->getKind(), false, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -2581,28 +2611,26 @@ void CParameterMgr::doApplyConfigurations(bool bForce)
     getSelectionCriteria()->resetModifiedStatus();
 }
 
-bool CParameterMgr::getSystemClassXMLString(string& strResult)
+// Export to XML string
+bool CParameterMgr::exportElementToXMLString(const IXmlSource *pXmlSource, const string& strRootElementType, bool bValidateWithSchema, string& strResult) const
 {
-    // Root element
-    const CSystemClass* pSystemClass = getSystemClass();
-
     string strError;
 
     CXmlSerializingContext xmlSerializingContext(strError);
 
     // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(pSystemClass, pSystemClass->getKind(),
-                                     _bValidateSchemasOnStart);
+    CXmlMemoryDocSource memorySource(pXmlSource, strRootElementType,
+                                     bValidateWithSchema);
 
     // Use a doc sink that write the doc data in a string
     CXmlStringDocSink stringSink(strResult);
 
+    // Do the export
     bool bProcessSuccess = stringSink.process(memorySource, xmlSerializingContext);
 
     if (!bProcessSuccess) {
 
         strResult = strError;
-
     }
 
     return bProcessSuccess;

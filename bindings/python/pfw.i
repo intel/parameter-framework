@@ -169,10 +169,6 @@ public:
     bool exportSingleDomainXml(std::string& strXmlDest, const std::string& strDomainName, bool bWithSettings,
                                bool bToFile, std::string& strError) const;
 %clear std::string& strXmlDest;
-
-%apply std::string &OUTPUT { std::string& strResult }
-    bool getSystemClassXMLString(std::string& strResult);
-%clear std::string& strResult;
 };
 
 // SWIG nested class support is not complete - cf.

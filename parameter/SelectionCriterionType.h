@@ -63,6 +63,15 @@ public:
     // Formatted state
     virtual std::string getFormattedState(int iValue) const;
 
+    /**
+      * Export to XML
+      *
+      * @param[in] xmlElement The XML element to export to
+      * @param[in] serializingContext The serializing context
+      *
+      */
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
     // From CElement
     virtual std::string getKind() const;
 private:
