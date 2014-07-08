@@ -47,7 +47,8 @@ class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnect
 public:
     CParameterMgrPlatformConnectorLogger() {}
 
-    virtual void log(bool bIsWarning, const string& strLog) {
+    virtual void log(bool bIsWarning, const string& strLog)
+    {
 
         if (bIsWarning) {
 
@@ -71,24 +72,24 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exi
     _pCommandHandler->addCommandParser("exit", &CTestPlatform::exit,
                                        0, "", "Exit TestPlatform");
     _pCommandHandler->addCommandParser(
-                "createExclusiveSelectionCriterionFromStateList",
-                &CTestPlatform::createExclusiveSelectionCriterionFromStateList,
-                2, "<name> <stateList>",
-                "Create inclusive selection criterion from state name list");
+        "createExclusiveSelectionCriterionFromStateList",
+        &CTestPlatform::createExclusiveSelectionCriterionFromStateList,
+        2, "<name> <stateList>",
+        "Create inclusive selection criterion from state name list");
     _pCommandHandler->addCommandParser(
-                "createInclusiveSelectionCriterionFromStateList",
-                &CTestPlatform::createInclusiveSelectionCriterionFromStateList,
-                2, "<name> <stateList>",
-                "Create exclusive selection criterion from state name list");
+        "createInclusiveSelectionCriterionFromStateList",
+        &CTestPlatform::createInclusiveSelectionCriterionFromStateList,
+        2, "<name> <stateList>",
+        "Create exclusive selection criterion from state name list");
 
     _pCommandHandler->addCommandParser(
-                "createExclusiveSelectionCriterion",
-                &CTestPlatform::createExclusiveSelectionCriterion,
-                2, "<name> <nbStates>", "Create inclusive selection criterion");
+        "createExclusiveSelectionCriterion",
+        &CTestPlatform::createExclusiveSelectionCriterion,
+        2, "<name> <nbStates>", "Create inclusive selection criterion");
     _pCommandHandler->addCommandParser(
-                "createInclusiveSelectionCriterion",
-                &CTestPlatform::createInclusiveSelectionCriterion,
-                2, "<name> <nbStates>", "Create exclusive selection criterion");
+        "createInclusiveSelectionCriterion",
+        &CTestPlatform::createInclusiveSelectionCriterion,
+        2, "<name> <nbStates>", "Create exclusive selection criterion");
 
     _pCommandHandler->addCommandParser("start", &CTestPlatform::startParameterMgr,
                                        0, "", "Start ParameterMgr");
@@ -97,42 +98,42 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exi
                                        2, "<name> <state>",
                                        "Set the current state of a selection criterion");
     _pCommandHandler->addCommandParser(
-                "applyConfigurations",
-                &CTestPlatform::applyConfigurations,
-                0, "", "Apply configurations selected by current selection criteria states");
+        "applyConfigurations",
+        &CTestPlatform::applyConfigurations,
+        0, "", "Apply configurations selected by current selection criteria states");
 
     _pCommandHandler->addCommandParser(
-            "setFailureOnMissingSubsystem",
-            &CTestPlatform::setter<&CParameterMgrPlatformConnector::setFailureOnMissingSubsystem>,
-            1, "true|false", "Set policy for missing subsystems, "
-            "either abort start or fallback on virtual subsystem.");
+        "setFailureOnMissingSubsystem",
+        &CTestPlatform::setter<& CParameterMgrPlatformConnector::setFailureOnMissingSubsystem>,
+        1, "true|false", "Set policy for missing subsystems, "
+                         "either abort start or fallback on virtual subsystem.");
     _pCommandHandler->addCommandParser(
-            "getMissingSubsystemPolicy",
-            &CTestPlatform::getter<&CParameterMgrPlatformConnector::getFailureOnMissingSubsystem>,
-            0, "", "Get policy for missing subsystems, "
-            "either abort start or fallback on virtual subsystem.");
+        "getMissingSubsystemPolicy",
+        &CTestPlatform::getter<& CParameterMgrPlatformConnector::getFailureOnMissingSubsystem>,
+        0, "", "Get policy for missing subsystems, "
+               "either abort start or fallback on virtual subsystem.");
 
     _pCommandHandler->addCommandParser(
-            "setFailureOnFailedSettingsLoad",
-            &CTestPlatform::setter<&CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad>,
-            1, "true|false",
-            "Set policy for failed settings load, either abort start or continue without domains.");
+        "setFailureOnFailedSettingsLoad",
+        &CTestPlatform::setter<& CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad>,
+        1, "true|false",
+        "Set policy for failed settings load, either abort start or continue without domains.");
     _pCommandHandler->addCommandParser(
-            "getFailedSettingsLoadPolicy",
-            &CTestPlatform::getter<&CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad>,
-            0, "",
-            "Get policy for failed settings load, either abort start or continue without domains.");
+        "getFailedSettingsLoadPolicy",
+        &CTestPlatform::getter<& CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad>,
+        0, "",
+        "Get policy for failed settings load, either abort start or continue without domains.");
 
     _pCommandHandler->addCommandParser(
-            "setValidateSchemasOnStart",
-            &CTestPlatform::setter<&CParameterMgrPlatformConnector::setValidateSchemasOnStart>,
-            1, "true|false",
-            "Set policy for schema validation based on .xsd files (false by default).");
+        "setValidateSchemasOnStart",
+        &CTestPlatform::setter<& CParameterMgrPlatformConnector::setValidateSchemasOnStart>,
+        1, "true|false",
+        "Set policy for schema validation based on .xsd files (false by default).");
     _pCommandHandler->addCommandParser(
-            "getValidateSchemasOnStart",
-            &CTestPlatform::getter<&CParameterMgrPlatformConnector::getValidateSchemasOnStart>,
-            0, "",
-            "Get policy for schema validation based on .xsd files.");
+        "getValidateSchemasOnStart",
+        &CTestPlatform::getter<& CParameterMgrPlatformConnector::getValidateSchemasOnStart>,
+        0, "",
+        "Get policy for schema validation based on .xsd files.");
 
     // Create server
     _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber, _pCommandHandler);
@@ -149,7 +150,7 @@ CTestPlatform::~CTestPlatform()
 }
 
 CTestPlatform::CommandReturn CTestPlatform::exit(
-        const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
@@ -180,53 +181,53 @@ bool CTestPlatform::load(std::string& strError)
 //////////////// Remote command parsers
 /// Selection Criterion
 CTestPlatform::CommandReturn CTestPlatform::createExclusiveSelectionCriterionFromStateList(
-        const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& remoteCommand, string& strResult)
 {
     return createExclusiveSelectionCriterionFromStateList(
-                remoteCommand.getArgument(0), remoteCommand, strResult) ?
-            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+        remoteCommand.getArgument(0), remoteCommand, strResult) ?
+           CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
 CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterionFromStateList(
-        const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& remoteCommand, string& strResult)
 {
     return createInclusiveSelectionCriterionFromStateList(
-                remoteCommand.getArgument(0), remoteCommand, strResult) ?
-            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+        remoteCommand.getArgument(0), remoteCommand, strResult) ?
+           CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
 CTestPlatform::CommandReturn CTestPlatform::createExclusiveSelectionCriterion(
-        const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& remoteCommand, string& strResult)
 {
     return createExclusiveSelectionCriterion(
-                remoteCommand.getArgument(0),
-                strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
-                strResult) ?
-            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+        remoteCommand.getArgument(0),
+        strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
+        strResult) ?
+           CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
 CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterion(
-        const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& remoteCommand, string& strResult)
 {
     return createInclusiveSelectionCriterion(
-                remoteCommand.getArgument(0),
-                strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
-                strResult) ?
-            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+        remoteCommand.getArgument(0),
+        strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
+        strResult) ?
+           CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
 CTestPlatform::CommandReturn CTestPlatform::startParameterMgr(
-        const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     return _pParameterMgrPlatformConnector->start(strResult) ?
-            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+           CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-template<CTestPlatform::setter_t setFunction>
+template <CTestPlatform::setter_t setFunction>
 CTestPlatform::CommandReturn CTestPlatform::setter(
-        const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& remoteCommand, string& strResult)
 {
     const string& strAbort = remoteCommand.getArgument(0);
 
@@ -237,49 +238,51 @@ CTestPlatform::CommandReturn CTestPlatform::setter(
     }
 
     return (_pParameterMgrPlatformConnector->*setFunction)(bFail, strResult) ?
-            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+           CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-template<CTestPlatform::getter_t getFunction>
+template <CTestPlatform::getter_t getFunction>
 CTestPlatform::CommandReturn CTestPlatform::getter(
-        const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
     strResult = (_pParameterMgrPlatformConnector->*getFunction)() ? "true" : "false";
 
-    return  CTestPlatform::CCommandHandler::ESucceeded;
+    return CTestPlatform::CCommandHandler::ESucceeded;
 }
 
 CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
-        const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& remoteCommand, string& strResult)
 {
 
     bool bSuccess;
 
-    const char * pcState = remoteCommand.getArgument(1).c_str();
+    const char* pcState = remoteCommand.getArgument(1).c_str();
 
-    char *pcStrEnd;
+    char* pcStrEnd;
 
     // Reset errno to check if it is updated during the conversion (strtol/strtoul)
     errno = 0;
 
-    uint32_t state = strtoul(pcState , &pcStrEnd, 0);
+    uint32_t state = strtoul(pcState, &pcStrEnd, 0);
 
     if (!errno && (*pcStrEnd == '\0')) {
         // Sucessfull conversion, set criterion state by numerical state
-        bSuccess = setCriterionState(remoteCommand.getArgument(0), state , strResult ) ;
+        bSuccess = setCriterionState(remoteCommand.getArgument(0), state, strResult);
 
     } else {
         // Conversion failed, set criterion state by lexical state
-        bSuccess = setCriterionStateByLexicalSpace(remoteCommand , strResult );
+        bSuccess = setCriterionStateByLexicalSpace(remoteCommand, strResult);
     }
 
-    return bSuccess ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
+    return bSuccess ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::
+           EFailed;
 
 }
 
-CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCommand& remoteCommand, string& strResult)
+CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCommand& remoteCommand,
+                                                                string& strResult)
 {
     (void)remoteCommand;
     (void)strResult;
@@ -291,16 +294,20 @@ CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCom
 
 //////////////// Remote command handlers
 
-bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult)
+bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(
+                                                                const string& strName,
+                                                                const IRemoteCommand& remoteCommand,
+                                                                string& strResult)
 {
 
-    assert (_pParameterMgrPlatformConnector != NULL);
+    assert(_pParameterMgrPlatformConnector != NULL);
 
-    ISelectionCriterionTypeInterface* pCriterionType = _pParameterMgrPlatformConnector->createSelectionCriterionType(false);
+    ISelectionCriterionTypeInterface* pCriterionType =
+        _pParameterMgrPlatformConnector->createSelectionCriterionType(false);
 
     assert(pCriterionType != NULL);
 
-    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1 ;
+    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
     uint32_t uiState;
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
@@ -320,15 +327,19 @@ bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(const string&
     return true;
 }
 
-bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult)
+bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
+                                                                const string& strName,
+                                                                const IRemoteCommand& remoteCommand,
+                                                                string& strResult)
 {
-    assert (_pParameterMgrPlatformConnector != NULL);
+    assert(_pParameterMgrPlatformConnector != NULL);
 
-    ISelectionCriterionTypeInterface* pCriterionType = _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
+    ISelectionCriterionTypeInterface* pCriterionType =
+        _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
 
     assert(pCriterionType != NULL);
 
-    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1 ;
+    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
 
     if (uiNbStates > 32) {
 
@@ -357,9 +368,12 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(const string&
 }
 
 
-bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName, uint32_t uiNbStates, string& strResult)
+bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName,
+                                                      uint32_t uiNbStates,
+                                                      string& strResult)
 {
-    ISelectionCriterionTypeInterface* pCriterionType = _pParameterMgrPlatformConnector->createSelectionCriterionType(false);
+    ISelectionCriterionTypeInterface* pCriterionType =
+        _pParameterMgrPlatformConnector->createSelectionCriterionType(false);
 
     uint32_t uistate;
 
@@ -383,9 +397,12 @@ bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName, uin
     return true;
 }
 
-bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName, uint32_t uiNbStates, string& strResult)
+bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
+                                                      uint32_t uiNbStates,
+                                                      string& strResult)
 {
-    ISelectionCriterionTypeInterface* pCriterionType = _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
+    ISelectionCriterionTypeInterface* pCriterionType =
+        _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
 
     if (uiNbStates > 32) {
 
@@ -418,7 +435,8 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName, uin
 
 bool CTestPlatform::setCriterionState(const string& strName, uint32_t uiState, string& strResult)
 {
-    ISelectionCriterionInterface* pCriterion = _pParameterMgrPlatformConnector->getSelectionCriterion(strName);
+    ISelectionCriterionInterface* pCriterion =
+        _pParameterMgrPlatformConnector->getSelectionCriterion(strName);
 
     if (!pCriterion) {
 
@@ -432,13 +450,15 @@ bool CTestPlatform::setCriterionState(const string& strName, uint32_t uiState, s
     return true;
 }
 
-bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, string& strResult)
+bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand,
+                                                    string& strResult)
 {
 
     // Get criterion name
     std::string strCriterionName = remoteCommand.getArgument(0);
 
-    ISelectionCriterionInterface* pCriterion = _pParameterMgrPlatformConnector->getSelectionCriterion(strCriterionName);
+    ISelectionCriterionInterface* pCriterion =
+        _pParameterMgrPlatformConnector->getSelectionCriterion(strCriterionName);
 
     if (!pCriterion) {
 
@@ -467,7 +487,10 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
 
     // Parse lexical substates
     std::string strLexicalState = "";
-    for (uiLexicalSubStateIndex = 1; uiLexicalSubStateIndex <= uiNbSubStates; uiLexicalSubStateIndex++) {
+
+    for (uiLexicalSubStateIndex = 1;
+         uiLexicalSubStateIndex <= uiNbSubStates;
+         uiLexicalSubStateIndex++) {
         /*
          * getNumericalValue method from ISelectionCriterionTypeInterface strip his parameter
          * first parameter based on | sign. In case that the user uses multiple parameters
