@@ -454,6 +454,12 @@ bool CParameterMgr::load(string& strError)
         return false;
     }
 
+    // Init flow of element tree
+    if (!init(strError)) {
+
+        return false;
+    }
+
     // Back synchronization for areas in parameter blackboard not covered by any domain
     CBackSynchronizer* pBackSynchronizer = createBackSynchronizer();
 
