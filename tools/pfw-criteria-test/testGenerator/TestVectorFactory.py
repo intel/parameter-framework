@@ -23,14 +23,25 @@
 from testGenerator.TestVector import TestVector
 import json
 import logging
+import os
 
 class TestVectorFactory:
 
-    def __init__(self, criterionClasses, routingCriterionName, consoleLogger):
+    def __init__(self, criterionClasses, routingCriterionName, testTypeFile, consoleLogger):
         self.__criterionClasses = criterionClasses
         self.__routingCriterionName = routingCriterionName
         self.__logger = logging.getLogger(__name__)
         self.__logger.addHandler(consoleLogger)
+
+        #Loading possible types and behavior
+        with open(testTypeFile,'r') as typeFile:
+            self.__testTypes = json.load(typeFile)
+
+        #Setting up a command to launch the script
+        for testType, (script,isSynchronous) in self.__testTypes.items():
+            self.__testTypes[testType] = ("{}/{}".format(
+                                            os.path.split(testTypeFile)[0],
+                                            script),isSynchronous)
 
     def generateTestVector(self, testFileName):
         """ Function invoqued to generate TestVector object from a Json file """
@@ -41,6 +52,12 @@ class TestVectorFactory:
 
         name = testList[0]
         testType = testList[1]
+
+        if testType not in self.__testTypes:
+            raise InvalidTestTypeValueException(
+                    "The value {} of the test {} is invalid".format(testType,
+                                                                    name))
+
         rawCriterions = testList[2]
 
         criterions = []
@@ -61,4 +78,6 @@ class TestVectorFactory:
         return TestVector(name, criterions, testType)
 
 
-
+    @property
+    def testTypes(self):
+        return self.__testTypes

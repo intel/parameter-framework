@@ -34,7 +34,6 @@ import logging
 def close(logger,launcher):
     """ SIGINT Handler which clean up processes  """
     logger.info("Closing")
-    launcher.kill_media()
     exit(0)
 
 def test_mode(testFactory, launcher, testFile, logger):
@@ -84,18 +83,16 @@ def interactive_mode(launcher, testVector, logger):
         launcher.execute(testVector)
         return True
 
-    def editType(arg):
+    def editType():
 
         def setType(testType):
             testVector.testType = testType
 
-        optionEditType = {
-            0:("Play Type",lambda : setType("play")),
-            1:("Capture Type",lambda : setType("capture")),
-            2:("Loopback Type",lambda : setType("loopback")),
-            3:("Kill Type",lambda : setType("kill")),
-            4:("Call Type",lambda : setType("call")),
-            }
+        optionEditType = {}
+
+        for num,testType in enumerate(testFactory.testTypes):
+            optionEditType[num] = ("{} Type".format(testType),
+                    lambda mType=testType : setType(mType))
 
         menu(optionEditType,True)
         return True
@@ -163,22 +160,25 @@ def main():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-t", "--test_file", type=str, default=None,
+    parser.add_argument("-t", "--test-file", type=str, default=None,
                         help="precise a test to launch (required)")
 
-    parser.add_argument("-i", "--init_file", type=str, default=None,
+    parser.add_argument("-s", "--script-test-file", type=str, default=None,
+                        help="precise a test type file (required)")
+
+    parser.add_argument("-i", "--init-file", type=str, default=None,
                         help="precise an init file")
 
     parser.add_argument("--interactive", action='store_true',
                         help="run in interactive mode")
 
-    parser.add_argument("-n", "--no_init", action='store_true',
+    parser.add_argument("-n", "--no-init", action='store_true',
                         help="do not create a test-platform instance")
 
     parser.add_argument("-v","--verbose", action='store_true',
                         help="choice if TestPlatform log are in stdout or in the log file")
 
-    parser.add_argument("-c", "--config_file", type=str,
+    parser.add_argument("-c", "--config-file", type=str,
                         default="configuration/default_configuration.json",
                         help="precise a command platform file (default : android_local)")
 
@@ -186,6 +186,10 @@ def main():
 
     if args.init_file == None:
         logger.error("An init file is required, please provide one with -i option")
+        exit(1)
+
+    if args.script_test_file == None:
+        logger.error("A test type file is required, please provide one with -s option")
         exit(1)
 
     if args.test_file==None and not args.interactive:
@@ -222,10 +226,15 @@ def main():
     testFactory = TestVectorFactory(
             criterionClasses,
             configParser["PFWtest_RouteStateCriterionName"],
+            args.script_test_file,
             partialLogHandler)
 
     ### Initialisation
-    launcher = TestLauncher(criterionClasses,configParser,partialLogHandler)
+    launcher = TestLauncher(
+            criterionClasses,
+            configParser,
+            testFactory.testTypes,
+            partialLogHandler)
 
     testVectorDefault = testFactory.generateTestVector(args.init_file)
 

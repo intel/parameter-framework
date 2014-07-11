@@ -27,12 +27,11 @@ import threading
 import subprocess
 import time
 import os
-import sys
 
 class TestLauncher:
       """ Class which interacts with the system to launch tests"""
 
-      def __init__(self, criterionClasses, configParser, consoleLogger):
+      def __init__(self, criterionClasses, configParser, testTypes, consoleLogger):
             """ Here we create commands to launch thanks to the config Parser"""
             self.__criterionClasses = criterionClasses
 
@@ -70,59 +69,12 @@ class TestLauncher:
             self.__applyConfigurationsCmd.extend(PFWtest_HALCommand)
             self.__applyConfigurationsCmd.append("applyConfigurations")
 
-            self.__statusCmd = [configParser["PFWtest_RemoteProcessCommand"],
-                                configParser["PFWtest_ParameterFramworkHost"],"status"]
-
-            self.__playMediaCmd = [configParser["PFWtest_PrefixCommand"],
-                                   configParser["PFWtest_PlayCmd"],
-                                   configParser["PFWtest_PlayCmdArgs"],
-                                   configParser["PFWtest_PlayedMedia"],
-                                   backgroundProcess]
-
-            self.__captureMediaCmd = [configParser["PFWtest_PrefixCommand"],
-                                      configParser["PFWtest_CaptureCmd"],
-                                      configParser["PFWtest_CaptureCmdArgs"],
-                                      configParser["PFWtest_CapturedMedia"],
-                                      backgroundProcess]
-
-            self.__loopbackMediaCmd = [configParser["PFWtest_PrefixCommand"], "eval", "\"",
-                                       configParser["PFWtest_CaptureCmd"],
-                                       configParser["PFWtest_LoopbackCmdArgs"], " | ",
-                                       configParser["PFWtest_PlayCmd"],
-                                       configParser["PFWtest_LoopbackCmdArgs"],
-                                       "\"",backgroundProcess]
-
-            self.__killPlayMediaCmd = [configParser["PFWtest_PrefixCommand"], killAllCmd,
-                                       configParser["PFWtest_CaptureCmd"]]
-            self.__killCaptureMediaCmd = [configParser["PFWtest_PrefixCommand"], killAllCmd,
-                                          configParser["PFWtest_PlayCmd"]]
-
-            #AT Commands
-
-            self.__openGsmTTYCmd = [configParser["PFWtest_PrefixCommand"],
-                                    "cat",
-                                    configParser["PFWtest_GsmTty"],
-                                    backgroundProcess]
-            self.__registerLineCmd = [configParser["PFWtest_PrefixCommand"],
-                                      " ".join(["\"","echo","-e -n",
-                                      configParser["PFWtest_ATCmd_Register"],
-                                      ">",
-                                      configParser["PFWtest_GsmTty"],"\""])]
-            self.__launchCallCmd = [configParser["PFWtest_PrefixCommand"],
-                                    " ".join(["\"","echo","-e -n",
-                                    configParser["PFWtest_ATCmd_Call"],
-                                    ">",
-                                    configParser["PFWtest_GsmTty"],"\""])]
-
-            #Media Commands Dict
-            self.__media_commands = {
-                  "play": lambda: self.__call_process(self.__playMediaCmd,True),
-                  "capture": lambda: self.__call_process(self.__captureMediaCmd,True),
-                  "kill": self.kill_media,
-                  "loopback": lambda: self.__call_process(self.__loopbackMediaCmd,True),
-                  "call": self.__csv_Call
-                  }
-
+            # Prepare Test Commands
+            self.__test_commands = {}
+            for testName, (testCmd,isWaited) in testTypes.items():
+                self.__test_commands[testName] = \
+                        lambda cmdMode=(testCmd,isWaited): self.__call_process(
+                                            ["eval",cmdMode[0]],bool(cmdMode[1]))
 
             #Routing Criterion
             self.__routageStateCriterion = self.__criterionClasses[
@@ -167,12 +119,8 @@ class TestLauncher:
             """ Launch the Test """
             self.__logger.info("Launching Test")
 
-            #Launching Media command corresponding to the testType
-            try:
-                  self.__media_commands[testVector.testType]()
-            except KeyError as e:
-                  self.__logger.error("Wrong Type of Test, Killing alsa instances")
-                  self.kill_media()
+            #Launch test commands corresponding to the testType
+            self.__test_commands[testVector.testType]()
 
             for criterion in testVector.criterions:
                   if ExclusiveCriterion in criterion.__class__.__bases__:
@@ -183,14 +131,11 @@ class TestLauncher:
                   self.__call_process(self.__setCriterionCmd+setCriterionArgs)
             self.__applyConfigurations()
 
-      def kill_media(self):
-            """ Kill audio related process """
-            self.__call_process(self.__killPlayMediaCmd)
-            self.__call_process(self.__killCaptureMediaCmd)
 
       def kill_TestPlatform(self):
             """ Kill an instance of the TestPlatform """
             self.__call_process(self.__killTestPlatformCmd)
+
 
       def __call_process(self,cmd,isWaited=False):
             """ Private function which call a shell command """
@@ -215,25 +160,15 @@ class TestLauncher:
                 launcher = TestLoggerThread(cmd)
                 launcher.start()
 
-      def __csv_Call(self):
-            """ Launch a call via AT commands """
-            self.__logger.info("Calling")
-            #self.__call_process(self.__openGsmTTYCmd)
-            self.__call_process(self.__registerLineCmd)
-            self.__logger.info("Waiting Operator Registration")
-            time.sleep(6)
-            #wait the registration
-            self.__call_process(self.__launchCallCmd)
-
-
-
 class TestLoggerThread(threading.Thread):
     """ This class is here to log long process stdout and stderr """
 
     def __init__(self,cmd):
         super().__init__()
-        #This thread is a daemon because we must be able to quit without killing all childs
+        #This thread is daemon because we want it to die at the end of the script
+        #Launch the process in background to keep it running after script exit.
         self.daemon = True
+        #We store the name to be sure we kill only desired thread when we close the script
         self.__cmd = cmd
         self.__logger = logging.getLogger(__name__)
 

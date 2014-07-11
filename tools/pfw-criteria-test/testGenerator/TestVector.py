@@ -38,10 +38,18 @@ class TestVector:
 
     @testType.setter
     def testType(self,value):
-        self.__testType =  value
+        self.__testType = value
 
     def __str__(self):
         toString = "Test Type : {}\n".format(self.__testType)
         for criterion in self.__criterions:
             toString += (str(criterion)+'\n')
         return toString
+
+class InvalidTestTypeValueException(Exception):
+    """ Exception raised in case of problem with the test type """
+    def __init__(self, msg):
+        self.__msg = msg
+
+    def __str__(self):
+        return "Invalid Test Type Error : " + self.__msg
