@@ -184,19 +184,6 @@ def main():
 
     args = parser.parse_args()
 
-    if args.init_file == None:
-        logger.error("An init file is required, please provide one with -i option")
-        exit(1)
-
-    if args.script_test_file == None:
-        logger.error("A test type file is required, please provide one with -s option")
-        exit(1)
-
-    if args.test_file==None and not args.interactive:
-        logger.error(
-                "A test file is required in not interactive, please provide one with -t option")
-        exit(1)
-
     ## Logging Configuration
 
     logger = logging.getLogger(__name__)
@@ -216,6 +203,15 @@ def main():
                         format='%(name)-12s %(levelname)-8s %(message)s',
                         filename=configParser["PFWtest_LogFile"],
                         filemode='w')
+    # Verifying args
+    if args.script_test_file == None:
+        logger.error("A test type file is required, please provide one with -s option")
+        exit(1)
+
+    if args.test_file==None and not args.interactive:
+        logger.error(
+                "A test file is required in not interactive, please provide one with -t option")
+        exit(1)
 
     ### Parsing of the Criterion File and Generation of classes
     logger.info("Criterion analysis")

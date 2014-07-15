@@ -45,33 +45,46 @@ class TestVectorFactory:
 
     def generateTestVector(self, testFileName):
         """ Function invoqued to generate TestVector object from a Json file """
-        # Parsing of Json test file
-        with open(testFileName, "r") as testFile:
-            #handle exception if error in the json file  ValueError ?
-            testList = json.load(testFile)
-
-        name = testList[0]
-        testType = testList[1]
-
-        if testType not in self.__testTypes:
-            raise InvalidTestTypeValueException(
-                    "The value {} of the test {} is invalid".format(testType,
-                                                                    name))
-
-        rawCriterions = testList[2]
 
         criterions = []
 
-        for criterionClass in self.__criterionClasses.values():
-            # Instanciate the criterion class requested
-            newCriterion = criterionClass()
-            if criterionClass.__name__ != self.__routingCriterionName:
-                try:
-                    newCriterion.currentValue = rawCriterions[criterionClass.__name__]
-                except KeyError as e:
-                    self.__logger.warning(
-                            "Warning {}: Missing Criterion {}, default value applied".format(
-                                e,criterionClass.__name__))
+        if testFileName:
+            # Parsing of Json test file
+            with open(testFileName, "r") as testFile:
+                #handle exception if error in the json file  ValueError ?
+                testList = json.load(testFile)
+
+            name = testList[0]
+            testType = testList[1]
+
+            if testType not in self.__testTypes:
+                raise InvalidTestTypeValueException(
+                        "The value {} of the test {} is invalid".format(testType,
+                                                                        name))
+
+            rawCriteria = testList[2]
+
+            for criterionClass in self.__criterionClasses.values():
+                # Instanciate the criterion class requested
+                newCriterion = criterionClass()
+                if criterionClass.__name__ != self.__routingCriterionName:
+                    try:
+                        newCriterion.currentValue = rawCriteria[criterionClass.__name__]
+                    except KeyError as e:
+                        self.__logger.warning(
+                                "Warning {}: Missing Criterion {}, default value applied".format(
+                                                                        e,criterionClass.__name__))
+                        newCriterion.currentValue = newCriterion.noValue
+                    criterions.append(newCriterion)
+        else:
+            # if no test or init file has been provided, use default values
+            testType="none"
+            name="generatedDefault"
+            for criterionClass in self.__criterionClasses.values():
+                # Instanciate the criterion class requested
+                newCriterion = criterionClass()
+                # Useful to avoid warning when no explicit init file is provided
+                if criterionClass.__name__ != self.__routingCriterionName:
                     newCriterion.currentValue = newCriterion.noValue
                 criterions.append(newCriterion)
 
