@@ -49,6 +49,9 @@ common_cflags := \
         -Werror \
         -Wextra \
 
+common_c_includes := \
+    $(LOCAL_PATH)/../utility/
+
 #############################
 # Target build
 
@@ -57,6 +60,8 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_STATIC_LIBRARIES := libpfw_utility
+
+LOCAL_C_INCLUDES := $(common_c_includes)
 
 LOCAL_CFLAGS := $(common_cflags)
 

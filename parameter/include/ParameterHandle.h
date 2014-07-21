@@ -32,11 +32,12 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "SymbolExport.h"
 
 class CBaseParameter;
 class CParameterMgr;
 
-class CParameterHandle
+class EXPORT_API CParameterHandle
 {
 public:
     CParameterHandle(const CBaseParameter* pParameter, CParameterMgr* pParameterMgr);

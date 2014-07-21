@@ -34,14 +34,14 @@
 class CAnswerMessage : public CMessage
 {
 public:
-    CAnswerMessage(const std::string& strAnswer, bool bSuccess);
-    CAnswerMessage();
+    EXPORT_API CAnswerMessage(const std::string& strAnswer, bool bSuccess);
+    EXPORT_API CAnswerMessage();
 
     // Answer
-    const std::string& getAnswer() const;
+    EXPORT_API const std::string& getAnswer() const;
 
     // Status
-    bool success() const;
+    EXPORT_API bool success() const;
 private:
     // Fill data to send
     virtual void fillDataToSend();

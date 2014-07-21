@@ -37,18 +37,18 @@
 class CRequestMessage : public CMessage, public IRemoteCommand
 {
 public:
-    CRequestMessage(const std::string& strCommand);
-    CRequestMessage();
+    EXPORT_API CRequestMessage(const std::string& strCommand);
+    EXPORT_API CRequestMessage();
 
     // Command Name
-    void setCommand(const std::string& strCommand);
-    virtual const std::string& getCommand() const;
+    EXPORT_API void setCommand(const std::string& strCommand);
+    EXPORT_API virtual const std::string& getCommand() const;
 
     // Arguments
-    virtual void addArgument(const std::string& strArgument);
-    virtual uint32_t getArgumentCount() const;
-    virtual const std::string& getArgument(uint32_t uiArgument) const;
-    virtual const std::string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const;
+    EXPORT_API virtual void addArgument(const std::string& strArgument);
+    EXPORT_API virtual uint32_t getArgumentCount() const;
+    EXPORT_API virtual const std::string& getArgument(uint32_t uiArgument) const;
+    EXPORT_API virtual const std::string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const;
 
 private:
 

@@ -51,3 +51,7 @@ install(FILES
     Utility.h
     convert.hpp
     DESTINATION "include/utility")
+
+install(FILES
+    SymbolExport.h
+    DESTINATION "include/parameter/client")
