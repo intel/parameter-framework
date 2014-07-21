@@ -23,8 +23,8 @@
 class Criterion:
     """ A simple class that defines common criterions attributes """
 
-    @property
-    def allowedValues(self):
+    @classmethod
+    def allowedValues(cls):
         """
             The getter of the allowedValues attribute
 
@@ -35,7 +35,7 @@ class Criterion:
 
         # _allowedValues variable is created in CriterionClassFactory
         # when creating dynamic child classes
-        return self._allowedValues
+        return cls._allowedValues
 
     @property
     def noValue(self):
@@ -48,11 +48,4 @@ class InvalidCriterionException(Exception):
 
     def __str__(self):
         return "Invalid Criterion Error : " + self.__msg
-
-
-
-
-
-
-
 

@@ -22,131 +22,38 @@
 #
 
 from criterion.CriterionClassFactory import CriterionClassFactory
-from criterion.InclusiveCriterion import InclusiveCriterion
 from testGenerator.TestVectorFactory import TestVectorFactory
 from testGenerator.TestLauncher import TestLauncher
 from configuration.ConfigParser import ConfigParser
+from scenario.Scenario import Scenario
+from userInteraction.UserInteractor import UserInteractor
+from userInteraction.DynamicCallHelper import DynamicCallHelper
 import argparse
 import signal
 import time
 import logging
+import os
 
-def close(logger,launcher):
+def close(logger):
     """ SIGINT Handler which clean up processes  """
     logger.info("Closing")
     exit(0)
 
-def test_mode(testFactory, launcher, testFile, logger):
-    """ Simple Test Launcher wait for SIGINT when Done """
-    logger.info("Test Initialisation")
-    testVector = testFactory.generateTestVector(testFile)
+def launchScenario(
+        logger,
+        consoleLogger,
+        actionGathererFileName,
+        scenarioFileName,
+        testFactory,
+        testLauncher):
 
-    launcher.execute(testVector)
+    logger.info("Launching {}".format(scenarioFileName))
 
-    print("Type Ctrl+C to quit")
-
-    while True:
-        time.sleep(1)
-
-def interactive_mode(launcher, testVector, logger):
-    """
-        Interactive Mode : Set up a menu which allow
-        users to personnalize a Test and to Launch it
-    """
-
-    def menu(options,testQuit):
-        """
-            Dynamic Menu Generator :
-
-            :param options: dictionnary containing, the invite string
-            and the function to launch
-            :param testQuit: Boolean for quitting the current Menu
-        """
-        options[len(options)] = \
-            ("Go Back", lambda : False)
-        while testQuit :
-            print("\nCurrent Test state : \n")
-            print(testVector)
-            print("\nPlease Make a choice : ")
-            for numMenu,(sentenceMenu, fonc) in sorted(options.items()):
-                print("\t{}. {}".format(numMenu,sentenceMenu))
-
-            choice = input("Your Choice : ")
-
-            try:
-                testQuit = options[int(choice)][1]()
-            except (KeyError, ValueError) as e:
-                logger.error("Invalid Choice")
-
-
-    def applyConfiguration():
-        launcher.execute(testVector)
-        return True
-
-    def editType():
-
-        def setType(testType):
-            testVector.testType = testType
-
-        optionEditType = {}
-
-        for num,testType in enumerate(testFactory.testTypes):
-            optionEditType[num] = ("{} Type".format(testType),
-                    lambda mType=testType : setType(mType))
-
-        menu(optionEditType,True)
-        return True
-
-    def editCriterion(criterion):
-        def setCriterion(value):
-            criterion.currentValue = value
-
-        def removeCriterionValue(value):
-            criterion.removeValue(value)
-
-        optionEditCriterion = {}
-        for possibleValue in  [x for x in criterion.allowedValues
-                       if not x in criterion.currentValue
-                       and not x == criterion.noValue]:
-            optionEditCriterion[len(optionEditCriterion)] = \
-                ("Set {}".format(possibleValue),
-                 lambda value=possibleValue: setCriterion(value))
-
-        if InclusiveCriterion in criterion.__class__.__bases__:
-            #Inclusive criterion : propose unset value (default when empty)
-            for possibleValue in criterion.currentValue:
-                optionEditCriterion[len(optionEditCriterion)] = \
-                    ("Unset {}".format(possibleValue),
-                     lambda value=possibleValue: removeCriterionValue(value))
-        else:
-            #Exclusive criterion : propose default value
-            optionEditCriterion[len(optionEditCriterion)] = \
-                ("Set Default",
-                 lambda value=criterion.noValue: setCriterion(value))
-
-        menu(optionEditCriterion,True)
-
-        return True
-
-    def editVector():
-        optionEdit = {
-            0:("Edit Type",editType),
-            }
-        for cri in testVector.criterions:
-            optionEdit[len(optionEdit)] = \
-                ("Edit {}".format(cri.__class__.__name__),
-                 lambda cri=cri: editCriterion(cri))
-                             #capture by copy
-
-        menu(optionEdit,True)
-        return True
-
-    optionsMenu = {
-        0:("Edit Vector",editVector),
-        1:("Apply Configuration",applyConfiguration),
-        }
-
-    menu(optionsMenu,True)
+    Scenario(consoleLogger,
+             scenarioFileName,
+             actionGathererFileName,
+             testFactory,
+             testLauncher).play()
 
     print("Type Ctrl+C to quit")
 
@@ -156,93 +63,97 @@ def interactive_mode(launcher, testVector, logger):
 
 def main():
 
-    ### Handle Arguments
+    ## Handle Arguments
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-t", "--test-file", type=str, default=None,
-                        help="precise a test to launch (required)")
+    parser.add_argument("test_directory", type=str, default=None,
+                        help="precise a test directory (required).")
 
-    parser.add_argument("-s", "--script-test-file", type=str, default=None,
-                        help="precise a test type file (required)")
-
-    parser.add_argument("-i", "--init-file", type=str, default=None,
-                        help="precise an init file")
+    parser.add_argument("-s", "--scenario", type=int, default=None,
+                        help="precise a scenario to launch.")
 
     parser.add_argument("--interactive", action='store_true',
-                        help="run in interactive mode")
-
-    parser.add_argument("-n", "--no-init", action='store_true',
-                        help="do not create a test-platform instance")
+                        help="run in interactive mode.")
 
     parser.add_argument("-v","--verbose", action='store_true',
-                        help="choice if TestPlatform log are in stdout or in the log file")
-
-    parser.add_argument("-c", "--config-file", type=str,
-                        default="configuration/default_configuration.json",
-                        help="precise a command platform file (default : android_local)")
+                        help="display test-platform's and scripts' log on stdout.")
 
     args = parser.parse_args()
 
     ## Logging Configuration
-
     logger = logging.getLogger(__name__)
 
     # Decide what to write in console depending on verbose argument
-    partialLogHandler = logging.StreamHandler()
+    consoleLogger = logging.StreamHandler()
     if args.verbose:
-        partialLogHandler.setLevel(logging.DEBUG)
+        consoleLogger.setLevel(logging.DEBUG)
     else:
-        partialLogHandler.setLevel(logging.INFO)
-    logger.addHandler(partialLogHandler)
+        consoleLogger.setLevel(logging.INFO)
+    logger.addHandler(consoleLogger)
 
-    configParser=ConfigParser(args.config_file,partialLogHandler)
+    # The given directory should have a conf.json file
+    if not os.path.isfile(os.path.join(args.test_directory,"conf.json")):
+        # This error will only be logged in the terminal
+        logger.error(
+                "Cannot find configuration file : conf.json in {} directory.".format(
+                    args.test_directory))
+        exit(1)
+
+    configParser=ConfigParser(
+            os.path.join(args.test_directory,"conf.json"),args.test_directory,consoleLogger)
 
     # Always write all log in the file
     logging.basicConfig(level=logging.DEBUG,
                         format='%(name)-12s %(levelname)-8s %(message)s',
-                        filename=configParser["PFWtest_LogFile"],
+                        filename=configParser["LogFile"],
                         filemode='w')
-    # Verifying args
-    if args.script_test_file == None:
-        logger.error("A test type file is required, please provide one with -s option")
-        exit(1)
 
-    if args.test_file==None and not args.interactive:
-        logger.error(
-                "A test file is required in not interactive, please provide one with -t option")
-        exit(1)
-
-    ### Parsing of the Criterion File and Generation of classes
+    ## Parsing criterion file and classes generation
     logger.info("Criterion analysis")
-    classFactory = CriterionClassFactory(configParser["PFWtest_CriterionFile"])
-    criterionClasses = classFactory.generateCriteriaClasses()
+    classFactory = CriterionClassFactory(configParser["CriterionFile"])
+    criterionClasses = classFactory.generateCriterionClasses()
 
-    ### Handle Tests
+    ## Tests Handlers Generation
     testFactory = TestVectorFactory(
             criterionClasses,
-            configParser["PFWtest_RouteStateCriterionName"],
-            args.script_test_file,
-            partialLogHandler)
+            consoleLogger)
 
-    ### Initialisation
-    launcher = TestLauncher(
+    testLauncher = TestLauncher(
             criterionClasses,
             configParser,
-            testFactory.testTypes,
-            partialLogHandler)
+            consoleLogger)
 
-    testVectorDefault = testFactory.generateTestVector(args.init_file)
+    ## Initialisation
+    testLauncher.init(criterionClasses,args.verbose)
 
-    if not args.no_init:
-        launcher.init(testVectorDefault,args.verbose)
+    ## Launching
     try:
         if args.interactive:
-            interactive_mode(launcher, testVectorDefault, logger)
+            # Launch Interactive Mode with default criterions values
+            UserInteractor(testLauncher, testFactory.generateTestVector()).launchInteractiveMode()
         else:
-            test_mode(testFactory, launcher, args.test_file, logger)
+            scenarioOptions = {
+                    scenarioNumber : (scenarioFileName,
+                        DynamicCallHelper(
+                            launchScenario,
+                            logger,
+                            consoleLogger,
+                            configParser["ActionGathererFile"],
+                            os.path.join(configParser["ScenariosDirectory"],scenarioFileName),
+                            testFactory,
+                            testLauncher
+                        ))
+                    for scenarioNumber, scenarioFileName in enumerate(
+                            [file for file in sorted(os.listdir(
+                            configParser["ScenariosDirectory"]))])
+                }
+            if args.scenario != None:
+                scenarioOptions[args.scenario][1]()
+            else:
+                UserInteractor.getMenu(scenarioOptions)
     except KeyboardInterrupt as e:
-        close(logger,launcher)
+        close(logger)
 
 
 if __name__ == "__main__":

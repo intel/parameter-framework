@@ -23,7 +23,6 @@
 from criterion.Criterion import Criterion
 from criterion.Criterion import InvalidCriterionException
 
-
 class ExclusiveCriterion(Criterion):
     """
     This file describe Exclusive Criterion Behavior

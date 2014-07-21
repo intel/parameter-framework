@@ -25,140 +25,155 @@ from configuration.ConfigParser import ConfigParser
 import logging
 import threading
 import subprocess
+import json
 import time
 import os
 
 class TestLauncher:
-      """ Class which interacts with the system to launch tests"""
+    """ Class which interacts with the system to launch tests """
 
-      def __init__(self, criterionClasses, configParser, testTypes, consoleLogger):
-            """ Here we create commands to launch thanks to the config Parser"""
-            self.__criterionClasses = criterionClasses
+    def __init__(self,
+                 criterionClasses,
+                 configParser,
+                 consoleLogger):
+        """
+            Here we create commands to launch thanks to the config Parser
 
-            #Combination from previous
-            PFWtest_HALCommand=[configParser["PFWtest_RemoteProcessCommand"],
-                                configParser["PFWtest_TestPlatformHost"]]
-            PFWtest_SetCriteriaCommand=PFWtest_HALCommand+["setCriterionState"]
-            PFWtest_TestPlatformHostCommand=[configParser["PFWtest_RemoteProcessCommand"],
-                                             configParser["PFWtest_TestPlatformHost"]]
+            :param criterionClasses: runtime generated criterion classes
+            :type criterionClasses: list of types
+            :param configParser: object which allows to get config parameters
+            :type configParser: ConfigParser
+            :param consoleLogger: console log handler
+            :type consoleLogger: Handler
+        """
+        self.__criterionClasses = criterionClasses
+        self.__configParser = configParser
 
-            killAllCmd = "killall"
-            backgroundProcess = "&"
+        # Prepare basic commands
+        HALCommand=[configParser["RemoteProcessCommand"],
+                            configParser["TestPlatformHost"]]
+        SetCriteriaCommand=HALCommand+["setCriterionState"]
+        TestPlatformHostCommand=[configParser["RemoteProcessCommand"],
+                                         configParser["TestPlatformHost"]]
 
-            self.__logFileName = configParser["PFWtest_LogFile"]
+        killAllCmd = "killall"
+        backgroundProcess = "&"
 
-            #Commands
-            self.__killTestPlatformCmd = [configParser["PFWtest_PrefixCommand"],
-                                          killAllCmd,configParser["PFWtest_TestPlatformCommand"]]
+        self.__logFileName = configParser["LogFile"]
 
-            self.__startTestPlatformCmd = [configParser["PFWtest_PrefixCommand"],
-                                           configParser["PFWtest_TestPlatformCommand"],
-                                           configParser["PFWtest_PFWConfFile"], backgroundProcess]
+        # Commands
+        self.__killTestPlatformCmd = [configParser["PrefixCommand"],
+                                      killAllCmd,
+                                      configParser["TestPlatformCommand"]]
 
-            self.__createCriterionCmd = [configParser["PFWtest_PrefixCommand"]]
-            self.__createCriterionCmd.extend(PFWtest_TestPlatformHostCommand)
+        self.__startTestPlatformCmd = [configParser["PrefixCommand"],
+                                       configParser["TestPlatformCommand"],
+                                       configParser["PFWConfFile"],
+                                       backgroundProcess]
 
-            self.__startPseudoHALCmd = [configParser["PFWtest_PrefixCommand"]]
-            self.__startPseudoHALCmd.extend(PFWtest_TestPlatformHostCommand)
-            self.__startPseudoHALCmd.append("start")
+        self.__createCriterionCmd = [configParser["PrefixCommand"]]
+        self.__createCriterionCmd.extend(TestPlatformHostCommand)
 
-            self.__setCriterionCmd = [configParser["PFWtest_PrefixCommand"]]
-            self.__setCriterionCmd.extend(PFWtest_SetCriteriaCommand)
+        self.__startPseudoHALCmd = [configParser["PrefixCommand"]]
+        self.__startPseudoHALCmd.extend(TestPlatformHostCommand)
+        self.__startPseudoHALCmd.append("start")
 
-            self.__applyConfigurationsCmd = [configParser["PFWtest_PrefixCommand"]]
-            self.__applyConfigurationsCmd.extend(PFWtest_HALCommand)
-            self.__applyConfigurationsCmd.append("applyConfigurations")
+        self.__setCriterionCmd = [configParser["PrefixCommand"]]
+        self.__setCriterionCmd.extend(SetCriteriaCommand)
 
-            # Prepare Test Commands
-            self.__test_commands = {}
-            for testName, (testCmd,isWaited) in testTypes.items():
-                self.__test_commands[testName] = \
-                        lambda cmdMode=(testCmd,isWaited): self.__call_process(
-                                            ["eval",cmdMode[0]],bool(cmdMode[1]))
+        self.__applyConfigurationsCmd = [configParser["PrefixCommand"]]
+        self.__applyConfigurationsCmd.extend(HALCommand)
+        self.__applyConfigurationsCmd.append("applyConfigurations")
 
-            #Routing Criterion
-            self.__routageStateCriterion = self.__criterionClasses[
-                  configParser["PFWtest_RouteStateCriterionName"]]()
+        # Prepare script Commands
+        # Loading possible scripts
+        with open(configParser["ScriptsFile"],'r') as scriptFile:
+            self.__rawScripts = json.load(scriptFile)
 
-            self.__logger = logging.getLogger(__name__)
-            self.__logger.addHandler(consoleLogger)
+        self.__logger = logging.getLogger(__name__)
+        self.__logger.addHandler(consoleLogger)
 
-      def init(self, testVectorDefault, isVerbose):
-            """ Initialise the Pseudo HAL """
-            self.__logger.info("Pseudo Hal Initialisation")
-            self.kill_TestPlatform()
-            self.__call_process(self.__startTestPlatformCmd,True)
-            # wait Initialisation
-            time.sleep(1)
+    @property
+    def scripts(self):
+        return self.__rawScripts.keys()
 
-            for criterion in testVectorDefault.criterions+[self.__routageStateCriterion]:
-                  if ExclusiveCriterion in criterion.__class__.__bases__:
-                        createSlctCriterionCmd="createExclusiveSelectionCriterionFromStateList"
-                  else:
-                        createSlctCriterionCmd="createInclusiveSelectionCriterionFromStateList"
+    def init(self, criterionClasses, isVerbose):
+        """ Initialise the Pseudo HAL """
+        self.__logger.info("Pseudo Hal Initialisation")
+        self.kill_TestPlatform()
+        self.__call_process(self.__startTestPlatformCmd,True)
+        # wait Initialisation
+        time.sleep(1)
 
-                  createCriterionArgs = [createSlctCriterionCmd,
-                                         criterion.__class__.__name__]+criterion.allowedValues
-
-                  self.__call_process(self.__createCriterionCmd+createCriterionArgs)
-
-            self.__call_process(self.__startPseudoHALCmd)
-
-
-      def __applyConfigurations(self):
-            """ Interact with the PFW instance to set criterions and apply configurations  """
-            self.__logger.info("Applying Configurations")
-            for routageState in self.__routageStateCriterion.allowedValues:
-                  setCriterionArgs = [self.__routageStateCriterion.__class__.__name__,
-                                      routageState]
-                  self.__call_process(self.__setCriterionCmd+setCriterionArgs)
-                  self.__call_process(self.__applyConfigurationsCmd)
-
-
-      def execute(self, testVector):
-            """ Launch the Test """
-            self.__logger.info("Launching Test")
-
-            #Launch test commands corresponding to the testType
-            self.__test_commands[testVector.testType]()
-
-            for criterion in testVector.criterions:
-                  if ExclusiveCriterion in criterion.__class__.__bases__:
-                        criterionValue = [criterion.currentValue]
-                  else:
-                        criterionValue = criterion.currentValue
-                  setCriterionArgs = [criterion.__class__.__name__]+list(criterionValue)
-                  self.__call_process(self.__setCriterionCmd+setCriterionArgs)
-            self.__applyConfigurations()
-
-
-      def kill_TestPlatform(self):
-            """ Kill an instance of the TestPlatform """
-            self.__call_process(self.__killTestPlatformCmd)
-
-
-      def __call_process(self,cmd,isWaited=False):
-            """ Private function which call a shell command """
-            self.__logger.debug("Launching command : {}".format(' '.join(cmd)))
-
-            if not isWaited:
-                # for getting special adb env script
-                subProc = subprocess.Popen([os.getenv("SHELL"), "-c", ' '.join(cmd)],
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE,
-                            shell=False)
-
-                stdout,stderr = subProc.communicate()
-
-                if stdout:
-                    self.__logger.debug(stdout.decode('utf-8').rstrip())
-                if stderr:
-                    self.__logger.error(stderr.decode('utf-8').rstrip())
-                subProc.wait()
-
+        for criterionClass in criterionClasses:
+            if ExclusiveCriterion in criterionClass.__bases__:
+                createSlctCriterionCmd="createExclusiveSelectionCriterionFromStateList"
             else:
-                launcher = TestLoggerThread(cmd)
-                launcher.start()
+                createSlctCriterionCmd="createInclusiveSelectionCriterionFromStateList"
+
+            createCriterionArgs = [createSlctCriterionCmd,
+                           criterionClass.__name__]+criterionClass.allowedValues()
+
+            self.__call_process(self.__createCriterionCmd+createCriterionArgs)
+
+        self.__call_process(self.__startPseudoHALCmd)
+
+
+    def executeTestVector(self, criterions):
+        """ Launch the Test """
+        for criterion in criterions:
+            if ExclusiveCriterion in criterion.__class__.__bases__:
+                criterionValue = [criterion.currentValue]
+            else:
+                criterionValue = criterion.currentValue
+            setCriterionArgs = [criterion.__class__.__name__]+list(criterionValue)
+            self.__call_process(self.__setCriterionCmd+setCriterionArgs)
+
+        # Applying conf
+        self.__call_process(self.__applyConfigurationsCmd)
+
+
+    def executeScript(self, scriptName):
+        """ Launching desired test scripts """
+
+        (script, isSynchronous) = self.__rawScripts[scriptName]
+
+        # Create and launch the command to use the desired script
+        self.__call_process(["eval","{}/{}".format(
+                os.path.split(self.__configParser["ScriptsFile"])[0],
+                script)]
+            ,isSynchronous=="True")
+
+
+    def kill_TestPlatform(self):
+        """ Kill an instance of the TestPlatform """
+        self.__call_process(self.__killTestPlatformCmd)
+
+
+    def __call_process(self,cmd,isSynchronous=False):
+        """ Private function which call a shell command """
+        self.__logger.debug("Launching command : {}".format(' '.join(cmd)))
+
+        if not isSynchronous:
+            # for getting special adb env script
+            subProc = subprocess.Popen([os.getenv("SHELL"), "-c", ' '.join(cmd)],
+                                        stdout=subprocess.PIPE,
+                                        stderr=subprocess.PIPE,
+                                        shell=False)
+
+            stdout,stderr = subProc.communicate()
+
+            if stdout:
+                self.__logger.debug(stdout.decode('utf-8',"ignore").rstrip())
+            if stderr:
+                self.__logger.error(stderr.decode('utf-8',"ignore").rstrip())
+            subProc.wait()
+
+        else:
+            launcher = TestLoggerThread(cmd)
+            launcher.start()
+
+
 
 class TestLoggerThread(threading.Thread):
     """ This class is here to log long process stdout and stderr """
@@ -168,25 +183,31 @@ class TestLoggerThread(threading.Thread):
         #This thread is daemon because we want it to die at the end of the script
         #Launch the process in background to keep it running after script exit.
         self.daemon = True
-        #We store the name to be sure we kill only desired thread when we close the script
         self.__cmd = cmd
+        self.__subProc = None
         self.__logger = logging.getLogger(__name__)
 
-    def run(self):
-        #logging stdout and stderr through pipes
-        subProc = subprocess.Popen([os.getenv("SHELL"), "-c", ' '.join(self.__cmd)],
-                                    stdout=subprocess.PIPE,
-                                    stderr=subprocess.PIPE,
-                                    shell=False)
+    def __del__(self):
+        # Close properly the child with SIGTERM
+        if self.__subProc:
+            self.__subProc.terminate()
 
-        for line in iter(subProc.stdout.readline,''):
-            formatted=line.decode('utf-8').rstrip()
+    def run(self):
+        # Logging stdout and stderr through pipes
+        self.__subProc = subprocess.Popen(
+                [os.getenv("SHELL"), "-c", ' '.join(self.__cmd)],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                shell=False)
+
+        for line in iter(self.__subProc.stdout.readline,''):
+            # Decode UTF-8 and ignore errors
+            formatted=line.decode('utf-8',"ignore").rstrip()
             if formatted:  self.__logger.debug(formatted)
 
-        for line in iter(subProc.stderr.readline,''):
-            formatted=line.decode('utf-8').rstrip()
+        for line in iter(self.__subProc.stderr.readline,''):
+            formatted=line.decode('utf-8',"ignore").rstrip()
             if formatted: self.__logger.error(formatted)
 
-        subProc.wait()
-
+        self.__subProc.wait()
 

@@ -22,19 +22,27 @@
 
 import logging
 import json
-
+import os
 
 class ConfigParser:
     """ This class define needed configuration environment information """
 
-    def __init__(self,confFileName,consoleLogger):
+    def __init__(self, confFileName, testsDirectory, consoleLogger):
 
         # Parsing of Json test file
         with open(confFileName, "r") as testFile:
-            #handle exception if error in the json file  ValueError ?
             self.__conf = json.load(testFile)
-            self.__logger = logging.getLogger(__name__)
-            self.__logger.addHandler(consoleLogger)
+
+        # Preparing files and directory paths
+        for key in ["CriterionFile",
+                    "ScriptsFile",
+                    "ActionGathererFile",
+                    "ScenariosDirectory",
+                    "LogFile"]:
+            self.__conf[key] = os.path.join(testsDirectory, self.__conf[key])
+
+        self.__logger = logging.getLogger(__name__)
+        self.__logger.addHandler(consoleLogger)
 
 
     def __getitem__(self,item):
@@ -44,3 +52,4 @@ class ConfigParser:
             self.__logger.error(
                     "The item : {} is not in the configuration file".format(item))
             raise e
+
