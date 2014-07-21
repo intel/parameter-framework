@@ -29,10 +29,10 @@
  */
 #pragma once
 
+#include "ConfigurableElement.h"
 #include <list>
 #include <string>
 
-class CConfigurableElement;
 
 class CConfigurableElementAggregator
 {
