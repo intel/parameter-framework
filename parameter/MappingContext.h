@@ -43,7 +43,7 @@ class CMappingContext
 
 public:
     // Regular Constructor
-    CMappingContext(uint32_t uiNbItemTypes);
+    CMappingContext(size_t uiNbItemTypes);
     ~CMappingContext();
 
     // Copy constructor
@@ -79,6 +79,6 @@ private:
     // Item array
     SItem* _pstItemArray;
     // Items array size
-    uint32_t _uiNbItemTypes;
+    size_t _uiNbItemTypes;
 };
 

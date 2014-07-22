@@ -190,7 +190,7 @@ private:
 
                 const CRemoteCommandParserItem* pRemoteCommandParserItem = _remoteCommandParserVector[uiIndex];
 
-                uint32_t uiRemoteCommandUsageLength = pRemoteCommandParserItem->usage().length();
+                uint32_t uiRemoteCommandUsageLength = (uint32_t)pRemoteCommandParserItem->usage().length();
 
                 if (uiRemoteCommandUsageLength > _uiMaxCommandUsageLength) {
 
@@ -220,7 +220,7 @@ private:
             strResult += strUsage;
 
             // Align
-            uint32_t uiToSpacesAdd = _uiMaxCommandUsageLength + 5 - strUsage.length();
+            uint32_t uiToSpacesAdd = _uiMaxCommandUsageLength + 5 - (uint32_t)strUsage.length();
 
             while (uiToSpacesAdd--) {
 

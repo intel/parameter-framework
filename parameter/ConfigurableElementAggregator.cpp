@@ -52,9 +52,9 @@ bool CConfigurableElementAggregator::doAggregate(const CConfigurableElement* pCo
     // Check children
     std::list<const CConfigurableElement*> childAggregateElementList;
 
-    uint32_t uiIndex;
-    uint32_t uiNbChildren = pConfigurableElement->getNbChildren();
-    uint32_t uiNbMatchingChildren = 0;
+    size_t uiIndex;
+    size_t uiNbChildren = pConfigurableElement->getNbChildren();
+    size_t uiNbMatchingChildren = 0;
 
     for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
 

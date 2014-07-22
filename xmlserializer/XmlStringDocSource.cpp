@@ -39,7 +39,7 @@ CXmlStringDocSource::CXmlStringDocSource(const std::string& strXmlInput,
                                          const std::string& strRootElementName,
                                          const std::string& strNameAttrituteName,
                                          bool bValidateWithSchema) :
-    base(xmlReadMemory(strXmlInput.c_str(), strXmlInput.size(), "", NULL, 0),
+    base(xmlReadMemory(strXmlInput.c_str(), (int)strXmlInput.size(), "", NULL, 0),
          strXmlSchemaFile,
          strRootElementType,
          strRootElementName,

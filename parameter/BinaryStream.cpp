@@ -33,7 +33,7 @@
 
 using namespace std;
 
-CBinaryStream::CBinaryStream(const string& strFileName, bool bOut, uint32_t uiDataSize, uint8_t uiStructureChecksum) :
+CBinaryStream::CBinaryStream(const string& strFileName, bool bOut, size_t uiDataSize, uint8_t uiStructureChecksum) :
     _strFileName(strFileName),
     _bOut(bOut),
     _uiDataSize(uiDataSize),
@@ -69,10 +69,10 @@ bool CBinaryStream::open(string& strError)
     if (!_bOut) {
 
         // Get file size
-        ifstream::pos_type uiFileSize = _fileStream.tellg();
+        size_t uiFileSize = _fileStream.tellg();
 
         // Validate file size
-        if (_uiDataSize + sizeof(_uiStructureChecksum) != (uint32_t)uiFileSize) {
+        if (_uiDataSize + sizeof(_uiStructureChecksum) != uiFileSize) {
 
             // Size different from expected
             strError = "Unexpected file size";
@@ -136,7 +136,7 @@ void CBinaryStream::reset()
     _uiPos = 0;
 }
 
-void CBinaryStream::write(const uint8_t* puiData, uint32_t uiSize)
+void CBinaryStream::write(const uint8_t* puiData, size_t uiSize)
 {
     assert(_uiPos + uiSize <= _uiDataSize);
 
@@ -145,7 +145,7 @@ void CBinaryStream::write(const uint8_t* puiData, uint32_t uiSize)
     _uiPos += uiSize;
 }
 
-void CBinaryStream::read(uint8_t* puiData, uint32_t uiSize)
+void CBinaryStream::read(uint8_t* puiData, size_t uiSize)
 {
     assert(_uiPos + uiSize <= _uiDataSize);
 
