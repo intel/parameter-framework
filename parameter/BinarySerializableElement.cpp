@@ -41,8 +41,8 @@ CBinarySerializableElement::CBinarySerializableElement(const string& strName) : 
 void CBinarySerializableElement::binarySerialize(CBinaryStream& binaryStream)
 {
     // Propagate
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -53,12 +53,12 @@ void CBinarySerializableElement::binarySerialize(CBinaryStream& binaryStream)
 }
 
 // Data size
-uint32_t CBinarySerializableElement::getDataSize() const
+size_t CBinarySerializableElement::getDataSize() const
 {
     // Propagate
-    uint32_t uiDataSize = 0;
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiDataSize = 0;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 

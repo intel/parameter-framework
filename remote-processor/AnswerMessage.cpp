@@ -61,7 +61,7 @@ bool CAnswerMessage::success() const
 }
 
 // Size
-uint32_t CAnswerMessage::getDataSize() const
+size_t CAnswerMessage::getDataSize() const
 {
     // Answer
     return getStringSize(getAnswer());

@@ -64,7 +64,10 @@ private:
     // Collect received data
     virtual void collectReceivedData();
     // Size
-    virtual uint32_t getDataSize() const;
+    /**
+     * @return size of the request message in bytes
+     */
+    virtual size_t getDataSize() const;
     // Trim input std::string
     static std::string trim(const std::string& strToTrim);
 

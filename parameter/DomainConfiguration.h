@@ -96,7 +96,7 @@ public:
     virtual void binarySerialize(CBinaryStream& binaryStream);
 
     // Data size
-    virtual uint32_t getDataSize() const;
+    virtual size_t getDataSize() const;
 
     // Class kind
     virtual std::string getKind() const;

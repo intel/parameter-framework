@@ -57,7 +57,7 @@ uint8_t CMessage::getMsgId() const
 }
 
 // Data
-void CMessage::writeData(const void* pvData, uint32_t uiSize)
+void CMessage::writeData(const void* pvData, size_t uiSize)
 {
     assert(_uiIndex + uiSize <= _uiDataSize);
 
@@ -68,7 +68,7 @@ void CMessage::writeData(const void* pvData, uint32_t uiSize)
     _uiIndex += uiSize;
 }
 
-void CMessage::readData(void* pvData, uint32_t uiSize)
+void CMessage::readData(void* pvData, size_t uiSize)
 {
     assert(_uiIndex + uiSize <= _uiDataSize);
 
@@ -110,14 +110,14 @@ void CMessage::readString(string& strData)
     strData = pcData;
 }
 
-uint32_t CMessage::getStringSize(const string& strData) const
+size_t CMessage::getStringSize(const string& strData) const
 {
     // Return string length plus room to store its length
     return strData.length() + sizeof(uint32_t);
 }
 
 // Remaining data size
-uint32_t CMessage::getRemainingDataSize() const
+size_t CMessage::getRemainingDataSize() const
 {
     return _uiDataSize - _uiIndex;
 }
@@ -148,7 +148,7 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
         }
 
         // Size
-        uint32_t uiSize = sizeof(_ucMsgId) + _uiDataSize;
+        uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + _uiDataSize);
 
         if (!pSocket->write(&uiSize, sizeof(uiSize))) {
 
@@ -264,8 +264,8 @@ uint8_t CMessage::computeChecksum() const
     return uiChecksum;
 }
 
-// Data allocation
-void CMessage::allocateData(uint32_t uiSize)
+// Allocation of room to store the message
+void CMessage::allocateData(size_t uiSize)
 {
     // Remove previous one
     if (_pucData) {

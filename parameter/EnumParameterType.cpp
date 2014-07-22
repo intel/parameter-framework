@@ -63,8 +63,8 @@ void CEnumParameterType::showProperties(string& strResult) const
     strResult += "Value Pairs:\n";
 
     // Show all value pairs
-    uint32_t uiChild;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiChild;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -281,8 +281,8 @@ bool CEnumParameterType::isNumber(const string& strValue)
 // Literal - numerical conversions
 bool CEnumParameterType::getLiteral(int32_t iNumerical, string& strLiteral) const
 {
-    uint32_t uiChild;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiChild;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -301,8 +301,8 @@ bool CEnumParameterType::getLiteral(int32_t iNumerical, string& strLiteral) cons
 
 bool CEnumParameterType::getNumerical(const string& strLiteral, int& iNumerical) const
 {
-    uint32_t uiChild;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiChild;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -323,8 +323,8 @@ bool CEnumParameterType::getNumerical(const string& strLiteral, int& iNumerical)
 bool CEnumParameterType::isValid(int iNumerical, CParameterAccessContext& parameterAccessContext) const
 {
     // Check that the value is part of the allowed values for this kind of enum
-    uint32_t uiChild;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiChild;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 

@@ -96,8 +96,8 @@ void CCompoundRule::dump(string& strResult) const
     strResult += "{";
 
     // Children
-    uint32_t uiChild;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiChild;
+    size_t uiNbChildren = getNbChildren();
     bool bFirst = true;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
@@ -121,8 +121,8 @@ void CCompoundRule::dump(string& strResult) const
 // Rule check
 bool CCompoundRule::matches() const
 {
-    uint32_t uiChild;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiChild;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 

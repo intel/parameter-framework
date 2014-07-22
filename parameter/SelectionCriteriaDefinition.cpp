@@ -64,8 +64,8 @@ CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const s
 void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
 {
     // Propagate
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -79,8 +79,8 @@ void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string>&
 void CSelectionCriteriaDefinition::resetModifiedStatus()
 {
     // Propagate
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
     CSelectionCriterion* pSelectionCriterion;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {

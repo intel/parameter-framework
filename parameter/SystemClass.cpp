@@ -279,8 +279,8 @@ const CSubsystemLibrary* CSystemClass::getSubsystemLibrary() const
 
 void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet)
 {
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -298,8 +298,8 @@ void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet)
 
 void CSystemClass::cleanSubsystemsNeedToResync()
 {
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 

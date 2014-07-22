@@ -175,8 +175,8 @@ bool CSubsystem::mapSubsystemElements(string& strError)
     _contextStack.push(context);
 
     // Map all instantiated subelements in subsystem
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 

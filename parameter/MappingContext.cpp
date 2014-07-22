@@ -34,7 +34,7 @@
 
 using std::string;
 
-CMappingContext::CMappingContext(uint32_t uiNbItemTypes) : _pstItemArray(new CMappingContext::SItem[uiNbItemTypes]), _uiNbItemTypes(uiNbItemTypes)
+CMappingContext::CMappingContext(size_t uiNbItemTypes) : _pstItemArray(new CMappingContext::SItem[uiNbItemTypes]), _uiNbItemTypes(uiNbItemTypes)
 {
     // Clear items
     memset(_pstItemArray, 0, sizeof(*_pstItemArray) * uiNbItemTypes);
@@ -76,7 +76,7 @@ CMappingContext& CMappingContext::operator=(const CMappingContext& right)
 // Item access
 bool CMappingContext::setItem(uint32_t uiItemType, const string* pStrKey, const string* pStrItem)
 {
-    uint32_t uiIndex;
+    size_t uiIndex;
 
     // Do some checks
     for (uiIndex = 0; uiIndex < _uiNbItemTypes; uiIndex++) {
@@ -120,7 +120,7 @@ uint32_t CMappingContext::getItemAsInteger(uint32_t uiItemType) const
 
 const string* CMappingContext::getItem(const string& strKey) const
 {
-    uint32_t uiItemType;
+    size_t uiItemType;
 
     for (uiItemType = 0; uiItemType < _uiNbItemTypes; uiItemType++) {
 

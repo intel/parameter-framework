@@ -76,12 +76,31 @@ public:
     void listChildrenPaths(std::string& strChildPathList) const;
 
     // Hierarchy query
-    uint32_t getNbChildren() const;
+    size_t getNbChildren() const;
     CElement* findChildOfKind(const std::string& strKind);
     const CElement* findChildOfKind(const std::string& strKind) const;
     const CElement* getParent() const;
-    const CElement* getChild(uint32_t uiIndex) const;
-    CElement* getChild(uint32_t uiIndex);
+
+    /**
+     * Get a child element (const)
+     *
+     * Note: this method will assert if given a wrong child index (>= number of children)
+     *
+     * @param[in] uiIndex the index of the child element from 0 to number of children - 1
+     * @return the child element
+     */
+    const CElement* getChild(size_t uiIndex) const;
+
+    /**
+     * Get a child element
+     *
+     * Note: this method will assert if given a wrong child index (>= number of children)
+     *
+     * @param[in] uiIndex the index of the child element from 0 to number of children - 1
+     * @return the child element
+     */
+    CElement* getChild(size_t uiIndex);
+
     const CElement* findChild(const std::string& strName) const;
     CElement* findChild(const std::string& strName);
     const CElement* findDescendant(CPathNavigator& pathNavigator) const;
