@@ -168,6 +168,13 @@ bool CParameterMgrPlatformConnector::getValidateSchemasOnStart() const
 // Start
 bool CParameterMgrPlatformConnector::start(string& strError)
 {
+    if (_bStarted) {
+
+        strError = "Already Started";
+
+        return false;
+    }
+
     // Create data structure
     if (!_pParameterMgr->load(strError)) {
 

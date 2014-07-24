@@ -65,7 +65,16 @@ public:
     // Should be called before start
     void setLogger(ILogger* pLogger);
 
-    // Start
+    /**
+     * Start parameter manager
+     *
+     * @param[out] strError a string describing the error if the function failed,
+     * unmodified otherwise.
+     *
+     * @return true for success, false for failure
+     * Note:
+     * This function will fail is parameter manager is already started.
+     */
     bool start(std::string& strError);
 
     // Started state
