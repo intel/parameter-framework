@@ -27,7 +27,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 #include "XmlStringDocSink.h"
 #include <libxml/parser.h>
 
@@ -49,6 +48,8 @@ bool CXmlStringDocSink::doProcess(CXmlDocSource& xmlDocSource,
     xmlDocDumpFormatMemoryEnc(xmlDocSource.getDoc(), &pcDumpedDoc, &iSize, "UTF-8", 1);
 
     if (!pcDumpedDoc) {
+
+        serializingContext.setError("Unable to encode XML document in memory");
 
         return false;
     }
