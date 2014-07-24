@@ -344,12 +344,13 @@ public:
       *
       * @param[in] pXmlSource The source element to export
       * @param[in] strRootElementType The XML root element name of the exported instance document
-      * @param[in] bValidateWithSchema true if source XML document requires validation against schema
       * @param[out] strResult contains the xml description or the error description in case false is returned
       *
       * @return true for success, false if any error occurs during the creation of the xml description (validation or encoding)
       */
-    bool exportElementToXMLString(const IXmlSource* pXmlSource, const std::string& strRootElementType, bool bValidateWithSchema, std::string& strResult) const;
+    bool exportElementToXMLString(const IXmlSource* pXmlSource,
+                                  const std::string& strRootElementType,
+                                  std::string& strResult) const;
 
     // CElement
     virtual std::string getKind() const;

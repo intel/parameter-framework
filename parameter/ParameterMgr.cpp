@@ -1112,7 +1112,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommman
         // Get Root element where to export from
         const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition = getConstSelectionCriteria()->getSelectionCriteriaDefinition();
 
-        if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria", false, strResult)) {
+        if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria",
+                                      strResult)) {
 
             return CCommandHandler::EFailed;
         }
@@ -1676,7 +1677,7 @@ CParameterMgr::CCommandHandler::CommandStatus
     // Get Root element where to export from
     const CSystemClass* pSystemClass = getSystemClass();
 
-    if (!exportElementToXMLString(pSystemClass, pSystemClass->getKind(), false, strResult)) {
+    if (!exportElementToXMLString(pSystemClass, pSystemClass->getKind(), strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -2612,15 +2613,16 @@ void CParameterMgr::doApplyConfigurations(bool bForce)
 }
 
 // Export to XML string
-bool CParameterMgr::exportElementToXMLString(const IXmlSource *pXmlSource, const string& strRootElementType, bool bValidateWithSchema, string& strResult) const
+bool CParameterMgr::exportElementToXMLString(const IXmlSource* pXmlSource,
+                                             const string& strRootElementType,
+                                             string& strResult) const
 {
     string strError;
 
     CXmlSerializingContext xmlSerializingContext(strError);
 
     // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(pXmlSource, strRootElementType,
-                                     bValidateWithSchema);
+    CXmlMemoryDocSource memorySource(pXmlSource, strRootElementType, false);
 
     // Use a doc sink that write the doc data in a string
     CXmlStringDocSink stringSink(strResult);
