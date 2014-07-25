@@ -85,6 +85,8 @@ class TestLauncher:
         self.__applyConfigurationsCmd.extend(HALCommand)
         self.__applyConfigurationsCmd.append("applyConfigurations")
 
+        self.__setupScript = [configParser["SetupScript"]]
+
         # Prepare script Commands
         # Loading possible scripts
         with open(configParser["ScriptsFile"],'r') as scriptFile:
@@ -99,6 +101,11 @@ class TestLauncher:
 
     def init(self, criterionClasses, isVerbose):
         """ Initialise the Pseudo HAL """
+
+        # Use user script to setup environment as requested before to do anything
+        self.__logger.info("Launching Setup script")
+        self.__call_process(self.__setupScript)
+
         self.__logger.info("Pseudo Hal Initialisation")
         self.kill_TestPlatform()
         self.__call_process(self.__startTestPlatformCmd,True)

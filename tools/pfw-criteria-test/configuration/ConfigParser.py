@@ -35,10 +35,11 @@ class ConfigParser:
 
         # Preparing files and directory paths
         for key in ["CriterionFile",
-                    "ScriptsFile",
-                    "ActionGathererFile",
-                    "ScenariosDirectory",
-                    "LogFile"]:
+                "ScriptsFile",
+                "SetupScript",
+                "ActionGathererFile",
+                "ScenariosDirectory",
+                "LogFile"]:
             self.__conf[key] = os.path.join(testsDirectory, self.__conf[key])
 
         self.__logger = logging.getLogger(__name__)
