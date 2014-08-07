@@ -34,9 +34,13 @@ import time
 import logging
 import os
 
-def close(logger):
+def close(logger, testLauncher, coverage):
     """ SIGINT Handler which clean up processes  """
     logger.info("Closing")
+
+    if coverage:
+        testLauncher.generateCoverage()
+
     exit(0)
 
 def launchScenario(
@@ -78,6 +82,9 @@ def main():
 
     parser.add_argument("-v","--verbose", action='store_true',
                         help="display test-platform's and scripts' log on stdout.")
+
+    parser.add_argument("-c","--coverage", action='store_true',
+                        help="generate coverage file at end of script")
 
     args = parser.parse_args()
 
@@ -153,7 +160,7 @@ def main():
             else:
                 UserInteractor.getMenu(scenarioOptions)
     except KeyboardInterrupt as e:
-        close(logger)
+        close(logger, testLauncher, args.coverage)
 
 
 if __name__ == "__main__":

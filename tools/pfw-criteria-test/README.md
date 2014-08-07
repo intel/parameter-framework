@@ -46,6 +46,7 @@ Different options are available:
 * -s, --scenario    : precise the scenario number to launch
 * -i, --interactive : run in interactive mode to test new vectors
 * -v, --verbose     : make the script talk on stdin
+* -c, --coverage    : generate the html coverage report at the end of the script
 * -h, --help        : show options recap
 
 To see available scenarios in the test directory, you can run:

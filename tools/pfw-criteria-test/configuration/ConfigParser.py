@@ -39,7 +39,10 @@ class ConfigParser:
                 "SetupScript",
                 "ActionGathererFile",
                 "ScenariosDirectory",
-                "LogFile"]:
+                "LogFile",
+                "CoverageFile",
+                "CoverageDir",
+                "PFWDomainConfFile"]:
             self.__conf[key] = os.path.join(testsDirectory, self.__conf[key])
 
         self.__logger = logging.getLogger(__name__)

@@ -87,6 +87,19 @@ class TestLauncher:
 
         self.__setupScript = [configParser["SetupScript"]]
 
+        # Command used to generate coverage
+        self.__coverageCmd = [
+                    "eval",
+                    configParser["CoverageDir"]+"/aplog2coverage.sh",
+                    "-d",
+                    configParser["PFWDomainConfFile"],
+                    "-e.",
+                    self.__logFileName,
+                    "-f",
+                    "-o",
+                    configParser["CoverageFile"]
+                ]
+
         # Prepare script Commands
         # Loading possible scripts
         with open(configParser["ScriptsFile"],'r') as scriptFile:
@@ -151,6 +164,10 @@ class TestLauncher:
                 script)]
             ,isSynchronous=="True")
 
+    def generateCoverage(self):
+        """ Launch Coverage Tool on generated Log and save results in dedicated file  """
+        self.__logger.debug("Generating coverage file")
+        self.__call_process(self.__coverageCmd)
 
     def kill_TestPlatform(self):
         """ Kill an instance of the TestPlatform """
