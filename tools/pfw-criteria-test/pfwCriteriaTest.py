@@ -24,11 +24,14 @@
 from criterion.CriterionClassFactory import CriterionClassFactory
 from testGenerator.TestVectorFactory import TestVectorFactory
 from testGenerator.TestLauncher import TestLauncher
+from testGenerator.SubprocessLogger import SubprocessLoggerThread
+from testGenerator.SubprocessLogger import ScriptLoggerThread
 from configuration.ConfigParser import ConfigParser
 from scenario.Scenario import Scenario
 from userInteraction.UserInteractor import UserInteractor
 from userInteraction.DynamicCallHelper import DynamicCallHelper
 import argparse
+import threading
 import signal
 import time
 import logging
@@ -36,10 +39,28 @@ import os
 
 def close(logger, testLauncher, coverage):
     """ SIGINT Handler which clean up processes  """
-    logger.info("Closing")
+
+    # Check if some scripts are running, if this is the case
+    # we warn the user.
+    if ScriptLoggerThread.getRunningInstances():
+        try:
+            logger.info("{} \n {}".format(
+                "Some subprocesses are still running. The program will wait them before exiting.",
+                "If you really want to exit, please confirm by typing Ctrl+C again"))
+
+            # Wait for thread to terminate
+            while ScriptLoggerThread.getRunningInstances():
+                time.sleep(1)
+        except KeyboardInterrupt as e:
+            pass
+
+    # Kill subprocess (at least test-platform one)
+    SubprocessLoggerThread.closeAll()
 
     if coverage:
         testLauncher.generateCoverage()
+
+    logger.info("Closing")
 
     exit(0)
 

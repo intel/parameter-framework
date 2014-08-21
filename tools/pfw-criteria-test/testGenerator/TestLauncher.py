@@ -22,9 +22,9 @@
 
 from criterion.ExclusiveCriterion import ExclusiveCriterion
 from configuration.ConfigParser import ConfigParser
+from testGenerator.SubprocessLogger import SubprocessLoggerThread
+from testGenerator.SubprocessLogger import ScriptLoggerThread
 import logging
-import threading
-import subprocess
 import json
 import time
 import os
@@ -56,20 +56,12 @@ class TestLauncher:
         TestPlatformHostCommand=[configParser["RemoteProcessCommand"],
                                          configParser["TestPlatformHost"]]
 
-        killAllCmd = "killall"
-        backgroundProcess = "&"
-
         self.__logFileName = configParser["LogFile"]
 
         # Commands
-        self.__killTestPlatformCmd = [configParser["PrefixCommand"],
-                                      killAllCmd,
-                                      configParser["TestPlatformCommand"]]
-
         self.__startTestPlatformCmd = [configParser["PrefixCommand"],
                                        configParser["TestPlatformCommand"],
-                                       configParser["PFWConfFile"],
-                                       backgroundProcess]
+                                       configParser["PFWConfFile"]]
 
         self.__createCriterionCmd = [configParser["PrefixCommand"]]
         self.__createCriterionCmd.extend(TestPlatformHostCommand)
@@ -105,6 +97,7 @@ class TestLauncher:
         with open(configParser["ScriptsFile"],'r') as scriptFile:
             self.__rawScripts = json.load(scriptFile)
 
+        self.__consoleLogger = consoleLogger
         self.__logger = logging.getLogger(__name__)
         self.__logger.addHandler(consoleLogger)
 
@@ -120,8 +113,8 @@ class TestLauncher:
         self.__call_process(self.__setupScript)
 
         self.__logger.info("Pseudo Hal Initialisation")
-        self.kill_TestPlatform()
-        self.__call_process(self.__startTestPlatformCmd,True)
+        # Test platform is launched asynchronously and not as script
+        self.__call_process(self.__startTestPlatformCmd, True)
         # wait Initialisation
         time.sleep(1)
 
@@ -138,7 +131,6 @@ class TestLauncher:
 
         self.__call_process(self.__startPseudoHALCmd)
 
-
     def executeTestVector(self, criterions):
         """ Launch the Test """
         for criterion in criterions:
@@ -152,86 +144,37 @@ class TestLauncher:
         # Applying conf
         self.__call_process(self.__applyConfigurationsCmd)
 
-
     def executeScript(self, scriptName):
         """ Launching desired test scripts """
 
-        (script, isSynchronous) = self.__rawScripts[scriptName]
+        (script, isAsynchronous) = self.__rawScripts[scriptName]
 
         # Create and launch the command to use the desired script
-        self.__call_process(["eval","{}/{}".format(
-                os.path.split(self.__configParser["ScriptsFile"])[0],
-                script)]
-            ,isSynchronous=="True")
+        self.__call_process(
+                ["eval","{}/{}".format(
+                    os.path.split(self.__configParser["ScriptsFile"])[0],
+                    script)],
+                isAsynchronous=="True",
+                True)
 
     def generateCoverage(self):
         """ Launch Coverage Tool on generated Log and save results in dedicated file  """
         self.__logger.debug("Generating coverage file")
         self.__call_process(self.__coverageCmd)
 
-    def kill_TestPlatform(self):
-        """ Kill an instance of the TestPlatform """
-        self.__call_process(self.__killTestPlatformCmd)
-
-
-    def __call_process(self,cmd,isSynchronous=False):
+    def __call_process(self, cmd, isAsynchronous=False, isScriptThread=False):
         """ Private function which call a shell command """
-        self.__logger.debug("Launching command : {}".format(' '.join(cmd)))
 
-        if not isSynchronous:
-            # for getting special adb env script
-            subProc = subprocess.Popen([os.getenv("SHELL"), "-c", ' '.join(cmd)],
-                                        stdout=subprocess.PIPE,
-                                        stderr=subprocess.PIPE,
-                                        shell=False)
-
-            stdout,stderr = subProc.communicate()
-
-            if stdout:
-                self.__logger.debug(stdout.decode('utf-8',"ignore").rstrip())
-            if stderr:
-                self.__logger.error(stderr.decode('utf-8',"ignore").rstrip())
-            subProc.wait()
-
+        if isScriptThread:
+            self.__logger.info("Launching script : {}".format(' '.join(cmd)))
+            launcher = ScriptLoggerThread(cmd, self.__consoleLogger)
         else:
-            launcher = TestLoggerThread(cmd)
-            launcher.start()
+            self.__logger.debug("Launching command : {}".format(' '.join(cmd)))
+            launcher = SubprocessLoggerThread(cmd, self.__consoleLogger)
 
+        launcher.start()
 
-
-class TestLoggerThread(threading.Thread):
-    """ This class is here to log long process stdout and stderr """
-
-    def __init__(self,cmd):
-        super().__init__()
-        #This thread is daemon because we want it to die at the end of the script
-        #Launch the process in background to keep it running after script exit.
-        self.daemon = True
-        self.__cmd = cmd
-        self.__subProc = None
-        self.__logger = logging.getLogger(__name__)
-
-    def __del__(self):
-        # Close properly the child with SIGTERM
-        if self.__subProc:
-            self.__subProc.terminate()
-
-    def run(self):
-        # Logging stdout and stderr through pipes
-        self.__subProc = subprocess.Popen(
-                [os.getenv("SHELL"), "-c", ' '.join(self.__cmd)],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                shell=False)
-
-        for line in iter(self.__subProc.stdout.readline,''):
-            # Decode UTF-8 and ignore errors
-            formatted=line.decode('utf-8',"ignore").rstrip()
-            if formatted:  self.__logger.debug(formatted)
-
-        for line in iter(self.__subProc.stderr.readline,''):
-            formatted=line.decode('utf-8',"ignore").rstrip()
-            if formatted: self.__logger.error(formatted)
-
-        self.__subProc.wait()
+        if not isAsynchronous:
+            # if the process is synchronous, we wait him before continuing
+            launcher.join()
 
