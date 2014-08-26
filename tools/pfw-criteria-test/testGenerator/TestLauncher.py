@@ -97,6 +97,8 @@ class TestLauncher:
         with open(configParser["ScriptsFile"],'r') as scriptFile:
             self.__rawScripts = json.load(scriptFile)
 
+        self.__availableLaunchType = ["asynchronous", "synchronous"]
+
         self.__consoleLogger = consoleLogger
         self.__logger = logging.getLogger(__name__)
         self.__logger.addHandler(consoleLogger)
@@ -147,14 +149,24 @@ class TestLauncher:
     def executeScript(self, scriptName):
         """ Launching desired test scripts """
 
-        (script, isAsynchronous) = self.__rawScripts[scriptName]
+        (script, launchType) = self.__rawScripts[scriptName]
+
+        if not launchType in self.__availableLaunchType:
+            errorMessage = "Launch type ({}) for script {} isn't recognized. ".format(
+                    launchType,
+                    scriptName)
+            errorMessage += "Default value ({}) has been applied.".format(
+                    self.__availableLaunchType[0])
+
+            self.__logger.error(errorMessage)
+            launchType = self.__availableLaunchType[0]
 
         # Create and launch the command to use the desired script
         self.__call_process(
                 ["eval","{}/{}".format(
                     os.path.split(self.__configParser["ScriptsFile"])[0],
                     script)],
-                isAsynchronous=="True",
+                launchType == self.__availableLaunchType[0],
                 True)
 
     def generateCoverage(self):
