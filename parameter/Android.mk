@@ -186,7 +186,7 @@ LOCAL_C_INCLUDES += \
     $(common_c_includes)
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
-LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host libxml2-schemas
+LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host libxml2
 
 LOCAL_LDLIBS += -ldl
 
