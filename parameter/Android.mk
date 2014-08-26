@@ -155,6 +155,7 @@ LOCAL_CFLAGS := $(common_cflags)
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES := $(common_c_includes)
@@ -178,6 +179,7 @@ LOCAL_CFLAGS := $(common_cflags) -O0 -ggdb
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES += \
@@ -196,6 +198,7 @@ include $(BUILD_HOST_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := $(common_module)_includes
+LOCAL_MODULE_OWNER := intel
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
@@ -212,6 +215,7 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := $(common_module)_includes_host
+LOCAL_MODULE_OWNER := intel
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 

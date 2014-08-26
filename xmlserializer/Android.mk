@@ -68,6 +68,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_CFLAGS := $(common_cflags)
@@ -90,6 +91,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_CFLAGS := $(common_cflags)
@@ -107,6 +109,7 @@ include $(BUILD_HOST_STATIC_LIBRARY)
 # Export includes for plugins (Target build)
 include $(CLEAR_VARS)
 LOCAL_MODULE := $(common_module)_includes
+LOCAL_MODULE_OWNER := intel
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_STATIC_LIBRARIES := libxml2
 include $(BUILD_STATIC_LIBRARY)
@@ -115,6 +118,7 @@ include $(BUILD_STATIC_LIBRARY)
 # Export includes for plugins (Host build)
 include $(CLEAR_VARS)
 LOCAL_MODULE := $(common_module)_includes
+LOCAL_MODULE_OWNER := intel
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_STATIC_LIBRARIES := libxml2
 include $(BUILD_HOST_STATIC_LIBRARY)
