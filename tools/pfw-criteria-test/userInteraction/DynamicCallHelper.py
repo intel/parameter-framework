@@ -20,7 +20,9 @@
 # express and approved by Intel in writing.
 #
 
+
 class DynamicCallHelper:
+
     """
         Callable object which wrap a function call.
 
@@ -64,4 +66,3 @@ class DynamicCallHelper:
         """
 
         return self.__func(*self.__args)
-

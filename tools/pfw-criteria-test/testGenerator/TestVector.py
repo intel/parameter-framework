@@ -20,7 +20,9 @@
 # express and approved by Intel in writing.
 #
 
+
 class TestVector:
+
     """ This class describe a test vector which can be launched by a TestLauncher object """
 
     def __init__(self, name, criterions, testType):
@@ -37,17 +39,20 @@ class TestVector:
         return self.__testType
 
     @testType.setter
-    def testType(self,value):
+    def testType(self, value):
         self.__testType = value
 
     def __str__(self):
         toString = "Test Type : {}\n".format(self.__testType)
         for criterion in self.__criterions:
-            toString += (str(criterion)+'\n')
+            toString += (str(criterion) + '\n')
         return toString
 
+
 class InvalidTestTypeValueException(Exception):
+
     """ Exception raised in case of problem with the test type """
+
     def __init__(self, msg):
         self.__msg = msg
 

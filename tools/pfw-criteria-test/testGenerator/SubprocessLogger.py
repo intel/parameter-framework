@@ -26,7 +26,9 @@ import logging
 import signal
 import os
 
+
 class StreamLoggerThread(threading.Thread):
+
     """ File-like object used to log Popen stdout and stderr streams """
 
     def __init__(self, consoleLogger, level, name):
@@ -72,7 +74,9 @@ class StreamLoggerThread(threading.Thread):
 
         os.close(self.__writeFd)
 
+
 class SubprocessLoggerThread(threading.Thread):
+
     """ This class is here to log long process stdout and stderr """
 
     # Event used to ask all SubprocessLoggerThread object to die
@@ -128,22 +132,22 @@ class SubprocessLoggerThread(threading.Thread):
 
         # Logging threaded file-object
         stdOutLogger = StreamLoggerThread(
-                self.__consoleLogger,
-                self._stdOutLogLevel,
-                self.name+"STDOUT")
+            self.__consoleLogger,
+            self._stdOutLogLevel,
+            self.name + "STDOUT")
         stdErrLogger = StreamLoggerThread(
-                self.__consoleLogger,
-                logging.ERROR,
-                self.name+"STDERR")
+            self.__consoleLogger,
+            logging.ERROR,
+            self.name + "STDERR")
 
         # Logging stdout and stderr through objects
         self.__subProc = subprocess.Popen(
-                [os.getenv("SHELL"), "-c", ' '.join(self.__cmd)],
-                bufsize=1,
-                stdout=stdOutLogger,
-                stderr=stdErrLogger,
-                preexec_fn=self.__subProcPreExec,
-                shell=False)
+            [os.getenv("SHELL"), "-c", ' '.join(self.__cmd)],
+            bufsize=1,
+            stdout=stdOutLogger,
+            stderr=stdErrLogger,
+            preexec_fn=self.__subProcPreExec,
+            shell=False)
 
         # Waiting process close or closing order
         while True:
@@ -154,16 +158,20 @@ class SubprocessLoggerThread(threading.Thread):
                     break
 
                 # or if the subprocess is dead
-                if self.__subProc.poll() != None:
+                if self.__subProc.poll() is not None:
                     break
             except KeyboardInterrupt:
                 continue
 
         # Close pipes
-        if stdOutLogger.is_alive(): stdOutLogger.close()
-        if stdErrLogger.is_alive(): stdErrLogger.close()
+        if stdOutLogger.is_alive():
+            stdOutLogger.close()
+        if stdErrLogger.is_alive():
+            stdErrLogger.close()
+
 
 class ScriptLoggerThread(SubprocessLoggerThread):
+
     """ This class is used to log script subprocess """
 
     def __init__(self, cmd, consoleLogger):
@@ -188,4 +196,4 @@ class ScriptLoggerThread(SubprocessLoggerThread):
             :return: The list of running ScriptLoggerThread instances
             :rtype: list
         """
-        return [t for t in threading.enumerate() if type(t) is cls]
+        return [t for t in threading.enumerate() if isinstance(t, cls)]

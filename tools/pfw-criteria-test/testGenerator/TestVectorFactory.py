@@ -22,7 +22,9 @@
 
 import logging
 
+
 class TestVectorFactory:
+
     """
         Factory of Test Vectors Objects
     """
@@ -40,7 +42,6 @@ class TestVectorFactory:
         self.__logger = logging.getLogger(__name__)
         self.__logger.addHandler(consoleLogger)
 
-
     def generateTestVector(self, rawCriterions=None):
         """
             Function invoqued to generate TestVector object
@@ -57,14 +58,15 @@ class TestVectorFactory:
 
             if rawCriterions:
                 try:
-                    newCriterion.currentValue = rawCriterions[criterionClass.__name__]
+                    newCriterion.currentValue = rawCriterions[
+                        criterionClass.__name__]
                     criterions.append(newCriterion)
                 except KeyError as e:
                     self.__logger.debug(
-                            "Missing Criterion {}, old value keeped".format(criterionClass.__name__))
+                        "Missing Criterion {}, old value keeped".format(
+                            criterionClass.__name__))
             else:
                 # if rawCriterions is None, we create an empty criterions lists
                 newCriterion.currentValue = newCriterion.noValue
                 criterions.append(newCriterion)
         return criterions
-

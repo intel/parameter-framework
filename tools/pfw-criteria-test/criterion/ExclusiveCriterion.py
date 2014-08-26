@@ -23,7 +23,9 @@
 from criterion.Criterion import Criterion
 from criterion.Criterion import InvalidCriterionException
 
+
 class ExclusiveCriterion(Criterion):
+
     """
     This file describe Exclusive Criterion Behavior
 
@@ -33,7 +35,6 @@ class ExclusiveCriterion(Criterion):
     def __init__(self):
         super().__init__()
         self.__currentValue = None
-
 
     @property
     def currentValue(self):
@@ -45,10 +46,8 @@ class ExclusiveCriterion(Criterion):
             self.__currentValue = currentValue
         else:
             raise InvalidCriterionException(
-                    "Value {} is not allowed for {}.".format(
-                                                        currentValue, self.__class__.__name__))
-
+                "Value {} is not allowed for {}.".format(
+                    currentValue, self.__class__.__name__))
 
     def __str__(self):
         return self.__class__.__name__ + ' : ' + str(self.__currentValue)
-

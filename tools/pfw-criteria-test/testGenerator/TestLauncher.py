@@ -29,7 +29,9 @@ import json
 import time
 import os
 
+
 class TestLauncher:
+
     """ Class which interacts with the system to launch tests """
 
     def __init__(self,
@@ -50,51 +52,51 @@ class TestLauncher:
         self.__configParser = configParser
 
         # Prepare basic commands
-        HALCommand=[configParser["RemoteProcessCommand"],
-                            configParser["TestPlatformHost"]]
-        SetCriteriaCommand=HALCommand+["setCriterionState"]
-        TestPlatformHostCommand=[configParser["RemoteProcessCommand"],
-                                         configParser["TestPlatformHost"]]
+        halCommand = [configParser["RemoteProcessCommand"],
+                      configParser["TestPlatformHost"]]
+        setCriteriaCommand = halCommand + ["setCriterionState"]
+        testPlatformHostCommand = [configParser["RemoteProcessCommand"],
+                                   configParser["TestPlatformHost"]]
 
         self.__logFileName = configParser["LogFile"]
 
         # Commands
         self.__startTestPlatformCmd = [configParser["PrefixCommand"],
                                        configParser["TestPlatformCommand"],
-                                       configParser["PFWConfFile"]]
+                                       configParser["PfwConfFile"]]
 
         self.__createCriterionCmd = [configParser["PrefixCommand"]]
-        self.__createCriterionCmd.extend(TestPlatformHostCommand)
+        self.__createCriterionCmd.extend(testPlatformHostCommand)
 
         self.__startPseudoHALCmd = [configParser["PrefixCommand"]]
-        self.__startPseudoHALCmd.extend(TestPlatformHostCommand)
+        self.__startPseudoHALCmd.extend(testPlatformHostCommand)
         self.__startPseudoHALCmd.append("start")
 
         self.__setCriterionCmd = [configParser["PrefixCommand"]]
-        self.__setCriterionCmd.extend(SetCriteriaCommand)
+        self.__setCriterionCmd.extend(setCriteriaCommand)
 
         self.__applyConfigurationsCmd = [configParser["PrefixCommand"]]
-        self.__applyConfigurationsCmd.extend(HALCommand)
+        self.__applyConfigurationsCmd.extend(halCommand)
         self.__applyConfigurationsCmd.append("applyConfigurations")
 
         self.__setupScript = [configParser["SetupScript"]]
 
         # Command used to generate coverage
         self.__coverageCmd = [
-                    "eval",
-                    configParser["CoverageDir"]+"/aplog2coverage.sh",
-                    "-d",
-                    configParser["PFWDomainConfFile"],
-                    "-e.",
-                    self.__logFileName,
-                    "-f",
-                    "-o",
-                    configParser["CoverageFile"]
-                ]
+            "eval",
+            configParser["CoverageDir"] + "/aplog2coverage.sh",
+            "-d",
+            configParser["PfwDomainConfFile"],
+            "-e.",
+            self.__logFileName,
+            "-f",
+            "-o",
+            configParser["CoverageFile"]
+        ]
 
         # Prepare script Commands
         # Loading possible scripts
-        with open(configParser["ScriptsFile"],'r') as scriptFile:
+        with open(configParser["ScriptsFile"], 'r') as scriptFile:
             self.__rawScripts = json.load(scriptFile)
 
         self.__availableLaunchType = ["asynchronous", "synchronous"]
@@ -110,7 +112,8 @@ class TestLauncher:
     def init(self, criterionClasses, isVerbose):
         """ Initialise the Pseudo HAL """
 
-        # Use user script to setup environment as requested before to do anything
+        # Use user script to setup environment as requested before to do
+        # anything
         self.__logger.info("Launching Setup script")
         self.__call_process(self.__setupScript)
 
@@ -122,14 +125,16 @@ class TestLauncher:
 
         for criterionClass in criterionClasses:
             if ExclusiveCriterion in criterionClass.__bases__:
-                createSlctCriterionCmd="createExclusiveSelectionCriterionFromStateList"
+                createSlctCriterionCmd = "createExclusiveSelectionCriterionFromStateList"
             else:
-                createSlctCriterionCmd="createInclusiveSelectionCriterionFromStateList"
+                createSlctCriterionCmd = "createInclusiveSelectionCriterionFromStateList"
 
-            createCriterionArgs = [createSlctCriterionCmd,
-                           criterionClass.__name__]+criterionClass.allowedValues()
+            createCriterionArgs = [
+                createSlctCriterionCmd,
+                criterionClass.__name__] + criterionClass.allowedValues()
 
-            self.__call_process(self.__createCriterionCmd+createCriterionArgs)
+            self.__call_process(
+                self.__createCriterionCmd + createCriterionArgs)
 
         self.__call_process(self.__startPseudoHALCmd)
 
@@ -140,8 +145,9 @@ class TestLauncher:
                 criterionValue = [criterion.currentValue]
             else:
                 criterionValue = criterion.currentValue
-            setCriterionArgs = [criterion.__class__.__name__]+list(criterionValue)
-            self.__call_process(self.__setCriterionCmd+setCriterionArgs)
+            setCriterionArgs = [
+                criterion.__class__.__name__] + list(criterionValue)
+            self.__call_process(self.__setCriterionCmd + setCriterionArgs)
 
         # Applying conf
         self.__call_process(self.__applyConfigurationsCmd)
@@ -153,21 +159,21 @@ class TestLauncher:
 
         if not launchType in self.__availableLaunchType:
             errorMessage = "Launch type ({}) for script {} isn't recognized. ".format(
-                    launchType,
-                    scriptName)
+                launchType,
+                scriptName)
             errorMessage += "Default value ({}) has been applied.".format(
-                    self.__availableLaunchType[0])
+                self.__availableLaunchType[0])
 
             self.__logger.error(errorMessage)
             launchType = self.__availableLaunchType[0]
 
         # Create and launch the command to use the desired script
         self.__call_process(
-                ["eval","{}/{}".format(
-                    os.path.split(self.__configParser["ScriptsFile"])[0],
-                    script)],
-                launchType == self.__availableLaunchType[0],
-                True)
+            ["eval", "{}/{}".format(
+                os.path.split(self.__configParser["ScriptsFile"])[0],
+                script)],
+            launchType == self.__availableLaunchType[0],
+            True)
 
     def generateCoverage(self):
         """ Launch Coverage Tool on generated Log and save results in dedicated file  """
@@ -189,4 +195,3 @@ class TestLauncher:
         if not isAsynchronous:
             # if the process is synchronous, we wait him before continuing
             launcher.join()
-

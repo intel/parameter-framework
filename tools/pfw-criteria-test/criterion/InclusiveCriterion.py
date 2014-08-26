@@ -25,6 +25,7 @@ from criterion.Criterion import InvalidCriterionException
 
 
 class InclusiveCriterion(Criterion):
+
     """
     This file describe Inclusive Criterion Behavior
 
@@ -57,7 +58,7 @@ class InclusiveCriterion(Criterion):
         valueList = stringNewVal.split()
 
         if self.noValue in valueList:
-            #if we put default value, we empty the list first
+            # if we put default value, we empty the list first
             self.__currentValues = set()
             self.__currentValues.add(self.noValue)
         else:
@@ -65,27 +66,24 @@ class InclusiveCriterion(Criterion):
             if self.noValue in self.__currentValues:
                 self.__currentValues.remove(self.noValue)
 
-            for currentValue in valueList :
+            for currentValue in valueList:
                 if currentValue in self._allowedValues \
                         and currentValue != self.noValue:
-                            self.__currentValues.add(currentValue)
+                    self.__currentValues.add(currentValue)
                 else:
                     raise InvalidCriterionException(
-                            "Value {} is not allowed for {}.".format(
-                                currentValue, self.__class__.__name__))
-
+                        "Value {} is not allowed for {}.".format(
+                            currentValue, self.__class__.__name__))
 
     def removeValue(self, currentValue):
         if currentValue in self.__currentValues:
             self.__currentValues.remove(currentValue)
         else:
             raise InvalidCriterionException(
-                    "Value {} is not currently setted.".format(currentValue))
-        #If there is no value, assume it's default
+                "Value {} is not currently setted.".format(currentValue))
+        # If there is no value, assume it's default
         if not self.__currentValues:
             self.__currentValues.append(self.noValue)
 
-
     def __str__(self):
         return self.__class__.__name__ + ' : ' + str(self.__currentValues)
-

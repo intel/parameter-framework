@@ -24,7 +24,9 @@ from criterion.InclusiveCriterion import InclusiveCriterion
 from testGenerator.TestLauncher import TestLauncher
 from userInteraction.DynamicCallHelper import DynamicCallHelper
 
+
 class UserInteractor:
+
     """
         Define all user interactions the program can have.
 
@@ -55,11 +57,11 @@ class UserInteractor:
         testQuit = True
 
         options[len(options)] = \
-            ("Go Back", lambda : False)
-        while testQuit :
+            ("Go Back", lambda: False)
+        while testQuit:
             print("\nPlease Make a choice : ")
-            for numMenu,(sentenceMenu, fonc) in sorted(options.items()):
-                print("\t{}. {}".format(numMenu,sentenceMenu))
+            for numMenu, (sentenceMenu, fonc) in sorted(options.items()):
+                print("\t{}. {}".format(numMenu, sentenceMenu))
 
             choice = input("Your Choice : ")
 
@@ -74,10 +76,10 @@ class UserInteractor:
             users to personnalize a Test and to Launch it
         """
         optionsMenu = {
-                0:("Edit Vector",self.__editVector),
-                1:("Apply Configuration",self.__applyConfiguration),
-                2:("Launch Script",self.__launchScript)
-            }
+            0: ("Edit Vector", self.__editVector),
+            1: ("Apply Configuration", self.__applyConfiguration),
+            2: ("Launch Script", self.__launchScript)
+        }
 
         UserInteractor.getMenu(optionsMenu)
 
@@ -98,10 +100,10 @@ class UserInteractor:
         """
 
         optionScript = {
-                num : ("{} scripts".format(script),
-                       DynamicCallHelper(self.__testLauncher.executeScript,script))
-                for num,script in enumerate(self.__testLauncher.scripts)
-            }
+            num: ("{} scripts".format(script),
+                  DynamicCallHelper(self.__testLauncher.executeScript, script))
+            for num, script in enumerate(self.__testLauncher.scripts)
+        }
 
         UserInteractor.getMenu(optionScript)
 
@@ -122,24 +124,36 @@ class UserInteractor:
         """
 
         optionEditCriterion = {}
-        for possibleValue in  [x for x in criterion.allowedValues()
-                       if not x in criterion.currentValue
-                       and not x == criterion.noValue]:
-            optionEditCriterion[len(optionEditCriterion)] = \
-                ("Set {}".format(possibleValue),
-                 DynamicCallHelper(self.__setCriterion, criterion, possibleValue))
+        for possibleValue in [x for x in criterion.allowedValues()
+                              if not x in criterion.currentValue
+                              and not x == criterion.noValue]:
+            optionEditCriterion[
+                len(optionEditCriterion)] = (
+                "Set {}".format(possibleValue),
+                DynamicCallHelper(
+                    self.__setCriterion,
+                    criterion,
+                    possibleValue))
 
         if InclusiveCriterion in criterion.__class__.__bases__:
-            #Inclusive criterion : display unset value (default when empty)
+            # Inclusive criterion : display unset value (default when empty)
             for possibleValue in criterion.currentValue:
-                optionEditCriterion[len(optionEditCriterion)] = \
-                    ("Unset {}".format(possibleValue),
-                     DynamicCallHelper(self.__removeCriterionValue, criterion, possibleValue))
+                optionEditCriterion[
+                    len(optionEditCriterion)] = (
+                    "Unset {}".format(possibleValue),
+                    DynamicCallHelper(
+                        self.__removeCriterionValue,
+                        criterion,
+                        possibleValue))
         else:
-            #Exclusive criterion : display default value
-            optionEditCriterion[len(optionEditCriterion)] = \
-                ("Set Default",
-                 DynamicCallHelper(self.__setCriterion, criterion, criterion.noValue))
+            # Exclusive criterion : display default value
+            optionEditCriterion[
+                len(optionEditCriterion)] = (
+                "Set Default",
+                DynamicCallHelper(
+                    self.__setCriterion,
+                    criterion,
+                    criterion.noValue))
 
         UserInteractor.getMenu(optionEditCriterion)
 
@@ -151,12 +165,11 @@ class UserInteractor:
         """
 
         optionEdit = {
-                num:("Edit {}".format(cri.__class__.__name__),
-                     DynamicCallHelper(self.__editCriterion,cri))
-                for num,cri in enumerate(self.__criterions)
-            }
+            num: ("Edit {}".format(cri.__class__.__name__),
+                  DynamicCallHelper(self.__editCriterion, cri))
+            for num, cri in enumerate(self.__criterions)
+        }
 
         UserInteractor.getMenu(optionEdit)
 
         return True
-

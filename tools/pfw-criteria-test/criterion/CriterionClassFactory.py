@@ -24,11 +24,11 @@ from criterion.Criterion import Criterion
 from criterion.ExclusiveCriterion import ExclusiveCriterion
 from criterion.InclusiveCriterion import InclusiveCriterion
 
+
 class CriterionClassFactory:
 
     def __init__(self, criteriaFileName):
         self.__criteriaFileName = criteriaFileName
-
 
     def __classFactory(self, name, allowedValues, base):
         """
@@ -52,8 +52,9 @@ class CriterionClassFactory:
 
         # Creation of the class with allowed values
         # (allows to have only one instance of the list)
-        return type(name,(base,),{"__init__":__init__, "_allowedValues":allowedValues})
-
+        return type(
+            name, (base,), {
+                "__init__": __init__, "_allowedValues": allowedValues})
 
     def generateCriterionClasses(self):
         """ Function invoqued to generate Criterion Childs classes from an AudioCriteria file"""
@@ -70,9 +71,8 @@ class CriterionClassFactory:
         # Creation of needed classes thanks to criteria File information,
         # such as BaseClass, criterion name and possible values
         generatedClasses = [
-                    self.__classFactory(className,allowedValues,globals()[classBase])
-                    for (classBase,className), allowedValues in parsedCriteria
-                ]
+            self.__classFactory(className, allowedValues, globals()[classBase])
+            for (classBase, className), allowedValues in parsedCriteria
+        ]
 
         return generatedClasses
-

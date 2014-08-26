@@ -20,7 +20,9 @@
 # express and approved by Intel in writing.
 #
 
+
 class Criterion:
+
     """ A simple class that defines common criterions attributes """
 
     @classmethod
@@ -41,11 +43,13 @@ class Criterion:
     def noValue(self):
         return '0'
 
+
 class InvalidCriterionException(Exception):
+
     """ Exception raised in case of problem with a criterion """
+
     def __init__(self, msg):
         self.__msg = msg
 
     def __str__(self):
         return "Invalid Criterion Error : " + self.__msg
-

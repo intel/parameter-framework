@@ -37,6 +37,7 @@ import time
 import logging
 import os
 
+
 def close(logger, testLauncher, coverage):
     """ SIGINT Handler which clean up processes  """
 
@@ -64,6 +65,7 @@ def close(logger, testLauncher, coverage):
 
     exit(0)
 
+
 def launchScenario(
         logger,
         consoleLogger,
@@ -88,7 +90,7 @@ def launchScenario(
 
 def main():
 
-    ## Handle Arguments
+    # Handle Arguments
 
     parser = argparse.ArgumentParser()
 
@@ -101,15 +103,18 @@ def main():
     parser.add_argument("--interactive", action='store_true',
                         help="run in interactive mode.")
 
-    parser.add_argument("-v","--verbose", action='store_true',
-                        help="display test-platform's and scripts' log on stdout.")
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action='store_true',
+        help="display test-platform's and scripts' log on stdout.")
 
-    parser.add_argument("-c","--coverage", action='store_true',
+    parser.add_argument("-c", "--coverage", action='store_true',
                         help="generate coverage file at end of script")
 
     args = parser.parse_args()
 
-    ## Logging Configuration
+    # Logging Configuration
     logger = logging.getLogger(__name__)
 
     # Decide what to write in console depending on verbose argument
@@ -121,15 +126,19 @@ def main():
     logger.addHandler(consoleLogger)
 
     # The given directory should have a conf.json file
-    if not os.path.isfile(os.path.join(args.test_directory,"conf.json")):
+    if not os.path.isfile(os.path.join(args.test_directory, "conf.json")):
         # This error will only be logged in the terminal
         logger.error(
-                "Cannot find configuration file : conf.json in {} directory.".format(
-                    args.test_directory))
+            "Cannot find configuration file : conf.json in {} directory.".format(
+                args.test_directory))
         exit(1)
 
-    configParser=ConfigParser(
-            os.path.join(args.test_directory,"conf.json"),args.test_directory,consoleLogger)
+    configParser = ConfigParser(
+        os.path.join(
+            args.test_directory,
+            "conf.json"),
+        args.test_directory,
+        consoleLogger)
 
     # Always write all log in the file
     logging.basicConfig(level=logging.DEBUG,
@@ -137,46 +146,50 @@ def main():
                         filename=configParser["LogFile"],
                         filemode='w')
 
-    ## Parsing criterion file and classes generation
+    # Parsing criterion file and classes generation
     logger.info("Criterion analysis")
     classFactory = CriterionClassFactory(configParser["CriterionFile"])
     criterionClasses = classFactory.generateCriterionClasses()
 
-    ## Tests Handlers Generation
+    # Tests Handlers Generation
     testFactory = TestVectorFactory(
-            criterionClasses,
-            consoleLogger)
+        criterionClasses,
+        consoleLogger)
 
     testLauncher = TestLauncher(
-            criterionClasses,
-            configParser,
-            consoleLogger)
+        criterionClasses,
+        configParser,
+        consoleLogger)
 
-    ## Initialisation
-    testLauncher.init(criterionClasses,args.verbose)
+    # Initialisation
+    testLauncher.init(criterionClasses, args.verbose)
 
-    ## Launching
+    # Launching
     try:
         if args.interactive:
             # Launch Interactive Mode with default criterions values
-            UserInteractor(testLauncher, testFactory.generateTestVector()).launchInteractiveMode()
+            UserInteractor(
+                testLauncher,
+                testFactory.generateTestVector()).launchInteractiveMode()
         else:
             scenarioOptions = {
-                    scenarioNumber : (scenarioFileName,
-                        DynamicCallHelper(
-                            launchScenario,
-                            logger,
-                            consoleLogger,
-                            configParser["ActionGathererFile"],
-                            os.path.join(configParser["ScenariosDirectory"],scenarioFileName),
-                            testFactory,
-                            testLauncher
-                        ))
-                    for scenarioNumber, scenarioFileName in enumerate(
-                            [file for file in sorted(os.listdir(
-                            configParser["ScenariosDirectory"]))])
-                }
-            if args.scenario != None:
+                scenarioNumber:
+                    (scenarioFileName,
+                     DynamicCallHelper(
+                         launchScenario,
+                         logger,
+                         consoleLogger,
+                         configParser["ActionGathererFile"],
+                         os.path.join(
+                             configParser["ScenariosDirectory"], scenarioFileName),
+                         testFactory,
+                         testLauncher
+                     ))
+                for scenarioNumber, scenarioFileName in enumerate(
+                    [file for file in sorted(os.listdir(
+                        configParser["ScenariosDirectory"]))])
+            }
+            if args.scenario is not None:
                 scenarioOptions[args.scenario][1]()
             else:
                 UserInteractor.getMenu(scenarioOptions)
@@ -187,4 +200,3 @@ def main():
 if __name__ == "__main__":
     """ Execute main if the script is running as main  """
     main()
-

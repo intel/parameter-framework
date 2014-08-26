@@ -24,12 +24,13 @@ import json
 import logging
 import os
 
+
 class Scenario:
+
     """
         Class which can handle several TestVectors and script
         to play a complete scenario.
     """
-
 
     def __init__(self,
                  consoleLogger,
@@ -61,18 +62,17 @@ class Scenario:
         # Python way to replace switch statement but keeping the possibility
         # to get keys (usefull in __parseScenarioActions)
         self.__actionTypeBehaviour = {
-                "setCriterion":
-                    lambda rawCriterions:
-                        self.__testLauncher.executeTestVector(
-                            self.__testFactory.generateTestVector(rawCriterions)),
-                "script":
-                    self.__testLauncher.executeScript
-                }
+            "setCriterion":
+                lambda rawCriterions:
+                    self.__testLauncher.executeTestVector(
+                        self.__testFactory.generateTestVector(rawCriterions)),
+            "script":
+                self.__testLauncher.executeScript
+        }
 
         self.__scenarioActions = self.__parseScenarioActions(
-                scenarioFileName,
-                actionGathererFileName)
-
+            scenarioFileName,
+            actionGathererFileName)
 
     def __parseScenarioActions(self, scenarioFileName, actionGathererFileName):
         """
@@ -100,26 +100,29 @@ class Scenario:
         for action in scenarioActions:
             try:
                 actionDefinedType = self.__getActionType(action)
-                if not (actionDefinedType in self.__actionTypeBehaviour.keys()):
+                if actionDefinedType not in self.__actionTypeBehaviour.keys():
                     actionValue = action.pop(actionDefinedType)
                     actionGatherer = scenarioGatheredActions[actionDefinedType]
 
                     if self.__getActionType(actionGatherer) == "script":
                         raise UngatherableTypeException(
-                                "Unable to redefine {} type, please edit your {} file".format(
-                                    self.__getActionType(actionGatherer),
-                                    actionGathererFileName))
+                            "Unable to redefine {} type, please edit your {} file".format(
+                                self.__getActionType(actionGatherer),
+                                actionGathererFileName))
 
                     # Fusion of gathered Actions and other desired actions which
                     # are directly writed in the scenario's file
                     actionValue.update(
-                            self.__getActionValue(actionGatherer))
+                        self.__getActionValue(actionGatherer))
 
-                    # Change the user defined key which was previously popped by the known one
+                    # Change the user defined key which was previously popped
+                    # by the known one
                     action[self.__getActionType(actionGatherer)] = actionValue
             except KeyError as e:
-                self.__logger.error("Actions {} from {} file is not valid".format(
-                    actionDefinedType,scenarioFileName))
+                self.__logger.error(
+                    "Actions {} from {} file is not valid".format(
+                        actionDefinedType,
+                        scenarioFileName))
                 raise e
 
         return scenarioActions
@@ -157,17 +160,21 @@ class Scenario:
 
         for action in self.__scenarioActions:
             # Launch the adequate behaviour depending on the key of the action dict
-            # No need to try KeyError as it would have been raised during init process
-            self.__actionTypeBehaviour[self.__getActionType(action)](self.__getActionValue(action))
+            # No need to try KeyError as it would have been raised during init
+            # process
+            self.__actionTypeBehaviour[self.__getActionType(action)](
+                self.__getActionValue(action))
+
 
 class UngatherableTypeException(Exception):
+
     """
         Exception raised in case of problem with a type that the
         user try to personalize
     """
+
     def __init__(self, msg):
         self.__msg = msg
 
     def __str__(self):
         return "Ungatherable type Error : " + self.__msg
-
