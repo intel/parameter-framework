@@ -26,6 +26,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ParameterFrameworkConfiguration.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
@@ -34,6 +35,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ConfigurableDomains.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
@@ -44,6 +46,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := SystemClass.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
@@ -55,6 +58,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ParameterSettings.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
@@ -63,6 +67,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := FileIncluder.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
@@ -71,6 +76,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := Subsystem.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
@@ -81,6 +87,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ComponentLibrary.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
@@ -92,6 +99,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ComponentTypeSet.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
@@ -103,6 +111,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := W3cXmlAttributes.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
@@ -111,6 +120,7 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := Parameter.xsd
+LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
 LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas

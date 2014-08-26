@@ -64,6 +64,7 @@ LOCAL_CFLAGS := $(common_cflags)
 LOCAL_LDLIBS := $(common_ldlibs)
 
 LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 include external/stlport/libstlport.mk
@@ -80,6 +81,7 @@ LOCAL_CFLAGS := $(common_cflags)
 LOCAL_LDLIBS := $(common_ldlibs)
 
 LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 

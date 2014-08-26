@@ -54,6 +54,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES:= $(common_src_files)
 
 LOCAL_MODULE:= $(common_module)
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES := $(common_c_includes)
@@ -73,6 +74,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES:= $(common_src_files)
 
 LOCAL_MODULE:= $(common_module)_host
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES += $(common_c_includes)
