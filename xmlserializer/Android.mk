@@ -95,16 +95,10 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_CFLAGS := $(common_cflags)
 
-# We must enforce this flag, otherwise schemas are never used.
-# This is due to the fact that libxml2-schemas.a is compiled
-# with those features enabled, but the xmlversion.h does
-# not include those defines.
-LOCAL_CFLAGS += -DLIBXML_SCHEMAS_ENABLED
-
 LOCAL_C_INCLUDES += $(common_c_includes)
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
-LOCAL_STATIC_LIBRARIES := libxml2-schemas
+LOCAL_STATIC_LIBRARIES := libxml2
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
@@ -126,64 +120,4 @@ LOCAL_MODULE := $(common_module)_includes
 LOCAL_MODULE_OWNER := intel
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_STATIC_LIBRARIES := libxml2
-include $(BUILD_HOST_STATIC_LIBRARY)
-
-#
-# libxml2-schemas
-#
-LOCAL_PATH := external/libxml2
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := \
-	SAX.c \
-	entities.c \
-	encoding.c \
-	error.c \
-	parserInternals.c \
-	parser.c \
-	tree.c \
-	hash.c \
-	list.c \
-	xmlIO.c \
-	xmlmemory.c \
-	uri.c \
-	valid.c \
-	xlink.c \
-	HTMLparser.c \
-	HTMLtree.c \
-	debugXML.c \
-	xpath.c \
-	xpointer.c \
-	xinclude.c \
-	nanohttp.c \
-	nanoftp.c \
-	DOCBparser.c \
-	catalog.c \
-	globals.c \
-	threads.c \
-	c14n.c \
-	xmlstring.c \
-	xmlregexp.c \
-	xmlschemas.c \
-	xmlschemastypes.c \
-	xmlunicode.c \
-	xmlreader.c \
-	relaxng.c \
-	dict.c \
-	SAX2.c \
-	legacy.c \
-	chvalid.c \
-	pattern.c \
-	xmlsave.c \
-	xmlmodule.c \
-	xmlwriter.c \
-	schematron.c
-
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/include external/icu/icu4c/source/common
-LOCAL_CFLAGS := \
-	-DLIBXML_EXPR_ENABLED \
-	-DLIBXML_REGEXP_ENABLED \
-	-DLIBXML_PATTERN_ENABLED \
-	-DLIBXML_SCHEMAS_ENABLED \
-	-DLIBXML_UNICODE_ENABLED
-LOCAL_MODULE:= libxml2-schemas
 include $(BUILD_HOST_STATIC_LIBRARY)
