@@ -28,7 +28,6 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include <fstream>
-#include <alloca.h>
 #include "ParameterType.h"
 #include "MappingContext.h"
 #include "TESTMappingKeys.h"
@@ -36,6 +35,7 @@
 #include "TESTSubsystemObject.h"
 #include <log/Context.h>
 #include <sstream>
+#include <vector>
 
 #define base CSubsystemObject
 
@@ -100,7 +100,9 @@ void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
 
     for (uiIndex = 0 ; uiIndex < _uiArraySize ; uiIndex++) {
 
-        void* pvValue = alloca(_uiScalarSize);
+        std::vector<uint8_t> aucValue(_uiScalarSize);
+
+        void* pvValue = aucValue.data();
 
         // Read Value in BlackBoard
         blackboardRead(pvValue, _uiScalarSize);
@@ -130,7 +132,9 @@ void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
 
     for (uiIndex = 0 ; uiIndex < _uiArraySize ; uiIndex++) {
 
-        void* pvValue = alloca(_uiScalarSize);
+        std::vector<uint8_t> aucValue(_uiScalarSize);
+
+        void* pvValue = aucValue.data();
 
         std::string strValue;
 
