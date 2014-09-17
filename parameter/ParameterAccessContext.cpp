@@ -34,21 +34,19 @@
 CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  CParameterBlackboard* pParameterBlackboard,
                                                  bool bValueSpaceIsRaw,
-                                                 bool bOutputRawFormatIsHex,
-                                                 uint32_t uiBaseOffset)
+                                                 bool bOutputRawFormatIsHex)
     : base(strError), _pParameterBlackboard(pParameterBlackboard),
     _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
-    _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(uiBaseOffset)
+    _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(0)
 {
 }
 
 CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  bool bBigEndianSubsystem,
-                                                 CParameterBlackboard* pParameterBlackboard,
-                                                 uint32_t uiBaseOffset)
+                                                 CParameterBlackboard* pParameterBlackboard)
     : base(strError), _pParameterBlackboard(pParameterBlackboard), _bValueSpaceIsRaw(false),
     _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(bBigEndianSubsystem), _bAutoSync(true),
-    _uiBaseOffset(uiBaseOffset)
+    _uiBaseOffset(0)
 {
 }
 

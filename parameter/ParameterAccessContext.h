@@ -38,15 +38,22 @@ class CParameterBlackboard;
 class CParameterAccessContext : public CErrorContext
 {
 public:
+    /**
+     * Constructors
+     *
+     * @param[in] pParameterBlackboard The blackboard the parameter value will be read from or
+     * written to
+     * @param[in] bValueSpaceIsRaw true if value space is raw, false if it is real
+     * @param[in] bOutputRawFormatIsHex true if output raw format is hexa, false it is decimal
+     * @param[out] strError The output error message
+     *
     CParameterAccessContext(std::string& strError,
                             CParameterBlackboard* pParameterBlackboard,
                             bool bValueSpaceIsRaw,
-                            bool bOutputRawFormatIsHex = false,
-                            uint32_t uiOffsetBase = 0);
+                            bool bOutputRawFormatIsHex = false);
     CParameterAccessContext(std::string& strError,
                             bool bBigEndianSubsystem,
-                            CParameterBlackboard* pParameterBlackboard,
-                            uint32_t uiOffsetBase = 0);
+                            CParameterBlackboard* pParameterBlackboard);
     CParameterAccessContext(std::string& strError);
 
     // ParameterBlackboard
