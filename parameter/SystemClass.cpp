@@ -134,8 +134,10 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(list<string>& lstrError,
         // Get Folder for current Plugin Location
         const CPluginLocation* pPluginLocation = static_cast<const CPluginLocation*>(pSubsystemPlugins->getChild(uiPluginLocation));
 
-        const string& strFolder = pPluginLocation->getFolder();
-
+        string strFolder(pPluginLocation->getFolder());
+        if (!strFolder.empty()) {
+            strFolder += "/";
+        }
         // Iterator on Plugin List:
         list<string>::const_iterator it;
 
@@ -144,7 +146,7 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(list<string>& lstrError,
         for (it = pluginList.begin(); it != pluginList.end(); ++it) {
 
             // Fill Plugin files list
-            lstrPluginFiles.push_back(strFolder + "/" + *it);
+            lstrPluginFiles.push_back(strFolder + *it);
         }
     }
 
