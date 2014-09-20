@@ -38,10 +38,9 @@
 #define base CKindElement
 CXmlFileIncluderElement::CXmlFileIncluderElement(const std::string& strName,
                                                  const std::string& strKind,
-                                                 bool bValidateWithSchemas) : base(strName,
-                                                                                   strKind)
+                                                 bool bValidateWithSchemas)
+    : base(strName, strKind), _bValidateSchemasOnStart(bValidateWithSchemas)
 {
-    _bValidateSchemasOnStart = bValidateWithSchemas;
 }
 
 // From IXmlSink
