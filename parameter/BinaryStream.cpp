@@ -46,12 +46,12 @@ CBinaryStream::CBinaryStream(const string& strFileName, bool bOut, uint32_t uiDa
 
 CBinaryStream::~CBinaryStream()
 {
-    delete [] _puiData;
-
     if (_bOpen) {
 
         close();
     }
+
+    delete [] _puiData;
 }
 
 bool CBinaryStream::open(string& strError)
