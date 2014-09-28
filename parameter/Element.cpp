@@ -236,6 +236,11 @@ void CElement::setXmlNameAttribute(CXmlElement& xmlElement) const
     }
 }
 
+std::string CElement::getXmlNameAttribute(const CXmlElement& xmlElement)
+{
+    return xmlElement.getNameAttribute();
+}
+
 // Name
 void CElement::setName(const string& strName)
 {

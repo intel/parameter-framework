@@ -35,10 +35,8 @@ template <class ElementType>
 class TNamedElementBuilderTemplate : public CElementBuilder
 {
 public:
-    TNamedElementBuilderTemplate() : CElementBuilder() {}
-
     virtual CElement* createElement(const CXmlElement& xmlElement) const
     {
-        return new ElementType(xmlElement.getNameAttribute());
+        return new ElementType(CElement::getXmlNameAttribute(xmlElement));
     }
 };
