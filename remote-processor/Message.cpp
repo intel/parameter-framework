@@ -153,21 +153,21 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
 
         if (!pSocket->write(&uiSize, sizeof(uiSize))) {
 
-            strError += string("Size write failed: ") + strerror(errno);
+            strError += string("Size write failed: ") + strerror(errno);
             return error;
         }
 
         // Msg Id
         if (!pSocket->write(&_ucMsgId, sizeof(_ucMsgId))) {
 
-            strError += string("Msg write failed: ") + strerror(errno);
+            strError += string("Msg write failed: ") + strerror(errno);
             return error;
         }
 
         // Data
         if (!pSocket->write(_pucData, _uiDataSize)) {
 
-            strError = string("Data write failed: ") + strerror(errno);
+            strError = string("Data write failed: ") + strerror(errno);
             return error;
         }
 
@@ -176,7 +176,7 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
 
         if (!pSocket->write(&ucChecksum, sizeof(ucChecksum))) {
 
-            strError = string("Checksum write failed: ") + strerror(errno);
+            strError = string("Checksum write failed: ") + strerror(errno);
             return error;
         }
 
@@ -186,7 +186,7 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
 
         if (!pSocket->read(&uiSyncWord, sizeof(uiSyncWord))) {
 
-            strError = string("Sync read failed: ") + strerror(errno);
+            strError = string("Sync read failed: ") + strerror(errno);
             if (pSocket->hasPeerDisconnected()) {
                 return peerDisconnected;
             }
@@ -205,14 +205,14 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
 
         if (!pSocket->read(&uiSize, sizeof(uiSize))) {
 
-            strError = string("Size read failed: ") + strerror(errno);
+            strError = string("Size read failed: ") + strerror(errno);
             return error;
         }
 
         // Msg Id
         if (!pSocket->read(&_ucMsgId, sizeof(_ucMsgId))) {
 
-            strError = string("Msg id read failed: ") + strerror(errno);
+            strError = string("Msg id read failed: ") + strerror(errno);
             return error;
         }
 
@@ -224,7 +224,7 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
         // Data receive
         if (!pSocket->read(_pucData, _uiDataSize)) {
 
-            strError = string("Data read failed: ") + strerror(errno);
+            strError = string("Data read failed: ") + strerror(errno);
             return error;
         }
 
@@ -233,7 +233,7 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
 
         if (!pSocket->read(&ucChecksum, sizeof(ucChecksum))) {
 
-            strError = string("Checksum read failed: ") + strerror(errno);
+            strError = string("Checksum read failed: ") + strerror(errno);
             return error;
         }
         // Compare
