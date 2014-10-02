@@ -43,6 +43,8 @@ common_c_includes := \
     $(LOCAL_PATH)/../../parameter/include \
     $(LOCAL_PATH)/../../remote-processor/
 
+common_ldlibs := -pthread
+
 common_shared_libraries := libparameter libremote-processor
 #############################
 # Target build
@@ -52,9 +54,11 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES:= $(common_src_files)
 
 LOCAL_MODULE:= $(common_module)
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES := $(common_c_includes)
+LOCAL_LDLIBS := $(common_ldlibs)
 
 LOCAL_STATIC_LIBRARIES := libpfw_utility
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
@@ -70,9 +74,11 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES:= $(common_src_files)
 
 LOCAL_MODULE:= $(common_module)_host
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES += $(common_c_includes)
+LOCAL_LDLIBS := $(common_ldlibs)
 
 LOCAL_STATIC_LIBRARIES := libpfw_utility_host
 LOCAL_SHARED_LIBRARIES := $(foreach shared_library, $(common_shared_libraries), \
