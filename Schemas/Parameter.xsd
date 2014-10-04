@@ -112,17 +112,38 @@
 			<xs:field xpath="@Numerical"/>
 		</xs:unique>
 	</xs:element>
-	<xs:complexType name="FixedPointParameterType">
+	<xs:simpleType name="PointBound">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0|[+-]?0\.[0-9]+|(([+-]?[1-9][0-9]*)(\.[0-9]+)?))(e[+-]?[0-9]+)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PointParameterType">
 		<xs:complexContent>
 			<xs:extension base="Parameter">
-				<xs:attribute name="Size" type="SizeType" use="required"/>
-				<xs:attribute name="Integral" type="xs:nonNegativeInteger" use="required"/>
-				<xs:attribute name="Fractional" type="xs:nonNegativeInteger" use="required"/>
 				<xs:attribute name="Unit" type="xs:token" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="FixedPointParameterType">
+		<xs:complexContent>
+			<xs:extension base="PointParameterType">
+				<xs:attribute name="Size" type="SizeType" use="required"/>
+				<xs:attribute name="Integral" type="xs:nonNegativeInteger" use="required"/>
+				<xs:attribute name="Fractional" type="xs:nonNegativeInteger" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:element name="FixedPointParameter" type="FixedPointParameterType"/>
+	<xs:complexType name="FloatingPointParameterType">
+		<xs:complexContent>
+			<xs:extension base="PointParameterType">
+				<xs:attribute name="Size" fixed="32"/>
+				<xs:attribute name="Min" type="PointBound" use="optional"/>
+				<xs:attribute name="Max" type="PointBound" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FloatingPointParameter" type="FloatingPointParameterType"/>
 	<xs:complexType name="BitParameterType">
 		<xs:attributeGroup ref="Nameable"/>
 		<xs:attribute name="Size" use="required">
@@ -168,6 +189,7 @@
 			<xs:element ref="IntegerParameter"/>
 			<xs:element ref="EnumParameter"/>
 			<xs:element ref="FixedPointParameter"/>
+			<xs:element ref="FloatingPointParameter"/>
 			<xs:element ref="BitParameterBlock"/>
 			<xs:element ref="StringParameter"/>
 			<xs:element name="Component" type="ComponentInstance"/>

@@ -47,6 +47,7 @@
 #include "BooleanParameterType.h"
 #include "IntegerParameterType.h"
 #include "FixedPointParameterType.h"
+#include "FloatingPointParameterType.h"
 #include "ParameterBlackboard.h"
 #include "Parameter.h"
 #include "ParameterAccessContext.h"
@@ -2467,6 +2468,7 @@ void CParameterMgr::feedElementLibraries()
     pParameterCreationLibrary->addElementBuilder("EnumParameter", new TNamedElementBuilderTemplate<CEnumParameterType>());
     pParameterCreationLibrary->addElementBuilder("ValuePair", new TElementBuilderTemplate<CEnumValuePair>());
     pParameterCreationLibrary->addElementBuilder("FixedPointParameter", new TNamedElementBuilderTemplate<CFixedPointParameterType>());
+    pParameterCreationLibrary->addElementBuilder("FloatingPointParameter", new TNamedElementBuilderTemplate<CFloatingPointParameterType>);
     pParameterCreationLibrary->addElementBuilder("SubsystemInclude", new CFileIncluderElementBuilder(_bValidateSchemasOnStart));
 
     _pElementLibrarySet->addElementLibrary(pParameterCreationLibrary);
