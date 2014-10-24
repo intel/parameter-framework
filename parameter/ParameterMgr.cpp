@@ -104,17 +104,17 @@ const char* gacSystemSchemasSubFolder = "Schemas";
 
 // Config File System looks normally like this:
 // ---------------------------------------------
-//├── <ParameterFrameworkConfiguration>.xml
-//├── Schemas
-//│   └── *.xsd
-//├── Settings
-//│   └── <SystemClassName folder>*
-//│       ├── <ConfigurableDomains>.xml
-//│       └── <Settings>.bin?
-//└── Structure
-//    └── <SystemClassName folder>*
-//        ├── <SystemClassName>Class.xml
-//        └── <Subsystem>.xml*
+//|-- <ParameterFrameworkConfiguration>.xml
+//|-- Schemas
+//|   `-- *.xsd
+//|-- Settings
+//|   `-- <SystemClassName folder>*
+//|       |-- <ConfigurableDomains>.xml
+//|       `-- <Settings>.bin?
+//`-- Structure
+//    `-- <SystemClassName folder>*
+//        |-- <SystemClassName>Class.xml
+//        `-- <Subsystem>.xml*
 // --------------------------------------------
 
 

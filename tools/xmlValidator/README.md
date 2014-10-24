@@ -27,24 +27,24 @@ where:
 
 In the example, we have the following files:
 
-    ├── ParameterFrameworkConfiguration.xml
-    ├── Schemas
-    │   ├── ComponentLibrary.xsd
-    │   ├── ComponentTypeSet.xsd
-    │   ├── ConfigurableDomains.xsd
-    │   ├── FileIncluder.xsd
-    │   ├── ParameterFrameworkConfiguration.xsd
-    │   ├── ParameterSettings.xsd
-    │   ├── Parameter.xsd
-    │   ├── Subsystem.xsd
-    │   └── SystemClass.xsd
-    ├── Settings
-    │   └── FS
-    │       └── Genres.xml
-    └── Structure
-        └── FS
-            ├── MusicLibraries.xml
-            └── my_music.xml
+    |-- ParameterFrameworkConfiguration.xml
+    |-- Schemas
+    |   |-- ComponentLibrary.xsd
+    |   |-- ComponentTypeSet.xsd
+    |   |-- ConfigurableDomains.xsd
+    |   |-- FileIncluder.xsd
+    |   |-- ParameterFrameworkConfiguration.xsd
+    |   |-- ParameterSettings.xsd
+    |   |-- Parameter.xsd
+    |   |-- Subsystem.xsd
+    |   `-- SystemClass.xsd
+    |-- Settings
+    |   `-- FS
+    |       `-- Genres.xml
+    `--- Structure
+         `-- FS
+            |-- MusicLibraries.xml
+            `-- my_music.xml
 
 ### Command
 We are in the directory which contains the structure detailed previously.
