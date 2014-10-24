@@ -32,6 +32,8 @@
 
 #define base CTypeElement
 
+using std::string;
+
 CBitParameterBlockType::CBitParameterBlockType(const string& strName) : base(strName), _uiSize(0)
 {
 }

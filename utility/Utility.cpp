@@ -33,6 +33,8 @@
 #include <sstream>
 #include <iterator>
 
+using std::string;
+
 // Format string list
 void CUtility::asString(const std::list<std::string>& lstr,
                         std::string& strOutput,

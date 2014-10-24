@@ -31,30 +31,32 @@
 
 #include "TypeElement.h"
 
+#include <string>
+
 class CInstanceConfigurableElement;
 
 class CComponentType : public CTypeElement
 {
 public:
-    CComponentType(const string& strName);
+    CComponentType(const std::string& strName);
 
     // Object creation
     virtual void populate(CElement* pElement) const;
 
     // Mapping info
-    virtual bool getMappingData(const string& strKey, const string*& pStrValue) const;
+    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
     virtual bool hasMappingData() const;
     /**
      * Returns the mapping associated to the current TypeElement instance
      *
-     * @return A string containing the mapping as a comma separated key value pairs
+     * @return A std::string containing the mapping as a comma separated key value pairs
      */
-    virtual string getFormattedMapping() const;
+    virtual std::string getFormattedMapping() const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     // CElement
     virtual bool childrenAreDynamic() const;

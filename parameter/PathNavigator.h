@@ -33,30 +33,28 @@
 #include <string>
 #include <stdint.h>
 
-using namespace std;
-
 class CPathNavigator
 {
 public:
-    CPathNavigator(const string& strPath);
+    CPathNavigator(const std::string& strPath);
 
     // Path validity
     bool isPathValid() const;
 
     // Navigate through
-    bool navigateThrough(const string& strItemName, string& strError);
+    bool navigateThrough(const std::string& strItemName, std::string& strError);
 
     // Nagivate
-    string* next();
+    std::string* next();
 
     // Current path
-    string getCurrentPath() const;
+    std::string getCurrentPath() const;
 
 private:
-    void init(const string& strPath);
-    static bool checkPathFormat(const string& strUpl);
+    void init(const std::string& strPath);
+    static bool checkPathFormat(const std::string& strUpl);
 
     bool _bValid;
-    vector<string> _astrItems;
+    std::vector<std::string> _astrItems;
     uint32_t _uiCurrentIndex;
 };

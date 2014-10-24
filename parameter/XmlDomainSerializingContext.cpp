@@ -31,6 +31,8 @@
 
 #define base CXmlElementSerializingContext
 
+using std::string;
+
 CXmlDomainSerializingContext::CXmlDomainSerializingContext(string& strError, bool bWithSettings)
     : base(strError), _bWithSettings(bWithSettings), _bValueSpaceIsRaw(false), _bOutputRawFormatIsHex(false), _pSelectionCriteriaDefinition(NULL), _bAutoValidationRequired(true)
 {

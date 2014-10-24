@@ -34,6 +34,7 @@
 #include <list>
 #include <set>
 #include <map>
+#include <string>
 
 class CConfigurableElement;
 class CDomainConfiguration;
@@ -42,10 +43,10 @@ class CSelectionCriteriaDefinition;
 
 class CConfigurableDomain : public CBinarySerializableElement
 {
-    typedef list<CConfigurableElement*>::const_iterator ConfigurableElementListIterator;
-    typedef map<const CConfigurableElement*, CSyncerSet*>::const_iterator ConfigurableElementToSyncerSetMapIterator;
+    typedef std::list<CConfigurableElement*>::const_iterator ConfigurableElementListIterator;
+    typedef std::map<const CConfigurableElement*, CSyncerSet*>::const_iterator ConfigurableElementToSyncerSetMapIterator;
 public:
-    CConfigurableDomain(const string& strName);
+    CConfigurableDomain(const std::string& strName);
     virtual ~CConfigurableDomain();
 
     // Sequence awareness
@@ -53,40 +54,40 @@ public:
     bool getSequenceAwareness() const;
 
     // Configuration Management
-    bool createConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError);
-    bool deleteConfiguration(const string& strName, string& strError);
-    bool renameConfiguration(const string& strName, const string& strNewName, string& strError);
-    bool restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, list<string>& strError) const;
-    bool saveConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError);
-    bool setElementSequence(const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError);
-    bool getElementSequence(const string& strConfiguration, string& strResult) const;
-    bool setApplicationRule(const string& strConfiguration, const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError);
-    bool clearApplicationRule(const string& strConfiguration, string& strError);
-    bool getApplicationRule(const string& strConfiguration, string& strResult) const;
+    bool createConfiguration(const std::string& strName, const CParameterBlackboard* pMainBlackboard, std::string& strError);
+    bool deleteConfiguration(const std::string& strName, std::string& strError);
+    bool renameConfiguration(const std::string& strName, const std::string& strNewName, std::string& strError);
+    bool restoreConfiguration(const std::string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<std::string>& strError) const;
+    bool saveConfiguration(const std::string& strName, const CParameterBlackboard* pMainBlackboard, std::string& strError);
+    bool setElementSequence(const std::string& strConfiguration, const std::vector<std::string>& astrNewElementSequence, std::string& strError);
+    bool getElementSequence(const std::string& strConfiguration, std::string& strResult) const;
+    bool setApplicationRule(const std::string& strConfiguration, const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
+    bool clearApplicationRule(const std::string& strConfiguration, std::string& strError);
+    bool getApplicationRule(const std::string& strConfiguration, std::string& strResult) const;
 
     // Last applied configuration name
-    string getLastAppliedConfigurationName() const;
+    std::string getLastAppliedConfigurationName() const;
 
     // Pending configuration name
-    string getPendingConfigurationName() const;
+    std::string getPendingConfigurationName() const;
 
     // Associated Configurable elements
-    void gatherConfigurableElements(set<const CConfigurableElement*>& configurableElementSet) const;
-    void listAssociatedToElements(string& strResult) const;
+    void gatherConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const;
+    void listAssociatedToElements(std::string& strResult) const;
 
     // Configurable elements association
-    bool addConfigurableElement(CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, string& strError);
-    bool removeConfigurableElement(CConfigurableElement* pConfigurableElement, string& strError);
+    bool addConfigurableElement(CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, std::string& strError);
+    bool removeConfigurableElement(CConfigurableElement* pConfigurableElement, std::string& strError);
 
     // Blackboard Configuration and Base Offset retrieval
-    CParameterBlackboard* findConfigurationBlackboard(const string& strConfiguration,
+    CParameterBlackboard* findConfigurationBlackboard(const std::string& strConfiguration,
                                                       const CConfigurableElement* pConfigurableElement,
                                                       uint32_t& uiBaseOffset,
                                                       bool& bIsLastApplied,
-                                                      string& strError) const;
+                                                      std::string& strError) const;
 
     // Domain splitting
-    bool split(CConfigurableElement* pConfigurableElement, string& strError);
+    bool split(CConfigurableElement* pConfigurableElement, std::string& strError);
 
     // Ensure validity on whole domain from main blackboard
     void validate(const CParameterBlackboard* pMainBlackboard);
@@ -104,11 +105,11 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     // Class kind
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
 protected:
     // Content dumping
-    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
+    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 
 private:
     // Get pending configuration
@@ -164,14 +165,14 @@ private:
     CSyncerSet* getSyncerSet(const CConfigurableElement* pConfigurableElement) const;
 
     // Configuration retrieval
-    CDomainConfiguration* findConfiguration(const string& strConfiguration, string& strError);
-    const CDomainConfiguration* findConfiguration(const string& strConfiguration, string& strError) const;
+    CDomainConfiguration* findConfiguration(const std::string& strConfiguration, std::string& strError);
+    const CDomainConfiguration* findConfiguration(const std::string& strConfiguration, std::string& strError) const;
 
     // Configurable elements
-    list<CConfigurableElement*> _configurableElementList;
+    std::list<CConfigurableElement*> _configurableElementList;
 
     // Associated syncer sets
-    map<const CConfigurableElement*, CSyncerSet*> _configurableElementToSyncerSetMap;
+    std::map<const CConfigurableElement*, CSyncerSet*> _configurableElementToSyncerSetMap;
 
     // Sequence awareness
     bool _bSequenceAware;

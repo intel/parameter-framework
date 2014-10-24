@@ -33,6 +33,8 @@
 #include "Element.h"
 #include "Component.h"
 
+#include <string>
+
 class CComponentType;
 
 class CComponentLibrary : public CElement
@@ -40,9 +42,9 @@ class CComponentLibrary : public CElement
 public:
     CComponentLibrary();
 
-    const CComponentType* getComponentType(const string& strName) const;
+    const CComponentType* getComponentType(const std::string& strName) const;
 
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);

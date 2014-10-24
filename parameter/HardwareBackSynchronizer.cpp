@@ -36,7 +36,7 @@ CHardwareBackSynchronizer::CHardwareBackSynchronizer(const CConfigurableElement*
     : base(pConfigurableElement), _pParameterBlackboard(pParameterBlackboard)
 {
     // Fill back syncer set
-    list<const CConfigurableElement*>::const_iterator it;
+    std::list<const CConfigurableElement*>::const_iterator it;
 
     for (it = _needingBackSyncList.begin(); it != _needingBackSyncList.end(); ++it) {
 

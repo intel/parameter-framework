@@ -35,11 +35,11 @@
 
 #define base CTypeElement
 
-CComponentInstance::CComponentInstance(const string& strName) : base(strName), _pComponentType(NULL)
+CComponentInstance::CComponentInstance(const std::string& strName) : base(strName), _pComponentType(NULL)
 {
 }
 
-string CComponentInstance::getKind() const
+std::string CComponentInstance::getKind() const
 {
     return "Component";
 }
@@ -49,7 +49,7 @@ bool CComponentInstance::childrenAreDynamic() const
     return true;
 }
 
-bool CComponentInstance::getMappingData(const string& strKey, const string*& pStrValue) const
+bool CComponentInstance::getMappingData(const std::string& strKey, const std::string*& pStrValue) const
 {
     // Try myself first then associated component type
     return base::getMappingData(strKey, pStrValue) || (_pComponentType && _pComponentType->getMappingData(strKey, pStrValue));
@@ -61,10 +61,10 @@ bool CComponentInstance::hasMappingData() const
     return base::hasMappingData() || (_pComponentType && _pComponentType->hasMappingData());
 }
 
-string CComponentInstance::getFormattedMapping() const
+std::string CComponentInstance::getFormattedMapping() const
 {
     // Try myself first then associated component type
-    string strValue = base::getFormattedMapping();
+    std::string strValue = base::getFormattedMapping();
     if (_pComponentType) {
 
         strValue += _pComponentType->getFormattedMapping();
@@ -80,7 +80,7 @@ bool CComponentInstance::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
 
     const CComponentLibrary* pComponentLibrary = parameterBuildContext.getComponentLibrary();
 
-    string strComponentType = xmlElement.getAttributeString("Type");
+    std::string strComponentType = xmlElement.getAttributeString("Type");
 
     _pComponentType = pComponentLibrary->getComponentType(strComponentType);
 

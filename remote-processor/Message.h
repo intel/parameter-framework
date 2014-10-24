@@ -32,8 +32,6 @@
 #include <stdint.h>
 #include <string>
 
-using namespace std;
-
 class CSocket;
 
 class CMessage
@@ -69,9 +67,9 @@ protected:
     // Data
     void writeData(const void* pvData, uint32_t uiSize);
     void readData(void* pvData, uint32_t uiSize);
-    void writeString(const string& strData);
-    void readString(string& strData);
-    uint32_t getStringSize(const string& strData) const;
+    void writeString(const std::string& strData);
+    void readString(std::string& strData);
+    uint32_t getStringSize(const std::string& strData) const;
     // Remaining data size
     uint32_t getRemainingDataSize() const;
 private:

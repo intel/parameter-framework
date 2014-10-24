@@ -42,6 +42,8 @@
 
 #define base CSocket
 
+using std::string;
+
 CListeningSocket::CListeningSocket()
 {
     int iOption = true;
@@ -60,7 +62,7 @@ bool CListeningSocket::listen(uint16_t uiPort)
     // Bind
     if (bind(getFd(), (struct sockaddr*)&server_addr, sizeof(struct sockaddr)) == -1) {
 
-        ostringstream oss;
+	std::ostringstream oss;
         oss << "CListeningSocket::listen::bind port " << uiPort;
         perror(oss.str().c_str());
 
@@ -69,7 +71,7 @@ bool CListeningSocket::listen(uint16_t uiPort)
 
     if (::listen(getFd(), 5) == -1) {
 
-        ostringstream oss;
+	std::ostringstream oss;
         oss << "CListeningSocket::listen::bind port " << uiPort;
         perror(oss.str().c_str());
 

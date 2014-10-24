@@ -38,7 +38,7 @@ class CElementBuilder;
 
 class CElementLibrary
 {
-    typedef std::map<string, const CElementBuilder*> ElementBuilderMap;
+    typedef std::map<std::string, const CElementBuilder*> ElementBuilderMap;
     typedef ElementBuilderMap::iterator ElementBuilderMapIterator;
     typedef ElementBuilderMap::const_iterator ElementBuilderMapConstIterator;
 

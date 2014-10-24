@@ -29,6 +29,8 @@
  */
 #include "ElementLibrary.h"
 
+#include <vector>
+
 class CElementLibrarySet
 {
 public:
@@ -39,6 +41,6 @@ public:
     CElementLibrary* getElementLibrary(uint32_t uiIndex) const;
 
 private:
-    typedef vector<CElementLibrary*>::iterator CElementLibraryArrayIterator;
-    vector<CElementLibrary*> _elementLibraryArray;
+    typedef std::vector<CElementLibrary*>::iterator CElementLibraryArrayIterator;
+    std::vector<CElementLibrary*> _elementLibraryArray;
 };

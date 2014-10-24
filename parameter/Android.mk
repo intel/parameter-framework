@@ -44,7 +44,6 @@ common_src_files := \
         PathNavigator.cpp \
         Element.cpp \
         SystemClass.cpp \
-        Component.cpp \
         ParameterMgr.cpp \
         SelectionCriteria.cpp \
         SelectionCriterionLibrary.cpp \
@@ -52,10 +51,8 @@ common_src_files := \
         SelectionCriterionType.cpp \
         ElementLibrary.cpp \
         SubsystemElementBuilder.cpp \
-        SubsystemLibrary.cpp \
         SelectionCriterion.cpp \
         ComponentLibrary.cpp \
-        ParameterBlock.cpp \
         ConfigurableElement.cpp \
         MappingData.cpp \
         ParameterBlackboard.cpp \
@@ -75,11 +72,8 @@ common_src_files := \
         ParameterAccessContext.cpp \
         XmlFileIncluderElement.cpp \
         ParameterFrameworkConfiguration.cpp \
-        FrameworkConfigurationGroup.cpp \
-        SubsystemPlugins.cpp \
         FrameworkConfigurationLocation.cpp \
         PluginLocation.cpp \
-        KindElement.cpp \
         ElementLibrarySet.cpp \
         ErrorContext.cpp \
         AreaConfiguration.cpp \
@@ -101,11 +95,9 @@ common_src_files := \
         ElementLocator.cpp \
         ParameterMgrLogger.cpp \
         AutoLog.cpp \
-        Rule.cpp \
         CompoundRule.cpp \
         SelectionCriterionRule.cpp \
         ConfigurableElementAggregator.cpp \
-        BackSynchronizer.cpp \
         HardwareBackSynchronizer.cpp \
         SimulatedBackSynchronizer.cpp \
         MappingContext.cpp \
@@ -113,7 +105,6 @@ common_src_files := \
         FormattedSubsystemObject.cpp \
         SubsystemObjectCreator.cpp \
         BaseParameter.cpp \
-        AutoLock.cpp \
         StringParameterType.cpp \
         StringParameter.cpp \
         EnumParameterType.cpp \

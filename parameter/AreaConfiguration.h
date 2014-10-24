@@ -33,8 +33,6 @@
 #include "BinaryStream.h"
 #include "SyncerSet.h"
 
-using namespace std;
-
 class CConfigurableElement;
 class CXmlElement;
 class CConfigurationAccessContext;
@@ -51,7 +49,7 @@ public:
     void save(const CParameterBlackboard* pMainBlackboard);
 
     // Apply data to current
-    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, list<string>* plstrError) const;
+    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<std::string>* plstrError) const;
 
     // Ensure validity
     void validate(const CParameterBlackboard* pMainBlackboard);

@@ -33,12 +33,14 @@
 
 #include "TypeElement.h"
 
+#include <string>
+
 class CParameterAccessContext;
 
 class CBitParameterType : public CTypeElement
 {
 public:
-    CBitParameterType(const string& strName);
+    CBitParameterType(const std::string& strName);
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -47,8 +49,8 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
     /// Conversion
     // String
-    bool toBlackboard(const string& strValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    void fromBlackboard(string& strValue, const uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    bool toBlackboard(const std::string& strValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    void fromBlackboard(std::string& strValue, const uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Integer
     bool toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     void fromBlackboard(uint64_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& parameterAccessContext) const;
@@ -59,10 +61,10 @@ public:
     uint32_t getBitSize() const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
     /**
      * Get the position of the bit within the bit parameter block.

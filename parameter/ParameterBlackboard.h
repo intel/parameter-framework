@@ -32,8 +32,6 @@
 #include <stdint.h>
 #include "BinaryStream.h"
 
-using namespace std;
-
 class CParameterBlackboard
 {
 public:

@@ -30,7 +30,7 @@
 #include "ConfigurableElementAggregator.h"
 #include "ConfigurableElement.h"
 
-CConfigurableElementAggregator::CConfigurableElementAggregator(list<const CConfigurableElement*>& aggregateList, MatchesAggregationCriterion pfnMatchesAggregationCriterion)
+CConfigurableElementAggregator::CConfigurableElementAggregator(std::list<const CConfigurableElement*>& aggregateList, MatchesAggregationCriterion pfnMatchesAggregationCriterion)
     : _aggregateList(aggregateList), _pfnMatchesAggregationCriterion(pfnMatchesAggregationCriterion)
 {
 }
@@ -42,7 +42,7 @@ void CConfigurableElementAggregator::aggegate(const CConfigurableElement* pConfi
 }
 
 // Recursive aggregate
-bool CConfigurableElementAggregator::doAggregate(const CConfigurableElement* pConfigurableElement, list<const CConfigurableElement*>& aggregateList)
+bool CConfigurableElementAggregator::doAggregate(const CConfigurableElement* pConfigurableElement, std::list<const CConfigurableElement*>& aggregateList)
 {
     if (!(pConfigurableElement->*_pfnMatchesAggregationCriterion)()) {
 
@@ -50,7 +50,7 @@ bool CConfigurableElementAggregator::doAggregate(const CConfigurableElement* pCo
         return false;
     }
     // Check children
-    list<const CConfigurableElement*> childAggregateElementList;
+    std::list<const CConfigurableElement*> childAggregateElementList;
 
     uint32_t uiIndex;
     uint32_t uiNbChildren = pConfigurableElement->getNbChildren();

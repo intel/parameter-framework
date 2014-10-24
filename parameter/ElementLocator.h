@@ -31,13 +31,15 @@
 
 #include "Element.h"
 
+#include <string>
+
 class CElementLocator
 {
 public:
     CElementLocator(CElement* pSubRootElement, bool bStrict = true);
 
     // Locate element
-    bool locate(const string& strPath, CElement** ppElement, string& strError);
+    bool locate(const std::string& strPath, CElement** ppElement, std::string& strError);
 
 private:
     // Subroot element

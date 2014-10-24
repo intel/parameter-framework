@@ -31,6 +31,8 @@
 
 #define base CParameterAdaptation
 
+using std::string;
+
 CLinearParameterAdaptation::CLinearParameterAdaptation() : base("Linear"), _dSlopeNumerator(1), _dSlopeDenominator(1)
 {
 }

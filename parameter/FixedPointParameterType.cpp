@@ -41,6 +41,8 @@
 
 #define base CParameterType
 
+using std::string;
+
 CFixedPointParameterType::CFixedPointParameterType(const string& strName) : base(strName), _uiIntegral(0), _uiFractional(0)
 {
 }
@@ -136,7 +138,7 @@ bool CFixedPointParameterType::toBlackboard(const string& strValue, uint32_t& ui
 
 void CFixedPointParameterType::setOutOfRangeError(const string& strValue, CParameterAccessContext& parameterAccessContext) const
 {
-    ostringstream strStream;
+    std::ostringstream strStream;
 
     strStream << "Value " << strValue << " standing out of admitted ";
 
@@ -147,7 +149,7 @@ void CFixedPointParameterType::setOutOfRangeError(const string& strValue, CParam
         double dMax = 0;
         getRange(dMin, dMax);
 
-        strStream << fixed << setprecision(_uiFractional)
+        strStream << std::fixed << std::setprecision(_uiFractional)
                   << "real range [" << dMin << ", " << dMax << "]";
     } else {
 
@@ -160,11 +162,11 @@ void CFixedPointParameterType::setOutOfRangeError(const string& strValue, CParam
         if (isHexadecimal(strValue)) {
 
             // Format Min
-            strStream << "0x" << hex << uppercase <<
-                setw(getSize() * 2) << setfill('0') << makeEncodable(iMin);
+            strStream << "0x" << std::hex << std::uppercase <<
+                std::setw(getSize() * 2) << std::setfill('0') << makeEncodable(iMin);
             // Format Max
-            strStream << ", 0x" << hex << uppercase <<
-                setw(getSize() * 2) << setfill('0') << makeEncodable(iMax);
+            strStream << ", 0x" << std::hex << std::uppercase <<
+                std::setw(getSize() * 2) << std::setfill('0') << makeEncodable(iMax);
 
         } else {
 
@@ -186,7 +188,7 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
     assert(isEncodable((uint32_t)iData, false));
 
     // Format
-    ostringstream strStream;
+    std::ostringstream strStream;
 
     // Raw formatting?
     if (parameterAccessContext.valueSpaceIsRaw()) {
@@ -194,7 +196,7 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
         // Hexa formatting?
         if (parameterAccessContext.outputRawFormatIsHex()) {
 
-            strStream << "0x" << hex << uppercase << setw(getSize()*2) << setfill('0') << (uint32_t)iData;
+            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << (uint32_t)iData;
         } else {
 
             // Sign extend
@@ -210,7 +212,7 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
         // Conversion
         double dData = binaryQnmToDouble(iData);
 
-        strStream << fixed << setprecision(_uiFractional) << dData;
+        strStream << std::fixed << std::setprecision(_uiFractional) << dData;
     }
 
     strValue = strStream.str();

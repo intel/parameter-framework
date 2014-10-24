@@ -31,6 +31,8 @@
 
 #include "Rule.h"
 
+#include <string>
+
 class CSelectionCriterion;
 
 class CSelectionCriterionRule : public CRule
@@ -55,10 +57,10 @@ public:
     CSelectionCriterionRule();
 
     // Parse
-    virtual bool parse(CRuleParser& ruleParser, string& strError);
+    virtual bool parse(CRuleParser& ruleParser, std::string& strError);
 
     // Dump
-    virtual void dump(string& strResult) const;
+    virtual void dump(std::string& strResult) const;
 
     // Rule check
     virtual bool matches() const;
@@ -70,13 +72,13 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     // Class kind
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 protected:
     // Content dumping
-    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
+    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 private:
     // XML MatchesWhen attribute parsing
-    bool setMatchesWhen(const string& strMatchesWhen, string& strError);
+    bool setMatchesWhen(const std::string& strMatchesWhen, std::string& strError);
 
     // Selection criterion
     const CSelectionCriterion* _pSelectionCriterion;

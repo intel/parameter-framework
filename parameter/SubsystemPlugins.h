@@ -30,15 +30,19 @@
 #pragma once
 
 #include "KindElement.h"
-#include <list>
+#include <string>
 
 class CSubsystemPlugins : public CKindElement
 {
 
 public:
-    CSubsystemPlugins(const string& strName, const string& strKind);
+    CSubsystemPlugins(const std::string& strName, const std::string& strKind) : CKindElement(strName, strKind)
+    {
+    }
 
 private:
-    virtual bool childrenAreDynamic() const;
-
+    virtual bool childrenAreDynamic() const
+    {
+        return true;
+    }
 };

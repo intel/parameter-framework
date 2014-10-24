@@ -39,6 +39,8 @@
 #include "AnswerMessage.h"
 #include "RemoteCommandHandler.h"
 
+using std::string;
+
 CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
     _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL), _ulThreadId(0)
 {
@@ -148,7 +150,7 @@ void CRemoteProcessorServer::run()
 // New connection
 void CRemoteProcessorServer::handleNewConnection()
 {
-    const auto_ptr<CSocket> clientSocket(_pListeningSocket->accept());
+    const std::auto_ptr<CSocket> clientSocket(_pListeningSocket->accept());
 
     if (clientSocket.get() == NULL) {
 
@@ -172,7 +174,7 @@ void CRemoteProcessorServer::handleNewConnection()
 
         switch (res) {
         case CRequestMessage::error:
-            cout << "Error while receiving message: " << strError << endl;
+            std::cout << "Error while receiving message: " << strError << std::endl;
             // fall through
         case CRequestMessage::peerDisconnected:
             // Consider peer disconnection as normal, no log
@@ -209,7 +211,7 @@ void CRemoteProcessorServer::handleNewConnection()
             // Peer should not disconnect while waiting for an answer
             // Fall through to log the error and bail out
         case CRequestMessage::error:
-            cout << "Error while receiving message: " << strError << endl;
+            std::cout << "Error while receiving message: " << strError << std::endl;
             return; // Bail out
         case CRequestMessage::success:
             break; // No error, continue

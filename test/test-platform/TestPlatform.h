@@ -35,8 +35,6 @@
 #include <list>
 #include <semaphore.h>
 
-using namespace std;
-
 class CParameterMgrPlatformConnectorLogger;
 class CRemoteProcessorServer;
 class ISelectionCriterionInterface;
@@ -46,24 +44,24 @@ class CTestPlatform
     typedef TRemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
     typedef CCommandHandler::CommandStatus CommandReturn;
 public:
-    CTestPlatform(const string &strclass, int iPortNumber, sem_t& exitSemaphore);
+    CTestPlatform(const std::string &strclass, int iPortNumber, sem_t& exitSemaphore);
     virtual ~CTestPlatform();
 
     // Init
-    bool load(string& strError);
+    bool load(std::string& strError);
 
 private:
     //////////////// Remote command parsers
     /// Selection Criterion
     CommandReturn createExclusiveSelectionCriterionFromStateList(
-            const IRemoteCommand& remoteCommand, string& strResult);
+            const IRemoteCommand& remoteCommand, std::string& strResult);
     CommandReturn createInclusiveSelectionCriterionFromStateList(
-            const IRemoteCommand& remoteCommand, string& strResult);
+            const IRemoteCommand& remoteCommand, std::string& strResult);
 
     CommandReturn createExclusiveSelectionCriterion(
-            const IRemoteCommand& remoteCommand, string& strResult);
+            const IRemoteCommand& remoteCommand, std::string& strResult);
     CommandReturn createInclusiveSelectionCriterion(
-            const IRemoteCommand& remoteCommand, string& strResult);
+            const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /** Callback to set a criterion's value, see ISelectionCriterionInterface::setCriterionState.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
@@ -75,7 +73,7 @@ private:
      *                              the second argument should be the criterion new value
      */
     CommandReturn setCriterionState(
-            const IRemoteCommand& remoteCommand, string& strResult);
+            const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /** Callback to start the PFW, see CParameterMgrPlatformConnector::start.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
@@ -83,7 +81,7 @@ private:
      * @param[in] remoteCommand is ignored
      */
     CommandReturn startParameterMgr(
-            const IRemoteCommand& remoteCommand, string& strResult);
+            const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /** Callback to apply PFW configuration, see CParameterMgrPlatformConnector::applyConfiguration.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
@@ -93,7 +91,7 @@ private:
      * @return EDone (never fails)
      */
     CommandReturn applyConfigurations(
-            const IRemoteCommand& remoteCommand, string& strResult);
+            const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /** Callback to exit the test-platform.
      *
@@ -101,10 +99,10 @@ private:
      *
      * @return EDone (never fails)
      */
-    CommandReturn exit(const IRemoteCommand& remoteCommand, string& strResult);
+    CommandReturn exit(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /** The type of a CParameterMgrPlatformConnector boolean setter. */
-    typedef bool (CParameterMgrPlatformConnector::*setter_t)(bool, string&);
+    typedef bool (CParameterMgrPlatformConnector::*setter_t)(bool, std::string&);
     /** Template callback to create a _pParameterMgrPlatformConnector boolean setter callback.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
@@ -116,7 +114,7 @@ private:
      */
     template<setter_t setFunction>
     CommandReturn setter(
-            const IRemoteCommand& remoteCommand, string& strResult);
+            const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /** The type of a CParameterMgrPlatformConnector boolean getter. */
     typedef bool (CParameterMgrPlatformConnector::*getter_t)();
@@ -124,7 +122,7 @@ private:
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
      * Convert to boolean returned by the template parameter function converted to a
-     * string ("True", "False") and return it.
+     * std::string ("True", "False") and return it.
      *
      * @param the boolean getter method.
      * @param[in] remoteCommand is ignored
@@ -132,16 +130,16 @@ private:
      * @return EDone (never fails)
      */
     template<getter_t getFunction>
-    CommandReturn getter(const IRemoteCommand& remoteCommand, string& strResult);
+    CommandReturn getter(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     // Commands
-    bool createExclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult);
-    bool createInclusiveSelectionCriterionFromStateList(const string& strName, const IRemoteCommand& remoteCommand, string& strResult);
+    bool createExclusiveSelectionCriterionFromStateList(const std::string& strName, const IRemoteCommand& remoteCommand, std::string& strResult);
+    bool createInclusiveSelectionCriterionFromStateList(const std::string& strName, const IRemoteCommand& remoteCommand, std::string& strResult);
 
-    bool createExclusiveSelectionCriterion(const string& strName, uint32_t uiNbValues, string& strResult);
-    bool createInclusiveSelectionCriterion(const string& strName, uint32_t uiNbValues, string& strResult);
-    bool setCriterionState(const string& strName, uint32_t uiState, string& strResult);
-    bool setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, string& strResult);
+    bool createExclusiveSelectionCriterion(const std::string& strName, uint32_t uiNbValues, std::string& strResult);
+    bool createInclusiveSelectionCriterion(const std::string& strName, uint32_t uiNbValues, std::string& strResult);
+    bool setCriterionState(const std::string& strName, uint32_t uiState, std::string& strResult);
+    bool setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     // Connector
     CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;

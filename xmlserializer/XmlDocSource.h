@@ -60,16 +60,16 @@ public:
       * Constructor
       *
       * @param[out] pDoc a pointer to the xml document that will be filled by the class
-      * @param[in] strXmlSchemaFile a string containing the path to the schema file
-      * @param[in] strRootElementType a string containing the root element type
-      * @param[in] strRootElementName a string containing the root element name
-      * @param[in] strNameAttributeName a string containing the name of the root name attribute
+      * @param[in] strXmlSchemaFile a std::string containing the path to the schema file
+      * @param[in] strRootElementType a std::string containing the root element type
+      * @param[in] strRootElementName a std::string containing the root element name
+      * @param[in] strNameAttributeName a std::string containing the name of the root name attribute
       */
     CXmlDocSource(_xmlDoc* pDoc,
-                           const string& strXmlSchemaFile,
-                           const string& strRootElementType,
-                           const string& strRootElementName,
-                           const string& strNameAttrituteName);
+                           const std::string& strXmlSchemaFile,
+                           const std::string& strRootElementType,
+                           const std::string& strRootElementName,
+                           const std::string& strNameAttrituteName);
 
     /**
       * Constructor
@@ -82,10 +82,10 @@ public:
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
     CXmlDocSource(_xmlDoc* pDoc,
-                           const string& strXmlSchemaFile,
-                           const string& strRootElementType,
-                           const string& strRootElementName,
-                           const string& strNameAttrituteName,
+                           const std::string& strXmlSchemaFile,
+                           const std::string& strRootElementType,
+                           const std::string& strRootElementName,
+                           const std::string& strNameAttrituteName,
                              bool bValidateWithSchema);
 
     /**
@@ -95,7 +95,7 @@ public:
       * @param[in] strXmlSchemaFile a string containing the path to the schema file
       * @param[in] strRootElementType a string containing the root element type
       */
-    CXmlDocSource(_xmlDoc* pDoc, const string& strXmlSchemaFile, const string& strRootElementType,
+    CXmlDocSource(_xmlDoc* pDoc, const std::string& strXmlSchemaFile, const std::string& strRootElementType,
                              bool bValidateWithSchema);
 
     /**
@@ -124,17 +124,17 @@ public:
       *
       * @return the root element's name
       */
-    string getRootElementName() const;
+    std::string getRootElementName() const;
 
     /**
       * Getter method.
       * Method that returns the root element's attribute with name matching strAttributeName.
       *
-      * @param[in] strAttributeName is a string used to find the corresponding attribute
+      * @param[in] strAttributeName is a std::string used to find the corresponding attribute
       *
       * @return the value of the root's attribute named as strAttributeName
       */
-    string getRootElementAttributeString(const string& strAttributeName) const;
+    std::string getRootElementAttributeString(const std::string& strAttributeName) const;
 
     /**
       * Getter method.
@@ -195,22 +195,22 @@ private:
     /**
       * Schema file
       */
-    string _strXmlSchemaFile;
+    std::string _strXmlSchemaFile;
 
     /**
       * Element type info
       */
-    string _strRootElementType;
+    std::string _strRootElementType;
 
     /**
       * Element name info
       */
-    string _strRootElementName;
+    std::string _strRootElementName;
 
     /**
       * Element name attribute info
       */
-    string _strNameAttrituteName;
+    std::string _strNameAttrituteName;
 
     /**
       * Boolean that enables the root element name attribute check

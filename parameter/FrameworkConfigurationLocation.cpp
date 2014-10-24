@@ -32,7 +32,7 @@
 
 #define base CKindElement
 
-CFrameworkConfigurationLocation::CFrameworkConfigurationLocation(const string& strName, const string& strKind) : base(strName, strKind)
+CFrameworkConfigurationLocation::CFrameworkConfigurationLocation(const std::string& strName, const std::string& strKind) : base(strName, strKind)
 {
 }
 
@@ -51,7 +51,7 @@ bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXm
 }
 
 // File path
-string CFrameworkConfigurationLocation::getFilePath(const string& strBaseFolder) const
+std::string CFrameworkConfigurationLocation::getFilePath(const std::string& strBaseFolder) const
 {
     if (isPathRelative()) {
 
@@ -61,7 +61,7 @@ string CFrameworkConfigurationLocation::getFilePath(const string& strBaseFolder)
 }
 
 // Folder path
-string CFrameworkConfigurationLocation::getFolderPath(const string& strBaseFolder) const
+std::string CFrameworkConfigurationLocation::getFolderPath(const std::string& strBaseFolder) const
 {
     uint32_t uiSlashPos = _strPath.rfind('/', -1);
 

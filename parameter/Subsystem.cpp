@@ -40,6 +40,10 @@
 
 #define base CConfigurableElementWithMapping
 
+using std::string;
+using std::list;
+using std::ostringstream;
+
 CSubsystem::CSubsystem(const string& strName) : base(strName), _pComponentLibrary(new CComponentLibrary), _pInstanceDefinition(new CInstanceDefinition), _bBigEndian(false), _pMappingData(NULL)
 {
     // Note: A subsystem contains instance components
@@ -240,7 +244,7 @@ void CSubsystem::findSubsystemLevelMappingKeyValue(
         string& strMappingValue) const
 {
     // Find creator to get key name
-    vector<CSubsystemObjectCreator*>::const_iterator it;
+    std::vector<CSubsystemObjectCreator*>::const_iterator it;
     for (it = _subsystemObjectCreatorArray.begin();
          it != _subsystemObjectCreatorArray.end(); ++it) {
 

@@ -31,13 +31,15 @@
 
 #include "Element.h"
 
+#include <string>
+
 class CParameterAdaptation : public CElement
 {
 public:
-    CParameterAdaptation(const string& strType);
+    CParameterAdaptation(const std::string& strType);
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -47,7 +49,7 @@ public:
     virtual double toUserValue(int64_t iValue) const;
 
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 protected:
     // Attributes
     int32_t getOffset() const;

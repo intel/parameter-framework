@@ -31,12 +31,14 @@
 
 #include "ParameterType.h"
 
+#include <string>
+
 class CParameterAdaptation;
 
 class CIntegerParameterType : public CParameterType
 {
 public:
-    CIntegerParameterType(const string& strName);
+    CIntegerParameterType(const std::string& strName);
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -46,8 +48,8 @@ public:
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Integer
     virtual bool toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     virtual bool fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
@@ -62,23 +64,23 @@ public:
     virtual uint32_t getDefaultValue() const;
 
     // Element properties
-    virtual void showProperties(string& strResult) const;
+    virtual void showProperties(std::string& strResult) const;
 
     // Integer conversion
     virtual int toPlainInteger(int iSizeOptimizedData) const;
 
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 
 private:
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
 
-    // Conversion from string
-    bool convertValueFromString(const string& strValue, int64_t& iData, CParameterAccessContext& parameterAccessContext) const;
+    // Conversion from std::string
+    bool convertValueFromString(const std::string& strValue, int64_t& iData, CParameterAccessContext& parameterAccessContext) const;
 
     // Range checking
-    template <typename type> bool checkValueAgainstRange(const string& strValue, type value, type minValue, type maxValue, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const;
+    template <typename type> bool checkValueAgainstRange(const std::string& strValue, type value, type minValue, type maxValue, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const;
 
     // Adaptation element retrieval
     const CParameterAdaptation* getParameterAdaptation() const;

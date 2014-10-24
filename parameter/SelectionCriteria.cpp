@@ -39,7 +39,7 @@ CSelectionCriteria::CSelectionCriteria()
     addChild(new CSelectionCriteriaDefinition);
 }
 
-string CSelectionCriteria::getKind() const
+std::string CSelectionCriteria::getKind() const
 {
     return "SelectionCriteria";
 }
@@ -50,19 +50,19 @@ CSelectionCriterionType* CSelectionCriteria::createSelectionCriterionType(bool b
     return getSelectionCriterionLibrary()->createSelectionCriterionType(bIsInclusive);
 }
 
-CSelectionCriterion* CSelectionCriteria::createSelectionCriterion(const string& strName, const CSelectionCriterionType* pSelectionCriterionType)
+CSelectionCriterion* CSelectionCriteria::createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType)
 {
     return getSelectionCriteriaDefinition()->createSelectionCriterion(strName, pSelectionCriterionType);
 }
 
 // Selection criterion retrieval
-CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const string& strName)
+CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& strName)
 {
     return getSelectionCriteriaDefinition()->getSelectionCriterion(strName);
 }
 
 // List available criteria
-void CSelectionCriteria::listSelectionCriteria(list<string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
+void CSelectionCriteria::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
 {
     getSelectionCriteriaDefinition()->listSelectionCriteria(lstrResult, bWithTypeInfo, bHumanReadable);
 }

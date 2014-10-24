@@ -49,11 +49,11 @@ public:
       * @param[in] strNameAttributeName a string containing the name of the root name attribute
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlFileDocSource(const string& strXmlInstanceFile,
-                      const string& strXmlSchemaFile,
-                      const string& strRootElementType,
-                      const string& strRootElementName,
-                      const string& strNameAttrituteName,
+    CXmlFileDocSource(const std::string& strXmlInstanceFile,
+                      const std::string& strXmlSchemaFile,
+                      const std::string& strRootElementType,
+                      const std::string& strRootElementName,
+                      const std::string& strNameAttrituteName,
                       bool bValidateWithSchema);
     /**
       * Constructor
@@ -63,7 +63,7 @@ public:
       * @param[in] strRootElementType a string containing the root element type
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlFileDocSource(const string& strXmlInstanceFile, const string& strXmlSchemaFile, const string& strRootElementType,
+    CXmlFileDocSource(const std::string& strXmlInstanceFile, const std::string& strXmlSchemaFile, const std::string& strRootElementType,
             bool bValidateWithSchema);
 
     /**
@@ -95,10 +95,10 @@ private:
      *
      * @return a pointer to generated xml document object
      */
-    static _xmlDoc* readFile(const string& strFileName);
+    static _xmlDoc* readFile(const std::string& strFileName);
 
     /**
       * Instance file
       */
-    string _strXmlInstanceFile;
+    std::string _strXmlInstanceFile;
 };

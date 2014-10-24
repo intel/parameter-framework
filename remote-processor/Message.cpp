@@ -35,6 +35,8 @@
 #include <assert.h>
 #include <errno.h>
 
+using std::string;
+
 CMessage::CMessage(uint8_t ucMsgId) : _ucMsgId(ucMsgId), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
 {
 }

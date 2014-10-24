@@ -32,8 +32,6 @@
 #include <stdint.h>
 #include <string>
 
-using namespace std;
-
 struct _xmlNode;
 struct _xmlDoc;
 
@@ -48,34 +46,34 @@ public:
     void setXmlElement(_xmlNode* pXmlElement);
 
     // Getters
-    string getType() const;
-    string getPath() const;
-    string getNameAttribute() const;
-    bool hasAttribute(const string& strAttributeName) const;
-    bool getAttributeBoolean(const string& strAttributeName, const string& strTrueValue) const;
-    bool getAttributeBoolean(const string& strAttributeName) const;
-    string getAttributeString(const string& strAttributeName) const;
-    uint32_t getAttributeInteger(const string& strAttributeName) const;
-    int32_t getAttributeSignedInteger(const string& strAttributeName) const;
-    double getAttributeDouble(const string& strAttributeName) const;
-    string getTextContent() const;
+    std::string getType() const;
+    std::string getPath() const;
+    std::string getNameAttribute() const;
+    bool hasAttribute(const std::string& strAttributeName) const;
+    bool getAttributeBoolean(const std::string& strAttributeName, const std::string& strTrueValue) const;
+    bool getAttributeBoolean(const std::string& strAttributeName) const;
+    std::string getAttributeString(const std::string& strAttributeName) const;
+    uint32_t getAttributeInteger(const std::string& strAttributeName) const;
+    int32_t getAttributeSignedInteger(const std::string& strAttributeName) const;
+    double getAttributeDouble(const std::string& strAttributeName) const;
+    std::string getTextContent() const;
 
     // Navigation
-    bool getChildElement(const string& strType, CXmlElement& childElement) const;
-    bool getChildElement(const string& strType, const string& strNameAttribute, CXmlElement& childElement) const;
+    bool getChildElement(const std::string& strType, CXmlElement& childElement) const;
+    bool getChildElement(const std::string& strType, const std::string& strNameAttribute, CXmlElement& childElement) const;
     uint32_t getNbChildElements() const;
     bool getParentElement(CXmlElement& parentElement) const;
 
     // Setters
-    void setAttributeBoolean(const string& strAttributeName, bool bValue);
-    void setAttributeString(const string& strAttributeName, const string& strValue);
-    void setNameAttribute(const string& strValue);
-    void setTextContent(const string& strContent);
-    void setComment(const string& strComment);
-    void setAttributeInteger(const string& strAttributeName, uint32_t uiValue);
+    void setAttributeBoolean(const std::string& strAttributeName, bool bValue);
+    void setAttributeString(const std::string& strAttributeName, const std::string& strValue);
+    void setNameAttribute(const std::string& strValue);
+    void setTextContent(const std::string& strContent);
+    void setComment(const std::string& strComment);
+    void setAttributeInteger(const std::string& strAttributeName, uint32_t uiValue);
 
     // Child creation
-    void createChild(CXmlElement& childElement, const string& strType);
+    void createChild(CXmlElement& childElement, const std::string& strType);
 
 public:
     // Child iteration

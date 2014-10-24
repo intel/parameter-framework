@@ -39,6 +39,8 @@
 
 #define base CBinarySerializableElement
 
+using std::string;
+
 CDomainConfiguration::CDomainConfiguration(const string& strName) : base(strName)
 {
 }
@@ -72,7 +74,7 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
     CXmlDomainSerializingContext& xmlDomainSerializingContext = static_cast<CXmlDomainSerializingContext&>(serializingContext);
 
     // Take care of configurable elements / area configurations ranks
-    list<CAreaConfiguration*> areaConfigurationList;
+    std::list<CAreaConfiguration*> areaConfigurationList;
 
     // Parse configurable element's configuration settings
     CXmlElement::CChildIterator it(xmlConfigurationSettingsElement);
@@ -228,10 +230,10 @@ void CDomainConfiguration::removeConfigurableElement(const CConfigurableElement*
 }
 
 // Sequence management
-bool CDomainConfiguration::setElementSequence(const vector<string>& astrNewElementSequence, string& strError)
+bool CDomainConfiguration::setElementSequence(const std::vector<string>& astrNewElementSequence, string& strError)
 {
     // Build a new list of AreaConfiguration objects
-    list<CAreaConfiguration*> areaConfigurationList;
+    std::list<CAreaConfiguration*> areaConfigurationList;
 
     uint32_t uiConfigurableElement;
 
@@ -369,7 +371,7 @@ void CDomainConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Apply data to current
-bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, list<string>* plstrError) const
+bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<string>* plstrError) const
 {
     bool bSuccess = true;
 
@@ -514,7 +516,7 @@ CAreaConfiguration* CDomainConfiguration::findAreaConfiguration(const string& st
 }
 
 // AreaConfiguration retrieval from given area configuration list
-CAreaConfiguration* CDomainConfiguration::findAreaConfiguration(const string& strConfigurableElementPath, const list<CAreaConfiguration*>& areaConfigurationList) const
+CAreaConfiguration* CDomainConfiguration::findAreaConfiguration(const string& strConfigurableElementPath, const std::list<CAreaConfiguration*>& areaConfigurationList) const
 {
     AreaConfigurationListIterator it;
 
@@ -533,7 +535,7 @@ CAreaConfiguration* CDomainConfiguration::findAreaConfiguration(const string& st
 }
 
 // Area configuration ordering
-void CDomainConfiguration::reorderAreaConfigurations(const list<CAreaConfiguration*>& areaConfigurationList)
+void CDomainConfiguration::reorderAreaConfigurations(const std::list<CAreaConfiguration*>& areaConfigurationList)
 {
     // Ensure elements in provided list appear first and ordered the same way in internal one
 

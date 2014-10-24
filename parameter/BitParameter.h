@@ -36,7 +36,7 @@
 class CBitParameter : public CBaseParameter
 {
 public:
-    CBitParameter(const string& strName, const CTypeElement* pTypeElement);
+    CBitParameter(const std::string& strName, const CTypeElement* pTypeElement);
 
     // Instantiation, allocation
     virtual uint32_t getFootPrint() const;
@@ -62,8 +62,8 @@ public:
 private:
 
     // String Access
-    virtual bool doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
-    virtual void doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool doSetValue(const std::string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    virtual void doGetValue(std::string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
 
     // Generic Access
     template <typename type>

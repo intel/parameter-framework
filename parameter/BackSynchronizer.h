@@ -30,24 +30,28 @@
 #pragma once
 
 #include "ConfigurableElementAggregator.h"
-#include <string>
-
-using namespace std;
+#include "ConfigurableElement.h"
+#include <list>
 
 class CParameterBlackboard;
 
 class CBackSynchronizer
 {
 public:
-    CBackSynchronizer(const CConfigurableElement* pConfigurableElement);
+    CBackSynchronizer(const CConfigurableElement* pConfigurableElement)
+        : _configurableElementAggregator(_needingBackSyncList, &CConfigurableElement::hasNoValidDomainAssociated)
+    {
+        // Aggegate elements
+        _configurableElementAggregator.aggegate(pConfigurableElement);
+    }
 
     // Back synchronization
     virtual void sync() = 0;
     virtual ~CBackSynchronizer() {}
 
 protected:
-    // Aggegate list
-    list<const CConfigurableElement*> _needingBackSyncList;
+    // Aggregate list
+    std::list<const CConfigurableElement*> _needingBackSyncList;
 
 private:
     // Aggegator

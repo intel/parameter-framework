@@ -40,6 +40,8 @@
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteProcessorServer.h"
 
+using std::string;
+
 class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnector::ILogger
 {
 public:
@@ -49,10 +51,10 @@ public:
 
         if (bIsWarning) {
 
-            cerr << strLog << endl;
+	    std::cerr << strLog << std::endl;
         } else {
 
-            cout << strLog << endl;
+	    std::cout << strLog << std::endl;
         }
     }
 };
@@ -165,7 +167,7 @@ bool CTestPlatform::load(std::string& strError)
     // Start remote processor server
     if (!_pRemoteProcessorServer->start()) {
 
-        ostringstream oss;
+	std::ostringstream oss;
         oss << "TestPlatform: Unable to start remote processor server on port " << _portNumber;
         strError = oss.str();
 
@@ -364,7 +366,7 @@ bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName, uin
 
     for (uistate = 0; uistate < uiNbStates; uistate++) {
 
-        ostringstream ostrValue;
+	std::ostringstream ostrValue;
 
         ostrValue << "State_";
         ostrValue << uistate;
@@ -397,7 +399,7 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName, uin
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
 
-        ostringstream ostrValue;
+	std::ostringstream ostrValue;
 
         ostrValue << "State_0x";
         ostrValue << (0x1 << uiState);

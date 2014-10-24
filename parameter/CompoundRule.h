@@ -31,16 +31,18 @@
 
 #include "Rule.h"
 
+#include <string>
+
 class CCompoundRule : public CRule
 {
 public:
     CCompoundRule();
 
     // Parse
-    virtual bool parse(CRuleParser& ruleParser, string& strError);
+    virtual bool parse(CRuleParser& ruleParser, std::string& strError);
 
     // Dump
-    virtual void dump(string& strResult) const;
+    virtual void dump(std::string& strResult) const;
 
     // Rule check
     virtual bool matches() const;
@@ -52,10 +54,10 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     // Class kind
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 protected:
     // Content dumping
-    virtual void logValue(string& strValue, CErrorContext& errorContext) const;
+    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 private:
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;

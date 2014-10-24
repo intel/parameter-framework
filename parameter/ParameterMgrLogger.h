@@ -31,6 +31,8 @@
 
 #include "ParameterMgr.h"
 
+#include <string>
+
 class CParameterMgrPlatformConnector;
 
 class CParameterMgrLogger : public CParameterMgr::ILogger
@@ -39,7 +41,7 @@ public:
     CParameterMgrLogger(CParameterMgrPlatformConnector* pParameterMgrPlatformConnector);
 
     // Logging
-    virtual void log(bool bIsWarning, const string& strLog);
+    virtual void log(bool bIsWarning, const std::string& strLog);
 
 private:
     // Log destination

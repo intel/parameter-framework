@@ -33,14 +33,12 @@
 #include <string>
 #include <list>
 
-using namespace std;
-
 class ISyncer;
 class CParameterBlackboard;
 
 class CSyncerSet
 {
-    typedef set<ISyncer*>::const_iterator SyncerSetConstIterator;
+    typedef std::set<ISyncer*>::const_iterator SyncerSetConstIterator;
 public:
     CSyncerSet();
 
@@ -52,8 +50,8 @@ public:
     void clear();
 
     // Sync
-    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, list<string>* plstrError) const;
+    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::list<std::string>* plstrError) const;
 
 private:
-    set<ISyncer*> _syncerSet;
+    std::set<ISyncer*> _syncerSet;
 };

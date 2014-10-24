@@ -31,13 +31,15 @@
 
 #include "XmlElementSerializingContext.h"
 
+#include <string>
+
 class CParameterBlackboard;
 class CSelectionCriteriaDefinition;
 
 class CXmlDomainSerializingContext : public CXmlElementSerializingContext
 {
 public:
-    CXmlDomainSerializingContext(string& strError, bool bWithSettings);
+    CXmlDomainSerializingContext(std::string& strError, bool bWithSettings);
 
     // Settings to be serialized or not
     bool withSettings() const;

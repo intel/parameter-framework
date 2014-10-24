@@ -36,6 +36,8 @@
 
 #define base CInstanceConfigurableElement
 
+using std::string;
+
 CBaseParameter::CBaseParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
 {
 }
@@ -95,7 +97,7 @@ bool CBaseParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCo
     return false;
 }
 
-bool CBaseParameter::accessAsBooleanArray(vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsBooleanArray(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     (void)abValues;
     (void)bSet;
@@ -116,7 +118,7 @@ bool CBaseParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAcc
     return false;
 }
 
-bool CBaseParameter::accessAsIntegerArray(vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsIntegerArray(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     (void)auiValues;
     (void)bSet;
@@ -137,7 +139,7 @@ bool CBaseParameter::accessAsSignedInteger(int32_t& iValue, bool bSet, CParamete
     return false;
 }
 
-bool CBaseParameter::accessAsSignedIntegerArray(vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsSignedIntegerArray(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     (void)aiValues;
     (void)bSet;
@@ -158,7 +160,7 @@ bool CBaseParameter::accessAsDouble(double& dValue, bool bSet, CParameterAccessC
     return false;
 }
 
-bool CBaseParameter::accessAsDoubleArray(vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsDoubleArray(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     (void)adValues;
     (void)bSet;
@@ -194,7 +196,7 @@ bool CBaseParameter::accessAsString(string& strValue, bool bSet, CParameterAcces
     return true;
 }
 
-bool CBaseParameter::accessAsStringArray(vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsStringArray(std::vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     (void)astrValues;
     (void)bSet;

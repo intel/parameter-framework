@@ -36,6 +36,8 @@
 
 #define base CBinarySerializableElement
 
+using std::string;
+
 CConfigurableDomains::CConfigurableDomains()
 {
 }
@@ -284,13 +286,13 @@ void CConfigurableDomains::listAssociatedElements(string& strResult) const
 {
     strResult = "\n";
 
-    set<const CConfigurableElement*> configurableElementSet;
+    std::set<const CConfigurableElement*> configurableElementSet;
 
     // Get all owned configurable elements
     gatherAllOwnedConfigurableElements(configurableElementSet);
 
     // Fill result
-    set<const CConfigurableElement*>::const_iterator it;
+    std::set<const CConfigurableElement*>::const_iterator it;
 
     for (it = configurableElementSet.begin(); it != configurableElementSet.end(); ++it) {
 
@@ -308,13 +310,13 @@ void CConfigurableDomains::listConflictingElements(string& strResult) const
 {
     strResult = "\n";
 
-    set<const CConfigurableElement*> configurableElementSet;
+    std::set<const CConfigurableElement*> configurableElementSet;
 
     // Get all owned configurable elements
     gatherAllOwnedConfigurableElements(configurableElementSet);
 
     // Fill result
-    set<const CConfigurableElement*>::const_iterator it;
+    std::set<const CConfigurableElement*>::const_iterator it;
 
     for (it = configurableElementSet.begin(); it != configurableElementSet.end(); ++it) {
 
@@ -356,7 +358,7 @@ void CConfigurableDomains::listDomains(string& strResult) const
 }
 
 // Gather configurable elements owned by any domain
-void CConfigurableDomains::gatherAllOwnedConfigurableElements(set<const CConfigurableElement*>& configurableElementSet) const
+void CConfigurableDomains::gatherAllOwnedConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const
 {
     // Delegate to domains
     uint32_t uiChild;
@@ -371,7 +373,7 @@ void CConfigurableDomains::gatherAllOwnedConfigurableElements(set<const CConfigu
 }
 
 // Config restore
-bool CConfigurableDomains::restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, list<string>& lstrError) const
+bool CConfigurableDomains::restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<string>& lstrError) const
 {
     string strError;
     // Find domain
@@ -400,7 +402,7 @@ bool CConfigurableDomains::saveConfiguration(const string& strDomain, const stri
     return pConfigurableDomain->saveConfiguration(strConfiguration, pMainBlackboard, strError);
 }
 
-bool CConfigurableDomains::setElementSequence(const string& strDomain, const string& strConfiguration, const vector<string>& astrNewElementSequence, string& strError)
+bool CConfigurableDomains::setElementSequence(const string& strDomain, const string& strConfiguration, const std::vector<string>& astrNewElementSequence, string& strError)
 {
     // Find domain
     CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);

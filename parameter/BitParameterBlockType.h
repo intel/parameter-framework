@@ -31,10 +31,12 @@
 
 #include "TypeElement.h"
 
+#include <string>
+
 class CBitParameterBlockType : public CTypeElement
 {
 public:
-    CBitParameterBlockType(const string& strName);
+    CBitParameterBlockType(const std::string& strName);
 
     // Size
     uint32_t getSize() const;
@@ -46,7 +48,7 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     // CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     virtual bool childrenAreDynamic() const;
     // Instantiation

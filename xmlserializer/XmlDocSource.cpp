@@ -33,6 +33,8 @@
 #include <libxml/xmlschemas.h>
 #include <stdlib.h>
 
+using std::string;
+
 // Schedule for libxml2 library
 bool CXmlDocSource::_bLibXml2CleanupScheduled;
 

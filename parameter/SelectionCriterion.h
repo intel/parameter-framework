@@ -33,21 +33,19 @@
 #include "SelectionCriterionType.h"
 #include "SelectionCriterionInterface.h"
 
-#include <list>
-
-using namespace std;
+#include <string>
 
 class CSelectionCriterion : public CElement, public ISelectionCriterionInterface
 {
 public:
-    CSelectionCriterion(const string& strName, const CSelectionCriterionType* pType);
+    CSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pType);
 
     /// From ISelectionCriterionInterface
     // State
     virtual void setCriterionState(int iState);
     virtual int getCriterionState() const;
     // Name
-    virtual string getCriterionName() const;
+    virtual std::string getCriterionName() const;
     // Type
     virtual const ISelectionCriterionTypeInterface* getCriterionType() const;
     // Modified status
@@ -61,10 +59,10 @@ public:
     bool excludes(int iState) const;
 
     /// User request
-    string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
+    std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
 
     /// From CElement
-    virtual string getKind() const;
+    virtual std::string getKind() const;
 private:
     // Current state
     int _iState;

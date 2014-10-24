@@ -44,7 +44,7 @@ public:
       *
       * @param[in] strXmlInstanceFile defines the path used to save the file.
       */
-    CXmlFileDocSink(const string& strXmlInstanceFile);
+    CXmlFileDocSink(const std::string& strXmlInstanceFile);
 
 private:
     /**
@@ -62,5 +62,5 @@ private:
     /**
       * Name of the instance file
       */
-    string _strXmlInstanceFile;
+    std::string _strXmlInstanceFile;
 };
