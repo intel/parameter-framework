@@ -313,5 +313,5 @@ m4 "$@" |
 $PFWSendCommand getDomainsWithSettingsXML |
     # Delete trailing carriage return and format absolute paths
     sed -r -e 's/\r$//' \
-           -e 's/(xsi:noNamespaceSchemaLocation=")[^"]*tmp/\1/' >&4
+           -e 's@(xsi:noNamespaceSchemaLocation=")'"$tmpDir"'/?@\1@' >&4
 
