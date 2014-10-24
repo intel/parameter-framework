@@ -55,7 +55,7 @@ common_cflags := \
 
 common_c_includes := \
     external/libxml2/include \
-    external/icu4c/common \
+    external/icu/icu4c/source/common \
 
 common_shared_libraries := libicuuc
 common_static_libraries := libxml2
@@ -179,7 +179,7 @@ LOCAL_SRC_FILES := \
 	xmlwriter.c \
 	schematron.c
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/include external/icu4c/common
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include external/icu/icu4c/source/common
 LOCAL_CFLAGS := \
 	-DLIBXML_EXPR_ENABLED \
 	-DLIBXML_REGEXP_ENABLED \
