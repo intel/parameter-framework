@@ -54,7 +54,7 @@ common_cflags := \
 
 common_c_includes := \
     external/libxml2/include \
-    external/icu4c/common \
+    external/icu/icu4c/source/common \
 
 common_shared_libraries := libicuuc
 common_static_libraries := libxml2
@@ -67,6 +67,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_CFLAGS := $(common_cflags)
@@ -89,6 +90,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_CFLAGS := $(common_cflags)
@@ -112,6 +114,7 @@ include $(BUILD_HOST_STATIC_LIBRARY)
 # Export includes for plugins (Target build)
 include $(CLEAR_VARS)
 LOCAL_MODULE := $(common_module)_includes
+LOCAL_MODULE_OWNER := intel
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_STATIC_LIBRARIES := libxml2
 include $(BUILD_STATIC_LIBRARY)
@@ -120,6 +123,7 @@ include $(BUILD_STATIC_LIBRARY)
 # Export includes for plugins (Host build)
 include $(CLEAR_VARS)
 LOCAL_MODULE := $(common_module)_includes
+LOCAL_MODULE_OWNER := intel
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_STATIC_LIBRARIES := libxml2
 include $(BUILD_HOST_STATIC_LIBRARY)
@@ -174,7 +178,7 @@ LOCAL_SRC_FILES := \
 	xmlwriter.c \
 	schematron.c
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/include external/icu4c/common
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include external/icu/icu4c/source/common
 LOCAL_CFLAGS := \
 	-DLIBXML_EXPR_ENABLED \
 	-DLIBXML_REGEXP_ENABLED \

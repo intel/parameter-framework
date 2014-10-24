@@ -141,13 +141,12 @@ include $(CLEAR_VARS)
 LOCAL_COPY_HEADERS_TO := $(common_copy_headers_to)
 LOCAL_COPY_HEADERS := $(common_copy_headers)
 
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
-
 LOCAL_CFLAGS := $(common_cflags)
 
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES := $(common_c_includes)
@@ -155,6 +154,7 @@ LOCAL_C_INCLUDES := $(common_c_includes)
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libdl
 LOCAL_STATIC_LIBRARIES := libxmlserializer libpfw_utility libxml2
 
+LOCAL_CLANG := false
 include external/stlport/libstlport.mk
 include $(BUILD_SHARED_LIBRARY)
 
@@ -171,6 +171,7 @@ LOCAL_CFLAGS := $(common_cflags) -O0 -ggdb
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES += \
@@ -181,6 +182,7 @@ LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host libxml2-sche
 
 LOCAL_LDLIBS += -ldl
 
+LOCAL_CLANG := false
 include $(BUILD_HOST_SHARED_LIBRARY)
 
 ################################
@@ -189,6 +191,7 @@ include $(BUILD_HOST_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := $(common_module)_includes
+LOCAL_MODULE_OWNER := intel
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
@@ -205,6 +208,7 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := $(common_module)_includes_host
+LOCAL_MODULE_OWNER := intel
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 

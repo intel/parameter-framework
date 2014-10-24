@@ -48,9 +48,11 @@ common_cflags := \
         -Wall \
         -Werror \
         -Wextra \
-        -Wno-unused-parameter
+        -Wno-unused-parameter \
+        -pthread
 
-common_ldlibs := -lpthread
+common_ldlibs := -pthread
+
 #############################
 # Target build
 
@@ -58,12 +60,12 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := $(common_src_files)
 
-LOCAL_MODULE := $(common_module)
-LOCAL_MODULE_TAGS := $(common_module_tags)
-
 LOCAL_CFLAGS := $(common_cflags)
+LOCAL_LDLIBS := $(common_ldlibs)
 
-LOCAL_LDLIBS += $(common_ldlibs)
+LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_OWNER := intel
+LOCAL_MODULE_TAGS := $(common_module_tags)
 
 include external/stlport/libstlport.mk
 include $(BUILD_SHARED_LIBRARY)
@@ -76,10 +78,11 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_CFLAGS := $(common_cflags)
+LOCAL_LDLIBS := $(common_ldlibs)
 
 LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
-LOCAL_LDLIBS += $(common_ldlibs)
 
 include $(BUILD_HOST_SHARED_LIBRARY)
