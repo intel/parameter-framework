@@ -99,15 +99,6 @@ clean_up () {
     status=$?
     set +e # An error should not abort clean up
 
-    ( if test $status -ne 0
-    then
-        echo "$0 is exiting on error, printing debug information."
-        echo "Test platform port: $TPSocket"
-        echo "PFW port: $PFWSocket"
-        netstat --program --all --numeric --extend --tcp
-        ps -ejHlf
-    fi ) >&5
-
     # Exit the test-platform only if it was created by this process
     if $TPCreated
     then
