@@ -105,7 +105,8 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
     // Value
     if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
 
-        strError = "Value error: " + strError;
+        strError = "Value error: \"" + strValue + "\" is not part of criterion \"" +
+                   _pSelectionCriterion->getCriterionName() + "\"";
 
         return false;
     }
