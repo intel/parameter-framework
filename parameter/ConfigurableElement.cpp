@@ -139,7 +139,7 @@ bool CConfigurableElement::accessValue(CPathNavigator& pathNavigator, std::strin
 
     if (!pStrChildName) {
 
-        parameterAccessContext.setError("Non accessible element");
+        parameterAccessContext.setError((bSet ? "Can't set " : "Can't get ") + pathNavigator.getCurrentPath() + " because it is not a parameter");
 
         return false;
     }
