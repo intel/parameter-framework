@@ -48,9 +48,9 @@ class FixedPointTester():
         * Bijectivity check
     Which are documented below.
     """
-    def __init__(self, pfwClient, integral, fractional):
+    def __init__(self, pfwClient, size, integral, fractional):
         self._pfwClient = pfwClient
-        self._paramPath = '/Test/test/q%d.%d' % (integral, fractional)
+        self._paramPath = '/Test/test/%d/q%d.%d' % (size, integral, fractional)
 
         # quantum is the step we have between two numbers
         # encoded in Qn.m format
@@ -233,8 +233,9 @@ if __name__ == '__main__':
     configPath = './ParameterFrameworkConfiguration.xml'
 
     with PfwClient(configPath) as pfw:
-        for integral in range(0,  31):
-            for fractional in range (0,  31 - integral):
-                tester = FixedPointTester(pfw, integral, fractional)
-                tester.run()
+        for size in [8, 16, 32]:
+            for integral in range(0,  size):
+                for fractional in range (0,  size - integral):
+                    tester = FixedPointTester(pfw, size, integral, fractional)
+                    tester.run()
 
