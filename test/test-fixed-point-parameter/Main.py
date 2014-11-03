@@ -195,12 +195,12 @@ class PfwClient():
         self._address = 'localhost'
         self._port = '5066'
         self._testPlatformPort = '5063'
-        self._pathToExec = 'remote-process_host'
+        self._pathToExec = 'remote-process'
         self._configPath = configPath
 
     def __enter__(self):
         # launch test platform in deamon mode
-        subprocess.call(['test-platform_host', '-d', self._configPath, self._testPlatformPort])
+        subprocess.call(['test-platform', '-d', self._configPath, self._testPlatformPort])
         subprocess.call([self._pathToExec, self._address, self._testPlatformPort, 'start'])
         self._callCommand(['setTuningMode', 'on'])
         return self
