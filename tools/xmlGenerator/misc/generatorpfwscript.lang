@@ -15,7 +15,7 @@
 
   <styles>
     <style id="entry-type" _name="Field" map-to="def:identifier"/>
-     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="boolean" _name="Boolean Value" map-to="def:boolean"/>
     <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
@@ -32,9 +32,12 @@
       <suffix>:</suffix>
 
       <keyword>supDomain</keyword>
+      <keyword>domainGroup</keyword>
       <keyword>domain</keyword>
       <keyword>rule</keyword>
       <keyword>supConf</keyword>
+      <keyword>confGroup</keyword>
+      <keyword>confType</keyword>
       <keyword>conf</keyword>
       <keyword>rule</keyword>
       <keyword>component</keyword>
