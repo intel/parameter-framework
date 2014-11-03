@@ -48,9 +48,9 @@ class FixedPointTester():
         * Bijectivity check
     Which are documented below.
     """
-    def __init__(self, pfwClient, integral, fractional):
+    def __init__(self, pfwClient, size, integral, fractional):
         self._pfwClient = pfwClient
-        self._paramPath = '/Test/test/q%d.%d' % (integral, fractional)
+        self._paramPath = '/Test/test/%d/q%d.%d' % (size, integral, fractional)
 
         # quantum is the step we have between two numbers
         # encoded in Qn.m format
@@ -195,12 +195,12 @@ class PfwClient():
         self._address = 'localhost'
         self._port = '5066'
         self._testPlatformPort = '5063'
-        self._pathToExec = 'remote-process_host'
+        self._pathToExec = 'remote-process'
         self._configPath = configPath
 
     def __enter__(self):
         # launch test platform in deamon mode
-        subprocess.call(['test-platform_host', '-d', self._configPath, self._testPlatformPort])
+        subprocess.call(['test-platform', '-d', self._configPath, self._testPlatformPort])
         subprocess.call([self._pathToExec, self._address, self._testPlatformPort, 'start'])
         self._callCommand(['setTuningMode', 'on'])
         return self
@@ -233,8 +233,9 @@ if __name__ == '__main__':
     configPath = './ParameterFrameworkConfiguration.xml'
 
     with PfwClient(configPath) as pfw:
-        for integral in range(0,  31):
-            for fractional in range (0,  31 - integral):
-                tester = FixedPointTester(pfw, integral, fractional)
-                tester.run()
+        for size in [8, 16, 32]:
+            for integral in range(0,  size):
+                for fractional in range (0,  size - integral):
+                    tester = FixedPointTester(pfw, size, integral, fractional)
+                    tester.run()
 
