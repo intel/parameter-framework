@@ -27,9 +27,9 @@ Schema for the top-level configuration.  It contains:
 Attributes of `ParameterFrameworkConfiguration` are:
 
 - The `SystemClass` name (for consistency check)
-- The `TuningMode` (whether the parameter-framework listens for commands)
+- The `TuningAllowed` (whether the parameter-framework listens for commands)
 - The `ServerPort` on which the parameter-framework listens if
-  `TuningMode=true`.
+  `TuningAllowed=true`.
 
 ## SystemClass.xsd
 
