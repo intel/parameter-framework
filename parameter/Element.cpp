@@ -82,7 +82,11 @@ void CElement::log_table(bool bIsWarning, const std::list<string> lstrMessage) c
 void CElement::vLog(bool bIsWarning, const char *strMessage, va_list args) const
 {
     char *pacBuffer;
-    vasprintf(&pacBuffer,  strMessage, args);
+    if(vasprintf(&pacBuffer,  strMessage, args) == -1) {
+        return doLog(true, std::string() + "Unable to format " +
+                           (bIsWarning ? "warning" : "info log") +
+                           ": " + strMessage);
+    }
     doLog(bIsWarning, pacBuffer);
     free(pacBuffer);
 }
