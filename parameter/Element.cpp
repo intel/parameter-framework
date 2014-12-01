@@ -52,38 +52,18 @@ CElement::~CElement()
 // Logging
 void CElement::log_info(const char* strMessage, ...) const
 {
-    char *pacBuffer;
     va_list listPointer;
-
     va_start(listPointer, strMessage);
-
-    vasprintf(&pacBuffer,  strMessage, listPointer);
-
+    vLog(false, strMessage, listPointer);
     va_end(listPointer);
-
-    if (pacBuffer != NULL) {
-        doLog(false, pacBuffer);
-    }
-
-    free(pacBuffer);
 }
 
 void CElement::log_warning(const char* strMessage, ...) const
 {
-    char *pacBuffer;
     va_list listPointer;
-
     va_start(listPointer, strMessage);
-
-    vasprintf(&pacBuffer,  strMessage, listPointer);
-
+    vLog(true, strMessage, listPointer);
     va_end(listPointer);
-
-    if (pacBuffer != NULL) {
-        doLog(true, pacBuffer);
-    }
-
-    free(pacBuffer);
 }
 
 // Log each element of the string list
@@ -97,6 +77,14 @@ void CElement::log_table(bool bIsWarning, const std::list<string> lstrMessage) c
         doLog(bIsWarning, iterator->c_str());
         ++iterator;
     }
+}
+
+void CElement::vLog(bool bIsWarning, const char *strMessage, va_list args) const
+{
+    char *pacBuffer;
+    vasprintf(&pacBuffer,  strMessage, args);
+    doLog(bIsWarning, pacBuffer);
+    free(pacBuffer);
 }
 
 void CElement::doLog(bool bIsWarning, const string& strLog) const
