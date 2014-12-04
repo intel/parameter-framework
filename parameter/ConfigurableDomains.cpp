@@ -566,17 +566,10 @@ bool CConfigurableDomains::serializeSettings(const string& strBinarySettingsFile
 // Domain retrieval
 CConfigurableDomain* CConfigurableDomains::findConfigurableDomain(const string& strDomain, string& strError)
 {
-    // Find domain
-    CConfigurableDomain* pConfigurableDomain = static_cast<CConfigurableDomain*>(findChild(strDomain));
-
-    if (!pConfigurableDomain) {
-
-        strError = "Configurable domain " + strDomain + " not found";
-
-        return NULL;
-    }
-
-    return pConfigurableDomain;
+    // Call the const equivalent
+    return const_cast<CConfigurableDomain*>(
+        static_cast<const CConfigurableDomains*>(this)->findConfigurableDomain(strDomain, strError)
+        );
 }
 
 const CConfigurableDomain* CConfigurableDomains::findConfigurableDomain(const string& strDomain, string& strError) const
