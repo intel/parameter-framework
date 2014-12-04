@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:include schemaLocation="ParameterSettings.xsd"/>
+	<xs:complexType name="SelectionCriterionRuleType">
+		<xs:attribute name="SelectionCriterion" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="MatchesWhen" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Is"/>
+					<xs:enumeration value="IsNot"/>
+					<xs:enumeration value="Includes"/>
+					<xs:enumeration value="Excludes"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Value" use="required"/>
+	</xs:complexType>
+	<xs:group name="RuleGroup">
+		<xs:choice>
+			<xs:element name="CompoundRule" type="CompoundRuleType"/>
+			<xs:element name="SelectionCriterionRule" type="SelectionCriterionRuleType"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="CompoundRuleType">
+		<xs:sequence>
+			<xs:group ref="RuleGroup" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Type">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Any"/>
+					<xs:enumeration value="All"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ConfigurationsType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="Configuration">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CompoundRule" type="CompoundRuleType" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+					<xs:attribute name="Name" use="required" type="xs:NCName"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="ComponentGroup">
+		<xs:sequence>
+			<xs:group ref="ParameterBlockGroup"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="ComponentType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:group ref="ComponentGroup" maxOccurs="unbounded"/>
+				<xs:element name="Subsystem" type="ComponentType" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="Name" use="required" type="xs:NCName"/>
+	</xs:complexType>
+	<xs:complexType name="ConfigurableElementsType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="ConfigurableElement">
+				<xs:complexType>
+					<xs:attribute name="Path" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:anyURI">
+								<xs:pattern value="/.*[^/]"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConfigurableElementSettingsType">
+		<xs:choice>
+			<xs:element name="BitParameter" type="IntegerParameterType"/>
+			<xs:group ref="ComponentGroup"/>
+		</xs:choice>
+		<xs:attribute name="Path" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:anyURI">
+					<xs:pattern value="/.*[^/]"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SettingsType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="Configuration">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ConfigurableElement" minOccurs="0" maxOccurs="unbounded" type="ConfigurableElementSettingsType"/>
+					</xs:sequence>
+					<xs:attribute name="Name" use="required" type="xs:NCName"/>
+				</xs:complexType>
+				<xs:unique name="ConfigurableElementUniqueness">
+					<xs:selector xpath="ConfigurableElement"/>
+					<xs:field xpath="@Path"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConfigurableDomainType">
+		<xs:sequence>
+			<xs:element name="Configurations" type="ConfigurationsType"/>
+			<xs:element name="ConfigurableElements" type="ConfigurableElementsType"/>
+			<xs:element name="Settings" type="SettingsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Name" use="required" type="xs:NCName"/>
+		<xs:attribute name="SequenceAware" use="optional" type="xs:boolean" default="false"/>
+	</xs:complexType>
+	<xs:element name="ConfigurableDomain" type="ConfigurableDomainType"/>
+</xs:schema>
