@@ -266,6 +266,9 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "getDomainsWithSettingsXML",
             &CParameterMgr::getConfigurableDomainsWithSettingsXMLCommmandProcess, 0,
             "", "Print domains including settings as XML" },
+    { "getDomainWithSettingsXML",
+            &CParameterMgr::getConfigurableDomainWithSettingsXMLCommmandProcess, 1,
+            "<domain>", "Print the given domain including settings as XML" },
     { "setDomainsWithSettingsXML",
             &CParameterMgr::setConfigurableDomainsWithSettingsXMLCommmandProcess, 1,
             "<xml configurable domains>", "Import domains including settings from XML string" },
@@ -1541,6 +1544,16 @@ CParameterMgr::CCommandHandler::CommandStatus
 }
 
 CParameterMgr::CCommandHandler::CommandStatus
+        CParameterMgr::getConfigurableDomainWithSettingsXMLCommmandProcess(
+                const IRemoteCommand& remoteCommand, string& strResult)
+{
+    string strDomainName = remoteCommand.getArgument(0);
+
+    return exportSingleDomainXml(strResult, strDomainName, true, false, strResult) ?
+        CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::setConfigurableDomainsWithSettingsXMLCommmandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
@@ -2072,8 +2085,9 @@ bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSetti
     return bProcessSuccess;
 }
 
-bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, bool bToFile,
-                                     string& strError) const
+bool CParameterMgr::serializeElement(string& strXmlDest,
+                                     CXmlSerializingContext& xmlSerializingContext, bool bToFile,
+                                     const CElement& element, string& strError) const
 {
     // check path is absolute
     if (bToFile && strXmlDest[0] != '/') {
@@ -2083,24 +2097,12 @@ bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, boo
         return false;
     }
 
-    // Root element
-    const CConfigurableDomains* pConfigurableDomains = getConstConfigurableDomains();
-
     // Get Schema file associated to root element
     string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" +
-                                  pConfigurableDomains->getKind() + ".xsd";
-
-    // Context
-    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings);
-
-    // Value space
-    xmlDomainExportContext.setValueSpaceRaw(_bValueSpaceIsRaw);
-
-    // Output raw format
-    xmlDomainExportContext.setOutputRawFormat(_bOutputRawFormatIsHex);
+                                  element.getKind() + ".xsd";
 
     // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(pConfigurableDomains, pConfigurableDomains->getKind(),
+    CXmlMemoryDocSource memorySource(&element, element.getKind(),
                                      strXmlSchemaFilePath, "parameter-framework",
                                      getVersion(), _bValidateSchemasOnStart);
 
@@ -2115,13 +2117,53 @@ bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, boo
     } else {
 
         // Use a doc sink to write the doc data in a string
+        // TODO: use a stream rather than a string
         pSink = new CXmlStringDocSink(strXmlDest);
     }
 
-    bool bProcessSuccess = pSink->process(memorySource, xmlDomainExportContext);
+    bool bProcessSuccess = pSink->process(memorySource, xmlSerializingContext);
 
     delete pSink;
     return bProcessSuccess;
+}
+
+bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, bool bToFile,
+                                     string& strError) const
+{
+    const CConfigurableDomains* pConfigurableDomains = getConstConfigurableDomains();
+
+    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings);
+
+    xmlDomainExportContext.setValueSpaceRaw(_bValueSpaceIsRaw);
+
+    xmlDomainExportContext.setOutputRawFormat(_bOutputRawFormatIsHex);
+
+
+    return serializeElement(strXmlDest, xmlDomainExportContext, bToFile,
+                                    *pConfigurableDomains, strError);
+}
+
+bool CParameterMgr::exportSingleDomainXml(string& strXmlDest, const string& strDomainName,
+                                          bool bWithSettings, bool bToFile, string& strError) const
+{
+    const CConfigurableDomains* pAllDomains = getConstConfigurableDomains();
+
+    // Element to be serialized
+    const CConfigurableDomain* pRequestedDomain =
+        pAllDomains->findConfigurableDomain(strDomainName, strError);
+
+    if (!pRequestedDomain) {
+        return false;
+    }
+
+    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings);
+
+    xmlDomainExportContext.setValueSpaceRaw(_bValueSpaceIsRaw);
+
+    xmlDomainExportContext.setOutputRawFormat(_bOutputRawFormatIsHex);
+
+    return serializeElement(strXmlDest, xmlDomainExportContext, bToFile,
+                                    *pRequestedDomain, strError);
 }
 
 // Binary Import/Export

@@ -87,6 +87,9 @@ public:
                                      bool& bIsLastApplied,
                                      std::string& strError) const;
 
+    const CConfigurableDomain* findConfigurableDomain(const std::string& strDomain,
+                                                      std::string& strError) const;
+
     // Binary settings load/store
     bool serializeSettings(const std::string& strBinarySettingsFilePath, bool bOut, uint8_t uiStructureChecksum, std::string& strError);
 
@@ -108,6 +111,5 @@ private:
     void gatherAllOwnedConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const;
     // Domain retrieval
     CConfigurableDomain* findConfigurableDomain(const std::string& strDomain, std::string& strError);
-    const CConfigurableDomain* findConfigurableDomain(const std::string& strDomain, std::string& strError) const;
 };
 
