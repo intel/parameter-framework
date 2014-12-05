@@ -246,11 +246,12 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
         // Load symbol from library
         GetSubsystemBuilder pfnGetSubsystemBuilder = (GetSubsystemBuilder)dlsym(lib_handle, strPluginSymbol.c_str());
 
-        if (!pfnGetSubsystemBuilder) {
+        if (pfnGetSubsystemBuilder == NULL) {
 
             lstrError.push_back("Subsystem plugin " + strPluginFileName +
                                 " does not contain " + strPluginSymbol + " symbol.");
-
+            // Next plugin
+            ++it;
             continue;
         }
 
