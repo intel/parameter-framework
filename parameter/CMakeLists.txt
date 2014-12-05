@@ -185,7 +185,8 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/remote-processor")
 
 # No need to link with libremote-processor: it is accessed via dlopen()
-target_link_libraries(parameter xmlserializer pfw_utility)
+find_library(dl dl)
+target_link_libraries(parameter xmlserializer pfw_utility dl)
 
 install(TARGETS parameter LIBRARY DESTINATION lib)
 # Client headers
