@@ -75,7 +75,8 @@ bool CRemoteProcessorServer::start(string &error)
     // Thread needs to access to the listning socket.
     _pListeningSocket = pListeningSocket.get();
     // Create thread
-    if (pthread_create(&_ulThreadId, NULL, thread_func, this) != 0) {
+    errno = pthread_create(&_ulThreadId, NULL, thread_func, this);
+    if (errno != 0) {
 
         error = "Could not create a remote processor thread: ";
         error += strerror(errno);
@@ -107,7 +108,12 @@ void CRemoteProcessorServer::stop()
     }
 
     // Join thread
-    pthread_join(_ulThreadId, NULL);
+    errno = pthread_join(_ulThreadId, NULL);
+    if (errno != 0) {
+        std::cout << "Could not join with remote processor thread: "
+                  << strerror(errno) << std::endl;
+        assert(false);
+    }
 
     _bIsStarted = false;
 
