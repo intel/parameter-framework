@@ -99,7 +99,12 @@ void CRemoteProcessorServer::stop()
 
     // Cause exiting of the thread
     uint8_t ucData = 0;
-    utility::fullWrite(_aiInbandPipe[1], &ucData, sizeof(ucData));
+    if (not utility::fullWrite(_aiInbandPipe[1], &ucData, sizeof(ucData))) {
+        std::cerr << "Could not query command processor thread to terminate: "
+                     "fail to write on inband pipe: "
+                  << strerror(errno) << std::endl;
+        assert(false);
+    }
 
     // Join thread
     pthread_join(_ulThreadId, NULL);
@@ -149,7 +154,11 @@ void CRemoteProcessorServer::run()
 
             // Consume exit request
             uint8_t ucData;
-            utility::fullRead(_aiInbandPipe[0], &ucData, sizeof(ucData));
+            if (not utility::fullRead(_aiInbandPipe[0], &ucData, sizeof(ucData))) {
+                    std::cerr << "Remote processor could not receive exit request"
+                              << strerror(errno) << std::endl;
+                    assert(false);
+            }
 
             // Exit
             return;
