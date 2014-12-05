@@ -57,30 +57,33 @@ bool CRemoteProcessorServer::start(string &error)
 {
     assert(!_bIsStarted);
 
-    // Create server socket
-    _pListeningSocket = new CListeningSocket;
-
-    // Create inband pipe
     if (pipe(_aiInbandPipe) == -1) {
         error = "Could not create a pipe for remote processor communication: ";
         error += strerror(errno);
         return false;
     }
 
-    if (!_pListeningSocket->listen(_uiPort, error)) {
+    // Create server socket
+    std::auto_ptr<CListeningSocket> pListeningSocket(new CListeningSocket);
 
-        // Remove listening socket
-        delete _pListeningSocket;
-        _pListeningSocket = NULL;
+    if (!pListeningSocket->listen(_uiPort, error)) {
 
         return false;
     }
 
+    // Thread needs to access to the listning socket.
+    _pListeningSocket = pListeningSocket.get();
     // Create thread
-    pthread_create(&_ulThreadId, NULL, thread_func, this);
+    if (pthread_create(&_ulThreadId, NULL, thread_func, this) != 0) {
+
+        error = "Could not create a remote processor thread: ";
+        error += strerror(errno);
+        return false;
+    }
 
     // State
     _bIsStarted = true;
+    pListeningSocket.release();
 
     return true;
 }
