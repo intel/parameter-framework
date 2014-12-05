@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,7 +34,8 @@
 #include <assert.h>
 #include <poll.h>
 #include <unistd.h>
-#include <strings.h>
+#include <string.h>
+#include <errno.h>
 #include "RequestMessage.h"
 #include "AnswerMessage.h"
 #include "RemoteCommandHandler.h"
@@ -44,8 +45,6 @@ using std::string;
 CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
     _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL), _ulThreadId(0)
 {
-    // Create inband pipe
-    pipe(_aiInbandPipe);
 }
 
 CRemoteProcessorServer::~CRemoteProcessorServer()
@@ -60,6 +59,12 @@ bool CRemoteProcessorServer::start()
 
     // Create server socket
     _pListeningSocket = new CListeningSocket;
+
+    // Create inband pipe
+    if (pipe(_aiInbandPipe) == -1) {
+        std::cerr << "Could not create a pipe for remote processor communication: " << strerror(errno);
+        return false;
+    }
 
     if (!_pListeningSocket->listen(_uiPort)) {
 
