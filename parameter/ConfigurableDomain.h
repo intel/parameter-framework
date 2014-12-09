@@ -103,6 +103,8 @@ public:
 
     // From IXmlSource
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void childrenToXml(CXmlElement& xmlElement,
+                               CXmlSerializingContext& serializingContext) const;
 
     // Class kind
     virtual std::string getKind() const;

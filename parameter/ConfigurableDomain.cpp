@@ -111,9 +111,15 @@ bool CConfigurableDomain::getSequenceAwareness() const
 // From IXmlSource
 void CConfigurableDomain::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
+    base::toXml(xmlElement, serializingContext);
+
     // Sequence awareness
     xmlElement.setAttributeBoolean("SequenceAware", _bSequenceAware);
+}
 
+void CConfigurableDomain::childrenToXml(CXmlElement& xmlElement,
+                                        CXmlSerializingContext& serializingContext) const
+{
     // Configurations
     composeDomainConfigurations(xmlElement, serializingContext);
 
@@ -133,7 +139,7 @@ void CConfigurableDomain::composeDomainConfigurations(CXmlElement& xmlElement, C
     xmlElement.createChild(xmlConfigurationsElement, "Configurations");
 
     // Delegate to base
-    base::toXml(xmlConfigurationsElement, serializingContext);
+    base::childrenToXml(xmlConfigurationsElement, serializingContext);
 }
 
 void CConfigurableDomain::composeConfigurableElements(CXmlElement& xmlElement) const

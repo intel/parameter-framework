@@ -94,6 +94,20 @@ public:
     // From IXmlSource
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
+    /**
+     * Serialize the children to XML
+     *
+     * This method is virtual, to be derived in case a special treatment is
+     * needed before doing so.
+     *
+     * @param[in,out] xmlElement the XML Element below which the children must
+     *                be serialized (which may or may not be the CElement
+     *                object upon which this method is called)
+     * @param[in,out] serializingContext information about the serialization
+     */
+    virtual void childrenToXml(CXmlElement& xmlElement,
+                               CXmlSerializingContext& serializingContext) const;
+
     // Content structure dump
     void dumpContent(std::string& strContent, CErrorContext& errorContext, const uint32_t uiDepth = 0) const;
 

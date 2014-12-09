@@ -292,8 +292,8 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
     return true;
 }
 
-// From IXmlSource
-void CElement::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CElement::childrenToXml(CXmlElement& xmlElement,
+                             CXmlSerializingContext& serializingContext) const
 {
     // Browse children and propagate
     uint32_t uiNbChildren = getNbChildren();
@@ -308,13 +308,15 @@ void CElement::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializin
 
         xmlElement.createChild(xmlChildElement, pChild->getKind());
 
-        // Set attributes
-        pChild->setXmlNameAttribute(xmlChildElement);
-
-
         // Propagate
         pChild->toXml(xmlChildElement, serializingContext);
     }
+}
+
+void CElement::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    setXmlNameAttribute(xmlElement);
+    childrenToXml(xmlElement, serializingContext);
 }
 
 void CElement::setXmlNameAttribute(CXmlElement& xmlElement) const

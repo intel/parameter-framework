@@ -104,7 +104,7 @@ void CConfigurableDomains::toXml(CXmlElement& xmlElement, CXmlSerializingContext
     // Set attribute
     xmlElement.setAttributeString("SystemClassName", getName());
 
-    base::toXml(xmlElement, serializingContext);
+    base::childrenToXml(xmlElement, serializingContext);
 }
 
 // Configuration/Domains handling
