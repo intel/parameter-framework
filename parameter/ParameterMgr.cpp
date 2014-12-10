@@ -622,7 +622,8 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     string strXmlConfigurationDomainsFolder = pConfigurableDomainsFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
 
     // Parse configuration domains XML file (ask to read settings from XML file if they are not provided as binary)
-    CXmlDomainImportContext xmlDomainImportContext(strError, !pBinarySettingsFileLocation);
+    CXmlDomainImportContext xmlDomainImportContext(strError, !pBinarySettingsFileLocation,
+            *getSystemClass());
 
     // Selection criteria definition for rule creation
     xmlDomainImportContext.setSelectionCriteriaDefinition(getConstSelectionCriteria()->getSelectionCriteriaDefinition());
@@ -2011,7 +2012,7 @@ bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSetti
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
     // Context
-    CXmlDomainImportContext xmlDomainImportContext(strError, bWithSettings);
+    CXmlDomainImportContext xmlDomainImportContext(strError, bWithSettings, *getSystemClass());
 
     // Selection criteria definition for rule creation
     xmlDomainImportContext.setSelectionCriteriaDefinition(

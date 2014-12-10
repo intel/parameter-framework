@@ -253,12 +253,7 @@ bool CConfigurableDomain::parseDomainConfigurations(const CXmlElement& xmlElemen
 bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElement,
                                                     CXmlDomainImportContext& serializingContext)
 {
-    // Get System Class Element
-    CElement* pRootElement = getRoot();
-
-    CElement* pSystemClassElement = pRootElement->findChildOfKind("SystemClass");
-
-    assert(pSystemClassElement);
+    CSystemClass& systemClass = serializingContext.getSystemClass();
 
     // Get ConfigurableElements element
     CXmlElement xmlConfigurableElementsElement;
@@ -278,14 +273,15 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
         string strError;
 
         // Is there an element and does it match system class name?
-        if (!pathNavigator.navigateThrough(pSystemClassElement->getName(), strError)) {
+        if (!pathNavigator.navigateThrough(systemClass.getName(), strError)) {
 
             serializingContext.setError("Could not find configurable element of path " + strConfigurableElementPath + " from ConfigurableDomain description " + getName() + " (" + strError + ")");
 
             return false;
         }
         // Browse system class for configurable element
-        CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pSystemClassElement->findDescendant(pathNavigator));
+        CConfigurableElement* pConfigurableElement =
+            static_cast<CConfigurableElement*>(systemClass.findDescendant(pathNavigator));
 
         if (!pConfigurableElement) {
 
