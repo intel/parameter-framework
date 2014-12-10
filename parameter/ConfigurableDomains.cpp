@@ -127,24 +127,50 @@ bool CConfigurableDomains::createDomain(const string& strName, string& strError)
     return true;
 }
 
+bool CConfigurableDomains::addDomain(CConfigurableDomain& domain, bool bOverwrite,
+                                     string& strError)
+{
+    string strErrorDrop;
+
+    string strDomainName(domain.getName());
+    CConfigurableDomain* pExistingDomain = findConfigurableDomain(strDomainName, strErrorDrop);
+
+    if (pExistingDomain) {
+        if (!bOverwrite) {
+            strError = "Can't add domain \"" + strDomainName +
+                "\" because it already exists and overwrite was not requested.";
+            return false;
+        }
+
+        deleteDomain(*pExistingDomain);
+    }
+
+    log_info("Adding configurable domain \"" + strDomainName + "\"");
+
+    addChild(&domain);
+
+    return true;
+}
+
+void CConfigurableDomains::deleteDomain(CConfigurableDomain& configurableDomain)
+{
+    log_info("Deleting configurable domain \"" + configurableDomain.getName() + "\"");
+
+    removeChild(&configurableDomain);
+
+    delete &configurableDomain;
+}
+
 bool CConfigurableDomains::deleteDomain(const string& strName, string& strError)
 {
     CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strName, strError);
 
-    if (!pConfigurableDomain) {
-
-        return false;
+    if (pConfigurableDomain) {
+        deleteDomain(*pConfigurableDomain);
+        return true;
     }
 
-    log_info("Deleting configurable domain \"%s\"", strName.c_str());
-
-    // Hierarchy
-    removeChild(pConfigurableDomain);
-
-    // Destroy
-    delete pConfigurableDomain;
-
-    return true;
+    return false;
 }
 
 void CConfigurableDomains::deleteAllDomains()

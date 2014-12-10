@@ -250,6 +250,31 @@ public:
     bool importDomainsXml(const std::string& strXmlSource, bool bWithSettings, bool bFromFile,
                           std::string& strError);
 
+    /**
+      * Method that imports a single Configurable Domain from an Xml source.
+      *
+      * @param[in] strXmlSource a string containing an xml description or a path to an xml file
+      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * xml description
+      * @param[in] bFromFile a boolean that determines if the source is an xml description in
+      * strXmlSource or contained in a file. In that case strXmlSource is just the file path.
+      * @param[out] strError is used as the error output
+      *
+      * @return false if any error occurs
+      */
+    bool importSingleDomainXml(const std::string& strXmlSource, bool bOverwrite,
+                               std::string& strError);
+
+    /**
+      * Method that imports a single Configurable Domain, with settings, from an Xml file.
+      *
+      * @param[in] strXmlFilePath absolute path to the xml file containing the domain
+      * @param[out] strError is used as the error output
+      *
+      * @return false if any error occurs
+      */
+    bool importDomainFromFile(const std::string& strXmlFilePath, bool bOverwrite, std::string& strError);
+
 
     /**
      * Export an element object to an Xml destination.
@@ -398,6 +423,7 @@ private:
     CCommandHandler::CommandStatus importConfigurableDomainsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus exportConfigurableDomainsWithSettingsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus importConfigurableDomainWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus importSettingsCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
 

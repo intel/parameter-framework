@@ -40,6 +40,11 @@
 
 using std::string;
 
+CConfigurableDomain::CConfigurableDomain() :
+    _bSequenceAware(false), _pLastAppliedConfiguration(NULL)
+{
+}
+
 CConfigurableDomain::CConfigurableDomain(const string& strName) : base(strName), _bSequenceAware(false), _pLastAppliedConfiguration(NULL)
 {
 }
@@ -214,6 +219,8 @@ bool CConfigurableDomain::fromXml(const CXmlElement& xmlElement, CXmlSerializing
 
     // Sequence awareness (optional)
     _bSequenceAware = xmlElement.hasAttribute("SequenceAware") && xmlElement.getAttributeBoolean("SequenceAware");
+
+    setName(xmlElement.getAttributeString("Name"));
 
     // Local parsing. Do not dig
     if (!parseDomainConfigurations(xmlElement, xmlDomainImportContext) ||
