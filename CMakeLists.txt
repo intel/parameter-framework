@@ -112,3 +112,5 @@ add_subdirectory(tools/xmlValidator)
 add_subdirectory(bindings)
 
 add_subdirectory(doc)
+
+add_subdirectory(Schemas)
