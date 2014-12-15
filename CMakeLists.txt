@@ -113,4 +113,4 @@ add_subdirectory(bindings)
 
 add_subdirectory(doc)
 
-add_subdirectory(Schemas)
+add_subdirectory(schemas)

@@ -161,8 +161,8 @@ if __name__ == "__main__":
     argparser.add_argument('--target-schemas-dir',
             help="Directory of parameter-framework XML Schemas on target \
         machine (may be different than generating machine). \
-        Defaults to \"Schemas\"",
-            default="Schemas/")
+        Defaults to \"schemas\"",
+            default="schemas/")
     argparser.add_argument('--validate',
             help="Validate the settings against XML schemas",
             action='store_true')

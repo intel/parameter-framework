@@ -760,7 +760,7 @@ INPUT                  = @PROJECT_SOURCE_DIR@/README.md \
                          @PROJECT_SOURCE_DIR@/parameter/include \
                          @PROJECT_SOURCE_DIR@/remote-process \
                          @PROJECT_SOURCE_DIR@/remote-processor \
-                         @PROJECT_SOURCE_DIR@/Schemas \
+                         @PROJECT_SOURCE_DIR@/schemas \
                          @PROJECT_SOURCE_DIR@/test/test-platform \
                          @PROJECT_SOURCE_DIR@/utility \
                          @PROJECT_SOURCE_DIR@/xmlserializer \

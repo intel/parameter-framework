@@ -26,14 +26,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-INSTALL(FILES ConfigurableDomains.xsd
-              FileIncluder.xsd
-              Subsystem.xsd
-              W3cXmlAttributes.xsd
-              SystemClass.xsd
-              ParameterFrameworkConfiguration.xsd
-              ComponentLibrary.xsd
+install(FILES ComponentLibrary.xsd
               ComponentTypeSet.xsd
-              Parameter.xsd
+              ConfigurableDomains.xsd
+              ConfigurableDomain.xsd
+              FileIncluder.xsd
+              ParameterFrameworkConfiguration.xsd
               ParameterSettings.xsd
+              Parameter.xsd
+              Subsystem.xsd
+              SystemClass.xsd
+              W3cXmlAttributes.xsd
         DESTINATION share/${PROJECT_NAME}/schemas)
