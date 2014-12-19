@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2014, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,25 +29,47 @@
  */
 #pragma once
 
-#include "XmlElementSerializingContext.h"
+#include "XmlDomainSerializingContext.h"
+#include "SelectionCriteriaDefinition.h"
 
 #include <string>
 
-class CXmlDomainSerializingContext : public CXmlElementSerializingContext
+class CXmlDomainImportContext : public CXmlDomainSerializingContext
 {
 public:
-    CXmlDomainSerializingContext(std::string& strError, bool bWithSettings):
-        base(strError), _bWithSettings(bWithSettings) {}
+    CXmlDomainImportContext(std::string& strError, bool bWithSettings):
+        base(strError, bWithSettings), _bAutoValidationRequired(true) {}
 
-    // Settings to be serialized or not
-    bool withSettings() const
+    // Criteria defintion
+    void setSelectionCriteriaDefinition(
+            const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition)
     {
-        return _bWithSettings;
+        _pSelectionCriteriaDefinition = pSelectionCriteriaDefinition;
+    }
+
+    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const
+    {
+        return _pSelectionCriteriaDefinition;
+    }
+
+    // Auto validation of configurations
+    void setAutoValidationRequired(bool bAutoValidationRequired)
+    {
+        _bAutoValidationRequired = bAutoValidationRequired;
+    }
+
+    bool autoValidationRequired() const
+    {
+        return _bAutoValidationRequired;
     }
 
 private:
-    typedef CXmlElementSerializingContext base;
+    typedef CXmlDomainSerializingContext base;
 
-    // Indicate wheter or not to import settings
-    bool _bWithSettings;
+    // Criteria defintion
+    const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
+
+    // Auto validation of configurations
+    bool _bAutoValidationRequired;
 };
+

@@ -30,6 +30,7 @@
 #include "SelectionCriterionRule.h"
 #include "SelectionCriterion.h"
 #include "XmlDomainSerializingContext.h"
+#include "XmlDomainImportContext.h"
 #include "SelectionCriteriaDefinition.h"
 #include "SelectionCriterionTypeInterface.h"
 #include "RuleParser.h"
@@ -152,17 +153,17 @@ bool CSelectionCriterionRule::matches() const
 bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Retrieve actual context
-    CXmlDomainSerializingContext& xmlDomainSerializingContext = static_cast<CXmlDomainSerializingContext&>(serializingContext);
+    CXmlDomainImportContext& xmlDomainImportContext = static_cast<CXmlDomainImportContext&>(serializingContext);
 
     // Get selection criterion
     string strSelectionCriterion = xmlElement.getAttributeString("SelectionCriterion");
 
-    _pSelectionCriterion = xmlDomainSerializingContext.getSelectionCriteriaDefinition()->getSelectionCriterion(strSelectionCriterion);
+    _pSelectionCriterion = xmlDomainImportContext.getSelectionCriteriaDefinition()->getSelectionCriterion(strSelectionCriterion);
 
     // Check existence
     if (!_pSelectionCriterion) {
 
-        xmlDomainSerializingContext.setError("Couldn't find selection criterion " + strSelectionCriterion + " in " + getKind() + " " + xmlElement.getPath());
+        xmlDomainImportContext.setError("Couldn't find selection criterion " + strSelectionCriterion + " in " + getKind() + " " + xmlElement.getPath());
 
         return false;
     }
@@ -173,7 +174,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
 
     if (!setMatchesWhen(strMatchesWhen, strError)) {
 
-        xmlDomainSerializingContext.setError("Wrong MatchesWhen attribute " + strMatchesWhen + " in " + getKind() + " " + xmlElement.getPath() + ": " + strError);
+        xmlDomainImportContext.setError("Wrong MatchesWhen attribute " + strMatchesWhen + " in " + getKind() + " " + xmlElement.getPath() + ": " + strError);
 
         return false;
     }
@@ -183,7 +184,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
 
     if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
 
-        xmlDomainSerializingContext.setError("Wrong Value attribute value " + strValue + " in " + getKind() + " " + xmlElement.getPath());
+        xmlDomainImportContext.setError("Wrong Value attribute value " + strValue + " in " + getKind() + " " + xmlElement.getPath());
 
         return false;
     }

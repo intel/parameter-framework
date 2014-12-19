@@ -60,6 +60,8 @@
 #include "ConfigurableDomain.h"
 #include "DomainConfiguration.h"
 #include "XmlDomainSerializingContext.h"
+#include "XmlDomainExportContext.h"
+#include "XmlDomainImportContext.h"
 #include "BitParameterBlockType.h"
 #include "BitParameterType.h"
 #include "StringParameterType.h"
@@ -620,18 +622,18 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     string strXmlConfigurationDomainsFolder = pConfigurableDomainsFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
 
     // Parse configuration domains XML file (ask to read settings from XML file if they are not provided as binary)
-    CXmlDomainSerializingContext xmlDomainSerializingContext(strError, !pBinarySettingsFileLocation);
+    CXmlDomainImportContext xmlDomainImportContext(strError, !pBinarySettingsFileLocation);
 
     // Selection criteria definition for rule creation
-    xmlDomainSerializingContext.setSelectionCriteriaDefinition(getConstSelectionCriteria()->getSelectionCriteriaDefinition());
+    xmlDomainImportContext.setSelectionCriteriaDefinition(getConstSelectionCriteria()->getSelectionCriteriaDefinition());
 
     // Auto validation of configurations if no binary settings provided
-    xmlDomainSerializingContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
+    xmlDomainImportContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
 
     log_info("Importing configurable domains from file %s %s settings", strXmlConfigurationDomainsFilePath.c_str(), pBinarySettingsFileLocation ? "without" : "with");
 
     // Do parse
-    if (!xmlParse(xmlDomainSerializingContext, pConfigurableDomains, strXmlConfigurationDomainsFilePath, strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary, "SystemClassName")) {
+    if (!xmlParse(xmlDomainImportContext, pConfigurableDomains, strXmlConfigurationDomainsFilePath, strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary, "SystemClassName")) {
 
         return false;
     }
@@ -2009,14 +2011,14 @@ bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSetti
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
     // Context
-    CXmlDomainSerializingContext xmlDomainSerializingContext(strError, bWithSettings);
+    CXmlDomainImportContext xmlDomainImportContext(strError, bWithSettings);
 
     // Selection criteria definition for rule creation
-    xmlDomainSerializingContext.setSelectionCriteriaDefinition(
+    xmlDomainImportContext.setSelectionCriteriaDefinition(
             getConstSelectionCriteria()->getSelectionCriteriaDefinition());
 
     // Init serializing context
-    xmlDomainSerializingContext.set(
+    xmlDomainImportContext.set(
             _pElementLibrarySet->getElementLibrary(EParameterConfigurationLibrary),
             "", _strSchemaFolderLocation);
 
@@ -2050,7 +2052,7 @@ bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSetti
     // Use a doc sink that instantiate Configurable Domains from the given doc source
     CXmlMemoryDocSink memorySink(pConfigurableDomains);
 
-    bool bProcessSuccess = memorySink.process(*pSource, xmlDomainSerializingContext);
+    bool bProcessSuccess = memorySink.process(*pSource, xmlDomainImportContext);
 
     if (!bProcessSuccess) {
 
@@ -2088,13 +2090,13 @@ bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, boo
                                   pConfigurableDomains->getKind() + ".xsd";
 
     // Context
-    CXmlDomainSerializingContext xmlDomainSerializingContext(strError, bWithSettings);
+    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings);
 
     // Value space
-    xmlDomainSerializingContext.setValueSpaceRaw(_bValueSpaceIsRaw);
+    xmlDomainExportContext.setValueSpaceRaw(_bValueSpaceIsRaw);
 
     // Output raw format
-    xmlDomainSerializingContext.setOutputRawFormat(_bOutputRawFormatIsHex);
+    xmlDomainExportContext.setOutputRawFormat(_bOutputRawFormatIsHex);
 
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(pConfigurableDomains, pConfigurableDomains->getKind(),
@@ -2115,7 +2117,7 @@ bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, boo
         pSink = new CXmlStringDocSink(strXmlDest);
     }
 
-    bool bProcessSuccess = pSink->process(memorySource, xmlDomainSerializingContext);
+    bool bProcessSuccess = pSink->process(memorySource, xmlDomainExportContext);
 
     delete pSink;
     return bProcessSuccess;

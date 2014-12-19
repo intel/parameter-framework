@@ -72,7 +72,6 @@ add_library(parameter SHARED
     ConfigurationAccessContext.cpp
     XmlElementSerializingContext.cpp
     XmlParameterSerializingContext.cpp
-    XmlDomainSerializingContext.cpp
     BinarySerializableElement.cpp
     BitwiseAreaConfiguration.cpp
     BitParameterBlockType.cpp
@@ -147,7 +146,6 @@ add_library(parameter SHARED
     ConfigurationAccessContext.cpp
     XmlElementSerializingContext.cpp
     XmlParameterSerializingContext.cpp
-    XmlDomainSerializingContext.cpp
     BinarySerializableElement.cpp
     BitwiseAreaConfiguration.cpp
     BitParameterBlockType.cpp
