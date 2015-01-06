@@ -282,33 +282,6 @@ public:
                                std::string& strError);
 
     /**
-      * Method that imports a single Configurable Domain, with settings, from an Xml file.
-      *
-      * @param[in] strXmlFilePath absolute path to the xml file containing the domain
-      * @param[out] strError is used as the error output
-      *
-      * @return false if any error occurs
-      */
-    bool importDomainFromFile(const std::string& strXmlFilePath, bool bOverwrite, std::string& strError);
-
-
-    /**
-     * Export an element object to an Xml destination.
-     *
-     *
-     * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file.
-     * @param[in] xmlSerializingContext the serializing context
-     * @param[in] bToFile a boolean that determines if the destination is an xml description in
-     * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
-     * @param[in] element object to be serialized.
-     * @param[out] strError is used as the error output.
-     *
-     * @return false if any error occurs, true otherwise.
-     */
-    bool serializeElement(std::string& strXmlDest, CXmlSerializingContext& xmlSerializingContext,
-                          bool bToFile, const CElement& element, std::string& strError) const;
-
-    /**
       * Method that exports Configurable Domains to an Xml destination.
       *
       * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file
@@ -517,6 +490,34 @@ private:
 
     // Parse XML file into Root element
     bool xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement, const std::string& strXmlFilePath, const std::string& strXmlFolder, ElementLibrary eElementLibrary, const std::string& strNameAttrituteName = "Name");
+
+    /**
+     * Export an element object to an Xml destination.
+     *
+     *
+     * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file.
+     * @param[in] xmlSerializingContext the serializing context
+     * @param[in] bToFile a boolean that determines if the destination is an xml description in
+     * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
+     * @param[in] element object to be serialized.
+     * @param[out] strError is used as the error output.
+     *
+     * @return false if any error occurs, true otherwise.
+     */
+    bool serializeElement(std::string& strXmlDest, CXmlSerializingContext& xmlSerializingContext,
+                          bool bToFile, const CElement& element, std::string& strError) const;
+
+    /**
+      * Method that imports a single Configurable Domain, with settings, from an Xml file.
+      *
+      * @param[in] strXmlFilePath absolute path to the xml file containing the domain
+      * @param[out] strError is used as the error output
+      *
+      * @return false if any error occurs
+      */
+    bool importDomainFromFile(const std::string& strXmlFilePath, bool bOverwrite,
+                              std::string& strError);
+
 
     // Framework Configuration
     CParameterFrameworkConfiguration* getFrameworkConfiguration();
