@@ -2066,7 +2066,7 @@ bool CParameterMgr::removeConfigurableElementFromDomain(const string& strDomain,
 
     if (!elementLocator.locate(strConfigurableElementPath, &pLocatedElement, strError)) {
 
-        return CCommandHandler::EFailed;
+        return false;
     }
 
     // Convert element
@@ -2090,7 +2090,7 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
 
     if (!elementLocator.locate(strConfigurableElementPath, &pLocatedElement, strError)) {
 
-        return CCommandHandler::EFailed;
+        return false;
     }
 
     // Convert element
