@@ -40,7 +40,7 @@ CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
     _pParameterMgr(new CParameterMgr(strConfigurationFilePath)), _bStarted(false), _pLogger(NULL)
 {
     // Logging
-    _pParameterMgrLogger = new CParameterMgrLogger(this);
+    _pParameterMgrLogger = new CParameterMgrLogger<CParameterMgrPlatformConnector>(*this);
     _pParameterMgr->setLogger(_pParameterMgrLogger);
 }
 

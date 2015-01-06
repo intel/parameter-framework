@@ -79,7 +79,6 @@ add_library(parameter SHARED
     BitParameterType.cpp
     BitParameter.cpp
     ElementLocator.cpp
-    ParameterMgrLogger.cpp
     AutoLog.cpp
     CompoundRule.cpp
     SelectionCriterionRule.cpp
@@ -153,7 +152,6 @@ add_library(parameter SHARED
     BitParameterType.cpp
     BitParameter.cpp
     ElementLocator.cpp
-    ParameterMgrLogger.cpp
     AutoLog.cpp
     CompoundRule.cpp
     SelectionCriterionRule.cpp
@@ -189,6 +187,7 @@ install(TARGETS parameter LIBRARY DESTINATION lib)
 # Client headers
 install(FILES
     include/ParameterHandle.h
+    include/ParameterMgrLoggerForward.h
     include/ParameterMgrPlatformConnector.h
     include/SelectionCriterionInterface.h
     include/SelectionCriterionTypeInterface.h

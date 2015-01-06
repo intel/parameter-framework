@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,18 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "ParameterMgrLogger.h"
-#include "ParameterMgrPlatformConnector.h"
+#pragma once
 
-
-using std::string;
-
-CParameterMgrLogger::CParameterMgrLogger(CParameterMgrPlatformConnector *pParameterMgrPlatformConnector) :
-        _pParameterMgrPlatformConnector(pParameterMgrPlatformConnector)
-{
-}
-
-void CParameterMgrLogger::log(bool bIsWarning, const string &strLog)
-{
-    _pParameterMgrPlatformConnector->doLog(bIsWarning, strLog);
-}
+// Shared forward declaration, to ensure declaration alignment
+template<class T> class CParameterMgrLogger;

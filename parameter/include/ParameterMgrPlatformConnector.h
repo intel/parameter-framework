@@ -32,13 +32,13 @@
 #include "SelectionCriterionTypeInterface.h"
 #include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
+#include "ParameterMgrLoggerForward.h"
 
 class CParameterMgr;
-class CParameterMgrLogger;
 
 class CParameterMgrPlatformConnector
 {
-    friend class CParameterMgrLogger;
+    friend class CParameterMgrLogger<CParameterMgrPlatformConnector>;
 public:
     // Logger interface
     class ILogger
@@ -144,5 +144,5 @@ private:
     // Logging
     ILogger* _pLogger;
     // Private logging
-    CParameterMgrLogger* _pParameterMgrLogger;
+    CParameterMgrLogger<CParameterMgrPlatformConnector>* _pParameterMgrLogger;
 };

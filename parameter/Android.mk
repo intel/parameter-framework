@@ -34,6 +34,7 @@ LOCAL_PATH := $(call my-dir)
 common_copy_headers_to := parameter
 
 common_copy_headers := \
+        include/ParameterMgrLoggerForward.h \
         include/ParameterMgrPlatformConnector.h \
         include/SelectionCriterionTypeInterface.h \
         include/SelectionCriterionInterface.h \
@@ -92,7 +93,6 @@ common_src_files := \
         BitParameterType.cpp \
         BitParameter.cpp \
         ElementLocator.cpp \
-        ParameterMgrLogger.cpp \
         AutoLog.cpp \
         CompoundRule.cpp \
         SelectionCriterionRule.cpp \
