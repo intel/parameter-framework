@@ -74,6 +74,7 @@ add_library(parameter SHARED
     ParameterFrameworkConfiguration.cpp
     ParameterHandle.cpp
     ParameterMgr.cpp
+    ParameterMgrFullConnector.cpp
     ParameterMgrPlatformConnector.cpp
     ParameterType.cpp
     PathNavigator.cpp
@@ -115,6 +116,7 @@ install(TARGETS parameter LIBRARY DESTINATION lib)
 install(FILES
     include/ParameterHandle.h
     include/ParameterMgrLoggerForward.h
+    include/ParameterMgrFullConnector.h
     include/ParameterMgrPlatformConnector.h
     include/SelectionCriterionInterface.h
     include/SelectionCriterionTypeInterface.h

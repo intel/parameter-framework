@@ -36,6 +36,7 @@ common_copy_headers_to := parameter
 common_copy_headers := \
         include/ParameterMgrLoggerForward.h \
         include/ParameterMgrPlatformConnector.h \
+        include/ParameterMgrFullConnector.h \
         include/SelectionCriterionTypeInterface.h \
         include/SelectionCriterionInterface.h \
         include/ParameterHandle.h
@@ -88,6 +89,7 @@ common_src_files := \
         ParameterFrameworkConfiguration.cpp \
         ParameterHandle.cpp \
         ParameterMgr.cpp \
+        ParameterMgrFullConnector.cpp \
         ParameterMgrPlatformConnector.cpp \
         ParameterType.cpp \
         PathNavigator.cpp \
