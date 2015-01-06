@@ -221,10 +221,17 @@ public:
     ////////// Configuration/Domains handling //////////////
     // Creation/Deletion
     bool createDomain(const std::string& strName, std::string& strError);
+    bool renameDomain(const std::string& strName, const std::string& strNewName,
+                      std::string& strError);
     bool deleteDomain(const std::string& strName, std::string& strError);
     bool deleteAllDomains(std::string& strError);
+    bool setSequenceAwareness(const std::string& strName, bool bSequenceAware,
+                              std::string& strResult);
+    bool getSequenceAwareness(const std::string& strName, bool& bSequenceAware,
+                              std::string& strResult);
     bool createConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
+    bool renameConfiguration(const std::string& strDomain, const std::string& strConfiguration, const std::string& strNewConfiguration, std::string& strError);
 
     // Save/Restore
     bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::list<std::string>& strError);
@@ -234,6 +241,16 @@ public:
     bool addConfigurableElementToDomain(const std::string& strDomain, const std::string& strConfigurableElementPath, std::string& strError);
     bool removeConfigurableElementFromDomain(const std::string& strDomain, const std::string& strConfigurableElementPath, std::string& strError);
     bool split(const std::string& strDomain, const std::string& strConfigurableElementPath, std::string& strError);
+    bool setElementSequence(const std::string& strDomain, const std::string& strConfiguration,
+                            const std::vector<std::string>& astrNewElementSequence,
+                            std::string& strError);
+
+    bool getApplicationRule(const std::string& strDomain, const std::string& strConfiguration,
+                            std::string& strResult);
+    bool setApplicationRule(const std::string& strDomain, const std::string& strConfiguration,
+                            const std::string& strApplicationRule, std::string& strError);
+    bool clearApplicationRule(const std::string& strDomain, const std::string& strConfiguration,
+                              std::string& strError);
 
     /**
       * Method that imports Configurable Domains from an Xml source.
