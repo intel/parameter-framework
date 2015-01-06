@@ -354,9 +354,6 @@ public:
       */
     bool getSystemClassXMLString(std::string& strResult);
 
-    // Introspect
-    void logStructureContent(std::string& strContent) const;
-
     // CElement
     virtual std::string getKind() const;
 

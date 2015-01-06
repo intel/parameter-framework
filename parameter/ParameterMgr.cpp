@@ -1899,16 +1899,6 @@ bool CParameterMgr::sync(string& strError)
     return true;
 }
 
-// Content dump
-void CParameterMgr::logStructureContent(string& strContent) const
-{
-    string strError;
-
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
-
-    dumpContent(strContent, parameterAccessContext);
-}
-
 // Configuration/Domains handling
 bool CParameterMgr::createDomain(const string& strName, string& strError)
 {
