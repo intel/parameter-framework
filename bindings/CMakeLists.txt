@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,30 +26,4 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# has been tested on 2.8 only - might work on older versions
-cmake_minimum_required(VERSION 2.8)
-
-# linking policy (see cmake --help-policy CMP0003)
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
-
-project(parameter-framework)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
-
-add_subdirectory(xmlserializer)
-add_subdirectory(parameter)
-add_subdirectory(utility)
-add_subdirectory(remote-processor)
-
-add_subdirectory(remote-process)
-
-enable_testing()
-add_subdirectory(test/test-platform)
-add_subdirectory(test/test-fixed-point-parameter)
-
-add_subdirectory(tools/xmlGenerator)
-add_subdirectory(tools/xmlValidator)
-
-add_subdirectory(bindings)
+add_subdirectory(python)
