@@ -1414,11 +1414,6 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommman
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    // Check tuning mode
-    if (!checkTuningModeOn(strResult)) {
-
-        return CCommandHandler::EFailed;
-    }
     // Get value to set
     string strValue = remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1);
 
@@ -1644,6 +1639,12 @@ CParameterMgr::CCommandHandler::CommandStatus
 // User set/get parameters in main BlackBoard
 bool CParameterMgr::accessParameterValue(const string& strPath, string& strValue, bool bSet, string& strError)
 {
+    // Forbid write access when not in TuningMode
+    if (bSet && !checkTuningModeOn(strError)) {
+
+        return false;
+    }
+
     // Define context
     CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 

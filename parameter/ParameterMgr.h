@@ -205,7 +205,6 @@ public:
     bool sync(std::string& strError);
 
     // User set/get parameters
-    bool accessValue(CParameterAccessContext& parameterAccessContext, const std::string& strPath, std::string& strValue, bool bSet, std::string& strError);
     bool accessParameterValue(const std::string& strPath, std::string& strValue, bool bSet, std::string& strError);
     /**
      * Returns the element mapping corresponding to the path given in parameter.
@@ -502,6 +501,7 @@ private:
     CParameterBlackboard* getParameterBlackboard();
 
     // Parameter access
+    bool accessValue(CParameterAccessContext& parameterAccessContext, const std::string& strPath, std::string& strValue, bool bSet, std::string& strError);
     bool doSetValue(const std::string& strPath, const std::string& strValue, bool bRawValueSpace, bool bDynamicAccess, std::string& strError) const;
     bool doGetValue(const std::string& strPath, std::string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, bool bDynamicAccess, std::string& strError) const;
 
