@@ -33,11 +33,30 @@ LOCAL_PATH := $(call my-dir)
 # Scripts are not compiled so the prebuild mechanism is used to export them.
 
 include $(CLEAR_VARS)
+LOCAL_MODULE := EddParser.py
+LOCAL_MODULE_OWNER := intel
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_IS_HOST_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := PfwBaseTranslator.py
+LOCAL_MODULE_OWNER := intel
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_IS_HOST_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE := PFWScriptGenerator.py
 LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_IS_HOST_MODULE := true
+LOCAL_REQUIRED_MODULES := \
+    PfwBaseTranslator.py \
+    EddParser.py
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)

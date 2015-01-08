@@ -74,7 +74,7 @@ function androidWithError ()
 
 echoColor "Translate domains to pfw commands"
 echoColor "Domains source file: $DomainFile"
-m4 "$DomainFile" | $(dirname $0)/PFWScriptGenerator.py --pfw  -o "$scriptPFWFile"
+m4 "$DomainFile" | $(dirname $0)/PFWScriptGenerator.py --output-kind pfw  -o "$scriptPFWFile"
 
 echoColor "List of generated domains :"
 sed -ne 's/createDomain \(.*\)/    \1/p'  "$scriptPFWFile"

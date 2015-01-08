@@ -100,7 +100,7 @@ done
 
 log "Generate domain commands from file(s): $*"
 m4 "$@" \
-    | $(dirname $0)/PFWScriptGenerator.py --pfw  >> "${tmpfile}"
+    | $(dirname $0)/PFWScriptGenerator.py --output-kind pfw  >> "${tmpfile}"
 
 
 echo "setAutoSync off" >> "${tmpfile}"
