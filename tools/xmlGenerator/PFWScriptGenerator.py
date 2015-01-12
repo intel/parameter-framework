@@ -259,14 +259,6 @@ class Element(object):
             # Add children at the begining of the child list
             self.children = children + self.children
 
-    def childrenToXML(self, prefix=""):
-        """return XML printed children"""
-        body = ""
-        for child in  self.children :
-            body = body + child.toXML(prefix)
-
-        return body
-
     def childrenToString(self, prefix=""):
         """return raw printed children """
         body = ""
@@ -279,20 +271,6 @@ class Element(object):
         """return raw printed element"""
         selfToString = prefix + " " + self.tag + " " + str(self.option)
         return selfToString + "\n" + self.childrenToString(prefix + "\t")
-
-    def toXML(self, prefix="") :
-        """return XML printed element"""
-        # full = begin:"<tag options" + body:children.toXML + end:"</tag>"
-        begin = prefix + "<" + self.tag + " " + str(self.option)
-        body = self.childrenToXML(prefix + "\t")
-
-        if body == "" :
-            full = begin + "/>"
-        else :
-            end = prefix + "</" + self.tag + ">"
-            full = begin + ">\n" + body + end
-
-        return full + "\n"
 
     def extractChildrenByClass(self, classTypeList) :
         """return all children whose class is in the list argument
@@ -720,9 +698,6 @@ class GroupConfiguration (Configuration) :
         context.getConfigurations().append(selfCopy)
 
 
-    def toXML(self, context="") :
-        return self.childrenToXML(context)
-
     def getConfigurableElements (self) :
         """return a list. Each elements consist of a list of configurable element of a configuration
 
@@ -902,8 +877,6 @@ class GroupDomain (Domain) :
     tag = "groupDomain"
     match = re.compile(r"(supDomain|domainGroup) *:").match
     childWhiteList = ["GroupDomain", "Domain", "GroupConfiguration", "Rule", "Operator"]
-    def toXML(self, context="") :
-        return self.childrenToXML(context)
 
     def toPFWScript (self, context={}):
         script = ""
@@ -919,8 +892,6 @@ class GroupDomain (Domain) :
 class Root(Element):
     tag = "root"
     childWhiteList = ["Domain", "GroupDomain"]
-    def toXML(self, context="") :
-        return self.childrenToXML(context)
 
 
 # ===========================================
@@ -1143,10 +1114,6 @@ class ArgparseArgumentParser(object) :
                                         dest="pfwFlag",
                                         action='store_true',
                                         help="output pfw commands (default)")
-        outputFormatGroupe.add_argument('--xml',
-                                        dest="xmlFlag",
-                                        action='store_true',
-                                        help="output XML settings (Not fully implemented yet)")
         outputFormatGroupe.add_argument('--raw',
                                         dest="rawFlag",
                                         action='store_true',
@@ -1162,13 +1129,11 @@ class ArgparseArgumentParser(object) :
 
         self.debug = options.debugFlag
 
-        if not (options.pfwFlag or options.xmlFlag or options.rawFlag) :
+        if not (options.pfwFlag or options.rawFlag) :
              # --pfw is default if none provided
              self.pfw = True
-             self.xml = self.raw = False
         else :
             self.pfw = options.pfwFlag
-            self.xml = options.xmlFlag
             self.raw = options.rawFlag
 
 
@@ -1178,7 +1143,7 @@ class OptParseArgumentParser(object) :
     result of parsing are the class atributs"""
     def __init__(self) :
 
-        myOptParser = optparse.OptionParser(usage="usage: [-h] [-d] [--pfw | --xml | --raw] "
+        myOptParser = optparse.OptionParser(usage="usage: [-h] [-d] [--pfw | --raw] "
                                             "[-o OUTPUTFILE] [INPUTFILE]",
                                             description="Process domain scripts")
 
@@ -1198,10 +1163,6 @@ class OptParseArgumentParser(object) :
                                       dest="pfwFlag",
                                       action='store_true',
                                       help="output pfw commands (default)")
-        outputFormatGroupe.add_option('--xml',
-                                      dest="xmlFlag",
-                                      action='store_true',
-                                      help="output XML settings (Not fully implemented yet)")
         outputFormatGroupe.add_option('--raw',
                                       dest="rawFlag",
                                       action='store_true',
@@ -1221,14 +1182,12 @@ class OptParseArgumentParser(object) :
 
         self.debug = options.debugFlag
 
-        if not (options.pfwFlag or options.xmlFlag or options.rawFlag) :
+        if not (options.pfwFlag or options.rawFlag) :
              # --pfw is default if none provided
              # TODO: find a way to do that with argparse directly
              self.pfw = True
-             self.xml = self.raw = False
         else :
             self.pfw = options.pfwFlag
-            self.xml = options.xmlFlag
             self.raw = options.rawFlag
 
     @staticmethod
@@ -1281,10 +1240,7 @@ def main ():
                 printE("EXIT ON FAILURE")
                 exit(1)
 
-            else :
-                if options.xml :
-                    options.output.write(myroot.toXML())
-
+            else:
                 if options.pfw :
                     options.output.write(myroot.toPFWScript())
 
