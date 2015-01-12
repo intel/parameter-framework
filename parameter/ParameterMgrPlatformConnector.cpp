@@ -128,6 +128,16 @@ bool CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad()
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
 }
 
+const string& CParameterMgrPlatformConnector::getSchemaFolderLocation() const
+{
+    return _pParameterMgr->getSchemaFolderLocation();
+}
+
+void CParameterMgrPlatformConnector::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+{
+    _pParameterMgr->setSchemaFolderLocation(strSchemaFolderLocation);
+}
+
 bool CParameterMgrPlatformConnector::setValidateSchemasOnStart(
     bool bValidate, std::string& strError)
 {

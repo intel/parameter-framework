@@ -120,6 +120,16 @@ bool CParameterMgrFullConnector::getFailureOnFailedSettingsLoad()
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
 }
 
+const string& CParameterMgrFullConnector::getSchemaFolderLocation() const
+{
+    return _pParameterMgr->getSchemaFolderLocation();
+}
+
+void CParameterMgrFullConnector::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+{
+    _pParameterMgr->setSchemaFolderLocation(strSchemaFolderLocation);
+}
+
 void CParameterMgrFullConnector::setValidateSchemasOnStart(bool bValidate)
 {
     _pParameterMgr->setValidateSchemasOnStart(bValidate);

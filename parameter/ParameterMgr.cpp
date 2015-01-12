@@ -846,6 +846,16 @@ bool CParameterMgr::getFailureOnFailedSettingsLoad()
     return _bFailOnFailedSettingsLoad;
 }
 
+const string& CParameterMgr::getSchemaFolderLocation() const
+{
+    return _strSchemaFolderLocation;
+}
+
+void CParameterMgr::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+{
+    _strSchemaFolderLocation = strSchemaFolderLocation;
+}
+
 void CParameterMgr::setValidateSchemasOnStart(bool bValidate)
 {
     _bValidateSchemasOnStart = bValidate;
