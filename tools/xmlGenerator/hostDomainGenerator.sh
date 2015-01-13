@@ -245,7 +245,7 @@ changeSocketsPorts() {
 # Start the pfw using different socket if it fails
 safeStartPFW () {
     local retry=0
-    local nbRetry=10
+    local nbRetry=1000 # Workaround to avoid build failure, it very very rarely fail this many time
 
     # Choose a new pair of socket ports
     changeSocketsPorts
