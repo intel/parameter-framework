@@ -108,6 +108,15 @@ class PfwTranslationErrorHandler:
     def hasFailed(self):
         return self._hasFailed
 
+class PfwLogger(PyPfw.ILogger):
+    def __init__(self):
+        super(PfwLogger, self).__init__()
+        self.__logger = logging.root.getChild("parameter-framework")
+
+    def log(self, is_warning, message):
+        log_func = self.__logger.warning if is_warning else self.__logger.info
+        log_func(message)
+
 # If this file is directly executed
 if __name__ == "__main__":
     logging.root.setLevel(logging.INFO)
@@ -262,6 +271,9 @@ if __name__ == "__main__":
             else:
                 schemas_dir = os.path.join(install_path, "Schemas")
             pfw.setSchemaFolderLocation(schemas_dir)
+
+        logger = PfwLogger()
+        pfw.setLogger(logger)
 
         # Finally, start the Pfw
         ok, error = pfw.start()
