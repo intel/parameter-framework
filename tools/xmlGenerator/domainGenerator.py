@@ -275,6 +275,10 @@ if __name__ == "__main__":
         logger = PfwLogger()
         pfw.setLogger(logger)
 
+        # Disable the remote interface because we don't need it and it might
+        # get in the way (e.g. the port is already in use)
+        pfw.setForceNoRemoteInterface(True)
+
         # Finally, start the Pfw
         ok, error = pfw.start()
         if not ok:
