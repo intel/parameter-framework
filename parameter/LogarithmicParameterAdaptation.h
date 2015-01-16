@@ -27,29 +27,45 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 #pragma once
 
-#include "ParameterAdaptation.h"
+#include "LinearParameterAdaptation.h"
 
-#include <string>
-
-class CLinearParameterAdaptation : public CParameterAdaptation
+/**
+ * This class is used to perform a logarithmic adapation of type:
+ * (slopeNumerator / slopeDenominator) * log(parameter) + offset
+ * Since log(x) == -INFINITY , we can define FloorValue as a
+ *       x -> 0
+ * a lower bound limit for the adaptation
+ */
+class CLogarithmicParameterAdaptation : public CLinearParameterAdaptation
 {
 public:
-    CLinearParameterAdaptation();
-    CLinearParameterAdaptation(const std::string& strType);
+    CLogarithmicParameterAdaptation();
 
-    // Conversions
+    /**
+     * Conversions must satisfy the following: f(f'(a)) = a
+     * Let f=fromUserValue and f'=toUserValue
+     * if y = f(log(x)/log(base)), then
+     * f'(y) * log(base) = log (x)
+     * exp(f'(y)*log(base)) = x
+     */
     virtual int64_t fromUserValue(double dValue) const;
     virtual double toUserValue(int64_t iValue) const;
 
-    // Element properties
     virtual void showProperties(std::string& strResult) const;
 
-    // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 private:
-    // Slope attributes
-    double _dSlopeNumerator;
-    double _dSlopeDenominator;
+    /**
+     * _dLogarithmBase characterizes the new logarithm logB(x) with
+     * the following property: logB(x) = log(x) / log(_dLogarithmBase).
+     * log being the base-e logarithm.
+     */
+    double _dLogarithmBase;
+    /**
+     * _dFloorValue reflects the lower bound for volume attenuation
+     */
+    double _dFloorValue;
 };

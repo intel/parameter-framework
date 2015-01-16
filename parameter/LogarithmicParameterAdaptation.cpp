@@ -27,78 +27,63 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "LinearParameterAdaptation.h"
 
-#define base CParameterAdaptation
+#include "LogarithmicParameterAdaptation.h"
+#include <math.h>
 
-using std::string;
+#define base CLinearParameterAdaptation
 
-CLinearParameterAdaptation::CLinearParameterAdaptation() : base("Linear"), _dSlopeNumerator(1), _dSlopeDenominator(1)
-{
-}
-
-CLinearParameterAdaptation::CLinearParameterAdaptation(const string& strType) :
-    base(strType), _dSlopeNumerator(1), _dSlopeDenominator(1)
+// M_E is the base of the natural logarithm for 'e' from math.h
+CLogarithmicParameterAdaptation::CLogarithmicParameterAdaptation() : base("Logarithmic"),
+    _dLogarithmBase(M_E), _dFloorValue(-INFINITY)
 {
 }
 
 // Element properties
-void CLinearParameterAdaptation::showProperties(string& strResult) const
+void CLogarithmicParameterAdaptation::showProperties(std::string& strResult) const
 {
     base::showProperties(strResult);
 
-    // SlopeNumerator
-    strResult += " - SlopeNumerator: ";
-    strResult += toString(_dSlopeNumerator);
+    strResult += " - LogarithmBase: ";
+    strResult += toString(_dLogarithmBase);
     strResult += "\n";
-
-    // SlopeDenominator
-    strResult += " - SlopeDenominator: ";
-    strResult += toString(_dSlopeDenominator);
+    strResult += " - FloorValue: ";
+    strResult += toString(_dFloorValue);
     strResult += "\n";
 }
 
-// From IXmlSink
-bool CLinearParameterAdaptation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CLogarithmicParameterAdaptation::fromXml(const CXmlElement& xmlElement,
+                                            CXmlSerializingContext& serializingContext)
 {
-    // Get SlopeNumerator
-    if (xmlElement.hasAttribute("SlopeNumerator")) {
 
-        _dSlopeNumerator = xmlElement.getAttributeDouble("SlopeNumerator");
+    if (xmlElement.hasAttribute("LogarithmBase")) {
 
-    } else {
-        // Default
-        _dSlopeNumerator = 1;
-    }
-    // Get SlopeDenominator
-    if (xmlElement.hasAttribute("SlopeDenominator")) {
+        _dLogarithmBase = xmlElement.getAttributeDouble("LogarithmBase");
 
-        _dSlopeDenominator = xmlElement.getAttributeDouble("SlopeDenominator");
-
-        // Avoid by 0 division errors
-        if (_dSlopeDenominator == 0) {
-
-            serializingContext.setError("SlopeDenominator attribute can't be 0 on element" + xmlElement.getPath());
+        // Avoid negative and 1 values
+        if (_dLogarithmBase <= 0 || _dLogarithmBase == 1) {
+            serializingContext.setError("LogarithmBase attribute cannot be negative or 1 on element"
+                                        + xmlElement.getPath());
 
             return false;
         }
-
-    } else {
-        // Default
-        _dSlopeDenominator = 1;
     }
 
+    if (xmlElement.hasAttribute("FloorValue")) {
+        _dFloorValue = xmlElement.getAttributeDouble("FloorValue");
+    }
     // Base
     return base::fromXml(xmlElement, serializingContext);
 }
 
-// Conversions
-int64_t CLinearParameterAdaptation::fromUserValue(double dValue) const
+
+int64_t CLogarithmicParameterAdaptation::fromUserValue(double dValue) const
 {
-    return base::fromUserValue(dValue * _dSlopeNumerator / _dSlopeDenominator);
+    return fmax(round(base::fromUserValue(log(dValue) / log(_dLogarithmBase))),
+                        _dFloorValue);
 }
 
-double CLinearParameterAdaptation::toUserValue(int64_t iValue) const
+double CLogarithmicParameterAdaptation::toUserValue(int64_t iValue) const
 {
-    return base::toUserValue(iValue) * _dSlopeDenominator / _dSlopeNumerator;
+    return exp(base::toUserValue(iValue) * log(_dLogarithmBase));
 }

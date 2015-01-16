@@ -79,6 +79,7 @@ common_src_files := \
         InstanceDefinition.cpp \
         IntegerParameterType.cpp \
         LinearParameterAdaptation.cpp \
+        LogarithmicParameterAdaptation.cpp \
         MappingContext.cpp \
         MappingData.cpp \
         ParameterAccessContext.cpp \
