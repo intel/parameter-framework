@@ -78,6 +78,19 @@ public:
     // Must be cassed after successfull start
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError) const;
 
+    /** Is the remote interface forcefully disabled ?
+     */
+    bool getForceNoRemoteInterface() const;
+
+    /**
+     * Forcefully disable the remote interface or cancel this policy.
+     *
+     * Has no effect if called after calling start().
+     *
+     * @param[in] bForceNoRemoteInterface disable the remote interface if true.
+     */
+    void setForceNoRemoteInterface(bool bForceNoRemoteInterface);
+
     /** Should start fail in case of missing subsystems.
       *
       * Will fail if called on started instance.

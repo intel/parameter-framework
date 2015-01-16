@@ -88,6 +88,9 @@ public:
     // Configuration application
     void applyConfigurations();
 
+    bool getForceNoRemoteInterface() const;
+    void setForceNoRemoteInterface(bool bForceNoRemoteInterface);
+
     void setFailureOnMissingSubsystem(bool bFail);
     bool getFailureOnMissingSubsystem() const;
 

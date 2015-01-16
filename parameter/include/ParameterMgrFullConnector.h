@@ -71,6 +71,19 @@ public:
             const ISelectionCriterionTypeInterface* pSelectionCriterionType);
     ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
 
+    /** Is the remote interface forcefully disabled ?
+     */
+    bool getForceNoRemoteInterface() const;
+
+    /**
+     * Forcefully disable the remote interface or cancel this policy.
+     *
+     * Has no effect if called after calling start().
+     *
+     * @param[in] bForceNoRemoteInterface disable the remote interface if true.
+     */
+    void setForceNoRemoteInterface(bool bForceNoRemoteInterface);
+
     void applyConfigurations();
 
     /** Should start fail in case of missing subsystems.

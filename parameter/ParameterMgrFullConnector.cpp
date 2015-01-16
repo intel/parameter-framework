@@ -95,6 +95,16 @@ ISelectionCriterionInterface* CParameterMgrFullConnector::getSelectionCriterion(
     return _pParameterMgr->getSelectionCriterion(strName);
 }
 
+bool CParameterMgrFullConnector::getForceNoRemoteInterface() const
+{
+    return _pParameterMgr->getForceNoRemoteInterface();
+}
+
+void CParameterMgrFullConnector::setForceNoRemoteInterface(bool bForceNoRemoteInterface)
+{
+    _pParameterMgr->setForceNoRemoteInterface(bForceNoRemoteInterface);
+}
+
 void CParameterMgrFullConnector::applyConfigurations()
 {
     return _pParameterMgr->applyConfigurations();

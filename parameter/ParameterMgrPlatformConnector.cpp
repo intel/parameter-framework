@@ -93,6 +93,16 @@ void CParameterMgrPlatformConnector::setLogger(CParameterMgrPlatformConnector::I
     _pLogger = pLogger;
 }
 
+bool CParameterMgrPlatformConnector::getForceNoRemoteInterface() const
+{
+    return _pParameterMgr->getForceNoRemoteInterface();
+}
+
+void CParameterMgrPlatformConnector::setForceNoRemoteInterface(bool bForceNoRemoteInterface)
+{
+    _pParameterMgr->setForceNoRemoteInterface(bForceNoRemoteInterface);
+}
+
 bool CParameterMgrPlatformConnector::setFailureOnMissingSubsystem(bool bFail, string &strError)
 {
     if (_bStarted) {
