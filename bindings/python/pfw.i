@@ -27,7 +27,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-%module PyPfw
+// The generated python module will be named "PyPfw"
+// the "directors" feature is used to derive Python classes and make them look
+// like derived C++ classes (calls to virtual methods will be properly
+// forwarded to Python) - only on classes for which is it specified, see
+// ILogger below..
+%module(directors="1") PyPfw
+
+%feature("director:except") {
+    if ($error != NULL) {
+        throw Swig::DirectorMethodException();
+    }
+}
+%exception {
+    try { $action }
+    catch (Swig::DirectorException &e) { SWIG_fail; }
+}
 
 %include "std_string.i"
 %include "std_vector.i"
@@ -62,6 +77,8 @@ public:
     CParameterMgrFullConnector(const std::string& strConfigurationFilePath);
 
     bool start(std::string& strError);
+
+    void setLogger(ILogger* pLogger);
 
     ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive);
     ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName,
@@ -154,6 +171,25 @@ public:
     bool getSystemClassXMLString(std::string& strResult);
 %clear std::string& strResult;
 };
+
+// SWIG nested class support is not complete - cf.
+// http://swig.org/Doc2.0/SWIGPlus.html#SWIGPlus_nested_classes
+// This link also explains how to trick SWIG and pretend that
+// ILogger is a toplevel class (whereas it actually is an inner class of
+// CParameterMgrFullConnector
+// Logger interface
+%feature("director") ILogger;
+%nestedworkaround CParameterMgrFullConnector::ILogger;
+class ILogger
+{
+    public:
+        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
+    protected:
+        virtual ~ILogger() {}
+};
+%{
+typedef CParameterMgrFullConnector::ILogger ILogger;
+%}
 
 class ISelectionCriterionTypeInterface
 {
