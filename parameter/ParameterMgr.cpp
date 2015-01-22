@@ -1118,17 +1118,12 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteAllDomainsCom
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameDomainCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return getConfigurableDomains()->renameDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return renameDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ?
+        CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setSequenceAwarenessCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    // Check tuning mode
-    if (!checkTuningModeOn(strResult)) {
-
-        return CCommandHandler::EFailed;
-    }
-
     // Set property
     bool bSequenceAware;
 
@@ -1145,7 +1140,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setSequenceAwarenes
         return CCommandHandler::EShowUsage;
     }
 
-    return getConfigurableDomains()->setSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return setSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult) ?
+        CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSequenceAwarenessCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1153,7 +1149,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSequenceAwarenes
     // Get property
     bool bSequenceAware;
 
-    if (!getConfigurableDomains()->getSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult)) {
+    if (!getSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1215,7 +1211,9 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteConfiguration
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return getConfigurableDomains()->renameConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), remoteCommand.getArgument(2), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return renameConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+            remoteCommand.getArgument(2), strResult) ?
+        CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::saveConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1237,12 +1235,6 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfiguratio
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    // Check tuning mode
-    if (!checkTuningModeOn(strResult)) {
-
-        return CCommandHandler::EFailed;
-    }
-
     // Build configurable element path list
     std::vector<string> astrNewElementSequence;
 
@@ -1254,7 +1246,9 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceC
     }
 
     // Delegate to configurable domains
-    return getConfigurableDomains()->setElementSequence(remoteCommand.getArgument(0), remoteCommand.getArgument(1), astrNewElementSequence, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return setElementSequence(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+            astrNewElementSequence, strResult) ?
+        CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSequenceCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1266,19 +1260,25 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSequenceC
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setRuleCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     // Delegate to configurable domains
-    return getConfigurableDomains()->setApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1), remoteCommand.packArguments(2, remoteCommand.getArgumentCount() - 2), getConstSelectionCriteria()->getSelectionCriteriaDefinition(), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return setApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+            remoteCommand.packArguments(2, remoteCommand.getArgumentCount() - 2), strResult) ?
+        CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::clearRuleCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     // Delegate to configurable domains
-    return getConfigurableDomains()->clearApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return clearApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+            strResult) ?
+        CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getRuleCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     // Delegate to configurable domains
-    return getConfigurableDomains()->getApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return getApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+            strResult) ?
+        CCommandHandler::ESucceeded : CCommandHandler::EFailed;
 }
 
 /// Elements/Parameters
@@ -1414,11 +1414,6 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommman
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setParameterCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    // Check tuning mode
-    if (!checkTuningModeOn(strResult)) {
-
-        return CCommandHandler::EFailed;
-    }
     // Get value to set
     string strValue = remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1);
 
@@ -1644,6 +1639,12 @@ CParameterMgr::CCommandHandler::CommandStatus
 // User set/get parameters in main BlackBoard
 bool CParameterMgr::accessParameterValue(const string& strPath, string& strValue, bool bSet, string& strError)
 {
+    // Forbid write access when not in TuningMode
+    if (bSet && !checkTuningModeOn(strError)) {
+
+        return false;
+    }
+
     // Define context
     CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
@@ -1899,16 +1900,6 @@ bool CParameterMgr::sync(string& strError)
     return true;
 }
 
-// Content dump
-void CParameterMgr::logStructureContent(string& strContent) const
-{
-    string strError;
-
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
-
-    dumpContent(strContent, parameterAccessContext);
-}
-
 // Configuration/Domains handling
 bool CParameterMgr::createDomain(const string& strName, string& strError)
 {
@@ -1934,6 +1925,12 @@ bool CParameterMgr::deleteDomain(const string& strName, string& strError)
     return getConfigurableDomains()->deleteDomain(strName, strError);
 }
 
+bool CParameterMgr::renameDomain(const string& strName, const string& strNewName, string& strError)
+{
+    // Delegate to configurable domains
+    return getConfigurableDomains()->renameDomain(strName, strNewName, strError);
+}
+
 bool CParameterMgr::deleteAllDomains(string& strError)
 {
     // Check tuning mode
@@ -1948,6 +1945,23 @@ bool CParameterMgr::deleteAllDomains(string& strError)
     return true;
 }
 
+bool CParameterMgr::setSequenceAwareness(const string& strName, bool bSequenceAware, string& strResult)
+{
+    // Check tuning mode
+    if (!checkTuningModeOn(strResult)) {
+
+        return false;
+    }
+
+    return getConfigurableDomains()->setSequenceAwareness(strName, bSequenceAware, strResult);
+}
+
+bool CParameterMgr::getSequenceAwareness(const string& strName, bool& bSequenceAware,
+                                         string& strResult)
+{
+    return getConfigurableDomains()->getSequenceAwareness(strName, bSequenceAware, strResult);
+}
+
 bool CParameterMgr::createConfiguration(const string& strDomain, const string& strConfiguration, string& strError)
 {
     // Check tuning mode
@@ -1958,6 +1972,12 @@ bool CParameterMgr::createConfiguration(const string& strDomain, const string& s
 
     // Delegate to configurable domains
     return getConfigurableDomains()->createConfiguration(strDomain, strConfiguration, _pMainParameterBlackboard, strError);
+}
+bool CParameterMgr::renameConfiguration(const string& strDomain, const string& strConfiguration,
+                                        const string& strNewConfiguration, string& strError)
+{
+    return getConfigurableDomains()->renameConfiguration(strDomain, strConfiguration,
+            strNewConfiguration, strError);
 }
 
 bool CParameterMgr::deleteConfiguration(const string& strDomain, const string& strConfiguration, string& strError)
@@ -2037,7 +2057,7 @@ bool CParameterMgr::removeConfigurableElementFromDomain(const string& strDomain,
 
     if (!elementLocator.locate(strConfigurableElementPath, &pLocatedElement, strError)) {
 
-        return CCommandHandler::EFailed;
+        return false;
     }
 
     // Convert element
@@ -2061,7 +2081,7 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
 
     if (!elementLocator.locate(strConfigurableElementPath, &pLocatedElement, strError)) {
 
-        return CCommandHandler::EFailed;
+        return false;
     }
 
     // Convert element
@@ -2069,6 +2089,40 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
 
     // Delegate
     return getConfigurableDomains()->split(strDomain, pConfigurableElement, strError);
+}
+
+bool CParameterMgr::setElementSequence(const string& strDomain, const string& strConfiguration,
+                                       const std::vector<string>& astrNewElementSequence,
+                                       string& strError)
+{
+    // Check tuning mode
+    if (!checkTuningModeOn(strError)) {
+
+        return false;
+    }
+
+    return getConfigurableDomains()->setElementSequence(strDomain, strConfiguration,
+            astrNewElementSequence, strError);
+}
+
+bool CParameterMgr::getApplicationRule(const string& strDomain, const string& strConfiguration,
+                                       string& strResult)
+{
+    return getConfigurableDomains()->getApplicationRule(strDomain, strConfiguration, strResult);
+}
+
+bool CParameterMgr::setApplicationRule(const string& strDomain, const string& strConfiguration,
+                                       const string& strApplicationRule, string& strError)
+{
+    return getConfigurableDomains()->setApplicationRule(strDomain, strConfiguration,
+            strApplicationRule, getConstSelectionCriteria()->getSelectionCriteriaDefinition(),
+            strError);
+}
+
+bool CParameterMgr::clearApplicationRule(const string& strDomain, const string& strConfiguration,
+                                         string& strError)
+{
+    return getConfigurableDomains()->clearApplicationRule(strDomain, strConfiguration, strError);
 }
 
 bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSettings,

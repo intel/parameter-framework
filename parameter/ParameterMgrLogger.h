@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,22 +29,29 @@
  */
 #pragma once
 
+#include "ParameterMgrLoggerForward.h"
 #include "ParameterMgr.h"
 
 #include <string>
 
-class CParameterMgrPlatformConnector;
-
+/* Wrap a class to expose its logging [log(bool, string&)] capabilities
+ * through ILogger. */
+template<class T>
 class CParameterMgrLogger : public CParameterMgr::ILogger
 {
 public:
-    CParameterMgrLogger(CParameterMgrPlatformConnector* pParameterMgrPlatformConnector);
+    CParameterMgrLogger(T& parameterMgrConnector) :
+        _parameterMgrConnector(parameterMgrConnector)
+    {
+    }
 
-    // Logging
-    virtual void log(bool bIsWarning, const std::string& strLog);
+    virtual void log(bool bIsWarning, const std::string& strLog)
+    {
+        _parameterMgrConnector.doLog(bIsWarning, strLog);
+    }
 
 private:
     // Log destination
-    CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;
+    T& _parameterMgrConnector;
 };
 

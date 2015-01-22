@@ -205,7 +205,6 @@ public:
     bool sync(std::string& strError);
 
     // User set/get parameters
-    bool accessValue(CParameterAccessContext& parameterAccessContext, const std::string& strPath, std::string& strValue, bool bSet, std::string& strError);
     bool accessParameterValue(const std::string& strPath, std::string& strValue, bool bSet, std::string& strError);
     /**
      * Returns the element mapping corresponding to the path given in parameter.
@@ -221,10 +220,17 @@ public:
     ////////// Configuration/Domains handling //////////////
     // Creation/Deletion
     bool createDomain(const std::string& strName, std::string& strError);
+    bool renameDomain(const std::string& strName, const std::string& strNewName,
+                      std::string& strError);
     bool deleteDomain(const std::string& strName, std::string& strError);
     bool deleteAllDomains(std::string& strError);
+    bool setSequenceAwareness(const std::string& strName, bool bSequenceAware,
+                              std::string& strResult);
+    bool getSequenceAwareness(const std::string& strName, bool& bSequenceAware,
+                              std::string& strResult);
     bool createConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
+    bool renameConfiguration(const std::string& strDomain, const std::string& strConfiguration, const std::string& strNewConfiguration, std::string& strError);
 
     // Save/Restore
     bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::list<std::string>& strError);
@@ -234,6 +240,16 @@ public:
     bool addConfigurableElementToDomain(const std::string& strDomain, const std::string& strConfigurableElementPath, std::string& strError);
     bool removeConfigurableElementFromDomain(const std::string& strDomain, const std::string& strConfigurableElementPath, std::string& strError);
     bool split(const std::string& strDomain, const std::string& strConfigurableElementPath, std::string& strError);
+    bool setElementSequence(const std::string& strDomain, const std::string& strConfiguration,
+                            const std::vector<std::string>& astrNewElementSequence,
+                            std::string& strError);
+
+    bool getApplicationRule(const std::string& strDomain, const std::string& strConfiguration,
+                            std::string& strResult);
+    bool setApplicationRule(const std::string& strDomain, const std::string& strConfiguration,
+                            const std::string& strApplicationRule, std::string& strError);
+    bool clearApplicationRule(const std::string& strDomain, const std::string& strConfiguration,
+                              std::string& strError);
 
     /**
       * Method that imports Configurable Domains from an Xml source.
@@ -264,33 +280,6 @@ public:
       */
     bool importSingleDomainXml(const std::string& strXmlSource, bool bOverwrite,
                                std::string& strError);
-
-    /**
-      * Method that imports a single Configurable Domain, with settings, from an Xml file.
-      *
-      * @param[in] strXmlFilePath absolute path to the xml file containing the domain
-      * @param[out] strError is used as the error output
-      *
-      * @return false if any error occurs
-      */
-    bool importDomainFromFile(const std::string& strXmlFilePath, bool bOverwrite, std::string& strError);
-
-
-    /**
-     * Export an element object to an Xml destination.
-     *
-     *
-     * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file.
-     * @param[in] xmlSerializingContext the serializing context
-     * @param[in] bToFile a boolean that determines if the destination is an xml description in
-     * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
-     * @param[in] element object to be serialized.
-     * @param[out] strError is used as the error output.
-     *
-     * @return false if any error occurs, true otherwise.
-     */
-    bool serializeElement(std::string& strXmlDest, CXmlSerializingContext& xmlSerializingContext,
-                          bool bToFile, const CElement& element, std::string& strError) const;
 
     /**
       * Method that exports Configurable Domains to an Xml destination.
@@ -336,9 +325,6 @@ public:
       * @return false if any error occures during the creation of the xml description
       */
     bool getSystemClassXMLString(std::string& strResult);
-
-    // Introspect
-    void logStructureContent(std::string& strContent) const;
 
     // CElement
     virtual std::string getKind() const;
@@ -488,6 +474,7 @@ private:
     CParameterBlackboard* getParameterBlackboard();
 
     // Parameter access
+    bool accessValue(CParameterAccessContext& parameterAccessContext, const std::string& strPath, std::string& strValue, bool bSet, std::string& strError);
     bool doSetValue(const std::string& strPath, const std::string& strValue, bool bRawValueSpace, bool bDynamicAccess, std::string& strError) const;
     bool doGetValue(const std::string& strPath, std::string& strValue, bool bRawValueSpace, bool bHexOutputRawFormat, bool bDynamicAccess, std::string& strError) const;
 
@@ -503,6 +490,34 @@ private:
 
     // Parse XML file into Root element
     bool xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement, const std::string& strXmlFilePath, const std::string& strXmlFolder, ElementLibrary eElementLibrary, const std::string& strNameAttrituteName = "Name");
+
+    /**
+     * Export an element object to an Xml destination.
+     *
+     *
+     * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file.
+     * @param[in] xmlSerializingContext the serializing context
+     * @param[in] bToFile a boolean that determines if the destination is an xml description in
+     * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
+     * @param[in] element object to be serialized.
+     * @param[out] strError is used as the error output.
+     *
+     * @return false if any error occurs, true otherwise.
+     */
+    bool serializeElement(std::string& strXmlDest, CXmlSerializingContext& xmlSerializingContext,
+                          bool bToFile, const CElement& element, std::string& strError) const;
+
+    /**
+      * Method that imports a single Configurable Domain, with settings, from an Xml file.
+      *
+      * @param[in] strXmlFilePath absolute path to the xml file containing the domain
+      * @param[out] strError is used as the error output
+      *
+      * @return false if any error occurs
+      */
+    bool importDomainFromFile(const std::string& strXmlFilePath, bool bOverwrite,
+                              std::string& strError);
+
 
     // Framework Configuration
     CParameterFrameworkConfiguration* getFrameworkConfiguration();

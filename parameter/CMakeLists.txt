@@ -27,154 +27,80 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 add_library(parameter SHARED
-    Subsystem.cpp
-    PathNavigator.cpp
-    Element.cpp
-    SystemClass.cpp
-    ParameterMgr.cpp
-    SelectionCriteria.cpp
-    SelectionCriterionLibrary.cpp
-    SelectionCriteriaDefinition.cpp
-    SelectionCriterionType.cpp
-    ElementLibrary.cpp
-    SubsystemElementBuilder.cpp
-    SelectionCriterion.cpp
-    ComponentLibrary.cpp
-    ConfigurableElement.cpp
-    MappingData.cpp
-    ParameterBlackboard.cpp
-    ComponentType.cpp
-    TypeElement.cpp
-    InstanceConfigurableElement.cpp
-    ComponentInstance.cpp
-    ParameterBlockType.cpp
-    ParameterType.cpp
-    Parameter.cpp
-    BooleanParameterType.cpp
-    IntegerParameterType.cpp
-    ArrayParameter.cpp
-    InstanceDefinition.cpp
-    ParameterMgrPlatformConnector.cpp
-    FixedPointParameterType.cpp
-    ParameterAccessContext.cpp
-    XmlFileIncluderElement.cpp
-    ParameterFrameworkConfiguration.cpp
-    FrameworkConfigurationLocation.cpp
-    PluginLocation.cpp
-    ElementLibrarySet.cpp
-    ErrorContext.cpp
     AreaConfiguration.cpp
-    DomainConfiguration.cpp
-    ConfigurableDomain.cpp
-    SyncerSet.cpp
-    ConfigurableDomains.cpp
-    BinaryStream.cpp
-    ConfigurationAccessContext.cpp
-    XmlElementSerializingContext.cpp
-    XmlParameterSerializingContext.cpp
-    BinarySerializableElement.cpp
-    BitwiseAreaConfiguration.cpp
-    BitParameterBlockType.cpp
-    BitParameterBlock.cpp
-    BitParameterType.cpp
-    BitParameter.cpp
-    ElementLocator.cpp
-    ParameterMgrLogger.cpp
+    ArrayParameter.cpp
     AutoLog.cpp
-    CompoundRule.cpp
-    SelectionCriterionRule.cpp
-    ConfigurableElementAggregator.cpp
-    HardwareBackSynchronizer.cpp
-    SimulatedBackSynchronizer.cpp
-    MappingContext.cpp
-    SubsystemObject.cpp
-    FormattedSubsystemObject.cpp
-    SubsystemObjectCreator.cpp
     BaseParameter.cpp
-    StringParameterType.cpp
-    StringParameter.cpp
+    BinarySerializableElement.cpp
+    BinaryStream.cpp
+    BitParameterBlock.cpp
+    BitParameterBlockType.cpp
+    BitParameter.cpp
+    BitParameterType.cpp
+    BitwiseAreaConfiguration.cpp
+    BooleanParameterType.cpp
+    ComponentInstance.cpp
+    ComponentLibrary.cpp
+    ComponentType.cpp
+    CompoundRule.cpp
+    ConfigurableDomain.cpp
+    ConfigurableDomains.cpp
+    ConfigurableElementAggregator.cpp
+    ConfigurableElement.cpp
+    ConfigurationAccessContext.cpp
+    DomainConfiguration.cpp
+    Element.cpp
+    ElementLibrary.cpp
+    ElementLibrarySet.cpp
+    ElementLocator.cpp
     EnumParameterType.cpp
-    VirtualSubsystem.cpp
-    VirtualSyncer.cpp
-    ParameterHandle.cpp
-    ParameterAdaptation.cpp
-    LinearParameterAdaptation.cpp
-    RuleParser.cpp
     EnumValuePair.cpp
-    Subsystem.cpp
-    PathNavigator.cpp
-    Element.cpp
-    SystemClass.cpp
-    ParameterMgr.cpp
-    SelectionCriteria.cpp
-    SelectionCriterionLibrary.cpp
-    SelectionCriteriaDefinition.cpp
-    SelectionCriterionType.cpp
-    ElementLibrary.cpp
-    SubsystemElementBuilder.cpp
-    SelectionCriterion.cpp
-    ComponentLibrary.cpp
-    ConfigurableElement.cpp
-    MappingData.cpp
-    ParameterBlackboard.cpp
-    ComponentType.cpp
-    TypeElement.cpp
-    InstanceConfigurableElement.cpp
-    ComponentInstance.cpp
-    ParameterBlockType.cpp
-    ParameterType.cpp
-    Parameter.cpp
-    BooleanParameterType.cpp
-    IntegerParameterType.cpp
-    ArrayParameter.cpp
-    InstanceDefinition.cpp
-    ParameterMgrPlatformConnector.cpp
-    FixedPointParameterType.cpp
-    ParameterAccessContext.cpp
-    XmlFileIncluderElement.cpp
-    ParameterFrameworkConfiguration.cpp
-    FrameworkConfigurationLocation.cpp
-    PluginLocation.cpp
-    ElementLibrarySet.cpp
     ErrorContext.cpp
-    AreaConfiguration.cpp
-    DomainConfiguration.cpp
-    ConfigurableDomain.cpp
-    SyncerSet.cpp
-    ConfigurableDomains.cpp
-    BinaryStream.cpp
-    ConfigurationAccessContext.cpp
-    XmlElementSerializingContext.cpp
-    XmlParameterSerializingContext.cpp
-    BinarySerializableElement.cpp
-    BitwiseAreaConfiguration.cpp
-    BitParameterBlockType.cpp
-    BitParameterBlock.cpp
-    BitParameterType.cpp
-    BitParameter.cpp
-    ElementLocator.cpp
-    ParameterMgrLogger.cpp
-    AutoLog.cpp
-    CompoundRule.cpp
-    SelectionCriterionRule.cpp
-    ConfigurableElementAggregator.cpp
-    HardwareBackSynchronizer.cpp
-    SimulatedBackSynchronizer.cpp
-    MappingContext.cpp
-    SubsystemObject.cpp
+    FixedPointParameterType.cpp
     FormattedSubsystemObject.cpp
-    SubsystemObjectCreator.cpp
-    BaseParameter.cpp
-    StringParameterType.cpp
+    FrameworkConfigurationLocation.cpp
+    HardwareBackSynchronizer.cpp
+    InstanceConfigurableElement.cpp
+    InstanceDefinition.cpp
+    IntegerParameterType.cpp
+    LinearParameterAdaptation.cpp
+    MappingContext.cpp
+    MappingData.cpp
+    ParameterAccessContext.cpp
+    ParameterAdaptation.cpp
+    ParameterBlackboard.cpp
+    ParameterBlockType.cpp
+    Parameter.cpp
+    ParameterFrameworkConfiguration.cpp
+    ParameterHandle.cpp
+    ParameterMgr.cpp
+    ParameterMgrFullConnector.cpp
+    ParameterMgrPlatformConnector.cpp
+    ParameterType.cpp
+    PathNavigator.cpp
+    PluginLocation.cpp
+    RuleParser.cpp
+    SelectionCriteria.cpp
+    SelectionCriteriaDefinition.cpp
+    SelectionCriterion.cpp
+    SelectionCriterionLibrary.cpp
+    SelectionCriterionRule.cpp
+    SelectionCriterionType.cpp
+    SimulatedBackSynchronizer.cpp
     StringParameter.cpp
-    EnumParameterType.cpp
+    StringParameterType.cpp
+    Subsystem.cpp
+    SubsystemElementBuilder.cpp
+    SubsystemObject.cpp
+    SubsystemObjectCreator.cpp
+    SyncerSet.cpp
+    SystemClass.cpp
+    TypeElement.cpp
     VirtualSubsystem.cpp
     VirtualSyncer.cpp
-    ParameterHandle.cpp
-    ParameterAdaptation.cpp
-    LinearParameterAdaptation.cpp
-    RuleParser.cpp
-    EnumValuePair.cpp)
+    XmlElementSerializingContext.cpp
+    XmlFileIncluderElement.cpp
+    XmlParameterSerializingContext.cpp)
 
 include_directories(
     include
@@ -190,6 +116,8 @@ install(TARGETS parameter LIBRARY DESTINATION lib)
 # Client headers
 install(FILES
     include/ParameterHandle.h
+    include/ParameterMgrLoggerForward.h
+    include/ParameterMgrFullConnector.h
     include/ParameterMgrPlatformConnector.h
     include/SelectionCriterionInterface.h
     include/SelectionCriterionTypeInterface.h
