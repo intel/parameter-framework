@@ -245,11 +245,10 @@ CTestPlatform::CommandReturn CTestPlatform::getter(
         const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
-    (void)strResult;
 
     strResult = (_pParameterMgrPlatformConnector->*getFunction)() ? "true" : "false";
 
-    return  CTestPlatform::CCommandHandler::EDone;
+    return  CTestPlatform::CCommandHandler::ESucceeded;
 }
 
 CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
