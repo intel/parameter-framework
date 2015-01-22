@@ -30,6 +30,8 @@
 #pragma once
 
 #include "BinarySerializableElement.h"
+#include "XmlSerializingContext.h"
+#include "XmlDomainImportContext.h"
 #include "SyncerSet.h"
 #include <list>
 #include <set>
@@ -46,6 +48,7 @@ class CConfigurableDomain : public CBinarySerializableElement
     typedef std::list<CConfigurableElement*>::const_iterator ConfigurableElementListIterator;
     typedef std::map<const CConfigurableElement*, CSyncerSet*>::const_iterator ConfigurableElementToSyncerSetMapIterator;
 public:
+    CConfigurableDomain();
     CConfigurableDomain(const std::string& strName);
     virtual ~CConfigurableDomain();
 
@@ -103,6 +106,8 @@ public:
 
     // From IXmlSource
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void childrenToXml(CXmlElement& xmlElement,
+                               CXmlSerializingContext& serializingContext) const;
 
     // Class kind
     virtual std::string getKind() const;
@@ -152,9 +157,39 @@ private:
     void doRemoveConfigurableElement(CConfigurableElement* pConfigurableElement, bool bRecomputeSyncSet);
 
     // XML parsing
-    bool parseDomainConfigurations(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
-    bool parseConfigurableElements(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
-    bool parseSettings(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    /**
+     * Deserialize domain configurations from an Xml document and add them to
+     * the domain.
+     *
+     * @param[in] xmlElement the XML element to be parsed
+     * @param[in] serializingContext context for the deserialization
+     *
+     * @return false if an error occurs, true otherwise.
+     */
+    bool parseDomainConfigurations(const CXmlElement& xmlElement,
+                                   CXmlDomainImportContext& serializingContext);
+    /**
+     * Deserialize domain elements from an Xml document and add them to
+     * the domain.
+     *
+     * @param[in] xmlElement the XML element to be parsed
+     * @param[in] serializingContext context for the deserialization
+     *
+     * @return false if an error occurs, true otherwise.
+     */
+    bool parseConfigurableElements(const CXmlElement& xmlElement,
+                                   CXmlDomainImportContext& serializingContext);
+    /**
+     * Deserialize settings from an Xml document and add them to
+     * the domain.
+     *
+     * @param[in] xmlElement the XML element to be parsed
+     * @param[in] xmlDomainImportContext context for the deserialization
+     *
+     * @return false if an error occurs, true otherwise.
+     */
+    bool parseSettings(const CXmlElement& xmlElement,
+                       CXmlDomainImportContext& serializingContext);
 
     // XML composing
     void composeDomainConfigurations(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;

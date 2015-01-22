@@ -34,7 +34,7 @@ LOCAL_IS_HOST_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := ConfigurableDomains.xsd
+LOCAL_MODULE := ConfigurableDomain.xsd
 LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS = ETC
@@ -42,6 +42,17 @@ LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
 LOCAL_IS_HOST_MODULE := true
 LOCAL_REQUIRED_MODULES := \
     ParameterSettings.xsd
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := ConfigurableDomains.xsd
+LOCAL_MODULE_OWNER := intel
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS = ETC
+LOCAL_MODULE_PATH := $(HOST_OUT)/etc/parameter-framework/Schemas
+LOCAL_IS_HOST_MODULE := true
+LOCAL_REQUIRED_MODULES := \
+    ConfigurableDomain.xsd
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)

@@ -85,7 +85,6 @@ common_src_files := \
         ConfigurationAccessContext.cpp \
         XmlElementSerializingContext.cpp \
         XmlParameterSerializingContext.cpp \
-        XmlDomainSerializingContext.cpp \
         BinarySerializableElement.cpp \
         BitwiseAreaConfiguration.cpp \
         BitParameterBlockType.cpp \

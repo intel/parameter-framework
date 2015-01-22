@@ -32,11 +32,18 @@
 #include "ConfigurableElement.h"
 #include "ConfigurationAccessContext.h"
 #include "XmlDomainSerializingContext.h"
+#include "XmlDomainImportContext.h"
+#include "XmlDomainExportContext.h"
 #include <assert.h>
 
 #define base CBinarySerializableElement
 
 using std::string;
+
+CConfigurableDomain::CConfigurableDomain() :
+    _bSequenceAware(false), _pLastAppliedConfiguration(NULL)
+{
+}
 
 CConfigurableDomain::CConfigurableDomain(const string& strName) : base(strName), _bSequenceAware(false), _pLastAppliedConfiguration(NULL)
 {
@@ -111,9 +118,15 @@ bool CConfigurableDomain::getSequenceAwareness() const
 // From IXmlSource
 void CConfigurableDomain::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
+    base::toXml(xmlElement, serializingContext);
+
     // Sequence awareness
     xmlElement.setAttributeBoolean("SequenceAware", _bSequenceAware);
+}
 
+void CConfigurableDomain::childrenToXml(CXmlElement& xmlElement,
+                                        CXmlSerializingContext& serializingContext) const
+{
     // Configurations
     composeDomainConfigurations(xmlElement, serializingContext);
 
@@ -133,7 +146,7 @@ void CConfigurableDomain::composeDomainConfigurations(CXmlElement& xmlElement, C
     xmlElement.createChild(xmlConfigurationsElement, "Configurations");
 
     // Delegate to base
-    base::toXml(xmlConfigurationsElement, serializingContext);
+    base::childrenToXml(xmlConfigurationsElement, serializingContext);
 }
 
 void CConfigurableDomain::composeConfigurableElements(CXmlElement& xmlElement) const
@@ -163,9 +176,10 @@ void CConfigurableDomain::composeConfigurableElements(CXmlElement& xmlElement) c
 void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Context
-    const CXmlDomainSerializingContext& xmlDomainSerializingContext = static_cast<const CXmlDomainSerializingContext&>(serializingContext);
+    const CXmlDomainExportContext& xmlDomainExportContext =
+        static_cast<const CXmlDomainExportContext&>(serializingContext);
 
-    if (!xmlDomainSerializingContext.withSettings()) {
+    if (!xmlDomainExportContext.withSettings()) {
 
         return;
     }
@@ -200,20 +214,25 @@ void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlSerializi
 bool CConfigurableDomain::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Context
-    CXmlDomainSerializingContext& xmlDomainSerializingContext = static_cast<CXmlDomainSerializingContext&>(serializingContext);
+    CXmlDomainImportContext& xmlDomainImportContext =
+        static_cast<CXmlDomainImportContext&>(serializingContext);
 
     // Sequence awareness (optional)
     _bSequenceAware = xmlElement.hasAttribute("SequenceAware") && xmlElement.getAttributeBoolean("SequenceAware");
 
+    setName(xmlElement.getAttributeString("Name"));
+
     // Local parsing. Do not dig
-    if (!parseDomainConfigurations(xmlElement, serializingContext) || !parseConfigurableElements(xmlElement, serializingContext) || !parseSettings(xmlElement, serializingContext)) {
+    if (!parseDomainConfigurations(xmlElement, xmlDomainImportContext) ||
+        !parseConfigurableElements(xmlElement, xmlDomainImportContext) ||
+        !parseSettings(xmlElement, xmlDomainImportContext)) {
 
         return false;
     }
 
     // All provided configurations are parsed
     // Attempt validation on areas of non provided configurations for all configurable elements if required
-    if (xmlDomainSerializingContext.autoValidationRequired()) {
+    if (xmlDomainImportContext.autoValidationRequired()) {
 
         autoValidateAll();
     }
@@ -222,7 +241,8 @@ bool CConfigurableDomain::fromXml(const CXmlElement& xmlElement, CXmlSerializing
 }
 
 // XML parsing
-bool CConfigurableDomain::parseDomainConfigurations(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CConfigurableDomain::parseDomainConfigurations(const CXmlElement& xmlElement,
+                                                    CXmlDomainImportContext& serializingContext)
 {
     // We're supposedly clean
     assert(_configurableElementList.empty());
@@ -237,14 +257,10 @@ bool CConfigurableDomain::parseDomainConfigurations(const CXmlElement& xmlElemen
 }
 
 // Parse configurable elements
-bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElement,
+                                                    CXmlDomainImportContext& serializingContext)
 {
-    // Get System Class Element
-    CElement* pRootElement = getRoot();
-
-    CElement* pSystemClassElement = pRootElement->findChildOfKind("SystemClass");
-
-    assert(pSystemClassElement);
+    CSystemClass& systemClass = serializingContext.getSystemClass();
 
     // Get ConfigurableElements element
     CXmlElement xmlConfigurableElementsElement;
@@ -264,14 +280,15 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
         string strError;
 
         // Is there an element and does it match system class name?
-        if (!pathNavigator.navigateThrough(pSystemClassElement->getName(), strError)) {
+        if (!pathNavigator.navigateThrough(systemClass.getName(), strError)) {
 
             serializingContext.setError("Could not find configurable element of path " + strConfigurableElementPath + " from ConfigurableDomain description " + getName() + " (" + strError + ")");
 
             return false;
         }
         // Browse system class for configurable element
-        CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pSystemClassElement->findDescendant(pathNavigator));
+        CConfigurableElement* pConfigurableElement =
+            static_cast<CConfigurableElement*>(systemClass.findDescendant(pathNavigator));
 
         if (!pConfigurableElement) {
 
@@ -292,13 +309,11 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
 }
 
 // Parse settings
-bool CConfigurableDomain::parseSettings(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CConfigurableDomain::parseSettings(const CXmlElement& xmlElement,
+                                        CXmlDomainImportContext& serializingContext)
 {
-    // Context
-    CXmlDomainSerializingContext& xmlDomainSerializingContext = static_cast<CXmlDomainSerializingContext&>(serializingContext);
-
     // Check we actually need to parse configuration settings
-    if (!xmlDomainSerializingContext.withSettings()) {
+    if (!serializingContext.withSettings()) {
 
         // No parsing required
         return true;
@@ -323,12 +338,14 @@ bool CConfigurableDomain::parseSettings(const CXmlElement& xmlElement, CXmlSeria
 
         if (!pDomainConfiguration) {
 
-            xmlDomainSerializingContext.setError("Could not find domain configuration referred to by configurable domain " + getName());
+            serializingContext.setError("Could not find domain configuration referred to by"
+                                        " configurable domain \"" + getName() + "\".");
 
             return false;
         }
         // Have domain configuration parse settings for all configurable elements
-        if (!pDomainConfiguration->parseSettings(xmlConfigurationSettingsElement, xmlDomainSerializingContext)) {
+        if (!pDomainConfiguration->parseSettings(xmlConfigurationSettingsElement,
+                                                 serializingContext)) {
 
             return false;
         }

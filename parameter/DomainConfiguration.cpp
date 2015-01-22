@@ -33,6 +33,8 @@
 #include "CompoundRule.h"
 #include "Subsystem.h"
 #include "XmlDomainSerializingContext.h"
+#include "XmlDomainImportContext.h"
+#include "XmlDomainExportContext.h"
 #include "ConfigurationAccessContext.h"
 #include <assert.h>
 #include "RuleParser.h"
@@ -71,7 +73,7 @@ bool CDomainConfiguration::childrenAreDynamic() const
 bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext)
 {
     // Actual XML context
-    CXmlDomainSerializingContext& xmlDomainSerializingContext = static_cast<CXmlDomainSerializingContext&>(serializingContext);
+    CXmlDomainImportContext& xmlDomainImportContext = static_cast<CXmlDomainImportContext&>(serializingContext);
 
     // Take care of configurable elements / area configurations ranks
     std::list<CAreaConfiguration*> areaConfigurationList;
@@ -90,7 +92,7 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
 
         if (!pAreaConfiguration) {
 
-            xmlDomainSerializingContext.setError("Configurable Element " + strConfigurableElementPath  + " referred to by Configuration " + getPath() + " not associated to Domain");
+            xmlDomainImportContext.setError("Configurable Element " + strConfigurableElementPath  + " referred to by Configuration " + getPath() + " not associated to Domain");
 
             return false;
         }
@@ -98,7 +100,7 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
         areaConfigurationList.push_back(pAreaConfiguration);
 
         // Parse
-        if (!serializeConfigurableElementSettings(pAreaConfiguration, xmlConfigurableElementSettingsElement, xmlDomainSerializingContext, false)) {
+        if (!serializeConfigurableElementSettings(pAreaConfiguration, xmlConfigurableElementSettingsElement, xmlDomainImportContext, false)) {
 
             return false;
         }
@@ -140,7 +142,8 @@ void CDomainConfiguration::composeSettings(CXmlElement& xmlConfigurationSettings
 bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfiguration* pAreaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlSerializingContext& serializingContext, bool bSerializeOut)
 {
     // Actual XML context
-    CXmlDomainSerializingContext& xmlDomainSerializingContext = static_cast<CXmlDomainSerializingContext&>(serializingContext);
+    CXmlDomainExportContext& xmlDomainExportContext =
+        static_cast<CXmlDomainExportContext&>(serializingContext);
 
     // Configurable Element
     const CConfigurableElement* pConfigurableElement = pAreaConfiguration->getConfigurableElement();
@@ -183,10 +186,10 @@ bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfigurati
     CConfigurationAccessContext configurationAccessContext(strError, bSerializeOut);
 
     // Provide current value space
-    configurationAccessContext.setValueSpaceRaw(xmlDomainSerializingContext.valueSpaceIsRaw());
+    configurationAccessContext.setValueSpaceRaw(xmlDomainExportContext.valueSpaceIsRaw());
 
     // Provide current output raw format
-    configurationAccessContext.setOutputRawFormat(xmlDomainSerializingContext.outputRawFormatIsHex());
+    configurationAccessContext.setOutputRawFormat(xmlDomainExportContext.outputRawFormatIsHex());
 
     // Get subsystem
     const CSubsystem* pSubsystem = pConfigurableElement->getBelongingSubsystem();
@@ -203,7 +206,7 @@ bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfigurati
     if (!pAreaConfiguration->serializeXmlSettings(xmlConfigurableElementSettingsElementContent, configurationAccessContext)) {
 
         // Forward error
-        xmlDomainSerializingContext.setError(strError);
+        xmlDomainExportContext.setError(strError);
 
         return false;
     }

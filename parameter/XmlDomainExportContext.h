@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2014, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,25 +29,44 @@
  */
 #pragma once
 
-#include "XmlElementSerializingContext.h"
-
+#include "XmlDomainSerializingContext.h"
 #include <string>
 
-class CXmlDomainSerializingContext : public CXmlElementSerializingContext
+class CXmlDomainExportContext : public CXmlDomainSerializingContext
 {
 public:
-    CXmlDomainSerializingContext(std::string& strError, bool bWithSettings):
-        base(strError), _bWithSettings(bWithSettings) {}
+    CXmlDomainExportContext(std::string& strError, bool bWithSettings):
+        base(strError, bWithSettings) {}
 
-    // Settings to be serialized or not
-    bool withSettings() const
+    // Value interpretation as Real or Raw
+    void setValueSpaceRaw(bool bIsRaw)
     {
-        return _bWithSettings;
+        _bValueSpaceIsRaw = bIsRaw;
+    }
+
+    bool valueSpaceIsRaw() const
+    {
+        return _bValueSpaceIsRaw;
+    }
+
+    // Output Raw Format for user get value interpretation
+    void setOutputRawFormat(bool bIsHex)
+    {
+        _bOutputRawFormatIsHex = bIsHex;
+    }
+
+    bool outputRawFormatIsHex() const
+    {
+        return _bOutputRawFormatIsHex;
     }
 
 private:
-    typedef CXmlElementSerializingContext base;
+    typedef CXmlDomainSerializingContext base;
 
-    // Indicate wheter or not to import settings
-    bool _bWithSettings;
+    // Value Space
+    bool _bValueSpaceIsRaw;
+
+    // Output Raw Format
+    bool _bOutputRawFormatIsHex;
+
 };

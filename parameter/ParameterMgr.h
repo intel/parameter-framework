@@ -251,21 +251,77 @@ public:
                           std::string& strError);
 
     /**
-      * Method that exports Configurable Domains to an Xml destination.
-      * If bToFile is false, the xml description from the xml document will be written
-      * in strXmlDest. Otherwise it will be written in a file located at the path in strXmlDest
+      * Method that imports a single Configurable Domain from an Xml source.
       *
-      * @param[in:out] strXmlDest a std::string containing an xml description or a path to an xml file
+      * @param[in] strXmlSource a string containing an xml description or a path to an xml file
+      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * xml description
+      * @param[in] bFromFile a boolean that determines if the source is an xml description in
+      * strXmlSource or contained in a file. In that case strXmlSource is just the file path.
+      * @param[out] strError is used as the error output
+      *
+      * @return false if any error occurs
+      */
+    bool importSingleDomainXml(const std::string& strXmlSource, bool bOverwrite,
+                               std::string& strError);
+
+    /**
+      * Method that imports a single Configurable Domain, with settings, from an Xml file.
+      *
+      * @param[in] strXmlFilePath absolute path to the xml file containing the domain
+      * @param[out] strError is used as the error output
+      *
+      * @return false if any error occurs
+      */
+    bool importDomainFromFile(const std::string& strXmlFilePath, bool bOverwrite, std::string& strError);
+
+
+    /**
+     * Export an element object to an Xml destination.
+     *
+     *
+     * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file.
+     * @param[in] xmlSerializingContext the serializing context
+     * @param[in] bToFile a boolean that determines if the destination is an xml description in
+     * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
+     * @param[in] element object to be serialized.
+     * @param[out] strError is used as the error output.
+     *
+     * @return false if any error occurs, true otherwise.
+     */
+    bool serializeElement(std::string& strXmlDest, CXmlSerializingContext& xmlSerializingContext,
+                          bool bToFile, const CElement& element, std::string& strError) const;
+
+    /**
+      * Method that exports Configurable Domains to an Xml destination.
+      *
+      * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file
       * @param[in] bWithSettings a boolean that determines if the settings should be used in the
       * xml description
       * @param[in] bToFile a boolean that determines if the destination is an xml description in
       * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
       * @param[out] strError is used as the error output
       *
-      * @return false if any error occures
+      * @return false if any error occurs, true otherwise.
       */
     bool exportDomainsXml(std::string& strXmlDest, bool bWithSettings, bool bToFile,
                           std::string& strError) const;
+
+    /**
+      * Method that exports a given Configurable Domain to an Xml destination.
+      *
+      * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file
+      * @param[in] strDomainName the name of the domain to be exported
+      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * xml description
+      * @param[in] bToFile a boolean that determines if the destination is an xml description in
+      * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
+      * @param[out] strError is used as the error output
+      *
+      * @return false if any error occurs, true otherwise.
+      */
+    bool exportSingleDomainXml(std::string& strXmlDest, const std::string& strDomainName,
+                               bool bWithSettings, bool bToFile, std::string& strError) const;
 
     // Binary Import/Export
     bool importDomainsBinary(const std::string& strFileName, std::string& strError);
@@ -367,11 +423,12 @@ private:
     CCommandHandler::CommandStatus importConfigurableDomainsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus exportConfigurableDomainsWithSettingsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus importConfigurableDomainWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus importSettingsCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /**
-      * Command handler method for getConfigurableDomainWithSettings command.
+      * Command handler method for getConfigurableDomainsWithSettings command.
       *
       * @param[in] remoteCommand contains the arguments of the received command.
       * @param[out] strResult a std::string containing the result of the command
@@ -380,6 +437,18 @@ private:
       * in the other case
       */
     CCommandHandler::CommandStatus getConfigurableDomainsWithSettingsXMLCommmandProcess(
+            const IRemoteCommand& remoteCommand, std::string& strResult);
+
+    /**
+      * Command handler method for getConfigurableDomainWithSettings command.
+      *
+      * @param[in] remoteCommand contains the arguments of the received command.
+      * @param[out] strResult a string containing the result of the command
+      *
+      * @return CCommandHandler::ESucceeded if command succeeded or CCommandHandler::EFailed
+      * in the other case
+      */
+    CCommandHandler::CommandStatus getConfigurableDomainWithSettingsXMLCommmandProcess(
             const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /**

@@ -49,6 +49,30 @@ public:
     // Configuration/Domains handling
     /// Domains
     bool createDomain(const std::string& strName, std::string& strError);
+
+    /*
+     * Adds a domain object to configurable domains. The ConfigurableDomains
+     * object takes ownership of the ConfigurableDomain object.
+     *
+     * @param[in] pDomain the domain object.
+     * @param[in] bOverwrite if false, will refuse to overwrite an existing
+     * domain, otherwise, an existing domain with the same name will first be
+     * removed.
+     * @param[in,out] strError error message
+     *
+     * @returns true if the domain was successfully added
+     */
+    bool addDomain(CConfigurableDomain& domain, bool bOverwrite, std::string& strError);
+
+    /**
+     * Delete a domain by name
+     *
+     * @param[in] strName name of the domain to be deleted
+     * @param[in,out] strError error message
+     *
+     * @returns true of the domain was sucessfully deleted, false otherwise (i.e.
+     * the domain didn't exist).
+     */
     bool deleteDomain(const std::string& strName, std::string& strError);
     void deleteAllDomains();
     bool renameDomain(const std::string& strName, const std::string& strNewName, std::string& strError);
@@ -87,6 +111,9 @@ public:
                                      bool& bIsLastApplied,
                                      std::string& strError) const;
 
+    const CConfigurableDomain* findConfigurableDomain(const std::string& strDomain,
+                                                      std::string& strError) const;
+
     // Binary settings load/store
     bool serializeSettings(const std::string& strBinarySettingsFilePath, bool bOut, uint8_t uiStructureChecksum, std::string& strError);
 
@@ -102,12 +129,19 @@ public:
     // Class kind
     virtual std::string getKind() const;
 private:
+    /** Delete a domain
+     *
+     * @param(in] configurableDomain domain to be deleted
+     * @param[in,out] strError error message
+     * @returns true of the domain was sucessfully deleted, false otherwise (i.e.
+     * the domain didn't exist).
+     */
+    void deleteDomain(CConfigurableDomain& configurableDomain);
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
     // Gather owned configurable elements owned by any domain
     void gatherAllOwnedConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const;
     // Domain retrieval
     CConfigurableDomain* findConfigurableDomain(const std::string& strDomain, std::string& strError);
-    const CConfigurableDomain* findConfigurableDomain(const std::string& strDomain, std::string& strError) const;
 };
 
