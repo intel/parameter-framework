@@ -277,7 +277,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<file path>", "Import domains from an XML file (provide an absolute path or relative"
                             "to the client's working directory)" },
     { "exportDomainsWithSettingsXML",
-            &CParameterMgr::exportDomainsWithSettingsXMLCommandProcess, 1,
+            &CParameterMgr::exportDomainsWithSettingsXMLCommandProcess, 0,
             "<file path> ", "Export domains including settings to XML file (provide an absolute path or relative"
                             "to the client's working directory)" },
     { "exportDomainWithSettingsXML",
@@ -1479,8 +1479,30 @@ CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::exportDomainsWithSettingsXMLCommandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
-    string strFileName = remoteCommand.getArgument(0);
-    return exportDomainsXml(strFileName, true, true, strResult) ?
+    string destinationUri;
+
+    if (remoteCommand.getArgumentCount() == 0){
+        auto *settingsConfig = getConstFrameworkConfiguration()->findChildOfKind("SettingsConfiguration");
+        if (settingsConfig == nullptr) {
+            strResult = "Started without settings. Please provide an export path.";
+            return CCommandHandler::EFailed;
+        }
+
+        // Get configurable domains element
+        auto domainsFileLocation = static_cast<const CFrameworkConfigurationLocation*>(
+            settingsConfig->findChildOfKind("ConfigurableDomainsFileLocation"));
+        if (domainsFileLocation == nullptr) {
+            strResult = "Started without a initial domain file, thus can not export to it. "
+                        "Please provide an export path.";
+            return CCommandHandler::EFailed;
+        }
+
+        destinationUri = CXmlDocSource::mkUri(_xmlConfigurationUri, domainsFileLocation->getUri());
+    } else {
+        destinationUri = remoteCommand.getArgument(0);
+    }
+
+    return exportDomainsXml(destinationUri, true, true, strResult) ?
             CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
