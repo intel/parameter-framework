@@ -280,7 +280,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<file path>", "Import domains from an XML file (provide an absolute path or relative"
                             "to the client's working directory)" },
     { "exportDomainsWithSettingsXML",
-            &CParameterMgr::exportDomainsWithSettingsXMLCommandProcess, 1,
+            &CParameterMgr::exportDomainsWithSettingsXMLCommandProcess, 0,
             "<file path> ", "Export domains including settings to XML file (provide an absolute path or relative"
                             "to the client's working directory)" },
     { "exportDomainWithSettingsXML",
@@ -1503,7 +1503,35 @@ CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::exportDomainsWithSettingsXMLCommandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
-    string strFileName = remoteCommand.getArgument(0);
+    string strFileName;
+
+    if (remoteCommand.getArgumentCount() == 0){
+        const CFrameworkConfigurationGroup* pParameterConfigurationGroup =
+            static_cast<const CFrameworkConfigurationGroup*>(
+	        getConstFrameworkConfiguration()->findChildOfKind("SettingsConfiguration"));
+
+        if (!pParameterConfigurationGroup) {
+            strResult = "No settings to load";
+            return CCommandHandler::EFailed;
+        }
+
+        // Get configurable domains element
+        const CFrameworkConfigurationLocation* pConfigurableDomainsFileLocation =
+	    static_cast<const CFrameworkConfigurationLocation*>(
+	        pParameterConfigurationGroup->findChildOfKind("ConfigurableDomainsFileLocation"));
+
+        if (!pConfigurableDomainsFileLocation) {
+            strResult = "No ConfigurableDomainsFileLocation element found for SystemClass " +
+	        getSystemClass()->getName();
+            return CCommandHandler::EFailed;
+        }
+
+        // Get Xml configuration domains file name
+        strFileName = pConfigurableDomainsFileLocation->getFilePath(_strXmlConfigurationFolderPath);
+    } else {
+        strFileName = remoteCommand.getArgument(0);
+    }
+
     return exportDomainsXml(strFileName, true, true, strResult) ?
             CCommandHandler::EDone : CCommandHandler::EFailed;
 }
