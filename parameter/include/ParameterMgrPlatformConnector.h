@@ -78,6 +78,19 @@ public:
     // Must be cassed after successfull start
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError) const;
 
+    /** Is the remote interface forcefully disabled ?
+     */
+    bool getForceNoRemoteInterface() const;
+
+    /**
+     * Forcefully disable the remote interface or cancel this policy.
+     *
+     * Has no effect if called after calling start().
+     *
+     * @param[in] bForceNoRemoteInterface disable the remote interface if true.
+     */
+    void setForceNoRemoteInterface(bool bForceNoRemoteInterface);
+
     /** Should start fail in case of missing subsystems.
       *
       * Will fail if called on started instance.
@@ -113,6 +126,18 @@ public:
       * @return failure on failed settings load policy state.
       */
     bool getFailureOnFailedSettingsLoad();
+
+    /** Get the path to the directory containing the XML Schemas
+     *
+     * @returns the directory containing the XML Schemas
+     */
+    const std::string& getSchemaFolderLocation() const;
+
+    /** Override the directory containing the XML Schemas
+     *
+     * @param[in] strSchemaFolderLocation directory containing the XML Schemas
+     */
+    void setSchemaFolderLocation(const std::string& strSchemaFolderLocation);
 
     /** Should .xml files be validated on start ?
      *

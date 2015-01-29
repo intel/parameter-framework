@@ -32,19 +32,17 @@
 import xml.dom.minidom
 import sys
 
-serverPort=sys.argv[1]
-structPath=sys.argv[2]
-
-def main():
+def configure(infile=sys.stdin, outfile=sys.stdout, serverPort=None, structPath=None):
     """ Format an xml PFW config file (standard input) for simulation.
 
-    Allow tuning on argv[1] port, remove the plugins and settings need,
+    Allow tuning on @serverPort port, remove the plugins and settings need,
     and change the structure path to absolute."""
 
-    dom = xml.dom.minidom.parse(sys.stdin)
+    dom = xml.dom.minidom.parse(infile)
 
     for node in dom.getElementsByTagName("ParameterFrameworkConfiguration"):
-        node.setAttribute("ServerPort", serverPort)
+        if serverPort is not None:
+            node.setAttribute("ServerPort", serverPort)
         node.setAttribute("TuningAllowed", "true")
 
     def delete(tag):
@@ -53,12 +51,14 @@ def main():
     delete("Location")
     delete("SettingsConfiguration")
 
-    for node in dom.getElementsByTagName("StructureDescriptionFileLocation"):
-        node.setAttribute("Path", structPath + "/" + node.getAttribute("Path"))
+    if structPath is not None:
+        for node in dom.getElementsByTagName("StructureDescriptionFileLocation"):
+            node.setAttribute("Path", structPath + "/" + node.getAttribute("Path"))
 
-    sys.stdout.write(dom.toxml())
+    outfile.write(dom.toxml())
 
 if __name__ == "__main__" :
     """ Execute main if the python interpreter is running this module as the main program """
-    main()
+
+    configure(serverPort=sys.argv[1], structPath=sys.argv[2])
 

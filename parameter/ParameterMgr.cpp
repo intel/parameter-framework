@@ -306,6 +306,7 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _uiMaxCommandUsageLength(0),
     _pLogger(NULL),
     _uiLogDepth(0),
+    _bForceNoRemoteInterface(false),
     _bFailOnMissingSubsystem(true),
     _bFailOnFailedSettingsLoad(true),
     _bValidateSchemasOnStart(false)
@@ -844,6 +845,16 @@ void CParameterMgr::setFailureOnFailedSettingsLoad(bool bFail)
 bool CParameterMgr::getFailureOnFailedSettingsLoad()
 {
     return _bFailOnFailedSettingsLoad;
+}
+
+const string& CParameterMgr::getSchemaFolderLocation() const
+{
+    return _strSchemaFolderLocation;
+}
+
+void CParameterMgr::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+{
+    _strSchemaFolderLocation = strSchemaFolderLocation;
 }
 
 void CParameterMgr::setValidateSchemasOnStart(bool bValidate)
@@ -2416,10 +2427,25 @@ void CParameterMgr::feedElementLibraries()
     _pElementLibrarySet->addElementLibrary(pParameterConfigurationLibrary);
 }
 
+bool CParameterMgr::getForceNoRemoteInterface() const
+{
+    return _bForceNoRemoteInterface;
+}
+
+void CParameterMgr::setForceNoRemoteInterface(bool bForceNoRemoteInterface)
+{
+    _bForceNoRemoteInterface = bForceNoRemoteInterface;
+}
+
 // Remote Processor Server connection handling
 bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
 {
     CAutoLog autoLog(this, "Handling remote processing interface");
+
+    if (_bForceNoRemoteInterface) {
+        // The user requested not to start the remote interface
+        return true;
+    }
 
     // Start server if tuning allowed
     if (getConstFrameworkConfiguration()->isTuningAllowed()) {

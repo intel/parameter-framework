@@ -51,3 +51,5 @@ add_subdirectory(test/test-fixed-point-parameter)
 
 add_subdirectory(tools/xmlGenerator)
 add_subdirectory(tools/xmlValidator)
+
+add_subdirectory(bindings)

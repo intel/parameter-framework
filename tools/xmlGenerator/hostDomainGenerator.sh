@@ -296,7 +296,7 @@ fi
 
 # Send the extended domain description routing files converted to pfw commands
 m4 "$@" |
-    "$PFWScriptGenerator" --pfw |
+    "$PFWScriptGenerator" --output-kind pfw |
     deleteEscapedNewLines |
     forEachLine "$PFWSendCommand @" | sed '/^Done$/d'
 

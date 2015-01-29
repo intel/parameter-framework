@@ -143,6 +143,17 @@ public:
     // Dynamic parameter handling
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError);
 
+    /** Is the remote interface forcefully disabled ?
+     */
+    bool getForceNoRemoteInterface() const;
+
+    /**
+     * Forcefully disable the remote interface or cancel this policy
+     *
+     * @param[in] bForceNoRemoteInterface disable the remote interface if true.
+     */
+    void setForceNoRemoteInterface(bool bForceNoRemoteInterface);
+
     /** Should start fail in case of missing subsystems.
       *
       * @param[in] bFail: If set to true,  parameterMgr start will fail on missing subsystems.
@@ -167,6 +178,18 @@ public:
       * @return failure on failed settings load policy state.
       */
     bool getFailureOnFailedSettingsLoad();
+
+    /** Get the path to the directory containing the XML Schemas
+     *
+     * @returns the directory containing the XML Schemas
+     */
+    const std::string& getSchemaFolderLocation() const;
+
+    /** Override the directory containing the XML Schemas
+     *
+     * @param[in] strSchemaFolderLocation directory containing the XML Schemas
+     */
+    void setSchemaFolderLocation(const std::string& strSchemaFolderLocation);
 
     /** Should .xml files be validated on start ?
      *
@@ -601,6 +624,12 @@ private:
     // Logging
     ILogger* _pLogger;
     mutable uint32_t _uiLogDepth;
+
+    /** If set to false, the remote interface won't be started no matter what.
+     * If set to true - the default - it has no impact on the policy for
+     * starting the remote interface.
+     */
+    bool _bForceNoRemoteInterface;
 
     /** If set to true, missing subsystem will abort parameterMgr start.
       * If set to false, missing subsystem will fallback on virtual subsystem.

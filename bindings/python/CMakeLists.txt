@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,15 +26,37 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-install(PROGRAMS
-    domainGenerator.sh
-    domainGenerator.py
-    hostConfig.py
-    hostDomainGenerator.sh
-    lightRoutingUpdate.sh
-    PfwBaseTranslator.py
-    EddParser.py
-    PFWScriptGenerator.py
-    portAllocator.py
-    updateRoutageDomains.sh
-    DESTINATION bin)
+FIND_PACKAGE(SWIG REQUIRED)
+INCLUDE(${SWIG_USE_FILE})
+
+FIND_PACKAGE(PythonLibs)
+INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+
+SET_SOURCE_FILES_PROPERTIES(pfw.i PROPERTIES CPLUSPLUS ON)
+SET_SOURCE_FILES_PROPERTIES(pfw.i PROPERTIES SWIG_FLAGS "-v" "-Wall" "-Werror")
+
+SWIG_ADD_MODULE(PyPfw python pfw.i)
+SWIG_LINK_LIBRARIES(PyPfw parameter ${PYTHON_LIBRARIES})
+
+include(FindPythonLibs)
+if(NOT PYTHONLIBS_FOUND)
+    message(SEND_ERROR "python librarires not found. please instal python
+    development packages")
+endif(NOT PYTHONLIBS_FOUND)
+
+include_directories(${PROJECT_SOURCE_DIR}/parameter/include ${PYTHON_INCLUDE_DIRS})
+
+# The 'unused-but-set-variable' warning must be disabled because SWIG generates
+# files that do not respect that contraint.
+# '-DSWIG_PYTHON_SILENT_MEMLEAK' is needed because the "memleak" warning
+# pollutes the standard output. At the time of writing, the only warning is
+# spurious anyway, as it relates to "ILogger *" which is an abstract
+# class/interface class and as such cannot be destroyed.
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-but-set-variable -DSWIG_PYTHON_SILENT_MEMLEAK")
+
+install(TARGETS _PyPfw LIBRARY DESTINATION lib)
+
+# install the generated Python file as well
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PyPfw.py DESTINATION lib)

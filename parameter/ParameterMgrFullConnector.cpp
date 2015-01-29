@@ -95,6 +95,16 @@ ISelectionCriterionInterface* CParameterMgrFullConnector::getSelectionCriterion(
     return _pParameterMgr->getSelectionCriterion(strName);
 }
 
+bool CParameterMgrFullConnector::getForceNoRemoteInterface() const
+{
+    return _pParameterMgr->getForceNoRemoteInterface();
+}
+
+void CParameterMgrFullConnector::setForceNoRemoteInterface(bool bForceNoRemoteInterface)
+{
+    _pParameterMgr->setForceNoRemoteInterface(bForceNoRemoteInterface);
+}
+
 void CParameterMgrFullConnector::applyConfigurations()
 {
     return _pParameterMgr->applyConfigurations();
@@ -118,6 +128,16 @@ void CParameterMgrFullConnector::setFailureOnFailedSettingsLoad(bool bFail)
 bool CParameterMgrFullConnector::getFailureOnFailedSettingsLoad()
 {
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
+}
+
+const string& CParameterMgrFullConnector::getSchemaFolderLocation() const
+{
+    return _pParameterMgr->getSchemaFolderLocation();
+}
+
+void CParameterMgrFullConnector::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+{
+    _pParameterMgr->setSchemaFolderLocation(strSchemaFolderLocation);
 }
 
 void CParameterMgrFullConnector::setValidateSchemasOnStart(bool bValidate)

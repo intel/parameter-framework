@@ -1,4 +1,5 @@
-# Copyright (c) 2014, Intel Corporation
+#! /usr/bin/env python
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,15 +27,38 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-install(PROGRAMS
-    domainGenerator.sh
-    domainGenerator.py
-    hostConfig.py
-    hostDomainGenerator.sh
-    lightRoutingUpdate.sh
-    PfwBaseTranslator.py
-    EddParser.py
-    PFWScriptGenerator.py
-    portAllocator.py
-    updateRoutageDomains.sh
-    DESTINATION bin)
+import PyPfw
+import sys
+import logging
+
+class MyLogger(PyPfw.ILogger):
+    def __init__(self):
+        # Calling the base constructor is necessary: if you don't, MyLogger
+        # won't be recognised as a derived class of PyPfw.ILogger
+        super(MyLogger, self).__init__()
+
+    def log(self, is_warning, log):
+        log_func = logging.warning if is_warning else logging.info
+        log_func(log)
+
+
+logging.root.setLevel(logging.INFO)
+
+pfw = PyPfw.ParameterFramework(sys.argv[1])
+
+# warning: don't pass MyLogger() directly as argument to setLogger() or it will
+# be garbage collected
+mylogger = MyLogger()
+pfw.setLogger(mylogger);
+
+moodType = pfw.createSelectionCriterionType(False)
+for numerical, literal in enumerate(["mad", "sad", "glad"]):
+    moodType.addValuePair(numerical, literal)
+
+mood = pfw.createSelectionCriterion("Mood", moodType)
+
+ok, error = pfw.start()
+if not ok:
+    print("Error while starting the pfw: {}".format(error))
+
+raw_input("[Press enter to exit]")

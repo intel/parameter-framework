@@ -189,27 +189,54 @@ Write instead:
 Once a `.edd` file is ready to be tested, it is possible to generate the
 corresponding XML file.
 
-### hostDomainGenerator.sh
+### domainGenerator.py
+
+This python tool is self-documented: you may run `domainGenerator.py -h` to get
+its full usage.
 
 It prints the resulting XML on the standard output. Its syntax is:
 
-	hostDomainGenerator.sh [--validate] <top-level configuration file> <criteria file> <EDD files...>
+    domainGenerator.py [-h] --toplevel-config TOPLEVEL_CONFIG_FILE
+                             --criteria CRITERIA_FILE
+                             [--initial-settings XML_SETTINGS_FILE]
+                             [--add-domains XML_DOMAIN_FILE [XML_DOMAIN_FILE ...]]
+                             [--add-edds EDD_FILE [EDD_FILE ...]]
+                             [--schemas-dir SCHEMAS_DIR]
+                             [--target-schemas-dir TARGET_SCHEMAS_DIR]
+                             [--validate] [--verbose]
 
-Explanation:
+*Explanation:*
 
-- The optional `--validate` option check the validity of all XML files involved
-  in the process.
 - The "top-level configuration file" is the same as the one provided by the
   parameter-framework client to instantiate it.  The plugins referenced in that
   file are not used.
 - The "criteria file" lists all criteria and possible values used in the EDD
   files.
-- EDD files are all the files you want to use to generate you Settings.  In
-  theory, the order doesn't matter but since the files are parsed in the order
-  of the command line, you'll get different (although equivalent) files if you
-  change the order, which makes it more difficult to compare versions.
+- The initial settings file is an XML file containing a single
+  `<ConfigurableDomains>` (plural) tag; it may not overlap with the other
+  sources below. It will be imported into the settings.
+- Domain files are XML files, each containing a single `<ConfigurableDomain>`
+  (singular) tag. They all will be imported in the order of the command line
+  into the settings.
+- EDD files are all the files in EDD syntax you want to add to your Settings.
+- The optional `--schemas-dir` argument lets you change the directory
+  containing the XML Schemas in the context of the XML generation only (see the
+  `--validate` option).
+- The optional `--target-schemas-dir` argument lets you change the directory
+  containing the XML Schemas on the target device (the one the
+  parameter-framework will run on) if it is using Schema validation and if
+  different than the default.
+- The optional `--validate` option check the validity of all XML files involved
+  in the process.
 
-The "criteria file" must look something like this:
+*Regarding XML Domain files and EDD files:*
+
+In theory, the order doesn't matter but since files are parsed in the order of
+the command line, you'll get different (although equivalent) files if you
+change the order, which makes it more difficult to compare versions.
+
+
+*The "criteria file" must look something like this:*
 
 ```
 ExclusiveCriterion  Criterion1Name : Criterion1Value1 Criterion1Value2
@@ -218,6 +245,18 @@ InclusiveCriterion  Criterion2Name : Criterion2Value1 Criterion2Value2
 
 I.e. One criterion by line, starting by its kind, then its name, followed by a
 semicolon and then all possible values separated by spaces.
+
+### hostDomainGenerator.sh
+
+**This script is now deprecated and replaced by domainGenerator.py
+(see above).**
+
+It prints the resulting XML on the standard output. Its syntax is:
+
+    hostDomainGenerator.sh [--validate] <top-level configuration file> <criteria file> <EDD files...>
+
+See domainGenerator.py above for the explanation of the arguments.
+
 
 #### How it works
 TODO

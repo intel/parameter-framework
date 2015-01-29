@@ -93,6 +93,16 @@ void CParameterMgrPlatformConnector::setLogger(CParameterMgrPlatformConnector::I
     _pLogger = pLogger;
 }
 
+bool CParameterMgrPlatformConnector::getForceNoRemoteInterface() const
+{
+    return _pParameterMgr->getForceNoRemoteInterface();
+}
+
+void CParameterMgrPlatformConnector::setForceNoRemoteInterface(bool bForceNoRemoteInterface)
+{
+    _pParameterMgr->setForceNoRemoteInterface(bForceNoRemoteInterface);
+}
+
 bool CParameterMgrPlatformConnector::setFailureOnMissingSubsystem(bool bFail, string &strError)
 {
     if (_bStarted) {
@@ -126,6 +136,16 @@ bool CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad(
 bool CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad()
 {
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
+}
+
+const string& CParameterMgrPlatformConnector::getSchemaFolderLocation() const
+{
+    return _pParameterMgr->getSchemaFolderLocation();
+}
+
+void CParameterMgrPlatformConnector::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+{
+    _pParameterMgr->setSchemaFolderLocation(strSchemaFolderLocation);
 }
 
 bool CParameterMgrPlatformConnector::setValidateSchemasOnStart(
