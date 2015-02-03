@@ -440,7 +440,7 @@ bool CSubsystem::handleSubsystemObjectCreation(
                 pSubsystemObjectCreator->getMaxConfigurableElementSize()) {
 
                 string strSizeError = "Size should not exceed " +
-                                      pSubsystemObjectCreator->getMaxConfigurableElementSize();
+                                      toString(pSubsystemObjectCreator->getMaxConfigurableElementSize());
 
                 strError = getMappingError(strKey, strSizeError, pInstanceConfigurableElement);
 
