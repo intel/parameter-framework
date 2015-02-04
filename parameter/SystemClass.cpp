@@ -314,12 +314,3 @@ bool CSystemClass::init(string& strError)
 {
     return base::init(strError);
 }
-
-// From IXmlSource
-void CSystemClass::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
-{
-    // Set the name of system class
-    xmlElement.setNameAttribute(getName());
-
-    base::toXml(xmlElement, serializingContext);
-}
