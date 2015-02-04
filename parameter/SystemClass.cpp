@@ -309,8 +309,3 @@ void CSystemClass::cleanSubsystemsNeedToResync()
         pSubsystem->needResync(true);
     }
 }
-
-bool CSystemClass::init(string& strError)
-{
-    return base::init(strError);
-}
