@@ -204,14 +204,14 @@ class Element():
                 str(dumpedDescription) for dumpedDescription in
                         self._dumpDescription(withCoverage, withNbUse))
 
-    def exportToXML(self, domElement=None):
+    def exportToXML(self, document, domElement=None):
         if domElement == None:
-            domElement = xml.dom.minidom.Element(self.tag)
+            domElement = document.createElement(self.tag)
 
         self._XMLaddAttributes(domElement)
 
         for child in self.children :
-            domElement.appendChild(child.exportToXML())
+            domElement.appendChild(child.exportToXML(document))
 
         return domElement
 
@@ -877,10 +877,10 @@ class Root(Element):
     def exportToXML(self):
         """Export tree to an xml document"""
         impl = xml.dom.minidom.getDOMImplementation()
-        newdoc = impl.createDocument(namespaceURI=None, qualifiedName=self.tag, doctype=None)
-        super().exportToXML(newdoc.documentElement)
+        document = impl.createDocument(namespaceURI=None, qualifiedName=self.tag, doctype=None)
+        super().exportToXML(document, document.documentElement)
 
-        return newdoc
+        return document
 
 # ============================
 # Command line argument parser
