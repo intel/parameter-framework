@@ -69,7 +69,7 @@ class TestCases(PfwTestCase):
         print '\r'
         self.pfw.sendCmd("setTuningMode", "on")
         print '\r'
-        self.array_size = 10
+        self.array_size = 100
         self.array_min = 0
         self.array_max = 100
 
