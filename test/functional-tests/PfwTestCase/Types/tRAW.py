@@ -201,7 +201,8 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_03_WRaw_RHex_Nominal_Case.__doc__)
         value = "0xFF00"
-        filesystem_value = "0xFF00"
+        # When read back, parameter value will be in lowercase
+        filesystem_value = "0xff00"
         blackboard_value = "0xFF00"
         value_space = "raw"
         outputraw_format = "hex"
