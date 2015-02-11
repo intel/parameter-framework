@@ -168,7 +168,7 @@ class TestCases(PfwTestCase):
 
             # Configurations checking
             for domain in range (domains_nbr):
-                domain_name = "".join([self.new_domain_name, "_", str(domain+1)])
+                domain_name = "".join([self.new_domain_name, "_", str(domain+1), "[<none>]"])
                 config = str(self.expected_result[iteration][domain])
                 log.I("Checking that domain %s is set to configuration : %s" % (domain_name,config))
                 for line in open(self.temp_status, "r"):
