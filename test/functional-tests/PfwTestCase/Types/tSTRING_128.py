@@ -229,8 +229,12 @@ class TestCases(PfwTestCase):
         log.I("STR_CHAR128 parameter Parenthese Char = %s" % (value))
         param_check = commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128')
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, "'%s'" % (value))
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
+        assert out == "Done", log.F("Expected : Done, found : %s" % (out))
+        #Get parameter value
+        out, err = self.pfw.sendCmd("getParameter", self.param_name)
+        assert err == None, log.E("When getting parameter %s : %s" % (self.param_name, err))
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out))
         #Check parameter value on filesystem
         assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
@@ -254,8 +258,12 @@ class TestCases(PfwTestCase):
         log.I("STR_CHAR128 parameter Parenthese Char = %s" % (value))
         param_check = commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128')
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, "'%s'" % value)
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
+        assert out == "Done", log.F("Expected : Done, found : %s" % (out))
+        #Get parameter value
+        out, err = self.pfw.sendCmd("getParameter", self.param_name)
+        assert err == None, log.E("When getting parameter %s : %s" % (self.param_name, err))
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out))
         #Check parameter value on filesystem
         assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
