@@ -34,7 +34,7 @@
 class CSkeletonSubsystem : public CSubsystem
 {
 public:
-    CSkeletonSubsystem(const string& strName);
+    CSkeletonSubsystem(const std::string& strName);
 
 };
 
