@@ -9,7 +9,11 @@ before_install:
   - sudo apt-get install -y swig
 
 # how to build
-script: cmake . && make -j && sudo make install && make test
+script:
+  - cmake . && make -j && sudo make install
+  - make test
+  - cd skeleton-subsystem
+  - cmake . && make && sudo make install
 
 notifications:
   email:
