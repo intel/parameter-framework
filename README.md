@@ -1,5 +1,7 @@
 # parameter-framework
 
+[![Build Status](https://travis-ci.org/01org/parameter-framework.svg?branch=master)](https://travis-ci.org/01org/parameter-framework)
+
 ## Introduction
 
 The parameter-framework is a plugin-based and rule-based framework for handling
