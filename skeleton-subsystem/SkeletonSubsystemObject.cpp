@@ -43,6 +43,8 @@
 
 #define base CFormattedSubsystemObject
 
+using std::string;
+
 CSkeletonSubsystemObject::CSkeletonSubsystemObject(
             const string& strMappingValue,
             CInstanceConfigurableElement* pInstanceConfigurableElement,
@@ -105,7 +107,7 @@ bool CSkeletonSubsystemObject::sendToHW(string& strError)
         blackboardRead(pvValue, _uiScalarSize);
 
         // Send here the value
-        cout << "Sending to HW: " << _strMessage << endl;
+        std::cout << "Sending to HW: " << _strMessage << std::endl;
     }
 
     return true;
@@ -122,7 +124,7 @@ bool CSkeletonSubsystemObject::receiveFromHW(string& strError)
     for (uiIndex = 0 ; uiIndex < _uiArraySize ; uiIndex++) {
 
         // Retreive here the value
-        cout << "Retreive from HW: " << _strMessage << endl;
+        std::cout << "Retreive from HW: " << _strMessage << std::endl;
 
         // Write Value in Blackboard
         blackboardWrite(pvValue, _uiScalarSize);
