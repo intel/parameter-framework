@@ -1,0 +1,131 @@
+# Copyright (c) 2014, Intel Corporation
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without modification,
+# are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+# list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation and/or
+# other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors
+# may be used to endorse or promote products derived from this software without
+# specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# bash completion for remote-process
+#
+# Execute this file in bash with the built-in command "source",
+# it will add autocompletion to remote-process.
+#
+# To permanently add this autocompletion, add "source this_file"
+# in your .bashrc or copy this file in /etc/bash_completion.d/
+
+function _remote-process ()
+{
+    # Get current word
+    local cur prev words cword;
+    _init_completion || return;
+
+    local options=""
+    if [ $cword -eq 1 ]
+    then # Completing the hostname
+        _known_hosts_real "$cur"; return
+    elif [ $cword -eq 2 ] # Completing tcp port
+    then
+        options='5000 5001 5008 5009 5019';
+    else
+        _remoteProcessWrapper () {
+            "${words[0]}" "${words[1]}" "${words[2]}" "$@" |sed 's#\r##;/^$/d'
+        }
+
+        # Get usage
+        local _parameterHelp=$(_remoteProcessWrapper help)
+
+        if [ $cword -eq 3 ]
+        then # Completing command
+            options=$(echo "$_parameterHelp" | awk '{print $1}')
+        else # Completing command argument
+            local command=${words[3]}
+
+            # Get current command argument types
+            # - keep in the help text only the line describing current command
+            # - delete => and posterior
+            # - replace space in balisa (<...>) by underscore then delete [<>]
+            local argumentTypes=$( echo "$_parameterHelp" | grep "$command"  |\
+                 sed -e 's# *=>.*##' -e 's#^[^ ]* *##' \
+                     -e 's/> />#/g' -e 's# #_#g' -e 's/>#/> /g' -e 's#[<>]##g' )
+
+            local currentArgumentType=$(echo $argumentTypes |
+                                          awk '{print $('$cword'-3)}')
+
+            # Take care of argument list type if it is the last argument
+            # Ex : setElementSequence <domain> <configuration> <elem path list>
+            if [ "$currentArgumentType" = "" ] &&
+                 expr "$argumentTypes" : '.*list' > /dev/null ;
+            then
+                # Set last argument type specified as the current type
+                currentArgumentType=$(echo "$argumentTypes" | awk '{print $NF}')
+            fi
+
+
+            case "${currentArgumentType}" in
+                elem_path*|param_path* )
+                    local incompletPath=$(echo "${cur}" | sed 's#[^/]*$##')
+
+                    local parameterCommand
+                    if [ "$currentArgumentType" = elem_path_list ];
+                    then
+                        # <elem path list> is the parameter path list
+                        #  of the domain specified by the second argument
+                        parameterCommand="listDomainElements ${words[4]}"
+                    else
+                        # Otherwise suggest all parameter paths
+                        parameterCommand="listParameters"
+                    fi
+                    # Get paths and delete everything after the first "/"
+                    # following the current input (see complete -o filenames)
+                    local options=$(_remoteProcessWrapper $parameterCommand ${incompletPath:-/} |
+                                    sed -re "s#(/?${incompletPath}[^/ ]*/?).*#\1#")
+                    compopt -o filenames
+
+                    # If some options are folders, do not append a space
+                    test "$(echo "$options" | sed '/[^/]$/d')" && compopt -o nospace
+                ;;
+                domain)
+                    # Get all domain names
+                    options=$(_remoteProcessWrapper listDomains | awk '{print $1}')
+                ;;
+                configuration)
+                    # Get all configurations of the domain specified by
+                    # the second argument.
+                    # TODO: find the domain position using $argumentTypes
+                    options=$(_remoteProcessWrapper listConfigurations "${words[4]}")
+                ;;
+                *\|*)
+                    # Possible arguments are separated by "|". Ex : on|off
+                    options=$(echo $currentArgumentType | sed -e 's#|# #g' -e 's#\*##g')
+                ;;
+                file_path)
+                    _filedir;
+                ;;
+            esac
+        fi
+    fi
+    COMPREPLY+=( $(compgen -W "$options" -- "$cur") )
+
+    unset _remoteProcessWrapper
+} && complete  -F _remote-process remote-process
