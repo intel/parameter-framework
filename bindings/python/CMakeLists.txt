@@ -26,25 +26,25 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-FIND_PACKAGE(SWIG REQUIRED)
-INCLUDE(${SWIG_USE_FILE})
+find_package(SWIG REQUIRED)
+include(${SWIG_USE_FILE})
 
-FIND_PACKAGE(PythonLibs)
-INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
+find_package(PythonLibs)
+include_directories(${PYTHON_INCLUDE_PATH})
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-SET_PROPERTY(SOURCE pfw.i PROPERTY CPLUSPLUS ON)
-SET_PROPERTY(SOURCE pfw.i PROPERTY SWIG_FLAGS "-Wall" "-Werror")
+set_property(SOURCE pfw.i PROPERTY CPLUSPLUS ON)
+set_property(SOURCE pfw.i PROPERTY SWIG_FLAGS "-Wall" "-Werror")
 
-SWIG_ADD_MODULE(PyPfw python pfw.i)
-SWIG_LINK_LIBRARIES(PyPfw parameter ${PYTHON_LIBRARIES})
+swig_add_module(PyPfw python pfw.i)
+swig_link_libraries(PyPfw parameter ${PYTHON_LIBRARIES})
 
 include(FindPythonLibs)
 if(NOT PYTHONLIBS_FOUND)
     message(SEND_ERROR "python librarires not found. please instal python
     development packages")
-endif(NOT PYTHONLIBS_FOUND)
+endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/parameter/include ${PYTHON_INCLUDE_DIRS})
 
