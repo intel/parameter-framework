@@ -1,0 +1,32 @@
+"""
+Types Package : All testcases about differents types used in PFW :
+    - bit block
+    - boolean
+    - enum
+    - FP16_Q0_15 : 16bits Fixed point - 0 integer bits, 15 fractionnal bits
+    - FP16_Q15_0 : 16bits Fixed point - 15 integer bits, 0 fractionnal bits
+    - FP16_Q7_8 : 16bits Fixed point - 7 integer bits, 8 fractionnal bits
+    - FP32_Q0_31 : 32bits Fixed point - 0 integer bits, 31 fractionnal bits
+    - FP32_Q15_16 : 32bits Fixed point - 15 integer bits, 16 fractionnal bits
+    - FP32_Q31_0 : 32bits Fixed point - 31 integer bits, 0 fractionnal bits
+    - FP32_Q8_20 : 32bits Fixed point - 8 integer bits, 20 fractionnal bits
+    - FP8_Q0_7 : 8bits Fixed point - 0 integer bits, 7 fractionnal bits
+    - FP8_Q3_4 : 8bits Fixed point - 3 integer bits, 4 fractionnal bits
+    - FP8_Q7_0 : 8bits Fixed point - 7 integer bits, 0 fractionnal bits
+    - INT8 : signed integer 8 bits bounded
+    - INT8_MAX : signed integer 8 bits full range
+    - INT16 : signed integer 16 bits bounded
+    - INT16_MAX : signed integer 16 bits full range
+    - INT32 : signed integer 32 bits bounded
+    - INT32_MAX : signed integer 23 bits full range
+    - UINT8 : unsigned integer 8 bits bounded
+    - UINT8_MAX : unsigned integer 8 bits full range
+    - UINT16 : unsigned integer 16 bits bounded
+    - UINT16_MAX : unsigned integer 16 bits full range
+    - UINT32 : unsigned integer 32 bits bounded
+    - UINT32_MAX : unsigned integer 23 bits full range
+    - string
+    - raw data
+    - integer array
+    - parameter block
+"""
