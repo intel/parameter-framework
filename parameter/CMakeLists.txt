@@ -64,6 +64,7 @@ add_library(parameter SHARED
     InstanceDefinition.cpp
     IntegerParameterType.cpp
     LinearParameterAdaptation.cpp
+    LogarithmicParameterAdaptation.cpp
     MappingContext.cpp
     MappingData.cpp
     ParameterAccessContext.cpp

@@ -157,9 +157,6 @@ int main(int argc, char *argv[])
     // Connect to target
     CConnectionSocket connectionSocket;
 
-    // Set timeout
-    connectionSocket.setTimeout(5000);
-
     string strError;
     // Connect
     if (!connectionSocket.connect(argv[1], uiPort, strError)) {

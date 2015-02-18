@@ -34,12 +34,21 @@
 	<xs:complexType name="Adaptation">
 		<xs:attribute name="Offset" type="xs:integer" default="0"/>
 	</xs:complexType>
-	<xs:element name="LinearAdaptation">
+	<xs:complexType name="LinearAdaptationType">
+		<xs:complexContent>
+			<xs:extension base="Adaptation">
+				<xs:attribute name="SlopeNumerator" type="xs:double" default="1"/>
+				<xs:attribute name="SlopeDenominator" type="xs:double" default="1"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LinearAdaptation" type="LinearAdaptationType"/>
+	<xs:element name="LogarithmicAdaptation">
 		<xs:complexType>
 			<xs:complexContent>
-				<xs:extension base="Adaptation">
-					<xs:attribute name="SlopeNumerator" type="xs:double" default="1"/>
-					<xs:attribute name="SlopeDenominator" type="xs:double" default="1"/>
+				<xs:extension base="LinearAdaptationType">
+					<xs:attribute name="LogarithmBase" type="xs:double" default="10"/>
+					<xs:attribute name="FloorValue" type="xs:double" default="-INF"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -63,6 +72,7 @@
 			<xs:extension base="Parameter">
 				<xs:choice minOccurs="0">
 					<xs:element ref="LinearAdaptation"/>
+					<xs:element ref="LogarithmicAdaptation"/>
 				</xs:choice>
 				<xs:attributeGroup ref="IntegerParameterAttributes"/>
 				<xs:attribute name="Unit" type="xs:token" use="optional"/>

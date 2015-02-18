@@ -363,8 +363,3 @@ bool CParameterMgrFullConnector::exportSingleDomainXml(string& strXmlDest,
     return _pParameterMgr->exportSingleDomainXml(strXmlDest, strDomainName, bWithSettings, bToFile,
             strError);
 }
-
-bool CParameterMgrFullConnector::getSystemClassXMLString(string& strResult)
-{
-    return _pParameterMgr->getSystemClassXMLString(strResult);
-}

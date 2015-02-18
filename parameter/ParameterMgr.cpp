@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -79,6 +79,7 @@
 #include <assert.h>
 #include "ParameterHandle.h"
 #include "LinearParameterAdaptation.h"
+#include "LogarithmicParameterAdaptation.h"
 #include "EnumValuePair.h"
 #include "Subsystem.h"
 #include "XmlFileDocSink.h"
@@ -87,8 +88,11 @@
 #include "XmlStringDocSource.h"
 #include "XmlMemoryDocSink.h"
 #include "XmlMemoryDocSource.h"
+#include "SelectionCriteriaDefinition.h"
 #include "Utility.h"
 #include <sstream>
+#include <algorithm>
+#include <ctype.h>
 #include <memory>
 
 #define base CElement
@@ -160,7 +164,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
 
     /// Criteria
     { "listCriteria", &CParameterMgr::listCriteriaCommmandProcess, 0,
-            "[csv]", "List selection criteria" },
+            "[CSV|XML]", "List selection criteria" },
 
     /// Domains
     { "listDomains", &CParameterMgr::listDomainsCommmandProcess, 0,
@@ -300,7 +304,7 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _pElementLibrarySet(new CElementLibrarySet),
     _strXmlConfigurationFilePath(strConfigurationFilePath),
     _pSubsystemPlugins(NULL),
-    _handleLibRemoteProcessor(NULL),
+    _pvLibRemoteProcessorHandle(NULL),
     _uiStructureChecksum(0),
     _pRemoteProcessorServer(NULL),
     _uiMaxCommandUsageLength(0),
@@ -358,8 +362,9 @@ CParameterMgr::~CParameterMgr()
     delete _pElementLibrarySet;
 
     // Close remote processor library
-    if (_handleLibRemoteProcessor != NULL) {
-        dlclose(_handleLibRemoteProcessor);
+    if (_pvLibRemoteProcessorHandle) {
+
+        dlclose(_pvLibRemoteProcessorHandle);
     }
 
     // Tuning Mode Mutex
@@ -450,6 +455,12 @@ bool CParameterMgr::load(string& strError)
 
     // Load settings
     if (!loadSettings(strError)) {
+
+        return false;
+    }
+
+    // Init flow of element tree
+    if (!init(strError)) {
 
         return false;
     }
@@ -1076,28 +1087,53 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::syncCommmandProcess
 /// Criteria
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    (void)remoteCommand;
+    if (remoteCommand.getArgumentCount() > 1) {
 
-    bool humanReadable = true;
+        return CCommandHandler::EShowUsage;
+    }
+
+    string strOutputFormat;
 
     // Look for optional arguments
-    if (remoteCommand.getArgumentCount() >= 1) {
+    if (remoteCommand.getArgumentCount() == 1) {
 
-        // If csv is provided, format the criterion list in Commas Separated Value pairs
-        if (remoteCommand.getArgument(0) == "csv") {
-            humanReadable = false;
-        } else {
+        // Get requested format
+        strOutputFormat = remoteCommand.getArgument(0);
+
+        // Capitalize
+        std::transform(strOutputFormat.begin(), strOutputFormat.end(), strOutputFormat.begin(), ::toupper);
+
+        if (strOutputFormat != "XML" && strOutputFormat != "CSV") {
+
             return CCommandHandler::EShowUsage;
         }
     }
 
-    list<string> lstrResult;
-    getSelectionCriteria()->listSelectionCriteria(lstrResult, true, humanReadable);
+    if (strOutputFormat == "XML") {
+        // Get Root element where to export from
+        const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition = getConstSelectionCriteria()->getSelectionCriteriaDefinition();
 
-    // Concatenate the criterion list as the command result
-    CUtility::asString(lstrResult, strResult);
+        if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria",
+                                      strResult)) {
 
-    return CCommandHandler::ESucceeded;
+            return CCommandHandler::EFailed;
+        }
+
+        // Succeeded
+        return CCommandHandler::ESucceeded;
+    } else {
+
+        // Requested format will be either CSV or human readable based on strOutputFormat content
+        bool bHumanReadable = strOutputFormat.empty();
+
+        list<string> lstrResult;
+        getSelectionCriteria()->listSelectionCriteria(lstrResult, true, bHumanReadable);
+
+        // Concatenate the criterion list as the command result
+        CUtility::asString(lstrResult, strResult);
+
+        return CCommandHandler::ESucceeded;
+    }
 }
 
 /// Domains
@@ -1639,7 +1675,10 @@ CParameterMgr::CCommandHandler::CommandStatus
 {
     (void)remoteCommand;
 
-    if (!getSystemClassXMLString(strResult)) {
+    // Get Root element where to export from
+    const CSystemClass* pSystemClass = getSystemClass();
+
+    if (!exportElementToXMLString(pSystemClass, pSystemClass->getKind(), strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -2409,6 +2448,7 @@ void CParameterMgr::feedElementLibraries()
     pParameterCreationLibrary->addElementBuilder("BooleanParameter", new TNamedElementBuilderTemplate<CBooleanParameterType>());
     pParameterCreationLibrary->addElementBuilder("IntegerParameter", new TNamedElementBuilderTemplate<CIntegerParameterType>());
     pParameterCreationLibrary->addElementBuilder("LinearAdaptation", new TElementBuilderTemplate<CLinearParameterAdaptation>());
+    pParameterCreationLibrary->addElementBuilder("LogarithmicAdaptation", new TElementBuilderTemplate<CLogarithmicParameterAdaptation>());
     pParameterCreationLibrary->addElementBuilder("EnumParameter", new TNamedElementBuilderTemplate<CEnumParameterType>());
     pParameterCreationLibrary->addElementBuilder("ValuePair", new TElementBuilderTemplate<CEnumValuePair>());
     pParameterCreationLibrary->addElementBuilder("FixedPointParameter", new TNamedElementBuilderTemplate<CFixedPointParameterType>());
@@ -2453,9 +2493,9 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
         log_info("Loading remote processor library");
 
         // Load library
-        _handleLibRemoteProcessor = dlopen("libremote-processor.so", RTLD_NOW);
+        _pvLibRemoteProcessorHandle = dlopen("libremote-processor.so", RTLD_NOW);
 
-        if (!_handleLibRemoteProcessor) {
+        if (!_pvLibRemoteProcessorHandle) {
 
             // Return error
             const char* pcError = dlerror();
@@ -2471,7 +2511,7 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
             return false;
         }
 
-        CreateRemoteProcessorServer pfnCreateRemoteProcessorServer = (CreateRemoteProcessorServer)dlsym(_handleLibRemoteProcessor, "createRemoteProcessorServer");
+        CreateRemoteProcessorServer pfnCreateRemoteProcessorServer = (CreateRemoteProcessorServer)dlsym(_pvLibRemoteProcessorHandle, "createRemoteProcessorServer");
 
         if (!pfnCreateRemoteProcessorServer) {
 
@@ -2574,28 +2614,27 @@ void CParameterMgr::doApplyConfigurations(bool bForce)
     getSelectionCriteria()->resetModifiedStatus();
 }
 
-bool CParameterMgr::getSystemClassXMLString(string& strResult)
+// Export to XML string
+bool CParameterMgr::exportElementToXMLString(const IXmlSource* pXmlSource,
+                                             const string& strRootElementType,
+                                             string& strResult) const
 {
-    // Root element
-    const CSystemClass* pSystemClass = getSystemClass();
-
     string strError;
 
     CXmlSerializingContext xmlSerializingContext(strError);
 
     // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(pSystemClass, pSystemClass->getKind(),
-                                     _bValidateSchemasOnStart);
+    CXmlMemoryDocSource memorySource(pXmlSource, strRootElementType, false);
 
     // Use a doc sink that write the doc data in a string
     CXmlStringDocSink stringSink(strResult);
 
+    // Do the export
     bool bProcessSuccess = stringSink.process(memorySource, xmlSerializingContext);
 
     if (!bProcessSuccess) {
 
         strResult = strError;
-
     }
 
     return bProcessSuccess;

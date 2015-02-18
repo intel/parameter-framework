@@ -221,6 +221,13 @@ void CXmlElement::setAttributeInteger(const string& strAttributeName, uint32_t u
    setAttributeString(strAttributeName, strStream.str());
 }
 
+void CXmlElement::setAttributeSignedInteger(const string& strAttributeName, int32_t iValue)
+{
+   ostringstream strStream;
+   strStream << iValue;
+   setAttributeString(strAttributeName, strStream.str());
+}
+
 void CXmlElement::setNameAttribute(const string& strValue)
 {
     setAttributeString("Name", strValue);

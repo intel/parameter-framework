@@ -157,9 +157,6 @@ void CRemoteProcessorServer::handleNewConnection()
         return;
     }
 
-    // Set timeout
-    clientSocket->setTimeout(5000);
-
     // Process all incoming requests from the client
     while (true) {
 

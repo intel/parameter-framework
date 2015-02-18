@@ -175,12 +175,6 @@ bool CParameterMgrPlatformConnector::start(string& strError)
         return false;
     }
 
-    // Init flow
-    if (!_pParameterMgr->init(strError)) {
-
-        return false;
-    }
-
     _bStarted = true;
 
     return true;

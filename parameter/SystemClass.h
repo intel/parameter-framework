@@ -75,9 +75,6 @@ public:
     virtual bool init(std::string& strError);
     virtual std::string getKind() const;
 
-    // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
-
 private:
     CSystemClass(const CSystemClass&);
     CSystemClass& operator=(const CSystemClass&);
@@ -111,6 +108,6 @@ private:
 
     // Subsystem factory
     CSubsystemLibrary* _pSubsystemLibrary;
-    std::list<void*> _subsystemLibraries; /**< Contains the list of all open plugin libs. */
+    std::list<void*> _subsystemLibraryHandleList; /**< Contains the list of all open plugin libs. */
 };
 

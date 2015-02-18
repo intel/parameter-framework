@@ -88,7 +88,7 @@ class CParameterMgr : private CElement
     };
     // Version
     static const uint32_t guiEditionMajor = 0x2;
-    static const uint32_t guiEditionMinor = 0x3;
+    static const uint32_t guiEditionMinor = 0x4;
     static const uint32_t guiRevision = 0x0;
 
     // Parameter handle friendship
@@ -340,14 +340,17 @@ public:
     bool exportDomainsBinary(const std::string& strFileName, std::string& strError);
 
     /**
-      * Method that creates an Xml description of the instanciated parameter structure contained
-      * in SystemClass.
+      * Method that exports an Xml description of the passed element into a string
       *
-      * @param[out] strResult contains the xml description of SystemClass or the errors if any
+      * @param[in] pXmlSource The source element to export
+      * @param[in] strRootElementType The XML root element name of the exported instance document
+      * @param[out] strResult contains the xml description or the error description in case false is returned
       *
-      * @return false if any error occures during the creation of the xml description
+      * @return true for success, false if any error occurs during the creation of the xml description (validation or encoding)
       */
-    bool getSystemClassXMLString(std::string& strResult);
+    bool exportElementToXMLString(const IXmlSource* pXmlSource,
+                                  const std::string& strRootElementType,
+                                  std::string& strResult) const;
 
     // CElement
     virtual std::string getKind() const;
@@ -597,8 +600,10 @@ private:
     // Subsystem plugin location
     const CSubsystemPlugins* _pSubsystemPlugins;
 
-    // Remote processor library handle
-    void *_handleLibRemoteProcessor;
+    /**
+     * Remote processor library handle
+     */
+    void* _pvLibRemoteProcessorHandle;
 
     // Whole system structure checksum
     uint8_t _uiStructureChecksum;

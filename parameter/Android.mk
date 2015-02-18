@@ -79,6 +79,7 @@ common_src_files := \
         InstanceDefinition.cpp \
         IntegerParameterType.cpp \
         LinearParameterAdaptation.cpp \
+        LogarithmicParameterAdaptation.cpp \
         MappingContext.cpp \
         MappingData.cpp \
         ParameterAccessContext.cpp \
@@ -154,6 +155,8 @@ LOCAL_C_INCLUDES := $(common_c_includes)
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libdl
 LOCAL_STATIC_LIBRARIES := libxmlserializer libpfw_utility libxml2
+
+LOCAL_REQUIRED_MODULES := libremote-processor
 
 LOCAL_CLANG := false
 include external/stlport/libstlport.mk
