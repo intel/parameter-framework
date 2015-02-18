@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfigurableDomains xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/home/lab/ICS/hardware/intel/PRIVATE/parameter-framework/test/configuration/Schemas/ConfigurableDomains.xsd" SystemClassName="Test">
+	<ConfigurableDomain Name="Domain_0">
+		<Configurations>
+			<Configuration Name="Conf_0">
+				<CompoundRule Type="All">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Includes" Value="State_0x1"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="Is" Value="State_1"/>
+				</CompoundRule>
+			</Configuration>
+			<Configuration Name="Conf_1">
+				<CompoundRule Type="Any">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Includes" Value="State_0x2"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="IsNot" Value="State_1"/>
+				</CompoundRule>
+			</Configuration>
+		</Configurations>
+
+		<ConfigurableElements>
+			<ConfigurableElement Path="/Test/Test/TEST_DIR" />
+			<ConfigurableElement Path="/Test/Test/TEST_TYPES" />
+		</ConfigurableElements>
+
+		<Settings>
+			<Configuration Name="Conf_0">
+				<ConfigurableElement Path="/Test/Test/TEST_DIR">
+					<Component Name="TEST_DIR">
+						<!-- Tested Booleans -->
+						<BooleanParameter Name="BOOL">0</BooleanParameter>
+						<!-- Tested FixedPoints -->
+						<FixedPointParameter Name="FP8_Q0.7">0</FixedPointParameter>
+						<FixedPointParameter Name="FP8_Q7.0">0</FixedPointParameter>
+						<FixedPointParameter Name="FP8_Q3.4">0</FixedPointParameter>
+						<FixedPointParameter Name="FP16_Q0.15">0</FixedPointParameter>
+						<FixedPointParameter Name="FP16_Q15.0">0</FixedPointParameter>
+						<FixedPointParameter Name="FP16_Q7.8">0</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q0.31">0</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q31.0">0</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q15.16">0</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q8.20">0</FixedPointParameter>
+						<!-- Tested Integers -->
+						<IntegerParameter Name="UINT32">0</IntegerParameter>
+						<IntegerParameter Name="INT32">0</IntegerParameter>
+						<IntegerParameter Name="UINT32_Max">0</IntegerParameter>
+						<IntegerParameter Name="INT32_Max">0</IntegerParameter>
+						<IntegerParameter Name="UINT16">0</IntegerParameter>
+						<IntegerParameter Name="INT16">0</IntegerParameter>
+						<IntegerParameter Name="UINT16_Max">0</IntegerParameter>
+						<IntegerParameter Name="INT16_Max">0</IntegerParameter>
+						<IntegerParameter Name="UINT8">0</IntegerParameter>
+						<IntegerParameter Name="INT8">0</IntegerParameter>
+						<IntegerParameter Name="UINT8_Max">0</IntegerParameter>
+						<IntegerParameter Name="INT8_Max">0</IntegerParameter>
+						<!-- Tested Arrays -->
+						<IntegerParameter Name="UINT32_ARRAY">0</IntegerParameter>
+						<IntegerParameter Name="INT16_ARRAY">0</IntegerParameter>
+						<IntegerParameter Name="UINT8_ARRAY">0</IntegerParameter>
+						<IntegerParameter Name="UINT8_Max_ARRAY">0</IntegerParameter>
+						<!-- Tested String-->
+						<StringParameter Name="STR_CHAR128">string_Conf_0</StringParameter>
+					</Component>
+				</ConfigurableElement>
+				<ConfigurableElement Path="/Test/Test/TEST_TYPES">
+					<Component Name="TEST_TYPES">
+						<EnumParameter Name="ENUM">ENUM_NOMINAL</EnumParameter>
+						<BitParameterBlock Name="BLOCK_8BIT">
+							<BitParameter Name="BIT_0_3">0</BitParameter>
+							<BitParameter Name="BIT_3_1">0</BitParameter>
+							<BitParameter Name="BIT_4_1">0</BitParameter>
+							<BitParameter Name="BIT_6_2">0</BitParameter>
+							<BitParameter Name="BIT_7_1">0</BitParameter>
+						</BitParameterBlock>
+						<ParameterBlock Name="BLOCK_PARAMETER">
+							<IntegerParameter Name="UINT8">0</IntegerParameter>
+							<IntegerParameter Name="UINT16">0</IntegerParameter>
+							<IntegerParameter Name="UINT32">0</IntegerParameter>
+						</ParameterBlock>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+			<Configuration Name="Conf_1">
+				<ConfigurableElement Path="/Test/Test/TEST_DIR">
+					<Component Name="TEST_DIR">
+						<!-- Tested Booleans -->
+						<BooleanParameter Name="BOOL">1</BooleanParameter>
+						<!-- Tested FixedPoints -->
+						<FixedPointParameter Name="FP8_Q0.7">0.9</FixedPointParameter>
+						<FixedPointParameter Name="FP8_Q7.0">1</FixedPointParameter>
+						<FixedPointParameter Name="FP8_Q3.4">1</FixedPointParameter>
+						<FixedPointParameter Name="FP16_Q0.15">0.9</FixedPointParameter>
+						<FixedPointParameter Name="FP16_Q15.0">1</FixedPointParameter>
+						<FixedPointParameter Name="FP16_Q7.8">1</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q0.31">0.9</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q31.0">1</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q15.16">1</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q8.20">1</FixedPointParameter>
+						<!-- Tested Integers -->
+						<IntegerParameter Name="UINT32">1</IntegerParameter>
+						<IntegerParameter Name="INT32">1</IntegerParameter>
+						<IntegerParameter Name="UINT32_Max">1</IntegerParameter>
+						<IntegerParameter Name="INT32_Max">1</IntegerParameter>
+						<IntegerParameter Name="UINT16">1</IntegerParameter>
+						<IntegerParameter Name="INT16">1</IntegerParameter>
+						<IntegerParameter Name="UINT16_Max">1</IntegerParameter>
+						<IntegerParameter Name="INT16_Max">1</IntegerParameter>
+						<IntegerParameter Name="UINT8">1</IntegerParameter>
+						<IntegerParameter Name="INT8">1</IntegerParameter>
+						<IntegerParameter Name="UINT8_Max">1</IntegerParameter>
+						<IntegerParameter Name="INT8_Max">1</IntegerParameter>
+						<!-- Tested Arrays -->
+						<IntegerParameter Name="UINT32_ARRAY">1</IntegerParameter>
+						<IntegerParameter Name="INT16_ARRAY">1</IntegerParameter>
+						<IntegerParameter Name="UINT8_ARRAY">1</IntegerParameter>
+						<IntegerParameter Name="UINT8_Max_ARRAY">1</IntegerParameter>
+						<!-- Tested String-->
+						<StringParameter Name="STR_CHAR128">string_Conf_1</StringParameter>
+					</Component>
+				</ConfigurableElement>
+				<ConfigurableElement Path="/Test/Test/TEST_TYPES">
+					<Component Name="TEST_TYPES">
+						<!--Tested Enum-->
+						<EnumParameter Name="ENUM">ENUM_MIN</EnumParameter>
+						<!--Tested Bit parameter block-->
+						<BitParameterBlock Name="BLOCK_8BIT">
+							<BitParameter Name="BIT_0_3">0</BitParameter>
+							<BitParameter Name="BIT_3_1">0</BitParameter>
+							<BitParameter Name="BIT_4_1">0</BitParameter>
+							<BitParameter Name="BIT_6_2">0</BitParameter>
+							<BitParameter Name="BIT_7_1">0</BitParameter>
+						</BitParameterBlock>
+						<ParameterBlock Name="BLOCK_PARAMETER">
+							<IntegerParameter Name="UINT8">0</IntegerParameter>
+							<IntegerParameter Name="UINT16">0</IntegerParameter>
+							<IntegerParameter Name="UINT32">0</IntegerParameter>
+						</ParameterBlock>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+		</Settings>
+	</ConfigurableDomain>
+</ConfigurableDomains>

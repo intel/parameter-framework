@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParameterFrameworkConfiguration SystemClassName="Test" ServerPort="5000" TuningAllowed="true">
+    <SubsystemPlugins>
+        <Location Folder="">
+            <Plugin Name="libtest-subsystem.so"/>
+        </Location>
+    </SubsystemPlugins>
+    <StructureDescriptionFileLocation Path="Structure/Test/TestClass.xml"/>
+    <SettingsConfiguration>
+        <ConfigurableDomainsFileLocation Path="Settings/Test/TestConfigurableDomains.xml"/>
+    </SettingsConfiguration>
+</ParameterFrameworkConfiguration>

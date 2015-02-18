@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--DOMAIN 1 DEFINITION-->
+<ConfigurableDomains xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ConfigurableDomains.xsd" SystemClassName="Test">
+	<ConfigurableDomain Name="Domain_1">
+		<Configurations>
+			<Configuration Name="Conf_1_0">
+				<CompoundRule Type="All">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Includes" Value="State_0x1"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="Is" Value="State_1"/>
+				</CompoundRule>
+			</Configuration>
+			<Configuration Name="Conf_1_1">
+				<CompoundRule Type="Any">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Excludes" Value="State_0x1"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="IsNot" Value="State_1"/>
+				</CompoundRule>
+			</Configuration>
+		</Configurations>
+		<ConfigurableElements>
+			<ConfigurableElement Path="/Test/Test/TEST_MAIN" />
+			<!--ConfigurableElement Path="/Test/Test/TEST_MAIN/TEST_DIR_0" />
+			<ConfigurableElement Path="/Test/Test/TEST_MAIN/TEST_DIR_1" />
+			<ConfigurableElement Path="/Test/Test/TEST_MAIN/TEST_DIR_2" /-->
+		</ConfigurableElements>
+		<Settings>
+			<Configuration Name="Conf_1_1">
+				<ConfigurableElement Path="/Test/Test/TEST_MAIN">
+				<Component Name="TEST_MAIN">
+					<Component Name="TEST_DIR_0">
+						<!-- Tested Booleans -->
+						<BooleanParameter Name="BOOL">0</BooleanParameter>
+						<!-- Tested FixedPoints -->
+						<FixedPointParameter Name="FP8_Q0.7">0.1</FixedPointParameter>
+						<FixedPointParameter Name="FP8_Q7.0">2</FixedPointParameter>
+						<FixedPointParameter Name="FP8_Q3.4">2.1</FixedPointParameter>
+						<FixedPointParameter Name="FP16_Q0.15">0.1</FixedPointParameter>
+						<FixedPointParameter Name="FP16_Q15.0">2</FixedPointParameter>
+						<FixedPointParameter Name="FP16_Q7.8">2</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q0.31">0.1</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q31.0">2</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q15.16">2.1</FixedPointParameter>
+						<FixedPointParameter Name="FP32_Q8.20">2.1</FixedPointParameter>
+						<!-- Tested Integers -->
+						<IntegerParameter Name="UINT32">0</IntegerParameter>
+						<IntegerParameter Name="INT32">0</IntegerParameter>
+						<IntegerParameter Name="UINT32_Max">0</IntegerParameter>
+						<IntegerParameter Name="INT32_Max">0</IntegerParameter>
+						<IntegerParameter Name="UINT16">0</IntegerParameter>
+						<IntegerParameter Name="INT16">0</IntegerParameter>
+						<IntegerParameter Name="UINT16_Max">0</IntegerParameter>
+						<IntegerParameter Name="INT16_Max">0</IntegerParameter>
+						<IntegerParameter Name="UINT8">0</IntegerParameter>
+						<IntegerParameter Name="INT8">0</IntegerParameter>
+						<IntegerParameter Name="UINT8_Max">0</IntegerParameter>
+						<IntegerParameter Name="INT8_Max">0</IntegerParameter>
+						<!-- Tested Arrays -->
+						<IntegerParameter Name="UINT32_ARRAY">0</IntegerParameter>
+						<IntegerParameter Name="INT16_ARRAY">0</IntegerParameter>
+						<IntegerParameter Name="UINT8_ARRAY">0</IntegerParameter>
+						<IntegerParameter Name="UINT8_Max_ARRAY">0</IntegerParameter>
+						<!-- Tested String-->
+						<StringParameter Name="STR_CHAR128">string_Conf_1_1</StringParameter>
+					</Component>
+					<Component Name="TEST_DIR_1">
+						<IntegerParameter Name="Param_00">4</IntegerParameter>
+						<IntegerParameter Name="Param_01">4</IntegerParameter>
+						<IntegerParameter Name="Param_02">4</IntegerParameter>
+					</Component>
+					<Component Name="TEST_DIR_2">
+						<IntegerParameter Name="Param_10">4</IntegerParameter>
+						<IntegerParameter Name="Param_11">4</IntegerParameter>
+						<IntegerParameter Name="Param_12">4</IntegerParameter>
+					</Component>
+				</Component>
+				</ConfigurableElement>
+			</Configuration>
+			<Configuration Name="Conf_1_0">
+				<ConfigurableElement Path="/Test/Test/TEST_MAIN">
+				    <Component Name="TEST_MAIN">
+					    <Component Name="TEST_DIR_0">
+						    <!-- Tested Booleans -->
+						    <BooleanParameter Name="BOOL">0</BooleanParameter>
+						    <!-- Tested FixedPoints -->
+						    <FixedPointParameter Name="FP8_Q0.7">0.1</FixedPointParameter>
+						    <FixedPointParameter Name="FP8_Q7.0">2</FixedPointParameter>
+						    <FixedPointParameter Name="FP8_Q3.4">2.1</FixedPointParameter>
+						    <FixedPointParameter Name="FP16_Q0.15">0.1</FixedPointParameter>
+						    <FixedPointParameter Name="FP16_Q15.0">2</FixedPointParameter>
+						    <FixedPointParameter Name="FP16_Q7.8">2</FixedPointParameter>
+						    <FixedPointParameter Name="FP32_Q0.31">0.1</FixedPointParameter>
+						    <FixedPointParameter Name="FP32_Q31.0">2</FixedPointParameter>
+						    <FixedPointParameter Name="FP32_Q15.16">2.1</FixedPointParameter>
+						    <FixedPointParameter Name="FP32_Q8.20">2.1</FixedPointParameter>
+						    <!-- Tested Integers -->
+						    <IntegerParameter Name="UINT32">0</IntegerParameter>
+						    <IntegerParameter Name="INT32">0</IntegerParameter>
+						    <IntegerParameter Name="UINT32_Max">0</IntegerParameter>
+						    <IntegerParameter Name="INT32_Max">0</IntegerParameter>
+						    <IntegerParameter Name="UINT16">0</IntegerParameter>
+						    <IntegerParameter Name="INT16">0</IntegerParameter>
+						    <IntegerParameter Name="UINT16_Max">0</IntegerParameter>
+						    <IntegerParameter Name="INT16_Max">0</IntegerParameter>
+						    <IntegerParameter Name="UINT8">0</IntegerParameter>
+						    <IntegerParameter Name="INT8">0</IntegerParameter>
+						    <IntegerParameter Name="UINT8_Max">0</IntegerParameter>
+						    <IntegerParameter Name="INT8_Max">0</IntegerParameter>
+						    <!-- Tested Arrays -->
+						    <IntegerParameter Name="UINT32_ARRAY">0</IntegerParameter>
+						    <IntegerParameter Name="INT16_ARRAY">0</IntegerParameter>
+						    <IntegerParameter Name="UINT8_ARRAY">0</IntegerParameter>
+						    <IntegerParameter Name="UINT8_Max_ARRAY">0</IntegerParameter>
+						    <!-- Tested String-->
+						    <StringParameter Name="STR_CHAR128">string_Conf_1_1</StringParameter>
+					    </Component>
+					    <Component Name="TEST_DIR_1">
+						    <IntegerParameter Name="Param_00">5</IntegerParameter>
+						    <IntegerParameter Name="Param_01">5</IntegerParameter>
+						    <IntegerParameter Name="Param_02">5</IntegerParameter>
+					    </Component>
+					    <Component Name="TEST_DIR_2">
+						    <IntegerParameter Name="Param_10">5</IntegerParameter>
+						    <IntegerParameter Name="Param_11">5</IntegerParameter>
+						    <IntegerParameter Name="Param_12">5</IntegerParameter>
+					    </Component>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+		</Settings>
+	</ConfigurableDomain>
+<!--DOMAIN 2 DEFINITION-->
+	<ConfigurableDomain Name="Domain_2">
+		<Configurations>
+			<Configuration Name="Conf_2_0">
+				<CompoundRule Type="All">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Includes" Value="State_0x1"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="IsNot" Value="State_1"/>
+				</CompoundRule>
+			</Configuration>
+			<Configuration Name="Conf_2_1">
+				<CompoundRule Type="All">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Includes" Value="State_0x2"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="Is" Value="State_1"/>
+				</CompoundRule>
+			</Configuration>
+		</Configurations>
+		<ConfigurableElements/>
+	</ConfigurableDomain>
+<!--DOMAIN 3 DEFINITION-->
+	<ConfigurableDomain Name="Domain_3">
+		<Configurations>
+			<Configuration Name="Conf_3_0">
+				<CompoundRule Type="Any">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Includes" Value="State_0x1"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="Is" Value="State_0"/>
+				</CompoundRule>
+			</Configuration>
+			<Configuration Name="Conf_3_1">
+				<CompoundRule Type="Any">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Includes" Value="State_0x2"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="Is" Value="State_1"/>
+				</CompoundRule>
+			</Configuration>
+		</Configurations>
+		<ConfigurableElements/>
+	</ConfigurableDomain>
+</ConfigurableDomains>
