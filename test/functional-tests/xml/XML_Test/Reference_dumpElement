@@ -1,0 +1,89 @@
+- SystemClass: Test
+    - Subsystem: Test
+        - Component: TEST_DIR
+            - BooleanParameter: BOOL = 1
+            - FixedPointParameter: FP8_Q0.7 = 0.8984375
+            - FixedPointParameter: FP8_Q7.0 = 1
+            - FixedPointParameter: FP8_Q3.4 = 1.0000
+            - FixedPointParameter: FP16_Q0.15 = 0.899993896484375
+            - FixedPointParameter: FP16_Q15.0 = 1
+            - FixedPointParameter: FP16_Q7.8 = 1.00000000
+            - FixedPointParameter: FP32_Q0.31 = 0.8999999999068677425384521484375
+            - FixedPointParameter: FP32_Q31.0 = 1
+            - FixedPointParameter: FP32_Q15.16 = 1.0000000000000000
+            - FixedPointParameter: FP32_Q8.20 = 1.00000000000000000000
+            - IntegerParameter: UINT32 = 1
+            - IntegerParameter: INT32 = 1
+            - IntegerParameter: UINT32_Max = 1
+            - IntegerParameter: INT32_Max = 1
+            - IntegerParameter: UINT16 = 1
+            - IntegerParameter: INT16 = 1
+            - IntegerParameter: UINT16_Max = 1
+            - IntegerParameter: INT16_Max = 1
+            - IntegerParameter: UINT8 = 1
+            - IntegerParameter: INT8 = 1
+            - IntegerParameter: UINT8_Max = 1
+            - IntegerParameter: INT8_Max = 1
+            - IntegerParameter: UINT32_ARRAY = 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+            - IntegerParameter: INT16_ARRAY = 1 0 0 0 0
+            - IntegerParameter: UINT8_ARRAY = 1 0 0 0 0
+            - IntegerParameter: UINT8_Max_ARRAY = 1 0 0 0 0
+            - StringParameter: STR_CHAR128 = string_Conf_1
+        - Component: TEST_DOMAIN_0
+            - IntegerParameter: Param_00 = 4
+            - IntegerParameter: Param_01 = 4
+            - IntegerParameter: Param_02 = 4
+        - Component: TEST_DOMAIN_1
+            - IntegerParameter: Param_10 = 4
+            - IntegerParameter: Param_11 = 4
+            - IntegerParameter: Param_12 = 4
+        - Component: TEST_TYPES
+            - EnumParameter: ENUM = ENUM_MIN
+            - BitParameterBlock: BLOCK_8BIT
+                - BitParameter: BIT_0_3 = 0
+                - BitParameter: BIT_3_1 = 0
+                - BitParameter: BIT_4_1 = 0
+                - BitParameter: BIT_6_2 = 0
+                - BitParameter: BIT_7_1 = 0
+            - ParameterBlock: BLOCK_PARAMETER
+                - IntegerParameter: UINT8 = 0
+                - IntegerParameter: UINT16 = 0
+                - IntegerParameter: UINT32 = 0
+        - Component: TEST_MAIN
+            - Component: TEST_DIR_0
+                - BooleanParameter: BOOL = 0
+                - FixedPointParameter: FP8_Q0.7 = 0.1015625
+                - FixedPointParameter: FP8_Q7.0 = 2
+                - FixedPointParameter: FP8_Q3.4 = 2.1250
+                - FixedPointParameter: FP16_Q0.15 = 0.100006103515625
+                - FixedPointParameter: FP16_Q15.0 = 2
+                - FixedPointParameter: FP16_Q7.8 = 2.00000000
+                - FixedPointParameter: FP32_Q0.31 = 0.1000000000931322574615478515625
+                - FixedPointParameter: FP32_Q31.0 = 2
+                - FixedPointParameter: FP32_Q15.16 = 2.1000061035156250
+                - FixedPointParameter: FP32_Q8.20 = 2.10000038146972656250
+                - IntegerParameter: UINT32 = 0
+                - IntegerParameter: INT32 = 0
+                - IntegerParameter: UINT32_Max = 0
+                - IntegerParameter: INT32_Max = 0
+                - IntegerParameter: UINT16 = 0
+                - IntegerParameter: INT16 = 0
+                - IntegerParameter: UINT16_Max = 0
+                - IntegerParameter: INT16_Max = 0
+                - IntegerParameter: UINT8 = 0
+                - IntegerParameter: INT8 = 0
+                - IntegerParameter: UINT8_Max = 0
+                - IntegerParameter: INT8_Max = 0
+                - IntegerParameter: UINT32_ARRAY = 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+                - IntegerParameter: INT16_ARRAY = 0 0 0 0 0
+                - IntegerParameter: UINT8_ARRAY = 0 0 0 0 0
+                - IntegerParameter: UINT8_Max_ARRAY = 0 0 0 0 0
+                - StringParameter: STR_CHAR128 = string_Conf_1_1
+            - Component: TEST_DIR_1
+                - IntegerParameter: Param_00 = 4
+                - IntegerParameter: Param_01 = 4
+                - IntegerParameter: Param_02 = 4
+            - Component: TEST_DIR_2
+                - IntegerParameter: Param_10 = 4
+                - IntegerParameter: Param_11 = 4
+                - IntegerParameter: Param_12 = 4
