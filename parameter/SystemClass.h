@@ -72,7 +72,6 @@ public:
     void cleanSubsystemsNeedToResync();
 
     // base
-    virtual bool init(std::string& strError);
     virtual std::string getKind() const;
 
 private:
