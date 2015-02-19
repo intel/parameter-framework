@@ -18,6 +18,8 @@ install:
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100 &&
         sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 100;
     fi
+# Catch is not packaged on travis workers (debian testing)
+  - sudo wget https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp -P /usr/include/
 
 # how to build
 script:
