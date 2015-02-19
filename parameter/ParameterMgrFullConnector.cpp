@@ -52,7 +52,7 @@ CParameterMgrFullConnector::~CParameterMgrFullConnector()
 bool CParameterMgrFullConnector::start(string& strError)
 {
     // Create data structure & Init flow
-    return _pParameterMgr->load(strError) && _pParameterMgr->init(strError);
+    return _pParameterMgr->load(strError);
 }
 
 void CParameterMgrFullConnector::setLogger(CParameterMgrFullConnector::ILogger* pLogger)

@@ -118,7 +118,6 @@ public:
       * @return true if no error occurred, false otherwise.
       */
     bool load(std::string& strError);
-    virtual bool init(std::string& strError);
 
     // Selection Criteria
     CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
@@ -358,6 +357,9 @@ public:
 private:
     CParameterMgr(const CParameterMgr&);
     CParameterMgr& operator=(const CParameterMgr&);
+
+    // Init
+    virtual bool init(std::string& strError);
 
     // Logging (done by root)
     virtual void doLog(bool bIsWarning, const std::string& strLog) const;
