@@ -15,6 +15,8 @@ install:
   - sudo apt-get install --yes swig cmake valgrind g++-4.8
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
   - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 100
+  - sudo wget --directory-prefix /usr/include/
+              https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
 
 # how to build
 script:
