@@ -80,6 +80,7 @@ bool CSelectionCriterionType::getNumericalValue(const std::string& strValue, int
         uint32_t uiNbValues = astrValues.size();
         int iResult = 0;
         uint32_t uiValueIndex;
+        iValue = 0;
 
         // Looping on each std::string delimited by "|" token and adding the associated value
         for (uiValueIndex = 0; uiValueIndex < uiNbValues; uiValueIndex++) {
