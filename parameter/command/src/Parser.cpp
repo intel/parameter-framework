@@ -220,11 +220,6 @@ const Parser::RemoteCommandParserItem Parser::gRemoteCommandParserItems[] = {
     /// Structure Export
     { "getSystemClassXML", &Parser::getSystemClassXML, 0,
       "", "Print parameter structure as XML" },
-    /// Deprecated Commands
-    { "getDomainsXML",
-      &Parser::getConfigurableDomainsWithSettingsXML, 0,
-      "", "DEPRECATED COMMAND, please use getDomainsWithSettingsXML" },
-
 };
 
 // Remote command parsers array Size
