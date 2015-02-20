@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,51 +26,35 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# has been tested on 2.8 only - might work on older versions
-cmake_minimum_required(VERSION 2.8)
 
-# linking policy (see cmake --help-policy CMP0003)
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
+option(DOXYGEN
+       "Enable doxygen generation (you still have to run 'make doc')"
+       OFF)
 
-project(parameter-framework)
+include(CMakeDependentOption)
+# Only present DOXYGEN_GRAPHS if DOXYGEN is ON and if so, default to ON.
+# Else, set to OFF.
+cmake_dependent_option(DOXYGEN_GRAPHS
+       "Generate graphs in the doxygen documentation (you need the 'dot'
+       utility)"
+       ON
+       "DOXYGEN" OFF)
 
-# find and set the Parameter Framework's version
-execute_process(COMMAND git describe --tags --dirty
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-    OUTPUT_VARIABLE PARAMETER_FRAMEWORK_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+if(DOXYGEN)
+    find_package(Doxygen REQUIRED)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
+    if(DOXYGEN_GRAPHS AND (NOT DOXYGEN_DOT_FOUND))
+        message(SEND_ERROR "
+        The 'dot' utility was  not found;"
+        " install it or deactivate graph generation (DOXYGEN_GRAPHS=OFF).")
+    endif()
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-include(ctest/CMakeLists.txt)
-
-option(COVERAGE "Build with coverage support" OFF)
-if(COVERAGE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
+       ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+       @ONLY)
+    add_custom_target(doc
+        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating documentation with Doxygen"
+        VERBATIM)
 endif()
-
-add_subdirectory(xmlserializer)
-add_subdirectory(parameter)
-add_subdirectory(utility)
-add_subdirectory(remote-processor)
-
-add_subdirectory(remote-process)
-
-add_subdirectory(test)
-
-option(BASH_COMPLETION "Install bash completion configuration" ON)
-if (BASH_COMPLETION)
-    add_subdirectory(tools/bash_completion)
-endif()
-
-add_subdirectory(tools/xmlGenerator)
-add_subdirectory(tools/xmlValidator)
-
-add_subdirectory(bindings)
-
-add_subdirectory(doc)
