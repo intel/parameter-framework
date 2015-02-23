@@ -48,15 +48,12 @@ public:
     /** Remote command Handler type */
     typedef TRemoteCommandHandlerTemplate<Parser> CommandHandler;
 
-    typedef CommandHandler::CommandStatus
-            (Parser::*RemoteCommandParser)(
-                    const IRemoteCommand& remoteCommand, std::string& result);
 
     /** Parser items description */
     struct RemoteCommandParserItem
     {
         const char* _pcCommandName;
-        Parser::RemoteCommandParser _pfnParser;
+        CommandHandler::RemoteCommandParser _pfnParser;
         uint32_t _uiMinArgumentCount;
         const char* _pcHelp;
         const char* _pcDescription;
