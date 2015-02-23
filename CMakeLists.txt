@@ -36,7 +36,7 @@ endif(COMMAND cmake_policy)
 
 project(parameter-framework)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -std=c++11")
 
 option(COVERAGE "Build with coverage support" OFF)
 if(COVERAGE)
