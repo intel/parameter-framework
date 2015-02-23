@@ -190,12 +190,15 @@ private:
     CParameterMgrPlatformConnectorLogger* _pParameterMgrPlatformConnectorLogger;
 
     // Command Handler
-    CCommandHandler* _pCommandHandler;
+    CCommandHandler _commandHandler;
 
     // Remote Processor Server
     CRemoteProcessorServer* _pRemoteProcessorServer;
 
     // Semaphore used by calling thread to avoid exiting
     sem_t& _exitSemaphore;
+
+    /** Parsing information for remote command */
+    static const CCommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
 };
 

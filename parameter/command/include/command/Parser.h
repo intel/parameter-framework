@@ -48,17 +48,6 @@ public:
     /** Remote command Handler type */
     typedef TRemoteCommandHandlerTemplate<Parser> CommandHandler;
 
-
-    /** Parser items description */
-    struct RemoteCommandParserItem
-    {
-        const char* _pcCommandName;
-        CommandHandler::RemoteCommandParser _pfnParser;
-        uint32_t _uiMinArgumentCount;
-        const char* _pcHelp;
-        const char* _pcDescription;
-    };
-
     /** Class constructor
      *
      * @param parameterMgr pointer
@@ -225,11 +214,8 @@ private:
     CommandReturn getSystemClassXML(const IRemoteCommand& remoteCommand, std::string& result);
     //@}
 
-    /** Parser items array */
-    static const RemoteCommandParserItem gRemoteCommandParserItems[];
-
-    /** Parser items array size */
-    static const uint32_t gNbRemoteCommandParserItems;
+    /** Parser items map */
+    static const CommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
 
     /** Parameter Manager used to delegate parsed commands */
     CParameterMgr& mParameterMgr;
