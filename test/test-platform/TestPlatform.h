@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -148,7 +148,7 @@ private:
     CParameterMgrPlatformConnectorLogger* _pParameterMgrPlatformConnectorLogger;
 
     // Command Handler
-    CCommandHandler* _pCommandHandler;
+    CCommandHandler _commandHandler;
 
     // Remote Processor Server
     CRemoteProcessorServer* _pRemoteProcessorServer;
@@ -158,5 +158,8 @@ private:
 
     // Semaphore used by calling thread to avoid exiting
     sem_t& _exitSemaphore;
+
+    /** Parsing information for remote command */
+    static const CCommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
 };
 
