@@ -40,9 +40,12 @@ std::string CSelectionCriteriaDefinition::getKind() const
 }
 
 // Selection Criterion creation
-CSelectionCriterion* CSelectionCriteriaDefinition::createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType)
+CSelectionCriterion*
+CSelectionCriteriaDefinition::createSelectionCriterion(const std::string& strName,
+                                                       const CSelectionCriterionType* pType,
+                                                       core::log::ILogger& logger)
 {
-    CSelectionCriterion* pSelectionCriterion = new CSelectionCriterion(strName, pSelectionCriterionType);
+    CSelectionCriterion* pSelectionCriterion = new CSelectionCriterion(strName, pType, logger);
 
     addChild(pSelectionCriterion);
 

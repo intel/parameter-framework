@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,41 +29,22 @@
  */
 #pragma once
 
-#include "Element.h"
-#include "SelectionCriterion.h"
-#include "Results.h"
-#include <log/ILogger.h>
+#include <string>
 
-class ISelectionCriterionObserver;
+namespace core
+{
+namespace log
+{
 
-class CSelectionCriteriaDefinition : public CElement
+/** Logger interface provided by client */
+class ILogger
 {
 public:
-    CSelectionCriteriaDefinition();
-
-    // Selection Criterion creation
-    CSelectionCriterion* createSelectionCriterion(const std::string& strName,
-                                                  const CSelectionCriterionType* pType,
-                                                  core::log::ILogger& logger);
-
-    // Selection Criterion access
-    const CSelectionCriterion* getSelectionCriterion(const std::string& strName) const;
-    CSelectionCriterion* getSelectionCriterion(const std::string& strName);
-
-    /** List available criteria
-     *
-     * @param[out] results, information container
-     * @param[in] withTypeInfo indicates if we want to retrieve criterion type information
-     * @param[in] humanReadable indicates the formatage we want to use
-     */
-    void listSelectionCriteria(core::Results& results,
-                               bool withTypeInfo,
-                               bool humanReadable) const;
-
-    // Base
-    virtual std::string getKind() const;
-
-    // Reset the modified status of the children
-    void resetModifiedStatus();
+    virtual void info(const std::string& strLog) = 0;
+    virtual void warning(const std::string& strLog) = 0;
+protected:
+    virtual ~ILogger() {}
 };
 
+} /** log namespace */
+} /** core namespace */

@@ -50,9 +50,12 @@ CSelectionCriterionType* CSelectionCriteria::createSelectionCriterionType(bool b
     return getSelectionCriterionLibrary()->createSelectionCriterionType(bIsInclusive);
 }
 
-CSelectionCriterion* CSelectionCriteria::createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType)
+CSelectionCriterion*
+CSelectionCriteria::createSelectionCriterion(const std::string& strName,
+                                             const CSelectionCriterionType* pType,
+                                             core::log::ILogger& logger)
 {
-    return getSelectionCriteriaDefinition()->createSelectionCriterion(strName, pSelectionCriterionType);
+    return getSelectionCriteriaDefinition()->createSelectionCriterion(strName, pType, logger);
 }
 
 // Selection criterion retrieval

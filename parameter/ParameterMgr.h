@@ -40,8 +40,11 @@
 #include "XmlDocSink.h"
 #include "XmlDocSource.h"
 #include "Results.h"
+#include <log/LogWrapper.h>
+#include <log/Context.h>
 
 #include <string>
+#include <memory>
 
 class CElementLibrarySet;
 class CSubsystemLibrary;
@@ -93,21 +96,10 @@ class CParameterMgr : private CElement
     // Parameter handle friendship
     friend class CParameterHandle;
 public:
-    // Logger interface
-    class ILogger
-    {
-    public:
-        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
-    protected:
-        virtual ~ILogger() {}
-    };
 
     // Construction
-    CParameterMgr(const std::string& strConfigurationFilePath);
+    CParameterMgr(const std::string& strConfigurationFilePath, core::log::ILogger& logger);
     virtual ~CParameterMgr();
-
-    // Logging
-    void setLogger(ILogger* pLogger);
 
     /** Load plugins, structures and settings from the config file given.
       *
@@ -369,11 +361,6 @@ private:
     // Init
     virtual bool init(std::string& strError);
 
-    // Logging (done by root)
-    virtual void doLog(bool bIsWarning, const std::string& strLog) const;
-    virtual void nestLog() const;
-    virtual void unnestLog() const;
-
     // Version
     std::string getVersion() const;
 
@@ -596,6 +583,20 @@ private:
      */
     bool logResult(bool isSuccess, const std::string& result);
 
+    /**
+     * Retrieve wrapped information logger
+     *
+     * @return Info logger
+     */
+    core::log::Info info();
+
+    /**
+     * Retrieve wrapped warning logger
+     *
+     * @return Warning logger
+     */
+    core::log::Warning warning();
+
     // Tuning
     bool _bTuningModeIsOn;
 
@@ -648,9 +649,11 @@ private:
     // Blackboard access mutex
     pthread_mutex_t _blackboardMutex;
 
-    // Logging
-    ILogger* _pLogger;
-    mutable uint32_t _uiLogDepth;
+    /** Raw logger provided by client */
+    core::log::ILogger& _logger;
+
+    /** Log prolog, owns the context indentation */
+    std::string _prolog;
 
     /** If set to false, the remote interface won't be started no matter what.
      * If set to true - the default - it has no impact on the policy for

@@ -51,7 +51,9 @@ public:
 
     // Selection Criteria/Type creation
     CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
-    CSelectionCriterion* createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType);
+    CSelectionCriterion* createSelectionCriterion(const std::string& strName,
+                                                  const CSelectionCriterionType* pType,
+                                                  core::log::ILogger& logger);
     // Selection criterion retrieval
     CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 

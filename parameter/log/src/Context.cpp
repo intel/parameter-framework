@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,27 +27,26 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "AutoLog.h"
+#include "log/Context.h"
+#include "log/LogWrapper.h"
 
-using std::string;
-
-CAutoLog::CAutoLog(const CElement* pElement, const string& strContext, bool bLogOn)
-    : _pElement(pElement), _strContext(strContext), _bLogOn(bLogOn)
+namespace core
 {
-    if (_bLogOn) {
-        // Log
-        _pElement->doLog(false, _strContext + " {");
-        // Nest
-        _pElement->nestLog();
-    }
+namespace log
+{
+
+Context::Context(ILogger& logger, std::string& prolog, const std::string& context)
+    : mLogger(logger), mProlog(prolog)
+{
+    Info(mLogger, mProlog) << context << " {";
+    mProlog += "    ";
 }
 
-CAutoLog::~CAutoLog()
+Context::~Context()
 {
-    if (_bLogOn) {
-        // Unnest
-        _pElement->unnestLog();
-        // Log
-        _pElement->doLog(false, "} " + _strContext);
-    }
+    mProlog.resize(mProlog.size() - 4);
+    Info(mLogger, mProlog) << "}";
 }
+
+} /** log namespace */
+} /** core namespace */
