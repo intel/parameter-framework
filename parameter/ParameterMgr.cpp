@@ -88,6 +88,7 @@
 #include "XmlStringDocSource.h"
 #include "XmlMemoryDocSink.h"
 #include "XmlMemoryDocSource.h"
+#include "XmlUtil.h"
 #include "SelectionCriteriaDefinition.h"
 #include "Utility.h"
 #include <sstream>
@@ -2638,4 +2639,9 @@ bool CParameterMgr::exportElementToXMLString(const IXmlSource* pXmlSource,
     }
 
     return bProcessSuccess;
+}
+
+void CParameterMgr::initForMultiThreading()
+{
+    CXmlUtil::initForMultiThreading();
 }
