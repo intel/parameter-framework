@@ -105,15 +105,24 @@ public:
     LogWrapper() : mLogger() {}
     virtual ~LogWrapper() {}
 private:
-    virtual void log(bool bIsWarning, const string &strLog)
+    virtual void info(const string &msg)
+    {
+        log(pfwLogInfo, msg);
+    }
+
+    virtual void warning(const string &msg)
+    {
+        log(pfwLogWarning, msg);
+    }
+
+    void log(PfwLogLevel level, const string &strLog)
     {
         // A LogWrapper should NOT be register to the pfw (thus log called)
         // if logCb is NULL.
         assert(mLogger.logCb != NULL);
-        mLogger.logCb(mLogger.userCtx,
-                      bIsWarning ? pfwLogWarning : pfwLogInfo,
-                      strLog.c_str());
+        mLogger.logCb(mLogger.userCtx, level, strLog.c_str());
     }
+
     PfwLogger mLogger;
 };
 

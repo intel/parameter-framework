@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,24 +29,22 @@
  */
 #pragma once
 
-#include "Element.h"
-
 #include <string>
 
-class CAutoLog
+namespace core
+{
+namespace log
+{
+
+/** Logger interface provided by client */
+class ILogger
 {
 public:
-    CAutoLog(const CElement* pElement, const std::string& strContext, bool bLogOn = true);
-    ~CAutoLog();
-
-private:
-    CAutoLog(const CAutoLog&);
-    CAutoLog& operator=(const CAutoLog&);
-    // Logger element
-    const CElement* _pElement;
-    // Context
-    std::string _strContext;
-    // Log on
-    bool _bLogOn;
+    virtual void info(const std::string& strLog) = 0;
+    virtual void warning(const std::string& strLog) = 0;
+protected:
+    virtual ~ILogger() {}
 };
 
+} /** log namespace */
+} /** core namespace */

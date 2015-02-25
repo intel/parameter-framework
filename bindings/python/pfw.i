@@ -182,7 +182,8 @@ public:
 class ILogger
 {
     public:
-        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
+        virtual void info(const std::string& log) = 0;
+        virtual void warning(const std::string& log) = 0;
     protected:
         virtual ~ILogger() {}
 };

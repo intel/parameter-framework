@@ -47,16 +47,14 @@ class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnect
 public:
     CParameterMgrPlatformConnectorLogger() {}
 
-    virtual void log(bool bIsWarning, const string& strLog)
+    virtual void info(const string& log)
     {
+        std::cout << log << std::endl;
+    }
 
-        if (bIsWarning) {
-
-	    std::cerr << strLog << std::endl;
-        } else {
-
-	    std::cout << strLog << std::endl;
-        }
+    virtual void warning(const string& log)
+    {
+        std::cerr << log << std::endl;
     }
 };
 

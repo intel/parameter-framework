@@ -39,9 +39,11 @@ class PfwLogger(PyPfw.ILogger):
         super(PfwLogger, self).__init__()
         self.__logger = logging.root.getChild("parameter-framework")
 
-    def log(self, is_warning, message):
-        log_func = self.__logger.warning if is_warning else self.__logger.info
-        log_func(message)
+    def info(self, message):
+        self.__logger.info(message)
+
+    def warning(self, message):
+        self.__logger.warning(message)
 
 class FixedPointTester():
     """ Made for testing a particular Qn.m number
