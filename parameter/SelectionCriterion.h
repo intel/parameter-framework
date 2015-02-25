@@ -32,13 +32,16 @@
 #include "Element.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterionInterface.h"
+#include <log/Logger.h>
 
 #include <string>
 
 class CSelectionCriterion : public CElement, public ISelectionCriterionInterface
 {
 public:
-    CSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pType);
+    CSelectionCriterion(const std::string& strName,
+                        const CSelectionCriterionType* pType,
+                        core::log::Logger& logger);
 
     /// From ISelectionCriterionInterface
     // State
@@ -80,5 +83,8 @@ private:
 
     /** Counter to know how many modifications have been applied to this criterion */
     uint32_t _uiNbModifications;
+
+    /** Application logger */
+    core::log::Logger& _logger;
 };
 
