@@ -105,17 +105,6 @@ void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
         std::string strValue = toString(pvValue, _uiScalarSize);
 
         outputFile << strValue << std::endl;
-
-        if (_bLog) {
-
-            if (_bIsScalar) {
-
-                log_info("TESTSUBSYSTEM: Writing \"%s\" to file %s", strValue.c_str(), _strFilePath.c_str());
-            } else {
-
-                log_info("TESTSUBSYSTEM: Writing \"%s\" to file %s[%d]", strValue.c_str(), _strFilePath.c_str(), uiIndex);
-            }
-        }
     }
 }
 
@@ -130,17 +119,6 @@ void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
         std::string strValue;
 
         inputFile >> strValue;
-
-        if (_bLog) {
-
-            if (_bIsScalar) {
-
-                log_info("TESTSUBSYSTEM: Writing \"%s\" from file %s", strValue.c_str(), _strFilePath.c_str());
-            } else {
-
-                log_info("TESTSUBSYSTEM: Writing \"%s\" from file %s[%d]", strValue.c_str(), _strFilePath.c_str(), uiIndex);
-            }
-        }
 
         fromString(strValue, pvValue, _uiScalarSize);
 
