@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -82,9 +82,6 @@ protected:
     // Blackboard access from subsystems
     void blackboardRead(void* pvData, uint32_t uiSize);
     void blackboardWrite(const void* pvData, uint32_t uiSize);
-    // Logging
-    void log_info(const std::string& strMessage, ...) const;
-    void log_warning(const std::string& strMessage, ...) const;
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
 
