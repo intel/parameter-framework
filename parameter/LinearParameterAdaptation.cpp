@@ -28,6 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "LinearParameterAdaptation.h"
+#include "Utility.h"
 
 #define base CParameterAdaptation
 
@@ -49,12 +50,12 @@ void CLinearParameterAdaptation::showProperties(string& strResult) const
 
     // SlopeNumerator
     strResult += " - SlopeNumerator: ";
-    strResult += toString(_dSlopeNumerator);
+    strResult += CUtility::toString(_dSlopeNumerator);
     strResult += "\n";
 
     // SlopeDenominator
     strResult += " - SlopeDenominator: ";
-    strResult += toString(_dSlopeDenominator);
+    strResult += CUtility::toString(_dSlopeDenominator);
     strResult += "\n";
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,7 @@
  */
 #include "BitParameterBlockType.h"
 #include "BitParameterBlock.h"
+#include "Utility.h"
 
 #define base CTypeElement
 
@@ -74,7 +75,7 @@ CInstanceConfigurableElement* CBitParameterBlockType::doInstantiate() const
 void CBitParameterBlockType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Size
-    xmlElement.setAttributeString("Size", toString(_uiSize * 8));
+    xmlElement.setAttributeString("Size", CUtility::toString(_uiSize * 8));
 
     base::toXml(xmlElement, serializingContext);
 }
