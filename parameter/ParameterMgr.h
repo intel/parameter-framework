@@ -52,7 +52,6 @@ class CSystemClassConfiguration;
 class CParameterBlackboard;
 class CConfigurableDomains;
 class IRemoteProcessorServerInterface;
-class CBackSynchronizer;
 class CParameterHandle;
 class CSubsystemPlugins;
 class CParameterAccessContext;
@@ -572,9 +571,6 @@ private:
 
     // Remote Processor Server connection handling
     bool handleRemoteProcessingInterface(std::string& strError);
-
-    // Back synchronization
-    CBackSynchronizer* createBackSynchronizer() const;
 
     // Tuning
     bool _bTuningModeIsOn;
