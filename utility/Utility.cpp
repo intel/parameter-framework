@@ -32,6 +32,7 @@
 
 #include <sstream>
 #include <iterator>
+#include <stdint.h>
 
 using std::string;
 
@@ -72,3 +73,15 @@ void CUtility::asString(const std::map<std::string, std::string>& mapStr,
     CUtility::asString(listKeysValues, strOutput, strItemSeparator);
 }
 
+void CUtility::appendTitle(string& strTo, const string& strTitle)
+{
+    strTo += "\n" + strTitle + "\n";
+
+    uint32_t uiLength = strTitle.size();
+
+    while (uiLength--) {
+
+        strTo += "=";
+    }
+    strTo += "\n";
+}
