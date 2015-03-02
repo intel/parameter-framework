@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -508,6 +508,13 @@ private:
     // Framework global configuration loading
     bool loadFrameworkConfiguration(std::string& strError);
 
+    /** Load required subsystems
+     *
+     * @param[out] error error description if there is one
+     * @return true if succeed false otherwise
+     */
+    bool loadSubsystems(std::string& error);
+
     // System class Structure loading
     bool loadStructure(std::string& strError);
 
@@ -571,6 +578,14 @@ private:
 
     // Remote Processor Server connection handling
     bool handleRemoteProcessingInterface(std::string& strError);
+
+    /** Log the result of a function
+     *
+     * @param[in] isSuccess indicates if the previous function has succeed
+     * @param[in] result function provided result string
+     * @return isSuccess parameter
+     */
+    bool logResult(bool isSuccess, const std::string& result);
 
     // Tuning
     bool _bTuningModeIsOn;

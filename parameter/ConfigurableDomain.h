@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -78,8 +78,17 @@ public:
     void gatherConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const;
     void listAssociatedToElements(std::string& strResult) const;
 
-    // Configurable elements association
-    bool addConfigurableElement(CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, std::string& strError);
+    /** Add a configurable element to the domain
+     *
+     * @param[in] pConfigurableElement pointer to the element to add
+     * @param[in] pMainBlackboard pointer to the application main blackboard
+     * @param[out] infos string list containing useful information we can provide to client
+     * @return true if succeed false otherwise
+     */
+    bool addConfigurableElement(CConfigurableElement* pConfigurableElement,
+                                const CParameterBlackboard* pMainBlackboard,
+                                std::list<std::string>& infos);
+
     bool removeConfigurableElement(CConfigurableElement* pConfigurableElement, std::string& strError);
 
     // Blackboard Configuration and Base Offset retrieval
@@ -89,14 +98,29 @@ public:
                                                       bool& bIsLastApplied,
                                                       std::string& strError) const;
 
-    // Domain splitting
-    bool split(CConfigurableElement* pConfigurableElement, std::string& strError);
+    /** Split the domain in two.
+     * Remove an element of a domain and create a new domain which owns the element.
+     *
+     * @param[in] pConfigurableElement pointer to the element to remove
+     * @param[out] infos string list containing useful information we can provide to client
+     * @return true if succeed false otherwise
+     */
+    bool split(CConfigurableElement* pConfigurableElement, std::list<std::string>& strError);
 
     // Ensure validity on whole domain from main blackboard
     void validate(const CParameterBlackboard* pMainBlackboard);
 
-    // Configuration application if required
-    void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet* pSyncerSet, bool bForced) const;
+    /** Apply the configuration if required
+     *
+     * @param[in] pParameterBlackboard the blackboard to synchronize
+     * @param[in] pSyncerSet pointer to the set containing application syncers
+     * @param[in] bForced boolean used to force configuration application
+     * @param[out] info string containing useful information we can provide to client
+     */
+    void apply(CParameterBlackboard* pParameterBlackboard,
+               CSyncerSet* pSyncerSet,
+               bool bForced,
+               std::string& info) const;
 
     // Return applicable configuration validity for given configurable element
     bool isApplicableConfigurationValid(const CConfigurableElement* pConfigurableElement) const;
@@ -148,12 +172,28 @@ private:
     // Check configurable element already attached
     bool containsConfigurableElement(const CConfigurableElement* pConfigurableCandidateElement) const;
 
-    // Merge any descended configurable element to this one
-    void mergeAlreadyAssociatedDescendantConfigurableElements(CConfigurableElement* pNewConfigurableElement);
+    /** Merge any descended configurable element to this one
+     *
+     * @param[in] newElement pointer to element which has potential descendants which can be merged
+     * @param[out] infos string list containing useful information we can provide to client
+     */
+    void mergeAlreadyAssociatedDescendantConfigurableElements(CConfigurableElement* newElement,
+                                                              std::list<std::string>& infos);
+
     void mergeConfigurations(CConfigurableElement* pToConfigurableElement, CConfigurableElement* pFromConfigurableElement);
 
-    // Configurable elements association
-    void doAddConfigurableElement(CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard = NULL);
+    /** Actually realize the association between the domain and a configurable  element
+     *
+     * @param[in] pConfigurableElement pointer to the element to add
+     * @param[out] infos useful information we can provide to client
+     * @param[in] (optional) pMainBlackboard, pointer to the application main blackboard
+     *            Default value is NULL, when provided, blackboard area concerning the configurable
+     *            element are validated.
+     */
+    void doAddConfigurableElement(CConfigurableElement* pConfigurableElement,
+                                  std::list<std::string>& infos,
+                                  const CParameterBlackboard* pMainBlackboard = NULL);
+
     void doRemoveConfigurableElement(CConfigurableElement* pConfigurableElement, bool bRecomputeSyncSet);
 
     // XML parsing
