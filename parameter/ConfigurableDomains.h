@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -79,7 +79,19 @@ public:
     bool setSequenceAwareness(const std::string& strDomain, bool bSequenceAware, std::string& strError);
     bool getSequenceAwareness(const std::string& strDomain, bool& bSequenceAware, std::string& strError) const;
     bool listDomainElements(const std::string& strDomain, std::string& strResult) const;
-    bool split(const std::string& strDomain, CConfigurableElement* pConfigurableElement, std::string& strError);
+
+    /** Split a domain in two.
+     * Remove an element of a domain and create a new domain which owns the element.
+     *
+     * @param[in] domainName the domain name
+     * @param[in] element pointer to the element to remove
+     * @param[out] infos string list containing useful information we can provide to client
+     * @return true if succeed false otherwise
+     */
+    bool split(const std::string& domainName,
+               CConfigurableElement* element,
+               std::list<std::string>& infos);
+
     void listAssociatedElements(std::string& strResult) const;
     void listConflictingElements(std::string& strResult) const;
     void listDomains(std::string& strResult) const;
@@ -99,8 +111,19 @@ public:
     // Last applied configurations
     void listLastAppliedConfigurations(std::string& strResult) const;
 
-    // Configurable element - domain association
-    bool addConfigurableElementToDomain(const std::string& strDomain, CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, std::string& strError);
+    /** Associate a configurable element to a domain
+     *
+     * @param[in] domainName the domain name
+     * @param[in] element pointer to the element to add
+     * @param[in] mainBlackboard pointer to the application main blackboard
+     * @param[out] infos string list containing useful information we can provide to client
+     * @return true if succeed false otherwise
+     */
+    bool addConfigurableElementToDomain(const std::string& domainName,
+                                        CConfigurableElement* element,
+                                        const CParameterBlackboard* mainBlackboard,
+                                        std::list<std::string>& infos);
+
     bool removeConfigurableElementFromDomain(const std::string& strDomain, CConfigurableElement* pConfigurableElement, std::string& strError);
 
     // Configuration Blackboard for element
@@ -123,8 +146,17 @@ public:
     // Ensure validity on whole domains from main blackboard
     void validate(const CParameterBlackboard* pMainBlackboard);
 
-    // Configuration application if required
-    void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce) const;
+    /** Apply the configuration if required
+     *
+     * @param[in] pParameterBlackboard the blackboard to synchronize
+     * @param[in] pSyncerSet pointer to the set containing application syncers
+     * @param[in] bForce boolean used to force configuration application
+     * @param[out] infos string list containing useful information we can provide to client
+     */
+    void apply(CParameterBlackboard* pParameterBlackboard,
+               CSyncerSet& syncerSet,
+               bool bForce,
+               std::list<std::string>& infos) const;
 
     // Class kind
     virtual std::string getKind() const;

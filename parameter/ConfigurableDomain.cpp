@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,6 +34,7 @@
 #include "XmlDomainSerializingContext.h"
 #include "XmlDomainImportContext.h"
 #include "XmlDomainExportContext.h"
+#include "Utility.h"
 #include <assert.h>
 
 #define base CBinarySerializableElement
@@ -103,8 +104,6 @@ void CConfigurableDomain::logValue(string& strValue, CErrorContext& errorContext
 void CConfigurableDomain::setSequenceAwareness(bool bSequenceAware)
 {
     if (_bSequenceAware != bSequenceAware) {
-
-        log_info("Making domain \"%s\" sequence %s", getName().c_str(), bSequenceAware ? "aware" : "unaware");
 
         _bSequenceAware = bSequenceAware;
     }
@@ -297,8 +296,10 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
             return false;
         }
         // Add found element to domain
-        if (!addConfigurableElement(pConfigurableElement, NULL, strError)) {
+        std::list<std::string> infos;
+        if (!addConfigurableElement(pConfigurableElement, NULL, infos)) {
 
+            CUtility::asString(infos, strError);
             serializingContext.setError(strError);
 
             return false;
@@ -354,12 +355,16 @@ bool CConfigurableDomain::parseSettings(const CXmlElement& xmlElement,
     return true;
 }
 // Configurable elements association
-bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, string& strError)
+bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigurableElement,
+                                                 const CParameterBlackboard* pMainBlackboard,
+                                                 std::list<std::string>& infos)
 {
     // Already associated?
     if (containsConfigurableElement(pConfigurableElement)) {
 
-        strError = "Configurable element " + pConfigurableElement->getPath() + " already associated to configuration domain " + getName();
+        infos.push_back("Configurable element "
+                + pConfigurableElement->getPath()
+                + " already associated to configuration domain " + getName());
 
         return false;
     }
@@ -367,13 +372,15 @@ bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigur
     // Already owned?
     if (pConfigurableElement->belongsTo(this)) {
 
-        strError = "Configurable element " + pConfigurableElement->getPath() + " already owned by configuration domain " + getName();
+        infos.push_back("Configurable element "
+                + pConfigurableElement->getPath()
+                + " already owned by configuration domain " + getName());
 
         return false;
     }
 
     // Do add
-    doAddConfigurableElement(pConfigurableElement, pMainBlackboard);
+    doAddConfigurableElement(pConfigurableElement, infos, pMainBlackboard);
 
     return true;
 }
@@ -387,7 +394,6 @@ bool CConfigurableDomain::removeConfigurableElement(CConfigurableElement* pConfi
 
         return false;
     }
-    log_info("Removing configurable element \"%s\" from domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
 
     // Do remove
     doRemoveConfigurableElement(pConfigurableElement, true);
@@ -454,23 +460,27 @@ CParameterBlackboard* CConfigurableDomain::findConfigurationBlackboard(const str
 }
 
 // Domain splitting
-bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement, string& strError)
+bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement,
+                                std::list<std::string>& infos)
 {
     // Not associated?
     if (!containsConfigurableElement(pConfigurableElement)) {
 
-        strError = "Configurable element " + pConfigurableElement->getPath() + " not associated to configuration domain " + getName();
+        std::string strError = "Configurable element " + pConfigurableElement->getPath()
+            + " not associated to configuration domain " + getName();
+        infos.push_back(strError);
 
         return false;
     }
-    log_info("Splitting configurable element \"%s\" domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
 
     // Create sub domain areas for all configurable element's children
     size_t uiNbConfigurableElementChildren = pConfigurableElement->getNbChildren();
 
     if (!uiNbConfigurableElementChildren) {
 
-        strError = "Configurable element " + pConfigurableElement->getPath() + " has no children to split configurable domain to";
+        std::string strError = "Configurable element " + pConfigurableElement->getPath()
+            + " has no children to split configurable domain to";
+        infos.push_back(strError);
 
         return false;
     }
@@ -481,7 +491,7 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement, stri
 
         CConfigurableElement* pChildConfigurableElement = static_cast<CConfigurableElement*>(pConfigurableElement->getChild(uiChild));
 
-        doAddConfigurableElement(pChildConfigurableElement);
+        doAddConfigurableElement(pChildConfigurableElement, infos);
     }
 
     // Delegate to configurations
@@ -519,7 +529,10 @@ const CDomainConfiguration* CConfigurableDomain::getPendingConfiguration() const
 }
 
 // Configuration application if required
-void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet* pSyncerSet, bool bForce) const
+void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard,
+                                CSyncerSet* pSyncerSet,
+                                bool bForce,
+                                std::string& strInfo) const
 {
     // Apply configuration only if the blackboard will
     // be synchronized either now or by syncerSet.
@@ -539,9 +552,8 @@ void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyn
         // Check not the last one before applying
         if (!_pLastAppliedConfiguration || _pLastAppliedConfiguration != pApplicableDomainConfiguration) {
 
-            log_info("Applying configuration \"%s\" from domain \"%s\"",
-                     pApplicableDomainConfiguration->getName().c_str(),
-                     getName().c_str());
+            strInfo = "Applying configuration '" + pApplicableDomainConfiguration->getName()
+                    + "' from domain '" + getName() + "'";
 
             // Check if we need to synchronize during restore
             bool bSync = !pSyncerSet && _bSequenceAware;
@@ -597,7 +609,6 @@ bool CConfigurableDomain::createConfiguration(const string& strName, const CPara
 
         return false;
     }
-    log_info("Creating domain configuration \"%s\" into domain \"%s\"", strName.c_str(), getName().c_str());
 
     // Creation
     CDomainConfiguration* pDomainConfiguration = new CDomainConfiguration(strName);
@@ -639,8 +650,6 @@ bool CConfigurableDomain::deleteConfiguration(const string& strName, string& str
         return false;
     }
 
-    log_info("Deleting configuration \"%s\" from domain \"%s\"", strName.c_str(), getName().c_str());
-
     // Was the last applied?
     if (pDomainConfiguration == _pLastAppliedConfiguration) {
 
@@ -680,7 +689,6 @@ bool CConfigurableDomain::renameConfiguration(const string& strName, const strin
 
         return false;
     }
-    log_info("Renaming domain \"%s\"'s configuration \"%s\" to \"%s\"", getName().c_str(), strName.c_str(), strNewName.c_str());
 
     // Rename
     return pDomainConfiguration->rename(strNewName, strError);
@@ -697,7 +705,6 @@ bool CConfigurableDomain::restoreConfiguration(const string& strName, CParameter
         lstrError.push_back(strError);
         return false;
     }
-    log_info("Restoring domain \"%s\"'s configuration \"%s\" to parameter blackboard", getName().c_str(), pDomainConfiguration->getName().c_str());
 
     // Delegate
     bool bSuccess = pDomainConfiguration->restore(pMainBlackboard, bAutoSync && _bSequenceAware, &lstrError);
@@ -722,7 +729,6 @@ bool CConfigurableDomain::saveConfiguration(const string& strName, const CParame
 
         return false;
     }
-    log_info("Saving domain \"%s\"'s configuration \"%s\" from parameter blackboard", getName().c_str(), pDomainConfiguration->getName().c_str());
 
     // Delegate
     pDomainConfiguration->save(pMainBlackboard);
@@ -847,8 +853,6 @@ void CConfigurableDomain::validate(const CParameterBlackboard* pMainBlackboard)
 // Ensure validity on areas related to configurable element
 void CConfigurableDomain::validateAreas(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard)
 {
-    log_info("Validating domain \"" + getName() + "\" against main blackboard for configurable element \"" + pConfigurableElement->getPath() + "\"");
-
     // Propagate
     size_t uiNbConfigurations = getNbChildren();
     size_t uiChild;
@@ -986,7 +990,9 @@ bool CConfigurableDomain::containsConfigurableElement(const CConfigurableElement
 }
 
 // Merge any descended configurable element to this one with this one
-void CConfigurableDomain::mergeAlreadyAssociatedDescendantConfigurableElements(CConfigurableElement* pNewConfigurableElement)
+void CConfigurableDomain::mergeAlreadyAssociatedDescendantConfigurableElements(
+                                                                CConfigurableElement* newElement,
+                                                                std::list<std::string>& infos)
 {
     std::list<CConfigurableElement*> mergedConfigurableElementList;
 
@@ -997,12 +1003,15 @@ void CConfigurableDomain::mergeAlreadyAssociatedDescendantConfigurableElements(C
 
         CConfigurableElement* pConfigurablePotentialDescendantElement = *it;
 
-        if (pConfigurablePotentialDescendantElement->isDescendantOf(pNewConfigurableElement)) {
+        if (pConfigurablePotentialDescendantElement->isDescendantOf(newElement)) {
 
-            log_info("In domain \"%s\", merging descendant configurable element's configurations \"%s\" into its ascendant \"%s\" ones", getName().c_str(), pConfigurablePotentialDescendantElement->getName().c_str(), pNewConfigurableElement->getName().c_str());
+            infos.push_back("In domain '" + getName()
+                    + "', merging descendant configurable element's configurations '"
+                    + pConfigurablePotentialDescendantElement->getName()
+                    + "' into its ascendant '" + newElement->getName() + "' ones");
 
             // Merge configuration data
-            mergeConfigurations(pNewConfigurableElement, pConfigurablePotentialDescendantElement);
+            mergeConfigurations(newElement, pConfigurablePotentialDescendantElement);
 
             // Keep track for removal
             mergedConfigurableElementList.push_back(pConfigurablePotentialDescendantElement);
@@ -1036,7 +1045,9 @@ void CConfigurableDomain::mergeConfigurations(CConfigurableElement* pToConfigura
 }
 
 // Configurable elements association
-void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfigurableElement, const CParameterBlackboard *pMainBlackboard)
+void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfigurableElement,
+                                                   std::list<std::string>& infos,
+                                                   const CParameterBlackboard* pMainBlackboard)
 {
     // Inform configurable element
     pConfigurableElement->addAttachedConfigurableDomain(this);
@@ -1067,12 +1078,15 @@ void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfig
     // Ensure area validity for that configurable element (if main blackboard provided)
     if (pMainBlackboard) {
 
+        infos.push_back("Validating domain '" + getName()
+                + "' against main blackboard for configurable element '"
+                + pConfigurableElement->getPath() + "'");
         // Need to validate against main blackboard
         validateAreas(pConfigurableElement, pMainBlackboard);
     }
 
     // Already associated descendend configurable elements need a merge of their configuration data
-    mergeAlreadyAssociatedDescendantConfigurableElements(pConfigurableElement);
+    mergeAlreadyAssociatedDescendantConfigurableElements(pConfigurableElement, infos);
 
     // Add to list
     _configurableElementList.push_back(pConfigurableElement);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -63,8 +63,9 @@ public:
       * and fill a syncer set with all syncers that need to be resynchronized
       *
       * @param[out] syncerSet The syncer set to fill
+      * @param[out] infos Relevant informations client may want to log
       */
-    void checkForSubsystemsToResync(CSyncerSet& syncerSet);
+    void checkForSubsystemsToResync(CSyncerSet& syncerSet, std::list<std::string>& infos);
 
     /**
       * Reset subsystems need to resync flag.

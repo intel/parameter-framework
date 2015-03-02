@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,7 +33,6 @@
 #include <ctype.h>
 #include "SystemClass.h"
 #include "SubsystemLibrary.h"
-#include "AutoLog.h"
 #include "VirtualSubsystem.h"
 #include "NamedElementBuilderTemplate.h"
 #include <assert.h>
@@ -98,8 +97,6 @@ bool CSystemClass::loadSubsystems(string& strError,
                                   const CSubsystemPlugins* pSubsystemPlugins,
                                   bool bVirtualSubsystemFallback)
 {
-    CAutoLog autoLog_info(this, "Loading subsystem plugins");
-
     // Start clean
     _pSubsystemLibrary->clean();
 
@@ -113,18 +110,9 @@ bool CSystemClass::loadSubsystems(string& strError,
     list<string> lstrError;
     bool bLoadPluginsSuccess = loadSubsystemsFromSharedLibraries(lstrError, pSubsystemPlugins);
 
-    if (bLoadPluginsSuccess) {
-        log_info("All subsystem plugins successfully loaded");
-    } else {
-        // Log plugin as warning if no fallback available
-        log_table(!bVirtualSubsystemFallback, lstrError);
-    }
-
-    if (!bVirtualSubsystemFallback) {
-        // Any problem reported is an error as there is no fallback.
-        // Fill strError for caller.
-        CUtility::asString(lstrError, strError);
-    }
+    // Fill strError for caller, he has to decide if there is a problem depending on
+    // bVirtualSubsystemFallback value
+    CUtility::asString(lstrError, strError);
 
     return bLoadPluginsSuccess || bVirtualSubsystemFallback;
 }
@@ -277,7 +265,7 @@ const CSubsystemLibrary* CSystemClass::getSubsystemLibrary() const
     return _pSubsystemLibrary;
 }
 
-void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet)
+void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet, std::list<std::string>& infos)
 {
     size_t uiNbChildren = getNbChildren();
     size_t uiChild;
@@ -289,7 +277,7 @@ void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet)
         // Collect and consume the need for a resync
         if (pSubsystem->needResync(true)) {
 
-            log_info("Resynchronizing subsystem: %s", pSubsystem->getName().c_str());
+            infos.push_back("Resynchronizing subsystem: " + pSubsystem->getName());
             // get all subsystem syncers
             pSubsystem->fillSyncerSet(syncerSet);
         }
