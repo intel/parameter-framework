@@ -210,8 +210,6 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
 
         string strPluginFileName = *it;
 
-        log_info("Attempting to load subsystem plugin path \"%s\"", strPluginFileName.c_str());
-
         // Load attempt
         void* lib_handle = dlopen(strPluginFileName.c_str(), RTLD_LAZY);
 
