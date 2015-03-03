@@ -196,9 +196,10 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
                 value = valueIndex;
             }
             const char * valueName = criterion.values[valueIndex];
-            if(not type->addValuePair(value, valueName)) {
+            string error;
+            if(not type->addValuePair(value, valueName, error)) {
                 return status.failure("Could not add value " + string(valueName) +
-                                      " to criterion " + criterion.name);
+                                      " to criterion " + criterion.name + ": " + error);
             }
         }
         // Create criterion and add it to the pfw
