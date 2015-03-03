@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -311,9 +311,9 @@ bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(
 
         const std::string& strValue = remoteCommand.getArgument(uiState + 1);
 
-        if (!pCriterionType->addValuePair(uiState, strValue)) {
+        if (!pCriterionType->addValuePair(uiState, strValue, strResult)) {
 
-            strResult = "Unable to add value: " + strValue;
+            strResult = "Unable to add value: " + strValue + ": " + strResult;
 
             return false;
         }
@@ -351,9 +351,10 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
 
         const std::string& strValue = remoteCommand.getArgument(uiState + 1);
 
-        if (!pCriterionType->addValuePair(0x1 << uiState, strValue)) {
+        if (!pCriterionType->addValuePair(
+                    0x1 << uiState, strValue, strResult)) {
 
-            strResult = "Unable to add value: " + strValue;
+            strResult = "Unable to add value: " + strValue + ": " + strResult;
 
             return false;
         }
@@ -381,9 +382,11 @@ bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName,
         ostrValue << "State_";
         ostrValue << uistate;
 
-        if (!pCriterionType->addValuePair(uistate, ostrValue.str())) {
+        if (!pCriterionType->addValuePair(
+                    uistate, ostrValue.str(), strResult)) {
 
-            strResult = "Unable to add value: " + ostrValue.str();
+            strResult = "Unable to add value: "
+                + ostrValue.str() + ": " + strResult;
 
             return false;
         }
@@ -417,9 +420,11 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
         ostrValue << "State_0x";
         ostrValue << (0x1 << uiState);
 
-        if (!pCriterionType->addValuePair(0x1 << uiState, ostrValue.str())) {
+        if (!pCriterionType->addValuePair(
+                    0x1 << uiState, ostrValue.str(), strResult)) {
 
-            strResult = "Unable to add value: " + ostrValue.str();
+            strResult = "Unable to add value: "
+                + ostrValue.str() + ": " + strResult;
 
             return false;
         }
