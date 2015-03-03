@@ -95,8 +95,15 @@ public:
     // Ensure validity on whole domain from main blackboard
     void validate(const CParameterBlackboard* pMainBlackboard);
 
-    // Configuration application if required
-    void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet* pSyncerSet, bool bForced) const;
+    /** Apply the configuration if required
+     *
+     * @param[in] pParameterBlackboard the blackboard to synchronize
+     * @param[in] syncerSet the set containing application syncers
+     * @param[in] bForced boolean used to force configuration application
+     */
+    void apply(CParameterBlackboard* pParameterBlackboard,
+               CSyncerSet& syncerSet,
+               bool bForced) const;
 
     // Return applicable configuration validity for given configurable element
     bool isApplicableConfigurationValid(const CConfigurableElement* pConfigurableElement) const;
