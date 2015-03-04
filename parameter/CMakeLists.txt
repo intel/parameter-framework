@@ -137,7 +137,7 @@ install(FILES
     InstanceConfigurableElement.h
     Mapper.h
     MappingContext.h
-    NamedElementBuilderTemplate.h
+    LoggingElementBuilderTemplate.h
     ParameterBlockType.h
     ParameterType.h
     PathNavigator.h

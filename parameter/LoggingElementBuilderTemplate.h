@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,19 +29,42 @@
  */
 #pragma once
 
-#include "DefaultElementLibrary.h"
-#include "VirtualSubsystem.h"
-#include "LoggingElementBuilderTemplate.h"
-#include <string>
+#include "ElementBuilder.h"
 
-class CSubsystemLibrary :
-        public CDefaultElementLibrary<TLoggingElementBuilderTemplate<CVirtualSubsystem> >
+/**
+ * Builder for elements which need logger at construction
+ *
+ * @tparam ElementType the type of the element to build
+ */
+template <class ElementType>
+class TLoggingElementBuilderTemplate : public CElementBuilder
 {
-private:
-    // Builder type (based on element's name attribute)
-    virtual std::string getBuilderType(const CXmlElement& xmlElement) const
+public:
+
+    /**
+     * Class Constructor
+     *
+     * @param[in] logger the logger provided by the client
+     */
+    TLoggingElementBuilderTemplate(core::log::Logger& logger)
+        : CElementBuilder(), mLogger(logger)
     {
-        // Xml element's name attribute
-        return xmlElement.getAttributeString("Type");
     }
+
+    /**
+     * Create a new element
+     *
+     * @param[in] xmlElement the description of the object to create
+     *
+     * @return pointer to the generated element
+     */
+    virtual CElement* createElement(const CXmlElement& xmlElement) const
+    {
+        return new ElementType(xmlElement.getNameAttribute(), mLogger);
+    }
+
+private:
+
+    /** Application Logger */
+    core::log::Logger& mLogger;
 };
