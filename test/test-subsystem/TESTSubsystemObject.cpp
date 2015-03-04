@@ -34,11 +34,15 @@
 #include "TESTMappingKeys.h"
 #include "InstanceConfigurableElement.h"
 #include "TESTSubsystemObject.h"
+#include <sstream>
 
 #define base CSubsystemObject
 
-CTESTSubsystemObject::CTESTSubsystemObject(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context)
-    : base(pInstanceConfigurableElement)
+CTESTSubsystemObject::CTESTSubsystemObject(const std::string& strMappingValue,
+                                           CInstanceConfigurableElement* pInstanceConfigurableElement,
+                                           const CMappingContext& context,
+                                           core::log::ILogger& logger)
+    : base(pInstanceConfigurableElement, logger)
 {
     (void)strMappingValue;
     // Get actual element type
@@ -105,6 +109,20 @@ void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
         std::string strValue = toString(pvValue, _uiScalarSize);
 
         outputFile << strValue << std::endl;
+
+        if (_bLog) {
+
+            if (_bIsScalar) {
+
+                _logger.info("TESTSUBSYSTEM: Writing '" + strValue + "' to file " + _strFilePath);
+            } else {
+
+                std::ostringstream buf;
+                buf << "TESTSUBSYSTEM: Writing '" << strValue << "' to file "
+                    << _strFilePath << "[" << uiIndex << "]";
+                _logger.info(buf.str());
+            }
+        }
     }
 }
 
@@ -119,6 +137,21 @@ void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
         std::string strValue;
 
         inputFile >> strValue;
+
+        if (_bLog) {
+
+            if (_bIsScalar) {
+
+                _logger.info("TESTSUBSYSTEM: Reading '" + strValue +
+                             "' from file " + _strFilePath);
+            } else {
+
+                std::ostringstream buf;
+                buf << "TESTSUBSYSTEM: Reading '" << strValue << "' to file "
+                    << _strFilePath << "[" << uiIndex << "]";
+                _logger.info(buf.str());
+            }
+        }
 
         fromString(strValue, pvValue, _uiScalarSize);
 

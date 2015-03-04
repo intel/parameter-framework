@@ -139,7 +139,7 @@ install(FILES
     InstanceConfigurableElement.h
     Mapper.h
     MappingContext.h
-    NamedElementBuilderTemplate.h
+    LoggingElementBuilderTemplate.h
     ParameterBlockType.h
     ParameterType.h
     PathNavigator.h
@@ -152,3 +152,6 @@ install(FILES
     TypeElement.h
     VirtualSubsystem.h
     DESTINATION "include/parameter/plugin")
+install(FILES
+    log/include/log/ILogger.h
+    DESTINATION "include/parameter/plugin/log")

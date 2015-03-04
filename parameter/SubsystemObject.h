@@ -30,8 +30,9 @@
 #pragma once
 
 #include "Syncer.h"
-#include <stdint.h>
+#include <log/ILogger.h>
 
+#include <stdint.h>
 #include <string>
 
 class CInstanceConfigurableElement;
@@ -41,7 +42,8 @@ class CSubsystem;
 class CSubsystemObject : private ISyncer
 {
 public:
-    CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement);
+    CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                     core::log::ILogger& logger);
     virtual ~CSubsystemObject();
 
     /**
@@ -84,6 +86,9 @@ protected:
     void blackboardWrite(const void* pvData, uint32_t uiSize);
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
+
+    /** Raw logger provided by the client application */
+    core::log::ILogger& _logger;
 
 private:
     // from ISyncer

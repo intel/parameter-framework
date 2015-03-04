@@ -32,6 +32,7 @@
 #include "ConfigurableElement.h"
 #include "SubsystemPlugins.h"
 #include "Results.h"
+#include <log/ILogger.h>
 #include <list>
 #include <string>
 
@@ -40,7 +41,12 @@ class CSubsystemLibrary;
 class CSystemClass : public CConfigurableElement
 {
 public:
-    CSystemClass();
+
+    /**
+     * @param[in] logger the logger provided by the client
+     * it need to be given to the subsystem library
+     */
+    CSystemClass(core::log::ILogger& logger);
     virtual ~CSystemClass();
 
     /** Load subsystem plugin and fill the corresponding libraries.
@@ -110,5 +116,8 @@ private:
     // Subsystem factory
     CSubsystemLibrary* _pSubsystemLibrary;
     std::list<void*> _subsystemLibraryHandleList; /**< Contains the list of all open plugin libs. */
+
+    /** Application Logger we need to provide to plugins */
+    core::log::ILogger& _logger;
 };
 

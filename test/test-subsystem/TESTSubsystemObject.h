@@ -36,7 +36,10 @@ class CMappingContext;
 class CTESTSubsystemObject : public CSubsystemObject
 {
 public:
-    CTESTSubsystemObject(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context);
+    CTESTSubsystemObject(const std::string& strMappingValue,
+                         CInstanceConfigurableElement* pInstanceConfigurableElement,
+                         const CMappingContext& context,
+                         core::log::ILogger& logger);
 
 protected:
     // from CSubsystemObject

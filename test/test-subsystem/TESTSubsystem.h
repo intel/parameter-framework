@@ -34,7 +34,7 @@
 class CTESTSubsystem : public CSubsystem
 {
 public:
-    CTESTSubsystem(const std::string& strName);
+   CTESTSubsystem(const std::string& strName, core::log::ILogger& logger);
 
    // Susbsystem sanity
    virtual bool isAlive() const;
