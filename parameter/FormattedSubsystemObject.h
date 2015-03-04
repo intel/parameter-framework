@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -38,23 +38,28 @@ public:
      * Builds a new CFormattedSubsystemObject instance, without any mapping information.
      *
      * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.
+     * @param[in] logger the logger provided by the client
      */
-    CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement);
+    CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                              core::log::Logger& logger);
 
     /**
      * Builds a new CFormattedSubsystemObject instance, using a simple mapping value without Amends.
      *
      * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.
+     * @param[in] logger the logger provided by the client
      * @param[in] strFormattedMapping A std::string corresponding to the mapping of the element. The
      * std::string does not contain any Amend (%) and does not need to be formatted.
      */
     CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                              core::log::Logger& logger,
                               const std::string& strFormattedMapping);
 
     /**
      * Builds a new CFormattedSubsystemObject instance, using a mapping value containing Amends.
      *
      * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.
+     * @param[in] logger the logger provided by the client
      * @param[in] strMappingValue A std::string corresponding to the mapping of the element. The
      * std::string contains Amend (%) and needs to be formatted with information from the context.
      * @param[in] uiFirstAmendKey Index of the first Amend key
@@ -62,6 +67,7 @@ public:
      * @param[in] context Contains values associated to Amend keys
      */
     CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                              core::log::Logger& logger,
                               const std::string& strMappingValue,
                               uint32_t uiFirstAmendKey,
                               uint32_t uiNbAmendKeys,

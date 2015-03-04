@@ -42,8 +42,10 @@
 
 using std::string;
 
-CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement)
-    : _pInstanceConfigurableElement(pInstanceConfigurableElement),
+CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                                   core::log::Logger& logger)
+    : _logger(logger),
+      _pInstanceConfigurableElement(pInstanceConfigurableElement),
       _uiDataSize(pInstanceConfigurableElement->getFootPrint()),
       _pucBlackboardLocation(NULL),
       _uiAccessedIndex(0)

@@ -341,7 +341,7 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     // Deal with children
     addChild(new CParameterFrameworkConfiguration);
     addChild(new CSelectionCriteria);
-    addChild(new CSystemClass);
+    addChild(new CSystemClass(_logger));
     addChild(new CConfigurableDomains);
 
     _pCommandHandler = new CCommandHandler(this);

@@ -34,7 +34,7 @@
 #include "SystemClass.h"
 #include "SubsystemLibrary.h"
 #include "VirtualSubsystem.h"
-#include "NamedElementBuilderTemplate.h"
+#include "LoggingElementBuilderTemplate.h"
 #include <assert.h>
 #include "PluginLocation.h"
 #include "Utility.h"
@@ -43,6 +43,9 @@
 
 using std::list;
 using std::string;
+
+// FIXME: integrate SystemClass to core namespace
+using namespace core;
 
 /**
  * A plugin file name is of the form:
@@ -60,9 +63,10 @@ const char* gpcPluginSymbolPrefix = "get";
 const char* gpcPluginSymbolSuffix = "SubsystemBuilder";
 
 // Used by subsystem plugins
-typedef void (*GetSubsystemBuilder)(CSubsystemLibrary*);
+typedef void (*GetSubsystemBuilder)(CSubsystemLibrary*, core::log::Logger& logger);
 
-CSystemClass::CSystemClass() : _pSubsystemLibrary(new CSubsystemLibrary)
+CSystemClass::CSystemClass(log::Logger& logger)
+    : _pSubsystemLibrary(new CSubsystemLibrary()), _logger(logger)
 {
 }
 
@@ -100,11 +104,13 @@ bool CSystemClass::loadSubsystems(string& strError,
     // Start clean
     _pSubsystemLibrary->clean();
 
+    typedef TLoggingElementBuilderTemplate<CVirtualSubsystem> VirtualSubsystemBuilder;
     // Add virtual subsystem builder
-    _pSubsystemLibrary->addElementBuilder("Virtual",
-                                          new TNamedElementBuilderTemplate<CVirtualSubsystem>());
+    _pSubsystemLibrary->addElementBuilder("Virtual", new VirtualSubsystemBuilder(_logger));
     // Set virtual subsytem as builder fallback if required
-    _pSubsystemLibrary->enableDefaultMechanism(bVirtualSubsystemFallback);
+    if (bVirtualSubsystemFallback) {
+        _pSubsystemLibrary->setDefaultBuilder(new VirtualSubsystemBuilder(_logger));
+    }
 
     // Add subsystem defined in shared libraries
     core::Results errors;
@@ -249,7 +255,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
         bAtLeastOneSubsystemPluginSuccessfullyLoaded = true;
 
         // Fill library
-        pfnGetSubsystemBuilder(_pSubsystemLibrary);
+        pfnGetSubsystemBuilder(_pSubsystemLibrary, _logger);
 
         // Remove successfully loaded plugin from list and select next
         lstrPluginFiles.erase(it++);
