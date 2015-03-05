@@ -24,7 +24,7 @@ install:
 # how to build
 script:
   - cmake . && make -j && sudo make install
-  - make test
+  - ctest --output-on-failure
   - cd skeleton-subsystem
   - cmake . && make && sudo make install
 
