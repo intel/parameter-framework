@@ -18,10 +18,14 @@ install:
 
 # how to build
 script:
-  - cmake . && make -j && sudo make install
-  - CTEST_OUTPUT_ON_FAILURE=1 make test
-  - cd skeleton-subsystem
-  - cmake . && make && sudo make install
+  - cmake . &&
+        make -j &&
+        sudo make install &&
+        CTEST_OUTPUT_ON_FAILURE=1 make test
+  - cd skeleton-subsystem &&
+        cmake . &&
+        make &&
+        sudo make install
 
 notifications:
   email:
