@@ -529,27 +529,25 @@ void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard,
     }
     const CDomainConfiguration* pApplicableDomainConfiguration = findApplicableDomainConfiguration();
 
-    if (pApplicableDomainConfiguration) {
+    // Check the last applied configuration is different from this one before apply
+    if (pApplicableDomainConfiguration != NULL &&
+            _pLastAppliedConfiguration != pApplicableDomainConfiguration) {
 
-        // Check not the last one before applying
-        if (!_pLastAppliedConfiguration || _pLastAppliedConfiguration != pApplicableDomainConfiguration) {
+        log_info("Applying configuration \"%s\" from domain \"%s\"",
+                 pApplicableDomainConfiguration->getName().c_str(),
+                 getName().c_str());
 
-            log_info("Applying configuration \"%s\" from domain \"%s\"",
-                     pApplicableDomainConfiguration->getName().c_str(),
-                     getName().c_str());
+        // Do the restore, and synchronize if we are sequence aware
+        pApplicableDomainConfiguration->restore(pParameterBlackboard, _bSequenceAware, NULL);
 
-            // Do the restore, and synchronize if we are sequence aware
-            pApplicableDomainConfiguration->restore(pParameterBlackboard, _bSequenceAware, NULL);
+        // Record last applied configuration
+        _pLastAppliedConfiguration = pApplicableDomainConfiguration;
 
-            // Record last applied configuration
-            _pLastAppliedConfiguration = pApplicableDomainConfiguration;
+        // Check we need to provide syncer set to caller
+        if (!_bSequenceAware) {
 
-            // Check we need to provide syncer set to caller
-            if (!_bSequenceAware) {
-
-                // Since we applied changes, add our own sync set to the given one
-                syncerSet += _syncerSet;
-            }
+            // Since we applied changes, add our own sync set to the given one
+            syncerSet += _syncerSet;
         }
     }
 }
