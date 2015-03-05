@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
 # INTEL CONFIDENTIAL
-# Copyright 2014 Intel
+# Copyright 2014-2015 Intel
 # Corporation All Rights Reserved.
 #
 # The source code contained or described herein and all documents related to
@@ -82,10 +82,7 @@ def launchScenario(
              testFactory,
              testLauncher).play()
 
-    print("Type Ctrl+C to quit")
-
-    while True:
-        time.sleep(1)
+    logger.info("Scenario execution complete.")
 
 
 def main():
@@ -172,27 +169,30 @@ def main():
                 testLauncher,
                 testFactory.generateTestVector()).launchInteractiveMode()
         else:
-            scenarioOptions = {
-                scenarioNumber:
-                    (scenarioFileName,
-                     DynamicCallHelper(
-                         launchScenario,
-                         logger,
-                         consoleLogger,
-                         configParser["ActionGathererFile"],
-                         os.path.join(
-                             configParser["ScenariosDirectory"], scenarioFileName),
-                         testFactory,
-                         testLauncher
-                     ))
-                for scenarioNumber, scenarioFileName in enumerate(
-                    [file for file in sorted(os.listdir(
-                        configParser["ScenariosDirectory"]))])
-            }
-            if args.scenario is not None:
-                scenarioOptions[args.scenario][1]()
-            else:
-                UserInteractor.getMenu(scenarioOptions)
+            while True:
+                scenarioOptions = {
+                    scenarioNumber:
+                        (scenarioFileName,
+                         DynamicCallHelper(
+                             launchScenario,
+                             logger,
+                             consoleLogger,
+                             configParser["ActionGathererFile"],
+                             os.path.join(
+                                 configParser["ScenariosDirectory"], scenarioFileName),
+                             testFactory,
+                             testLauncher
+                         ))
+                    for scenarioNumber, scenarioFileName in enumerate(
+                        [file for file in sorted(os.listdir(
+                            configParser["ScenariosDirectory"]))])
+                }
+                if args.scenario is not None:
+                    scenarioOptions[args.scenario][1]()
+                    # Let the user choose other scenario after the one choosed by command line
+                    args.scenario = None
+                else:
+                    UserInteractor.getMenu(scenarioOptions)
     except KeyboardInterrupt as e:
         close(logger, testLauncher, args.coverage)
 
