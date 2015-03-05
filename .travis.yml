@@ -19,7 +19,7 @@ install:
 # how to build
 script:
   - cmake . && make -j && sudo make install
-  - make test
+  - CTEST_OUTPUT_ON_FAILURE=1 make test
   - cd skeleton-subsystem
   - cmake . && make && sudo make install
 
