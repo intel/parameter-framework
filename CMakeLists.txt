@@ -45,7 +45,7 @@ add_subdirectory(remote-processor)
 
 add_subdirectory(remote-process)
 
-enable_testing()
+include(CTest)
 add_subdirectory(test/test-platform)
 add_subdirectory(test/test-fixed-point-parameter)
 
