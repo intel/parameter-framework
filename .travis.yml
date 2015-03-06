@@ -12,20 +12,26 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - sudo apt-get install --yes swig cmake g++-4.8
+  - sudo apt-get install --yes swig cmake valgrind g++-4.8
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
   - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 100
 
 # how to build
 script:
-  - cmake . &&
+  - ( mkdir build && cd build &&
+        cmake .. &&
         make -j &&
         sudo make install &&
-        CTEST_OUTPUT_ON_FAILURE=1 make test
-  - cd skeleton-subsystem &&
+        CTEST_OUTPUT_ON_FAILURE=1 make test )
+  - ( cd skeleton-subsystem &&
         cmake . &&
         make &&
-        sudo make install
+        sudo make install )
+  - ( cd build &&
+        cmake -DCMAKE_BUILD_TYPE=Debug .. &&
+        make -j &&
+        sudo make install &&
+        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalCoverage ExperimentalMemCheck )
 
 notifications:
   email:

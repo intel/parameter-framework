@@ -45,7 +45,10 @@ add_subdirectory(remote-processor)
 
 add_subdirectory(remote-process)
 
-enable_testing()
+include(CTest)
+# Ctest requires its configuration to be placed at the build root
+configure_file(CTestCustom.cmake ${CMAKE_BINARY_DIR} COPYONLY)
+
 add_subdirectory(test/test-platform)
 add_subdirectory(test/test-fixed-point-parameter)
 
