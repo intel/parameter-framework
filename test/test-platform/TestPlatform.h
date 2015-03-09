@@ -41,7 +41,7 @@ class ISelectionCriterionInterface;
 
 class CTestPlatform
 {
-    typedef TRemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
+    typedef RemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
     typedef CCommandHandler::CommandStatus CommandReturn;
 public:
     CTestPlatform(const std::string &strclass, int iPortNumber, sem_t& exitSemaphore);
