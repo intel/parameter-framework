@@ -98,7 +98,7 @@ void CMessage::readString(string& strData)
     readData(&uiSize, sizeof(uiSize));
 
     // Data
-    char* pcData = new char[uiSize + 1];
+    char pcData[uiSize + 1];
 
     // Content
     readData(pcData, uiSize);
@@ -108,9 +108,6 @@ void CMessage::readString(string& strData)
 
     // Output
     strData = pcData;
-
-    // Delete
-    delete [] pcData;
 }
 
 uint32_t CMessage::getStringSize(const string& strData) const
