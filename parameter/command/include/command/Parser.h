@@ -46,7 +46,7 @@ class Parser
 public:
 
     /** Remote command Handler type */
-    typedef TRemoteCommandHandlerTemplate<Parser> CommandHandler;
+    using CommandHandler = RemoteCommandHandlerTemplate<Parser>;
 
     /** Class constructor
      *
