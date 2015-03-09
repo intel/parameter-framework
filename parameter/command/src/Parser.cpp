@@ -45,7 +45,7 @@ namespace command
 {
 
 Parser::Parser(CParameterMgr& parameterMgr) :
-    mParameterMgr(parameterMgr), mCommandHandler(CommandHandler(this, getRemoteParserItems()))
+    mParameterMgr(parameterMgr), mCommandHandler(CommandHandler(*this, getRemoteParserItems()))
 {
 }
 
