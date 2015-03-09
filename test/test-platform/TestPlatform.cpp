@@ -112,7 +112,7 @@ gRemoteCommandParserItems = {
 CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exitSemaphore) :
     _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
     _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger),
-    _commandHandler(this, gRemoteCommandParserItems),
+    _commandHandler(*this, gRemoteCommandParserItems),
     _portNumber(iPortNumber),
     _exitSemaphore(exitSemaphore)
 {
