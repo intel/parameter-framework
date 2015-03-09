@@ -3,10 +3,21 @@ compiler:
   - gcc
 #  - clang # not supported yet
 
-# install SWIG for bindings generation
+# Install a recent gcc, gcov and cmake.
+# Will not be necessary when travis worker will be based on ubuntu > 12.04.
+# Install SWIG for bindings generation
 before_install:
+  - if [ "$CXX" == "g++" ]; then sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test; fi
+  - sudo add-apt-repository --yes ppa:kalakris/cmake # Non official cmake backport
   - sudo apt-get update -qq
-  - sudo apt-get install -y swig
+
+install:
+  - sudo apt-get install --yes swig
+  - if [ "$CXX" = "g++" ]; then
+    sudo apt-get install --yes g++-4.8 &&
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100 &&
+        sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 100;
+    fi
 
 # how to build
 script:
