@@ -78,7 +78,16 @@ public:
             return _strHelp;
         }
 
-        bool parse(CCommandParser* pCommandParser, const IRemoteCommand& remoteCommand, std::string& strResult) const
+        /** Parse and launch a remote command
+         *
+         * @param[in] commandParser the parser used to handle the command
+         * @param[in] remoteCommand the command received from client
+         * @param[out] strResult the command result
+         * @result true on success, false otherwise
+         */
+        bool parse(CCommandParser& commandParser,
+                   const IRemoteCommand& remoteCommand,
+                   std::string& strResult) const
         {
             // Check enough arguments supplied
             if (remoteCommand.getArgumentCount() < _uiMinArgumentCount) {
@@ -88,7 +97,7 @@ public:
                 return false;
             }
 
-            switch ((pCommandParser->*_pfnParser)(remoteCommand, strResult)) {
+            switch ((commandParser.*_pfnParser)(remoteCommand, strResult)) {
             case EDone:
                 strResult = "Done";
                 // Fall through intentionally
@@ -117,12 +126,12 @@ public:
     typedef std::map<std::string, RemoteCommandParserItem> RemoteCommandParserItems;
 
     /**
-     * @param pCommandParser pointer on command parser used for command handling
+     * @param commandParser command parser used for command handling
      * @param remoteCommandParserItems supported command parser items
      */
-    TRemoteCommandHandlerTemplate(CCommandParser* pCommandParser,
+    TRemoteCommandHandlerTemplate(CCommandParser& commandParser,
                                   const RemoteCommandParserItems& remoteCommandParserItems) :
-        _pCommandParser(pCommandParser), _remoteCommandParserItems(remoteCommandParserItems)
+        _commandParser(commandParser), _remoteCommandParserItems(remoteCommandParserItems)
     {
     }
 
@@ -135,7 +144,7 @@ private:
             const RemoteCommandParserItem& remoteCommandParserItem =
                 _remoteCommandParserItems.at(remoteCommand.getCommand());
 
-            return remoteCommandParserItem.parse(_pCommandParser, remoteCommand, strResult);
+            return remoteCommandParserItem.parse(_commandParser, remoteCommand, strResult);
         }
         catch (const std::out_of_range&) {
 
@@ -181,7 +190,8 @@ private:
     /** Help command description */
     static const std::string helpCommandDescription;
 
-    CCommandParser* _pCommandParser;
+    /** Command parser used during command during command handling */
+    CCommandParser& _commandParser;
 
     /** Remote command parser map */
     const RemoteCommandParserItems& _remoteCommandParserItems;
