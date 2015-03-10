@@ -31,6 +31,7 @@
 
 #include "ConfigurableElement.h"
 #include "SubsystemPlugins.h"
+#include "Results.h"
 #include <list>
 #include <string>
 
@@ -65,7 +66,7 @@ public:
       * @param[out] syncerSet The syncer set to fill
       * @param[out] infos Relevant informations client may want to log
       */
-    void checkForSubsystemsToResync(CSyncerSet& syncerSet, std::list<std::string>& infos);
+    void checkForSubsystemsToResync(CSyncerSet& syncerSet, core::Results& infos);
 
     /**
       * Reset subsystems need to resync flag.
@@ -83,12 +84,12 @@ private:
 
     /** Load shared libraries subsystem plugins.
      *
-     * @param[out] lstrError is the list of error that occured during loadings.
+     * @param[out] errors is the list of error that occured during loadings.
      * @param[in] pSubsystemPlugins The plugins to load.
      *
      * @return true if all plugins have been succesfully loaded, false otherwises.
      */
-    bool loadSubsystemsFromSharedLibraries(std::list<std::string>& lstrError,
+    bool loadSubsystemsFromSharedLibraries(core::Results& errors,
                                            const CSubsystemPlugins* pSubsystemPlugins);
 
     // Plugin symbol computation
@@ -98,13 +99,13 @@ private:
      *
      * @param[in:out] lstrPluginFiles is the path list of the plugins shared libraries to load.
      *                Successfully loaded plugins are removed from the list.
-     * @param[out] lstrError is the list of error that occured during loadings.
+     * @param[out] errors is the list of error that occured during loadings.
      *
      * @return true if at least one plugin has been succesfully loaded, false otherwise.
      *         When false is returned, some plugins MIHGT have been loaded
      *         but the lstrPluginFiles is accurate.
      */
-    bool loadPlugins(std::list<std::string>& lstrPluginFiles, std::list<std::string>& lstrError);
+    bool loadPlugins(std::list<std::string>& lstrPluginFiles, core::Results& errors);
 
     // Subsystem factory
     CSubsystemLibrary* _pSubsystemLibrary;

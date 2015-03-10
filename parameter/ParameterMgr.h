@@ -32,7 +32,6 @@
 #include <pthread.h>
 #include <map>
 #include <vector>
-#include <list>
 #include "RemoteCommandHandlerTemplate.h"
 #include "PathNavigator.h"
 #include "SelectionCriterionType.h"
@@ -40,6 +39,7 @@
 #include "Element.h"
 #include "XmlDocSink.h"
 #include "XmlDocSource.h"
+#include "Results.h"
 
 #include <string>
 
@@ -253,8 +253,17 @@ public:
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool renameConfiguration(const std::string& strDomain, const std::string& strConfiguration, const std::string& strNewConfiguration, std::string& strError);
 
-    // Save/Restore
-    bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::list<std::string>& strError);
+    /** Restore a configuration
+     *
+     * @param[in] strDomain the domain name
+     * @param[in] strConfiguration the configuration name
+     * @param[out] errors errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restoreConfiguration(const std::string& strDomain,
+                              const std::string& strConfiguration,
+                              core::Results& errors);
+
     bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
 
     // Configurable element - domain association

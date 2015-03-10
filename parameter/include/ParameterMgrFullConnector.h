@@ -46,6 +46,10 @@ class CParameterMgrFullConnector
     friend class CParameterMgrLogger<CParameterMgrFullConnector>;
 
 public:
+
+    /** String list type which can hold list of error/info and can be presented to client */
+    typedef std::list<std::string> Results;
+
     CParameterMgrFullConnector(const std::string& strConfigurationFilePath);
     ~CParameterMgrFullConnector();
 
@@ -182,8 +186,17 @@ public:
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool renameConfiguration(const std::string& strDomain, const std::string& strConfiguration, const std::string& strNewConfiguration, std::string& strError);
 
-    // Save/Restore
-    bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::list<std::string>& strError);
+    /** Restore a configuration
+     *
+     * @param[in] strDomain the domain name
+     * @param[in] strConfiguration the configuration name
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restoreConfiguration(const std::string& strDomain,
+                              const std::string& strConfiguration,
+                              Results& errors);
+
     bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
 
     // Configurable element - domain association

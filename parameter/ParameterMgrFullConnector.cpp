@@ -267,9 +267,9 @@ bool CParameterMgrFullConnector::saveConfiguration(const string& strDomain,
 
 bool CParameterMgrFullConnector::restoreConfiguration(const string& strDomain,
                                                       const string& strConfiguration,
-                                                      std::list<string>& lstrError)
+                                                      Results& errors)
 {
-    return _pParameterMgr->restoreConfiguration(strDomain, strConfiguration, lstrError);
+    return _pParameterMgr->restoreConfiguration(strDomain, strConfiguration, errors);
 }
 
 bool CParameterMgrFullConnector::setSequenceAwareness(const string& strName, bool bSequenceAware,
