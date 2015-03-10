@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,50 +26,19 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# has been tested on 2.8 only - might work on older versions
-cmake_minimum_required(VERSION 2.8)
+if (BUILD_TESTING)
 
-# linking policy (see cmake --help-policy CMP0003)
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
+    add_library(test-subsystem SHARED
+        TESTSubsystem.cpp
+        TESTSubsystemBinary.cpp
+        TESTSubsystemObject.cpp
+        TESTSubsystemString.cpp
+        TESTSubsystemBuilder.cpp)
 
-project(parameter-framework)
+    include_directories(
+        "${PROJECT_SOURCE_DIR}/xmlserializer"
+        "${PROJECT_SOURCE_DIR}/remote-processor"
+        "${PROJECT_SOURCE_DIR}/parameter")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-option(COVERAGE "Build with coverage support" OFF)
-if(COVERAGE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fprofile-arcs -ftest-coverage")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
+    target_link_libraries(test-subsystem parameter)
 endif()
-
-add_subdirectory(xmlserializer)
-add_subdirectory(parameter)
-add_subdirectory(utility)
-add_subdirectory(remote-processor)
-
-add_subdirectory(remote-process)
-
-include(CTest)
-# Ctest requires its configuration to be placed at the build root
-configure_file(CTestCustom.cmake ${CMAKE_BINARY_DIR} COPYONLY)
-
-add_subdirectory(test/test-platform)
-add_subdirectory(test/test-fixed-point-parameter)
-add_subdirectory(test/tokenizer)
-add_subdirectory(test/functional-tests)
-add_subdirectory(test/test-subsystem)
-
-option(BASH_COMPLETION "Install bash completion configuration" ON)
-if (BASH_COMPLETION)
-    add_subdirectory(tools/bash_completion)
-endif()
-
-add_subdirectory(tools/xmlGenerator)
-add_subdirectory(tools/xmlValidator)
-
-add_subdirectory(bindings)

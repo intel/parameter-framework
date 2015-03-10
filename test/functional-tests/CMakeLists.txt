@@ -26,50 +26,36 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# has been tested on 2.8 only - might work on older versions
-cmake_minimum_required(VERSION 2.8)
+if (BUILD_TESTING)
+    find_program(python2 python2)
 
-# linking policy (see cmake --help-policy CMP0003)
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
+    set(PFW_ROOT ${CMAKE_BINARY_DIR}/tmp/test-parameters)
+    set(PFW_RESULT ${PFW_ROOT}/result)
 
-project(parameter-framework)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestSubsystem.xml.in
+        ${PFW_ROOT}/xml/configuration/Structure/Test/TestSubsystem.xml @ONLY)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestClass.xml
+        ${PFW_ROOT}/xml/configuration/Structure/Test/TestClass.xml
+        COPYONLY)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/ParameterFrameworkConfiguration.xml
+        ${PFW_ROOT}/xml/configuration/ParameterFrameworkConfiguration.xml
+        COPYONLY)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
+        ${PFW_ROOT}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
+        COPYONLY)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
+    add_test(NAME functional-test
+             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+             COMMAND ${python2} -B ACTCampaignEngine.py)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+    set_property(TEST functional-test PROPERTY ENVIRONMENT
+            PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
+            LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH}
+            PFW_ROOT=${PFW_ROOT}
+            PFW_RESULT=${PFW_RESULT})
 
-option(COVERAGE "Build with coverage support" OFF)
-if(COVERAGE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fprofile-arcs -ftest-coverage")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
 endif()
-
-add_subdirectory(xmlserializer)
-add_subdirectory(parameter)
-add_subdirectory(utility)
-add_subdirectory(remote-processor)
-
-add_subdirectory(remote-process)
-
-include(CTest)
-# Ctest requires its configuration to be placed at the build root
-configure_file(CTestCustom.cmake ${CMAKE_BINARY_DIR} COPYONLY)
-
-add_subdirectory(test/test-platform)
-add_subdirectory(test/test-fixed-point-parameter)
-add_subdirectory(test/tokenizer)
-add_subdirectory(test/functional-tests)
-add_subdirectory(test/test-subsystem)
-
-option(BASH_COMPLETION "Install bash completion configuration" ON)
-if (BASH_COMPLETION)
-    add_subdirectory(tools/bash_completion)
-endif()
-
-add_subdirectory(tools/xmlGenerator)
-add_subdirectory(tools/xmlValidator)
-
-add_subdirectory(bindings)

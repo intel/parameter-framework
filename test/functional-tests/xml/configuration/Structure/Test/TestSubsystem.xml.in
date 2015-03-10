@@ -75,10 +75,10 @@
 		</ComponentType>
 	</ComponentLibrary>
 	<InstanceDefinition>
-		<Component Name="TEST_DIR" Type="TEST_DIR" Mapping="Directory:/tmp/test-parameters"/>
-		<Component Name="TEST_DOMAIN_0" Type="TEST_DOMAIN_0" Mapping="Directory:/tmp/test-parameters"/>
-		<Component Name="TEST_DOMAIN_1" Type="TEST_DOMAIN_1" Mapping="Directory:/tmp/test-parameters"/>
-		<Component Name="TEST_TYPES" Type="TEST_TYPES" Mapping="Directory:/tmp/test-parameters"/>
-		<Component Name="TEST_MAIN" Type="TEST_MAIN" Mapping="Directory:/tmp/test-parameters"/>
+		<Component Name="TEST_DIR" Type="TEST_DIR" Mapping="Directory:@PFW_RESULT@"/>
+		<Component Name="TEST_DOMAIN_0" Type="TEST_DOMAIN_0" Mapping="Directory:@PFW_RESULT@"/>
+		<Component Name="TEST_DOMAIN_1" Type="TEST_DOMAIN_1" Mapping="Directory:@PFW_RESULT@"/>
+		<Component Name="TEST_TYPES" Type="TEST_TYPES" Mapping="Directory:@PFW_RESULT@"/>
+		<Component Name="TEST_MAIN" Type="TEST_MAIN" Mapping="Directory:@PFW_RESULT@"/>
 	</InstanceDefinition>
 </Subsystem>

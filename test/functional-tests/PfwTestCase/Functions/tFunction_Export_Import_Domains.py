@@ -61,11 +61,11 @@ class TestCases(PfwTestCase):
 
         self.pfw.sendCmd("setTuningMode", "on")
         self.param_name_01 = "/Test/Test/TEST_DIR/UINT16"
-        self.filesystem_01 = "$PFW_FILESYSTEM/UINT16"
+        self.filesystem_01 = "$PFW_RESULT/UINT16"
         self.param_name_02 = "/Test/Test/TEST_DOMAIN_0/Param_00"
-        self.filesystem_02 = "$PFW_FILESYSTEM/Param_00"
+        self.filesystem_02 = "$PFW_RESULT/Param_00"
         self.param_name_03 = "/Test/Test/TEST_DOMAIN_1/Param_12"
-        self.filesystem_03 = "$PFW_FILESYSTEM/Param_12"
+        self.filesystem_03 = "$PFW_RESULT/Param_12"
 
         pfw_test_tools=os.getenv("PFW_TEST_TOOLS")
         self.reference_xml = pfw_test_tools+"/xml/XML_Test/Reference_Compliant.xml"

@@ -91,7 +91,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("when getting parameter %s -> %s" % (self.param_name, err))
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
 
     def test_Empty_String_Case(self):
         """
@@ -120,7 +120,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("when getting parameter %s -> %s" % (self.param_name, err))
         assert out == "", log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == "", log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/STR_CHAR128') == "", log.F("FILESYSTEM : parameter update error")
 
     def test_OverSize_String_Case(self):
         """
@@ -142,13 +142,13 @@ class TestCases(PfwTestCase):
         value=""
         for i in range(self.size_max+1):
             value=value+str(random.choice(string.letters))
-        param_check = commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128')
+        param_check = commands.getoutput('cat $PFW_RESULT/STR_CHAR128')
         #Set parameter value
         out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
         assert err == None, log.E("when setting parameter %s -> %s" % (self.param_name, err))
         assert out != "Done", log.F("Error not detected when setting parameter %s over size" % (self.param_name))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == param_check, log.F("FILESYSTEM : Forbiden parameter change")
+        assert commands.getoutput('cat $PFW_RESULT/STR_CHAR128') == param_check, log.F("FILESYSTEM : Forbiden parameter change")
 
     def test_Full_Letters_String_Case(self):
         """
@@ -179,7 +179,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
 
     def test_Nominal_String_Case(self):
         """
@@ -208,7 +208,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s -> %s" % (self.param_name, err))
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
 
     def test_Punctuation_Empty_Parenthese_String_Case(self):
         """
@@ -227,7 +227,7 @@ class TestCases(PfwTestCase):
         log.D(self.test_Punctuation_Empty_Parenthese_String_Case.__doc__)
         value = "ParentheseTest()"
         log.I("STR_CHAR128 parameter Parenthese Char = %s" % (value))
-        param_check = commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128')
+        param_check = commands.getoutput('cat $PFW_RESULT/STR_CHAR128')
         #Set parameter value
         out, err = self.pfw.sendCmd("setParameter", self.param_name, "'%s'" % (value))
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
@@ -237,7 +237,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When getting parameter %s : %s" % (self.param_name, err))
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
 
     def test_Punctuation_Full_Parenthese_String_Case(self):
         """
@@ -256,7 +256,7 @@ class TestCases(PfwTestCase):
         log.D(self.test_Punctuation_Full_Parenthese_String_Case.__doc__)
         value = "ParentheseTest(test)"
         log.I("STR_CHAR128 parameter Parenthese Char = %s" % (value))
-        param_check = commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128')
+        param_check = commands.getoutput('cat $PFW_RESULT/STR_CHAR128')
         #Set parameter value
         out, err = self.pfw.sendCmd("setParameter", self.param_name, "'%s'" % value)
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
@@ -266,7 +266,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When getting parameter %s : %s" % (self.param_name, err))
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/STR_CHAR128') == value, log.F("FILESYSTEM : parameter update error")
 
     def test_SpaceChar_String_Case(self):
         """
@@ -295,4 +295,4 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value_check, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/STR_CHAR128') == value_check, log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/STR_CHAR128') == value_check, log.F("FILESYSTEM : parameter update error")

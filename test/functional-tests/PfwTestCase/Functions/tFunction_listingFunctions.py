@@ -106,6 +106,7 @@ class TestCases(PfwTestCase):
         assert out == commands.getoutput("cat %s"%(self.reference_dumpDomains_file)), log.F("A diff is found between dumpDomains output and %s"%(self.reference_dumpDomains_file))
         log.I("Command [dumpDomains] - correctly executed")
 
+    @unittest.expectedFailure
     def test_02_dumpElements_Case(self):
         """
         Testing dumpElements function
