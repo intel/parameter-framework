@@ -32,6 +32,7 @@
 #include "ParameterBlackboard.h"
 #include "BinaryStream.h"
 #include "SyncerSet.h"
+#include "Results.h"
 
 class CConfigurableElement;
 class CXmlElement;
@@ -48,8 +49,14 @@ public:
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
 
-    // Apply data to current
-    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<std::string>* plstrError) const;
+    /** Restore the configuration area
+     *
+     * @param[in] pMainBlackboard the application main blackboard
+     * @param[in] bSync indicates if a synchronisation has to be done
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, core::Results* errors) const;
 
     // Ensure validity
     void validate(const CParameterBlackboard* pMainBlackboard);

@@ -70,7 +70,7 @@ void CConfigurableDomains::validate(const CParameterBlackboard* pMainBlackboard)
 void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard,
                                  CSyncerSet& syncerSet,
                                  bool bForce,
-                                 std::list<std::string>& infos) const
+                                 core::Results& infos) const
 {
     /// Delegate to domains
 
@@ -294,7 +294,7 @@ bool CConfigurableDomains::listDomainElements(const string& strDomain, string& s
 
 bool CConfigurableDomains::split(const string& domainName,
                                  CConfigurableElement* element,
-                                 std::list<std::string>& infos)
+                                 core::Results& infos)
 {
     // Find domain
     std::string error;
@@ -402,19 +402,23 @@ void CConfigurableDomains::gatherAllOwnedConfigurableElements(std::set<const CCo
 }
 
 // Config restore
-bool CConfigurableDomains::restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<string>& lstrError) const
+bool CConfigurableDomains::restoreConfiguration(const string& domainName,
+                                                const string& configurationName,
+                                                CParameterBlackboard* mainBlackboard,
+                                                bool autoSync,
+                                                core::Results& errors) const
 {
-    string strError;
+    string error;
     // Find domain
-    const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
+    const CConfigurableDomain* domain = findConfigurableDomain(domainName, error);
 
-    if (!pConfigurableDomain) {
+    if (domain == NULL) {
 
-        lstrError.push_back(strError);
+        errors.push_back(error);
         return false;
     }
     // Delegate
-    return pConfigurableDomain->restoreConfiguration(strConfiguration, pMainBlackboard, bAutoSync, lstrError);
+    return domain->restoreConfiguration(configurationName, mainBlackboard, autoSync, errors);
 }
 
 // Config save
@@ -517,7 +521,7 @@ bool
 CConfigurableDomains::addConfigurableElementToDomain(const string& domainName,
                                                      CConfigurableElement* element,
                                                      const CParameterBlackboard* mainBlackboard,
-                                                     std::list<std::string>& infos)
+                                                     core::Results& infos)
 {
     // Find domain
     std::string error;

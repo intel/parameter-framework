@@ -61,7 +61,9 @@ CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const s
 }
 
 // List available criteria
-void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
+void CSelectionCriteriaDefinition::listSelectionCriteria(core::Results& results,
+                                                         bool withTypeInfo,
+                                                         bool humanReadable) const
 {
     // Propagate
     size_t uiNbChildren = getNbChildren();
@@ -69,9 +71,10 @@ void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string>&
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        const CSelectionCriterion* pSelectionCriterion = static_cast<const CSelectionCriterion*>(getChild(uiChild));
+        const CSelectionCriterion* criterion =
+            static_cast<const CSelectionCriterion*>(getChild(uiChild));
 
-        lstrResult.push_back(pSelectionCriterion->getFormattedDescription(bWithTypeInfo, bHumanReadable));
+        results.push_back(criterion->getFormattedDescription(withTypeInfo, humanReadable));
     }
 }
 

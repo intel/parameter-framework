@@ -494,10 +494,10 @@ bool CParameterMgr::load(string& strError)
 
         const CSelectionCriteria* selectionCriteria = getConstSelectionCriteria();
 
-        list<string> lstrSelectionCriteron;
-        selectionCriteria->listSelectionCriteria(lstrSelectionCriteron, true, false);
+        core::Results criteria;
+        selectionCriteria->listSelectionCriteria(criteria, true, false);
 
-        log_table(false, lstrSelectionCriteron);
+        log_table(false, criteria);
     }
 
     // Subsystem can not ask for resync as they have not been synced yet
@@ -967,11 +967,11 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
 
     /// Criteria states
     appendTitle(strResult, "Selection Criteria:");
-    list<string> lstrSelectionCriteria;
-    getSelectionCriteria()->listSelectionCriteria(lstrSelectionCriteria, false, true);
+    core::Results criteria;
+    getSelectionCriteria()->listSelectionCriteria(criteria, false, true);
     // Concatenate the criterion list as the command result
     string strCriteriaStates;
-    CUtility::asString(lstrSelectionCriteria, strCriteriaStates);
+    CUtility::asString(criteria, strCriteriaStates);
     strResult += strCriteriaStates;
 
     return CCommandHandler::ESucceeded;
@@ -1154,11 +1154,11 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommman
         // Requested format will be either CSV or human readable based on strOutputFormat content
         bool bHumanReadable = strOutputFormat.empty();
 
-        list<string> lstrResult;
-        getSelectionCriteria()->listSelectionCriteria(lstrResult, true, bHumanReadable);
+        core::Results result;
+        getSelectionCriteria()->listSelectionCriteria(result, true, bHumanReadable);
 
         // Concatenate the criterion list as the command result
-        CUtility::asString(lstrResult, strResult);
+        CUtility::asString(result, strResult);
 
         return CCommandHandler::ESucceeded;
     }
@@ -1298,10 +1298,10 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::saveConfigurationCo
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfigurationCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    list<string> lstrResult;
-    if (!restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), lstrResult)) {
+    core::Results result;
+    if (!restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), result)) {
         //Concatenate the error list as the command result
-        CUtility::asString(lstrResult, strResult);
+        CUtility::asString(result, strResult);
 
         return  CCommandHandler::EFailed;
     }
@@ -1983,10 +1983,10 @@ bool CParameterMgr::sync(string& strError)
     getConstSystemClass()->fillSyncerSet(syncerSet);
 
     // Sync
-    list<string> lstrError;
-    if (! syncerSet.sync(*_pMainParameterBlackboard, false, &lstrError)){
+    core::Results error;
+    if (! syncerSet.sync(*_pMainParameterBlackboard, false, &error)){
 
-        CUtility::asString(lstrError, strError);
+        CUtility::asString(error, strError);
         return false;
     };
 
@@ -2111,7 +2111,9 @@ bool CParameterMgr::deleteConfiguration(const string& strDomain, const string& s
                                                  strDomain, strConfiguration, strError), strError);
 }
 
-bool CParameterMgr::restoreConfiguration(const string& strDomain, const string& strConfiguration, list<string>& lstrError)
+bool CParameterMgr::restoreConfiguration(const string& strDomain,
+                                         const string& strConfiguration,
+                                         core::Results& errors)
 {
     string strError;
     CAutoLog autoLog(this, "Restoring domain '" + strDomain
@@ -2119,14 +2121,14 @@ bool CParameterMgr::restoreConfiguration(const string& strDomain, const string& 
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
 
-        lstrError.push_back(strError);
+        errors.push_back(strError);
         log_warning("Fail: " + strError);
         return false;
     }
 
     // Delegate to configurable domains
     return logResult(getConstConfigurableDomains()->restoreConfiguration(
-                strDomain, strConfiguration, _pMainParameterBlackboard, _bAutoSyncOn, lstrError),
+                strDomain, strConfiguration, _pMainParameterBlackboard, _bAutoSyncOn, errors),
                      strError);
 }
 
@@ -2172,7 +2174,7 @@ bool CParameterMgr::addConfigurableElementToDomain(const string& strDomain, cons
     CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
 
     // Delegate
-    std::list<std::string> infos;
+    core::Results infos;
     bool isSuccess = getConfigurableDomains()->addConfigurableElementToDomain(
             strDomain, pConfigurableElement, _pMainParameterBlackboard, infos);
 
@@ -2236,7 +2238,7 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
     CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
 
     // Delegate
-    std::list<std::string> infos;
+    core::Results infos;
     bool isSuccess = getConfigurableDomains()->split(strDomain, pConfigurableElement, infos);
 
     log_table(isSuccess, infos);
@@ -2696,7 +2698,7 @@ void CParameterMgr::doApplyConfigurations(bool bForce)
 
     CSyncerSet syncerSet;
 
-    std::list<std::string> infos;
+    core::Results infos;
     // Check subsystems that need resync
     getSystemClass()->checkForSubsystemsToResync(syncerSet, infos);
 

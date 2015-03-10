@@ -31,6 +31,7 @@
 
 #include "Element.h"
 #include "SelectionCriterion.h"
+#include "Results.h"
 
 class ISelectionCriterionObserver;
 
@@ -46,8 +47,15 @@ public:
     const CSelectionCriterion* getSelectionCriterion(const std::string& strName) const;
     CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 
-    // List available criteria
-    void listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const;
+    /** List available criteria
+     *
+     * @param[out] results, information container
+     * @param[in] withTypeInfo indicates if we want to retrieve criterion type information
+     * @param[in] humanReadable indicates the formatage we want to use
+     */
+    void listSelectionCriteria(core::Results& results,
+                               bool withTypeInfo,
+                               bool humanReadable) const;
 
     // Base
     virtual std::string getKind() const;

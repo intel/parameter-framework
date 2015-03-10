@@ -296,7 +296,7 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
             return false;
         }
         // Add found element to domain
-        std::list<std::string> infos;
+        core::Results infos;
         if (!addConfigurableElement(pConfigurableElement, NULL, infos)) {
 
             CUtility::asString(infos, strError);
@@ -357,7 +357,7 @@ bool CConfigurableDomain::parseSettings(const CXmlElement& xmlElement,
 // Configurable elements association
 bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigurableElement,
                                                  const CParameterBlackboard* pMainBlackboard,
-                                                 std::list<std::string>& infos)
+                                                 core::Results& infos)
 {
     // Already associated?
     if (containsConfigurableElement(pConfigurableElement)) {
@@ -461,7 +461,7 @@ CParameterBlackboard* CConfigurableDomain::findConfigurationBlackboard(const str
 
 // Domain splitting
 bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement,
-                                std::list<std::string>& infos)
+                                core::Results& infos)
 {
     // Not associated?
     if (!containsConfigurableElement(pConfigurableElement)) {
@@ -694,28 +694,31 @@ bool CConfigurableDomain::renameConfiguration(const string& strName, const strin
     return pDomainConfiguration->rename(strNewName, strError);
 }
 
-bool CConfigurableDomain::restoreConfiguration(const string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<string>& lstrError) const
+bool CConfigurableDomain::restoreConfiguration(const string& configurationName,
+                                               CParameterBlackboard* mainBlackboard,
+                                               bool autoSync,
+                                               core::Results& errors) const
 {
-    string strError;
+    string error;
 
-    const CDomainConfiguration* pDomainConfiguration = findConfiguration(strName, strError);
+    const CDomainConfiguration* configuration = findConfiguration(configurationName, error);
 
-    if (!pDomainConfiguration) {
+    if (configuration == NULL) {
 
-        lstrError.push_back(strError);
+        errors.push_back(error);
         return false;
     }
 
     // Delegate
-    bool bSuccess = pDomainConfiguration->restore(pMainBlackboard, bAutoSync && _bSequenceAware, &lstrError);
+    bool bSuccess = configuration->restore(mainBlackboard, autoSync && _bSequenceAware, &errors);
 
     // Record last applied configuration
-    _pLastAppliedConfiguration = pDomainConfiguration;
+    _pLastAppliedConfiguration = configuration;
 
     // Synchronize
-    if (bAutoSync && !_bSequenceAware) {
+    if (autoSync && !_bSequenceAware) {
 
-        bSuccess &= _syncerSet.sync(*pMainBlackboard, false, &lstrError);
+        bSuccess &= _syncerSet.sync(*mainBlackboard, false, &errors);
     }
     return bSuccess;
 }
@@ -992,7 +995,7 @@ bool CConfigurableDomain::containsConfigurableElement(const CConfigurableElement
 // Merge any descended configurable element to this one with this one
 void CConfigurableDomain::mergeAlreadyAssociatedDescendantConfigurableElements(
                                                                 CConfigurableElement* newElement,
-                                                                std::list<std::string>& infos)
+                                                                core::Results& infos)
 {
     std::list<CConfigurableElement*> mergedConfigurableElementList;
 
@@ -1046,7 +1049,7 @@ void CConfigurableDomain::mergeConfigurations(CConfigurableElement* pToConfigura
 
 // Configurable elements association
 void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfigurableElement,
-                                                   std::list<std::string>& infos,
+                                                   core::Results& infos,
                                                    const CParameterBlackboard* pMainBlackboard)
 {
     // Inform configurable element

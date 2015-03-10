@@ -29,9 +29,8 @@
  */
 #pragma once
 
+#include "Results.h"
 #include <set>
-#include <string>
-#include <list>
 
 class ISyncer;
 class CParameterBlackboard;
@@ -49,8 +48,14 @@ public:
     // Clearing
     void clear();
 
-    // Sync
-    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::list<std::string>* plstrError) const;
+    /** Sync the blackboard
+     *
+     * @param parameterBlackboard blackboard associated to syncer
+     * @param[in] bBack indicates if we want to back synchronise or to forward synchronise
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, core::Results* errors) const;
 
 private:
     std::set<ISyncer*> _syncerSet;

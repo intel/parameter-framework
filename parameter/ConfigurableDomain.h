@@ -33,6 +33,7 @@
 #include "XmlSerializingContext.h"
 #include "XmlDomainImportContext.h"
 #include "SyncerSet.h"
+#include "Results.h"
 #include <list>
 #include <set>
 #include <map>
@@ -60,7 +61,20 @@ public:
     bool createConfiguration(const std::string& strName, const CParameterBlackboard* pMainBlackboard, std::string& strError);
     bool deleteConfiguration(const std::string& strName, std::string& strError);
     bool renameConfiguration(const std::string& strName, const std::string& strNewName, std::string& strError);
-    bool restoreConfiguration(const std::string& strName, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<std::string>& strError) const;
+
+    /** Restore a configuration
+     *
+     * @param[in] configurationName the configuration name
+     * @param[in] mainBlackboard the application main blackboard
+     * @param[in] autoSync boolean which indicates if auto sync mechanism is on
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restoreConfiguration(const std::string& configurationName,
+                              CParameterBlackboard* mainBlackboard,
+                              bool autoSync,
+                              core::Results& errors) const;
+
     bool saveConfiguration(const std::string& strName, const CParameterBlackboard* pMainBlackboard, std::string& strError);
     bool setElementSequence(const std::string& strConfiguration, const std::vector<std::string>& astrNewElementSequence, std::string& strError);
     bool getElementSequence(const std::string& strConfiguration, std::string& strResult) const;
@@ -82,12 +96,12 @@ public:
      *
      * @param[in] pConfigurableElement pointer to the element to add
      * @param[in] pMainBlackboard pointer to the application main blackboard
-     * @param[out] infos string list containing useful information we can provide to client
+     * @param[out] infos useful information we can provide to client
      * @return true if succeed false otherwise
      */
     bool addConfigurableElement(CConfigurableElement* pConfigurableElement,
                                 const CParameterBlackboard* pMainBlackboard,
-                                std::list<std::string>& infos);
+                                core::Results& infos);
 
     bool removeConfigurableElement(CConfigurableElement* pConfigurableElement, std::string& strError);
 
@@ -102,10 +116,10 @@ public:
      * Remove an element of a domain and create a new domain which owns the element.
      *
      * @param[in] pConfigurableElement pointer to the element to remove
-     * @param[out] infos string list containing useful information we can provide to client
+     * @param[out] infos useful information we can provide to client
      * @return true if succeed false otherwise
      */
-    bool split(CConfigurableElement* pConfigurableElement, std::list<std::string>& strError);
+    bool split(CConfigurableElement* pConfigurableElement, core::Results& infos);
 
     // Ensure validity on whole domain from main blackboard
     void validate(const CParameterBlackboard* pMainBlackboard);
@@ -175,10 +189,10 @@ private:
     /** Merge any descended configurable element to this one
      *
      * @param[in] newElement pointer to element which has potential descendants which can be merged
-     * @param[out] infos string list containing useful information we can provide to client
+     * @param[out] infos useful information we can provide to client
      */
     void mergeAlreadyAssociatedDescendantConfigurableElements(CConfigurableElement* newElement,
-                                                              std::list<std::string>& infos);
+                                                              core::Results& infos);
 
     void mergeConfigurations(CConfigurableElement* pToConfigurableElement, CConfigurableElement* pFromConfigurableElement);
 
@@ -191,7 +205,7 @@ private:
      *            element are validated.
      */
     void doAddConfigurableElement(CConfigurableElement* pConfigurableElement,
-                                  std::list<std::string>& infos,
+                                  core::Results& infos,
                                   const CParameterBlackboard* pMainBlackboard = NULL);
 
     void doRemoveConfigurableElement(CConfigurableElement* pConfigurableElement, bool bRecomputeSyncSet);

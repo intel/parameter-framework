@@ -30,6 +30,7 @@
 #pragma once
 
 #include "BinarySerializableElement.h"
+#include "Results.h"
 #include <list>
 #include <string>
 
@@ -69,8 +70,18 @@ public:
 
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
-    // Apply data to current
-    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<std::string>* plstrError = NULL) const;
+
+    /** Restore the configuration
+     *
+     * @param[in] pMainBlackboard the application main blackboard
+     * @param[in] bSync indicates if a synchronisation has to be done
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restore(CParameterBlackboard* pMainBlackboard,
+                 bool bSync,
+                 core::Results* errors = NULL) const;
+
     // Ensure validity for configurable element area configuration
     void validate(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard);
     // Ensure validity of all area configurations
