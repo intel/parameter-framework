@@ -65,13 +65,13 @@ class TestCases(PfwTestCase):
 
         #UINT8_0, size = 8
         self.param_name.append(self.block_name+"/UINT8")
-        self.filesystem_name.append("$PFW_FILESYSTEM/UINT8")
+        self.filesystem_name.append("$PFW_RESULT/UINT8")
         #UINT16_1, size = 16
         self.param_name.append(self.block_name+"/UINT16")
-        self.filesystem_name.append("$PFW_FILESYSTEM/UINT16")
+        self.filesystem_name.append("$PFW_RESULT/UINT16")
         #UINT32_2, size = 32
         self.param_name.append(self.block_name+"/UINT32")
-        self.filesystem_name.append("$PFW_FILESYSTEM/UINT32")
+        self.filesystem_name.append("$PFW_RESULT/UINT32")
 
         self.pfw.sendCmd("setTuningMode", "on")
 

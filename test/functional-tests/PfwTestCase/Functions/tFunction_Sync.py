@@ -53,7 +53,7 @@ class TestCases(PfwTestCase):
 
     def setUp(self):
 
-        pfw_filesystem=os.getenv("PFW_FILESYSTEM")
+        pfw_filesystem=os.getenv("PFW_RESULT")
 
         self.pfw.sendCmd("setTuningMode", "on")
         self.param_name_01 = "/Test/Test/TEST_DIR/BOOL"
