@@ -30,8 +30,8 @@
 #pragma once
 
 #include "BinarySerializableElement.h"
+#include "Results.h"
 #include <set>
-#include <list>
 #include <string>
 
 
@@ -85,12 +85,12 @@ public:
      *
      * @param[in] domainName the domain name
      * @param[in] element pointer to the element to remove
-     * @param[out] infos string list containing useful information we can provide to client
+     * @param[out] infos useful information we can provide to client
      * @return true if succeed false otherwise
      */
     bool split(const std::string& domainName,
                CConfigurableElement* element,
-               std::list<std::string>& infos);
+               core::Results& infos);
 
     void listAssociatedElements(std::string& strResult) const;
     void listConflictingElements(std::string& strResult) const;
@@ -100,7 +100,22 @@ public:
     bool createConfiguration(const std::string& strDomain, const std::string& strConfiguration, const CParameterBlackboard* pMainBlackboard, std::string& strError);
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool renameConfiguration(const std::string& strDomain, const std::string& strConfigurationName, const std::string& strNewConfigurationName, std::string& strError);
-    bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<std::string>& lstrError) const;
+
+    /** Restore a configuration
+     *
+     * @param[in] strDomain the domain name
+     * @param[in] strConfiguration the configuration name
+     * @param[in] mainBlackboard the application main blackboard
+     * @param[in] autoSync boolean which indicates if auto sync mechanism is on
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restoreConfiguration(const std::string& strDomain,
+                              const std::string& strConfiguration,
+                              CParameterBlackboard* pMainBlackboard,
+                              bool bAutoSync,
+                              core::Results& errors) const;
+
     bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, const CParameterBlackboard* pMainBlackboard, std::string& strError);
     bool setElementSequence(const std::string& strDomain, const std::string& strConfiguration, const std::vector<std::string>& astrNewElementSequence, std::string& strError);
     bool getElementSequence(const std::string& strDomain, const std::string& strConfiguration, std::string& strResult) const;
@@ -116,13 +131,13 @@ public:
      * @param[in] domainName the domain name
      * @param[in] element pointer to the element to add
      * @param[in] mainBlackboard pointer to the application main blackboard
-     * @param[out] infos string list containing useful information we can provide to client
+     * @param[out] infos useful information we can provide to client
      * @return true if succeed false otherwise
      */
     bool addConfigurableElementToDomain(const std::string& domainName,
                                         CConfigurableElement* element,
                                         const CParameterBlackboard* mainBlackboard,
-                                        std::list<std::string>& infos);
+                                        core::Results& infos);
 
     bool removeConfigurableElementFromDomain(const std::string& strDomain, CConfigurableElement* pConfigurableElement, std::string& strError);
 
@@ -151,12 +166,12 @@ public:
      * @param[in] pParameterBlackboard the blackboard to synchronize
      * @param[in] pSyncerSet pointer to the set containing application syncers
      * @param[in] bForce boolean used to force configuration application
-     * @param[out] infos string list containing useful information we can provide to client
+     * @param[out] infos useful information we can provide to client
      */
     void apply(CParameterBlackboard* pParameterBlackboard,
                CSyncerSet& syncerSet,
                bool bForce,
-               std::list<std::string>& infos) const;
+               core::Results& infos) const;
 
     // Class kind
     virtual std::string getKind() const;

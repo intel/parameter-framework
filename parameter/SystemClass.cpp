@@ -107,17 +107,17 @@ bool CSystemClass::loadSubsystems(string& strError,
     _pSubsystemLibrary->enableDefaultMechanism(bVirtualSubsystemFallback);
 
     // Add subsystem defined in shared libraries
-    list<string> lstrError;
-    bool bLoadPluginsSuccess = loadSubsystemsFromSharedLibraries(lstrError, pSubsystemPlugins);
+    core::Results errors;
+    bool bLoadPluginsSuccess = loadSubsystemsFromSharedLibraries(errors, pSubsystemPlugins);
 
     // Fill strError for caller, he has to decide if there is a problem depending on
     // bVirtualSubsystemFallback value
-    CUtility::asString(lstrError, strError);
+    CUtility::asString(errors, strError);
 
     return bLoadPluginsSuccess || bVirtualSubsystemFallback;
 }
 
-bool CSystemClass::loadSubsystemsFromSharedLibraries(list<string>& lstrError,
+bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
                                                      const CSubsystemPlugins* pSubsystemPlugins)
 {
     // Plugin list
@@ -155,7 +155,7 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(list<string>& lstrError,
         // process failed to load at least one of them
 
         // Attempt to load the complete list
-        if (!loadPlugins(lstrPluginFiles, lstrError)) {
+        if (!loadPlugins(lstrPluginFiles, errors)) {
 
             // Unable to load at least one plugin
             break;
@@ -167,7 +167,7 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(list<string>& lstrError,
         string strPluginUnloaded;
         CUtility::asString(lstrPluginFiles, strPluginUnloaded, ", ");
 
-        lstrError.push_back("Unable to load the following plugins: " + strPluginUnloaded + ".");
+        errors.push_back("Unable to load the following plugins: " + strPluginUnloaded + ".");
         return false;
     }
 
@@ -198,7 +198,7 @@ string CSystemClass::getPluginSymbol(const string& strPluginPath)
 }
 
 // Plugin loading
-bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstrError)
+bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& errors)
 {
     assert(lstrPluginFiles.size());
 
@@ -220,9 +220,9 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
             const char *err = dlerror();
             // Failed
             if (err == NULL) {
-                lstrError.push_back("dlerror failed");
+                errors.push_back("dlerror failed");
             } else {
-                lstrError.push_back("Plugin load failed: " + string(err));
+                errors.push_back("Plugin load failed: " + string(err));
             }
             // Next plugin
             ++it;
@@ -241,8 +241,8 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
 
         if (!pfnGetSubsystemBuilder) {
 
-            lstrError.push_back("Subsystem plugin " + strPluginFileName +
-                                " does not contain " + strPluginSymbol + " symbol.");
+            errors.push_back("Subsystem plugin " + strPluginFileName +
+                             " does not contain " + strPluginSymbol + " symbol.");
 
             continue;
         }
@@ -265,7 +265,7 @@ const CSubsystemLibrary* CSystemClass::getSubsystemLibrary() const
     return _pSubsystemLibrary;
 }
 
-void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet, std::list<std::string>& infos)
+void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet, core::Results& infos)
 {
     size_t uiNbChildren = getNbChildren();
     size_t uiChild;
