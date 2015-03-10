@@ -99,7 +99,7 @@ class TestCases(PfwTestCase):
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                    % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/INT32_Max') == hex_value, log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/INT32_Max') == hex_value, log.F("FILESYSTEM : parameter update error")
         log.I("test OK")
 
     def test_TypeMin(self):
@@ -136,7 +136,7 @@ class TestCases(PfwTestCase):
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                    % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/INT32_Max') == hex_value, log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/INT32_Max') == hex_value, log.F("FILESYSTEM : parameter update error")
         log.I("test OK")
 
     def test_TypeMin_Overflow(self):
@@ -161,7 +161,7 @@ class TestCases(PfwTestCase):
         log.D(self.test_TypeMin_Overflow.__doc__)
         log.I("INT32_Max parameter min value out of bounds = -2147483649")
         value = "-2147483649"
-        param_check = commands.getoutput('cat $PFW_FILESYSTEM/INT32_Max')
+        param_check = commands.getoutput('cat $PFW_RESULT/INT32_Max')
         #Set parameter value
         out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
         assert err == None, log.E("when setting parameter %s : %s"
@@ -169,7 +169,7 @@ class TestCases(PfwTestCase):
         assert out != "Done", log.F("PFW : Error not detected when setting parameter %s out of bounds"
                                     % (self.param_name))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/INT32_Max') == param_check, log.F("FILESYSTEM : Forbiden parameter change")
+        assert commands.getoutput('cat $PFW_RESULT/INT32_Max') == param_check, log.F("FILESYSTEM : Forbiden parameter change")
         log.I("test OK")
 
     def test_TypeMax(self):
@@ -207,7 +207,7 @@ class TestCases(PfwTestCase):
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                    % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/INT32_Max') == hex_value, log.F("FILESYSTEM : parameter update error")
+        assert commands.getoutput('cat $PFW_RESULT/INT32_Max') == hex_value, log.F("FILESYSTEM : parameter update error")
         log.I("test OK")
 
     def test_TypeMax_Overflow(self):
@@ -232,7 +232,7 @@ class TestCases(PfwTestCase):
         log.D(self.test_TypeMax_Overflow.__doc__)
         log.I("INT32_Max parameter max value out of bounds = 2147483648")
         value = "2147483648"
-        param_check = commands.getoutput('cat $PFW_FILESYSTEM/INT32_Max')
+        param_check = commands.getoutput('cat $PFW_RESULT/INT32_Max')
         #Set parameter value
         out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
         assert err == None, log.E("when setting parameter %s : %s"
@@ -240,5 +240,5 @@ class TestCases(PfwTestCase):
         assert out != "Done", log.F("PFW : Error not detected when setting parameter %s out of bounds"
                                     % (self.param_name))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_FILESYSTEM/INT32_Max') == param_check, log.F("FILESYSTEM : Forbiden parameter change")
+        assert commands.getoutput('cat $PFW_RESULT/INT32_Max') == param_check, log.F("FILESYSTEM : Forbiden parameter change")
         log.I("test OK")

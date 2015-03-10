@@ -65,7 +65,7 @@ class TestCases(PfwTestCase):
 
     def setUp(self):
         self.param_name = "/Test/Test/TEST_DIR/UINT32_ARRAY"
-        self.param_short_name = "$PFW_FILESYSTEM/UINT32_ARRAY"
+        self.param_short_name = "$PFW_RESULT/UINT32_ARRAY"
         print '\r'
         self.pfw.sendCmd("setTuningMode", "on")
         print '\r'

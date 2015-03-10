@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -68,6 +68,8 @@ endfunction()
 add_subdirectory(test/test-platform)
 add_subdirectory(test/test-fixed-point-parameter)
 add_subdirectory(test/tokenizer)
+add_subdirectory(test/functional-tests)
+add_subdirectory(test/test-subsystem)
 
 option(BASH_COMPLETION "Install bash completion configuration" ON)
 if (BASH_COMPLETION)

@@ -40,7 +40,9 @@ These commands are tested using the methods of the classes
 """
 
 import sys
+import os
 import unittest
+import shutil
 from Util import PfwUnitTestLib
 
 class Logger(object):
@@ -61,7 +63,32 @@ def testsRunner(testDirectory):
     return runner.run(tests).wasSuccessful()
 
 def main():
-    sys.exit(not testsRunner('PfwTestCase'))
+
+    pfw_root =  os.environ["PFW_ROOT"]
+    pfw_result = os.environ["PFW_RESULT"]
+    xml_path = "xml/configuration/ParameterFrameworkConfiguration.xml"
+
+    os.environ["PFW_TEST_TOOLS"] = os.path.dirname(os.path.abspath(__file__))
+    os.environ["PFW_TEST_CONFIGURATION"] = os.path.join(pfw_root, xml_path)
+
+    try:
+        # This directory must not exist. An exception will be raised if it does.
+        os.makedirs(pfw_result)
+
+        isAlive =  os.path.join(pfw_result,"isAlive")
+        with open(isAlive, 'w') as fout:
+            fout.write('true')
+
+        needResync = os.path.join(pfw_result,"needResync")
+        with open(needResync, 'w') as fout:
+            fout.write('false')
+
+        success = testsRunner('PfwTestCase')
+
+    finally:
+        shutil.rmtree(pfw_result)
+
+    sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
     main()

@@ -59,7 +59,7 @@ log=ACTLogging.Logger()
 class TestCases(PfwTestCase):
     def setUp(self):
         self.param_name = "/Test/Test/TEST_TYPES/ENUM"
-        self.filesystem_name="$PFW_FILESYSTEM/ENUM"
+        self.filesystem_name="$PFW_RESULT/ENUM"
         self.pfw.sendCmd("setTuningMode", "on")
 
     def tearDown(self):

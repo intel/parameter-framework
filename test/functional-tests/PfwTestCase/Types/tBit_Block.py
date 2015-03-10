@@ -64,7 +64,7 @@ log=ACTLogging.Logger()
 class TestCases(PfwTestCase):
     def setUp(self):
         self.block_name = "/Test/Test/TEST_TYPES/BLOCK_8BIT"
-        self.filesystem_name="$PFW_FILESYSTEM/BLOCK_8BIT"
+        self.filesystem_name="$PFW_RESULT/BLOCK_8BIT"
 
         self.bit_name=[]
 
