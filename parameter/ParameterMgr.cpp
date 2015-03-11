@@ -440,8 +440,7 @@ bool CParameterMgr::load(string& strError)
         return false;
     }
 
-    // Init flow of element tree
-    if (!init(strError)) {
+    if (!getSystemClass()->initSubsystems(strError)) {
 
         return false;
     }
@@ -744,12 +743,6 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
     }
 
     return true;
-}
-
-// Init
-bool CParameterMgr::init(string& strError)
-{
-    return base::init(strError);
 }
 
 // Selection criteria interface

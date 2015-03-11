@@ -64,23 +64,6 @@ bool CElement::childrenAreDynamic() const
     return false;
 }
 
-bool CElement::init(string& strError)
-{
-    uint32_t uiIndex;
-
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
-
-        CElement* pElement = _childArray[uiIndex];;
-
-        if (!pElement->init(strError)) {
-
-            return false;
-        }
-    }
-
-    return true;
-}
-
 void CElement::dumpContent(string& strContent, CErrorContext& errorContext, const uint32_t uiDepth) const
 {
     string strIndent;

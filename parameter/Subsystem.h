@@ -98,6 +98,14 @@ public:
      */
     virtual std::string getMapping(std::list<const CConfigurableElement*>& configurableElementPath) const;
 
+    /** Subsystem init function.
+     * This function will be launched after structure loading.
+     *
+     * @param[out] error, error encountered during initialization
+     * @return true if succeed, false otherwise
+     */
+    virtual bool init(std::string& error);
+
 protected:
     // Parameter access
     virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;

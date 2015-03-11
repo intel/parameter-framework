@@ -532,3 +532,9 @@ void CSubsystem::mapEnd()
     // Unstack context
     _contextStack.pop();
 }
+
+bool CSubsystem::init(string&)
+{
+    // Default implementation
+    return true;
+}

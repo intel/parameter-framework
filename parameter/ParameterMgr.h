@@ -358,9 +358,6 @@ private:
     CParameterMgr(const CParameterMgr&);
     CParameterMgr& operator=(const CParameterMgr&);
 
-    // Init
-    virtual bool init(std::string& strError);
-
     // Version
     std::string getVersion() const;
 

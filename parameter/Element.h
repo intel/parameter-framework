@@ -57,8 +57,6 @@ public:
     std::string getPath() const;
     std::string getQualifiedPath() const;
 
-    // Creation / build
-    virtual bool init(std::string& strError);
     virtual void clean();
 
     // Children management
