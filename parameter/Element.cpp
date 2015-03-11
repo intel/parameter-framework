@@ -682,24 +682,6 @@ const CElement* CElement::findChildOfKind(const string& strKind) const
     return NULL;
 }
 
-CElement* CElement::getRoot()
-{
-    if (!_pParent) {
-
-        return this;
-    }
-    return _pParent->getRoot();
-}
-
-const CElement* CElement::getRoot() const
-{
-    if (!_pParent) {
-
-        return this;
-    }
-    return _pParent->getRoot();
-}
-
 string CElement::getPath() const
 {
     // Take out root element from the path
