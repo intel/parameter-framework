@@ -141,9 +141,6 @@ private:
     void getBelongingDomains(std::list<const CConfigurableDomain*>& configurableDomainList) const;
     void listDomains(const std::list<const CConfigurableDomain*>& configurableDomainList, std::string& strResult, bool bVertical) const;
 
-    // Check parent is still of current type (by structure knowledge)
-    bool isOfConfigurableElementType(const CElement* pParent) const;
-
     // Offset in main blackboard
     uint32_t _uiOffset;
 
