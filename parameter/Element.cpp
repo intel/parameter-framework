@@ -531,8 +531,7 @@ const CElement* CElement::findChildOfKind(const string& strKind) const
 
 string CElement::getPath() const
 {
-    // Take out root element from the path
-    if (_pParent && _pParent->_pParent) {
+    if (_pParent != NULL) {
 
         return _pParent->getPath() + "/" + getPathName();
     }

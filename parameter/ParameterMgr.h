@@ -40,6 +40,10 @@
 #include "XmlDocSink.h"
 #include "XmlDocSource.h"
 #include "Results.h"
+#include "ParameterFrameworkConfiguration.h"
+#include "SelectionCriteria.h"
+#include "ConfigurableDomains.h"
+#include "SystemClass.h"
 #include <log/LogWrapper.h>
 #include <log/Context.h>
 
@@ -48,26 +52,16 @@
 
 class CElementLibrarySet;
 class CSubsystemLibrary;
-class CSystemClass;
-class CSelectionCriteria;
-class CParameterFrameworkConfiguration;
 class CSystemClassConfiguration;
 class CParameterBlackboard;
-class CConfigurableDomains;
 class IRemoteProcessorServerInterface;
 class CParameterHandle;
 class CSubsystemPlugins;
 class CParameterAccessContext;
 class CConfigurableElement;
 
-class CParameterMgr : private CElement
+class CParameterMgr
 {
-    enum ChildElement {
-        EFrameworkConfiguration,
-        ESelectionCriteria,
-        ESystemClass,
-        EConfigurableDomains
-    };
     enum ElementLibrary {
         EFrameworkConfigurationLibrary,
         EParameterCreationLibrary,
@@ -351,9 +345,6 @@ public:
                                   const std::string& strRootElementType,
                                   std::string& strResult) const;
 
-    // CElement
-    virtual std::string getKind() const;
-
 private:
     CParameterMgr(const CParameterMgr&);
     CParameterMgr& operator=(const CParameterMgr&);
@@ -545,24 +536,6 @@ private:
     bool importDomainFromFile(const std::string& strXmlFilePath, bool bOverwrite,
                               std::string& strError);
 
-
-    // Framework Configuration
-    CParameterFrameworkConfiguration* getFrameworkConfiguration();
-    const CParameterFrameworkConfiguration* getConstFrameworkConfiguration();
-
-    // Selection Criteria
-    CSelectionCriteria* getSelectionCriteria();
-    const CSelectionCriteria* getConstSelectionCriteria();
-
-    // System Class
-    CSystemClass* getSystemClass();
-    const CSystemClass* getConstSystemClass() const;
-
-    // Configurable Domains
-    CConfigurableDomains* getConfigurableDomains();
-    const CConfigurableDomains* getConstConfigurableDomains();
-    const CConfigurableDomains* getConstConfigurableDomains() const;
-
     // Apply configurations
     void doApplyConfigurations(bool bForce);
 
@@ -663,5 +636,17 @@ private:
      * If set to false, no .xml/xsd validation will happen (default behaviour)
      */
     bool _bValidateSchemasOnStart;
+
+    /** Parameter Configuration information */
+    CParameterFrameworkConfiguration _pfwConfiguration;
+
+    /** Selection Criteria used in application rules */
+    CSelectionCriteria _criteria;
+
+    /** Subsystems handler */
+    CSystemClass _systemClass;
+
+    /** Application domains */
+    CConfigurableDomains _domains;
 };
 
