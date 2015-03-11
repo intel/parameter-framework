@@ -35,27 +35,24 @@ install(FILES ParameterFramework.h
 
 target_link_libraries(cparameter parameter)
 
+if(BUILD_TESTING)
+    # Add catch unit test framework
+    # TODO Use gtest as it is the team recomentation
+    #      Unfortunatly gtest is very hard to setup as not binary distributed
+    #      catch is only one header so it is very easy
+    # Catch can be downloaded from:
+    # https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
+    find_path(CATCH_HEADER catch.hpp)
+    include_directories(${CATCH_HEADER})
 
-# Add catch unit test framework
-# TODO Use gtest as it is the team recomentation
-#      Unfortunatly gtest is very hard to setup as not binary distributed
-#      catch is only one header so it is very easy
-# Catch can be downloaded from:
-# https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
-find_path(CATCH_HEADER catch.hpp)
-include_directories(${CATCH_HEADER})
+    # Add unit test
+    add_executable(cparameterUnitTest Test.cpp)
+    # Do not warn about passing a null pointer for arguments marked as requiring
+    # a non-null value by the "nonnull" function attribute.
+    # This is done as the unit tests check that invalid api use result in
+    # proper failure.
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-nonnull")
 
-# Add unit test
-add_executable(cparameterUnitTest Test.cpp)
-# Do not warn about passing a null pointer for arguments marked as requiring
-# a non-null value by the "nonnull" function attribute.
-# This is done as the unit tests check that invalid api use result in
-# proper failure.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-nonnull")
-
-# Debuging and coverage
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fprofile-arcs -ftest-coverage")
-set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG} -fprofile-arcs -ftest-coverage")
-
-target_link_libraries(cparameterUnitTest cparameter)
-add_test(cparameterUnitTest cparameterUnitTest)
+    target_link_libraries(cparameterUnitTest cparameter)
+    add_test(cparameterUnitTest cparameterUnitTest)
+endif()

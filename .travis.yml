@@ -33,7 +33,7 @@ script:
         make &&
         sudo make install )
   - ( mkdir build_debug && cd build_debug &&
-        cmake -DCMAKE_BUILD_TYPE=Debug .. &&
+        cmake -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
         make -j &&
         sudo make install &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalCoverage ExperimentalMemCheck )
