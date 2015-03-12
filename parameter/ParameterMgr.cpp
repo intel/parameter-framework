@@ -662,7 +662,8 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     }
     // We have loaded the whole system structure, compute checksum
     const CSystemClass* pSystemClass = getConstSystemClass();
-    _uiStructureChecksum = pSystemClass->computeStructureChecksum() + getConfigurableDomains()->computeStructureChecksum() + getSelectionCriteria()->computeStructureChecksum();
+    _uiStructureChecksum = pSystemClass->computeStructureChecksum() +
+                           getConfigurableDomains()->computeStructureChecksum();
 
     // Load binary settings if any provided
     if (pBinarySettingsFileLocation && !pConfigurableDomains->serializeSettings(strXmlBinarySettingsFilePath, false, _uiStructureChecksum, strError)) {
