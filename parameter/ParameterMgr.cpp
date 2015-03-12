@@ -660,9 +660,8 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
                                                    _systemClass);
 
     // Selection criteria definition for rule creation
-    // FIXME: Avoid const_cast by refactoring criteria subtree
     xmlDomainImportContext.setSelectionCriteriaDefinition(
-            const_cast<const CSelectionCriteria&>(_criteria).getSelectionCriteriaDefinition());
+            _criteria.getSelectionCriteriaDefinition());
 
     // Auto validation of configurations if no binary settings provided
     xmlDomainImportContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
@@ -1089,9 +1088,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
 
     if (strOutputFormat == "XML") {
         // Get Root element where to export from
-        // FIXME: Avoid const_cast by refactoring criteria subtree
         const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition =
-            const_cast<const CSelectionCriteria&>(_criteria).getSelectionCriteriaDefinition();
+            _criteria.getSelectionCriteriaDefinition();
 
         if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria",
                                       strResult)) {
@@ -2262,10 +2260,8 @@ bool CParameterMgr::getApplicationRule(const string& strDomain, const string& st
 bool CParameterMgr::setApplicationRule(const string& strDomain, const string& strConfiguration,
                                        const string& strApplicationRule, string& strError)
 {
-    // FIXME: Avoid const_cast by refactoring criteria subtree
     return _domains.setApplicationRule(strDomain, strConfiguration, strApplicationRule,
-            const_cast<const CSelectionCriteria&>(_criteria).getSelectionCriteriaDefinition(),
-            strError);
+            _criteria.getSelectionCriteriaDefinition(), strError);
 }
 
 bool CParameterMgr::clearApplicationRule(const string& strDomain, const string& strConfiguration,
@@ -2334,7 +2330,7 @@ bool CParameterMgr::wrapLegacyXmlImport(const string& xmlSource, bool fromFile,
 
     // Selection criteria definition for rule creation
     xmlDomainImportContext.setSelectionCriteriaDefinition(
-            const_cast<const CSelectionCriteria&>(_criteria).getSelectionCriteriaDefinition());
+            _criteria.getSelectionCriteriaDefinition());
 
     // It doesn't make sense to resolve XIncludes on an imported file because
     // we can't reliably decide of a "base url"
