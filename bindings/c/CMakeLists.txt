@@ -26,9 +26,33 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-option(BINDING_PYTHON "Python library to use the pfw from python" ON)
-if(BINDING_PYTHON)
-    add_subdirectory(python)
-endif()
+add_library(cparameter SHARED ParameterFramework.cpp)
 
-add_subdirectory(c)
+include_directories("${PROJECT_SOURCE_DIR}/parameter/include")
+
+install(FILES ParameterFramework.h
+        DESTINATION "include/parameter/c")
+
+target_link_libraries(cparameter parameter)
+
+if(BUILD_TESTING)
+    # Add catch unit test framework
+    # TODO Use gtest as it is the team recomentation
+    #      Unfortunatly gtest is very hard to setup as not binary distributed
+    #      catch is only one header so it is very easy
+    # Catch can be downloaded from:
+    # https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
+    find_path(CATCH_HEADER catch.hpp)
+    include_directories(${CATCH_HEADER})
+
+    # Add unit test
+    add_executable(cparameterUnitTest Test.cpp)
+    # Do not warn about passing a null pointer for arguments marked as requiring
+    # a non-null value by the "nonnull" function attribute.
+    # This is done as the unit tests check that invalid api use result in
+    # proper failure.
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-nonnull")
+
+    target_link_libraries(cparameterUnitTest cparameter)
+    add_test(cparameterUnitTest cparameterUnitTest)
+endif()

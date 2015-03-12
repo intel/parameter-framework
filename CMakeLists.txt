@@ -38,6 +38,12 @@ project(parameter-framework)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
 
+option(COVERAGE "Build with coverage support" FALSE)
+if(COVERAGE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
+endif()
+
 add_subdirectory(xmlserializer)
 add_subdirectory(parameter)
 add_subdirectory(utility)
@@ -45,11 +51,16 @@ add_subdirectory(remote-processor)
 
 add_subdirectory(remote-process)
 
-enable_testing()
+include(CTest)
+
 add_subdirectory(test/test-platform)
 add_subdirectory(test/test-fixed-point-parameter)
 
-add_subdirectory(tools/bash_completion)
+option(BASH_COMPLETION "Install bash completion configuration" ON)
+if (BASH_COMPLETION)
+    add_subdirectory(tools/bash_completion)
+endif()
+
 add_subdirectory(tools/xmlGenerator)
 add_subdirectory(tools/xmlValidator)
 

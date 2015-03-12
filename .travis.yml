@@ -3,17 +3,40 @@ compiler:
   - gcc
 #  - clang # not supported yet
 
-# install SWIG for bindings generation
+# Install a recent gcc, gcov and cmake.
+# Will not be necessary when travis worker will be based on ubuntu > 12.04.
+# Install SWIG for bindings generation
 before_install:
+  - if [ "$CXX" == "g++" ]; then sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test; fi
+  - sudo add-apt-repository --yes ppa:kalakris/cmake # Non official cmake backport
   - sudo apt-get update -qq
-  - sudo apt-get install -y swig
+
+install:
+  - sudo apt-get install --yes swig cmake valgrind
+  - if [ "$CXX" = "g++" ]; then
+    sudo apt-get install --yes g++-4.8 &&
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100 &&
+        sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 100;
+    fi
+# Catch is not packaged on travis workers (debian testing)
+  - sudo wget https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp -P /usr/include/
 
 # how to build
 script:
-  - cmake . && make -j && sudo make install
-  - make test
-  - cd skeleton-subsystem
-  - cmake . && make && sudo make install
+  - ( mkdir build && cd build &&
+        cmake .. &&
+        make -j &&
+        sudo make install &&
+        ctest --output-on-failure )
+  - ( cd skeleton-subsystem &&
+        cmake . &&
+        make &&
+        sudo make install )
+  - ( mkdir build_debug && cd build_debug &&
+        cmake -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
+        make -j &&
+        sudo make install &&
+        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalCoverage ExperimentalMemCheck )
 
 notifications:
   email:
