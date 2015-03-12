@@ -30,22 +30,17 @@
 #pragma once
 
 #include <list>
-#include "Element.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
+#include "SelectionCriterionLibrary.h"
+#include "SelectionCriteriaDefinition.h"
 #include <log/Logger.h>
 
 #include <string>
 
-class CSelectionCriterionLibrary;
-class CSelectionCriteriaDefinition;
-
-class CSelectionCriteria : public CElement
+/** Criteria Handler */
+class CSelectionCriteria
 {
-    enum ChildElementType {
-        ESelectionCriterionLibrary,
-        ESelectionCriteriaDefinition
-    };
 public:
     CSelectionCriteria();
 
@@ -57,19 +52,22 @@ public:
     // Selection criterion retrieval
     CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 
-    // Selection Criterion definition
-    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
+    /** Criterion Instance collection getter
+     *
+     * @return pointer to the object which contains all criteria instances.
+     */
+    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition();
 
     // List available criteria
     void listSelectionCriteria(std::list<std::string>& strResult, bool bWithTypeInfo, bool bHumanReadable) const;
 
-    // Base
-    virtual std::string getKind() const;
-
     // Reset the modified status of the children
     void resetModifiedStatus();
 private:
-    // Children access
-    CSelectionCriterionLibrary* getSelectionCriterionLibrary();
-    CSelectionCriteriaDefinition* getSelectionCriteriaDefinition();
+
+    /** Criterion Type collection */
+    CSelectionCriterionLibrary mCriterionLibrary;
+
+    /** Criterion Instance collection */
+    CSelectionCriteriaDefinition mCriteriaDefinition;
 };

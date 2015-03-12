@@ -639,9 +639,8 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
                                                    mSystemClass);
 
     // Selection criteria definition for rule creation
-    // FIXME: Avoid const_cast by refactoring criteria subtree
     xmlDomainImportContext.setSelectionCriteriaDefinition(
-            const_cast<const CSelectionCriteria&>(mCriteria).getSelectionCriteriaDefinition());
+            mCriteria.getSelectionCriteriaDefinition());
 
     // Auto validation of configurations if no binary settings provided
     xmlDomainImportContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
@@ -676,9 +675,8 @@ bool CParameterMgr::importDomainFromFile(const string& strXmlFilePath, bool bOve
     CXmlDomainImportContext xmlDomainImportContext(strError, true, mSystemClass);
 
     // Selection criteria definition for rule creation
-    // FIXME: Avoid const_cast by refactoring criteria subtree
     xmlDomainImportContext.setSelectionCriteriaDefinition(
-            const_cast<const CSelectionCriteria&>(mCriteria).getSelectionCriteriaDefinition());
+            mCriteria.getSelectionCriteriaDefinition());
 
     // Auto validation of configurations
     xmlDomainImportContext.setAutoValidationRequired(true);
@@ -1103,9 +1101,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommman
 
     if (strOutputFormat == "XML") {
         // Get Root element where to export from
-        // FIXME: Avoid const_cast by refactoring criteria subtree
         const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition =
-            const_cast<const CSelectionCriteria&>(mCriteria).getSelectionCriteriaDefinition();
+            mCriteria.getSelectionCriteriaDefinition();
 
         if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria",
                                       strResult)) {
@@ -2245,10 +2242,8 @@ bool CParameterMgr::getApplicationRule(const string& strDomain, const string& st
 bool CParameterMgr::setApplicationRule(const string& strDomain, const string& strConfiguration,
                                        const string& strApplicationRule, string& strError)
 {
-    // FIXME: Avoid const_cast by refactoring criteria subtree
     return mDomains.setApplicationRule(strDomain, strConfiguration, strApplicationRule,
-            const_cast<const CSelectionCriteria&>(mCriteria).getSelectionCriteriaDefinition(),
-            strError);
+            mCriteria.getSelectionCriteriaDefinition(), strError);
 }
 
 bool CParameterMgr::clearApplicationRule(const string& strDomain, const string& strConfiguration,
@@ -2278,9 +2273,8 @@ bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSetti
     CXmlDomainImportContext xmlDomainImportContext(strError, bWithSettings, mSystemClass);
 
     // Selection criteria definition for rule creation
-    // FIXME: Avoid const_cast by refactoring criteria subtree
     xmlDomainImportContext.setSelectionCriteriaDefinition(
-            const_cast<const CSelectionCriteria&>(mCriteria).getSelectionCriteriaDefinition());
+            mCriteria.getSelectionCriteriaDefinition());
 
     // Init serializing context
     xmlDomainImportContext.set(
