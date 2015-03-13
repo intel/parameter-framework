@@ -29,12 +29,17 @@
  */
 #pragma once
 
-#include "Element.h"
+#include "XmlSource.h"
 #include <map>
 #include <string>
 #include "SelectionCriterionTypeInterface.h"
 
-class CSelectionCriterionType : public CElement, public ISelectionCriterionTypeInterface
+/** Criterion type object
+ * A criterion can be Inclusive (can hold several values at the same time) or
+ * Exclusive (only one state is set at the same time).
+ * This class defines behavior of inclusive and exclusive criteria.
+ */
+class CSelectionCriterionType : public IXmlSource, public ISelectionCriterionTypeInterface
 {
     typedef std::map<std::string, int>::const_iterator NumToLitMapConstIt;
 
@@ -72,8 +77,6 @@ public:
       */
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
-    // From CElement
-    virtual std::string getKind() const;
 private:
     /**
      * Retrieve the numerical value from the std::string representation of the criterion type.

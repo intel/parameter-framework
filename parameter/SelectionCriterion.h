@@ -29,14 +29,15 @@
  */
 #pragma once
 
-#include "Element.h"
+#include "XmlSource.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterionInterface.h"
 #include <log/Logger.h>
 
 #include <string>
 
-class CSelectionCriterion : public CElement, public ISelectionCriterionInterface
+/** Criterion object used to apply rules based on system state */
+class CSelectionCriterion : public IXmlSource, public ISelectionCriterionInterface
 {
 public:
     CSelectionCriterion(const std::string& strName,
@@ -64,9 +65,6 @@ public:
     /// User request
     std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
 
-    /// From CElement
-    virtual std::string getKind() const;
-
     /**
       * Export to XML
       *
@@ -86,5 +84,8 @@ private:
 
     /** Application logger */
     core::log::Logger& _logger;
+
+    /** Criterion name */
+    const std::string mName;
 };
 
