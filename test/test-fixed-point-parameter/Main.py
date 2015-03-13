@@ -160,7 +160,7 @@ class FixedPointTester():
         returns: the value the parameter-framework returns us after the get
         returns: True if we are able to set, False otherwise
         """
-        (_, firstGet, _) = self._pfwClient.get(self._paramPath)
+        firstGet = self._pfwClient.get(self._paramPath)
 
         try:
             returnValue = Decimal(firstGet)
@@ -201,7 +201,8 @@ class FixedPointTester():
         returns: value the parameter-framework returns us after the second get
         returns: True if we are able to set, False otherwise
         """
-        (_, secondGet, _) = pfw.get(self._paramPath)
+        secondGet = pfw.get(self._paramPath)
+
         if secondGet != valuePreviouslySet:
             return secondGet, False
 
@@ -228,8 +229,12 @@ class PfwClient():
 
     def get(self, parameter):
         (success, value, errorMsg) = self._instance.accessParameterValue(parameter, "", False)
+        if not success:
+            raise Exception("A getParameter failed, which is unexpected. The"
+                            "parameter-framework answered:\n%s" % errorMsg)
+
         print('get %s ---> %s' % (parameter, value))
-        return success, value, errorMsg
+        return value
 
 if __name__ == '__main__':
     # It is necessary to add a ./ in front of the path, otherwise the parameter-framework
