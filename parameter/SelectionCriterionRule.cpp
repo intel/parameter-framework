@@ -119,7 +119,7 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 void CSelectionCriterionRule::dump(string& strResult) const
 {
     // Criterion
-    strResult += _pSelectionCriterion->getName();
+    strResult += _pSelectionCriterion->getCriterionName();
     strResult += " ";
     // Verb
     strResult += _astMatchesWhen[_eMatchesWhen].pcMatchesWhen;
@@ -202,7 +202,7 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     assert(_pSelectionCriterion);
 
     // Set selection criterion
-    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getName());
+    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getCriterionName());
 
     // Set MatchesWhen
     xmlElement.setAttributeString("MatchesWhen", _astMatchesWhen[_eMatchesWhen].pcMatchesWhen);

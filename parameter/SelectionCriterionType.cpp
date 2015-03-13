@@ -31,8 +31,6 @@
 #include "Tokenizer.h"
 #include <sstream>
 
-#define base CElement
-
 const std::string CSelectionCriterionType::_strDelimiter = "|";
 
 CSelectionCriterionType::CSelectionCriterionType(bool bIsInclusive) : _bInclusive(bIsInclusive)
@@ -44,11 +42,6 @@ CSelectionCriterionType::CSelectionCriterionType(bool bIsInclusive) : _bInclusiv
     }
 }
 
-std::string CSelectionCriterionType::getKind() const
-{
-    return "SelectionCriterionType";
-}
-
 // From ISelectionCriterionTypeInterface
 bool CSelectionCriterionType::addValuePair(
         int iValue, const std::string& strValue, std::string& strError)
@@ -58,8 +51,7 @@ bool CSelectionCriterionType::addValuePair(
 
         std::ostringstream error;
         error << "Rejecting value pair association: 0x" << std::hex << iValue
-              << " - " << strValue << " for Selection Criterion Type "
-              << getName();
+              << " - " << strValue << " for Selection Criterion Type";
         strError = error.str();
 
         return false;
@@ -71,7 +63,7 @@ bool CSelectionCriterionType::addValuePair(
         std::ostringstream error;
         error << "Rejecting value pair association (literal already present): 0x"
               << std::hex << iValue << " - " << strValue
-              << " for Selection Criterion Type " << getName();
+              << " for Selection Criterion Type";
         strError = error.str();
 
         return false;
@@ -221,6 +213,7 @@ std::string CSelectionCriterionType::getFormattedState(int iValue) const
 // From IXmlSource
 void CSelectionCriterionType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
+    (void) serializingContext;
     // Type Kind
     xmlElement.setAttributeString("Kind", isTypeInclusive() ? "Inclusive" : "Exclusive");
 
@@ -237,6 +230,4 @@ void CSelectionCriterionType::toXml(CXmlElement& xmlElement, CXmlSerializingCont
         // Numerical
         childValuePairElement.setAttributeSignedInteger("Numerical", it->second);
     }
-
-    base::toXml(xmlElement, serializingContext);
 }
