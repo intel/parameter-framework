@@ -28,9 +28,19 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import sys
-import subprocess
+import PyPfw
+
+import logging
 from decimal import Decimal
+
+class PfwLogger(PyPfw.ILogger):
+    def __init__(self):
+        super(PfwLogger, self).__init__()
+        self.__logger = logging.root.getChild("parameter-framework")
+
+    def log(self, is_warning, message):
+        log_func = self.__logger.warning if is_warning else self.__logger.info
+        log_func(message)
 
 class FixedPointTester():
     """ Made for testing a particular Qn.m number
@@ -135,11 +145,9 @@ class FixedPointTester():
         returns: the value we are trying to set
         returns: True if we are able to set, False otherwise
         """
-        returnCode = self._pfwClient.set(self._paramPath, str(valueToSet))
-        if returnCode != 0:
-            return (valueToSet, False)
+        (success, errorMsg) = self._pfwClient.set(self._paramPath, str(valueToSet))
 
-        return (valueToSet, True)
+        return valueToSet, success
 
 
     def checkSanity(self, valuePreviouslySet):
@@ -152,7 +160,7 @@ class FixedPointTester():
         returns: the value the parameter-framework returns us after the get
         returns: True if we are able to set, False otherwise
         """
-        firstGet = self._pfwClient.get(self._paramPath)
+        (_, firstGet, _) = self._pfwClient.get(self._paramPath)
 
         try:
             returnValue = Decimal(firstGet)
@@ -179,11 +187,9 @@ class FixedPointTester():
         valueToSet -- the value we are trying to set
         returns: True if we are able to set, False otherwise
         """
-        returnCode = pfw.set(self._paramPath, valuePreviouslyGotten)
-        if returnCode != 0:
-            return valuePreviouslyGotten, False
+        (success, errorMsg) = pfw.set(self._paramPath, valuePreviouslyGotten)
 
-        return valuePreviouslyGotten, True
+        return valuePreviouslyGotten, success
 
     def checkBijectivity(self, valuePreviouslySet):
         """ Checks that the second get value is strictly equivalent to the
@@ -195,7 +201,7 @@ class FixedPointTester():
         returns: value the parameter-framework returns us after the second get
         returns: True if we are able to set, False otherwise
         """
-        secondGet = pfw.get(self._paramPath)
+        (_, secondGet, _) = pfw.get(self._paramPath)
         if secondGet != valuePreviouslySet:
             return secondGet, False
 
@@ -204,53 +210,38 @@ class FixedPointTester():
 class PfwClient():
 
     def __init__(self, configPath):
-        self._address = 'localhost'
-        self._port = '5066'
-        self._testPlatformPort = '5063'
-        self._pathToExec = 'remote-process'
-        self._configPath = configPath
+        self._instance = PyPfw.ParameterFramework(configPath)
 
-    def __enter__(self):
-        # launch test platform in deamon mode
-        subprocess.call(['test-platform', '-d', self._configPath, self._testPlatformPort])
-        subprocess.call([self._pathToExec, self._address, self._testPlatformPort, 'start'])
-        self._callCommand(['setTuningMode', 'on'])
-        return self
+        self._logger = PfwLogger()
+        self._instance.setLogger(self._logger)
+        # Disable the remote interface because we don't need it and it might
+        # get in the way (e.g. the port is already in use)
+        self._instance.setForceNoRemoteInterface(True)
 
-    def __exit__(self, type, value, traceback):
-        subprocess.call([self._pathToExec, self._address, self._testPlatformPort, 'exit'])
-
-    def _callCommand(self, commandList):
-        shellCommand = [self._pathToExec, self._address, self._port]
-        shellCommand.extend(commandList)
-        # pipes are used to redirect the command output to a variable
-        subProc = subprocess.Popen(shellCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        commandOutPut, _ = subProc.communicate()
-        returnCode = subProc.returncode
-        return commandOutPut, returnCode
+        self._instance.start()
+        self._instance.setTuningMode(True)
 
     def set(self, parameter, value):
         print('set %s <--- %s' % (parameter, value))
-        (returnValue, returnCode) = self._callCommand(['setParameter', parameter, value])
-        return returnCode
+        (success, _, errorMsg) = self._instance.accessParameterValue(parameter, str(value), True)
+        return success, errorMsg
 
     def get(self, parameter):
-        (returnValue, _) = self._callCommand(['getParameter', parameter])
-        print('get %s ---> %s' % (parameter, returnValue.strip()))
-        return returnValue.strip()
+        (success, value, errorMsg) = self._instance.accessParameterValue(parameter, "", False)
+        print('get %s ---> %s' % (parameter, value))
+        return success, value, errorMsg
 
 if __name__ == '__main__':
     # It is necessary to add a ./ in front of the path, otherwise the parameter-framework
     # does not recognize the string as a path.
-    configPath = './ParameterFrameworkConfiguration.xml'
+    pfw = PfwClient('./ParameterFrameworkConfiguration.xml')
 
     success = True
 
-    with PfwClient(configPath) as pfw:
-        for size in [8, 16, 32]:
-            for integral in range(0,  size):
-                for fractional in range (0,  size - integral):
-                    tester = FixedPointTester(pfw, size, integral, fractional)
-                    success = tester.run() and success
+    for size in [8, 16, 32]:
+        for integral in range(0,  size):
+            for fractional in range (0,  size - integral):
+                tester = FixedPointTester(pfw, size, integral, fractional)
+                success = tester.run() and success
 
     exit(0 if success else 1)
