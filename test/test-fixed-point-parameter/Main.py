@@ -90,6 +90,8 @@ class FixedPointTester():
         runSuccess = True
 
         for value in self._shouldWork:
+            value = value.normalize()
+
             print('Testing %s for %s' % (value, self._paramPath))
             value, success = self.checkBounds(value)
             if not success:
@@ -116,6 +118,7 @@ class FixedPointTester():
                 continue
 
         for value in self._shouldBreak:
+            value = value.normalize()
             print('Testing invalid value %s for %s' % (value, self._paramPath))
             value, success = self.checkBounds(value)
             if success:
