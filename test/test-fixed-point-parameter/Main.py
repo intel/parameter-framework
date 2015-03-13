@@ -32,6 +32,7 @@ import PyPfw
 
 import logging
 from decimal import Decimal
+from math import log10
 
 class PfwLogger(PyPfw.ILogger):
     def __init__(self):
@@ -85,7 +86,7 @@ class FixedPointTester():
         # bigValue is to be sure a value far out of range is refused
         bigValue = (2 * self._quantum)
         # little is to be sure a value just out of range is refused
-        littleValue  = 10 ** -fractional
+        littleValue = 10 ** -(int(fractional * log10(2)))
         self._shouldBreak = [
                 Decimal(self._lowerAllowedBound) - Decimal(bigValue),
                 Decimal(self._upperAllowedBound) + Decimal(bigValue),
