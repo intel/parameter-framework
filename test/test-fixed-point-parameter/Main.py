@@ -1,6 +1,6 @@
 #!/usr/bin/python2.7
 #
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -83,29 +83,35 @@ class FixedPointTester():
                 Decimal(self._upperAllowedBound) + Decimal(littleValue)
                 ]
 
-
     def run(self):
         """ Runs the test suite for a given Qn.m number
         """
+
+        runSuccess = True
+
         for value in self._shouldWork:
             print('Testing %s for %s' % (value, self._paramPath))
             value, success = self.checkBounds(value)
             if not success:
+                runSuccess = False
                 print('Bound ERROR for %s' % self._paramPath)
                 continue
 
             value, success = self.checkSanity(value)
             if not success:
+                runSuccess = False
                 print('Sanity ERROR %s' % self._paramPath)
                 continue
 
             value, success = self.checkConsistency(value)
             if not success:
+                runSuccess = False
                 print('Consistency ERROR %s' % self._paramPath)
                 continue
 
             value, success = self.checkBijectivity(value)
             if not success:
+                runSuccess = False
                 print('Bijectivity ERROR %s' % self._paramPath)
                 continue
 
@@ -113,7 +119,10 @@ class FixedPointTester():
             print('Testing invalid value %s for %s' % (value, self._paramPath))
             value, success = self.checkBounds(value)
             if success:
+                runSuccess = False
                 print("ERROR: This test should have failed but it has not")
+
+        return runSuccess
 
     def checkBounds(self, valueToSet):
         """ Checks if we are able to set valueToSet via the parameter-framework
@@ -232,10 +241,13 @@ if __name__ == '__main__':
     # does not recognize the string as a path.
     configPath = './ParameterFrameworkConfiguration.xml'
 
+    success = True
+
     with PfwClient(configPath) as pfw:
         for size in [8, 16, 32]:
             for integral in range(0,  size):
                 for fractional in range (0,  size - integral):
                     tester = FixedPointTester(pfw, size, integral, fractional)
-                    tester.run()
+                    success = tester.run() and success
 
+    exit(0 if success else 1)
