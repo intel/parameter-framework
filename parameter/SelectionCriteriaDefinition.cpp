@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,62 +34,50 @@ CSelectionCriteriaDefinition::CSelectionCriteriaDefinition()
 {
 }
 
-std::string CSelectionCriteriaDefinition::getKind() const
-{
-    return "SelectionCriteriaDefinition";
-}
-
 // Selection Criterion creation
 CSelectionCriterion*
 CSelectionCriteriaDefinition::createSelectionCriterion(const std::string& strName,
                                                        const CSelectionCriterionType* pType,
                                                        core::log::Logger& logger)
 {
-    CSelectionCriterion* pSelectionCriterion = new CSelectionCriterion(strName, pType, logger);
-
-    addChild(pSelectionCriterion);
-
-    return pSelectionCriterion;
+    mSelectionCriteria.emplace(strName, CSelectionCriterion(strName, pType, logger));
+    return &mSelectionCriteria.at(strName);
 }
 
 // Selection Criterion access
 const CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const std::string& strName) const
 {
-    return static_cast<const CSelectionCriterion*>(findChild(strName));
+    return &mSelectionCriteria.at(strName);
 }
 
 CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const std::string& strName)
 {
-    return static_cast<CSelectionCriterion*>(findChild(strName));
+    return &mSelectionCriteria.at(strName);
 }
 
 // List available criteria
 void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
 {
-    // Propagate
-    size_t uiNbChildren = getNbChildren();
-    size_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-        const CSelectionCriterion* pSelectionCriterion = static_cast<const CSelectionCriterion*>(getChild(uiChild));
-
-        lstrResult.push_back(pSelectionCriterion->getFormattedDescription(bWithTypeInfo, bHumanReadable));
+    for (auto& criterion : mSelectionCriteria) {
+        lstrResult.push_back(criterion.second.getFormattedDescription(bWithTypeInfo,
+                                                                      bHumanReadable));
     }
 }
 
 // Reset the modified status of the children
 void CSelectionCriteriaDefinition::resetModifiedStatus()
 {
-    // Propagate
-    size_t uiNbChildren = getNbChildren();
-    size_t uiChild;
-    CSelectionCriterion* pSelectionCriterion;
+    for (auto& criterion : mSelectionCriteria) {
+        criterion.second.resetModifiedStatus();
+    }
+}
 
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
+void CSelectionCriteriaDefinition::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+{
+    for (auto& criterion : mSelectionCriteria) {
 
-        pSelectionCriterion = static_cast<CSelectionCriterion*>(getChild(uiChild));
-
-        pSelectionCriterion->resetModifiedStatus();
+        CXmlElement xmlChildElement;
+        xmlElement.createChild(xmlChildElement, "SelectionCriterion");
+        criterion.second.toXml(xmlChildElement, serializingContext);
     }
 }

@@ -29,11 +29,13 @@
  */
 #pragma once
 
-#include "Element.h"
 #include "SelectionCriterion.h"
 #include <log/Logger.h>
+#include <map>
+#include <string>
 
-class CSelectionCriteriaDefinition : public CElement
+/** Criteria instances handler */
+class CSelectionCriteriaDefinition : public IXmlSource
 {
 public:
     CSelectionCriteriaDefinition();
@@ -50,10 +52,22 @@ public:
     // List available criteria
     void listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const;
 
-    // Base
-    virtual std::string getKind() const;
-
     // Reset the modified status of the children
     void resetModifiedStatus();
+
+    /** Xml Serialization method
+     *
+     * @param[out] xmlElement the current xml element to fill with data
+     * @param serializingContext context of the current serialization
+     */
+    void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
+private:
+
+    /** Criteria instance container type, map which use criterion name as key */
+    typedef std::map<std::string, CSelectionCriterion> SelectionCriteria;
+
+    /** Criteria instance container */
+    SelectionCriteria mSelectionCriteria;
 };
 
