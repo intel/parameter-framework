@@ -19,16 +19,16 @@ install:
 # how to build
 script:
   - ( mkdir build && cd build &&
-        cmake .. &&
+        cmake -DCMAKE_INSTALL_PREFIX=/usr .. &&
         make -j &&
         sudo make install &&
         CTEST_OUTPUT_ON_FAILURE=1 make test )
   - ( cd skeleton-subsystem &&
-        cmake . &&
+        cmake -DCMAKE_INSTALL_PREFIX=/usr . &&
         make &&
         sudo make install )
   - ( cd build &&
-        cmake -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
+        cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
         make -j &&
         sudo make install &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalCoverage ExperimentalMemCheck )
