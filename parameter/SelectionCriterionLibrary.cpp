@@ -29,23 +29,14 @@
  */
 #include "SelectionCriterionLibrary.h"
 
-#define base CElement
-
 CSelectionCriterionLibrary::CSelectionCriterionLibrary()
 {
-}
-
-std::string CSelectionCriterionLibrary::getKind() const
-{
-    return "SelectionCriterionLibrary";
 }
 
 // Type creation
 CSelectionCriterionType* CSelectionCriterionLibrary::createSelectionCriterionType(bool bIsInclusive)
 {
-    CSelectionCriterionType* pSelectionCriterionType = new CSelectionCriterionType(bIsInclusive);
+    mCriterionTypes.emplace_back(bIsInclusive);
 
-    addChild(pSelectionCriterionType);
-
-    return pSelectionCriterionType;
+    return &mCriterionTypes.back();
 }

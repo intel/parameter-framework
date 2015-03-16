@@ -29,10 +29,11 @@
  */
 #pragma once
 
-#include "Element.h"
 #include "SelectionCriterionType.h"
+#include <list>
 
-class CSelectionCriterionLibrary : public CElement
+/** Criterion Types Factory */
+class CSelectionCriterionLibrary
 {
 public:
     CSelectionCriterionLibrary();
@@ -40,6 +41,15 @@ public:
     // Type creation
     CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
 
-    // CElement
-    virtual std::string getKind() const;
+private:
+
+    /** Criterion types Holder type
+     * The C++ standard ensure that pointers on elements of a list
+     * will never be invalidated. As we return a pointer after the creation
+     * to store it in the dedicated criterion, the list is required.
+     */
+    typedef std::list<CSelectionCriterionType> CriterionTypes;
+
+    /** Criterion types holder */
+    CriterionTypes mCriterionTypes;
 };
