@@ -49,7 +49,19 @@ swig_link_libraries(PyPfw parameter ${PYTHON_LIBRARIES})
 # class/interface class and as such cannot be destroyed.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-but-set-variable -DSWIG_PYTHON_SILENT_MEMLEAK")
 
-install(TARGETS _PyPfw LIBRARY DESTINATION lib)
+
+# Find the python modules install path.
+# plat_specific is needed because we are installing a shared-library python
+# module and not only a pure python module.
+# prefix='' makes get_python_lib return a relative path.
+find_package(PythonInterp)
+execute_process(COMMAND
+    ${PYTHON_EXECUTABLE} -c "
+from distutils import sysconfig;
+print(sysconfig.get_python_lib(plat_specific=True, prefix=''))"
+    OUTPUT_VARIABLE PYTHON_MODULE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+install(TARGETS _PyPfw LIBRARY DESTINATION ${PYTHON_MODULE_PATH})
 
 # install the generated Python file as well
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PyPfw.py DESTINATION lib)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PyPfw.py DESTINATION ${PYTHON_MODULE_PATH})
