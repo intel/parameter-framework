@@ -39,7 +39,6 @@
 
 class CSelectionCriterionLibrary;
 class CSelectionCriteriaDefinition;
-class ISelectionCriterionObserver;
 
 class CSelectionCriteria : public CElement
 {
