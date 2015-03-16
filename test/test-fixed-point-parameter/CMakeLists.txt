@@ -26,12 +26,10 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-find_program(python2 python2)
+if (BUILD_TESTING)
+    find_program(python2 python2)
 
-if(python2)
     add_test(NAME fix_point_parameter
              WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
              COMMAND ${python2} Main.py)
-else(python2)
-    message(WARNING "Disabling fix point parameter test as python2 is not installed.")
-endif(python2)
+endif()

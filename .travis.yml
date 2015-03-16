@@ -3,17 +3,35 @@ compiler:
   - gcc
 #  - clang # not supported yet
 
-# install SWIG for bindings generation
+# Install a recent gcc, gcov and cmake,
+# it will not be necessary once travis worker is based on ubuntu > 12.04.
+# Install SWIG for bindings generation
 before_install:
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+  - sudo add-apt-repository --yes ppa:kalakris/cmake # Non official cmake backport
   - sudo apt-get update -qq
-  - sudo apt-get install -y swig
+
+install:
+  - sudo apt-get install --yes swig cmake valgrind g++-4.8
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
+  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 100
 
 # how to build
 script:
-  - cmake . && make -j && sudo make install
-  - make test
-  - cd skeleton-subsystem
-  - cmake . && make && sudo make install
+  - ( mkdir build && cd build &&
+        cmake .. &&
+        make -j &&
+        sudo make install &&
+        CTEST_OUTPUT_ON_FAILURE=1 make test )
+  - ( cd skeleton-subsystem &&
+        cmake . &&
+        make &&
+        sudo make install )
+  - ( cd build &&
+        cmake -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
+        make -j &&
+        sudo make install &&
+        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalCoverage ExperimentalMemCheck )
 
 notifications:
   email:
