@@ -94,6 +94,13 @@ class FixedPointTester():
                 Decimal(self._upperAllowedBound) + Decimal(littleValue)
                 ]
 
+        self._chainingTests = [
+                ('Bound', self.checkBounds),
+                ('Sanity', self.checkSanity),
+                ('Consistency', self.checkConsistency),
+                ('Bijectivity', self.checkBijectivity)]
+
+
     def run(self):
         """ Runs the test suite for a given Qn.m number
         """
@@ -102,31 +109,14 @@ class FixedPointTester():
 
         for value in self._shouldWork:
             value = value.normalize()
-
             print('Testing %s for %s' % (value, self._paramPath))
-            value, success = self.checkBounds(value)
-            if not success:
-                runSuccess = False
-                print('Bound ERROR for %s' % self._paramPath)
-                continue
 
-            value, success = self.checkSanity(value)
-            if not success:
-                runSuccess = False
-                print('Sanity ERROR %s' % self._paramPath)
-                continue
-
-            value, success = self.checkConsistency(value)
-            if not success:
-                runSuccess = False
-                print('Consistency ERROR %s' % self._paramPath)
-                continue
-
-            value, success = self.checkBijectivity(value)
-            if not success:
-                runSuccess = False
-                print('Bijectivity ERROR %s' % self._paramPath)
-                continue
+            for testName, testFunc in self._chainingTests:
+                value, success = testFunc(value)
+                if not success:
+                    runSuccess = False
+                    print("%s ERROR for %s" % testName, self._paramPath)
+                    break
 
         for value in self._shouldBreak:
             value = value.normalize()
