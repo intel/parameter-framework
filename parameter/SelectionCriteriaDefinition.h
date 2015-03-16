@@ -33,8 +33,6 @@
 #include "SelectionCriterion.h"
 #include <log/Logger.h>
 
-class ISelectionCriterionObserver;
-
 class CSelectionCriteriaDefinition : public CElement
 {
 public:
