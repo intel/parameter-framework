@@ -31,7 +31,6 @@
 #include "SelectionCriterion.h"
 #include "XmlDomainSerializingContext.h"
 #include "XmlDomainImportContext.h"
-#include "SelectionCriteriaDefinition.h"
 #include "SelectionCriterionTypeInterface.h"
 #include "RuleParser.h"
 #include <assert.h>
@@ -70,7 +69,7 @@ void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& errorCon
 bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 {
     // Criterion
-    _pSelectionCriterion = ruleParser.getSelectionCriteriaDefinition()->getSelectionCriterion(ruleParser.getType());
+    _pSelectionCriterion = ruleParser.getCriteria().getSelectionCriterion(ruleParser.getType());
 
     // Check existence
     if (!_pSelectionCriterion) {
@@ -159,7 +158,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Get selection criterion
     string strSelectionCriterion = xmlElement.getAttributeString("SelectionCriterion");
 
-    _pSelectionCriterion = xmlDomainImportContext.getSelectionCriteriaDefinition()->getSelectionCriterion(strSelectionCriterion);
+    _pSelectionCriterion =
+        xmlDomainImportContext.getCriteria().getSelectionCriterion(strSelectionCriterion);
 
     // Check existence
     if (!_pSelectionCriterion) {

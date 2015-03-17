@@ -462,17 +462,21 @@ bool CConfigurableDomains::getElementSequence(const string& strDomain, const str
     return pConfigurableDomain->getElementSequence(strConfiguration, strResult);
 }
 
-bool CConfigurableDomains::setApplicationRule(const string& strDomain, const string& strConfiguration, const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError)
+bool CConfigurableDomains::setApplicationRule(const string& strDomain,
+                                              const string& strConfiguration,
+                                              const string& strApplicationRule,
+                                              const CSelectionCriteria& criteria,
+                                              string& strError)
 {
-    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
+    CConfigurableDomain* domain = findConfigurableDomain(strDomain, strError);
 
-    if (!pConfigurableDomain) {
+    if (domain == NULL) {
 
         return false;
     }
 
     // Delegate to domain
-    return pConfigurableDomain->setApplicationRule(strConfiguration, strApplicationRule, pSelectionCriteriaDefinition, strError);
+    return domain->setApplicationRule(strConfiguration, strApplicationRule, criteria, strError);
 }
 
 bool CConfigurableDomains::clearApplicationRule(const string& strDomain, const string& strConfiguration, string& strError)

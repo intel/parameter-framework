@@ -79,7 +79,6 @@
 #include "XmlMemoryDocSink.h"
 #include "XmlDocSource.h"
 #include "XmlMemoryDocSource.h"
-#include "SelectionCriteriaDefinition.h"
 #include "Utility.h"
 #include <sstream>
 #include <fstream>
@@ -657,11 +656,8 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     // Parse configuration domains XML file (ask to read settings from XML file if they are not provided as binary)
     CXmlDomainImportContext xmlDomainImportContext(strError,
                                                    !pBinarySettingsFileLocation,
-                                                   _systemClass);
-
-    // Selection criteria definition for rule creation
-    xmlDomainImportContext.setSelectionCriteriaDefinition(
-            _criteria.getSelectionCriteriaDefinition());
+                                                   _systemClass,
+                                                   _criteria);
 
     // Auto validation of configurations if no binary settings provided
     xmlDomainImportContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
@@ -1087,12 +1083,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
     }
 
     if (strOutputFormat == "XML") {
-        // Get Root element where to export from
-        const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition =
-            _criteria.getSelectionCriteriaDefinition();
-
-        if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria",
-                                      strResult)) {
+       if (!exportElementToXMLString(&_criteria, "SelectionCriteria", strResult)) {
 
             return CCommandHandler::EFailed;
         }
@@ -2261,7 +2252,7 @@ bool CParameterMgr::setApplicationRule(const string& strDomain, const string& st
                                        const string& strApplicationRule, string& strError)
 {
     return _domains.setApplicationRule(strDomain, strConfiguration, strApplicationRule,
-            _criteria.getSelectionCriteriaDefinition(), strError);
+                                       _criteria, strError);
 }
 
 bool CParameterMgr::clearApplicationRule(const string& strDomain, const string& strConfiguration,
@@ -2326,11 +2317,7 @@ bool CParameterMgr::wrapLegacyXmlImport(const string& xmlSource, bool fromFile,
                                         bool withSettings, CElement& element,
                                         const string& nameAttributeName, string& errorMsg)
 {
-    CXmlDomainImportContext xmlDomainImportContext(errorMsg, withSettings, _systemClass);
-
-    // Selection criteria definition for rule creation
-    xmlDomainImportContext.setSelectionCriteriaDefinition(
-            _criteria.getSelectionCriteriaDefinition());
+    CXmlDomainImportContext xmlDomainImportContext(errorMsg, withSettings, _systemClass, _criteria);
 
     // It doesn't make sense to resolve XIncludes on an imported file because
     // we can't reliably decide of a "base url"
