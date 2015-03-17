@@ -28,45 +28,56 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "SelectionCriteria.h"
+#include "InclusiveCriterion.h"
 
-CSelectionCriteria::CSelectionCriteria() : mCriterionTypes(), mCriteria()
+#include <stdexcept>
+
+CSelectionCriteria::CSelectionCriteria() : mCriteria()
 {
 }
 
-// Selection Criteria/Type creation
-CSelectionCriterionType* CSelectionCriteria::createSelectionCriterionType(bool bIsInclusive)
+CSelectionCriterion* CSelectionCriteria::getCriterionPointer(const std::string& name) const
 {
-    mCriterionTypes.emplace_back(bIsInclusive);
-
-    return &mCriterionTypes.back();
+    // Bound exception aware code to criteria, others Pfw parts will check nullptr.
+    try {
+        return mCriteria.at(name).get();
+    }
+    catch (std::out_of_range&) {
+        return nullptr;
+    }
 }
 
-CSelectionCriterion*
-CSelectionCriteria::createSelectionCriterion(const std::string& strName,
-                                             const CSelectionCriterionType* pType,
-                                             core::log::Logger& logger)
+CSelectionCriterion* CSelectionCriteria::createExclusiveCriterion(const std::string& name,
+                                                                  core::log::Logger& logger)
 {
-    mCriteria.emplace(strName, CSelectionCriterion(strName, pType, logger));
-    return &mCriteria.at(strName);
+    mCriteria.emplace(name, CriterionWrapper(new CSelectionCriterion(name, logger)));
+    return getCriterionPointer(name);
+}
+
+CSelectionCriterion* CSelectionCriteria::createInclusiveCriterion(const std::string& name,
+                                                                  core::log::Logger& logger)
+{
+    mCriteria.emplace(name, CriterionWrapper(new InclusiveCriterion(name, logger)));
+    return getCriterionPointer(name);
 }
 
 // Selection criterion retrieval
 CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& name)
 {
-    return &mCriteria.at(name);
+    return getCriterionPointer(name);
 }
 
 const CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& name) const
 {
-    return &mCriteria.at(name);
+    return getCriterionPointer(name);
 }
 
 // List available criteria
 void CSelectionCriteria::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
 {
     for (auto& criterion : mCriteria) {
-        lstrResult.push_back(criterion.second.getFormattedDescription(bWithTypeInfo,
-                                                                      bHumanReadable));
+        lstrResult.push_back(criterion.second->getFormattedDescription(bWithTypeInfo,
+                                                                       bHumanReadable));
     }
 }
 
@@ -74,7 +85,7 @@ void CSelectionCriteria::listSelectionCriteria(std::list<std::string>& lstrResul
 void CSelectionCriteria::resetModifiedStatus()
 {
     for (auto& criterion : mCriteria) {
-        criterion.second.resetModifiedStatus();
+        criterion.second->resetModifiedStatus();
     }
 }
 
@@ -85,6 +96,6 @@ void CSelectionCriteria::toXml(CXmlElement& xmlElement,
 
         CXmlElement xmlChildElement;
         xmlElement.createChild(xmlChildElement, "SelectionCriterion");
-        criterion.second.toXml(xmlChildElement, serializingContext);
+        criterion.second->toXml(xmlChildElement, serializingContext);
     }
 }

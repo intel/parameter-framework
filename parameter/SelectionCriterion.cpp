@@ -32,10 +32,10 @@
 #include <log/Logger.h>
 #include "Utility.h"
 
-CSelectionCriterion::CSelectionCriterion(const std::string& strName,
-                                         const CSelectionCriterionType* pType,
-                                         core::log::Logger& logger)
-    : _iState(0), _pType(pType), _uiNbModifications(0), _logger(logger), mName(strName)
+#include <stdexcept>
+
+CSelectionCriterion::CSelectionCriterion(const std::string& name, core::log::Logger& logger)
+    : mState(0), _uiNbModifications(0), _logger(logger), mName(name)
 {
 }
 
@@ -54,9 +54,9 @@ void CSelectionCriterion::resetModifiedStatus()
 void CSelectionCriterion::setCriterionState(int iState)
 {
     // Check for a change
-    if (_iState != iState) {
+    if (mState != iState) {
 
-        _iState = iState;
+        mState = iState;
 
         _logger.info() << "Selection criterion changed event: "
                        << getFormattedDescription(false, false);
@@ -77,7 +77,7 @@ void CSelectionCriterion::setCriterionState(int iState)
 
 int CSelectionCriterion::getCriterionState() const
 {
-    return _iState;
+    return mState;
 }
 
 // Name
@@ -86,33 +86,27 @@ std::string CSelectionCriterion::getCriterionName() const
     return mName;
 }
 
-// Type
-const ISelectionCriterionTypeInterface* CSelectionCriterion::getCriterionType() const
-{
-    return _pType;
-}
-
 /// Match methods
 bool CSelectionCriterion::is(int iState) const
 {
-    return _iState == iState;
+    return mState == iState;
 }
 
 bool CSelectionCriterion::isNot(int iState) const
 {
-    return _iState != iState;
+    return mState != iState;
 }
 
 bool CSelectionCriterion::includes(int iState) const
 {
     // For inclusive criterion, Includes checks if ALL the bit sets in iState are set in the
-    // current _iState.
-    return (_iState & iState) == iState;
+    // current mState.
+    return (mState & iState) == iState;
 }
 
 bool CSelectionCriterion::excludes(int iState) const
 {
-    return (_iState & iState) == 0;
+    return (mState & iState) == 0;
 }
 
 /// User request
@@ -132,11 +126,11 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
 
             // Type Kind
             strFormattedDescription += "(";
-            strFormattedDescription += _pType->isTypeInclusive() ? "Inclusive" : "Exclusive";
+            strFormattedDescription += isInclusive() ? "Inclusive" : "Exclusive";
             strFormattedDescription += "): ";
 
             // States
-            strFormattedDescription += _pType->listPossibleValues() + "\n";
+            strFormattedDescription += listPossibleValues() + "\n";
 
             // Current State
             strFormattedDescription += "Current state";
@@ -146,7 +140,7 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
         }
 
         // Current State
-        strFormattedDescription += " = " + _pType->getFormattedState(_iState);
+        strFormattedDescription += " = " + getFormattedState();
     } else {
         // Name
         strFormattedDescription = "Criterion name: " + mName;
@@ -154,17 +148,15 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
         if (bWithTypeInfo) {
             // Type Kind
             strFormattedDescription += ", type kind: ";
-            strFormattedDescription +=  _pType->isTypeInclusive() ? "inclusive" : "exclusive";
+            strFormattedDescription +=  isInclusive() ? "inclusive" : "exclusive";
         }
 
         // Current State
-        strFormattedDescription += ", current state: " +
-                                   _pType->getFormattedState(_iState);
+        strFormattedDescription += ", current state: " + getFormattedState();
 
          if (bWithTypeInfo) {
             // States
-            strFormattedDescription += ", states: " +
-                                       _pType->listPossibleValues();
+            strFormattedDescription += ", states: " + listPossibleValues();
         }
     }
     return strFormattedDescription;
@@ -173,10 +165,100 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
 // XML export
 void CSelectionCriterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
-    // Current Value
-    xmlElement.setAttributeString("Value", _pType->getFormattedState(_iState));
+    (void) serializingContext;
+    xmlElement.setAttributeString("Value", getFormattedState());
     xmlElement.setAttributeString("Name", mName);
+    xmlElement.setAttributeString("Kind", isInclusive() ? "Inclusive" : "Exclusive");
 
-    // Serialize Type node
-    _pType->toXml(xmlElement, serializingContext);
+    for (auto& valuePair: mValuePairs) {
+        CXmlElement childValuePairElement;
+
+        xmlElement.createChild(childValuePairElement, "ValuePair");
+        childValuePairElement.setAttributeString("Literal", valuePair.first);
+        childValuePairElement.setAttributeSignedInteger("Numerical", valuePair.second);
+    }
+}
+
+bool CSelectionCriterion::isInclusive() const
+{
+    return false;
+}
+
+bool CSelectionCriterion::addValuePair(int numericalValue,
+                                       const std::string& literalValue,
+                                       std::string& error)
+{
+    // Check already inserted
+    if (mValuePairs.count(literalValue) == 1) {
+
+        std::ostringstream errorBuf;
+        errorBuf << "Rejecting value pair association (literal already present): 0x"
+                 << std::hex << numericalValue << " - " << literalValue
+                 << " for criterion '" << getCriterionName() << "'";
+        error = errorBuf.str();
+
+        return false;
+    }
+    mValuePairs[literalValue] = numericalValue;
+
+    return true;
+}
+
+bool CSelectionCriterion::getNumericalValue(const std::string& literalValue,
+                                            int& numericalValue) const
+{
+    try {
+        numericalValue = mValuePairs.at(literalValue);
+        return true;
+    }
+    catch (std::out_of_range&) {
+        return false;
+    }
+}
+
+bool CSelectionCriterion::getLiteralValue(int numericalValue, std::string& literalValue) const
+{
+    for (auto& value: mValuePairs) {
+        if (value.second == numericalValue) {
+            literalValue = value.first;
+            return true;
+        }
+    }
+    return false;
+}
+
+std::string CSelectionCriterion::getFormattedState() const
+{
+    std::string formattedState;
+    getLiteralValue(mState, formattedState);
+
+    return CSelectionCriterion::checkFormattedStateEmptyness(formattedState);
+}
+
+std::string CSelectionCriterion::listPossibleValues() const
+{
+    std::string possibleValues = "{";
+
+    // Get comma separated list of values
+    bool first = true;
+    for (auto& value: mValuePairs) {
+
+        if (first) {
+            first = false;
+        } else {
+            possibleValues += ", ";
+        }
+        possibleValues += value.first;
+    }
+    possibleValues += "}";
+
+    return possibleValues;
+}
+
+std::string& CSelectionCriterion::checkFormattedStateEmptyness(std::string& formattedState) const
+{
+    if (formattedState.empty()) {
+        formattedState = "<none>";
+    }
+    return formattedState;
 }

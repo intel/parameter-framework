@@ -30,13 +30,13 @@
 #pragma once
 
 #include "XmlSource.h"
-#include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
 #include <log/Logger.h>
 
 #include <string>
 #include <list>
 #include <map>
+#include <memory>
 
 /** Criteria Handler */
 class CSelectionCriteria : public IXmlSource
@@ -44,10 +44,20 @@ class CSelectionCriteria : public IXmlSource
 public:
     CSelectionCriteria();
 
-    // Selection Criteria/Type creation
-    CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
-    CSelectionCriterion* createSelectionCriterion(const std::string& strName,
-                                                  const CSelectionCriterionType* pType,
+    /** Create a new Exclusive criterion
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the created criterion
+     */
+    CSelectionCriterion* createExclusiveCriterion(const std::string& name,
+                                                  core::log::Logger& logger);
+
+    /** Create a new Inclusive criterion
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the created criterion
+     */
+    CSelectionCriterion* createInclusiveCriterion(const std::string& name,
                                                   core::log::Logger& logger);
 
     /** Criterion Retrieval
@@ -79,18 +89,23 @@ public:
 
 private:
 
-    /** Criterion types Holder type
-     * The C++ standard ensure that pointers on elements of a list
-     * will never be invalidated. As we return a pointer after the creation
-     * to store it in the dedicated criterion, the list is required.
-     */
-    typedef std::list<CSelectionCriterionType> CriterionTypes;
+    /** Internally wrap criterion pointer to not have to handle destruction */
+    typedef std::unique_ptr<CSelectionCriterion> CriterionWrapper;
 
     /** Criteria instance container type, map which use criterion name as key */
-    typedef std::map<std::string, CSelectionCriterion> Criteria;
+    typedef std::map<std::string, CriterionWrapper> Criteria;
 
-    /** Criterion Type collection */
-    CriterionTypes mCriterionTypes;
+    /** Confine exception use to smooth code transitions
+     * Android is not supporting exceptions by default. Nevertheless some
+     * solutions has emerged.
+     * This function allows to confine exceptions use in only one function.
+     * It also allows to easily connect this part of code to the parameter-framework
+     * which works without exceptions for now.
+     *
+     * @param[in] name, name of the criterion to retrieve
+     * @return pointer to the desired criterion
+     */
+    CSelectionCriterion* getCriterionPointer(const std::string& name) const;
 
     /** Criteria instance container */
     Criteria mCriteria;

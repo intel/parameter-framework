@@ -59,6 +59,7 @@ add_library(parameter SHARED
     FormattedSubsystemObject.cpp
     FrameworkConfigurationLocation.cpp
     HardwareBackSynchronizer.cpp
+    InclusiveCriterion.cpp
     InstanceConfigurableElement.cpp
     InstanceDefinition.cpp
     IntegerParameterType.cpp
@@ -83,7 +84,6 @@ add_library(parameter SHARED
     SelectionCriteria.cpp
     SelectionCriterion.cpp
     SelectionCriterionRule.cpp
-    SelectionCriterionType.cpp
     SimulatedBackSynchronizer.cpp
     StringParameter.cpp
     StringParameterType.cpp
@@ -119,7 +119,6 @@ install(FILES
     include/ParameterMgrFullConnector.h
     include/ParameterMgrPlatformConnector.h
     include/SelectionCriterionInterface.h
-    include/SelectionCriterionTypeInterface.h
     DESTINATION "include/parameter/client")
 # Core (plugin) headers
 install(FILES

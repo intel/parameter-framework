@@ -34,7 +34,6 @@
 #include <vector>
 #include "RemoteCommandHandlerTemplate.h"
 #include "PathNavigator.h"
-#include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
 #include "Element.h"
 #include "XmlDocSink.h"
@@ -107,9 +106,20 @@ public:
       */
     bool load(std::string& strError);
 
-    // Selection Criteria
-    CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
-    CSelectionCriterion* createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType);
+    /** Create a new Exclusive criterion
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the created criterion
+     */
+    CSelectionCriterion* createExclusiveCriterion(const std::string& name);
+
+    /** Create a new Inclusive criterion
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the created criterion
+     */
+    CSelectionCriterion* createInclusiveCriterion(const std::string& name);
+
     // Selection criterion retrieval
     CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 
