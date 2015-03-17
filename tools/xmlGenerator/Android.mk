@@ -74,7 +74,7 @@ LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_IS_HOST_MODULE := true
 LOCAL_REQUIRED_MODULES := \
-    _PyPfw \
+    _PyPfw_32 \
     EddParser.py \
     PfwBaseTranslator.py \
     hostConfig.py

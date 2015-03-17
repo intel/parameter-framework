@@ -136,19 +136,20 @@ if __name__ == "__main__":
     argparser.add_argument('--initial-settings',
             help="Initial XML settings file (containing a \
         <ConfigurableDomains>  tag",
+            nargs='?',
             metavar="XML_SETTINGS_FILE")
     argparser.add_argument('--add-domains',
             help="List of single domain files (each containing a single \
         <ConfigurableDomain> tag",
             metavar="XML_DOMAIN_FILE",
-            nargs='+',
+            nargs='*',
             dest='xml_domain_files',
             default=[])
     argparser.add_argument('--add-edds',
             help="List of files in EDD syntax (aka \".pfw\" files)",
             metavar="EDD_FILE",
             type=argparse.FileType('r'),
-            nargs='+',
+            nargs='*',
             default=[],
             dest='edd_files')
     argparser.add_argument('--schemas-dir',
