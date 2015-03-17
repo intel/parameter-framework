@@ -187,10 +187,11 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
                                   "\" already exist");
         }
 
-        // Create criterion type
-        ISelectionCriterionTypeInterface *type =
-            pfw->createSelectionCriterionType(criterion.inclusive);
-        assert(type != NULL);
+        // Create criterion
+        ISelectionCriterionInterface *newCriterion = (criterion.inclusive ?
+                pfw->createInclusiveCriterion(criterion.name) :
+                pfw->createExclusiveCriterion(criterion.name));
+        assert(newCriterion != NULL);
         // Add criterion values
         for (size_t valueIndex = 0; criterion.values[valueIndex] != NULL; ++valueIndex) {
             int value;
@@ -206,13 +207,13 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
             }
             const char * valueName = criterion.values[valueIndex];
             string error;
-            if(not type->addValuePair(value, valueName, error)) {
+            if(not newCriterion->addValuePair(value, valueName, error)) {
                 return status.failure("Could not add value " + string(valueName) +
                                       " to criterion " + criterion.name + ": " + error);
             }
         }
-        // Create criterion and add it to the pfw
-        criteria[criterion.name] = pfw->createSelectionCriterion(criterion.name, type);
+        // Add new criterion to criteria list
+        criteria[criterion.name] = newCriterion;
     }
     return status.success();
 }

@@ -31,7 +31,6 @@
 #include "SelectionCriterion.h"
 #include "XmlDomainSerializingContext.h"
 #include "XmlDomainImportContext.h"
-#include "SelectionCriterionTypeInterface.h"
 #include "RuleParser.h"
 #include <assert.h>
 
@@ -103,7 +102,7 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
     }
 
     // Value
-    if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
+    if (!_pSelectionCriterion->getNumericalValue(strValue, _iMatchValue)) {
 
         strError = "Value error: \"" + strValue + "\" is not part of criterion \"" +
                    _pSelectionCriterion->getCriterionName() + "\"";
@@ -125,7 +124,7 @@ void CSelectionCriterionRule::dump(string& strResult) const
     strResult += " ";
     // Value
     string strValue;
-    _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, strValue);
+    _pSelectionCriterion->getLiteralValue(_iMatchValue, strValue);
     strResult += strValue;
 }
 
@@ -183,7 +182,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Get Value
     string strValue = xmlElement.getAttributeString("Value");
 
-    if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
+    if (!_pSelectionCriterion->getNumericalValue(strValue, _iMatchValue)) {
 
         xmlDomainImportContext.setError("Wrong Value attribute value " + strValue + " in " + getKind() + " " + xmlElement.getPath());
 
@@ -210,7 +209,7 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     // Set Value
     string strValue;
 
-     _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, strValue);
+     _pSelectionCriterion->getLiteralValue(_iMatchValue, strValue);
 
     xmlElement.setAttributeString("Value", strValue);
 }
@@ -227,14 +226,12 @@ bool CSelectionCriterionRule::setMatchesWhen(const string& strMatchesWhen, strin
         if (strMatchesWhen == pstMatchingRuleDescription->pcMatchesWhen) {
 
             // Found it!
-
-            // Get Type
-            const ISelectionCriterionTypeInterface* pSelectionCriterionType = _pSelectionCriterion->getCriterionType();
-
             // Check compatibility if relevant
-            if (!pSelectionCriterionType->isTypeInclusive() && !pstMatchingRuleDescription->bExclusiveTypeCompatible) {
+            if (!_pSelectionCriterion->isInclusive()
+                    && !pstMatchingRuleDescription->bExclusiveTypeCompatible) {
 
-                strError = "Value incompatible with exclusive kind of type";
+                strError = "Value incompatible with exclusive criterion: " +
+                           _pSelectionCriterion->getCriterionName();
 
                 return false;
             }

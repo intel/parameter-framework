@@ -83,18 +83,16 @@ CParameterHandle* CParameterMgrFullConnector::createParameterHandle(const string
     return _pParameterMgr->createParameterHandle(strPath, strError);
 }
 
-ISelectionCriterionTypeInterface* CParameterMgrFullConnector::createSelectionCriterionType(
-        bool bIsInclusive)
+ISelectionCriterionInterface*
+CParameterMgrFullConnector::createExclusiveCriterion(const string& name)
 {
-    return _pParameterMgr->createSelectionCriterionType(bIsInclusive);
+    return _pParameterMgr->createExclusiveCriterion(name);
 }
 
-ISelectionCriterionInterface* CParameterMgrFullConnector::createSelectionCriterion(
-        const string& strName,
-        const ISelectionCriterionTypeInterface* pSelectionCriterionType)
+ISelectionCriterionInterface*
+CParameterMgrFullConnector::createInclusiveCriterion(const string& name)
 {
-    return _pParameterMgr->createSelectionCriterion(strName,
-            static_cast<const CSelectionCriterionType*>(pSelectionCriterionType));
+    return _pParameterMgr->createInclusiveCriterion(name);
 }
 
 ISelectionCriterionInterface* CParameterMgrFullConnector::getSelectionCriterion(

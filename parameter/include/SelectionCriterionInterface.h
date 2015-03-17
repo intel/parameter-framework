@@ -31,15 +31,57 @@
 
 #include <string>
 
-#include "SelectionCriterionTypeInterface.h"
-
 class ISelectionCriterionInterface
 {
 public:
     virtual void setCriterionState(int iState) = 0;
     virtual int getCriterionState() const = 0;
     virtual std::string getCriterionName() const = 0;
-    virtual const ISelectionCriterionTypeInterface* getCriterionType() const = 0;
+
+    /** Add a new pair [literal, numerical] which represents a criterion
+     *
+     * @param[in] numericalValue the numerical value of the criterion
+     * @param[in] literalValue the literal value of the criterion
+     * @param[out] error string containing error information we can provide to client
+     * @return true if succeed false otherwise
+     */
+    virtual bool addValuePair(int numericalValue,
+                              const std::string& literalValue,
+                              std::string& error) = 0;
+
+    /** Retrieve the numerical value from the literal representation of the criterion type.
+     *
+     * @param[in] literalValue: criterion state value represented as a stream. If the criterion is
+     *                          inclusive, it supports more than one criterion type value delimited
+     *                          by the "|" symbol.
+     * @param[out] numericalValue: criterion state value represented as an integer.
+     *
+     * @return true if a numerical value is retrieved from the literal one, false otherwise.
+     */
+    virtual bool getNumericalValue(const std::string& literalValue, int& numericalValue) const = 0;
+
+    /** Retrieve the numerical value from the literal representation of the criterion type.
+     *
+     * @param[in] numericalValue: criterion state value represented as an integer.
+     * @param[out] literalValue: criterion state value represented as a stream. If the criterion is
+     *                           inclusive, it supports more than one criterion type value delimited
+     *                           by the "|" symbol.
+     *
+     * @return true if a numerical value is retrieved from the literal one, false otherwise.
+     */
+    virtual bool getLiteralValue(int numericalValue, std::string& literalValue) const = 0;
+
+    /** Retrieve formatted current criterion state
+     *
+     * @return formatted string of criterion state
+     */
+    virtual std::string getFormattedState() const = 0;
+
+    /** Retrieve Criterion type
+     *
+     * @return true if the criterion is Inclusive, false if it is Exclusive
+     */
+    virtual bool isInclusive() const = 0;
 
 protected:
     virtual ~ISelectionCriterionInterface() {}

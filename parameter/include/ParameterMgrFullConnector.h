@@ -29,7 +29,6 @@
  */
 #pragma once
 
-#include "SelectionCriterionTypeInterface.h"
 #include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
 #include "ParameterMgrLoggerForward.h"
@@ -71,9 +70,24 @@ public:
     // Dynamic parameter handling
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError);
 
-    ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive);
-    ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName,
-            const ISelectionCriterionTypeInterface* pSelectionCriterionType);
+    /** Create a new Exclusive criterion
+     * Beware returned objects shall not be deleted by client.
+     * Should be called before start
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the criterion interface
+     */
+    ISelectionCriterionInterface* createExclusiveCriterion(const std::string& name);
+
+    /** Create a new Inclusive criterion
+     * Beware returned objects shall not be deleted by client.
+     * Should be called before start
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the criterion interface
+     */
+    ISelectionCriterionInterface* createInclusiveCriterion(const std::string& name);
+
     ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
 
     /** Is the remote interface forcefully disabled ?

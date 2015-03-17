@@ -49,19 +49,20 @@ CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
     delete _pParameterMgrLogger;
 }
 
-// Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
-ISelectionCriterionTypeInterface* CParameterMgrPlatformConnector::createSelectionCriterionType(bool bIsInclusive)
+ISelectionCriterionInterface*
+CParameterMgrPlatformConnector::createExclusiveCriterion(const string& name)
 {
     assert(!_bStarted);
 
-    return _pParameterMgr->createSelectionCriterionType(bIsInclusive);
+    return _pParameterMgr->createExclusiveCriterion(name);
 }
 
-ISelectionCriterionInterface* CParameterMgrPlatformConnector::createSelectionCriterion(const string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType)
+ISelectionCriterionInterface*
+CParameterMgrPlatformConnector::createInclusiveCriterion(const string& name)
 {
     assert(!_bStarted);
 
-    return _pParameterMgr->createSelectionCriterion(strName, static_cast<const CSelectionCriterionType*>(pSelectionCriterionType));
+    return _pParameterMgr->createInclusiveCriterion(name);
 }
 
 // Selection criterion retrieval

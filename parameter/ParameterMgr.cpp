@@ -35,7 +35,6 @@
 #include "NamedElementBuilderTemplate.h"
 #include "KindElementBuilderTemplate.h"
 #include "ElementBuilderTemplate.h"
-#include "SelectionCriterionType.h"
 #include "SubsystemElementBuilder.h"
 #include "FileIncluderElementBuilder.h"
 #include "ComponentType.h"
@@ -732,17 +731,16 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
     return true;
 }
 
-// Selection criteria interface
-CSelectionCriterionType* CParameterMgr::createSelectionCriterionType(bool bIsInclusive)
+CSelectionCriterion* CParameterMgr::createExclusiveCriterion(const string& name)
 {
     // Propagate
-    return mCriteria.createSelectionCriterionType(bIsInclusive);
+    return mCriteria.createExclusiveCriterion(name, _logger);
 }
 
-CSelectionCriterion* CParameterMgr::createSelectionCriterion(const string& strName, const CSelectionCriterionType* pSelectionCriterionType)
+CSelectionCriterion* CParameterMgr::createInclusiveCriterion(const string& name)
 {
     // Propagate
-    return mCriteria.createSelectionCriterion(strName, pSelectionCriterionType, _logger);
+    return mCriteria.createInclusiveCriterion(name, _logger);
 }
 
 // Selection criterion retrieval
