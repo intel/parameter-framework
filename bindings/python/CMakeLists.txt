@@ -30,9 +30,9 @@ find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
 find_package(PythonLibs REQUIRED)
-include_directories(${PYTHON_INCLUDE_PATH})
+include_directories(${PYTHON_INCLUDE_DIRS})
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/parameter/include)
 
 set_property(SOURCE pfw.i PROPERTY CPLUSPLUS ON)
 set_property(SOURCE pfw.i PROPERTY SWIG_FLAGS "-Wall" "-Werror")
@@ -40,8 +40,6 @@ set_property(SOURCE pfw.i PROPERTY SWIG_FLAGS "-Wall" "-Werror")
 swig_add_module(PyPfw python pfw.i)
 swig_link_libraries(PyPfw parameter ${PYTHON_LIBRARIES})
 
-
-include_directories(${PROJECT_SOURCE_DIR}/parameter/include ${PYTHON_INCLUDE_DIRS})
 
 # The 'unused-but-set-variable' warning must be disabled because SWIG generates
 # files that do not respect that contraint.
