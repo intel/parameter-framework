@@ -29,17 +29,16 @@
  */
 #pragma once
 
-#include <list>
+#include "XmlSource.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
-#include "SelectionCriteriaDefinition.h"
 #include <log/Logger.h>
 
 #include <string>
 #include <list>
 
 /** Criteria Handler */
-class CSelectionCriteria
+class CSelectionCriteria : public IXmlSource
 {
 public:
     CSelectionCriteria();
@@ -49,20 +48,34 @@ public:
     CSelectionCriterion* createSelectionCriterion(const std::string& strName,
                                                   const CSelectionCriterionType* pType,
                                                   core::log::Logger& logger);
-    // Selection criterion retrieval
-    CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 
-    /** Criterion Instance collection getter
+    /** Criterion Retrieval
      *
-     * @return pointer to the object which contains all criteria instances.
+     * @param[in] name, the criterion name
+     * @result pointer to the desired criterion object
      */
-    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition();
+    CSelectionCriterion* getSelectionCriterion(const std::string& name);
+
+    /** Const Criterion Retrieval
+     *
+     * @param[in] name, the criterion name
+     * @result pointer to the desired const criterion object
+     */
+    const CSelectionCriterion* getSelectionCriterion(const std::string& name) const;
 
     // List available criteria
     void listSelectionCriteria(std::list<std::string>& strResult, bool bWithTypeInfo, bool bHumanReadable) const;
 
     // Reset the modified status of the children
     void resetModifiedStatus();
+
+    /** Xml Serialization method
+     *
+     * @param[out] xmlElement the current xml element to fill with data
+     * @param serializingContext context of the current serialization
+     */
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
 private:
 
     /** Criterion types Holder type
@@ -72,9 +85,12 @@ private:
      */
     typedef std::list<CSelectionCriterionType> CriterionTypes;
 
+    /** Criteria instance container type, map which use criterion name as key */
+    typedef std::map<std::string, CSelectionCriterion> Criteria;
+
     /** Criterion Type collection */
     CriterionTypes mCriterionTypes;
 
-    /** Criterion Instance collection */
-    CSelectionCriteriaDefinition mCriteriaDefinition;
+    /** Criteria instance container */
+    Criteria mCriteria;
 };

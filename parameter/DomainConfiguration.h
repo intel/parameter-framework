@@ -30,6 +30,7 @@
 #pragma once
 
 #include "BinarySerializableElement.h"
+#include "SelectionCriteria.h"
 #include "Results.h"
 #include <list>
 #include <string>
@@ -40,7 +41,6 @@ class CParameterBlackboard;
 class CConfigurationAccessContext;
 class CCompoundRule;
 class CSyncerSet;
-class CSelectionCriteriaDefinition;
 
 class CDomainConfiguration : public CBinarySerializableElement
 {
@@ -60,8 +60,17 @@ public:
     bool setElementSequence(const std::vector<std::string>& astrNewElementSequence, std::string& strError);
     void getElementSequence(std::string& strResult) const;
 
-    // Application rule
-    bool setApplicationRule(const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
+    /** Create a new application rule for this configuration
+     *
+     * @param[in] strApplicationRule the rule to parse
+     * @param[in] criteria application criteria
+     * @param[out] error, error encountered during restoration
+     * @result true is success false otherwise
+     */
+    bool setApplicationRule(const std::string& strApplicationRule,
+                            const CSelectionCriteria& criteria,
+                            std::string& strError);
+
     void clearApplicationRule();
     void getApplicationRule(std::string& strResult) const;
 

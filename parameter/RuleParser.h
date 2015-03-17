@@ -29,11 +29,12 @@
  */
 #pragma once
 
+#include "SelectionCriteria.h"
+
 #include <string>
 #include <stdint.h>
 
 class CCompoundRule;
-class CSelectionCriteriaDefinition;
 
 class CRuleParser
 {
@@ -49,7 +50,7 @@ public:
         ENbStatuses
     };
 
-    CRuleParser(const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition);
+    CRuleParser(const std::string& strApplicationRule, const CSelectionCriteria& Criteria);
     ~CRuleParser();
 
     // Parse
@@ -64,8 +65,8 @@ public:
     // Rule type
     const std::string& getType() const;
 
-    // Criteria defintion
-    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
+    /** Criteria getter */
+    const CSelectionCriteria& getCriteria() const;
 
     // Root rule
     CCompoundRule* grabRootRule();
@@ -76,8 +77,10 @@ private:
 
     // Rule definition
     std::string _strApplicationRule;
-    // Criteria defintion
-    const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
+
+    /** Criteria definition */
+    const CSelectionCriteria& mCriteria;
+
     /** String iterator */
     std::string::size_type _uiCurrentPos;
     // Deepness

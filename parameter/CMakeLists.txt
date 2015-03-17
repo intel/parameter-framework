@@ -81,7 +81,6 @@ add_library(parameter SHARED
     PluginLocation.cpp
     RuleParser.cpp
     SelectionCriteria.cpp
-    SelectionCriteriaDefinition.cpp
     SelectionCriterion.cpp
     SelectionCriterionRule.cpp
     SelectionCriterionType.cpp

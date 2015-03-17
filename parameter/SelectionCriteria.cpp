@@ -29,7 +29,7 @@
  */
 #include "SelectionCriteria.h"
 
-CSelectionCriteria::CSelectionCriteria() : mCriterionTypes(), mCriteriaDefinition()
+CSelectionCriteria::CSelectionCriteria() : mCriterionTypes(), mCriteria()
 {
 }
 
@@ -46,28 +46,45 @@ CSelectionCriteria::createSelectionCriterion(const std::string& strName,
                                              const CSelectionCriterionType* pType,
                                              core::log::Logger& logger)
 {
-    return mCriteriaDefinition.createSelectionCriterion(strName, pType, logger);
+    mCriteria.emplace(strName, CSelectionCriterion(strName, pType, logger));
+    return &mCriteria.at(strName);
 }
 
 // Selection criterion retrieval
-CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& strName)
+CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& name)
 {
-    return mCriteriaDefinition.getSelectionCriterion(strName);
+    return &mCriteria.at(name);
+}
+
+const CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& name) const
+{
+    return &mCriteria.at(name);
 }
 
 // List available criteria
 void CSelectionCriteria::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
 {
-    mCriteriaDefinition.listSelectionCriteria(lstrResult, bWithTypeInfo, bHumanReadable);
+    for (auto& criterion : mCriteria) {
+        lstrResult.push_back(criterion.second.getFormattedDescription(bWithTypeInfo,
+                                                                      bHumanReadable));
+    }
 }
 
 // Reset the modified status of the children
 void CSelectionCriteria::resetModifiedStatus()
 {
-    mCriteriaDefinition.resetModifiedStatus();
+    for (auto& criterion : mCriteria) {
+        criterion.second.resetModifiedStatus();
+    }
 }
 
-const CSelectionCriteriaDefinition* CSelectionCriteria::getSelectionCriteriaDefinition()
+void CSelectionCriteria::toXml(CXmlElement& xmlElement,
+                               CXmlSerializingContext& serializingContext) const
 {
-    return &mCriteriaDefinition;
+    for (auto& criterion : mCriteria) {
+
+        CXmlElement xmlChildElement;
+        xmlElement.createChild(xmlChildElement, "SelectionCriterion");
+        criterion.second.toXml(xmlChildElement, serializingContext);
+    }
 }

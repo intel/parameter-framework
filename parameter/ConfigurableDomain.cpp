@@ -769,7 +769,10 @@ bool CConfigurableDomain::getElementSequence(const string& strConfiguration, str
     return true;
 }
 
-bool CConfigurableDomain::setApplicationRule(const string& strConfiguration, const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError)
+bool CConfigurableDomain::setApplicationRule(const string& strConfiguration,
+                                             const string& strApplicationRule,
+                                             const CSelectionCriteria& criteria,
+                                             string& strError)
 {
     // Find Domain configuration
     CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strError);
@@ -780,7 +783,7 @@ bool CConfigurableDomain::setApplicationRule(const string& strConfiguration, con
     }
 
     // Delegate to configuration
-    return pDomainConfiguration->setApplicationRule(strApplicationRule, pSelectionCriteriaDefinition, strError);
+    return pDomainConfiguration->setApplicationRule(strApplicationRule, criteria, strError);
 }
 
 bool CConfigurableDomain::clearApplicationRule(const string& strConfiguration, string& strError)

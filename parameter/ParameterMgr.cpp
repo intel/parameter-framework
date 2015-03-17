@@ -81,7 +81,6 @@
 #include "XmlStringDocSource.h"
 #include "XmlMemoryDocSink.h"
 #include "XmlMemoryDocSource.h"
-#include "SelectionCriteriaDefinition.h"
 #include "Utility.h"
 #include <sstream>
 #include <algorithm>
@@ -636,11 +635,8 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     // Parse configuration domains XML file (ask to read settings from XML file if they are not provided as binary)
     CXmlDomainImportContext xmlDomainImportContext(strError,
                                                    !pBinarySettingsFileLocation,
-                                                   mSystemClass);
-
-    // Selection criteria definition for rule creation
-    xmlDomainImportContext.setSelectionCriteriaDefinition(
-            mCriteria.getSelectionCriteriaDefinition());
+                                                   mSystemClass,
+                                                   mCriteria);
 
     // Auto validation of configurations if no binary settings provided
     xmlDomainImportContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
@@ -672,11 +668,7 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
 bool CParameterMgr::importDomainFromFile(const string& strXmlFilePath, bool bOverwrite,
                                          string& strError)
 {
-    CXmlDomainImportContext xmlDomainImportContext(strError, true, mSystemClass);
-
-    // Selection criteria definition for rule creation
-    xmlDomainImportContext.setSelectionCriteriaDefinition(
-            mCriteria.getSelectionCriteriaDefinition());
+    CXmlDomainImportContext xmlDomainImportContext(strError, true, mSystemClass, mCriteria);
 
     // Auto validation of configurations
     xmlDomainImportContext.setAutoValidationRequired(true);
@@ -1100,12 +1092,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommman
     }
 
     if (strOutputFormat == "XML") {
-        // Get Root element where to export from
-        const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition =
-            mCriteria.getSelectionCriteriaDefinition();
-
-        if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria",
-                                      strResult)) {
+        if (!exportElementToXMLString(&mCriteria, "SelectionCriteria", strResult)) {
 
             return CCommandHandler::EFailed;
         }
@@ -2243,7 +2230,7 @@ bool CParameterMgr::setApplicationRule(const string& strDomain, const string& st
                                        const string& strApplicationRule, string& strError)
 {
     return mDomains.setApplicationRule(strDomain, strConfiguration, strApplicationRule,
-            mCriteria.getSelectionCriteriaDefinition(), strError);
+                                       mCriteria, strError);
 }
 
 bool CParameterMgr::clearApplicationRule(const string& strDomain, const string& strConfiguration,
@@ -2270,11 +2257,8 @@ bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSetti
     }
 
     // Context
-    CXmlDomainImportContext xmlDomainImportContext(strError, bWithSettings, mSystemClass);
-
-    // Selection criteria definition for rule creation
-    xmlDomainImportContext.setSelectionCriteriaDefinition(
-            mCriteria.getSelectionCriteriaDefinition());
+    CXmlDomainImportContext xmlDomainImportContext(strError, bWithSettings,
+                                                   mSystemClass, mCriteria);
 
     // Init serializing context
     xmlDomainImportContext.set(
