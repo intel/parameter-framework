@@ -83,7 +83,6 @@ add_library(parameter SHARED
     SelectionCriteria.cpp
     SelectionCriteriaDefinition.cpp
     SelectionCriterion.cpp
-    SelectionCriterionLibrary.cpp
     SelectionCriterionRule.cpp
     SelectionCriterionType.cpp
     SimulatedBackSynchronizer.cpp

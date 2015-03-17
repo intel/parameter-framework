@@ -29,14 +29,16 @@
  */
 #include "SelectionCriteria.h"
 
-CSelectionCriteria::CSelectionCriteria() : mCriterionLibrary(), mCriteriaDefinition()
+CSelectionCriteria::CSelectionCriteria() : mCriterionTypes(), mCriteriaDefinition()
 {
 }
 
 // Selection Criteria/Type creation
 CSelectionCriterionType* CSelectionCriteria::createSelectionCriterionType(bool bIsInclusive)
 {
-    return mCriterionLibrary.createSelectionCriterionType(bIsInclusive);
+    mCriterionTypes.emplace_back(bIsInclusive);
+
+    return &mCriterionTypes.back();
 }
 
 CSelectionCriterion*
