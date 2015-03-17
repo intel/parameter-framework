@@ -32,11 +32,11 @@
 #include <list>
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
-#include "SelectionCriterionLibrary.h"
 #include "SelectionCriteriaDefinition.h"
 #include <log/Logger.h>
 
 #include <string>
+#include <list>
 
 /** Criteria Handler */
 class CSelectionCriteria
@@ -65,8 +65,15 @@ public:
     void resetModifiedStatus();
 private:
 
+    /** Criterion types Holder type
+     * The C++ standard ensure that pointers on elements of a list
+     * will never be invalidated. As we return a pointer after the creation
+     * to store it in the dedicated criterion, the list is required.
+     */
+    typedef std::list<CSelectionCriterionType> CriterionTypes;
+
     /** Criterion Type collection */
-    CSelectionCriterionLibrary mCriterionLibrary;
+    CriterionTypes mCriterionTypes;
 
     /** Criterion Instance collection */
     CSelectionCriteriaDefinition mCriteriaDefinition;
