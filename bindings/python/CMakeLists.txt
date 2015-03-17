@@ -29,7 +29,7 @@
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
-find_package(PythonLibs)
+find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_PATH})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
@@ -40,11 +40,6 @@ set_property(SOURCE pfw.i PROPERTY SWIG_FLAGS "-Wall" "-Werror")
 swig_add_module(PyPfw python pfw.i)
 swig_link_libraries(PyPfw parameter ${PYTHON_LIBRARIES})
 
-include(FindPythonLibs)
-if(NOT PYTHONLIBS_FOUND)
-    message(SEND_ERROR "python librarires not found. please instal python
-    development packages")
-endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/parameter/include ${PYTHON_INCLUDE_DIRS})
 
