@@ -29,10 +29,10 @@
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
-find_package(PythonLibs)
-include_directories(${PYTHON_INCLUDE_PATH})
+find_package(PythonLibs REQUIRED)
+include_directories(${PYTHON_INCLUDE_DIRS})
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/parameter/include)
 
 set_property(SOURCE pfw.i PROPERTY CPLUSPLUS ON)
 set_property(SOURCE pfw.i PROPERTY SWIG_FLAGS "-Wall" "-Werror")
@@ -40,13 +40,6 @@ set_property(SOURCE pfw.i PROPERTY SWIG_FLAGS "-Wall" "-Werror")
 swig_add_module(PyPfw python pfw.i)
 swig_link_libraries(PyPfw parameter ${PYTHON_LIBRARIES})
 
-include(FindPythonLibs)
-if(NOT PYTHONLIBS_FOUND)
-    message(SEND_ERROR "python librarires not found. please instal python
-    development packages")
-endif()
-
-include_directories(${PROJECT_SOURCE_DIR}/parameter/include ${PYTHON_INCLUDE_DIRS})
 
 # The 'unused-but-set-variable' warning must be disabled because SWIG generates
 # files that do not respect that contraint.
@@ -56,7 +49,19 @@ include_directories(${PROJECT_SOURCE_DIR}/parameter/include ${PYTHON_INCLUDE_DIR
 # class/interface class and as such cannot be destroyed.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-but-set-variable -DSWIG_PYTHON_SILENT_MEMLEAK")
 
-install(TARGETS _PyPfw LIBRARY DESTINATION lib)
+
+# Find the python modules install path.
+# plat_specific is needed because we are installing a shared-library python
+# module and not only a pure python module.
+# prefix='' makes get_python_lib return a relative path.
+find_package(PythonInterp)
+execute_process(COMMAND
+    ${PYTHON_EXECUTABLE} -c
+        "from distutils import sysconfig;\\
+         print(sysconfig.get_python_lib(plat_specific=True, prefix=''))"
+    OUTPUT_VARIABLE PYTHON_MODULE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+install(TARGETS _PyPfw LIBRARY DESTINATION ${PYTHON_MODULE_PATH})
 
 # install the generated Python file as well
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PyPfw.py DESTINATION lib)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PyPfw.py DESTINATION ${PYTHON_MODULE_PATH})
