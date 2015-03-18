@@ -343,11 +343,13 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     }
 
     // Configuration file folder
-    uint32_t uiSlashPos = _strXmlConfigurationFilePath.rfind('/', -1);
-
-    assert(uiSlashPos != (uint32_t)-1);
-
-    _strXmlConfigurationFolderPath = _strXmlConfigurationFilePath.substr(0, uiSlashPos);
+    std::string::size_type slashPos = _strXmlConfigurationFilePath.rfind('/', -1);
+    if(slashPos == std::string::npos) {
+        // Configuration folder is the current folder
+        _strXmlConfigurationFolderPath = '.';
+    } else {
+        _strXmlConfigurationFolderPath = _strXmlConfigurationFilePath.substr(0, slashPos);
+    }
 
     // Schema absolute folder location
     _strSchemaFolderLocation = _strXmlConfigurationFolderPath + "/" + gacSystemSchemasSubFolder;
