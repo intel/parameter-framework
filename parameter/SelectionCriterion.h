@@ -116,15 +116,20 @@ protected:
     /** Match method container, MatchMethod are indexed by their name */
     typedef std::map<std::string, MatchMethod> MatchMethods;
 
+    /** Internal type which associate literal and numerical value */
+    typedef std::map<std::string, int> ValuePairs;
+
     /** Initializer constructor
      * This Constructor initialize class members and should be called by derived class
      * in order to add functionalities
      *
      * @param[in] name, the criterion name
+     * @param[in] derivedValuePairs initial value pairs of derived classes
      * @param[in] derivedMatchMethods match methods of derived classes
      */
     CSelectionCriterion(const std::string& name,
                         core::log::Logger& logger,
+                        const ValuePairs& derivedValuePairs,
                         const MatchMethods& derivedMatchMethods);
 
     /** Set a "default formatted state" when no criterion state is set
@@ -140,7 +145,7 @@ protected:
     std::string& checkFormattedStateEmptyness(std::string& formattedState) const;
 
     /** Contains pair association between literal and numerical value */
-    std::map<std::string, int> mValuePairs;
+    ValuePairs mValuePairs;
 
     /** Available criterion match methods */
     const MatchMethods mMatchMethods;
