@@ -1,125 +1,75 @@
-///////////////////////////////////////////////////////////////////////////////
-// Tokenizer.cpp
-// =============
-// General purpose string tokenizer (C++ string version)
-//
-// The default delimiters are space(" "), tab(\t, \v), newline(\n),
-// carriage return(\r), and form feed(\f).
-// If you want to use different delimiters, then use setDelimiter() to override
-// the delimiters. Note that the delimiter string can hold multiple characters.
-//
-//  AUTHOR: Song Ho Ahn (song.ahn@gmail.com)
-// CREATED: 2005-05-25
-// UPDATED: 2011-03-08
-///////////////////////////////////////////////////////////////////////////////
-
+/*
+ * Copyright (c) 2015, Intel Corporation
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation and/or
+ * other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 #include "Tokenizer.h"
 
+using std::string;
+using std::vector;
 
-///////////////////////////////////////////////////////////////////////////////
-// constructor
-///////////////////////////////////////////////////////////////////////////////
-Tokenizer::Tokenizer() : buffer(""), token(""), delimiter(DEFAULT_DELIMITER)
-{
-    currPos = buffer.begin();
-}
+const string Tokenizer::defaultDelimiters = " \n\r\t\v\f";
 
-Tokenizer::Tokenizer(const std::string& str, const std::string& delimiter) : buffer(str), token(""), delimiter(delimiter)
-{
-    currPos = buffer.begin();
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-// destructor
-///////////////////////////////////////////////////////////////////////////////
-Tokenizer::~Tokenizer()
+Tokenizer::Tokenizer(const string &input, const string &delimiters)
+    : _input(input), _delimiters(delimiters), _position(0)
 {
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// reset string buffer, delimiter and the currsor position
-///////////////////////////////////////////////////////////////////////////////
-void Tokenizer::set(const std::string& str, const std::string& delimiter)
+string Tokenizer::next()
 {
-    this->buffer = str;
-    this->delimiter = delimiter;
-    this->currPos = buffer.begin();
-}
+    string token;
 
-void Tokenizer::setString(const std::string& str)
-{
-    this->buffer = str;
-    this->currPos = buffer.begin();
-}
+    // Skip all leading delimiters
+    string::size_type tokenStart = _input.find_first_not_of(_delimiters, _position);
 
-void Tokenizer::setDelimiter(const std::string& delimiter)
-{
-    this->delimiter = delimiter;
-    this->currPos = buffer.begin();
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-// return the next token
-// If cannot find a token anymore, return "".
-///////////////////////////////////////////////////////////////////////////////
-std::string Tokenizer::next()
-{
-    if(buffer.size() <= 0) return "";           // skip if buffer is empty
-
-    token.clear();                              // reset token string
-
-    this->skipDelimiter();                      // skip leading delimiters
-
-    // append each char to token string until it meets delimiter
-    while(currPos != buffer.end() && !isDelimiter(*currPos))
-    {
-        token += *currPos;
-        ++currPos;
-    }
-    return token;
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-// skip ang leading delimiters
-///////////////////////////////////////////////////////////////////////////////
-void Tokenizer::skipDelimiter()
-{
-    while(currPos != buffer.end() && isDelimiter(*currPos))
-        ++currPos;
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-// return true if the current character is delimiter
-///////////////////////////////////////////////////////////////////////////////
-bool Tokenizer::isDelimiter(char c)
-{
-    return (delimiter.find(c) != std::string::npos);
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-// split the input string into multiple tokens
-// This function scans tokens from the current cursor position.
-///////////////////////////////////////////////////////////////////////////////
-std::vector<std::string> Tokenizer::split()
-{
-    std::vector<std::string> tokens;
-    std::string token;
-    while((token = this->next()) != "")
-    {
-        tokens.push_back(token);
+    // Special case if there isn't any token anymore (string::substr's
+    // throws when pos==npos)
+    if (tokenStart == string::npos) {
+        return "";
     }
 
-    return tokens;
+    // Starting from the token's start, find the first delimiter
+    string::size_type tokenEnd = _input.find_first_of(_delimiters, tokenStart);
+
+    _position = tokenEnd;
+
+    return _input.substr(tokenStart, tokenEnd - tokenStart);
+}
+
+vector<string> Tokenizer::split()
+{
+    vector<string> result;
+    string token;
+
+    while (true) {
+        token = next();
+        if (token.empty()) {
+            return result;
+        }
+        result.push_back(token);
+    }
 }
