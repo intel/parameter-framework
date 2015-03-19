@@ -36,7 +36,9 @@ const std::string InclusiveCriterion::gDelimiter = "|";
 
 InclusiveCriterion::InclusiveCriterion(const std::string& name,
                                        core::log::Logger& logger)
-    : CSelectionCriterion(name, logger)
+    : CSelectionCriterion(name, logger,
+                          {{"Includes", [&](int state){ return (mState & state) == state; }},
+                           {"Excludes", [&](int state){ return (mState & state) == 0; }}})
 {
     mValuePairs["none"] = 0;
 }

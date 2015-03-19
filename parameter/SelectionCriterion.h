@@ -35,6 +35,7 @@
 
 #include <map>
 #include <string>
+#include <functional>
 
 /** Criterion object used to apply rules based on system state */
 class CSelectionCriterion : public IXmlSource, public ISelectionCriterionInterface
@@ -52,11 +53,20 @@ public:
     bool hasBeenModified() const;
     void resetModifiedStatus();
 
-    /// Match methods
-    bool is(int iState) const;
-    bool isNot(int iState) const;
-    bool includes(int iState) const;
-    bool excludes(int iState) const;
+    /** Request criterion state match with a desired method
+     *
+     * @param[in] method, the desired match method
+     * @param[in] state, the state to match
+     * @return true if the current state match the state given in parameter with the desired method
+     */
+    bool match(const std::string& method, int32_t state) const;
+
+    /** Check if a match method is available for this criterion
+     *
+     * @param[in] method, the desired match method
+     * @return true if the method is available, false otherwise
+     */
+    bool isMatchMethodAvailable(const std::string& method) const;
 
     /// User request
     std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
@@ -93,6 +103,27 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
 protected:
+    /** Criterion Match callback type
+     *
+     * Those method should take an integer in parameter which represents the state to match
+     * and returns a boolean which indicates if the current state match the state given in
+     * parameter.
+     */
+    typedef std::function<bool(int)> MatchMethod;
+
+    /** Match method container, MatchMethod are indexed by their name */
+    typedef std::map<std::string, MatchMethod> MatchMethods;
+
+    /** Initializer constructor
+     * This Constructor initialize class members and should be called by derived class
+     * in order to add functionalities
+     *
+     * @param[in] name, the criterion name
+     * @param[in] derivedMatchMethods match methods of derived classes
+     */
+    CSelectionCriterion(const std::string& name,
+                        core::log::Logger& logger,
+                        const MatchMethods& derivedMatchMethods);
 
     /** Set a "default formatted state" when no criterion state is set
      *
@@ -109,6 +140,9 @@ protected:
     /** Contains pair association between literal and numerical value */
     std::map<std::string, int> mValuePairs;
 
+    /** Available criterion match methods */
+    const MatchMethods mMatchMethods;
+
     /** Current state
      *
      * FIXME: Use bit set object instead
@@ -116,6 +150,16 @@ protected:
     int32_t mState;
 
 private:
+    /** Utility which join derived class MatchMethods container with Base class container
+     * Derived class may want to exposes more match methods than ones exposed here.
+     * This method joins MatchMethods container to realize that.
+     *
+     * @param[in] matchA, first set of matching
+     * @param[in] matchB, set of match to join
+     * @return MatchMethods container with elements of matchA and matchB
+     */
+    MatchMethods gatherMatchMethods(MatchMethods matchA, const MatchMethods& matchB);
+
     /** Counter to know how many modifications have been applied to this criterion */
     uint32_t _uiNbModifications;
 
