@@ -36,13 +36,15 @@
 #include <stdexcept>
 
 CSelectionCriterion::CSelectionCriterion(const std::string& name, core::log::Logger& logger) :
-    CSelectionCriterion(name, logger, {})
+    CSelectionCriterion(name, logger, {}, {})
 {
 }
 
 CSelectionCriterion::CSelectionCriterion(const std::string& name,
                                          core::log::Logger& logger,
+                                         const ValuePairs& derivedValuePairs,
                                          const MatchMethods& derivedMatchMethods) :
+    mValuePairs(derivedValuePairs),
     mMatchMethods(gatherMatchMethods(MatchMethods{
                                       {"Is", [&](int state){ return mState == state; }},
                                       {"IsNot", [&](int state){ return mState != state; }}},
