@@ -80,4 +80,17 @@ public:
 
     /** Utility to underline */
     static void appendTitle(std::string& strTo, const std::string& strTitle);
+
+    /** Utility which merge two containers
+     *
+     * @param[in] a first container
+     * @param[in] b second container
+     * @return container with elements of a and b
+     */
+    template<class Container>
+    static Container merge(Container a, const Container& b)
+    {
+        a.insert(b.begin(), b.end());
+        return a;
+    }
 };

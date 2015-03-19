@@ -34,8 +34,19 @@
 
 #include <stdexcept>
 
-CSelectionCriterion::CSelectionCriterion(const std::string& name, core::log::Logger& logger)
-    : mState(0), _uiNbModifications(0), _logger(logger), mName(name)
+CSelectionCriterion::CSelectionCriterion(const std::string& name, core::log::Logger& logger) :
+    CSelectionCriterion(name, logger, {})
+{
+}
+
+CSelectionCriterion::CSelectionCriterion(const std::string& name,
+                                         core::log::Logger& logger,
+                                         const MatchMethods& derivedMatchMethods) :
+    mMatchMethods(CUtility::merge(MatchMethods{
+                                    {"Is", [&](int state){ return mState == state; }},
+                                    {"IsNot", [&](int state){ return mState != state; }}},
+                                  derivedMatchMethods)),
+    mState(0), _uiNbModifications(0), _logger(logger), mName(name)
 {
 }
 
@@ -84,29 +95,6 @@ int CSelectionCriterion::getCriterionState() const
 std::string CSelectionCriterion::getCriterionName() const
 {
     return mName;
-}
-
-/// Match methods
-bool CSelectionCriterion::is(int iState) const
-{
-    return mState == iState;
-}
-
-bool CSelectionCriterion::isNot(int iState) const
-{
-    return mState != iState;
-}
-
-bool CSelectionCriterion::includes(int iState) const
-{
-    // For inclusive criterion, Includes checks if ALL the bit sets in iState are set in the
-    // current mState.
-    return (mState & iState) == iState;
-}
-
-bool CSelectionCriterion::excludes(int iState) const
-{
-    return (mState & iState) == 0;
 }
 
 /// User request
@@ -261,4 +249,14 @@ std::string& CSelectionCriterion::checkFormattedStateEmptyness(std::string& form
         formattedState = "<none>";
     }
     return formattedState;
+}
+
+bool CSelectionCriterion::match(const std::string& method, int32_t state) const
+{
+    return mMatchMethods.at(method)(state);
+}
+
+bool CSelectionCriterion::isMatchMethodAvailable(const std::string& method) const
+{
+    return mMatchMethods.count(method) == 1;
 }
