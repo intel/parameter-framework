@@ -257,7 +257,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex,
 bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, const string& strValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Deal with value(s)
-    Tokenizer tok(strValue, DEFAULT_DELIMITER + ",");
+    Tokenizer tok(strValue, Tokenizer::defaultDelimiters + ",");
 
     std::vector<string> astrValues = tok.split();
     uint32_t uiNbValues = astrValues.size();
