@@ -41,12 +41,12 @@
 #include <cstdlib>
 
 using std::string;
+using core::criterion::CriterionInterface;
 
 /** Rename long pfw types to short ones in pfw namespace. */
 namespace pfw
 {
-    typedef ISelectionCriterionInterface Criterion;
-    typedef std::map<string, Criterion *> Criteria;
+    typedef std::map<string, CriterionInterface *> Criteria;
     typedef CParameterMgrPlatformConnector Pfw;
 }
 
@@ -188,7 +188,7 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
         }
 
         // Create criterion
-        ISelectionCriterionInterface *newCriterion = (criterion.inclusive ?
+        CriterionInterface *newCriterion = (criterion.inclusive ?
                 pfw->createInclusiveCriterion(criterion.name) :
                 pfw->createExclusiveCriterion(criterion.name));
         assert(newCriterion != NULL);
@@ -256,8 +256,7 @@ const char *pfwGetLastError(const PfwHandler *handle)
     return handle == NULL ? NULL : handle->lastStatus.msg().c_str();
 }
 
-static pfw::Criterion *getCriterion(const pfw::Criteria &criteria,
-                                    const string &name)
+static CriterionInterface *getCriterion(const pfw::Criteria &criteria, const string &name)
 {
     pfw::Criteria::const_iterator it = criteria.find(name);
     return it == criteria.end() ? NULL : it->second;
@@ -275,7 +274,7 @@ bool pfwSetCriterion(PfwHandler *handle, const char name[], int value)
         return status.failure("Can not set criterion \"" + string(name) +
                               "\" as the parameter framework is not started.");
     }
-    pfw::Criterion *criterion = getCriterion(handle->criteria, name);
+    CriterionInterface *criterion = getCriterion(handle->criteria, name);
     if (criterion == NULL) {
         return status.failure("Can not set criterion " + string(name) + " as does not exist");
     }
@@ -298,7 +297,7 @@ bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value)
         return status.failure("Can not get criterion \"" + string(name) +
                               "\" as the out value is NULL.");
     }
-    pfw::Criterion *criterion = getCriterion(handle->criteria, name);
+    CriterionInterface *criterion = getCriterion(handle->criteria, name);
     if (criterion == NULL) {
         return status.failure("Can not get criterion " + string(name) + " as it does not exist");
     }

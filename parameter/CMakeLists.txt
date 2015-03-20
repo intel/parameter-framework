@@ -26,6 +26,8 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+add_subdirectory(criterion)
+
 add_library(parameter SHARED
     AreaConfiguration.cpp
     ArrayParameter.cpp
@@ -59,7 +61,6 @@ add_library(parameter SHARED
     FormattedSubsystemObject.cpp
     FrameworkConfigurationLocation.cpp
     HardwareBackSynchronizer.cpp
-    InclusiveCriterion.cpp
     InstanceConfigurableElement.cpp
     InstanceDefinition.cpp
     IntegerParameterType.cpp
@@ -81,8 +82,6 @@ add_library(parameter SHARED
     PathNavigator.cpp
     PluginLocation.cpp
     RuleParser.cpp
-    SelectionCriteria.cpp
-    SelectionCriterion.cpp
     SelectionCriterionRule.cpp
     SimulatedBackSynchronizer.cpp
     StringParameter.cpp
@@ -105,11 +104,12 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/xmlserializer"
     "${PROJECT_SOURCE_DIR}/utility"
     "${PROJECT_SOURCE_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/parameter/log/include")
+    "${PROJECT_SOURCE_DIR}/parameter/log/include"
+    "${PROJECT_SOURCE_DIR}/parameter/criterion/include")
 
 # No need to link with libremote-processor: it is accessed via dlopen()
 find_library(dl dl)
-target_link_libraries(parameter xmlserializer pfw_utility dl)
+target_link_libraries(parameter xmlserializer pfw_utility dl criterion)
 
 install(TARGETS parameter LIBRARY DESTINATION lib)
 # Client headers
@@ -118,7 +118,6 @@ install(FILES
     include/ParameterMgrLoggerForward.h
     include/ParameterMgrFullConnector.h
     include/ParameterMgrPlatformConnector.h
-    include/SelectionCriterionInterface.h
     DESTINATION "include/parameter/client")
 # Core (plugin) headers
 install(FILES

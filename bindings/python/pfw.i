@@ -80,9 +80,14 @@ public:
 
     void setLogger(ILogger* pLogger);
 
-    ISelectionCriterionInterface* createExclusiveCriterion(const std::string& strName);
-    ISelectionCriterionInterface* createInclusiveCriterion(const std::string& strName);
-    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
+    core::criterion::CriterionInterface*
+    createExclusiveCriterion(const std::string& name);
+
+    core::criterion::CriterionInterface*
+    createInclusiveCriterion(const std::string& name);
+
+    core::criterion::CriterionInterface*
+    getSelectionCriterion(const std::string& name);
 
     // Configuration application
     void applyConfigurations();
@@ -192,10 +197,15 @@ class ILogger
 typedef CParameterMgrFullConnector::ILogger ILogger;
 %}
 
-class ISelectionCriterionInterface
+namespace core
+{
+namespace criterion
+{
+
+class CriterionInterface
 {
 %{
-#include "SelectionCriterionInterface.h"
+#include <criterion/client/CriterionInterface.h>
 %}
 
 public:
@@ -215,5 +225,8 @@ public:
     virtual bool isInclusive() const = 0;
 
 protected:
-    virtual ~ISelectionCriterionInterface() {}
+    virtual ~CriterionInterface() {}
 };
+
+} /** criterion namespace */
+} /** core namespace */

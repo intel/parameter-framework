@@ -29,12 +29,14 @@
  */
 #pragma once
 
-#include "SelectionCriteria.h"
+#include <criterion/Criteria.h>
 
 #include <string>
 #include <stdint.h>
 
 class CCompoundRule;
+
+// FIXME: Add RuleParser  in core namespace
 
 class CRuleParser
 {
@@ -50,7 +52,8 @@ public:
         ENbStatuses
     };
 
-    CRuleParser(const std::string& strApplicationRule, const CSelectionCriteria& Criteria);
+    CRuleParser(const std::string& strApplicationRule,
+                const core::criterion::Criteria& criteria);
     ~CRuleParser();
 
     // Parse
@@ -66,7 +69,7 @@ public:
     const std::string& getType() const;
 
     /** Criteria getter */
-    const CSelectionCriteria& getCriteria() const;
+    const core::criterion::Criteria& getCriteria() const;
 
     // Root rule
     CCompoundRule* grabRootRule();
@@ -79,7 +82,7 @@ private:
     std::string _strApplicationRule;
 
     /** Criteria definition */
-    const CSelectionCriteria& mCriteria;
+    const core::criterion::Criteria& mCriteria;
 
     /** String iterator */
     std::string::size_type _uiCurrentPos;

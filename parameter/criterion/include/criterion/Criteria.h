@@ -29,8 +29,8 @@
  */
 #pragma once
 
+#include "criterion/Criterion.h"
 #include "XmlSource.h"
-#include "SelectionCriterion.h"
 #include <log/Logger.h>
 
 #include <string>
@@ -38,62 +38,82 @@
 #include <map>
 #include <memory>
 
+namespace core
+{
+namespace criterion
+{
+
 /** Criteria Handler */
-class CSelectionCriteria : public IXmlSource
+class Criteria : public IXmlSource
 {
 public:
-    CSelectionCriteria();
+    Criteria();
 
     /** Create a new Exclusive criterion
      *
-     * @param[in] name, the criterion name
+     * @param[in] name the criterion name
+     * @param[in] logger the application main logger
      * @return raw pointer on the created criterion
      */
-    CSelectionCriterion* createExclusiveCriterion(const std::string& name,
-                                                  core::log::Logger& logger);
+    Criterion* createExclusiveCriterion(const std::string& name,
+                                        core::log::Logger& logger);
 
     /** Create a new Inclusive criterion
      *
-     * @param[in] name, the criterion name
+     * @param[in] name the criterion name
+     * @param[in] logger the application main logger
      * @return raw pointer on the created criterion
      */
-    CSelectionCriterion* createInclusiveCriterion(const std::string& name,
-                                                  core::log::Logger& logger);
+    Criterion* createInclusiveCriterion(const std::string& name,
+                                        core::log::Logger& logger);
 
     /** Criterion Retrieval
      *
-     * @param[in] name, the criterion name
+     * @param[in] name the criterion name
      * @result pointer to the desired criterion object
      */
-    CSelectionCriterion* getSelectionCriterion(const std::string& name);
+    Criterion* getSelectionCriterion(const std::string& name);
 
     /** Const Criterion Retrieval
      *
-     * @param[in] name, the criterion name
+     * @param[in] name the criterion name
      * @result pointer to the desired const criterion object
      */
-    const CSelectionCriterion* getSelectionCriterion(const std::string& name) const;
+    const Criterion* getSelectionCriterion(const std::string& name) const;
 
-    // List available criteria
-    void listSelectionCriteria(std::list<std::string>& strResult, bool bWithTypeInfo, bool bHumanReadable) const;
+    /** List available criteria
+     *
+     * @param[out] results information container
+     * @param[in] withTypeInfo indicates if we want to retrieve criterion type information
+     * @param[in] humanReadable indicates the formatage we want to use
+     */
+    void listSelectionCriteria(std::list<std::string>& results,
+                               bool withTypeInfo,
+                               bool humanReadable) const;
 
-    // Reset the modified status of the children
+    /** Reset the modified status of criteria */
     void resetModifiedStatus();
 
     /** Xml Serialization method
      *
      * @param[out] xmlElement the current xml element to fill with data
-     * @param serializingContext context of the current serialization
+     * @param context context of the current serialization
      */
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement& xmlElement,CXmlSerializingContext& context) const override;
 
 private:
+    // @{
+    /** As Criteria owns some unique_ptr, the class is non copyable */
+    Criteria(const Criteria &criteria) = delete;
+    Criteria operator=(const Criteria &criteria) = delete;
+    Criteria(Criteria &&criteria) = default;
+    // @}
 
     /** Internally wrap criterion pointer to not have to handle destruction */
-    typedef std::unique_ptr<CSelectionCriterion> CriterionWrapper;
+    typedef std::unique_ptr<Criterion> CriterionWrapper;
 
     /** Criteria instance container type, map which use criterion name as key */
-    typedef std::map<std::string, CriterionWrapper> Criteria;
+    typedef std::map<std::string, CriterionWrapper> CriteriaMap;
 
     /** Confine exception use to smooth code transitions
      * Android is not supporting exceptions by default. Nevertheless some
@@ -105,8 +125,11 @@ private:
      * @param[in] name, name of the criterion to retrieve
      * @return pointer to the desired criterion
      */
-    CSelectionCriterion* getCriterionPointer(const std::string& name) const;
+    Criterion* getCriterionPointer(const std::string& name) const;
 
     /** Criteria instance container */
-    Criteria mCriteria;
+    CriteriaMap mCriteria;
 };
+
+} /** criterion namespace */
+} /** core namespace */

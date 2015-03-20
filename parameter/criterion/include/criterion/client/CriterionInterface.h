@@ -31,7 +31,15 @@
 
 #include <string>
 
-class ISelectionCriterionInterface
+namespace core
+{
+namespace criterion
+{
+
+/** Client criterion interface used for interacting with the system state
+ * Allows client to set or retrieve a Criterion state.
+ */
+class CriterionInterface
 {
 public:
     virtual void setCriterionState(int iState) = 0;
@@ -84,5 +92,8 @@ public:
     virtual bool isInclusive() const = 0;
 
 protected:
-    virtual ~ISelectionCriterionInterface() {}
+    virtual ~CriterionInterface() {}
 };
+
+} /** criterion namespace */
+} /** core namespace */

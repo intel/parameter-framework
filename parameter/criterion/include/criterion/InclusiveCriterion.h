@@ -29,33 +29,38 @@
  */
 #pragma once
 
-#include "SelectionCriterion.h"
+#include "criterion/Criterion.h"
 
-/** Criterion we can take several state values at the same time */
-class InclusiveCriterion : public CSelectionCriterion
+namespace core
+{
+namespace criterion
 {
 
+/** Criterion we can take several state values at the same time */
+class InclusiveCriterion final : public Criterion
+{
 public:
-
     /** @param[in] name, the criterion name */
     InclusiveCriterion(const std::string& name, core::log::Logger& logger);
 
-    //@{
-    /** @see ISelectionCriterionInterface */
-    bool isInclusive() const override final;
+    // @{
+    /** @see CriterionInterface */
+    bool isInclusive() const override;
 
     bool addValuePair(int numericalValue,
                       const std::string& literalValue,
-                      std::string& error) override final;
+                      std::string& error) override;
 
     bool getNumericalValue(const std::string& literalValue,
-                           int& numericalValue) const override final;
+                           int& numericalValue) const override;
 
-    std::string getFormattedState() const override final;
-    //@}
+    std::string getFormattedState() const override;
+    // @}
 
 private:
-
     /** Inclusive criterion state delimiter. */
     static const std::string gDelimiter;
 };
+
+} /** criterion namespace */
+} /** core namespace */

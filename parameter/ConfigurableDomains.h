@@ -30,8 +30,9 @@
 #pragma once
 
 #include "BinarySerializableElement.h"
-#include "SelectionCriteria.h"
 #include "Results.h"
+#include <criterion/Criteria.h>
+
 #include <set>
 #include <string>
 
@@ -132,7 +133,7 @@ public:
     bool setApplicationRule(const std::string& strDomain,
                             const std::string& strConfiguration,
                             const std::string& strApplicationRule,
-                            const CSelectionCriteria& criteria,
+                            const core::criterion::Criteria& criteria,
                             std::string& strError);
 
     bool clearApplicationRule(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);

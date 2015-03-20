@@ -30,10 +30,11 @@
 #pragma once
 
 #include "Rule.h"
+#include <criterion/Criterion.h>
 
 #include <string>
 
-class CSelectionCriterion;
+// FIXME: Add SelectionCriterionRule in core namespace
 
 class CSelectionCriterionRule : public CRule
 {
@@ -62,7 +63,7 @@ protected:
     virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 private:
     // Selection criterion
-    const CSelectionCriterion* _pSelectionCriterion;
+    const core::criterion::Criterion* _pSelectionCriterion;
 
     /** Method name used to match the criterion state
      *

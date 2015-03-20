@@ -28,10 +28,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "SelectionCriterionRule.h"
-#include "SelectionCriterion.h"
 #include "XmlDomainSerializingContext.h"
 #include "XmlDomainImportContext.h"
 #include "RuleParser.h"
+#include <criterion/Criterion.h>
+
 #include <assert.h>
 
 #define base CRule

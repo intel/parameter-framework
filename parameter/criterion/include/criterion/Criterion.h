@@ -29,27 +29,50 @@
  */
 #pragma once
 
+#include "client/CriterionInterface.h"
 #include "XmlSource.h"
-#include "SelectionCriterionInterface.h"
 #include <log/Logger.h>
 
 #include <map>
 #include <string>
 #include <functional>
 
+namespace core
+{
+namespace criterion
+{
+
 /** Criterion object used to apply rules based on system state */
-class CSelectionCriterion : public IXmlSource, public ISelectionCriterionInterface
+class Criterion : public IXmlSource, public CriterionInterface
 {
 public:
-    CSelectionCriterion(const std::string& name, core::log::Logger& logger);
+    /** @param[in] name the criterion name
+     *  @param[in] logger the main application logger
+     */
+    Criterion(const std::string& name, core::log::Logger& logger);
 
-    /// From ISelectionCriterionInterface
-    // State
-    virtual void setCriterionState(int iState);
-    virtual int getCriterionState() const;
-    // Name
-    virtual std::string getCriterionName() const;
-    // Modified status
+    // @{
+    /** @see CriterionInterface */
+    virtual void setCriterionState(int iState) override final;
+
+    virtual int getCriterionState() const override final;
+
+    virtual std::string getCriterionName() const override final;
+
+    virtual bool isInclusive() const override;
+
+    virtual bool addValuePair(int numericalValue,
+                              const std::string& literalValue,
+                              std::string& error) override;
+
+    bool getLiteralValue(int numericalValue, std::string& literalValue) const override final;
+
+    virtual bool getNumericalValue(const std::string& literalValue,
+                                   int& numericalValue) const override;
+
+    virtual std::string getFormattedState() const override;
+    // @}
+
     bool hasBeenModified() const;
     void resetModifiedStatus();
 
@@ -70,24 +93,7 @@ public:
      */
     bool isMatchMethodAvailable(const std::string& method) const;
 
-    /// User request
     std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
-
-    //@{
-    /** @see ISelectionCriterionInterface */
-    virtual bool isInclusive() const override;
-
-    virtual bool addValuePair(int numericalValue,
-                              const std::string& literalValue,
-                              std::string& error) override;
-
-    bool getLiteralValue(int numericalValue, std::string& literalValue) const override final;
-
-    virtual bool getNumericalValue(const std::string& literalValue,
-                                   int& numericalValue) const override;
-
-    virtual std::string getFormattedState() const override;
-    //@}
 
     /** List different values a criterion can have
      *
@@ -95,14 +101,12 @@ public:
      */
     std::string listPossibleValues() const;
 
-    /**
-      * Export to XML
-      *
-      * @param[in] xmlElement The XML element to export to
-      * @param[in] serializingContext The serializing context
-      *
-      */
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    /** Export to XML
+     *
+     * @param[in] xmlElement The XML element to export to
+     * @param[in] serializingContext The serializing context
+     */
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& context) const override;
 
 protected:
     /** Criterion Match callback type
@@ -111,7 +115,7 @@ protected:
      * and returns a boolean which indicates if the current state match the state given in
      * parameter.
      */
-    typedef std::function<bool(int)> MatchMethod;
+    typedef std::function<bool (int)> MatchMethod;
 
     /** Match method container, MatchMethod are indexed by their name */
     typedef std::map<std::string, MatchMethod> MatchMethods;
@@ -123,14 +127,15 @@ protected:
      * This Constructor initialize class members and should be called by derived class
      * in order to add functionalities
      *
-     * @param[in] name, the criterion name
+     * @param[in] name the criterion name
+     * @param[in] logger the main application logger
      * @param[in] derivedValuePairs initial value pairs of derived classes
      * @param[in] derivedMatchMethods match methods of derived classes
      */
-    CSelectionCriterion(const std::string& name,
-                        core::log::Logger& logger,
-                        const ValuePairs& derivedValuePairs,
-                        const MatchMethods& derivedMatchMethods);
+    Criterion(const std::string& name,
+              core::log::Logger& logger,
+              const ValuePairs& derivedValuePairs,
+              const MatchMethods& derivedMatchMethods);
 
     /** Set a "default formatted state" when no criterion state is set
      *
@@ -168,3 +173,5 @@ private:
     const std::string mName;
 };
 
+} /** criterion namespace */
+} /** core namespace */

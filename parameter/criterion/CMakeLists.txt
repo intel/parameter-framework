@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,19 +26,21 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_executable(test-platform
-    main.cpp
-    TestPlatform.cpp)
-
-# FIXME: Supress the need for the -Wno-unused-parameter
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
+add_library(criterion STATIC
+    src/InclusiveCriterion.cpp
+    src/Criteria.cpp
+    src/Criterion.cpp)
 
 include_directories(
-    "${PROJECT_SOURCE_DIR}/parameter/criterion/include"
-    "${PROJECT_SOURCE_DIR}/parameter/include"
-    "${PROJECT_SOURCE_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/utility")
+    include
+    "${PROJECT_SOURCE_DIR}/parameter/log/include"
+    "${PROJECT_SOURCE_DIR}/xmlserializer/"
+    "${PROJECT_SOURCE_DIR}/utility/")
 
-target_link_libraries(test-platform parameter remote-processor)
+# '-fPIC' needed for shared library to link against libcriterion
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
-install(TARGETS test-platform RUNTIME DESTINATION bin)
+# Client headers
+install(FILES
+    include/criterion/client/CriterionInterface.h
+    DESTINATION "include/parameter/client/criterion")
