@@ -32,4 +32,9 @@ if (BUILD_TESTING)
     add_test(NAME fix_point_parameter
              WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
              COMMAND ${python2} Main.py)
+
+    set_property(TEST fix_point_parameter PROPERTY ENVIRONMENT
+        PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
+        LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH}
+        PYTHONPATH=${CMAKE_BINARY_DIR}/bindings/python:$ENV{PYTHONPATH})
 endif()

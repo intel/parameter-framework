@@ -56,5 +56,11 @@ if(BUILD_TESTING)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-nonnull")
 
     target_link_libraries(cparameterUnitTest cparameter)
-    add_test(cparameterUnitTest cparameterUnitTest)
+    add_test(NAME cparameterUnitTest
+             COMMAND cparameterUnitTest)
+
+    set_property(TEST cparameterUnitTest PROPERTY ENVIRONMENT
+            PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
+            LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH})
+
 endif()
