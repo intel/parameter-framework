@@ -35,6 +35,8 @@ install(FILES ParameterFramework.h
 
 target_link_libraries(cparameter parameter)
 
+install(TARGETS cparameter LIBRARY DESTINATION lib)
+
 if(BUILD_TESTING)
     # Add catch unit test framework
     # TODO Use gtest as it is the team recommendation
