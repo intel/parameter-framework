@@ -56,5 +56,9 @@ if(BUILD_TESTING)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-nonnull")
 
     target_link_libraries(cparameterUnitTest cparameter)
-    add_test(cparameterUnitTest cparameterUnitTest)
+    add_test(NAME cparameterUnitTest
+             COMMAND cparameterUnitTest)
+
+    # Custom function defined in the top-level CMakeLists
+    set_test_env(cparameterUnitTest)
 endif()
