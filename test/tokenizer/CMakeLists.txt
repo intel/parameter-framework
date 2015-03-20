@@ -44,5 +44,11 @@ if(BUILD_TESTING)
     include_directories(${PROJECT_SOURCE_DIR}/utility)
     target_link_libraries(tokenizerTest pfw_utility)
 
-    add_test(tokenizerTest tokenizerTest)
+    add_test(NAME tokenizerTest
+             COMMAND tokenizerTest)
+
+    set_property(TEST tokenizerTest PROPERTY ENVIRONMENT
+                PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
+                LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH})
+
 endif()
