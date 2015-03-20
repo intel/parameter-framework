@@ -31,7 +31,14 @@
 
 #include <string>
 
-class ISelectionCriterionInterface
+namespace core
+{
+namespace selection
+{
+namespace criterion
+{
+
+class CriterionInterface
 {
 public:
     virtual void setCriterionState(int iState) = 0;
@@ -84,5 +91,9 @@ public:
     virtual bool isInclusive() const = 0;
 
 protected:
-    virtual ~ISelectionCriterionInterface() {}
+    virtual ~CriterionInterface() {}
 };
+
+} /** criterion namespace */
+} /** selection namespace */
+} /** core namespace */

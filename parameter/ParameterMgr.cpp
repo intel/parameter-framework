@@ -731,20 +731,20 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
     return true;
 }
 
-CSelectionCriterion* CParameterMgr::createExclusiveCriterion(const string& name)
+selection::criterion::Criterion* CParameterMgr::createExclusiveCriterion(const string& name)
 {
     // Propagate
     return mCriteria.createExclusiveCriterion(name, _logger);
 }
 
-CSelectionCriterion* CParameterMgr::createInclusiveCriterion(const string& name)
+selection::criterion::Criterion* CParameterMgr::createInclusiveCriterion(const string& name)
 {
     // Propagate
     return mCriteria.createInclusiveCriterion(name, _logger);
 }
 
 // Selection criterion retrieval
-CSelectionCriterion* CParameterMgr::getSelectionCriterion(const string& strName)
+selection::criterion::Criterion* CParameterMgr::getSelectionCriterion(const string& strName)
 {
     // Propagate
     return mCriteria.getSelectionCriterion(strName);

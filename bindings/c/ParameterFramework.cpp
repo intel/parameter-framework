@@ -41,11 +41,12 @@
 #include <cstdlib>
 
 using std::string;
+using core::selection::criterion::CriterionInterface;
 
 /** Rename long pfw types to short ones in pfw namespace. */
 namespace pfw
 {
-    typedef ISelectionCriterionInterface Criterion;
+    typedef CriterionInterface Criterion;
     typedef std::map<string, Criterion *> Criteria;
     typedef CParameterMgrPlatformConnector Pfw;
 }
@@ -188,7 +189,7 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
         }
 
         // Create criterion
-        ISelectionCriterionInterface *newCriterion = (criterion.inclusive ?
+        CriterionInterface *newCriterion = (criterion.inclusive ?
                 pfw->createInclusiveCriterion(criterion.name) :
                 pfw->createExclusiveCriterion(criterion.name));
         assert(newCriterion != NULL);

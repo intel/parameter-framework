@@ -34,6 +34,8 @@
 
 using std::string;
 
+using namespace core::selection;
+
 // Types
 const char* CCompoundRule::_apcTypes[2] = {
     "Any",

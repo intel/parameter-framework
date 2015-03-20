@@ -26,43 +26,22 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_library(cparameter SHARED ParameterFramework.cpp)
+add_library(criterion STATIC
+    src/InclusiveCriterion.cpp
+    src/Criteria.cpp
+    src/Criterion.cpp)
 
 include_directories(
-    "${PROJECT_SOURCE_DIR}/parameter/criterion/include"
-    "${PROJECT_SOURCE_DIR}/parameter/include")
+    include
+    "${PROJECT_SOURCE_DIR}/parameter/" # Results.h
+    "${PROJECT_SOURCE_DIR}/parameter/log/include"
+    "${PROJECT_SOURCE_DIR}/xmlserializer/"
+    "${PROJECT_SOURCE_DIR}/utility/")
 
-install(FILES ParameterFramework.h
-        DESTINATION "include/parameter/c")
+# '-fPIC' needed for linking against shared libraries (e.g. libparameter)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
-target_link_libraries(cparameter parameter)
-
-install(TARGETS cparameter LIBRARY DESTINATION lib)
-
-if(BUILD_TESTING)
-    # Add catch unit test framework
-    # TODO Use gtest as it is the team recommendation
-    #      Unfortunately gtest is very hard to setup as not binary distributed
-    #      catch is only one header so it is very easy
-    # Catch can be downloaded from:
-    # https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
-    # Then append the download folder to the CMAKE_INCLUDE_PATH variable or
-    # copy it in a standard location (/usr/include on most linux distribution).
-    find_path(CATCH_HEADER catch.hpp)
-    include_directories(${CATCH_HEADER})
-
-    # Add unit test
-    add_executable(cparameterUnitTest Test.cpp)
-    # Do not warn about passing a null pointer for arguments marked as requiring
-    # a non-null value by the "nonnull" function attribute.
-    # This is done as the unit tests check that invalid api use result in
-    # proper failure.
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-nonnull")
-
-    target_link_libraries(cparameterUnitTest cparameter)
-    add_test(NAME cparameterUnitTest
-             COMMAND cparameterUnitTest)
-
-    # Custom function defined in the top-level CMakeLists
-    set_test_env(cparameterUnitTest)
-endif()
+# Client headers
+install(FILES
+    include/criterion/client/CriterionInterface.h
+    DESTINATION "include/parameter/criterion/client")
