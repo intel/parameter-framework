@@ -87,7 +87,7 @@ bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCon
     }
 
     // Rely on integer access
-    uint64_t uiValue;
+    uint32_t uiValue;
 
     if (bSet) {
 
@@ -108,7 +108,7 @@ bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCon
 }
 
 // Integer Access
-bool CBitParameter::accessAsInteger(uint64_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiOffset = getOffset();
 
