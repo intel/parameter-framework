@@ -54,13 +54,11 @@ swig_link_libraries(PyPfw parameter ${PYTHON_LIBRARIES})
 # ${CMAKE_CURRENT_BINARY_DIR}.
 set_property(TARGET _PyPfw PROPERTY LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 
-# The 'unused-but-set-variable' warning must be disabled because SWIG generates
-# files that do not respect that contraint.
 # '-DSWIG_PYTHON_SILENT_MEMLEAK' is needed because the "memleak" warning
 # pollutes the standard output. At the time of writing, the only warning is
 # spurious anyway, as it relates to "ILogger *" which is an abstract
 # class/interface class and as such cannot be destroyed.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-but-set-variable -DSWIG_PYTHON_SILENT_MEMLEAK")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSWIG_PYTHON_SILENT_MEMLEAK")
 
 
 # Find the python modules install path.
