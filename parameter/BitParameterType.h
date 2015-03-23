@@ -53,7 +53,7 @@ public:
     void fromBlackboard(std::string& strValue, const uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Integer
     bool toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    void fromBlackboard(uint64_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    void fromBlackboard(uint32_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Access from area configuration
     uint64_t merge(uint64_t uiOriginData, uint64_t uiNewData) const;
 
