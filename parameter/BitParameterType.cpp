@@ -192,7 +192,7 @@ bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CP
     return true;
 }
 
-void CBitParameterType::fromBlackboard(uint64_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& parameterAccessContext) const
+void CBitParameterType::fromBlackboard(uint32_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     (void)parameterAccessContext;
 
