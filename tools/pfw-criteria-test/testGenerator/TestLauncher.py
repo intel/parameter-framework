@@ -1,6 +1,6 @@
 #
 # INTEL CONFIDENTIAL
-# Copyright 2014 Intel
+# Copyright 2014-2015 Intel
 # Corporation All Rights Reserved.
 #
 # The source code contained or described herein and all documents related to
@@ -145,8 +145,9 @@ class TestLauncher:
                 criterionValue = [criterion.currentValue]
             else:
                 criterionValue = criterion.currentValue
-            setCriterionArgs = [
-                criterion.__class__.__name__] + list(criterionValue)
+            # If no value given, we add "" to the command to set the default state
+            criterionValueArg = list(criterionValue) if list(criterionValue) else ["\"\""]
+            setCriterionArgs = [criterion.__class__.__name__] + criterionValueArg
             self.__call_process(self.__setCriterionCmd + setCriterionArgs)
 
         # Applying conf
