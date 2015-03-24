@@ -135,8 +135,6 @@ protected:
     CElement* getLastChild();
     CElement* getParent();
     CElement* findAscendantOfKind(const std::string& strKind);
-    CElement* getRoot();
-    const CElement* getRoot() const;
 
     /**
      * Creates a child CElement from a child XML Element
