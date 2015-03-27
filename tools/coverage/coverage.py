@@ -834,7 +834,7 @@ class ParsePFWlog():
 
 
     def parsePFWlog(self, lines):
-        for lineNb, lineLog in enumerate(lines):
+        for lineNb, lineLog in enumerate(lines, 1): # line number starts at 1
 
             logger.debug("Parsing line :%s" % lineLog.rstrip())
 
