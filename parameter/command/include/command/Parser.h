@@ -209,7 +209,7 @@ private:
     //@}
 
     /** Parser items map */
-    static const CommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
+    static CommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
 
     /** Parameter Manager used to delegate parsed commands */
     CParameterMgr& mParameterMgr;

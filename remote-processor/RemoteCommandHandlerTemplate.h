@@ -32,6 +32,7 @@
 #include "RemoteCommandHandler.h"
 #include <vector>
 #include <map>
+#include <functional>
 
 /** Handle command of server side application
  *
@@ -56,9 +57,9 @@ public:
      *
      * @return the command execution status, @see CommandStatus
      */
-    typedef CommandStatus (CommandParser::* RemoteCommandParser)(const IRemoteCommand&
-                                                                 remoteCommand,
-                                                                 std::string& strResult);
+    using RemoteCommandParser = std::function<CommandStatus(CommandParser&,
+                                                            const IRemoteCommand&,
+                                                            std::string&)>;
 
     /** Parser item definition */
     class RemoteCommandParserItem
@@ -119,7 +120,7 @@ public:
                 return false;
             }
 
-            switch ((commandParser.*mParser)(remoteCommand, result)) {
+            switch (mParser(commandParser, remoteCommand, result)) {
             case EDone:
                 result = "Done";
             // Fall through intentionally
@@ -158,9 +159,18 @@ public:
      * @param remoteCommandParserItems supported command parser items
      */
     RemoteCommandHandlerTemplate(CommandParser& commandParser,
-                                 const RemoteCommandParserItems& remoteCommandParserItems) :
+                                 RemoteCommandParserItems& remoteCommandParserItems) :
         _commandParser(commandParser), _remoteCommandParserItems(remoteCommandParserItems)
     {
+        /* Add the help command and specialize the help function
+         * to match RemoteCommandParser prototype
+         */
+        using namespace std::placeholders;
+        _remoteCommandParserItems.emplace(
+                "help",
+                RemoteCommandParserItem(
+                    std::bind(&RemoteCommandHandlerTemplate<CommandParser>::help, this, _1, _2, _3),
+                    0, "", "Show commands description and usage"));
     }
 
 private:
@@ -181,14 +191,6 @@ private:
             return remoteCommandParserItem.parse(_commandParser, remoteCommand, result);
         }
         catch (const std::out_of_range&) {
-
-            if (remoteCommand.getCommand() == helpCommand) {
-
-                help(result);
-
-                return true;
-            }
-
             // Not found
             result = "Command not found!\nUse \"help\" to show available commands";
 
@@ -197,14 +199,18 @@ private:
     }
 
     /** Format help display
+     * This method has to be able to match RemoteCommandParser prototype after partial
+     * specialization to be called like any other command.
      *
      * @param result the formatted help string
+     *
+     * @return ESucceeded command status
      */
-    void help(std::string& result)
+    CommandStatus help(CommandParser&, const IRemoteCommand&, std::string& result)
     {
         struct Help { std::string usage; std::string description; };
-        std::vector<Help> helps{ { helpCommand, helpCommandDescription } };
-        size_t maxUsage = helpCommand.length();
+        std::vector<Help> helps;
+        size_t maxUsage = 0;
 
         for (auto& item : _remoteCommandParserItems) {
             std::string usage = item.first + ' ' + item.second.getHelp();
@@ -216,24 +222,12 @@ private:
             help.usage.resize(maxUsage, ' ');
             result += help.usage + " => " + help.description + '\n';
         }
+        return CommandStatus::ESucceeded;
     }
-
-    /** Help command name */
-    static const std::string helpCommand;
-
-    /** Help command description */
-    static const std::string helpCommandDescription;
 
     /** Command parser used during command during command handling */
     CommandParser& _commandParser;
 
     /** Remote command parser map */
-    const RemoteCommandParserItems& _remoteCommandParserItems;
+    RemoteCommandParserItems& _remoteCommandParserItems;
 };
-
-template <typename CommandParser>
-const std::string RemoteCommandHandlerTemplate<CommandParser>::helpCommand = "help";
-
-template <typename CommandParser>
-const std::string RemoteCommandHandlerTemplate<CommandParser>::helpCommandDescription =
-    "Show commands description and usage";
