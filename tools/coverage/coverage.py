@@ -59,11 +59,11 @@ class ChildError(CustomError):
 
 class ChildNotFoundError(ChildError):
     def __str__(self):
-        return "Unable to find the child %s in %s" % (self.child, self.parent)
+        return 'Unable to find the child "%s" in "%s"' % (self.child, self.parent)
 
 class DuplicatedChildError(ChildError):
     def __str__(self):
-        return "Add existing child %s in %s." % (self.child, self.parent)
+        return 'Add existing child "%s" in "%s".' % (self.child, self.parent)
 
 class Element():
     """Root class for all coverage elements"""
@@ -109,7 +109,7 @@ class Element():
             if child.getName() == childName :
                 return child
 
-        self.debug("Child %s not found" % childName, logging.ERROR)
+        self.debug('Child "%s" not found' % childName, logging.ERROR)
 
         self.debug("Child list :")
 
