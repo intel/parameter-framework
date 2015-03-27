@@ -29,19 +29,47 @@
  */
 #pragma once
 
+#include "command/Parser.h"
 #include "ParameterMgrPlatformConnector.h"
-#include "RemoteCommandHandlerTemplate.h"
 #include <string>
 #include <semaphore.h>
+#include <iostream>
 
-class CParameterMgrPlatformConnectorLogger;
 class CRemoteProcessorServer;
 class ISelectionCriterionInterface;
 
+namespace test
+{
+namespace platform
+{
+namespace log
+{
+
+/** Logger exposed to the parameter-framework */
+class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnector::ILogger
+{
+public:
+    CParameterMgrPlatformConnectorLogger() {}
+
+    virtual void info(const std::string& log)
+    {
+        std::cout << log << std::endl;
+    }
+
+    virtual void warning(const std::string& log)
+    {
+        std::cerr << log << std::endl;
+    }
+};
+
+} /** log namespace */
+
 class CTestPlatform
 {
-    typedef RemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
-    typedef CCommandHandler::CommandStatus CommandReturn;
+
+    /** Remote command parser has access to private command handle function */
+    friend class command::Parser;
+
 public:
     CTestPlatform(const std::string &strclass, int iPortNumber, sem_t& exitSemaphore);
     virtual ~CTestPlatform();
@@ -50,88 +78,9 @@ public:
     bool load(std::string& strError);
 
 private:
-    //////////////// Remote command parsers
-    /// Selection Criterion
-    CommandReturn createExclusiveSelectionCriterionFromStateList(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-    CommandReturn createInclusiveSelectionCriterionFromStateList(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-
-    CommandReturn createExclusiveSelectionCriterion(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-    CommandReturn createInclusiveSelectionCriterion(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-
-    /** Callback to set a criterion's value, see ISelectionCriterionInterface::setCriterionState.
-     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
-     *
-     * @param[in] remoteCommand the first argument should be the name of the criterion to set.
-     *                          if the criterion is provided in lexical space,
-     *                              the following arguments should be criterion new values
-     *                          if the criterion is provided in numerical space,
-     *                              the second argument should be the criterion new value
-     */
-    CommandReturn setCriterionState(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-
-    /** Callback to start the PFW, see CParameterMgrPlatformConnector::start.
-     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
-     *
-     * @param[in] remoteCommand is ignored
-     */
-    CommandReturn startParameterMgr(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-
-    /** Callback to apply PFW configuration, see CParameterMgrPlatformConnector::applyConfiguration.
-     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
-     *
-     * @param[in] remoteCommand is ignored
-     *
-     * @return EDone (never fails)
-     */
-    CommandReturn applyConfigurations(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-
-    /** Callback to exit the test-platform.
-     *
-     * @param[in] remoteCommand is ignored
-     *
-     * @return EDone (never fails)
-     */
-    CommandReturn exit(const IRemoteCommand& remoteCommand, std::string& strResult);
-
-    /** The type of a CParameterMgrPlatformConnector boolean setter. */
-    typedef bool (CParameterMgrPlatformConnector::*setter_t)(bool, std::string&);
-    /** Template callback to create a _pParameterMgrPlatformConnector boolean setter callback.
-     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
-     *
-     * Convert the remoteCommand first argument to a boolean and call the
-     * template parameter function with this value.
-     *
-     * @tparam the boolean setter method.
-     * @param[in] remoteCommand the first argument should be ether "on" or "off".
-     */
-    template<setter_t setFunction>
-    CommandReturn setter(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-
-    /** The type of a CParameterMgrPlatformConnector boolean getter. */
-    typedef bool (CParameterMgrPlatformConnector::*getter_t)();
-    /** Template callback to create a ParameterMgrPlatformConnector boolean getter callback.
-     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
-     *
-     * Convert to boolean returned by the template parameter function converted to a
-     * std::string ("True", "False") and return it.
-     *
-     * @param the boolean getter method.
-     * @param[in] remoteCommand is ignored
-     *
-     * @return EDone (never fails)
-     */
-    template<getter_t getFunction>
-    CommandReturn getter(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     // Commands
+    // FIXME: IRemoteCommand object should be used only in command::Parser
     bool createExclusiveSelectionCriterionFromStateList(const std::string& strName, const IRemoteCommand& remoteCommand, std::string& strResult);
     bool createInclusiveSelectionCriterionFromStateList(const std::string& strName, const IRemoteCommand& remoteCommand, std::string& strResult);
 
@@ -144,10 +93,10 @@ private:
     CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;
 
     // Logger
-    CParameterMgrPlatformConnectorLogger* _pParameterMgrPlatformConnectorLogger;
+    log::CParameterMgrPlatformConnectorLogger* _pParameterMgrPlatformConnectorLogger;
 
-    // Command Handler
-    CCommandHandler _commandHandler;
+    /** Command Parser delegate */
+    command::Parser _commandParser;
 
     // Remote Processor Server
     CRemoteProcessorServer* _pRemoteProcessorServer;
@@ -157,8 +106,7 @@ private:
 
     // Semaphore used by calling thread to avoid exiting
     sem_t& _exitSemaphore;
-
-    /** Parsing information for remote command */
-    static const CCommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
 };
 
+} /** platform namespace */
+} /** test namespace */
