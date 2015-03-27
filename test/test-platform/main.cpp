@@ -53,7 +53,7 @@ static bool startBlockingTestPlatform(const char *filePath, int portNumber, stri
     sem_init(&sem, false, 0);
 
     // Create param mgr
-    CTestPlatform testPlatform(filePath, portNumber, sem);
+    test::platform::CTestPlatform testPlatform(filePath, portNumber, sem);
 
     // Start platformmgr
     if (!testPlatform.load(strError)) {
@@ -116,7 +116,7 @@ static bool startDaemonTestPlatform(const char *filePath, int portNumber, string
         sem_init(&sem, false, 0);
 
         // Create param mgr
-        CTestPlatform testPlatform(filePath, portNumber, sem);
+        test::platform::CTestPlatform testPlatform(filePath, portNumber, sem);
 
         // Message to send to parent process
         bool loadSuccess = testPlatform.load(strError);
