@@ -41,7 +41,7 @@ namespace platform
 namespace command
 {
 
-const Parser::CommandHandler::RemoteCommandParserItems Parser::gRemoteCommandParserItems = {
+Parser::CommandHandler::RemoteCommandParserItems Parser::gRemoteCommandParserItems = {
     { "exit",
       { &Parser::exit, 0, "",
         "Exit TestPlatform" } },

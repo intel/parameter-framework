@@ -49,9 +49,9 @@ Parser::Parser(CParameterMgr& parameterMgr) :
 {
 }
 
-const Parser::CommandHandler::RemoteCommandParserItems &Parser::getRemoteParserItems() const
+Parser::CommandHandler::RemoteCommandParserItems &Parser::getRemoteParserItems() const
 {
-    static const CommandHandler::RemoteCommandParserItems remoteCommandParserItems = {
+    static CommandHandler::RemoteCommandParserItems remoteCommandParserItems = {
         { "version",
           { &Parser::version, 0, "",
             "Show version" } },

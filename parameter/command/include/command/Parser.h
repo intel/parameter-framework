@@ -215,7 +215,7 @@ private:
     //@}
 
     /** Parser items getter */
-    const CommandHandler::RemoteCommandParserItems &getRemoteParserItems() const;
+    CommandHandler::RemoteCommandParserItems &getRemoteParserItems() const;
 
     /** Parameter Manager used to delegate parsed commands */
     CParameterMgr& mParameterMgr;
