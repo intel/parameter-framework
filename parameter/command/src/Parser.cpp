@@ -46,7 +46,7 @@ namespace core
 namespace command
 {
 
-const Parser::CommandHandler::RemoteCommandParserItems Parser::gRemoteCommandParserItems = {
+Parser::CommandHandler::RemoteCommandParserItems Parser::gRemoteCommandParserItems = {
     { "version", { &Parser::version, 0, "", "Show version" } },
     { "status", { &Parser::status, 0, "", "Show current status" } },
     { "setTuningMode",

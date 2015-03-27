@@ -171,7 +171,7 @@ private:
     CommandReturn getter(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /** Parser items map */
-    static const CommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
+    static CommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
 
     /** Test PLatform used to delegate parsed commands */
     CTestPlatform& mTestPlatform;
