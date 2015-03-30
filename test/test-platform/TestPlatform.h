@@ -32,7 +32,6 @@
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteCommandHandlerTemplate.h"
 #include <string>
-#include <list>
 #include <semaphore.h>
 
 class CParameterMgrPlatformConnectorLogger;
