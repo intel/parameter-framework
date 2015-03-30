@@ -43,7 +43,7 @@ common_c_includes := \
     $(LOCAL_PATH)/../../parameter/include \
     $(LOCAL_PATH)/../../remote-processor/
 
-common_ldlibs := -pthread
+common_ldlibs := -lpthread
 
 common_shared_libraries := libparameter libremote-processor
 #############################
@@ -63,7 +63,8 @@ LOCAL_LDLIBS := $(common_ldlibs)
 LOCAL_STATIC_LIBRARIES := libpfw_utility
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
 
-include external/stlport/libstlport.mk
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_EXECUTABLE)
 
 ##############################
@@ -84,4 +85,6 @@ LOCAL_STATIC_LIBRARIES := libpfw_utility_host
 LOCAL_SHARED_LIBRARIES := $(foreach shared_library, $(common_shared_libraries), \
     $(shared_library)_host)
 
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_HOST_EXECUTABLE)
