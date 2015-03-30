@@ -44,16 +44,22 @@ namespace command
 const Parser::CommandHandler::RemoteCommandParserItems Parser::gRemoteCommandParserItems = {
     { "exit", { &Parser::exit, 0, "", "Exit TestPlatform" } },
     { "createExclusiveSelectionCriterionFromStateList",
-      { &Parser::createExclusiveSelectionCriterionFromStateList, 2, "<name> <stateList>",
+      { &Parser::createCriterionFromStateList<
+          &CTestPlatform::createExclusiveSelectionCriterionFromStateList>,
+          2, "<name> <stateList>",
           "Create inclusive selection criterion from state name list" } },
     { "createInclusiveSelectionCriterionFromStateList",
-      { &Parser::createInclusiveSelectionCriterionFromStateList, 2, "<name> <stateList>",
+      { &Parser::createCriterionFromStateList<
+          &CTestPlatform::createInclusiveSelectionCriterionFromStateList>,
+          2, "<name> <stateList>",
           "Create exclusive selection criterion from state name list" } },
     { "createExclusiveSelectionCriterion",
-      { &Parser::createExclusiveSelectionCriterion, 2, "<name> <nbStates>",
+      { &Parser::createCriterion<&CTestPlatform::createExclusiveSelectionCriterion>,
+          2, "<name> <nbStates>",
           "Create inclusive selection criterion" } },
     { "createInclusiveSelectionCriterion",
-      { &Parser::createInclusiveSelectionCriterion, 2, "<name> <nbStates>",
+      { &Parser::createCriterion<&CTestPlatform::createInclusiveSelectionCriterion>,
+          2, "<name> <nbStates>",
           "Create exclusive selection criterion" } },
     { "start", { &Parser::startParameterMgr, 0, "", "Start ParameterMgr" } },
     { "setCriterionState",
@@ -107,43 +113,21 @@ Parser::CommandReturn Parser::exit(const IRemoteCommand&, std::string&)
     return Parser::CommandHandler::EDone;
 }
 
-Parser::CommandReturn
-Parser::createExclusiveSelectionCriterionFromStateList(const IRemoteCommand& remoteCommand,
-                                                       std::string& strResult)
+template<Parser::CreateCriterionFromStateList factory>
+Parser::CommandReturn Parser::createCriterionFromStateList(const IRemoteCommand& remoteCommand,
+                                                           std::string& strResult)
 {
-    return mTestPlatform.createExclusiveSelectionCriterionFromStateList(
-        remoteCommand.getArgument(0), remoteCommand, strResult) ?
+    return (mTestPlatform.*factory)(remoteCommand.getArgument(0), remoteCommand, strResult) ?
            Parser::CommandHandler::EDone : Parser::CommandHandler::EFailed;
 }
 
-Parser::CommandReturn
-Parser::createInclusiveSelectionCriterionFromStateList(const IRemoteCommand& remoteCommand,
-                                                       std::string& strResult)
+template<Parser::CreateCriterion factory>
+Parser::CommandReturn Parser::createCriterion(const IRemoteCommand& remoteCommand,
+                                              std::string& strResult)
 {
-    return mTestPlatform.createInclusiveSelectionCriterionFromStateList(
-        remoteCommand.getArgument(0), remoteCommand, strResult) ?
-           Parser::CommandHandler::EDone : Parser::CommandHandler::EFailed;
-}
-
-Parser::CommandReturn
-Parser::createExclusiveSelectionCriterion(const IRemoteCommand& remoteCommand,
-                                          std::string& strResult)
-{
-    return mTestPlatform.createExclusiveSelectionCriterion(
-        remoteCommand.getArgument(0),
-        strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
-        strResult) ?
-           Parser::CommandHandler::EDone : Parser::CommandHandler::EFailed;
-}
-
-Parser::CommandReturn
-Parser::createInclusiveSelectionCriterion(const IRemoteCommand& remoteCommand,
-                                          std::string& strResult)
-{
-    return mTestPlatform.createInclusiveSelectionCriterion(
-        remoteCommand.getArgument(0),
-        strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
-        strResult) ?
+    return (mTestPlatform.*factory)(remoteCommand.getArgument(0),
+                                    strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
+                                    strResult) ?
            Parser::CommandHandler::EDone : Parser::CommandHandler::EFailed;
 }
 
