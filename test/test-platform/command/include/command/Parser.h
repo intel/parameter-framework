@@ -69,15 +69,39 @@ private:
     /** Command handler method return type */
     typedef CommandHandler::CommandStatus CommandReturn;
 
-    CommandReturn createExclusiveSelectionCriterionFromStateList(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-    CommandReturn createInclusiveSelectionCriterionFromStateList(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
+    /** Type of criterion factory which use a state list */
+    using CreateCriterionFromStateList = bool (CTestPlatform::*)(const std::string&,
+                                                                 const IRemoteCommand&,
+                                                                 std::string&);
 
-    CommandReturn createExclusiveSelectionCriterion(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-    CommandReturn createInclusiveSelectionCriterion(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
+    /** Callback to create a criterion from a state list
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
+     *
+     * @tparam factory method, can be either for inclusive or exclusive criterion
+     *
+     * @param[in] remoteCommand the first argument should be the name of the criterion to set.
+     *                          others arguments should be state names.
+     */
+    template<CreateCriterionFromStateList factory>
+    CommandReturn createCriterionFromStateList(const IRemoteCommand& remoteCommand,
+                                               std::string& strResult);
+
+    /** Type of criterion factory which use the state number */
+    using CreateCriterion = bool (CTestPlatform::*)(const std::string&,
+                                                    uint32_t,
+                                                    std::string&);
+
+    /** Callback to create a criterion from a state number
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
+     *
+     * @tparam factory method, can be either for inclusive or exclusive criterion
+     *
+     * @param[in] remoteCommand the first argument should be the name of the criterion to set.
+     *                          the second argument should be the criterion state number.
+     */
+    template<CreateCriterion factory>
+    CommandReturn createCriterion(const IRemoteCommand& remoteCommand,
+                                  std::string& strResult);
 
     /** Callback to set a criterion's value, see ISelectionCriterionInterface::setCriterionState.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
