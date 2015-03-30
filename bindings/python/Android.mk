@@ -80,5 +80,7 @@ $(generated-sources-dir)/pfw_wrap.cxx: $(LOCAL_PATH)/pfw.i
 		-Iprebuilts/misc/common/swig/include/2.0.11/ \
 		-Wall -Werror -v -python -c++ -outdir $(HOST_LIBRARY_PATH)/ -o $@ $^
 
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_HOST_SHARED_LIBRARY)
 
