@@ -28,14 +28,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <strings.h>
 #include <iostream>
-#include <stdlib.h>
 #include <sstream>
 #include <assert.h>
-#include <errno.h>
 #include <convert.hpp>
-#include <sstream>
 #include "TestPlatform.h"
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteProcessorServer.h"
