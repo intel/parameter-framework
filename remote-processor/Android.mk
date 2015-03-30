@@ -51,7 +51,7 @@ common_cflags := \
         -Wno-unused-parameter \
         -pthread
 
-common_ldlibs := -pthread
+common_ldlibs := -lpthread
 
 #############################
 # Target build
@@ -67,7 +67,8 @@ LOCAL_MODULE := $(common_module)
 LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
-include external/stlport/libstlport.mk
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_SHARED_LIBRARY)
 
 ##############################
@@ -85,4 +86,6 @@ LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := $(common_module_tags)
 
 
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_HOST_SHARED_LIBRARY)
