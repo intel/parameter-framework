@@ -43,6 +43,7 @@ Test cases :
 """
 import commands, os
 import unittest
+import difflib
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
 log=ACTLogging.Logger()
@@ -106,7 +107,6 @@ class TestCases(PfwTestCase):
         assert out == commands.getoutput("cat %s"%(self.reference_dumpDomains_file)), log.F("A diff is found between dumpDomains output and %s"%(self.reference_dumpDomains_file))
         log.I("Command [dumpDomains] - correctly executed")
 
-    @unittest.expectedFailure
     def test_02_dumpElements_Case(self):
         """
         Testing dumpElements function
@@ -147,9 +147,10 @@ class TestCases(PfwTestCase):
 
         f = open(self.reference_dumpElement_file, 'r')
         ref_dumpElement = f.read()
+        diff = difflib.ndiff(out.splitlines(1), ref_dumpElement.splitlines(1))
         f.closed
 
-        assert out == ref_dumpElement,log.F("A diff is found between dumpDomains output and %s"%(self.reference_dumpElement_file))
+        assert out == ref_dumpElement,log.F("A diff is found between dumpDomains output and %s\n\n_____________\n%s"%(self.reference_dumpElement_file, ''.join(diff)))
         log.I("Command [dumpElement] - correctly executed")
 
     def test_03_help_Case(self):
