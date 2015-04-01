@@ -56,7 +56,6 @@ class TestCases(PfwTestCase):
         pfw_test_tools=os.getenv("PFW_TEST_TOOLS")
         self.reference_dumpDomains_xml = pfw_test_tools+"/xml/XML_Test/Reference_dumpDomains.xml"
         self.reference_dumpDomains_file = pfw_test_tools+"/xml/XML_Test/Reference_dumpDomains"
-        self.reference_dumpElement_file = pfw_test_tools+"/xml/XML_Test/Reference_dumpElement"
         self.initial_xml = pfw_test_tools+"/xml/TestConfigurableDomains.xml"
 
         self.list_domains=[]
@@ -105,52 +104,6 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("Command [dumpDomains] : %s"%(err))
         assert out == commands.getoutput("cat %s"%(self.reference_dumpDomains_file)), log.F("A diff is found between dumpDomains output and %s"%(self.reference_dumpDomains_file))
         log.I("Command [dumpDomains] - correctly executed")
-
-    @unittest.expectedFailure
-    def test_02_dumpElements_Case(self):
-        """
-        Testing dumpElements function
-        -----------------------------
-            WARNING: This test is based on the Reference_DumpElements that must
-            be updated and reviewed when TestSubsystem.xml is modified.
-            PATH :
-                - $PFW_TEST_TOOLS/xml/XML_Tests/Reference_DumpElements
-                - $PFW_TEST_TOOLS/xml/TestSubsystem.xml
-
-            Test case description :
-            ~~~~~~~~~~~~~~~~~~~~~~~
-                - dumpElements
-                - compare out to a reference file : Reference_DumpElements
-            Tested commands :
-            ~~~~~~~~~~~~~~~~~
-                - [importDomainsWithSettingsXML] function
-                - [dumpElements] function
-            Used commands :
-            ~~~~~~~~~~~~~~~
-                - [importDomainsWithSettingsXML] function
-            Expected result :
-            ~~~~~~~~~~~~~~~~~
-                - string stdout due to dumpElements is the same than string in
-                the reference file
-        """
-        log.D(self.test_02_dumpElements_Case.__doc__)
-
-        #Import a reference XML file
-        log.I("Import Domains with settings from %s"%(self.reference_dumpDomains_xml))
-        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",self.reference_dumpDomains_xml, "")
-        assert err == None, log.E("Command [importDomainsWithSettingsXML %s] : %s"%(self.reference_dumpDomains_xml,err))
-        assert out == "Done", log.F("When using function importDomainsWithSettingsXML %s]"%(self.reference_dumpDomains_xml))
-
-        log.I("Command [dumpElement /Test/]")
-        out, err = self.pfw.sendCmd("dumpElement","/Test/")
-        assert err == None, log.E("Command [dumpElement /Test/] : %s"%(err))
-
-        f = open(self.reference_dumpElement_file, 'r')
-        ref_dumpElement = f.read()
-        f.closed
-
-        assert out == ref_dumpElement,log.F("A diff is found between dumpDomains output and %s"%(self.reference_dumpElement_file))
-        log.I("Command [dumpElement] - correctly executed")
 
     def test_03_help_Case(self):
         """
