@@ -1,4 +1,6 @@
-# Copyright (c) 2015, Intel Corporation
+# -*-coding:utf-8 -*
+
+# Copyright (c) 2011-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,29 +28,21 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-if(BUILD_TESTING)
-    # Add catch unit test framework
-    # TODO Use gtest as it is the team recommendation
-    #      Unfortunately gtest is very hard to setup as not binary distributed
-    #      catch is only one header so it is very easy
-    # Catch can be downloaded from:
-    # https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
-    # Then append the download folder to the CMAKE_INCLUDE_PATH variable or
-    # copy it in a standard location (/usr/include on most linux distribution).
-    find_path(CATCH_HEADER catch.hpp)
-    include_directories(${CATCH_HEADER})
+class Logger(object) :
+    def E(self, string):
+        print "\nERROR: %s\n" % (string)
+        return "ERROR: %s" % (string)
 
-    # Add unit test
-    add_executable(tokenizerTest Test.cpp)
+    def F(self, string):
+        print "\nFAIL : %s\n" % (string)
+        return "FAIL : %s" % (string)
 
-    include_directories(${PROJECT_SOURCE_DIR}/utility)
-    target_link_libraries(tokenizerTest pfw_utility)
+    def I(self, string):
+        print "INFO : %s" % (string)
+        return "INFO : %s" % (string)
 
-    add_test(NAME tokenizerTest
-             COMMAND tokenizerTest)
-
-    set_property(TEST tokenizerTest PROPERTY ENVIRONMENT
-                PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
-                LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH})
-
-endif()
+    def D(self, string):
+        print "\n======================================================================"
+        print "%s" %(string)
+        print "======================================================================"
+        return string

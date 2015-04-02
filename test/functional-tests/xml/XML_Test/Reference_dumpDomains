@@ -1,0 +1,12 @@
+- ConfigurableDomains: Test
+    - ConfigurableDomain: Domain_0_1 = {Sequence aware: no, Last applied configuration: <none>}
+        - Configuration: Conf_0_0
+    - ConfigurableDomain: Domain_1_2 = {Sequence aware: no, Last applied configuration: <none>}
+        - Configuration: Conf_1_0
+            - CompoundRule = All
+                - SelectionCriterionRule = Crit_0 Includes State_0x1
+                - SelectionCriterionRule = Crit_1 Is State_1
+        - Configuration: Conf_1_1
+            - CompoundRule = Any
+                - SelectionCriterionRule = Crit_0 Includes State_0x2
+                - SelectionCriterionRule = Crit_1 IsNot State_1

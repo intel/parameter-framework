@@ -1,4 +1,4 @@
-# Copyright (c) 2015, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,29 +26,36 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-if(BUILD_TESTING)
-    # Add catch unit test framework
-    # TODO Use gtest as it is the team recommendation
-    #      Unfortunately gtest is very hard to setup as not binary distributed
-    #      catch is only one header so it is very easy
-    # Catch can be downloaded from:
-    # https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
-    # Then append the download folder to the CMAKE_INCLUDE_PATH variable or
-    # copy it in a standard location (/usr/include on most linux distribution).
-    find_path(CATCH_HEADER catch.hpp)
-    include_directories(${CATCH_HEADER})
+if (BUILD_TESTING)
+    find_program(python2 python2)
 
-    # Add unit test
-    add_executable(tokenizerTest Test.cpp)
+    set(PFW_ROOT ${CMAKE_BINARY_DIR}/tmp/test-parameters)
+    set(PFW_RESULT ${PFW_ROOT}/result)
 
-    include_directories(${PROJECT_SOURCE_DIR}/utility)
-    target_link_libraries(tokenizerTest pfw_utility)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestSubsystem.xml.in
+        ${PFW_ROOT}/xml/configuration/Structure/Test/TestSubsystem.xml @ONLY)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestClass.xml
+        ${PFW_ROOT}/xml/configuration/Structure/Test/TestClass.xml
+        COPYONLY)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/ParameterFrameworkConfiguration.xml
+        ${PFW_ROOT}/xml/configuration/ParameterFrameworkConfiguration.xml
+        COPYONLY)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
+        ${PFW_ROOT}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
+        COPYONLY)
 
-    add_test(NAME tokenizerTest
-             COMMAND tokenizerTest)
+    add_test(NAME functional-test
+             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+             COMMAND ${python2} -B ACTCampaignEngine.py)
 
-    set_property(TEST tokenizerTest PROPERTY ENVIRONMENT
-                PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
-                LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH})
+    set_property(TEST functional-test PROPERTY ENVIRONMENT
+            PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
+            LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH}
+            PFW_ROOT=${PFW_ROOT}
+            PFW_RESULT=${PFW_RESULT})
 
 endif()

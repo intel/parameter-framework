@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -38,9 +38,12 @@ project(parameter-framework)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
 option(COVERAGE "Build with coverage support" OFF)
 if(COVERAGE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fprofile-arcs -ftest-coverage")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
 endif()
 
@@ -58,6 +61,8 @@ configure_file(CTestCustom.cmake ${CMAKE_BINARY_DIR} COPYONLY)
 add_subdirectory(test/test-platform)
 add_subdirectory(test/test-fixed-point-parameter)
 add_subdirectory(test/tokenizer)
+add_subdirectory(test/functional-tests)
+add_subdirectory(test/test-subsystem)
 
 option(BASH_COMPLETION "Install bash completion configuration" ON)
 if (BASH_COMPLETION)

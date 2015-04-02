@@ -26,29 +26,19 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-if(BUILD_TESTING)
-    # Add catch unit test framework
-    # TODO Use gtest as it is the team recommendation
-    #      Unfortunately gtest is very hard to setup as not binary distributed
-    #      catch is only one header so it is very easy
-    # Catch can be downloaded from:
-    # https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
-    # Then append the download folder to the CMAKE_INCLUDE_PATH variable or
-    # copy it in a standard location (/usr/include on most linux distribution).
-    find_path(CATCH_HEADER catch.hpp)
-    include_directories(${CATCH_HEADER})
+if (BUILD_TESTING)
 
-    # Add unit test
-    add_executable(tokenizerTest Test.cpp)
+    add_library(test-subsystem SHARED
+        TESTSubsystem.cpp
+        TESTSubsystemBinary.cpp
+        TESTSubsystemObject.cpp
+        TESTSubsystemString.cpp
+        TESTSubsystemBuilder.cpp)
 
-    include_directories(${PROJECT_SOURCE_DIR}/utility)
-    target_link_libraries(tokenizerTest pfw_utility)
+    include_directories(
+        "${PROJECT_SOURCE_DIR}/xmlserializer"
+        "${PROJECT_SOURCE_DIR}/remote-processor"
+        "${PROJECT_SOURCE_DIR}/parameter")
 
-    add_test(NAME tokenizerTest
-             COMMAND tokenizerTest)
-
-    set_property(TEST tokenizerTest PROPERTY ENVIRONMENT
-                PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
-                LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH})
-
+    target_link_libraries(test-subsystem parameter)
 endif()
