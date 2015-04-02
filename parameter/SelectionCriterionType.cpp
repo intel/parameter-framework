@@ -179,7 +179,10 @@ std::string CSelectionCriterionType::getFormattedState(int iValue) const
             // Simple translation
             std::string strSingleValue;
 
-            getLiteralValue(iSingleBitValue, strSingleValue);
+            if (!getLiteralValue(iSingleBitValue, strSingleValue)) {
+                // Numeric value not part supported values for this criterion type.
+                continue;
+            }
 
             if (bFirst) {
 
