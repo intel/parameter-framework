@@ -1,4 +1,6 @@
-# Copyright (c) 2014, Intel Corporation
+# -*-coding:utf-8 -*
+
+# Copyright (c) 2011-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,13 +28,21 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-if (BUILD_TESTING)
-    find_program(python2 python2)
+class Logger(object) :
+    def E(self, string):
+        print "\nERROR: %s\n" % (string)
+        return "ERROR: %s" % (string)
 
-    add_test(NAME fix_point_parameter
-             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-             COMMAND ${python2} Main.py)
+    def F(self, string):
+        print "\nFAIL : %s\n" % (string)
+        return "FAIL : %s" % (string)
 
-    # Custom function defined in the top-level CMakeLists
-    set_test_env(fix_point_parameter)
-endif()
+    def I(self, string):
+        print "INFO : %s" % (string)
+        return "INFO : %s" % (string)
+
+    def D(self, string):
+        print "\n======================================================================"
+        print "%s" %(string)
+        print "======================================================================"
+        return string

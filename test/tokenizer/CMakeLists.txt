@@ -44,5 +44,9 @@ if(BUILD_TESTING)
     include_directories(${PROJECT_SOURCE_DIR}/utility)
     target_link_libraries(tokenizerTest pfw_utility)
 
-    add_test(tokenizerTest tokenizerTest)
+    add_test(NAME tokenizerTest
+             COMMAND tokenizerTest)
+
+    # Custom function defined in the top-level CMakeLists
+    set_test_env(tokenizerTest)
 endif()

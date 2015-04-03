@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/home/lab/ICS/hardware/intel/PRIVATE/parameter-framework/test/configuration/Schemas/Subsystem.xsd" Name="Test" Type="TEST" Endianness="Little">
+	<ComponentLibrary>
+		<ComponentType Name="TEST_DIR">
+			<!-- Tested Booleans -->
+			<BooleanParameter Name="BOOL" Mapping="Binary:BOOL"/>
+			<!-- Tested FixedPoints -->
+			<FixedPointParameter Name="FP8_Q0.7" Size="8" Integral="0" Fractional="7" Mapping="Binary:FP8_Q.7"/>
+			<FixedPointParameter Name="FP8_Q7.0" Size="8" Integral="7" Fractional="0" Mapping="Binary:FP8_7.0"/>
+			<FixedPointParameter Name="FP8_Q3.4" Size="8" Integral="3" Fractional="4" Mapping="Binary:FP8_3.4"/>
+			<FixedPointParameter Name="FP16_Q0.15" Size="16" Integral="0" Fractional="15" Mapping="Binary:FP16_Q.15"/>
+			<FixedPointParameter Name="FP16_Q15.0" Size="16" Integral="15" Fractional="0" Mapping="Binary:FP16_15.0"/>
+			<FixedPointParameter Name="FP16_Q7.8" Size="16" Integral="7" Fractional="8" Mapping="Binary:FP16_7.8"/>
+			<FixedPointParameter Name="FP32_Q0.31" Size="32" Integral="0" Fractional="31" Mapping="Binary:FP32_Q.31"/>
+			<FixedPointParameter Name="FP32_Q31.0" Size="32" Integral="31" Fractional="0" Mapping="Binary:FP32_31.0"/>
+			<FixedPointParameter Name="FP32_Q15.16" Size="32" Integral="15" Fractional="16" Mapping="Binary:FP32_15.16"/>
+			<FixedPointParameter Name="FP32_Q8.20" Size="32" Integral="8" Fractional="20" Mapping="Binary:FP32_Q8.20"/>
+			<!-- Tested Integers -->
+			<IntegerParameter Name="UINT32" Size="32" Signed="false" Max="1000" Mapping="Binary:UINT32"/>
+			<IntegerParameter Name="INT32" Size="32" Signed="true" Min="-1000" Max="1000" Mapping="Binary:INT32"/>
+			<IntegerParameter Name="UINT32_Max" Size="32" Signed="false" Max="4294967295" Mapping="Binary:UINT32_Max"/>
+			<IntegerParameter Name="INT32_Max" Size="32" Signed="true" Min="-2147483648" Max="2147483647" Mapping="Binary:INT32"/>
+			<IntegerParameter Name="UINT16" Size="16" Signed="false" Max="1000" Mapping="Binary:UINT16"/>
+			<IntegerParameter Name="INT16" Size="16" Signed="true" Min="-1000" Max="1000" Mapping="Binary:INT16"/>
+			<IntegerParameter Name="UINT16_Max" Size="16" Signed="false" Max="65535" Mapping="Binary:UINT16_Max"/>
+			<IntegerParameter Name="INT16_Max" Size="16" Signed="true" Min="-32768" Max="32767" Mapping="Binary:INT16_Max"/>
+			<IntegerParameter Name="UINT8" Size="8" Signed="false" Max="100" Mapping="Binary:UINT8"/>
+			<IntegerParameter Name="INT8" Size="8" Signed="true" Min="-100" Max="100" Mapping="Binary:INT8"/>
+			<IntegerParameter Name="UINT8_Max" Size="8" Signed="false" Max="255" Mapping="Binary:UINT8_Max"/>
+			<IntegerParameter Name="INT8_Max" Size="8" Signed="true" Min="-128" Max="127" Mapping="Binary:INT8_Max"/>
+			<!-- Tested Arrays -->
+			<IntegerParameter Name="UINT32_ARRAY" Size="32" Signed="false" ArrayLength="100" Min="0" Max="100" Mapping="Binary:UINT32_ARRAY"/>
+			<IntegerParameter Name="INT16_ARRAY" Size="16" Signed="true" ArrayLength="5" Min="-50" Max="50" Mapping="Binary:INT16_ARRAY_signed"/>
+			<IntegerParameter Name="UINT8_ARRAY" Size="8" Signed="false" ArrayLength="5" Min="0" Max="15" Mapping="Binary:UINT8_ARRAY"/>
+			<IntegerParameter Name="UINT8_Max_ARRAY" Size="8" Signed="false" ArrayLength="5" Min="0" Max="255" Mapping="Binary:UINT8_Max_ARRAY"/>
+			<!-- Tested String-->
+			<StringParameter Name="STR_CHAR128" MaxLength="128" Mapping="String:STRING"/>
+		</ComponentType>
+		<ComponentType Name="TEST_DOMAIN_0">
+			<IntegerParameter Name="Param_00" Size="16" Signed="false" Mapping="Binary:Param_00"/>
+			<IntegerParameter Name="Param_01" Size="16" Signed="false" Mapping="Binary:Param_01"/>
+			<IntegerParameter Name="Param_02" Size="16" Signed="false" Mapping="Binary:Param_02"/>
+		</ComponentType>
+		<ComponentType Name="TEST_DOMAIN_1">
+			<IntegerParameter Name="Param_10" Size="16" Signed="false" Mapping="Binary:Param_10"/>
+			<IntegerParameter Name="Param_11" Size="16" Signed="false" Mapping="Binary:Param_11"/>
+			<IntegerParameter Name="Param_12" Size="16" Signed="false" Mapping="Binary:Param_12"/>
+		</ComponentType>
+		<ComponentType Name="TEST_TYPES">
+			<!-- Tested Enum -->
+			<EnumParameter Name="ENUM" Size="8" Mapping="Binary:ENUM">
+				<ValuePair Literal="ENUM_MIN" Numerical="-128"/>
+				<ValuePair Literal="ENUM_MAX" Numerical="127"/>
+				<ValuePair Literal="ENUM_NOMINAL" Numerical="5"/>
+				<ValuePair Literal="ENUM_OOB" Numerical="255"/>
+				<ValuePair Literal="ENUM_OOS" Numerical="256"/>
+			</EnumParameter>
+			<BitParameterBlock Name="BLOCK_8BIT" Size="8" Mapping="Binary:BLOCK_8BIT">
+				<BitParameter Name="BIT_0_3" Size="3" Pos="0"/>
+				<BitParameter Name="BIT_3_1" Size="1" Pos="3"/>
+				<BitParameter Name="BIT_4_1" Size="1" Pos="4"/>
+				<BitParameter Name="BIT_6_2" Size="2" Pos="6"/>
+				<BitParameter Name="BIT_7_1" Size="1" Pos="7"/>
+			</BitParameterBlock>
+			<ParameterBlock Name="BLOCK_PARAMETER">
+				<IntegerParameter Name="UINT8" Size="8" Signed="false" Mapping="Binary:BLOCK_UINT8"/>
+				<IntegerParameter Name="UINT16" Size="16" Signed="false" Mapping="Binary:BLOCK_UINT16"/>
+				<IntegerParameter Name="UINT32" Size="32" Signed="false" Mapping="Binary:BLOCK_UINT32"/>
+			</ParameterBlock>
+		</ComponentType>
+		<ComponentType Name="TEST_MAIN">
+			<Component Name = "TEST_DIR_0" Type="TEST_DIR"/>
+			<Component Name = "TEST_DIR_1" Type="TEST_DOMAIN_0"/>
+			<Component Name = "TEST_DIR_2" Type="TEST_DOMAIN_1"/>
+		</ComponentType>
+	</ComponentLibrary>
+	<InstanceDefinition>
+		<Component Name="TEST_DIR" Type="TEST_DIR" Mapping="Directory:@PFW_RESULT@"/>
+		<Component Name="TEST_DOMAIN_0" Type="TEST_DOMAIN_0" Mapping="Directory:@PFW_RESULT@"/>
+		<Component Name="TEST_DOMAIN_1" Type="TEST_DOMAIN_1" Mapping="Directory:@PFW_RESULT@"/>
+		<Component Name="TEST_TYPES" Type="TEST_TYPES" Mapping="Directory:@PFW_RESULT@"/>
+		<Component Name="TEST_MAIN" Type="TEST_MAIN" Mapping="Directory:@PFW_RESULT@"/>
+	</InstanceDefinition>
+</Subsystem>

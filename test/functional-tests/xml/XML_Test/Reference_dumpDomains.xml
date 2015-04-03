@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfigurableDomains xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/home/lab/ICS/hardware/intel/PRIVATE/parameter-framework/test/configuration/Schemas/ConfigurableDomains.xsd" SystemClassName="Test">
+
+	<ConfigurableDomain Name="Domain_0_1">
+		<Configurations>
+			<Configuration Name="Conf_0_0"/>
+		</Configurations>
+		<ConfigurableElements>
+			<ConfigurableElement Path="/Test/Test/TEST_DOMAIN_0" />
+		</ConfigurableElements>
+		<Settings>
+			<Configuration Name="Conf_0_0">
+				<ConfigurableElement Path="/Test/Test/TEST_DOMAIN_0">
+					<Component Name="TEST_DOMAIN_0">
+						<IntegerParameter Name="Param_00">0</IntegerParameter>
+						<IntegerParameter Name="Param_01">0</IntegerParameter>
+						<IntegerParameter Name="Param_02">0</IntegerParameter>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+		</Settings>
+	</ConfigurableDomain>
+	<ConfigurableDomain Name="Domain_1_2">
+		<Configurations>
+			<Configuration Name="Conf_1_0">
+				<CompoundRule Type="All">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Includes" Value="State_0x1"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="Is" Value="State_1"/>
+				</CompoundRule>
+			</Configuration>
+			<Configuration Name="Conf_1_1">
+				<CompoundRule Type="Any">
+					<SelectionCriterionRule SelectionCriterion="Crit_0" MatchesWhen="Includes" Value="State_0x2"/>
+					<SelectionCriterionRule SelectionCriterion="Crit_1" MatchesWhen="IsNot" Value="State_1"/>
+				</CompoundRule>
+			</Configuration>
+		</Configurations>
+		<ConfigurableElements>
+			<ConfigurableElement Path="/Test/Test/TEST_DOMAIN_1" />
+		</ConfigurableElements>
+		<Settings>
+			<Configuration Name="Conf_1_1">
+				<ConfigurableElement Path="/Test/Test/TEST_DOMAIN_1">
+					<Component Name="TEST_DOMAIN_1">
+						<IntegerParameter Name="Param_10">4</IntegerParameter>
+						<IntegerParameter Name="Param_11">4</IntegerParameter>
+						<IntegerParameter Name="Param_12">4</IntegerParameter>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+			<Configuration Name="Conf_1_0">
+				<ConfigurableElement Path="/Test/Test/TEST_DOMAIN_1">
+					<Component Name="TEST_DOMAIN_1">
+						<IntegerParameter Name="Param_10">5</IntegerParameter>
+						<IntegerParameter Name="Param_11">5</IntegerParameter>
+						<IntegerParameter Name="Param_12">5</IntegerParameter>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+		</Settings>
+	</ConfigurableDomain>
+</ConfigurableDomains>

@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -38,6 +38,9 @@ project(parameter-framework)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
 option(COVERAGE "Build with coverage support" OFF)
 if(COVERAGE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
@@ -55,9 +58,18 @@ include(CTest)
 # Ctest requires its configuration to be placed at the build root
 configure_file(CTestCustom.cmake ${CMAKE_BINARY_DIR} COPYONLY)
 
+function(set_test_env TestName)
+    set_property(TEST ${TestName} PROPERTY ENVIRONMENT
+                 PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
+                 LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH}
+                 PYTHONPATH=${CMAKE_BINARY_DIR}/bindings/python:$ENV{PYTHONPATH})
+endfunction()
+
 add_subdirectory(test/test-platform)
 add_subdirectory(test/test-fixed-point-parameter)
 add_subdirectory(test/tokenizer)
+add_subdirectory(test/functional-tests)
+add_subdirectory(test/test-subsystem)
 
 option(BASH_COMPLETION "Install bash completion configuration" ON)
 if (BASH_COMPLETION)
