@@ -58,6 +58,7 @@ after_success:
           --exclude "skeleton-subsystem"
           --exclude "test/test-subsystem"
           --exclude "bindings/c/Test.cpp"
+          --exclude "parameter/criterion/test/"
           --exclude "test/tokenizer"
           --gcov /usr/bin/gcov-4.8
           --gcov-options '\--long-file-names --preserve-paths'
