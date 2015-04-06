@@ -38,6 +38,8 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/xmlserializer/"
     "${PROJECT_SOURCE_DIR}/utility/")
 
+target_link_libraries(criterion pfw_utility xmlserializer)
+
 # '-fPIC' needed for linking against shared libraries (e.g. libparameter)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
@@ -45,3 +47,24 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 install(FILES
     include/criterion/client/CriterionInterface.h
     DESTINATION "include/parameter/criterion/client")
+
+if(BUILD_TESTING)
+    # Catch header provided by Ubuntu package is not up to date and need
+    # CATCH_CONFIG_CPP11_NULLPTR flag activated to compare a pointer to nullptr
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCATCH_CONFIG_CPP11_NULLPTR")
+
+    find_path(CATCH_HEADER catch.hpp)
+    include_directories(
+        include
+        ${CATCH_HEADER})
+
+    # Add unit test
+    add_executable(criterionUnitTest test/CriterionUnitTest.cpp)
+
+    target_link_libraries(criterionUnitTest criterion)
+    add_test(NAME criterionUnitTest
+             COMMAND criterionUnitTest)
+
+    # Custom function defined in the top-level CMakeLists
+    set_test_env(criterionUnitTest)
+endif()
