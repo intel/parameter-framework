@@ -154,9 +154,6 @@ CTestPlatform::CommandReturn CTestPlatform::exit(
 {
     (void)remoteCommand;
 
-    // Stop local server
-    _pRemoteProcessorServer->stop();
-
     // Release the main blocking semaphore to quit application
     sem_post(&_exitSemaphore);
 
