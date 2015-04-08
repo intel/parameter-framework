@@ -137,18 +137,6 @@ protected:
               const ValuePairs& derivedValuePairs,
               const MatchMethods& derivedMatchMethods);
 
-    /** Set a "default formatted state" when no criterion state is set
-     *
-     * @param formattedState, the formatted state string to check
-     * @result the reference of the string passed in parameter filled with the default value
-     * if it was empty
-     *
-     * This method returns a reference on his referenced parameter in order to have the easy
-     * notation.
-     *    return checkFormattedStateEmptyness(myFormattedStateToReturn);
-     */
-    std::string& checkFormattedStateEmptyness(std::string& formattedState) const;
-
     /** Contains pair association between literal and numerical value */
     ValuePairs mValuePairs;
 

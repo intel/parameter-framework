@@ -31,6 +31,7 @@
 #include "Tokenizer.h"
 
 #include <sstream>
+#include <cassert>
 
 namespace core
 {
@@ -92,6 +93,12 @@ bool InclusiveCriterion::getNumericalValue(const std::string& literalValue,
 std::string InclusiveCriterion::getFormattedState() const
 {
     std::string formattedState;
+    if (mState == 0) {
+        // Default inclusive criterion state is always present
+        getLiteralValue(0, formattedState);
+        return formattedState;
+    }
+
     uint32_t bit;
     bool first = true;
 
@@ -117,8 +124,7 @@ std::string InclusiveCriterion::getFormattedState() const
 
         formattedState += atomicState;
     }
-
-    return Criterion::checkFormattedStateEmptyness(formattedState);
+    return formattedState;
 }
 
 } /** criterion namespace */
