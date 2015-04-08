@@ -28,6 +28,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#pragma once
+
 class NaiveTokenizer {
 public:
     /** tokenize a space-separated string, handling quotes

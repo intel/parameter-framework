@@ -34,7 +34,7 @@
 class CElementBuilder
 {
 public:
-    virtual ~CElementBuilder() {};
+    virtual ~CElementBuilder() {}
 
     virtual CElement* createElement(const CXmlElement& xmlElement) const = 0;
 };

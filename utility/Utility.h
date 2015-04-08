@@ -28,8 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef UTILITY_H
-#define UTILITY_H
+#pragma once
 
 #include <string>
 #include <list>
@@ -65,4 +64,3 @@ public:
                          const std::string& strKeyValueSeparator = ":");
 };
 
-#endif // UTILITY_H
