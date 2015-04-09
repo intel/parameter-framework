@@ -36,7 +36,7 @@
 class CBinaryStream
 {
 public:
-    CBinaryStream(const std::string& strFileName, bool bOut, uint32_t uiDataSize, uint8_t uiStructureChecksum);
+    CBinaryStream(const std::string& strFileName, bool bOut, size_t uiDataSize, uint8_t uiStructureChecksum);
     ~CBinaryStream();
 
     // Open close
@@ -47,8 +47,8 @@ public:
     void reset();
 
     // Read/Write
-    void write(const uint8_t* puiData, uint32_t uiSize);
-    void read(uint8_t* puiData, uint32_t uiSize);
+    void write(const uint8_t* puiData, size_t uiSize);
+    void read(uint8_t* puiData, size_t uiSize);
 
     // Direction
     bool isOut() const;
@@ -63,7 +63,7 @@ private:
     // Serialization direction
     bool _bOut;
     // Data size
-    uint32_t _uiDataSize;
+    size_t _uiDataSize;
     // System structure checksum
     uint8_t _uiStructureChecksum;
     // Read/Write data
@@ -71,7 +71,7 @@ private:
     // File
     std::fstream _fileStream;
     // Ops in faile
-    uint32_t _uiPos;
+    size_t _uiPos;
     // File state
     bool _bOpen;
 };

@@ -296,8 +296,8 @@ void CElement::childrenToXml(CXmlElement& xmlElement,
                              CXmlSerializingContext& serializingContext) const
 {
     // Browse children and propagate
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -346,8 +346,8 @@ bool CElement::rename(const string& strName, string& strError)
     // Check for conflict with brotherhood if relevant
     if (_pParent && _pParent->childrenAreDynamic()) {
 
-        uint32_t uiParentChild;
-        uint32_t uiParentNbChildren = _pParent->getNbChildren();
+        size_t uiParentChild;
+        size_t uiParentNbChildren = _pParent->getNbChildren();
 
         for (uiParentChild = 0; uiParentChild < uiParentNbChildren; uiParentChild++) {
 
@@ -387,14 +387,14 @@ void CElement::addChild(CElement* pChild)
     pChild->_pParent = this;
 }
 
-CElement* CElement::getChild(uint32_t uiIndex)
+CElement* CElement::getChild(size_t uiIndex)
 {
     assert(uiIndex <= _childArray.size());
 
     return _childArray[uiIndex];
 }
 
-const CElement* CElement::getChild(uint32_t uiIndex) const
+const CElement* CElement::getChild(size_t uiIndex) const
 {
     assert(uiIndex <= _childArray.size());
 
@@ -403,7 +403,7 @@ const CElement* CElement::getChild(uint32_t uiIndex) const
 
 CElement* CElement::getLastChild()
 {
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiNbChildren = getNbChildren();
 
     assert(uiNbChildren);
 
@@ -456,8 +456,8 @@ void CElement::listChildren(string& strChildList) const
     strChildList = "\n";
 
     // Get list of children names
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -469,7 +469,7 @@ void CElement::listChildren(string& strChildList) const
 
 string CElement::listQualifiedPaths(bool bDive, uint32_t uiLevel) const
 {
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiNbChildren = getNbChildren();
     string strResult;
 
     // Dive Will cause only leaf nodes to be printed
@@ -480,7 +480,7 @@ string CElement::listQualifiedPaths(bool bDive, uint32_t uiLevel) const
 
     if (bDive || !uiLevel) {
         // Get list of children paths
-        uint32_t uiChild;
+        size_t uiChild;
 
         for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -495,8 +495,8 @@ string CElement::listQualifiedPaths(bool bDive, uint32_t uiLevel) const
 void CElement::listChildrenPaths(string& strChildList) const
 {
     // Get list of children paths
-    uint32_t uiNbChildren = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbChildren = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
@@ -506,7 +506,7 @@ void CElement::listChildrenPaths(string& strChildList) const
     }
 }
 
-uint32_t CElement::getNbChildren() const
+size_t CElement::getNbChildren() const
 {
     return _childArray.size();
 }
@@ -741,7 +741,7 @@ void CElement::appendTitle(string& strTo, const string& strTitle)
 {
     strTo += "\n" + strTitle + "\n";
 
-    uint32_t uiLength = strTitle.size();
+    string::size_type uiLength = strTitle.size();
 
     while (uiLength--) {
 

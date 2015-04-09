@@ -77,9 +77,9 @@ bool CSelectionCriterionType::getNumericalValue(const std::string& strValue, int
 
         Tokenizer tok(strValue, _strDelimiter);
         std::vector<std::string> astrValues = tok.split();
-        uint32_t uiNbValues = astrValues.size();
+        size_t uiNbValues = astrValues.size();
         int iResult = 0;
-        uint32_t uiValueIndex;
+        size_t uiValueIndex;
         iValue = 0;
 
         // Looping on each std::string delimited by "|" token and adding the associated value

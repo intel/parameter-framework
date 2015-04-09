@@ -74,7 +74,7 @@ public:
 
     // Owning domains
     void listAssociatedDomains(std::string& strResult, bool bVertical = true) const;
-    uint32_t getBelongingDomainCount() const;
+    size_t getBelongingDomainCount() const;
 
     // Elements with no domains
     void listRogueElements(std::string& strResult) const;

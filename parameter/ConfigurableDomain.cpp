@@ -190,8 +190,8 @@ void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlSerializi
     xmlElement.createChild(xmlSettingsElement, "Settings");
 
     // Serialize out all configurations settings
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChildConfiguration;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChildConfiguration;
 
     for (uiChildConfiguration = 0; uiChildConfiguration < uiNbConfigurations; uiChildConfiguration++) {
 
@@ -466,7 +466,7 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement, stri
     log_info("Splitting configurable element \"%s\" domain \"%s\"", pConfigurableElement->getPath().c_str(), getName().c_str());
 
     // Create sub domain areas for all configurable element's children
-    uint32_t uiNbConfigurableElementChildren = pConfigurableElement->getNbChildren();
+    size_t uiNbConfigurableElementChildren = pConfigurableElement->getNbChildren();
 
     if (!uiNbConfigurableElementChildren) {
 
@@ -475,7 +475,7 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement, stri
         return false;
     }
 
-    uint32_t uiChild;
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurableElementChildren; uiChild++) {
 
@@ -485,7 +485,7 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement, stri
     }
 
     // Delegate to configurations
-    uint32_t uiNbConfigurations = getNbChildren();
+    size_t uiNbConfigurations = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
@@ -833,8 +833,8 @@ void CConfigurableDomain::validate(const CParameterBlackboard* pMainBlackboard)
 {
 
     // Propagate
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
@@ -850,8 +850,8 @@ void CConfigurableDomain::validateAreas(const CConfigurableElement* pConfigurabl
     log_info("Validating domain \"" + getName() + "\" against main blackboard for configurable element \"" + pConfigurableElement->getPath() + "\"");
 
     // Propagate
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
@@ -890,8 +890,8 @@ void CConfigurableDomain::autoValidateAreas(const CConfigurableElement* pConfigu
     }
 
     // Validate all other configurations against found one, if any
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
@@ -908,8 +908,8 @@ void CConfigurableDomain::autoValidateAreas(const CConfigurableElement* pConfigu
 bool CConfigurableDomain::autoValidateConfiguration(CDomainConfiguration* pDomainConfiguration)
 {
     // Find another configuration than this one, that ought to be valid!
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
@@ -929,8 +929,8 @@ bool CConfigurableDomain::autoValidateConfiguration(CDomainConfiguration* pDomai
 // Search for a valid configuration for given configurable element
 const CDomainConfiguration* CConfigurableDomain::findValidDomainConfiguration(const CConfigurableElement* pConfigurableElement) const
 {
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
@@ -947,8 +947,8 @@ const CDomainConfiguration* CConfigurableDomain::findValidDomainConfiguration(co
 // Search for an applicable configuration
 const CDomainConfiguration* CConfigurableDomain::findApplicableDomainConfiguration() const
 {
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
@@ -1023,8 +1023,8 @@ void CConfigurableDomain::mergeAlreadyAssociatedDescendantConfigurableElements(C
 void CConfigurableDomain::mergeConfigurations(CConfigurableElement* pToConfigurableElement, CConfigurableElement* pFromConfigurableElement)
 {
     // Propagate to domain configurations
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
@@ -1054,8 +1054,8 @@ void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfig
     _syncerSet += *pSyncerSet;
 
     // Inform configurations
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
@@ -1094,8 +1094,8 @@ void CConfigurableDomain::doRemoveConfigurableElement(CConfigurableElement* pCon
     pConfigurableElement->removeAttachedConfigurableDomain(this);
 
     // Inform configurations
-    uint32_t uiNbConfigurations = getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurations = getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 

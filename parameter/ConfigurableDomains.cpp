@@ -56,8 +56,8 @@ bool CConfigurableDomains::childrenAreDynamic() const
 void CConfigurableDomains::validate(const CParameterBlackboard* pMainBlackboard)
 {
     // Delegate to domains
-    uint32_t uiChild;
-    uint32_t uiNbConfigurableDomains = getNbChildren();
+    size_t uiChild;
+    size_t uiNbConfigurableDomains = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
 
@@ -75,8 +75,8 @@ void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, CSy
     /// Delegate to domains
 
     // Start with domains that can be synchronized all at once (with passed syncer set)
-    uint32_t uiChild;
-    uint32_t uiNbConfigurableDomains = getNbChildren();
+    size_t uiChild;
+    size_t uiNbConfigurableDomains = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
 
@@ -364,8 +364,8 @@ void CConfigurableDomains::listDomains(string& strResult) const
     strResult = "\n";
 
     // List domains
-    uint32_t uiChild;
-    uint32_t uiNbConfigurableDomains = getNbChildren();
+    size_t uiChild;
+    size_t uiNbConfigurableDomains = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
 
@@ -387,8 +387,8 @@ void CConfigurableDomains::listDomains(string& strResult) const
 void CConfigurableDomains::gatherAllOwnedConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const
 {
     // Delegate to domains
-    uint32_t uiChild;
-    uint32_t uiNbConfigurableDomains = getNbChildren();
+    size_t uiChild;
+    size_t uiNbConfigurableDomains = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
 
@@ -498,8 +498,8 @@ bool CConfigurableDomains::getApplicationRule(const string& strDomain, const str
 void CConfigurableDomains::listLastAppliedConfigurations(string& strResult) const
 {
     // Browse domains
-    uint32_t uiChild;
-    uint32_t uiNbConfigurableDomains = getNbChildren();
+    size_t uiChild;
+    size_t uiNbConfigurableDomains = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
 

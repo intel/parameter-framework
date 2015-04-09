@@ -92,7 +92,7 @@ public:
 
 private:
     // Access validity
-    bool checkAccessValidity(bool bSet, uint32_t uiArrayLength, std::string& strError) const;
+    bool checkAccessValidity(bool bSet, size_t uiArrayLength, std::string& strError) const;
 
     // Accessed parameter instance
     const CBaseParameter* _pBaseParameter;

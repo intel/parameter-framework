@@ -92,7 +92,7 @@ string CFormattedSubsystemObject::formatMappingValue(const string& strMappingVal
     string strFormattedValue = strMappingValue;
 
     // Search for amendment (only one supported for now)
-    size_t uiPercentPos = strFormattedValue.find('%', 0);
+    string::size_type uiPercentPos = strFormattedValue.find('%', 0);
 
     // Amendment limited to one digit (values from 1 to 9)
     assert(isAmendKeyValid(uiNbAmendKeys));

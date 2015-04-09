@@ -47,8 +47,10 @@ private:
     virtual void fillDataToSend();
     // Collect received data
     virtual void collectReceivedData();
-    // Size
-    virtual uint32_t getDataSize() const;
+
+    /** @return size of the answer message in bytes
+    */
+    virtual size_t getDataSize() const;
     // Answer
     void setAnswer(const std::string& strAnswer);
 

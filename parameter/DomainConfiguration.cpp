@@ -477,8 +477,8 @@ void CDomainConfiguration::split(CConfigurableElement* pFromConfigurableElement)
     const CAreaConfiguration* pAreaConfigurationToSplitFrom = getAreaConfiguration(pFromConfigurableElement);
 
     // Go through children areas to copy configuration data to them
-    uint32_t uiNbConfigurableElementChildren = pFromConfigurableElement->getNbChildren();
-    uint32_t uiChild;
+    size_t uiNbConfigurableElementChildren = pFromConfigurableElement->getNbChildren();
+    size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbConfigurableElementChildren; uiChild++) {
 
@@ -675,9 +675,9 @@ void CDomainConfiguration::binarySerialize(CBinaryStream& binaryStream)
 }
 
 // Data size
-uint32_t CDomainConfiguration::getDataSize() const
+size_t CDomainConfiguration::getDataSize() const
 {
-    uint32_t uiDataSize;
+    size_t uiDataSize;
 
     // Add necessary size to store area configurations order
     uiDataSize = _areaConfigurationList.size() * sizeof(uint32_t);
