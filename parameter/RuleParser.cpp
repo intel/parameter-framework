@@ -148,26 +148,26 @@ bool CRuleParser::parse(CCompoundRule* pParentRule, string& strError)
 // Iterate
 bool CRuleParser::iterate(string& strError)
 {
-    string::size_type iDelimiter;
+    string::size_type delimiter;
 
     assert(_uiCurrentPos <= _strApplicationRule.length());
 
     // Consume spaces
-    if ((iDelimiter = _strApplicationRule.find_first_not_of(" ", _uiCurrentPos)) != string::npos) {
+    if ((delimiter = _strApplicationRule.find_first_not_of(" ", _uiCurrentPos)) != string::npos) {
 
         // New pos
-        _uiCurrentPos = iDelimiter;
+        _uiCurrentPos = delimiter;
     }
 
     // Parse
-    if ((_uiCurrentPos != _strApplicationRule.length()) && ((iDelimiter = _strApplicationRule.find_first_of(_acDelimiters[_eStatus], _uiCurrentPos)) != string::npos)) {
+    if ((_uiCurrentPos != _strApplicationRule.length()) && ((delimiter = _strApplicationRule.find_first_of(_acDelimiters[_eStatus], _uiCurrentPos)) != string::npos)) {
 
-        switch(_strApplicationRule[iDelimiter]) {
+        switch(_strApplicationRule[delimiter]) {
 
         case '{':
             _eStatus = EBeginCompoundRule;
             // Extract type
-            _strRuleType = _strApplicationRule.substr(_uiCurrentPos, iDelimiter - _uiCurrentPos);
+            _strRuleType = _strApplicationRule.substr(_uiCurrentPos, delimiter - _uiCurrentPos);
             _uiCurrentDeepness++;
             break;
         case '}':
@@ -183,14 +183,14 @@ bool CRuleParser::iterate(string& strError)
         case ' ':
             _eStatus = ECriterionRule;
             // Extract type
-            _strRuleType = _strApplicationRule.substr(_uiCurrentPos, iDelimiter - _uiCurrentPos);
+            _strRuleType = _strApplicationRule.substr(_uiCurrentPos, delimiter - _uiCurrentPos);
             break;
         case ',':
             _eStatus = EContinue;
             break;
         }
         // New pos
-        _uiCurrentPos = iDelimiter + 1;
+        _uiCurrentPos = delimiter + 1;
     } else {
 
         if (_uiCurrentDeepness) {
@@ -240,26 +240,26 @@ CCompoundRule* CRuleParser::grabRootRule()
 // Next word
 bool CRuleParser::next(string& strNext, string& strError)
 {
-    string::size_type iDelimiter;
+    string::size_type delimiter;
 
     // Consume spaces
-    if ((iDelimiter = _strApplicationRule.find_first_not_of(" ", _uiCurrentPos)) != string::npos) {
+    if ((delimiter = _strApplicationRule.find_first_not_of(" ", _uiCurrentPos)) != string::npos) {
 
         // New pos
-        _uiCurrentPos = iDelimiter;
+        _uiCurrentPos = delimiter;
     }
 
-    if ((iDelimiter = _strApplicationRule.find_first_of("{} ,", _uiCurrentPos)) == string::npos) {
+    if ((delimiter = _strApplicationRule.find_first_of("{} ,", _uiCurrentPos)) == string::npos) {
 
         strError = "Syntax error";
 
         return false;
     }
 
-    strNext = _strApplicationRule.substr(_uiCurrentPos, iDelimiter - _uiCurrentPos);
+    strNext = _strApplicationRule.substr(_uiCurrentPos, delimiter - _uiCurrentPos);
 
     // New pos
-    _uiCurrentPos = iDelimiter;
+    _uiCurrentPos = delimiter;
 
     return true;
 }
