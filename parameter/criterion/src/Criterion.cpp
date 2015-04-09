@@ -105,6 +105,7 @@ std::string Criterion::getCriterionName() const
 std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const
 {
     std::string strFormattedDescription;
+    std::string typeName = isInclusive() ? "Inclusive" : "Exclusive";
 
     if (bHumanReadable) {
 
@@ -118,7 +119,7 @@ std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanRe
 
             // Type Kind
             strFormattedDescription += "(";
-            strFormattedDescription += isInclusive() ? "Inclusive" : "Exclusive";
+            strFormattedDescription += typeName;
             strFormattedDescription += "): ";
 
             // States
@@ -140,7 +141,7 @@ std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanRe
         if (bWithTypeInfo) {
             // Type Kind
             strFormattedDescription += ", type kind: ";
-            strFormattedDescription +=  isInclusive() ? "inclusive" : "exclusive";
+            strFormattedDescription +=  typeName;
         }
 
         // Current State
