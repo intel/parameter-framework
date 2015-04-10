@@ -10,6 +10,7 @@ before_install:
   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
   - sudo add-apt-repository --yes ppa:kalakris/cmake # Non official cmake backport
   - sudo apt-get update -qq
+  - sudo pip install cpp-coveralls
 
 install:
   - sudo apt-get install --yes swig cmake valgrind g++-4.8
@@ -37,6 +38,18 @@ script:
         sudo make install &&
         sudo ldconfig &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalCoverage ExperimentalMemCheck )
+
+after_success:
+    # Push coverage info on coveralls.io.
+    # Ignore generated files, samples and tests
+    - coveralls
+          --exclude "build/bindings/python"
+          --exclude "build/CMakeFiles"
+          --exclude "skeleton-subsystem"
+          --exclude "test/test-subsystem"
+          --exclude "bindings/c/Test.cpp"
+          --exclude "test/tokenizer"
+          --gcov-options '\-lp'
 
 notifications:
   email:
