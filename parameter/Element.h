@@ -152,7 +152,6 @@ protected:
 
     // Hierarchy
     CElement* getParent();
-    CElement* findAscendantOfKind(const std::string& strKind);
 
     /**
      * Creates a child CElement from a child XML Element

@@ -591,20 +591,6 @@ bool CElement::isDescendantOf(const CElement* pCandidateAscendant) const
     return _pParent->isDescendantOf(pCandidateAscendant);
 }
 
-CElement* CElement::findAscendantOfKind(const string& strKind)
-{
-    if (!_pParent) {
-
-        return NULL;
-    }
-
-    if (_pParent->getKind() == strKind) {
-
-        return _pParent;
-    }
-    return _pParent->findAscendantOfKind(strKind);
-}
-
 CElement* CElement::findChild(const string& strName)
 {
     uint32_t uiIndex;
