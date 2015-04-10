@@ -151,7 +151,6 @@ protected:
     static void appendTitle(std::string& strTo, const std::string& strTitle);
 
     // Hierarchy
-    CElement* getLastChild();
     CElement* getParent();
     CElement* findAscendantOfKind(const std::string& strKind);
 

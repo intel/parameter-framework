@@ -401,15 +401,6 @@ const CElement* CElement::getChild(size_t uiIndex) const
     return _childArray[uiIndex];
 }
 
-CElement* CElement::getLastChild()
-{
-    size_t uiNbChildren = getNbChildren();
-
-    assert(uiNbChildren);
-
-    return _childArray[uiNbChildren - 1];
-}
-
 CElement* CElement::createChild(const CXmlElement& childElement,
                                 CXmlSerializingContext& serializingContext)
 {
