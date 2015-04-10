@@ -69,7 +69,6 @@ public:
     void setAttributeString(const std::string& strAttributeName, const std::string& strValue);
     void setNameAttribute(const std::string& strValue);
     void setTextContent(const std::string& strContent);
-    void setComment(const std::string& strComment);
     void setAttributeInteger(const std::string& strAttributeName, uint32_t uiValue);
     /**
       * Set attribute with signed integer
