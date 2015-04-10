@@ -49,8 +49,8 @@ CConfigurableElement::~CConfigurableElement()
 // XML configuration settings parsing
 bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {
-    uint32_t uiIndex;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiIndex;
+    size_t uiNbChildren = getNbChildren();
 
     if (!configurationAccessContext.serializeOut()) {
         // Just do basic checks and propagate to children
@@ -174,8 +174,8 @@ void CConfigurableElement::getListOfElementsWithMapping(
 void CConfigurableElement::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
 {
     // Propagate to children
-    uint32_t uiIndex;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiIndex;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
 
@@ -200,8 +200,8 @@ void CConfigurableElement::setOffset(uint32_t uiOffset)
     _uiOffset = uiOffset;
 
     // Propagate to children
-    uint32_t uiIndex;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiIndex;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
 
@@ -222,8 +222,8 @@ uint32_t CConfigurableElement::getOffset() const
 uint32_t CConfigurableElement::getFootPrint() const
 {
     uint32_t uiSize = 0;
-    uint32_t uiIndex;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiIndex;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
 
@@ -270,8 +270,8 @@ void CConfigurableElement::fillSyncerSet(CSyncerSet& syncerSet) const
 void CConfigurableElement::fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const
 {
     // Dig
-    uint32_t uiIndex;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiIndex;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
 
@@ -401,7 +401,7 @@ void CConfigurableElement::listAssociatedDomains(std::string& strResult, bool bV
     listDomains(_configurableDomainList, strResult, bVertical);
 }
 
-uint32_t CConfigurableElement::getBelongingDomainCount() const
+size_t CConfigurableElement::getBelongingDomainCount() const
 {
     // Get belonging domain list
     std::list<const CConfigurableDomain*> configurableDomainList;

@@ -83,8 +83,8 @@ void CTypeElement::showProperties(std::string& strResult) const
 void CTypeElement::populate(CElement* pElement) const
 {
     // Populate children
-    uint32_t uiChild;
-    uint32_t uiNbChildren = getNbChildren();
+    size_t uiChild;
+    size_t uiNbChildren = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 

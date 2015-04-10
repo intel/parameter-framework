@@ -78,8 +78,8 @@ private:
     std::string _strApplicationRule;
     // Criteria defintion
     const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
-    // Iterator
-    uint32_t _uiCurrentPos;
+    /** String iterator */
+    std::string::size_type _uiCurrentPos;
     // Deepness
     uint32_t _uiCurrentDeepness;
     // Current Type

@@ -175,10 +175,10 @@ bool CXmlElement::getChildElement(const string& strType, const string& strNameAt
     return false;
 }
 
-uint32_t CXmlElement::getNbChildElements() const
+size_t CXmlElement::getNbChildElements() const
 {
     CXmlElement childElement;
-    uint32_t uiNbChildren = 0;
+    size_t uiNbChildren = 0;
 
     CChildIterator childIterator(*this);
 

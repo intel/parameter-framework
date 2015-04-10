@@ -38,10 +38,9 @@
 #define base CKindElement
 CXmlFileIncluderElement::CXmlFileIncluderElement(const std::string& strName,
                                                  const std::string& strKind,
-                                                 bool bValidateWithSchemas) : base(strName,
-                                                                                   strKind)
+                                                 bool bValidateWithSchemas)
+    : base(strName, strKind), _bValidateSchemasOnStart(bValidateWithSchemas)
 {
-    _bValidateSchemasOnStart = bValidateWithSchemas;
 }
 
 // From IXmlSink
@@ -120,9 +119,9 @@ std::string CXmlFileIncluderElement::getIncludedElementType() const
 {
     std::string strKind = getKind();
 
-    int iPosToRemoveFrom = strKind.rfind("Include", -1);
+    std::string::size_type pos = strKind.rfind("Include", std::string::npos);
 
-    assert(iPosToRemoveFrom != -1);
+    assert(pos != std::string::npos);
 
-    return strKind.substr(0, iPosToRemoveFrom);
+    return strKind.substr(0, pos);
 }

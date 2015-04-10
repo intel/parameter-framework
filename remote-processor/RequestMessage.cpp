@@ -140,10 +140,10 @@ void CRequestMessage::collectReceivedData()
 }
 
 // Size
-uint32_t CRequestMessage::getDataSize() const
+size_t CRequestMessage::getDataSize() const
 {
     // Command
-    uint32_t uiSize = getStringSize(getCommand());
+    size_t uiSize = getStringSize(getCommand());
 
     // Arguments
     uint32_t uiArgument;

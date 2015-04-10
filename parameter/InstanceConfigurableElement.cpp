@@ -82,8 +82,8 @@ bool CInstanceConfigurableElement::map(IMapper& mapper, std::string& strError)
     if (bKeepDiving) {
 
         // Map children
-        uint32_t uiNbChildren = getNbChildren();
-        uint32_t uiChild;
+        size_t uiNbChildren = getNbChildren();
+        size_t uiChild;
 
         for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 

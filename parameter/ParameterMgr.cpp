@@ -97,6 +97,15 @@
 
 #define base CElement
 
+#ifdef SIMULATION
+    // In simulation, back synchronization of the blackboard won't probably work
+    // We need to ensure though the blackboard is initialized with valid data
+    typedef CSimulatedBackSynchronizer BackSynchronizer;
+#else
+    // Real back synchronizer from subsystems
+    typedef CHardwareBackSynchronizer BackSynchronizer;
+#endif
+
 using std::string;
 using std::list;
 using std::vector;
@@ -467,17 +476,12 @@ bool CParameterMgr::load(string& strError)
         return false;
     }
 
-    // Back synchronization for areas in parameter blackboard not covered by any domain
-    CBackSynchronizer* pBackSynchronizer = createBackSynchronizer();
 
-    // Back-synchronize
     {
         CAutoLog autoLog(this, "Main blackboard back synchronization");
 
-        pBackSynchronizer->sync();
-
-        // Get rid of back synchronizer
-        delete pBackSynchronizer;
+	// Back synchronization for areas in parameter blackboard not covered by any domain
+	BackSynchronizer(getConstSystemClass(), _pMainParameterBlackboard).sync();
     }
 
     // We're done loading the settings and back synchronizing
@@ -2539,19 +2543,6 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
     }
 
     return true;
-}
-
-// Back synchronization
-CBackSynchronizer* CParameterMgr::createBackSynchronizer() const
-{
-#ifdef SIMULATION
-    // In simulation, back synchronization of the blackboard won't probably work
-    // We need to ensure though the blackboard is initialized with valid data
-    return new CSimulatedBackSynchronizer(getConstSystemClass(), _pMainParameterBlackboard);
-#else
-    // Real back synchronizer from subsystems
-    return new CHardwareBackSynchronizer(getConstSystemClass(), _pMainParameterBlackboard);
-#endif
 }
 
 // Children typwise access

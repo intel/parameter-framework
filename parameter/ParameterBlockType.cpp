@@ -58,7 +58,7 @@ void CParameterBlockType::populate(CElement* pElement) const
     if (uiArrayLength) {
 
         // Create child elements
-        uint32_t uiChild;
+        size_t uiChild;
 
         for (uiChild = 0; uiChild < uiArrayLength; uiChild++) {
 

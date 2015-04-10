@@ -436,7 +436,7 @@ bool CParameterHandle::getAsString(string& strValue, string& strError) const
 bool CParameterHandle::setAsStringArray(const std::vector<string>& astrValues, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, astrValues.size(), strError)) {
+    if (!checkAccessValidity(true, (uint32_t)astrValues.size(), strError)) {
 
         return false;
     }
@@ -475,7 +475,7 @@ bool CParameterHandle::getAsStringArray(std::vector<string>& astrValues, string&
 }
 
 // Access validity
-bool CParameterHandle::checkAccessValidity(bool bSet, uint32_t uiArrayLength, string& strError) const
+bool CParameterHandle::checkAccessValidity(bool bSet, size_t uiArrayLength, string& strError) const
 {
     if (bSet && !isRogue()) {
 

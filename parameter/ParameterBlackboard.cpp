@@ -99,14 +99,14 @@ void CParameterBlackboard::readInteger(void* pvDstData, uint32_t uiSize, uint32_
     }
 }
 
-void CParameterBlackboard::writeString(const char* pcSrcData, uint32_t uiOffset)
+void CParameterBlackboard::writeString(const std::string &input, uint32_t uiOffset)
 {
-    strcpy((char*)_pucData + uiOffset, pcSrcData);
+    strcpy((char*)_pucData + uiOffset, input.c_str());
 }
 
-void CParameterBlackboard::readString(char* pcDstData, uint32_t uiOffset) const
+void CParameterBlackboard::readString(std::string &output, uint32_t uiOffset) const
 {
-    strcpy(pcDstData, (const char*)_pucData + uiOffset);
+    output = std::string((const char*)_pucData + uiOffset);
 }
 
 // Access from/to subsystems
