@@ -31,6 +31,7 @@
 
 #include <stdint.h>
 #include "BinaryStream.h"
+#include <string>
 
 class CParameterBlackboard
 {
@@ -45,8 +46,8 @@ public:
     // Single parameter access
     void writeInteger(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian);
     void readInteger(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const;
-    void writeString(const char* pcSrcData, uint32_t uiOffset);
-    void readString(char* pcDstData, uint32_t uiOffset) const;
+    void writeString(const std::string &input, uint32_t uiOffset);
+    void readString(std::string &output, uint32_t uiOffset) const;
 
     // Access from/to subsystems
     uint8_t* getLocation(uint32_t uiOffset);

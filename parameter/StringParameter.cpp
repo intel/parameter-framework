@@ -32,7 +32,6 @@
 #include "ParameterAccessContext.h"
 #include "ConfigurationAccessContext.h"
 #include "ParameterBlackboard.h"
-#include <alloca.h>
 
 #define base CBaseParameter
 
@@ -79,19 +78,12 @@ bool CStringParameter::doSetValue(const string& strValue, uint32_t uiOffset, CPa
     // Write blackboard
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
-    pBlackboard->writeString(strValue.c_str(), uiOffset);
+    pBlackboard->writeString(strValue, uiOffset);
 
     return true;
 }
 
 void CStringParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
 {
-    char* pcValue = (char*)alloca(getSize());
-
-    // Read blackboard
-    const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
-
-    pBlackboard->readString(pcValue, uiOffset);
-
-    strValue = pcValue;
+    parameterAccessContext.getParameterBlackboard()->readString(strValue, uiOffset);
 }
