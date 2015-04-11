@@ -65,11 +65,7 @@ function(set_test_env TestName)
                  PYTHONPATH=${CMAKE_BINARY_DIR}/bindings/python:$ENV{PYTHONPATH})
 endfunction()
 
-add_subdirectory(test/test-platform)
-add_subdirectory(test/test-fixed-point-parameter)
-add_subdirectory(test/tokenizer)
-add_subdirectory(test/functional-tests)
-add_subdirectory(test/test-subsystem)
+add_subdirectory(test)
 
 option(BASH_COMPLETION "Install bash completion configuration" ON)
 if (BASH_COMPLETION)
