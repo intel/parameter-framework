@@ -26,44 +26,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# has been tested on 2.8 only - might work on older versions
-cmake_minimum_required(VERSION 2.8)
+include(CTest)
 
-# linking policy (see cmake --help-policy CMP0003)
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
+# Ctest requires its configuration to be placed at the build root
+configure_file(${CMAKE_CURRENT_LIST_DIR}/CTestCustom.cmake ${CMAKE_BINARY_DIR} COPYONLY)
 
-project(parameter-framework)
+function(set_test_env TestName)
+    set_property(TEST ${TestName} PROPERTY ENVIRONMENT
+                 PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
+                 LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH}
+                 PYTHONPATH=${CMAKE_BINARY_DIR}/bindings/python:$ENV{PYTHONPATH})
+endfunction()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-include(ctest/CMakeLists.txt)
-
-option(COVERAGE "Build with coverage support" OFF)
-if(COVERAGE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
-endif()
-
-add_subdirectory(xmlserializer)
-add_subdirectory(parameter)
-add_subdirectory(utility)
-add_subdirectory(remote-processor)
-
-add_subdirectory(remote-process)
-
-add_subdirectory(test)
-
-option(BASH_COMPLETION "Install bash completion configuration" ON)
-if (BASH_COMPLETION)
-    add_subdirectory(tools/bash_completion)
-endif()
-
-add_subdirectory(tools/xmlGenerator)
-add_subdirectory(tools/xmlValidator)
-
-add_subdirectory(bindings)
