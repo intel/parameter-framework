@@ -37,7 +37,7 @@ script:
         make -j &&
         sudo make install &&
         sudo ldconfig &&
-        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalCoverage ExperimentalMemCheck )
+        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck )
 
 after_success:
     # Push coverage info on coveralls.io.
