@@ -27,4 +27,4 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 INSTALL(FILES remote-process
-        DESTINATION etc/bash_completion.d/)
+        DESTINATION share/bash-completion/completions/)
