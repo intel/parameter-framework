@@ -26,11 +26,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Enable tests, coverage, memcheck, ...
+# See http://www.cmake.org/Wiki/CMake/Testing_With_CTest#Dashboard_Preparation
 include(CTest)
 
 # Ctest requires its configuration to be placed at the build root
 configure_file(${CMAKE_CURRENT_LIST_DIR}/CTestCustom.cmake ${CMAKE_BINARY_DIR} COPYONLY)
 
+# Set environement variables so that executables and libraries can be find by tests.
+# (avoids a make install before make test)
 function(set_test_env TestName)
     set_property(TEST ${TestName} PROPERTY ENVIRONMENT
                  PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
