@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,11 +30,12 @@
 #pragma once
 
 #include "RequestMessage.h"
+#include <string>
 
 class IRemoteProcessorServerInterface
 {
 public:
-    virtual bool start() = 0;
+    virtual bool start(std::string &strError) = 0;
     virtual void stop() = 0;
     virtual bool isStarted() const = 0;
 

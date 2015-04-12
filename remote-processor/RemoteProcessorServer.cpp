@@ -53,7 +53,7 @@ CRemoteProcessorServer::~CRemoteProcessorServer()
 }
 
 // State
-bool CRemoteProcessorServer::start()
+bool CRemoteProcessorServer::start(string &error)
 {
     assert(!_bIsStarted);
 
@@ -62,11 +62,12 @@ bool CRemoteProcessorServer::start()
 
     // Create inband pipe
     if (pipe(_aiInbandPipe) == -1) {
-        std::cerr << "Could not create a pipe for remote processor communication: " << strerror(errno);
+        error = "Could not create a pipe for remote processor communication: ";
+        error += strerror(errno);
         return false;
     }
 
-    if (!_pListeningSocket->listen(_uiPort)) {
+    if (!_pListeningSocket->listen(_uiPort, error)) {
 
         // Remove listening socket
         delete _pListeningSocket;

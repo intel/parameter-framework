@@ -163,12 +163,9 @@ CTestPlatform::CommandReturn CTestPlatform::exit(
 bool CTestPlatform::load(std::string& strError)
 {
     // Start remote processor server
-    if (!_pRemoteProcessorServer->start()) {
+    if (!_pRemoteProcessorServer->start(strError)) {
 
-	std::ostringstream oss;
-        oss << "TestPlatform: Unable to start remote processor server on port " << _portNumber;
-        strError = oss.str();
-
+        strError = "TestPlatform: Unable to start remote processor server: " + strError;
         return false;
     }
 
