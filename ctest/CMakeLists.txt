@@ -37,8 +37,8 @@ set(MEMORYCHECK_COMMAND_OPTIONS
 set(MEMORYCHECK_COMMAND_OPTIONS
     "${MEMORYCHECK_COMMAND_OPTIONS} --error-exitcode=255 --log-fd=2")
 
-# Ignore errors from third-partie libraries
-set(MEMORYCHECK_SUPPRESSIONS_FILE "${CMAKE_CURRENT_LIST_DIR}/valgrind.supp")
+set(MEMORYCHECK_COMMAND_OPTIONS
+    "${MEMORYCHECK_COMMAND_OPTIONS} --suppressions=${CMAKE_CURRENT_LIST_DIR}/valgrind.supp")
 
 # Enable tests, coverage, memcheck, ...
 # See http://www.cmake.org/Wiki/CMake/Testing_With_CTest#Dashboard_Preparation
