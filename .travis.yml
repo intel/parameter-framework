@@ -49,7 +49,7 @@ after_success:
           --exclude "test/test-subsystem"
           --exclude "bindings/c/Test.cpp"
           --exclude "test/tokenizer"
-          --gcov-options '\-lp'
+          --gcov-options '\--long-file-names --preserve-paths'
 
 notifications:
   email:
