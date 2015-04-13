@@ -401,15 +401,6 @@ const CElement* CElement::getChild(size_t uiIndex) const
     return _childArray[uiIndex];
 }
 
-CElement* CElement::getLastChild()
-{
-    size_t uiNbChildren = getNbChildren();
-
-    assert(uiNbChildren);
-
-    return _childArray[uiNbChildren - 1];
-}
-
 CElement* CElement::createChild(const CXmlElement& childElement,
                                 CXmlSerializingContext& serializingContext)
 {
@@ -598,20 +589,6 @@ bool CElement::isDescendantOf(const CElement* pCandidateAscendant) const
         return true;
     }
     return _pParent->isDescendantOf(pCandidateAscendant);
-}
-
-CElement* CElement::findAscendantOfKind(const string& strKind)
-{
-    if (!_pParent) {
-
-        return NULL;
-    }
-
-    if (_pParent->getKind() == strKind) {
-
-        return _pParent;
-    }
-    return _pParent->findAscendantOfKind(strKind);
 }
 
 CElement* CElement::findChild(const string& strName)

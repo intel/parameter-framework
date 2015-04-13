@@ -238,11 +238,6 @@ void CXmlElement::setTextContent(const string& strContent)
     xmlAddChild(_pXmlElement, xmlNewText(BAD_CAST strContent.c_str()));
 }
 
-void CXmlElement::setComment(const string& strComment)
-{
-    xmlAddChild(_pXmlElement, xmlNewComment(BAD_CAST strComment.c_str()));
-}
-
 // Child creation
 void CXmlElement::createChild(CXmlElement& childElement, const string& strType)
 {
