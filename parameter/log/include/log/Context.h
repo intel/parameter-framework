@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,24 +29,39 @@
  */
 #pragma once
 
-#include "Element.h"
-
+#include "ILogger.h"
 #include <string>
 
-class CAutoLog
+namespace core
 {
+namespace log
+{
+
+/** Log formatter which provide context indentation */
+class Context {
 public:
-    CAutoLog(const CElement* pElement, const std::string& strContext, bool bLogOn = true);
-    ~CAutoLog();
+
+    /**
+     * Class Constructor
+     *
+     * @param[in] logger application logger
+     * @param[in] context name of the context to open
+     */
+    Context(ILogger& logger, std::string& prolog, const std::string& context);
+
+    /** Class Destructor */
+    ~Context();
 
 private:
-    CAutoLog(const CAutoLog&);
-    CAutoLog& operator=(const CAutoLog&);
-    // Logger element
-    const CElement* _pElement;
-    // Context
-    std::string _strContext;
-    // Log on
-    bool _bLogOn;
+    Context(const Context&);
+    Context& operator=(const Context&);
+
+    /** Application logger */
+    ILogger& mLogger;
+
+    /** Context prolog used to indent logs */
+    std::string& mProlog;
 };
 
+} /** log namespace */
+} /** core namespace */

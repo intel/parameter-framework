@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,10 +26,11 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+add_subdirectory(log)
+
 add_library(parameter SHARED
     AreaConfiguration.cpp
     ArrayParameter.cpp
-    AutoLog.cpp
     BaseParameter.cpp
     BinarySerializableElement.cpp
     BinaryStream.cpp
@@ -107,11 +108,12 @@ include_directories(
     include
     "${PROJECT_SOURCE_DIR}/xmlserializer"
     "${PROJECT_SOURCE_DIR}/utility"
-    "${PROJECT_SOURCE_DIR}/remote-processor")
+    "${PROJECT_SOURCE_DIR}/remote-processor"
+    "${PROJECT_SOURCE_DIR}/parameter/log/include")
 
 # No need to link with libremote-processor: it is accessed via dlopen()
 find_library(dl dl)
-target_link_libraries(parameter xmlserializer pfw_utility dl)
+target_link_libraries(parameter xmlserializer pfw_utility dl log)
 
 install(TARGETS parameter LIBRARY DESTINATION lib)
 # Client headers
@@ -125,7 +127,6 @@ install(FILES
     DESTINATION "include/parameter/client")
 # Core (plugin) headers
 install(FILES
-    AutoLog.h
     BitParameterBlockType.h
     ConfigurableElement.h
     ConfigurableElementWithMapping.h
@@ -138,7 +139,7 @@ install(FILES
     InstanceConfigurableElement.h
     Mapper.h
     MappingContext.h
-    NamedElementBuilderTemplate.h
+    LoggingElementBuilderTemplate.h
     ParameterBlockType.h
     ParameterType.h
     PathNavigator.h
@@ -151,3 +152,6 @@ install(FILES
     TypeElement.h
     VirtualSubsystem.h
     DESTINATION "include/parameter/plugin")
+install(FILES
+    log/include/log/ILogger.h
+    DESTINATION "include/parameter/plugin/log")

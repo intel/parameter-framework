@@ -26,19 +26,12 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-if (BUILD_TESTING)
+add_library(log STATIC
+    src/Context.cpp)
 
-    add_library(test-subsystem SHARED
-        TESTSubsystem.cpp
-        TESTSubsystemBinary.cpp
-        TESTSubsystemObject.cpp
-        TESTSubsystemString.cpp
-        TESTSubsystemBuilder.cpp)
+include_directories(
+    include
+    "${PROJECT_SOURCE_DIR}/utility/")
 
-    include_directories(
-        "${PROJECT_SOURCE_DIR}/xmlserializer"
-        "${PROJECT_SOURCE_DIR}/parameter/log/include"
-        "${PROJECT_SOURCE_DIR}/parameter")
-
-    target_link_libraries(test-subsystem parameter)
-endif()
+# '-fPIC' needed for linking against shared libraries (e.g. libparameter)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")

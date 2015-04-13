@@ -48,9 +48,11 @@ using std::string;
 CSkeletonSubsystemObject::CSkeletonSubsystemObject(
             const string& strMappingValue,
             CInstanceConfigurableElement* pInstanceConfigurableElement,
-            const CMappingContext& context
+            const CMappingContext& context,
+            core::log::ILogger& logger
         ) :
         base(pInstanceConfigurableElement,
+             logger,
              strMappingValue,
              EAmend1,
              EAmendEnd - EAmend1 + 1,

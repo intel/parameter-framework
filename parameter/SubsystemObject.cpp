@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -42,8 +42,10 @@
 
 using std::string;
 
-CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement)
-    : _pInstanceConfigurableElement(pInstanceConfigurableElement),
+CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                                   core::log::ILogger& logger)
+    : _logger(logger),
+      _pInstanceConfigurableElement(pInstanceConfigurableElement),
       _uiDataSize(pInstanceConfigurableElement->getFootPrint()),
       _pucBlackboardLocation(NULL),
       _uiAccessedIndex(0)
@@ -146,11 +148,6 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
     // Synchronize to/from HW
     if (!bIsSubsystemAlive || !accessHW(bBack, strError)) {
 
-        strError = string("Unable to ") + (bBack ? "back" : "forward") + " synchronize configurable element " +
-                _pInstanceConfigurableElement->getPath() + ": " + strError;
-
-        log_warning(strError);
-
         // Fall back to parameter default initialization
         if (bBack) {
 
@@ -210,43 +207,6 @@ void CSubsystemObject::blackboardWrite(const void* pvData, uint32_t uiSize)
     memcpy(_pucBlackboardLocation + _uiAccessedIndex, pvData, uiSize);
 
     _uiAccessedIndex += uiSize;
-}
-
-// Logging
-void CSubsystemObject::log_info(const string& strMessage, ...) const
-{
-    char *pacBuffer;
-    va_list listPointer;
-
-    va_start(listPointer, strMessage);
-
-    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
-
-    va_end(listPointer);
-
-    if (pacBuffer != NULL) {
-        _pInstanceConfigurableElement->log_info(pacBuffer);
-    }
-
-    free(pacBuffer);
-}
-
-void CSubsystemObject::log_warning(const string& strMessage, ...) const
-{
-    char *pacBuffer;
-    va_list listPointer;
-
-    va_start(listPointer, strMessage);
-
-    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
-
-    va_end(listPointer);
-
-    if (pacBuffer != NULL) {
-        _pInstanceConfigurableElement->log_warning(pacBuffer);
-    }
-
-    free(pacBuffer);
 }
 
 // Configurable element retrieval

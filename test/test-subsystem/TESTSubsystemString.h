@@ -34,7 +34,10 @@
 class CTESTSubsystemString : public CTESTSubsystemObject
 {
 public:
-    CTESTSubsystemString(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context);
+    CTESTSubsystemString(const std::string& strMappingValue,
+                         CInstanceConfigurableElement* pInstanceConfigurableElement,
+                         const CMappingContext& context,
+                         core::log::ILogger& logger);
 
 private:
     // from CTESTSubsystemObject

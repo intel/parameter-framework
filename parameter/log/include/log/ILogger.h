@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -31,25 +31,20 @@
 
 #include <string>
 
-class ISelectionCriterionTypeInterface
+namespace core
+{
+namespace log
+{
+
+/** Logger interface provided by client */
+class ILogger
 {
 public:
-
-    /**
-     * Add a new pair [integer, litteral] which represents a criterion
-     *
-     * @param[in] iValue integer value
-     * @param[in] strValue litteral value
-     * @param[out] strError string containing error information we can provide to client
-     * @return true if succeed false otherwise
-     */
-    virtual bool addValuePair(int iValue, const std::string& strValue, std::string& strError) = 0;
-    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const = 0;
-    virtual bool getLiteralValue(int iValue, std::string& strValue) const = 0;
-    virtual bool isTypeInclusive() const = 0;
-    virtual std::string getFormattedState(int iValue) const = 0;
-
+    virtual void info(const std::string& strLog) = 0;
+    virtual void warning(const std::string& strLog) = 0;
 protected:
-    virtual ~ISelectionCriterionTypeInterface() {}
+    virtual ~ILogger() {}
 };
 
+} /** log namespace */
+} /** core namespace */

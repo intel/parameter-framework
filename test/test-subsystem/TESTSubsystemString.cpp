@@ -32,8 +32,11 @@
 
 #define base CTESTSubsystemObject
 
-CTESTSubsystemString::CTESTSubsystemString(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context)
-    : base(strMappingValue, pInstanceConfigurableElement, context)
+CTESTSubsystemString::CTESTSubsystemString(const std::string& strMappingValue,
+                                           CInstanceConfigurableElement* pInstanceConfigurableElement,
+                                           const CMappingContext& context,
+                                           core::log::ILogger& logger)
+    : base(strMappingValue, pInstanceConfigurableElement, context, logger)
 {
 }
 

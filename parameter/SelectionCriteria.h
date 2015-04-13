@@ -29,10 +29,10 @@
  */
 #pragma once
 
-#include <list>
 #include "Element.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
+#include "Results.h"
 
 #include <string>
 
@@ -51,15 +51,22 @@ public:
 
     // Selection Criteria/Type creation
     CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
-    CSelectionCriterion* createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType);
+    CSelectionCriterion* createSelectionCriterion(const std::string& strName,
+                                                  const CSelectionCriterionType* pType,
+                                                  core::log::ILogger& logger);
     // Selection criterion retrieval
     CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 
     // Selection Criterion definition
     const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
 
-    // List available criteria
-    void listSelectionCriteria(std::list<std::string>& strResult, bool bWithTypeInfo, bool bHumanReadable) const;
+    /** List available criteria
+     *
+     * @param[out] results, information container
+     * @param[in] withTypeInfo indicates if we want to retrieve criterion type information
+     * @param[in] humanReadable indicates the formatage we want to use
+     */
+    void listSelectionCriteria(core::Results& results, bool withTypeInfo, bool humanReadable) const;
 
     // Base
     virtual std::string getKind() const;

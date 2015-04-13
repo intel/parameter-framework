@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,29 +27,26 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#pragma once
+#include "log/Context.h"
+#include "log/LogWrapper.h"
 
-#include <string>
-
-class ISelectionCriterionTypeInterface
+namespace core
 {
-public:
+namespace log
+{
 
-    /**
-     * Add a new pair [integer, litteral] which represents a criterion
-     *
-     * @param[in] iValue integer value
-     * @param[in] strValue litteral value
-     * @param[out] strError string containing error information we can provide to client
-     * @return true if succeed false otherwise
-     */
-    virtual bool addValuePair(int iValue, const std::string& strValue, std::string& strError) = 0;
-    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const = 0;
-    virtual bool getLiteralValue(int iValue, std::string& strValue) const = 0;
-    virtual bool isTypeInclusive() const = 0;
-    virtual std::string getFormattedState(int iValue) const = 0;
+Context::Context(ILogger& logger, std::string& prolog, const std::string& context)
+    : mLogger(logger), mProlog(prolog)
+{
+    Info(mLogger, mProlog) << context << " {";
+    mProlog += "    ";
+}
 
-protected:
-    virtual ~ISelectionCriterionTypeInterface() {}
-};
+Context::~Context()
+{
+    mProlog.resize(mProlog.size() - 4);
+    Info(mLogger, mProlog) << "}";
+}
 
+} /** log namespace */
+} /** core namespace */

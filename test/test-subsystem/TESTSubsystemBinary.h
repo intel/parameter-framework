@@ -34,7 +34,10 @@
 class CTESTSubsystemBinary : public CTESTSubsystemObject
 {
 public:
-    CTESTSubsystemBinary(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context);
+    CTESTSubsystemBinary(const std::string& strMappingValue,
+                         CInstanceConfigurableElement* configurableElement,
+                         const CMappingContext& context,
+                         core::log::ILogger& logger);
 
 private:
     // from CTESTSubsystemObject

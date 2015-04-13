@@ -44,7 +44,6 @@ common_copy_headers := \
 common_src_files := \
         AreaConfiguration.cpp \
         ArrayParameter.cpp \
-        AutoLog.cpp \
         BaseParameter.cpp \
         BinarySerializableElement.cpp \
         BinaryStream.cpp \
@@ -129,6 +128,7 @@ common_cflags := \
 
 common_c_includes := \
     $(LOCAL_PATH)/include/ \
+    $(LOCAL_PATH)/log/include/ \
     $(LOCAL_PATH)/../utility/ \
     $(LOCAL_PATH)/../xmlserializer/ \
     $(LOCAL_PATH)/../remote-processor/
@@ -154,7 +154,7 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 LOCAL_C_INCLUDES := $(common_c_includes)
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libdl
-LOCAL_STATIC_LIBRARIES := libxmlserializer libpfw_utility libxml2
+LOCAL_STATIC_LIBRARIES := libxmlserializer libpfw_utility libxml2 libpfw_log
 
 LOCAL_REQUIRED_MODULES := libremote-processor
 
@@ -182,7 +182,7 @@ LOCAL_C_INCLUDES += \
     $(common_c_includes)
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
-LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host libxml2
+LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host libxml2 libpfw_log_host
 
 LOCAL_LDLIBS += -ldl
 
@@ -197,12 +197,16 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := $(common_module)_includes
 LOCAL_MODULE_OWNER := intel
 
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+LOCAL_EXPORT_C_INCLUDE_DIRS := \
+    $(LOCAL_PATH) \
+    $(LOCAL_PATH)/log/include
+
 
 LOCAL_STATIC_LIBRARIES := \
     libxmlserializer \
     libpfw_utility \
-    libxml2
+    libxml2 \
+    libpfw_log
 
 include $(BUILD_STATIC_LIBRARY)
 
@@ -219,6 +223,12 @@ LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_STATIC_LIBRARIES := \
     libxmlserializer_host \
     libpfw_utility_host \
-    libxml2
+    libxml2 \
+    libpfw_log_host
 
 include $(BUILD_HOST_STATIC_LIBRARY)
+
+################################
+# Trig compilation of sub libraries
+
+include $(LOCAL_PATH)/log/Android.mk

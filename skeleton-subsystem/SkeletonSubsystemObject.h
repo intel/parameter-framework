@@ -36,7 +36,10 @@ class CMappingContext;
 class CSkeletonSubsystemObject : public CFormattedSubsystemObject
 {
 public:
-    CSkeletonSubsystemObject(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context);
+    CSkeletonSubsystemObject(const std::string& strMappingValue,
+                             CInstanceConfigurableElement* pInstanceConfigurableElement,
+                             const CMappingContext& context,
+                             core::log::ILogger& logger);
 
 protected:
     // from CSubsystemObject

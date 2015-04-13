@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -44,7 +44,11 @@ public:
     uint32_t getMaxConfigurableElementSize() const;
 
     // Object creation
-    virtual CSubsystemObject* objectCreate(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context) const = 0;
+    virtual CSubsystemObject* objectCreate(
+            const std::string& strMappingValue,
+            CInstanceConfigurableElement* pInstanceConfigurableElement,
+            const CMappingContext& context,
+            core::log::ILogger& logger) const = 0;
 
     virtual ~CSubsystemObjectCreator() {}
 

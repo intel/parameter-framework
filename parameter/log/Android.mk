@@ -26,19 +26,59 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-if (BUILD_TESTING)
+LOCAL_PATH := $(call my-dir)
 
-    add_library(test-subsystem SHARED
-        TESTSubsystem.cpp
-        TESTSubsystemBinary.cpp
-        TESTSubsystemObject.cpp
-        TESTSubsystemString.cpp
-        TESTSubsystemBuilder.cpp)
+####################
+# Common definitions
 
-    include_directories(
-        "${PROJECT_SOURCE_DIR}/xmlserializer"
-        "${PROJECT_SOURCE_DIR}/parameter/log/include"
-        "${PROJECT_SOURCE_DIR}/parameter")
+common_src_files := \
+    src/Context.cpp \
 
-    target_link_libraries(test-subsystem parameter)
-endif()
+common_module := libpfw_log
+common_module_tags := optional
+
+common_cflags := \
+        -Wall \
+        -Werror \
+        -Wextra \
+
+#############################
+# Target build
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := $(common_src_files)
+LOCAL_C_INCLUDES := \
+    $(LOCAL_PATH)/include \
+    $(LOCAL_PATH)/../../utility/ \
+
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/include
+
+LOCAL_MODULE := $(common_module)
+LOCAL_MODULE_OWNER := intel
+LOCAL_MODULE_TAGS := $(common_module_tags)
+
+LOCAL_CFLAGS := $(common_cflags)
+
+include external/stlport/libstlport.mk
+include $(BUILD_STATIC_LIBRARY)
+
+##############################
+# Host build
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := $(common_src_files)
+LOCAL_C_INCLUDES := \
+    $(LOCAL_PATH)/include \
+    $(LOCAL_PATH)/../../utility/ \
+
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/include
+
+LOCAL_MODULE := $(common_module)_host
+LOCAL_MODULE_OWNER := intel
+LOCAL_MODULE_TAGS := $(common_module_tags)
+
+LOCAL_CFLAGS := $(common_cflags)
+
+include $(BUILD_HOST_STATIC_LIBRARY)

@@ -31,11 +31,11 @@
 
 #include "DefaultElementLibrary.h"
 #include "VirtualSubsystem.h"
-#include "NamedElementBuilderTemplate.h"
+#include "LoggingElementBuilderTemplate.h"
 #include <string>
 
 class CSubsystemLibrary :
-        public CDefaultElementLibrary<TNamedElementBuilderTemplate<CVirtualSubsystem> >
+        public CDefaultElementLibrary<TLoggingElementBuilderTemplate<CVirtualSubsystem> >
 {
 private:
     // Builder type (based on element's name attribute)
