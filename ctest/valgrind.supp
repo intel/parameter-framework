@@ -1,0 +1,11 @@
+# Ignore conditional jump in libz.
+# It is fixed in zlib1g v1.2.8 (ubuntu 14.04)
+# but not in v1.2.3 (ubuntu 12.04) which travis has.
+{
+   libz/inflateReset2/jump
+   Memcheck:Cond
+   fun:inflateReset2
+   fun:inflateInit2_
+   obj:/*/libz.so*
+}
+
