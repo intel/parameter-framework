@@ -21,10 +21,6 @@ install:
 
 # how to build
 script:
-  - ( mkdir build_debug && cd build_debug &&
-        cmake -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
-        make -j &&
-        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck )
   - ( mkdir build && cd build &&
         cmake .. &&
         make -j &&
@@ -36,14 +32,19 @@ script:
         make &&
         sudo make install &&
         sudo ldconfig )
+  - ( cd build &&
+        cmake -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
+        make -j &&
+        sudo make install &&
+        sudo ldconfig &&
+        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalCoverage ExperimentalMemCheck )
 
 after_success:
     # Push coverage info on coveralls.io.
     # Ignore generated files, samples and tests
     - coveralls
-          --exclude "build_debug/bindings/python"
-          --exclude "build_debug/CMakeFiles"
-          --exclude "build"
+          --exclude "build/bindings/python"
+          --exclude "build/CMakeFiles"
           --exclude "skeleton-subsystem"
           --exclude "test/test-subsystem"
           --exclude "bindings/c/Test.cpp"
