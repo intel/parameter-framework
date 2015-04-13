@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -77,7 +77,8 @@ private:
     int _iState;
     // Type
     const CSelectionCriterionType* _pType;
-    // Counter to know how many modifications have been applied to this criterion
-    uint8_t _uiNbModifications;
+
+    /** Counter to know how many modifications have been applied to this criterion */
+    uint32_t _uiNbModifications;
 };
 
