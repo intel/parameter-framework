@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,8 +34,8 @@
 
 using std::string;
 
-CVirtualSubsystem::CVirtualSubsystem(const string& strName)
-    : base(strName), _pVirtualSyncer(new CVirtualSyncer(this))
+CVirtualSubsystem::CVirtualSubsystem(const string& strName, core::log::Logger& logger)
+    : base(strName, logger), _pVirtualSyncer(new CVirtualSyncer(this))
 {
 }
 

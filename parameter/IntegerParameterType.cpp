@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,6 +34,7 @@
 #include "ParameterAccessContext.h"
 #include <assert.h>
 #include "ParameterAdaptation.h"
+#include "Utility.h"
 #include <errno.h>
 
 #define base CParameterType
@@ -69,12 +70,12 @@ void CIntegerParameterType::showProperties(string& strResult) const
 
     // Min
     strResult += "Min: ";
-    strResult += _bSigned ? toString((int32_t)_uiMin) : toString(_uiMin);
+    strResult += _bSigned ? CUtility::toString((int32_t)_uiMin) : CUtility::toString(_uiMin);
     strResult += "\n";
 
     // Max
     strResult += "Max: ";
-    strResult += _bSigned ? toString((int32_t)_uiMax) : toString(_uiMax);
+    strResult += _bSigned ? CUtility::toString((int32_t)_uiMax) : CUtility::toString(_uiMax);
     strResult += "\n";
 
     // Check if there's an adaptation object available
@@ -439,22 +440,22 @@ void CIntegerParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContex
     if (_bSigned) {
 
         // Mininmum
-        xmlElement.setAttributeString("Min", toString((int32_t)_uiMin));
+        xmlElement.setAttributeString("Min", CUtility::toString((int32_t)_uiMin));
 
         // Maximum
-        xmlElement.setAttributeString("Max", toString((int32_t)_uiMax));
+        xmlElement.setAttributeString("Max", CUtility::toString((int32_t)_uiMax));
 
     } else {
 
         // Minimum
-        xmlElement.setAttributeString("Min", toString(_uiMin));
+        xmlElement.setAttributeString("Min", CUtility::toString(_uiMin));
 
         // Maximum
-        xmlElement.setAttributeString("Max", toString(_uiMax));
+        xmlElement.setAttributeString("Max", CUtility::toString(_uiMax));
     }
 
     // Size
-    xmlElement.setAttributeString("Size", toString(getSize() * 8));
+    xmlElement.setAttributeString("Size", CUtility::toString(getSize() * 8));
 
     base::toXml(xmlElement, serializingContext);
 

@@ -31,6 +31,7 @@
 #include "Parameter.h"
 #include "ArrayParameter.h"
 #include "ParameterAccessContext.h"
+#include "Utility.h"
 
 #define base CTypeElement
 
@@ -98,7 +99,7 @@ void CParameterType::showProperties(string& strResult) const
     }
 
     // Scalar size
-    strResult += "Scalar size: " + toString(getSize()) + " byte(s) \n";
+    strResult += "Scalar size: " +CUtility::toString(getSize()) + " byte(s) \n";
 }
 
 // Default value handling (simulation only)
