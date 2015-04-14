@@ -29,7 +29,11 @@
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
-find_package(PythonLibs REQUIRED)
+# Force usage of Python 2.7.x ...
+find_package(PythonInterp 2.7 REQUIRED)
+
+# ... and force the libs to be at the same version as the interpreter
+find_package(PythonLibs ${PYTHON_VERSION_STRING} EXACT REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
 include_directories(${PROJECT_SOURCE_DIR}/parameter/include)
@@ -63,7 +67,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-but-set-variable -DSWIG_PYTH
 # plat_specific is needed because we are installing a shared-library python
 # module and not only a pure python module.
 # prefix='' makes get_python_lib return a relative path.
-find_package(PythonInterp)
 execute_process(COMMAND
     ${PYTHON_EXECUTABLE} -c
         "from distutils import sysconfig;\\
