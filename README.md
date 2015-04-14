@@ -1,7 +1,7 @@
 # parameter-framework
 
-[![Build Status](https://travis-ci.org/01org/parameter-framework.svg?branch=master)](https://travis-ci.org/01org/parameter-framework)
-[![Coverage Status](https://coveralls.io/repos/01org/parameter-framework/badge.svg?branch=master)](https://coveralls.io/r/01org/parameter-framework)
+[![Build Status](https://travis-ci.org/01org/parameter-framework.svg?branch=next)](https://travis-ci.org/01org/parameter-framework)
+[![Coverage Status](https://coveralls.io/repos/01org/parameter-framework/badge.svg?branch=next)](https://coveralls.io/r/01org/parameter-framework)
 
 ## Introduction
 
