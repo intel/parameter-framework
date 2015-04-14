@@ -1,4 +1,4 @@
-# Copyright (c) 2011-2014, Intel Corporation
+# Copyright (c) 2011-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -44,7 +44,6 @@ common_copy_headers := \
 common_src_files := \
         AreaConfiguration.cpp \
         ArrayParameter.cpp \
-        AutoLog.cpp \
         BaseParameter.cpp \
         BinarySerializableElement.cpp \
         BinaryStream.cpp \
@@ -129,6 +128,7 @@ common_cflags := \
 
 common_c_includes := \
     $(LOCAL_PATH)/include/ \
+    $(LOCAL_PATH)/log/include/ \
     $(LOCAL_PATH)/../utility/ \
     $(LOCAL_PATH)/../xmlserializer/ \
     $(LOCAL_PATH)/../remote-processor/
@@ -158,8 +158,8 @@ LOCAL_STATIC_LIBRARIES := libxmlserializer libpfw_utility libxml2
 
 LOCAL_REQUIRED_MODULES := libremote-processor
 
-LOCAL_CLANG := false
-include external/stlport/libstlport.mk
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_SHARED_LIBRARY)
 
 ##############################
@@ -186,7 +186,8 @@ LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host libxml2
 
 LOCAL_LDLIBS += -ldl
 
-LOCAL_CLANG := false
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_HOST_SHARED_LIBRARY)
 
 ################################
@@ -197,7 +198,10 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := $(common_module)_includes
 LOCAL_MODULE_OWNER := intel
 
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+LOCAL_EXPORT_C_INCLUDE_DIRS := \
+    $(LOCAL_PATH) \
+    $(LOCAL_PATH)/log/include
+
 
 LOCAL_STATIC_LIBRARIES := \
     libxmlserializer \

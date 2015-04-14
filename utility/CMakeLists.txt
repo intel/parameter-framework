@@ -33,3 +33,7 @@ add_library(pfw_utility STATIC
 
 # '-fPIC' needed for linking against shared libraries (e.g. libparameter)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+
+install(FILES
+    Utility.h
+    DESTINATION "include/utility")

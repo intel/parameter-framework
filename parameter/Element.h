@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -32,7 +32,6 @@
 #include <string>
 #include <vector>
 #include <stdint.h>
-#include <list>
 #include "XmlSink.h"
 #include "XmlSource.h"
 
@@ -43,15 +42,9 @@ class CErrorContext;
 
 class CElement : public IXmlSink, public IXmlSource
 {
-    friend class CAutoLog;
 public:
     CElement(const std::string& strName = "");
     virtual ~CElement();
-
-    // Logging
-    void log_info(const std::string& strMessage, ...) const;
-    void log_warning(const std::string& strMessage, ...) const;
-    void log_table(bool bIsWarning, const std::list<std::string> lstrMessage) const;
 
     // Description
     void setDescription(const std::string& strDescription);
@@ -64,8 +57,6 @@ public:
     std::string getPath() const;
     std::string getQualifiedPath() const;
 
-    // Creation / build
-    virtual bool init(std::string& strError);
     virtual void clean();
 
     // Children management
@@ -133,12 +124,6 @@ public:
     // Element properties
     virtual void showProperties(std::string& strResult) const;
 
-    // Conversion utilities
-    static std::string toString(uint32_t uiValue);
-    static std::string toString(uint64_t uiValue);
-    static std::string toString(int32_t iValue);
-    static std::string toString(double dValue);
-
     // Checksum for integrity checks
     uint8_t computeStructureChecksum() const;
 
@@ -147,8 +132,6 @@ public:
 protected:
     // Content dumping
     virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
-    // Utility to underline
-    static void appendTitle(std::string& strTo, const std::string& strTitle);
 
     // Hierarchy
     CElement* getParent();
@@ -165,18 +148,12 @@ protected:
                           CXmlSerializingContext& elementSerializingContext);
 
 private:
-    // Logging (done by root)
-    virtual void doLog(bool bIsWarning, const std::string& strLog) const;
-    virtual void nestLog() const;
-    virtual void unnestLog() const;
     // Returns Name or Kind if no Name
     std::string getPathName() const;
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
     // House keeping
     void removeChildren();
-    // For logging
-    uint32_t getDepth() const;
     // Fill XmlElement during XML composing
     void setXmlNameAttribute(CXmlElement& xmlElement) const;
 

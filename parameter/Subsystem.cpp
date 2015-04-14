@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,6 +35,7 @@
 #include "ConfigurationAccessContext.h"
 #include "SubsystemObjectCreator.h"
 #include "MappingData.h"
+#include "Utility.h"
 #include <assert.h>
 #include <sstream>
 
@@ -44,7 +45,10 @@ using std::string;
 using std::list;
 using std::ostringstream;
 
-CSubsystem::CSubsystem(const string& strName) : base(strName), _pComponentLibrary(new CComponentLibrary), _pInstanceDefinition(new CInstanceDefinition), _bBigEndian(false), _pMappingData(NULL)
+CSubsystem::CSubsystem(const string& strName, core::log::Logger& logger)
+    : base(strName), _pComponentLibrary(new CComponentLibrary),
+      _pInstanceDefinition(new CInstanceDefinition), _bBigEndian(false), _pMappingData(NULL),
+      _logger(logger)
 {
     // Note: A subsystem contains instance components
     // InstanceDefintion and ComponentLibrary objects are then not chosen to be children
@@ -440,7 +444,8 @@ bool CSubsystem::handleSubsystemObjectCreation(
                 pSubsystemObjectCreator->getMaxConfigurableElementSize()) {
 
                 string strSizeError = "Size should not exceed " +
-                                      toString(pSubsystemObjectCreator->getMaxConfigurableElementSize());
+                                      CUtility::toString(
+                                        pSubsystemObjectCreator->getMaxConfigurableElementSize());
 
                 strError = getMappingError(strKey, strSizeError, pInstanceConfigurableElement);
 
@@ -449,7 +454,7 @@ bool CSubsystem::handleSubsystemObjectCreation(
 
             // Do create object and keep its track
             _subsystemObjectList.push_back(pSubsystemObjectCreator->objectCreate(
-                    *pStrValue, pInstanceConfigurableElement, context));
+                    *pStrValue, pInstanceConfigurableElement, context, _logger));
 
             // Indicate subsytem creation to caller
             bHasCreatedSubsystemObject = true;
@@ -528,4 +533,10 @@ void CSubsystem::mapEnd()
 {
     // Unstack context
     _contextStack.pop();
+}
+
+bool CSubsystem::init(string&)
+{
+    // Default implementation
+    return true;
 }

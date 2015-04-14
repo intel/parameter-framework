@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -46,16 +46,17 @@ class CDefaultElementLibrary: public CElementLibrary
 {
 public:
 
-    explicit CDefaultElementLibrary(bool bEnableDefaultMechanism = true);
+    CDefaultElementLibrary() : _defaultBuilder(NULL) {}
     virtual ~CDefaultElementLibrary() {}
 
-    /** Enable the default builder fallback mechanism.
+    /** Set the default builder used in fallback mechanism.
       * @see createElement() for more detail on this mechanism.
       *
-      * @param[in] bEnable if true/false, activate/deactivate the default builder mechanism.
+      * @param[in] defaultBuilder if NULL default builder mechanism, else provided builder is used.
       */
-    void enableDefaultMechanism(bool bEnable) {
-        _bEnableDefaultMechanism = bEnable;
+    void setDefaultBuilder(CDefaultElementBuilder* defaultBuilder)
+    {
+        _defaultBuilder = defaultBuilder;
     }
 
 
@@ -72,14 +73,8 @@ public:
     CElement* createElement(const CXmlElement& xmlElement) const;
 
 private:
-    bool _bEnableDefaultMechanism;
-    CDefaultElementBuilder _DefaultElementBuilder;
+    CDefaultElementBuilder* _defaultBuilder;
 };
-
-template<class CDefaultElementBuilder>
-CDefaultElementLibrary<CDefaultElementBuilder>::CDefaultElementLibrary(bool bEnableDefaultMechanism) :
-        _bEnableDefaultMechanism(bEnableDefaultMechanism),
-        _DefaultElementBuilder() {}
 
 template<class CDefaultElementBuilder>
 CElement* CDefaultElementLibrary<CDefaultElementBuilder>::createElement(const CXmlElement& xmlElement) const
@@ -91,12 +86,12 @@ CElement* CDefaultElementLibrary<CDefaultElementBuilder>::createElement(const CX
         return builtElement;
     }
 
-    if (!_bEnableDefaultMechanism) {
+    if (_defaultBuilder == NULL) {
         // The default builder mechanism is not enabled
         return NULL;
     }
 
     // Use the default builder
-    return _DefaultElementBuilder.createElement(xmlElement);
+    return _defaultBuilder->createElement(xmlElement);
 }
 

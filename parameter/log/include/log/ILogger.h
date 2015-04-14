@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,58 +27,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "SyncerSet.h"
-#include "Syncer.h"
+#pragma once
 
-CSyncerSet::CSyncerSet()
+#include <string>
+
+namespace core
 {
-}
-
-const CSyncerSet& CSyncerSet::operator+=(ISyncer* pRightSyncer)
+namespace log
 {
-    _syncerSet.insert(pRightSyncer);
 
-    return *this;
-}
-
-const CSyncerSet& CSyncerSet::operator+=(const CSyncerSet& rightSyncerSet)
+/** Logger interface provided by client */
+class ILogger
 {
-    if (&rightSyncerSet != this) {
+public:
+    virtual void info(const std::string& strLog) = 0;
+    virtual void warning(const std::string& strLog) = 0;
+protected:
+    virtual ~ILogger() {}
+};
 
-        _syncerSet.insert(rightSyncerSet._syncerSet.begin(), rightSyncerSet._syncerSet.end());
-    }
-
-    return *this;
-}
-
-void CSyncerSet::clear()
-{
-    _syncerSet.clear();
-}
-
-bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard,
-                      bool bBack,
-                      core::Results* errors) const
-{
-    bool bSuccess = true;
-
-    std::string strError;
-
-    // Propagate
-    SyncerSetConstIterator it;
-
-    for (it = _syncerSet.begin(); it != _syncerSet.end(); ++it) {
-
-        ISyncer* pSyncer = *it;
-
-        if (!pSyncer->sync(parameterBlackboard, bBack, strError)) {
-
-            if (errors != NULL) {
-
-                errors->push_back(strError);
-            }
-            bSuccess = false;
-        }
-    }
-    return bSuccess;
-}
+} /** log namespace */
+} /** core namespace */
