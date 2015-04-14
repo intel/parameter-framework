@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,11 +29,16 @@
  */
 
 #include "SelectionCriterion.h"
-#include "AutoLog.h"
+#include <log/Logger.h>
 
 #define base CElement
 
-CSelectionCriterion::CSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pType) : base(strName), _iState(0), _pType(pType), _uiNbModifications(0)
+using namespace core;
+
+CSelectionCriterion::CSelectionCriterion(const std::string& strName,
+                                         const CSelectionCriterionType* pType,
+                                         core::log::Logger& logger)
+    : base(strName), _iState(0), _pType(pType), _uiNbModifications(0), _logger(logger)
 {
 }
 
@@ -61,13 +66,16 @@ void CSelectionCriterion::setCriterionState(int iState)
 
         _iState = iState;
 
-        log_info("Selection criterion changed event: %s", getFormattedDescription(false, false).c_str());
+        _logger.info() << "Selection criterion changed event: "
+                       << getFormattedDescription(false, false);
 
         // Check if the previous criterion value has been taken into account (i.e. at least one Configuration was applied
         // since the last criterion change)
         if (_uiNbModifications != 0) {
 
-            log_warning("Selection criterion \"%s\" has been modified %d time(s) without any configuration application", getName().c_str(), _uiNbModifications);
+            _logger.warning() << "Selection criterion '" << getName()
+                              << "' has been modified " << _uiNbModifications
+                              << " time(s) without any configuration application";
         }
 
         // Track the number of modifications for this criterion

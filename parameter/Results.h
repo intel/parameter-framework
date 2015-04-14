@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,24 +29,13 @@
  */
 #pragma once
 
-#include "Element.h"
-
+#include <list>
 #include <string>
 
-class CAutoLog
+namespace core
 {
-public:
-    CAutoLog(const CElement* pElement, const std::string& strContext, bool bLogOn = true);
-    ~CAutoLog();
 
-private:
-    CAutoLog(const CAutoLog&);
-    CAutoLog& operator=(const CAutoLog&);
-    // Logger element
-    const CElement* _pElement;
-    // Context
-    std::string _strContext;
-    // Log on
-    bool _bLogOn;
-};
+    /** String list type which can hold list of error/info */
+    typedef std::list<std::string> Results;
 
+} /** core namespace */

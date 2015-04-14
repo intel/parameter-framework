@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,58 +27,60 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "SyncerSet.h"
-#include "Syncer.h"
+#pragma once
 
-CSyncerSet::CSyncerSet()
+#include "log/ILogger.h"
+#include "log/LogWrapper.h"
+
+namespace core
 {
-}
-
-const CSyncerSet& CSyncerSet::operator+=(ISyncer* pRightSyncer)
+namespace log
 {
-    _syncerSet.insert(pRightSyncer);
 
-    return *this;
-}
-
-const CSyncerSet& CSyncerSet::operator+=(const CSyncerSet& rightSyncerSet)
+/** Application logger object (Thread unsafe)
+ * Provide contextualisable logging API.
+ * Streams can be used through Info and Warning objects returned by dedicated
+ * methods.
+ * This is the class you want to use to log in the project.
+ */
+class Logger
 {
-    if (&rightSyncerSet != this) {
+public:
 
-        _syncerSet.insert(rightSyncerSet._syncerSet.begin(), rightSyncerSet._syncerSet.end());
+    /** Context class is friend let the prolog by externally modified */
+    friend class Context;
+
+    /** @param[in] logger, raw logger provided by client */
+    Logger(ILogger& logger) : mLogger(logger) {}
+
+    /**
+     * Retrieve wrapped information logger
+     *
+     * @return Info logger
+     */
+    details::Info info()
+    {
+        return details::Info(mLogger, mProlog);
     }
 
-    return *this;
-}
-
-void CSyncerSet::clear()
-{
-    _syncerSet.clear();
-}
-
-bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard,
-                      bool bBack,
-                      core::Results* errors) const
-{
-    bool bSuccess = true;
-
-    std::string strError;
-
-    // Propagate
-    SyncerSetConstIterator it;
-
-    for (it = _syncerSet.begin(); it != _syncerSet.end(); ++it) {
-
-        ISyncer* pSyncer = *it;
-
-        if (!pSyncer->sync(parameterBlackboard, bBack, strError)) {
-
-            if (errors != NULL) {
-
-                errors->push_back(strError);
-            }
-            bSuccess = false;
-        }
+    /**
+     * Retrieve wrapped warning logger
+     *
+     * @return Warning logger
+     */
+    details::Warning warning()
+    {
+        return details::Warning(mLogger, mProlog);
     }
-    return bSuccess;
-}
+
+private:
+
+    /** Raw logger provided by client */
+    ILogger& mLogger;
+
+    /** Log prolog, owns the context indentation */
+    std::string mProlog;
+};
+
+} /** log namespace */
+} /** core namespace */

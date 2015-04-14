@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -39,8 +39,13 @@ public:
     TSubsystemObjectFactory(const std::string& strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize = -1) : CSubsystemObjectCreator(strMappingKey, uiAncestorIdMask, uiMaxConfigurableElementSize) {}
 
     // Object creation
-    virtual CSubsystemObject* objectCreate(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context) const
+    virtual CSubsystemObject* objectCreate(
+            const std::string& strMappingValue,
+            CInstanceConfigurableElement* pInstanceConfigurableElement,
+            const CMappingContext& context,
+            core::log::Logger& logger) const
     {
-        return new SubsystemObjectType(strMappingValue, pInstanceConfigurableElement, context);
+        return new SubsystemObjectType(
+                strMappingValue, pInstanceConfigurableElement, context, logger);
     }
 };
