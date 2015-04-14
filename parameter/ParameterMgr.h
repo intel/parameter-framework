@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -32,7 +32,6 @@
 #include <pthread.h>
 #include <map>
 #include <vector>
-#include <list>
 #include "RemoteCommandHandlerTemplate.h"
 #include "PathNavigator.h"
 #include "SelectionCriterionType.h"
@@ -40,8 +39,12 @@
 #include "Element.h"
 #include "XmlDocSink.h"
 #include "XmlDocSource.h"
+#include "Results.h"
+#include <log/LogWrapper.h>
+#include <log/Context.h>
 
 #include <string>
+#include <memory>
 
 class CElementLibrarySet;
 class CSubsystemLibrary;
@@ -93,21 +96,10 @@ class CParameterMgr : private CElement
     // Parameter handle friendship
     friend class CParameterHandle;
 public:
-    // Logger interface
-    class ILogger
-    {
-    public:
-        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
-    protected:
-        virtual ~ILogger() {}
-    };
 
     // Construction
-    CParameterMgr(const std::string& strConfigurationFilePath);
+    CParameterMgr(const std::string& strConfigurationFilePath, core::log::ILogger& logger);
     virtual ~CParameterMgr();
-
-    // Logging
-    void setLogger(ILogger* pLogger);
 
     /** Load plugins, structures and settings from the config file given.
       *
@@ -253,8 +245,17 @@ public:
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool renameConfiguration(const std::string& strDomain, const std::string& strConfiguration, const std::string& strNewConfiguration, std::string& strError);
 
-    // Save/Restore
-    bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::list<std::string>& strError);
+    /** Restore a configuration
+     *
+     * @param[in] strDomain the domain name
+     * @param[in] strConfiguration the configuration name
+     * @param[out] errors errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restoreConfiguration(const std::string& strDomain,
+                              const std::string& strConfiguration,
+                              core::Results& errors);
+
     bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
 
     // Configurable element - domain association
@@ -359,11 +360,6 @@ private:
 
     // Init
     virtual bool init(std::string& strError);
-
-    // Logging (done by root)
-    virtual void doLog(bool bIsWarning, const std::string& strLog) const;
-    virtual void nestLog() const;
-    virtual void unnestLog() const;
 
     // Version
     std::string getVersion() const;
@@ -508,6 +504,13 @@ private:
     // Framework global configuration loading
     bool loadFrameworkConfiguration(std::string& strError);
 
+    /** Load required subsystems
+     *
+     * @param[out] error error description if there is one
+     * @return true if succeed false otherwise
+     */
+    bool loadSubsystems(std::string& error);
+
     // System class Structure loading
     bool loadStructure(std::string& strError);
 
@@ -572,6 +575,20 @@ private:
     // Remote Processor Server connection handling
     bool handleRemoteProcessingInterface(std::string& strError);
 
+    /** Log the result of a function
+     *
+     * @param[in] isSuccess indicates if the previous function has succeed
+     * @param[in] result function provided result string
+     * @return isSuccess parameter
+     */
+    bool logResult(bool isSuccess, const std::string& result);
+
+    /** Info logger call helper */
+    inline core::log::details::Info info();
+
+    /** Warning logger call helper */
+    inline core::log::details::Warning warning();
+
     // Tuning
     bool _bTuningModeIsOn;
 
@@ -624,9 +641,8 @@ private:
     // Blackboard access mutex
     pthread_mutex_t _blackboardMutex;
 
-    // Logging
-    ILogger* _pLogger;
-    mutable uint32_t _uiLogDepth;
+    /** Application main logger based on the one provided by the client */
+    core::log::Logger _logger;
 
     /** If set to false, the remote interface won't be started no matter what.
      * If set to true - the default - it has no impact on the policy for

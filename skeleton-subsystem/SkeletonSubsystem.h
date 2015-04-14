@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,7 +34,7 @@
 class CSkeletonSubsystem : public CSubsystem
 {
 public:
-    CSkeletonSubsystem(const std::string& strName);
+    CSkeletonSubsystem(const std::string& strName, core::log::Logger& logger);
 
 };
 

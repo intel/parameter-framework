@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,7 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "SubsystemLibrary.h"
-#include "NamedElementBuilderTemplate.h"
+#include "LoggingElementBuilderTemplate.h"
 #include "SkeletonSubsystem.h"
 
 
@@ -43,8 +43,10 @@ extern "C"
  * The plugin symbol is of the form:
  * get<TYPE>SubsystemBuilder
 */
-void getSKELETONSubsystemBuilder(CSubsystemLibrary* pSubsystemLibrary)
+void getSKELETONSubsystemBuilder(CSubsystemLibrary* pSubsystemLibrary, core::log::Logger& logger)
 {
-    pSubsystemLibrary->addElementBuilder("Skeleton", new TNamedElementBuilderTemplate<CSkeletonSubsystem>());
+    pSubsystemLibrary->addElementBuilder(
+            "Skeleton",
+            new TLoggingElementBuilderTemplate<CSkeletonSubsystem>(logger));
 }
 }

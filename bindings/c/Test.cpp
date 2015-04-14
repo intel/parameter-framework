@@ -329,6 +329,17 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
                         REQUIRE(value == 3);
                     }
                 }
+                WHEN("Set a new value to a criterion without committing first") {
+                    const char *criterionName = criteria[0].name;
+                    REQUIRE_SUCCESS(pfwSetCriterion(pfw, criterionName, 0));
+                    THEN("A warning message should have been displayed") {
+                        INFO("Previous pfw log: \n" + logLines);
+                        size_t logPos = logLines.find("Warning: Selection criterion "
+                                                      "'inclusiveCrit' has been modified 1 time(s)"
+                                                      " without any configuration application");
+                        CHECK(logPos != std::string::npos);
+                    }
+                }
             }
             WHEN("Commit criteria without a pfw") {
                 REQUIRE(not pfwApplyConfigurations(NULL));
