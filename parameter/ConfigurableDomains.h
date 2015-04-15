@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,8 +30,10 @@
 #pragma once
 
 #include "BinarySerializableElement.h"
+#include "Results.h"
+#include <criterion/Criteria.h>
+
 #include <set>
-#include <list>
 #include <string>
 
 
@@ -39,7 +41,6 @@ class CParameterBlackboard;
 class CConfigurableElement;
 class CSyncerSet;
 class CConfigurableDomain;
-class CSelectionCriteriaDefinition;
 
 class CConfigurableDomains : public CBinarySerializableElement
 {
@@ -79,7 +80,19 @@ public:
     bool setSequenceAwareness(const std::string& strDomain, bool bSequenceAware, std::string& strError);
     bool getSequenceAwareness(const std::string& strDomain, bool& bSequenceAware, std::string& strError) const;
     bool listDomainElements(const std::string& strDomain, std::string& strResult) const;
-    bool split(const std::string& strDomain, CConfigurableElement* pConfigurableElement, std::string& strError);
+
+    /** Split a domain in two.
+     * Remove an element of a domain and create a new domain which owns the element.
+     *
+     * @param[in] domainName the domain name
+     * @param[in] element pointer to the element to remove
+     * @param[out] infos useful information we can provide to client
+     * @return true if succeed false otherwise
+     */
+    bool split(const std::string& domainName,
+               CConfigurableElement* element,
+               core::Results& infos);
+
     void listAssociatedElements(std::string& strResult) const;
     void listConflictingElements(std::string& strResult) const;
     void listDomains(std::string& strResult) const;
@@ -88,19 +101,60 @@ public:
     bool createConfiguration(const std::string& strDomain, const std::string& strConfiguration, const CParameterBlackboard* pMainBlackboard, std::string& strError);
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool renameConfiguration(const std::string& strDomain, const std::string& strConfigurationName, const std::string& strNewConfigurationName, std::string& strError);
-    bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<std::string>& lstrError) const;
+
+    /** Restore a configuration
+     *
+     * @param[in] strDomain the domain name
+     * @param[in] strConfiguration the configuration name
+     * @param[in] mainBlackboard the application main blackboard
+     * @param[in] autoSync boolean which indicates if auto sync mechanism is on
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restoreConfiguration(const std::string& strDomain,
+                              const std::string& strConfiguration,
+                              CParameterBlackboard* pMainBlackboard,
+                              bool bAutoSync,
+                              core::Results& errors) const;
+
     bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, const CParameterBlackboard* pMainBlackboard, std::string& strError);
     bool setElementSequence(const std::string& strDomain, const std::string& strConfiguration, const std::vector<std::string>& astrNewElementSequence, std::string& strError);
     bool getElementSequence(const std::string& strDomain, const std::string& strConfiguration, std::string& strResult) const;
-    bool setApplicationRule(const std::string& strDomain, const std::string& strConfiguration, const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
+
+    /** Create a new rule of configuration application
+     *
+     * @param[in] strDomain the domain name
+     * @param[in] strConfiguration the configuration name
+     * @param[in] strApplicationRule the rule to parse
+     * @param[in] criteria application criteria
+     * @param[out] error, error encountered during restoration
+     * @result true is success false otherwise
+     */
+    bool setApplicationRule(const std::string& strDomain,
+                            const std::string& strConfiguration,
+                            const std::string& strApplicationRule,
+                            const core::selection::criterion::Criteria& criteria,
+                            std::string& strError);
+
     bool clearApplicationRule(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool getApplicationRule(const std::string& strDomain, const std::string& strConfiguration, std::string& strResult) const;
 
     // Last applied configurations
     void listLastAppliedConfigurations(std::string& strResult) const;
 
-    // Configurable element - domain association
-    bool addConfigurableElementToDomain(const std::string& strDomain, CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, std::string& strError);
+    /** Associate a configurable element to a domain
+     *
+     * @param[in] domainName the domain name
+     * @param[in] element pointer to the element to add
+     * @param[in] mainBlackboard pointer to the application main blackboard
+     * @param[out] infos useful information we can provide to client
+     * @return true if succeed false otherwise
+     */
+    bool addConfigurableElementToDomain(const std::string& domainName,
+                                        CConfigurableElement* element,
+                                        const CParameterBlackboard* mainBlackboard,
+                                        core::Results& infos);
+
     bool removeConfigurableElementFromDomain(const std::string& strDomain, CConfigurableElement* pConfigurableElement, std::string& strError);
 
     // Configuration Blackboard for element
@@ -123,8 +177,17 @@ public:
     // Ensure validity on whole domains from main blackboard
     void validate(const CParameterBlackboard* pMainBlackboard);
 
-    // Configuration application if required
-    void apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce) const;
+    /** Apply the configuration if required
+     *
+     * @param[in] pParameterBlackboard the blackboard to synchronize
+     * @param[in] pSyncerSet pointer to the set containing application syncers
+     * @param[in] bForce boolean used to force configuration application
+     * @param[out] infos useful information we can provide to client
+     */
+    void apply(CParameterBlackboard* pParameterBlackboard,
+               CSyncerSet& syncerSet,
+               bool bForce,
+               core::Results& infos) const;
 
     // Class kind
     virtual std::string getKind() const;

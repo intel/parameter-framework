@@ -29,6 +29,7 @@
  */
 #include "ParameterBlockType.h"
 #include "ParameterBlock.h"
+#include "Utility.h"
 
 #define base CTypeElement
 
@@ -62,7 +63,8 @@ void CParameterBlockType::populate(CElement* pElement) const
 
         for (uiChild = 0; uiChild < uiArrayLength; uiChild++) {
 
-            CParameterBlock* pChildParameterBlock = new CParameterBlock(toString(uiChild), this);
+            CParameterBlock* pChildParameterBlock = new CParameterBlock(CUtility::toString(uiChild),
+                                                                        this);
 
             pElement->addChild(pChildParameterBlock);
 

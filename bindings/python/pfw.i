@@ -80,10 +80,14 @@ public:
 
     void setLogger(ILogger* pLogger);
 
-    ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive);
-    ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName,
-            const ISelectionCriterionTypeInterface* pSelectionCriterionType);
-    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
+    core::selection::criterion::CriterionInterface*
+    createExclusiveCriterion(const std::string& name);
+
+    core::selection::criterion::CriterionInterface*
+    createInclusiveCriterion(const std::string& name);
+
+    core::selection::criterion::CriterionInterface*
+    getSelectionCriterion(const std::string& name);
 
     // Configuration application
     void applyConfigurations();
@@ -182,7 +186,8 @@ public:
 class ILogger
 {
     public:
-        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
+        virtual void info(const std::string& log) = 0;
+        virtual void warning(const std::string& log) = 0;
     protected:
         virtual ~ILogger() {}
 };
@@ -190,35 +195,35 @@ class ILogger
 typedef CParameterMgrFullConnector::ILogger ILogger;
 %}
 
-class ISelectionCriterionTypeInterface
+namespace core
+{
+namespace selection
+{
+namespace criterion
+{
+
+class CriterionInterface
 {
 %{
-#include "SelectionCriterionTypeInterface.h"
-%}
-
-public:
-    virtual bool addValuePair(int iValue, const std::string& strValue) = 0;
-    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const = 0;
-    virtual bool getLiteralValue(int iValue, std::string& strValue) const = 0;
-    virtual bool isTypeInclusive() const = 0;
-    virtual std::string getFormattedState(int iValue) const = 0;
-
-protected:
-    virtual ~ISelectionCriterionTypeInterface() {}
-};
-
-class ISelectionCriterionInterface
-{
-%{
-#include "SelectionCriterionInterface.h"
+#include <criterion/client/CriterionInterface.h>
 %}
 
 public:
     virtual void setCriterionState(int iState) = 0;
     virtual int getCriterionState() const = 0;
     virtual std::string getCriterionName() const = 0;
-    virtual const ISelectionCriterionTypeInterface* getCriterionType() const = 0;
+    virtual bool addValuePair(int numericalValue,
+                              const std::string& literalValue,
+                              std::string& error) = 0;
+    virtual bool getNumericalValue(const std::string& literalValue, int& numericalValue) const = 0;
+    virtual bool getLiteralValue(int numericalValue, std::string& literalValue) const = 0;
+    virtual std::string getFormattedState() const = 0;
+    virtual bool isInclusive() const = 0;
 
 protected:
-    virtual ~ISelectionCriterionInterface() {}
+    virtual ~CriterionInterface() {}
 };
+
+} /** criterion namespace */
+} /** selection namespace */
+} /** core namespace */

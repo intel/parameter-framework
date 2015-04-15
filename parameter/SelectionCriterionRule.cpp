@@ -28,26 +28,19 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "SelectionCriterionRule.h"
-#include "SelectionCriterion.h"
 #include "XmlDomainSerializingContext.h"
 #include "XmlDomainImportContext.h"
-#include "SelectionCriteriaDefinition.h"
-#include "SelectionCriterionTypeInterface.h"
 #include "RuleParser.h"
+#include <criterion/Criterion.h>
+
 #include <assert.h>
 
 #define base CRule
 
 using std::string;
 
-const CSelectionCriterionRule::SMatchingRuleDescription CSelectionCriterionRule::_astMatchesWhen[CSelectionCriterionRule::ENbMatchesWhen] = {
-    { "Is", true },
-    { "IsNot", true },
-    { "Includes", false },
-    { "Excludes", false }
-};
-
-CSelectionCriterionRule::CSelectionCriterionRule() : _pSelectionCriterion(NULL), _eMatchesWhen(CSelectionCriterionRule::EIs), _iMatchValue(0)
+CSelectionCriterionRule::CSelectionCriterionRule() :
+    _pSelectionCriterion(NULL), mMatchesWhenVerb(""), _iMatchValue(0)
 {
 }
 
@@ -70,7 +63,7 @@ void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& errorCon
 bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 {
     // Criterion
-    _pSelectionCriterion = ruleParser.getSelectionCriteriaDefinition()->getSelectionCriterion(ruleParser.getType());
+    _pSelectionCriterion = ruleParser.getCriteria().getSelectionCriterion(ruleParser.getType());
 
     // Check existence
     if (!_pSelectionCriterion) {
@@ -81,9 +74,7 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
     }
 
     // Verb
-    string strMatchesWhen;
-
-    if (!ruleParser.next(strMatchesWhen, strError)) {
+    if (!ruleParser.next(mMatchesWhenVerb, strError)) {
 
         return false;
     }
@@ -96,15 +87,17 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
     }
 
     // Matches when
-    if (!setMatchesWhen(strMatchesWhen, strError)) {
+    if (!_pSelectionCriterion->isMatchMethodAvailable(mMatchesWhenVerb)) {
 
-        strError = "Verb error: " + strError;
+        strError = "Matche type: " + mMatchesWhenVerb + " incompatible with " +
+                   (_pSelectionCriterion->isInclusive() ? "inclusive" : "exclusive") +
+                   " criterion: " + _pSelectionCriterion->getCriterionName();
 
         return false;
     }
 
     // Value
-    if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
+    if (!_pSelectionCriterion->getNumericalValue(strValue, _iMatchValue)) {
 
         strError = "Value error: \"" + strValue + "\" is not part of criterion \"" +
                    _pSelectionCriterion->getCriterionName() + "\"";
@@ -119,14 +112,14 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 void CSelectionCriterionRule::dump(string& strResult) const
 {
     // Criterion
-    strResult += _pSelectionCriterion->getName();
+    strResult += _pSelectionCriterion->getCriterionName();
     strResult += " ";
     // Verb
-    strResult += _astMatchesWhen[_eMatchesWhen].pcMatchesWhen;
+    strResult += mMatchesWhenVerb;
     strResult += " ";
     // Value
     string strValue;
-    _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, strValue);
+    _pSelectionCriterion->getLiteralValue(_iMatchValue, strValue);
     strResult += strValue;
 }
 
@@ -135,19 +128,7 @@ bool CSelectionCriterionRule::matches() const
 {
     assert(_pSelectionCriterion);
 
-    switch(_eMatchesWhen) {
-    case EIs:
-        return _pSelectionCriterion->is(_iMatchValue);
-    case EIsNot:
-        return _pSelectionCriterion->isNot(_iMatchValue);
-    case EIncludes:
-        return _pSelectionCriterion->includes(_iMatchValue);
-    case EExcludes:
-        return _pSelectionCriterion->excludes(_iMatchValue);
-    default:
-        assert(0);
-        return false;
-    }
+    return _pSelectionCriterion->match(mMatchesWhenVerb, _iMatchValue);
 }
 
 // From IXmlSink
@@ -159,7 +140,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Get selection criterion
     string strSelectionCriterion = xmlElement.getAttributeString("SelectionCriterion");
 
-    _pSelectionCriterion = xmlDomainImportContext.getSelectionCriteriaDefinition()->getSelectionCriterion(strSelectionCriterion);
+    _pSelectionCriterion =
+        xmlDomainImportContext.getCriteria().getSelectionCriterion(strSelectionCriterion);
 
     // Check existence
     if (!_pSelectionCriterion) {
@@ -170,12 +152,14 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     }
 
     // Get MatchesWhen
-    string strMatchesWhen = xmlElement.getAttributeString("MatchesWhen");
+    mMatchesWhenVerb = xmlElement.getAttributeString("MatchesWhen");
     string strError;
 
-    if (!setMatchesWhen(strMatchesWhen, strError)) {
+    if (!_pSelectionCriterion->isMatchMethodAvailable(mMatchesWhenVerb)) {
 
-        xmlDomainImportContext.setError("Wrong MatchesWhen attribute " + strMatchesWhen + " in " + getKind() + " " + xmlElement.getPath() + ": " + strError);
+        xmlDomainImportContext.setError("Wrong MatchesWhen attribute " + mMatchesWhenVerb + " in " +
+                                        getKind() + " " + xmlElement.getPath() + ": " +
+                                        _pSelectionCriterion->getCriterionName());
 
         return false;
     }
@@ -183,7 +167,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Get Value
     string strValue = xmlElement.getAttributeString("Value");
 
-    if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
+    if (!_pSelectionCriterion->getNumericalValue(strValue, _iMatchValue)) {
 
         xmlDomainImportContext.setError("Wrong Value attribute value " + strValue + " in " + getKind() + " " + xmlElement.getPath());
 
@@ -202,51 +186,15 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     assert(_pSelectionCriterion);
 
     // Set selection criterion
-    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getName());
+    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getCriterionName());
 
     // Set MatchesWhen
-    xmlElement.setAttributeString("MatchesWhen", _astMatchesWhen[_eMatchesWhen].pcMatchesWhen);
+    xmlElement.setAttributeString("MatchesWhen", mMatchesWhenVerb);
 
     // Set Value
     string strValue;
 
-     _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, strValue);
+     _pSelectionCriterion->getLiteralValue(_iMatchValue, strValue);
 
     xmlElement.setAttributeString("Value", strValue);
-}
-
-// XML MatchesWhen attribute parsing
-bool CSelectionCriterionRule::setMatchesWhen(const string& strMatchesWhen, string& strError)
-{
-    uint32_t uiMatchesWhen;
-
-    for (uiMatchesWhen = 0; uiMatchesWhen < ENbMatchesWhen; uiMatchesWhen++) {
-
-        const SMatchingRuleDescription* pstMatchingRuleDescription = &_astMatchesWhen[uiMatchesWhen];
-
-        if (strMatchesWhen == pstMatchingRuleDescription->pcMatchesWhen) {
-
-            // Found it!
-
-            // Get Type
-            const ISelectionCriterionTypeInterface* pSelectionCriterionType = _pSelectionCriterion->getCriterionType();
-
-            // Check compatibility if relevant
-            if (!pSelectionCriterionType->isTypeInclusive() && !pstMatchingRuleDescription->bExclusiveTypeCompatible) {
-
-                strError = "Value incompatible with exclusive kind of type";
-
-                return false;
-            }
-
-            // Store
-            _eMatchesWhen = (MatchesWhen)uiMatchesWhen;
-
-            return true;
-        }
-    }
-
-    strError = "Value not found";
-
-    return false;
 }

@@ -67,10 +67,10 @@ class Hal(RemoteCli):
         subprocess.call("remote-process localhost 5001 exit", shell=True)
 
     def createInclusiveCriterion(self, name, nb):
-        self.sendCmd("createInclusiveSelectionCriterion", name, nb)
+        self.sendCmd("createInclusiveCriterion", name, nb)
 
     def createExclusiveCriterion(self, name, nb):
-        self.sendCmd("createExclusiveSelectionCriterion", name, nb)
+        self.sendCmd("createExclusiveCriterion", name, nb)
 
     # Starts the Pfw
     def start(self):

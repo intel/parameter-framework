@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,24 +29,41 @@
  */
 #pragma once
 
-#include "Element.h"
+#include "criterion/Criterion.h"
 
-#include <string>
+namespace core
+{
+namespace selection
+{
+namespace criterion
+{
 
-class CAutoLog
+/** Criterion we can take several state values at the same time */
+class InclusiveCriterion : public Criterion
 {
 public:
-    CAutoLog(const CElement* pElement, const std::string& strContext, bool bLogOn = true);
-    ~CAutoLog();
+    /** @param[in] name, the criterion name */
+    InclusiveCriterion(const std::string& name, core::log::Logger& logger);
+
+    // @{
+    /** @see ISelectionCriterionInterface */
+    bool isInclusive() const override final;
+
+    bool addValuePair(int numericalValue,
+                      const std::string& literalValue,
+                      std::string& error) override final;
+
+    bool getNumericalValue(const std::string& literalValue,
+                           int& numericalValue) const override final;
+
+    std::string getFormattedState() const override final;
+    // @}
 
 private:
-    CAutoLog(const CAutoLog&);
-    CAutoLog& operator=(const CAutoLog&);
-    // Logger element
-    const CElement* _pElement;
-    // Context
-    std::string _strContext;
-    // Log on
-    bool _bLogOn;
+    /** Inclusive criterion state delimiter. */
+    static const std::string gDelimiter;
 };
 
+} /** criterion namespace */
+} /** selection namespace */
+} /** core namespace */

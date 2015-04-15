@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,45 +29,42 @@
  */
 #pragma once
 
-#include <list>
-#include "Element.h"
-#include "SelectionCriterionType.h"
-#include "SelectionCriterion.h"
+#include "ElementBuilder.h"
 
-#include <string>
-
-class CSelectionCriterionLibrary;
-class CSelectionCriteriaDefinition;
-class ISelectionCriterionObserver;
-
-class CSelectionCriteria : public CElement
+/**
+ * Builder for elements which need logger at construction
+ *
+ * @tparam ElementType the type of the element to build
+ */
+template <class ElementType>
+class TLoggingElementBuilderTemplate : public CElementBuilder
 {
-    enum ChildElementType {
-        ESelectionCriterionLibrary,
-        ESelectionCriteriaDefinition
-    };
 public:
-    CSelectionCriteria();
 
-    // Selection Criteria/Type creation
-    CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
-    CSelectionCriterion* createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType);
-    // Selection criterion retrieval
-    CSelectionCriterion* getSelectionCriterion(const std::string& strName);
+    /**
+     * Class Constructor
+     *
+     * @param[in] logger the logger provided by the client
+     */
+    TLoggingElementBuilderTemplate(core::log::Logger& logger)
+        : CElementBuilder(), mLogger(logger)
+    {
+    }
 
-    // Selection Criterion definition
-    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
+    /**
+     * Create a new element
+     *
+     * @param[in] xmlElement the description of the object to create
+     *
+     * @return pointer to the generated element
+     */
+    virtual CElement* createElement(const CXmlElement& xmlElement) const
+    {
+        return new ElementType(xmlElement.getNameAttribute(), mLogger);
+    }
 
-    // List available criteria
-    void listSelectionCriteria(std::list<std::string>& strResult, bool bWithTypeInfo, bool bHumanReadable) const;
-
-    // Base
-    virtual std::string getKind() const;
-
-    // Reset the modified status of the children
-    void resetModifiedStatus();
 private:
-    // Children access
-    CSelectionCriterionLibrary* getSelectionCriterionLibrary();
-    CSelectionCriteriaDefinition* getSelectionCriteriaDefinition();
+
+    /** Application Logger */
+    core::log::Logger& mLogger;
 };

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,15 +33,15 @@
 #include <assert.h>
 
 using std::string;
+using core::selection::criterion::CriterionInterface;
 
 // Construction
 CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
         const string& strConfigurationFilePath) :
-    _pParameterMgr(new CParameterMgr(strConfigurationFilePath)), _bStarted(false), _pLogger(NULL)
+    _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrPlatformConnector>(*this)),
+    _pParameterMgr(new CParameterMgr(strConfigurationFilePath, *_pParameterMgrLogger)),
+    _bStarted(false), _pLogger(NULL)
 {
-    // Logging
-    _pParameterMgrLogger = new CParameterMgrLogger<CParameterMgrPlatformConnector>(*this);
-    _pParameterMgr->setLogger(_pParameterMgrLogger);
 }
 
 CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
@@ -50,23 +50,22 @@ CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
     delete _pParameterMgrLogger;
 }
 
-// Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
-ISelectionCriterionTypeInterface* CParameterMgrPlatformConnector::createSelectionCriterionType(bool bIsInclusive)
+CriterionInterface* CParameterMgrPlatformConnector::createExclusiveCriterion(const string& name)
 {
     assert(!_bStarted);
 
-    return _pParameterMgr->createSelectionCriterionType(bIsInclusive);
+    return _pParameterMgr->createExclusiveCriterion(name);
 }
 
-ISelectionCriterionInterface* CParameterMgrPlatformConnector::createSelectionCriterion(const string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType)
+CriterionInterface* CParameterMgrPlatformConnector::createInclusiveCriterion(const string& name)
 {
     assert(!_bStarted);
 
-    return _pParameterMgr->createSelectionCriterion(strName, static_cast<const CSelectionCriterionType*>(pSelectionCriterionType));
+    return _pParameterMgr->createInclusiveCriterion(name);
 }
 
-// Selection criterion retrieval
-ISelectionCriterionInterface* CParameterMgrPlatformConnector::getSelectionCriterion(const string& strName) const
+CriterionInterface*
+CParameterMgrPlatformConnector::getSelectionCriterion(const string& strName) const
 {
     return _pParameterMgr->getSelectionCriterion(strName);
 }
@@ -187,10 +186,18 @@ bool CParameterMgrPlatformConnector::isStarted() const
 }
 
 // Private logging
-void CParameterMgrPlatformConnector::doLog(bool bIsWarning, const string& strLog)
+void CParameterMgrPlatformConnector::info(const string& log)
 {
     if (_pLogger) {
 
-        _pLogger->log(bIsWarning, strLog);
+        _pLogger->info(log);
+    }
+}
+
+void CParameterMgrPlatformConnector::warning(const string& log)
+{
+    if (_pLogger) {
+
+        _pLogger->warning(log);
     }
 }

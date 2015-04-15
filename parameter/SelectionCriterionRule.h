@@ -30,29 +30,14 @@
 #pragma once
 
 #include "Rule.h"
+#include <criterion/Criterion.h>
 
 #include <string>
 
-class CSelectionCriterion;
+// FIXME: Add SelectionCriterionRule in core::selection namespace
 
 class CSelectionCriterionRule : public CRule
 {
-    // Matching rules
-    enum MatchesWhen {
-        EIs,
-        EIsNot,
-        EIncludes,
-        EExcludes,
-
-        ENbMatchesWhen
-    };
-    // Matching rule description
-    struct SMatchingRuleDescription
-    {
-        const char* pcMatchesWhen;
-        bool bExclusiveTypeCompatible;
-    };
-
 public:
     CSelectionCriterionRule();
 
@@ -77,19 +62,18 @@ protected:
     // Content dumping
     virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 private:
-    // XML MatchesWhen attribute parsing
-    bool setMatchesWhen(const std::string& strMatchesWhen, std::string& strError);
-
     // Selection criterion
-    const CSelectionCriterion* _pSelectionCriterion;
+    const core::selection::criterion::Criterion* _pSelectionCriterion;
 
-    // MatchesWhen
-    MatchesWhen _eMatchesWhen;
+    /** Method name used to match the criterion state
+     *
+     * FIXME: If performance is critical in this part of the code, it's possible
+     * to store directly the match method of the criterion as it is retrieved
+     * at loading time.
+     */
+    std::string mMatchesWhenVerb;
 
     // Value
     int32_t _iMatchValue;
-
-    // Used for XML MatchesWhen attribute parsing
-    static const SMatchingRuleDescription _astMatchesWhen[ENbMatchesWhen];
 };
 

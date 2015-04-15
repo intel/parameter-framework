@@ -29,10 +29,9 @@
  */
 #pragma once
 
-#include "SelectionCriterionTypeInterface.h"
-#include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
 #include "ParameterMgrLoggerForward.h"
+#include <criterion/client/CriterionInterface.h>
 
 #include <string>
 #include <list>
@@ -46,13 +45,18 @@ class CParameterMgrFullConnector
     friend class CParameterMgrLogger<CParameterMgrFullConnector>;
 
 public:
+
+    /** String list type which can hold list of error/info and can be presented to client */
+    typedef std::list<std::string> Results;
+
     CParameterMgrFullConnector(const std::string& strConfigurationFilePath);
     ~CParameterMgrFullConnector();
 
     class ILogger
     {
     public:
-        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
+        virtual void info(const std::string& strLog) = 0;
+        virtual void warning(const std::string& strLog) = 0;
     protected:
         virtual ~ILogger() {}
     };
@@ -66,10 +70,28 @@ public:
     // Dynamic parameter handling
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError);
 
-    ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive);
-    ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName,
-            const ISelectionCriterionTypeInterface* pSelectionCriterionType);
-    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
+    /** Create a new Exclusive criterion
+     * Beware returned objects shall not be deleted by client.
+     * Should be called before start
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the criterion interface
+     */
+    core::selection::criterion::CriterionInterface*
+    createExclusiveCriterion(const std::string& name);
+
+    /** Create a new Inclusive criterion
+     * Beware returned objects shall not be deleted by client.
+     * Should be called before start
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the criterion interface
+     */
+    core::selection::criterion::CriterionInterface*
+    createInclusiveCriterion(const std::string& name);
+
+    core::selection::criterion::CriterionInterface*
+    getSelectionCriterion(const std::string& strName);
 
     /** Is the remote interface forcefully disabled ?
      */
@@ -182,8 +204,17 @@ public:
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool renameConfiguration(const std::string& strDomain, const std::string& strConfiguration, const std::string& strNewConfiguration, std::string& strError);
 
-    // Save/Restore
-    bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::list<std::string>& strError);
+    /** Restore a configuration
+     *
+     * @param[in] strDomain the domain name
+     * @param[in] strConfiguration the configuration name
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restoreConfiguration(const std::string& strDomain,
+                              const std::string& strConfiguration,
+                              Results& errors);
+
     bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
 
     // Configurable element - domain association
@@ -264,11 +295,13 @@ private:
     CParameterMgrFullConnector(const CParameterMgrFullConnector&);
     CParameterMgrFullConnector& operator=(const CParameterMgrFullConnector&);
 
-    void doLog(bool bIsWarning, const std::string& strLog);
+    void info(const std::string& log);
+    void warning(const std::string& log);
+
+    // Log wrapper
+    CParameterMgrLogger<CParameterMgrFullConnector>* _pParameterMgrLogger;
 
     CParameterMgr* _pParameterMgr;
 
     ILogger* _pLogger;
-    // Log wrapper
-    CParameterMgrLogger<CParameterMgrFullConnector>* _pParameterMgrLogger;
 };

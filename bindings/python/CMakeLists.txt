@@ -36,7 +36,9 @@ find_package(PythonInterp 2.7 REQUIRED)
 find_package(PythonLibs ${PYTHON_VERSION_STRING} EXACT REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
-include_directories(${PROJECT_SOURCE_DIR}/parameter/include)
+include_directories(
+    ${PROJECT_SOURCE_DIR}/parameter/include
+    ${PROJECT_SOURCE_DIR}/parameter/criterion/include)
 
 set_property(SOURCE pfw.i PROPERTY CPLUSPLUS ON)
 set_property(SOURCE pfw.i PROPERTY SWIG_FLAGS "-Wall" "-Werror")

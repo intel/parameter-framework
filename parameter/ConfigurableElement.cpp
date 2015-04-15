@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,6 +34,7 @@
 #include "ConfigurationAccessContext.h"
 #include "ConfigurableElementAggregator.h"
 #include "AreaConfiguration.h"
+#include "Utility.h"
 #include <assert.h>
 
 #define base CElement
@@ -161,7 +162,7 @@ void CConfigurableElement::getListOfElementsWithMapping(
 {
     // Check parent
     const CElement* pParent = getParent();
-    if (isOfConfigurableElementType(pParent)) {
+    if (pParent != NULL) {
 
         const CConfigurableElement* pConfigurableElement =
                 static_cast<const CConfigurableElement*>(pParent);
@@ -241,7 +242,7 @@ ISyncer* CConfigurableElement::getSyncer() const
     // Check parent
     const CElement* pParent = getParent();
 
-    if (isOfConfigurableElementType(pParent)) {
+    if (pParent != NULL) {
 
         return static_cast<const CConfigurableElement*>(pParent)->getSyncer();
     }
@@ -310,7 +311,7 @@ void CConfigurableElement::getBelongingDomains(std::list<const CConfigurableDoma
     // Check parent
     const CElement* pParent = getParent();
 
-    if (isOfConfigurableElementType(pParent)) {
+    if (pParent != NULL) {
 
         static_cast<const CConfigurableElement*>(pParent)->getBelongingDomains(configurableDomainList);
     }
@@ -360,7 +361,7 @@ bool CConfigurableElement::isRogue() const
 std::string CConfigurableElement::getFootprintAsString() const
 {
     // Get size as string
-    return toString(getFootPrint()) + " byte(s)";
+    return CUtility::toString(getFootPrint()) + " byte(s)";
 }
 
 // Matching check for no domain association
@@ -465,7 +466,7 @@ bool CConfigurableElement::belongsToDomainAscending(const CConfigurableDomain* p
     // Check parent
     const CElement* pParent = getParent();
 
-    if (isOfConfigurableElementType(pParent)) {
+    if (pParent != NULL) {
 
         return static_cast<const CConfigurableElement*>(pParent)->belongsTo(pConfigurableDomain);
     }
@@ -478,7 +479,7 @@ const CSubsystem* CConfigurableElement::getBelongingSubsystem() const
     const CElement* pParent = getParent();
 
     // Stop at system class
-    if (!pParent->getParent()) {
+    if (pParent == NULL) {
 
         return NULL;
     }
@@ -490,14 +491,4 @@ const CSubsystem* CConfigurableElement::getBelongingSubsystem() const
 bool CConfigurableElement::isParameter() const
 {
     return false;
-}
-
-
-// Check parent is still of current type (by structure knowledge)
-bool CConfigurableElement::isOfConfigurableElementType(const CElement* pParent) const
-{
-    assert(pParent);
-
-    // Up to system class
-    return !!pParent->getParent();
 }

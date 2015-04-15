@@ -33,6 +33,7 @@
 #include <string>
 #include <list>
 #include <map>
+#include <sstream>
 
 class CUtility
 {
@@ -62,5 +63,21 @@ public:
                          std::string& strOutput,
                          const std::string& strItemSeparator = ", ",
                          const std::string& strKeyValueSeparator = ":");
-};
 
+    /** Utility to easily convert a builtin type into string
+     *
+     * FIXME: Should be replaced by std::to_string after C++11 introduction
+     */
+    template <class T>
+    static std::string toString(T uiValue)
+    {
+        std::ostringstream ostr;
+
+        ostr << uiValue;
+
+        return ostr.str();
+    }
+
+    /** Utility to underline */
+    static void appendTitle(std::string& strTo, const std::string& strTitle);
+};

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -288,10 +288,12 @@ void CDomainConfiguration::getElementSequence(string& strResult) const
 }
 
 // Application rule
-bool CDomainConfiguration::setApplicationRule(const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError)
+bool CDomainConfiguration::setApplicationRule(const string& strApplicationRule,
+                                              const core::selection::criterion::Criteria& criteria,
+                                              string& strError)
 {
     // Parser
-    CRuleParser ruleParser(strApplicationRule, pSelectionCriteriaDefinition);
+    CRuleParser ruleParser(strApplicationRule, criteria);
 
     // Attempt to parse it
     if (!ruleParser.parse(NULL, strError)) {
@@ -374,7 +376,9 @@ void CDomainConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Apply data to current
-bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<string>* plstrError) const
+bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard,
+                                   bool bSync,
+                                   core::Results* errors) const
 {
     bool bSuccess = true;
 
@@ -385,7 +389,7 @@ bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool b
 
         const CAreaConfiguration* pAreaConfiguration = *it;
 
-        bSuccess &= pAreaConfiguration->restore(pMainBlackboard, bSync, plstrError);
+        bSuccess &= pAreaConfiguration->restore(pMainBlackboard, bSync, errors);
     }
 
     return bSuccess;

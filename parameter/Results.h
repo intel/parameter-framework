@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,18 +29,13 @@
  */
 #pragma once
 
+#include <list>
 #include <string>
 
-class ISelectionCriterionTypeInterface
+namespace core
 {
-public:
-    virtual bool addValuePair(int iValue, const std::string& strValue) = 0;
-    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const = 0;
-    virtual bool getLiteralValue(int iValue, std::string& strValue) const = 0;
-    virtual bool isTypeInclusive() const = 0;
-    virtual std::string getFormattedState(int iValue) const = 0;
 
-protected:
-    virtual ~ISelectionCriterionTypeInterface() {}
-};
+    /** String list type which can hold list of error/info */
+    typedef std::list<std::string> Results;
 
+} /** core namespace */

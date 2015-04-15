@@ -30,16 +30,21 @@
 #pragma once
 
 #include "XmlDomainSerializingContext.h"
-#include "SelectionCriteriaDefinition.h"
 #include "SystemClass.h"
+#include <criterion/Criteria.h>
 
 #include <string>
 
 class CXmlDomainImportContext : public CXmlDomainSerializingContext
 {
 public:
-    CXmlDomainImportContext(std::string& strError, bool bWithSettings, CSystemClass& systemClass):
-        base(strError, bWithSettings), _systemClass(systemClass), _bAutoValidationRequired(true) {}
+    CXmlDomainImportContext(std::string& strError,
+                            bool bWithSettings,
+                            CSystemClass& systemClass,
+                            const core::selection::criterion::Criteria& criteria)
+        : base(strError, bWithSettings), _systemClass(systemClass), mCriteria(criteria),
+          _bAutoValidationRequired(true)
+    {}
 
     // System Class
     CSystemClass& getSystemClass() const
@@ -47,16 +52,9 @@ public:
         return _systemClass;
     }
 
-    // Criteria defintion
-    void setSelectionCriteriaDefinition(
-            const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition)
+    const core::selection::criterion::Criteria& getCriteria() const
     {
-        _pSelectionCriteriaDefinition = pSelectionCriteriaDefinition;
-    }
-
-    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const
-    {
-        return _pSelectionCriteriaDefinition;
+        return mCriteria;
     }
 
     // Auto validation of configurations
@@ -76,8 +74,8 @@ private:
     // System Class
     CSystemClass& _systemClass;
 
-    // Criteria defintion
-    const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
+    /** Selection criteria definition for rule creation */
+    const core::selection::criterion::Criteria& mCriteria;
 
     // Auto validation of configurations
     bool _bAutoValidationRequired;

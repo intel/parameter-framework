@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -31,6 +31,8 @@
 
 #include "ConfigurableElement.h"
 #include "SubsystemPlugins.h"
+#include "Results.h"
+#include <log/Logger.h>
 #include <list>
 #include <string>
 
@@ -39,7 +41,12 @@ class CSubsystemLibrary;
 class CSystemClass : public CConfigurableElement
 {
 public:
-    CSystemClass();
+
+    /**
+     * @param[in] logger the logger provided by the client
+     * it need to be given to the subsystem library
+     */
+    CSystemClass(core::log::Logger& logger);
     virtual ~CSystemClass();
 
     /** Load subsystem plugin and fill the corresponding libraries.
@@ -63,13 +70,21 @@ public:
       * and fill a syncer set with all syncers that need to be resynchronized
       *
       * @param[out] syncerSet The syncer set to fill
+      * @param[out] infos Relevant informations client may want to log
       */
-    void checkForSubsystemsToResync(CSyncerSet& syncerSet);
+    void checkForSubsystemsToResync(CSyncerSet& syncerSet, core::Results& infos);
 
     /**
       * Reset subsystems need to resync flag.
       */
     void cleanSubsystemsNeedToResync();
+
+    /** Launch init functions of all plugin subsystems
+     *
+     * @param[out] error, error encountered during initialization
+     * @return true if succeed, false otherwise
+     */
+    bool initSubsystems(std::string& error);
 
     // base
     virtual std::string getKind() const;
@@ -82,12 +97,12 @@ private:
 
     /** Load shared libraries subsystem plugins.
      *
-     * @param[out] lstrError is the list of error that occured during loadings.
+     * @param[out] errors is the list of error that occured during loadings.
      * @param[in] pSubsystemPlugins The plugins to load.
      *
      * @return true if all plugins have been succesfully loaded, false otherwises.
      */
-    bool loadSubsystemsFromSharedLibraries(std::list<std::string>& lstrError,
+    bool loadSubsystemsFromSharedLibraries(core::Results& errors,
                                            const CSubsystemPlugins* pSubsystemPlugins);
 
     // Plugin symbol computation
@@ -97,16 +112,19 @@ private:
      *
      * @param[in:out] lstrPluginFiles is the path list of the plugins shared libraries to load.
      *                Successfully loaded plugins are removed from the list.
-     * @param[out] lstrError is the list of error that occured during loadings.
+     * @param[out] errors is the list of error that occured during loadings.
      *
      * @return true if at least one plugin has been succesfully loaded, false otherwise.
      *         When false is returned, some plugins MIHGT have been loaded
      *         but the lstrPluginFiles is accurate.
      */
-    bool loadPlugins(std::list<std::string>& lstrPluginFiles, std::list<std::string>& lstrError);
+    bool loadPlugins(std::list<std::string>& lstrPluginFiles, core::Results& errors);
 
     // Subsystem factory
     CSubsystemLibrary* _pSubsystemLibrary;
     std::list<void*> _subsystemLibraryHandleList; /**< Contains the list of all open plugin libs. */
+
+    /** Application Logger we need to provide to plugins */
+    core::log::Logger& _logger;
 };
 

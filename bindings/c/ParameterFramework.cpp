@@ -41,11 +41,12 @@
 #include <cstdlib>
 
 using std::string;
+using core::selection::criterion::CriterionInterface;
 
 /** Rename long pfw types to short ones in pfw namespace. */
 namespace pfw
 {
-    typedef ISelectionCriterionInterface Criterion;
+    typedef CriterionInterface Criterion;
     typedef std::map<string, Criterion *> Criteria;
     typedef CParameterMgrPlatformConnector Pfw;
 }
@@ -105,15 +106,24 @@ public:
     LogWrapper() : mLogger() {}
     virtual ~LogWrapper() {}
 private:
-    virtual void log(bool bIsWarning, const string &strLog)
+    virtual void info(const string &msg)
+    {
+        log(pfwLogInfo, msg);
+    }
+
+    virtual void warning(const string &msg)
+    {
+        log(pfwLogWarning, msg);
+    }
+
+    void log(PfwLogLevel level, const string &strLog)
     {
         // A LogWrapper should NOT be register to the pfw (thus log called)
         // if logCb is NULL.
         assert(mLogger.logCb != NULL);
-        mLogger.logCb(mLogger.userCtx,
-                      bIsWarning ? pfwLogWarning : pfwLogInfo,
-                      strLog.c_str());
+        mLogger.logCb(mLogger.userCtx, level, strLog.c_str());
     }
+
     PfwLogger mLogger;
 };
 
@@ -178,10 +188,11 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
                                   "\" already exist");
         }
 
-        // Create criterion type
-        ISelectionCriterionTypeInterface *type =
-            pfw->createSelectionCriterionType(criterion.inclusive);
-        assert(type != NULL);
+        // Create criterion
+        CriterionInterface *newCriterion = (criterion.inclusive ?
+                pfw->createInclusiveCriterion(criterion.name) :
+                pfw->createExclusiveCriterion(criterion.name));
+        assert(newCriterion != NULL);
         // Add criterion values
         for (size_t valueIndex = 0; criterion.values[valueIndex] != NULL; ++valueIndex) {
             int value;
@@ -196,13 +207,14 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
                 value = valueIndex;
             }
             const char * valueName = criterion.values[valueIndex];
-            if(not type->addValuePair(value, valueName)) {
+            string error;
+            if(not newCriterion->addValuePair(value, valueName, error)) {
                 return status.failure("Could not add value " + string(valueName) +
-                                      " to criterion " + criterion.name);
+                                      " to criterion " + criterion.name + ": " + error);
             }
         }
-        // Create criterion and add it to the pfw
-        criteria[criterion.name] = pfw->createSelectionCriterion(criterion.name, type);
+        // Add new criterion to criteria list
+        criteria[criterion.name] = newCriterion;
     }
     return status.success();
 }

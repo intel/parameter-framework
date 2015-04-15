@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,17 +29,58 @@
  */
 #pragma once
 
-#include "Element.h"
-#include "SelectionCriterionType.h"
+#include "log/ILogger.h"
+#include "log/LogWrapper.h"
 
-class CSelectionCriterionLibrary : public CElement
+namespace core
+{
+namespace log
+{
+
+/** Application logger object (Thread unsafe)
+ * Provide contextualisable logging API.
+ * Streams can be used through Info and Warning objects returned by dedicated
+ * methods.
+ * This is the class you want to use to log in the project.
+ */
+class Logger
 {
 public:
-    CSelectionCriterionLibrary();
 
-    // Type creation
-    CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
+    /** Context class is friend let the prolog by externally modified */
+    friend class Context;
 
-    // CElement
-    virtual std::string getKind() const;
+    /** @param[in] logger, raw logger provided by client */
+    Logger(ILogger& logger) : mLogger(logger) {}
+
+    /**
+     * Retrieve wrapped information logger
+     *
+     * @return Info logger
+     */
+    details::Info info()
+    {
+        return details::Info(mLogger, mProlog);
+    }
+
+    /**
+     * Retrieve wrapped warning logger
+     *
+     * @return Warning logger
+     */
+    details::Warning warning()
+    {
+        return details::Warning(mLogger, mProlog);
+    }
+
+private:
+
+    /** Raw logger provided by client */
+    ILogger& mLogger;
+
+    /** Log prolog, owns the context indentation */
+    std::string mProlog;
 };
+
+} /** log namespace */
+} /** core namespace */

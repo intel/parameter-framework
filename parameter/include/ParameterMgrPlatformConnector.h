@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,10 +29,9 @@
  */
 #pragma once
 
-#include "SelectionCriterionTypeInterface.h"
-#include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
 #include "ParameterMgrLoggerForward.h"
+#include <criterion/client/CriterionInterface.h>
 
 class CParameterMgr;
 
@@ -44,7 +43,8 @@ public:
     class ILogger
     {
     public:
-        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
+        virtual void info(const std::string& strLog) = 0;
+        virtual void warning(const std::string& strLog) = 0;
     protected:
         virtual ~ILogger() {}
     };
@@ -53,12 +53,29 @@ public:
     CParameterMgrPlatformConnector(const std::string& strConfigurationFilePath);
     ~CParameterMgrPlatformConnector(); // Not virtual since not supposed to be derived!
 
-    // Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
-    // Should be called before start
-    ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive = false);
-    ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType);
+    /** Create a new Exclusive criterion
+     * Beware returned objects shall not be deleted by client.
+     * Should be called before start
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the criterion interface
+     */
+    core::selection::criterion::CriterionInterface*
+    createExclusiveCriterion(const std::string& name);
+
+    /** Create a new Inclusive criterion
+     * Beware returned objects shall not be deleted by client.
+     * Should be called before start
+     *
+     * @param[in] name, the criterion name
+     * @return raw pointer on the criterion interface
+     */
+    core::selection::criterion::CriterionInterface*
+    createInclusiveCriterion(const std::string& name);
+
     // Selection criterion retrieval
-    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName) const;
+    core::selection::criterion::CriterionInterface*
+    getSelectionCriterion(const std::string& strName) const;
 
     // Logging
     // Should be called before start
@@ -160,14 +177,15 @@ private:
     CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector&);
     CParameterMgrPlatformConnector& operator=(const CParameterMgrPlatformConnector&);
     // Private logging
-    void doLog(bool bIsWarning, const std::string& strLog);
+    void info(const std::string& log);
+    void warning(const std::string& log);
 
+    // Private logging
+    CParameterMgrLogger<CParameterMgrPlatformConnector>* _pParameterMgrLogger;
     // Implementation
     CParameterMgr* _pParameterMgr;
     // State
     bool _bStarted;
     // Logging
     ILogger* _pLogger;
-    // Private logging
-    CParameterMgrLogger<CParameterMgrPlatformConnector>* _pParameterMgrLogger;
 };

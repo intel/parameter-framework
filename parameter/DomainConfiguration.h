@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,6 +30,9 @@
 #pragma once
 
 #include "BinarySerializableElement.h"
+#include "Results.h"
+#include <criterion/Criteria.h>
+
 #include <list>
 #include <string>
 
@@ -39,7 +42,6 @@ class CParameterBlackboard;
 class CConfigurationAccessContext;
 class CCompoundRule;
 class CSyncerSet;
-class CSelectionCriteriaDefinition;
 
 class CDomainConfiguration : public CBinarySerializableElement
 {
@@ -59,8 +61,17 @@ public:
     bool setElementSequence(const std::vector<std::string>& astrNewElementSequence, std::string& strError);
     void getElementSequence(std::string& strResult) const;
 
-    // Application rule
-    bool setApplicationRule(const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
+    /** Create a new application rule for this configuration
+     *
+     * @param[in] strApplicationRule the rule to parse
+     * @param[in] criteria application criteria
+     * @param[out] error, error encountered during restoration
+     * @result true is success false otherwise
+     */
+    bool setApplicationRule(const std::string& strApplicationRule,
+                            const core::selection::criterion::Criteria& criteria,
+                            std::string& strError);
+
     void clearApplicationRule();
     void getApplicationRule(std::string& strResult) const;
 
@@ -69,8 +80,18 @@ public:
 
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
-    // Apply data to current
-    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<std::string>* plstrError = NULL) const;
+
+    /** Restore the configuration
+     *
+     * @param[in] pMainBlackboard the application main blackboard
+     * @param[in] bSync indicates if a synchronisation has to be done
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restore(CParameterBlackboard* pMainBlackboard,
+                 bool bSync,
+                 core::Results* errors = NULL) const;
+
     // Ensure validity for configurable element area configuration
     void validate(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard);
     // Ensure validity of all area configurations

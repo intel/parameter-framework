@@ -28,7 +28,9 @@
 
 add_library(cparameter SHARED ParameterFramework.cpp)
 
-include_directories("${PROJECT_SOURCE_DIR}/parameter/include")
+include_directories(
+    "${PROJECT_SOURCE_DIR}/parameter/criterion/include"
+    "${PROJECT_SOURCE_DIR}/parameter/include")
 
 install(FILES ParameterFramework.h
         DESTINATION "include/parameter/c")
