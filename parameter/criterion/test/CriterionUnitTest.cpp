@@ -179,9 +179,7 @@ struct CriterionTest : public LoggingTest {
         CriterionValues criterionValues;
 
         for (size_t i = offset; i < nbValues; i++) {
-            // Inclusive criterion should have only one be set
-            int numericalValue = isInclusive ? 1 << i : i;
-            criterionValues.emplace("Crit_" + std::to_string(numericalValue), numericalValue);
+            criterionValues.emplace("Crit_" + std::to_string(i), i);
         }
 
         return criterionValues;
@@ -359,8 +357,8 @@ struct CriterionTest : public LoggingTest {
                 "\" Kind=\"" + kind +
                 R"(">
                     <ValuePair Literal="a" Numerical="2"/>
-                    <ValuePair Literal="b" Numerical="4"/>
-                    <ValuePair Literal="c" Numerical="8"/>)" +
+                    <ValuePair Literal="b" Numerical="3"/>
+                    <ValuePair Literal="c" Numerical="4"/>)" +
                 defaultState +
                 "</SelectionCriterion>";
 
@@ -429,8 +427,8 @@ struct CriterionTest : public LoggingTest {
         {
             std::string result;
             REQUIRE_SUCCESS(criterion.addValuePair(2, "a", result), result);
-            REQUIRE_SUCCESS(criterion.addValuePair(4, "b", result), result);
-            REQUIRE_SUCCESS(criterion.addValuePair(8, "c", result), result);
+            REQUIRE_SUCCESS(criterion.addValuePair(3, "b", result), result);
+            REQUIRE_SUCCESS(criterion.addValuePair(4, "c", result), result);
             THEN("Possible values match all values added in the criterion")
             {
                 CHECK(criterion.listPossibleValues() == possibleValues);
@@ -627,11 +625,6 @@ SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
         {
             std::string result;
             REQUIRE_FAILURE(criterion.addValuePair(0, "Crit_0", result), result);
-        }
-        WHEN("We add a numerical value with more than one bit set")
-        {
-            std::string result;
-            REQUIRE_FAILURE(criterion.addValuePair(3, "InvalidMask", result), result);
         }
     }
 }

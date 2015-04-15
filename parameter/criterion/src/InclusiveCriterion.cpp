@@ -57,14 +57,9 @@ bool InclusiveCriterion::addValuePair(int numericalValue,
                                       const std::string& literalValue,
                                       std::string& error)
 {
-    // Check 1 bit set only for inclusive types
-    // FIXME: unclear test, need rework
-    if (!numericalValue || (numericalValue & (numericalValue - 1))) {
-        std::ostringstream errorBuf;
-        errorBuf << "Rejecting value pair association: 0x" << std::hex << numericalValue
-                 << " - " << literalValue << " for criterion '" << getCriterionName() << "'";
-        error = errorBuf.str();
-
+    if (numericalValue == 0) {
+        error = "Rejecting value pair association: 0x0 - " + literalValue +
+                " for criterion '" + getCriterionName() + "'";
         return false;
     }
 
@@ -104,14 +99,14 @@ std::string InclusiveCriterion::getFormattedState() const
 
     // Need to go through all set bit
     for (bit = 0; bit < sizeof(mState) * 8; bit++) {
-        int singleBitValue = mState & (1 << bit);
         // Check if current bit is set
-        if (!singleBitValue) {
+        if ((mState & (1 << bit)) == 0) {
             continue;
         }
         // Simple translation
         std::string atomicState;
-        if (!getLiteralValue(singleBitValue, atomicState)) {
+        // Get literal value with an offset of one as numerical values start from one
+        if (!getLiteralValue(bit + 1, atomicState)) {
             // Numeric value not part supported values for this criterion type.
             continue;
         }

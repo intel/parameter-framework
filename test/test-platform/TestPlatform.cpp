@@ -339,11 +339,11 @@ bool CTestPlatform::createInclusiveCriterionFromStateList(const string& strName,
 
     uint32_t uiState;
 
-    for (uiState = 0; uiState < uiNbStates; uiState++) {
+    for (uiState = 1; uiState <= uiNbStates; uiState++) {
 
         const std::string& strValue = remoteCommand.getArgument(uiState + 1);
 
-        if (!pCriterion->addValuePair(0x1 << uiState, strValue, strResult)) {
+        if (!pCriterion->addValuePair(uiState, strValue, strResult)) {
 
             strResult = "Unable to add value: " + strValue + ": " + strResult;
 
@@ -399,14 +399,14 @@ bool CTestPlatform::createInclusiveCriterion(const string& strName,
 
     uint32_t uiState;
 
-    for (uiState = 0; uiState < uiNbStates; uiState++) {
+    for (uiState = 1; uiState <= uiNbStates; uiState++) {
 
 	std::ostringstream ostrValue;
 
         ostrValue << "State_0x";
-        ostrValue << (0x1 << uiState);
+        ostrValue << uiState;
 
-        if (!pCriterion->addValuePair(0x1 << uiState, ostrValue.str(), strResult)) {
+        if (!pCriterion->addValuePair(uiState, ostrValue.str(), strResult)) {
 
             strResult = "Unable to add value: "
                 + ostrValue.str() + ": " + strResult;

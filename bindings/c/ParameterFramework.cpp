@@ -32,13 +32,13 @@
 #include <ParameterMgrPlatformConnector.h>
 
 #include <iostream>
-#include <limits>
 #include <string>
 #include <map>
 
 #include <cassert>
 #include <cstring>
 #include <cstdlib>
+#include <climits>
 
 using std::string;
 using core::criterion::CriterionInterface;
@@ -193,16 +193,13 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
                 pfw->createExclusiveCriterion(criterion.name));
         assert(newCriterion != NULL);
         // Add criterion values
+        int inclusiveCriterionMaxValue = sizeof(int) * CHAR_BIT - 1;
         for (size_t valueIndex = 0; criterion.values[valueIndex] != NULL; ++valueIndex) {
-            int value;
-            if (criterion.inclusive) {
-                // Check that (int)1 << valueIndex would not overflow (UB)
-                if(std::numeric_limits<int>::max() >> valueIndex == 0) {
-                    return status.failure("Too many values for criterion " +
-                                          string(criterion.name));
-                }
-                value = 1 << valueIndex;
-            } else {
+            int value = valueIndex + 1;
+            if (criterion.inclusive && value > inclusiveCriterionMaxValue) {
+                return status.failure("Too many values for criterion " +
+                                      string(criterion.name));
+            } else if (!criterion.inclusive) {
                 value = valueIndex;
             }
             const char * valueName = criterion.values[valueIndex];
