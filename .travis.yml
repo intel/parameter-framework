@@ -63,7 +63,5 @@ after_success:
           --gcov-options '\--long-file-names --preserve-paths'
 
 notifications:
-  email:
-    - david.wagner@intel.com
   irc:
     - "chat.freenode.net#parameter-framework"
