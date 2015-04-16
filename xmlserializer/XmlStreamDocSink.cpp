@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,43 +27,34 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "XmlStreamDocSink.h"
+#include <libxml/parser.h>
 
-#pragma once
-#include "XmlDocSource.h"
-#include <string>
+#define base CXmlDocSink
 
-/**
-  * Source class that get an xml document from a std::string.
-  * Its base class will check the validity of the document.
-  */
-class CXmlStringDocSource : public CXmlDocSource
+CXmlStreamDocSink::CXmlStreamDocSink(std::ostream& output):
+    _output(output)
 {
-public:
-    /**
-      * Constructor
-      *
-      * @param[in] strXmlInput a string containing an xml description
-      * @param[in] strXmlSchemaFile a string containing the path to the schema file
-      * @param[in] strRootElementType a string containing the root element type
-      * @param[in] strRootElementName a string containing the root element name
-      * @param[in] strNameAttributeName a string containing the name of the root name attribute
-      * @param[in] bValidateWithSchema a boolean that toggles schema validation
-      */
-    CXmlStringDocSource(const std::string& strXmlInput,
-                        const std::string& strXmlSchemaFile,
-                        const std::string& strRootElementType,
-                        const std::string& strRootElementName,
-                        const std::string& strNameAttributeName,
-                        bool bValidateWithSchema);
+}
 
-    /**
-      * CXmlDocSource method implementation.
-      *
-      * @param[out] serializingContext is used as error output
-      *
-      * @return false if any error occurs
-      */
-    virtual bool populate(CXmlSerializingContext& serializingContext);
-};
+bool CXmlStreamDocSink::doProcess(CXmlDocSource& xmlDocSource,
+                                  CXmlSerializingContext& serializingContext)
+{
+    xmlChar* dumpedDoc = NULL;
 
+    int iSize;
+    xmlDocDumpFormatMemoryEnc(xmlDocSource.getDoc(), &dumpedDoc, &iSize, "UTF-8", 1);
 
+    if (!dumpedDoc) {
+
+        serializingContext.setError("Unable to encode XML document in memory");
+
+        return false;
+    }
+
+    _output << static_cast<unsigned char*>(dumpedDoc);
+
+    xmlFree(dumpedDoc);
+
+    return true;
+}

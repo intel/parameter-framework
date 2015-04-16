@@ -216,6 +216,8 @@ public:
       * Method that imports a single Configurable Domain from an Xml source.
       *
       * @param[in] strXmlSource a string containing an xml description or a path to an xml file
+      * @param[in] bOverwrite when importing an existing domain, allow overwriting or return an
+      * error
       * @param[in] bWithSettings a boolean that determines if the settings should be used in the
       * xml description
       * @param[in] bFromFile a boolean that determines if the source is an xml description in

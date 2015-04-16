@@ -31,6 +31,9 @@
 #include "XmlDocSource.h"
 #include <libxml/tree.h>
 #include <libxml/xmlschemas.h>
+#include <libxml/parser.h>
+#include <libxml/xinclude.h>
+#include <libxml/xmlerror.h>
 #include <stdlib.h>
 
 using std::string;
@@ -127,6 +130,18 @@ string CXmlDocSource::getRootElementAttributeString(const string& strAttributeNa
 _xmlDoc* CXmlDocSource::getDoc() const
 {
     return _pDoc;
+}
+
+bool CXmlDocSource::isParsable() const
+{
+    // Check that the doc has been created
+    return _pDoc != NULL;
+}
+
+bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
+{
+    return validate(serializingContext);
+
 }
 
 bool CXmlDocSource::validate(CXmlSerializingContext& serializingContext)
@@ -259,4 +274,41 @@ void CXmlDocSource::schemaValidityStructuredErrorFunc(void* pUserData, _xmlError
     // Display message
     puts(pError->message);
 #endif
+}
+
+_xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincludes, string& errorMsg)
+{
+    _xmlDoc* doc = NULL;
+    if (fromFile) {
+        doc = xmlReadFile(source.c_str(), NULL, 0);
+    } else {
+        doc = xmlReadMemory(source.c_str(), (int)source.size(), "", NULL, 0);
+    }
+
+    if (doc == NULL) {
+        errorMsg = "libxml failed to read";
+        if (fromFile) {
+            errorMsg += " \"" + source + "\"";
+        }
+
+        xmlError* details = xmlGetLastError();
+        if (details != NULL) {
+            errorMsg += ": " + string(details->message);
+        }
+
+        return NULL;
+    }
+
+    if (xincludes and (xmlXIncludeProcess(doc) < 0)) {
+        errorMsg = "libxml failed to resolve XIncludes";
+        xmlError* details = xmlGetLastError();
+        if (details != NULL) {
+            errorMsg += ": " + string(details->message);
+        }
+
+        xmlFreeDoc(doc);
+        doc = NULL;
+    }
+
+    return doc;
 }

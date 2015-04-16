@@ -352,7 +352,7 @@ bool CParameterMgrFullConnector::exportDomainsXml(string& strXmlDest, bool bWith
 bool CParameterMgrFullConnector::importSingleDomainXml(const string& strXmlSource, bool bOverwrite,
                                                        string& strError)
 {
-    return _pParameterMgr->importSingleDomainXml(strXmlSource, bOverwrite, strError);
+    return _pParameterMgr->importSingleDomainXml(strXmlSource, bOverwrite, true, false, strError);
 }
 
 bool CParameterMgrFullConnector::exportSingleDomainXml(string& strXmlDest,

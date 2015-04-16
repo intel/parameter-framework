@@ -82,15 +82,14 @@
 #include "LogarithmicParameterAdaptation.h"
 #include "EnumValuePair.h"
 #include "Subsystem.h"
-#include "XmlFileDocSink.h"
-#include "XmlFileDocSource.h"
-#include "XmlStringDocSink.h"
-#include "XmlStringDocSource.h"
+#include "XmlStreamDocSink.h"
 #include "XmlMemoryDocSink.h"
+#include "XmlDocSource.h"
 #include "XmlMemoryDocSource.h"
 #include "SelectionCriteriaDefinition.h"
 #include "Utility.h"
 #include <sstream>
+#include <fstream>
 #include <algorithm>
 #include <ctype.h>
 #include <memory>
@@ -110,6 +109,8 @@ using std::string;
 using std::list;
 using std::vector;
 using std::ostringstream;
+using std::ofstream;
+using std::ifstream;
 
 // Used for remote processor server creation
 typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
@@ -519,7 +520,13 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
     // Parse Structure XML file
     CXmlElementSerializingContext elementSerializingContext(strError);
 
-    if (!xmlParse(elementSerializingContext, getFrameworkConfiguration(), _strXmlConfigurationFilePath, _strXmlConfigurationFolderPath, EFrameworkConfigurationLibrary)) {
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(_strXmlConfigurationFilePath, true, true, strError);
+    if (doc == NULL) {
+        return false;
+    }
+
+    if (!xmlParse(elementSerializingContext, getFrameworkConfiguration(), doc,
+                  _strXmlConfigurationFolderPath, EFrameworkConfigurationLibrary)) {
 
         return false;
     }
@@ -571,7 +578,12 @@ bool CParameterMgr::loadStructure(string& strError)
 
     CAutoLog autolog(pSystemClass, "Importing system structure from file " + strXmlStructureFilePath);
 
-    if (!xmlParse(parameterBuildContext, pSystemClass, strXmlStructureFilePath, strXmlStructureFolder, EParameterCreationLibrary)) {
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlStructureFilePath, true, true, strError);
+    if (doc == NULL) {
+        return false;
+    }
+
+    if (!xmlParse(parameterBuildContext, pSystemClass, doc, strXmlStructureFolder, EParameterCreationLibrary)) {
 
         return false;
     }
@@ -660,8 +672,12 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
 
     log_info("Importing configurable domains from file %s %s settings", strXmlConfigurationDomainsFilePath.c_str(), pBinarySettingsFileLocation ? "without" : "with");
 
-    // Do parse
-    if (!xmlParse(xmlDomainImportContext, pConfigurableDomains, strXmlConfigurationDomainsFilePath, strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary, "SystemClassName")) {
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlConfigurationDomainsFilePath, true, true, strError);
+    if (doc == NULL) {
+        return false;
+    }
+
+    if (!xmlParse(xmlDomainImportContext, pConfigurableDomains, doc, strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary, "SystemClassName")) {
 
         return false;
     }
@@ -678,40 +694,12 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     return true;
 }
 
-bool CParameterMgr::importDomainFromFile(const string& strXmlFilePath, bool bOverwrite,
-                                         string& strError)
-{
-    CXmlDomainImportContext xmlDomainImportContext(strError, true, *getSystemClass());
-
-    // Selection criteria definition for rule creation
-    xmlDomainImportContext.setSelectionCriteriaDefinition(
-            getConstSelectionCriteria()->getSelectionCriteriaDefinition());
-
-    // Auto validation of configurations
-    xmlDomainImportContext.setAutoValidationRequired(true);
-
-    // We initialize the domain with an empty name but since we have set the isDomainStandalone
-    // context, the name will be retrieved during de-serialization
-    std::auto_ptr<CConfigurableDomain> standaloneDomain(new CConfigurableDomain());
-    bool bSuccess = xmlParse(xmlDomainImportContext, standaloneDomain.get(),
-                             strXmlFilePath, "", EParameterConfigurationLibrary, "");
-
-    if (!bSuccess) {
-        return false;
-    }
-
-    bSuccess = getConfigurableDomains()->addDomain(*standaloneDomain, bOverwrite, strError);
-    if (!bSuccess) {
-        return false;
-    }
-
-    // ownership has been transfered to the ConfigurableDomains object
-    standaloneDomain.release();
-    return true;
-}
-
 // XML parsing
-bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement, const string& strXmlFilePath, const string& strXmlFolder, CParameterMgr::ElementLibrary eElementLibrary, const string& strNameAttributeName)
+bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingContext,
+                             CElement* pRootElement, _xmlDoc* doc,
+                             const string& strXmlFolder,
+                             CParameterMgr::ElementLibrary eElementLibrary,
+                             const string& strNameAttributeName)
 {
     // Init serializing context
     elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(
@@ -720,25 +708,16 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
     // Get Schema file associated to root element
     string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pRootElement->getKind() + ".xsd";
 
-    std::auto_ptr<CXmlFileDocSource> fileDocSource(NULL);
-
-    if (strNameAttributeName.empty()) {
-        fileDocSource.reset(new CXmlFileDocSource(strXmlFilePath, strXmlSchemaFilePath,
-                                                pRootElement->getKind(),
-                                                _bValidateSchemasOnStart));
-    } else {
-        fileDocSource.reset(new CXmlFileDocSource(strXmlFilePath, strXmlSchemaFilePath,
-                                               pRootElement->getKind(),
-                                               pRootElement->getName(), strNameAttributeName,
-                                               _bValidateSchemasOnStart));
-    }
+    CXmlDocSource docSource(doc, strXmlSchemaFilePath,
+                            pRootElement->getKind(), pRootElement->getName(),
+                            strNameAttributeName, _bValidateSchemasOnStart);
 
     // Start clean
     pRootElement->clean();
 
     CXmlMemoryDocSink memorySink(pRootElement);
 
-    if (!memorySink.process(*fileDocSource, elementSerializingContext)) {
+    if (!memorySink.process(docSource, elementSerializingContext)) {
         //Cleanup
         pRootElement->clean();
 
@@ -1629,7 +1608,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainWithSet
         }
     }
 
-    return importSingleDomainXml(remoteCommand.getArgument(0), bOverwrite, strResult) ?
+    return importSingleDomainXml(remoteCommand.getArgument(0), bOverwrite, true, true, strResult) ?
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
@@ -2181,178 +2160,195 @@ bool CParameterMgr::clearApplicationRule(const string& strDomain, const string& 
     return getConfigurableDomains()->clearApplicationRule(strDomain, strConfiguration, strError);
 }
 
-bool CParameterMgr::importDomainsXml(const string& strXmlSource, bool bWithSettings,
-                                     bool bFromFile, string& strError)
+bool CParameterMgr::importDomainsXml(const string& xmlSource, bool withSettings,
+                                     bool fromFile, string& errorMsg)
 {
     // Check tuning mode
-    if (!checkTuningModeOn(strError)) {
+    if (!checkTuningModeOn(errorMsg)) {
 
         return false;
     }
 
     // check path is absolute
-    if (bFromFile && strXmlSource[0] != '/') {
+    if (fromFile && xmlSource[0] != '/') {
 
-        strError = "Please provide absolute path";
+        errorMsg = "Please provide absolute path";
 
         return false;
     }
     // Root element
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
-    // Context
-    CXmlDomainImportContext xmlDomainImportContext(strError, bWithSettings, *getSystemClass());
+    bool importSuccess = wrapLegacyXmlImport(xmlSource, fromFile, withSettings,
+                                             *pConfigurableDomains, "SystemClassName", errorMsg);
+
+    if (importSuccess) {
+
+        // Validate domains after XML import
+        pConfigurableDomains->validate(_pMainParameterBlackboard);
+    }
+
+    return importSuccess;
+}
+
+bool CParameterMgr::importSingleDomainXml(const string& xmlSource, bool overwrite,
+                                          bool withSettings, bool fromFile, string& errorMsg)
+{
+    if (!checkTuningModeOn(errorMsg)) {
+
+        return false;
+    }
+
+    // check path is absolute
+    if (xmlSource[0] != '/') {
+
+        errorMsg = "Please provide absolute path";
+
+        return false;
+    }
+
+    // We initialize the domain with an empty name but since we have set the isDomainStandalone
+    // context, the name will be retrieved during de-serialization
+    std::auto_ptr<CConfigurableDomain> standaloneDomain(new CConfigurableDomain());
+
+    if (!wrapLegacyXmlImport(xmlSource, fromFile, withSettings, *standaloneDomain, "", errorMsg)) {
+        return false;
+    }
+
+    if (!getConfigurableDomains()->addDomain(*standaloneDomain, overwrite, errorMsg)) {
+        return false;
+    }
+
+    // ownership has been transfered to the ConfigurableDomains object
+    standaloneDomain.release();
+    return true;
+}
+
+bool CParameterMgr::wrapLegacyXmlImport(const string& xmlSource, bool fromFile,
+                                        bool withSettings, CElement& element,
+                                        const string& nameAttributeName, string& errorMsg)
+{
+    CXmlDomainImportContext xmlDomainImportContext(errorMsg, withSettings, *getSystemClass());
 
     // Selection criteria definition for rule creation
     xmlDomainImportContext.setSelectionCriteriaDefinition(
             getConstSelectionCriteria()->getSelectionCriteriaDefinition());
 
-    // Init serializing context
-    xmlDomainImportContext.set(
-            _pElementLibrarySet->getElementLibrary(EParameterConfigurationLibrary),
-            "", _strSchemaFolderLocation);
-
-    // Get Schema file associated to root element
-    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" +
-                                  pConfigurableDomains->getKind() + ".xsd";
-
-    // Xml Source
-    CXmlDocSource* pSource;
-
-    if (bFromFile) {
-
-        // when importing from a file strXmlSource is the file name
-        pSource = new CXmlFileDocSource(strXmlSource, strXmlSchemaFilePath,
-                                        pConfigurableDomains->getKind(),
-                                        pConfigurableDomains->getName(), "SystemClassName",
-                                        _bValidateSchemasOnStart);
-
-    } else {
-
-        // when importing from an xml string, strXmlSource contains the string
-        pSource = new CXmlStringDocSource(strXmlSource, strXmlSchemaFilePath,
-                                          pConfigurableDomains->getKind(),
-                                          pConfigurableDomains->getName(), "SystemClassName",
-                                          _bValidateSchemasOnStart);
-
-    }
-    // Start clean
-    pConfigurableDomains->clean();
-
-    // Use a doc sink that instantiate Configurable Domains from the given doc source
-    CXmlMemoryDocSink memorySink(pConfigurableDomains);
-
-    bool bProcessSuccess = memorySink.process(*pSource, xmlDomainImportContext);
-
-    if (!bProcessSuccess) {
-
-        //Cleanup
-        pConfigurableDomains->clean();
-
-    } else {
-
-        // Validate domains after XML import
-        pConfigurableDomains->validate(_pMainParameterBlackboard);
-
-    }
-
-    delete pSource;
-
-    return bProcessSuccess;
-}
-
-bool CParameterMgr::importSingleDomainXml(const string& strXmlSource, bool bOverwrite,
-                                          string& strError)
-{
-    if (!checkTuningModeOn(strError)) {
-
+    // It doesn't make sense to resolve XIncludes on an imported file because
+    // we can't reliably decide of a "base url"
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(xmlSource, fromFile, false, errorMsg);
+    if (doc == NULL) {
         return false;
     }
 
-    // check path is absolute
-    if (strXmlSource[0] != '/') {
-
-        strError = "Please provide absolute path";
-
-        return false;
-    }
-
-    return importDomainFromFile(strXmlSource, bOverwrite, strError);
+    return xmlParse(xmlDomainImportContext, &element, doc, "", EParameterConfigurationLibrary, nameAttributeName);
 }
 
-bool CParameterMgr::serializeElement(string& strXmlDest,
-                                     CXmlSerializingContext& xmlSerializingContext, bool bToFile,
-                                     const CElement& element, string& strError) const
+bool CParameterMgr::serializeElement(std::ostream& output,
+                                     CXmlSerializingContext& xmlSerializingContext,
+                                     const CElement& element) const
 {
-    // check path is absolute
-    if (bToFile && strXmlDest[0] != '/') {
-
-        strError = "Please provide absolute path";
-
+    if (!output.good()) {
+        xmlSerializingContext.setError("Can't write XML: the output is in a bad state.");
         return false;
     }
 
     // Get Schema file associated to root element
-    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" +
+    string xmlSchemaFilePath = _strSchemaFolderLocation + "/" +
                                   element.getKind() + ".xsd";
 
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(&element, element.getKind(),
-                                     strXmlSchemaFilePath, "parameter-framework",
+                                     xmlSchemaFilePath, "parameter-framework",
                                      getVersion(), _bValidateSchemasOnStart);
 
-    // Xml Sink
-    CXmlDocSink* pSink;
+    // Use a doc sink to write the doc data in a stream
+    CXmlStreamDocSink sink(output);
 
-    if (bToFile) {
+    bool processSuccess = sink.process(memorySource, xmlSerializingContext);
 
-        // Use a doc sink to write the doc data in a file
-        pSink = new CXmlFileDocSink(strXmlDest);
-
-    } else {
-
-        // Use a doc sink to write the doc data in a string
-        // TODO: use a stream rather than a string
-        pSink = new CXmlStringDocSink(strXmlDest);
-    }
-
-    bool bProcessSuccess = pSink->process(memorySource, xmlSerializingContext);
-
-    delete pSink;
-    return bProcessSuccess;
+    return processSuccess;
 }
 
-bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, bool bToFile,
-                                     string& strError) const
+bool CParameterMgr::exportDomainsXml(string& xmlDest, bool withSettings, bool toFile,
+                                     string& errorMsg) const
 {
-    const CConfigurableDomains* pConfigurableDomains = getConstConfigurableDomains();
+    // check path is absolute
+    if (toFile && xmlDest[0] != '/') {
 
-    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings, _bValueSpaceIsRaw,
-                                                   _bOutputRawFormatIsHex);
+        errorMsg = "Please provide absolute path";
 
-
-    return serializeElement(strXmlDest, xmlDomainExportContext, bToFile,
-                                    *pConfigurableDomains, strError);
-}
-
-bool CParameterMgr::exportSingleDomainXml(string& strXmlDest, const string& strDomainName,
-                                          bool bWithSettings, bool bToFile, string& strError) const
-{
-    const CConfigurableDomains* pAllDomains = getConstConfigurableDomains();
-
-    // Element to be serialized
-    const CConfigurableDomain* pRequestedDomain =
-        pAllDomains->findConfigurableDomain(strDomainName, strError);
-
-    if (!pRequestedDomain) {
         return false;
     }
 
-    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings, _bValueSpaceIsRaw,
-                                                   _bOutputRawFormatIsHex);
+    const CConfigurableDomains* configurableDomains = getConstConfigurableDomains();
 
-    return serializeElement(strXmlDest, xmlDomainExportContext, bToFile,
-                                    *pRequestedDomain, strError);
+    return wrapLegacyXmlExport(xmlDest, toFile, withSettings, *configurableDomains, errorMsg);
+}
+
+bool CParameterMgr::exportSingleDomainXml(string& xmlDest, const string& domainName,
+                                          bool withSettings, bool toFile, string& errorMsg) const
+{
+    // check path is absolute
+    if (toFile && xmlDest[0] != '/') {
+
+        errorMsg = "Please provide absolute path";
+
+        return false;
+    }
+
+    // Element to be serialized
+    const CConfigurableDomain* requestedDomain =
+        getConstConfigurableDomains()->findConfigurableDomain(domainName, errorMsg);
+
+    if (requestedDomain == NULL) {
+        return false;
+    }
+
+    return wrapLegacyXmlExport(xmlDest, toFile, withSettings, *requestedDomain, errorMsg);
+}
+
+bool CParameterMgr::wrapLegacyXmlExport(string& xmlDest, bool toFile, bool withSettings,
+                                        const CElement& element, string& errorMsg) const
+{
+    CXmlDomainExportContext context(errorMsg, withSettings, _bValueSpaceIsRaw,
+                                    _bOutputRawFormatIsHex);
+
+    if (toFile) {
+        return wrapLegacyXmlExportToFile(xmlDest, element, context);
+    } else {
+        return wrapLegacyXmlExportToString(xmlDest, element, context);
+    }
+}
+
+bool CParameterMgr::wrapLegacyXmlExportToFile(string& xmlDest,
+                                              const CElement& element,
+                                              CXmlDomainExportContext &context) const
+{
+    std::ofstream output(xmlDest.c_str());
+
+    if (output.fail()) {
+        context.setError("Failed to open \"" + xmlDest + "\" for writing.");
+        return false;
+    }
+
+    return serializeElement(output, context, element);
+
+}
+
+bool CParameterMgr::wrapLegacyXmlExportToString(string& xmlDest,
+                                                const CElement& element,
+                                                CXmlDomainExportContext &context) const
+{
+    std::ostringstream output;
+
+    if (!serializeElement(output, context, element)) {
+        return false;
+    }
+
+    xmlDest = output.str();
+
+    return true;
 }
 
 // Binary Import/Export
@@ -2614,13 +2610,15 @@ bool CParameterMgr::exportElementToXMLString(const IXmlSource* pXmlSource,
     CXmlMemoryDocSource memorySource(pXmlSource, strRootElementType, false);
 
     // Use a doc sink that write the doc data in a string
-    CXmlStringDocSink stringSink(strResult);
+    ostringstream output;
+    CXmlStreamDocSink streamSink(output);
 
     // Do the export
-    bool bProcessSuccess = stringSink.process(memorySource, xmlSerializingContext);
+    bool bProcessSuccess = streamSink.process(memorySource, xmlSerializingContext);
 
-    if (!bProcessSuccess) {
-
+    if (bProcessSuccess) {
+        strResult = output.str();
+    } else {
         strResult = strError;
     }
 

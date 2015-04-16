@@ -40,8 +40,11 @@
 #include "Element.h"
 #include "XmlDocSink.h"
 #include "XmlDocSource.h"
+#include "XmlDomainExportContext.h"
 
 #include <string>
+#include <ostream>
+#include <istream>
 
 class CElementLibrarySet;
 class CSubsystemLibrary;
@@ -275,63 +278,65 @@ public:
     /**
       * Method that imports Configurable Domains from an Xml source.
       *
-      * @param[in] strXmlSource a std::string containing an xml description or a path to an xml file
-      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * @param[in] xmlSource a std::string containing an xml description or a path to an xml file
+      * @param[in] withSettings a boolean that determines if the settings should be used in the
       * xml description
-      * @param[in] bFromFile a boolean that determines if the source is an xml description in
-      * strXmlSource or contained in a file. In that case strXmlSource is just the file path.
-      * @param[out] strError is used as the error output
+      * @param[in] fromFile a boolean that determines if the source is an xml description in
+      * xmlSource or contained in a file. In that case xmlSource is just the file path.
+      * @param[out] errorMsg is used as the error output
       *
       * @return false if any error occures
       */
-    bool importDomainsXml(const std::string& strXmlSource, bool bWithSettings, bool bFromFile,
-                          std::string& strError);
+    bool importDomainsXml(const std::string& xmlSource, bool withSettings, bool fromFile,
+                          std::string& errorMsg);
 
     /**
       * Method that imports a single Configurable Domain from an Xml source.
       *
-      * @param[in] strXmlSource a string containing an xml description or a path to an xml file
-      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * @param[in] xmlSource a string containing an xml description or a path to an xml file
+      * @param[in] overwrite when importing an existing domain, allow
+      * overwriting or return an error
+      * @param[in] withSettings a boolean that determines if the settings should be used in the
       * xml description
-      * @param[in] bFromFile a boolean that determines if the source is an xml description in
-      * strXmlSource or contained in a file. In that case strXmlSource is just the file path.
-      * @param[out] strError is used as the error output
+      * @param[in] fromFile a boolean that determines if the source is an xml description in
+      * xmlSource or contained in a file. In that case xmlSource is just the file path.
+      * @param[out] errorMsg is used as the error output
       *
       * @return false if any error occurs
       */
-    bool importSingleDomainXml(const std::string& strXmlSource, bool bOverwrite,
-                               std::string& strError);
+    bool importSingleDomainXml(const std::string& xmlSource, bool overwrite, bool withSettings,
+                               bool fromFile, std::string& errorMsg);
 
     /**
       * Method that exports Configurable Domains to an Xml destination.
       *
-      * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file
-      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * @param[in,out] xmlDest a string containing an xml description or a path to an xml file
+      * @param[in] withSettings a boolean that determines if the settings should be used in the
       * xml description
-      * @param[in] bToFile a boolean that determines if the destination is an xml description in
-      * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
-      * @param[out] strError is used as the error output
+      * @param[in] toFile a boolean that determines if the destination is an xml description in
+      * xmlDest or contained in a file. In that case xmlDest is just the file path.
+      * @param[out] errorMsg is used as the error output
       *
       * @return false if any error occurs, true otherwise.
       */
-    bool exportDomainsXml(std::string& strXmlDest, bool bWithSettings, bool bToFile,
-                          std::string& strError) const;
+    bool exportDomainsXml(std::string& xmlDest, bool withSettings, bool toFile,
+                          std::string& errorMsg) const;
 
     /**
       * Method that exports a given Configurable Domain to an Xml destination.
       *
-      * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file
-      * @param[in] strDomainName the name of the domain to be exported
-      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * @param[in,out] xmlDest a string containing an xml description or a path to an xml file
+      * @param[in] domainName the name of the domain to be exported
+      * @param[in] withSettings a boolean that determines if the settings should be used in the
       * xml description
-      * @param[in] bToFile a boolean that determines if the destination is an xml description in
-      * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
-      * @param[out] strError is used as the error output
+      * @param[in] toFile a boolean that determines if the destination is an xml description in
+      * xmlDest or contained in a file. In that case xmlDest is just the file path.
+      * @param[out] errorMsg is used as the error output
       *
       * @return false if any error occurs, true otherwise.
       */
-    bool exportSingleDomainXml(std::string& strXmlDest, const std::string& strDomainName,
-                               bool bWithSettings, bool bToFile, std::string& strError) const;
+    bool exportSingleDomainXml(std::string& xmlDest, const std::string& domainName,
+                               bool withSettings, bool toFile, std::string& errorMsg) const;
 
     // Binary Import/Export
     bool importDomainsBinary(const std::string& strFileName, std::string& strError);
@@ -515,35 +520,104 @@ private:
     bool loadSettings(std::string& strError);
     bool loadSettingsFromConfigFile(std::string& strError);
 
-    // Parse XML file into Root element
-    bool xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement, const std::string& strXmlFilePath, const std::string& strXmlFolder, ElementLibrary eElementLibrary, const std::string& strNameAttributeName = "Name");
+    /** Parse an XML stream into an element
+     *
+     * @param[in] elementSerializingContext serializing context
+     * @param[out] pRootElement the receiving element
+     * @param[in] input the input XML stream
+     * @param[in] strXmlFolder the folder containing the XML input file (if applicable) or ""
+     * @param[in] eElementLibrary which element library to be used
+     * @param[in] strNameAttributeName the name of the element's XML "name" attribute
+     *
+     * @returns true if parsing succeeded, false otherwise
+     */
+    bool xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement,
+                  _xmlDoc* doc, const std::string& strXmlFolder,
+                  ElementLibrary eElementLibrary, const std::string& strNameAttributeName = "Name");
+
+    /** Wrapper for converting public APIs semantics to internal API
+     *
+     * Public APIs have a string argument that can either contain:
+     * - a path to an XML file or;
+     * - an actual XML document.
+     * They also have a boolean argument specifying which of the two cases it
+     * is.
+     *
+     * Instead, the internal APIs only take an std::istream argument. This
+     * method opens the file as a stream if applicable or simply wrap the
+     * string in a stream. It then passes the stream to the internal methods.
+     *
+     * @param[in] xmlSource the XML source (either a path or an actual xml
+     * document)
+     * @param[in] fromFile specifies whether xmlSource is a path or an
+     * actual XML document
+     * @param[in] withSettings if false, only import the configurations
+     * applicability rules; if true, also import their settings
+     * @param[out] element the receiving element
+     * @param[in] nameAttributeName the name of the element's XML "name"
+     * attribute
+     * @param[out] errorMsg string used as output for any error message
+     *
+     * @returns true if the import succeeded, false otherwise
+     */
+    bool wrapLegacyXmlImport(const std::string& xmlSource, bool fromFile, bool withSettings,
+                             CElement& element, const std::string& nameAttributeName,
+                             std::string& errorMsg);
 
     /**
      * Export an element object to an Xml destination.
      *
      *
-     * @param[in,out] strXmlDest a string containing an xml description or a path to an xml file.
+     * @param[out] output the stream to output the XML to
      * @param[in] xmlSerializingContext the serializing context
-     * @param[in] bToFile a boolean that determines if the destination is an xml description in
-     * strXmlDest or contained in a file. In that case strXmlDest is just the file path.
      * @param[in] element object to be serialized.
-     * @param[out] strError is used as the error output.
      *
      * @return false if any error occurs, true otherwise.
      */
-    bool serializeElement(std::string& strXmlDest, CXmlSerializingContext& xmlSerializingContext,
-                          bool bToFile, const CElement& element, std::string& strError) const;
+    bool serializeElement(std::ostream& output, CXmlSerializingContext& xmlSerializingContext,
+                          const CElement& element) const;
 
-    /**
-      * Method that imports a single Configurable Domain, with settings, from an Xml file.
-      *
-      * @param[in] strXmlFilePath absolute path to the xml file containing the domain
-      * @param[out] strError is used as the error output
-      *
-      * @return false if any error occurs
-      */
-    bool importDomainFromFile(const std::string& strXmlFilePath, bool bOverwrite,
-                              std::string& strError);
+    /** Wrapper for converting public APIs semantics to internal API
+     *
+     * Public APIs have a string argument that can either:
+     * - contain a path to an XML file or;
+     * - receive an actual XML document.
+     * They also have a boolean argument specifying which of the two cases it
+     * is.
+     *
+     * Instead, the internal APIs only take an std::ostream argument. This
+     * method opens the file as a stream if applicable or simply wrap the
+     * string in a stream. It then passes the stream to the internal methods.
+     *
+     * @param[in] xmlDest the XML sink (either a path or any string that
+     * will be filled)
+     * @param[in] toFile specifies whether xmlSource is a path or a
+     * string that will receive an actual XML document
+     * @param[in] withSettings if false, only export the configurations
+     * applicability rules; if true, also export their settings
+     * @param[out] element the element to be exported
+     * @param[out] errorMsg string used as output for any error message
+     *
+     * @returns true if the export succeeded, false otherwise
+     */
+    bool wrapLegacyXmlExport(std::string& xmlDest, bool toFile, bool withSettings,
+                             const CElement& element, std::string& errorMsg) const;
+
+    /** Wrapper for converting public APIs semantics to internal API
+     *
+     * @see wrapLegacyXmlExport
+     */
+    bool wrapLegacyXmlExportToFile(std::string& xmlDest,
+                                   const CElement& element,
+                                   CXmlDomainExportContext &context) const;
+
+    /** Wrapper for converting public APIs semantics to internal API
+     *
+     * @see wrapLegacyXmlExport
+     */
+    bool wrapLegacyXmlExportToString(std::string& xmlDest,
+                                     const CElement& element,
+                                     CXmlDomainExportContext &context) const;
 
 
     // Framework Configuration

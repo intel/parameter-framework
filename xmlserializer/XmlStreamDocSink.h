@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,7 +29,7 @@
  */
 
 #pragma once
-#include <string>
+#include <ostream>
 #include "XmlDocSink.h"
 #include "XmlSource.h"
 
@@ -37,14 +37,14 @@
   * Sink class that writes the content of any CXmlDocSource into a std::string.
   * A reference to an empty std::string is given in the constructor.
   */
-class CXmlStringDocSink : public CXmlDocSink
+class CXmlStreamDocSink : public CXmlDocSink
 {
 public:
     /** Constructor
       *
-      * @param[out] strResult a reference to a std::string that will be filled by the doProcess method
+      * @param[out] output a reference to a ostream that will be filled by the doProcess method
       */
-    CXmlStringDocSink(std::string& strResult);
+    CXmlStreamDocSink(std::ostream& output);
 
 private:
     /** Implementation of CXmlDocSink::doProcess()
@@ -58,8 +58,8 @@ private:
     virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
 
     /**
-      * Result std::string containing the XML informations
+      * Result ostream containing the XML informations
       */
-    std::string& _strResult;
+    std::ostream& _output;
 };
 
