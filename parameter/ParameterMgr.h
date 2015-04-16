@@ -432,16 +432,16 @@ private:
     CCommandHandler::CommandStatus listConflictingElementsCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus listRogueElementsCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     /// Settings Import/Export
-    CCommandHandler::CommandStatus exportConfigurableDomainsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
-    CCommandHandler::CommandStatus importConfigurableDomainsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
-    CCommandHandler::CommandStatus exportConfigurableDomainsWithSettingsToXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
-    CCommandHandler::CommandStatus importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
-    CCommandHandler::CommandStatus importConfigurableDomainWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus exportDomainsXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus importDomainsXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus exportDomainsWithSettingsXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus importDomainsWithSettingsXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus importDomainWithSettingsXMLCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus exportSettingsCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus importSettingsCommmandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /**
-      * Command handler method for getConfigurableDomainsWithSettings command.
+      * Command handler method for getDomainsWithSettings command.
       *
       * @param[in] remoteCommand contains the arguments of the received command.
       * @param[out] strResult a std::string containing the result of the command
@@ -449,11 +449,11 @@ private:
       * @return CCommandHandler::ESucceeded if command succeeded or CCommandHandler::EFailed
       * in the other case
       */
-    CCommandHandler::CommandStatus getConfigurableDomainsWithSettingsXMLCommmandProcess(
+    CCommandHandler::CommandStatus getDomainsWithSettingsXMLCommmandProcess(
             const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /**
-      * Command handler method for getConfigurableDomainWithSettings command.
+      * Command handler method for getDomainWithSettings command.
       *
       * @param[in] remoteCommand contains the arguments of the received command.
       * @param[out] strResult a string containing the result of the command
@@ -461,11 +461,11 @@ private:
       * @return CCommandHandler::ESucceeded if command succeeded or CCommandHandler::EFailed
       * in the other case
       */
-    CCommandHandler::CommandStatus getConfigurableDomainWithSettingsXMLCommmandProcess(
+    CCommandHandler::CommandStatus getDomainWithSettingsXMLCommmandProcess(
             const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /**
-      * Command handler method for setConfigurableDomainWithSettings command.
+      * Command handler method for setDomainsWithSettings command.
       *
       * @param[in] remoteCommand contains the arguments of the received command.
       * @param[out] strResult a std::string containing the result of the command
@@ -473,7 +473,7 @@ private:
       * @return CCommandHandler::ESucceeded if command succeeded or CCommandHandler::EFailed
       * in the other case
       */
-    CCommandHandler::CommandStatus setConfigurableDomainsWithSettingsXMLCommmandProcess(
+    CCommandHandler::CommandStatus setDomainsWithSettingsXMLCommmandProcess(
             const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /**

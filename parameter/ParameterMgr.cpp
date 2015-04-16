@@ -263,18 +263,18 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "", "List element sub-trees owned by no configurable domain" },
 
     /// Settings Import/Export
-    { "exportDomainsXML", &CParameterMgr::exportConfigurableDomainsToXMLCommmandProcess, 1,
+    { "exportDomainsXML", &CParameterMgr::exportDomainsXMLCommmandProcess, 1,
             "<file path> ", "Export domains to XML file" },
-    { "importDomainsXML", &CParameterMgr::importConfigurableDomainsFromXMLCommmandProcess, 1,
+    { "importDomainsXML", &CParameterMgr::importDomainsXMLCommmandProcess, 1,
             "<file path>", "Import domains from XML file" },
     { "exportDomainsWithSettingsXML",
-            &CParameterMgr::exportConfigurableDomainsWithSettingsToXMLCommmandProcess, 1,
+            &CParameterMgr::exportDomainsWithSettingsXMLCommmandProcess, 1,
             "<file path> ", "Export domains including settings to XML file" },
     { "importDomainsWithSettingsXML",
-            &CParameterMgr::importConfigurableDomainsWithSettingsFromXMLCommmandProcess, 1,
+            &CParameterMgr::importDomainsWithSettingsXMLCommmandProcess, 1,
             "<file path>", "Import domains including settings from XML file" },
     { "importDomainWithSettingsXML",
-            &CParameterMgr::importConfigurableDomainWithSettingsFromXMLCommmandProcess, 1,
+            &CParameterMgr::importDomainWithSettingsXMLCommmandProcess, 1,
             "<file path> [overwrite]", "Import a single domain including settings from XML file."
             " Does not overwrite an existing domain unless 'overwrite' is passed as second"
             " argument" },
@@ -283,20 +283,20 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     { "importSettings", &CParameterMgr::importSettingsCommmandProcess, 1,
             "<file path>", "Import settings from binary file" },
     { "getDomainsWithSettingsXML",
-            &CParameterMgr::getConfigurableDomainsWithSettingsXMLCommmandProcess, 0,
+            &CParameterMgr::getDomainsWithSettingsXMLCommmandProcess, 0,
             "", "Print domains including settings as XML" },
     { "getDomainWithSettingsXML",
-            &CParameterMgr::getConfigurableDomainWithSettingsXMLCommmandProcess, 1,
+            &CParameterMgr::getDomainWithSettingsXMLCommmandProcess, 1,
             "<domain>", "Print the given domain including settings as XML" },
     { "setDomainsWithSettingsXML",
-            &CParameterMgr::setConfigurableDomainsWithSettingsXMLCommmandProcess, 1,
+            &CParameterMgr::setDomainsWithSettingsXMLCommmandProcess, 1,
             "<xml configurable domains>", "Import domains including settings from XML string" },
     /// Structure Export
     { "getSystemClassXML", &CParameterMgr::getSystemClassXMLCommmandProcess, 0 ,
             "", "Print parameter structure as XML" },
     /// Deprecated Commands
     { "getDomainsXML",
-            &CParameterMgr::getConfigurableDomainsWithSettingsXMLCommmandProcess, 0,
+            &CParameterMgr::getDomainsWithSettingsXMLCommmandProcess, 0,
             "", "DEPRECATED COMMAND, please use getDomainsWithSettingsXML" },
 
 };
@@ -1583,7 +1583,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showMappingCommmand
 
 /// Settings Import/Export
 CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::exportConfigurableDomainsToXMLCommmandProcess(
+        CParameterMgr::exportDomainsXMLCommmandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
     string strFileName = remoteCommand.getArgument(0);
@@ -1592,7 +1592,7 @@ CParameterMgr::CCommandHandler::CommandStatus
 }
 
 CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::importConfigurableDomainsFromXMLCommmandProcess(
+        CParameterMgr::importDomainsXMLCommmandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
     return importDomainsXml(remoteCommand.getArgument(0), false, true, strResult) ?
@@ -1600,7 +1600,7 @@ CParameterMgr::CCommandHandler::CommandStatus
 }
 
 CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::exportConfigurableDomainsWithSettingsToXMLCommmandProcess(
+        CParameterMgr::exportDomainsWithSettingsXMLCommmandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
     string strFileName = remoteCommand.getArgument(0);
@@ -1608,12 +1608,12 @@ CParameterMgr::CCommandHandler::CommandStatus
             CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importConfigurableDomainsWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainsWithSettingsXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     return importDomainsXml(remoteCommand.getArgument(0), true, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importConfigurableDomainWithSettingsFromXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainWithSettingsXMLCommmandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     bool bOverwrite = false;
 
@@ -1644,7 +1644,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importSettingsCommm
 }
 
 CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::getConfigurableDomainsWithSettingsXMLCommmandProcess(
+        CParameterMgr::getDomainsWithSettingsXMLCommmandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
@@ -1658,7 +1658,7 @@ CParameterMgr::CCommandHandler::CommandStatus
 }
 
 CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::getConfigurableDomainWithSettingsXMLCommmandProcess(
+        CParameterMgr::getDomainWithSettingsXMLCommmandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
     string strDomainName = remoteCommand.getArgument(0);
@@ -1668,7 +1668,7 @@ CParameterMgr::CCommandHandler::CommandStatus
 }
 
 CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::setConfigurableDomainsWithSettingsXMLCommmandProcess(
+        CParameterMgr::setDomainsWithSettingsXMLCommmandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
     return importDomainsXml(remoteCommand.getArgument(0), true, false, strResult) ?
