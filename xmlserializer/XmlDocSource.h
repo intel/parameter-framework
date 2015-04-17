@@ -69,7 +69,7 @@ public:
                            const std::string& strXmlSchemaFile,
                            const std::string& strRootElementType,
                            const std::string& strRootElementName,
-                           const std::string& strNameAttrituteName);
+                           const std::string& strNameAttributeName);
 
     /**
       * Constructor
@@ -85,7 +85,7 @@ public:
                            const std::string& strXmlSchemaFile,
                            const std::string& strRootElementType,
                            const std::string& strRootElementName,
-                           const std::string& strNameAttrituteName,
+                           const std::string& strNameAttributeName,
                              bool bValidateWithSchema);
 
     /**
@@ -210,7 +210,7 @@ private:
     /**
       * Element name attribute info
       */
-    std::string _strNameAttrituteName;
+    std::string _strNameAttributeName;
 
     /**
       * Boolean that enables the validation via xsd files

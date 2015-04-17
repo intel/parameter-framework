@@ -711,7 +711,7 @@ bool CParameterMgr::importDomainFromFile(const string& strXmlFilePath, bool bOve
 }
 
 // XML parsing
-bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement, const string& strXmlFilePath, const string& strXmlFolder, CParameterMgr::ElementLibrary eElementLibrary, const string& strNameAttrituteName)
+bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement, const string& strXmlFilePath, const string& strXmlFolder, CParameterMgr::ElementLibrary eElementLibrary, const string& strNameAttributeName)
 {
     // Init serializing context
     elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(
@@ -722,14 +722,14 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
 
     std::auto_ptr<CXmlFileDocSource> fileDocSource(NULL);
 
-    if (strNameAttrituteName.empty()) {
+    if (strNameAttributeName.empty()) {
         fileDocSource.reset(new CXmlFileDocSource(strXmlFilePath, strXmlSchemaFilePath,
                                                 pRootElement->getKind(),
                                                 _bValidateSchemasOnStart));
     } else {
         fileDocSource.reset(new CXmlFileDocSource(strXmlFilePath, strXmlSchemaFilePath,
                                                pRootElement->getKind(),
-                                               pRootElement->getName(), strNameAttrituteName,
+                                               pRootElement->getName(), strNameAttributeName,
                                                _bValidateSchemasOnStart));
     }
 

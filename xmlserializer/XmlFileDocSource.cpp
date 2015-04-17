@@ -38,13 +38,13 @@ CXmlFileDocSource::CXmlFileDocSource(const std::string& strXmlInstanceFile,
                                      const std::string& strXmlSchemaFile,
                                      const std::string& strRootElementType,
                                      const std::string& strRootElementName,
-                                     const std::string& strNameAttrituteName,
+                                     const std::string& strNameAttributeName,
                                      bool bValidateWithSchema) :
         base(readFile(strXmlInstanceFile),
              strXmlSchemaFile,
              strRootElementType,
              strRootElementName,
-             strNameAttrituteName,
+             strNameAttributeName,
              bValidateWithSchema),
         _strXmlInstanceFile(strXmlInstanceFile)
 {

@@ -45,7 +45,7 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, _xmlNode *pRootNode,
       _strXmlSchemaFile(""),
       _strRootElementType(""),
       _strRootElementName(""),
-      _strNameAttrituteName(""),
+      _strNameAttributeName(""),
       _bValidateWithSchema(bValidateWithSchema)
 {
     init();
@@ -55,13 +55,13 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
                              const string& strXmlSchemaFile,
                              const string& strRootElementType,
                              const string& strRootElementName,
-                             const string& strNameAttrituteName) :
+                             const string& strNameAttributeName) :
     _pDoc(pDoc),
     _pRootNode(NULL),
     _strXmlSchemaFile(strXmlSchemaFile),
     _strRootElementType(strRootElementType),
     _strRootElementName(strRootElementName),
-    _strNameAttrituteName(strNameAttrituteName),
+    _strNameAttributeName(strNameAttributeName),
     _bValidateWithSchema(false)
 {
     init();
@@ -75,7 +75,7 @@ CXmlDocSource::CXmlDocSource(_xmlDoc* pDoc,
     _strXmlSchemaFile(strXmlSchemaFile),
     _strRootElementType(strRootElementType),
     _strRootElementName(""),
-    _strNameAttrituteName(""),
+    _strNameAttributeName(""),
     _bValidateWithSchema(bValidateWithSchema)
 {
     init();
@@ -85,14 +85,14 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
                              const string& strXmlSchemaFile,
                              const string& strRootElementType,
                              const string& strRootElementName,
-                             const string& strNameAttrituteName,
+                             const string& strNameAttributeName,
                              bool bValidateWithSchema) :
     _pDoc(pDoc),
     _pRootNode(NULL),
     _strXmlSchemaFile(strXmlSchemaFile),
     _strRootElementType(strRootElementType),
     _strRootElementName(strRootElementName),
-    _strNameAttrituteName(strNameAttrituteName),
+    _strNameAttributeName(strNameAttributeName),
     _bValidateWithSchema(bValidateWithSchema)
 {
     init();
@@ -160,9 +160,9 @@ bool CXmlDocSource::validate(CXmlSerializingContext& serializingContext)
         return false;
     }
 
-    if (!_strNameAttrituteName.empty()) {
+    if (!_strNameAttributeName.empty()) {
 
-        string strRootElementNameCheck = getRootElementAttributeString(_strNameAttrituteName);
+        string strRootElementNameCheck = getRootElementAttributeString(_strNameAttributeName);
 
         // Check Root element name attribute (if any)
         if (!_strRootElementName.empty() && strRootElementNameCheck != _strRootElementName) {
