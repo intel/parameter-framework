@@ -213,11 +213,6 @@ private:
     std::string _strNameAttrituteName;
 
     /**
-      * Boolean that enables the root element name attribute check
-      */
-    bool _bNameCheck;
-
-    /**
       * Boolean that enables the validation via xsd files
       */
     bool _bValidateWithSchema;

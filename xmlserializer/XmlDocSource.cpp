@@ -46,7 +46,6 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, _xmlNode *pRootNode,
       _strRootElementType(""),
       _strRootElementName(""),
       _strNameAttrituteName(""),
-      _bNameCheck(false),
       _bValidateWithSchema(bValidateWithSchema)
 {
     init();
@@ -63,7 +62,6 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
     _strRootElementType(strRootElementType),
     _strRootElementName(strRootElementName),
     _strNameAttrituteName(strNameAttrituteName),
-    _bNameCheck(true),
     _bValidateWithSchema(false)
 {
     init();
@@ -78,7 +76,6 @@ CXmlDocSource::CXmlDocSource(_xmlDoc* pDoc,
     _strRootElementType(strRootElementType),
     _strRootElementName(""),
     _strNameAttrituteName(""),
-    _bNameCheck(false),
     _bValidateWithSchema(bValidateWithSchema)
 {
     init();
@@ -96,7 +93,6 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
     _strRootElementType(strRootElementType),
     _strRootElementName(strRootElementName),
     _strNameAttrituteName(strNameAttrituteName),
-    _bNameCheck(true),
     _bValidateWithSchema(bValidateWithSchema)
 {
     init();
@@ -164,7 +160,7 @@ bool CXmlDocSource::validate(CXmlSerializingContext& serializingContext)
         return false;
     }
 
-    if (_bNameCheck) {
+    if (!_strNameAttrituteName.empty()) {
 
         string strRootElementNameCheck = getRootElementAttributeString(_strNameAttrituteName);
 
