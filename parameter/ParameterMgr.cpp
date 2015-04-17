@@ -265,24 +265,30 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
 
     /// Settings Import/Export
     { "exportDomainsXML", &CParameterMgr::exportDomainsXMLCommandProcess, 1,
-            "<file path> ", "Export domains to XML file" },
+            "<file path> ", "Export domains to an XML file (provide an absolute path or relative"
+                            "to the client's working directory)" },
     { "importDomainsXML", &CParameterMgr::importDomainsXMLCommandProcess, 1,
-            "<file path>", "Import domains from XML file" },
+            "<file path>", "Import domains from an XML file (provide an absolute path or relative"
+                            "to the client's working directory)" },
     { "exportDomainsWithSettingsXML",
             &CParameterMgr::exportDomainsWithSettingsXMLCommandProcess, 1,
-            "<file path> ", "Export domains including settings to XML file" },
+            "<file path> ", "Export domains including settings to XML file (provide an absolute path or relative"
+                            "to the client's working directory)" },
     { "importDomainsWithSettingsXML",
             &CParameterMgr::importDomainsWithSettingsXMLCommandProcess, 1,
-            "<file path>", "Import domains including settings from XML file" },
+            "<file path>", "Import domains including settings from XML file (provide an absolute path or relative"
+                            "to the client's working directory)" },
     { "importDomainWithSettingsXML",
             &CParameterMgr::importDomainWithSettingsXMLCommandProcess, 1,
             "<file path> [overwrite]", "Import a single domain including settings from XML file."
             " Does not overwrite an existing domain unless 'overwrite' is passed as second"
-            " argument" },
+            " argument. Provide an absolute path or relative to the client's working directory)" },
     { "exportSettings", &CParameterMgr::exportSettingsCommandProcess, 1,
-            "<file path>", "Export settings to binary file" },
+            "<file path>", "Export settings to binary file (provide an absolute path or relative"
+                            "to the client's working directory)" },
     { "importSettings", &CParameterMgr::importSettingsCommandProcess, 1,
-            "<file path>", "Import settings from binary file" },
+            "<file path>", "Import settings from binary file (provide an absolute path or relative"
+                            "to the client's working directory)" },
     { "getDomainsWithSettingsXML",
             &CParameterMgr::getDomainsWithSettingsXMLCommandProcess, 0,
             "", "Print domains including settings as XML" },
@@ -2169,13 +2175,9 @@ bool CParameterMgr::importDomainsXml(const string& xmlSource, bool withSettings,
         return false;
     }
 
-    // check path is absolute
-    if (fromFile && xmlSource[0] != '/') {
+    CAutoLog autoLog(this, string("Importing domains from ") +
+            (fromFile ? ("\"" + xmlSource + "\"") : "a user-provided buffer"));
 
-        errorMsg = "Please provide absolute path";
-
-        return false;
-    }
     // Root element
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
@@ -2199,13 +2201,8 @@ bool CParameterMgr::importSingleDomainXml(const string& xmlSource, bool overwrit
         return false;
     }
 
-    // check path is absolute
-    if (xmlSource[0] != '/') {
-
-        errorMsg = "Please provide absolute path";
-
-        return false;
-    }
+    CAutoLog autoLog(this, string("Importing a single domain from ") +
+            (fromFile ? ("\"" + xmlSource + "\"") : "a user-provided buffer"));
 
     // We initialize the domain with an empty name but since we have set the isDomainStandalone
     // context, the name will be retrieved during de-serialization
@@ -2273,13 +2270,8 @@ bool CParameterMgr::serializeElement(std::ostream& output,
 bool CParameterMgr::exportDomainsXml(string& xmlDest, bool withSettings, bool toFile,
                                      string& errorMsg) const
 {
-    // check path is absolute
-    if (toFile && xmlDest[0] != '/') {
-
-        errorMsg = "Please provide absolute path";
-
-        return false;
-    }
+    CAutoLog autoLog(this, string("Exporting domains to ") +
+            (toFile ? ("\"" + xmlDest + "\"") : " a user-provided buffer"));
 
     const CConfigurableDomains* configurableDomains = getConstConfigurableDomains();
 
@@ -2289,13 +2281,8 @@ bool CParameterMgr::exportDomainsXml(string& xmlDest, bool withSettings, bool to
 bool CParameterMgr::exportSingleDomainXml(string& xmlDest, const string& domainName,
                                           bool withSettings, bool toFile, string& errorMsg) const
 {
-    // check path is absolute
-    if (toFile && xmlDest[0] != '/') {
-
-        errorMsg = "Please provide absolute path";
-
-        return false;
-    }
+    CAutoLog autoLog(this, string("Exporting single domain '") + domainName + "' to " +
+            (toFile ? ("\"" + xmlDest + "\"") : " a user-provided buffer"));
 
     // Element to be serialized
     const CConfigurableDomain* requestedDomain =
@@ -2359,13 +2346,8 @@ bool CParameterMgr::importDomainsBinary(const string& strFileName, string& strEr
 
         return false;
     }
-    // check path is absolute
-    if (strFileName[0] != '/') {
 
-        strError = "Please provide absolute path";
-
-        return false;
-    }
+    CAutoLog autoLog(this, string("Importing domains from binary file \"") + strFileName + "\"");
     // Root element
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
@@ -2375,14 +2357,7 @@ bool CParameterMgr::importDomainsBinary(const string& strFileName, string& strEr
 
 bool CParameterMgr::exportDomainsBinary(const string& strFileName, string& strError)
 {
-    // check path is absolute
-    if (strFileName[0] != '/') {
-
-        strError = "Please provide absolute path";
-
-        return false;
-    }
-
+    CAutoLog autoLog(this, string("Exporting domains to binary file \"") + strFileName + "\"");
     // Root element
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
