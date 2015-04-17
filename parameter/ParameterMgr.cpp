@@ -2327,11 +2327,8 @@ bool CParameterMgr::exportDomainsXml(string& strXmlDest, bool bWithSettings, boo
 {
     const CConfigurableDomains* pConfigurableDomains = getConstConfigurableDomains();
 
-    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings);
-
-    xmlDomainExportContext.setValueSpaceRaw(_bValueSpaceIsRaw);
-
-    xmlDomainExportContext.setOutputRawFormat(_bOutputRawFormatIsHex);
+    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings, _bValueSpaceIsRaw,
+                                                   _bOutputRawFormatIsHex);
 
 
     return serializeElement(strXmlDest, xmlDomainExportContext, bToFile,
@@ -2351,11 +2348,8 @@ bool CParameterMgr::exportSingleDomainXml(string& strXmlDest, const string& strD
         return false;
     }
 
-    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings);
-
-    xmlDomainExportContext.setValueSpaceRaw(_bValueSpaceIsRaw);
-
-    xmlDomainExportContext.setOutputRawFormat(_bOutputRawFormatIsHex);
+    CXmlDomainExportContext xmlDomainExportContext(strError, bWithSettings, _bValueSpaceIsRaw,
+                                                   _bOutputRawFormatIsHex);
 
     return serializeElement(strXmlDest, xmlDomainExportContext, bToFile,
                                     *pRequestedDomain, strError);
