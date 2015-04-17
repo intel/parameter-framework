@@ -36,6 +36,8 @@
 using std::string;
 using core::criterion::CriterionInterface;
 
+using namespace core;
+
 CParameterMgrFullConnector::CParameterMgrFullConnector(const string& strConfigurationFilePath) :
     _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrFullConnector>(*this)),
     _pParameterMgr(new CParameterMgr(strConfigurationFilePath, *_pParameterMgrLogger)),
@@ -84,14 +86,20 @@ CParameterHandle* CParameterMgrFullConnector::createParameterHandle(const string
     return _pParameterMgr->createParameterHandle(strPath, strError);
 }
 
-CriterionInterface* CParameterMgrFullConnector::createExclusiveCriterion(const string& name)
+CriterionInterface*
+CParameterMgrFullConnector::createExclusiveCriterion(const string& name,
+                                                     const criterion::Values& values,
+                                                     std::string& error)
 {
-    return _pParameterMgr->createExclusiveCriterion(name);
+    return _pParameterMgr->createExclusiveCriterion(name, values, error);
 }
 
-CriterionInterface* CParameterMgrFullConnector::createInclusiveCriterion(const string& name)
+CriterionInterface*
+CParameterMgrFullConnector::createInclusiveCriterion(const string& name,
+                                                     const criterion::Values& values,
+                                                     std::string& error)
 {
-    return _pParameterMgr->createInclusiveCriterion(name);
+    return _pParameterMgr->createInclusiveCriterion(name, values, error);
 }
 
 CriterionInterface* CParameterMgrFullConnector::getSelectionCriterion(

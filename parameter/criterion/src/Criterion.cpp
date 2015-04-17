@@ -39,22 +39,29 @@ namespace core
 namespace criterion
 {
 
-Criterion::Criterion(const std::string& name, core::log::Logger& logger)
-    : Criterion(name, logger, {}, {})
+Criterion::Criterion(const std::string& name, const Values& values, core::log::Logger& logger)
+    : Criterion(name, logger, values, {})
 {
 }
 
 Criterion::Criterion(const std::string& name,
                      core::log::Logger& logger,
-                     const ValuePairs& derivedValuePairs,
+                     const Values& values,
                      const MatchMethods& derivedMatchMethods)
-    : mValuePairs(derivedValuePairs),
+    : mValues(values),
       mMatchMethods(CUtility::merge(MatchMethods{
                                       {"Is", [&](int state){ return mState == state; }},
                                       {"IsNot", [&](int state){ return mState != state; }}},
                                     derivedMatchMethods)),
       mState(0), _uiNbModifications(0), _logger(logger), mName(name)
 {
+    if (mValues.size() < 2) {
+        throw InvalidCriterionError("Not enough values were provided for exclusive criterion '" +
+                                    mName  + "' which needs at least 2 values");
+    }
+
+    // Set a known value as default
+    mState = mValues.begin()->second;
 }
 
 bool Criterion::hasBeenModified() const
@@ -162,7 +169,7 @@ void Criterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializi
     xmlElement.setAttributeString("Name", mName);
     xmlElement.setAttributeString("Kind", isInclusive() ? "Inclusive" : "Exclusive");
 
-    for (auto& valuePair : mValuePairs) {
+    for (auto& valuePair : mValues) {
         CXmlElement childValuePairElement;
 
         xmlElement.createChild(childValuePairElement, "ValuePair");
@@ -176,31 +183,11 @@ bool Criterion::isInclusive() const
     return false;
 }
 
-bool Criterion::addValuePair(int numericalValue,
-                             const std::string& literalValue,
-                             std::string& error)
-{
-    // Check already inserted
-    if (mValuePairs.count(literalValue) == 1) {
-
-        std::ostringstream errorBuf;
-        errorBuf << "Rejecting value pair association (literal already present): 0x"
-                 << std::hex << numericalValue << " - " << literalValue
-                 << " for criterion '" << getCriterionName() << "'";
-        error = errorBuf.str();
-
-        return false;
-    }
-    mValuePairs[literalValue] = numericalValue;
-
-    return true;
-}
-
 bool Criterion::getNumericalValue(const std::string& literalValue,
                                   int& numericalValue) const
 {
     try {
-        numericalValue = mValuePairs.at(literalValue);
+        numericalValue = mValues.at(literalValue);
         return true;
     }
     catch (std::out_of_range&) {
@@ -210,7 +197,7 @@ bool Criterion::getNumericalValue(const std::string& literalValue,
 
 bool Criterion::getLiteralValue(int numericalValue, std::string& literalValue) const
 {
-    for (auto& value : mValuePairs) {
+    for (auto& value : mValues) {
         if (value.second == numericalValue) {
             literalValue = value.first;
             return true;
@@ -234,7 +221,7 @@ std::string Criterion::listPossibleValues() const
 
     // Get comma separated list of values
     bool first = true;
-    for (auto& value : mValuePairs) {
+    for (auto& value : mValues) {
 
         if (first) {
             first = false;

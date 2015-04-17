@@ -52,16 +52,20 @@ Criterion* Criteria::getCriterionPointer(const std::string& name) const
     }
 }
 
-Criterion* Criteria::createExclusiveCriterion(const std::string& name, core::log::Logger& logger)
+Criterion* Criteria::createExclusiveCriterion(const std::string& name,
+                                              const Values& values,
+                                              core::log::Logger& logger,
+                                              std::string& error)
 {
-    mCriteria.emplace(name, CriterionWrapper(new Criterion(name, logger)));
-    return getCriterionPointer(name);
+    return addCriterion<Criterion>(name, values, logger, error);
 }
 
-Criterion* Criteria::createInclusiveCriterion(const std::string& name, core::log::Logger& logger)
+Criterion* Criteria::createInclusiveCriterion(const std::string& name,
+                                              const Values& values,
+                                              core::log::Logger& logger,
+                                              std::string& error)
 {
-    mCriteria.emplace(name, CriterionWrapper(new InclusiveCriterion(name, logger)));
-    return getCriterionPointer(name);
+    return addCriterion<InclusiveCriterion>(name, values, logger, error);
 }
 
 Criterion* Criteria::getSelectionCriterion(const std::string& name)
@@ -98,6 +102,23 @@ void Criteria::toXml(CXmlElement& xmlElement,
         CXmlElement xmlChildElement;
         xmlElement.createChild(xmlChildElement, "SelectionCriterion");
         criterion.second->toXml(xmlChildElement, serializingContext);
+    }
+}
+
+template<class CriterionType>
+Criterion* Criteria::addCriterion(const std::string& name,
+                                  const Values& values,
+                                  core::log::Logger& logger,
+                                  std::string& error)
+{
+    try {
+        Criterion* criterion(new CriterionType(name, values, logger));
+        mCriteria.emplace(name, CriterionWrapper(criterion));
+        return criterion;
+    }
+    catch (Criterion::InvalidCriterionError& e) {
+        error = e.what();
+        return nullptr;
     }
 }
 

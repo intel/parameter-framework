@@ -36,6 +36,7 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <stdexcept>
 
 namespace core
 {
@@ -46,10 +47,16 @@ namespace criterion
 class Criterion : public IXmlSource, public CriterionInterface
 {
 public:
+    /** Indicates an error at the Criterion creation */
+    using InvalidCriterionError = std::runtime_error;
+
     /** @param[in] name the criterion name
+     *  @param[in] values available values the criterion can take
      *  @param[in] logger the main application logger
+     *
+     *  @throw InvalidCriterionError if there is less than 2 values provided.
      */
-    Criterion(const std::string& name, core::log::Logger& logger);
+    Criterion(const std::string& name, const Values& values, core::log::Logger& logger);
 
     // @{
     /** @see CriterionInterface */
@@ -60,10 +67,6 @@ public:
     virtual std::string getCriterionName() const override final;
 
     virtual bool isInclusive() const override;
-
-    virtual bool addValuePair(int numericalValue,
-                              const std::string& literalValue,
-                              std::string& error) override;
 
     bool getLiteralValue(int numericalValue, std::string& literalValue) const override final;
 
@@ -120,9 +123,6 @@ protected:
     /** Match method container, MatchMethod are indexed by their name */
     typedef std::map<std::string, MatchMethod> MatchMethods;
 
-    /** Internal type which associate literal and numerical value */
-    typedef std::map<std::string, int> ValuePairs;
-
     /** Initializer constructor
      * This Constructor initialize class members and should be called by derived class
      * in order to add functionalities
@@ -134,11 +134,11 @@ protected:
      */
     Criterion(const std::string& name,
               core::log::Logger& logger,
-              const ValuePairs& derivedValuePairs,
+              const Values& derivedValuePairs,
               const MatchMethods& derivedMatchMethods);
 
     /** Contains pair association between literal and numerical value */
-    ValuePairs mValuePairs;
+    const Values mValues;
 
     /** Available criterion match methods */
     const MatchMethods mMatchMethods;
@@ -150,7 +150,6 @@ protected:
     int32_t mState;
 
 private:
-
     /** Counter to know how many modifications have been applied to this criterion */
     uint32_t _uiNbModifications;
 

@@ -169,20 +169,18 @@ struct CriteriaTest : LoggingTest {
 
 /** Test fixtures for Criterion */
 struct CriterionTest : public LoggingTest {
-    using CriterionValues = std::map<std::string, int>;
-
     /** Help to generate some values */
-    CriterionValues generateCriterionValues(bool isInclusive, size_t nbValues)
+    Values generateCriterionValues(bool isInclusive, size_t nbValues)
     {
         // 0 is invalid for inclusive criterion
         int offset = isInclusive ? 1 : 0;
-        CriterionValues criterionValues;
+        Values values;
 
         for (size_t i = offset; i < nbValues; i++) {
-            criterionValues.emplace("Crit_" + std::to_string(i), i);
+            values.emplace("Crit_" + std::to_string(i), i);
         }
 
-        return criterionValues;
+        return values;
     }
 
     void checkUnknownValueGet(Criterion& criterion)
@@ -191,7 +189,7 @@ struct CriterionTest : public LoggingTest {
         {
             std::string result;
             std::string literalValue;
-            REQUIRE_FAILURE(criterion.getLiteralValue(2, literalValue));
+            REQUIRE_FAILURE(criterion.getLiteralValue(666, literalValue));
             CHECK(literalValue.empty());
         }
         WHEN("Getting a numerical value from an unknown literal one")
@@ -203,27 +201,9 @@ struct CriterionTest : public LoggingTest {
         }
     }
 
-    void checkExistingValueInsertion(Criterion& criterion)
-    {
-        WHEN("Adding an existing literal value")
-        {
-            std::string result;
-            std::string literalValue = "DoubleState";
-            REQUIRE_SUCCESS(criterion.addValuePair(1, literalValue, result), result);
-            REQUIRE_FAILURE(criterion.addValuePair(2, literalValue, result), result);
-        }
-        // FIXME
-        // WHEN("Adding an existing numerical value") {
-        //    std::string result;
-        //    int numericalValue = 1;
-        //    REQUIRE_SUCCESS(criterion.addValuePair(numericalValue, "State1", result), result);
-        //    REQUIRE_FAILURE(criterion.addValuePair(numericalValue, "State2", result), result);
-        // }
-    }
-
     void checkInclusiveCriterionSet(Criterion& criterion)
     {
-        // CriterionValues contains 31 value as defined previously
+        // Criterion contains 31 value as defined previously
         WHEN("Setting many inclusive value at the same time")
         {
             std::bitset<31> stateMask("001001001001001");
@@ -261,7 +241,7 @@ struct CriterionTest : public LoggingTest {
         }
     }
 
-    void checkExclusiveCriterionSet(Criterion& criterion, CriterionValues& criterionValues)
+    void checkExclusiveCriterionSet(Criterion& criterion, Values& values)
     {
         WHEN("Setting the current value")
         {
@@ -279,7 +259,7 @@ struct CriterionTest : public LoggingTest {
             }
         }
 
-        for (auto& value : criterionValues) {
+        for (auto& value : values) {
             if (value.second != criterion.getCriterionState()) {
                 WHEN("Setting a new value")
                 {
@@ -346,7 +326,7 @@ struct CriterionTest : public LoggingTest {
         std::string kind = criterion.isInclusive() ? "Inclusive" : "Exclusive";
         WHEN("Serializing through xml")
         {
-            std::string defaultValue = criterion.isInclusive() ? "none" : "&lt;none&gt;";
+            std::string defaultValue = criterion.isInclusive() ? "none" : "a";
             std::string defaultState = criterion.isInclusive() ?
                                        R"(<ValuePair Literal="none" Numerical="0"/>)" : "";
             std::string xmlDescription =
@@ -374,7 +354,7 @@ struct CriterionTest : public LoggingTest {
             }
         }
 
-        std::string defaultState = (criterion.isInclusive() ? "none" : "<none>");
+        std::string defaultState = (criterion.isInclusive() ? "none" : "a");
         std::string defaultStateType = criterion.isInclusive() ? ", none}" : "}";
         WHEN("Serializing through Csv")
         {
@@ -419,16 +399,15 @@ struct CriterionTest : public LoggingTest {
         }
     }
 
-    void checkDisplay(Criterion& criterion)
+    template <class CriterionType>
+    void checkDisplay(const std::string& criterionName)
     {
-        std::string possibleValues = std::string("{a, b, c") +
-                                     (criterion.isInclusive() ? ", none" : "") + "}";
-        WHEN("Adding some criterion value")
+        WHEN("Wanting to serialize it")
         {
-            std::string result;
-            REQUIRE_SUCCESS(criterion.addValuePair(2, "a", result), result);
-            REQUIRE_SUCCESS(criterion.addValuePair(3, "b", result), result);
-            REQUIRE_SUCCESS(criterion.addValuePair(4, "c", result), result);
+            Values values = { { "a", 2 }, { "b", 3 }, { "c", 4 } };
+            CriterionType criterion(criterionName, values, mLogger);
+            std::string possibleValues = std::string("{a, b, c") +
+                                         (criterion.isInclusive() ? ", none" : "") + "}";
             THEN("Possible values match all values added in the criterion")
             {
                 CHECK(criterion.listPossibleValues() == possibleValues);
@@ -470,19 +449,11 @@ struct CriterionTest : public LoggingTest {
         }
     }
 
-    void checkInsertionBijectivity(Criterion& criterion)
+    void checkInsertionBijectivity(Criterion& criterion, Values values)
     {
-        WHEN("Adding some criterion value")
+        WHEN("Checking internal value")
         {
-            /** Generate 31 values, no more because inclusive criterion cannot handle it
-             * Unbounded values are tested later for inclusive criterion
-             */
-            CriterionValues criterionValues = generateCriterionValues(criterion.isInclusive(), 31);
-
-            for (auto& value : criterionValues) {
-                std::string result;
-                REQUIRE_SUCCESS(criterion.addValuePair(value.second, value.first, result), result);
-
+            for (auto& value : values) {
                 THEN("Numerical value should correspond")
                 {
                     int numericalValue;
@@ -497,7 +468,7 @@ struct CriterionTest : public LoggingTest {
                 }
             }
 
-            checkExclusiveCriterionSet(criterion, criterionValues);
+            checkExclusiveCriterionSet(criterion, values);
             if (criterion.isInclusive()) {
                 // Inclusive criterion has a more evolved setting behavior
                 checkInclusiveCriterionSet(criterion);
@@ -505,7 +476,7 @@ struct CriterionTest : public LoggingTest {
         }
     }
 
-    void checkCriterionBasicBehavior(Criterion& criterion, std::string name)
+    void checkCriterionBasicBehavior(Criterion& criterion, std::string name, Values values)
     {
         using MatchMethods = std::vector<std::string>;
         /** key indicates if it's available for exclusive criterion */
@@ -543,12 +514,19 @@ struct CriterionTest : public LoggingTest {
             CHECK(criterion.getCriterionName() == name);
         }
 
-        checkInsertionBijectivity(criterion);
-        checkExistingValueInsertion(criterion);
+        checkInsertionBijectivity(criterion, values);
         checkUnknownValueGet(criterion);
-        checkDisplay(criterion);
     }
 
+    template <class CriterionType>
+    void checkNoValue(const std::string& criterionName)
+    {
+        WHEN("Creating it with no value")
+        {
+            REQUIRE_THROWS_AS(CriterionType criterion(criterionName, {}, mLogger),
+                              Criterion::InvalidCriterionError);
+        }
+    }
 };
 
 SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
@@ -557,75 +535,82 @@ SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
     GIVEN("An exclusive criterion")
     {
         const std::string criterionName = "ExclusiveCriterion";
-        Criterion criterion(criterionName, mLogger);
+        WHEN("Creating a bunch of values")
+        {
+            Values values = generateCriterionValues(false, 300);
+            Criterion criterion(criterionName, values, mLogger);
 
-        THEN("The criterion is not inclusive")
-        {
-            CHECK(not criterion.isInclusive());
-        }
-        THEN("There is no available states")
-        {
-            CHECK(criterion.listPossibleValues() == "{}");
-        }
-        THEN("No state is currently set")
-        {
-            CHECK(criterion.getFormattedState() == "<none>");
-        }
+            THEN("The criterion is not inclusive")
+            {
+                CHECK(not criterion.isInclusive());
+            }
 
-        checkCriterionBasicBehavior(criterion, criterionName);
+            checkCriterionBasicBehavior(criterion, criterionName, values);
 
-        WHEN("We add an negative numerical value")
-        {
-            std::string result;
-            // FIXME: allow only positive numerical value
-            REQUIRE_SUCCESS(criterion.addValuePair(-3, "Negative", result), result);
+            // WHEN("We add a random numerical value") {
+            //    std::string result;
+            //    std::default_random_engine generator;
+            //    // FIXME: use uint32_t internally instead
+            //    // Criterion State type is int32_t
+            //    std::uniform_int_distribution<int32_t> dist;
+            //    int32_t numericalValue = dist(generator);
+            //    CAPTURE(numericalValue);
+            //    REQUIRE_SUCCESS(criterion.addValuePair(numericalValue, "Random", result), result);
+            // }
         }
-        WHEN("We add a random numerical value")
+        WHEN("Creating it with only one value")
         {
-            std::string result;
-            std::default_random_engine generator;
-            // FIXME: use uint32_t internally instead
-            // Criterion State type is int32_t
-            std::uniform_int_distribution<int32_t> dist;
-            int32_t numericalValue = dist(generator);
-            CAPTURE(numericalValue);
-            REQUIRE_SUCCESS(criterion.addValuePair(numericalValue, "Random", result), result);
+            REQUIRE_THROWS_AS(Criterion criterion(criterionName, { { "A", 1 } }, mLogger),
+                              Criterion::InvalidCriterionError);
         }
+        checkNoValue<Criterion>(criterionName);
+        checkDisplay<Criterion>(criterionName);
     }
 
     GIVEN("An inclusive criterion")
     {
         const std::string criterionName = "InclusiveCriterion";
-        InclusiveCriterion criterion(criterionName, mLogger);
+        WHEN("Creating it with the maximum possible value")
+        {
+            Values values = generateCriterionValues(true, 31);
+            InclusiveCriterion criterion(criterionName, values, mLogger);
 
-        THEN("The criterion is inclusive")
-        {
-            CHECK(criterion.isInclusive());
-        }
-        THEN("Default state is available")
-        {
-            const std::string defaultState = "none";
-            CHECK(criterion.listPossibleValues() == "{" + defaultState + "}");
-            int numericalValue;
-            REQUIRE_SUCCESS(criterion.getNumericalValue(defaultState, numericalValue));
-            CHECK(numericalValue == 0);
-            std::string literalValue;
-            REQUIRE_SUCCESS(criterion.getLiteralValue(0, literalValue));
-            CHECK(literalValue == defaultState);
-        }
-        THEN("Default state is set")
-        {
-            CHECK(criterion.getCriterionState() == 0);
-            CHECK(criterion.getFormattedState() == "none");
-        }
+            THEN("The criterion is inclusive")
+            {
+                CHECK(criterion.isInclusive());
+            }
+            THEN("Default state is available")
+            {
+                const std::string defaultState = "none";
+                int numericalValue;
+                REQUIRE_SUCCESS(criterion.getNumericalValue(defaultState, numericalValue));
+                CHECK(numericalValue == 0);
+                std::string literalValue;
+                REQUIRE_SUCCESS(criterion.getLiteralValue(0, literalValue));
+                CHECK(literalValue == defaultState);
+            }
+            THEN("Default state is set")
+            {
+                CHECK(criterion.getCriterionState() == 0);
+                CHECK(criterion.getFormattedState() == "none");
+            }
 
-        checkCriterionBasicBehavior(criterion, criterionName);
-
-        WHEN("We add a state with 0 as numerical value")
-        {
-            std::string result;
-            REQUIRE_FAILURE(criterion.addValuePair(0, "Crit_0", result), result);
+            checkCriterionBasicBehavior(criterion, criterionName, values);
         }
+        WHEN("Creating it with a state with 0 as numerical value")
+        {
+            REQUIRE_THROWS_AS(InclusiveCriterion criterion(criterionName,
+                                                           { { "Crit_0", 0 } }, mLogger),
+                              Criterion::InvalidCriterionError);
+        }
+        WHEN("Creating it with more than 31 available value")
+        {
+            Values values = generateCriterionValues(true, 65);
+            REQUIRE_THROWS_AS(InclusiveCriterion criterion(criterionName, values, mLogger),
+                              Criterion::InvalidCriterionError);
+        }
+        checkNoValue<InclusiveCriterion>(criterionName);
+        checkDisplay<InclusiveCriterion>(criterionName);
     }
 }
 
@@ -634,15 +619,29 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
 
     GIVEN("A criteria object")
     {
+        WHEN("Adding invalid criteria")
+        {
+            std::string error;
+            REQUIRE_FAILURE(mCriteria.createInclusiveCriterion("InvalidInclusive", {},
+                                                               mLogger, error),
+                            error);
+            REQUIRE_FAILURE(mCriteria.createExclusiveCriterion("InvalidExclusive", {},
+                                                               mLogger, error),
+                            error);
+        }
         WHEN("Adding some criteria")
         {
-
+            Values values = { { "State", 1 }, { "State2", 2 } };
             for (auto& description : mDescriptions) {
+                std::string error;
                 Criterion* addedCriterion = (description.isInclusive ?
                                              mCriteria.createInclusiveCriterion(description.name,
-                                                                                mLogger) :
+                                                                                values, mLogger,
+                                                                                error) :
                                              mCriteria.createExclusiveCriterion(description.name,
-                                                                                mLogger));
+                                                                                values, mLogger,
+                                                                                error));
+                REQUIRE_SUCCESS(addedCriterion != nullptr, error);
                 description.criterion = addedCriterion;
                 THEN("Added criteria match the request")
                 {
@@ -671,10 +670,7 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
             WHEN("Modifying criteria")
             {
                 for (auto& description : mDescriptions) {
-                    std::string result;
-                    REQUIRE_SUCCESS(description.criterion->addValuePair(1, "State", result),
-                                    result);
-                    description.criterion->setCriterionState(1);
+                    description.criterion->setCriterionState(2);
                     CHECK(description.criterion->hasBeenModified());
                 }
                 WHEN("Resetting criteria status")
@@ -701,13 +697,23 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
                     R"(<?xml version="1.0" encoding="UTF-8"?>
                        <SelectionCriteria>
                         <SelectionCriterion Value="none" Name="A" Kind="Inclusive">
+                            <ValuePair Literal="State" Numerical="1"/>
+                            <ValuePair Literal="State2" Numerical="2"/>
                             <ValuePair Literal="none" Numerical="0"/>
                         </SelectionCriterion>
-                        <SelectionCriterion Value="&lt;none&gt;" Name="B" Kind="Exclusive"/>
+                        <SelectionCriterion Value="State" Name="B" Kind="Exclusive">
+                            <ValuePair Literal="State" Numerical="1"/>
+                            <ValuePair Literal="State2" Numerical="2"/>
+                        </SelectionCriterion>
                         <SelectionCriterion Value="none" Name="C" Kind="Inclusive">
+                            <ValuePair Literal="State" Numerical="1"/>
+                            <ValuePair Literal="State2" Numerical="2"/>
                             <ValuePair Literal="none" Numerical="0"/>
                         </SelectionCriterion>
-                        <SelectionCriterion Value="&lt;none&gt;" Name="D" Kind="Exclusive"/>
+                        <SelectionCriterion Value="State" Name="D" Kind="Exclusive">
+                            <ValuePair Literal="State" Numerical="1"/>
+                            <ValuePair Literal="State2" Numerical="2"/>
+                        </SelectionCriterion>
                        </SelectionCriteria>)";
 
                 std::string result;

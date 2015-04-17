@@ -286,133 +286,116 @@ CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCom
 
 //////////////// Remote command handlers
 
-bool CTestPlatform::createExclusiveCriterionFromStateList(const string& strName,
+bool CTestPlatform::createExclusiveCriterionFromStateList(const string& name,
                                                           const IRemoteCommand& remoteCommand,
-                                                          string& strResult)
+                                                          string& result)
 {
 
     assert(_pParameterMgrPlatformConnector != NULL);
 
-    CriterionInterface* pCriterion =
-        _pParameterMgrPlatformConnector->createExclusiveCriterion(strName);
+    uint32_t nbStates = remoteCommand.getArgumentCount() - 1;
 
-    assert(pCriterion!= NULL);
+    using namespace core::criterion;
+    Values values;
 
-    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
-    uint32_t uiState;
+    for (uint32_t state = 0; state < nbStates; state++) {
 
-    for (uiState = 0; uiState < uiNbStates; uiState++) {
+        const std::string& value = remoteCommand.getArgument(state + 1);
 
-        const std::string& strValue = remoteCommand.getArgument(uiState + 1);
-
-        if (!pCriterion->addValuePair(uiState, strValue, strResult)) {
-
-            strResult = "Unable to add value: " + strValue + ": " + strResult;
-
+        if (values.count(value) != 0) {
+            result = "Unable to add value: " + value + ": because it's referenced twice";
             return false;
         }
+        values[value] = state;
     }
 
+    CriterionInterface* criterion =
+        _pParameterMgrPlatformConnector->createExclusiveCriterion(name, values, result);
+
+    if (criterion == nullptr) {
+        return false;
+    }
 
     return true;
 }
 
-bool CTestPlatform::createInclusiveCriterionFromStateList(const string& strName,
+bool CTestPlatform::createInclusiveCriterionFromStateList(const string& name,
                                                           const IRemoteCommand& remoteCommand,
-                                                          string& strResult)
+                                                          string& result)
 {
     assert(_pParameterMgrPlatformConnector != NULL);
+    uint32_t nbStates = remoteCommand.getArgumentCount() - 1;
 
-    CriterionInterface* pCriterion =
-        _pParameterMgrPlatformConnector->createInclusiveCriterion(strName);
+    if (nbStates > 32) {
 
-    assert(pCriterion != NULL);
-
-    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
-
-    if (uiNbStates > 32) {
-
-        strResult = "Maximum number of states for inclusive criterion is 32";
+        result = "Maximum number of states for inclusive criterion is 32";
 
         return false;
     }
 
-    uint32_t uiState;
+    using namespace core::criterion;
+    Values values;
 
-    for (uiState = 1; uiState <= uiNbStates; uiState++) {
+    for (uint32_t state = 0; state < nbStates; state++) {
 
-        const std::string& strValue = remoteCommand.getArgument(uiState + 1);
+        const std::string& value = remoteCommand.getArgument(state + 1);
 
-        if (!pCriterion->addValuePair(uiState, strValue, strResult)) {
-
-            strResult = "Unable to add value: " + strValue + ": " + strResult;
-
+        if (values.count(value) != 0) {
+            result = "Unable to add value: " + value + ": because it's referenced twice";
             return false;
         }
+        values[value] = state + 1;
+    }
+
+    CriterionInterface* criterion =
+        _pParameterMgrPlatformConnector->createInclusiveCriterion(name, values, result);
+
+    if (criterion == nullptr) {
+        return false;
     }
 
     return true;
 }
 
 
-bool CTestPlatform::createExclusiveCriterion(const string& strName,
-                                             uint32_t uiNbStates,
-                                             string& strResult)
+bool CTestPlatform::createExclusiveCriterion(const string& name, uint32_t nbStates, string& result)
 {
-    CriterionInterface* pCriterion =
-        _pParameterMgrPlatformConnector->createExclusiveCriterion(strName);
+    using namespace core::criterion;
+    Values values;
 
-    uint32_t uistate;
+    for (uint32_t state = 0; state < nbStates; state++) {
+        values["State_" + std::to_string(state)] = state;
+    }
+    CriterionInterface* criterion =
+        _pParameterMgrPlatformConnector->createExclusiveCriterion(name, values, result);
 
-    for (uistate = 0; uistate < uiNbStates; uistate++) {
-
-	std::ostringstream ostrValue;
-
-        ostrValue << "State_";
-        ostrValue << uistate;
-
-        if (!pCriterion->addValuePair(uistate, ostrValue.str(), strResult)) {
-
-            strResult = "Unable to add value: "
-                + ostrValue.str() + ": " + strResult;
-
-            return false;
-        }
+    if (criterion == nullptr) {
+        return false;
     }
 
     return true;
 }
 
-bool CTestPlatform::createInclusiveCriterion(const string& strName,
-                                             uint32_t uiNbStates,
-                                             string& strResult)
+bool CTestPlatform::createInclusiveCriterion(const string& name, uint32_t nbStates, string& result)
 {
-    CriterionInterface* pCriterion =
-        _pParameterMgrPlatformConnector->createInclusiveCriterion(strName);
+    using namespace core::criterion;
+    Values values;
 
-    if (uiNbStates > 32) {
+    if (nbStates > 32) {
 
-        strResult = "Maximum number of states for inclusive criterion is 32";
+        result = "Maximum number of states for inclusive criterion is 32";
 
         return false;
     }
 
-    uint32_t uiState;
+    for (uint32_t state = 0; state < nbStates; state++) {
+        values["State_0x" + std::to_string(1 << state)] = state + 1;
+    }
+    CriterionInterface* criterion =
+        _pParameterMgrPlatformConnector->createInclusiveCriterion(name, values, result);
 
-    for (uiState = 1; uiState <= uiNbStates; uiState++) {
-
-	std::ostringstream ostrValue;
-
-        ostrValue << "State_0x";
-        ostrValue << uiState;
-
-        if (!pCriterion->addValuePair(uiState, ostrValue.str(), strResult)) {
-
-            strResult = "Unable to add value: "
-                + ostrValue.str() + ": " + strResult;
-
-            return false;
-        }
+    if (criterion == nullptr) {
+        return false;
     }
 
     return true;

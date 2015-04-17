@@ -187,27 +187,32 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
                                   "\" already exist");
         }
 
-        // Create criterion
-        CriterionInterface *newCriterion = (criterion.inclusive ?
-                pfw->createInclusiveCriterion(criterion.name) :
-                pfw->createExclusiveCriterion(criterion.name));
-        assert(newCriterion != NULL);
-        // Add criterion values
-        int inclusiveCriterionMaxValue = sizeof(int) * CHAR_BIT - 1;
+        // Create criterion values
+        core::criterion::Values values;
         for (size_t valueIndex = 0; criterion.values[valueIndex] != NULL; ++valueIndex) {
-            int value = valueIndex + 1;
-            if (criterion.inclusive && value > inclusiveCriterionMaxValue) {
-                return status.failure("Too many values for criterion " +
-                                      string(criterion.name));
-            } else if (!criterion.inclusive) {
+
+            int value;
+            if (criterion.inclusive) {
+                value = valueIndex + 1;
+            } else {
                 value = valueIndex;
             }
             const char * valueName = criterion.values[valueIndex];
-            string error;
-            if(not newCriterion->addValuePair(value, valueName, error)) {
+            if (values.count(valueName) != 0) {
                 return status.failure("Could not add value " + string(valueName) +
-                                      " to criterion " + criterion.name + ": " + error);
+                                      " to criterion " + criterion.name +
+                                      ": The value is duplicated");
             }
+            values[valueName] = value;
+        }
+        // Create criterion
+        string error;
+        CriterionInterface *newCriterion = (criterion.inclusive ?
+                pfw->createInclusiveCriterion(criterion.name, values, error) :
+                pfw->createExclusiveCriterion(criterion.name, values, error));
+        if (newCriterion == nullptr) {
+            return status.failure("Could not create criterion '" + string(criterion.name) +
+                                  "': " + error);
         }
         // Add new criterion to criteria list
         criteria[criterion.name] = newCriterion;

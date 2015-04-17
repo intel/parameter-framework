@@ -46,16 +46,22 @@
 
 %include "std_string.i"
 %include "std_vector.i"
+%include "std_map.i"
 %include "typemaps.i"
 
-// We need to tell SWIG that std::vector<std::string> is a vector of strings
+// We need to tell SWIG that 
+//     std::vector<std::string> is a vector of strings,
+//     std::map<std::string, int> is a map with string as key and integer as value
 namespace std {
     %template(StringVector) vector<string>;
+    %template(MapStringInt) map<string, int>;
 }
 
-// Tells swig that 'std::string& strError' must be treated as output parameters
+// Tells swig that 'std::string& strError' 'std::string& errorOutput' must be
+// treated as output parameters
 // TODO: make it return a tuple instead of a list
 %apply std::string &OUTPUT { std::string& strError };
+%apply std::string &OUTPUT { std::string& errorOutput };
 
 // Automatic python docstring generation
 // FIXME: because of the typemap above, the output type is wrong for methods
@@ -81,10 +87,14 @@ public:
     void setLogger(ILogger* pLogger);
 
     core::criterion::CriterionInterface*
-    createExclusiveCriterion(const std::string& name);
+    createExclusiveCriterion(const std::string& name,
+                             const core::criterion::Values& values,
+                             std::string& errorOutput);
 
     core::criterion::CriterionInterface*
-    createInclusiveCriterion(const std::string& name);
+    createInclusiveCriterion(const std::string& name,
+                             const core::criterion::Values& values,
+                             std::string& errorOutput);
 
     core::criterion::CriterionInterface*
     getSelectionCriterion(const std::string& name);
@@ -202,6 +212,8 @@ namespace core
 namespace criterion
 {
 
+typedef std::map<std::string, int> Values;
+
 class CriterionInterface
 {
 %{
@@ -212,9 +224,6 @@ public:
     virtual void setCriterionState(int iState) = 0;
     virtual int getCriterionState() const = 0;
     virtual std::string getCriterionName() const = 0;
-    virtual bool addValuePair(int numericalValue,
-                              const std::string& literalValue,
-                              std::string& strError) = 0;
 %apply int &OUTPUT { int& numericalValue };
     virtual bool getNumericalValue(const std::string& literalValue, int& numericalValue) const = 0;
 %clear int& numericalValue;

@@ -40,16 +40,15 @@ namespace criterion
 class InclusiveCriterion final : public Criterion
 {
 public:
-    /** @param[in] name, the criterion name */
-    InclusiveCriterion(const std::string& name, core::log::Logger& logger);
+    /** @param[in] name, the criterion name
+     *  @param[in] values available values the criterion can take
+     *  @param[in] logger the application main logger
+     */
+    InclusiveCriterion(const std::string& name, const Values& values, core::log::Logger& logger);
 
     // @{
     /** @see CriterionInterface */
     bool isInclusive() const override;
-
-    bool addValuePair(int numericalValue,
-                      const std::string& literalValue,
-                      std::string& error) override;
 
     bool getNumericalValue(const std::string& literalValue,
                            int& numericalValue) const override;

@@ -35,6 +35,8 @@
 using std::string;
 using core::criterion::CriterionInterface;
 
+using namespace core;
+
 // Construction
 CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
         const string& strConfigurationFilePath) :
@@ -50,18 +52,24 @@ CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
     delete _pParameterMgrLogger;
 }
 
-CriterionInterface* CParameterMgrPlatformConnector::createExclusiveCriterion(const string& name)
+CriterionInterface*
+CParameterMgrPlatformConnector::createExclusiveCriterion(const string& name,
+                                                         const criterion::Values& values,
+                                                         std::string& error)
 {
     assert(!_bStarted);
 
-    return _pParameterMgr->createExclusiveCriterion(name);
+    return _pParameterMgr->createExclusiveCriterion(name, values, error);
 }
 
-CriterionInterface* CParameterMgrPlatformConnector::createInclusiveCriterion(const string& name)
+CriterionInterface*
+CParameterMgrPlatformConnector::createInclusiveCriterion(const string& name,
+                                                         const criterion::Values& values,
+                                                         std::string& error)
 {
     assert(!_bStarted);
 
-    return _pParameterMgr->createInclusiveCriterion(name);
+    return _pParameterMgr->createInclusiveCriterion(name, values, error);
 }
 
 CriterionInterface*

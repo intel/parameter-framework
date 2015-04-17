@@ -58,20 +58,30 @@ public:
      * Should be called before start
      *
      * @param[in] name, the criterion name
-     * @return raw pointer on the criterion interface
+     * @param[in] values available value pairs for the created criterion
+     * @param[out] error the string describing the error if an error occurred
+     *                   undefined otherwise
+     * @return raw pointer on the criterion interface, nullptr if the method fail
      */
     core::criterion::CriterionInterface*
-    createExclusiveCriterion(const std::string& name);
+    createExclusiveCriterion(const std::string& name,
+                             const core::criterion::Values& values,
+                             std::string& error);
 
     /** Create a new Inclusive criterion
      * Beware returned objects shall not be deleted by client.
      * Should be called before start
      *
      * @param[in] name, the criterion name
-     * @return raw pointer on the criterion interface
+     * @param[in] values available value pairs for the created criterion
+     * @param[out] error the string describing the error if an error occurred
+     *                   undefined otherwise
+     * @return raw pointer on the criterion interface, nullptr if the method fail
      */
     core::criterion::CriterionInterface*
-    createInclusiveCriterion(const std::string& name);
+    createInclusiveCriterion(const std::string& name,
+                             const core::criterion::Values& values,
+                             std::string& error);
 
     // Selection criterion retrieval
     core::criterion::CriterionInterface*

@@ -29,6 +29,7 @@
  */
 #include "criterion/InclusiveCriterion.h"
 #include "Tokenizer.h"
+#include <Utility.h>
 
 #include <sstream>
 #include <cassert>
@@ -40,30 +41,35 @@ namespace criterion
 
 const std::string InclusiveCriterion::gDelimiter = "|";
 
-InclusiveCriterion::InclusiveCriterion(const std::string& name, core::log::Logger& logger)
+InclusiveCriterion::InclusiveCriterion(const std::string& name,
+                                       const Values& values,
+                                       core::log::Logger& logger)
     : Criterion(name, logger,
-                {{"none", 0}},
+                CUtility::merge(Values{{"none", 0}}, values),
                 {{"Includes", [&](int state){ return (mState & state) == state; }},
                  {"Excludes", [&](int state){ return (mState & state) == 0; }}})
 {
+    // Checking that no values match the 0 numerical state as this is not a valid inclusive value
+    for (auto& value : values) {
+        if (value.second == 0) {
+            throw InvalidCriterionError("Invalid numerical value '0' provided for inclusive "
+                                        "criterion '" + name + "' in association with '" +
+                                        value.first + "' litteral value");
+        }
+    }
+    if (values.size() > 31) {
+        // mState is an integer, so it as 31 bits + 1 for the sign which can't be used
+        throw InvalidCriterionError("Too much values provided for inclusive criterion '" +
+                                    name  + "', limit is 31");
+    }
+
+    // Set Inclusive default state
+    mState = 0;
 }
 
 bool InclusiveCriterion::isInclusive() const
 {
     return true;
-}
-
-bool InclusiveCriterion::addValuePair(int numericalValue,
-                                      const std::string& literalValue,
-                                      std::string& error)
-{
-    if (numericalValue == 0) {
-        error = "Rejecting value pair association: 0x0 - " + literalValue +
-                " for criterion '" + getCriterionName() + "'";
-        return false;
-    }
-
-    return Criterion::addValuePair(numericalValue, literalValue, error);
 }
 
 bool InclusiveCriterion::getNumericalValue(const std::string& literalValue,

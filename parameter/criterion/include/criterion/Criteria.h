@@ -52,20 +52,30 @@ public:
     /** Create a new Exclusive criterion
      *
      * @param[in] name the criterion name
+     * @param[in] values available values the criterion can take
      * @param[in] logger the application main logger
-     * @return raw pointer on the created criterion
+     * @param[out] error the string containing the error description in case of failure
+     *                   undefined otherwise
+     * @return raw pointer on the created criterion, nullptr in case of failure
      */
     Criterion* createExclusiveCriterion(const std::string& name,
-                                        core::log::Logger& logger);
+                                        const Values& values,
+                                        core::log::Logger& logger,
+                                        std::string& error);
 
     /** Create a new Inclusive criterion
      *
      * @param[in] name the criterion name
+     * @param[in] values available values the criterion can take
      * @param[in] logger the application main logger
-     * @return raw pointer on the created criterion
+     * @param[out] error the string containing the error description in case of failure
+     *                   undefined otherwise
+     * @return raw pointer on the created criterion, nullptr in case of failure
      */
     Criterion* createInclusiveCriterion(const std::string& name,
-                                        core::log::Logger& logger);
+                                        const Values& values,
+                                        core::log::Logger& logger,
+                                        std::string& error);
 
     /** Criterion Retrieval
      *
@@ -126,6 +136,21 @@ private:
      * @return pointer to the desired criterion
      */
     Criterion* getCriterionPointer(const std::string& name) const;
+
+    /** Helper to register a new Criterion
+     *
+     * @param[in] name the criterion name
+     * @param[in] values available values the criterion can take
+     * @param[in] logger the application main logger
+     * @param[out] error the string containing the error description in case of failure
+     *                   undefined otherwise
+     * @return raw pointer on the created criterion, nullptr in case of failure
+     */
+    template<class CriterionType>
+    Criterion* addCriterion(const std::string& name,
+                            const Values& values,
+                            core::log::Logger& logger,
+                            std::string& error);
 
     /** Criteria instance container */
     CriteriaMap mCriteria;

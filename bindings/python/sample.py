@@ -48,17 +48,13 @@ pfw = PyPfw.ParameterFramework(sys.argv[1])
 mylogger = MyLogger()
 pfw.setLogger(mylogger);
 
-mood = pfw.createExclusiveCriterion("Mood")
-for numerical, literal in enumerate(["mad", "sad", "glad"]):
-    success, error = mood.addValuePair(numerical, literal)
-    if not success:
-        logging.error("Can't create the 'Mood' criterion: %s" % error)
+mood, error = pfw.createExclusiveCriterion("Mood", {"mad" : 1, "sad" : 2, "glad" : 3})
+if not mood:
+    logging.error("Can't create the 'Mood' criterion: %s" % error)
 
-colors = pfw.createInclusiveCriterion("Colors")
-for numerical, literal in enumerate(["red", "green", "blue"]):
-    success, error = colors.addValuePair(1 << numerical, literal)
-    if not success:
-        logging.error("Can't create the 'Colors' criterion: %s" % error)
+colors, error = pfw.createInclusiveCriterion("Colors", {"red" : 1, "green" : 2, "blue" : 3})
+if not colors:
+    logging.error("Can't create the 'Colors' criterion: %s" % error)
 
 ok, error = pfw.start()
 
