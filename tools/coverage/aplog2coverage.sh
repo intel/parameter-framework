@@ -54,6 +54,7 @@ help () {
 # Default values
 outputFile="-"
 coverage_report_generator_ignorable_errors="\
+--ignore-unknown-criterion \
 --ignore-incoherent-criterion-state \
 --ignore-ineligible-configuration-application"
 coverage_report_generator_options=""

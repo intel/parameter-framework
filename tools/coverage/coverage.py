@@ -720,6 +720,14 @@ class ParsePFWlog():
     MATCH = "match"
     ACTION = "action"
 
+    class ChangeRequestOnUnknownCriterion(CustomError):
+        def __init__(self, criterion):
+            self.criterion = criterion
+
+        def __str__(self):
+            return ("Change request on an unknown criterion %s." %
+                self.criterion)
+
     def __init__(self, domains, criteria, ErrorsToIgnore=()):
 
         self.domains = domains;
@@ -802,7 +810,10 @@ class ParsePFWlog():
 
         path = [criterionName]
         changeCriterionOperation = lambda criterion : criterion.changeState(newCriterionState)
-        self.criteria.operationOnChild(path, changeCriterionOperation)
+        try:
+            self.criteria.operationOnChild(path, changeCriterionOperation)
+        except ChildNotFoundError:
+            raise self.ChangeRequestOnUnknownCriterion(criterionName)
 
     def _configApplication(self, matchConfig):
         # Unpack
@@ -968,6 +979,13 @@ class ArgumentParser:
                     )
 
             myArgParser.add_argument(
+                        '--ignore-unknown-criterion',
+                        dest="unknwonCriterionFlag",
+                        action='store_true',
+                        help="ignore unknown criterion"
+                    )
+
+            myArgParser.add_argument(
                         '--ignore-incoherent-criterion-state',
                         dest="incoherentCriterionFlag",
                         action='store_true',
@@ -1004,6 +1022,9 @@ class ArgumentParser:
 
             if options.incoherentCriterionFlag:
                 errorToIgnore.append(Criterion.ChangeRequestToNonAccessibleState)
+
+            if options.unknwonCriterionFlag:
+                errorToIgnore.append(ParsePFWlog.ChangeRequestOnUnknownCriterion)
 
             self.errorToIgnore = tuple(errorToIgnore)
 

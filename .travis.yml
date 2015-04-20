@@ -1,41 +1,52 @@
+# Use travis docker infrastructure
+sudo: false
 language: cpp
-compiler:
-  - gcc
-#  - clang # not supported yet
 
-# Install a recent gcc, gcov and cmake,
+env:
+    global:
+        - PREFIX=$HOME/prefix
+
+compiler:
+    - gcc
+    # clang not supported yet
+    # - clang
+
+# Install a recent gcc and gcov,
 # it will not be necessary once travis worker is based on ubuntu > 12.04.
 # Install SWIG for bindings generation
-before_install:
-  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-  - sudo add-apt-repository --yes ppa:kalakris/cmake # Non official cmake backport
-  - sudo apt-get update -qq
-  - sudo pip install cpp-coveralls
+# Install valgrind for memcheck tests
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - swig
+            - valgrind
+            - g++-4.8
 
 install:
-  - sudo apt-get install --yes swig cmake valgrind g++-4.8
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
-  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 100
-  - sudo wget --directory-prefix /usr/include/
+    - pip install --user cpp-coveralls; export PATH=$HOME/.local/bin:$PATH
+    - wget --directory-prefix $PREFIX/include
               https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
+
+before_script:
+    - if [ "$CC" = "gcc" ]; then export CC=gcc-4.8 CXX=g++-4.8; fi
 
 # how to build
 script:
   - ( mkdir build_debug && cd build_debug &&
-        cmake -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
+        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
         make -j &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck )
   - ( mkdir build && cd build &&
-        cmake .. &&
+        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_INSTALL_PREFIX=../install .. &&
         make -j &&
-        sudo make install &&
-        sudo ldconfig &&
-        CTEST_OUTPUT_ON_FAILURE=1 make test )
+        CTEST_OUTPUT_ON_FAILURE=1 make test &&
+        make install)
   - ( cd skeleton-subsystem &&
-        cmake . &&
+        cmake -DCMAKE_INSTALL_PREFIX=../install . &&
         make &&
-        sudo make install &&
-        sudo ldconfig )
+        make install )
 
 after_success:
     # Push coverage info on coveralls.io.
@@ -48,26 +59,9 @@ after_success:
           --exclude "test/test-subsystem"
           --exclude "bindings/c/Test.cpp"
           --exclude "test/tokenizer"
+          --gcov /usr/bin/gcov-4.8
           --gcov-options '\--long-file-names --preserve-paths'
 
 notifications:
-  email:
-    - david.wagner@intel.com
   irc:
     - "chat.freenode.net#parameter-framework"
-
-env:
-  global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
-   - secure: "Y+iKBg65e4dleuMwxAo1XSl/QkF4AtCe35ltu2DhPbeMJCywBmu0aeDb04oEaZJL+BxP+KMoRqRjeoGI3W/sh0gAq03iQ+P4C8KwRb9fdYPPVwH3NP3fyN27gFBH9GS8uMth68o2KP/oO/aqNwii/KbMZtubp7MhY/wnvz4DLCQ="
-
-addons:
-  coverity_scan:
-    project:
-      name: "dawagner/parameter-framework"
-      description: "Plugin-based and rule-based framework for managing parameters"
-    notification_email: david.wagner@intel.com
-    build_command_prepend: "cmake ."
-    build_command: "make -j 12"
-    branch_pattern: coverity_scan
