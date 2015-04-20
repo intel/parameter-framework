@@ -1021,10 +1021,10 @@ class ArgumentParser:
                 errorToIgnore.append(Configuration.IneligibleConfigurationAppliedError)
 
             if options.incoherentCriterionFlag:
-                errorToIgnore.append(ParsePFWlog.ChangeRequestOnUnknownCriterion)
+                errorToIgnore.append(Criterion.ChangeRequestToNonAccessibleState)
 
             if options.unknwonCriterionFlag:
-                errorToIgnore.append(Criterion.ChangeRequestToNonAccessibleState)
+                errorToIgnore.append(ParsePFWlog.ChangeRequestOnUnknownCriterion)
 
             self.errorToIgnore = tuple(errorToIgnore)
 
