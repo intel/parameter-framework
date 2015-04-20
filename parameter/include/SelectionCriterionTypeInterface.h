@@ -30,6 +30,7 @@
 #pragma once
 
 #include <string>
+#include <stdint.h>
 
 class ISelectionCriterionTypeInterface
 {
@@ -43,11 +44,11 @@ public:
      * @param[out] strError string containing error information we can provide to client
      * @return true if succeed false otherwise
      */
-    virtual bool addValuePair(int iValue, const std::string& strValue, std::string& strError) = 0;
-    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const = 0;
-    virtual bool getLiteralValue(int iValue, std::string& strValue) const = 0;
+    virtual bool addValuePair(uint64_t value, const std::string& strValue, std::string& strError) = 0;
+    virtual bool getNumericalValue(const std::string& strValue, uint64_t& iValue) const = 0;
+    virtual bool getLiteralValue(uint64_t iValue, std::string& strValue) const = 0;
     virtual bool isTypeInclusive() const = 0;
-    virtual std::string getFormattedState(int iValue) const = 0;
+    virtual std::string getFormattedState(uint64_t iValue) const = 0;
 
 protected:
     virtual ~ISelectionCriterionTypeInterface() {}

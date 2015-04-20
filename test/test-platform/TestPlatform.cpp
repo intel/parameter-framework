@@ -260,7 +260,7 @@ CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
     // Reset errno to check if it is updated during the conversion (strtol/strtoul)
     errno = 0;
 
-    uint32_t state = strtoul(pcState, &pcStrEnd, 0);
+    uint64_t state = strtoull(pcState, &pcStrEnd, 0);
 
     if (!errno && (*pcStrEnd == '\0')) {
         // Sucessfull conversion, set criterion state by numerical state
@@ -303,7 +303,7 @@ bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(
     assert(pCriterionType != NULL);
 
     uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
-    uint32_t uiState;
+    uint64_t uiState;
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
 
@@ -336,21 +336,21 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
 
     uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
 
-    if (uiNbStates > 32) {
+    if (uiNbStates > 64) {
 
-        strResult = "Maximum number of states for inclusive criterion is 32";
+        strResult = "Maximum number of states for inclusive criterion is 64";
 
         return false;
     }
 
-    uint32_t uiState;
+    uint64_t uiState;
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
 
         const std::string& strValue = remoteCommand.getArgument(uiState + 1);
 
         if (!pCriterionType->addValuePair(
-                    0x1 << uiState, strValue, strResult)) {
+                    0x1ull << uiState, strValue, strResult)) {
 
             strResult = "Unable to add value: " + strValue + ": " + strResult;
 
@@ -371,7 +371,7 @@ bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName,
     ISelectionCriterionTypeInterface* pCriterionType =
         _pParameterMgrPlatformConnector->createSelectionCriterionType(false);
 
-    uint32_t uistate;
+    uint64_t uistate;
 
     for (uistate = 0; uistate < uiNbStates; uistate++) {
 
@@ -402,24 +402,24 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
     ISelectionCriterionTypeInterface* pCriterionType =
         _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
 
-    if (uiNbStates > 32) {
+    if (uiNbStates > 64) {
 
-        strResult = "Maximum number of states for inclusive criterion is 32";
+        strResult = "Maximum number of states for inclusive criterion is 64";
 
         return false;
     }
 
-    uint32_t uiState;
+    uint64_t uiState;
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
 
 	std::ostringstream ostrValue;
 
         ostrValue << "State_0x";
-        ostrValue << (0x1 << uiState);
+        ostrValue << (0x1ull << uiState);
 
         if (!pCriterionType->addValuePair(
-                    0x1 << uiState, ostrValue.str(), strResult)) {
+                    0x1ull << uiState, ostrValue.str(), strResult)) {
 
             strResult = "Unable to add value: "
                 + ostrValue.str() + ": " + strResult;
@@ -433,7 +433,7 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
     return true;
 }
 
-bool CTestPlatform::setCriterionState(const string& strName, uint32_t uiState, string& strResult)
+bool CTestPlatform::setCriterionState(const string& strName, uint64_t uiState, string& strResult)
 {
     ISelectionCriterionInterface* pCriterion =
         _pParameterMgrPlatformConnector->getSelectionCriterion(strName);
@@ -482,7 +482,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
     }
 
     /// Translate lexical state to numerical state
-    int iNumericalState = 0;
+    uint64_t iNumericalState = 0;
     uint32_t uiLexicalSubStateIndex;
 
     // Parse lexical substates

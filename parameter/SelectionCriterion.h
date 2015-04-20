@@ -45,8 +45,8 @@ public:
 
     /// From ISelectionCriterionInterface
     // State
-    virtual void setCriterionState(int iState);
-    virtual int getCriterionState() const;
+    virtual void setCriterionState(uint64_t iState);
+    virtual uint64_t getCriterionState() const;
     // Name
     virtual std::string getCriterionName() const;
     // Type
@@ -56,10 +56,10 @@ public:
     void resetModifiedStatus();
 
     /// Match methods
-    bool is(int iState) const;
-    bool isNot(int iState) const;
-    bool includes(int iState) const;
-    bool excludes(int iState) const;
+    bool is(uint64_t iState) const;
+    bool isNot(uint64_t iState) const;
+    bool includes(uint64_t iState) const;
+    bool excludes(uint64_t iState) const;
 
     /// User request
     std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
@@ -77,7 +77,7 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 private:
     // Current state
-    int _iState;
+    uint64_t _iState;
     // Type
     const CSelectionCriterionType* _pType;
 

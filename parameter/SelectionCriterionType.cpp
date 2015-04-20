@@ -51,7 +51,7 @@ std::string CSelectionCriterionType::getKind() const
 
 // From ISelectionCriterionTypeInterface
 bool CSelectionCriterionType::addValuePair(
-        int iValue, const std::string& strValue, std::string& strError)
+        uint64_t iValue, const std::string& strValue, std::string& strError)
 {
     // Check 1 bit set only for inclusive types
     if (_bInclusive && (!iValue || (iValue & (iValue - 1)))) {
@@ -81,14 +81,14 @@ bool CSelectionCriterionType::addValuePair(
     return true;
 }
 
-bool CSelectionCriterionType::getNumericalValue(const std::string& strValue, int& iValue) const
+bool CSelectionCriterionType::getNumericalValue(const std::string& strValue, uint64_t& iValue) const
 {
     if (_bInclusive) {
 
         Tokenizer tok(strValue, _strDelimiter);
         std::vector<std::string> astrValues = tok.split();
         size_t uiNbValues = astrValues.size();
-        int iResult = 0;
+        uint64_t iResult = 0;
         size_t uiValueIndex;
         iValue = 0;
 
@@ -106,7 +106,7 @@ bool CSelectionCriterionType::getNumericalValue(const std::string& strValue, int
     return getAtomicNumericalValue(strValue, iValue);
 }
 
-bool CSelectionCriterionType::getAtomicNumericalValue(const std::string& strValue, int& iValue) const
+bool CSelectionCriterionType::getAtomicNumericalValue(const std::string& strValue, uint64_t& iValue) const
 {
     NumToLitMapConstIt it = _numToLitMap.find(strValue);
 
@@ -119,7 +119,7 @@ bool CSelectionCriterionType::getAtomicNumericalValue(const std::string& strValu
     return false;
 }
 
-bool CSelectionCriterionType::getLiteralValue(int iValue, std::string& strValue) const
+bool CSelectionCriterionType::getLiteralValue(uint64_t iValue, std::string& strValue) const
 {
     NumToLitMapConstIt it;
 
@@ -166,19 +166,19 @@ std::string CSelectionCriterionType::listPossibleValues() const
 }
 
 // Formatted state
-std::string CSelectionCriterionType::getFormattedState(int iValue) const
+std::string CSelectionCriterionType::getFormattedState(uint64_t iValue) const
 {
     std::string strFormattedState;
 
     if (_bInclusive) {
 
         // Need to go through all set bit
-        uint32_t uiBit;
+        uint64_t uiBit;
         bool bFirst = true;
 
         for (uiBit = 0; uiBit < sizeof(iValue) * 8; uiBit++) {
 
-            int iSingleBitValue = iValue & (1 << uiBit);
+            uint64_t iSingleBitValue = iValue & (0x1ull << uiBit);
 
             // Check if current bit is set
             if (!iSingleBitValue) {
