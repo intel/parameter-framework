@@ -60,9 +60,9 @@ public:
 
     // @{
     /** @see CriterionInterface */
-    virtual void setCriterionState(int iState) override final;
+    virtual bool setState(const State& state, std::string& error) override;
 
-    virtual int getCriterionState() const override final;
+    virtual State getState() const override final;
 
     virtual std::string getCriterionName() const override final;
 
@@ -87,7 +87,7 @@ public:
      *
      * @throw std::out_of_range if the desired match method does not exist
      */
-    bool match(const std::string& method, int32_t state) const;
+    bool match(const std::string& method, const State& state) const;
 
     /** Check if a match method is available for this criterion
      *
@@ -118,7 +118,7 @@ protected:
      * and returns a boolean which indicates if the current state match the state given in
      * parameter.
      */
-    typedef std::function<bool (int)> MatchMethod;
+    typedef std::function<bool (const State&)> MatchMethod;
 
     /** Match method container, MatchMethod are indexed by their name */
     typedef std::map<std::string, MatchMethod> MatchMethods;
@@ -143,11 +143,15 @@ protected:
     /** Available criterion match methods */
     const MatchMethods mMatchMethods;
 
-    /** Current state
-     *
-     * FIXME: Use bit set object instead
+    /** Current state */
+    State mState;
+
+    /** Register a modification of the criterion
+     * Client need to be informed when the criterion has been modified
+     * and how many times.
+     * This method helps to count and log modifications.
      */
-    int32_t mState;
+    void stateModificationsEvent();
 
 private:
     /** Counter to know how many modifications have been applied to this criterion */

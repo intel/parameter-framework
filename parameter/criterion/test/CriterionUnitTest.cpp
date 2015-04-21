@@ -52,7 +52,6 @@
 #include <sstream>
 #include <vector>
 #include <random>
-#include <bitset>
 #include <algorithm>
 #include <stdexcept>
 
@@ -203,52 +202,63 @@ struct CriterionTest : public LoggingTest {
 
     void checkInclusiveCriterionSet(Criterion& criterion)
     {
-        // Criterion contains 31 value as defined previously
+        std::string error;
+        // Criterion contains 300 value as defined previously
         WHEN("Setting many inclusive value at the same time")
         {
-            std::bitset<31> stateMask("001001001001001");
-            std::bitset<31> subStateMask("000001001000001");
-            std::bitset<31> almostSubStateMask("100001001000001");
-            std::bitset<31> excludeMask("010000010010000");
+            State state{1, 3, 4, 7, 10};
+            State subState{1, 7, 10};
+            State almostSubState{1, 7, 10, 15};
+            State exclude{5, 8, 15};
 
-            CAPTURE(stateMask.to_ulong());
-            criterion.setCriterionState(stateMask.to_ulong());
+            REQUIRE_SUCCESS(criterion.setState(state, error), error);
 
-            WHEN("Matching with 'Includes' a mask contained in the state mask")
+            WHEN("Matching with 'Includes' a state contained in the current state")
             {
-                REQUIRE_SUCCESS(criterion.match("Includes", subStateMask.to_ulong()));
+                REQUIRE_SUCCESS(criterion.match("Includes", subState));
             }
-            WHEN("Matching with 'Includes' a mask with not all its bit set in the current state")
+            WHEN("Matching with 'Includes' a state with not all its bit set in the current state")
             {
-                REQUIRE_FAILURE(criterion.match("Includes", almostSubStateMask.to_ulong()));
+                REQUIRE_FAILURE(criterion.match("Includes", almostSubState));
             }
-            WHEN("Matching with 'Includes' a mask with no common bit with the current state")
+            WHEN("Matching with 'Includes' a state with no common bit with the current state")
             {
-                REQUIRE_FAILURE(criterion.match("Includes", excludeMask.to_ulong()));
+                REQUIRE_FAILURE(criterion.match("Includes", exclude));
             }
-            WHEN("Matching with 'Excludes' a mask contained in the state mask")
+            WHEN("Matching with 'Excludes' a state contained in the current state")
             {
-                REQUIRE_FAILURE(criterion.match("Excludes", subStateMask.to_ulong()));
+                REQUIRE_FAILURE(criterion.match("Excludes", subState));
             }
-            WHEN("Matching with 'Excludes' a mask with not all its bit set in the current state")
+            WHEN("Matching with 'Excludes' a state with not all its bit set in the current state")
             {
-                REQUIRE_FAILURE(criterion.match("Excludes", almostSubStateMask.to_ulong()));
+                REQUIRE_FAILURE(criterion.match("Excludes", almostSubState));
             }
-            WHEN("Matching with 'Excludes' a mask with no common bit with the current state")
+            WHEN("Matching with 'Excludes' a state with no common bit with the current state")
             {
-                REQUIRE_SUCCESS(criterion.match("Excludes", excludeMask.to_ulong()));
+                REQUIRE_SUCCESS(criterion.match("Excludes", exclude));
             }
+        }
+        WHEN("Setting many inclusive values with some unknown") {
+            REQUIRE_FAILURE(criterion.setState(State{666, 777, 1, 7, 10}, error), error);
+            THEN("Criterion should not be modified")
+            {
+                CHECK(not criterion.hasBeenModified());
+            }
+        }
+        WHEN("Setting State 0 to an inclusive criterion") {
+            REQUIRE_SUCCESS(criterion.setState(State{0}, error), error);
         }
     }
 
     void checkExclusiveCriterionSet(Criterion& criterion, Values& values)
     {
+        std::string error;
         WHEN("Setting the current value")
         {
-            int currentState = criterion.getCriterionState();
-            CAPTURE(currentState);
+            State currentState = criterion.getState();
+            CAPTURE(*currentState.begin());
             std::string oldLog = mRawLogger.getLog();
-            criterion.setCriterionState(currentState);
+            REQUIRE_SUCCESS(criterion.setState(currentState, error), error);
             THEN("Criterion should not be modified")
             {
                 CHECK(not criterion.hasBeenModified());
@@ -260,15 +270,15 @@ struct CriterionTest : public LoggingTest {
         }
 
         for (auto& value : values) {
-            if (value.second != criterion.getCriterionState()) {
+            if (State{value.second} != criterion.getState()) {
                 WHEN("Setting a new value")
                 {
                     CAPTURE(value.second);
-                    criterion.setCriterionState(value.second);
+                    REQUIRE_SUCCESS(criterion.setState(State{value.second}, error), error);
 
                     THEN("State should have been updated")
                     {
-                        CHECK(criterion.getCriterionState() == value.second);
+                        CHECK(criterion.getState() == State{value.second});
                         CHECK(criterion.getFormattedState() == value.first);
                     }
                     THEN("Criterion should be modified")
@@ -277,11 +287,11 @@ struct CriterionTest : public LoggingTest {
                     }
                     THEN("Criterion Is match method should be valid")
                     {
-                        CHECK(criterion.match("Is", value.second));
+                        CHECK(criterion.match("Is", State{value.second}));
                     }
                     THEN("Criterion IsNot match method should not be valid")
                     {
-                        CHECK(not criterion.match("IsNot", value.second));
+                        CHECK(not criterion.match("IsNot", State{value.second}));
                     }
                     THEN("Criterion update event should be logged")
                     {
@@ -296,8 +306,8 @@ struct CriterionTest : public LoggingTest {
         WHEN("Setting  many value in a raw")
         {
             // Set value which are valid for inclusive or exclusive criterion
-            criterion.setCriterionState(2);
-            criterion.setCriterionState(4);
+            REQUIRE_SUCCESS(criterion.setState(State{2}, error), error);
+            REQUIRE_SUCCESS(criterion.setState(State{4}, error), error);
             THEN("Criterion should be modified")
             {
                 CHECK(criterion.hasBeenModified());
@@ -317,6 +327,33 @@ struct CriterionTest : public LoggingTest {
                 {
                     CHECK(not criterion.hasBeenModified());
                 }
+            }
+        }
+        WHEN("Setting an unknown value") {
+            REQUIRE_FAILURE(criterion.setState(State{666}, error), error);
+            THEN("Criterion should not be modified")
+            {
+                CHECK(not criterion.hasBeenModified());
+            }
+        }
+        WHEN("Setting no value") {
+            REQUIRE_SUCCESS(criterion.setState(State{}, error), error);
+            THEN("State should have been updated")
+            {
+                if (criterion.isInclusive()) {
+                    CHECK(criterion.getState() == State{0});
+                    CHECK(criterion.getFormattedState() == "none");
+                } else {
+                    CHECK(criterion.getState() == State{0});
+                    CHECK(criterion.getFormattedState() == "Crit_0");
+                }
+            }
+        }
+        if (!criterion.isInclusive()) {
+            WHEN("Setting more than one value in an exclusive criterion")
+            {
+                REQUIRE_FAILURE(criterion.setState(State{1, 2, 3}, error),
+                                error);
             }
         }
     }
@@ -416,10 +453,11 @@ struct CriterionTest : public LoggingTest {
             checkSerialization(criterion);
 
             if (criterion.isInclusive()) {
-                std::bitset<31> validStateMask("1110");
+                State validState{2, 3, 4};
+                std::string error;
                 WHEN("Setting some criterion value")
                 {
-                    criterion.setCriterionState(validStateMask.to_ulong());
+                    REQUIRE_SUCCESS(criterion.setState(validState, error), error);
                     THEN("Formatted state contains all set values")
                     {
                         std::string formattedState = "a|b|c";
@@ -428,22 +466,8 @@ struct CriterionTest : public LoggingTest {
                 }
                 WHEN("Setting a mask containing unknown values")
                 {
-                    std::bitset<31> erroneousStateMask("10101010101110");
-                    criterion.setCriterionState(erroneousStateMask.to_ulong());
-                    THEN("Formatted state take into account only registered values")
-                    {
-                        std::string formattedState = "a|b|c";
-                        CHECK(criterion.getFormattedState() == formattedState);
-                    }
-                    // Check matching in this special configuration
-                    WHEN("Matching with 'Includes' the mask corresponding to the formatted one")
-                    {
-                        REQUIRE_SUCCESS(criterion.match("Includes", validStateMask.to_ulong()));
-                    }
-                    // FIXME: correct set state in order to avoid this case
-                    // WHEN("Matching with 'Is' the mask corresponding to the formatted one") {
-                    //    REQUIRE_SUCCESS(criterion.match("Is", validStateMask.to_ulong()));
-                    // }
+                    State erroneousState{2, 3, 4, 6, 8, 10, 12, 14};
+                    REQUIRE_FAILURE(criterion.setState(erroneousState, error), error);
                 }
             }
         }
@@ -502,7 +526,7 @@ struct CriterionTest : public LoggingTest {
         }
         WHEN("Undefined match method is requested")
         {
-            REQUIRE_THROWS_AS(criterion.match("InvalidMatch", 0), std::out_of_range);
+            REQUIRE_THROWS_AS(criterion.match("InvalidMatch", State{0}), std::out_of_range);
         }
 
         THEN("The criterion has not been modified")
@@ -546,17 +570,6 @@ SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
             }
 
             checkCriterionBasicBehavior(criterion, criterionName, values);
-
-            // WHEN("We add a random numerical value") {
-            //    std::string result;
-            //    std::default_random_engine generator;
-            //    // FIXME: use uint32_t internally instead
-            //    // Criterion State type is int32_t
-            //    std::uniform_int_distribution<int32_t> dist;
-            //    int32_t numericalValue = dist(generator);
-            //    CAPTURE(numericalValue);
-            //    REQUIRE_SUCCESS(criterion.addValuePair(numericalValue, "Random", result), result);
-            // }
         }
         WHEN("Creating it with only one value")
         {
@@ -572,7 +585,7 @@ SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
         const std::string criterionName = "InclusiveCriterion";
         WHEN("Creating it with the maximum possible value")
         {
-            Values values = generateCriterionValues(true, 31);
+            Values values = generateCriterionValues(true, 300);
             InclusiveCriterion criterion(criterionName, values, mLogger);
 
             THEN("The criterion is inclusive")
@@ -591,7 +604,7 @@ SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
             }
             THEN("Default state is set")
             {
-                CHECK(criterion.getCriterionState() == 0);
+                CHECK(criterion.getState() == State{0});
                 CHECK(criterion.getFormattedState() == "none");
             }
 
@@ -601,12 +614,6 @@ SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
         {
             REQUIRE_THROWS_AS(InclusiveCriterion criterion(criterionName,
                                                            { { "Crit_0", 0 } }, mLogger),
-                              Criterion::InvalidCriterionError);
-        }
-        WHEN("Creating it with more than 31 available value")
-        {
-            Values values = generateCriterionValues(true, 65);
-            REQUIRE_THROWS_AS(InclusiveCriterion criterion(criterionName, values, mLogger),
                               Criterion::InvalidCriterionError);
         }
         checkNoValue<InclusiveCriterion>(criterionName);
@@ -670,7 +677,8 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
             WHEN("Modifying criteria")
             {
                 for (auto& description : mDescriptions) {
-                    description.criterion->setCriterionState(2);
+                    std::string error;
+                    REQUIRE_SUCCESS(description.criterion->setState(State{2}, error), error);
                     CHECK(description.criterion->hasBeenModified());
                 }
                 WHEN("Resetting criteria status")

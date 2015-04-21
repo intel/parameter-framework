@@ -61,7 +61,12 @@ ok, error = pfw.start()
 if not ok:
     print("Error while starting the pfw: {}".format(error))
 
-mood.setCriterionState(1)
-colors.setCriterionState(3)
+ok, error = mood.setState([2])
+if not ok:
+    print("Error while setting 'mood' criterion: {}".format(error))
+
+ok, error = colors.setState([1, 2])
+if not ok:
+    print("Error while setting 'colors' criterion: {}".format(error))
 
 raw_input("[Press enter to exit]")

@@ -204,8 +204,8 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
         }
         GIVEN("A criteria with lots of values")
         {
-            // Build a criterion with as many value as there is bits in int.
-            std::vector<char> names(sizeof(int) * CHAR_BIT + 1, 'a');
+            // Build a criterion with a lot of value
+            std::vector<char> names(300, 'a');
             names.back() = '\0';
             std::vector<const char *> values(names.size());
             for(size_t i = 0; i < values.size(); ++i) {
@@ -240,11 +240,7 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
              */
             const PfwCriterion duplicatedCriteria[] = {{"name", true, &values[0]}};
 
-            WHEN("The pfw is started with a too long criterion state list") {
-                REQUIRE_FAILURE(pfwStart(pfw, config, duplicatedCriteria, 1, &logger));
-            }
-            WHEN("The pfw is started with max length criterion state list") {
-                values[values.size() - 2] = NULL; // Hide last value
+            WHEN("The pfw is started with a long criterion state list") {
                 REQUIRE_SUCCESS(pfwStart(pfw, config, duplicatedCriteria, 1, &logger));
             }
         }
@@ -267,11 +263,14 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
         }
 
         WHEN("Get criterion of a stopped pfw") {
-            int value;
-            REQUIRE_FAILURE(pfwGetCriterion(pfw, criteria[0].name, &value));
+            int *value = nullptr;
+            size_t nbValue = 0;
+            REQUIRE_FAILURE(pfwGetCriterion(pfw, criteria[0].name, &value, &nbValue));
+            REQUIRE(nbValue == 0);
         }
         WHEN("Set criterion of a stopped pfw") {
-            REQUIRE_FAILURE(pfwSetCriterion(pfw, criteria[0].name, 1));
+            std::vector<int> value{1};
+            REQUIRE_FAILURE(pfwSetCriterion(pfw, criteria[0].name, value.data(), value.size()));
         }
         WHEN("Commit criteria of a stopped pfw") {
             REQUIRE_FAILURE(pfwApplyConfigurations(pfw));
@@ -284,55 +283,70 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
         WHEN("The pfw is started correctly")
         {
             REQUIRE_SUCCESS(pfwStart(pfw, config, criteria, criterionNb, &logger));
-            int value;
+            int value = 0;
+            int *criterionGetValue = nullptr;
+            size_t nbValue = 0;
 
             WHEN("Get criterion without an handle") {
-                REQUIRE(not pfwGetCriterion(NULL, criteria[0].name, &value));
+                REQUIRE(not pfwGetCriterion(NULL, criteria[0].name, &criterionGetValue, &nbValue));
+                REQUIRE(nbValue == 0);
             }
             WHEN("Get criterion without a name") {
-                REQUIRE_FAILURE(pfwGetCriterion(pfw, NULL, &value));
+                REQUIRE_FAILURE(pfwGetCriterion(pfw, NULL, &criterionGetValue, &nbValue));
+                REQUIRE(nbValue == 0);
             }
             WHEN("Get criterion without an output value") {
-                REQUIRE_FAILURE(pfwGetCriterion(pfw, criteria[0].name, NULL));
+                REQUIRE_FAILURE(pfwGetCriterion(pfw, criteria[0].name, NULL, &nbValue));
+                REQUIRE(nbValue == 0);
+            }
+            WHEN("Get criterion without an output value size") {
+                REQUIRE_FAILURE(pfwGetCriterion(pfw, criteria[0].name, &criterionGetValue, NULL));
             }
             WHEN("Get not existing criterion") {
-                REQUIRE_FAILURE(pfwGetCriterion(pfw, "Do not exist", &value));
+                REQUIRE_FAILURE(pfwGetCriterion(pfw, "Do not exist", &criterionGetValue, &nbValue));
+                REQUIRE(nbValue == 0);
             }
             THEN("All criterion should value 0") {
                 for(size_t i = 0; i < criterionNb; ++i) {
                     const char *criterionName = criteria[i].name;
                     CAPTURE(criterionName);
-                    REQUIRE_SUCCESS(pfwGetCriterion(pfw, criterionName, &value));
-                    REQUIRE(value == 0);
+                    REQUIRE_SUCCESS(pfwGetCriterion(pfw, criterionName, &criterionGetValue, &nbValue));
+                    REQUIRE(nbValue == 1);
+                    REQUIRE(*criterionGetValue == 0);
+                    pfwFree((void*) criterionGetValue);
                 }
             }
 
             WHEN("Set criterion without an handle") {
-                REQUIRE(not pfwSetCriterion(NULL, criteria[0].name, 1));
+                std::vector<int> setValue{1};
+                REQUIRE(not pfwSetCriterion(NULL, criteria[0].name, setValue.data(), setValue.size()));
             }
             WHEN("Set criterion without a name") {
-                REQUIRE_FAILURE(pfwSetCriterion(pfw, NULL, 2));
+                std::vector<int> setValue{2};
+                REQUIRE_FAILURE(pfwSetCriterion(pfw, NULL, setValue.data(), setValue.size()));
             }
             WHEN("Set not existing criterion") {
-                REQUIRE_FAILURE(pfwSetCriterion(pfw, "Do not exist", 3));
+                std::vector<int> setValue{3};
+                REQUIRE_FAILURE(pfwSetCriterion(pfw, "Do not exist", setValue.data(), setValue.size()));
             }
             WHEN("Set criterion value") {
+                std::vector<int> setValue{2};
                 for(size_t i = 0; i < criterionNb; ++i) {
                     const char *criterionName = criteria[i].name;
                     CAPTURE(criterionName);
-                    REQUIRE_SUCCESS(pfwSetCriterion(pfw, criterionName, 3));
-                }
-                THEN("Get criterion value should return what was set") {
-                    for(size_t i = 0; i < criterionNb; ++i) {
-                        const char *criterionName = criteria[i].name;
-                        CAPTURE(criterionName);
-                        REQUIRE_SUCCESS(pfwGetCriterion(pfw, criterionName, &value));
-                        REQUIRE(value == 3);
+                    REQUIRE_SUCCESS(pfwSetCriterion(pfw, criterionName, setValue.data(), setValue.size()));
+                    THEN("Get criterion value should return what was set") {
+                        REQUIRE_SUCCESS(pfwGetCriterion(pfw, criterionName, &criterionGetValue, &nbValue));
+                        REQUIRE(nbValue == 1);
+                        REQUIRE(*criterionGetValue == 2);
+                        pfwFree((void*) criterionGetValue);
                     }
                 }
                 WHEN("Set a new value to a criterion without committing first") {
+                    setValue[0] = 1;
                     const char *criterionName = criteria[0].name;
-                    REQUIRE_SUCCESS(pfwSetCriterion(pfw, criterionName, 0));
+                    REQUIRE_SUCCESS(pfwSetCriterion(pfw, criterionName,
+                                                    setValue.data(), setValue.size()));
                     THEN("A warning message should have been displayed") {
                         INFO("Previous pfw log: \n" + logLines);
                         size_t logPos = logLines.find("Warning: Selection criterion "

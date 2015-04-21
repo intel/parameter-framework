@@ -33,6 +33,7 @@
 
 #include <stdexcept>
 #include <sstream>
+#include <cassert>
 
 namespace core
 {
@@ -50,10 +51,10 @@ Criterion::Criterion(const std::string& name,
                      const MatchMethods& derivedMatchMethods)
     : mValues(values),
       mMatchMethods(CUtility::merge(MatchMethods{
-                                      {"Is", [&](int state){ return mState == state; }},
-                                      {"IsNot", [&](int state){ return mState != state; }}},
+                                      {"Is", [&](const State& state){ return mState == state; }},
+                                      {"IsNot", [&](const State& state){ return mState != state; }}},
                                     derivedMatchMethods)),
-      mState(0), _uiNbModifications(0), _logger(logger), mName(name)
+      mState(), _uiNbModifications(0), _logger(logger), mName(name)
 {
     if (mValues.size() < 2) {
         throw InvalidCriterionError("Not enough values were provided for exclusive criterion '" +
@@ -61,7 +62,7 @@ Criterion::Criterion(const std::string& name,
     }
 
     // Set a known value as default
-    mState = mValues.begin()->second;
+    mState = {mValues.begin()->second};
 }
 
 bool Criterion::hasBeenModified() const
@@ -74,32 +75,54 @@ void Criterion::resetModifiedStatus()
     _uiNbModifications = 0;
 }
 
-void Criterion::setCriterionState(int iState)
+bool Criterion::setState(const State& state, std::string& error)
 {
-    // Check for a change
-    if (mState != iState) {
-
-        mState = iState;
-
-        _logger.info() << "Selection criterion changed event: "
-                       << getFormattedDescription(false, false);
-
-        // Check if the previous criterion value has been taken into account
-        // (i.e. at least one Configuration was applied
-        // since the last criterion change)
-        if (_uiNbModifications != 0) {
-
-            _logger.warning() << "Selection criterion '" << mName
-                              << "' has been modified " << _uiNbModifications
-                              << " time(s) without any configuration application";
-        }
-
-        // Track the number of modifications for this criterion
-        _uiNbModifications++;
+    if (state.size() > 1) {
+        error = "Exclusive criterion '" + mName + "' can't be set with more than one value";
+        return false;
     }
+
+    // Check for a change
+    if (mState != state) {
+        if (state.empty()) {
+            // Set back the default state
+            State defaultState = {mValues.begin()->second};
+            if (mState == defaultState) {
+                // Default state is already set, nothing to do
+                return true;
+            }
+            mState = defaultState;
+        } else {
+            // Check that the state contains a registered value
+            if (!getLiteralValue(*state.begin(), error)) {
+                error = "Exclusive criterion '" + mName + "' can't be set with '" +
+                        std::to_string(*state.begin()) + "' value which is not registered";
+                return false;
+            }
+            mState = state;
+        }
+        stateModificationsEvent();
+    }
+    return true;
 }
 
-int Criterion::getCriterionState() const
+void Criterion::stateModificationsEvent()
+{
+    _logger.info() << "Selection criterion changed event: "
+                   << getFormattedDescription(false, false);
+    // Check if the previous criterion value has been taken into account
+    // (i.e. at least one Configuration was applied
+    // since the last criterion change)
+    if (_uiNbModifications != 0) {
+        _logger.warning() << "Selection criterion '" << mName
+                          << "' has been modified " << _uiNbModifications
+                          << " time(s) without any configuration application";
+    }
+    // Track the number of modifications for this criterion
+    _uiNbModifications++;
+}
+
+core::criterion::State Criterion::getState() const
 {
     return mState;
 }
@@ -208,10 +231,10 @@ bool Criterion::getLiteralValue(int numericalValue, std::string& literalValue) c
 
 std::string Criterion::getFormattedState() const
 {
+    assert(!mState.empty());
     std::string formattedState;
-    if (!getLiteralValue(mState, formattedState)) {
-        formattedState = "<none>";
-    }
+    bool succeed = getLiteralValue(*(mState.begin()), formattedState);
+    assert(succeed);
     return formattedState;
 }
 
@@ -235,7 +258,7 @@ std::string Criterion::listPossibleValues() const
     return possibleValues;
 }
 
-bool Criterion::match(const std::string& method, int32_t state) const
+bool Criterion::match(const std::string& method, const State& state) const
 {
     return mMatchMethods.at(method)(state);
 }

@@ -413,7 +413,9 @@ bool CTestPlatform::setCriterionState(const string& strName, uint32_t uiState, s
         return false;
     }
 
-    pCriterion->setCriterionState(uiState);
+    if (!pCriterion->setState({(int)uiState}, strResult)) {
+        return false;
+    }
 
     return true;
 }
@@ -478,7 +480,9 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
     }
 
     // Set criterion new state
-    pCriterion->setCriterionState(iNumericalState);
+    if (!pCriterion->setState({iNumericalState}, strResult)) {
+        return false;
+    }
 
     return true;
 }

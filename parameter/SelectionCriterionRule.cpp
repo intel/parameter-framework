@@ -40,7 +40,7 @@
 using std::string;
 
 CSelectionCriterionRule::CSelectionCriterionRule() :
-    _pSelectionCriterion(NULL), mMatchesWhenVerb(""), _iMatchValue(0)
+    _pSelectionCriterion(NULL), mMatchesWhenVerb(""), mMatchState{0}
 {
 }
 
@@ -97,13 +97,15 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
     }
 
     // Value
-    if (!_pSelectionCriterion->getNumericalValue(strValue, _iMatchValue)) {
+    int numericalValue;
+    if (!_pSelectionCriterion->getNumericalValue(strValue, numericalValue)) {
 
         strError = "Value error: \"" + strValue + "\" is not part of criterion \"" +
                    _pSelectionCriterion->getCriterionName() + "\"";
 
         return false;
     }
+    mMatchState = {numericalValue};
 
     return true;
 }
@@ -119,7 +121,8 @@ void CSelectionCriterionRule::dump(string& strResult) const
     strResult += " ";
     // Value
     string strValue;
-    _pSelectionCriterion->getLiteralValue(_iMatchValue, strValue);
+    assert(!mMatchState.empty());
+    _pSelectionCriterion->getLiteralValue(*mMatchState.begin(), strValue);
     strResult += strValue;
 }
 
@@ -128,7 +131,7 @@ bool CSelectionCriterionRule::matches() const
 {
     assert(_pSelectionCriterion);
 
-    return _pSelectionCriterion->match(mMatchesWhenVerb, _iMatchValue);
+    return _pSelectionCriterion->match(mMatchesWhenVerb, mMatchState);
 }
 
 // From IXmlSink
@@ -167,12 +170,14 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Get Value
     string strValue = xmlElement.getAttributeString("Value");
 
-    if (!_pSelectionCriterion->getNumericalValue(strValue, _iMatchValue)) {
+    int numericalValue;
+    if (!_pSelectionCriterion->getNumericalValue(strValue, numericalValue)) {
 
         xmlDomainImportContext.setError("Wrong Value attribute value " + strValue + " in " + getKind() + " " + xmlElement.getPath());
 
         return false;
     }
+    mMatchState = {numericalValue};
 
     // Done
     return true;
@@ -194,7 +199,8 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     // Set Value
     string strValue;
 
-     _pSelectionCriterion->getLiteralValue(_iMatchValue, strValue);
+    assert(!mMatchState.empty());
+    _pSelectionCriterion->getLiteralValue(*mMatchState.begin(), strValue);
 
     xmlElement.setAttributeString("Value", strValue);
 }

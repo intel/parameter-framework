@@ -38,7 +38,6 @@
 #include <cassert>
 #include <cstring>
 #include <cstdlib>
-#include <climits>
 
 using std::string;
 using core::criterion::CriterionInterface;
@@ -264,7 +263,7 @@ static CriterionInterface *getCriterion(const pfw::Criteria &criteria, const str
     return it == criteria.end() ? NULL : it->second;
 }
 
-bool pfwSetCriterion(PfwHandler *handle, const char name[], int value)
+bool pfwSetCriterion(PfwHandler *handle, const char name[], int value[], size_t nbValue)
 {
     if (handle == NULL) { return Status::failure(); }
     Status &status = handle->lastStatus;
@@ -280,10 +279,10 @@ bool pfwSetCriterion(PfwHandler *handle, const char name[], int value)
     if (criterion == NULL) {
         return status.failure("Can not set criterion " + string(name) + " as does not exist");
     }
-    criterion->setCriterionState(value);
-    return status.success();
+    core::criterion::State state{value, value + nbValue};
+    return status.forward(criterion->setState(state, status.msg()));
 }
-bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value)
+bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value[], size_t *nbValue)
 {
     if (handle == NULL) { return Status::failure(); }
     Status &status = handle->lastStatus;
@@ -299,11 +298,22 @@ bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value)
         return status.failure("Can not get criterion \"" + string(name) +
                               "\" as the out value is NULL.");
     }
+    if (nbValue == NULL) {
+        return status.failure("Can not get criterion \"" + string(name) +
+                              "\" as the out value size is NULL.");
+    }
     CriterionInterface *criterion = getCriterion(handle->criteria, name);
     if (criterion == NULL) {
         return status.failure("Can not get criterion " + string(name) + " as it does not exist");
     }
-    *value = criterion->getCriterionState();
+    core::criterion::State state = criterion->getState();
+    *nbValue = state.size();
+    *value = static_cast<int*>(std::malloc(*nbValue * sizeof(int)));
+    if (*value == nullptr && *nbValue > 0) {
+        return status.failure("Can not get criterion " + string(name) +
+                              " as there is no memory left");
+    }
+    std::copy(state.begin(), state.end(), *value);
     return status.success();
 }
 

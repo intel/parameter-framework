@@ -31,6 +31,7 @@
 
 #include <string>
 #include <map>
+#include <set>
 
 namespace core
 {
@@ -39,14 +40,30 @@ namespace criterion
 /** Type which associate literal and numerical value */
 using Values = std::map<std::string, int>;
 
+/** Criterion state representation */
+using State = std::set<int>;
+
 /** Client criterion interface used for interacting with the system state
  * Allows client to set or retrieve a Criterion state.
  */
 class CriterionInterface
 {
 public:
-    virtual void setCriterionState(int iState) = 0;
-    virtual int getCriterionState() const = 0;
+
+    /** Set a new state to the criterion
+     * The state should only be composed of registered values.
+     * If the requested state is already set, the function will succeed but no modification
+     * will be registered.
+     *
+     * @param[in] state the state to set
+     * @param[out] error the string describing the error if an error occurred
+     *                   undefined otherwise
+     * @return true if in case of success, false otherwise
+     */
+    virtual bool setState(const State& state, std::string& error) = 0;
+
+    /** Retrieve the current criterion state */
+    virtual State getState() const = 0;
     virtual std::string getCriterionName() const = 0;
 
     /** Retrieve the numerical value from the literal representation of the criterion type.

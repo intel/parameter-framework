@@ -47,14 +47,17 @@
 %include "std_string.i"
 %include "std_vector.i"
 %include "std_map.i"
+%include "std_set.i"
 %include "typemaps.i"
 
 // We need to tell SWIG that 
 //     std::vector<std::string> is a vector of strings,
-//     std::map<std::string, int> is a map with string as key and integer as value
+//     std::map<std::string, int> is a map with string as key and integer as value,
+//     std::set<int> is a set of int
 namespace std {
     %template(StringVector) vector<string>;
     %template(MapStringInt) map<string, int>;
+    %template(IntSet) set<int>;
 }
 
 // Tells swig that 'std::string& strError' 'std::string& errorOutput' must be
@@ -213,6 +216,7 @@ namespace criterion
 {
 
 typedef std::map<std::string, int> Values;
+typedef std::set<int> State;
 
 class CriterionInterface
 {
@@ -221,8 +225,8 @@ class CriterionInterface
 %}
 
 public:
-    virtual void setCriterionState(int iState) = 0;
-    virtual int getCriterionState() const = 0;
+    virtual bool setState(const State& state, std::string& errorOutput) = 0;
+    virtual State getState() const = 0;
     virtual std::string getCriterionName() const = 0;
 %apply int &OUTPUT { int& numericalValue };
     virtual bool getNumericalValue(const std::string& literalValue, int& numericalValue) const = 0;

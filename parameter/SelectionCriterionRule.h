@@ -73,7 +73,7 @@ private:
      */
     std::string mMatchesWhenVerb;
 
-    // Value
-    int32_t _iMatchValue;
+    /** Criterion State to match to validate the rule */
+    core::criterion::State mMatchState;
 };
 

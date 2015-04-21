@@ -32,6 +32,7 @@
 
 #include <sstream>
 #include <cassert>
+#include <algorithm>
 
 namespace core
 {
@@ -45,8 +46,15 @@ InclusiveCriterion::InclusiveCriterion(const std::string& name,
                                        core::log::Logger& logger)
     : Criterion(name, logger,
                 CUtility::merge(Values{{"none", 0}}, values),
-                {{"Includes", [&](int state){ return (mState & state) == state; }},
-                 {"Excludes", [&](int state){ return (mState & state) == 0; }}})
+                {{"Includes", [&](const State& state) {
+                    return std::includes(mState.begin(), mState.end(),
+                                         state.begin(), state.end()); }},
+                 {"Excludes", [&](const State& state) {
+                    State inter;
+                    std::set_intersection(mState.begin(), mState.end(),
+                                          state.begin(), state.end(),
+                                          std::inserter(inter, inter.begin()));
+                    return inter.empty(); }}})
 {
     // Checking that no values match the 0 numerical state as this is not a valid inclusive value
     for (auto& value : values) {
@@ -56,14 +64,9 @@ InclusiveCriterion::InclusiveCriterion(const std::string& name,
                                         value.first + "' litteral value");
         }
     }
-    if (values.size() > 31) {
-        // mState is an integer, so it as 31 bits + 1 for the sign which can't be used
-        throw InvalidCriterionError("Too much values provided for inclusive criterion '" +
-                                    name  + "', limit is 31");
-    }
 
     // Set Inclusive default state
-    mState = 0;
+    mState = {0};
 }
 
 bool InclusiveCriterion::isInclusive() const
@@ -74,38 +77,50 @@ bool InclusiveCriterion::isInclusive() const
 std::string InclusiveCriterion::getFormattedState() const
 {
     std::string formattedState;
-    if (mState == 0) {
+    if (mState == State{0}) {
         // Default inclusive criterion state is always present
-        getLiteralValue(0, formattedState);
+        bool succeed = getLiteralValue(0, formattedState);
+        assert(succeed);
         return formattedState;
     }
 
-    uint32_t bit;
-    bool first = true;
-
-    // Need to go through all set bit
-    for (bit = 0; bit < sizeof(mState) * 8; bit++) {
-        // Check if current bit is set
-        if ((mState & (1 << bit)) == 0) {
-            continue;
-        }
-        // Simple translation
-        std::string atomicState;
-        // Get literal value with an offset of one as numerical values start from one
-        if (!getLiteralValue(bit + 1, atomicState)) {
-            // Numeric value not part supported values for this criterion type.
-            continue;
-        }
-
-        if (first) {
-            first = false;
-        } else {
+    for (auto& numericalValue : mState) {
+        std::string literalValue;
+        bool succeed = getLiteralValue(numericalValue, literalValue);
+        assert(succeed);
+        if (*mState.begin() != numericalValue) {
             formattedState += gDelimiter;
         }
-
-        formattedState += atomicState;
+        formattedState += literalValue;
     }
     return formattedState;
+}
+
+bool InclusiveCriterion::setState(const State& state, std::string& error)
+{
+    // Check for a change
+    if (mState != state) {
+        if (state.empty()) {
+            // Set back the default state
+            State defaultState = {0};
+            if (mState == defaultState) {
+                // Default state is already set, nothing to do
+                return true;
+            }
+            mState = defaultState;
+        } else {
+            // Check that the state contains only registered values and that 0 is not present
+            if (!std::all_of(state.begin(), state.end(),
+                    [&](int value) { return value != 0 && getLiteralValue(value, error); })) {
+                error = "Inclusive criterion '" + getCriterionName() +
+                        "' can't be set because some values are not registered";
+                return false;
+            }
+            mState = state;
+        }
+        stateModificationsEvent();
+    }
+    return true;
 }
 
 } /** criterion namespace */

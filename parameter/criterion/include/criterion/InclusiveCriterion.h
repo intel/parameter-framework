@@ -50,6 +50,8 @@ public:
     /** @see CriterionInterface */
     bool isInclusive() const override;
 
+    bool setState(const State& state, std::string& error) override;
+
     std::string getFormattedState() const override;
     // @}
 
