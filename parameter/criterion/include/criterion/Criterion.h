@@ -71,7 +71,7 @@ public:
     bool getLiteralValue(int numericalValue, std::string& literalValue) const override final;
 
     virtual bool getNumericalValue(const std::string& literalValue,
-                                   int& numericalValue) const override;
+                                   int& numericalValue) const override final;
 
     virtual std::string getFormattedState() const override;
     // @}

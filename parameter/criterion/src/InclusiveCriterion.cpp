@@ -28,7 +28,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "criterion/InclusiveCriterion.h"
-#include "Tokenizer.h"
 #include <Utility.h>
 
 #include <sstream>
@@ -69,25 +68,6 @@ InclusiveCriterion::InclusiveCriterion(const std::string& name,
 
 bool InclusiveCriterion::isInclusive() const
 {
-    return true;
-}
-
-bool InclusiveCriterion::getNumericalValue(const std::string& literalValue,
-                                           int& numericalValue) const
-{
-    Tokenizer tok(literalValue, gDelimiter);
-    std::vector<std::string> literalValues = tok.split();
-    numericalValue = 0;
-
-    // Looping on each std::string delimited by "|" token and adding the associated value
-    for (std::string atomicLiteral : literalValues) {
-
-        int atomicNumerical = 0;
-        if (!Criterion::getNumericalValue(atomicLiteral, atomicNumerical)) {
-            return false;
-        }
-        numericalValue |= atomicNumerical;
-    }
     return true;
 }
 

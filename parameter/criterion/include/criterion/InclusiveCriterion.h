@@ -50,9 +50,6 @@ public:
     /** @see CriterionInterface */
     bool isInclusive() const override;
 
-    bool getNumericalValue(const std::string& literalValue,
-                           int& numericalValue) const override;
-
     std::string getFormattedState() const override;
     // @}
 
