@@ -441,6 +441,16 @@ private:
     CCommandHandler::CommandStatus importDomainsXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus exportDomainsWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus importDomainsWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    /**
+      * Command handler method for exportDomainWithSettingsXML command.
+      *
+      * @param[in] remoteCommand contains the arguments of the received command.
+      * @param[out] result a std::string containing the result of the command
+      *
+      * @return CCommandHandler::ESucceeded if command succeeded or CCommandHandler::EFailed
+      * in the other case
+      */
+    CCommandHandler::CommandStatus exportDomainWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& result);
     CCommandHandler::CommandStatus importDomainWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus exportSettingsCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus importSettingsCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
@@ -480,6 +490,18 @@ private:
       */
     CCommandHandler::CommandStatus setDomainsWithSettingsXMLCommandProcess(
             const IRemoteCommand& remoteCommand, std::string& strResult);
+
+    /**
+      * Command handler method for setDomainWithSettings command.
+      *
+      * @param[in] remoteCommand contains the arguments of the received command.
+      * @param[out] result a std::string containing the result of the command
+      *
+      * @return CCommandHandler::ESucceeded if command succeeded or CCommandHandler::EFailed
+      * in the other case
+      */
+    CCommandHandler::CommandStatus setDomainWithSettingsXMLCommandProcess(
+            const IRemoteCommand& remoteCommand, std::string& result);
 
     /**
       * Command handler method for getSystemClass command.

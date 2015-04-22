@@ -304,7 +304,8 @@ if __name__ == "__main__":
     # Import each standalone domain files
     for domain_file in args.xml_domain_files:
         logging.info("Importing single domain file {}".format(domain_file))
-        ok, error = pfw.importSingleDomainXml(os.path.realpath(domain_file), False)
+        ok, error = pfw.importSingleDomainXml(os.path.realpath(domain_file),
+                                              False, True, True)
         if not ok:
             logging.critical(error)
             exit(1)
