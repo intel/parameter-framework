@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,6 +30,8 @@
 #include "SelectionCriterionType.h"
 #include "Tokenizer.h"
 
+#include <climits>
+
 #define base CElement
 
 const std::string CSelectionCriterionType::_strDelimiter = "|";
@@ -51,6 +53,18 @@ std::string CSelectionCriterionType::getKind() const
 // From ISelectionCriterionTypeInterface
 bool CSelectionCriterionType::addValuePair(int iValue, const std::string& strValue)
 {
+    // An inclusive criterion is implemented as a bitfield over an int and
+    // thus, can't have values larger than the number of bits in an int.
+    static const unsigned int inclusiveCriterionMaxValue = 1 << (sizeof(iValue) * CHAR_BIT - 1);
+
+    if (_bInclusive && (unsigned int)iValue > inclusiveCriterionMaxValue) {
+
+        log_warning("Rejecting value pair association: 0x%X - %s "
+                    "because an inclusive criterion can't have values larger than 0x%X",
+                    iValue, strValue.c_str(), inclusiveCriterionMaxValue);
+        return false;
+    }
+
     // Check 1 bit set only for inclusive types
     if (_bInclusive && (!iValue || (iValue & (iValue - 1)))) {
 
