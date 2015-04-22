@@ -36,8 +36,11 @@ $(LOCAL_BUILT_MODULE): MY_TOOL := $(HOST_OUT)/bin/domainGenerator.py
 # host's default python because the low-level python binding has been compiled
 # against Android's Python headers.
 $(LOCAL_BUILT_MODULE): MY_PYTHON := prebuilts/python/linux-x86/2.7.5/bin/python
-# The parameter-framework binding module is installed there on Android
-$(LOCAL_BUILT_MODULE): MY_ENV := PYTHONPATH=$(HOST_LIBRARY_PATH)
+# The parameter-framework binding module is installed on these locations on
+# Android (On 64bit machines, PyPfw.py is installed in the 'lib64' directory
+# and _PyPfw.so is installed in the 'lib' directory, hence the need for these
+# two directories in the PYTHONPATH)
+$(LOCAL_BUILT_MODULE): MY_ENV := PYTHONPATH=$(HOST_OUT_SHARED_LIBRARIES):$(2ND_HOST_OUT_SHARED_LIBRARIES)
 
 $(LOCAL_BUILT_MODULE): MY_TOPLEVEL_FILE := $(PFW_TOPLEVEL_FILE)
 $(LOCAL_BUILT_MODULE): MY_CRITERIA_FILE := $(PFW_CRITERIA_FILE)
