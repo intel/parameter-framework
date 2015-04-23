@@ -41,28 +41,27 @@ namespace criterion
 {
 
 Criterion::Criterion(const std::string& name, const Values& values, core::log::Logger& logger)
-    : Criterion(name, logger, values, {})
+    : Criterion(name, logger, values, (values.empty() ? State{0} : State{values.begin()->second}), {})
 {
+    if (mValues.size() < 2) {
+        throw InvalidCriterionError("Not enough values were provided for exclusive criterion '" +
+                                    mName  + "' which needs at least 2 values");
+    }
 }
 
 Criterion::Criterion(const std::string& name,
                      core::log::Logger& logger,
                      const Values& values,
+                     const State& defaultState,
                      const MatchMethods& derivedMatchMethods)
     : mValues(values),
       mMatchMethods(CUtility::merge(MatchMethods{
                                       {"Is", [&](const State& state){ return mState == state; }},
                                       {"IsNot", [&](const State& state){ return mState != state; }}},
                                     derivedMatchMethods)),
-      mState(), _uiNbModifications(0), _logger(logger), mName(name)
+      mState(defaultState), _uiNbModifications(0), _logger(logger), mName(name),
+      mDefaultState(defaultState)
 {
-    if (mValues.size() < 2) {
-        throw InvalidCriterionError("Not enough values were provided for exclusive criterion '" +
-                                    mName  + "' which needs at least 2 values");
-    }
-
-    // Set a known value as default
-    mState = {mValues.begin()->second};
 }
 
 bool Criterion::hasBeenModified() const
@@ -82,27 +81,23 @@ bool Criterion::setState(const State& state, std::string& error)
         return false;
     }
 
-    // Check for a change
-    if (mState != state) {
-        if (state.empty()) {
-            // Set back the default state
-            State defaultState = {mValues.begin()->second};
-            if (mState == defaultState) {
-                // Default state is already set, nothing to do
-                return true;
-            }
-            mState = defaultState;
-        } else {
-            // Check that the state contains a registered value
-            if (!getLiteralValue(*state.begin(), error)) {
-                error = "Exclusive criterion '" + mName + "' can't be set with '" +
-                        std::to_string(*state.begin()) + "' value which is not registered";
-                return false;
-            }
-            mState = state;
+    State oldState = mState;
+    if (state.empty()) {
+        mState = mDefaultState;
+    } else {
+        // Check that the state contains a registered value
+        if (!getLiteralValue(*state.begin(), error)) {
+            error = "Exclusive criterion '" + mName + "' can't be set with '" +
+                    std::to_string(*state.begin()) + "' value which is not registered";
+            return false;
         }
+        mState = state;
+    }
+
+    if (mState != oldState) {
         stateModificationsEvent();
     }
+
     return true;
 }
 

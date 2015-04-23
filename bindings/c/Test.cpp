@@ -306,13 +306,17 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
                 REQUIRE_FAILURE(pfwGetCriterion(pfw, "Do not exist", &criterionGetValue, &nbValue));
                 REQUIRE(nbValue == 0);
             }
-            THEN("All criterion should value 0") {
+            THEN("All criterion should have their default value") {
                 for(size_t i = 0; i < criterionNb; ++i) {
                     const char *criterionName = criteria[i].name;
                     CAPTURE(criterionName);
                     REQUIRE_SUCCESS(pfwGetCriterion(pfw, criterionName, &criterionGetValue, &nbValue));
-                    REQUIRE(nbValue == 1);
-                    REQUIRE(*criterionGetValue == 0);
+                    if (criteria[i].inclusive) {
+                        REQUIRE(nbValue == 0);
+                    } else {
+                        REQUIRE(nbValue == 1);
+                        REQUIRE(*criterionGetValue == 0);
+                    }
                     pfwFree((void*) criterionGetValue);
                 }
             }

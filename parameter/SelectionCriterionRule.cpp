@@ -40,7 +40,7 @@
 using std::string;
 
 CSelectionCriterionRule::CSelectionCriterionRule() :
-    _pSelectionCriterion(NULL), mMatchesWhenVerb(""), mMatchState{0}
+    _pSelectionCriterion(NULL), mMatchesWhenVerb(""), mMatchState{}
 {
 }
 
@@ -96,17 +96,13 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
         return false;
     }
 
-    // Value
-    int numericalValue;
-    if (!_pSelectionCriterion->getNumericalValue(strValue, numericalValue)) {
+    if (!setMatchState(strValue)) {
 
         strError = "Value error: \"" + strValue + "\" is not part of criterion \"" +
                    _pSelectionCriterion->getCriterionName() + "\"";
 
         return false;
     }
-    mMatchState = {numericalValue};
-
     return true;
 }
 
@@ -120,9 +116,10 @@ void CSelectionCriterionRule::dump(string& strResult) const
     strResult += mMatchesWhenVerb;
     strResult += " ";
     // Value
-    string strValue;
-    assert(!mMatchState.empty());
-    _pSelectionCriterion->getLiteralValue(*mMatchState.begin(), strValue);
+    string strValue = gEmptyRule;
+    if (!mMatchState.empty()) {
+        _pSelectionCriterion->getLiteralValue(*mMatchState.begin(), strValue);
+    }
     strResult += strValue;
 }
 
@@ -170,15 +167,12 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Get Value
     string strValue = xmlElement.getAttributeString("Value");
 
-    int numericalValue;
-    if (!_pSelectionCriterion->getNumericalValue(strValue, numericalValue)) {
+    if (!setMatchState(strValue)) {
 
         xmlDomainImportContext.setError("Wrong Value attribute value " + strValue + " in " + getKind() + " " + xmlElement.getPath());
 
         return false;
     }
-    mMatchState = {numericalValue};
-
     // Done
     return true;
 }
@@ -197,10 +191,25 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     xmlElement.setAttributeString("MatchesWhen", mMatchesWhenVerb);
 
     // Set Value
-    string strValue;
+    string strValue = gEmptyRule;
 
-    assert(!mMatchState.empty());
-    _pSelectionCriterion->getLiteralValue(*mMatchState.begin(), strValue);
+    if (!mMatchState.empty()) {
+        _pSelectionCriterion->getLiteralValue(*mMatchState.begin(), strValue);
+    }
 
     xmlElement.setAttributeString("Value", strValue);
+}
+
+bool CSelectionCriterionRule::setMatchState(const std::string &value)
+{
+    if (value == gEmptyRule) {
+        mMatchState.clear();
+        return true;
+    }
+    int numericalValue;
+    if (!_pSelectionCriterion->getNumericalValue(value, numericalValue)) {
+        return false;
+    }
+    mMatchState = {numericalValue};
+    return true;
 }

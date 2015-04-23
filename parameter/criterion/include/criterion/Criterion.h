@@ -130,11 +130,13 @@ protected:
      * @param[in] name the criterion name
      * @param[in] logger the main application logger
      * @param[in] derivedValuePairs initial value pairs of derived classes
+     * @param[in] defaultState the default state chosen by the derived class
      * @param[in] derivedMatchMethods match methods of derived classes
      */
     Criterion(const std::string& name,
               core::log::Logger& logger,
               const Values& derivedValuePairs,
+              const State& defaultState,
               const MatchMethods& derivedMatchMethods);
 
     /** Contains pair association between literal and numerical value */
@@ -154,6 +156,7 @@ protected:
     void stateModificationsEvent();
 
 private:
+
     /** Counter to know how many modifications have been applied to this criterion */
     uint32_t _uiNbModifications;
 
@@ -162,6 +165,9 @@ private:
 
     /** Criterion name */
     const std::string mName;
+
+    /** Criterion default state */
+    const State mDefaultState;
 };
 
 } /** criterion namespace */

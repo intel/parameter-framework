@@ -28,7 +28,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "criterion/InclusiveCriterion.h"
-#include <Utility.h>
 
 #include <sstream>
 #include <cassert>
@@ -44,8 +43,7 @@ const std::string InclusiveCriterion::gDelimiter = "|";
 InclusiveCriterion::InclusiveCriterion(const std::string& name,
                                        const Values& values,
                                        core::log::Logger& logger)
-    : Criterion(name, logger,
-                CUtility::merge(Values{{"none", 0}}, values),
+    : Criterion(name, logger, values, {},
                 {{"Includes", [&](const State& state) {
                     return std::includes(mState.begin(), mState.end(),
                                          state.begin(), state.end()); }},
@@ -56,17 +54,10 @@ InclusiveCriterion::InclusiveCriterion(const std::string& name,
                                           std::inserter(inter, inter.begin()));
                     return inter.empty(); }}})
 {
-    // Checking that no values match the 0 numerical state as this is not a valid inclusive value
-    for (auto& value : values) {
-        if (value.second == 0) {
-            throw InvalidCriterionError("Invalid numerical value '0' provided for inclusive "
-                                        "criterion '" + name + "' in association with '" +
-                                        value.first + "' litteral value");
-        }
+    if (mValues.size() < 1) {
+        throw InvalidCriterionError("Not enough values were provided for inclusive criterion '" +
+                                    getCriterionName() + "' which needs at least 1 values");
     }
-
-    // Set Inclusive default state
-    mState = {0};
 }
 
 bool InclusiveCriterion::isInclusive() const
@@ -76,14 +67,11 @@ bool InclusiveCriterion::isInclusive() const
 
 std::string InclusiveCriterion::getFormattedState() const
 {
-    std::string formattedState;
-    if (mState == State{0}) {
-        // Default inclusive criterion state is always present
-        bool succeed = getLiteralValue(0, formattedState);
-        assert(succeed);
-        return formattedState;
+    if (mState.empty()) {
+        return "none";
     }
 
+    std::string formattedState;
     for (auto& numericalValue : mState) {
         std::string literalValue;
         bool succeed = getLiteralValue(numericalValue, literalValue);
@@ -100,24 +88,14 @@ bool InclusiveCriterion::setState(const State& state, std::string& error)
 {
     // Check for a change
     if (mState != state) {
-        if (state.empty()) {
-            // Set back the default state
-            State defaultState = {0};
-            if (mState == defaultState) {
-                // Default state is already set, nothing to do
-                return true;
-            }
-            mState = defaultState;
-        } else {
-            // Check that the state contains only registered values and that 0 is not present
-            if (!std::all_of(state.begin(), state.end(),
-                    [&](int value) { return value != 0 && getLiteralValue(value, error); })) {
-                error = "Inclusive criterion '" + getCriterionName() +
-                        "' can't be set because some values are not registered";
-                return false;
-            }
-            mState = state;
+        // Check that the state contains only registered values
+        if (!std::all_of(state.begin(), state.end(),
+                [&](int value) { return getLiteralValue(value, error); })) {
+            error = "Inclusive criterion '" + getCriterionName() +
+                    "' can't be set because some values are not registered";
+            return false;
         }
+        mState = state;
         stateModificationsEvent();
     }
     return true;

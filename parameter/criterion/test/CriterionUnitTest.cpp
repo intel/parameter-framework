@@ -169,13 +169,11 @@ struct CriteriaTest : LoggingTest {
 /** Test fixtures for Criterion */
 struct CriterionTest : public LoggingTest {
     /** Help to generate some values */
-    Values generateCriterionValues(bool isInclusive, size_t nbValues)
+    Values generateCriterionValues(size_t nbValues)
     {
-        // 0 is invalid for inclusive criterion
-        int offset = isInclusive ? 1 : 0;
         Values values;
 
-        for (size_t i = offset; i < nbValues; i++) {
+        for (size_t i = 0; i < nbValues; i++) {
             values.emplace("Crit_" + std::to_string(i), i);
         }
 
@@ -244,9 +242,6 @@ struct CriterionTest : public LoggingTest {
             {
                 CHECK(not criterion.hasBeenModified());
             }
-        }
-        WHEN("Setting State 0 to an inclusive criterion") {
-            REQUIRE_SUCCESS(criterion.setState(State{0}, error), error);
         }
     }
 
@@ -341,7 +336,7 @@ struct CriterionTest : public LoggingTest {
             THEN("State should have been updated")
             {
                 if (criterion.isInclusive()) {
-                    CHECK(criterion.getState() == State{0});
+                    CHECK(criterion.getState() == State{});
                     CHECK(criterion.getFormattedState() == "none");
                 } else {
                     CHECK(criterion.getState() == State{0});
@@ -360,12 +355,10 @@ struct CriterionTest : public LoggingTest {
 
     void checkSerialization(Criterion& criterion)
     {
+        std::string defaultValue = criterion.isInclusive() ? "none" : "a";
         std::string kind = criterion.isInclusive() ? "Inclusive" : "Exclusive";
         WHEN("Serializing through xml")
         {
-            std::string defaultValue = criterion.isInclusive() ? "none" : "a";
-            std::string defaultState = criterion.isInclusive() ?
-                                       R"(<ValuePair Literal="none" Numerical="0"/>)" : "";
             std::string xmlDescription =
                 R"(<?xml version="1.0" encoding="UTF-8"?>
                   <SelectionCriterion Value=")"
@@ -376,7 +369,6 @@ struct CriterionTest : public LoggingTest {
                     <ValuePair Literal="a" Numerical="2"/>
                     <ValuePair Literal="b" Numerical="3"/>
                     <ValuePair Literal="c" Numerical="4"/>)" +
-                defaultState +
                 "</SelectionCriterion>";
 
             std::string result;
@@ -391,12 +383,10 @@ struct CriterionTest : public LoggingTest {
             }
         }
 
-        std::string defaultState = (criterion.isInclusive() ? "none" : "a");
-        std::string defaultStateType = criterion.isInclusive() ? ", none}" : "}";
         WHEN("Serializing through Csv")
         {
             std::string nameInfo = "Criterion name: " + criterion.getCriterionName();
-            std::string currentStateInfo = std::string(", current state: ") + defaultState;
+            std::string currentStateInfo = std::string(", current state: ") + defaultValue;
 
             THEN("Generated csv match expectation")
             {
@@ -408,7 +398,7 @@ struct CriterionTest : public LoggingTest {
             THEN("Generated csv with type information match expectation")
             {
                 std::string csvDescription = nameInfo + ", type kind: " + kind + currentStateInfo +
-                                             ", states: {a, b, c" + defaultStateType;
+                                             ", states: {a, b, c}";
                 std::string dump = criterion.getFormattedDescription(true, false);
                 CHECK(dump == csvDescription);
             }
@@ -417,19 +407,18 @@ struct CriterionTest : public LoggingTest {
         {
             THEN("Generated description match expectation")
             {
-                std::string description = criterion.getCriterionName() + " = " + defaultState;
+                std::string description = criterion.getCriterionName() + " = " + defaultValue;
                 std::string dump = criterion.getFormattedDescription(false, true);
                 CHECK(dump == description);
             }
 
             THEN("Generated description with type information match expectation")
             {
-                std::string defaultStateHuman = criterion.isInclusive() ? ", none}" : "}";
                 std::string description = criterion.getCriterionName() + ":";
                 std::string titleDecorator(description.length(), '=');
                 description = "\n" + description + "\n" + titleDecorator +
-                              "\nPossible states (" + kind + "): {a, b, c" + defaultStateType +
-                              "\n" + "Current state = " + defaultState;
+                              "\nPossible states (" + kind + "): {a, b, c}" +
+                              "\n" + "Current state = " + defaultValue;
                 std::string dump = criterion.getFormattedDescription(true, true);
                 CHECK(dump == description);
             }
@@ -443,8 +432,7 @@ struct CriterionTest : public LoggingTest {
         {
             Values values = { { "a", 2 }, { "b", 3 }, { "c", 4 } };
             CriterionType criterion(criterionName, values, mLogger);
-            std::string possibleValues = std::string("{a, b, c") +
-                                         (criterion.isInclusive() ? ", none" : "") + "}";
+            std::string possibleValues = "{a, b, c}";
             THEN("Possible values match all values added in the criterion")
             {
                 CHECK(criterion.listPossibleValues() == possibleValues);
@@ -556,68 +544,54 @@ struct CriterionTest : public LoggingTest {
 SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
 {
 
-    GIVEN("An exclusive criterion")
+    GIVEN("Some criterion values")
     {
-        const std::string criterionName = "ExclusiveCriterion";
-        WHEN("Creating a bunch of values")
+        const Values values = generateCriterionValues(300);
+        GIVEN("An exclusive criterion")
         {
-            Values values = generateCriterionValues(false, 300);
-            Criterion criterion(criterionName, values, mLogger);
-
-            THEN("The criterion is not inclusive")
+            const std::string criterionName = "ExclusiveCriterion";
+            WHEN("Creating it with some values")
             {
-                CHECK(not criterion.isInclusive());
-            }
+                Criterion criterion(criterionName, values, mLogger);
 
-            checkCriterionBasicBehavior(criterion, criterionName, values);
+                THEN("The criterion is not inclusive")
+                {
+                    CHECK(not criterion.isInclusive());
+                }
+
+                checkCriterionBasicBehavior(criterion, criterionName, values);
+            }
+            WHEN("Creating it with only one value")
+            {
+                REQUIRE_THROWS_AS(Criterion criterion(criterionName, { { "A", 1 } }, mLogger),
+                                  Criterion::InvalidCriterionError);
+            }
+            checkNoValue<Criterion>(criterionName);
+            checkDisplay<Criterion>(criterionName);
         }
-        WHEN("Creating it with only one value")
+
+        GIVEN("An inclusive criterion")
         {
-            REQUIRE_THROWS_AS(Criterion criterion(criterionName, { { "A", 1 } }, mLogger),
-                              Criterion::InvalidCriterionError);
-        }
-        checkNoValue<Criterion>(criterionName);
-        checkDisplay<Criterion>(criterionName);
-    }
-
-    GIVEN("An inclusive criterion")
-    {
-        const std::string criterionName = "InclusiveCriterion";
-        WHEN("Creating it with the maximum possible value")
-        {
-            Values values = generateCriterionValues(true, 300);
-            InclusiveCriterion criterion(criterionName, values, mLogger);
-
-            THEN("The criterion is inclusive")
+            const std::string criterionName = "InclusiveCriterion";
+            WHEN("Creating it with some values")
             {
-                CHECK(criterion.isInclusive());
-            }
-            THEN("Default state is available")
-            {
-                const std::string defaultState = "none";
-                int numericalValue;
-                REQUIRE_SUCCESS(criterion.getNumericalValue(defaultState, numericalValue));
-                CHECK(numericalValue == 0);
-                std::string literalValue;
-                REQUIRE_SUCCESS(criterion.getLiteralValue(0, literalValue));
-                CHECK(literalValue == defaultState);
-            }
-            THEN("Default state is set")
-            {
-                CHECK(criterion.getState() == State{0});
-                CHECK(criterion.getFormattedState() == "none");
-            }
+                InclusiveCriterion criterion(criterionName, values, mLogger);
 
-            checkCriterionBasicBehavior(criterion, criterionName, values);
+                THEN("The criterion is inclusive")
+                {
+                    CHECK(criterion.isInclusive());
+                }
+                THEN("Default state is set")
+                {
+                    CHECK(criterion.getState() == State{});
+                    CHECK(criterion.getFormattedState() == "none");
+                }
+
+                checkCriterionBasicBehavior(criterion, criterionName, values);
+            }
+            checkNoValue<InclusiveCriterion>(criterionName);
+            checkDisplay<InclusiveCriterion>(criterionName);
         }
-        WHEN("Creating it with a state with 0 as numerical value")
-        {
-            REQUIRE_THROWS_AS(InclusiveCriterion criterion(criterionName,
-                                                           { { "Crit_0", 0 } }, mLogger),
-                              Criterion::InvalidCriterionError);
-        }
-        checkNoValue<InclusiveCriterion>(criterionName);
-        checkDisplay<InclusiveCriterion>(criterionName);
     }
 }
 
@@ -707,7 +681,6 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
                         <SelectionCriterion Value="none" Name="A" Kind="Inclusive">
                             <ValuePair Literal="State" Numerical="1"/>
                             <ValuePair Literal="State2" Numerical="2"/>
-                            <ValuePair Literal="none" Numerical="0"/>
                         </SelectionCriterion>
                         <SelectionCriterion Value="State" Name="B" Kind="Exclusive">
                             <ValuePair Literal="State" Numerical="1"/>
@@ -716,7 +689,6 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
                         <SelectionCriterion Value="none" Name="C" Kind="Inclusive">
                             <ValuePair Literal="State" Numerical="1"/>
                             <ValuePair Literal="State2" Numerical="2"/>
-                            <ValuePair Literal="none" Numerical="0"/>
                         </SelectionCriterion>
                         <SelectionCriterion Value="State" Name="D" Kind="Exclusive">
                             <ValuePair Literal="State" Numerical="1"/>

@@ -62,6 +62,14 @@ protected:
     // Content dumping
     virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 private:
+
+    /** Internal helper to set the criterion state we want to match
+     *
+     * @param[in] value the criterion value we want to put in the state
+     * @return true if sucess, false otherwise
+     */
+    bool setMatchState(const std::string &value);
+
     // Selection criterion
     const core::criterion::Criterion* _pSelectionCriterion;
 
@@ -75,5 +83,8 @@ private:
 
     /** Criterion State to match to validate the rule */
     core::criterion::State mMatchState;
+
+    /** Empty criterion state denomination */
+    static constexpr const char *gEmptyRule = "none";
 };
 
