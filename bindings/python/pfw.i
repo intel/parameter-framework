@@ -32,7 +32,7 @@
 // like derived C++ classes (calls to virtual methods will be properly
 // forwarded to Python) - only on classes for which is it specified, see
 // ILogger below..
-%module(directors="1") PyPfw
+%module(directors="1", threads="1") PyPfw
 
 %feature("director:except") {
     if ($error != NULL) {
