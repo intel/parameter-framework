@@ -256,7 +256,8 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
             lstrError.push_back("Subsystem plugin " + strPluginFileName +
                                 " does not contain " + strPluginSymbol + " symbol.");
 
-            continue;
+            // Serious error, break loop to throw it to caller.
+            break;
         }
 
         // Account for this success
