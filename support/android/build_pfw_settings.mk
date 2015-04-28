@@ -35,7 +35,8 @@ $(LOCAL_BUILT_MODULE): MY_TOOL := $(HOST_OUT)/bin/domainGenerator.py
 # As of Android K, python is available as prebuilt. We can't reliably use the
 # host's default python because the low-level python binding has been compiled
 # against Android's Python headers.
-$(LOCAL_BUILT_MODULE): MY_PYTHON := prebuilts/python/linux-x86/2.7.5/bin/python
+# BTW, python is only available in 32bits for now, thus arch is forced to 32bits
+$(LOCAL_BUILT_MODULE): MY_PYTHON := prebuilts/python/$(HOST_OS)-x86/2.7.5/bin/python
 # The parameter-framework binding module is installed on these locations on
 # Android (On 64bit machines, PyPfw.py is installed in the 'lib64' directory
 # and _PyPfw.so is installed in the 'lib' directory, hence the need for these
