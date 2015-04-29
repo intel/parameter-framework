@@ -108,7 +108,7 @@ bool CSocket::read(void* pvData, uint32_t uiSize)
 
     while (uiSize) {
 
-        int32_t iAccessedSize = ::recv(_iSockFd, &pucData[uiOffset], uiSize, MSG_NOSIGNAL);
+        int32_t iAccessedSize = ::recv(_iSockFd, &pucData[uiOffset], uiSize, 0);
 
         switch (iAccessedSize) {
         case 0:
@@ -140,17 +140,19 @@ bool CSocket::write(const void* pvData, uint32_t uiSize)
 
     while (uiSize) {
 
-        int32_t iAccessedSize = ::send(_iSockFd, &pucData[uiOffset], uiSize, MSG_NOSIGNAL);
+        int32_t iAccessedSize = ::send(_iSockFd, &pucData[uiOffset], uiSize, 0);
 
         if (iAccessedSize == -1) {
-            if (errno == ECONNRESET) {
-                // Peer has disconnected
-                _disconnected = true;
+            if (errno == EINTR) {
+                // The send system call was interrupted, try again
+                continue;
             }
-            // errno == EINTR => The send system call was interrupted, try again
-            if (errno != EINTR) {
-                return false;
-            }
+
+            // An error occured, forget this socket
+            _disconnected = true;
+            close(_iSockFd);
+            _iSockFd = -1;
+            return false;
         } else {
             uiSize -= iAccessedSize;
             uiOffset += iAccessedSize;
