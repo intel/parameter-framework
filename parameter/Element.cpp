@@ -35,7 +35,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <sstream>
 
 using std::string;
 
@@ -210,43 +209,6 @@ void CElement::showDescriptionProperty(std::string &strResult) const
     if (!getDescription().empty()) {
         strResult += gDescriptionPropertyName + ": " + getDescription() + "\n";
     }
-}
-
-// Conversion utilities
-string CElement::toString(uint32_t uiValue)
-{
-    std::ostringstream ostr;
-
-    ostr << uiValue;
-
-    return ostr.str();
-}
-
-string CElement::toString(uint64_t uiValue)
-{
-    std::ostringstream ostr;
-
-    ostr << uiValue;
-
-    return ostr.str();
-}
-
-string CElement::toString(int32_t iValue)
-{
-    std::ostringstream ostr;
-
-    ostr << iValue;
-
-    return ostr.str();
-}
-
-string CElement::toString(double dValue)
-{
-    std::ostringstream ostr;
-
-    ostr << dValue;
-
-    return ostr.str();
 }
 
 // Content dumping
@@ -737,18 +699,4 @@ uint8_t CElement::computeStructureChecksum() const
     }
 
     return uiChecksum;
-}
-
-// Utility to underline
-void CElement::appendTitle(string& strTo, const string& strTitle)
-{
-    strTo += "\n" + strTitle + "\n";
-
-    string::size_type uiLength = strTitle.size();
-
-    while (uiLength--) {
-
-        strTo += "=";
-    }
-    strTo += "\n";
 }

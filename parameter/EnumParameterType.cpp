@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,6 +35,7 @@
 #include <assert.h>
 #include "ParameterAccessContext.h"
 #include "EnumValuePair.h"
+#include "Utility.h"
 #include <errno.h>
 
 #define base CParameterType
@@ -344,7 +345,7 @@ bool CEnumParameterType::isValid(int iNumerical, CParameterAccessContext& parame
 void CEnumParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Size
-    xmlElement.setAttributeString("Size", toString(getSize() * 8));
+    xmlElement.setAttributeString("Size", CUtility::toString(getSize() * 8));
 
     base::toXml(xmlElement, serializingContext);
 }

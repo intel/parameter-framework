@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,6 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "EnumValuePair.h"
+#include "Utility.h"
 
 #define base CElement
 
@@ -51,7 +52,7 @@ int32_t CEnumValuePair::getNumerical() const
 
 string CEnumValuePair::getNumericalAsString() const
 {
-    return toString(_iNumerical);
+    return CUtility::toString(_iNumerical);
 }
 
 // From IXmlSink

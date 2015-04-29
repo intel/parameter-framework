@@ -35,6 +35,7 @@
 #include "ConfigurationAccessContext.h"
 #include "SubsystemObjectCreator.h"
 #include "MappingData.h"
+#include "Utility.h"
 #include <assert.h>
 #include <sstream>
 
@@ -444,7 +445,8 @@ bool CSubsystem::handleSubsystemObjectCreation(
                 pSubsystemObjectCreator->getMaxConfigurableElementSize()) {
 
                 string strSizeError = "Size should not exceed " +
-                                      toString(pSubsystemObjectCreator->getMaxConfigurableElementSize());
+                                      CUtility::toString(
+                                        pSubsystemObjectCreator->getMaxConfigurableElementSize());
 
                 strError = getMappingError(strKey, strSizeError, pInstanceConfigurableElement);
 
