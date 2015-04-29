@@ -29,6 +29,7 @@
  */
 #include "StringParameterType.h"
 #include "StringParameter.h"
+#include "Utility.h"
 
 #define base CTypeElement
 
@@ -51,7 +52,7 @@ void CStringParameterType::showProperties(string& strResult) const
 
     // Max length
     strResult += "Max length: ";
-    strResult += toString(_uiMaxLength);
+    strResult += CUtility::toString(_uiMaxLength);
     strResult += "\n";
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -36,6 +36,7 @@
 #include "Parameter.h"
 #include "ParameterAccessContext.h"
 #include "ConfigurationAccessContext.h"
+#include "Utility.h"
 #include <errno.h>
 #include <convert.hpp>
 
@@ -59,9 +60,9 @@ void CFixedPointParameterType::showProperties(string& strResult) const
 
     // Notation
     strResult += "Notation: Q";
-    strResult += toString(_uiIntegral);
+    strResult += CUtility::toString(_uiIntegral);
     strResult += ".";
-    strResult += toString(_uiFractional);
+    strResult += CUtility::toString(_uiFractional);
     strResult += "\n";
 }
 
@@ -363,13 +364,13 @@ double CFixedPointParameterType::binaryQnmToDouble(int32_t iValue) const
 void CFixedPointParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Size
-    xmlElement.setAttributeString("Size", toString(getSize() * 8));
+    xmlElement.setAttributeString("Size", CUtility::toString(getSize() * 8));
 
     // Integral
-    xmlElement.setAttributeString("Integral", toString(_uiIntegral));
+    xmlElement.setAttributeString("Integral", CUtility::toString(_uiIntegral));
 
     // Fractional
-    xmlElement.setAttributeString("Fractional", toString(_uiFractional));
+    xmlElement.setAttributeString("Fractional", CUtility::toString(_uiFractional));
 
     base::toXml(xmlElement, serializingContext);
 }

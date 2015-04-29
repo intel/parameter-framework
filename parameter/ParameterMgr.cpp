@@ -430,11 +430,11 @@ string CParameterMgr::getVersion() const
     string strVersion;
 
     // Major
-    strVersion = toString(guiEditionMajor) + ".";
+    strVersion = CUtility::toString(guiEditionMajor) + ".";
     // Minor
-    strVersion += toString(guiEditionMinor) + ".";
+    strVersion += CUtility::toString(guiEditionMinor) + ".";
     // Revision
-    strVersion += toString(guiRevision);
+    strVersion += CUtility::toString(guiRevision);
 
     return strVersion;
 }
@@ -905,7 +905,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
 
     // Show status
     /// General section
-    appendTitle(strResult, "General:");
+    CUtility::appendTitle(strResult, "General:");
     // System class
     strResult += "System Class: ";
     strResult += pSystemClass->getName();
@@ -932,19 +932,19 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
     strResult += "\n";
 
     /// Subsystem list
-    appendTitle(strResult, "Subsystems:");
+    CUtility::appendTitle(strResult, "Subsystems:");
     string strSubsystemList;
     pSystemClass->listChildrenPaths(strSubsystemList);
     strResult += strSubsystemList;
 
     /// Last applied configurations
-    appendTitle(strResult, "Last Applied [Pending] Configurations:");
+    CUtility::appendTitle(strResult, "Last Applied [Pending] Configurations:");
     string strLastAppliedConfigurations;
     getConfigurableDomains()->listLastAppliedConfigurations(strLastAppliedConfigurations);
     strResult += strLastAppliedConfigurations;
 
     /// Criteria states
-    appendTitle(strResult, "Selection Criteria:");
+    CUtility::appendTitle(strResult, "Selection Criteria:");
     list<string> lstrSelectionCriteria;
     getSelectionCriteria()->listSelectionCriteria(lstrSelectionCriteria, false, true);
     // Concatenate the criterion list as the command result
