@@ -82,4 +82,6 @@ LOCAL_STATIC_LIBRARIES := libpfw_utility_host
 LOCAL_SHARED_LIBRARIES := $(foreach shared_library, $(common_shared_libraries), \
     $(shared_library)_host)
 
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_HOST_EXECUTABLE)
