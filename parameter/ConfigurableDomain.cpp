@@ -847,7 +847,7 @@ void CConfigurableDomain::validate(const CParameterBlackboard* pMainBlackboard)
 // Ensure validity on areas related to configurable element
 void CConfigurableDomain::validateAreas(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard)
 {
-    log_info("Validating domain \"" + getName() + "\" against main blackboard for configurable element \"" + pConfigurableElement->getPath() + "\"");
+    log_info("Validating domain \"%s\" against main blackboard for configurable element \"%s\"", getName().c_str(), pConfigurableElement->getPath().c_str());
 
     // Propagate
     size_t uiNbConfigurations = getNbChildren();
