@@ -30,6 +30,7 @@
 
 #include "SelectionCriterion.h"
 #include <log/Logger.h>
+#include "Utility.h"
 
 #define base CElement
 
@@ -133,7 +134,7 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
         if (bWithTypeInfo) {
 
             // Display type info
-            appendTitle(strFormattedDescription, getName() + ":");
+            CUtility::appendTitle(strFormattedDescription, getName() + ":");
 
             // States
             strFormattedDescription += "Possible states ";

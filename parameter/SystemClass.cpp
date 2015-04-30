@@ -301,3 +301,20 @@ void CSystemClass::cleanSubsystemsNeedToResync()
         pSubsystem->needResync(true);
     }
 }
+
+bool CSystemClass::initSubsystems(std::string& error)
+{
+    uint32_t uiNbChildren = getNbChildren();
+    uint32_t uiChild;
+
+    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
+
+        CSubsystem* pSubsystem = static_cast<CSubsystem*>(getChild(uiChild));
+
+        if (!pSubsystem->init(error))
+        {
+            return false;
+        }
+    }
+    return true;
+}

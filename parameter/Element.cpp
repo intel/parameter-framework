@@ -35,7 +35,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <sstream>
 
 using std::string;
 
@@ -62,23 +61,6 @@ bool CElement::childrenAreDynamic() const
 {
     // By default, children are searched and not created during xml parsing
     return false;
-}
-
-bool CElement::init(string& strError)
-{
-    uint32_t uiIndex;
-
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
-
-        CElement* pElement = _childArray[uiIndex];;
-
-        if (!pElement->init(strError)) {
-
-            return false;
-        }
-    }
-
-    return true;
 }
 
 void CElement::dumpContent(string& strContent, CErrorContext& errorContext, const uint32_t uiDepth) const
@@ -125,43 +107,6 @@ void CElement::showProperties(string& strResult) const
 {
     strResult = "\n";
     strResult += "Kind: " + getKind() + "\n";
-}
-
-// Conversion utilities
-string CElement::toString(uint32_t uiValue)
-{
-    std::ostringstream ostr;
-
-    ostr << uiValue;
-
-    return ostr.str();
-}
-
-string CElement::toString(uint64_t uiValue)
-{
-    std::ostringstream ostr;
-
-    ostr << uiValue;
-
-    return ostr.str();
-}
-
-string CElement::toString(int32_t iValue)
-{
-    std::ostringstream ostr;
-
-    ostr << iValue;
-
-    return ostr.str();
-}
-
-string CElement::toString(double dValue)
-{
-    std::ostringstream ostr;
-
-    ostr << dValue;
-
-    return ostr.str();
 }
 
 // Content dumping
@@ -586,8 +531,7 @@ const CElement* CElement::findChildOfKind(const string& strKind) const
 
 string CElement::getPath() const
 {
-    // Take out root element from the path
-    if (_pParent && _pParent->_pParent) {
+    if (_pParent != NULL) {
 
         return _pParent->getPath() + "/" + getPathName();
     }
@@ -626,18 +570,4 @@ uint8_t CElement::computeStructureChecksum() const
     }
 
     return uiChecksum;
-}
-
-// Utility to underline
-void CElement::appendTitle(string& strTo, const string& strTitle)
-{
-    strTo += "\n" + strTitle + "\n";
-
-    string::size_type uiLength = strTitle.size();
-
-    while (uiLength--) {
-
-        strTo += "=";
-    }
-    strTo += "\n";
 }

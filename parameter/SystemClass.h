@@ -79,6 +79,13 @@ public:
       */
     void cleanSubsystemsNeedToResync();
 
+    /** Launch init functions of all plugin subsystems
+     *
+     * @param[out] error, error encountered during initialization
+     * @return true if succeed, false otherwise
+     */
+    bool initSubsystems(std::string& error);
+
     // base
     virtual std::string getKind() const;
 

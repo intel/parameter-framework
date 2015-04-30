@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,6 +34,7 @@
 #include "ParameterAccessContext.h"
 #include "ConfigurationAccessContext.h"
 #include "ParameterBlackboard.h"
+#include "Utility.h"
 #include <assert.h>
 
 #define base CParameter
@@ -62,7 +63,7 @@ void CArrayParameter::showProperties(string& strResult) const
 
     // Array length
     strResult += "Array length: ";
-    strResult += toString(getArrayLength());
+    strResult += CUtility::toString(getArrayLength());
     strResult += "\n";
 }
 
@@ -281,7 +282,8 @@ bool CArrayParameter::setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, co
         if (!doSetValue(astrValues[uiValueIndex], uiOffset, parameterAccessContext)) {
 
             // Append parameter path to error
-            parameterAccessContext.appendToError(" " + getPath() + "/" + toString(uiValueIndex + uiStartIndex));
+            parameterAccessContext.appendToError(" " + getPath() + "/" +
+                                                 CUtility::toString(uiValueIndex + uiStartIndex));
 
             return false;
         }
