@@ -49,8 +49,8 @@ public:
     virtual ~CElement();
 
     // Logging
-    void log_info(const std::string& strMessage, ...) const;
-    void log_warning(const std::string& strMessage, ...) const;
+    void log_info(const char* strMessage, ...) const;
+    void log_warning(const char* strMessage, ...) const;
     void log_table(bool bIsWarning, const std::list<std::string> lstrMessage) const;
 
     // Description

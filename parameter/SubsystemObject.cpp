@@ -149,7 +149,7 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
         strError = string("Unable to ") + (bBack ? "back" : "forward") + " synchronize configurable element " +
                 _pInstanceConfigurableElement->getPath() + ": " + strError;
 
-        log_warning(strError);
+        log_warning("%s", strError.c_str());
 
         // Fall back to parameter default initialization
         if (bBack) {
@@ -213,37 +213,37 @@ void CSubsystemObject::blackboardWrite(const void* pvData, uint32_t uiSize)
 }
 
 // Logging
-void CSubsystemObject::log_info(const string& strMessage, ...) const
+void CSubsystemObject::log_info(std::string strMessage, ...) const
 {
     char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
+    vasprintf(&pacBuffer, strMessage.c_str(), listPointer);
 
     va_end(listPointer);
 
     if (pacBuffer != NULL) {
-        _pInstanceConfigurableElement->log_info(pacBuffer);
+        _pInstanceConfigurableElement->log_info("%s", pacBuffer);
     }
 
     free(pacBuffer);
 }
 
-void CSubsystemObject::log_warning(const string& strMessage, ...) const
+void CSubsystemObject::log_warning(std::string strMessage, ...) const
 {
     char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
+    vasprintf(&pacBuffer, strMessage.c_str(), listPointer);
 
     va_end(listPointer);
 
     if (pacBuffer != NULL) {
-        _pInstanceConfigurableElement->log_warning(pacBuffer);
+        _pInstanceConfigurableElement->log_warning("%s", pacBuffer);
     }
 
     free(pacBuffer);

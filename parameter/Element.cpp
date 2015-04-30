@@ -51,14 +51,14 @@ CElement::~CElement()
 }
 
 // Logging
-void CElement::log_info(const string& strMessage, ...) const
+void CElement::log_info(const char* strMessage, ...) const
 {
     char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
+    vasprintf(&pacBuffer,  strMessage, listPointer);
 
     va_end(listPointer);
 
@@ -69,14 +69,14 @@ void CElement::log_info(const string& strMessage, ...) const
     free(pacBuffer);
 }
 
-void CElement::log_warning(const string& strMessage, ...) const
+void CElement::log_warning(const char* strMessage, ...) const
 {
     char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
+    vasprintf(&pacBuffer,  strMessage, listPointer);
 
     va_end(listPointer);
 
