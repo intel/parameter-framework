@@ -115,8 +115,7 @@ using std::ifstream;
 // Used for remote processor server creation
 typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
 
-// Global configuration file name (fixed)
-const char* gacParameterFrameworkConfigurationFileName = "ParameterFrameworkConfiguration.xml";
+// Global Schemas folder (fixed)
 const char* gacSystemSchemasSubFolder = "Schemas";
 
 // Config File System looks normally like this:
