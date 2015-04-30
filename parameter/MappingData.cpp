@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -36,13 +36,9 @@ CMappingData::CMappingData()
 {
 }
 
-bool CMappingData::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CMappingData::init(const std::string &rawMapping, std::string &error)
 {
-    assert(xmlElement.hasAttribute("Mapping"));
-
-    std::string strMapping = xmlElement.getAttributeString("Mapping");
-
-    Tokenizer mappingTok(strMapping, ",");
+    Tokenizer mappingTok(rawMapping, ",");
 
     std::string strMappingElement;
 
@@ -71,7 +67,8 @@ bool CMappingData::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext
 
         if (!addValue(strKey, strValue)) {
 
-            serializingContext.setError("Duplicate Mapping data: Unable to process Mapping element key = " + strKey + ", value = " + strValue + " from XML element " + xmlElement.getPath());
+            error = "Unable to process Mapping element key = " + strKey + ", value = " + strValue +
+                    ": Duplicate Mapping data";
 
             return false;
         }
