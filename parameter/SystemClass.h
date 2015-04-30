@@ -30,7 +30,6 @@
 #pragma once
 
 #include "ConfigurableElement.h"
-#include "SubsystemPlugins.h"
 #include "Results.h"
 #include <log/Logger.h>
 #include <list>
@@ -41,7 +40,6 @@ class CSubsystemLibrary;
 class CSystemClass : public CConfigurableElement
 {
 public:
-
     /**
      * @param[in] logger the logger provided by the client
      * it need to be given to the subsystem library
@@ -59,7 +57,7 @@ public:
      * @return true if the plugins succesfully started or that a fallback is available,
                false otherwise.
      */
-    bool loadSubsystems(std::string& strError, const CSubsystemPlugins* pSubsystemPlugins,
+    bool loadSubsystems(std::string& strError, const std::list<std::string> &pluginsLocation,
                         bool bVirtualSubsystemFallback = false);
     // Subsystem factory
     const CSubsystemLibrary* getSubsystemLibrary() const;
@@ -98,27 +96,27 @@ private:
     /** Load shared libraries subsystem plugins.
      *
      * @param[out] errors is the list of error that occured during loadings.
-     * @param[in] pSubsystemPlugins The plugins to load.
+     * @param[in] pluginsLocation The plugins to load. Plugin's names are intentionnaly copied
      *
      * @return true if all plugins have been succesfully loaded, false otherwises.
      */
     bool loadSubsystemsFromSharedLibraries(core::Results& errors,
-                                           const CSubsystemPlugins* pSubsystemPlugins);
+                                           std::list<std::string> pluginsLocation);
 
     // Plugin symbol computation
     static std::string getPluginSymbol(const std::string& strPluginPath);
 
     /** Load subsystem plugin shared libraries.
      *
-     * @param[in:out] lstrPluginFiles is the path list of the plugins shared libraries to load.
+     * @param[in:out] pluginFiles is the path list of the plugins shared libraries to load.
      *                Successfully loaded plugins are removed from the list.
      * @param[out] errors is the list of error that occured during loadings.
      *
      * @return true if at least one plugin has been succesfully loaded, false otherwise.
      *         When false is returned, some plugins MIHGT have been loaded
-     *         but the lstrPluginFiles is accurate.
+     *         but the pluginFiles is accurate.
      */
-    bool loadPlugins(std::list<std::string>& lstrPluginFiles, core::Results& errors);
+    bool loadPlugins(std::list<std::string>& pluginFiles, core::Results& errors);
 
     // Subsystem factory
     CSubsystemLibrary* _pSubsystemLibrary;

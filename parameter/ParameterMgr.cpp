@@ -33,7 +33,6 @@
 #include "ElementLibrarySet.h"
 #include "SubsystemLibrary.h"
 #include "NamedElementBuilderTemplate.h"
-#include "KindElementBuilderTemplate.h"
 #include "ElementBuilderTemplate.h"
 #include "SubsystemElementBuilder.h"
 #include "ComponentType.h"
@@ -45,10 +44,6 @@
 #include "ParameterBlackboard.h"
 #include "Parameter.h"
 #include "ParameterAccessContext.h"
-#include "FrameworkConfigurationGroup.h"
-#include "PluginLocation.h"
-#include "SubsystemPlugins.h"
-#include "FrameworkConfigurationLocation.h"
 #include "ConfigurableDomain.h"
 #include "DomainConfiguration.h"
 #include "XmlDomainSerializingContext.h"
@@ -77,6 +72,8 @@
 #include "XmlMemoryDocSink.h"
 #include "XmlDocSource.h"
 #include "XmlMemoryDocSource.h"
+#include <xmlserializer/Deserializer.h>
+#include "bindings/xml/ConfigurationBinder.h"
 #include "Utility.h"
 #include <sstream>
 #include <fstream>
@@ -115,9 +112,6 @@ using namespace core::criterion::internal;
 // Used for remote processor server creation
 typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
 
-// Global Schemas folder (fixed)
-const char* gacSystemSchemasSubFolder = "Schemas";
-
 // Config File System looks normally like this:
 // ---------------------------------------------
 //|-- <ParameterFrameworkConfiguration>.xml
@@ -140,8 +134,6 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     _bAutoSyncOn(true),
     _pMainParameterBlackboard(new CParameterBlackboard),
     _pElementLibrarySet(new CElementLibrarySet),
-    _strXmlConfigurationFilePath(strConfigurationFilePath),
-    _pSubsystemPlugins(NULL),
     _pvLibRemoteProcessorHandle(NULL),
     _uiStructureChecksum(0),
     _pRemoteProcessorServer(NULL),
@@ -152,7 +144,7 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     _bFailOnMissingSubsystem(true),
     _bFailOnFailedSettingsLoad(true),
     _bValidateSchemasOnStart(false),
-    _pfwConfiguration(),
+    _pfwConfiguration(strConfigurationFilePath),
     _criteria(),
     _systemClass(_logger),
     _domains()
@@ -161,18 +153,6 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     // Tuning Mode Mutex
     bzero(&_blackboardMutex, sizeof(_blackboardMutex));
     pthread_mutex_init(&_blackboardMutex, NULL);
-
-    // Configuration file folder
-    std::string::size_type slashPos = _strXmlConfigurationFilePath.rfind('/', -1);
-    if(slashPos == std::string::npos) {
-        // Configuration folder is the current folder
-        _strXmlConfigurationFolderPath = '.';
-    } else {
-        _strXmlConfigurationFolderPath = _strXmlConfigurationFilePath.substr(0, slashPos);
-    }
-
-    // Schema absolute folder location
-    _strSchemaFolderLocation = _strXmlConfigurationFolderPath + "/" + gacSystemSchemasSubFolder;
 }
 
 CParameterMgr::~CParameterMgr()
@@ -276,38 +256,20 @@ bool CParameterMgr::load(string& strError)
 bool CParameterMgr::loadFrameworkConfiguration(string& strError)
 {
     LOG_CONTEXT("Loading framework configuration");
-
-    // Parse Structure XML file
-    CXmlElementSerializingContext elementSerializingContext(strError);
-
-    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(_strXmlConfigurationFilePath, true, true, strError);
-    if (doc == NULL) {
+    try {
+        using namespace xml::serialization;
+        bindings::xml::ConfigurationBinder binder{_pfwConfiguration};
+        Deserializer<ImportSource::File> test{_pfwConfiguration.configurationFile,
+                                              binder.getBindings()};
+    } catch (std::runtime_error &e) {
+        strError = e.what();
+        warning() << "While parsing configuration: " << e.what();
         return false;
     }
+    _systemClass.setName(_pfwConfiguration.systemClassName);
+    _domains.setName(_pfwConfiguration.systemClassName);
 
-    if (!xmlParse(elementSerializingContext, &_pfwConfiguration, doc,
-                                                EFrameworkConfigurationLibrary)) {
-
-        return false;
-    }
-    // Set class name to system class and configurable domains
-    _systemClass.setName(_pfwConfiguration.getSystemClassName());
-    _domains.setName(_pfwConfiguration.getSystemClassName());
-
-    // Get subsystem plugins elements
-    _pSubsystemPlugins =
-        static_cast<const CSubsystemPlugins*>(_pfwConfiguration.findChild("SubsystemPlugins"));
-
-    if (!_pSubsystemPlugins) {
-
-        strError = "Parameter Framework Configuration: couldn't find SubsystemPlugins element";
-
-        return false;
-    }
-
-    // Log tuning availability
-    info() << "Tuning " << (_pfwConfiguration.isTuningAllowed() ? "allowed" : "prohibited");
-
+    info() << "Tuning " << (_pfwConfiguration.tuningAllowed ? "allowed" : "prohibited");
     return true;
 }
 
@@ -317,7 +279,7 @@ bool CParameterMgr::loadSubsystems(std::string& error)
 
     // Load subsystems
     bool isSuccess = _systemClass.loadSubsystems(error,
-                                                 _pSubsystemPlugins,
+                                                 _pfwConfiguration.plugins,
                                                  !_bFailOnMissingSubsystem);
 
     if (isSuccess) {
@@ -337,29 +299,13 @@ bool CParameterMgr::loadStructure(string& strError)
 {
     LOG_CONTEXT("Loading " + _systemClass.getName() + " system class structure");
 
-    // Get structure description element
-    const CFrameworkConfigurationLocation* pStructureDescriptionFileLocation =
-        static_cast<const CFrameworkConfigurationLocation*>(
-                _pfwConfiguration.findChildOfKind("StructureDescriptionFileLocation"));
-
-    if (!pStructureDescriptionFileLocation) {
-
-        strError = "No StructureDescriptionFileLocation element found for SystemClass " +
-                   _systemClass.getName();
-
-        return false;
-    }
-
-    // Get Xml structure file name
-    string strXmlStructureFilePath = pStructureDescriptionFileLocation->getFilePath(_strXmlConfigurationFolderPath);
-
     // Parse Structure XML file
     CXmlParameterSerializingContext parameterBuildContext(strError);
 
     {
-        LOG_CONTEXT("Importing system structure from file " + strXmlStructureFilePath);
+        LOG_CONTEXT("Importing system structure from file " + _pfwConfiguration.structureFile);
 
-        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlStructureFilePath, true, true, strError);
+        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(_pfwConfiguration.structureFile, true, true, strError);
         if (doc == NULL) {
             return false;
         }
@@ -404,55 +350,25 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
 {
     LOG_CONTEXT("Loading settings");
 
-    // Get settings configuration element
-    const CFrameworkConfigurationGroup* pParameterConfigurationGroup =
-        static_cast<const CFrameworkConfigurationGroup*>(
-                _pfwConfiguration.findChildOfKind("SettingsConfiguration"));
-
-    if (!pParameterConfigurationGroup) {
-
-        // No settings to load
-
+    if (_pfwConfiguration.settingsFile.empty()) {
+        // Not settings to load
         return true;
     }
-    // Get binary settings file location
-    const CFrameworkConfigurationLocation* pBinarySettingsFileLocation = static_cast<const CFrameworkConfigurationLocation*>(pParameterConfigurationGroup->findChildOfKind("BinarySettingsFileLocation"));
-
-    string strXmlBinarySettingsFilePath;
-
-    if (pBinarySettingsFileLocation) {
-
-        // Get Xml binary settings file name
-        strXmlBinarySettingsFilePath = pBinarySettingsFileLocation->getFilePath(_strXmlConfigurationFolderPath);
-    }
-
-    // Get configurable domains element
-    const CFrameworkConfigurationLocation* pConfigurableDomainsFileLocation = static_cast<const CFrameworkConfigurationLocation*>(pParameterConfigurationGroup->findChildOfKind("ConfigurableDomainsFileLocation"));
-
-    if (!pConfigurableDomainsFileLocation) {
-
-        strError = "No ConfigurableDomainsFileLocation element found for SystemClass " +
-                   _systemClass.getName();
-
-        return false;
-    }
-
-    // Get Xml configuration domains file name
-    string strXmlConfigurationDomainsFilePath = pConfigurableDomainsFileLocation->getFilePath(_strXmlConfigurationFolderPath);
+    bool binarySettingsAvailable = !_pfwConfiguration.binarySettingsFile.empty();
 
     // Parse configuration domains XML file (ask to read settings from XML file if they are not provided as binary)
     CXmlDomainImportContext xmlDomainImportContext(strError,
-                                                   !pBinarySettingsFileLocation,
+                                                   binarySettingsAvailable,
                                                    _systemClass,
                                                    _criteria);
 
     // Auto validation of configurations if no binary settings provided
-    xmlDomainImportContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
+    xmlDomainImportContext.setAutoValidationRequired(binarySettingsAvailable);
 
-    info() << "Importing configurable domains from file " << strXmlConfigurationDomainsFilePath
-           << " "  << ( pBinarySettingsFileLocation ? "without" : "with") << " settings";
+    info() << "Importing configurable domains from file " << _pfwConfiguration.settingsFile
+           << " "  << ( binarySettingsAvailable ? "without" : "with") << " settings";
 
-    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlConfigurationDomainsFilePath, true, true, strError);
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(_pfwConfiguration.settingsFile, true, true, strError);
     if (doc == NULL) {
         return false;
     }
@@ -467,8 +383,8 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
                            _domains.computeStructureChecksum();
 
     // Load binary settings if any provided
-    if (pBinarySettingsFileLocation && !_domains.serializeSettings(
-                strXmlBinarySettingsFilePath, false, _uiStructureChecksum, strError)) {
+    if (binarySettingsAvailable && !_domains.serializeSettings(
+                _pfwConfiguration.binarySettingsFile, false, _uiStructureChecksum, strError)) {
 
         return false;
     }
@@ -487,7 +403,7 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
     elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(eElementLibrary));
 
     // Get Schema file associated to root element
-    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pRootElement->getKind() + ".xsd";
+    string strXmlSchemaFilePath = _pfwConfiguration.schemasLocation + "/" + pRootElement->getKind() + ".xsd";
 
     CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
                             strXmlSchemaFilePath,
@@ -622,12 +538,12 @@ bool CParameterMgr::getFailureOnFailedSettingsLoad()
 
 const string& CParameterMgr::getSchemaFolderLocation() const
 {
-    return _strSchemaFolderLocation;
+    return _pfwConfiguration.schemasLocation;
 }
 
 void CParameterMgr::setSchemaFolderLocation(const string& strSchemaFolderLocation)
 {
-    _strSchemaFolderLocation = strSchemaFolderLocation;
+    _pfwConfiguration.schemasLocation = strSchemaFolderLocation;
 }
 
 void CParameterMgr::setValidateSchemasOnStart(bool bValidate)
@@ -804,7 +720,7 @@ bool CParameterMgr::accessValue(CParameterAccessContext& parameterAccessContext,
 bool CParameterMgr::setTuningMode(bool bOn, string& strError)
 {
     // Tuning allowed?
-    if (bOn && !_pfwConfiguration.isTuningAllowed()) {
+    if (bOn && !_pfwConfiguration.tuningAllowed) {
 
         strError = "Tuning prohibited";
 
@@ -1292,13 +1208,13 @@ bool CParameterMgr::serializeElement(std::ostream& output,
     }
 
     // Get Schema file associated to root element
-    string xmlSchemaFilePath = _strSchemaFolderLocation + "/" +
+    string strXmlSchemaFilePath = _pfwConfiguration.schemasLocation + "/" +
                                   element.getKind() + ".xsd";
 
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(&element, _bValidateSchemasOnStart,
                                      element.getKind(),
-                                     xmlSchemaFilePath,
+                                     strXmlSchemaFilePath,
                                      "parameter-framework",
                                      getVersion());
 
@@ -1430,19 +1346,6 @@ CParameterBlackboard* CParameterMgr::getParameterBlackboard()
 // Dynamic creation library feeding
 void CParameterMgr::feedElementLibraries()
 {
-    // Global Configuration handling
-    CElementLibrary* pFrameworkConfigurationLibrary = new CElementLibrary;
-
-    pFrameworkConfigurationLibrary->addElementBuilder("ParameterFrameworkConfiguration", new TElementBuilderTemplate<CParameterFrameworkConfiguration>());
-    pFrameworkConfigurationLibrary->addElementBuilder("SubsystemPlugins", new TKindElementBuilderTemplate<CSubsystemPlugins>());
-    pFrameworkConfigurationLibrary->addElementBuilder("Location", new TKindElementBuilderTemplate<CPluginLocation>());
-    pFrameworkConfigurationLibrary->addElementBuilder("StructureDescriptionFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
-    pFrameworkConfigurationLibrary->addElementBuilder("SettingsConfiguration", new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>());
-    pFrameworkConfigurationLibrary->addElementBuilder("ConfigurableDomainsFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
-    pFrameworkConfigurationLibrary->addElementBuilder("BinarySettingsFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
-
-    _pElementLibrarySet->addElementLibrary(pFrameworkConfigurationLibrary);
-
     // Parameter creation
     CElementLibrary* pParameterCreationLibrary = new CElementLibrary;
 
@@ -1496,7 +1399,7 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
     }
 
     // Start server if tuning allowed
-    if (_pfwConfiguration.isTuningAllowed()) {
+    if (_pfwConfiguration.tuningAllowed) {
 
         info() << "Loading remote processor library";
 
@@ -1531,17 +1434,17 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
         _commandParser = ParserWrapper{ new command::Parser(*this) };
         // Create server
         _pRemoteProcessorServer =
-            pfnCreateRemoteProcessorServer(_pfwConfiguration.getServerPort(),
+            pfnCreateRemoteProcessorServer(_pfwConfiguration.serverPort,
                                            _commandParser->getCommandHandler());
 
-        info() << "Starting remote processor server on port " << _pfwConfiguration.getServerPort();
+        info() << "Starting remote processor server on port " << _pfwConfiguration.serverPort;
         // Start
         if (!_pRemoteProcessorServer->start(strError)) {
 
             ostringstream oss;
             oss << "ParameterMgr: Unable to start remote processor server on port "
-                << _pfwConfiguration.getServerPort();
-            strError = oss.str() + ": " + strError;
+                << _pfwConfiguration.serverPort;
+            strError = oss.str();
 
             return false;
         }

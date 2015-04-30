@@ -40,8 +40,8 @@
 #include "XmlDocSource.h"
 #include "XmlDomainExportContext.h"
 #include "Results.h"
-#include "ParameterFrameworkConfiguration.h"
 #include "criterion/Criteria.h"
+#include "Configuration.h"
 #include "ConfigurableDomains.h"
 #include "SystemClass.h"
 #include <criterion/Criterion.h>
@@ -58,14 +58,12 @@ class CSubsystemLibrary;
 class CParameterBlackboard;
 class IRemoteProcessorServerInterface;
 class CParameterHandle;
-class CSubsystemPlugins;
 class CParameterAccessContext;
 class CConfigurableElement;
 
 class CParameterMgr
 {
     enum ElementLibrary {
-        EFrameworkConfigurationLibrary,
         EParameterCreationLibrary,
         EParameterConfigurationLibrary
     };
@@ -553,14 +551,6 @@ private:
     // Dynamic object creation
     CElementLibrarySet* _pElementLibrarySet;
 
-    // XML parsing, object creation handling
-    std::string _strXmlConfigurationFilePath; // Configuration file path
-    std::string _strXmlConfigurationFolderPath; // Root folder for configuration file
-    std::string _strSchemaFolderLocation; // Place where schemas stand
-
-    // Subsystem plugin location
-    const CSubsystemPlugins* _pSubsystemPlugins;
-
     /**
      * Remote processor library handle
      */
@@ -611,7 +601,7 @@ private:
     bool _bValidateSchemasOnStart;
 
     /** Parameter Configuration information */
-    CParameterFrameworkConfiguration _pfwConfiguration;
+    core::Configuration _pfwConfiguration;
 
     /** Selection Criteria used in application rules */
     core::criterion::internal::Criteria _criteria;

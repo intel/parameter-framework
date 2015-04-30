@@ -36,7 +36,6 @@
 #include "VirtualSubsystem.h"
 #include "LoggingElementBuilderTemplate.h"
 #include <assert.h>
-#include "PluginLocation.h"
 #include "Utility.h"
 
 #define base CConfigurableElement
@@ -98,7 +97,7 @@ string CSystemClass::getKind() const
 }
 
 bool CSystemClass::loadSubsystems(string& strError,
-                                  const CSubsystemPlugins* pSubsystemPlugins,
+                                  const std::list<std::string> &pluginsLocation,
                                   bool bVirtualSubsystemFallback)
 {
     // Start clean
@@ -114,7 +113,7 @@ bool CSystemClass::loadSubsystems(string& strError,
 
     // Add subsystem defined in shared libraries
     core::Results errors;
-    bool bLoadPluginsSuccess = loadSubsystemsFromSharedLibraries(errors, pSubsystemPlugins);
+    bool bLoadPluginsSuccess = loadSubsystemsFromSharedLibraries(errors, pluginsLocation);
 
     // Fill strError for caller, he has to decide if there is a problem depending on
     // bVirtualSubsystemFallback value
@@ -124,36 +123,10 @@ bool CSystemClass::loadSubsystems(string& strError,
 }
 
 bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
-                                                     const CSubsystemPlugins* pSubsystemPlugins)
+                                                     std::list<std::string> pluginsLocation)
 {
-    // Plugin list
-    list<string> lstrPluginFiles;
-
-    uint32_t uiPluginLocation;
-
-    for (uiPluginLocation = 0; uiPluginLocation <  pSubsystemPlugins->getNbChildren(); uiPluginLocation++) {
-
-        // Get Folder for current Plugin Location
-        const CPluginLocation* pPluginLocation = static_cast<const CPluginLocation*>(pSubsystemPlugins->getChild(uiPluginLocation));
-
-        string strFolder(pPluginLocation->getFolder());
-        if (!strFolder.empty()) {
-            strFolder += "/";
-        }
-        // Iterator on Plugin List:
-        list<string>::const_iterator it;
-
-        const list<string>& pluginList = pPluginLocation->getPluginList();
-
-        for (it = pluginList.begin(); it != pluginList.end(); ++it) {
-
-            // Fill Plugin files list
-            lstrPluginFiles.push_back(strFolder + *it);
-        }
-    }
-
     // Actually load plugins
-    while (!lstrPluginFiles.empty()) {
+    while (!pluginsLocation.empty()) {
 
         // Because plugins might depend on one another, loading will be done
         // as an iteration process that finishes successfully when the remaining
@@ -161,17 +134,17 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
         // process failed to load at least one of them
 
         // Attempt to load the complete list
-        if (!loadPlugins(lstrPluginFiles, errors)) {
+        if (!loadPlugins(pluginsLocation, errors)) {
 
             // Unable to load at least one plugin
             break;
         }
     }
 
-    if (!lstrPluginFiles.empty()) {
+    if (!pluginsLocation.empty()) {
         // Unable to load at least one plugin
         string strPluginUnloaded;
-        CUtility::asString(lstrPluginFiles, strPluginUnloaded, ", ");
+        CUtility::asString(pluginsLocation, strPluginUnloaded, ", ");
 
         errors.push_back("Unable to load the following plugins: " + strPluginUnloaded + ".");
         return false;
@@ -204,15 +177,15 @@ string CSystemClass::getPluginSymbol(const string& strPluginPath)
 }
 
 // Plugin loading
-bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& errors)
+bool CSystemClass::loadPlugins(std::list<std::string> &pluginFiles, core::Results& errors)
 {
-    assert(lstrPluginFiles.size());
+    assert(pluginFiles.size());
 
     bool bAtLeastOneSubsystemPluginSuccessfullyLoaded = false;
 
-    list<string>::iterator it = lstrPluginFiles.begin();
+    list<string>::iterator it = pluginFiles.begin();
 
-    while (it != lstrPluginFiles.end()) {
+    while (it != pluginFiles.end()) {
 
         string strPluginFileName = *it;
 
@@ -258,7 +231,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
         pfnGetSubsystemBuilder(_pSubsystemLibrary, _logger);
 
         // Remove successfully loaded plugin from list and select next
-        lstrPluginFiles.erase(it++);
+        pluginFiles.erase(it++);
     }
 
     return bAtLeastOneSubsystemPluginSuccessfullyLoaded;
