@@ -82,8 +82,12 @@ LOCAL_EXPORT_C_INCLUDE_DIRS := $(generated-sources-dir)
 # Careful, we need to invoque the android python config not the host's one.
 # BTW, the intenal install directory of python is hardcoded to a dummy value,
 # thus we need to manually add the correct path to libs to the library list.
+ifeq ($(HOST_OS), linux)
 LOCAL_LDLIBS += $(shell $(PYTHON_BIN_PATH)/python $(PYTHON_BIN_PATH)/python-config --ldflags) \
                 -L $(PYTHON_INSTALL_PATH)/lib/
+else
+LOCAL_LDLIBS += $(shell python-config --ldflags)
+endif
 
 $(generated-sources-dir)/pfw_wrap.h: $(generated-sources-dir)/pfw_wrap.cxx
 
