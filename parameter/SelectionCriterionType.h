@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -85,6 +85,7 @@ private:
      * @return true if integer value retrieved from the std::string one, false otherwise.
      */
     bool getAtomicNumericalValue(const std::string& strValue, int& iValue) const;
+    bool getAtomicLiteralValue(int iValue, std::string& strValue) const;
     bool _bInclusive;
     std::map<std::string, int> _numToLitMap;
 
