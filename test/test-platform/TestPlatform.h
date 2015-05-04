@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -138,7 +138,7 @@ private:
 
     bool createExclusiveSelectionCriterion(const std::string& strName, uint32_t uiNbValues, std::string& strResult);
     bool createInclusiveSelectionCriterion(const std::string& strName, uint32_t uiNbValues, std::string& strResult);
-    bool setCriterionState(const std::string& strName, uint32_t uiState, std::string& strResult);
+    bool setCriterionState(const std::string& strName, uint64_t uiState, std::string& strResult);
     bool setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     // Connector

@@ -36,13 +36,13 @@
 
 class CSelectionCriterionType : public CElement, public ISelectionCriterionTypeInterface
 {
-    typedef std::map<std::string, int>::const_iterator NumToLitMapConstIt;
+    typedef std::map<std::string, uint64_t>::const_iterator NumToLitMapConstIt;
 
 public:
     CSelectionCriterionType(bool bIsInclusive);
 
     // From ISelectionCriterionTypeInterface
-    virtual bool addValuePair(int iValue, const std::string& strValue, std::string& strError);
+    virtual bool addValuePair(uint64_t iValue, const std::string& strValue, std::string& strError);
     /**
      * Retrieve the numerical value from the std::string representation of the criterion type.
      *
@@ -53,15 +53,15 @@ public:
      *
      * @return true if integer value retrieved from the std::string one, false otherwise.
      */
-    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const;
-    virtual bool getLiteralValue(int iValue, std::string& strValue) const;
+    virtual bool getNumericalValue(const std::string& strValue, uint64_t& iValue) const;
+    virtual bool getLiteralValue(uint64_t iValue, std::string& strValue) const;
     virtual bool isTypeInclusive() const;
 
     // Value list
     std::string listPossibleValues() const;
 
     // Formatted state
-    virtual std::string getFormattedState(int iValue) const;
+    virtual std::string getFormattedState(uint64_t iValue) const;
 
     /**
       * Export to XML
@@ -84,9 +84,9 @@ private:
      *
      * @return true if integer value retrieved from the std::string one, false otherwise.
      */
-    bool getAtomicNumericalValue(const std::string& strValue, int& iValue) const;
+    bool getAtomicNumericalValue(const std::string& strValue, uint64_t& iValue) const;
     bool _bInclusive;
-    std::map<std::string, int> _numToLitMap;
+    std::map<std::string, uint64_t> _numToLitMap;
 
     static const std::string _strDelimiter; /**< Inclusive criterion type delimiter. */
 };

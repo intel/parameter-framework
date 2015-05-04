@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -87,7 +87,7 @@ private:
     MatchesWhen _eMatchesWhen;
 
     // Value
-    int32_t _iMatchValue;
+    uint64_t _iMatchValue;
 
     // Used for XML MatchesWhen attribute parsing
     static const SMatchingRuleDescription _astMatchesWhen[ENbMatchesWhen];
