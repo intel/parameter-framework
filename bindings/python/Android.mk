@@ -79,11 +79,25 @@ LOCAL_GENERATED_SOURCES := $(generated-sources-dir)/pfw_wrap.cxx $(generated-sou
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(generated-sources-dir)
 
-# Careful, we need to invoque the android python config not the host's one.
-# BTW, the intenal install directory of python is hardcoded to a dummy value,
-# thus we need to manually add the correct path to libs to the library list.
-LOCAL_LDLIBS += $(shell $(PYTHON_BIN_PATH)/python $(PYTHON_BIN_PATH)/python-config --ldflags) \
+# Get the interpreter ld options.
+ifeq ($(HOST_OS), darwin)
+    # Contrary to linux, on darwin, a python 64 bit executable is installed
+    # in the x86 prebuild directory,
+    # As all host libraries are 32 bit in android. We can not link and host
+    # python module against the prebuild python library.
+    #
+    # As a *dirty* workaround, use the system's python configuration and hope
+    # it will be compatible with the prebuild python interpreter used at runtime.
+    # To summarize the prebuild python (64 bit?) interpreter will load a
+    # python native module (32bit) linked with the host (32 bit ?) python library.
+    LOCAL_LDLIBS += $(shell python-config --ldflags)
+else
+   # Careful, we need to invoke the android python config not the host's one.
+   # Unfortunately, the internal install directory of python is hardcoded to a dummy value,
+   # As a workaround, we need to manually add the correct path to libs to the library list.
+    LOCAL_LDLIBS += $(shell $(PYTHON_BIN_PATH)/python $(PYTHON_BIN_PATH)/python-config --ldflags) \
                 -L $(PYTHON_INSTALL_PATH)/lib/
+endif
 
 $(generated-sources-dir)/pfw_wrap.h: $(generated-sources-dir)/pfw_wrap.cxx
 
