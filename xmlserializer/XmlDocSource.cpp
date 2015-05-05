@@ -118,7 +118,8 @@ bool CXmlDocSource::validate(CXmlSerializingContext& serializingContext)
     // Check that the doc has been created
     if (!_pDoc) {
 
-        serializingContext.setError("Could not parse document ");
+        serializingContext.setError("Could not parse document with Root element: " +
+                                    _strRootElementType);
 
         return false;
     }
