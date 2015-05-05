@@ -28,7 +28,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "XmlElementSerializingContext.h"
-#include <stdlib.h>
 
 #define base CXmlSerializingContext
 
