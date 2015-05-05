@@ -51,7 +51,6 @@ class CSubsystemLibrary;
 class CSystemClass;
 class CSelectionCriteria;
 class CParameterFrameworkConfiguration;
-class CSystemClassConfiguration;
 class CParameterBlackboard;
 class CConfigurableDomains;
 class IRemoteProcessorServerInterface;
