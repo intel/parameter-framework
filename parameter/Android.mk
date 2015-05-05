@@ -114,7 +114,6 @@ common_src_files := \
         VirtualSubsystem.cpp \
         VirtualSyncer.cpp \
         XmlElementSerializingContext.cpp \
-        XmlFileIncluderElement.cpp \
         XmlParameterSerializingContext.cpp
 
 common_module := libparameter

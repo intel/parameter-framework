@@ -96,7 +96,6 @@ add_library(parameter SHARED
     VirtualSubsystem.cpp
     VirtualSyncer.cpp
     XmlElementSerializingContext.cpp
-    XmlFileIncluderElement.cpp
     XmlParameterSerializingContext.cpp
     command/src/Parser.cpp)
 
@@ -131,7 +130,6 @@ install(FILES
     Element.h
     ElementBuilder.h
     ElementLibrary.h
-    FileIncluderElementBuilder.h
     FormattedSubsystemObject.h
     InstanceConfigurableElement.h
     Mapper.h

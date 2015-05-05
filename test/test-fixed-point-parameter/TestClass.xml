@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SystemClass Name="Test">
-    <SubsystemInclude Path="VirtualSubsystem.xml"/>
+<SystemClass xmlns:xi="http://www.w3.org/2001/XInclude" Name="Test">
+    <xi:include href="VirtualSubsystem.xml"/>
 </SystemClass>
