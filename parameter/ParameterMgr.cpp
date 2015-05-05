@@ -286,7 +286,7 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
     }
 
     if (!xmlParse(elementSerializingContext, &_pfwConfiguration, doc,
-                  _strXmlConfigurationFolderPath, EFrameworkConfigurationLibrary)) {
+                                                EFrameworkConfigurationLibrary)) {
 
         return false;
     }
@@ -350,9 +350,6 @@ bool CParameterMgr::loadStructure(string& strError)
         return false;
     }
 
-    // Get Xml structure folder
-    string strXmlStructureFolder = pStructureDescriptionFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
-
     // Get Xml structure file name
     string strXmlStructureFilePath = pStructureDescriptionFileLocation->getFilePath(_strXmlConfigurationFolderPath);
 
@@ -367,7 +364,7 @@ bool CParameterMgr::loadStructure(string& strError)
             return false;
         }
 
-        if (!xmlParse(parameterBuildContext, &_systemClass, doc, strXmlStructureFolder, EParameterCreationLibrary)) {
+        if (!xmlParse(parameterBuildContext, &_systemClass, doc, EParameterCreationLibrary)) {
 
             return false;
         }
@@ -443,9 +440,6 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     // Get Xml configuration domains file name
     string strXmlConfigurationDomainsFilePath = pConfigurableDomainsFileLocation->getFilePath(_strXmlConfigurationFolderPath);
 
-    // Get Xml configuration domains folder
-    string strXmlConfigurationDomainsFolder = pConfigurableDomainsFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
-
     // Parse configuration domains XML file (ask to read settings from XML file if they are not provided as binary)
     CXmlDomainImportContext xmlDomainImportContext(strError,
                                                    !pBinarySettingsFileLocation,
@@ -463,7 +457,8 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
         return false;
     }
 
-    if (!xmlParse(xmlDomainImportContext, &_domains, doc, strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary, "SystemClassName")) {
+    if (!xmlParse(xmlDomainImportContext, &_domains, doc,
+                                            EParameterConfigurationLibrary, "SystemClassName")) {
 
         return false;
     }
@@ -483,14 +478,13 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
 
 // XML parsing
 bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingContext,
-                             CElement* pRootElement, _xmlDoc* doc,
-                             const string& strXmlFolder,
+                             CElement* pRootElement,
+                             _xmlDoc* doc,
                              CParameterMgr::ElementLibrary eElementLibrary,
                              const string& strNameAttributeName)
 {
     // Init serializing context
-    elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(
-                                      eElementLibrary), strXmlFolder, _strSchemaFolderLocation);
+    elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(eElementLibrary));
 
     // Get Schema file associated to root element
     string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pRootElement->getKind() + ".xsd";
@@ -1284,7 +1278,8 @@ bool CParameterMgr::wrapLegacyXmlImport(const string& xmlSource, bool fromFile,
         return false;
     }
 
-    return xmlParse(xmlDomainImportContext, &element, doc, "", EParameterConfigurationLibrary, nameAttributeName);
+    return xmlParse(xmlDomainImportContext, &element, doc,
+                    EParameterConfigurationLibrary, nameAttributeName);
 }
 
 bool CParameterMgr::serializeElement(std::ostream& output,

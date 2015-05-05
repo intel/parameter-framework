@@ -41,9 +41,6 @@ public:
     // File path
     std::string getFilePath(const std::string& strBaseFolder) const;
 
-    // Folder path
-    std::string getFolderPath(const std::string& strBaseFolder) const;
-
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 private:

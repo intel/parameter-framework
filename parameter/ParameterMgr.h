@@ -419,15 +419,14 @@ private:
      * @param[in] elementSerializingContext serializing context
      * @param[out] pRootElement the receiving element
      * @param[in] input the input XML stream
-     * @param[in] strXmlFolder the folder containing the XML input file (if applicable) or ""
      * @param[in] eElementLibrary which element library to be used
      * @param[in] strNameAttributeName the name of the element's XML "name" attribute
      *
      * @returns true if parsing succeeded, false otherwise
      */
     bool xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement,
-                  _xmlDoc* doc, const std::string& strXmlFolder,
-                  ElementLibrary eElementLibrary, const std::string& strNameAttributeName = "Name");
+                  _xmlDoc* doc, ElementLibrary eElementLibrary,
+                  const std::string& strNameAttributeName = "Name");
 
     /** Wrapper for converting public APIs semantics to internal API
      *
