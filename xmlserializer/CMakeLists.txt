@@ -65,3 +65,22 @@ install(FILES
     XmlElement.h
     XmlSerializingContext.h
     DESTINATION "include/xmlserializer")
+
+if(BUILD_TESTING)
+    find_path(CATCH_HEADER catch.hpp)
+    include_directories(
+        ./
+        include
+        ${CATCH_HEADER})
+
+    # Add unit test
+    add_executable(xmlBindingUnitTest test/XmlBindingUnitTest.cpp)
+
+    target_link_libraries(xmlBindingUnitTest xmlserializer)
+    add_test(NAME xmlBindingUnitTest
+             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/test
+             COMMAND xmlBindingUnitTest)
+
+    # Custom function defined in the top-level CMakeLists
+    set_test_env(xmlBindingUnitTest)
+endif()

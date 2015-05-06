@@ -59,6 +59,7 @@ after_success:
           --exclude "bindings/c/Test.cpp"
           --exclude "parameter/criterion/test/"
           --exclude "test/tokenizer"
+          --exclude "xmlserializer/test"
           --gcov /usr/bin/gcov-4.8
           --gcov-options '\--long-file-names --preserve-paths'
 
