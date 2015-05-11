@@ -60,7 +60,7 @@ LOCAL_C_INCLUDES := $(common_c_includes)
 LOCAL_STATIC_LIBRARIES := libpfw_utility
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
 
-include external/stlport/libstlport.mk
+LOCAL_CLANG := true
 include $(BUILD_EXECUTABLE)
 
 ##############################
@@ -82,6 +82,4 @@ LOCAL_STATIC_LIBRARIES := libpfw_utility_host
 LOCAL_SHARED_LIBRARIES := $(foreach shared_library, $(common_shared_libraries), \
     $(shared_library)_host)
 
-LOCAL_CLANG := true
-include external/libcxx/libcxx.mk
 include $(BUILD_HOST_EXECUTABLE)
