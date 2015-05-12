@@ -133,7 +133,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     CXmlDomainImportContext& xmlDomainImportContext = static_cast<CXmlDomainImportContext&>(serializingContext);
 
     // Get selection criterion
-    string strSelectionCriterion = xmlElement.getAttributeString("SelectionCriterion");
+    string strSelectionCriterion;
+    xmlElement.getAttribute("SelectionCriterion", strSelectionCriterion);
 
     _pSelectionCriterion =
         xmlDomainImportContext.getCriteria().getCriterion(strSelectionCriterion);
@@ -147,7 +148,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     }
 
     // Get MatchesWhen
-    mMatchesWhenVerb = xmlElement.getAttributeString("MatchesWhen");
+    xmlElement.getAttribute("MatchesWhen", mMatchesWhenVerb);
     string strError;
 
     if (!_pSelectionCriterion->isMatchMethodAvailable(mMatchesWhenVerb)) {
@@ -160,7 +161,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     }
 
     // Get Value
-    string strValue = xmlElement.getAttributeString("Value");
+    string strValue;
+    xmlElement.getAttribute("Value", strValue);
 
     if (!setMatchState(strValue)) {
 
@@ -180,13 +182,13 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     assert(_pSelectionCriterion);
 
     // Set selection criterion
-    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getName());
+    xmlElement.setAttribute("SelectionCriterion", _pSelectionCriterion->getName());
 
     // Set MatchesWhen
-    xmlElement.setAttributeString("MatchesWhen", mMatchesWhenVerb);
+    xmlElement.setAttribute("MatchesWhen", mMatchesWhenVerb);
 
     // Set Value
-    xmlElement.setAttributeString("Value", mMatchState.empty() ? gEmptyRule : *mMatchState.begin());
+    xmlElement.setAttribute("Value", mMatchState.empty() ? gEmptyRule : *mMatchState.begin());
 }
 
 bool CSelectionCriterionRule::setMatchState(const std::string &value)

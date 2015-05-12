@@ -79,7 +79,7 @@ void CParameterType::setUnit(const std::string& strUnit)
 // From IXmlSink
 bool CParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
-    setUnit(xmlElement.getAttributeString(gUnitPropertyName));
+    xmlElement.getAttribute(gUnitPropertyName, _strUnit);
     return base::fromXml(xmlElement, serializingContext);
 }
 
@@ -94,7 +94,7 @@ void CParameterType::setXmlUnitAttribute(CXmlElement& xmlElement) const
 {
     const string& unit = getUnit();
     if (!unit.empty()) {
-        xmlElement.setAttributeString(gUnitPropertyName, unit);
+        xmlElement.setAttribute(gUnitPropertyName, unit);
     }
 }
 

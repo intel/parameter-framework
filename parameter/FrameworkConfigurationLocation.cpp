@@ -39,7 +39,7 @@ CFrameworkConfigurationLocation::CFrameworkConfigurationLocation(const std::stri
 // From IXmlSink
 bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
-    _strPath = xmlElement.getAttributeString("Path");
+    xmlElement.getAttribute("Path", _strPath);
 
     if (_strPath.empty()) {
 

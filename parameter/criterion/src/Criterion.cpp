@@ -185,9 +185,9 @@ std::string Criterion::getFormattedDescription(bool withTypeInfo, bool humanRead
 void Criterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     (void)serializingContext;
-    xmlElement.setAttributeString("Value", getFormattedState());
-    xmlElement.setAttributeString("Name", mName);
-    xmlElement.setAttributeString("Kind", getKind());
+    xmlElement.setAttribute("Value", getFormattedState());
+    xmlElement.setAttribute("Name", mName);
+    xmlElement.setAttribute("Kind", getKind());
 
     for (auto& value : mValues) {
         CXmlElement childValueElement;

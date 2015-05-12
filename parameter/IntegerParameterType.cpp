@@ -93,15 +93,17 @@ void CIntegerParameterType::showProperties(string& strResult) const
 bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Sign
-    _bSigned = xmlElement.getAttributeBoolean("Signed");
+    xmlElement.getAttribute("Signed", _bSigned);
 
     // Size in bits
-    uint32_t uiSizeInBits = xmlElement.getAttributeInteger("Size");
+    uint32_t uiSizeInBits = 0;
+    xmlElement.getAttribute("Size", uiSizeInBits);
 
     // Size
     setSize(uiSizeInBits / 8);
 
     // Min / Max
+    // TODO: Make IntegerParameter template
     if (_bSigned) {
 
         // Signed means we have one less util bit
@@ -109,7 +111,9 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 
         if (xmlElement.hasAttribute("Min")) {
 
-            _uiMin = (uint32_t)xmlElement.getAttributeSignedInteger("Min");
+            int min = 0;
+            xmlElement.getAttribute("Min", min);
+            _uiMin = (uint32_t) min;
         } else {
 
             _uiMin = 1UL << uiSizeInBits;
@@ -119,7 +123,9 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 
         if (xmlElement.hasAttribute("Max")) {
 
-            _uiMax = (uint32_t)xmlElement.getAttributeSignedInteger("Max");
+            int max = 0;
+            xmlElement.getAttribute("Max", max);
+            _uiMax = (uint32_t) max;
 
             signExtend((int32_t&)_uiMax);
         } else {
@@ -129,14 +135,14 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
     } else {
         if (xmlElement.hasAttribute("Min")) {
 
-            _uiMin = xmlElement.getAttributeInteger("Min");
+            xmlElement.getAttribute("Min", _uiMin);
         } else {
 
             _uiMin = 0;
         }
         if (xmlElement.hasAttribute("Max")) {
 
-            _uiMax = xmlElement.getAttributeInteger("Max");
+            xmlElement.getAttribute("Max", _uiMax);
         } else {
 
             _uiMax = (uint32_t)-1L >> (8 * sizeof(uint32_t) - uiSizeInBits);
@@ -435,27 +441,27 @@ const CParameterAdaptation* CIntegerParameterType::getParameterAdaptation() cons
 void CIntegerParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Sign
-    xmlElement.setAttributeBoolean("Signed", _bSigned);
+    xmlElement.setAttribute("Signed", _bSigned);
 
     if (_bSigned) {
 
         // Mininmum
-        xmlElement.setAttributeString("Min", CUtility::toString((int32_t)_uiMin));
+        xmlElement.setAttribute("Min", (int32_t)_uiMin);
 
         // Maximum
-        xmlElement.setAttributeString("Max", CUtility::toString((int32_t)_uiMax));
+        xmlElement.setAttribute("Max", (int32_t)_uiMax);
 
     } else {
 
         // Minimum
-        xmlElement.setAttributeString("Min", CUtility::toString(_uiMin));
+        xmlElement.setAttribute("Min", _uiMin);
 
         // Maximum
-        xmlElement.setAttributeString("Max", CUtility::toString(_uiMax));
+        xmlElement.setAttribute("Max", _uiMax);
     }
 
     // Size
-    xmlElement.setAttributeString("Size", CUtility::toString(getSize() * 8));
+    xmlElement.setAttribute("Size", getSize() * 8);
 
     base::toXml(xmlElement, serializingContext);
 

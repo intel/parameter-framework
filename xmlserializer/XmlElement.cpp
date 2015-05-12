@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -30,10 +30,8 @@
 #include "XmlElement.h"
 #include <libxml/tree.h>
 #include <stdlib.h>
-#include <sstream>
 
 using std::string;
-using std::ostringstream;
 
 CXmlElement::CXmlElement(_xmlNode* pXmlElement) : _pXmlElement(pXmlElement)
 {
@@ -74,7 +72,9 @@ string CXmlElement::getPath() const
 
 string CXmlElement::getNameAttribute() const
 {
-    return getAttributeString("Name");
+    string attribute;
+    getAttribute("Name", attribute);
+    return attribute;
 }
 
 bool CXmlElement::hasAttribute(const string& strAttributeName) const
@@ -82,55 +82,30 @@ bool CXmlElement::hasAttribute(const string& strAttributeName) const
     return xmlHasProp(_pXmlElement, (const xmlChar*)strAttributeName.c_str()) != NULL;
 }
 
-string CXmlElement::getAttributeString(const string &strAttributeName) const
+template <>
+bool CXmlElement::getAttribute<std::string>(const string &name, string &value) const
 {
-    if (!hasAttribute(strAttributeName)) {
-
-        return "";
+    if (!hasAttribute(name)) {
+        return false;
     }
-    xmlChar* pucXmlValue = xmlGetProp((xmlNode*)_pXmlElement, (const xmlChar*)strAttributeName.c_str());
+    xmlChar* pucXmlValue = xmlGetProp((xmlNode*)_pXmlElement, (const xmlChar*)name.c_str());
+
     if (pucXmlValue == NULL) {
-        return "";
+        return false;
     }
 
-    string strValue((const char*)pucXmlValue);
+    value = (const char*)pucXmlValue;
 
     xmlFree(pucXmlValue);
 
-    return strValue;
+    return true;
 }
 
 bool CXmlElement::getAttributeBoolean(const string& strAttributeName, const string& strTrueValue) const
 {
-    return getAttributeString(strAttributeName) == strTrueValue;
-}
-
-bool CXmlElement::getAttributeBoolean(const string& strAttributeName) const
-{
-    string strAttributeValue(getAttributeString(strAttributeName));
-
-    return strAttributeValue == "true" || strAttributeValue == "1";
-}
-
-uint32_t CXmlElement::getAttributeInteger(const string &strAttributeName) const
-{
-    string strAttributeValue(getAttributeString(strAttributeName));
-
-    return strtoul(strAttributeValue.c_str(), NULL, 0);
-}
-
-int32_t CXmlElement::getAttributeSignedInteger(const string &strAttributeName) const
-{
-    string strAttributeValue(getAttributeString(strAttributeName));
-
-    return strtol(strAttributeValue.c_str(), NULL, 0);
-}
-
-double CXmlElement::getAttributeDouble(const string &strAttributeName) const
-{
-    string strAttributeValue(getAttributeString(strAttributeName));
-
-    return strtod(strAttributeValue.c_str(), NULL);
+    string value;
+    getAttribute(strAttributeName, value);
+    return value == strTrueValue;
 }
 
 string CXmlElement::getTextContent() const
@@ -202,35 +177,21 @@ bool CXmlElement::getParentElement(CXmlElement& parentElement) const
     return false;
 }
 
-// Setters
-void CXmlElement::setAttributeBoolean(const string& strAttributeName, bool bValue)
+template <>
+void CXmlElement::setAttribute<bool>(const string& name, const bool &value)
 {
-    setAttributeString(strAttributeName, bValue ? "true" : "false");
+    setAttribute(name, value ? "true" : "false");
 }
 
-
-void CXmlElement::setAttributeString(const string& strAttributeName, const string& strValue)
+template <>
+void CXmlElement::setAttribute<std::string>(const string &name, const string &value)
 {
-    xmlNewProp(_pXmlElement, BAD_CAST strAttributeName.c_str(), BAD_CAST strValue.c_str());
-}
-
-void CXmlElement::setAttributeInteger(const string& strAttributeName, uint32_t uiValue)
-{
-   ostringstream strStream;
-   strStream << uiValue;
-   setAttributeString(strAttributeName, strStream.str());
-}
-
-void CXmlElement::setAttributeSignedInteger(const string& strAttributeName, int32_t iValue)
-{
-   ostringstream strStream;
-   strStream << iValue;
-   setAttributeString(strAttributeName, strStream.str());
+    xmlNewProp(_pXmlElement, BAD_CAST name.c_str(), BAD_CAST value.c_str());
 }
 
 void CXmlElement::setNameAttribute(const string& strValue)
 {
-    setAttributeString("Name", strValue);
+    setAttribute("Name", strValue);
 }
 
 void CXmlElement::setTextContent(const string& strContent)

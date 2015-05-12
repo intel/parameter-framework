@@ -69,7 +69,7 @@ bool CParameterAdaptation::fromXml(const CXmlElement& xmlElement, CXmlSerializin
     // Get offset
     if (xmlElement.hasAttribute("Offset")) {
 
-        _iOffset = xmlElement.getAttributeSignedInteger("Offset");
+        xmlElement.getAttribute("Offset", _iOffset);
 
     } else {
         // Default

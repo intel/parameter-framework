@@ -68,13 +68,13 @@ uint16_t CParameterFrameworkConfiguration::getServerPort() const
 bool CParameterFrameworkConfiguration::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // System class name
-    _strSystemClassName = xmlElement.getAttributeString("SystemClassName");
+    xmlElement.getAttribute("SystemClassName", _strSystemClassName);
 
     // Tuning allowed
-    _bTuningAllowed = xmlElement.getAttributeBoolean("TuningAllowed");
+    xmlElement.getAttribute("TuningAllowed", _bTuningAllowed);
 
     // Server port
-    _uiServerPort = (uint16_t)xmlElement.getAttributeInteger("ServerPort");
+    xmlElement.getAttribute("ServerPort", _uiServerPort);
 
     // Base
     return base::fromXml(xmlElement, serializingContext);

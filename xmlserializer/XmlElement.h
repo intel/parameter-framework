@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -29,8 +29,10 @@
  */
 #pragma once
 
+#include <convert.hpp>
 #include <stdint.h>
 #include <string>
+#include <sstream>
 
 struct _xmlNode;
 struct _xmlDoc;
@@ -50,12 +52,25 @@ public:
     std::string getPath() const;
     std::string getNameAttribute() const;
     bool hasAttribute(const std::string& strAttributeName) const;
+
+     /** Get attribute
+      *
+      * @tparam T the type of the value to retrieve
+      * @param[in] name The attribute name
+      * @param[in] value The attribute value
+      * @return true if success, false otherwise
+      */
+    template <typename T>
+    bool getAttribute(const std::string &name, T &value) const
+    {
+        std::string rawValue;
+        if (!getAttribute(name, rawValue)) {
+            return false;
+        }
+        return convertTo<T>(rawValue, value);
+    }
+
     bool getAttributeBoolean(const std::string& strAttributeName, const std::string& strTrueValue) const;
-    bool getAttributeBoolean(const std::string& strAttributeName) const;
-    std::string getAttributeString(const std::string& strAttributeName) const;
-    uint32_t getAttributeInteger(const std::string& strAttributeName) const;
-    int32_t getAttributeSignedInteger(const std::string& strAttributeName) const;
-    double getAttributeDouble(const std::string& strAttributeName) const;
     std::string getTextContent() const;
 
     // Navigation
@@ -64,20 +79,22 @@ public:
     size_t getNbChildElements() const;
     bool getParentElement(CXmlElement& parentElement) const;
 
-    // Setters
-    void setAttributeBoolean(const std::string& strAttributeName, bool bValue);
-    void setAttributeString(const std::string& strAttributeName, const std::string& strValue);
+     /** Set attribute
+      *
+      * @tparam T the type of the value to retrieve
+      * @param[in] name The attribute name
+      * @param[in] value The attribute value
+      */
+    template <typename T>
+    void setAttribute(const std::string& name, const T &value)
+    {
+        std::ostringstream stream;
+        stream << value;
+        setAttribute(name, stream.str());
+    }
+
     void setNameAttribute(const std::string& strValue);
     void setTextContent(const std::string& strContent);
-    void setAttributeInteger(const std::string& strAttributeName, uint32_t uiValue);
-    /**
-      * Set attribute with signed integer
-      *
-      * @param[in] strAttributeName The attribute name
-      * @param[in] iValue The attribute value
-      *
-      */
-    void setAttributeSignedInteger(const std::string& strAttributeName, int32_t iValue);
 
     // Child creation
     void createChild(CXmlElement& childElement, const std::string& strType);
@@ -98,3 +115,10 @@ private:
     _xmlNode* _pXmlElement;
 };
 
+
+template <>
+bool CXmlElement::getAttribute<std::string>(const std::string &name, std::string &value) const;
+template <>
+void CXmlElement::setAttribute<std::string>(const std::string& name, const std::string &value);
+template <>
+void CXmlElement::setAttribute<bool>(const std::string& name, const bool &value);

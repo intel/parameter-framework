@@ -129,7 +129,7 @@ void CElement::logValue(string& strValue, CErrorContext& errorContext) const
 // From IXmlSink
 bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
-    setDescription(getXmlDescriptionAttribute(xmlElement));
+    xmlElement.getAttribute(gDescriptionPropertyName, _strDescription);
 
     // Propagate through children
     CXmlElement::CChildIterator childIterator(xmlElement);
@@ -206,13 +206,8 @@ void CElement::setXmlDescriptionAttribute(CXmlElement& xmlElement) const
 {
     const string &description = getDescription();
     if (!description.empty()) {
-        xmlElement.setAttributeString(gDescriptionPropertyName, description);
+        xmlElement.setAttribute(gDescriptionPropertyName, description);
     }
-}
-
-string CElement::getXmlDescriptionAttribute(const CXmlElement& xmlElement) const
-{
-    return xmlElement.getAttributeString(gDescriptionPropertyName);
 }
 
 void CElement::setXmlNameAttribute(CXmlElement& xmlElement) const

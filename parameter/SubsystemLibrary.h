@@ -42,6 +42,8 @@ private:
     virtual std::string getBuilderType(const CXmlElement& xmlElement) const
     {
         // Xml element's name attribute
-        return xmlElement.getAttributeString("Type");
+        std::string type;
+        xmlElement.getAttribute("Type", type);
+        return type;
     }
 };
