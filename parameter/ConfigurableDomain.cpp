@@ -121,7 +121,7 @@ void CConfigurableDomain::toXml(CXmlElement& xmlElement, CXmlSerializingContext&
     base::toXml(xmlElement, serializingContext);
 
     // Sequence awareness
-    xmlElement.setAttributeBoolean("SequenceAware", _bSequenceAware);
+    xmlElement.setAttribute("SequenceAware", _bSequenceAware);
 }
 
 void CConfigurableDomain::childrenToXml(CXmlElement& xmlElement,
@@ -169,7 +169,7 @@ void CConfigurableDomain::composeConfigurableElements(CXmlElement& xmlElement) c
         xmlConfigurableElementsElement.createChild(xmlChildConfigurableElement, "ConfigurableElement");
 
         // Set Path attribute
-        xmlChildConfigurableElement.setAttributeString("Path", pConfigurableElement->getPath());
+        xmlChildConfigurableElement.setAttribute("Path", pConfigurableElement->getPath());
     }
 }
 
@@ -218,9 +218,13 @@ bool CConfigurableDomain::fromXml(const CXmlElement& xmlElement, CXmlSerializing
         static_cast<CXmlDomainImportContext&>(serializingContext);
 
     // Sequence awareness (optional)
-    _bSequenceAware = xmlElement.hasAttribute("SequenceAware") && xmlElement.getAttributeBoolean("SequenceAware");
+    if (!xmlElement.getAttribute("SequenceAware", _bSequenceAware)) {
+        _bSequenceAware = false;
+    }
 
-    setName(xmlElement.getAttributeString("Name"));
+    std::string name;
+    xmlElement.getAttribute("Name", name);
+    setName(name);
 
     // Local parsing. Do not dig
     if (!parseDomainConfigurations(xmlElement, xmlDomainImportContext) ||
@@ -274,7 +278,8 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
     while (it.next(xmlConfigurableElementElement)) {
 
         // Locate configurable element
-        string strConfigurableElementPath = xmlConfigurableElementElement.getAttributeString("Path");
+        string strConfigurableElementPath;
+        xmlConfigurableElementElement.getAttribute("Path", strConfigurableElementPath);
 
         CPathNavigator pathNavigator(strConfigurableElementPath);
         string strError;

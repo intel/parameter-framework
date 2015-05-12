@@ -157,7 +157,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     CXmlDomainImportContext& xmlDomainImportContext = static_cast<CXmlDomainImportContext&>(serializingContext);
 
     // Get selection criterion
-    string strSelectionCriterion = xmlElement.getAttributeString("SelectionCriterion");
+    string strSelectionCriterion;
+    xmlElement.getAttribute("SelectionCriterion", strSelectionCriterion);
 
     _pSelectionCriterion = xmlDomainImportContext.getSelectionCriteriaDefinition()->getSelectionCriterion(strSelectionCriterion);
 
@@ -170,7 +171,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     }
 
     // Get MatchesWhen
-    string strMatchesWhen = xmlElement.getAttributeString("MatchesWhen");
+    string strMatchesWhen;
+    xmlElement.getAttribute("MatchesWhen", strMatchesWhen);
     string strError;
 
     if (!setMatchesWhen(strMatchesWhen, strError)) {
@@ -181,7 +183,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     }
 
     // Get Value
-    string strValue = xmlElement.getAttributeString("Value");
+    string strValue;
+    xmlElement.getAttribute("Value", strValue);
 
     if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
 
@@ -202,17 +205,17 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     assert(_pSelectionCriterion);
 
     // Set selection criterion
-    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getName());
+    xmlElement.setAttribute("SelectionCriterion", _pSelectionCriterion->getName());
 
     // Set MatchesWhen
-    xmlElement.setAttributeString("MatchesWhen", _astMatchesWhen[_eMatchesWhen].pcMatchesWhen);
+    xmlElement.setAttribute("MatchesWhen", _astMatchesWhen[_eMatchesWhen].pcMatchesWhen);
 
     // Set Value
     string strValue;
 
      _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, strValue);
 
-    xmlElement.setAttributeString("Value", strValue);
+    xmlElement.setAttribute("Value", strValue);
 }
 
 // XML MatchesWhen attribute parsing

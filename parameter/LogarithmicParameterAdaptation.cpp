@@ -59,7 +59,7 @@ bool CLogarithmicParameterAdaptation::fromXml(const CXmlElement& xmlElement,
 
     if (xmlElement.hasAttribute("LogarithmBase")) {
 
-        _dLogarithmBase = xmlElement.getAttributeDouble("LogarithmBase");
+        xmlElement.getAttribute("LogarithmBase", _dLogarithmBase);
 
         // Avoid negative and 1 values
         if (_dLogarithmBase <= 0 || _dLogarithmBase == 1) {
@@ -71,7 +71,7 @@ bool CLogarithmicParameterAdaptation::fromXml(const CXmlElement& xmlElement,
     }
 
     if (xmlElement.hasAttribute("FloorValue")) {
-        _dFloorValue = xmlElement.getAttributeDouble("FloorValue");
+        xmlElement.getAttribute("FloorValue", _dFloorValue);
     }
     // Base
     return base::fromXml(xmlElement, serializingContext);

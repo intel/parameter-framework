@@ -102,7 +102,7 @@ void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, CSy
 void CConfigurableDomains::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Set attribute
-    xmlElement.setAttributeString("SystemClassName", getName());
+    xmlElement.setAttribute("SystemClassName", getName());
 
     base::childrenToXml(xmlElement, serializingContext);
 }

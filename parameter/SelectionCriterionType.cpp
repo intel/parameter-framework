@@ -220,7 +220,7 @@ std::string CSelectionCriterionType::getFormattedState(int iValue) const
 void CSelectionCriterionType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Type Kind
-    xmlElement.setAttributeString("Kind", isTypeInclusive() ? "Inclusive" : "Exclusive");
+    xmlElement.setAttribute("Kind", isTypeInclusive() ? "Inclusive" : "Exclusive");
 
     // Value pairs as children
     NumToLitMapConstIt it;
@@ -231,9 +231,9 @@ void CSelectionCriterionType::toXml(CXmlElement& xmlElement, CXmlSerializingCont
 
         xmlElement.createChild(childValuePairElement, "ValuePair");
         // Literal
-        childValuePairElement.setAttributeString("Literal", it->first);
+        childValuePairElement.setAttribute("Literal", it->first);
         // Numerical
-        childValuePairElement.setAttributeSignedInteger("Numerical", it->second);
+        childValuePairElement.setAttribute("Numerical", it->second);
     }
 
     base::toXml(xmlElement, serializingContext);

@@ -76,8 +76,9 @@ void CFixedPointParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigu
         // Get Value space from XML
         if (xmlConfigurableElementSettingsElement.hasAttribute("ValueSpace")) {
 
-            configurationAccessContext.setValueSpaceRaw(
-                    xmlConfigurableElementSettingsElement.getAttributeString("ValueSpace") == "Raw");
+            string strValueSpace;
+            xmlConfigurableElementSettingsElement.getAttribute("ValueSpace", strValueSpace);
+            configurationAccessContext.setValueSpaceRaw(strValueSpace == "Raw");
         } else {
 
             configurationAccessContext.setValueSpaceRaw(false);
@@ -86,7 +87,7 @@ void CFixedPointParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigu
         // Provide value space only if not the default one
         if (configurationAccessContext.valueSpaceIsRaw()) {
 
-            xmlConfigurableElementSettingsElement.setAttributeString("ValueSpace", "Raw");
+            xmlConfigurableElementSettingsElement.setAttribute("ValueSpace", "Raw");
         }
     }
 }
@@ -94,16 +95,22 @@ void CFixedPointParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigu
 bool CFixedPointParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Size
-    uint32_t uiSizeInBits = xmlElement.getAttributeInteger("Size");
+    uint32_t uiSizeInBits;
+    xmlElement.getAttribute("Size", uiSizeInBits);
 
     // Q notation
-    _uiIntegral = xmlElement.getAttributeInteger("Integral");
-    _uiFractional = xmlElement.getAttributeInteger("Fractional");
+    xmlElement.getAttribute("Integral", _uiIntegral);
+    xmlElement.getAttribute("Fractional", _uiFractional);
 
     // Size vs. Q notation integrity check
     if (uiSizeInBits < getUtilSizeInBits()) {
 
-        serializingContext.setError("Inconsistent Size vs. Q notation for " + getKind() + " " + xmlElement.getPath() + ": Summing (Integral + _uiFractional + 1) should not exceed given Size (" + xmlElement.getAttributeString("Size") + ")");
+        std::string size;
+        xmlElement.getAttribute("Size", size);
+        serializingContext.setError(
+                "Inconsistent Size vs. Q notation for " + getKind() + " " + xmlElement.getPath() +
+                ": Summing (Integral + _uiFractional + 1) should not exceed given Size (" +
+                size + ")");
 
         return false;
     }
@@ -365,13 +372,13 @@ double CFixedPointParameterType::binaryQnmToDouble(int32_t iValue) const
 void CFixedPointParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Size
-    xmlElement.setAttributeString("Size", CUtility::toString(getSize() * 8));
+    xmlElement.setAttribute("Size", getSize() * 8);
 
     // Integral
-    xmlElement.setAttributeString("Integral", CUtility::toString(_uiIntegral));
+    xmlElement.setAttribute("Integral", _uiIntegral);
 
     // Fractional
-    xmlElement.setAttributeString("Fractional", CUtility::toString(_uiFractional));
+    xmlElement.setAttribute("Fractional", _uiFractional);
 
     base::toXml(xmlElement, serializingContext);
 }

@@ -66,12 +66,7 @@ void CParameterAdaptation::showProperties(string& strResult) const
 // From IXmlSink
 bool CParameterAdaptation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
-    // Get offset
-    if (xmlElement.hasAttribute("Offset")) {
-
-        _iOffset = xmlElement.getAttributeSignedInteger("Offset");
-
-    } else {
+    if (!xmlElement.getAttribute("Offset", _iOffset)) {
         // Default
         _iOffset = 0;
     }
