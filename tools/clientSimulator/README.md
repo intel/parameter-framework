@@ -29,16 +29,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # Client simulator
 
 ## Project
-This project allows user to Test pfw configuration. For now,
-*audio* test vectors and configuration are available in the
-`vendor/intel/hardware/PRIVATE/audiocomms/tests` project,
-in the `test_suites/audio-hal/functional_tests/pfw-criteria-test`
-directory.
-As they can be platform related, they can be moved in device
-directory. See dedicated README file for more information.
+This project allows user to test Parameter Framework configurations.
+It allows to write scenario, mixing criterion change and arbitrary
+script execution.
 
-The project should be in the parameter-framework core repo
-once mature.
+It ease the development of automatic Parameter Framework configuration
+functional test.
 
 ## How to
 
