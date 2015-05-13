@@ -26,7 +26,7 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Pfw Criteria Tests Project Readme
+# Client simulator
 
 ## Project
 This project allows user to Test pfw configuration. For now,
@@ -42,7 +42,7 @@ once mature.
 
 ## How to
 
-You can run tests using pfwCriteriaTest.py file.
+You can run tests using pfClientSimulator.py file.
 
 You have to run the script with at least the test directory argument:
 
@@ -58,7 +58,7 @@ Different options are available:
 
 To see available scenarios in the test directory, you can run:
 
-``` ./pfwCriteriaTest.py path/to/tests/ ```
+``` ./pfClientSimulator.py path/to/tests/ ```
 
 The script will wait for a choice and the desired scenario will be
 launched. You can also precise a scenario with -s option.
