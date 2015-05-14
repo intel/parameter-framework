@@ -44,8 +44,12 @@ using std::string;
 CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
     _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL), _ulThreadId(0)
 {
+}
+
+bool CRemoteProcessorServer::init()
+{
     // Create inband pipe
-    pipe(_aiInbandPipe);
+    return pipe(_aiInbandPipe) == 0;
 }
 
 CRemoteProcessorServer::~CRemoteProcessorServer()
@@ -83,13 +87,12 @@ void CRemoteProcessorServer::stop()
 {
     // Check state
     if (!_bIsStarted) {
-
         return;
     }
 
     // Cause exiting of the thread
     uint8_t ucData = 0;
-    write(_aiInbandPipe[1], &ucData, sizeof(ucData));
+    TEMP_FAILURE_RETRY(write(_aiInbandPipe[1], &ucData, sizeof(ucData)));
 
     // Join thread
     pthread_join(_ulThreadId, NULL);
@@ -139,7 +142,7 @@ void CRemoteProcessorServer::run()
 
             // Consume exit request
             uint8_t ucData;
-            read(_aiInbandPipe[0], &ucData, sizeof(ucData));
+            TEMP_FAILURE_RETRY(read(_aiInbandPipe[0], &ucData, sizeof(ucData)));
 
             // Exit
             return;

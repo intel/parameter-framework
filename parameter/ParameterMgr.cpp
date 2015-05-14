@@ -2528,6 +2528,10 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
 
         // Create server
         _pRemoteProcessorServer = pfnCreateRemoteProcessorServer(getConstFrameworkConfiguration()->getServerPort(), _pCommandHandler);
+        if (_pRemoteProcessorServer == nullptr) {
+            strError = "Could not create remote processor server.";
+            return false;
+        }
 
         log_info("Starting remote processor server on port %d", getConstFrameworkConfiguration()->getServerPort());
         // Start
