@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -352,6 +352,21 @@ public:
 
     // CElement
     virtual std::string getKind() const;
+
+    /**
+     * Call this method at program start in the "main thread" if you plan to use
+     * the parameter manager through several threads
+     *
+     * The "main thread" is a thread that lives until process exit, for instance the
+     * thread that calls the main() method.
+     *
+     * Note: this method doesn't make the parameter manager thread safe, it allows
+     * only to use the parameter framework library by several thread sequentially.
+     *
+     * This call is due to a libxml2 library requirement, which is a dependency
+     * of the parameter manager.
+     */
+    static void initForMultiThreading();
 
 private:
     CParameterMgr(const CParameterMgr&);
