@@ -83,8 +83,8 @@ protected:
     void blackboardRead(void* pvData, uint32_t uiSize);
     void blackboardWrite(const void* pvData, uint32_t uiSize);
     // Logging
-    void log_info(const std::string& strMessage, ...) const;
-    void log_warning(const std::string& strMessage, ...) const;
+    void log_info(const char* strMessage, ...) const;
+    void log_warning(const char* strMessage, ...) const;
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
 

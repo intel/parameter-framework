@@ -60,7 +60,7 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_CFLAGS := $(common_cflags)
 
-include external/stlport/libstlport.mk
+LOCAL_CLANG := true
 include $(BUILD_STATIC_LIBRARY)
 
 ##############################

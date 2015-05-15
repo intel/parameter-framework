@@ -42,6 +42,8 @@ public:
     CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
     virtual ~CRemoteProcessorServer();
 
+    bool init();
+
     // State
     virtual bool start();
     virtual void stop();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,6 +33,7 @@
 #include <sstream>
 #include "ParameterAccessContext.h"
 #include "BitParameterBlockType.h"
+#include "Utility.h"
 
 #define base CTypeElement
 
@@ -55,17 +56,17 @@ void CBitParameterType::showProperties(string& strResult) const
 
     // Bit Pos
     strResult += "Bit pos: ";
-    strResult += toString(_uiBitPos);
+    strResult += CUtility::toString(_uiBitPos);
     strResult += "\n";
 
     // Bit size
     strResult += "Bit size: ";
-    strResult += toString(_uiBitSize);
+    strResult += CUtility::toString(_uiBitSize);
     strResult += "\n";
 
     // Max
     strResult += "Max: ";
-    strResult += toString(_uiMax);
+    strResult += CUtility::toString(_uiMax);
     strResult += "\n";
 }
 
@@ -191,7 +192,7 @@ bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CP
     return true;
 }
 
-void CBitParameterType::fromBlackboard(uint64_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& parameterAccessContext) const
+void CBitParameterType::fromBlackboard(uint32_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     (void)parameterAccessContext;
 
@@ -245,13 +246,13 @@ bool CBitParameterType::isEncodable(uint64_t uiData) const
 void CBitParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Position
-    xmlElement.setAttributeString("Pos", toString(_uiBitPos));
+    xmlElement.setAttributeString("Pos", CUtility::toString(_uiBitPos));
 
     // Size
-    xmlElement.setAttributeString("Size", toString(_uiBitSize));
+    xmlElement.setAttributeString("Size", CUtility::toString(_uiBitSize));
 
     // Maximum
-    xmlElement.setAttributeString("Max", toString(_uiMax));
+    xmlElement.setAttributeString("Max", CUtility::toString(_uiMax));
 
     base::toXml(xmlElement, serializingContext);
 

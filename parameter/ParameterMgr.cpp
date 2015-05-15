@@ -430,11 +430,11 @@ string CParameterMgr::getVersion() const
     string strVersion;
 
     // Major
-    strVersion = toString(guiEditionMajor) + ".";
+    strVersion = CUtility::toString(guiEditionMajor) + ".";
     // Minor
-    strVersion += toString(guiEditionMinor) + ".";
+    strVersion += CUtility::toString(guiEditionMinor) + ".";
     // Revision
-    strVersion += toString(guiRevision);
+    strVersion += CUtility::toString(guiRevision);
 
     return strVersion;
 }
@@ -548,7 +548,7 @@ bool CParameterMgr::loadStructure(string& strError)
     // Retrieve system to load structure to
     CSystemClass* pSystemClass = getSystemClass();
 
-    log_info("Loading " + pSystemClass->getName() + " system class structure");
+    log_info("Loading %s system class structure", pSystemClass->getName().c_str());
 
     // Get structure description element
     const CFrameworkConfigurationLocation* pStructureDescriptionFileLocation = static_cast<const CFrameworkConfigurationLocation*>(getConstFrameworkConfiguration()->findChildOfKind("StructureDescriptionFileLocation"));
@@ -592,7 +592,7 @@ bool CParameterMgr::loadSettings(string& strError)
 
     if (!success && !_bFailOnFailedSettingsLoad) {
         // Load can not fail, ie continue but log the load errors
-        log_info(strLoadError);
+        log_info("%s", strLoadError.c_str());
         log_info("Failed to load settings, continue without domains.");
         success = true;
     }
@@ -905,7 +905,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
 
     // Show status
     /// General section
-    appendTitle(strResult, "General:");
+    CUtility::appendTitle(strResult, "General:");
     // System class
     strResult += "System Class: ";
     strResult += pSystemClass->getName();
@@ -932,19 +932,19 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
     strResult += "\n";
 
     /// Subsystem list
-    appendTitle(strResult, "Subsystems:");
+    CUtility::appendTitle(strResult, "Subsystems:");
     string strSubsystemList;
     pSystemClass->listChildrenPaths(strSubsystemList);
     strResult += strSubsystemList;
 
     /// Last applied configurations
-    appendTitle(strResult, "Last Applied [Pending] Configurations:");
+    CUtility::appendTitle(strResult, "Last Applied [Pending] Configurations:");
     string strLastAppliedConfigurations;
     getConfigurableDomains()->listLastAppliedConfigurations(strLastAppliedConfigurations);
     strResult += strLastAppliedConfigurations;
 
     /// Criteria states
-    appendTitle(strResult, "Selection Criteria:");
+    CUtility::appendTitle(strResult, "Selection Criteria:");
     list<string> lstrSelectionCriteria;
     getSelectionCriteria()->listSelectionCriteria(lstrSelectionCriteria, false, true);
     // Concatenate the criterion list as the command result
@@ -2528,6 +2528,10 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
 
         // Create server
         _pRemoteProcessorServer = pfnCreateRemoteProcessorServer(getConstFrameworkConfiguration()->getServerPort(), _pCommandHandler);
+        if (_pRemoteProcessorServer == nullptr) {
+            strError = "Could not create remote processor server.";
+            return false;
+        }
 
         log_info("Starting remote processor server on port %d", getConstFrameworkConfiguration()->getServerPort());
         // Start

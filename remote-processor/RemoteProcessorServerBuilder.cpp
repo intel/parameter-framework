@@ -34,7 +34,13 @@ extern "C"
 {
 IRemoteProcessorServerInterface* createRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler)
 {
-    return new CRemoteProcessorServer(uiPort, pCommandHandler);
+    auto server = new CRemoteProcessorServer(uiPort, pCommandHandler);
+    if (!server->init()) {
+        delete server;
+        return nullptr;
+    }
+
+    return server;
 }
 }
 
