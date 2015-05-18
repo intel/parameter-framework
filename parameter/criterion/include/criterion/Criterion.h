@@ -74,7 +74,16 @@ public:
     virtual std::string getFormattedState() const override;
     // @}
 
+    /** Check if the current criterion has been modified
+     * If the set of the current value is requested, the set will succeed but the criterion
+     * will be marqued as unchanged. If the set action succeed with a new value, the criterion
+     * will be marqued as modified. This status can be retrieve through this method.
+     *
+     * @return true if the criterion has been modified, else otherwise
+     */
     bool hasBeenModified() const;
+
+    /** Reset the modified status of the criterion */
     void resetModifiedStatus();
 
     /** Request criterion state match with a desired method
@@ -94,6 +103,13 @@ public:
      */
     bool isMatchMethodAvailable(const std::string& method) const;
 
+    /** Retrieve a properly formatted description of the Criterion
+     *
+     * @param[in] bWithTypeInfo true if user want type info in the description, false otherwise
+     * @param[in] bHumanReadable true if the description must have a human readable format
+     *                           false if it must be easier to parse
+     * @return the string containing the desired description
+     */
     std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
 
     /** List different values a criterion can have
