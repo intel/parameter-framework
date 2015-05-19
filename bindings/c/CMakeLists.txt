@@ -48,6 +48,7 @@ if(BUILD_TESTING)
     # copy it in a standard location (/usr/include on most linux distribution).
     find_path(CATCH_HEADER catch.hpp)
     include_directories(${CATCH_HEADER})
+    include_directories("${PROJECT_SOURCE_DIR}/utility")
 
     # Add unit test
     add_executable(cparameterUnitTest Test.cpp)
@@ -57,7 +58,7 @@ if(BUILD_TESTING)
     # proper failure.
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-nonnull")
 
-    target_link_libraries(cparameterUnitTest cparameter)
+    target_link_libraries(cparameterUnitTest cparameter pfw_utility)
     add_test(NAME cparameterUnitTest
              COMMAND cparameterUnitTest)
 

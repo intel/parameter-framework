@@ -29,6 +29,7 @@
  */
 #include "RemoteProcessorServer.h"
 #include "ListeningSocket.h"
+#include "FullIo.hpp"
 #include <iostream>
 #include <memory>
 #include <assert.h>
@@ -98,7 +99,7 @@ void CRemoteProcessorServer::stop()
 
     // Cause exiting of the thread
     uint8_t ucData = 0;
-    write(_aiInbandPipe[1], &ucData, sizeof(ucData));
+    utility::fullWrite(_aiInbandPipe[1], &ucData, sizeof(ucData));
 
     // Join thread
     pthread_join(_ulThreadId, NULL);
@@ -148,7 +149,7 @@ void CRemoteProcessorServer::run()
 
             // Consume exit request
             uint8_t ucData;
-            read(_aiInbandPipe[0], &ucData, sizeof(ucData));
+            utility::fullRead(_aiInbandPipe[0], &ucData, sizeof(ucData));
 
             // Exit
             return;

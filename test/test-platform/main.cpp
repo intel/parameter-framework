@@ -29,6 +29,7 @@
  */
 
 #include "TestPlatform.h"
+#include "FullIo.hpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -115,14 +116,14 @@ static bool startDaemonTestPlatform(const char *filePath, int portNumber, string
 
             // Notify parent of failure;
             msgToParent = false;
-            write(pipefd[1], &msgToParent, sizeof(msgToParent));
+            utility::fullWrite(pipefd[1], &msgToParent, sizeof(msgToParent));
 
             sem_destroy(&sem);
         } else {
 
             // Notify parent of success
             msgToParent = true;
-            write(pipefd[1], &msgToParent, sizeof(msgToParent));
+            utility::fullWrite(pipefd[1], &msgToParent, sizeof(msgToParent));
 
             // Block here
             sem_wait(&sem);
@@ -143,7 +144,7 @@ static bool startDaemonTestPlatform(const char *filePath, int portNumber, string
         // Message received from the child process
         bool msgFromChild = false;
 
-        if (read(pipefd[0], &msgFromChild, sizeof(msgFromChild)) <= 0) {
+        if (not utility::fullRead(pipefd[0], &msgFromChild, sizeof(msgFromChild))) {
 
             strError = "Read pipe failed";
         }

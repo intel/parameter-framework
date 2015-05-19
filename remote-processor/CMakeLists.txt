@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -38,6 +38,8 @@ add_library(remote-processor SHARED
 
 set(CMAKE_THREAD_PREFER_PTHREAD 1)
 find_package(Threads REQUIRED)
+
+include_directories("${PROJECT_SOURCE_DIR}/utility")
 
 target_link_libraries(remote-processor ${CMAKE_THREAD_LIBS_INIT})
 

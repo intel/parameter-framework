@@ -29,6 +29,7 @@
  */
 
 #include "ParameterFramework.h"
+#include "FullIo.hpp"
 
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main()
 #include <catch.hpp>
@@ -84,7 +85,7 @@ struct Test
             CAPTURE(errno);
             REQUIRE(mFd != -1);
             mPath = tmpName;
-            write(mFd, content.c_str(), content.length());
+            REQUIRE(utility::fullWrite(mFd, content.c_str(), content.length()));
         }
         ~TmpFile() {
             CHECK(close(mFd) != -1);
