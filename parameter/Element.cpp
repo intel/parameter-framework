@@ -39,6 +39,8 @@
 
 using std::string;
 
+const std::string CElement::gDescriptionPropertyName = "Description";
+
 CElement::CElement(const string& strName) : _strName(strName), _pParent(NULL)
 {
 }
@@ -200,6 +202,14 @@ void CElement::showProperties(string& strResult) const
 {
     strResult = "\n";
     strResult += "Kind: " + getKind() + "\n";
+    showDescriptionProperty(strResult);
+}
+
+void CElement::showDescriptionProperty(std::string &strResult) const
+{
+    if (!getDescription().empty()) {
+        strResult += gDescriptionPropertyName + ": " + getDescription() + "\n";
+    }
 }
 
 // Conversion utilities
@@ -249,6 +259,8 @@ void CElement::logValue(string& strValue, CErrorContext& errorContext) const
 // From IXmlSink
 bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
+    setDescription(getXmlDescriptionAttribute(xmlElement));
+
     // Propagate through children
     CXmlElement::CChildIterator childIterator(xmlElement);
 
@@ -316,7 +328,21 @@ void CElement::childrenToXml(CXmlElement& xmlElement,
 void CElement::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     setXmlNameAttribute(xmlElement);
+    setXmlDescriptionAttribute(xmlElement);
     childrenToXml(xmlElement, serializingContext);
+}
+
+void CElement::setXmlDescriptionAttribute(CXmlElement& xmlElement) const
+{
+    const string &description = getDescription();
+    if (!description.empty()) {
+        xmlElement.setAttributeString(gDescriptionPropertyName, description);
+    }
+}
+
+string CElement::getXmlDescriptionAttribute(const CXmlElement& xmlElement) const
+{
+    return xmlElement.getAttributeString(gDescriptionPropertyName);
 }
 
 void CElement::setXmlNameAttribute(CXmlElement& xmlElement) const

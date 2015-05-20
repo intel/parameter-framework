@@ -50,9 +50,13 @@ public:
 
     // Unit
     std::string getUnit() const;
+    void setUnit(const std::string& strUnit);
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+
+    // From IXmlSource
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     /// Conversions
     // String
@@ -118,6 +122,8 @@ protected:
     }
 
 private:
+    void setXmlUnitAttribute(CXmlElement& xmlElement) const;
+
     // Instantiation
     virtual CInstanceConfigurableElement* doInstantiate() const;
     // Generic Access
@@ -130,4 +136,6 @@ private:
     uint32_t _uiSize;
     // Unit
     std::string _strUnit;
+
+    static const std::string gUnitPropertyName;
 };

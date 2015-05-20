@@ -216,3 +216,10 @@ bool CInstanceConfigurableElement::checkPathExhausted(CPathNavigator& pathNaviga
     }
     return true;
 }
+
+void CInstanceConfigurableElement::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+{
+    base::toXml(xmlElement, serializingContext);
+    // Since Description belongs to the Type of Element, delegate it to the type element.
+    getTypeElement()->setXmlDescriptionAttribute(xmlElement);
+}
