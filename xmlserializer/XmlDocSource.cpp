@@ -41,8 +41,8 @@ using std::string;
 // Schedule for libxml2 library
 bool CXmlDocSource::_bLibXml2CleanupScheduled;
 
-CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, _xmlNode *pRootNode,
-                             bool bValidateWithSchema) :
+CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
+                             _xmlNode *pRootNode) :
       _pDoc(pDoc),
       _pRootNode(pRootNode),
       _strXmlSchemaFile(""),
@@ -54,44 +54,13 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, _xmlNode *pRootNode,
     init();
 }
 
-CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
+CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
                              const string& strXmlSchemaFile,
                              const string& strRootElementType,
                              const string& strRootElementName,
                              const string& strNameAttributeName) :
     _pDoc(pDoc),
-    _pRootNode(NULL),
-    _strXmlSchemaFile(strXmlSchemaFile),
-    _strRootElementType(strRootElementType),
-    _strRootElementName(strRootElementName),
-    _strNameAttributeName(strNameAttributeName),
-    _bValidateWithSchema(false)
-{
-    init();
-}
-
-CXmlDocSource::CXmlDocSource(_xmlDoc* pDoc,
-                             const string& strXmlSchemaFile,
-                             const string& strRootElementType,
-                             bool bValidateWithSchema) :
-    _pDoc(pDoc), _pRootNode(NULL),
-    _strXmlSchemaFile(strXmlSchemaFile),
-    _strRootElementType(strRootElementType),
-    _strRootElementName(""),
-    _strNameAttributeName(""),
-    _bValidateWithSchema(bValidateWithSchema)
-{
-    init();
-}
-
-CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
-                             const string& strXmlSchemaFile,
-                             const string& strRootElementType,
-                             const string& strRootElementName,
-                             const string& strNameAttributeName,
-                             bool bValidateWithSchema) :
-    _pDoc(pDoc),
-    _pRootNode(NULL),
+    _pRootNode(xmlDocGetRootElement(pDoc)),
     _strXmlSchemaFile(strXmlSchemaFile),
     _strRootElementType(strRootElementType),
     _strRootElementName(strRootElementName),
@@ -203,11 +172,6 @@ void CXmlDocSource::init()
         atexit(xmlCleanupParser);
 
         _bLibXml2CleanupScheduled = true;
-    }
-
-    if (!_pRootNode) {
-
-        _pRootNode = xmlDocGetRootElement(_pDoc);
     }
 }
 

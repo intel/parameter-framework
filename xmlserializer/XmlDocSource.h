@@ -54,22 +54,7 @@ public:
       * @param[in] pRootNode a pointer to the root element of the document.
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc* pDoc, _xmlNode* pRootNode = NULL, bool bValidateWithSchema = false);
-
-    /**
-      * Constructor
-      *
-      * @param[out] pDoc a pointer to the xml document that will be filled by the class
-      * @param[in] strXmlSchemaFile a std::string containing the path to the schema file
-      * @param[in] strRootElementType a std::string containing the root element type
-      * @param[in] strRootElementName a std::string containing the root element name
-      * @param[in] strNameAttributeName a std::string containing the name of the root name attribute
-      */
-    CXmlDocSource(_xmlDoc* pDoc,
-                           const std::string& strXmlSchemaFile,
-                           const std::string& strRootElementType,
-                           const std::string& strRootElementName,
-                           const std::string& strNameAttributeName);
+    CXmlDocSource(_xmlDoc* pDoc, bool bValidateWithSchema = false, _xmlNode* pRootNode = NULL);
 
     /**
       * Constructor
@@ -81,22 +66,11 @@ public:
       * @param[in] strNameAttributeName a string containing the name of the root name attribute
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc* pDoc,
-                           const std::string& strXmlSchemaFile,
-                           const std::string& strRootElementType,
-                           const std::string& strRootElementName,
-                           const std::string& strNameAttributeName,
-                             bool bValidateWithSchema);
-
-    /**
-      * Constructor
-      *
-      * @param[out] pDoc a pointer to the xml document that will be filled by the class
-      * @param[in] strXmlSchemaFile a string containing the path to the schema file
-      * @param[in] strRootElementType a string containing the root element type
-      */
-    CXmlDocSource(_xmlDoc* pDoc, const std::string& strXmlSchemaFile, const std::string& strRootElementType,
-                             bool bValidateWithSchema);
+    CXmlDocSource(_xmlDoc* pDoc, bool bValidateWithSchema,
+                           const std::string& strXmlSchemaFile = "",
+                           const std::string& strRootElementType = "",
+                           const std::string& strRootElementName = "",
+                           const std::string& strNameAttributeName = "");
 
     /**
       * Destructor

@@ -76,10 +76,9 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
             return false;
         }
 
-        CXmlDocSource docSource(doc,
-                                      strPathToXsdFile,
-                                      strIncludedElementType,
-                                      _bValidateSchemasOnStart);
+        CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
+                                strPathToXsdFile,
+                                strIncludedElementType);
 
         if (!docSource.isParsable()) {
 

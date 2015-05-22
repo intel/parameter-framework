@@ -714,9 +714,11 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
     // Get Schema file associated to root element
     string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pRootElement->getKind() + ".xsd";
 
-    CXmlDocSource docSource(doc, strXmlSchemaFilePath,
-                            pRootElement->getKind(), pRootElement->getName(),
-                            strNameAttributeName, _bValidateSchemasOnStart);
+    CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
+                            strXmlSchemaFilePath,
+                            pRootElement->getKind(),
+                            pRootElement->getName(),
+                            strNameAttributeName);
 
     // Start clean
     pRootElement->clean();
@@ -2255,9 +2257,11 @@ bool CParameterMgr::serializeElement(std::ostream& output,
                                   element.getKind() + ".xsd";
 
     // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(&element, element.getKind(),
-                                     xmlSchemaFilePath, "parameter-framework",
-                                     getVersion(), _bValidateSchemasOnStart);
+    CXmlMemoryDocSource memorySource(&element, _bValidateSchemasOnStart,
+                                     element.getKind(),
+                                     xmlSchemaFilePath,
+                                     "parameter-framework",
+                                     getVersion());
 
     // Use a doc sink to write the doc data in a stream
     CXmlStreamDocSink sink(output);
@@ -2582,7 +2586,7 @@ bool CParameterMgr::exportElementToXMLString(const IXmlSource* pXmlSource,
     CXmlSerializingContext xmlSerializingContext(strError);
 
     // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(pXmlSource, strRootElementType, false);
+    CXmlMemoryDocSource memorySource(pXmlSource, false, strRootElementType);
 
     // Use a doc sink that write the doc data in a string
     ostringstream output;
