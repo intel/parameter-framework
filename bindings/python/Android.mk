@@ -38,9 +38,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := _PyPfw
 
 LOCAL_CPP_EXTENSION := .cxx
-# As long as the parameter-framework is compiled with gcc, we must avoid
-# compiling the bindings with clang and compile with gcc instead.
-LOCAL_CLANG := false
 # Android only provides a 32bit version of python.
 LOCAL_32_BIT_ONLY := true
 
@@ -51,13 +48,11 @@ LOCAL_C_INCLUDES := \
     prebuilts/python/linux-x86/2.7.5/include/python2.7 \
     $(HOST_OUT_HEADERS)/parameter
 
-# The 'unused-but-set-variable' warning must be disabled because SWIG generates
-# files that do not respect that constraint.
 # '-DSWIG_PYTHON_SILENT_MEMLEAK' is needed because the "memleak" warning
 # pollutes the standard output. At the time of writing, the only warning is
 # spurious anyway, as it relates to "ILogger *" which is an abstract
 # class/interface class and as such cannot be destroyed.
-LOCAL_CFLAGS := -Wno-unused-but-set-variable -fexceptions -DSWIG_PYTHON_SILENT_MEMLEAK
+LOCAL_CFLAGS := -fexceptions -DSWIG_PYTHON_SILENT_MEMLEAK
 
 # Undefined symbols will be resolved at runtime
 LOCAL_ALLOW_UNDEFINED_SYMBOLS := true

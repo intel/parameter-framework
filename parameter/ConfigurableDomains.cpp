@@ -145,7 +145,7 @@ bool CConfigurableDomains::addDomain(CConfigurableDomain& domain, bool bOverwrit
         deleteDomain(*pExistingDomain);
     }
 
-    log_info("Adding configurable domain \"" + strDomainName + "\"");
+    log_info("Adding configurable domain \"%s\"", strDomainName.c_str());
 
     addChild(&domain);
 
@@ -154,7 +154,7 @@ bool CConfigurableDomains::addDomain(CConfigurableDomain& domain, bool bOverwrit
 
 void CConfigurableDomains::deleteDomain(CConfigurableDomain& configurableDomain)
 {
-    log_info("Deleting configurable domain \"" + configurableDomain.getName() + "\"");
+    log_info("Deleting configurable domain \"%s\"", configurableDomain.getName().c_str() );
 
     removeChild(&configurableDomain);
 

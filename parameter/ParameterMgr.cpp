@@ -548,7 +548,7 @@ bool CParameterMgr::loadStructure(string& strError)
     // Retrieve system to load structure to
     CSystemClass* pSystemClass = getSystemClass();
 
-    log_info("Loading " + pSystemClass->getName() + " system class structure");
+    log_info("Loading %s system class structure", pSystemClass->getName().c_str());
 
     // Get structure description element
     const CFrameworkConfigurationLocation* pStructureDescriptionFileLocation = static_cast<const CFrameworkConfigurationLocation*>(getConstFrameworkConfiguration()->findChildOfKind("StructureDescriptionFileLocation"));
@@ -592,7 +592,7 @@ bool CParameterMgr::loadSettings(string& strError)
 
     if (!success && !_bFailOnFailedSettingsLoad) {
         // Load can not fail, ie continue but log the load errors
-        log_info(strLoadError);
+        log_info("%s", strLoadError.c_str());
         log_info("Failed to load settings, continue without domains.");
         success = true;
     }
