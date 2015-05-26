@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfigurableDomain Name="Fourth" SequenceAware="false">
+    <Configurations>
+        <Configuration Name="default">
+            <CompoundRule Type="All">
+            </CompoundRule>
+        </Configuration>
+    </Configurations>
+
+    <ConfigurableElements>
+        <ConfigurableElement Path="/Test/test/block/4"/>
+    </ConfigurableElements>
+
+    <Settings>
+        <Configuration Name="default">
+            <ConfigurableElement Path="/Test/test/block/4">
+                <ParameterBlock Name="4">
+                    <FixedPointParameter Name="q2.5">1.23</FixedPointParameter>
+                    <IntegerParameter Name="uint8">200</IntegerParameter>
+                    <StringParameter Name="string">blah</StringParameter>
+                </ParameterBlock>
+            </ConfigurableElement>
+        </Configuration>
+    </Settings>
+</ConfigurableDomain>

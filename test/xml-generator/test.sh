@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,9 +26,14 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_subdirectory(test-platform)
-add_subdirectory(test-fixed-point-parameter)
-add_subdirectory(tokenizer)
-add_subdirectory(xml-generator)
-add_subdirectory(functional-tests)
-add_subdirectory(test-subsystem)
+basedir=$(dirname $0)
+
+./domainGenerator.py --validate \
+    --toplevel-config $basedir/ParameterFrameworkConfiguration.xml \
+    --criteria $basedir/criteria.txt \
+    --initial-settings $basedir/TuningSettings.xml \
+    --add-edds $basedir/first.pfw $basedir/second.pfw \
+    --add-domains $basedir/third.xml $basedir/fourth.xml \
+    --schemas-dir $basedir/../../Schemas | \
+    \
+    diff --brief $basedir/reference.xml -

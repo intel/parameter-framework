@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,9 +26,12 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_subdirectory(test-platform)
-add_subdirectory(test-fixed-point-parameter)
-add_subdirectory(tokenizer)
-add_subdirectory(xml-generator)
-add_subdirectory(functional-tests)
-add_subdirectory(test-subsystem)
+if (BUILD_TESTING)
+
+    add_test(NAME xml-generator
+             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/tools/xmlGenerator
+             COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/test.sh)
+
+    # Custom function defined in the top-level CMakeLists
+    set_test_env(xml-generator)
+endif()
