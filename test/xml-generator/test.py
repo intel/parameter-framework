@@ -1,4 +1,5 @@
-# Copyright (c) 2014-2015, Intel Corporation
+#! python2
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,13 +27,35 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_subdirectory(catch)
-add_subdirectory(tmpfile)
-add_subdirectory(functional-tests)
-add_subdirectory(functional-tests-legacy)
-add_subdirectory(test-fixed-point-parameter)
-add_subdirectory(test-platform)
-add_subdirectory(test-subsystem)
-add_subdirectory(introspection-subsystem)
-add_subdirectory(tokenizer)
-add_subdirectory(xml-generator)
+import sys
+import os
+import subprocess
+import difflib
+
+basedir = os.path.dirname(sys.argv[0])
+command = [sys.executable, "domainGenerator.py",
+        "--validate",
+        "--toplevel-config", os.path.join(basedir, "ParameterFrameworkConfiguration.xml"),
+        "--criteria", os.path.join(basedir, "criteria.txt"),
+        "--initial-settings", os.path.join(basedir, "TuningSettings.xml"),
+        "--add-edds", os.path.join(basedir, "first.pfw"), os.path.join(basedir, "second.pfw"),
+        "--add-domains", os.path.join(basedir, "third.xml"), os.path.join(basedir, "fourth.xml"),
+        "--schemas-dir", os.path.join(basedir, "../../schemas")]
+
+reference = open(os.path.join(basedir, "reference.xml")).read().splitlines()
+
+process = subprocess.Popen(command, stdout=subprocess.PIPE)
+actual = process.stdout.read().splitlines()
+
+unified = difflib.unified_diff(reference,
+                               actual,
+                               fromfile="reference.xml",
+                               tofile="-",
+                               lineterm="")
+diffs = list(unified)
+if not diffs:
+    sys.exit(0)
+else:
+    for d in diffs:
+        print(d)
+    sys.exit(1)

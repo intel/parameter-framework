@@ -1,0 +1,33 @@
+domainGroup: EddGroup
+	Colors Includes Red
+
+	# Only inherits from "EddGroup" domainGroup
+	domain: First
+		Colors Includes Blue
+
+		confGroup: Green
+			Colors Includes Green
+
+			# Inherits from "EddGroup" domainGroup, "First" domain
+			# and from "Green" confGroup
+			conf: On
+				Switch Is On
+
+				component: /Test/test/block/1
+					q2.5 = 1.2
+					string = some string
+
+			# Inherits from "EddGroup" domainGroup, "First" domain
+			# and from "Green" confGroup
+			conf: Off
+				Switch Is Off
+
+				component: /Test/test/block/1
+					q2.5 = 1.2
+					string = some string
+
+		# Inherits from "EddGroup" domainGroup and "First" domain
+		conf: Default
+			component: /Test/test/block/1
+				q2.5 = 0
+				string = some other string

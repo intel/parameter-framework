@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfigurableDomains SystemClassName="Test">
+    <ConfigurableDomain Name="Calibration" SequenceAware="false">
+        <Configurations>
+            <Configuration Name="default">
+                <CompoundRule Type="All">
+                </CompoundRule>
+            </Configuration>
+        </Configurations>
+
+        <ConfigurableElements>
+            <ConfigurableElement Path="/Test/test/tuning/bool"/>
+        </ConfigurableElements>
+
+        <Settings>
+            <Configuration Name="default">
+                <ConfigurableElement Path="/Test/test/tuning/bool">
+                    <BooleanParameter Name="bool">1</BooleanParameter>
+                </ConfigurableElement>
+            </Configuration>
+        </Settings>
+    </ConfigurableDomain>
+</ConfigurableDomains>

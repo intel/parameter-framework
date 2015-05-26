@@ -1,0 +1,2 @@
+InclusiveCriterion Colors : Red Green Blue
+ExclusiveCriterion Switch : On Off

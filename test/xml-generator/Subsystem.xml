@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem Name="test" Type="Virtual" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <ComponentLibrary>
+        <xi:include href="TuningStructure.xml"/>
+    </ComponentLibrary>
+    <InstanceDefinition>
+
+        <Component Type="Tuning" Name="tuning"/>
+
+        <ParameterBlock Name="block" ArrayLength="5">
+            <FixedPointParameter Name="q2.5" Size="8" Integral="2" Fractional="5"/>
+            <IntegerParameter Name="uint8" Signed="false" Size="8"/>
+            <StringParameter Name="string" MaxLength="20"/>
+        </ParameterBlock>
+
+    </InstanceDefinition>
+</Subsystem>
