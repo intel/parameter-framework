@@ -1,5 +1,5 @@
-/* 
- * Copyright (c) 2011-2015, Intel Corporation
+/*
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,45 +27,42 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 #pragma once
 
-#include <stdint.h>
-#include <pthread.h>
-#include "RemoteProcessorServerInterface.h"
+#include <cstddef>
 
-class CListeningSocket;
-class IRemoteCommandHandler;
-
-class CRemoteProcessorServer : public IRemoteProcessorServerInterface
+namespace utility
 {
-public:
-    CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
-    virtual ~CRemoteProcessorServer();
 
-    // State
-    virtual bool start(std::string &error);
-    virtual void stop();
-    virtual bool isStarted() const;
+/** Write *completely* a buffer in a file descriptor.
+ *
+ * A wrapper around unistd::write that resumes write on incomplete access
+ * and EAGAIN/EINTR error.
+ *
+ * @see man 2 write for the parameters.
+ *
+ * @return true if the buffer could be completely written,
+ *        false on failure (see write's man errno section).
+ */
+bool fullWrite(int fd, const void *buf, size_t count);
 
-private:
-    // Thread
-    static void* thread_func(void* pData);
-    void run();
+/** Fill a buffer from a file descriptor.
+ *
+ * A wrapper around unistd::read that resumes read on incomplete access
+ * and EAGAIN/EINTR error.
+ *
+ * @see man 2 read for the parameters.
+ *
+ * @return true if the buffer could be completely fill,
+ *        false on failure (see read's man errno section).
+ *
+ * If the buffer could not be filled due to an EOF, return false but set
+ * errno to 0.
+ * @TODO Add a custom strerror to prevent logging "success" (`sterror(0)`) on
+ *       EOF errors ?
+ */
+bool fullRead(int fd, void *buf, size_t count);
 
-    // New connection
-    void handleNewConnection();
-
-    // Port number
-    uint16_t _uiPort;
-    // Command handler
-    IRemoteCommandHandler* _pCommandHandler;
-    // State
-    bool _bIsStarted;
-    // Listening socket
-    CListeningSocket* _pListeningSocket;
-    // Inband pipe
-    int _aiInbandPipe[2];
-    // Thread
-    pthread_t _ulThreadId;
-};
+} // namespace utility
 

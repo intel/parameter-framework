@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,7 +37,7 @@ public:
     CListeningSocket();
 
     // Listen
-    bool listen(uint16_t uiPort);
+    bool listen(uint16_t uiPort, std::string &strError);
 
     // Accept
     CSocket* accept();

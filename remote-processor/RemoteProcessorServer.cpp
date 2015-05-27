@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,12 +29,14 @@
  */
 #include "RemoteProcessorServer.h"
 #include "ListeningSocket.h"
+#include "FullIo.hpp"
 #include <iostream>
 #include <memory>
 #include <assert.h>
 #include <poll.h>
 #include <unistd.h>
-#include <strings.h>
+#include <string.h>
+#include <errno.h>
 #include "RequestMessage.h"
 #include "AnswerMessage.h"
 #include "RemoteCommandHandler.h"
@@ -44,8 +46,6 @@ using std::string;
 CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
     _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL), _ulThreadId(0)
 {
-    // Create inband pipe
-    pipe(_aiInbandPipe);
 }
 
 CRemoteProcessorServer::~CRemoteProcessorServer()
@@ -54,27 +54,38 @@ CRemoteProcessorServer::~CRemoteProcessorServer()
 }
 
 // State
-bool CRemoteProcessorServer::start()
+bool CRemoteProcessorServer::start(string &error)
 {
     assert(!_bIsStarted);
 
+    if (pipe(_aiInbandPipe) == -1) {
+        error = "Could not create a pipe for remote processor communication: ";
+        error += strerror(errno);
+        return false;
+    }
+
     // Create server socket
-    _pListeningSocket = new CListeningSocket;
+    std::auto_ptr<CListeningSocket> pListeningSocket(new CListeningSocket);
 
-    if (!_pListeningSocket->listen(_uiPort)) {
-
-        // Remove listening socket
-        delete _pListeningSocket;
-        _pListeningSocket = NULL;
+    if (!pListeningSocket->listen(_uiPort, error)) {
 
         return false;
     }
 
+    // Thread needs to access to the listning socket.
+    _pListeningSocket = pListeningSocket.get();
     // Create thread
-    pthread_create(&_ulThreadId, NULL, thread_func, this);
+    errno = pthread_create(&_ulThreadId, NULL, thread_func, this);
+    if (errno != 0) {
+
+        error = "Could not create a remote processor thread: ";
+        error += strerror(errno);
+        return false;
+    }
 
     // State
     _bIsStarted = true;
+    pListeningSocket.release();
 
     return true;
 }
@@ -89,10 +100,20 @@ void CRemoteProcessorServer::stop()
 
     // Cause exiting of the thread
     uint8_t ucData = 0;
-    write(_aiInbandPipe[1], &ucData, sizeof(ucData));
+    if (not utility::fullWrite(_aiInbandPipe[1], &ucData, sizeof(ucData))) {
+        std::cerr << "Could not query command processor thread to terminate: "
+                     "fail to write on inband pipe: "
+                  << strerror(errno) << std::endl;
+        assert(false);
+    }
 
     // Join thread
-    pthread_join(_ulThreadId, NULL);
+    errno = pthread_join(_ulThreadId, NULL);
+    if (errno != 0) {
+        std::cout << "Could not join with remote processor thread: "
+                  << strerror(errno) << std::endl;
+        assert(false);
+    }
 
     _bIsStarted = false;
 
@@ -139,7 +160,11 @@ void CRemoteProcessorServer::run()
 
             // Consume exit request
             uint8_t ucData;
-            read(_aiInbandPipe[0], &ucData, sizeof(ucData));
+            if (not utility::fullRead(_aiInbandPipe[0], &ucData, sizeof(ucData))) {
+                    std::cerr << "Remote processor could not receive exit request"
+                              << strerror(errno) << std::endl;
+                    assert(false);
+            }
 
             // Exit
             return;
