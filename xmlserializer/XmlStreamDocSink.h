@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,41 +29,37 @@
  */
 
 #pragma once
-#include "XmlDocSource.h"
-#include <string>
+#include <ostream>
+#include "XmlDocSink.h"
+#include "XmlSource.h"
 
 /**
-  * Source class that get an xml document from a std::string.
-  * Its base class will check the validity of the document.
+  * Sink class that writes the content of any CXmlDocSource into a std::string.
+  * A reference to an empty std::string is given in the constructor.
   */
-class CXmlStringDocSource : public CXmlDocSource
+class CXmlStreamDocSink : public CXmlDocSink
 {
 public:
-    /**
-      * Constructor
+    /** Constructor
       *
-      * @param[in] strXmlInput a string containing an xml description
-      * @param[in] strXmlSchemaFile a string containing the path to the schema file
-      * @param[in] strRootElementType a string containing the root element type
-      * @param[in] strRootElementName a string containing the root element name
-      * @param[in] strNameAttributeName a string containing the name of the root name attribute
-      * @param[in] bValidateWithSchema a boolean that toggles schema validation
+      * @param[out] output a reference to a ostream that will be filled by the doProcess method
       */
-    CXmlStringDocSource(const std::string& strXmlInput,
-                        const std::string& strXmlSchemaFile,
-                        const std::string& strRootElementType,
-                        const std::string& strRootElementName,
-                        const std::string& strNameAttrituteName,
-                        bool bValidateWithSchema);
+    CXmlStreamDocSink(std::ostream& output);
 
-    /**
-      * CXmlDocSource method implementation.
+private:
+    /** Implementation of CXmlDocSink::doProcess()
+      * Writes the content of the xmlDocSource in strResult
       *
+      * @param[in] xmlDocSource is the source containing the Xml document
       * @param[out] serializingContext is used as error output
       *
       * @return false if any error occurs
       */
-    virtual bool populate(CXmlSerializingContext& serializingContext);
-};
+    virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
 
+    /**
+      * Result ostream containing the XML informations
+      */
+    std::ostream& _output;
+};
 

@@ -215,11 +215,28 @@ public:
     /**
       * Method that imports a single Configurable Domain from an Xml source.
       *
-      * @param[in] strXmlSource a string containing an xml description or a path to an xml file
-      * @param[in] bWithSettings a boolean that determines if the settings should be used in the
+      * @param[in] xmlSource a string containing an xml description or a path to an xml file
+      * @param[in] overwrite when importing an existing domain, allow overwriting or return an
+      * error
+      * @param[in] withSettings a boolean that determines if the settings should be used in the
       * xml description
-      * @param[in] bFromFile a boolean that determines if the source is an xml description in
+      * @param[in] fromFile a boolean that determines if the source is an xml description in
       * strXmlSource or contained in a file. In that case strXmlSource is just the file path.
+      * @param[out] errorMsg is used as the error output
+      *
+      * @return false if any error occurs
+      */
+    bool importSingleDomainXml(const std::string& xmlSource, bool overwrite, bool withSettings,
+                               bool toFile, std::string& errorMsg);
+    /**
+      * Method that imports a single Configurable Domain from an string
+      * describing an Xml source.
+      *
+      * @deprecated use the other versions of importSingleDomainXml instead
+      *
+      * @param[in] strXmlSource a string containing an xml description
+      * @param[in] bOverwrite when importing an existing domain, allow overwriting or return an
+      * error
       * @param[out] strError is used as the error output
       *
       * @return false if any error occurs

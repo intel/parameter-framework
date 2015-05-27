@@ -349,10 +349,19 @@ bool CParameterMgrFullConnector::exportDomainsXml(string& strXmlDest, bool bWith
     return _pParameterMgr->exportDomainsXml(strXmlDest, bWithSettings, bToFile, strError);
 }
 
+// deprecated, use the other version of importSingleDomainXml instead
 bool CParameterMgrFullConnector::importSingleDomainXml(const string& strXmlSource, bool bOverwrite,
                                                        string& strError)
 {
-    return _pParameterMgr->importSingleDomainXml(strXmlSource, bOverwrite, strError);
+    return importSingleDomainXml(strXmlSource, bOverwrite, true, false, strError);
+}
+
+bool CParameterMgrFullConnector::importSingleDomainXml(const string& xmlSource, bool overwrite,
+                                                       bool withSettings, bool fromFile,
+                                                       string& errorMsg)
+{
+    return _pParameterMgr->importSingleDomainXml(xmlSource, overwrite, withSettings, fromFile,
+                                                 errorMsg);
 }
 
 bool CParameterMgrFullConnector::exportSingleDomainXml(string& strXmlDest,
