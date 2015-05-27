@@ -76,8 +76,11 @@ bool CTypeElement::hasMappingData() const
 // Element properties
 void CTypeElement::showProperties(std::string& strResult) const
 {
-    (void)strResult;
-    // Prevent base from being called in that context!
+    // The description attribute may be found in the type and not from instance.
+    showDescriptionProperty(strResult);
+    // Prevent base from being called from the Parameter Type context as
+    // it would lead to duplicate the name attribute (duplicated in the type and instance
+    // which have a common base Element)
 }
 
 void CTypeElement::populate(CElement* pElement) const
