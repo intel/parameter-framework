@@ -83,9 +83,12 @@ public:
                              const core::criterion::Values& values,
                              std::string& error);
 
-    // Selection criterion retrieval
-    core::criterion::CriterionInterface*
-    getSelectionCriterion(const std::string& strName) const;
+    /** Criterion retrieval
+     *
+     * @param[in] strName the criterion name
+     * @return the pointer on the desired criterion, nullptr otherwise
+     */
+    core::criterion::CriterionInterface* getCriterion(const std::string& strName) const;
 
     // Logging
     // Should be called before start

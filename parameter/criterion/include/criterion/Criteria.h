@@ -82,14 +82,14 @@ public:
      * @param[in] name the criterion name
      * @result pointer to the desired criterion object
      */
-    Criterion* getSelectionCriterion(const std::string& name);
+    Criterion* getCriterion(const std::string& name);
 
     /** Const Criterion Retrieval
      *
      * @param[in] name the criterion name
      * @result pointer to the desired const criterion object
      */
-    const Criterion* getSelectionCriterion(const std::string& name) const;
+    const Criterion* getCriterion(const std::string& name) const;
 
     /** List available criteria
      *
@@ -97,9 +97,7 @@ public:
      * @param[in] withTypeInfo indicates if we want to retrieve criterion type information
      * @param[in] humanReadable indicates the formatage we want to use
      */
-    void listSelectionCriteria(std::list<std::string>& results,
-                               bool withTypeInfo,
-                               bool humanReadable) const;
+    void listCriteria(std::list<std::string>& results, bool withTypeInfo, bool humanReadable) const;
 
     /** Reset the modified status of criteria */
     void resetModifiedStatus();

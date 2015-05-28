@@ -135,7 +135,7 @@ struct CriteriaTest : LoggingTest {
         for (auto& description : mDescriptions) {
             desireds.push_back(description.criterion->getFormattedDescription(true, true));
         }
-        mCriteria.listSelectionCriteria(results, human, typeInfo);
+        mCriteria.listCriteria(results, human, typeInfo);
         THEN("Each criterion description should be in the listing")
         {
             for (const auto& result : results) {
@@ -295,7 +295,7 @@ struct CriterionTest : public LoggingTest {
             THEN("Criterion multi modification should be logged")
             {
                 size_t logPos = mRawLogger.getLog().find("Warning: Selection criterion '" +
-                                                         criterion.getCriterionName() +
+                                                         criterion.getName() +
                                                          "' has been modified 1 time(s) without any"
                                                          " configuration application");
                 CHECK(logPos != std::string::npos);
@@ -345,18 +345,18 @@ struct CriterionTest : public LoggingTest {
         {
             std::string xmlDescription =
                 R"(<?xml version="1.0" encoding="UTF-8"?>
-                  <SelectionCriterion Value=")"
+                  <Criterion Value=")"
                 + defaultValue +
-                "\" Name=\"" + criterion.getCriterionName() +
+                "\" Name=\"" + criterion.getName() +
                 "\" Kind=\"" + kind +
                 R"(">
                     <Value>a</Value>
                     <Value>b</Value>
                     <Value>c</Value>)" +
-                "</SelectionCriterion>";
+                "</Criterion>";
 
             std::string result;
-            xmlSerialize(result, &criterion, "SelectionCriterion");
+            xmlSerialize(result, &criterion, "Criterion");
             // Remove whitespaces as they are not relevant in xml
             removeWhitespaces(result);
             removeWhitespaces(xmlDescription);
@@ -369,7 +369,7 @@ struct CriterionTest : public LoggingTest {
 
         WHEN("Serializing through Csv")
         {
-            std::string nameInfo = "Criterion name: " + criterion.getCriterionName();
+            std::string nameInfo = "Criterion name: " + criterion.getName();
             std::string currentStateInfo = std::string(", current state: ") + defaultValue;
 
             THEN("Generated csv match expectation")
@@ -391,14 +391,14 @@ struct CriterionTest : public LoggingTest {
         {
             THEN("Generated description match expectation")
             {
-                std::string description = criterion.getCriterionName() + " = " + defaultValue;
+                std::string description = criterion.getName() + " = " + defaultValue;
                 std::string dump = criterion.getFormattedDescription(false, true);
                 CHECK(dump == description);
             }
 
             THEN("Generated description with type information match expectation")
             {
-                std::string description = criterion.getCriterionName() + ":";
+                std::string description = criterion.getName() + ":";
                 std::string titleDecorator(description.length(), '=');
                 description = "\n" + description + "\n" + titleDecorator +
                               "\nPossible states (" + kind + "): {a, b, c}" +
@@ -495,7 +495,7 @@ struct CriterionTest : public LoggingTest {
         }
         THEN("The criterion has the good name")
         {
-            CHECK(criterion.getCriterionName() == name);
+            CHECK(criterion.getName() == name);
         }
 
         checkInsertionBijectivity(criterion, values);
@@ -599,16 +599,16 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
                 {
                     CAPTURE(description.name);
                     CHECK(addedCriterion->isInclusive() == description.isInclusive);
-                    CHECK(addedCriterion->getCriterionName() == description.name);
+                    CHECK(addedCriterion->getName() == description.name);
                 }
             }
             WHEN("Retrieving added criteria")
             {
                 for (auto& description : mDescriptions) {
                     CAPTURE(description.name);
-                    CHECK(mCriteria.getSelectionCriterion(description.name) ==
+                    CHECK(mCriteria.getCriterion(description.name) ==
                           description.criterion);
-                    const Criterion* criterion = mCriteria.getSelectionCriterion(description.name);
+                    const Criterion* criterion = mCriteria.getCriterion(description.name);
                     CHECK(criterion == description.criterion);
                 }
             }
@@ -617,7 +617,7 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
                 /** FIXME: nullptr in check expression is not available in
                  * Ubuntu catch version for now. We should upgrade it one day.
                  */
-                CHECK(mCriteria.getSelectionCriterion("Unknown") == NULL);
+                CHECK(mCriteria.getCriterion("Unknown") == NULL);
             }
             WHEN("Modifying criteria")
             {
@@ -648,27 +648,27 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
             {
                 std::string xmlDescription =
                     R"(<?xml version="1.0" encoding="UTF-8"?>
-                       <SelectionCriteria>
-                        <SelectionCriterion Value="none" Name="A" Kind="Inclusive">
+                       <Criteria>
+                        <Criterion Value="none" Name="A" Kind="Inclusive">
                             <Value>State</Value>
                             <Value>State2</Value>
-                        </SelectionCriterion>
-                        <SelectionCriterion Value="State" Name="B" Kind="Exclusive">
+                        </Criterion>
+                        <Criterion Value="State" Name="B" Kind="Exclusive">
                             <Value>State</Value>
                             <Value>State2</Value>
-                        </SelectionCriterion>
-                        <SelectionCriterion Value="none" Name="C" Kind="Inclusive">
+                        </Criterion>
+                        <Criterion Value="none" Name="C" Kind="Inclusive">
                             <Value>State</Value>
                             <Value>State2</Value>
-                        </SelectionCriterion>
-                        <SelectionCriterion Value="State" Name="D" Kind="Exclusive">
+                        </Criterion>
+                        <Criterion Value="State" Name="D" Kind="Exclusive">
                             <Value>State</Value>
                             <Value>State2</Value>
-                        </SelectionCriterion>
-                       </SelectionCriteria>)";
+                        </Criterion>
+                       </Criteria>)";
 
                 std::string result;
-                xmlSerialize(result, &mCriteria, "SelectionCriteria");
+                xmlSerialize(result, &mCriteria, "Criteria");
 
                 // Remove whitespaces as they are not relevant in xml
                 removeWhitespaces(result);

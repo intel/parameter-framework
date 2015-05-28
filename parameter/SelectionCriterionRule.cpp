@@ -63,7 +63,7 @@ void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& errorCon
 bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 {
     // Criterion
-    _pSelectionCriterion = ruleParser.getCriteria().getSelectionCriterion(ruleParser.getType());
+    _pSelectionCriterion = ruleParser.getCriteria().getCriterion(ruleParser.getType());
 
     // Check existence
     if (!_pSelectionCriterion) {
@@ -91,7 +91,7 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 
         strError = "Matche type: " + mMatchesWhenVerb + " incompatible with " +
                    (_pSelectionCriterion->isInclusive() ? "inclusive" : "exclusive") +
-                   " criterion: " + _pSelectionCriterion->getCriterionName();
+                   " criterion: " + _pSelectionCriterion->getName();
 
         return false;
     }
@@ -99,7 +99,7 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
     if (!setMatchState(strValue)) {
 
         strError = "Value error: \"" + strValue + "\" is not part of criterion \"" +
-                   _pSelectionCriterion->getCriterionName() + "\"";
+                   _pSelectionCriterion->getName() + "\"";
 
         return false;
     }
@@ -110,7 +110,7 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 void CSelectionCriterionRule::dump(string& strResult) const
 {
     // Criterion
-    strResult += _pSelectionCriterion->getCriterionName();
+    strResult += _pSelectionCriterion->getName();
     strResult += " ";
     // Verb
     strResult += mMatchesWhenVerb;
@@ -137,7 +137,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     string strSelectionCriterion = xmlElement.getAttributeString("SelectionCriterion");
 
     _pSelectionCriterion =
-        xmlDomainImportContext.getCriteria().getSelectionCriterion(strSelectionCriterion);
+        xmlDomainImportContext.getCriteria().getCriterion(strSelectionCriterion);
 
     // Check existence
     if (!_pSelectionCriterion) {
@@ -155,7 +155,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
 
         xmlDomainImportContext.setError("Wrong MatchesWhen attribute " + mMatchesWhenVerb + " in " +
                                         getKind() + " " + xmlElement.getPath() + ": " +
-                                        _pSelectionCriterion->getCriterionName());
+                                        _pSelectionCriterion->getName());
 
         return false;
     }
@@ -181,7 +181,7 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     assert(_pSelectionCriterion);
 
     // Set selection criterion
-    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getCriterionName());
+    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getName());
 
     // Set MatchesWhen
     xmlElement.setAttributeString("MatchesWhen", mMatchesWhenVerb);

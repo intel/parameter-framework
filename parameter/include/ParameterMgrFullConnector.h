@@ -100,8 +100,12 @@ public:
                              const core::criterion::Values& values,
                              std::string& error);
 
-    core::criterion::CriterionInterface*
-    getSelectionCriterion(const std::string& strName);
+    /** Criterion retrieval
+     *
+     * @param[in] strName the criterion name
+     * @return the pointer on the desired criterion, nullptr otherwise
+     */
+    core::criterion::CriterionInterface* getCriterion(const std::string& strName);
 
     /** Is the remote interface forcefully disabled ?
      */

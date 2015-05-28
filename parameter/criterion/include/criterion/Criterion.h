@@ -67,7 +67,7 @@ public:
 
     virtual State getState() const override final;
 
-    virtual std::string getCriterionName() const override final;
+    virtual std::string getName() const override final;
 
     virtual bool isInclusive() const override;
 

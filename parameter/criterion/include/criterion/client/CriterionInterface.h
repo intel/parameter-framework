@@ -72,7 +72,9 @@ public:
 
     /** Retrieve the current criterion state */
     virtual State getState() const = 0;
-    virtual std::string getCriterionName() const = 0;
+
+    /** Retrieve Criterion name */
+    virtual std::string getName() const = 0;
 
     /** Retrieve formatted current criterion state
      *

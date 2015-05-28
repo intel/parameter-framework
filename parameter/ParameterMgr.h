@@ -132,8 +132,12 @@ public:
                              const core::criterion::Values& values,
                              std::string& error);
 
-    // Selection criterion retrieval
-    core::criterion::Criterion* getSelectionCriterion(const std::string& strName);
+    /** Criterion retrieval
+     *
+     * @param[in] strName the criterion name
+     * @return the pointer on the desired criterion, nullptr otherwise
+     */
+    core::criterion::Criterion* getCriterion(const std::string& strName);
 
     // Configuration application
     void applyConfigurations();

@@ -102,10 +102,9 @@ CParameterMgrFullConnector::createInclusiveCriterion(const string& name,
     return _pParameterMgr->createInclusiveCriterion(name, values, error);
 }
 
-CriterionInterface* CParameterMgrFullConnector::getSelectionCriterion(
-        const string& strName)
+CriterionInterface* CParameterMgrFullConnector::getCriterion(const string& strName)
 {
-    return _pParameterMgr->getSelectionCriterion(strName);
+    return _pParameterMgr->getCriterion(strName);
 }
 
 bool CParameterMgrFullConnector::getForceNoRemoteInterface() const

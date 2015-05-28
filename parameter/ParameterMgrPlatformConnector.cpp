@@ -72,10 +72,9 @@ CParameterMgrPlatformConnector::createInclusiveCriterion(const string& name,
     return _pParameterMgr->createInclusiveCriterion(name, values, error);
 }
 
-CriterionInterface*
-CParameterMgrPlatformConnector::getSelectionCriterion(const string& strName) const
+CriterionInterface* CParameterMgrPlatformConnector::getCriterion(const string& strName) const
 {
-    return _pParameterMgr->getSelectionCriterion(strName);
+    return _pParameterMgr->getCriterion(strName);
 }
 
 // Configuration application

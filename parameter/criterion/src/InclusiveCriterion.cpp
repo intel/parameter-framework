@@ -56,7 +56,7 @@ InclusiveCriterion::InclusiveCriterion(const std::string& name,
 {
     if (mValues.size() < 1) {
         throw InvalidCriterionError("Not enough values were provided for inclusive criterion '" +
-                                    getCriterionName() + "' which needs at least 1 values");
+                                    getName() + "' which needs at least 1 values");
     }
 }
 
@@ -87,7 +87,7 @@ bool InclusiveCriterion::setState(const State& state, std::string& error)
     if (mState != state) {
         // Check that the state contains only registered values
         if (!std::includes(mValues.begin(), mValues.end(), state.begin(), state.end())) {
-            error = "Inclusive criterion '" + getCriterionName() +
+            error = "Inclusive criterion '" + getName() +
                     "' can't be set because some values are not registered";
             return false;
         }

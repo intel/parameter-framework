@@ -68,19 +68,19 @@ Criterion* Criteria::createInclusiveCriterion(const std::string& name,
     return addCriterion<InclusiveCriterion>(name, values, logger, error);
 }
 
-Criterion* Criteria::getSelectionCriterion(const std::string& name)
+Criterion* Criteria::getCriterion(const std::string& name)
 {
     return getCriterionPointer(name);
 }
 
-const Criterion* Criteria::getSelectionCriterion(const std::string& name) const
+const Criterion* Criteria::getCriterion(const std::string& name) const
 {
     return getCriterionPointer(name);
 }
 
-void Criteria::listSelectionCriteria(std::list<std::string>& results,
-                                     bool withTypeInfo,
-                                     bool humanReadable) const
+void Criteria::listCriteria(std::list<std::string>& results,
+                            bool withTypeInfo,
+                            bool humanReadable) const
 {
     for (auto& criterion : mCriteria) {
         results.push_back(criterion.second->getFormattedDescription(withTypeInfo, humanReadable));
@@ -100,7 +100,7 @@ void Criteria::toXml(CXmlElement& xmlElement,
     for (auto& criterion : mCriteria) {
 
         CXmlElement xmlChildElement;
-        xmlElement.createChild(xmlChildElement, "SelectionCriterion");
+        xmlElement.createChild(xmlChildElement, "Criterion");
         criterion.second->toXml(xmlChildElement, serializingContext);
     }
 }
