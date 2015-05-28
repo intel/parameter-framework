@@ -102,6 +102,9 @@ public:
      */
     virtual void getListOfElementsWithMapping(std::list<const CConfigurableElement*>&
                                                configurableElementPath) const;
+
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+
 protected:
     // Syncer
     virtual ISyncer* getSyncer() const;

@@ -108,6 +108,10 @@ bool CSubsystem::needResync(bool bClear)
 // From IXmlSink
 bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
+    // Subsystem class does not rely on generic fromXml algorithm of Element class.
+    // So, setting here the description if found as XML attribute.
+    setDescription(getXmlDescriptionAttribute(xmlElement));
+
     // Context
     CXmlParameterSerializingContext& parameterBuildContext = static_cast<CXmlParameterSerializingContext&>(serializingContext);
 
