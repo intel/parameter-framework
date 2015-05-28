@@ -42,7 +42,6 @@
 class CConfigurableElement;
 class CDomainConfiguration;
 class CParameterBlackboard;
-class CSelectionCriteriaDefinition;
 
 class CConfigurableDomain : public CBinarySerializableElement
 {
@@ -78,7 +77,20 @@ public:
     bool saveConfiguration(const std::string& strName, const CParameterBlackboard* pMainBlackboard, std::string& strError);
     bool setElementSequence(const std::string& strConfiguration, const std::vector<std::string>& astrNewElementSequence, std::string& strError);
     bool getElementSequence(const std::string& strConfiguration, std::string& strResult) const;
-    bool setApplicationRule(const std::string& strConfiguration, const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
+
+    /** Create a new rule which apply on a configuration of this domain
+     *
+     * @param[in] strConfiguration the configuration name
+     * @param[in] strApplicationRule the rule to parse
+     * @param[in] criteria application criteria
+     * @param[out] error, error encountered during restoration
+     * @result true is success false otherwise
+     */
+    bool setApplicationRule(const std::string& strConfiguration,
+                            const std::string& strApplicationRule,
+                            const CSelectionCriteria& criteria,
+                            std::string& strError);
+
     bool clearApplicationRule(const std::string& strConfiguration, std::string& strError);
     bool getApplicationRule(const std::string& strConfiguration, std::string& strResult) const;
 

@@ -288,10 +288,12 @@ void CDomainConfiguration::getElementSequence(string& strResult) const
 }
 
 // Application rule
-bool CDomainConfiguration::setApplicationRule(const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError)
+bool CDomainConfiguration::setApplicationRule(const string& strApplicationRule,
+                                              const CSelectionCriteria& criteria,
+                                              string& strError)
 {
     // Parser
-    CRuleParser ruleParser(strApplicationRule, pSelectionCriteriaDefinition);
+    CRuleParser ruleParser(strApplicationRule, criteria);
 
     // Attempt to parse it
     if (!ruleParser.parse(NULL, strError)) {

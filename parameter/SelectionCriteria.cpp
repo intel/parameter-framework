@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,26 +28,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "SelectionCriteria.h"
-#include "SelectionCriterionLibrary.h"
-#include "SelectionCriteriaDefinition.h"
 
-#define base CElement
-
-CSelectionCriteria::CSelectionCriteria()
+CSelectionCriteria::CSelectionCriteria() : mCriterionTypes(), mCriteria()
 {
-    addChild(new CSelectionCriterionLibrary);
-    addChild(new CSelectionCriteriaDefinition);
-}
-
-std::string CSelectionCriteria::getKind() const
-{
-    return "SelectionCriteria";
 }
 
 // Selection Criteria/Type creation
 CSelectionCriterionType* CSelectionCriteria::createSelectionCriterionType(bool bIsInclusive)
 {
-    return getSelectionCriterionLibrary()->createSelectionCriterionType(bIsInclusive);
+    mCriterionTypes.emplace_back(bIsInclusive);
+
+    return &mCriterionTypes.back();
 }
 
 CSelectionCriterion*
@@ -55,39 +46,45 @@ CSelectionCriteria::createSelectionCriterion(const std::string& strName,
                                              const CSelectionCriterionType* pType,
                                              core::log::Logger& logger)
 {
-    return getSelectionCriteriaDefinition()->createSelectionCriterion(strName, pType, logger);
+    mCriteria.emplace(strName, CSelectionCriterion(strName, pType, logger));
+    return &mCriteria.at(strName);
 }
 
 // Selection criterion retrieval
-CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& strName)
+CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& name)
 {
-    return getSelectionCriteriaDefinition()->getSelectionCriterion(strName);
+    return &mCriteria.at(name);
+}
+
+const CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& name) const
+{
+    return &mCriteria.at(name);
 }
 
 // List available criteria
 void CSelectionCriteria::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
 {
-    getSelectionCriteriaDefinition()->listSelectionCriteria(lstrResult, bWithTypeInfo, bHumanReadable);
+    for (auto& criterion : mCriteria) {
+        lstrResult.push_back(criterion.second.getFormattedDescription(bWithTypeInfo,
+                                                                      bHumanReadable));
+    }
 }
 
 // Reset the modified status of the children
 void CSelectionCriteria::resetModifiedStatus()
 {
-    getSelectionCriteriaDefinition()->resetModifiedStatus();
+    for (auto& criterion : mCriteria) {
+        criterion.second.resetModifiedStatus();
+    }
 }
 
-// Children access
-CSelectionCriterionLibrary* CSelectionCriteria::getSelectionCriterionLibrary()
+void CSelectionCriteria::toXml(CXmlElement& xmlElement,
+                               CXmlSerializingContext& serializingContext) const
 {
-    return static_cast<CSelectionCriterionLibrary*>(getChild(ESelectionCriterionLibrary));
-}
+    for (auto& criterion : mCriteria) {
 
-CSelectionCriteriaDefinition* CSelectionCriteria::getSelectionCriteriaDefinition()
-{
-    return static_cast<CSelectionCriteriaDefinition*>(getChild(ESelectionCriteriaDefinition));
-}
-
-const CSelectionCriteriaDefinition* CSelectionCriteria::getSelectionCriteriaDefinition() const
-{
-    return static_cast<const CSelectionCriteriaDefinition*>(getChild(ESelectionCriteriaDefinition));
+        CXmlElement xmlChildElement;
+        xmlElement.createChild(xmlChildElement, "SelectionCriterion");
+        criterion.second.toXml(xmlChildElement, serializingContext);
+    }
 }

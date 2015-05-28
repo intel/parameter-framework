@@ -29,24 +29,18 @@
  */
 #pragma once
 
-#include <list>
-#include "Element.h"
+#include "XmlSource.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
 #include <log/Logger.h>
 
 #include <string>
+#include <list>
+#include <map>
 
-class CSelectionCriterionLibrary;
-class CSelectionCriteriaDefinition;
-class ISelectionCriterionObserver;
-
-class CSelectionCriteria : public CElement
+/** Criteria Handler */
+class CSelectionCriteria : public IXmlSource
 {
-    enum ChildElementType {
-        ESelectionCriterionLibrary,
-        ESelectionCriteriaDefinition
-    };
 public:
     CSelectionCriteria();
 
@@ -55,22 +49,49 @@ public:
     CSelectionCriterion* createSelectionCriterion(const std::string& strName,
                                                   const CSelectionCriterionType* pType,
                                                   core::log::Logger& logger);
-    // Selection criterion retrieval
-    CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 
-    // Selection Criterion definition
-    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
+    /** Criterion Retrieval
+     *
+     * @param[in] name, the criterion name
+     * @result pointer to the desired criterion object
+     */
+    CSelectionCriterion* getSelectionCriterion(const std::string& name);
+
+    /** Const Criterion Retrieval
+     *
+     * @param[in] name, the criterion name
+     * @result pointer to the desired const criterion object
+     */
+    const CSelectionCriterion* getSelectionCriterion(const std::string& name) const;
 
     // List available criteria
     void listSelectionCriteria(std::list<std::string>& strResult, bool bWithTypeInfo, bool bHumanReadable) const;
 
-    // Base
-    virtual std::string getKind() const;
-
     // Reset the modified status of the children
     void resetModifiedStatus();
+
+    /** Xml Serialization method
+     *
+     * @param[out] xmlElement the current xml element to fill with data
+     * @param serializingContext context of the current serialization
+     */
+    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
 private:
-    // Children access
-    CSelectionCriterionLibrary* getSelectionCriterionLibrary();
-    CSelectionCriteriaDefinition* getSelectionCriteriaDefinition();
+
+    /** Criterion types Holder type
+     * The C++ standard ensure that pointers on elements of a list
+     * will never be invalidated. As we return a pointer after the creation
+     * to store it in the dedicated criterion, the list is required.
+     */
+    typedef std::list<CSelectionCriterionType> CriterionTypes;
+
+    /** Criteria instance container type, map which use criterion name as key */
+    typedef std::map<std::string, CSelectionCriterion> Criteria;
+
+    /** Criterion Type collection */
+    CriterionTypes mCriterionTypes;
+
+    /** Criteria instance container */
+    Criteria mCriteria;
 };

@@ -31,7 +31,6 @@
 #include "SelectionCriterion.h"
 #include "XmlDomainSerializingContext.h"
 #include "XmlDomainImportContext.h"
-#include "SelectionCriteriaDefinition.h"
 #include "SelectionCriterionTypeInterface.h"
 #include "RuleParser.h"
 #include <assert.h>
@@ -70,7 +69,7 @@ void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& errorCon
 bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 {
     // Criterion
-    _pSelectionCriterion = ruleParser.getSelectionCriteriaDefinition()->getSelectionCriterion(ruleParser.getType());
+    _pSelectionCriterion = ruleParser.getCriteria().getSelectionCriterion(ruleParser.getType());
 
     // Check existence
     if (!_pSelectionCriterion) {
@@ -119,7 +118,7 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 void CSelectionCriterionRule::dump(string& strResult) const
 {
     // Criterion
-    strResult += _pSelectionCriterion->getName();
+    strResult += _pSelectionCriterion->getCriterionName();
     strResult += " ";
     // Verb
     strResult += _astMatchesWhen[_eMatchesWhen].pcMatchesWhen;
@@ -159,7 +158,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Get selection criterion
     string strSelectionCriterion = xmlElement.getAttributeString("SelectionCriterion");
 
-    _pSelectionCriterion = xmlDomainImportContext.getSelectionCriteriaDefinition()->getSelectionCriterion(strSelectionCriterion);
+    _pSelectionCriterion =
+        xmlDomainImportContext.getCriteria().getSelectionCriterion(strSelectionCriterion);
 
     // Check existence
     if (!_pSelectionCriterion) {
@@ -202,7 +202,7 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     assert(_pSelectionCriterion);
 
     // Set selection criterion
-    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getName());
+    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getCriterionName());
 
     // Set MatchesWhen
     xmlElement.setAttributeString("MatchesWhen", _astMatchesWhen[_eMatchesWhen].pcMatchesWhen);

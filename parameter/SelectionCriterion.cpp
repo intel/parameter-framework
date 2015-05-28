@@ -32,20 +32,11 @@
 #include <log/Logger.h>
 #include "Utility.h"
 
-#define base CElement
-
-using namespace core;
-
 CSelectionCriterion::CSelectionCriterion(const std::string& strName,
                                          const CSelectionCriterionType* pType,
                                          core::log::Logger& logger)
-    : base(strName), _iState(0), _pType(pType), _uiNbModifications(0), _logger(logger)
+    : _iState(0), _pType(pType), _uiNbModifications(0), _logger(logger), mName(strName)
 {
-}
-
-std::string CSelectionCriterion::getKind() const
-{
-    return "SelectionCriterion";
 }
 
 bool CSelectionCriterion::hasBeenModified() const
@@ -74,7 +65,7 @@ void CSelectionCriterion::setCriterionState(int iState)
         // since the last criterion change)
         if (_uiNbModifications != 0) {
 
-            _logger.warning() << "Selection criterion '" << getName()
+            _logger.warning() << "Selection criterion '" << mName
                               << "' has been modified " << _uiNbModifications
                               << " time(s) without any configuration application";
         }
@@ -92,7 +83,7 @@ int CSelectionCriterion::getCriterionState() const
 // Name
 std::string CSelectionCriterion::getCriterionName() const
 {
-    return getName();
+    return mName;
 }
 
 // Type
@@ -134,7 +125,7 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
         if (bWithTypeInfo) {
 
             // Display type info
-            CUtility::appendTitle(strFormattedDescription, getName() + ":");
+            CUtility::appendTitle(strFormattedDescription, mName + ":");
 
             // States
             strFormattedDescription += "Possible states ";
@@ -151,14 +142,14 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
             strFormattedDescription += "Current state";
         } else {
             // Name only
-            strFormattedDescription = getName();
+            strFormattedDescription = mName;
         }
 
         // Current State
         strFormattedDescription += " = " + _pType->getFormattedState(_iState);
     } else {
         // Name
-        strFormattedDescription = "Criterion name: " + getName();
+        strFormattedDescription = "Criterion name: " + mName;
 
         if (bWithTypeInfo) {
             // Type Kind
@@ -184,9 +175,8 @@ void CSelectionCriterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext&
 {
     // Current Value
     xmlElement.setAttributeString("Value", _pType->getFormattedState(_iState));
+    xmlElement.setAttributeString("Name", mName);
 
     // Serialize Type node
     _pType->toXml(xmlElement, serializingContext);
-
-    base::toXml(xmlElement, serializingContext);
 }
