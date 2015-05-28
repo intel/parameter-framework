@@ -60,6 +60,8 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := $(common_src_files)
 
+LOCAL_STATIC_LIBRARIES := libpfw_utility
+
 LOCAL_CFLAGS := $(common_cflags)
 LOCAL_LDLIBS := $(common_ldlibs)
 
@@ -76,6 +78,8 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := $(common_src_files)
+
+LOCAL_STATIC_LIBRARIES := libpfw_utility_host
 
 LOCAL_CFLAGS := $(common_cflags)
 LOCAL_LDLIBS := $(common_ldlibs)

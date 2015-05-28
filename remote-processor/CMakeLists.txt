@@ -41,6 +41,6 @@ find_package(Threads REQUIRED)
 
 include_directories("${PROJECT_SOURCE_DIR}/utility")
 
-target_link_libraries(remote-processor ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(remote-processor pfw_utility ${CMAKE_THREAD_LIBS_INIT})
 
 install(TARGETS remote-processor LIBRARY DESTINATION lib)
