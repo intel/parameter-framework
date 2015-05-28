@@ -40,8 +40,10 @@ namespace core
 namespace criterion
 {
 
-Criterion::Criterion(const std::string& name, const Values& values, core::log::Logger& logger)
-    : Criterion(name, logger, values, (values.empty() ? State{0} : State{values.begin()->second}), {})
+Criterion::Criterion(const std::string& name,
+                     const criterion::Values& values,
+                     core::log::Logger& logger)
+    : Criterion(name, logger, values, (values.empty() ? State{""} : State{*values.begin()}), {})
 {
     if (mValues.size() < 2) {
         throw InvalidCriterionError("Not enough values were provided for exclusive criterion '" +
@@ -51,10 +53,10 @@ Criterion::Criterion(const std::string& name, const Values& values, core::log::L
 
 Criterion::Criterion(const std::string& name,
                      core::log::Logger& logger,
-                     const Values& values,
+                     const criterion::Values& values,
                      const State& defaultState,
                      const MatchMethods& derivedMatchMethods)
-    : mValues(values),
+    : mValues(values.begin(), values.end()),
       mMatchMethods(CUtility::merge(MatchMethods{
                                       {"Is", [&](const State& state){ return mState == state; }},
                                       {"IsNot", [&](const State& state){ return mState != state; }}},
@@ -86,9 +88,9 @@ bool Criterion::setState(const State& state, std::string& error)
         mState = mDefaultState;
     } else {
         // Check that the state contains a registered value
-        if (!getLiteralValue(*state.begin(), error)) {
+        if (mValues.count(*state.begin()) != 1) {
             error = "Exclusive criterion '" + mName + "' can't be set with '" +
-                    std::to_string(*state.begin()) + "' value which is not registered";
+                    *state.begin() + "' value which is not registered";
             return false;
         }
         mState = state;
@@ -187,12 +189,11 @@ void Criterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializi
     xmlElement.setAttributeString("Name", mName);
     xmlElement.setAttributeString("Kind", isInclusive() ? "Inclusive" : "Exclusive");
 
-    for (auto& valuePair : mValues) {
-        CXmlElement childValuePairElement;
+    for (auto& value : mValues) {
+        CXmlElement childValueElement;
 
-        xmlElement.createChild(childValuePairElement, "ValuePair");
-        childValuePairElement.setAttributeString("Literal", valuePair.first);
-        childValuePairElement.setAttributeSignedInteger("Numerical", valuePair.second);
+        xmlElement.createChild(childValueElement, "Value");
+        childValueElement.setTextContent(value);
     }
 }
 
@@ -201,36 +202,10 @@ bool Criterion::isInclusive() const
     return false;
 }
 
-bool Criterion::getNumericalValue(const std::string& literalValue,
-                                  int& numericalValue) const
-{
-    try {
-        numericalValue = mValues.at(literalValue);
-        return true;
-    }
-    catch (std::out_of_range&) {
-        return false;
-    }
-}
-
-bool Criterion::getLiteralValue(int numericalValue, std::string& literalValue) const
-{
-    for (auto& value : mValues) {
-        if (value.second == numericalValue) {
-            literalValue = value.first;
-            return true;
-        }
-    }
-    return false;
-}
-
 std::string Criterion::getFormattedState() const
 {
     assert(!mState.empty());
-    std::string formattedState;
-    bool succeed = getLiteralValue(*(mState.begin()), formattedState);
-    assert(succeed);
-    return formattedState;
+    return *mState.begin();
 }
 
 std::string Criterion::listPossibleValues() const
@@ -246,11 +221,16 @@ std::string Criterion::listPossibleValues() const
         } else {
             possibleValues += ", ";
         }
-        possibleValues += value.first;
+        possibleValues += value;
     }
     possibleValues += "}";
 
     return possibleValues;
+}
+
+bool Criterion::isValueAvailable(const Value &value) const
+{
+    return mValues.count(value) == 1;
 }
 
 bool Criterion::match(const std::string& method, const State& state) const

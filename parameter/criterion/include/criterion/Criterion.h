@@ -34,6 +34,7 @@
 #include <log/Logger.h>
 
 #include <map>
+#include <set>
 #include <string>
 #include <functional>
 #include <stdexcept>
@@ -56,7 +57,9 @@ public:
      *
      *  @throw InvalidCriterionError if there is less than 2 values provided.
      */
-    Criterion(const std::string& name, const Values& values, core::log::Logger& logger);
+    Criterion(const std::string& name,
+              const criterion::Values& values,
+              core::log::Logger& logger);
 
     // @{
     /** @see CriterionInterface */
@@ -67,11 +70,6 @@ public:
     virtual std::string getCriterionName() const override final;
 
     virtual bool isInclusive() const override;
-
-    bool getLiteralValue(int numericalValue, std::string& literalValue) const override final;
-
-    virtual bool getNumericalValue(const std::string& literalValue,
-                                   int& numericalValue) const override final;
 
     virtual std::string getFormattedState() const override;
     // @}
@@ -104,6 +102,13 @@ public:
      */
     std::string listPossibleValues() const;
 
+    /** Check the avaibility of a given value for this criterion
+     *
+     * @param[in] value the value we want to check the avaibility
+     * @return true if the value is available, false otherwise
+     */
+    bool isValueAvailable(const Value &value) const;
+
     /** Export to XML
      *
      * @param[in] xmlElement The XML element to export to
@@ -135,10 +140,16 @@ protected:
      */
     Criterion(const std::string& name,
               core::log::Logger& logger,
-              const Values& derivedValuePairs,
+              const criterion::Values& derivedValuePairs,
               const State& defaultState,
               const MatchMethods& derivedMatchMethods);
 
+    /** Criterion value collection
+     * Internally, values are stored in a set. Nevertheless, the Values type exposed
+     * to the client is a list to let him have the control of the values order.
+     * Without that, client will not be able to choose the criterion default value.
+     */
+    using Values = std::set<Value>;
     /** Contains pair association between literal and numerical value */
     const Values mValues;
 

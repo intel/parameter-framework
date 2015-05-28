@@ -98,10 +98,7 @@ private:
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
      * @param[in] remoteCommand the first argument should be the name of the criterion to set.
-     *                          if the criterion is provided in lexical space,
-     *                              the following arguments should be criterion new values
-     *                          if the criterion is provided in numerical space,
-     *                              the second argument should be the criterion new value
+     *                          the following arguments should be criterion new values
      */
     CommandReturn setCriterionState(
             const IRemoteCommand& remoteCommand, std::string& strResult);
@@ -202,9 +199,6 @@ private:
     bool createInclusiveCriterion(const std::string& strName,
                                   uint32_t uiNbValues,
                                   std::string& strResult);
-
-    bool setCriterionState(const std::string& strName, uint32_t uiState, std::string& strResult);
-    bool setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     // Connector
     CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;

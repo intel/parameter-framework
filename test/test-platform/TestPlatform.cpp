@@ -247,30 +247,41 @@ CTestPlatform::CommandReturn CTestPlatform::getter(
 CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
     const IRemoteCommand& remoteCommand, string& strResult)
 {
+    // Get criterion name
+    std::string strCriterionName = remoteCommand.getArgument(0);
 
-    bool bSuccess;
+    CriterionInterface* pCriterion =
+        _pParameterMgrPlatformConnector->getSelectionCriterion(strCriterionName);
 
-    const char* pcState = remoteCommand.getArgument(1).c_str();
+    if (!pCriterion) {
 
-    char* pcStrEnd;
+        strResult = "Unable to retrieve selection criterion: " + strCriterionName;
 
-    // Reset errno to check if it is updated during the conversion (strtol/strtoul)
-    errno = 0;
-
-    uint32_t state = strtoul(pcState, &pcStrEnd, 0);
-
-    if (!errno && (*pcStrEnd == '\0')) {
-        // Sucessfull conversion, set criterion state by numerical state
-        bSuccess = setCriterionState(remoteCommand.getArgument(0), state, strResult);
-
-    } else {
-        // Conversion failed, set criterion state by lexical state
-        bSuccess = setCriterionStateByLexicalSpace(remoteCommand, strResult);
+        return CTestPlatform::CCommandHandler::EFailed;
     }
 
-    return bSuccess ? CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::
-           EFailed;
+    // Get substate number, the first argument (index 0) is the criterion name
+    uint32_t uiNbSubStates = remoteCommand.getArgumentCount() - 1;
 
+    // Check that exclusive criterion has only one substate
+    if (!pCriterion->isInclusive() && uiNbSubStates != 1) {
+
+        strResult = "Exclusive criterion " + strCriterionName + " can only have one state";
+
+        return CTestPlatform::CCommandHandler::EFailed;
+    }
+
+    core::criterion::State state{};
+    for (uint32_t i = 1; i <= uiNbSubStates; i++) {
+        state.emplace(remoteCommand.getArgument(i));
+    }
+
+    // Set criterion new state
+    if (!pCriterion->setState(state, strResult)) {
+        return CTestPlatform::CCommandHandler::EFailed;
+    }
+
+    return CTestPlatform::CCommandHandler::EDone;
 }
 
 CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCommand& remoteCommand,
@@ -301,12 +312,7 @@ bool CTestPlatform::createExclusiveCriterionFromStateList(const string& name,
     for (uint32_t state = 0; state < nbStates; state++) {
 
         const std::string& value = remoteCommand.getArgument(state + 1);
-
-        if (values.count(value) != 0) {
-            result = "Unable to add value: " + value + ": because it's referenced twice";
-            return false;
-        }
-        values[value] = state;
+        values.emplace_back(value);
     }
 
     CriterionInterface* criterion =
@@ -326,25 +332,13 @@ bool CTestPlatform::createInclusiveCriterionFromStateList(const string& name,
     assert(_pParameterMgrPlatformConnector != NULL);
     uint32_t nbStates = remoteCommand.getArgumentCount() - 1;
 
-    if (nbStates > 32) {
-
-        result = "Maximum number of states for inclusive criterion is 32";
-
-        return false;
-    }
-
     using namespace core::criterion;
     Values values;
 
     for (uint32_t state = 0; state < nbStates; state++) {
 
         const std::string& value = remoteCommand.getArgument(state + 1);
-
-        if (values.count(value) != 0) {
-            result = "Unable to add value: " + value + ": because it's referenced twice";
-            return false;
-        }
-        values[value] = state + 1;
+        values.emplace_back(value);
     }
 
     CriterionInterface* criterion =
@@ -364,7 +358,7 @@ bool CTestPlatform::createExclusiveCriterion(const string& name, uint32_t nbStat
     Values values;
 
     for (uint32_t state = 0; state < nbStates; state++) {
-        values["State_" + std::to_string(state)] = state;
+        values.emplace_back("State_" + std::to_string(state));
     }
     CriterionInterface* criterion =
         _pParameterMgrPlatformConnector->createExclusiveCriterion(name, values, result);
@@ -389,98 +383,12 @@ bool CTestPlatform::createInclusiveCriterion(const string& name, uint32_t nbStat
     }
 
     for (uint32_t state = 0; state < nbStates; state++) {
-        values["State_0x" + std::to_string(1 << state)] = state + 1;
+        values.emplace_back("State_0x" + std::to_string(1 << state));
     }
     CriterionInterface* criterion =
         _pParameterMgrPlatformConnector->createInclusiveCriterion(name, values, result);
 
     if (criterion == nullptr) {
-        return false;
-    }
-
-    return true;
-}
-
-bool CTestPlatform::setCriterionState(const string& strName, uint32_t uiState, string& strResult)
-{
-    CriterionInterface* pCriterion =
-        _pParameterMgrPlatformConnector->getSelectionCriterion(strName);
-
-    if (!pCriterion) {
-
-        strResult = "Unable to retrieve selection criterion: " + strName;
-
-        return false;
-    }
-
-    if (!pCriterion->setState({(int)uiState}, strResult)) {
-        return false;
-    }
-
-    return true;
-}
-
-bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand,
-                                                    string& strResult)
-{
-
-    // Get criterion name
-    std::string strCriterionName = remoteCommand.getArgument(0);
-
-    CriterionInterface* pCriterion =
-        _pParameterMgrPlatformConnector->getSelectionCriterion(strCriterionName);
-
-    if (!pCriterion) {
-
-        strResult = "Unable to retrieve selection criterion: " + strCriterionName;
-
-        return false;
-    }
-
-    // Get substate number, the first argument (index 0) is the criterion name
-    uint32_t uiNbSubStates = remoteCommand.getArgumentCount() - 1;
-
-    // Check that exclusive criterion has only one substate
-    if (!pCriterion->isInclusive() && uiNbSubStates != 1) {
-
-        strResult = "Exclusive criterion " + strCriterionName + " can only have one state";
-
-        return false;
-    }
-
-    /// Translate lexical state to numerical state
-    int iNumericalState = 0;
-    uint32_t uiLexicalSubStateIndex;
-
-    // Parse lexical substates
-    std::string strLexicalState = "";
-
-    for (uiLexicalSubStateIndex = 1;
-         uiLexicalSubStateIndex <= uiNbSubStates;
-         uiLexicalSubStateIndex++) {
-        /*
-         * getNumericalValue method from CriterionInterface strip his parameter
-         * first parameter based on | sign. In case that the user uses multiple parameters
-         * to set InclusiveCriterion value, we aggregate all desired values to be sure
-         * they will be handled correctly.
-         */
-        if (uiLexicalSubStateIndex != 1) {
-            strLexicalState += "|";
-        }
-        strLexicalState += remoteCommand.getArgument(uiLexicalSubStateIndex);
-    }
-
-    // Translate lexical to numerical substate
-    if (!pCriterion->getNumericalValue(strLexicalState, iNumericalState)) {
-
-        strResult = "Unable to find lexical state \""
-            + strLexicalState + "\" in criteria " + strCriterionName;
-
-        return false;
-    }
-
-    // Set criterion new state
-    if (!pCriterion->setState({iNumericalState}, strResult)) {
         return false;
     }
 

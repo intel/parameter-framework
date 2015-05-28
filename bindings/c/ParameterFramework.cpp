@@ -189,20 +189,7 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
         // Create criterion values
         core::criterion::Values values;
         for (size_t valueIndex = 0; criterion.values[valueIndex] != NULL; ++valueIndex) {
-
-            int value;
-            if (criterion.inclusive) {
-                value = valueIndex + 1;
-            } else {
-                value = valueIndex;
-            }
-            const char * valueName = criterion.values[valueIndex];
-            if (values.count(valueName) != 0) {
-                return status.failure("Could not add value " + string(valueName) +
-                                      " to criterion " + criterion.name +
-                                      ": The value is duplicated");
-            }
-            values[valueName] = value;
+            values.emplace_back(criterion.values[valueIndex]);
         }
         // Create criterion
         string error;
@@ -263,7 +250,7 @@ static CriterionInterface *getCriterion(const pfw::Criteria &criteria, const str
     return it == criteria.end() ? NULL : it->second;
 }
 
-bool pfwSetCriterion(PfwHandler *handle, const char name[], int value[], size_t nbValue)
+bool pfwSetCriterion(PfwHandler *handle, const char name[], const char **values)
 {
     if (handle == NULL) { return Status::failure(); }
     Status &status = handle->lastStatus;
@@ -279,42 +266,60 @@ bool pfwSetCriterion(PfwHandler *handle, const char name[], int value[], size_t 
     if (criterion == NULL) {
         return status.failure("Can not set criterion " + string(name) + " as does not exist");
     }
-    core::criterion::State state{value, value + nbValue};
+    core::criterion::State state{};
+    for (size_t valueIndex = 0; values[valueIndex] != NULL; ++valueIndex) {
+        state.emplace(values[valueIndex]);
+    }
     return status.forward(criterion->setState(state, status.msg()));
 }
-bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value[], size_t *nbValue)
+const char **pfwGetCriterion(const PfwHandler *handle, const char name[])
 {
-    if (handle == NULL) { return Status::failure(); }
+    if (handle == NULL) { return NULL; }
     Status &status = handle->lastStatus;
     if (name == NULL) {
-        return status.failure("char *name of the criterion is NULL, "
-                              "while getting a criterion.");
+        status.failure("char *name of the criterion is NULL, while getting a criterion.");
+        return NULL;
     }
     if (handle->pfw == NULL) {
-        return status.failure("Can not get criterion \"" + string(name) +
-                              "\" as the parameter framework is not started.");
-    }
-    if (value == NULL) {
-        return status.failure("Can not get criterion \"" + string(name) +
-                              "\" as the out value is NULL.");
-    }
-    if (nbValue == NULL) {
-        return status.failure("Can not get criterion \"" + string(name) +
-                              "\" as the out value size is NULL.");
+        status.failure("Can not get criterion \"" + string(name) +
+                       "\" as the parameter framework is not started.");
+        return NULL;
     }
     CriterionInterface *criterion = getCriterion(handle->criteria, name);
     if (criterion == NULL) {
-        return status.failure("Can not get criterion " + string(name) + " as it does not exist");
+        status.failure("Can not get criterion " + string(name) + " as it does not exist");
+        return NULL;
     }
     core::criterion::State state = criterion->getState();
-    *nbValue = state.size();
-    *value = static_cast<int*>(std::malloc(*nbValue * sizeof(int)));
-    if (*value == nullptr && *nbValue > 0) {
-        return status.failure("Can not get criterion " + string(name) +
-                              " as there is no memory left");
+
+    // Allocating one slot for each criterion value plus one for the NULL end delimiter
+    const char **values = static_cast<const char**>(malloc((state.size() + 1) * sizeof(char*)));
+    if (values == nullptr) {
+        status.failure("Can not get criterion " + string(name) + " as there is no memory left");
+        return NULL;
     }
-    std::copy(state.begin(), state.end(), *value);
-    return status.success();
+
+    size_t i = 0;
+    for (auto &critValue : state) {
+        values[i] = strdup(critValue.c_str());
+        if (values[i] == nullptr) {
+            status.failure("Can not get criterion " + string(name) +
+                           " as there is no memory left (errno: " + strerror(errno) + ")");
+            return NULL;
+        }
+        ++i;
+    }
+    values[i] = NULL;
+    return values;
+}
+
+void pfwCriterionValueFree(const char **value)
+{
+    const char **valueSav = value;
+    while(*value != NULL) {
+        std::free(*const_cast<char**>(value++));
+    }
+    std::free(valueSav);
 }
 
 bool pfwApplyConfigurations(const PfwHandler *handle)

@@ -116,11 +116,7 @@ void CSelectionCriterionRule::dump(string& strResult) const
     strResult += mMatchesWhenVerb;
     strResult += " ";
     // Value
-    string strValue = gEmptyRule;
-    if (!mMatchState.empty()) {
-        _pSelectionCriterion->getLiteralValue(*mMatchState.begin(), strValue);
-    }
-    strResult += strValue;
+    strResult += mMatchState.empty() ? gEmptyRule : *mMatchState.begin();
 }
 
 // Rule check
@@ -191,13 +187,7 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     xmlElement.setAttributeString("MatchesWhen", mMatchesWhenVerb);
 
     // Set Value
-    string strValue = gEmptyRule;
-
-    if (!mMatchState.empty()) {
-        _pSelectionCriterion->getLiteralValue(*mMatchState.begin(), strValue);
-    }
-
-    xmlElement.setAttributeString("Value", strValue);
+    xmlElement.setAttributeString("Value", mMatchState.empty() ? gEmptyRule : *mMatchState.begin());
 }
 
 bool CSelectionCriterionRule::setMatchState(const std::string &value)
@@ -206,10 +196,9 @@ bool CSelectionCriterionRule::setMatchState(const std::string &value)
         mMatchState.clear();
         return true;
     }
-    int numericalValue;
-    if (!_pSelectionCriterion->getNumericalValue(value, numericalValue)) {
+    if (!_pSelectionCriterion->isValueAvailable(value)) {
         return false;
     }
-    mMatchState = {numericalValue};
+    mMatchState = {value};
     return true;
 }

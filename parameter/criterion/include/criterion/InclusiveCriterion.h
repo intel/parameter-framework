@@ -44,7 +44,9 @@ public:
      *  @param[in] values available values the criterion can take
      *  @param[in] logger the application main logger
      */
-    InclusiveCriterion(const std::string& name, const Values& values, core::log::Logger& logger);
+    InclusiveCriterion(const std::string& name,
+                       const criterion::Values& values,
+                       core::log::Logger& logger);
 
     // @{
     /** @see CriterionInterface */

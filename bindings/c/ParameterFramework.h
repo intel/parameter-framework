@@ -156,32 +156,36 @@ const char *pfwGetLastError(const PfwHandler *handle) NONNULL;
 /** Set a criterion value given its name and value.
   * @param handle[in] @see PfwHandler
   * @param name[in] The name of the criterion that need to be changed.
-  * @param value If the criterion is exclusive, an array containing the index of the new value.
-  *              If the criterion is inclusive, an array containing all index of new values.
+  * @param value If the criterion is exclusive, an array containing the new value.
+  *              If the criterion is inclusive, an array containing all new values.
   * For an inclusive criterion defined as such: { "Red", "Green", "Blue", NULL }
-  * to set the value Green and Blue, value has to be [1, 2].
+  * to set the value Green and Blue, value has to be ["Green", "Blue", NULL].
   * For an exclusive criterion defined as such: { "Car", "Boat", "Plane", NULL }
-  * to set the value Plane, value has to be [2].
-  * @param nbValue[in] The size of value array.
+  * to set the value Plane, value has to be ["Plane", NULL].
   *
   * Criterion change do not have impact on the parameters value
   * (no configuration applied) until the changes are committed using pfwApplyConfigurations.
   *
   * @return true on success and false on failure.
   */
-bool pfwSetCriterion(PfwHandler *handle,
-                     const char name[],
-                     int value[],
-                     size_t nbValue) NONNULL USERESULT;
+bool pfwSetCriterion(PfwHandler *handle, const char name[], const char **values) NONNULL USERESULT;
 /** Get a criterion value given its name.
-  * Same usage as pfwSetCriterion except that value and nbValue are out parameters.
+  * @param handle[in] @see PfwHandler
+  * @param name[in] The name of the criterion that need to be changed.
+  * @return an NULL terminated array of char* which store criterion values if success
+  *         NULL otherwise
   * Get criterion will return the last value setted with pfwSetCriterion independantly of pfwCommitCritenio.
-  * The callee MUST free the returned value array using pfwFree after use.
+  * The callee MUST free the returned value array using pfwCriterionValueFree after use.
   */
-bool pfwGetCriterion(const PfwHandler *handle,
-                     const char name[],
-                     int *value[],
-                     size_t *nbValue) NONNULL USERESULT;
+const char **pfwGetCriterion(const PfwHandler *handle, const char name[]) NONNULL USERESULT;
+
+/** Frees the memory space of criterion value array,
+  * which must have been returned by a previous call to pfwGetCriterion.
+  *
+  * @param value[in] pointer to the memory to free.
+  * @see man 3 free for usage.
+  */
+void pfwCriterionValueFree(const char **value);
 
 /** Commit criteria change and change parameters according to the configurations.
   * Criterion do not have impact on the parameters value when changed,

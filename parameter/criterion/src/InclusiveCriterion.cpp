@@ -41,7 +41,7 @@ namespace criterion
 const std::string InclusiveCriterion::gDelimiter = "|";
 
 InclusiveCriterion::InclusiveCriterion(const std::string& name,
-                                       const Values& values,
+                                       const criterion::Values& values,
                                        core::log::Logger& logger)
     : Criterion(name, logger, values, {},
                 {{"Includes", [&](const State& state) {
@@ -72,14 +72,11 @@ std::string InclusiveCriterion::getFormattedState() const
     }
 
     std::string formattedState;
-    for (auto& numericalValue : mState) {
-        std::string literalValue;
-        bool succeed = getLiteralValue(numericalValue, literalValue);
-        assert(succeed);
-        if (*mState.begin() != numericalValue) {
+    for (auto &value : mState) {
+        if (*mState.begin() != value) {
             formattedState += gDelimiter;
         }
-        formattedState += literalValue;
+        formattedState += value;
     }
     return formattedState;
 }
@@ -89,8 +86,7 @@ bool InclusiveCriterion::setState(const State& state, std::string& error)
     // Check for a change
     if (mState != state) {
         // Check that the state contains only registered values
-        if (!std::all_of(state.begin(), state.end(),
-                [&](int value) { return getLiteralValue(value, error); })) {
+        if (!std::includes(mValues.begin(), mValues.end(), state.begin(), state.end())) {
             error = "Inclusive criterion '" + getCriterionName() +
                     "' can't be set because some values are not registered";
             return false;

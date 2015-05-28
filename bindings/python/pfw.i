@@ -46,22 +46,21 @@
 
 %include "std_string.i"
 %include "std_vector.i"
-%include "std_map.i"
+%include "std_list.i"
 %include "std_set.i"
 %include "typemaps.i"
 
 // We need to tell SWIG that 
 //     std::vector<std::string> is a vector of strings,
-//     std::map<std::string, int> is a map with string as key and integer as value,
-//     std::set<int> is a set of int
+//     std::list<std::string> is a list of strings,
+//     std::set<std::string> is a set of strings
 namespace std {
     %template(StringVector) vector<string>;
-    %template(MapStringInt) map<string, int>;
-    %template(IntSet) set<int>;
+    %template(StringList) list<string>;
+    %template(StringSet) set<string>;
 }
 
-// Tells swig that 'std::string& strError' 'std::string& errorOutput' must be
-// treated as output parameters
+// Tells swig that 'std::string& strError' must be treated as output parameters
 // TODO: make it return a tuple instead of a list
 %apply std::string &OUTPUT { std::string& strError };
 %apply std::string &OUTPUT { std::string& errorOutput };
@@ -215,8 +214,9 @@ namespace core
 namespace criterion
 {
 
-typedef std::map<std::string, int> Values;
-typedef std::set<int> State;
+typedef std::string Value ;
+typedef std::list<Value> Values;
+typedef std::set<Value> State;
 
 class CriterionInterface
 {
@@ -228,12 +228,6 @@ public:
     virtual bool setState(const State& state, std::string& errorOutput) = 0;
     virtual State getState() const = 0;
     virtual std::string getCriterionName() const = 0;
-%apply int &OUTPUT { int& numericalValue };
-    virtual bool getNumericalValue(const std::string& literalValue, int& numericalValue) const = 0;
-%clear int& numericalValue;
-%apply std::string &OUTPUT { std::string& literalValue };
-    virtual bool getLiteralValue(int numericalValue, std::string& literalValue) const = 0;
-%clear std::string& literalValue;
     virtual std::string getFormattedState() const = 0;
     virtual bool isInclusive() const = 0;
 

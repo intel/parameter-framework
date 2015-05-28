@@ -30,18 +30,27 @@
 #pragma once
 
 #include <string>
-#include <map>
+#include <list>
 #include <set>
 
 namespace core
 {
 namespace criterion
 {
-/** Type which associate literal and numerical value */
-using Values = std::map<std::string, int>;
+/** Type which represent a criterion state part */
+using Value = std::string;
+
+/** Criterion value collection
+ * When the criterion will be created, it will be checked that no internal values
+ * are duplicated (i.e that we have a set of value). Nevertheless, we decided to
+ * use a list to store values in order to let the user choose the value order.
+ * This is important as the first value will be chosen as default one.
+ * @see createExclusiveCriterion
+ */
+using Values = std::list<Value>;
 
 /** Criterion state representation */
-using State = std::set<int>;
+using State = std::set<Value>;
 
 /** Client criterion interface used for interacting with the system state
  * Allows client to set or retrieve a Criterion state.
@@ -49,7 +58,6 @@ using State = std::set<int>;
 class CriterionInterface
 {
 public:
-
     /** Set a new state to the criterion
      * The state should only be composed of registered values.
      * If the requested state is already set, the function will succeed but no modification
@@ -65,28 +73,6 @@ public:
     /** Retrieve the current criterion state */
     virtual State getState() const = 0;
     virtual std::string getCriterionName() const = 0;
-
-    /** Retrieve the numerical value from the literal representation of the criterion type.
-     *
-     * @param[in] literalValue: criterion state value represented as a stream. If the criterion is
-     *                          inclusive, it supports more than one criterion type value delimited
-     *                          by the "|" symbol.
-     * @param[out] numericalValue: criterion state value represented as an integer.
-     *
-     * @return true if a numerical value is retrieved from the literal one, false otherwise.
-     */
-    virtual bool getNumericalValue(const std::string& literalValue, int& numericalValue) const = 0;
-
-    /** Retrieve the numerical value from the literal representation of the criterion type.
-     *
-     * @param[in] numericalValue: criterion state value represented as an integer.
-     * @param[out] literalValue: criterion state value represented as a stream. If the criterion is
-     *                           inclusive, it supports more than one criterion type value delimited
-     *                           by the "|" symbol.
-     *
-     * @return true if a numerical value is retrieved from the literal one, false otherwise.
-     */
-    virtual bool getLiteralValue(int numericalValue, std::string& literalValue) const = 0;
 
     /** Retrieve formatted current criterion state
      *
