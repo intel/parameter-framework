@@ -36,11 +36,8 @@ class MyLogger(PyPfw.ILogger):
         # Calling the base constructor is necessary: if you don't, MyLogger
         # won't be recognised as a derived class of PyPfw.ILogger
         super(MyLogger, self).__init__()
-
-    def log(self, is_warning, log):
-        log_func = logging.warning if is_warning else logging.info
-        log_func(log)
-
+        self.info = logging.info
+        self.warning = logging.warning
 
 logging.root.setLevel(logging.INFO)
 
