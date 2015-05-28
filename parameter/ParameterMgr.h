@@ -612,7 +612,7 @@ private:
     pthread_mutex_t _blackboardMutex;
 
     /** Application main logger based on the one provided by the client */
-    core::log::Logger _logger;
+    mutable core::log::Logger _logger;
 
     /** If set to false, the remote interface won't be started no matter what.
      * If set to true - the default - it has no impact on the policy for
