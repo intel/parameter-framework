@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -39,6 +39,7 @@
 
 #include <stdio.h>
 #include <errno.h>
+#include <cstring>
 
 #define base CSocket
 
@@ -52,7 +53,7 @@ CListeningSocket::CListeningSocket()
 }
 
 // Listen
-bool CListeningSocket::listen(uint16_t uiPort)
+bool CListeningSocket::listen(uint16_t uiPort, string &strError)
 {
     struct sockaddr_in server_addr;
 
@@ -62,19 +63,17 @@ bool CListeningSocket::listen(uint16_t uiPort)
     // Bind
     if (bind(getFd(), (struct sockaddr*)&server_addr, sizeof(struct sockaddr)) == -1) {
 
-	std::ostringstream oss;
-        oss << "CListeningSocket::listen::bind port " << uiPort;
-        perror(oss.str().c_str());
-
+        std::ostringstream oss;
+        oss << uiPort;
+        strError = "Could not bind socket to port " + oss.str() + ": " + strerror(errno);
         return false;
     }
 
     if (::listen(getFd(), 5) == -1) {
 
-	std::ostringstream oss;
-        oss << "CListeningSocket::listen::bind port " << uiPort;
-        perror(oss.str().c_str());
-
+        std::ostringstream oss;
+        oss << uiPort;
+        strError = "Could not listen to port " + oss.str() + ": " + strerror(errno);
         return false;
     }
     return true;

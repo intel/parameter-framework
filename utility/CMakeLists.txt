@@ -29,6 +29,7 @@
 add_library(pfw_utility STATIC
     Tokenizer.cpp
     Utility.cpp
+    FullIo.cpp
     NaiveTokenizer.cpp)
 
 # '-fPIC' needed for linking against shared libraries (e.g. libparameter)

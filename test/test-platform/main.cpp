@@ -29,12 +29,15 @@
  */
 
 #include "TestPlatform.h"
+#include "FullIo.hpp"
 
 #include <iostream>
 #include <cstdlib>
 #include <semaphore.h>
 #include <string.h>
 #include <unistd.h>
+#include <cerrno>
+#include <cassert>
 
 using namespace std;
 
@@ -66,6 +69,16 @@ static bool startBlockingTestPlatform(const char *filePath, int portNumber, stri
     sem_destroy(&sem);
 
     return true;
+}
+
+static void notifyParent(int parentFd, bool success)
+{
+    if (not utility::fullWrite(parentFd, &success, sizeof(success))) {
+        cerr << "Unable to warn parent process of load "
+             << (success ? "success" : "failure") << ": "
+             << strerror(errno) << endl;
+        assert(false);
+    }
 }
 
 // Starts test-platform in daemon mode
@@ -106,31 +119,26 @@ static bool startDaemonTestPlatform(const char *filePath, int portNumber, string
         CTestPlatform testPlatform(filePath, portNumber, sem);
 
         // Message to send to parent process
-        bool msgToParent;
+        bool loadSuccess = testPlatform.load(strError);
 
-        // Start platformmgr
-        if (!testPlatform.load(strError)) {
+        if (!loadSuccess) {
 
             cerr << strError << endl;
 
             // Notify parent of failure;
-            msgToParent = false;
-            write(pipefd[1], &msgToParent, sizeof(msgToParent));
+            notifyParent(pipefd[1], false);
 
-            sem_destroy(&sem);
         } else {
 
             // Notify parent of success
-            msgToParent = true;
-            write(pipefd[1], &msgToParent, sizeof(msgToParent));
+            notifyParent(pipefd[1], true);
 
             // Block here
             sem_wait(&sem);
-
-            sem_destroy(&sem);
         }
+        sem_destroy(&sem);
 
-        return msgToParent;
+        return loadSuccess;
 
     } else {
 
@@ -143,9 +151,9 @@ static bool startDaemonTestPlatform(const char *filePath, int portNumber, string
         // Message received from the child process
         bool msgFromChild = false;
 
-        if (read(pipefd[0], &msgFromChild, sizeof(msgFromChild)) <= 0) {
-
+        if (not utility::fullRead(pipefd[0], &msgFromChild, sizeof(msgFromChild))) {
             strError = "Read pipe failed";
+            return false;
         }
 
         // return success/failure in exit status

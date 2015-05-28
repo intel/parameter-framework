@@ -1,5 +1,5 @@
-/* 
- * Copyright (c) 2011-2015, Intel Corporation
+/*
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,45 +27,54 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#pragma once
 
-#include <stdint.h>
-#include <pthread.h>
-#include "RemoteProcessorServerInterface.h"
+#include "FullIo.hpp"
 
-class CListeningSocket;
-class IRemoteCommandHandler;
+#include <cerrno>
+#include <unistd.h>
 
-class CRemoteProcessorServer : public IRemoteProcessorServerInterface
+namespace utility
 {
-public:
-    CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
-    virtual ~CRemoteProcessorServer();
 
-    // State
-    virtual bool start(std::string &error);
-    virtual void stop();
-    virtual bool isStarted() const;
+/** Workaround c++ `void *` arithmetic interdiction. */
+template <class Ptr>
+Ptr *add(Ptr *ptr, size_t count) {
+    return (char *)ptr + count;
+}
 
-private:
-    // Thread
-    static void* thread_func(void* pData);
-    void run();
+template <class Buff>
+static bool fullAccess(ssize_t (&accessor)(int, Buff, size_t),
+                       bool (&accessFailed)(ssize_t),
+                       int fd, Buff buf, size_t count) {
+    size_t done = 0; // Bytes already access in previous iterations
+    while (done < count) {
+        ssize_t accessed = accessor(fd, add(buf, done), count - done);
+        if (accessFailed(accessed)) {
+            return false;
+        }
+        done += accessed;
+    }
+    return true;
+}
 
-    // New connection
-    void handleNewConnection();
+static bool accessFailed(ssize_t accessRes) {
+    return accessRes == -1 and errno != EAGAIN and errno != EINTR;
+}
 
-    // Port number
-    uint16_t _uiPort;
-    // Command handler
-    IRemoteCommandHandler* _pCommandHandler;
-    // State
-    bool _bIsStarted;
-    // Listening socket
-    CListeningSocket* _pListeningSocket;
-    // Inband pipe
-    int _aiInbandPipe[2];
-    // Thread
-    pthread_t _ulThreadId;
-};
+bool fullWrite(int fd, const void *buf, size_t count) {
+    return fullAccess(::write, accessFailed, fd, buf, count);
+}
+
+static bool readFailed(ssize_t readRes) {
+    if (readRes == 0) { // read should not return 0 (EOF)
+        errno = 0;
+        return true;
+    }
+    return accessFailed(readRes);
+}
+bool fullRead(int fd, void *buf, size_t count) {
+    return fullAccess(::read, readFailed, fd, buf, count);
+}
+
+} // namespace utility
 

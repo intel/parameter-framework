@@ -2593,12 +2593,12 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
 
         info() << "Starting remote processor server on port " << _pfwConfiguration.getServerPort();
         // Start
-        if (!_pRemoteProcessorServer->start()) {
+        if (!_pRemoteProcessorServer->start(strError)) {
 
             ostringstream oss;
             oss << "ParameterMgr: Unable to start remote processor server on port "
                 << _pfwConfiguration.getServerPort();
-            strError = oss.str();
+            strError = oss.str() + ": " + strError;
 
             return false;
         }
