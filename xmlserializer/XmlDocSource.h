@@ -54,22 +54,7 @@ public:
       * @param[in] pRootNode a pointer to the root element of the document.
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc* pDoc, _xmlNode* pRootNode = NULL, bool bValidateWithSchema = false);
-
-    /**
-      * Constructor
-      *
-      * @param[out] pDoc a pointer to the xml document that will be filled by the class
-      * @param[in] strXmlSchemaFile a std::string containing the path to the schema file
-      * @param[in] strRootElementType a std::string containing the root element type
-      * @param[in] strRootElementName a std::string containing the root element name
-      * @param[in] strNameAttributeName a std::string containing the name of the root name attribute
-      */
-    CXmlDocSource(_xmlDoc* pDoc,
-                           const std::string& strXmlSchemaFile,
-                           const std::string& strRootElementType,
-                           const std::string& strRootElementName,
-                           const std::string& strNameAttrituteName);
+    CXmlDocSource(_xmlDoc* pDoc, bool bValidateWithSchema = false, _xmlNode* pRootNode = NULL);
 
     /**
       * Constructor
@@ -81,22 +66,11 @@ public:
       * @param[in] strNameAttributeName a string containing the name of the root name attribute
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc* pDoc,
-                           const std::string& strXmlSchemaFile,
-                           const std::string& strRootElementType,
-                           const std::string& strRootElementName,
-                           const std::string& strNameAttrituteName,
-                             bool bValidateWithSchema);
-
-    /**
-      * Constructor
-      *
-      * @param[out] pDoc a pointer to the xml document that will be filled by the class
-      * @param[in] strXmlSchemaFile a string containing the path to the schema file
-      * @param[in] strRootElementType a string containing the root element type
-      */
-    CXmlDocSource(_xmlDoc* pDoc, const std::string& strXmlSchemaFile, const std::string& strRootElementType,
-                             bool bValidateWithSchema);
+    CXmlDocSource(_xmlDoc* pDoc, bool bValidateWithSchema,
+                           const std::string& strXmlSchemaFile = "",
+                           const std::string& strRootElementType = "",
+                           const std::string& strRootElementName = "",
+                           const std::string& strNameAttributeName = "");
 
     /**
       * Destructor
@@ -110,7 +84,7 @@ public:
       *
       * @return false if there are any error
       */
-    virtual bool populate(CXmlSerializingContext& serializingContext) = 0;
+    virtual bool populate(CXmlSerializingContext& serializingContext);
 
     /**
       * Method that returns the root element of the Xml tree.
@@ -154,6 +128,24 @@ public:
       */
     virtual bool validate(CXmlSerializingContext& serializingContext);
 
+    /**
+    * Method that checks that the xml document has been correctly parsed.
+    *
+    * @return false if any error occurs during the parsing
+    */
+    virtual bool isParsable() const;
+
+    /**
+     * Helper method for creating an xml document from either a file or a
+     * string.
+     *
+     * @param[in] source either a filename or a string representing an xml document
+     * @param[in] fromFile true if source is a filename, false if source is an xml
+     *            represents an xml document
+     * @param[in] xincludes if true, process xincludes tags
+     * @param[out] errorMsg used as error output
+     */
+    static _xmlDoc* mkXmlDoc(const std::string& source, bool fromFile, bool xincludes, std::string& errorMsg);
 
 protected:
 
@@ -210,12 +202,7 @@ private:
     /**
       * Element name attribute info
       */
-    std::string _strNameAttrituteName;
-
-    /**
-      * Boolean that enables the root element name attribute check
-      */
-    bool _bNameCheck;
+    std::string _strNameAttributeName;
 
     /**
       * Boolean that enables the validation via xsd files

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,39 +27,34 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "XmlStreamDocSink.h"
+#include <libxml/parser.h>
 
-#pragma once
-#include <string>
-#include "XmlDocSink.h"
-#include "XmlSource.h"
+#define base CXmlDocSink
 
-/**
-  * Sink class that writes the content of any CXmlDocSource into a std::string.
-  * A reference to an empty std::string is given in the constructor.
-  */
-class CXmlStringDocSink : public CXmlDocSink
+CXmlStreamDocSink::CXmlStreamDocSink(std::ostream& output):
+    _output(output)
 {
-public:
-    /** Constructor
-      *
-      * @param[out] strResult a reference to a std::string that will be filled by the doProcess method
-      */
-    CXmlStringDocSink(std::string& strResult);
+}
 
-private:
-    /** Implementation of CXmlDocSink::doProcess()
-      * Writes the content of the xmlDocSource in strResult
-      *
-      * @param[in] xmlDocSource is the source containing the Xml document
-      * @param[out] serializingContext is used as error output
-      *
-      * @return false if any error occurs
-      */
-    virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
+bool CXmlStreamDocSink::doProcess(CXmlDocSource& xmlDocSource,
+                                  CXmlSerializingContext& serializingContext)
+{
+    xmlChar* dumpedDoc = NULL;
 
-    /**
-      * Result std::string containing the XML informations
-      */
-    std::string& _strResult;
-};
+    int iSize;
+    xmlDocDumpFormatMemoryEnc(xmlDocSource.getDoc(), &dumpedDoc, &iSize, "UTF-8", 1);
 
+    if (!dumpedDoc) {
+
+        serializingContext.setError("Unable to encode XML document in memory");
+
+        return false;
+    }
+
+    _output << static_cast<unsigned char*>(dumpedDoc);
+
+    xmlFree(dumpedDoc);
+
+    return true;
+}

@@ -37,10 +37,7 @@ common_src_files := \
         XmlDocSource.cpp \
         XmlMemoryDocSink.cpp \
         XmlMemoryDocSource.cpp \
-        XmlStringDocSink.cpp \
-        XmlFileDocSink.cpp \
-        XmlFileDocSource.cpp \
-        XmlStringDocSource.cpp
+        XmlStreamDocSink.cpp \
 
 common_module := libxmlserializer
 

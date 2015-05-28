@@ -31,6 +31,9 @@
 #include "XmlDocSource.h"
 #include <libxml/tree.h>
 #include <libxml/xmlschemas.h>
+#include <libxml/parser.h>
+#include <libxml/xinclude.h>
+#include <libxml/xmlerror.h>
 #include <stdlib.h>
 
 using std::string;
@@ -38,65 +41,30 @@ using std::string;
 // Schedule for libxml2 library
 bool CXmlDocSource::_bLibXml2CleanupScheduled;
 
-CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, _xmlNode *pRootNode,
-                             bool bValidateWithSchema) :
+CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
+                             _xmlNode *pRootNode) :
       _pDoc(pDoc),
       _pRootNode(pRootNode),
       _strXmlSchemaFile(""),
       _strRootElementType(""),
       _strRootElementName(""),
-      _strNameAttrituteName(""),
-      _bNameCheck(false),
+      _strNameAttributeName(""),
       _bValidateWithSchema(bValidateWithSchema)
 {
     init();
 }
 
-CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
+CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
                              const string& strXmlSchemaFile,
                              const string& strRootElementType,
                              const string& strRootElementName,
-                             const string& strNameAttrituteName) :
+                             const string& strNameAttributeName) :
     _pDoc(pDoc),
-    _pRootNode(NULL),
+    _pRootNode(xmlDocGetRootElement(pDoc)),
     _strXmlSchemaFile(strXmlSchemaFile),
     _strRootElementType(strRootElementType),
     _strRootElementName(strRootElementName),
-    _strNameAttrituteName(strNameAttrituteName),
-    _bNameCheck(true),
-    _bValidateWithSchema(false)
-{
-    init();
-}
-
-CXmlDocSource::CXmlDocSource(_xmlDoc* pDoc,
-                             const string& strXmlSchemaFile,
-                             const string& strRootElementType,
-                             bool bValidateWithSchema) :
-    _pDoc(pDoc), _pRootNode(NULL),
-    _strXmlSchemaFile(strXmlSchemaFile),
-    _strRootElementType(strRootElementType),
-    _strRootElementName(""),
-    _strNameAttrituteName(""),
-    _bNameCheck(false),
-    _bValidateWithSchema(bValidateWithSchema)
-{
-    init();
-}
-
-CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
-                             const string& strXmlSchemaFile,
-                             const string& strRootElementType,
-                             const string& strRootElementName,
-                             const string& strNameAttrituteName,
-                             bool bValidateWithSchema) :
-    _pDoc(pDoc),
-    _pRootNode(NULL),
-    _strXmlSchemaFile(strXmlSchemaFile),
-    _strRootElementType(strRootElementType),
-    _strRootElementName(strRootElementName),
-    _strNameAttrituteName(strNameAttrituteName),
-    _bNameCheck(true),
+    _strNameAttributeName(strNameAttributeName),
     _bValidateWithSchema(bValidateWithSchema)
 {
     init();
@@ -133,6 +101,18 @@ _xmlDoc* CXmlDocSource::getDoc() const
     return _pDoc;
 }
 
+bool CXmlDocSource::isParsable() const
+{
+    // Check that the doc has been created
+    return _pDoc != NULL;
+}
+
+bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
+{
+    return validate(serializingContext);
+
+}
+
 bool CXmlDocSource::validate(CXmlSerializingContext& serializingContext)
 {
     // Check that the doc has been created
@@ -164,9 +144,9 @@ bool CXmlDocSource::validate(CXmlSerializingContext& serializingContext)
         return false;
     }
 
-    if (_bNameCheck) {
+    if (!_strNameAttributeName.empty()) {
 
-        string strRootElementNameCheck = getRootElementAttributeString(_strNameAttrituteName);
+        string strRootElementNameCheck = getRootElementAttributeString(_strNameAttributeName);
 
         // Check Root element name attribute (if any)
         if (!_strRootElementName.empty() && strRootElementNameCheck != _strRootElementName) {
@@ -192,11 +172,6 @@ void CXmlDocSource::init()
         atexit(xmlCleanupParser);
 
         _bLibXml2CleanupScheduled = true;
-    }
-
-    if (!_pRootNode) {
-
-        _pRootNode = xmlDocGetRootElement(_pDoc);
     }
 }
 
@@ -263,4 +238,41 @@ void CXmlDocSource::schemaValidityStructuredErrorFunc(void* pUserData, _xmlError
     // Display message
     puts(pError->message);
 #endif
+}
+
+_xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincludes, string& errorMsg)
+{
+    _xmlDoc* doc = NULL;
+    if (fromFile) {
+        doc = xmlReadFile(source.c_str(), NULL, 0);
+    } else {
+        doc = xmlReadMemory(source.c_str(), (int)source.size(), "", NULL, 0);
+    }
+
+    if (doc == NULL) {
+        errorMsg = "libxml failed to read";
+        if (fromFile) {
+            errorMsg += " \"" + source + "\"";
+        }
+
+        xmlError* details = xmlGetLastError();
+        if (details != NULL) {
+            errorMsg += ": " + string(details->message);
+        }
+
+        return NULL;
+    }
+
+    if (xincludes and (xmlXIncludeProcess(doc) < 0)) {
+        errorMsg = "libxml failed to resolve XIncludes";
+        xmlError* details = xmlGetLastError();
+        if (details != NULL) {
+            errorMsg += ": " + string(details->message);
+        }
+
+        xmlFreeDoc(doc);
+        doc = NULL;
+    }
+
+    return doc;
 }

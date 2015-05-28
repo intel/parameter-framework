@@ -32,10 +32,7 @@ add_library(xmlserializer SHARED
     XmlDocSource.cpp
     XmlMemoryDocSink.cpp
     XmlMemoryDocSource.cpp
-    XmlStringDocSink.cpp
-    XmlFileDocSink.cpp
-    XmlFileDocSource.cpp
-    XmlStringDocSource.cpp)
+    XmlStreamDocSink.cpp)
 
 include(FindLibXml2)
 if(NOT LIBXML2_FOUND)

@@ -28,11 +28,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "XmlFileIncluderElement.h"
-#include "XmlFileDocSource.h"
+#include "XmlDocSource.h"
 #include "XmlMemoryDocSink.h"
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
 #include <assert.h>
+#include <fstream>
 
 #define base CKindElement
 CXmlFileIncluderElement::CXmlFileIncluderElement(const std::string& strName,
@@ -64,12 +65,20 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
         std::string strPathToXsdFile = elementSerializingContext.getXmlSchemaPathFolder() + "/" +
                                strIncludedElementType + ".xsd";
 
-        CXmlFileDocSource fileDocSource(strPath,
-                                        strPathToXsdFile,
-                                        strIncludedElementType,
-                                        _bValidateSchemasOnStart);
+        std::string xmlErrorMsg;
+        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strPath, true, true, xmlErrorMsg);
+        if (doc == NULL) {
+            elementSerializingContext.setError(xmlErrorMsg);
+            return false;
+        }
 
-        if (!fileDocSource.isParsable(elementSerializingContext)) {
+        CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
+                                strPathToXsdFile,
+                                strIncludedElementType);
+
+        if (!docSource.isParsable()) {
+
+            elementSerializingContext.setError("Could not parse document \"" + strPath + "\"");
 
             return false;
         }
@@ -77,7 +86,7 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
         // Get top level element
         CXmlElement childElement;
 
-        fileDocSource.getRootElement(childElement);
+        docSource.getRootElement(childElement);
 
         // Create child element
         CElement* pChild = elementSerializingContext.getElementLibrary()->createElement(childElement);
@@ -96,7 +105,7 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
         // Use a doc sink that instantiate the structure from the doc source
         CXmlMemoryDocSink memorySink(pChild);
 
-        if (!memorySink.process(fileDocSource, elementSerializingContext)) {
+        if (!memorySink.process(docSource, elementSerializingContext)) {
 
             return false;
         }

@@ -34,26 +34,17 @@
 
 #define base CXmlDocSource
 
-CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
+CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource, bool bValidateWithSchema,
                                          const std::string& strRootElementType,
                                          const std::string& strXmlSchemaFile,
                                          const std::string& strProduct,
-                                         const std::string& strVersion,
-                                         bool bValidateWithSchema):
-     base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str()),
-             bValidateWithSchema),
-     _pXmlSource(pXmlSource), _strXmlSchemaFile(strXmlSchemaFile), _bWithHeader(true),
-     _strProduct(strProduct), _strVersion(strVersion)
-{
-    init();
-}
-
-CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource,
-                                         const std::string& strRootElementType,
-                                         bool bValidateWithSchema):
-    base(xmlNewDoc(BAD_CAST "1.0"), xmlNewNode(NULL, BAD_CAST strRootElementType.c_str()),
-            bValidateWithSchema),
-    _pXmlSource(pXmlSource), _bWithHeader(false)
+                                         const std::string& strVersion):
+     base(xmlNewDoc(BAD_CAST "1.0"), bValidateWithSchema,
+          xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
+     _pXmlSource(pXmlSource),
+     _strXmlSchemaFile(strXmlSchemaFile),
+     _strProduct(strProduct),
+     _strVersion(strVersion)
 {
     init();
 }
@@ -80,7 +71,7 @@ bool CXmlMemoryDocSource::populate(CXmlSerializingContext& serializingContext)
     // Create Xml element with the Doc
      CXmlElement docElement(_pRootNode);
 
-    if (_bWithHeader) {
+    if (!_strXmlSchemaFile.empty()) {
 
         // Schema namespace
         docElement.setAttributeString("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");

@@ -159,6 +159,8 @@ public:
                           std::string& strError);
     bool importSingleDomainXml(const std::string& strXmlSource, bool bOverwrite,
                                std::string& strError);
+    bool importSingleDomainXml(const std::string& xmlSource, bool overwrite, bool withSettings,
+                               bool fromFile, std::string& strError);
 
 // Tells swig that "strXmlDest" in the two following methods are "inout"
 // parameters
