@@ -132,8 +132,6 @@ std::string Criterion::getName() const
 std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const
 {
     std::string strFormattedDescription;
-    std::string typeName = isInclusive() ? "Inclusive" : "Exclusive";
-
     if (bHumanReadable) {
 
         if (bWithTypeInfo) {
@@ -146,7 +144,7 @@ std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanRe
 
             // Type Kind
             strFormattedDescription += "(";
-            strFormattedDescription += typeName;
+            strFormattedDescription += getKind();
             strFormattedDescription += "): ";
 
             // States
@@ -168,7 +166,7 @@ std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanRe
         if (bWithTypeInfo) {
             // Type Kind
             strFormattedDescription += ", type kind: ";
-            strFormattedDescription +=  typeName;
+            strFormattedDescription +=  getKind();
         }
 
         // Current State
@@ -187,7 +185,7 @@ void Criterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializi
     (void)serializingContext;
     xmlElement.setAttributeString("Value", getFormattedState());
     xmlElement.setAttributeString("Name", mName);
-    xmlElement.setAttributeString("Kind", isInclusive() ? "Inclusive" : "Exclusive");
+    xmlElement.setAttributeString("Kind", getKind());
 
     for (auto& value : mValues) {
         CXmlElement childValueElement;
@@ -197,9 +195,9 @@ void Criterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializi
     }
 }
 
-bool Criterion::isInclusive() const
+const std::string Criterion::getKind() const
 {
-    return false;
+    return "Exclusive";
 }
 
 std::string Criterion::getFormattedState() const

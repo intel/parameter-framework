@@ -69,8 +69,6 @@ public:
 
     virtual std::string getName() const override final;
 
-    virtual bool isInclusive() const override;
-
     virtual std::string getFormattedState() const override;
     // @}
 
@@ -183,6 +181,9 @@ protected:
     void stateModificationsEvent();
 
 private:
+
+    /** Return description of the Criterion type for serialization purpose */
+    virtual const std::string getKind() const;
 
     /** Counter to know how many modifications have been applied to this criterion */
     uint32_t _uiNbModifications;

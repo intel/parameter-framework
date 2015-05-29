@@ -89,9 +89,8 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
     // Matches when
     if (!_pSelectionCriterion->isMatchMethodAvailable(mMatchesWhenVerb)) {
 
-        strError = "Matche type: " + mMatchesWhenVerb + " incompatible with " +
-                   (_pSelectionCriterion->isInclusive() ? "inclusive" : "exclusive") +
-                   " criterion: " + _pSelectionCriterion->getName();
+        strError = "Matche type: " + mMatchesWhenVerb + " incompatible with criterion: " +
+                   _pSelectionCriterion->getName();
 
         return false;
     }

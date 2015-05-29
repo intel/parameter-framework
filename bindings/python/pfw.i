@@ -228,7 +228,6 @@ public:
     virtual State getState() const = 0;
     virtual std::string getName() const = 0;
     virtual std::string getFormattedState() const = 0;
-    virtual bool isInclusive() const = 0;
 
 protected:
     virtual ~CriterionInterface() {}

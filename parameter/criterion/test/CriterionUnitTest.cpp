@@ -168,6 +168,9 @@ struct CriteriaTest : LoggingTest {
 
 /** Test fixtures for Criterion */
 struct CriterionTest : public LoggingTest {
+
+    bool mIsInclusive = false;
+
     /** Help to generate some values */
     Values generateCriterionValues(size_t nbValues)
     {
@@ -320,7 +323,7 @@ struct CriterionTest : public LoggingTest {
             REQUIRE_SUCCESS(criterion.setState(State{}, error), error);
             THEN("State should have been updated")
             {
-                if (criterion.isInclusive()) {
+                if (mIsInclusive) {
                     CHECK(criterion.getState() == State{});
                     CHECK(criterion.getFormattedState() == "none");
                 } else {
@@ -329,7 +332,7 @@ struct CriterionTest : public LoggingTest {
                 }
             }
         }
-        if (!criterion.isInclusive()) {
+        if (!mIsInclusive) {
             WHEN("Setting more than one value in an exclusive criterion")
             {
                 REQUIRE_FAILURE(criterion.setState(State{"C1", "C2", "C3"}, error), error);
@@ -339,8 +342,8 @@ struct CriterionTest : public LoggingTest {
 
     void checkSerialization(Criterion& criterion)
     {
-        std::string defaultValue = criterion.isInclusive() ? "none" : "a";
-        std::string kind = criterion.isInclusive() ? "Inclusive" : "Exclusive";
+        std::string defaultValue = mIsInclusive ? "none" : "a";
+        std::string kind = mIsInclusive ? "Inclusive" : "Exclusive";
         WHEN("Serializing through xml")
         {
             std::string xmlDescription =
@@ -424,7 +427,7 @@ struct CriterionTest : public LoggingTest {
 
             checkSerialization(criterion);
 
-            if (criterion.isInclusive()) {
+            if (mIsInclusive) {
                 State validState{"a", "b", "c"};
                 std::string error;
                 WHEN("Setting some criterion value")
@@ -454,7 +457,7 @@ struct CriterionTest : public LoggingTest {
             }
         }
         checkExclusiveCriterionSet(criterion, values);
-        if (criterion.isInclusive()) {
+        if (mIsInclusive) {
             // Inclusive criterion has a more evolved setting behavior
             checkInclusiveCriterionSet(criterion);
         }
@@ -479,7 +482,7 @@ struct CriterionTest : public LoggingTest {
                      * criterion
                      */
                     bool isAuthorizedMethod = criterion.isMatchMethodAvailable(matchMethod) or
-                                              not (criterion.isInclusive() or matcher.first);
+                                              not (mIsInclusive or matcher.first);
                     CHECK(isAuthorizedMethod);
                 }
             }
@@ -521,15 +524,10 @@ SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
         GIVEN("An exclusive criterion")
         {
             const std::string criterionName = "ExclusiveCriterion";
+            mIsInclusive = false;
             WHEN("Creating it with some values")
             {
                 Criterion criterion(criterionName, values, mLogger);
-
-                THEN("The criterion is not inclusive")
-                {
-                    CHECK(not criterion.isInclusive());
-                }
-
                 checkCriterionBasicBehavior(criterion, criterionName, values);
             }
             WHEN("Creating it with only one value")
@@ -544,14 +542,11 @@ SCENARIO_METHOD(CriterionTest, "Criterion lifecycle", "[criterion]")
         GIVEN("An inclusive criterion")
         {
             const std::string criterionName = "InclusiveCriterion";
+            mIsInclusive = true;
             WHEN("Creating it with some values")
             {
                 InclusiveCriterion criterion(criterionName, values, mLogger);
 
-                THEN("The criterion is inclusive")
-                {
-                    CHECK(criterion.isInclusive());
-                }
                 THEN("Default state is set")
                 {
                     CHECK(criterion.getState() == State{});
@@ -598,7 +593,6 @@ SCENARIO_METHOD(CriteriaTest, "Criteria Use", "[criterion]")
                 THEN("Added criteria match the request")
                 {
                     CAPTURE(description.name);
-                    CHECK(addedCriterion->isInclusive() == description.isInclusive);
                     CHECK(addedCriterion->getName() == description.name);
                 }
             }

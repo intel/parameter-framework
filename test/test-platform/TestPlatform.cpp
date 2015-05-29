@@ -263,14 +263,6 @@ CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
     // Get substate number, the first argument (index 0) is the criterion name
     uint32_t uiNbSubStates = remoteCommand.getArgumentCount() - 1;
 
-    // Check that exclusive criterion has only one substate
-    if (!pCriterion->isInclusive() && uiNbSubStates != 1) {
-
-        strResult = "Exclusive criterion " + strCriterionName + " can only have one state";
-
-        return CTestPlatform::CCommandHandler::EFailed;
-    }
-
     core::criterion::State state{};
     for (uint32_t i = 1; i <= uiNbSubStates; i++) {
         state.emplace(remoteCommand.getArgument(i));

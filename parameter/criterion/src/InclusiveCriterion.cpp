@@ -60,9 +60,9 @@ InclusiveCriterion::InclusiveCriterion(const std::string& name,
     }
 }
 
-bool InclusiveCriterion::isInclusive() const
+const std::string InclusiveCriterion::getKind() const
 {
-    return true;
+    return "Inclusive";
 }
 
 std::string InclusiveCriterion::getFormattedState() const

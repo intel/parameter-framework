@@ -82,12 +82,6 @@ public:
      */
     virtual std::string getFormattedState() const = 0;
 
-    /** Retrieve Criterion type
-     *
-     * @return true if the criterion is Inclusive, false if it is Exclusive
-     */
-    virtual bool isInclusive() const = 0;
-
 protected:
     virtual ~CriterionInterface() {}
 };
