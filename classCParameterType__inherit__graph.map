@@ -1,8 +1,0 @@
-<map id="CParameterType" name="CParameterType">
-<area shape="rect" id="node7" href="$classCBooleanParameterType.html" title="CBooleanParameterType" alt="" coords="469,5,637,35"/>
-<area shape="rect" id="node9" href="$classCEnumParameterType.html" title="CEnumParameterType" alt="" coords="476,59,631,88"/>
-<area shape="rect" id="node11" href="$classCFixedPointParameterType.html" title="CFixedPointParameterType" alt="" coords="463,112,644,141"/>
-<area shape="rect" id="node13" href="$classCIntegerParameterType.html" title="CIntegerParameterType" alt="" coords="473,165,633,195"/>
-<area shape="rect" id="node2" href="$classCTypeElement.html" title="CTypeElement" alt="" coords="133,85,243,115"/>
-<area shape="rect" id="node4" href="$classCElement.html" title="CElement" alt="" coords="5,85,85,115"/>
-</map>

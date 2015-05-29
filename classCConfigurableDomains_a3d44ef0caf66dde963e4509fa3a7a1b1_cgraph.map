@@ -1,7 +1,0 @@
-<map id="CConfigurableDomains::listLastAppliedConfigurations" name="CConfigurableDomains::listLastAppliedConfigurations">
-<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="283,5,453,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="300,59,436,88"/>
-<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="531,171,672,200"/>
-<area shape="rect" id="node9" href="$classCConfigurableDomain.html#a319bbabf57d30c7a11cec87d4448e2df" title="CConfigurableDomain\l::getLastAppliedConfigurationName" alt="" coords="255,162,481,209"/>
-<area shape="rect" id="node12" href="$classCConfigurableDomain.html#a86f912937878b161c334f50175c91d30" title="CConfigurableDomain\l::getPendingConfigurationName" alt="" coords="265,231,471,278"/>
-</map>

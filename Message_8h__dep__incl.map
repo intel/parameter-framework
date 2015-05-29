@@ -1,9 +1,0 @@
-<map id="remote&#45;processor/Message.h" name="remote&#45;processor/Message.h">
-<area shape="rect" id="node3" href="$AnswerMessage_8h.html" title="remote&#45;processor/AnswerMessage.h" alt="" coords="73,92,308,121"/>
-<area shape="rect" id="node9" href="$Message_8cpp.html" title="remote&#45;processor/Message.cpp" alt="" coords="332,92,537,121"/>
-<area shape="rect" id="node11" href="$RequestMessage_8h.html" title="remote&#45;processor/Request\lMessage.h" alt="" coords="561,83,737,130"/>
-<area shape="rect" id="node5" href="$AnswerMessage_8cpp.html" title="remote&#45;processor/AnswerMessage.cpp" alt="" coords="5,188,253,217"/>
-<area shape="rect" id="node7" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="277,179,509,226"/>
-<area shape="rect" id="node13" href="$RemoteProcessorServerInterface_8h.html" title="remote&#45;processor/RemoteProcessor\lServerInterface.h" alt="" coords="533,179,765,226"/>
-<area shape="rect" id="node16" href="$RequestMessage_8cpp.html" title="remote&#45;processor/Request\lMessage.cpp" alt="" coords="789,179,965,226"/>
-</map>

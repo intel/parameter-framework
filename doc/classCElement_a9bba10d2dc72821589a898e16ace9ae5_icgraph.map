@@ -1,0 +1,64 @@
+<map id="CElement::getChild" name="CElement::getChild">
+<area shape="rect" id="node2" href="$classCBinarySerializableElement.html#a1b023138703ff0807ae1a25724f1f7d4" title="CBinarySerializableElement\l::binarySerialize" alt="" coords="226,29,423,71"/>
+<area shape="rect" id="node6" href="$classCBinarySerializableElement.html#a1a5d4ca3376f59642f4143629c7cd565" title="CBinarySerializableElement\l::getDataSize" alt="" coords="226,119,423,160"/>
+<area shape="rect" id="node7" href="$classCCompoundRule.html#a4852b10618c0cf75059018ae60fb6eab" title="CCompoundRule::dump" alt="" coords="239,185,411,211"/>
+<area shape="rect" id="node12" href="$classCCompoundRule.html#a92c9b3e8a2c0b240af3bf85e4b2630d8" title="CCompoundRule::matches" alt="" coords="229,235,420,262"/>
+<area shape="rect" id="node14" href="$classCConfigurableDomain.html#aea88fe7f6e3f02217f5d9f0e2e820da2" title="CConfigurableDomain\l::split" alt="" coords="537,319,698,360"/>
+<area shape="rect" id="node17" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="244,455,405,496"/>
+<area shape="rect" id="node18" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="533,441,701,483"/>
+<area shape="rect" id="node21" href="$classCConfigurableDomains.html#ab8f2aa74fe0ed3e98fa052587d6c417d" title="CConfigurableDomains\l::apply" alt="" coords="241,768,409,809"/>
+<area shape="rect" id="node22" href="$classCConfigurableDomains.html#a066886372cfbdda37f4b74f144585e3d" title="CConfigurableDomains\l::listDomains" alt="" coords="241,833,409,875"/>
+<area shape="rect" id="node23" href="$classCConfigurableDomains.html#a46ceaaf62295c80f621e2476a83352b1" title="CConfigurableDomains\l::listLastAppliedConfigurations" alt="" coords="217,899,432,940"/>
+<area shape="rect" id="node24" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="243,988,407,1029"/>
+<area shape="rect" id="node26" href="$classCConfigurableElement.html#a8f7c88b9e89d9167fce48196cc1cc324" title="CConfigurableElement\l::setDefaultValues" alt="" coords="243,1077,407,1119"/>
+<area shape="rect" id="node29" href="$classCConfigurableElement.html#a450b0ccf5de682eb39949fa43438a7f5" title="CConfigurableElement\l::setOffset" alt="" coords="535,1112,699,1153"/>
+<area shape="rect" id="node30" href="$classCConfigurableElement.html#a6bc3e14e1da435b74e38ea3e95a31e62" title="CConfigurableElement\l::getFootPrint" alt="" coords="243,1219,407,1260"/>
+<area shape="rect" id="node34" href="$classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78" title="CConfigurableElement\l::fillSyncerSetFromDescendant" alt="" coords="215,1308,434,1349"/>
+<area shape="rect" id="node39" href="$classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" title="Look for subsystems that need to be resynchronized. " alt="" coords="783,1367,1041,1408"/>
+<area shape="rect" id="node40" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration\l::split" alt="" coords="241,337,408,379"/>
+<area shape="rect" id="node41" href="$classCElement.html#aa09118f89e5b3208ee92d0ec51151ccf" title="CElement::rename" alt="" coords="253,1425,396,1451"/>
+<area shape="rect" id="node47" href="$classCEnumParameterType.html#ad36c8d4e9a04060581ba68f744fd41e7" title="CEnumParameterType\l::showProperties" alt="" coords="243,1476,406,1517"/>
+<area shape="rect" id="node48" href="$classCEnumParameterType.html#a80f13bd19c1e5bd4e10e3b3f316ec532" title="CEnumParameterType\l::getDefaultValue" alt="" coords="243,1541,406,1583"/>
+<area shape="rect" id="node49" href="$classCInstanceConfigurableElement.html#a43d2ce5dbc487aa8de02d39af1b1c2d3" title="CInstanceConfigurableElement::map" alt="" coords="197,1631,452,1658"/>
+<area shape="rect" id="node50" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="217,637,433,679"/>
+<area shape="rect" id="node57" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="227,572,423,613"/>
+<area shape="rect" id="node58" href="$classCSelectionCriteriaDefinition.html#afd90c898acdd1251a4b5ffd931c46b2b" title="CSelectionCriteriaDefinition\l::resetModifiedStatus" alt="" coords="227,703,423,744"/>
+<area shape="rect" id="node59" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag. " alt="" coords="500,507,735,548"/>
+<area shape="rect" id="node60" href="$classCTypeElement.html#a7cdfd91a35b67d17fb2c92f8a2883854" title="CTypeElement::populate" alt="" coords="237,1682,413,1709"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#ae9bf3db3133286cb842a613185b7145c" title="CConfigurableDomains\l::serializeSettings" alt="" coords="533,73,701,115"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#a119c70bbe044eceb5e8cae6cc72ca690" title="CParameterMgr::importDomains\lBinary" alt="" coords="797,105,1027,147"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a4ba2047e2257649af8a544d5b80396e2" title="CParameterMgr::exportDomains\lBinary" alt="" coords="798,40,1026,81"/>
+<area shape="rect" id="node8" href="$classCDomainConfiguration.html#a0f9e4ae6ceadd57ec7d5e7a570939d38" title="CDomainConfiguration\l::getApplicationRule" alt="" coords="534,171,701,212"/>
+<area shape="rect" id="node9" href="$classCConfigurableDomain.html#a172bcb617227f40d21b29e91b2424ee0" title="CConfigurableDomain\l::getApplicationRule" alt="" coords="831,171,993,212"/>
+<area shape="rect" id="node10" href="$classCConfigurableDomains.html#a2c09cdf7f3d0ce257831c2df930cb60b" title="CConfigurableDomains\l::getApplicationRule" alt="" coords="1138,171,1306,212"/>
+<area shape="rect" id="node11" href="$classCParameterMgr.html#a001de36ae98f163d21ec23f2d8a626d3" title="CParameterMgr::getApplicationRule" alt="" coords="1403,178,1649,205"/>
+<area shape="rect" id="node13" href="$classCDomainConfiguration.html#aa18f5d818aa37aa15a6063a4045400bc" title="CDomainConfiguration\l::isApplicable" alt="" coords="534,236,701,277"/>
+<area shape="rect" id="node15" href="$classCConfigurableDomains.html#ae01182802f0ce424d239ea19f9365330" title="CConfigurableDomains\l::split" alt="" coords="828,319,996,360"/>
+<area shape="rect" id="node16" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="1144,326,1300,353"/>
+<area shape="rect" id="node19" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="833,514,991,541"/>
+<area shape="rect" id="node20" href="$classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="785,449,1039,475"/>
+<area shape="rect" id="node25" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="538,905,697,947"/>
+<area shape="rect" id="node27" href="$classCSimulatedBackSynchronizer.html#a0908a34ec39880bd941f3c336e2baf74" title="CSimulatedBackSynchronizer\l::sync" alt="" coords="512,971,723,1012"/>
+<area shape="rect" id="node28" href="$classCVirtualSyncer.html#a7dbef9e770ef4433cb113fd466c3995e" title="CVirtualSyncer::sync" alt="" coords="541,1037,694,1063"/>
+<area shape="rect" id="node31" href="$classCAreaConfiguration.html#ab7057b4cf2482e15666f538211ac65c5" title="CAreaConfiguration\l::CAreaConfiguration" alt="" coords="540,1177,695,1219"/>
+<area shape="rect" id="node32" href="$classCConfigurableElement.html#a0282019ab1caa1ada2b637562a1d8479" title="CConfigurableElement\l::getFootprintAsString" alt="" coords="535,1243,699,1284"/>
+<area shape="rect" id="node33" href="$classCConfigurableElement.html#a0497959fbd4ecdcc9911ed6548f73fa1" title="CConfigurableElement\l::showProperties" alt="" coords="830,1184,994,1225"/>
+<area shape="rect" id="node35" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="535,1308,699,1349"/>
+<area shape="rect" id="node36" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="805,1301,1019,1343"/>
+<area shape="rect" id="node37" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="833,1250,991,1277"/>
+<area shape="rect" id="node38" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="1117,1250,1327,1277"/>
+<area shape="rect" id="node42" href="$classCConfigurableDomain.html#a647386b073c9dd776f9cd9dcb24088a7" title="CConfigurableDomain\l::renameConfiguration" alt="" coords="535,1425,700,1467"/>
+<area shape="rect" id="node45" href="$classCConfigurableDomains.html#a5191495863bf95f1fc3beb545b410269" title="CConfigurableDomains\l::renameDomain" alt="" coords="533,1491,701,1532"/>
+<area shape="rect" id="node43" href="$classCConfigurableDomains.html#a052bfda8fb27ff5a1eeb0a53444031e8" title="CConfigurableDomains\l::renameConfiguration" alt="" coords="828,1432,996,1473"/>
+<area shape="rect" id="node44" href="$classCParameterMgr.html#af73dc2735e178eb3571400b76172b03e" title="CParameterMgr::renameConfiguration" alt="" coords="1089,1439,1355,1466"/>
+<area shape="rect" id="node46" href="$classCParameterMgr.html#a7d8898361dc42076dccb72489e3e7a43" title="CParameterMgr::renameDomain" alt="" coords="797,1498,1027,1525"/>
+<area shape="rect" id="node51" href="$classCSelectionCriteria.html#af0f5289db594b0d2633c59cf8570fa50" title="CSelectionCriteria\l::createSelectionCriterion" alt="" coords="525,637,709,679"/>
+<area shape="rect" id="node53" href="$classCSelectionCriteria.html#ad95866d8f8615b75a6b68daeddb561ad" title="CSelectionCriteria\l::getSelectionCriterion" alt="" coords="535,703,699,744"/>
+<area shape="rect" id="node55" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="541,572,694,613"/>
+<area shape="rect" id="node56" href="$classCSelectionCriteria.html#a8470a08d025d7d9f06e7f2193bb57a49" title="CSelectionCriteria\l::resetModifiedStatus" alt="" coords="538,768,697,809"/>
+<area shape="rect" id="node52" href="$classCParameterMgr.html#a3b6a3500b78f43bfb894263689b809a7" title="CParameterMgr::createSelection\lCriterion" alt="" coords="797,637,1027,679"/>
+<area shape="rect" id="node54" href="$classCParameterMgr.html#a06ce1937c480d46ff3b01bd7bb500b39" title="CParameterMgr::getSelection\lCriterion" alt="" coords="807,703,1017,744"/>
+<area shape="rect" id="node61" href="$classCInstanceDefinition.html#aa29d3b10a23894522cfaa937cf385d10" title="CInstanceDefinition\l::createInstances" alt="" coords="545,1616,690,1657"/>
+<area shape="rect" id="node63" href="$classCTypeElement.html#a0fd0b5dfb3e3515ff5b54eda3d7e0a45" title="CTypeElement::instantiate" alt="" coords="523,1682,711,1709"/>
+<area shape="rect" id="node62" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="829,1623,995,1650"/>
+</map>

@@ -1,9 +1,0 @@
-<map id="CSyncerSet::sync" name="CSyncerSet::sync">
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a62dc1c21261688d3078234e18db0a8e8" title="CAreaConfiguration\l::restore" alt="" coords="213,5,349,51"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomain.html#a1c13db0dbfb1a375d8a9632b06d08b36" title="CConfigurableDomain\l::restoreConfiguration" alt="" coords="673,35,823,82"/>
-<area shape="rect" id="node10" href="$classCConfigurableDomains.html#ab8f2aa74fe0ed3e98fa052587d6c417d" title="CConfigurableDomains\l::apply" alt="" coords="203,125,360,171"/>
-<area shape="rect" id="node12" href="$classCHardwareBackSynchronizer.html#abc01484c03230247c0a8a3982140b652" title="CHardwareBackSynchronizer\l::sync" alt="" coords="184,194,379,241"/>
-<area shape="rect" id="node14" href="$classCParameterMgr.html#ac227818fa1c5f13e68017ff55500e8a2" title="CParameterMgr::sync" alt="" coords="207,264,356,293"/>
-<area shape="rect" id="node5" href="$classCDomainConfiguration.html#ab5da4b09e98d012145c3b71816a2e153" title="CDomainConfiguration\l::restore" alt="" coords="448,5,603,51"/>
-<area shape="rect" id="node16" href="$classCParameterMgr.html#a0b4daf74f5ba237acad232834f205b63" title="Sync. " alt="" coords="427,264,624,293"/>
-</map>

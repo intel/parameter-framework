@@ -1,7 +1,0 @@
-<map id="CElementBuilder" name="CElementBuilder">
-<area shape="rect" id="node3" href="$classCSubsystemElementBuilder.html" title="CSubsystemElementBuilder" alt="" coords="191,5,377,35"/>
-<area shape="rect" id="node5" href="$classTElementBuilderTemplate.html" title="TElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="199,58,369,105"/>
-<area shape="rect" id="node7" href="$classTKindElementBuilderTemplate.html" title="TKindElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="185,127,383,174"/>
-<area shape="rect" id="node9" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="177,197,391,243"/>
-<area shape="rect" id="node11" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt;" alt="" coords="583,231,796,278"/>
-</map>

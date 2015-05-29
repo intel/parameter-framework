@@ -1,7 +1,0 @@
-<map id="CParameterMgr::createParameterHandle" name="CParameterMgr::createParameterHandle">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a810d966739ee83e81f1a65f87faa60e3" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="272,66,485,113"/>
-<area shape="rect" id="node12" href="$classCConfigurableElement.html#a1376855eba031b3cbb715389e23b20fe" title="CConfigurableElement\l::isParameter" alt="" coords="303,135,455,182"/>
-<area shape="rect" id="node5" href="$classCPathNavigator.html#a744164dcc919914f94b53945fe57077f" title="CPathNavigator::navigate\lThrough" alt="" coords="537,5,708,51"/>
-<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="552,75,693,104"/>
-<area shape="rect" id="node9" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="533,152,712,181"/>
-</map>

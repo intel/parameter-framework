@@ -1,0 +1,5 @@
+<map id="CPathNavigator::navigateThrough" name="CPathNavigator::navigateThrough">
+<area shape="rect" id="node2" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="237,12,468,53"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="526,71,745,112"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="516,5,755,47"/>
+</map>

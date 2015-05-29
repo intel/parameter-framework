@@ -1,0 +1,11 @@
+<map id="CSelectionCriterion::setCriterionState" name="CSelectionCriterion::setCriterionState">
+<area shape="rect" id="node2" href="$classCElement.html#aaa4df1b13a53263f8cc2b668172873d9" title="CElement::log_info" alt="" coords="222,5,363,32"/>
+<area shape="rect" id="node3" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="197,107,388,149"/>
+<area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="446,31,598,57"/>
+<area shape="rect" id="node10" href="$classCElement.html#ab25bfe67bc33d21f561d69b9c705ca75" title="CElement::log_warning" alt="" coords="209,173,376,200"/>
+<area shape="rect" id="node4" href="$classCElement.html#a834a32898950ca2ce9b629aa3367101e" title="CElement::appendTitle" alt="" coords="439,81,605,108"/>
+<area shape="rect" id="node6" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="436,133,608,174"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="436,198,608,239"/>
+<area shape="rect" id="node8" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="436,263,608,305"/>
+<area shape="rect" id="node9" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="656,263,828,305"/>
+</map>

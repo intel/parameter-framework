@@ -1,5 +1,0 @@
-<map id="CElement::log_table" name="CElement::log_table">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a01a82bb9c4cf79c7260553f776a5fe5b" title="Load plugins, structures and settings from the config file given. " alt="" coords="229,13,376,43"/>
-<area shape="rect" id="node7" href="$classCSystemClass.html#abd29b15c1d00ee010433ed1f13aafc32" title="Load subsystem plugin and fill the corresponding libraries. " alt="" coords="195,67,411,96"/>
-<area shape="rect" id="node5" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="460,5,681,51"/>
-</map>

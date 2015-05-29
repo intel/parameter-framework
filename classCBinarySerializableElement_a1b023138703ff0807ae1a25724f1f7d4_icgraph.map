@@ -1,5 +1,0 @@
-<map id="CBinarySerializableElement::binarySerialize" name="CBinarySerializableElement::binarySerialize">
-<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a760b75c8711105fc58d0504a954f3f0e" title="CConfigurableDomains\l::serializeSettings" alt="" coords="237,39,395,86"/>
-<area shape="rect" id="node6" href="$classCParameterMgr.html#abc16abed657a8de20ecff0e6ea5309fd" title="CParameterMgr::importDomains\lBinary" alt="" coords="443,5,653,51"/>
-<area shape="rect" id="node8" href="$classCParameterMgr.html#a620ec32c430d455b18222fc2dc773393" title="CParameterMgr::exportDomains\lBinary" alt="" coords="443,74,653,121"/>
-</map>

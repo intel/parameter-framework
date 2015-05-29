@@ -1,8 +1,0 @@
-<map id="CInstanceConfigurableElement::map" name="CInstanceConfigurableElement::map">
-<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421" title="CInstanceConfigurableElement\l::getTypeElement" alt="" coords="297,5,500,51"/>
-<area shape="rect" id="node5" href="$classCTypeElement.html#a52e9c905327db823c913041e481eacb0" title="CTypeElement::hasMappingData" alt="" coords="292,75,505,104"/>
-<area shape="rect" id="node7" href="$classIMapper.html#a1c7495dc7b5bc7bc864a96baaff43073" title="IMapper::mapBegin" alt="" coords="332,128,465,157"/>
-<area shape="rect" id="node9" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="313,181,484,211"/>
-<area shape="rect" id="node11" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="331,235,467,264"/>
-<area shape="rect" id="node14" href="$classIMapper.html#a07d1b4904f96cccc320500961dd89517" title="IMapper::mapEnd" alt="" coords="336,288,461,317"/>
-</map>

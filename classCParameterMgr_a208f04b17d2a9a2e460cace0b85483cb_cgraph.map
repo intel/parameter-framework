@@ -1,8 +1,0 @@
-<map id="CParameterMgr::accessParameterValue" name="CParameterMgr::accessParameterValue">
-<area shape="rect" id="node3" href="$classCParameterAccessContext.html#a07eda176f4ae601bd26a6d0c9e0cc6e2" title="CParameterAccessContext\l::setAutoSync" alt="" coords="285,31,467,78"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#afbd8b76c1b400a4c5d8a9e7d3e2b6f2d" title="CParameterMgr::accessValue" alt="" coords="277,101,475,131"/>
-<area shape="rect" id="node7" href="$classCPathNavigator.html#a744164dcc919914f94b53945fe57077f" title="CPathNavigator::navigate\lThrough" alt="" coords="524,5,695,51"/>
-<area shape="rect" id="node9" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="539,75,680,104"/>
-<area shape="rect" id="node11" href="$classCErrorContext.html#a6b60db56edfdabadf73edd09ff3dc378" title="CErrorContext::setError" alt="" coords="744,169,904,199"/>
-<area shape="rect" id="node13" href="$classCConfigurableElement.html#a99feacddce4ada751693027114cd86b2" title="CConfigurableElement\l::accessValue" alt="" coords="533,202,685,249"/>
-</map>

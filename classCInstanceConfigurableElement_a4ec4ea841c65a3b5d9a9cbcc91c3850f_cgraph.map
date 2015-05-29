@@ -1,5 +1,0 @@
-<map id="CInstanceConfigurableElement::getFormattedMapping" name="CInstanceConfigurableElement::getFormattedMapping">
-<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421" title="CInstanceConfigurableElement\l::getTypeElement" alt="" coords="256,5,459,51"/>
-<area shape="rect" id="node5" href="$classCTypeElement.html#aaa9e97cfc26c829d6bb4fb24c6c3d9c2" title="Returns the mapping associated to the current TypeElement instance. " alt="" coords="260,74,455,121"/>
-<area shape="rect" id="node7" href="$classCMappingData.html#a68e79468547fb88a6b7a91de5892bd5e" title="Formats the mapping as a list of comma&#45;space separated key:value pairs. " alt="" coords="507,83,672,112"/>
-</map>

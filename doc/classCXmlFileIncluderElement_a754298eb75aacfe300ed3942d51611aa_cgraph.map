@@ -1,0 +1,9 @@
+<map id="CXmlFileIncluderElement::fromXml" name="CXmlFileIncluderElement::fromXml">
+<area shape="rect" id="node2" href="$classCXmlElementSerializingContext.html#a5b554140f8c2ca7047f6f0f7fa8ef6e3" title="CXmlElementSerializingContext\l::getXmlFolder" alt="" coords="235,5,457,47"/>
+<area shape="rect" id="node3" href="$classCXmlElementSerializingContext.html#a0691a9da062b3950f316853cf9e8e391" title="CXmlElementSerializingContext\l::getXmlSchemaPathFolder" alt="" coords="235,71,457,112"/>
+<area shape="rect" id="node4" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext\l::getElementLibrary" alt="" coords="235,136,457,177"/>
+<area shape="rect" id="node5" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="232,202,460,229"/>
+<area shape="rect" id="node6" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="269,253,423,279"/>
+<area shape="rect" id="node7" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="273,303,419,330"/>
+<area shape="rect" id="node8" href="$classCElement.html#a4aec98bde47367325cf332a5dc471eb9" title="CElement::removeChild" alt="" coords="260,354,432,381"/>
+</map>

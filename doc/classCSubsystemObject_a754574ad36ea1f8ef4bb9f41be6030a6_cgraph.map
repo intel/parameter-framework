@@ -1,0 +1,4 @@
+<map id="CSubsystemObject::toPlainInteger" name="CSubsystemObject::toPlainInteger">
+<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421" title="CInstanceConfigurableElement\l::getTypeElement" alt="" coords="248,5,467,47"/>
+<area shape="rect" id="node3" href="$classCTypeElement.html#a9719eade46d3c80c55d0a269d93a4554" title="Converts size optimized integer input data (int8, int16, int32) to plain int. " alt="" coords="253,71,461,98"/>
+</map>

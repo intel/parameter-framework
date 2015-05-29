@@ -1,6 +1,0 @@
-<map id="CConfigurableDomain::addConfigurableElement" name="CConfigurableDomain::addConfigurableElement">
-<area shape="rect" id="node3" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="237,29,371,59"/>
-<area shape="rect" id="node6" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="233,83,375,112"/>
-<area shape="rect" id="node8" href="$classCConfigurableElement.html#ac5508cd538517568bebc5448179d9d76" title="CConfigurableElement\l::belongsTo" alt="" coords="228,135,380,182"/>
-<area shape="rect" id="node10" href="$classCConfigurableElement.html#a4ff038351f85bcb55768f3fef206866c" title="CConfigurableElement\l::containsConfigurableDomain" alt="" coords="429,135,627,182"/>
-</map>

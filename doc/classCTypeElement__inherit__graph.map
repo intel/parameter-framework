@@ -1,0 +1,15 @@
+<map id="CTypeElement" name="CTypeElement">
+<area shape="rect" id="node5" href="$classCBitParameterBlockType.html" title="CBitParameterBlockType" alt="" coords="440,5,617,32"/>
+<area shape="rect" id="node6" href="$classCBitParameterType.html" title="CBitParameterType" alt="" coords="457,56,600,83"/>
+<area shape="rect" id="node7" href="$classCComponentInstance.html" title="CComponentInstance" alt="" coords="449,107,609,133"/>
+<area shape="rect" id="node8" href="$classCComponentType.html" title="CComponentType" alt="" coords="461,157,596,184"/>
+<area shape="rect" id="node9" href="$classCInstanceDefinition.html" title="CInstanceDefinition" alt="" coords="456,208,601,235"/>
+<area shape="rect" id="node10" href="$classCParameterBlockType.html" title="CParameterBlockType" alt="" coords="449,259,609,285"/>
+<area shape="rect" id="node11" href="$classCParameterType.html" title="CParameterType" alt="" coords="465,309,592,336"/>
+<area shape="rect" id="node16" href="$classCStringParameterType.html" title="CStringParameterType" alt="" coords="447,360,611,387"/>
+<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="148,183,232,209"/>
+<area shape="rect" id="node12" href="$classCBooleanParameterType.html" title="CBooleanParameterType" alt="" coords="671,233,850,260"/>
+<area shape="rect" id="node13" href="$classCEnumParameterType.html" title="CEnumParameterType" alt="" coords="679,284,842,311"/>
+<area shape="rect" id="node14" href="$classCFixedPointParameterType.html" title="CFixedPointParameterType" alt="" coords="665,335,856,361"/>
+<area shape="rect" id="node15" href="$classCIntegerParameterType.html" title="CIntegerParameterType" alt="" coords="675,385,846,412"/>
+</map>

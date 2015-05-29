@@ -1,9 +1,0 @@
-<map id="CIntegerParameterType::fromXml" name="CIntegerParameterType::fromXml">
-<area shape="rect" id="node3" href="$classCXmlElement.html#ab32b567cae912ddf859a7073417c3846" title="CXmlElement::getAttribute\lBoolean" alt="" coords="224,5,403,51"/>
-<area shape="rect" id="node7" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="685,192,867,221"/>
-<area shape="rect" id="node9" href="$classCXmlElement.html#a32a3255da1b10a29698ecf33dc693edb" title="CXmlElement::getAttribute\lInteger" alt="" coords="224,74,403,121"/>
-<area shape="rect" id="node12" href="$classCParameterType.html#a001697bcc5a0c57d1e8021cd3898313a" title="CParameterType::setSize" alt="" coords="227,213,400,243"/>
-<area shape="rect" id="node15" href="$classCXmlElement.html#acc23106e11d2677364536781554dc96e" title="CXmlElement::getAttribute\lSignedInteger" alt="" coords="224,143,403,190"/>
-<area shape="rect" id="node18" href="$classCParameterType.html#ac32b37965ef213b6a8df9656b37596df" title="Sign extension (32 bits) " alt="" coords="216,317,411,347"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="459,109,637,155"/>
-</map>

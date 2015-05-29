@@ -1,8 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCElementBuilder.html" title="CElementBuilder" alt="" coords="5,136,125,165"/>
-<area shape="rect" id="node3" href="$classCSubsystemElementBuilder.html" title="CSubsystemElementBuilder" alt="" coords="188,5,375,35"/>
-<area shape="rect" id="node5" href="$classTElementBuilderTemplate.html" title="TElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="196,58,367,105"/>
-<area shape="rect" id="node7" href="$classTKindElementBuilderTemplate.html" title="TKindElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="183,127,380,174"/>
-<area shape="rect" id="node9" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="175,197,388,243"/>
-<area shape="rect" id="node11" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt;" alt="" coords="175,266,388,313"/>
-</map>

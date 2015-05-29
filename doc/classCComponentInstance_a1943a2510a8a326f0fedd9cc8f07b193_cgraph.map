@@ -1,0 +1,7 @@
+<map id="CComponentInstance::fromXml" name="CComponentInstance::fromXml">
+<area shape="rect" id="node2" href="$classCXmlParameterSerializingContext.html#a1ca5ee65e05cff3a9a453d8b0ff8fd09" title="CXmlParameterSerializing\lContext::getComponentLibrary" alt="" coords="213,5,432,47"/>
+<area shape="rect" id="node3" href="$classCComponentLibrary.html#afc3a6329eb7e76f3b585755611a2e7d8" title="CComponentLibrary::\lgetComponentType" alt="" coords="245,71,401,112"/>
+<area shape="rect" id="node5" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="245,137,400,163"/>
+<area shape="rect" id="node6" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="247,187,399,214"/>
+<area shape="rect" id="node4" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="480,78,627,105"/>
+</map>

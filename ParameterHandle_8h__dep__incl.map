@@ -1,9 +1,0 @@
-<map id="parameter/include/ParameterHandle.h" name="parameter/include/ParameterHandle.h">
-<area shape="rect" id="node3" href="$ParameterMgrPlatformConnector_8h.html" title="parameter/include/Parameter\lMgrPlatformConnector.h" alt="" coords="365,102,555,149"/>
-<area shape="rect" id="node14" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="579,111,789,140"/>
-<area shape="rect" id="node16" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="813,111,1003,140"/>
-<area shape="rect" id="node5" href="$ParameterMgrLogger_8cpp.html" title="parameter/ParameterMgrLogger.cpp" alt="" coords="5,207,235,236"/>
-<area shape="rect" id="node7" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="259,198,472,245"/>
-<area shape="rect" id="node9" href="$TestPlatform_8h.html" title="test/test&#45;platform\l/TestPlatform.h" alt="" coords="496,198,616,245"/>
-<area shape="rect" id="node11" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="541,294,667,341"/>
-</map>

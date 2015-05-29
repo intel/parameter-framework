@@ -1,9 +1,0 @@
-<map id="CInstanceConfigurableElement::sync" name="CInstanceConfigurableElement::sync">
-<area shape="rect" id="node3" href="$classCArrayParameter.html#a0f14dcf5fee31e8fdc4420cdab2fb1a3" title="CArrayParameter::accessValue" alt="" coords="261,9,467,39"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAs\lString" alt="" coords="271,62,457,109"/>
-<area shape="rect" id="node13" href="$classCBitParameter.html#a6f4d06e327fb0b816c08e383177a82fc" title="CBitParameter::accessAsInteger" alt="" coords="257,143,471,172"/>
-<area shape="rect" id="node7" href="$classCBaseParameter.html#a9297ff69dfad31b357e08444b667b4f4" title="CBaseParameter::accessValue" alt="" coords="528,5,733,35"/>
-<area shape="rect" id="node9" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="527,59,735,88"/>
-<area shape="rect" id="node11" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="527,112,735,141"/>
-<area shape="rect" id="node15" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access. " alt="" coords="520,165,741,195"/>
-</map>

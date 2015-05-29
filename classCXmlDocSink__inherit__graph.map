@@ -1,5 +1,0 @@
-<map id="CXmlDocSink" name="CXmlDocSink">
-<area shape="rect" id="node3" href="$classCXmlFileDocSink.html" title="Sink class that save the content of any CXmlDocSource into a file. " alt="" coords="5,83,131,112"/>
-<area shape="rect" id="node5" href="$classCXmlMemoryDocSink.html" title="Sink class used to parse an xml document and instanciate parameter&#45;framework structures. " alt="" coords="155,83,307,112"/>
-<area shape="rect" id="node7" href="$classCXmlStringDocSink.html" title="Sink class that writes the content of any CXmlDocSource into a string. " alt="" coords="331,83,469,112"/>
-</map>

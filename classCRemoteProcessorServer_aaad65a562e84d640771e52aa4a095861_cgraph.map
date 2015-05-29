@@ -1,5 +1,0 @@
-<map id="CRemoteProcessorServer::start" name="CRemoteProcessorServer::start">
-<area shape="rect" id="node3" href="$classCListeningSocket.html#acff2692663749656e0ba960cb5726154" title="CListeningSocket::listen" alt="" coords="231,32,393,61"/>
-<area shape="rect" id="node5" href="$classCSocket.html#a489715f4b7fc3e5b5efd832766208acd" title="CSocket::initSockAddrIn" alt="" coords="444,5,609,35"/>
-<area shape="rect" id="node7" href="$classCSocket.html#aa925e6f828f6084610bb19c80709ff0a" title="CSocket::getFd" alt="" coords="469,59,584,88"/>
-</map>

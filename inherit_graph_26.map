@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCXmlDocSource.html" title="The CXmlDocSource is used by CXmlDocSink. " alt="" coords="5,59,125,88"/>
-<area shape="rect" id="node3" href="$classCXmlFileDocSource.html" title="Source class that read a file to get an xml document. " alt="" coords="187,5,328,35"/>
-<area shape="rect" id="node5" href="$classCXmlMemoryDocSource.html" title="Source class that uses parameter&#45;framework&#39;s structures to create an xml document. " alt="" coords="175,59,340,88"/>
-<area shape="rect" id="node7" href="$classCXmlStringDocSource.html" title="Source class that get an xml document from a string. " alt="" coords="180,112,335,141"/>
-</map>

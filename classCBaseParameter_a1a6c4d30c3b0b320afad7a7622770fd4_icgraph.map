@@ -1,7 +1,0 @@
-<map id="CBaseParameter::doSetValue" name="CBaseParameter::doSetValue">
-<area shape="rect" id="node3" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="256,5,435,51"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a829c60bb56b97c83030905d809a4e950" title="CBaseParameter::accessAs\lString" alt="" coords="252,74,439,121"/>
-<area shape="rect" id="node7" href="$classCBaseParameter.html#a9297ff69dfad31b357e08444b667b4f4" title="CBaseParameter::accessValue" alt="" coords="491,29,696,59"/>
-<area shape="rect" id="node9" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="489,83,697,112"/>
-<area shape="rect" id="node11" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="489,136,697,165"/>
-</map>

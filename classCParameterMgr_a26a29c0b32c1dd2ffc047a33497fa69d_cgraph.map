@@ -1,5 +1,0 @@
-<map id="CParameterMgr::exportDomainsXml" name="CParameterMgr::exportDomainsXml">
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a48b940a3ba127dc0008f9680968e7afb" title="CConfigurableDomains\l::getKind" alt="" coords="313,5,471,51"/>
-<area shape="rect" id="node5" href="$classCXmlDomainSerializingContext.html#a35a492cc88df2179d6f101c35b1d01ac" title="CXmlDomainSerializingContext\l::setValueSpaceRaw" alt="" coords="289,74,495,121"/>
-<area shape="rect" id="node7" href="$classCXmlDomainSerializingContext.html#acc75ba7d2bd8f90ab0d19ec70c3b8d29" title="CXmlDomainSerializingContext\l::setOutputRawFormat" alt="" coords="289,143,495,190"/>
-</map>

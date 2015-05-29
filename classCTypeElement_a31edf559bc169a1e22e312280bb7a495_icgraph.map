@@ -1,6 +1,0 @@
-<map id="CTypeElement::isScalar" name="CTypeElement::isScalar">
-<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#a0f1f67b9e526f8a9ae9d67292ead570a" title="CInstanceConfigurableElement\l::isScalar" alt="" coords="219,5,421,51"/>
-<area shape="rect" id="node7" href="$classCTypeElement.html#ac4118594de3638c76ab40ccc4ecbb2a8" title="CTypeElement::toXml" alt="" coords="245,75,395,104"/>
-<area shape="rect" id="node5" href="$classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96" title="CParameterHandle::isArray" alt="" coords="471,13,652,43"/>
-<area shape="rect" id="node9" href="$classCBaseParameter.html#a0fe540f46e1b69858e68b72fd7d383a8" title="CBaseParameter::toXml" alt="" coords="480,75,643,104"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="parameter/ComponentLibrary.h" name="parameter/ComponentLibrary.h">
-<area shape="rect" id="node3" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="339,237,443,267"/>
-<area shape="rect" id="node9" href="$Element_8h.html" title="Element.h" alt="" coords="243,83,323,112"/>
-<area shape="rect" id="node28" href="$Component_8h.html" title="Component.h" alt="" coords="608,83,707,112"/>
-<area shape="rect" id="node17" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="280,160,363,189"/>
-<area shape="rect" id="node20" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="387,160,483,189"/>
-<area shape="rect" id="node23" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="91,160,205,189"/>
-<area shape="rect" id="node30" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="608,160,811,189"/>
-</map>

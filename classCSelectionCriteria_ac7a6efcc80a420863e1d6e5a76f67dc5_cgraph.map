@@ -1,7 +1,0 @@
-<map id="CSelectionCriteria::listSelectionCriteria" name="CSelectionCriteria::listSelectionCriteria">
-<area shape="rect" id="node3" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="199,5,396,51"/>
-<area shape="rect" id="node7" href="$classCSelectionCriteriaDefinition.html#a3363b99661d653352cb198bf31a3858d" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="207,74,388,121"/>
-<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="464,21,600,51"/>
-<area shape="rect" id="node9" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="447,79,617,108"/>
-<area shape="rect" id="node12" href="$classCSelectionCriterion.html#a3afa01dd539342d06b32df29bc545721" title="User request. " alt="" coords="445,131,619,178"/>
-</map>

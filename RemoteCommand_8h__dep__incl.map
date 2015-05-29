@@ -1,8 +1,0 @@
-<map id="remote&#45;processor/RemoteCommand.h" name="remote&#45;processor/RemoteCommand.h">
-<area shape="rect" id="node3" href="$RemoteCommandHandler_8h.html" title="remote&#45;processor/RemoteCommand\lHandler.h" alt="" coords="261,83,493,130"/>
-<area shape="rect" id="node9" href="$RequestMessage_8h.html" title="remote&#45;processor/Request\lMessage.h" alt="" coords="531,83,707,130"/>
-<area shape="rect" id="node5" href="$RemoteCommandHandlerTemplate_8h.html" title="remote&#45;processor/RemoteCommand\lHandlerTemplate.h" alt="" coords="5,179,237,226"/>
-<area shape="rect" id="node7" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="261,179,493,226"/>
-<area shape="rect" id="node11" href="$RemoteProcessorServerInterface_8h.html" title="remote&#45;processor/RemoteProcessor\lServerInterface.h" alt="" coords="517,179,749,226"/>
-<area shape="rect" id="node14" href="$RequestMessage_8cpp.html" title="remote&#45;processor/Request\lMessage.cpp" alt="" coords="773,179,949,226"/>
-</map>

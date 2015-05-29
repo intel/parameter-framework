@@ -1,0 +1,8 @@
+<map id="CHardwareBackSynchronizer::CHardwareBackSynchronizer" name="CHardwareBackSynchronizer::CHardwareBackSynchronizer">
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="268,51,432,92"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="507,5,671,47"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78" title="CConfigurableElement\l::fillSyncerSetFromDescendant" alt="" coords="480,95,699,136"/>
+<area shape="rect" id="node4" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="761,13,915,39"/>
+<area shape="rect" id="node6" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="747,82,929,109"/>
+<area shape="rect" id="node7" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="766,133,910,159"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="CElement::fromXml" name="CElement::fromXml">
+<area shape="rect" id="node2" href="$classCElement.html#ac5fa8c7e838a44733f3887f1bec20d7b" title="CElement::setDescription" alt="" coords="213,5,397,32"/>
+<area shape="rect" id="node3" href="$classCElement.html#a40a0b69c1b556a06406e022dc7d7a7eb" title="Extract the Description field from the Xml Element during XML decomposing. " alt="" coords="200,57,409,98"/>
+<area shape="rect" id="node4" href="$classCElement.html#acee1af3e8516a211731a59b85727c6b9" title="CElement::findChildOfKind" alt="" coords="211,123,398,149"/>
+<area shape="rect" id="node6" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="223,207,387,233"/>
+<area shape="rect" id="node5" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="501,105,641,132"/>
+<area shape="rect" id="node7" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext\l::getElementLibrary" alt="" coords="460,157,683,198"/>
+<area shape="rect" id="node8" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="457,223,685,249"/>
+<area shape="rect" id="node9" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="498,273,645,300"/>
+</map>

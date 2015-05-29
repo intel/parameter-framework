@@ -1,6 +1,0 @@
-<map id="CConfigurableElement::getSyncer" name="CConfigurableElement::getSyncer">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="209,66,361,113"/>
-<area shape="rect" id="node5" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="433,5,636,51"/>
-<area shape="rect" id="node7" href="$classCParameterMgr.html#ac227818fa1c5f13e68017ff55500e8a2" title="CParameterMgr::sync" alt="" coords="460,75,609,104"/>
-<area shape="rect" id="node9" href="$classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" title="Look for subsystems that need to be resynchronized. " alt="" coords="412,127,657,174"/>
-</map>

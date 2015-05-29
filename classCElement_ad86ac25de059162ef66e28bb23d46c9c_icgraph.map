@@ -1,7 +1,0 @@
-<map id="CElement::log_warning" name="CElement::log_warning">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a8e084df8edc632b057815f533624480d" title="CParameterMgr::applyConfigurations" alt="" coords="211,13,448,43"/>
-<area shape="rect" id="node7" href="$classCSelectionCriterion.html#a83e33a27a1094e00154018756c0be2dc" title="From ISelectionCriterionInterface. " alt="" coords="263,66,396,113"/>
-<area shape="rect" id="node9" href="$classCSelectionCriterionType.html#aa4c8966e25b9aeab79cb94b23add8a80" title="CSelectionCriterionType\l::addValuePair" alt="" coords="248,135,411,182"/>
-<area shape="rect" id="node11" href="$classCSubsystemObject.html#a77a533c248d19fe4cdf1d418fdd6f2d4" title="CSubsystemObject::log\l_warning" alt="" coords="249,205,409,251"/>
-<area shape="rect" id="node5" href="$classCParameterMgrPlatformConnector.html#a03ff6b6e71e733bce73a2557b585d05c" title="CParameterMgrPlatformConnector\l::applyConfigurations" alt="" coords="497,5,719,51"/>
-</map>

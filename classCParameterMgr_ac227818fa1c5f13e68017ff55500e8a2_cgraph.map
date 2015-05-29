@@ -1,8 +1,0 @@
-<map id="CParameterMgr::sync" name="CParameterMgr::sync">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="207,98,359,145"/>
-<area shape="rect" id="node10" href="$classCSyncerSet.html#afb2b555773620bfceb3b86fe10486802" title="CSyncerSet::sync" alt="" coords="219,168,347,197"/>
-<area shape="rect" id="node14" href="$classCUtility.html#a61d8ac9daba8e70320e5da0af931bdae" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="221,221,344,251"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="435,5,587,51"/>
-<area shape="rect" id="node7" href="$classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78" title="CConfigurableElement\l::fillSyncerSetFromDescendant" alt="" coords="409,98,612,145"/>
-<area shape="rect" id="node12" href="$classISyncer.html#a1d21537371d08c5bdb8411b44b6273e7" title="ISyncer::sync" alt="" coords="460,168,561,197"/>
-</map>

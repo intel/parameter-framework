@@ -1,8 +1,0 @@
-<map id="CXmlElement::getAttributeBoolean" name="CXmlElement::getAttributeBoolean">
-<area shape="rect" id="node3" href="$classCCompoundRule.html#a71717a28b3f33132f68825a5bf696ff2" title="CCompoundRule::fromXml" alt="" coords="260,5,439,35"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomain.html#aa1fdeb04cae19531f2588e0419b53b84" title="CConfigurableDomain\l::fromXml" alt="" coords="275,58,424,105"/>
-<area shape="rect" id="node7" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType\l::handleValueSpaceAttribute" alt="" coords="256,127,443,174"/>
-<area shape="rect" id="node9" href="$classCIntegerParameterType.html#a8d8e329f5f61b6e50108e7fe1a7f7446" title="CIntegerParameterType\l::fromXml" alt="" coords="269,197,429,243"/>
-<area shape="rect" id="node11" href="$classCParameterFrameworkConfiguration.html#a9d9882f3de792f4f5a84e8a3c095e2dd" title="CParameterFrameworkConfiguration\l::fromXml" alt="" coords="232,266,467,313"/>
-<area shape="rect" id="node13" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="272,336,427,365"/>
-</map>

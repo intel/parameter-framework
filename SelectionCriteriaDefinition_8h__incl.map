@@ -1,9 +1,0 @@
-<map id="parameter/SelectionCriteriaDefinition.h" name="parameter/SelectionCriteriaDefinition.h">
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="268,256,348,285"/>
-<area shape="rect" id="node22" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="228,101,364,131"/>
-<area shape="rect" id="node13" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="307,333,389,363"/>
-<area shape="rect" id="node15" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="413,333,509,363"/>
-<area shape="rect" id="node17" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="117,333,232,363"/>
-<area shape="rect" id="node25" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="333,179,499,208"/>
-<area shape="rect" id="node29" href="$SelectionCriterionInterface_8h.html" title="SelectionCriterionInterface.h" alt="" coords="635,256,821,285"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="CSelectionCriterion::getCriterionType" name="CSelectionCriterion::getCriterionType">
-<area shape="rect" id="node3" href="$classCSelectionCriterionRule.html#acdf7494ba957f261a3c98bc121c954d9" title="CSelectionCriterionRule\l::parse" alt="" coords="189,5,352,51"/>
-<area shape="rect" id="node7" href="$classCSelectionCriterionRule.html#aa135cc2d5e84c49d4119fe553eb1d434" title="CSelectionCriterionRule\l::dump" alt="" coords="189,74,352,121"/>
-<area shape="rect" id="node11" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule\l::fromXml" alt="" coords="189,143,352,190"/>
-<area shape="rect" id="node13" href="$classCSelectionCriterionRule.html#aa31aa27a5aba096913b6f5d1e59a9360" title="CSelectionCriterionRule\l::toXml" alt="" coords="189,213,352,259"/>
-<area shape="rect" id="node5" href="$classCRuleParser.html#ac741b7f66a80e711e799577079466a07" title="CRuleParser::parse" alt="" coords="413,13,549,43"/>
-<area shape="rect" id="node9" href="$classCSelectionCriterionRule.html#a0d969a10e25887a747f3ab3b5fe7f83b" title="CSelectionCriterionRule\l::logValue" alt="" coords="400,74,563,121"/>
-</map>

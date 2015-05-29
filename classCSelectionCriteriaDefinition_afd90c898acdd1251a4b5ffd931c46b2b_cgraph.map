@@ -1,5 +1,0 @@
-<map id="CSelectionCriteriaDefinition::resetModifiedStatus" name="CSelectionCriteriaDefinition::resetModifiedStatus">
-<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="237,5,408,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="255,59,391,88"/>
-<area shape="rect" id="node7" href="$classCSelectionCriterion.html#a1faf6f53f52122588d3b012e29e7d635" title="CSelectionCriterion\l::resetModifiedStatus" alt="" coords="249,111,396,158"/>
-</map>

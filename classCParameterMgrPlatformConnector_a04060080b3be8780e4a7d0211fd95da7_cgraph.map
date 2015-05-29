@@ -1,9 +1,0 @@
-<map id="CParameterMgrPlatformConnector::start" name="CParameterMgrPlatformConnector::start">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a01a82bb9c4cf79c7260553f776a5fe5b" title="Load plugins, structures and settings from the config file given. " alt="" coords="277,136,424,165"/>
-<area shape="rect" id="node15" href="$classCParameterMgr.html#a2442eaf758f089eca687e773d897accf" title="CParameterMgr::init" alt="" coords="281,189,420,219"/>
-<area shape="rect" id="node5" href="$classCBackSynchronizer.html#aee2e5654fab65e762bb294bc1d3cbc05" title="CBackSynchronizer::sync" alt="" coords="497,5,671,35"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="505,58,663,105"/>
-<area shape="rect" id="node9" href="$classCSelectionCriteria.html#ac7a6efcc80a420863e1d6e5a76f67dc5" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="513,127,655,174"/>
-<area shape="rect" id="node11" href="$classCElement.html#ad8a74b1abb86fc6aad95e0a8c8a27e17" title="CElement::log_table" alt="" coords="515,197,653,227"/>
-<area shape="rect" id="node13" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag. " alt="" coords="473,250,695,297"/>
-</map>

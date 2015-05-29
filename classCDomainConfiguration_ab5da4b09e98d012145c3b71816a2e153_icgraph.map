@@ -1,6 +1,0 @@
-<map id="CDomainConfiguration::restore" name="CDomainConfiguration::restore">
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a928805e163719f902c207c061ab3b1c2" title="CConfigurableDomain\l::apply" alt="" coords="209,5,359,51"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomain.html#a1c13db0dbfb1a375d8a9632b06d08b36" title="CConfigurableDomain\l::restoreConfiguration" alt="" coords="209,74,359,121"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomains.html#ab8f2aa74fe0ed3e98fa052587d6c417d" title="CConfigurableDomains\l::apply" alt="" coords="408,5,565,51"/>
-<area shape="rect" id="node9" href="$classCConfigurableDomains.html#ab31dc95946a04359f9cb1e723a5c4460" title="CConfigurableDomains\l::restoreConfiguration" alt="" coords="408,74,565,121"/>
-</map>

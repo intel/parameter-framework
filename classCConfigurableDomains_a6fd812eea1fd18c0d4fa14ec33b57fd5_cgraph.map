@@ -1,6 +1,0 @@
-<map id="CConfigurableDomains::validate" name="CConfigurableDomains::validate">
-<area shape="rect" id="node3" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="411,5,581,35"/>
-<area shape="rect" id="node5" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="428,128,564,157"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="212,58,361,105"/>
-<area shape="rect" id="node11" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="419,58,573,105"/>
-</map>

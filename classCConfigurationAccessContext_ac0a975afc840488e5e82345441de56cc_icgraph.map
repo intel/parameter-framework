@@ -1,7 +1,0 @@
-<map id="CConfigurationAccessContext::serializeOut" name="CConfigurationAccessContext::serializeOut">
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="488,87,637,134"/>
-<area shape="rect" id="node5" href="$classCArrayParameter.html#a192ed81d047795b1823cab20337ad283" title="CArrayParameter::serialize\lXmlSettings" alt="" coords="257,35,436,82"/>
-<area shape="rect" id="node7" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="257,105,436,151"/>
-<area shape="rect" id="node9" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="271,198,423,245"/>
-<area shape="rect" id="node13" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType\l::handleValueSpaceAttribute" alt="" coords="253,267,440,314"/>
-</map>

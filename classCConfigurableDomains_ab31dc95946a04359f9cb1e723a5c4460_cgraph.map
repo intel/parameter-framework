@@ -1,7 +1,0 @@
-<map id="CConfigurableDomains::restoreConfiguration" name="CConfigurableDomains::restoreConfiguration">
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a1c13db0dbfb1a375d8a9632b06d08b36" title="CConfigurableDomain\l::restoreConfiguration" alt="" coords="212,81,361,127"/>
-<area shape="rect" id="node5" href="$classCElement.html#aea211a2fcd65c2744a0ea25e73e51249" title="CElement::log_info" alt="" coords="421,5,555,35"/>
-<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="417,59,559,88"/>
-<area shape="rect" id="node9" href="$classCDomainConfiguration.html#ab5da4b09e98d012145c3b71816a2e153" title="CDomainConfiguration\l::restore" alt="" coords="411,111,565,158"/>
-<area shape="rect" id="node11" href="$classCSyncerSet.html#afb2b555773620bfceb3b86fe10486802" title="CSyncerSet::sync" alt="" coords="424,181,552,211"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="parameter/SubsystemObject.h" name="parameter/SubsystemObject.h">
-<area shape="rect" id="node3" href="$FormattedSubsystemObject_8h.html" title="parameter/FormattedSubsystem\lObject.h" alt="" coords="55,83,263,130"/>
-<area shape="rect" id="node7" href="$SubsystemObjectCreator_8h.html" title="parameter/SubsystemObject\lCreator.h" alt="" coords="385,83,572,130"/>
-<area shape="rect" id="node15" href="$SubsystemObject_8cpp.html" title="parameter/SubsystemObject.cpp" alt="" coords="596,92,809,121"/>
-<area shape="rect" id="node5" href="$FormattedSubsystemObject_8cpp.html" title="parameter/FormattedSubsystem\lObject.cpp" alt="" coords="5,179,213,226"/>
-<area shape="rect" id="node9" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="237,188,411,217"/>
-<area shape="rect" id="node11" href="$SubsystemObjectCreator_8cpp.html" title="parameter/SubsystemObject\lCreator.cpp" alt="" coords="435,179,621,226"/>
-<area shape="rect" id="node13" href="$SubsystemObjectFactory_8h.html" title="parameter/SubsystemObject\lFactory.h" alt="" coords="645,179,832,226"/>
-</map>

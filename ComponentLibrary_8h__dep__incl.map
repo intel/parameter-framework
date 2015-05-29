@@ -1,7 +1,0 @@
-<map id="parameter/ComponentLibrary.h" name="parameter/ComponentLibrary.h">
-<area shape="rect" id="node3" href="$Component_8cpp.html" title="parameter/Component.cpp" alt="" coords="5,83,181,112"/>
-<area shape="rect" id="node5" href="$ComponentInstance_8cpp.html" title="parameter/ComponentInstance.cpp" alt="" coords="205,83,432,112"/>
-<area shape="rect" id="node7" href="$ComponentLibrary_8cpp.html" title="parameter/ComponentLibrary.cpp" alt="" coords="456,83,669,112"/>
-<area shape="rect" id="node9" href="$ComponentType_8cpp.html" title="parameter/ComponentType.cpp" alt="" coords="693,83,899,112"/>
-<area shape="rect" id="node11" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="923,83,1096,112"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="CXmlElement::getChildElement" name="CXmlElement::getChildElement">
-<area shape="rect" id="node3" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator\l::next" alt="" coords="272,5,464,51"/>
-<area shape="rect" id="node7" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="289,75,447,104"/>
-<area shape="rect" id="node9" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="261,128,475,157"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="523,13,723,43"/>
-<area shape="rect" id="node11" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="533,119,712,166"/>
-</map>

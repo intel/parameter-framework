@@ -1,8 +1,0 @@
-<map id="parameter/BackSynchronizer.h" name="parameter/BackSynchronizer.h">
-<area shape="rect" id="node3" href="$BackSynchronizer_8cpp.html" title="parameter/BackSynchronizer.cpp" alt="" coords="5,83,219,112"/>
-<area shape="rect" id="node5" href="$HardwareBackSynchronizer_8h.html" title="parameter/HardwareBackSynchronizer.h" alt="" coords="243,83,499,112"/>
-<area shape="rect" id="node11" href="$SimulatedBackSynchronizer_8h.html" title="parameter/SimulatedBackSynchronizer.h" alt="" coords="523,83,781,112"/>
-<area shape="rect" id="node7" href="$HardwareBackSynchronizer_8cpp.html" title="parameter/HardwareBackSynchronizer.cpp" alt="" coords="123,160,392,189"/>
-<area shape="rect" id="node9" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="416,160,605,189"/>
-<area shape="rect" id="node14" href="$SimulatedBackSynchronizer_8cpp.html" title="parameter/SimulatedBackSynchronizer.cpp" alt="" coords="629,160,901,189"/>
-</map>

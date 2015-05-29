@@ -1,5 +1,0 @@
-<map id="CConfigurableElement::containsConfigurableDomain" name="CConfigurableElement::containsConfigurableDomain">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#ac5508cd538517568bebc5448179d9d76" title="CConfigurableElement\l::belongsTo" alt="" coords="252,39,404,86"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomain.html#abe3723d7a6b19d0b4d114646cf318678" title="CConfigurableDomain\l::addConfigurableElement" alt="" coords="465,5,636,51"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomains.html#a8d1b51c480639cb2a7dfc1c81e32d06f" title="CConfigurableDomains\l::findConfigurationBlackboard" alt="" coords="455,74,647,121"/>
-</map>

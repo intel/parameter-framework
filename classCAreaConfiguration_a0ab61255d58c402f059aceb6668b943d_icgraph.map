@@ -1,6 +1,0 @@
-<map id="CAreaConfiguration::save" name="CAreaConfiguration::save">
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="199,5,335,51"/>
-<area shape="rect" id="node7" href="$classCDomainConfiguration.html#aff0adeb0eb6645ef3ae8a4b75c4a7892" title="CDomainConfiguration\l::save" alt="" coords="189,74,344,121"/>
-<area shape="rect" id="node5" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="392,5,547,51"/>
-<area shape="rect" id="node9" href="$classCConfigurableDomain.html#aab893d1fbb26ce85f2e6851504dc526d" title="CConfigurableDomain\l::saveConfiguration" alt="" coords="395,74,544,121"/>
-</map>

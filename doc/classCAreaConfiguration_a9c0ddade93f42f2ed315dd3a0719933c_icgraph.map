@@ -1,0 +1,7 @@
+<map id="CAreaConfiguration::validate" name="CAreaConfiguration::validate">
+<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="200,23,367,65"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="415,23,576,65"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="624,23,792,65"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="888,5,1045,32"/>
+<area shape="rect" id="node6" href="$classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="840,56,1093,83"/>
+</map>

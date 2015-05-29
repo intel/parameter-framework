@@ -1,0 +1,10 @@
+<map id="CBaseParameter" name="CBaseParameter">
+<area shape="rect" id="node8" href="$classCBitParameter.html" title="CBitParameter" alt="" coords="5,468,120,495"/>
+<area shape="rect" id="node9" href="$classCParameter.html" title="CParameter" alt="" coords="144,468,243,495"/>
+<area shape="rect" id="node11" href="$classCStringParameter.html" title="CStringParameter" alt="" coords="267,468,403,495"/>
+<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html" title="CInstanceConfigurableElement" alt="" coords="84,319,303,345"/>
+<area shape="rect" id="node3" href="$classCConfigurableElementWithMapping.html" title="Base class for all Configurable Elements that can have a Mapping attribute. " alt="" coords="98,229,289,271"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="111,155,275,181"/>
+<area shape="rect" id="node5" href="$classCElement.html" title="CElement" alt="" coords="151,80,235,107"/>
+<area shape="rect" id="node10" href="$classCArrayParameter.html" title="CArrayParameter" alt="" coords="127,543,259,569"/>
+</map>

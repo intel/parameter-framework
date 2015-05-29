@@ -1,6 +1,0 @@
-<map id="CElement::setName" name="CElement::setName">
-<area shape="rect" id="node3" href="$classCElement.html#a7bfa625419c4a9ab40f2c83c46a9ce70" title="CElement::rename" alt="" coords="219,48,349,77"/>
-<area shape="rect" id="node9" href="$classCEnumValuePair.html#a75b1589707a64d5cf13145acde4dad03" title="CEnumValuePair::fromXml" alt="" coords="195,101,373,131"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomain.html#a01492c7dee6c846d75bcdb7a8967343e" title="CConfigurableDomain\l::renameConfiguration" alt="" coords="425,5,575,51"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomains.html#ad5697c9cf8ba73bd615c51786535dfdf" title="CConfigurableDomains\l::renameDomain" alt="" coords="421,74,579,121"/>
-</map>

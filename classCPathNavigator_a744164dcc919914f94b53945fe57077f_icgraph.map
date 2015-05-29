@@ -1,8 +1,0 @@
-<map id="CPathNavigator::navigateThrough" name="CPathNavigator::navigateThrough">
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a810d966739ee83e81f1a65f87faa60e3" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="227,23,440,70"/>
-<area shape="rect" id="node7" href="$classCParameterMgr.html#adc8ff567677828757de60232ab9b24c2" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="509,74,709,121"/>
-<area shape="rect" id="node10" href="$classCParameterMgr.html#afbd8b76c1b400a4c5d8a9e7d3e2b6f2d" title="CParameterMgr::accessValue" alt="" coords="235,152,432,181"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#ac37a7da1bb20a8cfcae0ffa0519021ff" title="CParameterMgr::createParameter\lHandle" alt="" coords="500,5,719,51"/>
-<area shape="rect" id="node12" href="$classCParameterMgr.html#a208f04b17d2a9a2e460cace0b85483cb" title="CParameterMgr::accessParameter\lValue" alt="" coords="497,143,721,190"/>
-<area shape="rect" id="node14" href="$classCParameterMgr.html#ad969fe876378e0527be0b20b0188ae18" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="489,213,729,259"/>
-</map>

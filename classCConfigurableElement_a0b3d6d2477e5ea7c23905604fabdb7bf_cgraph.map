@@ -1,7 +1,0 @@
-<map id="CConfigurableElement::fillSyncerSet" name="CConfigurableElement::fillSyncerSet">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="235,5,387,51"/>
-<area shape="rect" id="node7" href="$classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78" title="CConfigurableElement\l::fillSyncerSetFromDescendant" alt="" coords="209,98,412,145"/>
-<area shape="rect" id="node5" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="475,13,619,43"/>
-<area shape="rect" id="node9" href="$classCElement.html#a25f58d9d8b35e770806d669fb2a378e4" title="CElement::getNbChildren" alt="" coords="461,87,632,116"/>
-<area shape="rect" id="node11" href="$classCElement.html#a41bf126c3fdbb5bec0c2c3dcf35e9079" title="CElement::getChild" alt="" coords="479,140,615,169"/>
-</map>

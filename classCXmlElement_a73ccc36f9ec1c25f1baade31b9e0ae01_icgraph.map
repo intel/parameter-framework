@@ -1,6 +1,0 @@
-<map id="CXmlElement::createChild" name="CXmlElement::createChild">
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="233,29,385,75"/>
-<area shape="rect" id="node8" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration\l::composeSettings" alt="" coords="232,98,387,145"/>
-<area shape="rect" id="node10" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="248,192,371,221"/>
-<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="435,29,584,75"/>
-</map>

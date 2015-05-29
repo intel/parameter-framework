@@ -1,6 +1,0 @@
-<map id="CEnumValuePair::fromXml" name="CEnumValuePair::fromXml">
-<area shape="rect" id="node3" href="$classCElement.html#a9d1ea66f1d2c179e204291fa59c6fcaa" title="CElement::setName" alt="" coords="251,5,392,35"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a7a2ddc13b5488256a345397bbcc107cc" title="CXmlElement::getAttribute\lString" alt="" coords="459,79,637,126"/>
-<area shape="rect" id="node9" href="$classCXmlElement.html#acc23106e11d2677364536781554dc96e" title="CXmlElement::getAttribute\lSignedInteger" alt="" coords="232,109,411,155"/>
-<area shape="rect" id="node7" href="$classCXmlElement.html#abbe3026e57f3ac66f4cd5c92ef73f9d2" title="CXmlElement::hasAttribute" alt="" coords="685,88,867,117"/>
-</map>
