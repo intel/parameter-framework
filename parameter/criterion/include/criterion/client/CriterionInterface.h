@@ -76,12 +76,6 @@ public:
     /** Retrieve Criterion name */
     virtual std::string getName() const = 0;
 
-    /** Retrieve formatted current criterion state
-     *
-     * @return formatted string of criterion state
-     */
-    virtual std::string getFormattedState() const = 0;
-
 protected:
     virtual ~CriterionInterface() {}
 };

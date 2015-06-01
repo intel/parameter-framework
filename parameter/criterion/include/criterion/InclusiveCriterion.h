@@ -48,16 +48,17 @@ public:
                        const criterion::Values& values,
                        core::log::Logger& logger);
 
-    // @{
     /** @see CriterionInterface */
     bool setState(const State& state, std::string& error) override;
 
-    std::string getFormattedState() const override;
-    // @}
-
 private:
 
+    // @{
+    /** @see Criterion */
     virtual const std::string getKind() const override;
+
+    virtual std::string getFormattedState() const override;
+    // @{
 
     /** Inclusive criterion state delimiter. */
     static const std::string gDelimiter;

@@ -68,8 +68,6 @@ public:
     virtual State getState() const override final;
 
     virtual std::string getName() const override final;
-
-    virtual std::string getFormattedState() const override;
     // @}
 
     /** Check if the current criterion has been modified
@@ -184,6 +182,12 @@ private:
 
     /** Return description of the Criterion type for serialization purpose */
     virtual const std::string getKind() const;
+
+    /** Retrieve formatted current criterion state
+     *
+     * @return formatted string of criterion state
+     */
+    virtual std::string getFormattedState() const;
 
     /** Counter to know how many modifications have been applied to this criterion */
     uint32_t _uiNbModifications;
