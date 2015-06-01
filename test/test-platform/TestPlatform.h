@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -52,16 +52,48 @@ public:
 
 private:
     //////////////// Remote command parsers
-    /// Selection Criterion
-    CommandReturn createExclusiveSelectionCriterionFromStateList(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-    CommandReturn createInclusiveSelectionCriterionFromStateList(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
 
-    CommandReturn createExclusiveSelectionCriterion(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
-    CommandReturn createInclusiveSelectionCriterion(
-            const IRemoteCommand& remoteCommand, std::string& strResult);
+    /** Callback to create an Exclusive Criterion from possible state list
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
+     *
+     * @param[in] remoteCommand the first argument should be the name of the criterion to create.
+     *                          the following arguments should be criterion possible values
+     */
+    CommandReturn createExclusiveCriterionFromStateList(const IRemoteCommand& remoteCommand,
+                                                        std::string& strResult);
+
+    /** Callback to create an Inclusive Criterion from possible state list
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
+     *
+     * @param[in] remoteCommand the first argument should be the name of the criterion to create.
+     *                          the following arguments should be criterion possible values
+     */
+    CommandReturn createInclusiveCriterionFromStateList(const IRemoteCommand& remoteCommand,
+                                                        std::string& strResult);
+
+    /** Callback to create an Exclusive Criterion
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
+     *
+     * @param[in] remoteCommand the first argument should be the name of the criterion to create.
+     *                          the second argument should be criterion possible values number
+     *
+     * Generated states numerical value will be like: State_0xX, where X is the value number of the
+     * state.
+     */
+    CommandReturn createExclusiveCriterion(const IRemoteCommand& remoteCommand,
+                                           std::string& strResult);
+
+    /** Callback to create an Inclusive Criterion
+     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
+     *
+     * @param[in] remoteCommand the first argument should be the name of the criterion to create.
+     *                          the second argument should be criterion possible values number
+     *
+     * Generated states numerical value will be like: State_X, where X is the value number of the
+     * state.
+     */
+    CommandReturn createInclusiveCriterion(const IRemoteCommand& remoteCommand,
+                                           std::string& strResult);
 
     /** Callback to set a criterion's value, see ISelectionCriterionInterface::setCriterionState.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
@@ -133,11 +165,45 @@ private:
     CommandReturn getter(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     // Commands
-    bool createExclusiveSelectionCriterionFromStateList(const std::string& strName, const IRemoteCommand& remoteCommand, std::string& strResult);
-    bool createInclusiveSelectionCriterionFromStateList(const std::string& strName, const IRemoteCommand& remoteCommand, std::string& strResult);
 
-    bool createExclusiveSelectionCriterion(const std::string& strName, uint32_t uiNbValues, std::string& strResult);
-    bool createInclusiveSelectionCriterion(const std::string& strName, uint32_t uiNbValues, std::string& strResult);
+    /** @see callback with the same name for details and other parameters
+     *
+     * @param[out] strResult useful information that client may want to retrieve
+     * @return true if success, false otherwise
+     */
+    bool createExclusiveCriterionFromStateList(const std::string& strName,
+                                               const IRemoteCommand& remoteCommand,
+                                               std::string& strResult);
+
+    /** @see callback with the same name for details and other parameters
+     *
+     * @param[out] strResult useful information that client may want to retrieve
+     * @return true if success, false otherwise
+     */
+    bool createInclusiveCriterionFromStateList(const std::string& strName,
+                                               const IRemoteCommand& remoteCommand,
+                                               std::string& strResult);
+
+    /** @see callback with the same name for details and other parameters
+     *
+     * @param[in] uiNbValues number of possible state value the criterion can have
+     * @param[out] strResult useful information that client may want to retrieve
+     * @return true if success, false otherwise
+     */
+    bool createExclusiveCriterion(const std::string& strName,
+                                  uint32_t uiNbValues,
+                                  std::string& strResult);
+
+    /** @see callback with the same name for details and other parameters
+     *
+     * @param[in] uiNbValues number of possible state value the criterion can have
+     * @param[out] strResult useful information that client may want to retrieve
+     * @return true if success, false otherwise
+     */
+    bool createInclusiveCriterion(const std::string& strName,
+                                  uint32_t uiNbValues,
+                                  std::string& strResult);
+
     bool setCriterionState(const std::string& strName, uint32_t uiState, std::string& strResult);
     bool setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, std::string& strResult);
 

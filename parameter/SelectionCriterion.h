@@ -30,19 +30,18 @@
 #pragma once
 
 #include "XmlSource.h"
-#include "SelectionCriterionType.h"
 #include "SelectionCriterionInterface.h"
 #include <log/Logger.h>
 
+#include <map>
 #include <string>
+#include <functional>
 
 /** Criterion object used to apply rules based on system state */
 class CSelectionCriterion : public IXmlSource, public ISelectionCriterionInterface
 {
 public:
-    CSelectionCriterion(const std::string& strName,
-                        const CSelectionCriterionType* pType,
-                        core::log::Logger& logger);
+    CSelectionCriterion(const std::string& name, core::log::Logger& logger);
 
     /// From ISelectionCriterionInterface
     // State
@@ -50,20 +49,51 @@ public:
     virtual int getCriterionState() const;
     // Name
     virtual std::string getCriterionName() const;
-    // Type
-    virtual const ISelectionCriterionTypeInterface* getCriterionType() const;
     // Modified status
     bool hasBeenModified() const;
     void resetModifiedStatus();
 
-    /// Match methods
-    bool is(int iState) const;
-    bool isNot(int iState) const;
-    bool includes(int iState) const;
-    bool excludes(int iState) const;
+    /** Request criterion state match with a desired method
+     *
+     * @param[in] method, the desired match method
+     * @param[in] state, the state to match
+     * @return true if the current state match the state given in parameter with the desired method
+     *
+     * @throw std::out_of_range if the desired match method does not exist
+     */
+    bool match(const std::string& method, int32_t state) const;
+
+    /** Check if a match method is available for this criterion
+     *
+     * @param[in] method, the desired match method
+     * @return true if the method is available, false otherwise
+     */
+    bool isMatchMethodAvailable(const std::string& method) const;
 
     /// User request
     std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
+
+    //@{
+    /** @see ISelectionCriterionInterface */
+    virtual bool isInclusive() const override;
+
+    virtual bool addValuePair(int numericalValue,
+                              const std::string& literalValue,
+                              std::string& error) override;
+
+    bool getLiteralValue(int numericalValue, std::string& literalValue) const override final;
+
+    virtual bool getNumericalValue(const std::string& literalValue,
+                                   int& numericalValue) const override;
+
+    virtual std::string getFormattedState() const override;
+    //@}
+
+    /** List different values a criterion can have
+     *
+     * @return formatted string containing criterion possible values
+     */
+    std::string listPossibleValues() const;
 
     /**
       * Export to XML
@@ -73,11 +103,60 @@ public:
       *
       */
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+
+protected:
+    /** Criterion Match callback type
+     *
+     * Those method should take an integer in parameter which represents the state to match
+     * and returns a boolean which indicates if the current state match the state given in
+     * parameter.
+     */
+    typedef std::function<bool(int)> MatchMethod;
+
+    /** Match method container, MatchMethod are indexed by their name */
+    typedef std::map<std::string, MatchMethod> MatchMethods;
+
+    /** Internal type which associate literal and numerical value */
+    typedef std::map<std::string, int> ValuePairs;
+
+    /** Initializer constructor
+     * This Constructor initialize class members and should be called by derived class
+     * in order to add functionalities
+     *
+     * @param[in] name, the criterion name
+     * @param[in] derivedValuePairs initial value pairs of derived classes
+     * @param[in] derivedMatchMethods match methods of derived classes
+     */
+    CSelectionCriterion(const std::string& name,
+                        core::log::Logger& logger,
+                        const ValuePairs& derivedValuePairs,
+                        const MatchMethods& derivedMatchMethods);
+
+    /** Set a "default formatted state" when no criterion state is set
+     *
+     * @param formattedState, the formatted state string to check
+     * @result the reference of the string passed in parameter filled with the default value
+     * if it was empty
+     *
+     * This method returns a reference on his referenced parameter in order to have the easy
+     * notation.
+     *    return checkFormattedStateEmptyness(myFormattedStateToReturn);
+     */
+    std::string& checkFormattedStateEmptyness(std::string& formattedState) const;
+
+    /** Contains pair association between literal and numerical value */
+    ValuePairs mValuePairs;
+
+    /** Available criterion match methods */
+    const MatchMethods mMatchMethods;
+
+    /** Current state
+     *
+     * FIXME: Use bit set object instead
+     */
+    int32_t mState;
+
 private:
-    // Current state
-    int _iState;
-    // Type
-    const CSelectionCriterionType* _pType;
 
     /** Counter to know how many modifications have been applied to this criterion */
     uint32_t _uiNbModifications;
