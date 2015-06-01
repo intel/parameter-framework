@@ -71,22 +71,22 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exi
                                        0, "", "Exit TestPlatform");
     _pCommandHandler->addCommandParser(
         "createExclusiveCriterionFromStateList",
-        &CTestPlatform::createExclusiveCriterionFromStateList,
+        &CTestPlatform::createCriterionFromStateList<false>,
         2, "<name> <stateList>",
         "Create inclusive selection criterion from state name list");
     _pCommandHandler->addCommandParser(
         "createInclusiveCriterionFromStateList",
-        &CTestPlatform::createInclusiveCriterionFromStateList,
+        &CTestPlatform::createCriterionFromStateList<true>,
         2, "<name> <stateList>",
         "Create exclusive selection criterion from state name list");
 
     _pCommandHandler->addCommandParser(
         "createExclusiveCriterion",
-        &CTestPlatform::createExclusiveCriterion,
+        &CTestPlatform::createCriterionCommand<false>,
         2, "<name> <nbStates>", "Create inclusive selection criterion");
     _pCommandHandler->addCommandParser(
         "createInclusiveCriterion",
-        &CTestPlatform::createInclusiveCriterion,
+        &CTestPlatform::createCriterionCommand<true>,
         2, "<name> <nbStates>", "Create exclusive selection criterion");
 
     _pCommandHandler->addCommandParser("start", &CTestPlatform::startParameterMgr,
@@ -172,39 +172,23 @@ bool CTestPlatform::load(std::string& strError)
 
 //////////////// Remote command parsers
 /// Criterion
-CTestPlatform::CommandReturn
-CTestPlatform::createExclusiveCriterionFromStateList(const IRemoteCommand& remoteCommand,
-                                                     string& strResult)
+
+template <bool isInclusive> CTestPlatform::CommandReturn
+CTestPlatform::createCriterionFromStateList(const IRemoteCommand& remoteCommand,
+                                            string& strResult)
 {
-    return createExclusiveCriterionFromStateList(remoteCommand.getArgument(0),
-                                                 remoteCommand, strResult) ?
+    return createCriterion<isInclusive>(remoteCommand.getArgument(0),
+                                  remoteCommand, strResult) ?
            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
-CTestPlatform::CommandReturn CTestPlatform::createInclusiveCriterionFromStateList(
-    const IRemoteCommand& remoteCommand, string& strResult)
+template <bool isInclusive> CTestPlatform::CommandReturn
+CTestPlatform::createCriterionCommand(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createInclusiveCriterionFromStateList(remoteCommand.getArgument(0),
-                                                 remoteCommand, strResult) ?
-           CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
-}
-
-CTestPlatform::CommandReturn
-CTestPlatform::createExclusiveCriterion(const IRemoteCommand& remoteCommand,
-                                        string& strResult)
-{
-    return createExclusiveCriterion(remoteCommand.getArgument(0),
-                                    strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
-                                    strResult) ?
-           CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
-}
-
-CTestPlatform::CommandReturn
-CTestPlatform::createInclusiveCriterion(const IRemoteCommand& remoteCommand, string& strResult)
-{
-    return createInclusiveCriterion(remoteCommand.getArgument(0),
-                                    strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
-                                    strResult) ?
+    return createCriterion<isInclusive>(
+                                  remoteCommand.getArgument(0),
+                                  (uint32_t) strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
+                                  strResult) ?
            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
@@ -289,9 +273,10 @@ CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCom
 
 //////////////// Remote command handlers
 
-bool CTestPlatform::createExclusiveCriterionFromStateList(const string& name,
-                                                          const IRemoteCommand& remoteCommand,
-                                                          string& result)
+template <bool isInclusive>
+bool CTestPlatform::createCriterion(const string& name,
+                                    const IRemoteCommand& remoteCommand,
+                                    string& result)
 {
 
     assert(_pParameterMgrPlatformConnector != NULL);
@@ -306,79 +291,35 @@ bool CTestPlatform::createExclusiveCriterionFromStateList(const string& name,
         const std::string& value = remoteCommand.getArgument(state + 1);
         values.emplace_back(value);
     }
-
-    Criterion* criterion =
-        _pParameterMgrPlatformConnector->createExclusiveCriterion(name, values, result);
-
-    if (criterion == nullptr) {
-        return false;
-    }
-
-    return true;
+    return createCriterion<isInclusive>(name, values, result);
 }
 
-bool CTestPlatform::createInclusiveCriterionFromStateList(const string& name,
-                                                          const IRemoteCommand& remoteCommand,
-                                                          string& result)
-{
-    assert(_pParameterMgrPlatformConnector != NULL);
-    uint32_t nbStates = remoteCommand.getArgumentCount() - 1;
-
-    using namespace core::criterion;
-    Values values;
-
-    for (uint32_t state = 0; state < nbStates; state++) {
-
-        const std::string& value = remoteCommand.getArgument(state + 1);
-        values.emplace_back(value);
-    }
-
-    Criterion* criterion =
-        _pParameterMgrPlatformConnector->createInclusiveCriterion(name, values, result);
-
-    if (criterion == nullptr) {
-        return false;
-    }
-
-    return true;
-}
-
-
-bool CTestPlatform::createExclusiveCriterion(const string& name, uint32_t nbStates, string& result)
+template <bool isInclusive>
+bool CTestPlatform::createCriterion(const string& name,
+                                    uint32_t nbStates,
+                                    string& result)
 {
     using namespace core::criterion;
     Values values;
 
     for (uint32_t state = 0; state < nbStates; state++) {
-        values.emplace_back("State_" + std::to_string(state));
+        // Generate value names, those name are legacy and should be uniformized
+        // after functionnal tests rework
+        values.emplace_back((isInclusive ? "State_0x" + std::to_string(state + 1) :
+                                           "State_" + std::to_string(state)));
     }
-    Criterion* criterion =
-        _pParameterMgrPlatformConnector->createExclusiveCriterion(name, values, result);
-
-    if (criterion == nullptr) {
-        return false;
-    }
-
-    return true;
+    return createCriterion<isInclusive>(name, values, result);
 }
 
-bool CTestPlatform::createInclusiveCriterion(const string& name, uint32_t nbStates, string& result)
+template <bool isInclusive>
+bool CTestPlatform::createCriterion(const string& name,
+                                    const core::criterion::Values &values,
+                                    string& result)
 {
-    using namespace core::criterion;
-    Values values;
+    Criterion* criterion = (isInclusive ?
+        _pParameterMgrPlatformConnector->createInclusiveCriterion(name, values, result) :
+        _pParameterMgrPlatformConnector->createExclusiveCriterion(name, values, result));
 
-    if (nbStates > 32) {
-
-        result = "Maximum number of states for inclusive criterion is 32";
-
-        return false;
-    }
-
-    for (uint32_t state = 0; state < nbStates; state++) {
-        values.emplace_back("State_0x" + std::to_string(1 << state));
-    }
-    Criterion* criterion =
-        _pParameterMgrPlatformConnector->createInclusiveCriterion(name, values, result);
 
     if (criterion == nullptr) {
         return false;
