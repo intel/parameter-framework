@@ -61,19 +61,19 @@ Criterion::Criterion(const std::string& name,
                                       {"Is", [&](const State& state){ return mState == state; }},
                                       {"IsNot", [&](const State& state){ return mState != state; }}},
                                     derivedMatchMethods)),
-      mState(defaultState), _uiNbModifications(0), _logger(logger), mName(name),
+      mState(defaultState), mNbModifications(0), mLogger(logger), mName(name),
       mDefaultState(defaultState)
 {
 }
 
 bool Criterion::hasBeenModified() const
 {
-    return _uiNbModifications != 0;
+    return mNbModifications != 0;
 }
 
 void Criterion::resetModifiedStatus()
 {
-    _uiNbModifications = 0;
+    mNbModifications = 0;
 }
 
 bool Criterion::setState(const State& state, std::string& error)
@@ -105,18 +105,18 @@ bool Criterion::setState(const State& state, std::string& error)
 
 void Criterion::stateModificationsEvent()
 {
-    _logger.info() << "Selection criterion changed event: "
+    mLogger.info() << "Selection criterion changed event: "
                    << getFormattedDescription(false, false);
     // Check if the previous criterion value has been taken into account
     // (i.e. at least one Configuration was applied
     // since the last criterion change)
-    if (_uiNbModifications != 0) {
-        _logger.warning() << "Selection criterion '" << mName
-                          << "' has been modified " << _uiNbModifications
+    if (mNbModifications != 0) {
+        mLogger.warning() << "Selection criterion '" << mName
+                          << "' has been modified " << mNbModifications
                           << " time(s) without any configuration application";
     }
     // Track the number of modifications for this criterion
-    _uiNbModifications++;
+    mNbModifications++;
 }
 
 core::criterion::State Criterion::getState() const
@@ -129,55 +129,55 @@ std::string Criterion::getName() const
     return mName;
 }
 
-std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const
+std::string Criterion::getFormattedDescription(bool withTypeInfo, bool humanReadable) const
 {
-    std::string strFormattedDescription;
-    if (bHumanReadable) {
+    std::string description;
+    if (humanReadable) {
 
-        if (bWithTypeInfo) {
+        if (withTypeInfo) {
 
             // Display type info
-            CUtility::appendTitle(strFormattedDescription, mName + ":");
+            CUtility::appendTitle(description, mName + ":");
 
             // States
-            strFormattedDescription += "Possible states ";
+            description += "Possible states ";
 
             // Type Kind
-            strFormattedDescription += "(";
-            strFormattedDescription += getKind();
-            strFormattedDescription += "): ";
+            description += "(";
+            description += getKind();
+            description += "): ";
 
             // States
-            strFormattedDescription += listPossibleValues() + "\n";
+            description += listPossibleValues() + "\n";
 
             // Current State
-            strFormattedDescription += "Current state";
+            description += "Current state";
         } else {
             // Name only
-            strFormattedDescription = mName;
+            description = mName;
         }
 
         // Current State
-        strFormattedDescription += " = " + getFormattedState();
+        description += " = " + getFormattedState();
     } else {
         // Name
-        strFormattedDescription = "Criterion name: " + mName;
+        description = "Criterion name: " + mName;
 
-        if (bWithTypeInfo) {
+        if (withTypeInfo) {
             // Type Kind
-            strFormattedDescription += ", type kind: ";
-            strFormattedDescription +=  getKind();
+            description += ", type kind: ";
+            description +=  getKind();
         }
 
         // Current State
-        strFormattedDescription += ", current state: " + getFormattedState();
+        description += ", current state: " + getFormattedState();
 
-        if (bWithTypeInfo) {
+        if (withTypeInfo) {
             // States
-            strFormattedDescription += ", states: " + listPossibleValues();
+            description += ", states: " + listPossibleValues();
         }
     }
-    return strFormattedDescription;
+    return description;
 }
 
 void Criterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const

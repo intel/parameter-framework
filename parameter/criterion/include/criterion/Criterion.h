@@ -106,7 +106,7 @@ public:
      *                           false if it must be easier to parse
      * @return the string containing the desired description
      */
-    std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
+    std::string getFormattedDescription(bool withTypeInfo, bool humanReadable) const;
 
     /** List different values a criterion can have
      *
@@ -190,10 +190,10 @@ private:
     virtual std::string getFormattedState() const;
 
     /** Counter to know how many modifications have been applied to this criterion */
-    uint32_t _uiNbModifications;
+    uint32_t mNbModifications;
 
     /** Application logger */
-    core::log::Logger& _logger;
+    core::log::Logger& mLogger;
 
     /** Criterion name */
     const std::string mName;
