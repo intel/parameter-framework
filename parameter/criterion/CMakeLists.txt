@@ -44,7 +44,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
 # Client headers
 install(FILES
-    include/criterion/client/CriterionInterface.h
+    include/criterion/client/Criterion.h
     DESTINATION "include/parameter/client/criterion")
 
 if(BUILD_TESTING)

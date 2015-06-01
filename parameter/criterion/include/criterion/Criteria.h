@@ -42,6 +42,8 @@ namespace core
 {
 namespace criterion
 {
+namespace internal
+{
 
 /** Criteria Handler */
 class Criteria : public IXmlSource
@@ -154,5 +156,6 @@ private:
     CriteriaMap mCriteria;
 };
 
+} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */

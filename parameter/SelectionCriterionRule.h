@@ -71,7 +71,7 @@ private:
     bool setMatchState(const std::string &value);
 
     // Selection criterion
-    const core::criterion::Criterion* _pSelectionCriterion;
+    const core::criterion::internal::Criterion* _pSelectionCriterion;
 
     /** Method name used to match the criterion state
      *

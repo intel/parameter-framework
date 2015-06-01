@@ -33,7 +33,7 @@
 #include <assert.h>
 
 using std::string;
-using core::criterion::CriterionInterface;
+using core::criterion::Criterion;
 
 using namespace core;
 
@@ -52,27 +52,25 @@ CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
     delete _pParameterMgrLogger;
 }
 
-CriterionInterface*
-CParameterMgrPlatformConnector::createExclusiveCriterion(const string& name,
-                                                         const criterion::Values& values,
-                                                         std::string& error)
+Criterion* CParameterMgrPlatformConnector::createExclusiveCriterion(const string& name,
+                                                                    const criterion::Values& values,
+                                                                    std::string& error)
 {
     assert(!_bStarted);
 
     return _pParameterMgr->createExclusiveCriterion(name, values, error);
 }
 
-CriterionInterface*
-CParameterMgrPlatformConnector::createInclusiveCriterion(const string& name,
-                                                         const criterion::Values& values,
-                                                         std::string& error)
+Criterion* CParameterMgrPlatformConnector::createInclusiveCriterion(const string& name,
+                                                                    const criterion::Values& values,
+                                                                    std::string& error)
 {
     assert(!_bStarted);
 
     return _pParameterMgr->createInclusiveCriterion(name, values, error);
 }
 
-CriterionInterface* CParameterMgrPlatformConnector::getCriterion(const string& strName) const
+Criterion* CParameterMgrPlatformConnector::getCriterion(const string& strName) const
 {
     return _pParameterMgr->getCriterion(strName);
 }

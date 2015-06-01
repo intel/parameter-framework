@@ -29,7 +29,7 @@
  */
 #pragma once
 
-#include "client/CriterionInterface.h"
+#include "client/Criterion.h"
 #include "XmlSource.h"
 #include <log/Logger.h>
 
@@ -43,9 +43,11 @@ namespace core
 {
 namespace criterion
 {
+namespace internal
+{
 
 /** Criterion object used to apply rules based on system state */
-class Criterion : public IXmlSource, public CriterionInterface
+class Criterion : public IXmlSource, public criterion::Criterion
 {
 public:
     /** Indicates an error at the Criterion creation */
@@ -62,7 +64,7 @@ public:
               core::log::Logger& logger);
 
     // @{
-    /** @see CriterionInterface */
+    /** @see Criterion */
     virtual bool setState(const State& state, std::string& error) override;
 
     virtual State getState() const override final;
@@ -202,5 +204,6 @@ private:
     const State mDefaultState;
 };
 
+} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */

@@ -88,17 +88,17 @@ public:
 
     void setLogger(ILogger* pLogger);
 
-    core::criterion::CriterionInterface*
+    core::criterion::Criterion*
     createExclusiveCriterion(const std::string& name,
                              const core::criterion::Values& values,
                              std::string& errorOutput);
 
-    core::criterion::CriterionInterface*
+    core::criterion::Criterion*
     createInclusiveCriterion(const std::string& name,
                              const core::criterion::Values& values,
                              std::string& errorOutput);
 
-    core::criterion::CriterionInterface* getCriterion(const std::string& name);
+    core::criterion::Criterion* getCriterion(const std::string& name);
 
     // Configuration application
     void applyConfigurations();
@@ -217,10 +217,10 @@ typedef std::string Value ;
 typedef std::list<Value> Values;
 typedef std::set<Value> State;
 
-class CriterionInterface
+class Criterion
 {
 %{
-#include <criterion/client/CriterionInterface.h>
+#include <criterion/client/Criterion.h>
 %}
 
 public:
@@ -229,7 +229,7 @@ public:
     virtual std::string getName() const = 0;
 
 protected:
-    virtual ~CriterionInterface() {}
+    virtual ~Criterion() {}
 };
 
 } /** criterion namespace */

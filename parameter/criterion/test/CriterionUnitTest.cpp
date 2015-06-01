@@ -55,8 +55,11 @@
 #include <algorithm>
 #include <stdexcept>
 
+using core::criterion::State;
+using core::criterion::Values;
+
 using namespace core;
-using namespace core::criterion;
+using namespace core::criterion::internal;
 
 /** Raw logging class Helper */
 class TestLogger : public log::ILogger

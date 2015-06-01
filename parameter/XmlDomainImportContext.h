@@ -41,7 +41,7 @@ public:
     CXmlDomainImportContext(std::string& strError,
                             bool bWithSettings,
                             CSystemClass& systemClass,
-                            const core::criterion::Criteria& criteria)
+                            const core::criterion::internal::Criteria& criteria)
         : base(strError, bWithSettings), _systemClass(systemClass), mCriteria(criteria),
           _bAutoValidationRequired(true)
     {}
@@ -52,7 +52,7 @@ public:
         return _systemClass;
     }
 
-    const core::criterion::Criteria& getCriteria() const
+    const core::criterion::internal::Criteria& getCriteria() const
     {
         return mCriteria;
     }
@@ -75,7 +75,7 @@ private:
     CSystemClass& _systemClass;
 
     /** Selection criteria definition for rule creation */
-    const core::criterion::Criteria& mCriteria;
+    const core::criterion::internal::Criteria& mCriteria;
 
     // Auto validation of configurations
     bool _bAutoValidationRequired;

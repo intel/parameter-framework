@@ -37,6 +37,8 @@ namespace core
 {
 namespace criterion
 {
+namespace internal
+{
 
 const std::string InclusiveCriterion::gDelimiter = "|";
 
@@ -97,5 +99,6 @@ bool InclusiveCriterion::setState(const State& state, std::string& error)
     return true;
 }
 
+} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */

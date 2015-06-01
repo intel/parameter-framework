@@ -41,7 +41,7 @@
 #include "RemoteProcessorServer.h"
 
 using std::string;
-using core::criterion::CriterionInterface;
+using core::criterion::Criterion;
 
 class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnector::ILogger
 {
@@ -250,7 +250,7 @@ CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
     // Get criterion name
     std::string strCriterionName = remoteCommand.getArgument(0);
 
-    CriterionInterface* pCriterion =
+    Criterion* pCriterion =
         _pParameterMgrPlatformConnector->getCriterion(strCriterionName);
 
     if (!pCriterion) {
@@ -307,7 +307,7 @@ bool CTestPlatform::createExclusiveCriterionFromStateList(const string& name,
         values.emplace_back(value);
     }
 
-    CriterionInterface* criterion =
+    Criterion* criterion =
         _pParameterMgrPlatformConnector->createExclusiveCriterion(name, values, result);
 
     if (criterion == nullptr) {
@@ -333,7 +333,7 @@ bool CTestPlatform::createInclusiveCriterionFromStateList(const string& name,
         values.emplace_back(value);
     }
 
-    CriterionInterface* criterion =
+    Criterion* criterion =
         _pParameterMgrPlatformConnector->createInclusiveCriterion(name, values, result);
 
     if (criterion == nullptr) {
@@ -352,7 +352,7 @@ bool CTestPlatform::createExclusiveCriterion(const string& name, uint32_t nbStat
     for (uint32_t state = 0; state < nbStates; state++) {
         values.emplace_back("State_" + std::to_string(state));
     }
-    CriterionInterface* criterion =
+    Criterion* criterion =
         _pParameterMgrPlatformConnector->createExclusiveCriterion(name, values, result);
 
     if (criterion == nullptr) {
@@ -377,7 +377,7 @@ bool CTestPlatform::createInclusiveCriterion(const string& name, uint32_t nbStat
     for (uint32_t state = 0; state < nbStates; state++) {
         values.emplace_back("State_0x" + std::to_string(1 << state));
     }
-    CriterionInterface* criterion =
+    Criterion* criterion =
         _pParameterMgrPlatformConnector->createInclusiveCriterion(name, values, result);
 
     if (criterion == nullptr) {

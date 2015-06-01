@@ -55,7 +55,7 @@ using State = std::set<Value>;
 /** Client criterion interface used for interacting with the system state
  * Allows client to set or retrieve a Criterion state.
  */
-class CriterionInterface
+class Criterion
 {
 public:
     /** Set a new state to the criterion
@@ -77,7 +77,7 @@ public:
     virtual std::string getName() const = 0;
 
 protected:
-    virtual ~CriterionInterface() {}
+    virtual ~Criterion() {}
 };
 
 } /** criterion namespace */

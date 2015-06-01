@@ -39,6 +39,8 @@ namespace core
 {
 namespace criterion
 {
+namespace internal
+{
 
 Criterion::Criterion(const std::string& name,
                      const criterion::Values& values,
@@ -241,5 +243,6 @@ bool Criterion::isMatchMethodAvailable(const std::string& method) const
     return mMatchMethods.count(method) == 1;
 }
 
+} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */

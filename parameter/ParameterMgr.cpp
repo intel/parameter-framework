@@ -113,7 +113,7 @@ using std::ifstream;
 
 // FIXME: integrate ParameterMgr to core namespace
 using namespace core;
-using namespace core::criterion;
+using namespace core::criterion::internal;
 
 // Used for remote processor server creation
 typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
@@ -724,14 +724,14 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
 }
 
 Criterion* CParameterMgr::createExclusiveCriterion(const string& name,
-                                                   const Values& values,
+                                                   const criterion::Values& values,
                                                    std::string& error)
 {
     return _criteria.createExclusiveCriterion(name, values, _logger, error);
 }
 
 Criterion* CParameterMgr::createInclusiveCriterion(const string& name,
-                                                   const Values& values,
+                                                   const criterion::Values& values,
                                                    std::string& error)
 {
     return _criteria.createInclusiveCriterion(name, values, _logger, error);

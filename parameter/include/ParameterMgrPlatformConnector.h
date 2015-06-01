@@ -31,7 +31,7 @@
 
 #include "ParameterHandle.h"
 #include "ParameterMgrLoggerForward.h"
-#include <criterion/client/CriterionInterface.h>
+#include <criterion/client/Criterion.h>
 
 class CParameterMgr;
 
@@ -63,7 +63,7 @@ public:
      *                   undefined otherwise
      * @return raw pointer on the criterion interface, nullptr if the method fail
      */
-    core::criterion::CriterionInterface*
+    core::criterion::Criterion*
     createExclusiveCriterion(const std::string& name,
                              const core::criterion::Values& values,
                              std::string& error);
@@ -78,7 +78,7 @@ public:
      *                   undefined otherwise
      * @return raw pointer on the criterion interface, nullptr if the method fail
      */
-    core::criterion::CriterionInterface*
+    core::criterion::Criterion*
     createInclusiveCriterion(const std::string& name,
                              const core::criterion::Values& values,
                              std::string& error);
@@ -88,7 +88,7 @@ public:
      * @param[in] strName the criterion name
      * @return the pointer on the desired criterion, nullptr otherwise
      */
-    core::criterion::CriterionInterface* getCriterion(const std::string& strName) const;
+    core::criterion::Criterion* getCriterion(const std::string& strName) const;
 
     // Logging
     // Should be called before start

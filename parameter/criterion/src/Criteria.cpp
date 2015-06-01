@@ -36,6 +36,8 @@ namespace core
 {
 namespace criterion
 {
+namespace internal
+{
 
 Criteria::Criteria() : mCriteria()
 {
@@ -122,5 +124,6 @@ Criterion* Criteria::addCriterion(const std::string& name,
     }
 }
 
+} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */
