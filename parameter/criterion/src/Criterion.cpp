@@ -105,6 +105,7 @@ std::string Criterion::getCriterionName() const
 std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const
 {
     std::string strFormattedDescription;
+    std::string typeName = isInclusive() ? "Inclusive" : "Exclusive";
 
     if (bHumanReadable) {
 
@@ -118,7 +119,7 @@ std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanRe
 
             // Type Kind
             strFormattedDescription += "(";
-            strFormattedDescription += isInclusive() ? "Inclusive" : "Exclusive";
+            strFormattedDescription += typeName;
             strFormattedDescription += "): ";
 
             // States
@@ -140,7 +141,7 @@ std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanRe
         if (bWithTypeInfo) {
             // Type Kind
             strFormattedDescription += ", type kind: ";
-            strFormattedDescription +=  isInclusive() ? "inclusive" : "exclusive";
+            strFormattedDescription +=  typeName;
         }
 
         // Current State
@@ -221,9 +222,10 @@ bool Criterion::getLiteralValue(int numericalValue, std::string& literalValue) c
 std::string Criterion::getFormattedState() const
 {
     std::string formattedState;
-    getLiteralValue(mState, formattedState);
-
-    return Criterion::checkFormattedStateEmptyness(formattedState);
+    if (!getLiteralValue(mState, formattedState)) {
+        formattedState = "<none>";
+    }
+    return formattedState;
 }
 
 std::string Criterion::listPossibleValues() const
@@ -244,14 +246,6 @@ std::string Criterion::listPossibleValues() const
     possibleValues += "}";
 
     return possibleValues;
-}
-
-std::string& Criterion::checkFormattedStateEmptyness(std::string& formattedState) const
-{
-    if (formattedState.empty()) {
-        formattedState = "<none>";
-    }
-    return formattedState;
 }
 
 bool Criterion::match(const std::string& method, int32_t state) const
