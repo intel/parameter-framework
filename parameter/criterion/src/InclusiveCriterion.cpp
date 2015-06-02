@@ -27,19 +27,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "InclusiveCriterion.h"
+#include "criterion/InclusiveCriterion.h"
 #include "Tokenizer.h"
 
 #include <sstream>
 
+namespace core
+{
+namespace criterion
+{
+
 const std::string InclusiveCriterion::gDelimiter = "|";
 
-InclusiveCriterion::InclusiveCriterion(const std::string& name,
-                                       core::log::Logger& logger)
-    : CSelectionCriterion(name, logger,
-                          {{"none", 0}},
-                          {{"Includes", [&](int state){ return (mState & state) == state; }},
-                           {"Excludes", [&](int state){ return (mState & state) == 0; }}})
+InclusiveCriterion::InclusiveCriterion(const std::string& name, core::log::Logger& logger)
+    : Criterion(name, logger,
+                {{"none", 0}},
+                {{"Includes", [&](int state){ return (mState & state) == state; }},
+                 {"Excludes", [&](int state){ return (mState & state) == 0; }}})
 {
 }
 
@@ -63,7 +67,7 @@ bool InclusiveCriterion::addValuePair(int numericalValue,
         return false;
     }
 
-    return CSelectionCriterion::addValuePair(numericalValue, literalValue, error);
+    return Criterion::addValuePair(numericalValue, literalValue, error);
 }
 
 bool InclusiveCriterion::getNumericalValue(const std::string& literalValue,
@@ -77,7 +81,7 @@ bool InclusiveCriterion::getNumericalValue(const std::string& literalValue,
     for (std::string atomicLiteral : literalValues) {
 
         int atomicNumerical = 0;
-        if (!CSelectionCriterion::getNumericalValue(atomicLiteral, atomicNumerical)) {
+        if (!Criterion::getNumericalValue(atomicLiteral, atomicNumerical)) {
             return false;
         }
         numericalValue |= atomicNumerical;
@@ -114,5 +118,8 @@ std::string InclusiveCriterion::getFormattedState() const
         formattedState += atomicState;
     }
 
-    return CSelectionCriterion::checkFormattedStateEmptyness(formattedState);
+    return Criterion::checkFormattedStateEmptyness(formattedState);
 }
+
+} /** criterion namespace */
+} /** core namespace */

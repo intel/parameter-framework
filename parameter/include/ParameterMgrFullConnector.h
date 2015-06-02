@@ -29,9 +29,9 @@
  */
 #pragma once
 
-#include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
 #include "ParameterMgrLoggerForward.h"
+#include <criterion/client/CriterionInterface.h>
 
 #include <string>
 #include <list>
@@ -77,7 +77,8 @@ public:
      * @param[in] name, the criterion name
      * @return raw pointer on the criterion interface
      */
-    ISelectionCriterionInterface* createExclusiveCriterion(const std::string& name);
+    core::criterion::CriterionInterface*
+    createExclusiveCriterion(const std::string& name);
 
     /** Create a new Inclusive criterion
      * Beware returned objects shall not be deleted by client.
@@ -86,9 +87,11 @@ public:
      * @param[in] name, the criterion name
      * @return raw pointer on the criterion interface
      */
-    ISelectionCriterionInterface* createInclusiveCriterion(const std::string& name);
+    core::criterion::CriterionInterface*
+    createInclusiveCriterion(const std::string& name);
 
-    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
+    core::criterion::CriterionInterface*
+    getSelectionCriterion(const std::string& strName);
 
     /** Is the remote interface forcefully disabled ?
      */

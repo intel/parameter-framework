@@ -41,6 +41,7 @@
 #include "RemoteProcessorServer.h"
 
 using std::string;
+using core::criterion::CriterionInterface;
 
 class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnector::ILogger
 {
@@ -293,7 +294,7 @@ bool CTestPlatform::createExclusiveCriterionFromStateList(const string& strName,
 
     assert(_pParameterMgrPlatformConnector != NULL);
 
-    ISelectionCriterionInterface* pCriterion =
+    CriterionInterface* pCriterion =
         _pParameterMgrPlatformConnector->createExclusiveCriterion(strName);
 
     assert(pCriterion!= NULL);
@@ -323,7 +324,7 @@ bool CTestPlatform::createInclusiveCriterionFromStateList(const string& strName,
 {
     assert(_pParameterMgrPlatformConnector != NULL);
 
-    ISelectionCriterionInterface* pCriterion =
+    CriterionInterface* pCriterion =
         _pParameterMgrPlatformConnector->createInclusiveCriterion(strName);
 
     assert(pCriterion != NULL);
@@ -359,7 +360,7 @@ bool CTestPlatform::createExclusiveCriterion(const string& strName,
                                              uint32_t uiNbStates,
                                              string& strResult)
 {
-    ISelectionCriterionInterface* pCriterion =
+    CriterionInterface* pCriterion =
         _pParameterMgrPlatformConnector->createExclusiveCriterion(strName);
 
     uint32_t uistate;
@@ -387,7 +388,7 @@ bool CTestPlatform::createInclusiveCriterion(const string& strName,
                                              uint32_t uiNbStates,
                                              string& strResult)
 {
-    ISelectionCriterionInterface* pCriterion =
+    CriterionInterface* pCriterion =
         _pParameterMgrPlatformConnector->createInclusiveCriterion(strName);
 
     if (uiNbStates > 32) {
@@ -420,7 +421,7 @@ bool CTestPlatform::createInclusiveCriterion(const string& strName,
 
 bool CTestPlatform::setCriterionState(const string& strName, uint32_t uiState, string& strResult)
 {
-    ISelectionCriterionInterface* pCriterion =
+    CriterionInterface* pCriterion =
         _pParameterMgrPlatformConnector->getSelectionCriterion(strName);
 
     if (!pCriterion) {
@@ -442,7 +443,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
     // Get criterion name
     std::string strCriterionName = remoteCommand.getArgument(0);
 
-    ISelectionCriterionInterface* pCriterion =
+    CriterionInterface* pCriterion =
         _pParameterMgrPlatformConnector->getSelectionCriterion(strCriterionName);
 
     if (!pCriterion) {
@@ -474,7 +475,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
          uiLexicalSubStateIndex <= uiNbSubStates;
          uiLexicalSubStateIndex++) {
         /*
-         * getNumericalValue method from ISelectionCriterionInterface strip his parameter
+         * getNumericalValue method from CriterionInterface strip his parameter
          * first parameter based on | sign. In case that the user uses multiple parameters
          * to set InclusiveCriterion value, we aggregate all desired values to be sure
          * they will be handled correctly.

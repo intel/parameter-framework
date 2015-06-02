@@ -289,7 +289,7 @@ void CDomainConfiguration::getElementSequence(string& strResult) const
 
 // Application rule
 bool CDomainConfiguration::setApplicationRule(const string& strApplicationRule,
-                                              const CSelectionCriteria& criteria,
+                                              const core::criterion::Criteria& criteria,
                                               string& strError)
 {
     // Parser

@@ -27,44 +27,47 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#include "SelectionCriterion.h"
+#include "criterion/Criterion.h"
+#include <Utility.h>
 #include <log/Logger.h>
-#include "Utility.h"
 
 #include <stdexcept>
+#include <sstream>
 
-CSelectionCriterion::CSelectionCriterion(const std::string& name, core::log::Logger& logger) :
-    CSelectionCriterion(name, logger, {}, {})
+namespace core
+{
+namespace criterion
+{
+
+Criterion::Criterion(const std::string& name, core::log::Logger& logger)
+    : Criterion(name, logger, {}, {})
 {
 }
 
-CSelectionCriterion::CSelectionCriterion(const std::string& name,
-                                         core::log::Logger& logger,
-                                         const ValuePairs& derivedValuePairs,
-                                         const MatchMethods& derivedMatchMethods) :
-    mValuePairs(derivedValuePairs),
-    mMatchMethods(CUtility::merge(MatchMethods{
-                                    {"Is", [&](int state){ return mState == state; }},
-                                    {"IsNot", [&](int state){ return mState != state; }}},
-                                  derivedMatchMethods)),
-    mState(0), _uiNbModifications(0), _logger(logger), mName(name)
+Criterion::Criterion(const std::string& name,
+                     core::log::Logger& logger,
+                     const ValuePairs& derivedValuePairs,
+                     const MatchMethods& derivedMatchMethods)
+    : mValuePairs(derivedValuePairs),
+      mMatchMethods(CUtility::merge(MatchMethods{
+                                      {"Is", [&](int state){ return mState == state; }},
+                                      {"IsNot", [&](int state){ return mState != state; }}},
+                                    derivedMatchMethods)),
+      mState(0), _uiNbModifications(0), _logger(logger), mName(name)
 {
 }
 
-bool CSelectionCriterion::hasBeenModified() const
+bool Criterion::hasBeenModified() const
 {
     return _uiNbModifications != 0;
 }
 
-void CSelectionCriterion::resetModifiedStatus()
+void Criterion::resetModifiedStatus()
 {
     _uiNbModifications = 0;
 }
 
-/// From ISelectionCriterionInterface
-// State
-void CSelectionCriterion::setCriterionState(int iState)
+void Criterion::setCriterionState(int iState)
 {
     // Check for a change
     if (mState != iState) {
@@ -74,7 +77,8 @@ void CSelectionCriterion::setCriterionState(int iState)
         _logger.info() << "Selection criterion changed event: "
                        << getFormattedDescription(false, false);
 
-        // Check if the previous criterion value has been taken into account (i.e. at least one Configuration was applied
+        // Check if the previous criterion value has been taken into account
+        // (i.e. at least one Configuration was applied
         // since the last criterion change)
         if (_uiNbModifications != 0) {
 
@@ -88,19 +92,17 @@ void CSelectionCriterion::setCriterionState(int iState)
     }
 }
 
-int CSelectionCriterion::getCriterionState() const
+int Criterion::getCriterionState() const
 {
     return mState;
 }
 
-// Name
-std::string CSelectionCriterion::getCriterionName() const
+std::string Criterion::getCriterionName() const
 {
     return mName;
 }
 
-/// User request
-std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const
+std::string Criterion::getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const
 {
     std::string strFormattedDescription;
 
@@ -144,7 +146,7 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
         // Current State
         strFormattedDescription += ", current state: " + getFormattedState();
 
-         if (bWithTypeInfo) {
+        if (bWithTypeInfo) {
             // States
             strFormattedDescription += ", states: " + listPossibleValues();
         }
@@ -152,15 +154,14 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
     return strFormattedDescription;
 }
 
-// XML export
-void CSelectionCriterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void Criterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
-    (void) serializingContext;
+    (void)serializingContext;
     xmlElement.setAttributeString("Value", getFormattedState());
     xmlElement.setAttributeString("Name", mName);
     xmlElement.setAttributeString("Kind", isInclusive() ? "Inclusive" : "Exclusive");
 
-    for (auto& valuePair: mValuePairs) {
+    for (auto& valuePair : mValuePairs) {
         CXmlElement childValuePairElement;
 
         xmlElement.createChild(childValuePairElement, "ValuePair");
@@ -169,14 +170,14 @@ void CSelectionCriterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext&
     }
 }
 
-bool CSelectionCriterion::isInclusive() const
+bool Criterion::isInclusive() const
 {
     return false;
 }
 
-bool CSelectionCriterion::addValuePair(int numericalValue,
-                                       const std::string& literalValue,
-                                       std::string& error)
+bool Criterion::addValuePair(int numericalValue,
+                             const std::string& literalValue,
+                             std::string& error)
 {
     // Check already inserted
     if (mValuePairs.count(literalValue) == 1) {
@@ -194,8 +195,8 @@ bool CSelectionCriterion::addValuePair(int numericalValue,
     return true;
 }
 
-bool CSelectionCriterion::getNumericalValue(const std::string& literalValue,
-                                            int& numericalValue) const
+bool Criterion::getNumericalValue(const std::string& literalValue,
+                                  int& numericalValue) const
 {
     try {
         numericalValue = mValuePairs.at(literalValue);
@@ -206,9 +207,9 @@ bool CSelectionCriterion::getNumericalValue(const std::string& literalValue,
     }
 }
 
-bool CSelectionCriterion::getLiteralValue(int numericalValue, std::string& literalValue) const
+bool Criterion::getLiteralValue(int numericalValue, std::string& literalValue) const
 {
-    for (auto& value: mValuePairs) {
+    for (auto& value : mValuePairs) {
         if (value.second == numericalValue) {
             literalValue = value.first;
             return true;
@@ -217,21 +218,21 @@ bool CSelectionCriterion::getLiteralValue(int numericalValue, std::string& liter
     return false;
 }
 
-std::string CSelectionCriterion::getFormattedState() const
+std::string Criterion::getFormattedState() const
 {
     std::string formattedState;
     getLiteralValue(mState, formattedState);
 
-    return CSelectionCriterion::checkFormattedStateEmptyness(formattedState);
+    return Criterion::checkFormattedStateEmptyness(formattedState);
 }
 
-std::string CSelectionCriterion::listPossibleValues() const
+std::string Criterion::listPossibleValues() const
 {
     std::string possibleValues = "{";
 
     // Get comma separated list of values
     bool first = true;
-    for (auto& value: mValuePairs) {
+    for (auto& value : mValuePairs) {
 
         if (first) {
             first = false;
@@ -245,7 +246,7 @@ std::string CSelectionCriterion::listPossibleValues() const
     return possibleValues;
 }
 
-std::string& CSelectionCriterion::checkFormattedStateEmptyness(std::string& formattedState) const
+std::string& Criterion::checkFormattedStateEmptyness(std::string& formattedState) const
 {
     if (formattedState.empty()) {
         formattedState = "<none>";
@@ -253,12 +254,15 @@ std::string& CSelectionCriterion::checkFormattedStateEmptyness(std::string& form
     return formattedState;
 }
 
-bool CSelectionCriterion::match(const std::string& method, int32_t state) const
+bool Criterion::match(const std::string& method, int32_t state) const
 {
     return mMatchMethods.at(method)(state);
 }
 
-bool CSelectionCriterion::isMatchMethodAvailable(const std::string& method) const
+bool Criterion::isMatchMethodAvailable(const std::string& method) const
 {
     return mMatchMethods.count(method) == 1;
 }
+
+} /** criterion namespace */
+} /** core namespace */

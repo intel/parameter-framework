@@ -34,16 +34,16 @@
 #include <vector>
 #include "RemoteCommandHandlerTemplate.h"
 #include "PathNavigator.h"
-#include "SelectionCriterion.h"
 #include "Element.h"
 #include "XmlDocSink.h"
 #include "XmlDocSource.h"
 #include "XmlDomainExportContext.h"
 #include "Results.h"
 #include "ParameterFrameworkConfiguration.h"
-#include "SelectionCriteria.h"
+#include "criterion/Criteria.h"
 #include "ConfigurableDomains.h"
 #include "SystemClass.h"
+#include <criterion/Criterion.h>
 #include <log/LogWrapper.h>
 #include <log/Context.h>
 
@@ -111,17 +111,17 @@ public:
      * @param[in] name, the criterion name
      * @return raw pointer on the created criterion
      */
-    CSelectionCriterion* createExclusiveCriterion(const std::string& name);
+    core::criterion::Criterion* createExclusiveCriterion(const std::string& name);
 
     /** Create a new Inclusive criterion
      *
      * @param[in] name, the criterion name
      * @return raw pointer on the created criterion
      */
-    CSelectionCriterion* createInclusiveCriterion(const std::string& name);
+    core::criterion::Criterion* createInclusiveCriterion(const std::string& name);
 
     // Selection criterion retrieval
-    CSelectionCriterion* getSelectionCriterion(const std::string& strName);
+    core::criterion::Criterion* getSelectionCriterion(const std::string& strName);
 
     // Configuration application
     void applyConfigurations();
@@ -747,7 +747,7 @@ private:
     CParameterFrameworkConfiguration _pfwConfiguration;
 
     /** Selection Criteria used in application rules */
-    CSelectionCriteria _criteria;
+    core::criterion::Criteria _criteria;
 
     /** Subsystems handler */
     CSystemClass _systemClass;

@@ -465,7 +465,7 @@ bool CConfigurableDomains::getElementSequence(const string& strDomain, const str
 bool CConfigurableDomains::setApplicationRule(const string& strDomain,
                                               const string& strConfiguration,
                                               const string& strApplicationRule,
-                                              const CSelectionCriteria& criteria,
+                                              const core::criterion::Criteria& criteria,
                                               string& strError)
 {
     CConfigurableDomain* domain = findConfigurableDomain(strDomain, strError);

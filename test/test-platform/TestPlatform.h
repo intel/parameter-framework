@@ -37,7 +37,6 @@
 
 class CParameterMgrPlatformConnectorLogger;
 class CRemoteProcessorServer;
-class ISelectionCriterionInterface;
 
 class CTestPlatform
 {
@@ -95,7 +94,7 @@ private:
     CommandReturn createInclusiveCriterion(const IRemoteCommand& remoteCommand,
                                            std::string& strResult);
 
-    /** Callback to set a criterion's value, see ISelectionCriterionInterface::setCriterionState.
+    /** Callback to set a criterion's value, see CriterionInterface::setCriterionState.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
      * @param[in] remoteCommand the first argument should be the name of the criterion to set.

@@ -30,8 +30,9 @@
 #pragma once
 
 #include "BinarySerializableElement.h"
-#include "SelectionCriteria.h"
 #include "Results.h"
+#include <criterion/Criteria.h>
+
 #include <list>
 #include <string>
 
@@ -68,7 +69,7 @@ public:
      * @result true is success false otherwise
      */
     bool setApplicationRule(const std::string& strApplicationRule,
-                            const CSelectionCriteria& criteria,
+                            const core::criterion::Criteria& criteria,
                             std::string& strError);
 
     void clearApplicationRule();

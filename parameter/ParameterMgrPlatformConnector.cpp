@@ -33,6 +33,7 @@
 #include <assert.h>
 
 using std::string;
+using core::criterion::CriterionInterface;
 
 // Construction
 CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
@@ -49,24 +50,22 @@ CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
     delete _pParameterMgrLogger;
 }
 
-ISelectionCriterionInterface*
-CParameterMgrPlatformConnector::createExclusiveCriterion(const string& name)
+CriterionInterface* CParameterMgrPlatformConnector::createExclusiveCriterion(const string& name)
 {
     assert(!_bStarted);
 
     return _pParameterMgr->createExclusiveCriterion(name);
 }
 
-ISelectionCriterionInterface*
-CParameterMgrPlatformConnector::createInclusiveCriterion(const string& name)
+CriterionInterface* CParameterMgrPlatformConnector::createInclusiveCriterion(const string& name)
 {
     assert(!_bStarted);
 
     return _pParameterMgr->createInclusiveCriterion(name);
 }
 
-// Selection criterion retrieval
-ISelectionCriterionInterface* CParameterMgrPlatformConnector::getSelectionCriterion(const string& strName) const
+CriterionInterface*
+CParameterMgrPlatformConnector::getSelectionCriterion(const string& strName) const
 {
     return _pParameterMgr->getSelectionCriterion(strName);
 }
