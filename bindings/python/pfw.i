@@ -205,8 +205,12 @@ public:
     virtual bool addValuePair(int numericalValue,
                               const std::string& literalValue,
                               std::string& strError) = 0;
+%apply int &OUTPUT { int& numericalValue };
     virtual bool getNumericalValue(const std::string& literalValue, int& numericalValue) const = 0;
+%clear int& numericalValue;
+%apply std::string &OUTPUT { std::string& literalValue };
     virtual bool getLiteralValue(int numericalValue, std::string& literalValue) const = 0;
+%clear std::string& literalValue;
     virtual std::string getFormattedState() const = 0;
     virtual bool isInclusive() const = 0;
 
