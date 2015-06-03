@@ -71,17 +71,17 @@ public:
     /** Class destructor */
     ~LogWrapper()
     {
-        if (!mLog.str().empty()) {
-            if(isWarning) {
-                mLogger.warning(mProlog + mLog.str());
-            } else {
-                mLogger.info(mProlog + mLog.str());
-            }
+        for (auto& log : mLogs) {
+            (mLogger.*mLogCallback)(mProlog + log.str());
         }
     }
 
     /**
      * Simulate stream behaviour
+     *
+     * Both operator<<() versions must not be used in conjunction: either use
+     * the 'scalar' version (this one) or the 'list' version but not both on
+     * the same object.
      *
      * @tparam T the type of the information to log
      * @param[in] log the information to log
@@ -89,27 +89,28 @@ public:
     template <class T>
     LogWrapper& operator<<(const T &log)
     {
-        mLog << log;
+        if (mLogs.empty()) {
+            mLogs.emplace_back();
+        }
+
+        mLogs.back() << log;
         return *this;
     }
 
     /**
      * Simulate stream behaviour for string list
      *
+     * Both operator<<() versions must not be used in conjunction: either use
+     * the 'scalar' version or the 'list' version (this one) but not both on
+     * the same object.
+     *
      * @param[in] logs list of information to log
      */
     LogWrapper& operator<<(const std::list<std::string>& logs)
     {
-        std::string formatedLogs;
-        std::string separator = "\n" + mProlog;
-        CUtility::asString(logs, formatedLogs, separator);
-
-        // Check if there is something in the log to know if we have to add a prefix
-        if (!mLog.str().empty() && mLog.str()[mLog.str().length()-1] == separator[0]) {
-            *this << mProlog;
+        for (auto& log : logs) {
+            mLogs.emplace_back(log);
         }
-
-        *this << formatedLogs;
         return *this;
     }
 
@@ -117,10 +118,11 @@ private:
     LogWrapper& operator=(const LogWrapper&);
 
     /** Log stream holder */
-    std::ostringstream mLog;
+    std::list<std::ostringstream> mLogs;
 
     /** Wrapped logger */
     ILogger& mLogger;
+    static constexpr const auto mLogCallback = isWarning ? &ILogger::warning : &ILogger::info;
 
     /** Log Prefix */
     const std::string& mProlog;
