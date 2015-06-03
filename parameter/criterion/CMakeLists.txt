@@ -37,6 +37,8 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/xmlserializer/"
     "${PROJECT_SOURCE_DIR}/utility/")
 
+target_link_libraries(criterion pfw_utility xmlserializer)
+
 # '-fPIC' needed for shared library to link against libcriterion
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
@@ -44,3 +46,20 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 install(FILES
     include/criterion/client/CriterionInterface.h
     DESTINATION "include/parameter/client/criterion")
+
+if(BUILD_TESTING)
+    find_path(CATCH_HEADER catch.hpp)
+    include_directories(
+        include
+        ${CATCH_HEADER})
+
+    # Add unit test
+    add_executable(criterionUnitTest test/CriterionUnitTest.cpp)
+
+    target_link_libraries(criterionUnitTest criterion)
+    add_test(NAME criterionUnitTest
+             COMMAND criterionUnitTest)
+
+    # Custom function defined in the top-level CMakeLists
+    set_test_env(criterionUnitTest)
+endif()
