@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -30,10 +30,8 @@ add_executable(remote-process main.cpp)
 
 # TODO: separate remote-processor's includes in half (public/private)
 # And use only public headers here
-include_directories(
-    "${PROJECT_SOURCE_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/utility")
+include_directories("${PROJECT_SOURCE_DIR}/remote-processor")
 
-target_link_libraries(remote-process remote-processor pfw_utility)
+target_link_libraries(remote-process remote-processor)
 
 install(TARGETS remote-process RUNTIME DESTINATION bin)

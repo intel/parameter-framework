@@ -41,7 +41,6 @@ public:
     CRequestMessage();
 
     // Command Name
-    void setCommand(const std::string& strCommand);
     virtual const std::string& getCommand() const;
 
     // Arguments
@@ -68,6 +67,8 @@ private:
      * @return size of the request message in bytes
      */
     virtual size_t getDataSize() const;
+    // Command
+    void setCommand(const std::string& strCommand);
     // Trim input std::string
     static std::string trim(const std::string& strToTrim);
 
