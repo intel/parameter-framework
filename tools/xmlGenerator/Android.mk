@@ -81,38 +81,6 @@ LOCAL_REQUIRED_MODULES := \
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := portAllocator.py
-LOCAL_MODULE_OWNER := intel
-LOCAL_SRC_FILES := $(LOCAL_MODULE)
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_IS_HOST_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := hostDomainGenerator.sh
-LOCAL_MODULE_OWNER := intel
-LOCAL_SRC_FILES := $(LOCAL_MODULE)
-LOCAL_REQUIRED_MODULES :=  \
-    PFWScriptGenerator.py \
-    hostConfig.py \
-    portAllocator.py \
-    test-platform_host \
-    remote-process_host \
-    ParameterFrameworkConfiguration.xsd \
-    ConfigurableDomains.xsd \
-    SystemClass.xsd \
-    ParameterSettings.xsd \
-    FileIncluder.xsd \
-    Subsystem.xsd \
-    ComponentLibrary.xsd \
-    ComponentTypeSet.xsd \
-    W3cXmlAttributes.xsd \
-    Parameter.xsd
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_IS_HOST_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := lightRoutingUpdate.sh
 LOCAL_MODULE_OWNER := intel
 LOCAL_SRC_FILES := $(LOCAL_MODULE)

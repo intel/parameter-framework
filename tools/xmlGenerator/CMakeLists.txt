@@ -27,14 +27,11 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 install(PROGRAMS
-    domainGenerator.sh
     domainGenerator.py
     hostConfig.py
-    hostDomainGenerator.sh
     lightRoutingUpdate.sh
     PfwBaseTranslator.py
     EddParser.py
     PFWScriptGenerator.py
-    portAllocator.py
     updateRoutageDomains.sh
     DESTINATION bin)
