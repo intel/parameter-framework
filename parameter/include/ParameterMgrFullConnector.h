@@ -259,22 +259,6 @@ public:
       */
     bool importSingleDomainXml(const std::string& xmlSource, bool overwrite, bool withSettings,
                                bool toFile, std::string& errorMsg);
-    /**
-      * Method that imports a single Configurable Domain from an string
-      * describing an Xml source.
-      *
-      * @deprecated use the other versions of importSingleDomainXml instead
-      *
-      * @param[in] strXmlSource a string containing an xml description
-      * @param[in] bOverwrite when importing an existing domain, allow overwriting or return an
-      * error
-      * @param[out] strError is used as the error output
-      *
-      * @return false if any error occurs
-      */
-    bool importSingleDomainXml(const std::string& strXmlSource, bool bOverwrite,
-                               std::string& strError);
-
 
     /**
       * Method that exports Configurable Domains to an Xml destination.
