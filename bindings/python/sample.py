@@ -61,7 +61,11 @@ for numerical, literal in enumerate(["red", "green", "blue"]):
         logging.error("Can't create the 'Colors' criterion: %s" % error)
 
 ok, error = pfw.start()
+
 if not ok:
     print("Error while starting the pfw: {}".format(error))
+
+mood.setCriterionState(1)
+colors.setCriterionState(3)
 
 raw_input("[Press enter to exit]")
