@@ -158,9 +158,7 @@ parameter_execute_if_exist () {
     $parameter $1 | sed 's/\r//'
 }
 
-parameter_execute_if_exist getDomainsWithSettingsXML > "$outputFilePath" ||
-    # Fall back on old command
-    parameter_execute_if_exist getDomainsXML > "$outputFilePath"
+parameter_execute_if_exist getDomainsWithSettingsXML > "$outputFilePath"
 
 
 log "The media server PFW domains have been change, please restart it to restore old domains"
