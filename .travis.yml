@@ -8,8 +8,7 @@ env:
 
 compiler:
     - gcc
-    # clang not supported yet
-    # - clang
+    - clang
 
 # Install a recent gcc and gcov,
 # it will not be necessary once travis worker is based on ubuntu > 12.04.
