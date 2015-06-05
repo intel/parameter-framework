@@ -153,9 +153,6 @@ private:
     // Remote Processor Server
     CRemoteProcessorServer* _pRemoteProcessorServer;
 
-    // Port number for the server socket
-    int _portNumber;
-
     // Semaphore used by calling thread to avoid exiting
     sem_t& _exitSemaphore;
 };
