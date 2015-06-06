@@ -49,7 +49,7 @@ public:
     virtual bool accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // Integer Access
-    virtual bool accessAsInteger(uint64_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // AreaConfiguration creation
     virtual CAreaConfiguration* createAreaConfiguration(const CSyncerSet* pSyncerSet) const;

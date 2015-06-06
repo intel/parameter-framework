@@ -8,8 +8,7 @@ env:
 
 compiler:
     - gcc
-    # clang not supported yet
-    # - clang
+    - clang
 
 # Install a recent gcc and gcov,
 # it will not be necessary once travis worker is based on ubuntu > 12.04.
@@ -20,7 +19,6 @@ addons:
         sources:
             - ubuntu-toolchain-r-test
         packages:
-            - swig
             - valgrind
             - g++-4.8
 
@@ -28,6 +26,14 @@ install:
     - pip install --user cpp-coveralls; export PATH=$HOME/.local/bin:$PATH
     - wget --directory-prefix $PREFIX/include
               https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
+    # Install recent swig.
+    # Avoid make install check because documentation generation will fail as yodl2man command is
+    # missing and the corresponding paquet is not available in travis whitelist.
+    - ( mkdir build_swig && cd build_swig &&
+          wget https://github.com/swig/swig/archive/rel-2.0.12.tar.gz &&
+          tar -xf rel-2.0.12.tar.gz && cd swig-rel-2.0.12/ && ./autogen.sh &&
+          ./configure --prefix=$PREFIX && make && make install ;
+          echo "Dropping documentation generation error" )
 
 before_script:
     - if [ "$CC" = "gcc" ]; then export CC=gcc-4.8 CXX=g++-4.8; fi
@@ -55,6 +61,7 @@ after_success:
           --exclude "build_debug/bindings/python"
           --exclude "build_debug/CMakeFiles"
           --exclude "build"
+          --exclude "build_swig"
           --exclude "skeleton-subsystem"
           --exclude "test/test-subsystem"
           --exclude "bindings/c/Test.cpp"

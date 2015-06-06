@@ -51,13 +51,11 @@ LOCAL_C_INCLUDES := \
     prebuilts/python/linux-x86/2.7.5/include/python2.7 \
     $(HOST_OUT_HEADERS)/parameter
 
-# The 'unused-but-set-variable' warning must be disabled because SWIG generates
-# files that do not respect that constraint.
 # '-DSWIG_PYTHON_SILENT_MEMLEAK' is needed because the "memleak" warning
 # pollutes the standard output. At the time of writing, the only warning is
 # spurious anyway, as it relates to "ILogger *" which is an abstract
 # class/interface class and as such cannot be destroyed.
-LOCAL_CFLAGS := -Wno-unused-but-set-variable -fexceptions -DSWIG_PYTHON_SILENT_MEMLEAK
+LOCAL_CFLAGS := -fexceptions -DSWIG_PYTHON_SILENT_MEMLEAK
 
 # Undefined symbols will be resolved at runtime
 LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
@@ -87,5 +85,7 @@ $(generated-sources-dir)/pfw_wrap.cxx: $(LOCAL_PATH)/pfw.i
 		-Iprebuilts/misc/common/swig/include/2.0.11/ \
 		-Wall -Werror -v -python -c++ -outdir $(HOST_LIBRARY_PATH)/ -o $@ $^
 
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_HOST_SHARED_LIBRARY)
 

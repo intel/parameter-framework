@@ -76,7 +76,8 @@ LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
-include external/stlport/libstlport.mk
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_STATIC_LIBRARY)
 
 ##############################
@@ -99,6 +100,8 @@ LOCAL_STATIC_LIBRARIES := libxml2
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
+LOCAL_CLANG := true
+include external/libcxx/libcxx.mk
 include $(BUILD_HOST_STATIC_LIBRARY)
 
 ################################
