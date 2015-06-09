@@ -98,11 +98,18 @@ def main():
     parser.add_argument("test_directory", type=str, default=None,
                         help="precise a test directory (required).")
 
-    parser.add_argument("-s", "--scenario", type=int, default=None,
-                        help="precise a scenario to launch.")
+    parser.add_argument("-s", "--scenario", type=int, default=None, nargs='+',
+                        help="precise one or more scenarios to launch.")
 
-    parser.add_argument("--interactive", action='store_true',
-                        help="run in interactive mode.")
+    interactiveness = parser.add_mutually_exclusive_group()
+    interactiveness.add_argument("--no-exit", action='store_true',
+                                 help="lets you interactively select more scenarios (This is"
+                                      " implicit if neither '--scenario' nor '--interactive' are "
+                                      " passed).")
+
+    interactiveness.add_argument("--interactive", action='store_true',
+                                 help="run in interactive mode (lets you select actions and scripts"
+                                 " to run).")
 
     parser.add_argument(
         "-v",
@@ -194,11 +201,15 @@ def main():
                 for scenarioFileName in sorted(os.listdir(configParser["ScenariosDirectory"]))
             ]
             if args.scenario is not None:
-                scenarioOptions[args.scenario][1]()
-            # Let the user choose more scenarios after the one chosen by command line
-            # or if none was given on the command line.
-            UserInteractor.getMenu(scenarioOptions, "Quit")
+                for elem in args.scenario:
+                    scenarioOptions[elem][1]()
+            if (args.scenario is None) or args.no_exit:
+                # Let the user choose more scenarios after the ones chosen by command line
+                # or if none was given on the command line.
+                UserInteractor.getMenu(scenarioOptions, "Quit")
     except KeyboardInterrupt as e:
+        close(logger, testLauncher, args.coverage)
+    else:
         close(logger, testLauncher, args.coverage)
 
 
