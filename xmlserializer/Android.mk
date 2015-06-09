@@ -79,7 +79,7 @@ LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
 include external/stlport/libstlport.mk
-include $(BUILD_STATIC_LIBRARY)
+include $(BUILD_SHARED_LIBRARY)
 
 ##############################
 # Host build
@@ -103,5 +103,5 @@ LOCAL_STATIC_LIBRARIES := libxml2
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
-include $(BUILD_HOST_STATIC_LIBRARY)
+include $(BUILD_HOST_SHARED_LIBRARY)
 

@@ -130,10 +130,7 @@ common_cflags := \
 common_c_includes := \
     $(LOCAL_PATH)/include/ \
     $(LOCAL_PATH)/../utility/ \
-    $(LOCAL_PATH)/../xmlserializer/ \
     $(LOCAL_PATH)/../remote-processor/
-
-common_shared_libraries := libicuuc
 
 #############################
 # Target build
@@ -155,8 +152,8 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 
 LOCAL_C_INCLUDES := $(common_c_includes)
 
-LOCAL_SHARED_LIBRARIES := $(common_shared_libraries) libdl
-LOCAL_STATIC_LIBRARIES := libxmlserializer libpfw_utility libxml2
+LOCAL_SHARED_LIBRARIES := libxmlserializer libdl
+LOCAL_STATIC_LIBRARIES := libpfw_utility
 
 LOCAL_REQUIRED_MODULES := libremote-processor
 
@@ -184,8 +181,8 @@ LOCAL_MODULE_TAGS := $(common_module_tags)
 LOCAL_C_INCLUDES += \
     $(common_c_includes)
 
-LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)-host
-LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host libxml2
+LOCAL_SHARED_LIBRARIES := libxmlserializer_host
+LOCAL_STATIC_LIBRARIES := libpfw_utility_host libxml2
 
 LOCAL_LDLIBS += -ldl
 
