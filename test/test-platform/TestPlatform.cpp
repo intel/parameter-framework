@@ -63,7 +63,6 @@ public:
 CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exitSemaphore) :
     _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
     _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger),
-    _portNumber(iPortNumber),
     _exitSemaphore(exitSemaphore)
 {
     _pCommandHandler = new CCommandHandler(this);

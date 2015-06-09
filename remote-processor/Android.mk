@@ -49,9 +49,6 @@ common_cflags := \
         -Werror \
         -Wextra \
         -Wno-unused-parameter \
-        -pthread
-
-common_ldlibs := -pthread
 
 #############################
 # Target build
@@ -63,7 +60,6 @@ LOCAL_SRC_FILES := $(common_src_files)
 LOCAL_STATIC_LIBRARIES := libpfw_utility
 
 LOCAL_CFLAGS := $(common_cflags)
-LOCAL_LDLIBS := $(common_ldlibs)
 
 LOCAL_MODULE := $(common_module)
 LOCAL_MODULE_OWNER := intel
@@ -81,8 +77,8 @@ LOCAL_SRC_FILES := $(common_src_files)
 
 LOCAL_STATIC_LIBRARIES := libpfw_utility_host
 
-LOCAL_CFLAGS := $(common_cflags)
-LOCAL_LDLIBS := $(common_ldlibs)
+LOCAL_CFLAGS := $(common_cflags) -pthread
+LOCAL_LDLIBS := -lpthread
 
 LOCAL_MODULE := $(common_module)_host
 LOCAL_MODULE_OWNER := intel

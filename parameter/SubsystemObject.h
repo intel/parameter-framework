@@ -83,8 +83,12 @@ protected:
     void blackboardRead(void* pvData, uint32_t uiSize);
     void blackboardWrite(const void* pvData, uint32_t uiSize);
     // Logging
-    void log_info(const std::string& strMessage, ...) const;
-    void log_warning(const std::string& strMessage, ...) const;
+    // Copy the string format because:
+    //  - passing char * would break compatibility
+    //  - passing a const std::string & in forbiden by the c++ standard
+    //    as va_start second argument must not be a reference.
+    void log_info(std::string strMessage, ...) const;
+    void log_warning(std::string strMessage, ...) const;
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
 

@@ -49,8 +49,8 @@ public:
     virtual ~CElement();
 
     // Logging
-    void log_info(const std::string& strMessage, ...) const;
-    void log_warning(const std::string& strMessage, ...) const;
+    void log_info(const char* strMessage, ...) const;
+    void log_warning(const char* strMessage, ...) const;
     void log_table(bool bIsWarning, const std::list<std::string> lstrMessage) const;
 
     // Description
@@ -133,12 +133,6 @@ public:
     // Element properties
     virtual void showProperties(std::string& strResult) const;
 
-    // Conversion utilities
-    static std::string toString(uint32_t uiValue);
-    static std::string toString(uint64_t uiValue);
-    static std::string toString(int32_t iValue);
-    static std::string toString(double dValue);
-
     // Checksum for integrity checks
     uint8_t computeStructureChecksum() const;
 
@@ -171,8 +165,6 @@ public:
 protected:
     // Content dumping
     virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
-    // Utility to underline
-    static void appendTitle(std::string& strTo, const std::string& strTitle);
 
     // Hierarchy
     CElement* getParent();

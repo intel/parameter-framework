@@ -108,4 +108,5 @@ private:
      * See hasPeerDisconnected for more details.
      */
     bool _disconnected;
+    int mSendFlag;
 };

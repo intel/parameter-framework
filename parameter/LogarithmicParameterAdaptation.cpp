@@ -29,6 +29,7 @@
  */
 
 #include "LogarithmicParameterAdaptation.h"
+#include "Utility.h"
 #include <math.h>
 
 #define base CLinearParameterAdaptation
@@ -45,10 +46,10 @@ void CLogarithmicParameterAdaptation::showProperties(std::string& strResult) con
     base::showProperties(strResult);
 
     strResult += " - LogarithmBase: ";
-    strResult += toString(_dLogarithmBase);
+    strResult += CUtility::toString(_dLogarithmBase);
     strResult += "\n";
     strResult += " - FloorValue: ";
-    strResult += toString(_dFloorValue);
+    strResult += CUtility::toString(_dFloorValue);
     strResult += "\n";
 }
 

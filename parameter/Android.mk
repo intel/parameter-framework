@@ -143,6 +143,8 @@ include $(CLEAR_VARS)
 LOCAL_COPY_HEADERS_TO := $(common_copy_headers_to)
 LOCAL_COPY_HEADERS := $(common_copy_headers)
 
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+
 LOCAL_CFLAGS := $(common_cflags)
 
 LOCAL_SRC_FILES := $(common_src_files)
@@ -158,7 +160,6 @@ LOCAL_STATIC_LIBRARIES := libxmlserializer libpfw_utility libxml2
 
 LOCAL_REQUIRED_MODULES := libremote-processor
 
-LOCAL_CLANG := false
 include external/stlport/libstlport.mk
 include $(BUILD_SHARED_LIBRARY)
 
@@ -169,6 +170,8 @@ include $(CLEAR_VARS)
 
 LOCAL_COPY_HEADERS_TO := $(common_copy_headers_to)
 LOCAL_COPY_HEADERS := $(common_copy_headers)
+
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
 LOCAL_CFLAGS := $(common_cflags) -O0 -ggdb
 
@@ -186,39 +189,4 @@ LOCAL_STATIC_LIBRARIES := libxmlserializer_host libpfw_utility_host libxml2
 
 LOCAL_LDLIBS += -ldl
 
-LOCAL_CLANG := false
 include $(BUILD_HOST_SHARED_LIBRARY)
-
-################################
-# Export includes for plugins (Target build)
-
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := $(common_module)_includes
-LOCAL_MODULE_OWNER := intel
-
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
-
-LOCAL_STATIC_LIBRARIES := \
-    libxmlserializer \
-    libpfw_utility \
-    libxml2
-
-include $(BUILD_STATIC_LIBRARY)
-
-################################
-# Export includes for plugins (Host build)
-
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := $(common_module)_includes_host
-LOCAL_MODULE_OWNER := intel
-
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
-
-LOCAL_STATIC_LIBRARIES := \
-    libxmlserializer_host \
-    libpfw_utility_host \
-    libxml2
-
-include $(BUILD_HOST_STATIC_LIBRARY)

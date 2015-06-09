@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,6 +34,7 @@
 #include "ConfigurationAccessContext.h"
 #include "ConfigurableElementAggregator.h"
 #include "AreaConfiguration.h"
+#include "Utility.h"
 #include <assert.h>
 
 #define base CElement
@@ -360,7 +361,7 @@ bool CConfigurableElement::isRogue() const
 std::string CConfigurableElement::getFootprintAsString() const
 {
     // Get size as string
-    return toString(getFootPrint()) + " byte(s)";
+    return CUtility::toString(getFootPrint()) + " byte(s)";
 }
 
 // Matching check for no domain association

@@ -39,8 +39,9 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <sys/time.h>
+#include <signal.h>
 
-CSocket::CSocket() : _iSockFd(socket(AF_INET, SOCK_STREAM, 0))
+CSocket::CSocket() : _iSockFd(socket(AF_INET, SOCK_STREAM, 0)), mSendFlag(0)
 {
     assert(_iSockFd != -1);
 
@@ -50,6 +51,19 @@ CSocket::CSocket() : _iSockFd(socket(AF_INET, SOCK_STREAM, 0))
     // they are ready to be sent, instead of waiting for more data on the
     // socket.
     setsockopt(_iSockFd, IPPROTO_TCP, TCP_NODELAY, (char *)&iNoDelay, sizeof(iNoDelay));
+
+    // Disable sigpipe reception on send
+#   if not defined(SIGPIPE)
+        // Pipe signal does not exist, there no sigpipe to ignore on send
+#   elif defined(SO_NOSIGPIPE)
+        const int set = 1;
+        setsockopt(_iSockFd, SOL_SOCKET, SO_NOSIGPIPE, &set, sizeof(set));
+#   elif defined(MSG_NOSIGNAL)
+        // Use flag NOSIGNAL on send call
+        mSendFlag = MSG_NOSIGNAL;
+#   else
+#       error Can not disable SIGPIPE
+#   endif
 }
 
 CSocket::CSocket(int iSockId) : _iSockFd(iSockId)
@@ -59,7 +73,11 @@ CSocket::CSocket(int iSockId) : _iSockFd(iSockId)
 
 CSocket::~CSocket()
 {
-    close(_iSockFd);
+    // fd might be invalide if send had an error.
+    // valgrind displays a warning if closing an invalid fd.
+    if (_iSockFd != -1) {
+        close(_iSockFd);
+    }
 }
 
 // Socket address init
@@ -108,7 +126,7 @@ bool CSocket::read(void* pvData, uint32_t uiSize)
 
     while (uiSize) {
 
-        int32_t iAccessedSize = ::recv(_iSockFd, &pucData[uiOffset], uiSize, MSG_NOSIGNAL);
+        int32_t iAccessedSize = ::recv(_iSockFd, &pucData[uiOffset], uiSize, 0);
 
         switch (iAccessedSize) {
         case 0:
@@ -140,17 +158,19 @@ bool CSocket::write(const void* pvData, uint32_t uiSize)
 
     while (uiSize) {
 
-        int32_t iAccessedSize = ::send(_iSockFd, &pucData[uiOffset], uiSize, MSG_NOSIGNAL);
+        int32_t iAccessedSize = ::send(_iSockFd, &pucData[uiOffset], uiSize, mSendFlag);
 
         if (iAccessedSize == -1) {
-            if (errno == ECONNRESET) {
-                // Peer has disconnected
-                _disconnected = true;
+            if (errno == EINTR) {
+                // The send system call was interrupted, try again
+                continue;
             }
-            // errno == EINTR => The send system call was interrupted, try again
-            if (errno != EINTR) {
-                return false;
-            }
+
+            // An error occured, forget this socket
+            _disconnected = true;
+            close(_iSockFd);
+            _iSockFd = -1; // Avoid writing again on the same socket
+            return false;
         } else {
             uiSize -= iAccessedSize;
             uiOffset += iAccessedSize;
