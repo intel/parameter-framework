@@ -1,6 +1,6 @@
 <map id="CAreaConfiguration::copyFromOuter" name="CAreaConfiguration::copyFromOuter">
-<area shape="rect" id="node2" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration\l::split" alt="" coords="200,5,367,47"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#aea88fe7f6e3f02217f5d9f0e2e820da2" title="CConfigurableDomain\l::split" alt="" coords="415,5,576,47"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomains.html#ae01182802f0ce424d239ea19f9365330" title="CConfigurableDomains\l::split" alt="" coords="624,5,792,47"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="840,13,996,39"/>
+<area shape="rect" id="node2" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration\l::split" alt="" coords="201,5,367,46"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#aea88fe7f6e3f02217f5d9f0e2e820da2" title="CConfigurableDomain\l::split" alt="" coords="417,5,578,46"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomains.html#ae01182802f0ce424d239ea19f9365330" title="CConfigurableDomains\l::split" alt="" coords="627,5,795,46"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="843,12,999,39"/>
 </map>

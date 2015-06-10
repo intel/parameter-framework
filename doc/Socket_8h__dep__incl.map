@@ -1,10 +1,10 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/remote&#45;processor/Socket.h" name="/home/dawagner/dev/parameter&#45;framework/remote&#45;processor/Socket.h">
-<area shape="rect" id="node2" href="$ConnectionSocket_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;processor/Connection\lSocket.h" alt="" coords="220,109,437,180"/>
-<area shape="rect" id="node5" href="$ListeningSocket_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;processor/Listening\lSocket.h" alt="" coords="462,109,665,180"/>
-<area shape="rect" id="node8" href="$Message_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;processor/Message.cpp" alt="" coords="689,117,918,173"/>
-<area shape="rect" id="node9" href="$Socket_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;processor/Socket.cpp" alt="" coords="942,117,1158,173"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;process/main.cpp" alt="" coords="5,235,196,291"/>
-<area shape="rect" id="node4" href="$ConnectionSocket_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;processor/Connection\lSocket.cpp" alt="" coords="220,228,437,299"/>
-<area shape="rect" id="node6" href="$ListeningSocket_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;processor/Listening\lSocket.cpp" alt="" coords="462,228,665,299"/>
-<area shape="rect" id="node7" href="$RemoteProcessorServer_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="689,228,947,299"/>
+<map id="remote&#45;processor/Socket.h" name="remote&#45;processor/Socket.h">
+<area shape="rect" id="node2" href="$ConnectionSocket_8h.html" title="remote&#45;processor/Connection\lSocket.h" alt="" coords="216,81,429,122"/>
+<area shape="rect" id="node5" href="$ListeningSocket_8h.html" title="remote&#45;processor/Listening\lSocket.h" alt="" coords="454,81,652,122"/>
+<area shape="rect" id="node8" href="$Message_8cpp.html" title="remote&#45;processor/Message.cpp" alt="" coords="677,88,901,115"/>
+<area shape="rect" id="node9" href="$Socket_8cpp.html" title="remote&#45;processor/Socket.cpp" alt="" coords="926,88,1137,115"/>
+<area shape="rect" id="node3" href="$main_8cpp.html" title="remote&#45;process/main.cpp" alt="" coords="5,179,192,205"/>
+<area shape="rect" id="node4" href="$ConnectionSocket_8cpp.html" title="remote&#45;processor/Connection\lSocket.cpp" alt="" coords="216,171,429,213"/>
+<area shape="rect" id="node6" href="$ListeningSocket_8cpp.html" title="remote&#45;processor/Listening\lSocket.cpp" alt="" coords="454,171,652,213"/>
+<area shape="rect" id="node7" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="677,171,931,213"/>
 </map>

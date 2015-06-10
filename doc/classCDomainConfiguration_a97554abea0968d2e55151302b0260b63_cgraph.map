@@ -1,8 +1,8 @@
 <map id="CDomainConfiguration::composeSettings" name="CDomainConfiguration::composeSettings">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a1f85dedf12591c3f43830a00e5c352df" title="CAreaConfiguration\l::getConfigurableElement" alt="" coords="220,5,404,47"/>
-<area shape="rect" id="node3" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="230,71,394,98"/>
-<area shape="rect" id="node7" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="241,146,383,173"/>
-<area shape="rect" id="node4" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext\l::getElementLibrary" alt="" coords="455,5,677,47"/>
-<area shape="rect" id="node5" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="452,71,680,98"/>
-<area shape="rect" id="node6" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="493,122,639,149"/>
+<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a1f85dedf12591c3f43830a00e5c352df" title="CAreaConfiguration\l::getConfigurableElement" alt="" coords="221,5,405,46"/>
+<area shape="rect" id="node3" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="231,71,395,97"/>
+<area shape="rect" id="node7" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="243,145,384,172"/>
+<area shape="rect" id="node4" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext\l::getElementLibrary" alt="" coords="457,5,679,46"/>
+<area shape="rect" id="node5" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="454,71,682,97"/>
+<area shape="rect" id="node6" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="495,121,641,148"/>
 </map>

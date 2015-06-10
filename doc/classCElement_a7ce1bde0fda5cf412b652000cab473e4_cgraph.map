@@ -1,7 +1,7 @@
 <map id="CElement::toXml" name="CElement::toXml">
-<area shape="rect" id="node2" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="183,5,391,47"/>
-<area shape="rect" id="node4" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="197,71,376,98"/>
-<area shape="rect" id="node3" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="439,13,624,39"/>
-<area shape="rect" id="node5" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="440,67,623,94"/>
-<area shape="rect" id="node6" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="461,118,601,145"/>
+<area shape="rect" id="node2" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="184,5,392,46"/>
+<area shape="rect" id="node4" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="199,71,377,97"/>
+<area shape="rect" id="node3" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="441,12,626,39"/>
+<area shape="rect" id="node5" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="442,67,625,93"/>
+<area shape="rect" id="node6" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="463,117,603,144"/>
 </map>

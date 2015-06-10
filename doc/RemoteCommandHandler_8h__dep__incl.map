@@ -1,10 +1,10 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/remote&#45;processor/RemoteCommandHandler.h" name="/home/dawagner/dev/parameter&#45;framework/remote&#45;processor/RemoteCommandHandler.h">
-<area shape="rect" id="node2" href="$RemoteCommandHandlerTemplate_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;processor/RemoteCommand\lHandlerTemplate.h" alt="" coords="389,124,651,195"/>
-<area shape="rect" id="node9" href="$RemoteProcessorServer_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="675,124,933,195"/>
-<area shape="rect" id="node3" href="$ParameterMgr_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgr.h" alt="" coords="420,243,620,299"/>
-<area shape="rect" id="node4" href="$ParameterHandle_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterHandle.cpp" alt="" coords="5,347,243,403"/>
-<area shape="rect" id="node5" href="$ParameterMgr_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgr.cpp" alt="" coords="267,347,482,403"/>
-<area shape="rect" id="node6" href="$ParameterMgrFullConnector_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="433,451,642,521"/>
-<area shape="rect" id="node7" href="$ParameterMgrLogger_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgrLogger.h" alt="" coords="558,347,802,403"/>
-<area shape="rect" id="node8" href="$ParameterMgrPlatformConnector_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="701,451,944,521"/>
+<map id="remote&#45;processor/RemoteCommandHandler.h" name="remote&#45;processor/RemoteCommandHandler.h">
+<area shape="rect" id="node2" href="$RemoteCommandHandlerTemplate_8h.html" title="remote&#45;processor/RemoteCommand\lHandlerTemplate.h" alt="" coords="382,97,639,138"/>
+<area shape="rect" id="node9" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="664,97,917,138"/>
+<area shape="rect" id="node3" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="413,187,608,213"/>
+<area shape="rect" id="node4" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="5,261,237,288"/>
+<area shape="rect" id="node5" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="263,261,472,288"/>
+<area shape="rect" id="node6" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="425,337,631,378"/>
+<area shape="rect" id="node7" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="548,261,788,288"/>
+<area shape="rect" id="node8" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="689,337,927,378"/>
 </map>

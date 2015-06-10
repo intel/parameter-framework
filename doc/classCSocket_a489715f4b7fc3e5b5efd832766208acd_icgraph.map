@@ -1,6 +1,6 @@
 <map id="CSocket::initSockAddrIn" name="CSocket::initSockAddrIn">
-<area shape="rect" id="node2" href="$classCConnectionSocket.html#ac662338f1a2f2bb3538ba522cf06be78" title="CConnectionSocket::\lconnect" alt="" coords="238,5,393,47"/>
-<area shape="rect" id="node4" href="$classCListeningSocket.html#a357ad090efde135d2625a515f86b4d77" title="CListeningSocket::listen" alt="" coords="228,71,403,98"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="516,13,571,39"/>
-<area shape="rect" id="node5" href="$classCRemoteProcessorServer.html#ae2ba625b835446b5fa5f1d1a244da43c" title="CRemoteProcessorServer\l::start" alt="" coords="451,64,636,105"/>
+<area shape="rect" id="node2" href="$classCConnectionSocket.html#ac662338f1a2f2bb3538ba522cf06be78" title="CConnectionSocket::\lconnect" alt="" coords="240,5,395,46"/>
+<area shape="rect" id="node4" href="$classCListeningSocket.html#a357ad090efde135d2625a515f86b4d77" title="CListeningSocket::listen" alt="" coords="230,71,405,97"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="519,12,574,39"/>
+<area shape="rect" id="node5" href="$classCRemoteProcessorServer.html#ae2ba625b835446b5fa5f1d1a244da43c" title="CRemoteProcessorServer\l::start" alt="" coords="454,63,639,105"/>
 </map>

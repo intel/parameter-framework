@@ -1,24 +1,24 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/ParameterHandle.cpp" name="/home/dawagner/dev/parameter&#45;framework/parameter/ParameterHandle.cpp">
-<area shape="rect" id="node3" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="1147,408,1343,435"/>
-<area shape="rect" id="node7" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="498,109,630,136"/>
-<area shape="rect" id="node18" href="$Subsystem_8h.html" title="Subsystem.h" alt="" coords="271,184,377,211"/>
-<area shape="rect" id="node23" href="$ParameterMgr_8h.html" title="ParameterMgr.h" alt="" coords="1487,184,1611,211"/>
-<area shape="rect" id="node41" href="$AutoLock_8h.html" title="AutoLock.h" alt="" coords="781,109,875,136"/>
-<area shape="rect" id="node5" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="1549,483,1664,509"/>
-<area shape="rect" id="node9" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="453,184,675,211"/>
-<area shape="rect" id="node10" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="427,259,675,285"/>
-<area shape="rect" id="node17" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="760,333,875,360"/>
-<area shape="rect" id="node11" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="366,333,533,360"/>
-<area shape="rect" id="node12" href="$Element_8h.html" title="Element.h" alt="" coords="833,408,919,435"/>
-<area shape="rect" id="node16" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="635,483,757,509"/>
-<area shape="rect" id="node19" href="$Mapper_8h.html" title="Mapper.h" alt="" coords="950,333,1031,360"/>
-<area shape="rect" id="node20" href="$MappingContext_8h.html" title="MappingContext.h" alt="" coords="205,483,344,509"/>
-<area shape="rect" id="node26" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="1264,333,1523,360"/>
-<area shape="rect" id="node29" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="1598,333,1773,360"/>
-<area shape="rect" id="node31" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="1612,259,1759,285"/>
-<area shape="rect" id="node35" href="$XmlDomainExportContext_8h.html" title="XmlDomainExportContext.h" alt="" coords="2083,333,2282,360"/>
-<area shape="rect" id="node27" href="$RemoteCommandHandler_8h.html" title="RemoteCommandHandler.h" alt="" coords="1367,408,1566,435"/>
-<area shape="rect" id="node28" href="$RemoteCommand_8h.html" title="RemoteCommand.h" alt="" coords="1323,483,1474,509"/>
-<area shape="rect" id="node36" href="$XmlDomainSerializingContext_8h.html" title="XmlDomainSerializingContext.h" alt="" coords="2071,408,2294,435"/>
-<area shape="rect" id="node37" href="$XmlElementSerializingContext_8h.html" title="XmlElementSerializingContext.h" alt="" coords="2368,483,2595,509"/>
+<map id="parameter/ParameterHandle.cpp" name="parameter/ParameterHandle.cpp">
+<area shape="rect" id="node3" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="1147,379,1343,405"/>
+<area shape="rect" id="node7" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="498,80,629,107"/>
+<area shape="rect" id="node18" href="$Subsystem_8h.html" title="Subsystem.h" alt="" coords="271,155,377,181"/>
+<area shape="rect" id="node23" href="$ParameterMgr_8h.html" title="ParameterMgr.h" alt="" coords="1487,155,1611,181"/>
+<area shape="rect" id="node41" href="$AutoLock_8h.html" title="AutoLock.h" alt="" coords="781,80,875,107"/>
+<area shape="rect" id="node5" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="1549,453,1664,480"/>
+<area shape="rect" id="node9" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="453,155,675,181"/>
+<area shape="rect" id="node10" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="427,229,673,256"/>
+<area shape="rect" id="node17" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="760,304,875,331"/>
+<area shape="rect" id="node11" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="366,304,532,331"/>
+<area shape="rect" id="node12" href="$Element_8h.html" title="Element.h" alt="" coords="833,379,919,405"/>
+<area shape="rect" id="node16" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="635,453,757,480"/>
+<area shape="rect" id="node19" href="$Mapper_8h.html" title="Mapper.h" alt="" coords="950,304,1031,331"/>
+<area shape="rect" id="node20" href="$MappingContext_8h.html" title="MappingContext.h" alt="" coords="205,453,344,480"/>
+<area shape="rect" id="node26" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="1264,304,1521,331"/>
+<area shape="rect" id="node29" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="1598,304,1772,331"/>
+<area shape="rect" id="node31" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="1612,229,1759,256"/>
+<area shape="rect" id="node35" href="$XmlDomainExportContext_8h.html" title="XmlDomainExportContext.h" alt="" coords="2083,304,2281,331"/>
+<area shape="rect" id="node27" href="$RemoteCommandHandler_8h.html" title="RemoteCommandHandler.h" alt="" coords="1367,379,1565,405"/>
+<area shape="rect" id="node28" href="$RemoteCommand_8h.html" title="RemoteCommand.h" alt="" coords="1323,453,1473,480"/>
+<area shape="rect" id="node36" href="$XmlDomainSerializingContext_8h.html" title="XmlDomainSerializingContext.h" alt="" coords="2071,379,2293,405"/>
+<area shape="rect" id="node37" href="$XmlElementSerializingContext_8h.html" title="XmlElementSerializingContext.h" alt="" coords="2368,453,2595,480"/>
 </map>

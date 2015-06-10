@@ -1,9 +1,9 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/BooleanParameterType.cpp" name="/home/dawagner/dev/parameter&#45;framework/parameter/BooleanParameterType.cpp">
-<area shape="rect" id="node2" href="$BooleanParameterType_8h.html" title="BooleanParameterType.h" alt="" coords="149,124,330,151"/>
-<area shape="rect" id="node14" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="5,348,201,375"/>
-<area shape="rect" id="node3" href="$ParameterType_8h.html" title="ParameterType.h" alt="" coords="320,199,449,225"/>
-<area shape="rect" id="node6" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="327,273,442,300"/>
-<area shape="rect" id="node7" href="$Element_8h.html" title="Element.h" alt="" coords="587,348,673,375"/>
-<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="479,423,602,449"/>
-<area shape="rect" id="node15" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="87,423,202,449"/>
+<map id="parameter/BooleanParameterType.cpp" name="parameter/BooleanParameterType.cpp">
+<area shape="rect" id="node2" href="$BooleanParameterType_8h.html" title="BooleanParameterType.h" alt="" coords="148,96,329,123"/>
+<area shape="rect" id="node14" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="5,320,200,347"/>
+<area shape="rect" id="node3" href="$ParameterType_8h.html" title="ParameterType.h" alt="" coords="319,171,448,197"/>
+<area shape="rect" id="node6" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="327,245,441,272"/>
+<area shape="rect" id="node7" href="$Element_8h.html" title="Element.h" alt="" coords="586,320,672,347"/>
+<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="479,395,601,421"/>
+<area shape="rect" id="node15" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="87,395,201,421"/>
 </map>

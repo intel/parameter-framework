@@ -1,6 +1,6 @@
 <map id="CSelectionCriterion::toXml" name="CSelectionCriterion::toXml">
-<area shape="rect" id="node2" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="197,5,369,47"/>
-<area shape="rect" id="node4" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="197,71,369,112"/>
-<area shape="rect" id="node3" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="417,5,589,47"/>
-<area shape="rect" id="node5" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="417,71,589,112"/>
+<area shape="rect" id="node2" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="198,5,370,46"/>
+<area shape="rect" id="node4" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="198,70,370,111"/>
+<area shape="rect" id="node3" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="419,5,591,46"/>
+<area shape="rect" id="node5" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="419,70,591,111"/>
 </map>

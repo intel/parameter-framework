@@ -1,9 +1,9 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/SelectionCriteria.cpp" name="/home/dawagner/dev/parameter&#45;framework/parameter/SelectionCriteria.cpp">
-<area shape="rect" id="node2" href="$SelectionCriteria_8h.html" title="SelectionCriteria.h" alt="" coords="220,109,359,136"/>
-<area shape="rect" id="node16" href="$SelectionCriterionLibrary_8h.html" title="SelectionCriterionLibrary.h" alt="" coords="538,184,726,211"/>
-<area shape="rect" id="node17" href="$SelectionCriteriaDefinition_8h.html" title="SelectionCriteriaDefinition.h" alt="" coords="563,109,762,136"/>
-<area shape="rect" id="node4" href="$Element_8h.html" title="Element.h" alt="" coords="617,333,703,360"/>
-<area shape="rect" id="node11" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="145,259,319,285"/>
-<area shape="rect" id="node14" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="367,184,513,211"/>
-<area shape="rect" id="node10" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="792,408,915,435"/>
+<map id="parameter/SelectionCriteria.cpp" name="parameter/SelectionCriteria.cpp">
+<area shape="rect" id="node2" href="$SelectionCriteria_8h.html" title="SelectionCriteria.h" alt="" coords="220,80,359,107"/>
+<area shape="rect" id="node16" href="$SelectionCriterionLibrary_8h.html" title="SelectionCriterionLibrary.h" alt="" coords="538,155,725,181"/>
+<area shape="rect" id="node17" href="$SelectionCriteriaDefinition_8h.html" title="SelectionCriteriaDefinition.h" alt="" coords="563,80,761,107"/>
+<area shape="rect" id="node4" href="$Element_8h.html" title="Element.h" alt="" coords="617,304,703,331"/>
+<area shape="rect" id="node11" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="145,229,319,256"/>
+<area shape="rect" id="node14" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="367,155,513,181"/>
+<area shape="rect" id="node10" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="792,379,915,405"/>
 </map>

@@ -1,10 +1,10 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/IntegerParameterType.cpp" name="/home/dawagner/dev/parameter&#45;framework/parameter/IntegerParameterType.cpp">
-<area shape="rect" id="node2" href="$IntegerParameterType_8h.html" title="IntegerParameterType.h" alt="" coords="690,124,864,151"/>
-<area shape="rect" id="node17" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="828,348,1024,375"/>
-<area shape="rect" id="node20" href="$ParameterAdaptation_8h.html" title="ParameterAdaptation.h" alt="" coords="337,273,508,300"/>
-<area shape="rect" id="node3" href="$ParameterType_8h.html" title="ParameterType.h" alt="" coords="619,199,748,225"/>
-<area shape="rect" id="node6" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="532,273,646,300"/>
-<area shape="rect" id="node7" href="$Element_8h.html" title="Element.h" alt="" coords="286,348,372,375"/>
-<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="25,423,148,449"/>
-<area shape="rect" id="node18" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="878,423,993,449"/>
+<map id="parameter/IntegerParameterType.cpp" name="parameter/IntegerParameterType.cpp">
+<area shape="rect" id="node2" href="$IntegerParameterType_8h.html" title="IntegerParameterType.h" alt="" coords="615,96,789,123"/>
+<area shape="rect" id="node17" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="778,320,973,347"/>
+<area shape="rect" id="node20" href="$ParameterAdaptation_8h.html" title="ParameterAdaptation.h" alt="" coords="262,245,433,272"/>
+<area shape="rect" id="node3" href="$ParameterType_8h.html" title="ParameterType.h" alt="" coords="559,171,688,197"/>
+<area shape="rect" id="node6" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="457,245,572,272"/>
+<area shape="rect" id="node7" href="$Element_8h.html" title="Element.h" alt="" coords="286,320,372,347"/>
+<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="25,395,148,421"/>
+<area shape="rect" id="node18" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="878,395,993,421"/>
 </map>

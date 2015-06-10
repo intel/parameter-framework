@@ -1,8 +1,8 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/AutoLog.h" name="/home/dawagner/dev/parameter&#45;framework/parameter/AutoLog.h">
-<area shape="rect" id="node2" href="$AutoLog_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/AutoLog.cpp" alt="" coords="5,109,184,165"/>
-<area shape="rect" id="node3" href="$ConfigurableDomains_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ConfigurableDomains.cpp" alt="" coords="209,109,471,165"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgr.cpp" alt="" coords="495,109,710,165"/>
-<area shape="rect" id="node5" href="$SelectionCriterion_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SelectionCriterion.cpp" alt="" coords="734,109,973,165"/>
-<area shape="rect" id="node6" href="$SystemClass_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SystemClass.cpp" alt="" coords="997,109,1205,165"/>
-<area shape="rect" id="node7" href="$XmlFileIncluderElement_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/XmlFileIncluderElement.cpp" alt="" coords="1229,109,1501,165"/>
+<map id="parameter/AutoLog.h" name="parameter/AutoLog.h">
+<area shape="rect" id="node2" href="$AutoLog_8cpp.html" title="parameter/AutoLog.cpp" alt="" coords="5,88,179,115"/>
+<area shape="rect" id="node3" href="$ConfigurableDomains_8cpp.html" title="parameter/ConfigurableDomains.cpp" alt="" coords="204,88,461,115"/>
+<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="487,88,696,115"/>
+<area shape="rect" id="node5" href="$SelectionCriterion_8cpp.html" title="parameter/SelectionCriterion.cpp" alt="" coords="721,88,955,115"/>
+<area shape="rect" id="node6" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="981,88,1184,115"/>
+<area shape="rect" id="node7" href="$XmlFileIncluderElement_8cpp.html" title="parameter/XmlFileIncluder\lElement.cpp" alt="" coords="1209,81,1396,122"/>
 </map>

@@ -1,9 +1,9 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/ParameterAdaptation.h" name="/home/dawagner/dev/parameter&#45;framework/parameter/ParameterAdaptation.h">
-<area shape="rect" id="node2" href="$IntegerParameterType_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/IntegerParameter\lType.cpp" alt="" coords="72,109,283,180"/>
-<area shape="rect" id="node3" href="$LinearParameterAdaptation_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/LinearParameterAdaptation.h" alt="" coords="307,117,594,173"/>
-<area shape="rect" id="node8" href="$ParameterAdaptation_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterAdaptation.cpp" alt="" coords="618,117,881,173"/>
-<area shape="rect" id="node4" href="$LinearParameterAdaptation_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/LinearParameterAdaptation.cpp" alt="" coords="5,235,307,291"/>
-<area shape="rect" id="node5" href="$LogarithmicParameterAdaptation_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/LogarithmicParameter\lAdaptation.h" alt="" coords="331,228,571,299"/>
-<area shape="rect" id="node7" href="$ParameterMgr_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgr.cpp" alt="" coords="501,354,715,410"/>
-<area shape="rect" id="node6" href="$LogarithmicParameterAdaptation_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/LogarithmicParameter\lAdaptation.cpp" alt="" coords="236,347,476,417"/>
+<map id="parameter/ParameterAdaptation.h" name="parameter/ParameterAdaptation.h">
+<area shape="rect" id="node2" href="$IntegerParameterType_8cpp.html" title="parameter/IntegerParameter\lType.cpp" alt="" coords="15,81,221,122"/>
+<area shape="rect" id="node3" href="$LinearParameterAdaptation_8h.html" title="parameter/LinearParameter\lAdaptation.h" alt="" coords="247,81,445,122"/>
+<area shape="rect" id="node8" href="$ParameterAdaptation_8cpp.html" title="parameter/ParameterAdaptation.cpp" alt="" coords="471,88,728,115"/>
+<area shape="rect" id="node4" href="$LinearParameterAdaptation_8cpp.html" title="parameter/LinearParameter\lAdaptation.cpp" alt="" coords="5,171,204,213"/>
+<area shape="rect" id="node5" href="$LogarithmicParameterAdaptation_8h.html" title="parameter/LogarithmicParameter\lAdaptation.h" alt="" coords="229,171,464,213"/>
+<area shape="rect" id="node7" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="396,269,605,296"/>
+<area shape="rect" id="node6" href="$LogarithmicParameterAdaptation_8cpp.html" title="parameter/LogarithmicParameter\lAdaptation.cpp" alt="" coords="137,262,372,303"/>
 </map>

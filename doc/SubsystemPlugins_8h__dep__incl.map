@@ -1,12 +1,12 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/SubsystemPlugins.h" name="/home/dawagner/dev/parameter&#45;framework/parameter/SubsystemPlugins.h">
-<area shape="rect" id="node2" href="$SystemClass_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SystemClass.h" alt="" coords="1083,109,1276,165"/>
-<area shape="rect" id="node8" href="$ParameterMgr_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgr.cpp" alt="" coords="928,436,1143,492"/>
-<area shape="rect" id="node3" href="$XmlDomainImportContext_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/XmlDomainImportContext.h" alt="" coords="487,213,763,269"/>
-<area shape="rect" id="node11" href="$SystemClass_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SystemClass.cpp" alt="" coords="1146,213,1354,269"/>
-<area shape="rect" id="node4" href="$ConfigurableDomain_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ConfigurableDomain.h" alt="" coords="263,325,503,381"/>
-<area shape="rect" id="node5" href="$ConfigurableDomain_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ConfigurableDomain.cpp" alt="" coords="5,436,260,492"/>
-<area shape="rect" id="node9" href="$DomainConfiguration_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/DomainConfiguration.cpp" alt="" coords="577,325,837,381"/>
-<area shape="rect" id="node10" href="$SelectionCriterionRule_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SelectionCriterion\lRule.cpp" alt="" coords="861,317,1071,388"/>
-<area shape="rect" id="node6" href="$ConfigurableDomains_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ConfigurableDomains.cpp" alt="" coords="284,436,547,492"/>
-<area shape="rect" id="node7" href="$ConfigurableElement_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ConfigurableElement.cpp" alt="" coords="571,436,830,492"/>
+<map id="parameter/SubsystemPlugins.h" name="parameter/SubsystemPlugins.h">
+<area shape="rect" id="node2" href="$SystemClass_8h.html" title="parameter/SystemClass.h" alt="" coords="1069,80,1259,107"/>
+<area shape="rect" id="node8" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="916,336,1125,363"/>
+<area shape="rect" id="node3" href="$XmlDomainImportContext_8h.html" title="parameter/XmlDomainImport\lContext.h" alt="" coords="509,155,719,197"/>
+<area shape="rect" id="node11" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="1133,163,1336,189"/>
+<area shape="rect" id="node4" href="$ConfigurableDomain_8h.html" title="parameter/ConfigurableDomain.h" alt="" coords="259,253,495,280"/>
+<area shape="rect" id="node5" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="5,336,256,363"/>
+<area shape="rect" id="node9" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="569,253,825,280"/>
+<area shape="rect" id="node10" href="$SelectionCriterionRule_8cpp.html" title="parameter/SelectionCriterion\lRule.cpp" alt="" coords="850,246,1056,287"/>
+<area shape="rect" id="node6" href="$ConfigurableDomains_8cpp.html" title="parameter/ConfigurableDomains.cpp" alt="" coords="280,336,537,363"/>
+<area shape="rect" id="node7" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="563,336,817,363"/>
 </map>

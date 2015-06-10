@@ -1,10 +1,10 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/SimulatedBackSynchronizer.cpp" name="/home/dawagner/dev/parameter&#45;framework/parameter/SimulatedBackSynchronizer.cpp">
-<area shape="rect" id="node2" href="$SimulatedBackSynchronizer_8h.html" title="SimulatedBackSynchronizer.h" alt="" coords="267,109,479,136"/>
-<area shape="rect" id="node5" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="685,333,851,360"/>
-<area shape="rect" id="node3" href="$BackSynchronizer_8h.html" title="BackSynchronizer.h" alt="" coords="635,184,781,211"/>
-<area shape="rect" id="node14" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="43,408,239,435"/>
-<area shape="rect" id="node4" href="$ConfigurableElementAggregator_8h.html" title="ConfigurableElementAggregator.h" alt="" coords="510,259,749,285"/>
-<area shape="rect" id="node6" href="$Element_8h.html" title="Element.h" alt="" coords="522,408,609,435"/>
-<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="435,483,557,509"/>
-<area shape="rect" id="node15" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="93,483,208,509"/>
+<map id="parameter/SimulatedBackSynchronizer.cpp" name="parameter/SimulatedBackSynchronizer.cpp">
+<area shape="rect" id="node2" href="$SimulatedBackSynchronizer_8h.html" title="SimulatedBackSynchronizer.h" alt="" coords="267,80,479,107"/>
+<area shape="rect" id="node5" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="685,304,851,331"/>
+<area shape="rect" id="node3" href="$BackSynchronizer_8h.html" title="BackSynchronizer.h" alt="" coords="635,155,781,181"/>
+<area shape="rect" id="node14" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="43,379,239,405"/>
+<area shape="rect" id="node4" href="$ConfigurableElementAggregator_8h.html" title="ConfigurableElementAggregator.h" alt="" coords="510,229,748,256"/>
+<area shape="rect" id="node6" href="$Element_8h.html" title="Element.h" alt="" coords="522,379,608,405"/>
+<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="435,453,557,480"/>
+<area shape="rect" id="node15" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="93,453,208,480"/>
 </map>

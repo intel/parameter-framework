@@ -1,5 +1,5 @@
 <map id="CConfigurableDomain::deleteConfiguration" name="CConfigurableDomain::deleteConfiguration">
-<area shape="rect" id="node2" href="$classCElement.html#aaa4df1b13a53263f8cc2b668172873d9" title="CElement::log_info" alt="" coords="230,5,371,32"/>
-<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="225,56,377,83"/>
-<area shape="rect" id="node4" href="$classCElement.html#a4aec98bde47367325cf332a5dc471eb9" title="CElement::removeChild" alt="" coords="215,107,387,133"/>
+<area shape="rect" id="node2" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="232,5,373,32"/>
+<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="227,56,379,83"/>
+<area shape="rect" id="node4" href="$classCElement.html#a4aec98bde47367325cf332a5dc471eb9" title="CElement::removeChild" alt="" coords="217,107,389,133"/>
 </map>

@@ -2,8 +2,8 @@
 <area shape="rect" id="node2" href="$classCCompoundRule.html#a127d40590afcf25e9fcf9b18234249f8" title="CCompoundRule::parse" alt="" coords="208,5,379,32"/>
 <area shape="rect" id="node8" href="$classCSelectionCriterionRule.html#a4ee8e0274ac8c7bf5a2452002aa7ae0e" title="CSelectionCriterionRule\l::parse" alt="" coords="208,57,379,98"/>
 <area shape="rect" id="node3" href="$classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" title="CRuleParser::parse" alt="" coords="427,35,568,61"/>
-<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a3b12c8d561b1e468bd03214326bdf450" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="616,27,783,69"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomain.html#ab28e6a66ae7197d4fa131193f32891f4" title="CConfigurableDomain\l::setApplicationRule" alt="" coords="831,27,992,69"/>
-<area shape="rect" id="node6" href="$classCConfigurableDomains.html#ac2b2354eecc80c7ca4a71fe2f40606ed" title="CConfigurableDomains\l::setApplicationRule" alt="" coords="1040,27,1208,69"/>
-<area shape="rect" id="node7" href="$classCParameterMgr.html#af63f9ad7f792b2bf226afd791c1db70e" title="CParameterMgr::setApplicationRule" alt="" coords="1256,35,1503,61"/>
+<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a3b12c8d561b1e468bd03214326bdf450" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="617,27,783,69"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#ab28e6a66ae7197d4fa131193f32891f4" title="CConfigurableDomain\l::setApplicationRule" alt="" coords="833,27,994,69"/>
+<area shape="rect" id="node6" href="$classCConfigurableDomains.html#ac2b2354eecc80c7ca4a71fe2f40606ed" title="CConfigurableDomains\l::setApplicationRule" alt="" coords="1043,27,1211,69"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#af63f9ad7f792b2bf226afd791c1db70e" title="CParameterMgr::setApplicationRule" alt="" coords="1259,35,1506,61"/>
 </map>

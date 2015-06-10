@@ -1,15 +1,15 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/BaseParameter.cpp" name="/home/dawagner/dev/parameter&#45;framework/parameter/BaseParameter.cpp">
-<area shape="rect" id="node2" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="545,109,677,136"/>
-<area shape="rect" id="node15" href="$ParameterType_8h.html" title="ParameterType.h" alt="" coords="982,259,1111,285"/>
-<area shape="rect" id="node17" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="906,408,1102,435"/>
-<area shape="rect" id="node19" href="$ConfigurationAccessContext_8h.html" title="ConfigurationAccessContext.h" alt="" coords="630,333,845,360"/>
-<area shape="rect" id="node20" href="$ParameterBlackboard_8h.html" title="ParameterBlackboard.h" alt="" coords="1289,408,1461,435"/>
-<area shape="rect" id="node5" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="213,184,435,211"/>
-<area shape="rect" id="node6" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="200,259,448,285"/>
-<area shape="rect" id="node14" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="480,333,595,360"/>
-<area shape="rect" id="node7" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="246,333,413,360"/>
-<area shape="rect" id="node8" href="$Element_8h.html" title="Element.h" alt="" coords="377,408,463,435"/>
-<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="496,483,619,509"/>
-<area shape="rect" id="node18" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="947,483,1061,509"/>
-<area shape="rect" id="node21" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="1288,483,1411,509"/>
+<map id="parameter/BaseParameter.cpp" name="parameter/BaseParameter.cpp">
+<area shape="rect" id="node2" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="545,80,676,107"/>
+<area shape="rect" id="node15" href="$ParameterType_8h.html" title="ParameterType.h" alt="" coords="982,229,1111,256"/>
+<area shape="rect" id="node17" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="906,379,1101,405"/>
+<area shape="rect" id="node19" href="$ConfigurationAccessContext_8h.html" title="ConfigurationAccessContext.h" alt="" coords="630,304,844,331"/>
+<area shape="rect" id="node20" href="$ParameterBlackboard_8h.html" title="ParameterBlackboard.h" alt="" coords="1289,379,1460,405"/>
+<area shape="rect" id="node5" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="213,155,435,181"/>
+<area shape="rect" id="node6" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="200,229,447,256"/>
+<area shape="rect" id="node14" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="480,304,595,331"/>
+<area shape="rect" id="node7" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="246,304,412,331"/>
+<area shape="rect" id="node8" href="$Element_8h.html" title="Element.h" alt="" coords="377,379,463,405"/>
+<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="496,453,619,480"/>
+<area shape="rect" id="node18" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="947,453,1061,480"/>
+<area shape="rect" id="node21" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="1288,453,1411,480"/>
 </map>

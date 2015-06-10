@@ -1,7 +1,7 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/BackSynchronizer.h" name="/home/dawagner/dev/parameter&#45;framework/parameter/BackSynchronizer.h">
-<area shape="rect" id="node2" href="$HardwareBackSynchronizer_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/HardwareBackSynchronizer.h" alt="" coords="139,109,423,165"/>
-<area shape="rect" id="node5" href="$SimulatedBackSynchronizer_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SimulatedBackSynchronizer.h" alt="" coords="448,109,736,165"/>
-<area shape="rect" id="node3" href="$HardwareBackSynchronizer_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/HardwareBackSynchronizer.cpp" alt="" coords="5,213,304,269"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgr.cpp" alt="" coords="329,213,543,269"/>
-<area shape="rect" id="node6" href="$SimulatedBackSynchronizer_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SimulatedBackSynchronizer.cpp" alt="" coords="567,213,870,269"/>
+<map id="parameter/BackSynchronizer.h" name="parameter/BackSynchronizer.h">
+<area shape="rect" id="node2" href="$HardwareBackSynchronizer_8h.html" title="parameter/HardwareBackSynchronizer.h" alt="" coords="136,80,416,107"/>
+<area shape="rect" id="node5" href="$SimulatedBackSynchronizer_8h.html" title="parameter/SimulatedBackSynchronizer.h" alt="" coords="441,80,724,107"/>
+<area shape="rect" id="node3" href="$HardwareBackSynchronizer_8cpp.html" title="parameter/HardwareBackSynchronizer.cpp" alt="" coords="5,155,299,181"/>
+<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="323,155,532,181"/>
+<area shape="rect" id="node6" href="$SimulatedBackSynchronizer_8cpp.html" title="parameter/SimulatedBackSynchronizer.cpp" alt="" coords="557,155,855,181"/>
 </map>

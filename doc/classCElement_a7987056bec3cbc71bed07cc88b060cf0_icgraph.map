@@ -1,16 +1,16 @@
 <map id="CElement::getParent" name="CElement::getParent">
-<area shape="rect" id="node2" href="$classCBitParameter.html#a5fcbaa6052e15453764a1a83da160c10" title="CBitParameter::getBelonging\lBlockSize" alt="" coords="219,5,425,47"/>
-<area shape="rect" id="node3" href="$classCBitParameterType.html#a76b208c42677a4a7a90494f348924403" title="CBitParameterType::\lfromXml" alt="" coords="247,71,397,112"/>
-<area shape="rect" id="node4" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance\l::fromXml" alt="" coords="242,136,402,177"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a78722d8443df22565bf41d01308368ab" title="Get the list of all the ancestors that have a mapping. " alt="" coords="208,291,436,332"/>
-<area shape="rect" id="node7" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="240,201,404,243"/>
-<area shape="rect" id="node13" href="$classCConfigurableElement.html#a1e30831c0d3ce07df6d0f6730ba04654" title="CConfigurableElement\l::getBelongingSubsystem" alt="" coords="229,356,415,397"/>
-<area shape="rect" id="node15" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="233,421,411,463"/>
-<area shape="rect" id="node6" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="497,295,716,336"/>
-<area shape="rect" id="node8" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="525,201,689,243"/>
-<area shape="rect" id="node9" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="799,143,1014,184"/>
-<area shape="rect" id="node10" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="827,209,986,235"/>
-<area shape="rect" id="node12" href="$classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" title="Look for subsystems that need to be resynchronized. " alt="" coords="777,260,1036,301"/>
-<area shape="rect" id="node11" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="1084,209,1295,235"/>
-<area shape="rect" id="node14" href="$classCSubsystemObject.html#ae18b34938c86c5eca33f8b5036404a7c" title="CSubsystemObject::getSubsystem" alt="" coords="484,363,729,390"/>
+<area shape="rect" id="node2" href="$classCBitParameter.html#a5fcbaa6052e15453764a1a83da160c10" title="CBitParameter::getBelonging\lBlockSize" alt="" coords="219,5,426,46"/>
+<area shape="rect" id="node3" href="$classCBitParameterType.html#a76b208c42677a4a7a90494f348924403" title="CBitParameterType::\lfromXml" alt="" coords="247,70,398,111"/>
+<area shape="rect" id="node4" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance\l::fromXml" alt="" coords="243,135,403,177"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a78722d8443df22565bf41d01308368ab" title="Get the list of all the ancestors that have a mapping. " alt="" coords="209,290,437,331"/>
+<area shape="rect" id="node7" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="241,201,405,242"/>
+<area shape="rect" id="node13" href="$classCConfigurableElement.html#a1e30831c0d3ce07df6d0f6730ba04654" title="CConfigurableElement\l::getBelongingSubsystem" alt="" coords="229,355,416,397"/>
+<area shape="rect" id="node15" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="233,421,412,462"/>
+<area shape="rect" id="node6" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="499,294,717,335"/>
+<area shape="rect" id="node8" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="526,201,690,242"/>
+<area shape="rect" id="node9" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="801,142,1015,183"/>
+<area shape="rect" id="node10" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="829,208,987,235"/>
+<area shape="rect" id="node12" href="$classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" title="Look for subsystems that need to be resynchronized. " alt="" coords="779,259,1037,301"/>
+<area shape="rect" id="node11" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="1085,208,1296,235"/>
+<area shape="rect" id="node14" href="$classCSubsystemObject.html#ae18b34938c86c5eca33f8b5036404a7c" title="CSubsystemObject::getSubsystem" alt="" coords="485,363,731,389"/>
 </map>

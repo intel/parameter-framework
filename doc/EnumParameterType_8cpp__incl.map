@@ -1,10 +1,10 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/EnumParameterType.cpp" name="/home/dawagner/dev/parameter&#45;framework/parameter/EnumParameterType.cpp">
-<area shape="rect" id="node2" href="$EnumParameterType_8h.html" title="EnumParameterType.h" alt="" coords="170,109,337,136"/>
-<area shape="rect" id="node19" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="215,333,411,360"/>
-<area shape="rect" id="node21" href="$EnumValuePair_8h.html" title="EnumValuePair.h" alt="" coords="424,184,552,211"/>
-<area shape="rect" id="node3" href="$ParameterType_8h.html" title="ParameterType.h" alt="" coords="189,184,318,211"/>
-<area shape="rect" id="node6" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="209,259,324,285"/>
-<area shape="rect" id="node7" href="$Element_8h.html" title="Element.h" alt="" coords="530,333,617,360"/>
-<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="512,408,635,435"/>
-<area shape="rect" id="node20" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="195,408,309,435"/>
+<map id="parameter/EnumParameterType.cpp" name="parameter/EnumParameterType.cpp">
+<area shape="rect" id="node2" href="$EnumParameterType_8h.html" title="EnumParameterType.h" alt="" coords="170,80,336,107"/>
+<area shape="rect" id="node19" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="215,304,411,331"/>
+<area shape="rect" id="node21" href="$EnumValuePair_8h.html" title="EnumValuePair.h" alt="" coords="424,155,552,181"/>
+<area shape="rect" id="node3" href="$ParameterType_8h.html" title="ParameterType.h" alt="" coords="189,155,317,181"/>
+<area shape="rect" id="node6" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="209,229,324,256"/>
+<area shape="rect" id="node7" href="$Element_8h.html" title="Element.h" alt="" coords="530,304,616,331"/>
+<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="512,379,635,405"/>
+<area shape="rect" id="node20" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="195,379,309,405"/>
 </map>

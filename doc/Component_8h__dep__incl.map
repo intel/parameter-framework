@@ -1,7 +1,7 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/Component.h" name="/home/dawagner/dev/parameter&#45;framework/parameter/Component.h">
-<area shape="rect" id="node2" href="$ComponentLibrary_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ComponentLibrary.h" alt="" coords="291,109,518,165"/>
-<area shape="rect" id="node3" href="$ComponentInstance_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ComponentInstance.cpp" alt="" coords="5,213,260,269"/>
-<area shape="rect" id="node4" href="$ComponentLibrary_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ComponentLibrary.cpp" alt="" coords="284,213,525,269"/>
-<area shape="rect" id="node5" href="$ComponentType_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ComponentType.cpp" alt="" coords="549,213,777,269"/>
-<area shape="rect" id="node6" href="$Subsystem_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/Subsystem.cpp" alt="" coords="802,213,999,269"/>
+<map id="parameter/Component.h" name="parameter/Component.h">
+<area shape="rect" id="node2" href="$ComponentLibrary_8h.html" title="parameter/ComponentLibrary.h" alt="" coords="287,80,509,107"/>
+<area shape="rect" id="node3" href="$ComponentInstance_8cpp.html" title="parameter/ComponentInstance.cpp" alt="" coords="5,155,256,181"/>
+<area shape="rect" id="node4" href="$ComponentLibrary_8cpp.html" title="parameter/ComponentLibrary.cpp" alt="" coords="280,155,516,181"/>
+<area shape="rect" id="node5" href="$ComponentType_8cpp.html" title="parameter/ComponentType.cpp" alt="" coords="541,155,764,181"/>
+<area shape="rect" id="node6" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="790,155,983,181"/>
 </map>

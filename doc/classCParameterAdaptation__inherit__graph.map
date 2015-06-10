@@ -1,5 +1,5 @@
 <map id="CParameterAdaptation" name="CParameterAdaptation">
-<area shape="rect" id="node5" href="$classCLinearParameterAdaptation.html" title="CLinearParameterAdaptation" alt="" coords="23,229,230,256"/>
-<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="85,80,169,107"/>
+<area shape="rect" id="node5" href="$classCLinearParameterAdaptation.html" title="CLinearParameterAdaptation" alt="" coords="23,229,229,256"/>
+<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="85,80,168,107"/>
 <area shape="rect" id="node6" href="$classCLogarithmicParameterAdaptation.html" title="This class is used to perform a logarithmic adapation of type: (slopeNumerator / slopeDenominator) * ..." alt="" coords="5,304,248,331"/>
 </map>

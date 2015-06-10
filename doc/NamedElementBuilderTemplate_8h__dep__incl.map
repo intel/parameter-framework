@@ -1,6 +1,6 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/NamedElementBuilderTemplate.h" name="/home/dawagner/dev/parameter&#45;framework/parameter/NamedElementBuilderTemplate.h">
-<area shape="rect" id="node2" href="$SubsystemLibrary_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SubsystemLibrary.h" alt="" coords="244,124,467,180"/>
-<area shape="rect" id="node3" href="$ParameterMgr_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgr.cpp" alt="" coords="5,235,220,291"/>
-<area shape="rect" id="node5" href="$SystemClass_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SystemClass.cpp" alt="" coords="491,235,699,291"/>
-<area shape="rect" id="node4" href="$SubsystemElementBuilder_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/SubsystemElement\lBuilder.cpp" alt="" coords="244,228,467,299"/>
+<map id="parameter/NamedElementBuilderTemplate.h" name="parameter/NamedElementBuilderTemplate.h">
+<area shape="rect" id="node2" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="240,96,459,123"/>
+<area shape="rect" id="node3" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="5,179,215,205"/>
+<area shape="rect" id="node5" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="483,179,687,205"/>
+<area shape="rect" id="node4" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="240,171,459,213"/>
 </map>

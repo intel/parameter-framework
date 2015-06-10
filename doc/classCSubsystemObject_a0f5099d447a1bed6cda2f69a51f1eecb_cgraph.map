@@ -1,4 +1,4 @@
 <map id="CSubsystemObject::accessHW" name="CSubsystemObject::accessHW">
-<area shape="rect" id="node2" href="$classCSubsystemObject.html#acc72dd9fbfe6ea8a16baca26dee83f97" title="CSubsystemObject::receive\lFromHW" alt="" coords="280,5,479,47"/>
-<area shape="rect" id="node3" href="$classCSubsystemObject.html#ae2f006c1b6385b15a165aa164347242a" title="CSubsystemObject::sendToHW" alt="" coords="271,71,488,98"/>
+<area shape="rect" id="node2" href="$classCSubsystemObject.html#acc72dd9fbfe6ea8a16baca26dee83f97" title="CSubsystemObject::receive\lFromHW" alt="" coords="282,5,481,46"/>
+<area shape="rect" id="node3" href="$classCSubsystemObject.html#ae2f006c1b6385b15a165aa164347242a" title="CSubsystemObject::sendToHW" alt="" coords="273,71,490,97"/>
 </map>

@@ -1,8 +1,8 @@
 <map id="CInstanceConfigurableElement::getSyncer" name="CInstanceConfigurableElement::getSyncer">
 <area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="272,57,491,98"/>
-<area shape="rect" id="node3" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="543,5,762,32"/>
-<area shape="rect" id="node4" href="$classCBaseParameter.html#a2b425561e193a3d54e7225d896a3d39b" title="CBaseParameter::accessAs\lString" alt="" coords="553,57,752,98"/>
-<area shape="rect" id="node6" href="$classCBitParameter.html#a6f4d06e327fb0b816c08e383177a82fc" title="CBitParameter::accessAsInteger" alt="" coords="539,123,767,149"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a4a9b3e3a2d1ea65a8dc7048559db8dc2" title="CBaseParameter::accessValue" alt="" coords="823,64,1041,91"/>
-<area shape="rect" id="node7" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access. " alt="" coords="815,123,1049,149"/>
+<area shape="rect" id="node3" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="544,5,763,32"/>
+<area shape="rect" id="node4" href="$classCBaseParameter.html#a2b425561e193a3d54e7225d896a3d39b" title="CBaseParameter::accessAs\lString" alt="" coords="554,57,753,98"/>
+<area shape="rect" id="node6" href="$classCBitParameter.html#ad348903f16d702fac8adcfa1c725a92b" title="CBitParameter::accessAsInteger" alt="" coords="539,123,767,149"/>
+<area shape="rect" id="node5" href="$classCBaseParameter.html#a4a9b3e3a2d1ea65a8dc7048559db8dc2" title="CBaseParameter::accessValue" alt="" coords="825,64,1042,91"/>
+<area shape="rect" id="node7" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access. " alt="" coords="816,123,1051,149"/>
 </map>

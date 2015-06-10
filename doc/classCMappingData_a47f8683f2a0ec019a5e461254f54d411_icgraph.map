@@ -1,4 +1,4 @@
 <map id="CMappingData::asString" name="CMappingData::asString">
-<area shape="rect" id="node2" href="$classCTypeElement.html#a2d4fd9d4443f521e563ef1b6188aeeba" title="Returns the mapping associated to the current TypeElement instance. " alt="" coords="231,5,439,47"/>
-<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#ab64a2df11be985c8f1deecbf26681594" title="Returns the mapping data associated to the type element of the current InstanceConfigurableElement, as a formatted std::string. " alt="" coords="487,5,705,47"/>
+<area shape="rect" id="node2" href="$classCTypeElement.html#a2d4fd9d4443f521e563ef1b6188aeeba" title="Returns the mapping associated to the current TypeElement instance. " alt="" coords="232,5,440,46"/>
+<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#ab64a2df11be985c8f1deecbf26681594" title="Returns the mapping data associated to the type element of the current InstanceConfigurableElement, as a formatted std::string. " alt="" coords="488,5,707,46"/>
 </map>

@@ -1,9 +1,9 @@
 <map id="CSelectionCriterionType::isTypeInclusive" name="CSelectionCriterionType::isTypeInclusive">
-<area shape="rect" id="node2" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="225,71,416,112"/>
-<area shape="rect" id="node7" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="235,136,407,177"/>
-<area shape="rect" id="node3" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="464,5,660,47"/>
-<area shape="rect" id="node6" href="$classCSelectionCriterion.html#a83e33a27a1094e00154018756c0be2dc" title="From ISelectionCriterionInterface. " alt="" coords="490,71,634,112"/>
-<area shape="rect" id="node4" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="708,5,861,47"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="909,13,1067,39"/>
-<area shape="rect" id="node8" href="$classCSelectionCriterion.html#a3942150fa9e5980d89268672fff31032" title="Export to XML. " alt="" coords="490,136,634,177"/>
+<area shape="rect" id="node2" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="227,70,418,111"/>
+<area shape="rect" id="node7" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="237,135,409,177"/>
+<area shape="rect" id="node3" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="467,5,663,46"/>
+<area shape="rect" id="node6" href="$classCSelectionCriterion.html#a83e33a27a1094e00154018756c0be2dc" title="From ISelectionCriterionInterface. " alt="" coords="493,70,637,111"/>
+<area shape="rect" id="node4" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="713,5,866,46"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="915,12,1072,39"/>
+<area shape="rect" id="node8" href="$classCSelectionCriterion.html#a3942150fa9e5980d89268672fff31032" title="Export to XML. " alt="" coords="493,135,637,177"/>
 </map>

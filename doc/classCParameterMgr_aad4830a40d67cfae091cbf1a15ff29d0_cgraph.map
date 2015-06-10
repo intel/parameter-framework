@@ -1,26 +1,25 @@
 <map id="CParameterMgr::load" name="CParameterMgr::load">
-<area shape="rect" id="node2" href="$classCHardwareBackSynchronizer.html#abc01484c03230247c0a8a3982140b652" title="CHardwareBackSynchronizer\l::sync" alt="" coords="211,25,417,66"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="230,115,398,157"/>
-<area shape="rect" id="node13" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="237,262,391,303"/>
-<area shape="rect" id="node23" href="$classCElement.html#a6fadaf69d17a61c431422ed6d8a1f8f0" title="CElement::log_table" alt="" coords="239,328,389,355"/>
-<area shape="rect" id="node24" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag. " alt="" coords="465,174,700,215"/>
-<area shape="rect" id="node3" href="$classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b" title="CSyncerSet::sync" alt="" coords="515,5,650,32"/>
-<area shape="rect" id="node4" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="790,5,897,32"/>
-<area shape="rect" id="node6" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="752,127,935,153"/>
-<area shape="rect" id="node7" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="771,240,915,267"/>
-<area shape="rect" id="node8" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="502,57,663,98"/>
-<area shape="rect" id="node9" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="760,57,927,98"/>
-<area shape="rect" id="node10" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="999,57,1146,98"/>
-<area shape="rect" id="node11" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="1219,57,1366,98"/>
-<area shape="rect" id="node12" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="1427,57,1591,98"/>
-<area shape="rect" id="node14" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="475,357,691,398"/>
-<area shape="rect" id="node15" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="485,291,681,333"/>
-<area shape="rect" id="node16" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="748,291,939,333"/>
-<area shape="rect" id="node17" href="$classCElement.html#a834a32898950ca2ce9b629aa3367101e" title="CElement::appendTitle" alt="" coords="989,357,1156,384"/>
-<area shape="rect" id="node18" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="997,408,1149,435"/>
-<area shape="rect" id="node19" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="987,161,1159,202"/>
-<area shape="rect" id="node20" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="987,226,1159,267"/>
-<area shape="rect" id="node21" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="987,291,1159,333"/>
-<area shape="rect" id="node22" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="1207,291,1379,333"/>
-<area shape="rect" id="node25" href="$classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4" title="CSubsystem::needResync" alt="" coords="750,181,937,208"/>
+<area shape="rect" id="node2" href="$classCHardwareBackSynchronizer.html#abc01484c03230247c0a8a3982140b652" title="CHardwareBackSynchronizer\l::sync" alt="" coords="211,25,418,66"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="231,115,399,157"/>
+<area shape="rect" id="node13" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="238,262,391,303"/>
+<area shape="rect" id="node22" href="$classCElement.html#a6fadaf69d17a61c431422ed6d8a1f8f0" title="CElement::log_table" alt="" coords="239,328,390,355"/>
+<area shape="rect" id="node23" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag. " alt="" coords="467,174,701,215"/>
+<area shape="rect" id="node3" href="$classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b" title="CSyncerSet::sync" alt="" coords="517,5,651,32"/>
+<area shape="rect" id="node4" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="792,5,899,32"/>
+<area shape="rect" id="node6" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="754,127,937,153"/>
+<area shape="rect" id="node7" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="773,240,917,267"/>
+<area shape="rect" id="node8" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="503,57,665,98"/>
+<area shape="rect" id="node9" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="762,57,929,98"/>
+<area shape="rect" id="node10" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="1003,57,1149,98"/>
+<area shape="rect" id="node11" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="1224,57,1371,98"/>
+<area shape="rect" id="node12" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="1433,57,1597,98"/>
+<area shape="rect" id="node14" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="476,357,692,398"/>
+<area shape="rect" id="node15" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="486,291,682,333"/>
+<area shape="rect" id="node16" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="750,291,941,333"/>
+<area shape="rect" id="node17" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="1000,389,1152,416"/>
+<area shape="rect" id="node18" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="990,193,1162,234"/>
+<area shape="rect" id="node19" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="990,258,1162,299"/>
+<area shape="rect" id="node20" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="990,323,1162,365"/>
+<area shape="rect" id="node21" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="1211,323,1383,365"/>
+<area shape="rect" id="node24" href="$classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4" title="CSubsystem::needResync" alt="" coords="752,181,939,208"/>
 </map>

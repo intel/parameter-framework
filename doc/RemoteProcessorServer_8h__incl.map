@@ -1,6 +1,6 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/remote&#45;processor/RemoteProcessorServer.h" name="/home/dawagner/dev/parameter&#45;framework/remote&#45;processor/RemoteProcessorServer.h">
-<area shape="rect" id="node4" href="$RemoteProcessorServerInterface_8h.html" title="RemoteProcessorServerInterface.h" alt="" coords="154,124,398,151"/>
-<area shape="rect" id="node5" href="$RequestMessage_8h.html" title="RequestMessage.h" alt="" coords="205,199,348,225"/>
-<area shape="rect" id="node6" href="$Message_8h.html" title="Message.h" alt="" coords="20,273,111,300"/>
-<area shape="rect" id="node8" href="$RemoteCommand_8h.html" title="RemoteCommand.h" alt="" coords="136,273,286,300"/>
+<map id="remote&#45;processor/RemoteProcessorServer.h" name="remote&#45;processor/RemoteProcessorServer.h">
+<area shape="rect" id="node4" href="$RemoteProcessorServerInterface_8h.html" title="RemoteProcessorServerInterface.h" alt="" coords="154,96,398,123"/>
+<area shape="rect" id="node5" href="$RequestMessage_8h.html" title="RequestMessage.h" alt="" coords="205,171,347,197"/>
+<area shape="rect" id="node6" href="$Message_8h.html" title="Message.h" alt="" coords="20,245,111,272"/>
+<area shape="rect" id="node8" href="$RemoteCommand_8h.html" title="RemoteCommand.h" alt="" coords="136,245,286,272"/>
 </map>

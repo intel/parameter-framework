@@ -1,10 +1,10 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/ArrayParameter.h" name="/home/dawagner/dev/parameter&#45;framework/parameter/ArrayParameter.h">
-<area shape="rect" id="node2" href="$Parameter_8h.html" title="Parameter.h" alt="" coords="435,109,535,136"/>
-<area shape="rect" id="node4" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="419,184,551,211"/>
-<area shape="rect" id="node6" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="536,259,757,285"/>
-<area shape="rect" id="node7" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="523,333,771,360"/>
-<area shape="rect" id="node15" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="656,408,771,435"/>
-<area shape="rect" id="node8" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="330,408,497,435"/>
-<area shape="rect" id="node9" href="$Element_8h.html" title="Element.h" alt="" coords="370,483,457,509"/>
-<area shape="rect" id="node14" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="208,557,331,584"/>
+<map id="parameter/ArrayParameter.h" name="parameter/ArrayParameter.h">
+<area shape="rect" id="node2" href="$Parameter_8h.html" title="Parameter.h" alt="" coords="435,80,535,107"/>
+<area shape="rect" id="node4" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="419,155,551,181"/>
+<area shape="rect" id="node6" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="536,229,757,256"/>
+<area shape="rect" id="node7" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="523,304,769,331"/>
+<area shape="rect" id="node15" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="656,379,771,405"/>
+<area shape="rect" id="node8" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="330,379,496,405"/>
+<area shape="rect" id="node9" href="$Element_8h.html" title="Element.h" alt="" coords="370,453,456,480"/>
+<area shape="rect" id="node14" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="208,528,331,555"/>
 </map>

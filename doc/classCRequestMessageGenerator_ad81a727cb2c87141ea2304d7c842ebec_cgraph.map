@@ -1,4 +1,4 @@
 <map id="CRequestMessageGenerator::next" name="CRequestMessageGenerator::next">
-<area shape="rect" id="node2" href="$classCRequestMessage.html#a399c6f1c96ed942b4632841e20a28555" title="CRequestMessage::setCommand" alt="" coords="257,5,492,32"/>
-<area shape="rect" id="node3" href="$classCRequestMessage.html#acabef458b313a1e9a9c1c31239c0cbd3" title="CRequestMessage::addArgument" alt="" coords="257,56,492,83"/>
+<area shape="rect" id="node2" href="$classCRequestMessage.html#a399c6f1c96ed942b4632841e20a28555" title="CRequestMessage::setCommand" alt="" coords="259,5,493,32"/>
+<area shape="rect" id="node3" href="$classCRequestMessage.html#acabef458b313a1e9a9c1c31239c0cbd3" title="CRequestMessage::addArgument" alt="" coords="259,56,493,83"/>
 </map>

@@ -1,8 +1,8 @@
 <map id="CElement::createChild" name="CElement::createChild">
-<area shape="rect" id="node2" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="433,163,589,204"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="219,29,383,71"/>
-<area shape="rect" id="node6" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration\l::composeSettings" alt="" coords="217,147,384,188"/>
-<area shape="rect" id="node7" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="227,237,374,263"/>
-<area shape="rect" id="node3" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="639,170,804,197"/>
-<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="432,29,591,71"/>
+<area shape="rect" id="node2" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="437,162,593,203"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="221,29,385,70"/>
+<area shape="rect" id="node6" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration\l::composeSettings" alt="" coords="219,146,386,187"/>
+<area shape="rect" id="node7" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="229,236,376,263"/>
+<area shape="rect" id="node3" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="643,169,808,196"/>
+<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="435,29,594,70"/>
 </map>

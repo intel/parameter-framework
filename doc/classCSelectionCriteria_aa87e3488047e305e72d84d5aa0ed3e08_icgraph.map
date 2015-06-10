@@ -1,9 +1,9 @@
 <map id="CSelectionCriteria::getSelectionCriteriaDefinition" name="CSelectionCriteria::getSelectionCriteriaDefinition">
-<area shape="rect" id="node2" href="$classCSelectionCriteria.html#af0f5289db594b0d2633c59cf8570fa50" title="CSelectionCriteria\l::createSelectionCriterion" alt="" coords="269,5,453,47"/>
-<area shape="rect" id="node4" href="$classCSelectionCriteria.html#ad95866d8f8615b75a6b68daeddb561ad" title="CSelectionCriteria\l::getSelectionCriterion" alt="" coords="279,71,443,112"/>
-<area shape="rect" id="node6" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="285,136,438,177"/>
-<area shape="rect" id="node8" href="$classCSelectionCriteria.html#a8470a08d025d7d9f06e7f2193bb57a49" title="CSelectionCriteria\l::resetModifiedStatus" alt="" coords="282,201,441,243"/>
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a3b6a3500b78f43bfb894263689b809a7" title="CParameterMgr::createSelection\lCriterion" alt="" coords="501,5,732,47"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#a06ce1937c480d46ff3b01bd7bb500b39" title="CParameterMgr::getSelection\lCriterion" alt="" coords="511,71,722,112"/>
-<area shape="rect" id="node7" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="538,143,695,170"/>
+<area shape="rect" id="node2" href="$classCSelectionCriteria.html#af0f5289db594b0d2633c59cf8570fa50" title="CSelectionCriteria\l::createSelectionCriterion" alt="" coords="269,5,453,46"/>
+<area shape="rect" id="node4" href="$classCSelectionCriteria.html#ad95866d8f8615b75a6b68daeddb561ad" title="CSelectionCriteria\l::getSelectionCriterion" alt="" coords="279,70,443,111"/>
+<area shape="rect" id="node6" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="285,135,438,177"/>
+<area shape="rect" id="node8" href="$classCSelectionCriteria.html#a8470a08d025d7d9f06e7f2193bb57a49" title="CSelectionCriteria\l::resetModifiedStatus" alt="" coords="282,201,441,242"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a3b6a3500b78f43bfb894263689b809a7" title="CParameterMgr::createSelection\lCriterion" alt="" coords="502,5,733,46"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a06ce1937c480d46ff3b01bd7bb500b39" title="CParameterMgr::getSelection\lCriterion" alt="" coords="512,70,723,111"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="539,143,696,169"/>
 </map>

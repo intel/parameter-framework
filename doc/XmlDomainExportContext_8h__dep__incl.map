@@ -1,10 +1,10 @@
-<map id="/home/dawagner/dev/parameter&#45;framework/parameter/XmlDomainExportContext.h" name="/home/dawagner/dev/parameter&#45;framework/parameter/XmlDomainExportContext.h">
-<area shape="rect" id="node2" href="$ConfigurableDomain_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ConfigurableDomain.cpp" alt="" coords="5,109,260,165"/>
-<area shape="rect" id="node3" href="$DomainConfiguration_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/DomainConfiguration.cpp" alt="" coords="284,109,544,165"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgr.h" alt="" coords="753,109,953,165"/>
-<area shape="rect" id="node6" href="$ParameterMgr_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgr.cpp" alt="" coords="405,213,620,269"/>
-<area shape="rect" id="node5" href="$ParameterHandle_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterHandle.cpp" alt="" coords="645,213,882,269"/>
-<area shape="rect" id="node7" href="$ParameterMgrFullConnector_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="832,317,1041,388"/>
-<area shape="rect" id="node8" href="$ParameterMgrLogger_8h.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgrLogger.h" alt="" coords="957,213,1201,269"/>
-<area shape="rect" id="node9" href="$ParameterMgrPlatformConnector_8cpp.html" title="/home/dawagner/dev\l/parameter&#45;framework\l/parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="1101,317,1343,388"/>
+<map id="parameter/XmlDomainExportContext.h" name="parameter/XmlDomainExportContext.h">
+<area shape="rect" id="node2" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="5,96,256,123"/>
+<area shape="rect" id="node3" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="280,96,536,123"/>
+<area shape="rect" id="node4" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="743,96,939,123"/>
+<area shape="rect" id="node6" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="401,171,611,197"/>
+<area shape="rect" id="node5" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="637,171,869,197"/>
+<area shape="rect" id="node7" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="823,246,1028,287"/>
+<area shape="rect" id="node8" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="945,171,1185,197"/>
+<area shape="rect" id="node9" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="1086,246,1324,287"/>
 </map>
