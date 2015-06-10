@@ -44,8 +44,7 @@ LOCAL_CLANG := false
 # Android only provides a 32bit version of python.
 LOCAL_32_BIT_ONLY := true
 
-LOCAL_SHARED_LIBRARIES := libparameter_host
-LOCAL_STATIC_LIBRARIES := libxmlserializer_host
+LOCAL_SHARED_LIBRARIES := libxmlserializer_host libparameter_host
 
 # python is only available in 32bits for now, thus arch is forced to 32bits
 PYTHON_INSTALL_PATH := prebuilts/python/$(HOST_OS)-x86/2.7.5/
