@@ -69,7 +69,7 @@ public:
      * @result true is success false otherwise
      */
     bool setApplicationRule(const std::string& strApplicationRule,
-                            const core::criterion::Criteria& criteria,
+                            const core::criterion::internal::Criteria& criteria,
                             std::string& strError);
 
     void clearApplicationRule();

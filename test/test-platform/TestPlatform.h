@@ -52,56 +52,36 @@ public:
 private:
     //////////////// Remote command parsers
 
-    /** Callback to create an Exclusive Criterion from possible state list
+    /** Callback to create a Criterion from possible state list
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
+     * @tparam isInclusive true for creating inclusive criterion, false for an exclusive one
      * @param[in] remoteCommand the first argument should be the name of the criterion to create.
      *                          the following arguments should be criterion possible values
      */
-    CommandReturn createExclusiveCriterionFromStateList(const IRemoteCommand& remoteCommand,
-                                                        std::string& strResult);
+    template <bool isInclusive>
+    CommandReturn createCriterionFromStateList(const IRemoteCommand& remoteCommand,
+                                               std::string& strResult);
 
-    /** Callback to create an Inclusive Criterion from possible state list
+    /** Callback to create a Criterion
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
-     * @param[in] remoteCommand the first argument should be the name of the criterion to create.
-     *                          the following arguments should be criterion possible values
-     */
-    CommandReturn createInclusiveCriterionFromStateList(const IRemoteCommand& remoteCommand,
-                                                        std::string& strResult);
-
-    /** Callback to create an Exclusive Criterion
-     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
-     *
+     * @tparam isInclusive true for creating inclusive criterion, false for an exclusive one
      * @param[in] remoteCommand the first argument should be the name of the criterion to create.
      *                          the second argument should be criterion possible values number
      *
      * Generated states numerical value will be like: State_0xX, where X is the value number of the
      * state.
      */
-    CommandReturn createExclusiveCriterion(const IRemoteCommand& remoteCommand,
-                                           std::string& strResult);
-
-    /** Callback to create an Inclusive Criterion
-     * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
-     *
-     * @param[in] remoteCommand the first argument should be the name of the criterion to create.
-     *                          the second argument should be criterion possible values number
-     *
-     * Generated states numerical value will be like: State_X, where X is the value number of the
-     * state.
-     */
-    CommandReturn createInclusiveCriterion(const IRemoteCommand& remoteCommand,
-                                           std::string& strResult);
+    template <bool isInclusive>
+    CommandReturn createCriterionCommand(const IRemoteCommand& remoteCommand,
+                                         std::string& strResult);
 
     /** Callback to set a criterion's value, see CriterionInterface::setCriterionState.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
      * @param[in] remoteCommand the first argument should be the name of the criterion to set.
-     *                          if the criterion is provided in lexical space,
-     *                              the following arguments should be criterion new values
-     *                          if the criterion is provided in numerical space,
-     *                              the second argument should be the criterion new value
+     *                          the following arguments should be criterion new values
      */
     CommandReturn setCriterionState(
             const IRemoteCommand& remoteCommand, std::string& strResult);
@@ -165,46 +145,43 @@ private:
 
     // Commands
 
-    /** @see callback with the same name for details and other parameters
+    /** @see callback with the same arguments for details and other parameters
      *
-     * @param[out] strResult useful information that client may want to retrieve
+     * @tparam isInclusive true for creating inclusive criterion, false for an exclusive one
+     *
+     * @param[in] name the criterion name
+     * @param[out] result useful information that client may want to retrieve
      * @return true if success, false otherwise
      */
-    bool createExclusiveCriterionFromStateList(const std::string& strName,
-                                               const IRemoteCommand& remoteCommand,
-                                               std::string& strResult);
+    template <bool isInclusive>
+    bool createCriterion(const std::string& name,
+                         const IRemoteCommand& command,
+                         std::string& result);
 
-    /** @see callback with the same name for details and other parameters
+    /** Create a criterion by generating a given number of values
      *
-     * @param[out] strResult useful information that client may want to retrieve
+     * @tparam isInclusive true for creating inclusive criterion, false for an exclusive one
+     *
+     * @param[in] name the criterion name
+     * @param[in] nbValues number of possible state value the criterion can have
+     * @param[out] result useful information that client may want to retrieve
      * @return true if success, false otherwise
      */
-    bool createInclusiveCriterionFromStateList(const std::string& strName,
-                                               const IRemoteCommand& remoteCommand,
-                                               std::string& strResult);
+    template <bool isInclusive>
+    bool createCriterion(const std::string& name, uint32_t nbValues, std::string& result);
 
-    /** @see callback with the same name for details and other parameters
+    /** Create a criterion with desired values
+     * @tparam isInclusive true for creating inclusive criterion, false for an exclusive one
      *
-     * @param[in] uiNbValues number of possible state value the criterion can have
-     * @param[out] strResult useful information that client may want to retrieve
+     * @param[in] name the criterion name
+     * @param[in] values criterion desired values
+     * @param[out] result useful information that client may want to retrieve
      * @return true if success, false otherwise
      */
-    bool createExclusiveCriterion(const std::string& strName,
-                                  uint32_t uiNbValues,
-                                  std::string& strResult);
-
-    /** @see callback with the same name for details and other parameters
-     *
-     * @param[in] uiNbValues number of possible state value the criterion can have
-     * @param[out] strResult useful information that client may want to retrieve
-     * @return true if success, false otherwise
-     */
-    bool createInclusiveCriterion(const std::string& strName,
-                                  uint32_t uiNbValues,
-                                  std::string& strResult);
-
-    bool setCriterionState(const std::string& strName, uint32_t uiState, std::string& strResult);
-    bool setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, std::string& strResult);
+    template <bool isInclusive>
+    bool createCriterion(const std::string& name,
+                         const core::criterion::Values &values,
+                         std::string& result);
 
     // Connector
     CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;

@@ -45,7 +45,8 @@ const char* CRuleParser::_acDelimiters[CRuleParser::ENbStatuses] = {
     ""      // EDone
 };
 
-CRuleParser::CRuleParser(const string& strApplicationRule, const criterion::Criteria& criteria) :
+CRuleParser::CRuleParser(const string& strApplicationRule,
+                         const criterion::internal::Criteria& criteria) :
     _strApplicationRule(strApplicationRule),
     mCriteria(criteria),
     _uiCurrentPos(0),
@@ -221,7 +222,7 @@ const string& CRuleParser::getType() const
 }
 
 // Criteria defintion
-const criterion::Criteria& CRuleParser::getCriteria() const
+const criterion::internal::Criteria& CRuleParser::getCriteria() const
 {
     return mCriteria;
 }

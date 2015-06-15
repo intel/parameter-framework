@@ -34,7 +34,9 @@
 #include <list>
 
 using std::string;
-using core::criterion::CriterionInterface;
+using core::criterion::Criterion;
+
+using namespace core;
 
 CParameterMgrFullConnector::CParameterMgrFullConnector(const string& strConfigurationFilePath) :
     _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrFullConnector>(*this)),
@@ -84,20 +86,25 @@ CParameterHandle* CParameterMgrFullConnector::createParameterHandle(const string
     return _pParameterMgr->createParameterHandle(strPath, strError);
 }
 
-CriterionInterface* CParameterMgrFullConnector::createExclusiveCriterion(const string& name)
+Criterion*
+CParameterMgrFullConnector::createExclusiveCriterion(const string& name,
+                                                     const criterion::Values& values,
+                                                     std::string& error)
 {
-    return _pParameterMgr->createExclusiveCriterion(name);
+    return _pParameterMgr->createExclusiveCriterion(name, values, error);
 }
 
-CriterionInterface* CParameterMgrFullConnector::createInclusiveCriterion(const string& name)
+Criterion*
+CParameterMgrFullConnector::createInclusiveCriterion(const string& name,
+                                                     const criterion::Values& values,
+                                                     std::string& error)
 {
-    return _pParameterMgr->createInclusiveCriterion(name);
+    return _pParameterMgr->createInclusiveCriterion(name, values, error);
 }
 
-CriterionInterface* CParameterMgrFullConnector::getSelectionCriterion(
-        const string& strName)
+Criterion* CParameterMgrFullConnector::getCriterion(const string& strName)
 {
-    return _pParameterMgr->getSelectionCriterion(strName);
+    return _pParameterMgr->getCriterion(strName);
 }
 
 bool CParameterMgrFullConnector::getForceNoRemoteInterface() const
@@ -303,7 +310,7 @@ bool CParameterMgrFullConnector::removeConfigurableElementFromDomain(const strin
             strConfigurableElementPath, strError);
 }
 
-bool CParameterMgrFullConnector::split(const string& strDomain, 
+bool CParameterMgrFullConnector::split(const string& strDomain,
                                        const string& strConfigurableElementPath, string& strError)
 {
     return _pParameterMgr->split(strDomain, strConfigurableElementPath, strError);

@@ -28,104 +28,77 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "criterion/InclusiveCriterion.h"
-#include "Tokenizer.h"
 
 #include <sstream>
 #include <cassert>
+#include <algorithm>
 
 namespace core
 {
 namespace criterion
 {
+namespace internal
+{
 
 const std::string InclusiveCriterion::gDelimiter = "|";
 
-InclusiveCriterion::InclusiveCriterion(const std::string& name, core::log::Logger& logger)
-    : Criterion(name, logger,
-                {{"none", 0}},
-                {{"Includes", [&](int state){ return (mState & state) == state; }},
-                 {"Excludes", [&](int state){ return (mState & state) == 0; }}})
+InclusiveCriterion::InclusiveCriterion(const std::string& name,
+                                       const criterion::Values& values,
+                                       core::log::Logger& logger)
+    : Criterion(name, logger, values, {},
+                {{"Includes", [&](const State& state) {
+                    return std::includes(mState.begin(), mState.end(),
+                                         state.begin(), state.end()); }},
+                 {"Excludes", [&](const State& state) {
+                    State inter;
+                    std::set_intersection(mState.begin(), mState.end(),
+                                          state.begin(), state.end(),
+                                          std::inserter(inter, inter.begin()));
+                    return inter.empty(); }}})
 {
-}
-
-bool InclusiveCriterion::isInclusive() const
-{
-    return true;
-}
-
-bool InclusiveCriterion::addValuePair(int numericalValue,
-                                      const std::string& literalValue,
-                                      std::string& error)
-{
-    // Check 1 bit set only for inclusive types
-    // FIXME: unclear test, need rework
-    if (!numericalValue || (numericalValue & (numericalValue - 1))) {
-        std::ostringstream errorBuf;
-        errorBuf << "Rejecting value pair association: 0x" << std::hex << numericalValue
-                 << " - " << literalValue << " for criterion '" << getCriterionName() << "'";
-        error = errorBuf.str();
-
-        return false;
+    if (mValues.size() < 1) {
+        throw InvalidCriterionError("Not enough values were provided for inclusive criterion '" +
+                                    getName() + "' which needs at least 1 values");
     }
-
-    return Criterion::addValuePair(numericalValue, literalValue, error);
 }
 
-bool InclusiveCriterion::getNumericalValue(const std::string& literalValue,
-                                           int& numericalValue) const
+const std::string InclusiveCriterion::getKind() const
 {
-    Tokenizer tok(literalValue, gDelimiter);
-    std::vector<std::string> literalValues = tok.split();
-    numericalValue = 0;
-
-    // Looping on each std::string delimited by "|" token and adding the associated value
-    for (std::string atomicLiteral : literalValues) {
-
-        int atomicNumerical = 0;
-        if (!Criterion::getNumericalValue(atomicLiteral, atomicNumerical)) {
-            return false;
-        }
-        numericalValue |= atomicNumerical;
-    }
-    return true;
+    return "Inclusive";
 }
 
 std::string InclusiveCriterion::getFormattedState() const
 {
-    std::string formattedState;
-    if (mState == 0) {
-        // Default inclusive criterion state is always present
-        getLiteralValue(0, formattedState);
-        return formattedState;
+    if (mState.empty()) {
+        return "none";
     }
 
-    uint32_t bit;
-    bool first = true;
-
-    // Need to go through all set bit
-    for (bit = 0; bit < sizeof(mState) * 8; bit++) {
-        int singleBitValue = mState & (1 << bit);
-        // Check if current bit is set
-        if (!singleBitValue) {
-            continue;
-        }
-        // Simple translation
-        std::string atomicState;
-        if (!getLiteralValue(singleBitValue, atomicState)) {
-            // Numeric value not part supported values for this criterion type.
-            continue;
-        }
-
-        if (first) {
-            first = false;
-        } else {
+    std::string formattedState;
+    for (auto &value : mState) {
+        if (*mState.begin() != value) {
             formattedState += gDelimiter;
         }
-
-        formattedState += atomicState;
+        formattedState += value;
     }
     return formattedState;
 }
 
+bool InclusiveCriterion::setState(const State& state, std::string& error)
+{
+    // Check for a change
+    if (mState != state) {
+        // Check that the state contains only registered values
+        if (!std::includes(mValues.begin(), mValues.end(), state.begin(), state.end())) {
+            error = "Inclusive criterion '" + getName() +
+                    "' can't be set because some values are not registered";
+            return false;
+        }
+        mState = state;
+        stateModificationsEvent();
+    }
+    return true;
+}
+
+} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */

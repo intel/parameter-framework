@@ -29,51 +29,59 @@
  */
 #pragma once
 
-#include "client/CriterionInterface.h"
+#include "client/Criterion.h"
 #include "XmlSource.h"
 #include <log/Logger.h>
 
 #include <map>
+#include <set>
 #include <string>
 #include <functional>
+#include <stdexcept>
 
 namespace core
 {
 namespace criterion
 {
+namespace internal
+{
 
 /** Criterion object used to apply rules based on system state */
-class Criterion : public IXmlSource, public CriterionInterface
+class Criterion : public IXmlSource, public criterion::Criterion
 {
 public:
+    /** Indicates an error at the Criterion creation */
+    using InvalidCriterionError = std::runtime_error;
+
     /** @param[in] name the criterion name
+     *  @param[in] values available values the criterion can take
      *  @param[in] logger the main application logger
+     *
+     *  @throw InvalidCriterionError if there is less than 2 values provided.
      */
-    Criterion(const std::string& name, core::log::Logger& logger);
+    Criterion(const std::string& name,
+              const criterion::Values& values,
+              core::log::Logger& logger);
 
     // @{
-    /** @see CriterionInterface */
-    virtual void setCriterionState(int iState) override final;
+    /** @see Criterion */
+    virtual bool setState(const State& state, std::string& error) override;
 
-    virtual int getCriterionState() const override final;
+    virtual State getState() const override final;
 
-    virtual std::string getCriterionName() const override final;
-
-    virtual bool isInclusive() const override;
-
-    virtual bool addValuePair(int numericalValue,
-                              const std::string& literalValue,
-                              std::string& error) override;
-
-    bool getLiteralValue(int numericalValue, std::string& literalValue) const override final;
-
-    virtual bool getNumericalValue(const std::string& literalValue,
-                                   int& numericalValue) const override;
-
-    virtual std::string getFormattedState() const override;
+    virtual std::string getName() const override final;
     // @}
 
+    /** Check if the current criterion has been modified
+     * If the set of the current value is requested, the set will succeed but the criterion
+     * will be marqued as unchanged. If the set action succeed with a new value, the criterion
+     * will be marqued as modified. This status can be retrieve through this method.
+     *
+     * @return true if the criterion has been modified, else otherwise
+     */
     bool hasBeenModified() const;
+
+    /** Reset the modified status of the criterion */
     void resetModifiedStatus();
 
     /** Request criterion state match with a desired method
@@ -84,7 +92,7 @@ public:
      *
      * @throw std::out_of_range if the desired match method does not exist
      */
-    bool match(const std::string& method, int32_t state) const;
+    bool match(const std::string& method, const State& state) const;
 
     /** Check if a match method is available for this criterion
      *
@@ -93,13 +101,27 @@ public:
      */
     bool isMatchMethodAvailable(const std::string& method) const;
 
-    std::string getFormattedDescription(bool bWithTypeInfo, bool bHumanReadable) const;
+    /** Retrieve a properly formatted description of the Criterion
+     *
+     * @param[in] bWithTypeInfo true if user want type info in the description, false otherwise
+     * @param[in] bHumanReadable true if the description must have a human readable format
+     *                           false if it must be easier to parse
+     * @return the string containing the desired description
+     */
+    std::string getFormattedDescription(bool withTypeInfo, bool humanReadable) const;
 
     /** List different values a criterion can have
      *
      * @return formatted string containing criterion possible values
      */
     std::string listPossibleValues() const;
+
+    /** Check the avaibility of a given value for this criterion
+     *
+     * @param[in] value the value we want to check the avaibility
+     * @return true if the value is available, false otherwise
+     */
+    bool isValueAvailable(const Value &value) const;
 
     /** Export to XML
      *
@@ -115,13 +137,10 @@ protected:
      * and returns a boolean which indicates if the current state match the state given in
      * parameter.
      */
-    typedef std::function<bool (int)> MatchMethod;
+    typedef std::function<bool (const State&)> MatchMethod;
 
     /** Match method container, MatchMethod are indexed by their name */
     typedef std::map<std::string, MatchMethod> MatchMethods;
-
-    /** Internal type which associate literal and numerical value */
-    typedef std::map<std::string, int> ValuePairs;
 
     /** Initializer constructor
      * This Constructor initialize class members and should be called by derived class
@@ -130,36 +149,61 @@ protected:
      * @param[in] name the criterion name
      * @param[in] logger the main application logger
      * @param[in] derivedValuePairs initial value pairs of derived classes
+     * @param[in] defaultState the default state chosen by the derived class
      * @param[in] derivedMatchMethods match methods of derived classes
      */
     Criterion(const std::string& name,
               core::log::Logger& logger,
-              const ValuePairs& derivedValuePairs,
+              const criterion::Values& derivedValuePairs,
+              const State& defaultState,
               const MatchMethods& derivedMatchMethods);
 
+    /** Criterion value collection
+     * Internally, values are stored in a set. Nevertheless, the Values type exposed
+     * to the client is a list to let him have the control of the values order.
+     * Without that, client will not be able to choose the criterion default value.
+     */
+    using Values = std::set<Value>;
     /** Contains pair association between literal and numerical value */
-    ValuePairs mValuePairs;
+    const Values mValues;
 
     /** Available criterion match methods */
     const MatchMethods mMatchMethods;
 
-    /** Current state
-     *
-     * FIXME: Use bit set object instead
+    /** Current state */
+    State mState;
+
+    /** Register a modification of the criterion
+     * Client need to be informed when the criterion has been modified
+     * and how many times.
+     * This method helps to count and log modifications.
      */
-    int32_t mState;
+    void stateModificationsEvent();
 
 private:
 
+    /** Return description of the Criterion type for serialization purpose */
+    virtual const std::string getKind() const;
+
+    /** Retrieve formatted current criterion state
+     *
+     * @return formatted string of criterion state
+     */
+    virtual std::string getFormattedState() const;
+
     /** Counter to know how many modifications have been applied to this criterion */
-    uint32_t _uiNbModifications;
+    uint32_t mNbModifications;
 
     /** Application logger */
-    core::log::Logger& _logger;
+    core::log::Logger& mLogger;
 
     /** Criterion name */
     const std::string mName;
+
+    /** Criterion default state */
+    const State mDefaultState;
 };
 
+} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */

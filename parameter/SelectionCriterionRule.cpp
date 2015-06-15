@@ -40,7 +40,7 @@
 using std::string;
 
 CSelectionCriterionRule::CSelectionCriterionRule() :
-    _pSelectionCriterion(NULL), mMatchesWhenVerb(""), _iMatchValue(0)
+    _pSelectionCriterion(NULL), mMatchesWhenVerb(""), mMatchState{}
 {
 }
 
@@ -63,7 +63,7 @@ void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& errorCon
 bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 {
     // Criterion
-    _pSelectionCriterion = ruleParser.getCriteria().getSelectionCriterion(ruleParser.getType());
+    _pSelectionCriterion = ruleParser.getCriteria().getCriterion(ruleParser.getType());
 
     // Check existence
     if (!_pSelectionCriterion) {
@@ -89,22 +89,19 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
     // Matches when
     if (!_pSelectionCriterion->isMatchMethodAvailable(mMatchesWhenVerb)) {
 
-        strError = "Matche type: " + mMatchesWhenVerb + " incompatible with " +
-                   (_pSelectionCriterion->isInclusive() ? "inclusive" : "exclusive") +
-                   " criterion: " + _pSelectionCriterion->getCriterionName();
+        strError = "Matche type: " + mMatchesWhenVerb + " incompatible with criterion: " +
+                   _pSelectionCriterion->getName();
 
         return false;
     }
 
-    // Value
-    if (!_pSelectionCriterion->getNumericalValue(strValue, _iMatchValue)) {
+    if (!setMatchState(strValue)) {
 
         strError = "Value error: \"" + strValue + "\" is not part of criterion \"" +
-                   _pSelectionCriterion->getCriterionName() + "\"";
+                   _pSelectionCriterion->getName() + "\"";
 
         return false;
     }
-
     return true;
 }
 
@@ -112,15 +109,13 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 void CSelectionCriterionRule::dump(string& strResult) const
 {
     // Criterion
-    strResult += _pSelectionCriterion->getCriterionName();
+    strResult += _pSelectionCriterion->getName();
     strResult += " ";
     // Verb
     strResult += mMatchesWhenVerb;
     strResult += " ";
     // Value
-    string strValue;
-    _pSelectionCriterion->getLiteralValue(_iMatchValue, strValue);
-    strResult += strValue;
+    strResult += mMatchState.empty() ? gEmptyRule : *mMatchState.begin();
 }
 
 // Rule check
@@ -128,7 +123,7 @@ bool CSelectionCriterionRule::matches() const
 {
     assert(_pSelectionCriterion);
 
-    return _pSelectionCriterion->match(mMatchesWhenVerb, _iMatchValue);
+    return _pSelectionCriterion->match(mMatchesWhenVerb, mMatchState);
 }
 
 // From IXmlSink
@@ -141,7 +136,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     string strSelectionCriterion = xmlElement.getAttributeString("SelectionCriterion");
 
     _pSelectionCriterion =
-        xmlDomainImportContext.getCriteria().getSelectionCriterion(strSelectionCriterion);
+        xmlDomainImportContext.getCriteria().getCriterion(strSelectionCriterion);
 
     // Check existence
     if (!_pSelectionCriterion) {
@@ -159,7 +154,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
 
         xmlDomainImportContext.setError("Wrong MatchesWhen attribute " + mMatchesWhenVerb + " in " +
                                         getKind() + " " + xmlElement.getPath() + ": " +
-                                        _pSelectionCriterion->getCriterionName());
+                                        _pSelectionCriterion->getName());
 
         return false;
     }
@@ -167,13 +162,12 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Get Value
     string strValue = xmlElement.getAttributeString("Value");
 
-    if (!_pSelectionCriterion->getNumericalValue(strValue, _iMatchValue)) {
+    if (!setMatchState(strValue)) {
 
         xmlDomainImportContext.setError("Wrong Value attribute value " + strValue + " in " + getKind() + " " + xmlElement.getPath());
 
         return false;
     }
-
     // Done
     return true;
 }
@@ -186,15 +180,24 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     assert(_pSelectionCriterion);
 
     // Set selection criterion
-    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getCriterionName());
+    xmlElement.setAttributeString("SelectionCriterion", _pSelectionCriterion->getName());
 
     // Set MatchesWhen
     xmlElement.setAttributeString("MatchesWhen", mMatchesWhenVerb);
 
     // Set Value
-    string strValue;
+    xmlElement.setAttributeString("Value", mMatchState.empty() ? gEmptyRule : *mMatchState.begin());
+}
 
-     _pSelectionCriterion->getLiteralValue(_iMatchValue, strValue);
-
-    xmlElement.setAttributeString("Value", strValue);
+bool CSelectionCriterionRule::setMatchState(const std::string &value)
+{
+    if (value == gEmptyRule) {
+        mMatchState.clear();
+        return true;
+    }
+    if (!_pSelectionCriterion->isValueAvailable(value)) {
+        return false;
+    }
+    mMatchState = {value};
+    return true;
 }

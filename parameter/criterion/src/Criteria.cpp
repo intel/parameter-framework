@@ -36,6 +36,8 @@ namespace core
 {
 namespace criterion
 {
+namespace internal
+{
 
 Criteria::Criteria() : mCriteria()
 {
@@ -52,31 +54,35 @@ Criterion* Criteria::getCriterionPointer(const std::string& name) const
     }
 }
 
-Criterion* Criteria::createExclusiveCriterion(const std::string& name, core::log::Logger& logger)
+Criterion* Criteria::createExclusiveCriterion(const std::string& name,
+                                              const Values& values,
+                                              core::log::Logger& logger,
+                                              std::string& error)
 {
-    mCriteria.emplace(name, CriterionWrapper(new Criterion(name, logger)));
+    return addCriterion<Criterion>(name, values, logger, error);
+}
+
+Criterion* Criteria::createInclusiveCriterion(const std::string& name,
+                                              const Values& values,
+                                              core::log::Logger& logger,
+                                              std::string& error)
+{
+    return addCriterion<InclusiveCriterion>(name, values, logger, error);
+}
+
+Criterion* Criteria::getCriterion(const std::string& name)
+{
     return getCriterionPointer(name);
 }
 
-Criterion* Criteria::createInclusiveCriterion(const std::string& name, core::log::Logger& logger)
-{
-    mCriteria.emplace(name, CriterionWrapper(new InclusiveCriterion(name, logger)));
-    return getCriterionPointer(name);
-}
-
-Criterion* Criteria::getSelectionCriterion(const std::string& name)
+const Criterion* Criteria::getCriterion(const std::string& name) const
 {
     return getCriterionPointer(name);
 }
 
-const Criterion* Criteria::getSelectionCriterion(const std::string& name) const
-{
-    return getCriterionPointer(name);
-}
-
-void Criteria::listSelectionCriteria(std::list<std::string>& results,
-                                     bool withTypeInfo,
-                                     bool humanReadable) const
+void Criteria::listCriteria(std::list<std::string>& results,
+                            bool withTypeInfo,
+                            bool humanReadable) const
 {
     for (auto& criterion : mCriteria) {
         results.push_back(criterion.second->getFormattedDescription(withTypeInfo, humanReadable));
@@ -96,10 +102,28 @@ void Criteria::toXml(CXmlElement& xmlElement,
     for (auto& criterion : mCriteria) {
 
         CXmlElement xmlChildElement;
-        xmlElement.createChild(xmlChildElement, "SelectionCriterion");
+        xmlElement.createChild(xmlChildElement, "Criterion");
         criterion.second->toXml(xmlChildElement, serializingContext);
     }
 }
 
+template<class CriterionType>
+Criterion* Criteria::addCriterion(const std::string& name,
+                                  const Values& values,
+                                  core::log::Logger& logger,
+                                  std::string& error)
+{
+    try {
+        Criterion* criterion(new CriterionType(name, values, logger));
+        mCriteria.emplace(name, CriterionWrapper(criterion));
+        return criterion;
+    }
+    catch (Criterion::InvalidCriterionError& e) {
+        error = e.what();
+        return nullptr;
+    }
+}
+
+} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */

@@ -113,6 +113,7 @@ using std::ifstream;
 
 // FIXME: integrate ParameterMgr to core namespace
 using namespace core;
+using namespace core::criterion::internal;
 
 // Used for remote processor server creation
 typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
@@ -464,7 +465,7 @@ bool CParameterMgr::load(string& strError)
         LOG_CONTEXT("Criterion states");
 
         list<string> criteria;
-        _criteria.listSelectionCriteria(criteria, true, false);
+        _criteria.listCriteria(criteria, true, false);
 
         info() << criteria;
     }
@@ -722,23 +723,24 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
     return true;
 }
 
-criterion::Criterion* CParameterMgr::createExclusiveCriterion(const string& name)
+Criterion* CParameterMgr::createExclusiveCriterion(const string& name,
+                                                   const criterion::Values& values,
+                                                   std::string& error)
 {
-    // Propagate
-    return _criteria.createExclusiveCriterion(name, _logger);
+    return _criteria.createExclusiveCriterion(name, values, _logger, error);
 }
 
-criterion::Criterion* CParameterMgr::createInclusiveCriterion(const string& name)
+Criterion* CParameterMgr::createInclusiveCriterion(const string& name,
+                                                   const criterion::Values& values,
+                                                   std::string& error)
 {
-    // Propagate
-    return _criteria.createInclusiveCriterion(name, _logger);
+    return _criteria.createInclusiveCriterion(name, values, _logger, error);
 }
 
-// Selection criterion retrieval
-criterion::Criterion* CParameterMgr::getSelectionCriterion(const string& strName)
+Criterion* CParameterMgr::getCriterion(const string& strName)
 {
     // Propagate
-    return _criteria.getSelectionCriterion(strName);
+    return _criteria.getCriterion(strName);
 }
 
 // Configuration application
@@ -911,7 +913,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
     /// Criteria states
     CUtility::appendTitle(strResult, "Selection Criteria:");
     list<string> lstrSelectionCriteria;
-    _criteria.listSelectionCriteria(lstrSelectionCriteria, false, true);
+    _criteria.listCriteria(lstrSelectionCriteria, false, true);
     // Concatenate the criterion list as the command result
     string strCriteriaStates;
     CUtility::asString(lstrSelectionCriteria, strCriteriaStates);
@@ -1081,7 +1083,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
     }
 
     if (strOutputFormat == "XML") {
-       if (!exportElementToXMLString(&_criteria, "SelectionCriteria", strResult)) {
+       if (!exportElementToXMLString(&_criteria, "Criteria", strResult)) {
 
             return CCommandHandler::EFailed;
         }
@@ -1094,7 +1096,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
         bool bHumanReadable = strOutputFormat.empty();
 
         list<string> lstrResult;
-        _criteria.listSelectionCriteria(lstrResult, true, bHumanReadable);
+        _criteria.listCriteria(lstrResult, true, bHumanReadable);
 
         // Concatenate the criterion list as the command result
         CUtility::asString(lstrResult, strResult);

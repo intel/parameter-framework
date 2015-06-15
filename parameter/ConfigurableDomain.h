@@ -88,7 +88,7 @@ public:
      */
     bool setApplicationRule(const std::string& strConfiguration,
                             const std::string& strApplicationRule,
-                            const core::criterion::Criteria& criteria,
+                            const core::criterion::internal::Criteria& criteria,
                             std::string& strError);
 
     bool clearApplicationRule(const std::string& strConfiguration, std::string& strError);

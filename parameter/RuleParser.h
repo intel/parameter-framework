@@ -53,7 +53,7 @@ public:
     };
 
     CRuleParser(const std::string& strApplicationRule,
-                const core::criterion::Criteria& criteria);
+                const core::criterion::internal::Criteria& criteria);
     ~CRuleParser();
 
     // Parse
@@ -69,7 +69,7 @@ public:
     const std::string& getType() const;
 
     /** Criteria getter */
-    const core::criterion::Criteria& getCriteria() const;
+    const core::criterion::internal::Criteria& getCriteria() const;
 
     // Root rule
     CCompoundRule* grabRootRule();
@@ -82,7 +82,7 @@ private:
     std::string _strApplicationRule;
 
     /** Criteria definition */
-    const core::criterion::Criteria& mCriteria;
+    const core::criterion::internal::Criteria& mCriteria;
 
     /** String iterator */
     std::string::size_type _uiCurrentPos;

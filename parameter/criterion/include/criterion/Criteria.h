@@ -42,6 +42,8 @@ namespace core
 {
 namespace criterion
 {
+namespace internal
+{
 
 /** Criteria Handler */
 class Criteria : public IXmlSource
@@ -52,34 +54,44 @@ public:
     /** Create a new Exclusive criterion
      *
      * @param[in] name the criterion name
+     * @param[in] values available values the criterion can take
      * @param[in] logger the application main logger
-     * @return raw pointer on the created criterion
+     * @param[out] error the string containing the error description in case of failure
+     *                   undefined otherwise
+     * @return raw pointer on the created criterion, nullptr in case of failure
      */
     Criterion* createExclusiveCriterion(const std::string& name,
-                                        core::log::Logger& logger);
+                                        const Values& values,
+                                        core::log::Logger& logger,
+                                        std::string& error);
 
     /** Create a new Inclusive criterion
      *
      * @param[in] name the criterion name
+     * @param[in] values available values the criterion can take
      * @param[in] logger the application main logger
-     * @return raw pointer on the created criterion
+     * @param[out] error the string containing the error description in case of failure
+     *                   undefined otherwise
+     * @return raw pointer on the created criterion, nullptr in case of failure
      */
     Criterion* createInclusiveCriterion(const std::string& name,
-                                        core::log::Logger& logger);
+                                        const Values& values,
+                                        core::log::Logger& logger,
+                                        std::string& error);
 
     /** Criterion Retrieval
      *
      * @param[in] name the criterion name
      * @result pointer to the desired criterion object
      */
-    Criterion* getSelectionCriterion(const std::string& name);
+    Criterion* getCriterion(const std::string& name);
 
     /** Const Criterion Retrieval
      *
      * @param[in] name the criterion name
      * @result pointer to the desired const criterion object
      */
-    const Criterion* getSelectionCriterion(const std::string& name) const;
+    const Criterion* getCriterion(const std::string& name) const;
 
     /** List available criteria
      *
@@ -87,9 +99,7 @@ public:
      * @param[in] withTypeInfo indicates if we want to retrieve criterion type information
      * @param[in] humanReadable indicates the formatage we want to use
      */
-    void listSelectionCriteria(std::list<std::string>& results,
-                               bool withTypeInfo,
-                               bool humanReadable) const;
+    void listCriteria(std::list<std::string>& results, bool withTypeInfo, bool humanReadable) const;
 
     /** Reset the modified status of criteria */
     void resetModifiedStatus();
@@ -127,9 +137,25 @@ private:
      */
     Criterion* getCriterionPointer(const std::string& name) const;
 
+    /** Helper to register a new Criterion
+     *
+     * @param[in] name the criterion name
+     * @param[in] values available values the criterion can take
+     * @param[in] logger the application main logger
+     * @param[out] error the string containing the error description in case of failure
+     *                   undefined otherwise
+     * @return raw pointer on the created criterion, nullptr in case of failure
+     */
+    template<class CriterionType>
+    Criterion* addCriterion(const std::string& name,
+                            const Values& values,
+                            core::log::Logger& logger,
+                            std::string& error);
+
     /** Criteria instance container */
     CriteriaMap mCriteria;
 };
 
+} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */

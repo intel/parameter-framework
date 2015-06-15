@@ -108,20 +108,36 @@ public:
 
     /** Create a new Exclusive criterion
      *
-     * @param[in] name, the criterion name
-     * @return raw pointer on the created criterion
+     * @param[in] name the criterion name
+     * @param[in] values available value pairs for the created criterion
+     * @param[out] error the string describing the error if an error occurred
+     *                   undefined otherwise
+     * @return raw pointer on the created criterion, nullptr if the method fail
      */
-    core::criterion::Criterion* createExclusiveCriterion(const std::string& name);
+    core::criterion::internal::Criterion*
+    createExclusiveCriterion(const std::string& name,
+                             const core::criterion::Values& values,
+                             std::string& error);
 
     /** Create a new Inclusive criterion
      *
-     * @param[in] name, the criterion name
-     * @return raw pointer on the created criterion
+     * @param[in] name the criterion name
+     * @param[in] values available value pairs for the created criterion
+     * @param[out] error the string describing the error if an error occurred
+     *                   undefined otherwise
+     * @return raw pointer on the created criterion, nullptr if the method fail
      */
-    core::criterion::Criterion* createInclusiveCriterion(const std::string& name);
+    core::criterion::internal::Criterion*
+    createInclusiveCriterion(const std::string& name,
+                             const core::criterion::Values& values,
+                             std::string& error);
 
-    // Selection criterion retrieval
-    core::criterion::Criterion* getSelectionCriterion(const std::string& strName);
+    /** Criterion retrieval
+     *
+     * @param[in] strName the criterion name
+     * @return the pointer on the desired criterion, nullptr otherwise
+     */
+    core::criterion::internal::Criterion* getCriterion(const std::string& strName);
 
     // Configuration application
     void applyConfigurations();
@@ -747,7 +763,7 @@ private:
     CParameterFrameworkConfiguration _pfwConfiguration;
 
     /** Selection Criteria used in application rules */
-    core::criterion::Criteria _criteria;
+    core::criterion::internal::Criteria _criteria;
 
     /** Subsystems handler */
     CSystemClass _systemClass;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,43 +29,56 @@
  */
 #pragma once
 
-#include "criterion/Criterion.h"
+#include <string>
+#include <list>
+#include <set>
 
 namespace core
 {
 namespace criterion
 {
-namespace internal
-{
+/** Type which represent a criterion state part */
+using Value = std::string;
 
-/** Criterion we can take several state values at the same time */
-class InclusiveCriterion final : public Criterion
+/** Criterion value collection
+ * When the criterion will be created, it will be checked that no internal values
+ * are duplicated (i.e that we have a set of value). Nevertheless, we decided to
+ * use a list to store values in order to let the user choose the value order.
+ * This is important as the first value will be chosen as default one.
+ * @see createExclusiveCriterion
+ */
+using Values = std::list<Value>;
+
+/** Criterion state representation */
+using State = std::set<Value>;
+
+/** Client criterion interface used for interacting with the system state
+ * Allows client to set or retrieve a Criterion state.
+ */
+class Criterion
 {
 public:
-    /** @param[in] name, the criterion name
-     *  @param[in] values available values the criterion can take
-     *  @param[in] logger the application main logger
+    /** Set a new state to the criterion
+     * The state should only be composed of registered values.
+     * If the requested state is already set, the function will succeed but no modification
+     * will be registered.
+     *
+     * @param[in] state the state to set
+     * @param[out] error the string describing the error if an error occurred
+     *                   undefined otherwise
+     * @return true if in case of success, false otherwise
      */
-    InclusiveCriterion(const std::string& name,
-                       const criterion::Values& values,
-                       core::log::Logger& logger);
+    virtual bool setState(const State& state, std::string& error) = 0;
 
-    /** @see Criterion */
-    bool setState(const State& state, std::string& error) override;
+    /** Retrieve the current criterion state */
+    virtual State getState() const = 0;
 
-private:
+    /** Retrieve Criterion name */
+    virtual std::string getName() const = 0;
 
-    // @{
-    /** @see Criterion */
-    virtual const std::string getKind() const override;
-
-    virtual std::string getFormattedState() const override;
-    // @{
-
-    /** Inclusive criterion state delimiter. */
-    static const std::string gDelimiter;
+protected:
+    virtual ~Criterion() {}
 };
 
-} /** internal namespace */
 } /** criterion namespace */
 } /** core namespace */

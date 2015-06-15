@@ -46,16 +46,24 @@
 
 %include "std_string.i"
 %include "std_vector.i"
+%include "std_list.i"
+%include "std_set.i"
 %include "typemaps.i"
 
-// We need to tell SWIG that std::vector<std::string> is a vector of strings
+// We need to tell SWIG that 
+//     std::vector<std::string> is a vector of strings,
+//     std::list<std::string> is a list of strings,
+//     std::set<std::string> is a set of strings
 namespace std {
     %template(StringVector) vector<string>;
+    %template(StringList) list<string>;
+    %template(StringSet) set<string>;
 }
 
 // Tells swig that 'std::string& strError' must be treated as output parameters
 // TODO: make it return a tuple instead of a list
 %apply std::string &OUTPUT { std::string& strError };
+%apply std::string &OUTPUT { std::string& errorOutput };
 
 // Automatic python docstring generation
 // FIXME: because of the typemap above, the output type is wrong for methods
@@ -80,14 +88,17 @@ public:
 
     void setLogger(ILogger* pLogger);
 
-    core::criterion::CriterionInterface*
-    createExclusiveCriterion(const std::string& name);
+    core::criterion::Criterion*
+    createExclusiveCriterion(const std::string& name,
+                             const core::criterion::Values& values,
+                             std::string& errorOutput);
 
-    core::criterion::CriterionInterface*
-    createInclusiveCriterion(const std::string& name);
+    core::criterion::Criterion*
+    createInclusiveCriterion(const std::string& name,
+                             const core::criterion::Values& values,
+                             std::string& errorOutput);
 
-    core::criterion::CriterionInterface*
-    getSelectionCriterion(const std::string& name);
+    core::criterion::Criterion* getCriterion(const std::string& name);
 
     // Configuration application
     void applyConfigurations();
@@ -202,30 +213,23 @@ namespace core
 namespace criterion
 {
 
-class CriterionInterface
+typedef std::string Value ;
+typedef std::list<Value> Values;
+typedef std::set<Value> State;
+
+class Criterion
 {
 %{
-#include <criterion/client/CriterionInterface.h>
+#include <criterion/client/Criterion.h>
 %}
 
 public:
-    virtual void setCriterionState(int iState) = 0;
-    virtual int getCriterionState() const = 0;
-    virtual std::string getCriterionName() const = 0;
-    virtual bool addValuePair(int numericalValue,
-                              const std::string& literalValue,
-                              std::string& strError) = 0;
-%apply int &OUTPUT { int& numericalValue };
-    virtual bool getNumericalValue(const std::string& literalValue, int& numericalValue) const = 0;
-%clear int& numericalValue;
-%apply std::string &OUTPUT { std::string& literalValue };
-    virtual bool getLiteralValue(int numericalValue, std::string& literalValue) const = 0;
-%clear std::string& literalValue;
-    virtual std::string getFormattedState() const = 0;
-    virtual bool isInclusive() const = 0;
+    virtual bool setState(const State& state, std::string& errorOutput) = 0;
+    virtual State getState() const = 0;
+    virtual std::string getName() const = 0;
 
 protected:
-    virtual ~CriterionInterface() {}
+    virtual ~Criterion() {}
 };
 
 } /** criterion namespace */

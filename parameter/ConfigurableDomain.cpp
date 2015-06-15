@@ -771,7 +771,7 @@ bool CConfigurableDomain::getElementSequence(const string& strConfiguration, str
 
 bool CConfigurableDomain::setApplicationRule(const string& strConfiguration,
                                              const string& strApplicationRule,
-                                             const core::criterion::Criteria& criteria,
+                                             const core::criterion::internal::Criteria& criteria,
                                              string& strError)
 {
     // Find Domain configuration

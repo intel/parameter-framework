@@ -32,7 +32,6 @@
 #include <ParameterMgrPlatformConnector.h>
 
 #include <iostream>
-#include <limits>
 #include <string>
 #include <map>
 
@@ -41,12 +40,12 @@
 #include <cstdlib>
 
 using std::string;
-using core::criterion::CriterionInterface;
+using core::criterion::Criterion;
 
 /** Rename long pfw types to short ones in pfw namespace. */
 namespace pfw
 {
-    typedef std::map<string, CriterionInterface *> Criteria;
+    typedef std::map<string, Criterion*> Criteria;
     typedef CParameterMgrPlatformConnector Pfw;
 }
 
@@ -187,30 +186,19 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
                                   "\" already exist");
         }
 
-        // Create criterion
-        CriterionInterface *newCriterion = (criterion.inclusive ?
-                pfw->createInclusiveCriterion(criterion.name) :
-                pfw->createExclusiveCriterion(criterion.name));
-        assert(newCriterion != NULL);
-        // Add criterion values
+        // Create criterion values
+        core::criterion::Values values;
         for (size_t valueIndex = 0; criterion.values[valueIndex] != NULL; ++valueIndex) {
-            int value;
-            if (criterion.inclusive) {
-                // Check that (int)1 << valueIndex would not overflow (UB)
-                if(std::numeric_limits<int>::max() >> valueIndex == 0) {
-                    return status.failure("Too many values for criterion " +
-                                          string(criterion.name));
-                }
-                value = 1 << valueIndex;
-            } else {
-                value = valueIndex;
-            }
-            const char * valueName = criterion.values[valueIndex];
-            string error;
-            if(not newCriterion->addValuePair(value, valueName, error)) {
-                return status.failure("Could not add value " + string(valueName) +
-                                      " to criterion " + criterion.name + ": " + error);
-            }
+            values.emplace_back(criterion.values[valueIndex]);
+        }
+        // Create criterion
+        string error;
+        Criterion *newCriterion = (criterion.inclusive ?
+                pfw->createInclusiveCriterion(criterion.name, values, error) :
+                pfw->createExclusiveCriterion(criterion.name, values, error));
+        if (newCriterion == nullptr) {
+            return status.failure("Could not create criterion '" + string(criterion.name) +
+                                  "': " + error);
         }
         // Add new criterion to criteria list
         criteria[criterion.name] = newCriterion;
@@ -256,13 +244,13 @@ const char *pfwGetLastError(const PfwHandler *handle)
     return handle == NULL ? NULL : handle->lastStatus.msg().c_str();
 }
 
-static CriterionInterface *getCriterion(const pfw::Criteria &criteria, const string &name)
+static Criterion *getCriterion(const pfw::Criteria &criteria, const string &name)
 {
     pfw::Criteria::const_iterator it = criteria.find(name);
     return it == criteria.end() ? NULL : it->second;
 }
 
-bool pfwSetCriterion(PfwHandler *handle, const char name[], int value)
+bool pfwSetCriterion(PfwHandler *handle, const char name[], const char **values)
 {
     if (handle == NULL) { return Status::failure(); }
     Status &status = handle->lastStatus;
@@ -274,35 +262,64 @@ bool pfwSetCriterion(PfwHandler *handle, const char name[], int value)
         return status.failure("Can not set criterion \"" + string(name) +
                               "\" as the parameter framework is not started.");
     }
-    CriterionInterface *criterion = getCriterion(handle->criteria, name);
+    Criterion *criterion = getCriterion(handle->criteria, name);
     if (criterion == NULL) {
         return status.failure("Can not set criterion " + string(name) + " as does not exist");
     }
-    criterion->setCriterionState(value);
-    return status.success();
+    core::criterion::State state{};
+    for (size_t valueIndex = 0; values[valueIndex] != NULL; ++valueIndex) {
+        state.emplace(values[valueIndex]);
+    }
+    return status.forward(criterion->setState(state, status.msg()));
 }
-bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value)
+const char **pfwGetCriterion(const PfwHandler *handle, const char name[])
 {
-    if (handle == NULL) { return Status::failure(); }
+    if (handle == NULL) { return NULL; }
     Status &status = handle->lastStatus;
     if (name == NULL) {
-        return status.failure("char *name of the criterion is NULL, "
-                              "while getting a criterion.");
+        status.failure("char *name of the criterion is NULL, while getting a criterion.");
+        return NULL;
     }
     if (handle->pfw == NULL) {
-        return status.failure("Can not get criterion \"" + string(name) +
-                              "\" as the parameter framework is not started.");
+        status.failure("Can not get criterion \"" + string(name) +
+                       "\" as the parameter framework is not started.");
+        return NULL;
     }
-    if (value == NULL) {
-        return status.failure("Can not get criterion \"" + string(name) +
-                              "\" as the out value is NULL.");
-    }
-    CriterionInterface *criterion = getCriterion(handle->criteria, name);
+    Criterion *criterion = getCriterion(handle->criteria, name);
     if (criterion == NULL) {
-        return status.failure("Can not get criterion " + string(name) + " as it does not exist");
+        status.failure("Can not get criterion " + string(name) + " as it does not exist");
+        return NULL;
     }
-    *value = criterion->getCriterionState();
-    return status.success();
+    core::criterion::State state = criterion->getState();
+
+    // Allocating one slot for each criterion value plus one for the NULL end delimiter
+    const char **values = static_cast<const char**>(malloc((state.size() + 1) * sizeof(char*)));
+    if (values == nullptr) {
+        status.failure("Can not get criterion " + string(name) + " as there is no memory left");
+        return NULL;
+    }
+
+    size_t i = 0;
+    for (auto &critValue : state) {
+        values[i] = strdup(critValue.c_str());
+        if (values[i] == nullptr) {
+            status.failure("Can not get criterion " + string(name) +
+                           " as there is no memory left (errno: " + strerror(errno) + ")");
+            return NULL;
+        }
+        ++i;
+    }
+    values[i] = NULL;
+    return values;
+}
+
+void pfwCriterionValueFree(const char **value)
+{
+    const char **valueSav = value;
+    while(*value != NULL) {
+        std::free(*const_cast<char**>(value++));
+    }
+    std::free(valueSav);
 }
 
 bool pfwApplyConfigurations(const PfwHandler *handle)
