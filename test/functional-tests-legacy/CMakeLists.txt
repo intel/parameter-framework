@@ -48,13 +48,13 @@ if (BUILD_TESTING)
         ${PFW_ROOT}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
         COPYONLY)
 
-    add_test(NAME functional-test
+    add_test(NAME functional-test-legacy
              WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
              COMMAND ${python2} ACTCampaignEngine.py)
 
     # Custom function defined in the top-level CMakeLists
-    set_test_env(functional-test)
-    set_property(TEST functional-test APPEND PROPERTY ENVIRONMENT
+    set_test_env(functional-test-legacy)
+    set_property(TEST functional-test-legacy APPEND PROPERTY ENVIRONMENT
                  PFW_ROOT=${PFW_ROOT}
                  PFW_RESULT=${PFW_RESULT})
 endif()
