@@ -69,16 +69,16 @@ public:
         /**
          * @param parser command handler callback
          * @param minArgumentCount command required arguments number
-         * @param help string containing command help
+         * @param argumentDescription string containing the description of each command argument
          * @param description string containing command description
          */
         RemoteCommandParserItem(RemoteCommandParser parser,
                                 uint32_t minArgumentCount,
-                                const std::string& help,
+                                const std::string& argumentDescription,
                                 const std::string& description) :
             mParser(parser),
             mMinArgumentCount(minArgumentCount),
-            mHelp(help),
+            mArgumentDescription(argumentDescription),
             mDescription(description)
         {
         }
@@ -92,13 +92,13 @@ public:
             return mDescription;
         }
 
-        /** Command help string getter
+        /** Description of each argument of the command
          *
-         * @return the command help string
+         * @return the command argument description string
          */
-        const std::string getHelp() const
+        const std::string getArgumentDescription() const
         {
-            return mHelp;
+            return mArgumentDescription;
         }
 
         /** Parse and launch a remote command
@@ -115,8 +115,8 @@ public:
             // Check enough arguments supplied
             if (remoteCommand.getArgumentCount() < mMinArgumentCount) {
 
-                result = std::string("Not enough arguments supplied\nUsage:\n") + getHelp();
-
+                result = std::string("Not enough arguments supplied\nUsage:\n") +
+                         getArgumentDescription();
                 return false;
             }
 
@@ -127,7 +127,7 @@ public:
             case ESucceeded:
                 return true;
             case EShowUsage:
-                result = getHelp();
+                result = getArgumentDescription();
             // Fall through intentionally
             case EFailed:
                 return false;
@@ -144,8 +144,8 @@ public:
         /** Needed arguments number */
         uint32_t mMinArgumentCount;
 
-        /** Command help string */
-        std::string mHelp;
+        /** Command argument description string */
+        std::string mArgumentDescription;
 
         /** Command description string */
         std::string mDescription;
@@ -211,7 +211,7 @@ private:
         size_t maxUsage = 0;
 
         for (auto& item : _remoteCommandParserItems) {
-            std::string usage = item.first + ' ' + item.second.getHelp();
+            std::string usage = item.first + ' ' + item.second.getArgumentDescription();
             helps.push_back({ usage, item.second.getDescription() });
             maxUsage = std::max(maxUsage, usage.length());
         }
