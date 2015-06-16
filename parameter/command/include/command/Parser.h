@@ -214,8 +214,8 @@ private:
     CommandReturn getSystemClassXML(const IRemoteCommand& remoteCommand, std::string& result);
     //@}
 
-    /** Parser items map */
-    static const CommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
+    /** Parser items getter */
+    const CommandHandler::RemoteCommandParserItems &getRemoteParserItems() const;
 
     /** Parameter Manager used to delegate parsed commands */
     CParameterMgr& mParameterMgr;

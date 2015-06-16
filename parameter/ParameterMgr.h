@@ -574,8 +574,11 @@ private:
     // Remote Processor Server
     IRemoteProcessorServerInterface* _pRemoteProcessorServer;
 
+    /** Command parser manager type */
+    using ParserWrapper = std::unique_ptr<core::command::Parser>;
+
     /** Remote commands Parser */
-    core::command::Parser _commandParser;
+    ParserWrapper _commandParser;
 
     // Maximum command usage length
     uint32_t _uiMaxCommandUsageLength;

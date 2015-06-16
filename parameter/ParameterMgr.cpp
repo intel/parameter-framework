@@ -81,7 +81,6 @@
 #include "Utility.h"
 #include <sstream>
 #include <fstream>
-#include <memory>
 
 /** Private macro helper to declare a new context
  *
@@ -148,7 +147,7 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     _pvLibRemoteProcessorHandle(NULL),
     _uiStructureChecksum(0),
     _pRemoteProcessorServer(NULL),
-    _commandParser(*this),
+    _commandParser(nullptr),
     _uiMaxCommandUsageLength(0),
     _logger(logger),
     _bForceNoRemoteInterface(false),
@@ -1537,10 +1536,11 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
             return false;
         }
 
+        _commandParser = ParserWrapper{ new command::Parser(*this) };
         // Create server
         _pRemoteProcessorServer =
             pfnCreateRemoteProcessorServer(_pfwConfiguration.getServerPort(),
-                                           _commandParser.getCommandHandler());
+                                           _commandParser->getCommandHandler());
 
         info() << "Starting remote processor server on port " << _pfwConfiguration.getServerPort();
         // Start
