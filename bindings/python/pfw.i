@@ -172,8 +172,6 @@ public:
 
     bool importDomainsXml(const std::string& strXmlSource, bool bWithSettings, bool bFromFile,
                           std::string& strError);
-    bool importSingleDomainXml(const std::string& strXmlSource, bool bOverwrite,
-                               std::string& strError);
     bool importSingleDomainXml(const std::string& xmlSource, bool overwrite, bool withSettings,
                                bool fromFile, std::string& strError);
 

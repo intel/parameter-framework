@@ -361,13 +361,6 @@ bool CParameterMgrFullConnector::exportDomainsXml(string& strXmlDest, bool bWith
     return _pParameterMgr->exportDomainsXml(strXmlDest, bWithSettings, bToFile, strError);
 }
 
-// deprecated, use the other version of importSingleDomainXml instead
-bool CParameterMgrFullConnector::importSingleDomainXml(const string& strXmlSource, bool bOverwrite,
-                                                       string& strError)
-{
-    return importSingleDomainXml(strXmlSource, bOverwrite, true, false, strError);
-}
-
 bool CParameterMgrFullConnector::importSingleDomainXml(const string& xmlSource, bool overwrite,
                                                        bool withSettings, bool fromFile,
                                                        string& errorMsg)

@@ -144,12 +144,6 @@ applicable by default) that will set these 3 parameters:
 - `/System/some_element/parameter2` to "spam"
 - `/System/another_element/parameter3` to 42
 
-## Preprocessor
-
-The xmlGenerator uses m4 to preprocess the files before parsing them.  You may
-use any macro implemented by m4, such as `define` and `include`.  This is
-deprecated and we do not recommend using it.
-
 ## Style
 
 Here are a few recommendations to follow when writing Settings using EDD:
@@ -245,18 +239,3 @@ InclusiveCriterion  Criterion2Name : Criterion2Value1 Criterion2Value2
 
 I.e. One criterion by line, starting by its kind, then its name, followed by a
 semicolon and then all possible values separated by spaces.
-
-### hostDomainGenerator.sh
-
-**This script is now deprecated and replaced by domainGenerator.py
-(see above).**
-
-It prints the resulting XML on the standard output. Its syntax is:
-
-    hostDomainGenerator.sh [--validate] <top-level configuration file> <criteria file> <EDD files...>
-
-See domainGenerator.py above for the explanation of the arguments.
-
-
-#### How it works
-TODO

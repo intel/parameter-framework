@@ -47,7 +47,6 @@ common_c_includes := \
     $(LOCAL_PATH)/../remote-processor/
 
 common_shared_libraries := libremote-processor
-common_static_libraries := libpfw_utility
 
 #############################
 # Target build
@@ -65,7 +64,6 @@ LOCAL_CFLAGS := $(common_cflags)
 LOCAL_C_INCLUDES := $(common_c_includes)
 
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
-LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 
 
 include external/stlport/libstlport.mk
@@ -89,7 +87,5 @@ LOCAL_C_INCLUDES += \
 
 LOCAL_SHARED_LIBRARIES := $(foreach shared_library, $(common_shared_libraries), \
     $(shared_library)_host)
-LOCAL_STATIC_LIBRARIES := $(foreach static_library, $(common_static_libraries), \
-    $(static_library)_host)
 
 include $(BUILD_HOST_EXECUTABLE)

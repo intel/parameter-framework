@@ -314,10 +314,6 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
     /// Structure Export
     { "getSystemClassXML", &CParameterMgr::getSystemClassXMLCommandProcess, 0 ,
             "", "Print parameter structure as XML" },
-    /// Deprecated Commands
-    { "getDomainsXML",
-            &CParameterMgr::getDomainsWithSettingsXMLCommandProcess, 0,
-            "", "DEPRECATED COMMAND, please use getDomainsWithSettingsXML" },
 
 };
 
