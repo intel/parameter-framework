@@ -32,7 +32,6 @@
 #include "command/Parser.h"
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteProcessorServer.h"
-#include <assert.h>
 #include <string>
 #include <semaphore.h>
 #include <iostream>
@@ -73,7 +72,6 @@ class CTestPlatform
 
 public:
     CTestPlatform(const std::string &strclass, int iPortNumber, sem_t& exitSemaphore);
-    virtual ~CTestPlatform();
 
     // Init
     bool load(std::string& strError);
@@ -96,8 +94,6 @@ private:
                          const IRemoteCommand& command,
                          std::string& result)
     {
-        assert(_pParameterMgrPlatformConnector != NULL);
-
         uint32_t nbStates = command.getArgumentCount() - 1;
 
         core::criterion::Values values;
@@ -145,8 +141,8 @@ private:
                          std::string& result)
     {
         core::criterion::Criterion* criterion = (isInclusive ?
-            _pParameterMgrPlatformConnector->createInclusiveCriterion(name, values, result) :
-            _pParameterMgrPlatformConnector->createExclusiveCriterion(name, values, result));
+            _parameterMgrPlatformConnector.createInclusiveCriterion(name, values, result) :
+            _parameterMgrPlatformConnector.createExclusiveCriterion(name, values, result));
 
         if (criterion == nullptr) {
             return false;
@@ -168,17 +164,17 @@ private:
                            const IRemoteCommand& remoteCommand,
                            std::string& strResult);
 
-    // Connector
-    CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;
+    /** Parameter-Framework Connector */
+    CParameterMgrPlatformConnector _parameterMgrPlatformConnector;
 
-    // Logger
-    log::CParameterMgrPlatformConnectorLogger* _pParameterMgrPlatformConnectorLogger;
+    /** Parameter-Framework Logger */
+    log::CParameterMgrPlatformConnectorLogger _parameterMgrPlatformConnectorLogger;
 
     /** Command Parser delegate */
     command::Parser _commandParser;
 
-    // Remote Processor Server
-    CRemoteProcessorServer* _pRemoteProcessorServer;
+    /** Remote Processor Server */
+    CRemoteProcessorServer _remoteProcessorServer;
 
     // Semaphore used by calling thread to avoid exiting
     sem_t& _exitSemaphore;

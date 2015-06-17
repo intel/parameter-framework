@@ -40,29 +40,19 @@ namespace platform
 {
 
 CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exitSemaphore) :
-    _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
-    _pParameterMgrPlatformConnectorLogger(new log::CParameterMgrPlatformConnectorLogger),
+    _parameterMgrPlatformConnector(strClass),
+    _parameterMgrPlatformConnectorLogger(),
     _commandParser(*this),
+    _remoteProcessorServer(iPortNumber, _commandParser.getCommandHandler()),
     _exitSemaphore(exitSemaphore)
 {
-    // Create server
-    _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber,
-                                                         _commandParser.getCommandHandler());
-
-    _pParameterMgrPlatformConnector->setLogger(_pParameterMgrPlatformConnectorLogger);
-}
-
-CTestPlatform::~CTestPlatform()
-{
-    delete _pRemoteProcessorServer;
-    delete _pParameterMgrPlatformConnectorLogger;
-    delete _pParameterMgrPlatformConnector;
+    _parameterMgrPlatformConnector.setLogger(&_parameterMgrPlatformConnectorLogger);
 }
 
 bool CTestPlatform::load(std::string& strError)
 {
     // Start remote processor server
-    if (!_pRemoteProcessorServer->start(strError)) {
+    if (!_remoteProcessorServer.start(strError)) {
 
         strError = "TestPlatform: Unable to start remote processor server: " + strError;
         return false;
@@ -76,7 +66,7 @@ bool CTestPlatform::setCriterionState(std::string criterionName,
                                       string& strResult)
 {
     core::criterion::Criterion* pCriterion =
-        _pParameterMgrPlatformConnector->getCriterion(criterionName);
+        _parameterMgrPlatformConnector.getCriterion(criterionName);
 
     if (!pCriterion) {
 

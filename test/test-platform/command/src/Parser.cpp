@@ -131,7 +131,7 @@ Parser::createCriterionFromStateList(const IRemoteCommand& remoteCommand, std::s
 
 Parser::CommandReturn Parser::startParameterMgr(const IRemoteCommand&, std::string& result)
 {
-    return mTestPlatform._pParameterMgrPlatformConnector->start(result) ?
+    return mTestPlatform._parameterMgrPlatformConnector.start(result) ?
            Parser::CommandHandler::EDone : Parser::CommandHandler::EFailed;
 }
 
@@ -142,14 +142,14 @@ Parser::CommandReturn Parser::setter(const IRemoteCommand& remoteCommand, std::s
     if(!convertTo(remoteCommand.getArgument(0), fail)) {
         return Parser::CommandHandler::EShowUsage;
     }
-    return (mTestPlatform._pParameterMgrPlatformConnector->*setFunction)(fail, result) ?
+    return (mTestPlatform._parameterMgrPlatformConnector.*setFunction)(fail, result) ?
            Parser::CommandHandler::EDone : Parser::CommandHandler::EFailed;
 }
 
 template <Parser::getter_t getFunction>
 Parser::CommandReturn Parser::getter(const IRemoteCommand&, std::string& result)
 {
-    result = (mTestPlatform._pParameterMgrPlatformConnector->*getFunction)() ? "true" : "false";
+    result = (mTestPlatform._parameterMgrPlatformConnector.*getFunction)() ? "true" : "false";
     return Parser::CommandHandler::ESucceeded;
 }
 
@@ -164,7 +164,7 @@ Parser::CommandReturn Parser::setCriterionState(const IRemoteCommand& remoteComm
 
 Parser::CommandReturn Parser::applyConfigurations(const IRemoteCommand&, std::string&)
 {
-    mTestPlatform._pParameterMgrPlatformConnector->applyConfigurations();
+    mTestPlatform._parameterMgrPlatformConnector.applyConfigurations();
 
     return Parser::CommandHandler::EDone;
 }
