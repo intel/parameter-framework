@@ -44,7 +44,7 @@ using namespace std;
 const int iDefaultPortNumber = 5001;
 
 // Starts test-platform in blocking mode
-static bool startBlockingTestPlatform(const char *filePath, int portNumber, string &strError)
+static bool startBlockingTestPlatform(const char *filePath, int portNumber, string &error)
 {
 
     // Init semaphore
@@ -53,10 +53,10 @@ static bool startBlockingTestPlatform(const char *filePath, int portNumber, stri
     sem_init(&sem, false, 0);
 
     // Create param mgr
-    CTestPlatform testPlatform(filePath, portNumber, sem);
+    test::platform::TestPlatform testPlatform(filePath, portNumber, sem);
 
     // Start platformmgr
-    if (!testPlatform.load(strError)) {
+    if (!testPlatform.load(error)) {
 
         sem_destroy(&sem);
 
@@ -82,14 +82,14 @@ static void notifyParent(int parentFd, bool success)
 }
 
 // Starts test-platform in daemon mode
-static bool startDaemonTestPlatform(const char *filePath, int portNumber, string &strError)
+static bool startDaemonTestPlatform(const char *filePath, int portNumber, string &error)
 {
     // Pipe used for communication between the child and the parent processes
     int pipefd[2];
 
     if (pipe(pipefd) == -1) {
 
-        strError = "pipe failed";
+        error = "pipe failed";
         return false;
     }
 
@@ -100,7 +100,7 @@ static bool startDaemonTestPlatform(const char *filePath, int portNumber, string
 
     if (pid < 0) {
 
-        strError = "fork failed!";
+        error = "fork failed!";
         return false;
 
     } else if (pid == 0) {
@@ -116,14 +116,14 @@ static bool startDaemonTestPlatform(const char *filePath, int portNumber, string
         sem_init(&sem, false, 0);
 
         // Create param mgr
-        CTestPlatform testPlatform(filePath, portNumber, sem);
+        test::platform::TestPlatform testPlatform(filePath, portNumber, sem);
 
         // Message to send to parent process
-        bool loadSuccess = testPlatform.load(strError);
+        bool loadSuccess = testPlatform.load(error);
 
         if (!loadSuccess) {
 
-            cerr << strError << endl;
+            cerr << error << endl;
 
             // Notify parent of failure;
             notifyParent(pipefd[1], false);
@@ -152,7 +152,7 @@ static bool startDaemonTestPlatform(const char *filePath, int portNumber, string
         bool msgFromChild = false;
 
         if (not utility::fullRead(pipefd[0], &msgFromChild, sizeof(msgFromChild))) {
-            strError = "Read pipe failed";
+            error = "Read pipe failed";
             return false;
         }
 
@@ -176,7 +176,8 @@ static void showInvalidUsage()
 static void showHelp()
 {
     showUsage();
-    cerr << "<file path> must be a valid .xml file, oftenly ParameterFrameworkConfiguration.xml" << endl;
+    cerr << "<file path> must be a valid .xml file, oftenly ParameterFrameworkConfiguration.xml" 
+         << endl;
     cerr << "Arguments:" << endl
         << "    -d  starts as a deamon" << endl
         << "    -h  display this help and exit" << endl;
@@ -224,19 +225,19 @@ int main(int argc, char *argv[])
 
     // Choose either blocking or daemon test-platform
     bool startError;
-    string strError;
+    string error;
 
     if (isDaemon) {
 
-        startError = startDaemonTestPlatform(filePath, portNumber, strError);
+        startError = startDaemonTestPlatform(filePath, portNumber, error);
     } else {
 
-        startError = startBlockingTestPlatform(filePath, portNumber, strError);
+        startError = startBlockingTestPlatform(filePath, portNumber, error);
     }
 
     if (!startError) {
 
-        cerr << "Test-platform error:" << strError.c_str() << endl;
+        cerr << "Test-platform error:" << error.c_str() << endl;
         return -1;
     }
     return 0;

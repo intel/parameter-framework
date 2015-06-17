@@ -1,5 +1,5 @@
-/* 
- * Copyright (c) 2011-2014, Intel Corporation
+/*
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,11 +29,17 @@
  */
 #pragma once
 
-#include <vector>
 #include "RemoteCommandHandler.h"
+#include <vector>
+#include <map>
+#include <functional>
 
-template <class CCommandParser>
-class TRemoteCommandHandlerTemplate : public IRemoteCommandHandler
+/** Handle command of server side application
+ *
+ * @tparam CommandParser type of the parser used to handle remote commands
+ */
+template <class CommandParser>
+class RemoteCommandHandlerTemplate : public IRemoteCommandHandler
 {
 public:
     /** Remote command parser execution return status */
@@ -51,59 +57,78 @@ public:
      *
      * @return the command execution status, @see CommandStatus
      */
-    typedef CommandStatus (CCommandParser::*RemoteCommandParser)(const IRemoteCommand& remoteCommand, std::string& strResult);
+    using RemoteCommandParser = std::function<CommandStatus(CommandParser&,
+                                                            const IRemoteCommand&,
+                                                            std::string&)>;
 
-private:
-    // Parser descriptions
-    class CRemoteCommandParserItem
+    /** Parser item definition */
+    class RemoteCommandParserItem
     {
     public:
-        CRemoteCommandParserItem(const std::string& strCommandName,
-                                 RemoteCommandParser pfnParser,
-                                 uint32_t uiMinArgumentCount,
-                                 const std::string& strHelp,
-                                 const std::string& strDescription)
-            : _strCommandName(strCommandName),
-              _pfnParser(pfnParser),
-              _uiMinArgumentCount(uiMinArgumentCount),
-              _strHelp(strHelp),
-              _strDescription(strDescription) {}
 
-        const std::string& getCommandName() const
+        /**
+         * @param parser command handler callback
+         * @param minArgumentCount command required arguments number
+         * @param argumentDescription string containing the description of each command argument
+         * @param description string containing command description
+         */
+        RemoteCommandParserItem(RemoteCommandParser parser,
+                                uint32_t minArgumentCount,
+                                const std::string& argumentDescription,
+                                const std::string& description) :
+            mParser(parser),
+            mMinArgumentCount(minArgumentCount),
+            mArgumentDescription(argumentDescription),
+            mDescription(description)
         {
-            return _strCommandName;
         }
 
+        /** Command description string getter
+         *
+         * @return the command description string
+         */
         const std::string& getDescription() const
         {
-            return _strDescription;
+            return mDescription;
         }
 
-        // Usage
-        std::string usage() const
+        /** Description of each argument of the command
+         *
+         * @return the command argument description string
+         */
+        const std::string getArgumentDescription() const
         {
-            return _strCommandName + " " + _strHelp;
+            return mArgumentDescription;
         }
 
-        bool parse(CCommandParser* pCommandParser, const IRemoteCommand& remoteCommand, std::string& strResult) const
+        /** Parse and launch a remote command
+         *
+         * @param[in] commandParser the parser used to handle the command
+         * @param[in] remoteCommand the command received from client
+         * @param[out] result the command result
+         * @result true on success, false otherwise
+         */
+        bool parse(CommandParser& commandParser,
+                   const IRemoteCommand& remoteCommand,
+                   std::string& result) const
         {
             // Check enough arguments supplied
-            if (remoteCommand.getArgumentCount() < _uiMinArgumentCount) {
+            if (remoteCommand.getArgumentCount() < mMinArgumentCount) {
 
-                strResult = std::string("Not enough arguments supplied\nUsage:\n") + usage();
-
+                result = std::string("Not enough arguments supplied\nUsage:\n") +
+                         getArgumentDescription();
                 return false;
             }
 
-            switch ((pCommandParser->*_pfnParser)(remoteCommand, strResult)) {
+            switch (mParser(commandParser, remoteCommand, result)) {
             case EDone:
-                strResult = "Done";
-                // Fall through intentionally
+                result = "Done";
+            // Fall through intentionally
             case ESucceeded:
                 return true;
             case EShowUsage:
-                strResult = usage();
-                // Fall through intentionally
+                result = getArgumentDescription();
+            // Fall through intentionally
             case EFailed:
                 return false;
             }
@@ -112,144 +137,95 @@ private:
         }
 
     private:
-        std::string _strCommandName;
-        RemoteCommandParser _pfnParser;
-        uint32_t _uiMinArgumentCount;
-        std::string _strHelp;
-        std::string _strDescription;
+
+        /** Command Handler callback */
+        RemoteCommandParser mParser;
+
+        /** Needed arguments number */
+        uint32_t mMinArgumentCount;
+
+        /** Command argument description string */
+        std::string mArgumentDescription;
+
+        /** Command description string */
+        std::string mDescription;
     };
 
-public:
-    TRemoteCommandHandlerTemplate(CCommandParser* pCommandParser) : _pCommandParser(pCommandParser), _uiMaxCommandUsageLength(0)
+    /** Remote command parser container type */
+    using RemoteCommandParserItems = std::map<std::string, RemoteCommandParserItem>;
+
+    /**
+     * @param commandParser command parser used for command handling
+     * @param remoteCommandParserItems supported command parser items
+     */
+    RemoteCommandHandlerTemplate(CommandParser& commandParser,
+                                 RemoteCommandParserItems& remoteCommandParserItems) :
+        _commandParser(commandParser), _remoteCommandParserItems(remoteCommandParserItems)
     {
-        // Help Command
-        addCommandParser("help", NULL, 0, "", "Show commands description and usage");
-    }
-    ~TRemoteCommandHandlerTemplate()
-    {
-        uint32_t uiIndex;
-
-        for (uiIndex = 0; uiIndex < _remoteCommandParserVector.size(); uiIndex++) {
-
-            delete _remoteCommandParserVector[uiIndex];
-        }
-    }
-
-    // Parsers
-    bool addCommandParser(const std::string& strCommandName,
-        RemoteCommandParser pfnParser,
-        uint32_t uiMinArgumentCount,
-        const std::string& strHelp,
-        const std::string& strDescription)
-    {
-        if (findCommandParserItem(strCommandName)) {
-
-            // Already exists
-            return false;
-        }
-
-        // Add command
-        _remoteCommandParserVector.push_back(new CRemoteCommandParserItem(strCommandName, pfnParser, uiMinArgumentCount, strHelp, strDescription));
-
-        return true;
+        /* Add the help command and specialize the help function
+         * to match RemoteCommandParser prototype
+         */
+        _remoteCommandParserItems.emplace(
+                "help",
+                RemoteCommandParserItem(
+                    [this](CommandParser&,
+                           const IRemoteCommand&, std::string& result){ return help(result); },
+                    0, "", "Show commands description and usage"));
     }
 
 private:
-    // Command processing
-    bool remoteCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult)
+
+    /** Handle a remote command
+     *
+     * @param[in] remoteCommand the remote command to handle
+     * @param[out] result string containing the result of the handled command
+     * @result true on success, false otherwise
+     */
+    bool remoteCommandProcess(const IRemoteCommand& remoteCommand, std::string& result)
     {
-        // Dispatch
-        const CRemoteCommandParserItem* pRemoteCommandParserItem = findCommandParserItem(remoteCommand.getCommand());
+        try {
+            // Dispatch
+            const RemoteCommandParserItem& remoteCommandParserItem =
+                _remoteCommandParserItems.at(remoteCommand.getCommand());
 
-        if (!pRemoteCommandParserItem) {
-
+            return remoteCommandParserItem.parse(_commandParser, remoteCommand, result);
+        }
+        catch (const std::out_of_range&) {
             // Not found
-            strResult = "Command not found!\nUse \"help\" to show available commands";
+            result = "Command not found!\nUse \"help\" to show available commands";
 
             return false;
         }
-
-        if (remoteCommand.getCommand() == "help") {
-
-            helpCommandProcess(strResult);
-
-            return true;
-        }
-
-        return pRemoteCommandParserItem->parse(_pCommandParser, remoteCommand, strResult);
     }
 
-    // Max command usage length, use for formatting
-    void initMaxCommandUsageLength()
+    /** Format help display
+     *
+     * @param result the formatted help string
+     *
+     * @return ESucceeded command status
+     */
+    CommandStatus help(std::string& result)
     {
-        if (!_uiMaxCommandUsageLength) {
-            // Show usages
-            uint32_t uiIndex;
+        struct Help { std::string usage; std::string description; };
+        std::vector<Help> helps;
+        size_t maxUsage = 0;
 
-            for (uiIndex = 0; uiIndex < _remoteCommandParserVector.size(); uiIndex++) {
-
-                const CRemoteCommandParserItem* pRemoteCommandParserItem = _remoteCommandParserVector[uiIndex];
-
-                uint32_t uiRemoteCommandUsageLength = (uint32_t)pRemoteCommandParserItem->usage().length();
-
-                if (uiRemoteCommandUsageLength > _uiMaxCommandUsageLength) {
-
-                    _uiMaxCommandUsageLength = uiRemoteCommandUsageLength;
-                }
-            }
+        for (auto& item : _remoteCommandParserItems) {
+            std::string usage = item.first + ' ' + item.second.getArgumentDescription();
+            helps.push_back({ usage, item.second.getDescription() });
+            maxUsage = std::max(maxUsage, usage.length());
         }
+
+        for (auto& help : helps) {
+            help.usage.resize(maxUsage, ' ');
+            result += help.usage + " => " + help.description + '\n';
+        }
+        return CommandStatus::ESucceeded;
     }
 
-    /////////////////// Remote command parsers
-    /// Help
-    void helpCommandProcess(std::string& strResult)
-    {
-        initMaxCommandUsageLength();
+    /** Command parser used during command during command handling */
+    CommandParser& _commandParser;
 
-        strResult = "\n";
-
-        // Show usages
-        uint32_t uiIndex;
-
-        for (uiIndex = 0; uiIndex < _remoteCommandParserVector.size(); uiIndex++) {
-
-            const CRemoteCommandParserItem* pRemoteCommandParserItem = _remoteCommandParserVector[uiIndex];
-
-            std::string strUsage = pRemoteCommandParserItem->usage();
-
-            strResult += strUsage;
-
-            // Align
-            uint32_t uiToSpacesAdd = _uiMaxCommandUsageLength + 5 - (uint32_t)strUsage.length();
-
-            while (uiToSpacesAdd--) {
-
-                strResult += " ";
-            }
-
-            strResult += std::string("=> ") + std::string(pRemoteCommandParserItem->getDescription()) + "\n";
-        }
-    }
-
-    const CRemoteCommandParserItem* findCommandParserItem(const std::string& strCommandName) const
-    {
-        uint32_t uiIndex;
-
-        for (uiIndex = 0; uiIndex < _remoteCommandParserVector.size(); uiIndex++) {
-
-            const CRemoteCommandParserItem* pRemoteCommandParserItem = _remoteCommandParserVector[uiIndex];
-
-            if (pRemoteCommandParserItem->getCommandName() == strCommandName) {
-
-                return pRemoteCommandParserItem;
-            }
-        }
-        return NULL;
-    }
-
-private:
-    CCommandParser* _pCommandParser;
-    std::vector<CRemoteCommandParserItem*> _remoteCommandParserVector;
-    uint32_t _uiMaxCommandUsageLength;
+    /** Remote command parser map */
+    RemoteCommandParserItems& _remoteCommandParserItems;
 };
-

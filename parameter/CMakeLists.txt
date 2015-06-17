@@ -97,10 +97,13 @@ add_library(parameter SHARED
     VirtualSyncer.cpp
     XmlElementSerializingContext.cpp
     XmlFileIncluderElement.cpp
-    XmlParameterSerializingContext.cpp)
+    XmlParameterSerializingContext.cpp
+    command/src/Parser.cpp)
 
 include_directories(
     include
+    command/include
+    "${PROJECT_SOURCE_DIR}/parameter"
     "${PROJECT_SOURCE_DIR}/xmlserializer"
     "${PROJECT_SOURCE_DIR}/utility"
     "${PROJECT_SOURCE_DIR}/remote-processor"
