@@ -121,11 +121,15 @@ bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& 
     CXmlElement childElement;
 
     // Manage mapping attribute
-    if (xmlElement.hasAttribute("Mapping")) {
+    std::string rawMapping = xmlElement.getAttributeString("Mapping");
+    if (!rawMapping.empty()) {
 
+        std::string error;
         _pMappingData = new CMappingData;
-        if (!_pMappingData->fromXml(xmlElement, serializingContext)) {
+        if (!_pMappingData->init(rawMapping, error)) {
 
+            serializingContext.setError("Invalid Mapping data from XML element '" +
+                                        xmlElement.getPath() + "': " + error);
             return false;
         }
     }

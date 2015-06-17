@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -110,10 +110,14 @@ bool CTypeElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext
         _uiArrayLength = 0; // Scalar
     }
     // Manage mapping attribute
-    if (xmlElement.hasAttribute("Mapping")) {
+    std::string rawMapping = xmlElement.getAttributeString("Mapping");
+    if (!rawMapping.empty()) {
 
-        if (!getMappingData()->fromXml(xmlElement, serializingContext)) {
+        std::string error;
+        if (!getMappingData()->init(rawMapping, error)) {
 
+            serializingContext.setError("Invalid Mapping data from XML element '" +
+                                        xmlElement.getPath() + "': " + error);
             return false;
         }
     }
