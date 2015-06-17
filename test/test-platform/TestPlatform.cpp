@@ -39,38 +39,38 @@ namespace test
 namespace platform
 {
 
-CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exitSemaphore) :
-    _parameterMgrPlatformConnector(strClass),
-    _parameterMgrPlatformConnectorLogger(),
-    _commandParser(*this),
-    _remoteProcessorServer(iPortNumber, _commandParser.getCommandHandler()),
-    _exitSemaphore(exitSemaphore)
+TestPlatform::TestPlatform(const string& configurationFile, int portNumber, sem_t& exitSemaphore) :
+    mParameterMgrPlatformConnector(configurationFile),
+    mParameterMgrPlatformConnectorLogger(),
+    mCommandParser(*this),
+    mRemoteProcessorServer(portNumber, mCommandParser.getCommandHandler()),
+    mExitSemaphore(exitSemaphore)
 {
-    _parameterMgrPlatformConnector.setLogger(&_parameterMgrPlatformConnectorLogger);
+    mParameterMgrPlatformConnector.setLogger(&mParameterMgrPlatformConnectorLogger);
 }
 
-bool CTestPlatform::load(std::string& strError)
+bool TestPlatform::load(std::string& error)
 {
     // Start remote processor server
-    if (!_remoteProcessorServer.start(strError)) {
+    if (!mRemoteProcessorServer.start(error)) {
 
-        strError = "TestPlatform: Unable to start remote processor server: " + strError;
+        error = "TestPlatform: Unable to start remote processor server: " + error;
         return false;
     }
 
     return true;
 }
 
-bool CTestPlatform::setCriterionState(std::string criterionName,
+bool TestPlatform::setCriterionState(std::string criterionName,
                                       const IRemoteCommand& remoteCommand,
-                                      string& strResult)
+                                      string& result)
 {
     core::criterion::Criterion* pCriterion =
-        _parameterMgrPlatformConnector.getCriterion(criterionName);
+        mParameterMgrPlatformConnector.getCriterion(criterionName);
 
     if (!pCriterion) {
 
-        strResult = "Unable to retrieve selection criterion: " + criterionName;
+        result = "Unable to retrieve selection criterion: " + criterionName;
         return false;
     }
 
@@ -83,7 +83,7 @@ bool CTestPlatform::setCriterionState(std::string criterionName,
     }
 
     // Set criterion new state
-    if (!pCriterion->setState(state, strResult)) {
+    if (!pCriterion->setState(state, result)) {
         return false;
     }
     return true;

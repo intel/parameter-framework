@@ -46,10 +46,10 @@ namespace log
 {
 
 /** Logger exposed to the parameter-framework */
-class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnector::ILogger
+class ParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnector::ILogger
 {
 public:
-    CParameterMgrPlatformConnectorLogger() {}
+    ParameterMgrPlatformConnectorLogger() {}
 
     virtual void info(const std::string& log)
     {
@@ -64,17 +64,27 @@ public:
 
 } /** log namespace */
 
-class CTestPlatform
+class TestPlatform
 {
 
     /** Remote command parser has access to private command handle function */
     friend class command::Parser;
 
 public:
-    CTestPlatform(const std::string &strclass, int iPortNumber, sem_t& exitSemaphore);
 
-    // Init
-    bool load(std::string& strError);
+    /**
+     * @param[in] configurationFile the Parameter-Framework configuration file
+     * @param[in] portNumber the tcp port used by the command server
+     * @param[in] exitSemaphore the semaphore to notify closing event to the parent thread
+     */
+    TestPlatform(const std::string &configurationFile, int portNumber, sem_t& exitSemaphore);
+
+    /** Start the test platform
+     *
+     * @param[out] error the error description if needed
+     * @return true if success false otherwise
+     */
+    bool load(std::string& error);
 
 private:
 
@@ -141,8 +151,8 @@ private:
                          std::string& result)
     {
         core::criterion::Criterion* criterion = (isInclusive ?
-            _parameterMgrPlatformConnector.createInclusiveCriterion(name, values, result) :
-            _parameterMgrPlatformConnector.createExclusiveCriterion(name, values, result));
+            mParameterMgrPlatformConnector.createInclusiveCriterion(name, values, result) :
+            mParameterMgrPlatformConnector.createExclusiveCriterion(name, values, result));
 
         if (criterion == nullptr) {
             return false;
@@ -162,22 +172,22 @@ private:
      */
     bool setCriterionState(std::string criterionName,
                            const IRemoteCommand& remoteCommand,
-                           std::string& strResult);
+                           std::string& result);
 
     /** Parameter-Framework Connector */
-    CParameterMgrPlatformConnector _parameterMgrPlatformConnector;
+    CParameterMgrPlatformConnector mParameterMgrPlatformConnector;
 
     /** Parameter-Framework Logger */
-    log::CParameterMgrPlatformConnectorLogger _parameterMgrPlatformConnectorLogger;
+    log::ParameterMgrPlatformConnectorLogger mParameterMgrPlatformConnectorLogger;
 
     /** Command Parser delegate */
-    command::Parser _commandParser;
+    command::Parser mCommandParser;
 
     /** Remote Processor Server */
-    CRemoteProcessorServer _remoteProcessorServer;
+    CRemoteProcessorServer mRemoteProcessorServer;
 
-    // Semaphore used by calling thread to avoid exiting
-    sem_t& _exitSemaphore;
+    /** Semaphore used by calling thread to avoid exiting */
+    sem_t& mExitSemaphore;
 };
 
 } /** platform namespace */

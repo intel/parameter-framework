@@ -91,7 +91,7 @@ Parser::CommandHandler::RemoteCommandParserItems Parser::gRemoteCommandParserIte
         "Get policy for schema validation based on .xsd files." } }
 };
 
-Parser::Parser(CTestPlatform& testPlatform) :
+Parser::Parser(TestPlatform& testPlatform) :
     mTestPlatform(testPlatform), mCommandHandler(CommandHandler(*this, gRemoteCommandParserItems))
 {
 }
@@ -104,7 +104,7 @@ Parser::CommandHandler* Parser::getCommandHandler()
 Parser::CommandReturn Parser::exit(const IRemoteCommand&, std::string&)
 {
     // Release the main blocking semaphore to quit application
-    sem_post(&mTestPlatform._exitSemaphore);
+    sem_post(&mTestPlatform.mExitSemaphore);
 
     return Parser::CommandHandler::EDone;
 }
@@ -131,7 +131,7 @@ Parser::createCriterionFromStateList(const IRemoteCommand& remoteCommand, std::s
 
 Parser::CommandReturn Parser::startParameterMgr(const IRemoteCommand&, std::string& result)
 {
-    return mTestPlatform._parameterMgrPlatformConnector.start(result) ?
+    return mTestPlatform.mParameterMgrPlatformConnector.start(result) ?
            Parser::CommandHandler::EDone : Parser::CommandHandler::EFailed;
 }
 
@@ -142,14 +142,14 @@ Parser::CommandReturn Parser::setter(const IRemoteCommand& remoteCommand, std::s
     if(!convertTo(remoteCommand.getArgument(0), fail)) {
         return Parser::CommandHandler::EShowUsage;
     }
-    return (mTestPlatform._parameterMgrPlatformConnector.*setFunction)(fail, result) ?
+    return (mTestPlatform.mParameterMgrPlatformConnector.*setFunction)(fail, result) ?
            Parser::CommandHandler::EDone : Parser::CommandHandler::EFailed;
 }
 
 template <Parser::getter_t getFunction>
 Parser::CommandReturn Parser::getter(const IRemoteCommand&, std::string& result)
 {
-    result = (mTestPlatform._parameterMgrPlatformConnector.*getFunction)() ? "true" : "false";
+    result = (mTestPlatform.mParameterMgrPlatformConnector.*getFunction)() ? "true" : "false";
     return Parser::CommandHandler::ESucceeded;
 }
 
@@ -164,7 +164,7 @@ Parser::CommandReturn Parser::setCriterionState(const IRemoteCommand& remoteComm
 
 Parser::CommandReturn Parser::applyConfigurations(const IRemoteCommand&, std::string&)
 {
-    mTestPlatform._parameterMgrPlatformConnector.applyConfigurations();
+    mTestPlatform.mParameterMgrPlatformConnector.applyConfigurations();
 
     return Parser::CommandHandler::EDone;
 }

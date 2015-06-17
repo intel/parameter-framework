@@ -38,7 +38,7 @@ namespace test
 namespace platform
 {
 
-class CTestPlatform;
+class TestPlatform;
 
 namespace command
 {
@@ -56,7 +56,7 @@ public:
      *
      * @param test-platform reference
      */
-    Parser(CTestPlatform& testPlatform);
+    Parser(TestPlatform& testPlatform);
 
     /** Internal command handler getter
      *
@@ -161,7 +161,7 @@ private:
     static CommandHandler::RemoteCommandParserItems gRemoteCommandParserItems;
 
     /** Test PLatform used to delegate parsed commands */
-    CTestPlatform& mTestPlatform;
+    TestPlatform& mTestPlatform;
 
     /** Command Handler */
     CommandHandler mCommandHandler;
