@@ -54,6 +54,7 @@ after_success:
           --exclude "build_debug/bindings/python"
           --exclude "build_debug/CMakeFiles"
           --exclude "build"
+          --exclude "install"
           --exclude "skeleton-subsystem"
           --exclude "test/test-subsystem"
           --exclude "test/functional-tests"
