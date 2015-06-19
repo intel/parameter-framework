@@ -105,12 +105,6 @@ _xmlDoc* CXmlDocSource::getDoc() const
     return _pDoc;
 }
 
-bool CXmlDocSource::isParsable() const
-{
-    // Check that the doc has been created
-    return _pDoc != NULL;
-}
-
 bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
 {
     return validate(serializingContext);

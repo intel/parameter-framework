@@ -135,13 +135,6 @@ public:
     virtual bool validate(CXmlSerializingContext& serializingContext);
 
     /**
-    * Method that checks that the xml document has been correctly parsed.
-    *
-    * @return false if any error occurs during the parsing
-    */
-    virtual bool isParsable() const;
-
-    /**
      * Helper method for creating an xml document from either a file or a
      * string.
      *
