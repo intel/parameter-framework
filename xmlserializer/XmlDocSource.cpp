@@ -42,11 +42,13 @@ using std::string;
 bool CXmlDocSource::_bLibXml2CleanupScheduled;
 
 CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
-                             _xmlNode *pRootNode) :
+                             _xmlNode *pRootNode,
+                             const std::string& strXmlSchemaFile,
+                             const std::string& strRootElementType) :
       _pDoc(pDoc),
       _pRootNode(pRootNode),
-      _strXmlSchemaFile(""),
-      _strRootElementType(""),
+      _strXmlSchemaFile(strXmlSchemaFile),
+      _strRootElementType(strRootElementType),
       _strRootElementName(""),
       _strNameAttributeName(""),
       _bValidateWithSchema(bValidateWithSchema)

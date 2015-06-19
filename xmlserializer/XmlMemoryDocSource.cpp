@@ -40,9 +40,9 @@ CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource, bool bVal
                                          const std::string& strProduct,
                                          const std::string& strVersion):
      base(xmlNewDoc(BAD_CAST "1.0"), bValidateWithSchema,
-          xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
+          xmlNewNode(NULL, BAD_CAST strRootElementType.c_str()),
+          strXmlSchemaFile, strRootElementType),
      _pXmlSource(pXmlSource),
-     _strXmlSchemaFile(strXmlSchemaFile),
      _strProduct(strProduct),
      _strVersion(strVersion)
 {
@@ -83,5 +83,5 @@ bool CXmlMemoryDocSource::populate(CXmlSerializingContext& serializingContext)
     // Compose the xml document
     _pXmlSource->toXml(docElement, serializingContext);
 
-    return true;
+    return base::validate(serializingContext);
 }

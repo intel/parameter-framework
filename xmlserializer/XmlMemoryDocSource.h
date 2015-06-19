@@ -77,11 +77,6 @@ private:
       */
     const IXmlSource* _pXmlSource;
 
-    /**
-      * Schema file
-      */
-    std::string _strXmlSchemaFile;
-
     // Product and version info
     std::string _strProduct;
     std::string _strVersion;
