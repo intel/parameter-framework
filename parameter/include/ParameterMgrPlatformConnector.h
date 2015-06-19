@@ -108,7 +108,7 @@ public:
       *
       * @return if the subsystem load will fail on missing subsystem.
       */
-    bool getFailureOnMissingSubsystem();
+    bool getFailureOnMissingSubsystem() const;
 
     /** Should start fail in failed settings load.
       *
@@ -125,7 +125,7 @@ public:
       *
       * @return failure on failed settings load policy state.
       */
-    bool getFailureOnFailedSettingsLoad();
+    bool getFailureOnFailedSettingsLoad() const;
 
     /** Get the path to the directory containing the XML Schemas
      *
@@ -154,7 +154,7 @@ public:
      *
      * @return areSchemasValidated
      */
-    bool getValidateSchemasOnStart();
+    bool getValidateSchemasOnStart() const;
 
 private:
     CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector&);

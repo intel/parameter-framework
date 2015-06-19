@@ -855,7 +855,7 @@ void CParameterMgr::setFailureOnFailedSettingsLoad(bool bFail)
     _bFailOnFailedSettingsLoad = bFail;
 }
 
-bool CParameterMgr::getFailureOnFailedSettingsLoad()
+bool CParameterMgr::getFailureOnFailedSettingsLoad() const
 {
     return _bFailOnFailedSettingsLoad;
 }

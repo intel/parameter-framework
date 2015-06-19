@@ -177,7 +177,7 @@ public:
       *
       * @return failure on failed settings load policy state.
       */
-    bool getFailureOnFailedSettingsLoad();
+    bool getFailureOnFailedSettingsLoad() const;
 
     /** Get the path to the directory containing the XML Schemas
      *

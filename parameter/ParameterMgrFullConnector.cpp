@@ -125,7 +125,7 @@ void CParameterMgrFullConnector::setFailureOnFailedSettingsLoad(bool bFail)
     _pParameterMgr->setFailureOnFailedSettingsLoad(bFail);
 }
 
-bool CParameterMgrFullConnector::getFailureOnFailedSettingsLoad()
+bool CParameterMgrFullConnector::getFailureOnFailedSettingsLoad() const
 {
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
 }

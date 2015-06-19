@@ -117,7 +117,7 @@ private:
             const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /** The type of a CParameterMgrPlatformConnector boolean getter. */
-    typedef bool (CParameterMgrPlatformConnector::*getter_t)();
+    typedef bool (CParameterMgrPlatformConnector::*getter_t)() const;
     /** Template callback to create a ParameterMgrPlatformConnector boolean getter callback.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *
