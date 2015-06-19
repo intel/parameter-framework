@@ -53,8 +53,14 @@ public:
       * @param[out] pDoc a pointer to the xml document that will be filled by the class
       * @param[in] pRootNode a pointer to the root element of the document.
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
+      * @param[in] xmlSchemaFile a string containing the path to the schema file
+      * @param[in] rootElementType a string containing the root element type
       */
-    CXmlDocSource(_xmlDoc* pDoc, bool bValidateWithSchema = false, _xmlNode* pRootNode = NULL);
+    CXmlDocSource(_xmlDoc* pDoc,
+                  bool bValidateWithSchema = false,
+                  _xmlNode* pRootNode = NULL,
+                  const std::string& xmlSchemaFile = "",
+                  const std::string& rootElementType = "");
 
     /**
       * Constructor
@@ -129,13 +135,6 @@ public:
     virtual bool validate(CXmlSerializingContext& serializingContext);
 
     /**
-    * Method that checks that the xml document has been correctly parsed.
-    *
-    * @return false if any error occurs during the parsing
-    */
-    virtual bool isParsable() const;
-
-    /**
      * Helper method for creating an xml document from either a file or a
      * string.
      *
@@ -164,6 +163,11 @@ protected:
       */
     static bool _bLibXml2CleanupScheduled;
 
+    /**
+      * Schema file
+      */
+    std::string _strXmlSchemaFile;
+
 private:
 
     /**
@@ -183,11 +187,6 @@ private:
       * @param[out] pError is the xml error output
       */
     static void schemaValidityStructuredErrorFunc(void* pUserData, _xmlError* pError);
-
-    /**
-      * Schema file
-      */
-    std::string _strXmlSchemaFile;
 
     /**
       * Element type info

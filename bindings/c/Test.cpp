@@ -135,17 +135,15 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
     // Create valid pfw config file
     const char *intParameterPath = "/test/system/integer";
     const char *stringParameterPath = "/test/system/string";
-    TmpFile system("<?xml version='1.0' encoding='UTF-8'?>\
-        <Subsystem Name='system' Type='Virtual' Endianness='Little'>\
-            <ComponentLibrary/>\
-            <InstanceDefinition>\
-                <IntegerParameter Name='integer' Size='32' Signed='true' Max='100'/>\
-                <StringParameter Name='string' MaxLength='9'/>\
-            </InstanceDefinition>\
-        </Subsystem>");
     TmpFile libraries("<?xml version='1.0' encoding='UTF-8'?>\
         <SystemClass Name='test'>\
-            <SubsystemInclude Path='" + system.path() + "'/>\
+            <Subsystem Name='system' Type='Virtual' Endianness='Little'>\
+                <ComponentLibrary/>\
+                <InstanceDefinition>\
+                    <IntegerParameter Name='integer' Size='32' Signed='true' Max='100'/>\
+                    <StringParameter Name='string' MaxLength='9'/>\
+                </InstanceDefinition>\
+            </Subsystem>\
         </SystemClass>");
     TmpFile config("<?xml version='1.0' encoding='UTF-8'?>\
         <ParameterFrameworkConfiguration\

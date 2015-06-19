@@ -7,7 +7,6 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:choice maxOccurs="unbounded">
-					<xs:element name="SubsystemInclude" type="FileIncluderType"/>
 					<xs:element ref="Subsystem"/>
 				</xs:choice>
 			</xs:sequence>

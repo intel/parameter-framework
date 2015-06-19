@@ -28,27 +28,37 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #pragma once
-#include "KindElement.h"
-#include <list>
-#include <string>
 
-class CPluginLocation : public CKindElement
+#include <string>
+#include <list>
+
+namespace core
 {
 
-public:
-    CPluginLocation(const std::string& strName, const std::string& strKind);
+/** Parameter-Framework Configuration holder */
+struct Configuration
+{
+    /** @param[in] file the file which contains the configuration */
+    Configuration(const std::string &file) : configurationFile(file) {}
 
-    // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
-
-    // Folder
-    const std::string& getFolder() const;
-
-    // Plugin list
-    const std::list<std::string>& getPluginList() const;
-
-private:
-    std::string _strFolder;
-    std::list<std::string> _pluginList;
-
+    /** System class name */
+    std::string systemClassName;
+    /** Indicate if the tuning is allowed */
+    bool tuningAllowed = false;
+    /** Remote command server listening port */
+    uint16_t serverPort = 0;
+    /** File which contains the configuration */
+    std::string configurationFile;
+    /** Application XML schemas directory */
+    std::string schemasLocation;
+    /** Application structure file */
+    std::string structureFile;
+    /** Application settings file */
+    std::string settingsFile;
+    /** Application binary settings file */
+    std::string binarySettingsFile;
+    /** Application plugin path list */
+    std::list<std::string> plugins;
 };
+
+} /** core namespace */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,55 +27,37 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "ParameterFrameworkConfiguration.h"
+#pragma once
 
-#define base CElement
+#include "xmlserializer/Attribute.h"
 
-CParameterFrameworkConfiguration::CParameterFrameworkConfiguration()
-    : _bTuningAllowed(false), _uiServerPort(0)
+#include <map>
+#include <string>
+
+namespace core
 {
-}
-
-std::string CParameterFrameworkConfiguration::getKind() const
+namespace xml
 {
-    return "ParameterFrameworkConfiguration";
-}
-
-bool CParameterFrameworkConfiguration::childrenAreDynamic() const
+namespace binding
 {
-    return true;
-}
 
-// System class name
-const std::string& CParameterFrameworkConfiguration::getSystemClassName() const
+/** An xml tag is represented through a simple string */
+using Tag = std::string;
+
+struct Body;
+
+/** Nodes should be retrieved easily thanks to their tag */
+using Nodes = std::map<Tag, Body>;
+
+/** Xml Node representation */
+struct Body
 {
-    return _strSystemClassName;
-}
+    Attributes attributes;
+    Nodes childs;
+};
 
-// Tuning allowed
-bool CParameterFrameworkConfiguration::isTuningAllowed() const
-{
-    return _bTuningAllowed;
-}
+using Node = std::pair<Tag, Body>;
 
-// Server port
-uint16_t CParameterFrameworkConfiguration::getServerPort() const
-{
-    return _uiServerPort;
-}
-
-// From IXmlSink
-bool CParameterFrameworkConfiguration::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
-{
-    // System class name
-    _strSystemClassName = xmlElement.getAttributeString("SystemClassName");
-
-    // Tuning allowed
-    _bTuningAllowed = xmlElement.getAttributeBoolean("TuningAllowed");
-
-    // Server port
-    _uiServerPort = (uint16_t)xmlElement.getAttributeInteger("ServerPort");
-
-    // Base
-    return base::fromXml(xmlElement, serializingContext);
-}
+} /** binding namespace */
+} /** xml namespace */
+} /** core namespace */

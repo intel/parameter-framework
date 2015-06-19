@@ -105,12 +105,13 @@ bool CTypeElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext
     // Array Length attribute
     if (xmlElement.hasAttribute("ArrayLength")) {
 
-        _uiArrayLength = xmlElement.getAttributeInteger("ArrayLength");
+        xmlElement.getAttribute("ArrayLength", _uiArrayLength);
     } else {
         _uiArrayLength = 0; // Scalar
     }
     // Manage mapping attribute
-    std::string rawMapping = xmlElement.getAttributeString("Mapping");
+    std::string rawMapping;
+    xmlElement.getAttribute("Mapping", rawMapping);
     if (!rawMapping.empty()) {
 
         std::string error;
@@ -157,7 +158,7 @@ void CTypeElement::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serial
 {
     if (!isScalar()) {
 
-        xmlElement.setAttributeInteger("ArrayLength", getArrayLength());
+        xmlElement.setAttribute("ArrayLength", getArrayLength());
     }
 
     base::toXml(xmlElement, serializingContext);

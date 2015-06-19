@@ -40,8 +40,8 @@
 #include "XmlDocSource.h"
 #include "XmlDomainExportContext.h"
 #include "Results.h"
-#include "ParameterFrameworkConfiguration.h"
 #include "criterion/Criteria.h"
+#include "Configuration.h"
 #include "ConfigurableDomains.h"
 #include "SystemClass.h"
 #include <criterion/Criterion.h>
@@ -58,14 +58,12 @@ class CSubsystemLibrary;
 class CParameterBlackboard;
 class IRemoteProcessorServerInterface;
 class CParameterHandle;
-class CSubsystemPlugins;
 class CParameterAccessContext;
 class CConfigurableElement;
 
 class CParameterMgr
 {
     enum ElementLibrary {
-        EFrameworkConfigurationLibrary,
         EParameterCreationLibrary,
         EParameterConfigurationLibrary
     };
@@ -419,15 +417,14 @@ private:
      * @param[in] elementSerializingContext serializing context
      * @param[out] pRootElement the receiving element
      * @param[in] input the input XML stream
-     * @param[in] strXmlFolder the folder containing the XML input file (if applicable) or ""
      * @param[in] eElementLibrary which element library to be used
      * @param[in] strNameAttributeName the name of the element's XML "name" attribute
      *
      * @returns true if parsing succeeded, false otherwise
      */
     bool xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement,
-                  _xmlDoc* doc, const std::string& strXmlFolder,
-                  ElementLibrary eElementLibrary, const std::string& strNameAttributeName = "Name");
+                  _xmlDoc* doc, ElementLibrary eElementLibrary,
+                  const std::string& strNameAttributeName = "Name");
 
     /** Wrapper for converting public APIs semantics to internal API
      *
@@ -554,14 +551,6 @@ private:
     // Dynamic object creation
     CElementLibrarySet* _pElementLibrarySet;
 
-    // XML parsing, object creation handling
-    std::string _strXmlConfigurationFilePath; // Configuration file path
-    std::string _strXmlConfigurationFolderPath; // Root folder for configuration file
-    std::string _strSchemaFolderLocation; // Place where schemas stand
-
-    // Subsystem plugin location
-    const CSubsystemPlugins* _pSubsystemPlugins;
-
     /**
      * Remote processor library handle
      */
@@ -612,7 +601,7 @@ private:
     bool _bValidateSchemasOnStart;
 
     /** Parameter Configuration information */
-    CParameterFrameworkConfiguration _pfwConfiguration;
+    core::Configuration _pfwConfiguration;
 
     /** Selection Criteria used in application rules */
     core::criterion::internal::Criteria _criteria;

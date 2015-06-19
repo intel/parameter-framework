@@ -51,7 +51,10 @@ else(NOT LIBXML2_FOUND)
     endif(NOT XML2_XINCLUDE_SUPPORT)
 endif(NOT LIBXML2_FOUND)
 
-include_directories(${LIBXML2_INCLUDE_DIR})
+include_directories(
+    ${LIBXML2_INCLUDE_DIR}
+    "${PROJECT_SOURCE_DIR}/utility")
+
 target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LIBXML2_DEFINITIONS}")
 
@@ -62,3 +65,22 @@ install(FILES
     XmlElement.h
     XmlSerializingContext.h
     DESTINATION "include/xmlserializer")
+
+if(BUILD_TESTING)
+    find_path(CATCH_HEADER catch.hpp)
+    include_directories(
+        ./
+        include
+        ${CATCH_HEADER})
+
+    # Add unit test
+    add_executable(xmlBindingUnitTest test/XmlBindingUnitTest.cpp)
+
+    target_link_libraries(xmlBindingUnitTest xmlserializer)
+    add_test(NAME xmlBindingUnitTest
+             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/test
+             COMMAND xmlBindingUnitTest)
+
+    # Custom function defined in the top-level CMakeLists
+    set_test_env(xmlBindingUnitTest)
+endif()

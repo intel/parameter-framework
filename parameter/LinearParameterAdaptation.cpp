@@ -65,7 +65,7 @@ bool CLinearParameterAdaptation::fromXml(const CXmlElement& xmlElement, CXmlSeri
     // Get SlopeNumerator
     if (xmlElement.hasAttribute("SlopeNumerator")) {
 
-        _dSlopeNumerator = xmlElement.getAttributeDouble("SlopeNumerator");
+       xmlElement.getAttribute("SlopeNumerator", _dSlopeNumerator);
 
     } else {
         // Default
@@ -74,7 +74,7 @@ bool CLinearParameterAdaptation::fromXml(const CXmlElement& xmlElement, CXmlSeri
     // Get SlopeDenominator
     if (xmlElement.hasAttribute("SlopeDenominator")) {
 
-        _dSlopeDenominator = xmlElement.getAttributeDouble("SlopeDenominator");
+        xmlElement.getAttribute("SlopeDenominator", _dSlopeDenominator);
 
         // Avoid by 0 division errors
         if (_dSlopeDenominator == 0) {

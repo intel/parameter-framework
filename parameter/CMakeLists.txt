@@ -59,7 +59,6 @@ add_library(parameter SHARED
     ErrorContext.cpp
     FixedPointParameterType.cpp
     FormattedSubsystemObject.cpp
-    FrameworkConfigurationLocation.cpp
     HardwareBackSynchronizer.cpp
     InstanceConfigurableElement.cpp
     InstanceDefinition.cpp
@@ -73,14 +72,12 @@ add_library(parameter SHARED
     ParameterBlackboard.cpp
     ParameterBlockType.cpp
     Parameter.cpp
-    ParameterFrameworkConfiguration.cpp
     ParameterHandle.cpp
     ParameterMgr.cpp
     ParameterMgrFullConnector.cpp
     ParameterMgrPlatformConnector.cpp
     ParameterType.cpp
     PathNavigator.cpp
-    PluginLocation.cpp
     RuleParser.cpp
     SelectionCriterionRule.cpp
     SimulatedBackSynchronizer.cpp
@@ -96,7 +93,6 @@ add_library(parameter SHARED
     VirtualSubsystem.cpp
     VirtualSyncer.cpp
     XmlElementSerializingContext.cpp
-    XmlFileIncluderElement.cpp
     XmlParameterSerializingContext.cpp
     command/src/Parser.cpp)
 
@@ -105,6 +101,7 @@ include_directories(
     command/include
     "${PROJECT_SOURCE_DIR}/parameter"
     "${PROJECT_SOURCE_DIR}/xmlserializer"
+    "${PROJECT_SOURCE_DIR}/xmlserializer/include"
     "${PROJECT_SOURCE_DIR}/utility"
     "${PROJECT_SOURCE_DIR}/remote-processor"
     "${PROJECT_SOURCE_DIR}/parameter/log/include"
@@ -131,7 +128,6 @@ install(FILES
     Element.h
     ElementBuilder.h
     ElementLibrary.h
-    FileIncluderElementBuilder.h
     FormattedSubsystemObject.h
     InstanceConfigurableElement.h
     Mapper.h

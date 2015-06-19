@@ -42,11 +42,13 @@ using std::string;
 bool CXmlDocSource::_bLibXml2CleanupScheduled;
 
 CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
-                             _xmlNode *pRootNode) :
+                             _xmlNode *pRootNode,
+                             const std::string& strXmlSchemaFile,
+                             const std::string& strRootElementType) :
       _pDoc(pDoc),
       _pRootNode(pRootNode),
-      _strXmlSchemaFile(""),
-      _strRootElementType(""),
+      _strXmlSchemaFile(strXmlSchemaFile),
+      _strRootElementType(strRootElementType),
       _strRootElementName(""),
       _strNameAttributeName(""),
       _bValidateWithSchema(bValidateWithSchema)
@@ -93,18 +95,14 @@ string CXmlDocSource::getRootElementAttributeString(const string& strAttributeNa
 {
     CXmlElement topMostElement(_pRootNode);
 
-    return topMostElement.getAttributeString(strAttributeName);
+    string attribute;
+    topMostElement.getAttribute(strAttributeName, attribute);
+    return attribute;
 }
 
 _xmlDoc* CXmlDocSource::getDoc() const
 {
     return _pDoc;
-}
-
-bool CXmlDocSource::isParsable() const
-{
-    // Check that the doc has been created
-    return _pDoc != NULL;
 }
 
 bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
@@ -118,7 +116,8 @@ bool CXmlDocSource::validate(CXmlSerializingContext& serializingContext)
     // Check that the doc has been created
     if (!_pDoc) {
 
-        serializingContext.setError("Could not parse document ");
+        serializingContext.setError("Could not parse document with Root element: " +
+                                    _strRootElementType);
 
         return false;
     }

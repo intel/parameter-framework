@@ -82,7 +82,8 @@ void CEnumParameterType::showProperties(string& strResult) const
 bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Size in bits
-    uint32_t uiSizeInBits = xmlElement.getAttributeInteger("Size");
+    uint32_t uiSizeInBits;
+    xmlElement.getAttribute("Size", uiSizeInBits);
 
     // Size
     setSize(uiSizeInBits / 8);
@@ -345,7 +346,7 @@ bool CEnumParameterType::isValid(int iNumerical, CParameterAccessContext& parame
 void CEnumParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Size
-    xmlElement.setAttributeString("Size", CUtility::toString(getSize() * 8));
+    xmlElement.setAttribute("Size", getSize() * 8);
 
     base::toXml(xmlElement, serializingContext);
 }

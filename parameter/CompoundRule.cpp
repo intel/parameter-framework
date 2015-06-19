@@ -150,7 +150,7 @@ bool CCompoundRule::fromXml(const CXmlElement& xmlElement, CXmlSerializingContex
 void CCompoundRule::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Set type
-    xmlElement.setAttributeString("Type", _apcTypes[_bTypeAll]);
+    xmlElement.setAttribute("Type", _apcTypes[_bTypeAll]);
 
     // Base
     base::toXml(xmlElement, serializingContext);

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FillMe IntegerAttr="666666">
+    <FillChild BooleanAttr="false" StringAttr="Premature optimization is the root of all evil"/>
+</FillMe>
