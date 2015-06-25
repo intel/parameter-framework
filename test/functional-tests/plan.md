@@ -33,22 +33,22 @@ Structure file:
 ## Starting the Parameter Framework
 
 - set a logger
-    - [ ] Scenario: Default logger
+    - [X] Scenario: Default logger
         * WHEN no logger is set
         * THEN start should succeed
 
-    - [ ] Scenario: No logger
+    - [X] Scenario: No logger
         * WHEN a nullptr logger is set
         * THEN start should succeed
 
-    - [ ] Scenario: Logger should receive info and warnings
+    - [X] Scenario: Logger should receive info and warnings
         * GIVEN config files that emit warnings
         * GIVEN a logger that store logs
         * WHEN the record logger is set
         * THEN start should succeed
         * AND_THEN the logger should have stored info and warning log
 
-    - [ ] Scenario: Unset logger
+    - [X] Scenario: Unset logger
         * GIVEN config files that emit warnings
         * GIVEN a logger that store logs
         * WHEN the record logger is set
@@ -79,7 +79,7 @@ Structure file:
             * WHEN the missing subsystem policy is set to failure
             * THEN start should succeed
 
-        - [ ] Scenario: Wrong plugin
+        - [X] Scenario: Wrong plugin
             * GIVEN config files with a invalid plugin
             * WHEN the missing subsystem policy is set to failure
             * THEN start should fail
@@ -90,17 +90,17 @@ Structure file:
             * THEN start should succeed
 
     - "failure on failed settings load"
-        - [ ] Scenario: Settings OK
+        - [X] Scenario: Settings OK
             * GIVEN config files with a valid settings file
             * WHEN settings load failure is requested to abort start
             * THEN start should succeed
 
-        - [ ] Scenario: Wrong settings
+        - [X] Scenario: Wrong settings
             * GIVEN config files with a invalid (non existant?) settings file
             * WHEN settings load failure is requested to abort start
             * THEN start should fail
 
-        - [ ] Scenario: Wrong settings but ignore
+        - [X] Scenario: Wrong settings but ignore
             * GIVEN config files with a invalid (non existant?) settings file
             * WHEN settings load failure is requested to abort start
             * THEN start should succeed
@@ -138,15 +138,15 @@ Structure file:
 ### Error cases/special cases
 
 - invalid configuration or a file can't be read:
-    - [ ] Scenario: invalid top level config file
+    - [X] Scenario: invalid top level config file
         * GIVEN an incorect (empty ? wrong balisa ?) config top level file.
         * THEN start should fail
 
-    - [ ] Scenario: invalid structure
+    - [X] Scenario: invalid structure
         * GIVEN an incorect (empty ? wrong balisa ?) structure file.
         * THEN start should fail
 
-    - [ ] Scenario: invalid settings
+    - [X] Scenario: invalid settings
         * GIVEN an incorect (empty ? wrong balisa ?) settings file.
         * THEN start should fail
 
