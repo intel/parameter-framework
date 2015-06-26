@@ -30,102 +30,75 @@
 #pragma once
 
 #include "Config.hpp"
+#include "ConfigFiles.hpp"
 
 #include <ParameterMgrFullConnector.h>
+
+namespace parameterFramework
+{
 
 /** Wrapper around the Parameter Framework to throw exceptions on errors and
  *  have more user friendly methods.
  */
-class ParameterFramework : private CParameterMgrFullConnector
+class ParameterFramework : private parameterFramework::ConfigFiles,
+                           private CParameterMgrFullConnector
 {
 private:
     using PF = CParameterMgrFullConnector;
 
-    template <class Type>
-    using Getter = Type (PF::*)() const;
-    template <class Type>
-    using Setter = void (PF::*)(Type);
-
-    template <class PType, Getter<PType> getter, Setter<PType> setter>
-    struct Prop {
-        using Type = PType;
-        static Type get(const PF &pf) {
-            return (pf.*getter)();
-        }
-        static void set(PF &pf, Type value) {
-            (pf.*setter)(value);
-        }
-    };
-
-    template <class Type>
-    using MayFailSetter = bool (PF::*)(Type, std::string &);
-
-    template <class PType, Getter<PType> getter, MayFailSetter<PType> setter>
-    struct MayFailProp {
-        using Type = PType;
-        static Type get(const PF &pf) {
-            return (pf.*getter)();
-        }
-        static void set(PF &pf, Type value) {
-            mayFailCall(pf, setter, value);
-        }
-    };
-
 public:
-    using FailureOnMissingSubsystem =
-        Prop<bool, &PF::getFailureOnMissingSubsystem, &PF::setFailureOnMissingSubsystem>;
-    using FailureOnFailedSettingsLoad =
-        Prop<bool, &PF::getFailureOnFailedSettingsLoad, &PF::setFailureOnFailedSettingsLoad>;
-    using ForceNoRemoteInterface =
-        Prop<bool, &PF::getForceNoRemoteInterface, &PF::setForceNoRemoteInterface>;
-    using SchemaFolderLocation =
-        Prop<const std::string &, &PF::getSchemaFolderLocation, &PF::setSchemaFolderLocation>;
-    using Validate =
-        Prop<bool, &PF::getValidateSchemasOnStart, &PF::setValidateSchemasOnStart>;
-    using RawValueSpace =
-        Prop<bool, &PF::isValueSpaceRaw, &PF::setValueSpace>;
-    using HexOutputFormat =
-        Prop<bool, &PF::isOutputRawFormatHex, &PF::setOutputRawFormat>;
-    using TuningMode =
-        MayFailProp<bool,  &PF::isTuningModeOn, &PF::setTuningMode>;
-    using Autosync =
-        MayFailProp<bool, &PF::isAutoSyncOn, &PF::setAutoSync>;
-    using Logger =
-        Prop<ILogger *, nullptr, &PF::setLogger>;
-
-
+    ParameterFramework(const Config &config = Config()) :
+        ConfigFiles(config),
+        PF(getPath()) {}
 
     void start() {
         mayFailCall(&PF::start);
     }
 
     /** @name Forwarded methods
-     * Forward those methods without modification as they are no failure to
-     * forward as exception and are already ergonomic.
+     * Forward those methods without modification as there are ergonomic and
+     * can not fail (no failure to throw).
      * @{ */
     using PF::applyConfigurations;
+    using PF::getFailureOnMissingSubsystem;
+    using PF::setFailureOnMissingSubsystem;
+    using PF::getFailureOnFailedSettingsLoad;
+    using PF::setFailureOnFailedSettingsLoad;
+    using PF::getForceNoRemoteInterface;
+    using PF::setForceNoRemoteInterface;
+    using PF::getSchemaFolderLocation;
+    using PF::setSchemaFolderLocation;
+    using PF::getValidateSchemasOnStart;
+    using PF::setValidateSchemasOnStart;
+    using PF::isValueSpaceRaw;
+    using PF::isOutputRawFormatHex;
+    using PF::setOutputRawFormat;
+    using PF::isTuningModeOn;
+    using PF::isAutoSyncOn;
+    using PF::setLogger;
     /** @} */
 
-    template <class Property>
-    typename Property::Type get() const { return Property::get(*this); };
-    template <class Property>
-    void set(typename Property::Type value) { Property::set(*this, value); }
+    /** Renaming for better readability (and coherency with PF::isValueSpaceRaw)
+     *  of PF::setValueSpace. */
+    void setRawValueSpace(bool enable) { setValueSpace(enable); }
+
+    /** Wrap PF::setTuningMode to throw an exception on failure. */
+    void setTuningMode(bool enable) { mayFailCall(&PF::setTuningMode, enable); }
+
+    /** Wrap PF::setAutoSync to throw an exception on failure. */
+    void setAutoSync(bool enable) { mayFailCall(&PF::setAutoSync, enable); }
 
 private:
     /** Wrap a method that may fail to throw an Exception instead of retuning a boolean.
      * @param[in] method that return a boolean to indicate failure.
      * @param[in] args parameters to call method call with. */
     template <class... MArgs, class... Args>
-    static void mayFailCall(PF &pf, bool (PF::*method)(MArgs...), Args&&... args) {
+    void mayFailCall(bool (PF::*method)(MArgs...), Args&&... args) {
         std::string error;
-        if (not (pf.*method)(std::forward<Args>(args)..., error)) {
+        if (not (this->*method)(std::forward<Args>(args)..., error)) {
             throw Exception(std::move(error));
         }
     }
-    /** mayFailCall version that implicitly call the method on mPf. */
-    template <class Method, class... Args>
-    void mayFailCall(Method method, Args... args) {
-        mayFailCall(static_cast<PF&>(*this), method, std::forward<Args>(args)...);
-    }
 };
 
+} // parameterFramework
