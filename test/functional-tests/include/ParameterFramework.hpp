@@ -33,7 +33,9 @@
 
 #include <ParameterMgrFullConnector.h>
 
-/** Wrapper around the Parameter Framework to have more user friendly methods. */
+/** Wrapper around the Parameter Framework to throw exceptions on errors and
+ *  have more user friendly methods.
+ */
 class ParameterFramework : private CParameterMgrFullConnector
 {
 private:
@@ -55,6 +57,20 @@ private:
         }
     };
 
+    template <class Type>
+    using MayFailSetter = bool (PF::*)(Type, std::string &);
+
+    template <class PType, Getter<PType> getter, MayFailSetter<PType> setter>
+    struct MayFailProp {
+        using Type = PType;
+        static Type get(const PF &pf) {
+            return (pf.*getter)();
+        }
+        static void set(PF &pf, Type value) {
+            mayFailCall(pf, setter, value);
+        }
+    };
+
 public:
     using FailureOnMissingSubsystem =
         Prop<bool, &PF::getFailureOnMissingSubsystem, &PF::setFailureOnMissingSubsystem>;
@@ -70,9 +86,18 @@ public:
         Prop<bool, &PF::isValueSpaceRaw, &PF::setValueSpace>;
     using HexOutputFormat =
         Prop<bool, &PF::isOutputRawFormatHex, &PF::setOutputRawFormat>;
+    using TuningMode =
+        MayFailProp<bool,  &PF::isTuningModeOn, &PF::setTuningMode>;
+    using Autosync =
+        MayFailProp<bool, &PF::isAutoSyncOn, &PF::setAutoSync>;
+    using Logger =
+        Prop<ILogger *, nullptr, &PF::setLogger>;
 
 
-    ParameterFramework(const Config &config = Config());
+
+    void start() {
+        mayFailCall(&PF::start);
+    }
 
     /** @name Forwarded methods
      * Forward those methods without modification as they are no failure to
@@ -85,5 +110,22 @@ public:
     typename Property::Type get() const { return Property::get(*this); };
     template <class Property>
     void set(typename Property::Type value) { Property::set(*this, value); }
+
+private:
+    /** Wrap a method that may fail to throw an Exception instead of retuning a boolean.
+     * @param[in] method that return a boolean to indicate failure.
+     * @param[in] args parameters to call method call with. */
+    template <class... MArgs, class... Args>
+    static void mayFailCall(PF &pf, bool (PF::*method)(MArgs...), Args&&... args) {
+        std::string error;
+        if (not (pf.*method)(std::forward<Args>(args)..., error)) {
+            throw Exception(std::move(error));
+        }
+    }
+    /** mayFailCall version that implicitly call the method on mPf. */
+    template <class Method, class... Args>
+    void mayFailCall(Method method, Args... args) {
+        mayFailCall(static_cast<PF&>(*this), method, std::forward<Args>(args)...);
+    }
 };
 
