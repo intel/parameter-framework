@@ -95,9 +95,11 @@ public:
     bool getFailureOnMissingSubsystem() const;
 
     void setFailureOnFailedSettingsLoad(bool bFail);
-    bool getFailureOnFailedSettingsLoad();
+    bool getFailureOnFailedSettingsLoad() const;
 
     void setSchemaFolderLocation(const std::string& strSchemaFolderLocation);
+    const std::string& getSchemaFolderLocation() const;
+
     void setValidateSchemasOnStart(bool bValidate);
     bool getValidateSchemasOnStart() const;
 
