@@ -34,6 +34,8 @@
 
 #include <map>
 #include <string>
+#include <memory>
+#include <utility>
 
 /** Factory that creates an element given an xml element. If no matching builder is found, it uses
   * the default builder.
@@ -46,7 +48,6 @@ class CDefaultElementLibrary: public CElementLibrary
 {
 public:
 
-    CDefaultElementLibrary() : _defaultBuilder(NULL) {}
     virtual ~CDefaultElementLibrary() {}
 
     /** Set the default builder used in fallback mechanism.
@@ -54,9 +55,9 @@ public:
       *
       * @param[in] defaultBuilder if NULL default builder mechanism, else provided builder is used.
       */
-    void setDefaultBuilder(CDefaultElementBuilder* defaultBuilder)
+    void setDefaultBuilder(std::unique_ptr<CDefaultElementBuilder> defaultBuilder)
     {
-        _defaultBuilder = defaultBuilder;
+        _defaultBuilder = std::move(defaultBuilder);
     }
 
 
@@ -73,7 +74,7 @@ public:
     CElement* createElement(const CXmlElement& xmlElement) const;
 
 private:
-    CDefaultElementBuilder* _defaultBuilder;
+    std::unique_ptr<CDefaultElementBuilder> _defaultBuilder;
 };
 
 template<class CDefaultElementBuilder>
