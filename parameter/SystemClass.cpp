@@ -248,6 +248,8 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
 
             errors.push_back("Subsystem plugin " + strPluginFileName +
                              " does not contain " + strPluginSymbol + " symbol.");
+            // Next plugin
+            ++it;
 
             continue;
         }

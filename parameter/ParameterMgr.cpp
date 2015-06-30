@@ -391,7 +391,7 @@ bool CParameterMgr::loadSettings(string& strError)
     if (!success && !_bFailOnFailedSettingsLoad) {
         // Load can not fail, ie continue but log the load errors
         info() << strLoadError;
-        info() << "Failed to load settings, continue without domains.";
+        warning() << "Failed to load settings, continue without domains.";
         success = true;
     }
 
@@ -622,7 +622,7 @@ void CParameterMgr::setFailureOnFailedSettingsLoad(bool bFail)
     _bFailOnFailedSettingsLoad = bFail;
 }
 
-bool CParameterMgr::getFailureOnFailedSettingsLoad()
+bool CParameterMgr::getFailureOnFailedSettingsLoad() const
 {
     return _bFailOnFailedSettingsLoad;
 }

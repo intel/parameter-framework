@@ -26,9 +26,35 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_subdirectory(test-platform)
-add_subdirectory(test-fixed-point-parameter)
-add_subdirectory(tokenizer)
-add_subdirectory(functional-tests-legacy)
-add_subdirectory(functional-tests)
-add_subdirectory(test-subsystem)
+if (BUILD_TESTING)
+    find_program(python2 python2)
+
+    set(PFW_ROOT ${CMAKE_BINARY_DIR}/tmp/test-parameters)
+    set(PFW_RESULT ${PFW_ROOT}/result)
+
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestSubsystem.xml.in
+        ${PFW_ROOT}/xml/configuration/Structure/Test/TestSubsystem.xml @ONLY)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestClass.xml
+        ${PFW_ROOT}/xml/configuration/Structure/Test/TestClass.xml
+        COPYONLY)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/ParameterFrameworkConfiguration.xml
+        ${PFW_ROOT}/xml/configuration/ParameterFrameworkConfiguration.xml
+        COPYONLY)
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
+        ${PFW_ROOT}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
+        COPYONLY)
+
+    add_test(NAME functional-test-legacy
+             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+             COMMAND ${python2} ACTCampaignEngine.py)
+
+    # Custom function defined in the top-level CMakeLists
+    set_test_env(functional-test-legacy)
+    set_property(TEST functional-test-legacy APPEND PROPERTY ENVIRONMENT
+                 PFW_ROOT=${PFW_ROOT}
+                 PFW_RESULT=${PFW_RESULT})
+endif()

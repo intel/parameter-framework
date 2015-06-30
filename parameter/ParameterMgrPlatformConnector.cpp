@@ -119,7 +119,7 @@ bool CParameterMgrPlatformConnector::setFailureOnMissingSubsystem(bool bFail, st
     return true;
 }
 
-bool CParameterMgrPlatformConnector::getFailureOnMissingSubsystem()
+bool CParameterMgrPlatformConnector::getFailureOnMissingSubsystem() const
 {
     return _pParameterMgr->getFailureOnMissingSubsystem();
 }
@@ -137,7 +137,7 @@ bool CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad(
     return true;
 }
 
-bool CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad()
+bool CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad() const
 {
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
 }
@@ -165,7 +165,7 @@ bool CParameterMgrPlatformConnector::setValidateSchemasOnStart(
     return true;
 }
 
-bool CParameterMgrPlatformConnector::getValidateSchemasOnStart()
+bool CParameterMgrPlatformConnector::getValidateSchemasOnStart() const
 {
     return _pParameterMgr->getValidateSchemasOnStart();
 }
