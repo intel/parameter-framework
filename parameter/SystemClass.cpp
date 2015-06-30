@@ -38,6 +38,7 @@
 #include <assert.h>
 #include "PluginLocation.h"
 #include "Utility.h"
+#include "Memory.hpp"
 
 #define base CConfigurableElement
 
@@ -109,7 +110,7 @@ bool CSystemClass::loadSubsystems(string& strError,
     _pSubsystemLibrary->addElementBuilder("Virtual", new VirtualSubsystemBuilder(_logger));
     // Set virtual subsytem as builder fallback if required
     if (bVirtualSubsystemFallback) {
-        _pSubsystemLibrary->setDefaultBuilder(new VirtualSubsystemBuilder(_logger));
+        _pSubsystemLibrary->setDefaultBuilder(make_unique<VirtualSubsystemBuilder>(_logger));
     }
 
     // Add subsystem defined in shared libraries
