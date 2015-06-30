@@ -56,6 +56,8 @@ if(BUILD_TESTING)
     # Add unit test
     add_executable(criterionUnitTest test/CriterionUnitTest.cpp)
 
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=parentheses")
+
     target_link_libraries(criterionUnitTest criterion)
     add_test(NAME criterionUnitTest
              COMMAND criterionUnitTest)
