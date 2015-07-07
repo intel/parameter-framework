@@ -188,8 +188,7 @@ def main():
                              testLauncher
                          ))
                     for scenarioNumber, scenarioFileName in enumerate(
-                        [file for file in sorted(os.listdir(
-                            configParser["ScenariosDirectory"]))])
+                        sorted(os.listdir(configParser["ScenariosDirectory"])))
                 }
                 if args.scenario is not None:
                     scenarioOptions[args.scenario][1]()
