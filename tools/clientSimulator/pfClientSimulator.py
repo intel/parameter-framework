@@ -37,8 +37,6 @@ from clientsimulator.scenario.Scenario import Scenario
 from clientsimulator.userInteraction.UserInteractor import UserInteractor
 from clientsimulator.userInteraction.DynamicCallHelper import DynamicCallHelper
 import argparse
-import threading
-import signal
 import time
 import logging
 import os
