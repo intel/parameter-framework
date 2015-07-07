@@ -90,7 +90,7 @@ class TestLauncher:
         # Command used to generate coverage
         self.__coverageCmd = [
             "eval",
-            configParser["CoverageDir"] + "/aplog2coverage.sh",
+            os.path.join(configParser["CoverageDir"], "aplog2coverage.sh"),
             "-d",
             configParser["PfwDomainConfFile"],
             "-e.",
@@ -175,9 +175,10 @@ class TestLauncher:
             launchType = self.__availableLaunchType[0]
 
         # Create and launch the command to use the desired script
+        # A script's path is absolute or relative to the "ScriptsFile" file.
         self.__call_process(
-            ["eval", "{}/{}".format(
-                os.path.split(self.__configParser["ScriptsFile"])[0],
+            ["eval", os.path.join(
+                os.path.dirname(self.__configParser["ScriptsFile"]),
                 script)],
             launchType == self.__availableLaunchType[0],
             True)
