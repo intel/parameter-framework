@@ -103,32 +103,33 @@ class Scenario:
             scenarioGatheredActions = json.load(actionGathererFile)
 
         for action in scenarioActions:
+            actionDefinedType = self.__getActionType(action)
+            if actionDefinedType in self.__actionTypeBehaviour.keys():
+                continue
+
             try:
-                actionDefinedType = self.__getActionType(action)
-                if actionDefinedType not in self.__actionTypeBehaviour.keys():
-                    actionValue = action.pop(actionDefinedType)
-                    actionGatherer = scenarioGatheredActions[actionDefinedType]
-
-                    if self.__getActionType(actionGatherer) == "script":
-                        raise UngatherableTypeException(
-                            "Unable to redefine {} type, please edit your {} file".format(
-                                self.__getActionType(actionGatherer),
-                                actionGathererFileName))
-
-                    # Fusion of gathered Actions and other desired actions which
-                    # are directly writed in the scenario's file
-                    actionValue.update(
-                        self.__getActionValue(actionGatherer))
-
-                    # Change the user defined key which was previously popped
-                    # by the known one
-                    action[self.__getActionType(actionGatherer)] = actionValue
+                actionValue = action.pop(actionDefinedType)
+                actionGatherer = scenarioGatheredActions[actionDefinedType]
             except KeyError as e:
                 self.__logger.error(
                     "Actions {} from {} file is not valid".format(
                         actionDefinedType,
                         scenarioFileName))
                 raise e
+
+            if self.__getActionType(actionGatherer) == "script":
+                raise UngatherableTypeException(
+                    "Unable to redefine {} type, please edit your {} file".format(
+                        self.__getActionType(actionGatherer),
+                        actionGathererFileName))
+
+            # Fusion of gathered Actions and other desired actions which
+            # are directly writed in the scenario's file
+            actionValue.update(self.__getActionValue(actionGatherer))
+
+            # Change the user defined key which was previously popped
+            # by the known one
+            action[self.__getActionType(actionGatherer)] = actionValue
 
         return scenarioActions
 
