@@ -199,5 +199,5 @@ def main():
 
 
 if __name__ == "__main__":
-    """ Execute main if the script is running as main  """
+    # Execute main if the script is running as main
     main()
