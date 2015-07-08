@@ -51,28 +51,35 @@ class UserInteractor:
         self.__criterions = criterions
 
     @classmethod
-    def getMenu(cls, options):
+    def getMenu(cls, options, cancelSentence="Go Back"):
         """
             Dynamic Menu Generator :
 
             :param options: dictionnary containing, the invite string
             and the function to launch
             :type options: dict
+            :param cancelSentence: title of the menu entry that will be
+            appended after the provided options, in order to exit the menu. For
+            top-level menus, it is advised to pass "Quit" as argument.
+            :type cancelSentence: string
         """
 
-        testQuit = True
-
-        options[len(options)] = \
-            ("Go Back", lambda: False)
-        while testQuit:
+        while True:
             print("\nPlease Make a choice : ")
             for numMenu, (sentenceMenu, fonc) in sorted(options.items()):
                 print("\t{}. {}".format(numMenu, sentenceMenu))
 
-            choice = input("Your Choice : ")
+            # Lastly, append an option to go to the previous menu/quit
+            print("\t{}. {}".format(len(options), cancelSentence))
 
+            choice = input("Your Choice : ")
             try:
-                testQuit = options[int(choice)][1]()
+                choice = int(choice)
+                if choice == len(options):
+                    # The user has selected the "cancel" option
+                    break
+
+                options[choice][1]()
             except (KeyError, ValueError) as e:
                 print("Invalid Choice : {}".format(e))
 
@@ -87,7 +94,7 @@ class UserInteractor:
             2: ("Launch Script", self.__launchScript)
         }
 
-        UserInteractor.getMenu(optionsMenu)
+        UserInteractor.getMenu(optionsMenu, "Quit")
 
     def __applyConfiguration(self):
         """
