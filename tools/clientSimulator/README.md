@@ -78,13 +78,13 @@ A test directory should contains a `conf.json` file containing:
 - The port on which the test-platform should be started.
 - The criterion file path (see
   [this README](https://github.com/01org/parameter-framework/tree/master/tools/xmlGenerator#domaingeneratorpy)).
-- The absolute path to the Parameter Framework toplevel configuration file.
+- The path to the Parameter Framework toplevel configuration file.
 - The path to the directory containing the scenario files.
 - The path to the scripts definitions file (optional) (see below).
 - The path to the actions definitions (aka "ActionGatherer") file (optional)
   (see below).
-- The absolute path to the log output file (optional).
-- The absolute path to the directory containing the coverage generation tool
+- The path to the log output file (optional).
+- The path to the directory containing the coverage generation tool
   (optional; for coverage only).
 - The path to the html coverage output file (optional; for coverage only).
 - The path to the Parameter Framework domain configuration file (optional; for
@@ -93,11 +93,8 @@ A test directory should contains a `conf.json` file containing:
 All these *must* be defined in `conf.json`; when marked "optional", it means
 that they *may be empty but still need to be defined*.
 
-Unless otherwise noted, paths in `conf.json` should be relative and will be
-evaluated *relative to the test directory*. When we mention absolute path, you
-may still fill a relative path but it will be evaluated *relative to the
-working directory*.
-
+Relative paths in `conf.json` will be evaluated *relative to the test
+directory*.
 
 ## Example Client Simulator configuration file
 

@@ -43,6 +43,7 @@ class ConfigParser:
 
         # Preparing files and directory paths
         for key in ["CriterionFile",
+                    "PfwConfFile"
                     "ScriptsFile",
                     "ActionGathererFile",
                     "ScenariosDirectory",
