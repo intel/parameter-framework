@@ -179,8 +179,7 @@ def main():
                 testLauncher,
                 testFactory.generateTestVector()).launchInteractiveMode()
         else:
-            scenarioOptions = {
-                scenarioNumber:
+            scenarioOptions = [
                     (scenarioFileName,
                      DynamicCallHelper(
                          launchScenario,
@@ -192,9 +191,8 @@ def main():
                          testFactory,
                          testLauncher
                      ))
-                for scenarioNumber, scenarioFileName in enumerate(
-                    sorted(os.listdir(configParser["ScenariosDirectory"])))
-            }
+                for scenarioFileName in sorted(os.listdir(configParser["ScenariosDirectory"]))
+            ]
             if args.scenario is not None:
                 scenarioOptions[args.scenario][1]()
             # Let the user choose more scenarios after the one chosen by command line
