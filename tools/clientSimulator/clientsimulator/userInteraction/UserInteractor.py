@@ -116,7 +116,7 @@ class UserInteractor:
         """
 
         optionScript = [
-            ("{} scripts".format(script),
+            ("Execute {}".format(script),
                   DynamicCallHelper(self.__testLauncher.executeScript, script))
             for script in self.__testLauncher.scripts
         ]
