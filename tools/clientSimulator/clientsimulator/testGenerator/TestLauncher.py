@@ -88,8 +88,6 @@ class TestLauncher:
         self.__applyConfigurationsCmd.extend(halCommand)
         self.__applyConfigurationsCmd.append("applyConfigurations")
 
-        self.__setupScript = [configParser["SetupScript"]]
-
         # Command used to generate coverage
         self.__coverageCmd = [
             "eval",
@@ -120,11 +118,6 @@ class TestLauncher:
 
     def init(self, criterionClasses, isVerbose):
         """ Initialise the Pseudo HAL """
-
-        # Use user script to setup environment as requested before to do
-        # anything
-        self.__logger.info("Launching Setup script")
-        self.__call_process(self.__setupScript)
 
         self.__logger.info("Pseudo Hal Initialisation")
         # Test platform is launched asynchronously and not as script

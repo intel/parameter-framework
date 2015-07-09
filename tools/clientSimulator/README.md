@@ -84,7 +84,6 @@ A test directory should contains a `conf.json` file containing:
 - The path to the actions definitions (aka "ActionGatherer") file (optional)
   (see below).
 - The absolute path to the log output file (optional).
-- A setup script (inline shell) (optional).
 - The absolute path to the directory containing the coverage generation tool
   (optional; for coverage only).
 - The path to the html coverage output file (optional; for coverage only).
@@ -115,8 +114,6 @@ working directory*.
     "ActionGathererFile" : "my-test-actions.json",
 
     "LogFile" : "tests.log",
-
-    "SetupScript" : "echo 'bouh'",
 
     "CoverageDir" : "/home/user/parameter-framework/tools/coverage",
     "CoverageFile" : "coverage.html",
