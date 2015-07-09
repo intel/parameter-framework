@@ -73,8 +73,8 @@ to learn what it is about.
 
 A test directory should contains a `conf.json` file containing:
 
-- The desired command prefix (optional; e.g. `adb shell` in order to execute
-  tests on an android board or empty to execute locally).
+- The desired command prefix (e.g. `adb shell` in order to execute tests on an
+  android board or empty to execute locally).
 - The port on which the test-platform should be started.
 - The criterion file path (see
   [this README](https://github.com/01org/parameter-framework/tree/master/tools/xmlGenerator#domaingeneratorpy)).
@@ -83,15 +83,12 @@ A test directory should contains a `conf.json` file containing:
 - The path to the scripts definitions file (optional) (see below).
 - The path to the actions definitions (aka "ActionGatherer") file (optional)
   (see below).
-- The path to the log output file (optional).
+- The path to the log output file (optional but needed for coverage).
 - The path to the directory containing the coverage generation tool
   (optional; for coverage only).
 - The path to the html coverage output file (optional; for coverage only).
 - The path to the Parameter Framework domain configuration file (optional; for
   coverage only).
-
-All these *must* be defined in `conf.json`; when marked "optional", it means
-that they *may be empty but still need to be defined*.
 
 Relative paths in `conf.json` will be evaluated *relative to the test
 directory*.

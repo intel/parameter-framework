@@ -103,8 +103,10 @@ class TestLauncher:
 
         # Prepare script Commands
         # Loading possible scripts
-        with open(configParser["ScriptsFile"], 'r') as scriptFile:
-            self.__rawScripts = json.load(scriptFile)
+        self.__rawScripts = {}
+        if configParser["ScriptsFile"]:
+            with open(configParser["ScriptsFile"], 'r') as scriptFile:
+                self.__rawScripts = json.load(scriptFile)
 
         self.__availableLaunchType = ["asynchronous", "synchronous"]
 

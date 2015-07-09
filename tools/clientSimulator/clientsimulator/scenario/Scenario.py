@@ -99,8 +99,10 @@ class Scenario:
 
         # Parsing the action Gatherer file which allows defining new
         # actions types
-        with open(actionGathererFileName, "r") as actionGathererFile:
-            scenarioGatheredActions = json.load(actionGathererFile)
+        scenarioGatheredActions = {}
+        if actionGathererFileName:
+            with open(actionGathererFileName, "r") as actionGathererFile:
+                scenarioGatheredActions = json.load(actionGathererFile)
 
         for action in scenarioActions:
             actionDefinedType = self.__getActionType(action)

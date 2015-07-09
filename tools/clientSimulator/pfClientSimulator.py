@@ -134,12 +134,18 @@ def main():
                 args.test_directory))
         exit(1)
 
-    configParser = ConfigParser(
-        os.path.join(
+    try:
+        configParser = ConfigParser(
+            os.path.join(
+                args.test_directory,
+                "conf.json"),
             args.test_directory,
-            "conf.json"),
-        args.test_directory,
-        consoleLogger)
+            consoleLogger)
+    except KeyError as e:
+        logger.error(
+            "Missing mandatory configuration item {} in the"
+            " conf.json file".format(e))
+        exit(1)
 
     # Always write all log in the file
     logging.basicConfig(level=logging.DEBUG,
