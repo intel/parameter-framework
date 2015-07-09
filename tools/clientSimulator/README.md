@@ -75,6 +75,7 @@ A test directory should contains a `conf.json` file containing:
 
 - The desired command prefix (optional; e.g. `adb shell` in order to execute
   tests on an android board or empty to execute locally).
+- The port on which the test-platform should be started.
 - The criterion file path (see
   [this README](https://github.com/01org/parameter-framework/tree/master/tools/xmlGenerator#domaingeneratorpy)).
 - The absolute path to the Parameter Framework toplevel configuration file.
@@ -84,8 +85,6 @@ A test directory should contains a `conf.json` file containing:
   (see below).
 - The absolute path to the log output file (optional).
 - A setup script (inline shell) (optional).
-- The host and port on which the test-platform and the Parameter Framework
-  instance are listening for commands.
 - The absolute path to the directory containing the coverage generation tool
   (optional; for coverage only).
 - The path to the html coverage output file (optional; for coverage only).
@@ -106,6 +105,7 @@ working directory*.
 ```{.json}
 {
     "PrefixCommand" : "adb shell",
+    "TestPlatformPort" : "5001",
 
     "CriterionFile" : "MyCriteria.txt",
     "PfwConfFile" : "/home/user/tests/TopLevel.xml",
@@ -117,9 +117,6 @@ working directory*.
     "LogFile" : "tests.log",
 
     "SetupScript" : "echo 'bouh'",
-
-    "TestPlatformHost" : "localhost 5001",
-    "ParameterFramworkHost" : "localhost 5000",
 
     "CoverageDir" : "/home/user/parameter-framework/tools/coverage",
     "CoverageFile" : "coverage.html",

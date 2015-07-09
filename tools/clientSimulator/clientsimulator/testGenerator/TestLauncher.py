@@ -59,17 +59,20 @@ class TestLauncher:
 
         # Prepare basic commands
         halCommand = ["remote-process",
-                      configParser["TestPlatformHost"]]
+                      "localhost",
+                      configParser["TestPlatformPort"]]
         setCriteriaCommand = halCommand + ["setCriterionState"]
         testPlatformHostCommand = ["remote-process",
-                                   configParser["TestPlatformHost"]]
+                                   "localhost",
+                                   configParser["TestPlatformPort"]]
 
         self.__logFileName = configParser["LogFile"]
 
         # Commands
         self.__startTestPlatformCmd = [configParser["PrefixCommand"],
                                        "test-platform",
-                                       configParser["PfwConfFile"]]
+                                       configParser["PfwConfFile"],
+                                       configParser["TestPlatformPort"]]
 
         self.__createCriterionCmd = [configParser["PrefixCommand"]]
         self.__createCriterionCmd.extend(testPlatformHostCommand)
