@@ -40,7 +40,9 @@ configuration functional tests.
 
 ## How to run tests
 
-You can run tests using pfClientSimulator.py.
+You can run tests using pfClientSimulator.py. `test-platform` and
+`remote-process` need to be in the PATH (e.g. by installing the Parameter
+Framework - see the main README file).
 
 You have to run the script with at least the test directory argument:
 
@@ -82,8 +84,6 @@ A test directory should contains a `conf.json` file containing:
   (see below).
 - The absolute path to the log output file (optional).
 - A setup script (inline shell) (optional).
-- The absolute paths to test-platform and remote-process executables (or the
-  executables' names if they are in the PATH).
 - The host and port on which the test-platform and the Parameter Framework
   instance are listening for commands.
 - The absolute path to the directory containing the coverage generation tool
@@ -118,8 +118,6 @@ working directory*.
 
     "SetupScript" : "echo 'bouh'",
 
-    "TestPlatformCommand" : "test-platform",
-    "RemoteProcessCommand" : "remote-process",
     "TestPlatformHost" : "localhost 5001",
     "ParameterFramworkHost" : "localhost 5000",
 
