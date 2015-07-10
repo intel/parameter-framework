@@ -56,6 +56,7 @@ after_success:
           --exclude "build"
           --exclude "skeleton-subsystem"
           --exclude "test/test-subsystem"
+          --exclude "test/functional-tests"
           --exclude "bindings/c/Test.cpp"
           --exclude "test/tokenizer"
           --gcov /usr/bin/gcov-4.8
