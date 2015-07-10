@@ -27,15 +27,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from criterion.CriterionClassFactory import CriterionClassFactory
-from testGenerator.TestVectorFactory import TestVectorFactory
-from testGenerator.TestLauncher import TestLauncher
-from testGenerator.SubprocessLogger import SubprocessLoggerThread
-from testGenerator.SubprocessLogger import ScriptLoggerThread
-from configuration.ConfigParser import ConfigParser
-from scenario.Scenario import Scenario
-from userInteraction.UserInteractor import UserInteractor
-from userInteraction.DynamicCallHelper import DynamicCallHelper
+from clientsimulator.criterion.CriterionClassFactory import CriterionClassFactory
+from clientsimulator.testGenerator.TestVectorFactory import TestVectorFactory
+from clientsimulator.testGenerator.TestLauncher import TestLauncher
+from clientsimulator.testGenerator.SubprocessLogger import SubprocessLoggerThread
+from clientsimulator.testGenerator.SubprocessLogger import ScriptLoggerThread
+from clientsimulator.configuration.ConfigParser import ConfigParser
+from clientsimulator.scenario.Scenario import Scenario
+from clientsimulator.userInteraction.UserInteractor import UserInteractor
+from clientsimulator.userInteraction.DynamicCallHelper import DynamicCallHelper
 import argparse
 import threading
 import signal

@@ -26,8 +26,8 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from criterion.Criterion import Criterion
-from criterion.Criterion import InvalidCriterionException
+from clientsimulator.criterion.Criterion import Criterion
+from clientsimulator.criterion.Criterion import InvalidCriterionException
 
 
 class ExclusiveCriterion(Criterion):

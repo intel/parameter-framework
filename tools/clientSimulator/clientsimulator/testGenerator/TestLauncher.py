@@ -26,10 +26,10 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from criterion.ExclusiveCriterion import ExclusiveCriterion
-from configuration.ConfigParser import ConfigParser
-from testGenerator.SubprocessLogger import SubprocessLoggerThread
-from testGenerator.SubprocessLogger import ScriptLoggerThread
+from clientsimulator.criterion.ExclusiveCriterion import ExclusiveCriterion
+from clientsimulator.configuration.ConfigParser import ConfigParser
+from clientsimulator.testGenerator.SubprocessLogger import SubprocessLoggerThread
+from clientsimulator.testGenerator.SubprocessLogger import ScriptLoggerThread
 import logging
 import json
 import time
