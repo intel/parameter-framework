@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -333,6 +333,14 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
     assert(pCriterionType != NULL);
 
     uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
+
+    if (uiNbStates > 32) {
+
+        strResult = "Maximum number of states for inclusive criterion is 32";
+
+        return false;
+    }
+
     uint32_t uiState;
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
@@ -388,6 +396,13 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
 {
     ISelectionCriterionTypeInterface* pCriterionType =
         _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
+
+    if (uiNbStates > 32) {
+
+        strResult = "Maximum number of states for inclusive criterion is 32";
+
+        return false;
+    }
 
     uint32_t uiState;
 
