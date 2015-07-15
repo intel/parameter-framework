@@ -66,6 +66,14 @@ bool CSelectionCriterionType::addValuePair(int iValue, const std::string& strVal
 
         return false;
     }
+    for (NumToLitMapConstIt it = _numToLitMap.begin(); it != _numToLitMap.end(); ++it) {
+        if (it->second == iValue) {
+            log_warning("Rejecting value pair association (numerical already present): 0x%X - %s"
+                        " for Selection Criterion Type %s",
+                        iValue, strValue.c_str(), getName().c_str());
+            return false;
+        }
+    }
     _numToLitMap[strValue] = iValue;
 
     return true;
