@@ -60,7 +60,6 @@ LOCAL_C_INCLUDES := $(common_c_includes)
 LOCAL_STATIC_LIBRARIES := libpfw_utility
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
 
-include external/stlport/libstlport.mk
 include $(BUILD_EXECUTABLE)
 
 ##############################

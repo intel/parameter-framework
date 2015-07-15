@@ -125,7 +125,8 @@ common_cflags := \
         -Wall \
         -Werror \
         -Wextra \
-        -Wno-unused-parameter
+        -Wno-unused-parameter \
+        -Wno-maybe-uninitialized
 
 common_c_includes := \
     $(LOCAL_PATH)/include/ \
@@ -157,7 +158,6 @@ LOCAL_STATIC_LIBRARIES := libpfw_utility
 
 LOCAL_REQUIRED_MODULES := libremote-processor
 
-include external/stlport/libstlport.mk
 include $(BUILD_SHARED_LIBRARY)
 
 ##############################
