@@ -67,8 +67,6 @@ LOCAL_C_INCLUDES := $(common_c_includes)
 LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
 LOCAL_STATIC_LIBRARIES := $(common_static_libraries)
 
-
-include external/stlport/libstlport.mk
 include $(BUILD_EXECUTABLE)
 
 ##############################

@@ -38,9 +38,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := _PyPfw
 
 LOCAL_CPP_EXTENSION := .cxx
-# As long as the parameter-framework is compiled with gcc, we must avoid
-# compiling the bindings with clang and compile with gcc instead.
-LOCAL_CLANG := false
 # Android only provides a 32bit version of python.
 LOCAL_32_BIT_ONLY := true
 
