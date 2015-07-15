@@ -26,9 +26,9 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from criterion.InclusiveCriterion import InclusiveCriterion
-from testGenerator.TestLauncher import TestLauncher
-from userInteraction.DynamicCallHelper import DynamicCallHelper
+from clientsimulator.criterion.InclusiveCriterion import InclusiveCriterion
+from clientsimulator.testGenerator.TestLauncher import TestLauncher
+from clientsimulator.userInteraction.DynamicCallHelper import DynamicCallHelper
 
 
 class UserInteractor:
