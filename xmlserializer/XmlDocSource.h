@@ -120,15 +120,6 @@ public:
     _xmlDoc* getDoc() const;
 
     /**
-      * Method that validates the Xml doc contained in pDoc
-      *
-      * @param[out] serializingContext is used as error output
-      *
-      * @return false if any error occurs
-      */
-    virtual bool validate(CXmlSerializingContext& serializingContext);
-
-    /**
     * Method that checks that the xml document has been correctly parsed.
     *
     * @return false if any error occurs during the parsing
