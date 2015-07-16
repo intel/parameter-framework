@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -167,13 +167,6 @@ private:
       * @return true if document is valid, false if any error occures
       */
     bool isInstanceDocumentValid();
-
-    /** Validity error display method
-      *
-      * @param[in] pUserData pointer to the data to validate
-      * @param[out] pError is the xml error output
-      */
-    static void schemaValidityStructuredErrorFunc(void* pUserData, _xmlError* pError);
 
     /**
       * Schema file

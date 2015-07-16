@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,9 +28,18 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "XmlSerializingContext.h"
+#include <libxml/xmlerror.h>
+#include <cstdio>
 
 CXmlSerializingContext::CXmlSerializingContext(std::string& strError) : _strError(strError)
 {
+    xmlSetGenericErrorFunc(this, genericErrorHandler);
+}
+
+CXmlSerializingContext::~CXmlSerializingContext()
+{
+    xmlSetGenericErrorFunc(NULL, NULL);
+    _strError = _strXmlError + _strError;
 }
 
 // Error
@@ -47,4 +56,23 @@ void CXmlSerializingContext::appendLineToError(const std::string& strAppend)
 const std::string& CXmlSerializingContext::getError() const
 {
     return _strError;
+}
+
+void CXmlSerializingContext::genericErrorHandler(void* userData, const char* format, ...)
+{
+    char *buffer = NULL;
+
+    va_list args;
+    va_start(args, format);
+    int success = vasprintf(&buffer, format, args);
+    va_end(args);
+
+    if (success == -1) {
+        return;
+    }
+
+    CXmlSerializingContext& self = *static_cast<CXmlSerializingContext *>(userData);
+    self._strXmlError += std::string(buffer);
+
+    free(buffer);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,7 +33,6 @@
 #include <libxml/xmlschemas.h>
 #include <libxml/parser.h>
 #include <libxml/xinclude.h>
-#include <libxml/xmlerror.h>
 #include <stdlib.h>
 
 using std::string;
@@ -209,8 +208,6 @@ bool CXmlDocSource::isInstanceDocumentValid()
         return false;
     }
 
-    xmlSetStructuredErrorFunc(this, schemaValidityStructuredErrorFunc);
-
     bool isDocValid = xmlSchemaValidateDoc(pValidationCtxt, _pDoc) == 0;
 
     xmlSchemaFreeValidCtxt(pValidationCtxt);
@@ -221,16 +218,6 @@ bool CXmlDocSource::isInstanceDocumentValid()
     return isDocValid;
 #else
     return true;
-#endif
-}
-
-void CXmlDocSource::schemaValidityStructuredErrorFunc(void* pUserData, _xmlError* pError)
-{
-    (void)pUserData;
-
-#ifdef LIBXML_SCHEMAS_ENABLED
-    // Display message
-    puts(pError->message);
 #endif
 }
 
