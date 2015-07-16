@@ -221,7 +221,7 @@ bool CXmlDocSource::isInstanceDocumentValid()
 #endif
 }
 
-_xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincludes, string& errorMsg)
+_xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincludes, CXmlSerializingContext& serializingContext)
 {
     _xmlDoc* doc = NULL;
     if (fromFile) {
@@ -231,25 +231,17 @@ _xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincl
     }
 
     if (doc == NULL) {
-        errorMsg = "libxml failed to read";
+        string errorMsg = "libxml failed to read";
         if (fromFile) {
             errorMsg += " \"" + source + "\"";
         }
-
-        xmlError* details = xmlGetLastError();
-        if (details != NULL) {
-            errorMsg += ": " + string(details->message);
-        }
+        serializingContext.appendLineToError(errorMsg);
 
         return NULL;
     }
 
     if (xincludes and (xmlXIncludeProcess(doc) < 0)) {
-        errorMsg = "libxml failed to resolve XIncludes";
-        xmlError* details = xmlGetLastError();
-        if (details != NULL) {
-            errorMsg += ": " + string(details->message);
-        }
+        serializingContext.appendLineToError("libxml failed to resolve XIncludes");
 
         xmlFreeDoc(doc);
         doc = NULL;

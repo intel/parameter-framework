@@ -134,9 +134,9 @@ public:
      * @param[in] fromFile true if source is a filename, false if source is an xml
      *            represents an xml document
      * @param[in] xincludes if true, process xincludes tags
-     * @param[out] errorMsg used as error output
+     * @param[in] serializingContext will receive any serialization error
      */
-    static _xmlDoc* mkXmlDoc(const std::string& source, bool fromFile, bool xincludes, std::string& errorMsg);
+    static _xmlDoc* mkXmlDoc(const std::string& source, bool fromFile, bool xincludes, CXmlSerializingContext& serializingContext);
 
 protected:
 
