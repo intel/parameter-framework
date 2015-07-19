@@ -248,6 +248,10 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<elem path>", "Get settings of element at given path in Byte Array format" },
     { "setElementBytes", &CParameterMgr::setElementBytesCommandProcess, 2,
             "<elem path> <values>", "Set settings of element at given path in Byte Array format" },
+    { "getElementXML", &CParameterMgr::getElementXMLCommandProcess, 1,
+        "<elem path>", "Get settings of element at given path in XML format" },
+    { "setElementXML", &CParameterMgr::setElementXMLCommandProcess, 2,
+        "<elem path> <values>", "Set settings of element at given path in XML format" },
     { "dumpElement", &CParameterMgr::dumpElementCommandProcess, 1,
             "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommandProcess, 1,
@@ -1411,6 +1415,104 @@ CParameterMgr::setElementBytesCommandProcess(const IRemoteCommand& remoteCommand
         return CCommandHandler::EFailed;
     }
 
+    return CCommandHandler::EDone;
+}
+
+bool CParameterMgr::getSettingsAsXML(const CConfigurableElement *configurableElement,
+        string &result) const
+{
+    string error;
+    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard,
+                                              _bValueSpaceIsRaw, _bOutputRawFormatIsHex, true);
+
+    CXmlParameterSerializingContext xmlParameterContext(configContext, error);
+
+    // Use a doc source by loading data from instantiated Configurable Domains
+    CXmlMemoryDocSource memorySource(configurableElement, false, configurableElement->getXmlElementName());
+
+    // Use a doc sink that write the doc data in a string
+    ostringstream output;
+    CXmlStreamDocSink streamSink(output);
+
+    if (not streamSink.process(memorySource, xmlParameterContext)) {
+        result = error;
+        return false;
+    }
+    result = output.str();
+    return true;
+}
+
+bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
+        const string &settings, string &result)
+{
+    string error;
+    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard,
+                                              _bValueSpaceIsRaw, _bOutputRawFormatIsHex, false);
+
+    CXmlParameterSerializingContext xmlParameterContext(configContext, error);
+
+    // It doesn't make sense to resolve XIncludes on an imported file because
+    // we can't reliably decide of a "base url"
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(settings, false, false, xmlParameterContext);
+    if (doc == nullptr) {
+        return false;
+    }
+
+    if (not xmlParse(xmlParameterContext, configurableElement, doc, "",
+                     EParameterConfigurationLibrary, "Name")) {
+        return false;
+    }
+    if (_bAutoSyncOn) {
+        CSyncerSet syncerSet;
+        static_cast<CConfigurableElement *>(configurableElement)->fillSyncerSet(syncerSet);
+        core::Results results;
+        if(not syncerSet.sync(*_pMainParameterBlackboard, true, &results)) {
+            result = utility::asString(results);
+
+            return false;
+        }
+    }
+    return true;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementXMLCommandProcess(
+        const IRemoteCommand &remoteCommand, string &result)
+{
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement *locatedElement = nullptr;
+
+    if (not elementLocator.locate(remoteCommand.getArgument(0), &locatedElement, result)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    if (not getSettingsAsXML(static_cast<CConfigurableElement *>(locatedElement), result)) {
+        return CCommandHandler::EFailed;
+    }
+    return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementXMLCommandProcess(
+        const IRemoteCommand &remoteCommand, string &result)
+{
+    if (!checkTuningModeOn(result)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement *locatedElement = nullptr;
+
+    if (not elementLocator.locate(remoteCommand.getArgument(0), &locatedElement, result)) {
+
+        return CCommandHandler::EFailed;
+    }
+    if (not setSettingsAsXML(static_cast<CConfigurableElement*>(locatedElement),
+                             remoteCommand.getArgument(1), result)) {
+        return CCommandHandler::EFailed;
+    }
     return CCommandHandler::EDone;
 }
 
