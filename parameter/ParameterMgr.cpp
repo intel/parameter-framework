@@ -86,8 +86,10 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
+#include <stdexcept>
 #include <mutex>
 #include <iomanip>
+#include "convert.hpp"
 
 #define base CElement
 
@@ -243,6 +245,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<elem path>", "Get structure of element at given path in XML format" },
     { "getElementBytes", &CParameterMgr::getElementBytesCommandProcess, 1,
             "<elem path>", "Get settings of element at given path in Byte Array format" },
+    { "setElementBytes", &CParameterMgr::setElementBytesCommandProcess, 2,
+            "<elem path> <values>", "Set settings of element at given path in Byte Array format" },
     { "dumpElement", &CParameterMgr::dumpElementCommandProcess, 1,
             "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommandProcess, 1,
@@ -1344,6 +1348,68 @@ CParameterMgr::getElementBytesCommandProcess(const IRemoteCommand& remoteCommand
     }
 
     return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus
+CParameterMgr::setElementBytesCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    // Check tuning mode
+    if (!checkTuningModeOn(strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    // Retrieve configurable element
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement* pLocatedElement = NULL;
+
+    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    const CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
+
+    // Prepare parameter access context for main blackboard.
+    // Notes:
+    //     - No need to handle output raw format and value space as Byte arrays are interpreted as raw formatted
+    //     - No check is done as to the intgrity of the input data.
+    //       This may lead to undetected out of range value assignment.
+    //       Use this functionality with caution
+    CParameterAccessContext parameterAccessContext(strResult);
+    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
+    parameterAccessContext.setAutoSync(autoSyncOn());
+
+    // Convert input data to binary
+    vector<uint8_t> bytes;
+
+    auto first = remoteCommand.getArguments().cbegin() + 1;
+    auto last = remoteCommand.getArguments().cend();
+
+    try {
+        std::transform(first, last, begin(bytes), [](decltype(*first) input) {
+            uint8_t byte;
+
+            if (!convertTo(input, byte)) {
+                throw std::domain_error("Some values out of byte range");
+            }
+
+            return byte;
+        });
+    } catch (const std::domain_error& e) {
+        strResult = e.what();
+
+        return CCommandHandler::EFailed;
+    }
+
+    // Set the settings
+    if (!pConfigurableElement->setSettingsAsBytes(bytes, parameterAccessContext)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    return CCommandHandler::EDone;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)

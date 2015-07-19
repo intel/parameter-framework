@@ -422,6 +422,7 @@ private:
     CCommandHandler::CommandStatus listParametersCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus getElementStructureXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus getElementBytesCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus setElementBytesCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus dumpElementCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus getElementSizeCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus showPropertiesCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);

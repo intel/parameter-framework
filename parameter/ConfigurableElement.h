@@ -110,6 +110,16 @@ public:
      */
     void getSettingsAsBytes(std::vector<uint8_t>& bytes,
                             CParameterAccessContext& parameterAccessContext) const;
+    /** Sets the element as if it was an array of bytes.
+     *
+     * This is like having a direct access to the blackboard.
+     *
+     * @param[out] bytes The content to be set.
+     * @param[in] parameterAccessContext Context containing the blackboard to
+     *            write to.
+     */
+    bool setSettingsAsBytes(const std::vector<uint8_t>& bytes,
+                            CParameterAccessContext& parameterAccessContext) const;
 
     /**
      * Get the list of all the ancestors that have a mapping.
