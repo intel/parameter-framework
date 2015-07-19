@@ -47,6 +47,7 @@ class PARAMETER_EXPORT CConfigurableElement : public CElement
 {
     friend class CConfigurableDomain;
     friend class CDomainConfiguration;
+    friend class CConfigurableElementAccessor;
     typedef std::list<const CConfigurableDomain*>::const_iterator ConfigurableDomainListConstIterator;
 public:
     CConfigurableElement(const std::string& strName = "");
@@ -123,6 +124,12 @@ public:
 
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
+
+    bool fromXml(const CXmlElement &xmlElement,
+                         CXmlSerializingContext &serializingContext) override final;
+
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override final;
+
 protected:
     // Syncer (me or ascendant)
     virtual ISyncer* getSyncer() const;
