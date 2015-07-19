@@ -86,7 +86,8 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
-#include <mutex>
+#include "ConfigurableElementAccessor.h"
+
 
 #define base CElement
 
@@ -240,6 +241,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<elem path>|/", "List parameters under element at given path or root" },
     { "getElementStructureXML", &CParameterMgr::getElementStructureXMLCommandProcess, 1,
             "<elem path>", "Get structure of element at given path in XML format" },
+    { "getElementXML", &CParameterMgr::getElementXMLCommandProcess, 1,
+            "<elem path>", "Get settings of element at given path in XML format" },
     { "dumpElement", &CParameterMgr::dumpElementCommandProcess, 1,
             "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommandProcess, 1,
@@ -1289,6 +1292,28 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementStructure
     }
 
     if (!exportElementToXMLString(pLocatedElement, pLocatedElement->getKind(), strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementXMLCommandProcess(const IRemoteCommand &remoteCommand, string &result)
+{
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement *locatedElement = NULL;
+
+    if (!elementLocator.locate(remoteCommand.getArgument(0), &locatedElement, result)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    ConfigurableElementAccessor configurableElementAccessor(static_cast<CConfigurableElement *>(locatedElement),
+        _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
+
+    if (!exportElementToXMLString(&configurableElementAccessor, locatedElement->getKind(), result)) {
 
         return CCommandHandler::EFailed;
     }
