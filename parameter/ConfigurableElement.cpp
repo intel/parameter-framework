@@ -35,6 +35,7 @@
 #include "ConfigurableElementAggregator.h"
 #include "AreaConfiguration.h"
 #include "Iterator.hpp"
+#include "Utility.h"
 #include <assert.h>
 
 #define base CElement
@@ -165,6 +166,45 @@ void CConfigurableElement::getSettingsAsBytes(std::vector<uint8_t>& bytes,
     bytes.reserve(getFootPrint());
 
     pParameterBlackboard->readBytes(bytes, getOffset() - parameterAccessContext.getBaseOffset());
+}
+
+bool CConfigurableElement::setSettingsAsBytes(const std::vector<uint8_t>& bytes,
+                                              CParameterAccessContext& parameterAccessContext) const
+{
+    CParameterBlackboard* pParameterBlackboard = parameterAccessContext.getParameterBlackboard();
+
+    // Size
+    size_t size = getFootPrint();
+
+    // Check sizes match
+    if (size != bytes.size()) {
+
+        parameterAccessContext.setError(std::string("Wrong size: Expected: ")
+                                        + std::to_string(size) + " Provided: "
+                                        + std::to_string(bytes.size()));
+
+        return false;
+    }
+
+    // Write bytes
+    pParameterBlackboard->writeBytes(bytes, getOffset() - parameterAccessContext.getBaseOffset());
+
+    if (not parameterAccessContext.getAutoSync()) {
+        // Auto sync is not activated, sync will be defered until an explicit request
+        return true;
+    }
+
+    CSyncerSet syncerSet;
+    fillSyncerSet(syncerSet);
+    core::Results res;
+    if (not syncerSet.sync(*parameterAccessContext.getParameterBlackboard(), true, &res)) {
+
+        std::string error;
+        CUtility::asString(res, error);
+        parameterAccessContext.setError(error);
+        return false;
+    }
+    return true;
 }
 
 void CConfigurableElement::getListOfElementsWithMapping(

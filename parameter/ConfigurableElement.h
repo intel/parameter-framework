@@ -102,6 +102,8 @@ public:
 
     // Whole element access
     void getSettingsAsBytes(std::vector<uint8_t>& bytes, CParameterAccessContext& parameterAccessContext) const;
+    bool setSettingsAsBytes(const std::vector<uint8_t>& bytes,
+                            CParameterAccessContext& parameterAccessContext) const;
 
     /**
      * Get the list of all the ancestors that have a mapping.
