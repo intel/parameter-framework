@@ -33,7 +33,10 @@
 
 using std::string;
 
-CXmlParameterSerializingContext::CXmlParameterSerializingContext(string& strError) : base(strError)
+CXmlParameterSerializingContext::CXmlParameterSerializingContext(CParameterAccessContext &context,
+                                                                 string& strError) :
+    base(strError),
+    mAccessContext(context)
 {
 }
 
