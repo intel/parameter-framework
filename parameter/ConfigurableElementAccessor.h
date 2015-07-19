@@ -55,12 +55,15 @@ public:
                                 bool valueSpaceIsRaw,
                                 bool outputRawFormatIsHex = false);
 
-    virtual bool fromXml(const CXmlElement &/*xmlElement*/,
-                         CXmlSerializingContext &/*serializingContext*/);
+    virtual bool fromXml(const CXmlElement &xmlElement,
+                         CXmlSerializingContext &serializingContext);
 
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &/*serializingContext*/) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
 private:
+    // Common serialization method
+    bool serializeXmlSettings(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext, bool bOut) const;
+
     /**
      * Accessed configurable element
      */

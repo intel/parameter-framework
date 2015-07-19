@@ -422,6 +422,7 @@ private:
     CCommandHandler::CommandStatus listParametersCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus getElementStructureXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus getElementXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus setElementXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus dumpElementCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus getElementSizeCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus showPropertiesCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
@@ -433,6 +434,7 @@ private:
     CCommandHandler::CommandStatus listAssociatedDomainsCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus showMappingCommandProcess(const IRemoteCommand& remoteCommand,
                                                               std::string& strResult);
+
     /// Browse
     CCommandHandler::CommandStatus listAssociatedElementsCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus listConflictingElementsCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);

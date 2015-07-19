@@ -243,6 +243,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<elem path>", "Get structure of element at given path in XML format" },
     { "getElementXML", &CParameterMgr::getElementXMLCommandProcess, 1,
             "<elem path>", "Get settings of element at given path in XML format" },
+    { "setElementXML", &CParameterMgr::setElementXMLCommandProcess, 2,
+            "<elem path> <values>", "Set settings of element at given path in XML format" },
     { "dumpElement", &CParameterMgr::dumpElementCommandProcess, 1,
             "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommandProcess, 1,
@@ -1319,6 +1321,54 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementXMLComman
     }
 
     return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementXMLCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    // Check tuning mode
+    if (!checkTuningModeOn(strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    // Retrieve configurable element
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement* pLocatedElement = NULL;
+
+    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    // Create accessor
+    CSyncerSet syncerSet;
+    ConfigurableElementAccessor configurableElementAccessor(static_cast<const CConfigurableElement*>(pLocatedElement),
+        _pMainParameterBlackboard, _bAutoSyncOn ? NULL: syncerSet, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
+
+    string strError;
+
+    CXmlSerializingContext xmlSerializingContext(strError);
+
+    // Use a doc sink by storing data into configurable element
+    CXmlMemoryDocSink memorySink(&configurableElementAccessor);
+
+    // Get value to set
+    string strValue = remoteCommand.getArgument(1);
+
+    // Use a doc source to read the doc data from a string
+    CXmlStringDocSource stringSource(strValue, "", pLocatedElement->getKind(), pLocatedElement->getName(), "Name", false);
+
+    // Do the import
+    if (!memorySink.process(stringSource, xmlSerializingContext)) {
+
+        strResult = strError;
+
+        return CCommandHandler::EFailed;
+    }
+    syncerSet.sync(_pMainParameterBlackboard);
+
+    return CCommandHandler::EDone;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)

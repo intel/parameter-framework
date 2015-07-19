@@ -45,17 +45,22 @@ ConfigurableElementAccessor::ConfigurableElementAccessor(
 {
 }
 
-bool ConfigurableElementAccessor::fromXml(const CXmlElement &, CXmlSerializingContext &)
+bool ConfigurableElementAccessor::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext)
 {
-    return true;
+    return serializeXmlSettings(const_cast<CXmlElement &>(xmlElement), serializingContext, false);
 }
 
-void ConfigurableElementAccessor::toXml(CXmlElement &xmlElement, CXmlSerializingContext &) const
+void ConfigurableElementAccessor::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+{
+    serializeXmlSettings(xmlElement, serializingContext, true);
+}
+
+bool ConfigurableElementAccessor::serializeXmlSettings(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext, bool bOut) const
 {
     string strError;
 
     // Create configuration access context
-    CConfigurationAccessContext configurationAccessContext(strError, true);
+    CConfigurationAccessContext configurationAccessContext(strError, bOut);
 
     // Provide current value space
     configurationAccessContext.setValueSpaceRaw(mValueSpaceIsRaw);
@@ -82,6 +87,13 @@ void ConfigurableElementAccessor::toXml(CXmlElement &xmlElement, CXmlSerializing
     configurationAccessContext.setBaseOffset(0);
 
     // Serialize values as XML (element contents)
-    mConfigurableElement->serializeXmlSettings(const_cast<CXmlElement &>(xmlElement),
-                                               configurationAccessContext);
+    if (!mConfigurableElement->serializeXmlSettings(xmlElement, configurationAccessContext)) {
+
+        serializingContext.setError(strError);
+
+        return false;
+    }
+
+    // Synchronize (or defer synchronization) in case of element update (XML import)
+    return bOut || mConfigurableElement->sync(configurationAccessContext);
 }
