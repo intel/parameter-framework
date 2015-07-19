@@ -99,8 +99,7 @@ bool CSubsystem::needResync(bool /*bClear*/)
     return false;
 }
 
-// From IXmlSink
-bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CSubsystem::deserializeXmlStructure(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Subsystem class does not rely on generic fromXml algorithm of Element class.
     // So, setting here the description if found as XML attribute.

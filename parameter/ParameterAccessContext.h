@@ -58,6 +58,12 @@ public:
     bool valueSpaceIsRaw() const;
 
     /**
+     * @brief serializeSettings
+     * @return true if serialization of settings is requested, false if serialization of structure
+     */
+    virtual bool serializeSettings() const { return false; }
+
+    /**
      * Assigns Output Raw Format for user get value interpretation.
      *
      * @param[in] bIsHex "true" for hexadecimal, "false" for decimal

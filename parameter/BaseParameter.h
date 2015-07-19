@@ -69,8 +69,7 @@ public:
     bool accessAsString(std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
     virtual bool accessAsStringArray(std::vector<std::string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
-    // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void serializeXmlStructure(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
 protected:
     // Parameter Access

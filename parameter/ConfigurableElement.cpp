@@ -34,6 +34,7 @@
 #include "ConfigurationAccessContext.h"
 #include "ConfigurableElementAggregator.h"
 #include "AreaConfiguration.h"
+#include "XmlParameterSerializingContext.h"
 #include <assert.h>
 
 #define base CElement
@@ -44,6 +45,30 @@ CConfigurableElement::CConfigurableElement(const std::string& strName) : base(st
 
 CConfigurableElement::~CConfigurableElement()
 {
+}
+
+bool CConfigurableElement::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext)
+{
+    CXmlParameterSerializingContext& xmlParameterAccessContext = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    CParameterAccessContext &parameterAccessContext = xmlParameterAccessContext.getAccessContext();
+    if (parameterAccessContext.serializeSettings()) {
+
+        return serializeXmlSettings(const_cast<CXmlElement&>(xmlElement), static_cast<CConfigurationAccessContext &>(parameterAccessContext));
+    }
+    return deserializeXmlStructure(xmlElement, serializingContext);
+}
+
+void CConfigurableElement::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+{
+    CXmlParameterSerializingContext& xmlParameterAccessContext = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    CParameterAccessContext &parameterAccessContext = xmlParameterAccessContext.getAccessContext();
+    if (parameterAccessContext.serializeSettings()) {
+
+        serializeXmlSettings(xmlElement, static_cast<CConfigurationAccessContext &>(parameterAccessContext));
+    } else {
+
+        serializeXmlStructure(xmlElement, serializingContext);
+    }
 }
 
 // XML configuration settings parsing
