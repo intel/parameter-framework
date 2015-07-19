@@ -34,6 +34,7 @@
 #include "ConfigurationAccessContext.h"
 #include "ConfigurableElementAggregator.h"
 #include "AreaConfiguration.h"
+#include "Iterator.hpp"
 #include <assert.h>
 
 #define base CElement
@@ -153,6 +154,17 @@ bool CConfigurableElement::accessValue(CPathNavigator& pathNavigator, std::strin
     }
 
     return pChild->accessValue(pathNavigator, strValue, bSet, parameterAccessContext);
+}
+
+// Whole element access
+void CConfigurableElement::getSettingsAsBytes(std::vector<uint8_t>& bytes,
+                                              CParameterAccessContext& parameterAccessContext) const
+{
+    CParameterBlackboard* pParameterBlackboard = parameterAccessContext.getParameterBlackboard();
+
+    bytes.reserve(getFootPrint());
+
+    pParameterBlackboard->readBytes(bytes, getOffset() - parameterAccessContext.getBaseOffset());
 }
 
 void CConfigurableElement::getListOfElementsWithMapping(

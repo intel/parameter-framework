@@ -34,6 +34,7 @@
 #include "Element.h"
 
 #include <list>
+#include <vector>
 
 class CConfigurableDomain;
 class CSyncerSet;
@@ -98,6 +99,9 @@ public:
 
     // Parameter access
     virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+
+    // Whole element access
+    void getSettingsAsBytes(std::vector<uint8_t>& bytes, CParameterAccessContext& parameterAccessContext) const;
 
     /**
      * Get the list of all the ancestors that have a mapping.

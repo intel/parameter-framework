@@ -87,6 +87,7 @@
 #include <fstream>
 #include <algorithm>
 #include <mutex>
+#include <iomanip>
 
 #define base CElement
 
@@ -240,6 +241,8 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<elem path>|/", "List parameters under element at given path or root" },
     { "getElementStructureXML", &CParameterMgr::getElementStructureXMLCommandProcess, 1,
             "<elem path>", "Get structure of element at given path in XML format" },
+    { "getElementBytes", &CParameterMgr::getElementBytesCommandProcess, 1,
+            "<elem path>", "Get settings of element at given path in Byte Array format" },
     { "dumpElement", &CParameterMgr::dumpElementCommandProcess, 1,
             "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommandProcess, 1,
@@ -1292,6 +1295,50 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementStructure
 
         return CCommandHandler::EFailed;
     }
+
+    return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus
+CParameterMgr::getElementBytesCommandProcess(const IRemoteCommand& remoteCommand,
+                                              std::string& strResult)
+{
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement* pLocatedElement = NULL;
+
+    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    const CConfigurableElement* pConfigurableElement =
+            static_cast<CConfigurableElement*>(pLocatedElement);
+
+    // Prepare parameter access context for main blackboard.
+    // Notes:
+    //     - No need to handle output raw format and value space as Byte arrays are hexa formatted
+    //     - Pasing strResult to parameterAccessContext is only necessary wrt to constructor definition:
+    //       since it's a get type of access, no error may occur
+    CParameterAccessContext parameterAccessContext(strResult);
+    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
+
+    // Get the settings
+    vector<uint8_t> bytes;
+    pConfigurableElement->getSettingsAsBytes(bytes, parameterAccessContext);
+
+    // Hexa formatting
+    std::ostringstream ostream;
+    ostream << std::hex << std::uppercase << std::setw(2) << std::setfill('0');
+
+    // Format bytes
+    for (auto byte : bytes) {
+
+        // Format
+        ostream << "0x" << static_cast<uint32_t>(byte);
+    }
+
+    strResult = ostream.str();
 
     return CCommandHandler::ESucceeded;
 }
