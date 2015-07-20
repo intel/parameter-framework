@@ -50,7 +50,6 @@ public:
     std::string getPath() const;
     std::string getNameAttribute() const;
     bool hasAttribute(const std::string& strAttributeName) const;
-    bool getAttributeBoolean(const std::string& strAttributeName, const std::string& strTrueValue) const;
     bool getAttributeBoolean(const std::string& strAttributeName) const;
     std::string getAttributeString(const std::string& strAttributeName) const;
     uint32_t getAttributeInteger(const std::string& strAttributeName) const;

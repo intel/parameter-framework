@@ -159,7 +159,7 @@ bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& 
     }
 
     // Endianness
-    _bBigEndian = xmlElement.getAttributeBoolean("Endianness", "Big");
+    _bBigEndian = xmlElement.getAttributeString("Endianness") == "Big";
 
     return true;
 }

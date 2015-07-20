@@ -76,7 +76,8 @@ void CFixedPointParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigu
         // Get Value space from XML
         if (xmlConfigurableElementSettingsElement.hasAttribute("ValueSpace")) {
 
-            configurationAccessContext.setValueSpaceRaw(xmlConfigurableElementSettingsElement.getAttributeBoolean("ValueSpace", "Raw"));
+            configurationAccessContext.setValueSpaceRaw(
+                    xmlConfigurableElementSettingsElement.getAttributeString("ValueSpace") == "Raw");
         } else {
 
             configurationAccessContext.setValueSpaceRaw(false);

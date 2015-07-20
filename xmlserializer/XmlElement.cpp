@@ -100,11 +100,6 @@ string CXmlElement::getAttributeString(const string &strAttributeName) const
     return strValue;
 }
 
-bool CXmlElement::getAttributeBoolean(const string& strAttributeName, const string& strTrueValue) const
-{
-    return getAttributeString(strAttributeName) == strTrueValue;
-}
-
 bool CXmlElement::getAttributeBoolean(const string& strAttributeName) const
 {
     string strAttributeValue(getAttributeString(strAttributeName));

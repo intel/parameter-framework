@@ -140,7 +140,7 @@ bool CCompoundRule::matches() const
 bool CCompoundRule::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Get type
-    _bTypeAll = xmlElement.getAttributeBoolean("Type", _apcTypes[true]);
+    _bTypeAll = xmlElement.getAttributeString("Type") == _apcTypes[true];
 
     // Base
     return base::fromXml(xmlElement, serializingContext);
