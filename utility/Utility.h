@@ -80,4 +80,15 @@ public:
 
     /** Utility to underline */
     static void appendTitle(std::string& strTo, const std::string& strTitle);
+
+    /**
+     * Checks if a string has the written representation of an hexadecimal
+     * number (Which is the prefix "0x" or "0X" in C++).
+     *
+     * @param[in] strValue value as string
+     *
+     * @return true if the string is written as hexa, false otherwise.
+     */
+    static bool isHexadecimal(const std::string& strValue);
+
 };
