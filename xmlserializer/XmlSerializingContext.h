@@ -31,6 +31,16 @@
 
 #include <string>
 
+/** Class that gather errors during serialization.
+ *
+ * Provided with an initial empty buffer (strError), an instance of this class
+ * can describe an error.
+ *
+ * This error will be accessible formated in the aforementioned buffer
+ * _after_ destruction.
+ * Ie. the provided buffer (strError) is in an undefined state between
+ * construction and destruction and should not be accessed in between.
+ */
 class CXmlSerializingContext
 {
 public:
@@ -40,7 +50,6 @@ public:
     // Error
     void setError(const std::string& strError);
     void appendLineToError(const std::string& strAppend);
-    const std::string& getError() const;
     /** XML error handler
       *
       * @param[in] userData pointer to the serializing context
