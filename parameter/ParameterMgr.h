@@ -41,6 +41,7 @@
 #include "XmlDocSource.h"
 #include "XmlDomainExportContext.h"
 #include "Results.h"
+#include "ElementHandle.h"
 #include <log/LogWrapper.h>
 #include <log/Context.h>
 
@@ -96,7 +97,7 @@ class CParameterMgr : private CElement
     static const uint32_t guiRevision = 0;
 
     // Parameter handle friendship
-    friend class CParameterHandle;
+    friend class ElementHandle;
 public:
 
     // Construction
@@ -137,6 +138,21 @@ public:
                                                  std::string& strError);
     // Dynamic parameter handling
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError);
+
+    /** Creates a handle to a configurable element.
+     *
+     * The returned object is owned by the client who is responsible to delete it.
+     *
+     * @param[in] path A string representing a path to a configurable element.
+     * @param[out] error On error: an human readable error message
+     *                   On success: undefined
+     *
+     * @return An element handle on success
+     *         nullptr on error
+     */
+    ElementHandle *createElementHandle(const std::string &path, std::string &error);
+
+
 
     /** Is the remote interface forcefully disabled ?
      */

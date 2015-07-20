@@ -773,7 +773,34 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
     }
 
     // Convert as parameter and return new handle
-    return new CParameterHandle(static_cast<CBaseParameter*>(pConfigurableElement), this);
+    return new CParameterHandle(static_cast<CBaseParameter&>(*pConfigurableElement), *this);
+}
+
+// Dynamic element handling
+ElementHandle *CParameterMgr::createElementHandle(const std::string &path, std::string &error)
+{
+    CConfigurableElement* pConfigurableElement;
+
+    if (path == "/") {
+        // Attempt to access root configurable element
+        pConfigurableElement = getSystemClass();
+    } else {
+        pConfigurableElement = getConfigurableElement(path, error);
+    }
+
+    if (!pConfigurableElement) {
+
+        // Element not found
+        error = "Element not found: " + path;
+        return nullptr;
+    }
+
+    // The only reason why a heap object is returned instead of retuning by copy
+    // is to inform the client of a failure through a nullptr.
+    // It could be avoided (return by copy) with an
+    //  - optional equivalent (see boost::optional or std::experimental::optional)
+    //  - exception (but the api is noexcept)
+    return new ElementHandle(*pConfigurableElement, *this);
 }
 
 void CParameterMgr::getSettingsAsBytes(const CConfigurableElement &element,

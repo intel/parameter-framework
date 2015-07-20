@@ -71,7 +71,7 @@ add_library(parameter SHARED
     ParameterBlockType.cpp
     Parameter.cpp
     ParameterFrameworkConfiguration.cpp
-    ParameterHandle.cpp
+    ElementHandle.cpp
     ParameterMgr.cpp
     ParameterMgrFullConnector.cpp
     ParameterMgrPlatformConnector.cpp
@@ -121,6 +121,7 @@ install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIV
 # Client headers
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
+    include/ElementHandle.h
     include/ParameterHandle.h
     include/ParameterMgrLoggerForward.h
     include/ParameterMgrFullConnector.h

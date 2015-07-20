@@ -86,6 +86,12 @@ CParameterHandle* CParameterMgrPlatformConnector::createParameterHandle(const st
     return _pParameterMgr->createParameterHandle(strPath, strError);
 }
 
+ElementHandle* CParameterMgrPlatformConnector::createElementHandle(const string &strPath,
+                                                                   string& strError) const
+{
+    return _pParameterMgr->createElementHandle(strPath, strError);
+}
+
 // Logging
 void CParameterMgrPlatformConnector::setLogger(CParameterMgrPlatformConnector::ILogger* pLogger)
 {
