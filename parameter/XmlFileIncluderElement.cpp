@@ -69,12 +69,7 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
         std::string strPathToXsdFile = elementSerializingContext.getXmlSchemaPathFolder() + "/" +
                                strIncludedElementType + ".xsd";
 
-        std::string xmlErrorMsg;
-        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strPath, true, true, xmlErrorMsg);
-        if (doc == NULL) {
-            elementSerializingContext.setError(xmlErrorMsg);
-            return false;
-        }
+        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strPath, true, true, elementSerializingContext);
 
         CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
                                 strPathToXsdFile,

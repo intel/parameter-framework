@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,12 +35,21 @@ class CXmlSerializingContext
 {
 public:
     CXmlSerializingContext(std::string& strError);
+    ~CXmlSerializingContext();
 
     // Error
     void setError(const std::string& strError);
     void appendLineToError(const std::string& strAppend);
     const std::string& getError() const;
+    /** XML error handler
+      *
+      * @param[in] userData pointer to the serializing context
+      * @param[in] format is the xml error output format
+      *
+      */
+    static void genericErrorHandler(void* userData, const char* format, ...);
 
 private:
     std::string& _strError;
+    std::string _strXmlError;
 };

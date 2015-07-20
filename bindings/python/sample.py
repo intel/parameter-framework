@@ -59,6 +59,6 @@ mood = pfw.createSelectionCriterion("Mood", moodType)
 
 ok, error = pfw.start()
 if not ok:
-    print("Error while starting the pfw: {}".format(error))
+    print("Error while starting the pfw: '{}'".format(error))
 
 raw_input("[Press enter to exit]")

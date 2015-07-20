@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -120,15 +120,6 @@ public:
     _xmlDoc* getDoc() const;
 
     /**
-      * Method that validates the Xml doc contained in pDoc
-      *
-      * @param[out] serializingContext is used as error output
-      *
-      * @return false if any error occurs
-      */
-    virtual bool validate(CXmlSerializingContext& serializingContext);
-
-    /**
     * Method that checks that the xml document has been correctly parsed.
     *
     * @return false if any error occurs during the parsing
@@ -143,9 +134,9 @@ public:
      * @param[in] fromFile true if source is a filename, false if source is an xml
      *            represents an xml document
      * @param[in] xincludes if true, process xincludes tags
-     * @param[out] errorMsg used as error output
+     * @param[in] serializingContext will receive any serialization error
      */
-    static _xmlDoc* mkXmlDoc(const std::string& source, bool fromFile, bool xincludes, std::string& errorMsg);
+    static _xmlDoc* mkXmlDoc(const std::string& source, bool fromFile, bool xincludes, CXmlSerializingContext& serializingContext);
 
 protected:
 
@@ -176,13 +167,6 @@ private:
       * @return true if document is valid, false if any error occures
       */
     bool isInstanceDocumentValid();
-
-    /** Validity error display method
-      *
-      * @param[in] pUserData pointer to the data to validate
-      * @param[out] pError is the xml error output
-      */
-    static void schemaValidityStructuredErrorFunc(void* pUserData, _xmlError* pError);
 
     /**
       * Schema file
