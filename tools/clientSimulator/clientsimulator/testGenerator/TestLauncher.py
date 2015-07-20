@@ -58,18 +58,21 @@ class TestLauncher:
         self.__configParser = configParser
 
         # Prepare basic commands
-        halCommand = [configParser["RemoteProcessCommand"],
-                      configParser["TestPlatformHost"]]
+        halCommand = ["remote-process",
+                      "localhost",
+                      configParser["TestPlatformPort"]]
         setCriteriaCommand = halCommand + ["setCriterionState"]
-        testPlatformHostCommand = [configParser["RemoteProcessCommand"],
-                                   configParser["TestPlatformHost"]]
+        testPlatformHostCommand = ["remote-process",
+                                   "localhost",
+                                   configParser["TestPlatformPort"]]
 
         self.__logFileName = configParser["LogFile"]
 
         # Commands
         self.__startTestPlatformCmd = [configParser["PrefixCommand"],
-                                       configParser["TestPlatformCommand"],
-                                       configParser["PfwConfFile"]]
+                                       "test-platform",
+                                       configParser["PfwConfFile"],
+                                       configParser["TestPlatformPort"]]
 
         self.__createCriterionCmd = [configParser["PrefixCommand"]]
         self.__createCriterionCmd.extend(testPlatformHostCommand)
@@ -85,12 +88,10 @@ class TestLauncher:
         self.__applyConfigurationsCmd.extend(halCommand)
         self.__applyConfigurationsCmd.append("applyConfigurations")
 
-        self.__setupScript = [configParser["SetupScript"]]
-
         # Command used to generate coverage
         self.__coverageCmd = [
             "eval",
-            configParser["CoverageDir"] + "/aplog2coverage.sh",
+            os.path.join(configParser["CoverageDir"], "aplog2coverage.sh"),
             "-d",
             configParser["PfwDomainConfFile"],
             "-e.",
@@ -102,8 +103,10 @@ class TestLauncher:
 
         # Prepare script Commands
         # Loading possible scripts
-        with open(configParser["ScriptsFile"], 'r') as scriptFile:
-            self.__rawScripts = json.load(scriptFile)
+        self.__rawScripts = {}
+        if configParser["ScriptsFile"]:
+            with open(configParser["ScriptsFile"], 'r') as scriptFile:
+                self.__rawScripts = json.load(scriptFile)
 
         self.__availableLaunchType = ["asynchronous", "synchronous"]
 
@@ -117,11 +120,6 @@ class TestLauncher:
 
     def init(self, criterionClasses, isVerbose):
         """ Initialise the Pseudo HAL """
-
-        # Use user script to setup environment as requested before to do
-        # anything
-        self.__logger.info("Launching Setup script")
-        self.__call_process(self.__setupScript)
 
         self.__logger.info("Pseudo Hal Initialisation")
         # Test platform is launched asynchronously and not as script
@@ -175,9 +173,10 @@ class TestLauncher:
             launchType = self.__availableLaunchType[0]
 
         # Create and launch the command to use the desired script
+        # A script's path is absolute or relative to the "ScriptsFile" file.
         self.__call_process(
-            ["eval", "{}/{}".format(
-                os.path.split(self.__configParser["ScriptsFile"])[0],
+            ["eval", os.path.join(
+                os.path.dirname(self.__configParser["ScriptsFile"]),
                 script)],
             launchType == self.__availableLaunchType[0],
             True)

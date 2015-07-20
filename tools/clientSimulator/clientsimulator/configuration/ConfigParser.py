@@ -41,17 +41,23 @@ class ConfigParser:
         with open(confFileName, "r") as testFile:
             self.__conf = json.load(testFile)
 
-        # Preparing files and directory paths
+        # Preparing mandatory files and directory paths
         for key in ["CriterionFile",
-                    "ScriptsFile",
-                    "SetupScript",
+                    "PfwConfFile",
+                    "ScenariosDirectory"]:
+            self.__conf[key] = os.path.join(testsDirectory, self.__conf[key])
+
+        # Preparing optional files and directory paths
+        for key in ["ScriptsFile",
                     "ActionGathererFile",
-                    "ScenariosDirectory",
                     "LogFile",
                     "CoverageFile",
                     "CoverageDir",
                     "PfwDomainConfFile"]:
-            self.__conf[key] = os.path.join(testsDirectory, self.__conf[key])
+            try:
+                self.__conf[key] = os.path.join(testsDirectory, self.__conf[key])
+            except KeyError as e:
+                self.__conf[key] = ""
 
         self.__logger = logging.getLogger(__name__)
         self.__logger.addHandler(consoleLogger)

@@ -51,28 +51,38 @@ class UserInteractor:
         self.__criterions = criterions
 
     @classmethod
-    def getMenu(cls, options):
+    def getMenu(cls, options, cancelSentence="Go Back"):
         """
             Dynamic Menu Generator :
 
-            :param options: dictionnary containing, the invite string
-            and the function to launch
-            :type options: dict
+            :param options: list containing tuples of a) the invite string and
+            b) the function to launch
+            :type options: list
+            :param cancelSentence: title of the menu entry that will be
+            appended after the provided options, in order to exit the menu. For
+            top-level menus, it is advised to pass "Quit" as argument.
+            :type cancelSentence: string
         """
 
-        testQuit = True
-
-        options[len(options)] = \
-            ("Go Back", lambda: False)
-        while testQuit:
+        while True:
             print("\nPlease Make a choice : ")
-            for numMenu, (sentenceMenu, fonc) in sorted(options.items()):
+            for numMenu, (sentenceMenu, fonc) in enumerate(options):
                 print("\t{}. {}".format(numMenu, sentenceMenu))
 
-            choice = input("Your Choice : ")
+            # Lastly, append an option to go to the previous menu/quit
+            print("\t{}. {}".format(len(options), cancelSentence))
 
+            choice = input("Your Choice : ")
             try:
-                testQuit = options[int(choice)][1]()
+                choice = int(choice)
+                if choice == len(options):
+                    # The user has selected the "cancel" option
+                    break
+                if choice < 0:
+                    # Negative values make no sense
+                    raise KeyError(choice)
+
+                options[choice][1]()
             except (KeyError, ValueError) as e:
                 print("Invalid Choice : {}".format(e))
 
@@ -81,13 +91,13 @@ class UserInteractor:
             Interactive Mode : Set up a menu which allow
             users to personnalize a Test and to Launch it
         """
-        optionsMenu = {
-            0: ("Edit Vector", self.__editVector),
-            1: ("Apply Configuration", self.__applyConfiguration),
-            2: ("Launch Script", self.__launchScript)
-        }
+        optionsMenu = [
+            ("Edit Vector", self.__editVector),
+            ("Apply Configuration", self.__applyConfiguration),
+            ("Launch Script", self.__launchScript)
+        ]
 
-        UserInteractor.getMenu(optionsMenu)
+        UserInteractor.getMenu(optionsMenu, "Quit")
 
     def __applyConfiguration(self):
         """
@@ -105,11 +115,11 @@ class UserInteractor:
             script to run.
         """
 
-        optionScript = {
-            num: ("{} scripts".format(script),
+        optionScript = [
+            ("Execute {}".format(script),
                   DynamicCallHelper(self.__testLauncher.executeScript, script))
-            for num, script in enumerate(self.__testLauncher.scripts)
-        }
+            for script in self.__testLauncher.scripts
+        ]
 
         UserInteractor.getMenu(optionScript)
 
@@ -129,37 +139,34 @@ class UserInteractor:
             :type criterion: Criterion
         """
 
-        optionEditCriterion = {}
+        optionEditCriterion = []
         for possibleValue in [x for x in criterion.allowedValues()
                               if not x in criterion.currentValue
                               and not x == criterion.noValue]:
-            optionEditCriterion[
-                len(optionEditCriterion)] = (
-                "Set {}".format(possibleValue),
-                DynamicCallHelper(
-                    self.__setCriterion,
-                    criterion,
-                    possibleValue))
+            optionEditCriterion.append(
+                ("Set {}".format(possibleValue),
+                 DynamicCallHelper(
+                     self.__setCriterion,
+                     criterion,
+                     possibleValue)))
 
         if InclusiveCriterion in criterion.__class__.__bases__:
             # Inclusive criterion : display unset value (default when empty)
             for possibleValue in criterion.currentValue:
-                optionEditCriterion[
-                    len(optionEditCriterion)] = (
-                    "Unset {}".format(possibleValue),
-                    DynamicCallHelper(
-                        self.__removeCriterionValue,
-                        criterion,
-                        possibleValue))
+                optionEditCriterion.append(
+                    ("Unset {}".format(possibleValue),
+                     DynamicCallHelper(
+                         self.__removeCriterionValue,
+                         criterion,
+                         possibleValue)))
         else:
             # Exclusive criterion : display default value
-            optionEditCriterion[
-                len(optionEditCriterion)] = (
-                "Set Default",
-                DynamicCallHelper(
-                    self.__setCriterion,
-                    criterion,
-                    criterion.noValue))
+            optionEditCriterion.append(
+                ("Set Default",
+                 DynamicCallHelper(
+                     self.__setCriterion,
+                     criterion,
+                     criterion.noValue)))
 
         UserInteractor.getMenu(optionEditCriterion)
 
@@ -170,11 +177,11 @@ class UserInteractor:
             Allow to change the value of several criterions through a menu.
         """
 
-        optionEdit = {
-            num: ("Edit {}".format(cri.__class__.__name__),
+        optionEdit = [
+            ("Edit {}".format(cri.__class__.__name__),
                   DynamicCallHelper(self.__editCriterion, cri))
-            for num, cri in enumerate(self.__criterions)
-        }
+            for cri in self.__criterions
+        ]
 
         UserInteractor.getMenu(optionEdit)
 

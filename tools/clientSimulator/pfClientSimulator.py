@@ -37,8 +37,6 @@ from clientsimulator.scenario.Scenario import Scenario
 from clientsimulator.userInteraction.UserInteractor import UserInteractor
 from clientsimulator.userInteraction.DynamicCallHelper import DynamicCallHelper
 import argparse
-import threading
-import signal
 import time
 import logging
 import os
@@ -100,11 +98,18 @@ def main():
     parser.add_argument("test_directory", type=str, default=None,
                         help="precise a test directory (required).")
 
-    parser.add_argument("-s", "--scenario", type=int, default=None,
-                        help="precise a scenario to launch.")
+    parser.add_argument("-s", "--scenario", type=int, default=None, nargs='+',
+                        help="precise one or more scenarios to launch.")
 
-    parser.add_argument("--interactive", action='store_true',
-                        help="run in interactive mode.")
+    interactiveness = parser.add_mutually_exclusive_group()
+    interactiveness.add_argument("--no-exit", action='store_true',
+                                 help="lets you interactively select more scenarios (This is"
+                                      " implicit if neither '--scenario' nor '--interactive' are "
+                                      " passed).")
+
+    interactiveness.add_argument("--interactive", action='store_true',
+                                 help="run in interactive mode (lets you select actions and scripts"
+                                 " to run).")
 
     parser.add_argument(
         "-v",
@@ -136,12 +141,18 @@ def main():
                 args.test_directory))
         exit(1)
 
-    configParser = ConfigParser(
-        os.path.join(
+    try:
+        configParser = ConfigParser(
+            os.path.join(
+                args.test_directory,
+                "conf.json"),
             args.test_directory,
-            "conf.json"),
-        args.test_directory,
-        consoleLogger)
+            consoleLogger)
+    except KeyError as e:
+        logger.error(
+            "Missing mandatory configuration item {} in the"
+            " conf.json file".format(e))
+        exit(1)
 
     # Always write all log in the file
     logging.basicConfig(level=logging.DEBUG,
@@ -175,34 +186,33 @@ def main():
                 testLauncher,
                 testFactory.generateTestVector()).launchInteractiveMode()
         else:
-            while True:
-                scenarioOptions = {
-                    scenarioNumber:
-                        (scenarioFileName,
-                         DynamicCallHelper(
-                             launchScenario,
-                             logger,
-                             consoleLogger,
-                             configParser["ActionGathererFile"],
-                             os.path.join(
-                                 configParser["ScenariosDirectory"], scenarioFileName),
-                             testFactory,
-                             testLauncher
-                         ))
-                    for scenarioNumber, scenarioFileName in enumerate(
-                        [file for file in sorted(os.listdir(
-                            configParser["ScenariosDirectory"]))])
-                }
-                if args.scenario is not None:
-                    scenarioOptions[args.scenario][1]()
-                    # Let the user choose other scenario after the one choosed by command line
-                    args.scenario = None
-                else:
-                    UserInteractor.getMenu(scenarioOptions)
+            scenarioOptions = [
+                    (scenarioFileName,
+                     DynamicCallHelper(
+                         launchScenario,
+                         logger,
+                         consoleLogger,
+                         configParser["ActionGathererFile"],
+                         os.path.join(
+                             configParser["ScenariosDirectory"], scenarioFileName),
+                         testFactory,
+                         testLauncher
+                     ))
+                for scenarioFileName in sorted(os.listdir(configParser["ScenariosDirectory"]))
+            ]
+            if args.scenario is not None:
+                for elem in args.scenario:
+                    scenarioOptions[elem][1]()
+            if (args.scenario is None) or args.no_exit:
+                # Let the user choose more scenarios after the ones chosen by command line
+                # or if none was given on the command line.
+                UserInteractor.getMenu(scenarioOptions, "Quit")
     except KeyboardInterrupt as e:
+        close(logger, testLauncher, args.coverage)
+    else:
         close(logger, testLauncher, args.coverage)
 
 
 if __name__ == "__main__":
-    """ Execute main if the script is running as main  """
+    # Execute main if the script is running as main
     main()

@@ -40,7 +40,9 @@ configuration functional tests.
 
 ## How to run tests
 
-You can run tests using pfClientSimulator.py.
+You can run tests using pfClientSimulator.py. `test-platform` and
+`remote-process` need to be in the PATH (e.g. by installing the Parameter
+Framework - see the main README file).
 
 You have to run the script with at least the test directory argument:
 
@@ -71,41 +73,32 @@ to learn what it is about.
 
 A test directory should contains a `conf.json` file containing:
 
-- The desired command prefix (optional; e.g. `adb shell` in order to execute
-  tests on an android board or empty to execute locally).
+- The desired command prefix (e.g. `adb shell` in order to execute tests on an
+  android board or empty to execute locally).
+- The port on which the test-platform should be started.
 - The criterion file path (see
   [this README](https://github.com/01org/parameter-framework/tree/master/tools/xmlGenerator#domaingeneratorpy)).
-- The absolute path to the Parameter Framework toplevel configuration file.
+- The path to the Parameter Framework toplevel configuration file.
 - The path to the directory containing the scenario files.
 - The path to the scripts definitions file (optional) (see below).
 - The path to the actions definitions (aka "ActionGatherer") file (optional)
   (see below).
-- The absolute path to the log output file (optional).
-- A setup script (inline shell) (optional).
-- The absolute paths to test-platform and remote-process executables (or the
-  executables' names if they are in the PATH).
-- The host and port on which the test-platform and the Parameter Framework
-  instance are listening for commands.
-- The absolute path to the directory containing the coverage generation tool
+- The path to the log output file (optional but needed for coverage).
+- The path to the directory containing the coverage generation tool
   (optional; for coverage only).
 - The path to the html coverage output file (optional; for coverage only).
 - The path to the Parameter Framework domain configuration file (optional; for
   coverage only).
 
-All these *must* be defined in `conf.json`; when marked "optional", it means
-that they *may be empty but still need to be defined*.
-
-Unless otherwise noted, paths in `conf.json` should be relative and will be
-evaluated *relative to the test directory*. When we mention absolute path, you
-may still fill a relative path but it will be evaluated *relative to the
-working directory*.
-
+Relative paths in `conf.json` will be evaluated *relative to the test
+directory*.
 
 ## Example Client Simulator configuration file
 
 ```{.json}
 {
     "PrefixCommand" : "adb shell",
+    "TestPlatformPort" : "5001",
 
     "CriterionFile" : "MyCriteria.txt",
     "PfwConfFile" : "/home/user/tests/TopLevel.xml",
@@ -115,13 +108,6 @@ working directory*.
     "ActionGathererFile" : "my-test-actions.json",
 
     "LogFile" : "tests.log",
-
-    "SetupScript" : "echo 'bouh'",
-
-    "TestPlatformCommand" : "test-platform",
-    "RemoteProcessCommand" : "remote-process",
-    "TestPlatformHost" : "localhost 5001",
-    "ParameterFramworkHost" : "localhost 5000",
 
     "CoverageDir" : "/home/user/parameter-framework/tools/coverage",
     "CoverageFile" : "coverage.html",
