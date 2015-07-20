@@ -82,7 +82,16 @@ public:
     // Elements with no domains
     void listRogueElements(std::string& strResult) const;
 
-    // Belonging to no domains
+    /** @return true if element is rogue, false otherwise
+     *
+     * An element is rogue if it is disjoint with all domains.
+     *
+     * Ie: An element is rogue if neither its descendants, ascendants
+     *     nor itself are associated with any domain.
+     *
+     * Ie: An element is *not* rogue if any of its descendants, ascendants
+     *     or itself are associated with at least one domain.
+     */
     bool isRogue() const;
 
     // Footprint as string

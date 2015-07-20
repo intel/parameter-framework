@@ -456,10 +456,23 @@ void CConfigurableElement::listRogueElements(std::string& strResult) const
     }
 }
 
-// Belonging to no domains
 bool CConfigurableElement::isRogue() const
 {
-    return !getBelongingDomainCount();
+    // Check not belonging to any domin from current level and towards ascendents
+    if (getBelongingDomainCount() != 0) {
+
+        return false;
+    }
+
+    // Get a list of elements (current + descendants) with no domains associated
+    std::list<const CConfigurableElement*> rogueElementList;
+
+    CConfigurableElementAggregator agregator(rogueElementList, &CConfigurableElement::hasNoDomainAssociated);
+
+    agregator.aggegate(this);
+
+    // Check only one element found which ought to be current one
+    return (rogueElementList.size() == 1) && (rogueElementList.front() == this);
 }
 
 // Footprint as string
