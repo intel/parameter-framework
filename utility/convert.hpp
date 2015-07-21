@@ -44,6 +44,8 @@ namespace details
 /** Helper class to limit instantiation of templates */
 template<typename T>
 struct ConvertionAllowed;
+template<typename T, typename Via>
+struct ConvertionAllowedVia;
 
 /* List of allowed types for conversion */
 template<> struct ConvertionAllowed<bool> {};
@@ -53,8 +55,14 @@ template<> struct ConvertionAllowed<uint32_t> {};
 template<> struct ConvertionAllowed<int32_t> {};
 template<> struct ConvertionAllowed<uint16_t> {};
 template<> struct ConvertionAllowed<int16_t> {};
+template<> struct ConvertionAllowed<int8_t> {};
+template<> struct ConvertionAllowed<uint8_t> {};
 template<> struct ConvertionAllowed<float> {};
 template<> struct ConvertionAllowed<double> {};
+
+/* Allow chars and unsigned chars to be converted via integers */
+template<> struct ConvertionAllowedVia<uint8_t, uint32_t> {};
+template<> struct ConvertionAllowedVia<int8_t, int32_t> {};
 
 template<typename T>
 static inline bool convertTo(const std::string &str, T &result)
@@ -94,6 +102,31 @@ static inline bool convertTo(const std::string &str, T &result)
 
     return ss.eof() && !ss.fail() && !ss.bad();
 }
+
+template<typename T, typename Via>
+static inline bool convertToVia(const std::string &str, T &result)
+{
+    /* Check that conversion to that type is allowed.
+     * If this fails, this means that this template was not intended to be used
+     * with this type, thus that the result is undefined. */
+    ConvertionAllowedVia<T, Via>();
+
+    /* We want to override the behaviour of convertTo<T> with that of
+     * convertTo<Via> and then safely cast the result into a T. */
+    Via res;
+
+    if (!convertTo<Via>(str, res)) {
+        return false;
+    }
+
+    if ((res > std::numeric_limits<T>::max())
+        or (res < std::numeric_limits<T>::min())) {
+        return false;
+    }
+
+    result = static_cast<T>(res);
+    return true;
+}
 } // namespace details
 
 /**
@@ -116,6 +149,39 @@ template<typename T>
 static inline bool convertTo(const std::string &str, T &result)
 {
     return details::convertTo<T>(str, result);
+}
+
+/** Specialization for uint8_t of convertTo template function.
+ *
+ * This function follows the same paradigm than it's generic version.
+ *
+ * The generic version was converting int8 as it was a character
+ * (uint8_t is an alias to unsigned char on most compiler).
+ * Thus converting "1" would return 49 ie '1'.
+ * As convertTo is thought as an _numerical_ convertion tool
+ * (contrary to boost::lexical_cast for example),
+ * forbid considering the input as a character and consider uint8_t
+ * (aka unsigned char) as a number exclusively.
+ *
+ * @param[in]  str    the string to parse.
+ * @param[out] result reference to object where to store the result.
+ *
+ * @return true if conversion was successful, false otherwise.
+ */
+template<>
+inline bool convertTo<uint8_t>(const std::string &str, uint8_t &result)
+{
+    return details::convertToVia<uint8_t, uint32_t>(str, result);
+}
+
+/** Specialization for int8_t of convertTo template function.
+ *
+ * @see convertTo<uint8_t>
+ */
+template<>
+inline bool convertTo<int8_t>(const std::string &str, int8_t &result)
+{
+    return details::convertToVia<int8_t, int32_t>(str, result);
 }
 
 /**
