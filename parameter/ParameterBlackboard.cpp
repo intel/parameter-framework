@@ -102,6 +102,25 @@ void CParameterBlackboard::readBuffer(void* pvDstData, size_t size, size_t offse
     readInteger(pvDstData, size, offset, false);
 }
 
+// Element access
+void CParameterBlackboard::writeBytes(const std::vector<uint8_t>& bytes, uint32_t offset)
+{
+    assertValidAccess(offset, bytes.size());
+
+    auto dest_first = atOffset(offset);
+
+    std::copy(bytes.begin(), bytes.end(), dest_first);
+}
+
+void CParameterBlackboard::readBytes(std::vector<uint8_t>& bytes, uint32_t offset) const
+{
+    assertValidAccess(offset, bytes.size());
+
+    auto first = atOffset(offset);
+
+    std::copy_n(first, bytes.size(), bytes.begin());
+}
+
 // Access from/to subsystems
 uint8_t* CParameterBlackboard::getLocation(size_t offset)
 {
