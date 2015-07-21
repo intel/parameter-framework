@@ -53,6 +53,7 @@ template<> struct ConvertionAllowed<uint32_t> {};
 template<> struct ConvertionAllowed<int32_t> {};
 template<> struct ConvertionAllowed<uint16_t> {};
 template<> struct ConvertionAllowed<int16_t> {};
+template<> struct ConvertionAllowed<uint8_t> {};
 template<> struct ConvertionAllowed<float> {};
 template<> struct ConvertionAllowed<double> {};
 
@@ -116,6 +117,42 @@ template<typename T>
 static inline bool convertTo(const std::string &str, T &result)
 {
     return details::convertTo<T>(str, result);
+}
+
+/** Specialization for uint8_t of convertTo template function.
+ *
+ * This function follows the same paradigm than it's generic version.
+ *
+ * The generic version was converting int8 as it was a character
+ * (uint8_t is an alias to unsigned char on most compiler).
+ * Thus converting "1" would return 49 ie '1'.
+ * As convertTo is thought as an _numerical_ conversion tool
+ * (contrary to boost::lexical_cast for example),
+ * forbid considering the input as a character and consider uint8_t
+ * (aka unsigned char) as a number exclusively.
+ *
+ * TODO: Add the specialization for int8_t too.
+ *
+ * @param[in]  str    the string to parse.
+ * @param[out] result reference to object where to store the result.
+ *
+ * @return true if conversion was successful, false otherwise.
+ */
+template<>
+inline bool convertTo<uint8_t>(const std::string &str, uint8_t &result)
+{
+    uint32_t res;
+
+    if (!convertTo<uint32_t>(str, res)) {
+        return false;
+    }
+
+    if (res > std::numeric_limits<uint8_t>::max()) {
+        return false;
+    }
+
+    result = static_cast<uint8_t>(res);
+    return true;
 }
 
 /**
