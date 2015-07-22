@@ -53,11 +53,6 @@ void CXmlSerializingContext::appendLineToError(const std::string& strAppend)
     _strError += "\n" + strAppend;
 }
 
-const std::string& CXmlSerializingContext::getError() const
-{
-    return _strError;
-}
-
 void CXmlSerializingContext::genericErrorHandler(void* userData, const char* format, ...)
 {
     char *buffer = NULL;
