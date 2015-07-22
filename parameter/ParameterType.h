@@ -75,8 +75,18 @@ public:
     virtual bool toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
     virtual bool fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
 
-    // XML Serialization value space handling
-    // Value space handling for configuration import/export
+    /** Value space handling for settings import/export from/to XML
+     *
+     * During export, this method set the "ValueSpace" attribute of the future
+     * XML element according to the export context.
+     *
+     * During import, this method reads the "ValueSpace" attribute of the XML
+     * element being imported and sets the access context's value space
+     * accordingly.
+     *
+     * @param[in,out] xmlConfigurableElementSettingsElement the element being imported or exported
+     * @param[in,out] configurationAccessContext the import or export context
+     */
     virtual void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
 
     // Element properties
