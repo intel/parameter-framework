@@ -49,12 +49,12 @@ std::string CSelectionCriterionType::getKind() const
 }
 
 // From ISelectionCriterionTypeInterface
-bool CSelectionCriterionType::addValuePair(int iValue, const std::string& strValue)
+bool CSelectionCriterionType::addValuePair(unsigned int uiValue, const std::string& strValue)
 {
     // Check 1 bit set only for inclusive types
-    if (_bInclusive && (!iValue || (iValue & (iValue - 1)))) {
+    if (_bInclusive && (!uiValue || (uiValue & (uiValue - 1)))) {
 
-        log_warning("Rejecting value pair association: 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
+        log_warning("Rejecting value pair association: 0x%X - %s for Selection Criterion Type %s", uiValue, strValue.c_str(), getName().c_str());
 
         return false;
     }
@@ -62,68 +62,68 @@ bool CSelectionCriterionType::addValuePair(int iValue, const std::string& strVal
     // Check already inserted
     if (_numToLitMap.find(strValue) != _numToLitMap.end()) {
 
-        log_warning("Rejecting value pair association (literal already present): 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
+        log_warning("Rejecting value pair association (literal already present): 0x%X - %s for Selection Criterion Type %s", uiValue, strValue.c_str(), getName().c_str());
 
         return false;
     }
     for (NumToLitMapConstIt it = _numToLitMap.begin(); it != _numToLitMap.end(); ++it) {
-        if (it->second == iValue) {
+        if (it->second == uiValue) {
             log_warning("Rejecting value pair association (numerical already present): 0x%X - %s"
                         " for Selection Criterion Type %s",
-                        iValue, strValue.c_str(), getName().c_str());
+                        uiValue, strValue.c_str(), getName().c_str());
             return false;
         }
     }
-    _numToLitMap[strValue] = iValue;
+    _numToLitMap[strValue] = uiValue;
 
     return true;
 }
 
-bool CSelectionCriterionType::getNumericalValue(const std::string& strValue, int& iValue) const
+bool CSelectionCriterionType::getNumericalValue(const std::string& strValue, unsigned int& uiValue) const
 {
     if (_bInclusive) {
 
         Tokenizer tok(strValue, _strDelimiter);
         std::vector<std::string> astrValues = tok.split();
         size_t uiNbValues = astrValues.size();
-        int iResult = 0;
-        size_t uiValueIndex;
-        iValue = 0;
+        unsigned int uiResult = 0;
+        size_t uuiValueIndex;
+        uiValue = 0;
 
         // Looping on each std::string delimited by "|" token and adding the associated value
-        for (uiValueIndex = 0; uiValueIndex < uiNbValues; uiValueIndex++) {
+        for (uuiValueIndex = 0; uuiValueIndex < uiNbValues; uuiValueIndex++) {
 
-            if (!getAtomicNumericalValue(astrValues[uiValueIndex], iResult)) {
+            if (!getAtomicNumericalValue(astrValues[uuiValueIndex], uiResult)) {
 
                 return false;
             }
-            iValue |= iResult;
+            uiValue |= uiResult;
         }
         return true;
     }
-    return getAtomicNumericalValue(strValue, iValue);
+    return getAtomicNumericalValue(strValue, uiValue);
 }
 
-bool CSelectionCriterionType::getAtomicNumericalValue(const std::string& strValue, int& iValue) const
+bool CSelectionCriterionType::getAtomicNumericalValue(const std::string& strValue, unsigned int& uiValue) const
 {
     NumToLitMapConstIt it = _numToLitMap.find(strValue);
 
     if (it != _numToLitMap.end()) {
 
-        iValue = it->second;
+        uiValue = it->second;
 
         return true;
     }
     return false;
 }
 
-bool CSelectionCriterionType::getLiteralValue(int iValue, std::string& strValue) const
+bool CSelectionCriterionType::getLiteralValue(unsigned int uiValue, std::string& strValue) const
 {
     NumToLitMapConstIt it;
 
     for (it = _numToLitMap.begin(); it != _numToLitMap.end(); ++it) {
 
-        if (it->second == iValue) {
+        if (it->second == uiValue) {
 
             strValue = it->first;
 
@@ -164,7 +164,7 @@ std::string CSelectionCriterionType::listPossibleValues() const
 }
 
 // Formatted state
-std::string CSelectionCriterionType::getFormattedState(int iValue) const
+std::string CSelectionCriterionType::getFormattedState(unsigned int uiValue) const
 {
     std::string strFormattedState;
 
@@ -174,12 +174,12 @@ std::string CSelectionCriterionType::getFormattedState(int iValue) const
         uint32_t uiBit;
         bool bFirst = true;
 
-        for (uiBit = 0; uiBit < sizeof(iValue) * 8; uiBit++) {
+        for (uiBit = 0; uiBit < sizeof(uiValue) * 8; uiBit++) {
 
-            int iSingleBitValue = iValue & (1 << uiBit);
+            unsigned int uiSingleBitValue = uiValue & (1 << uiBit);
 
             // Check if current bit is set
-            if (!iSingleBitValue) {
+            if (!uiSingleBitValue) {
 
                 continue;
             }
@@ -187,7 +187,7 @@ std::string CSelectionCriterionType::getFormattedState(int iValue) const
             // Simple translation
             std::string strSingleValue;
 
-            if (!getLiteralValue(iSingleBitValue, strSingleValue)) {
+            if (!getLiteralValue(uiSingleBitValue, strSingleValue)) {
                 // Numeric value not part supported values for this criterion type.
                 continue;
             }
@@ -204,7 +204,7 @@ std::string CSelectionCriterionType::getFormattedState(int iValue) const
 
     } else {
         // Simple translation
-        getLiteralValue(iValue, strFormattedState);
+        getLiteralValue(uiValue, strFormattedState);
     }
 
     // Sometimes nothing is set

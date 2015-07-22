@@ -87,7 +87,7 @@ private:
     MatchesWhen _eMatchesWhen;
 
     // Value
-    int32_t _iMatchValue;
+    uint32_t _uiMatchValue;
 
     // Used for XML MatchesWhen attribute parsing
     static const SMatchingRuleDescription _astMatchesWhen[ENbMatchesWhen];

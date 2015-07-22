@@ -47,7 +47,7 @@ const CSelectionCriterionRule::SMatchingRuleDescription CSelectionCriterionRule:
     { "Excludes", false }
 };
 
-CSelectionCriterionRule::CSelectionCriterionRule() : _pSelectionCriterion(NULL), _eMatchesWhen(CSelectionCriterionRule::EIs), _iMatchValue(0)
+CSelectionCriterionRule::CSelectionCriterionRule() : _pSelectionCriterion(NULL), _eMatchesWhen(CSelectionCriterionRule::EIs), _uiMatchValue(0)
 {
 }
 
@@ -104,7 +104,7 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
     }
 
     // Value
-    if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
+    if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _uiMatchValue)) {
 
         strError = "Value error: \"" + strValue + "\" is not part of criterion \"" +
                    _pSelectionCriterion->getCriterionName() + "\"";
@@ -126,7 +126,7 @@ void CSelectionCriterionRule::dump(string& strResult) const
     strResult += " ";
     // Value
     string strValue;
-    _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, strValue);
+    _pSelectionCriterion->getCriterionType()->getLiteralValue(_uiMatchValue, strValue);
     strResult += strValue;
 }
 
@@ -137,13 +137,13 @@ bool CSelectionCriterionRule::matches() const
 
     switch(_eMatchesWhen) {
     case EIs:
-        return _pSelectionCriterion->is(_iMatchValue);
+        return _pSelectionCriterion->is(_uiMatchValue);
     case EIsNot:
-        return _pSelectionCriterion->isNot(_iMatchValue);
+        return _pSelectionCriterion->isNot(_uiMatchValue);
     case EIncludes:
-        return _pSelectionCriterion->includes(_iMatchValue);
+        return _pSelectionCriterion->includes(_uiMatchValue);
     case EExcludes:
-        return _pSelectionCriterion->excludes(_iMatchValue);
+        return _pSelectionCriterion->excludes(_uiMatchValue);
     default:
         assert(0);
         return false;
@@ -183,7 +183,7 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Get Value
     string strValue = xmlElement.getAttributeString("Value");
 
-    if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _iMatchValue)) {
+    if (!_pSelectionCriterion->getCriterionType()->getNumericalValue(strValue, _uiMatchValue)) {
 
         xmlDomainImportContext.setError("Wrong Value attribute value " + strValue + " in " + getKind() + " " + xmlElement.getPath());
 
@@ -210,7 +210,7 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
     // Set Value
     string strValue;
 
-     _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, strValue);
+     _pSelectionCriterion->getCriterionType()->getLiteralValue(_uiMatchValue, strValue);
 
     xmlElement.setAttributeString("Value", strValue);
 }

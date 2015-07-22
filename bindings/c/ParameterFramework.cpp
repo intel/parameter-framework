@@ -39,6 +39,7 @@
 #include <cassert>
 #include <cstring>
 #include <cstdlib>
+#include <climits>
 
 using std::string;
 
@@ -184,14 +185,14 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
         assert(type != NULL);
         // Add criterion values
         for (size_t valueIndex = 0; criterion.values[valueIndex] != NULL; ++valueIndex) {
-            int value;
+            unsigned int value;
             if (criterion.inclusive) {
-                // Check that (int)1 << valueIndex would not overflow (UB)
-                if(std::numeric_limits<int>::max() >> valueIndex == 0) {
+                // Check that we are not going to shift too far (UB)
+                if (valueIndex >= sizeof(unsigned int) * CHAR_BIT) {
                     return status.failure("Too many values for criterion " +
                                           string(criterion.name));
                 }
-                value = 1 << valueIndex;
+                value = 1U << valueIndex;
             } else {
                 value = valueIndex;
             }

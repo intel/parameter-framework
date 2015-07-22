@@ -34,11 +34,17 @@
 class ISelectionCriterionTypeInterface
 {
 public:
-    virtual bool addValuePair(int iValue, const std::string& strValue) = 0;
-    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const = 0;
-    virtual bool getLiteralValue(int iValue, std::string& strValue) const = 0;
+    virtual bool addValuePair(unsigned int uiValue, const std::string& strValue) = 0;
+    virtual bool getNumericalValue(const std::string& strValue, unsigned int& uiValue) const = 0;
+    virtual bool getLiteralValue(unsigned int iValue, std::string& strValue) const = 0;
     virtual bool isTypeInclusive() const = 0;
-    virtual std::string getFormattedState(int iValue) const = 0;
+    virtual std::string getFormattedState(unsigned int iValue) const = 0;
+
+    /** deprecated, use getNumericalValue(const std::string& unsigned int&) instead */
+    bool getNumericalValue(const std::string& strValue, int& iValue) const
+    {
+        return getNumericalValue(strValue, (unsigned int&)iValue);
+    };
 
 protected:
     virtual ~ISelectionCriterionTypeInterface() {}
