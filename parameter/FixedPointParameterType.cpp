@@ -73,16 +73,9 @@ void CFixedPointParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigu
     // Direction?
     if (!configurationAccessContext.serializeOut()) {
 
-        // Get Value space from XML
-        if (xmlConfigurableElementSettingsElement.hasAttribute("ValueSpace")) {
-
-            string strValueSpace;
-            xmlConfigurableElementSettingsElement.getAttribute("ValueSpace", strValueSpace);
-            configurationAccessContext.setValueSpaceRaw(strValueSpace == "Raw");
-        } else {
-
-            configurationAccessContext.setValueSpaceRaw(false);
-        }
+        string strValueSpace;
+        xmlConfigurableElementSettingsElement.getAttribute("ValueSpace", strValueSpace);
+        configurationAccessContext.setValueSpaceRaw(strValueSpace == "Raw");
     } else {
         // Provide value space only if not the default one
         if (configurationAccessContext.valueSpaceIsRaw()) {

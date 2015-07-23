@@ -109,25 +109,17 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
         // Signed means we have one less util bit
         uiSizeInBits--;
 
-        if (xmlElement.hasAttribute("Min")) {
-
-            xmlElement.getAttribute("Min", (int32_t &)_uiMin);
-        } else {
+        if (!xmlElement.getAttribute("Min", (int32_t &)_uiMin)) {
 
             _uiMin = 1UL << uiSizeInBits;
-
         }
-        signExtend((int32_t&)_uiMin);
 
-        if (xmlElement.hasAttribute("Max")) {
-
-            xmlElement.getAttribute("Max", (int32_t &)_uiMax);
-
-            signExtend((int32_t&)_uiMax);
-        } else {
+        if (!xmlElement.getAttribute("Max", (int32_t &)_uiMax)) {
 
             _uiMax = (1UL << uiSizeInBits) - 1;
         }
+        signExtend((int32_t&)_uiMin);
+        signExtend((int32_t&)_uiMax);
     } else {
         if (!xmlElement.getAttribute("Min", _uiMin)) {
 

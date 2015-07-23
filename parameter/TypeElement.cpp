@@ -103,16 +103,10 @@ void CTypeElement::populate(CElement* pElement) const
 bool CTypeElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Array Length attribute
-    if (xmlElement.hasAttribute("ArrayLength")) {
-
-        xmlElement.getAttribute("ArrayLength", _uiArrayLength);
-    } else {
-        _uiArrayLength = 0; // Scalar
-    }
+    xmlElement.getAttribute("ArrayLength", _uiArrayLength);
     // Manage mapping attribute
     std::string rawMapping;
-    xmlElement.getAttribute("Mapping", rawMapping);
-    if (!rawMapping.empty()) {
+    if (xmlElement.getAttribute("Mapping", rawMapping) && !rawMapping.empty()) {
 
         std::string error;
         if (!getMappingData()->init(rawMapping, error)) {

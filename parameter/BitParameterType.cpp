@@ -97,24 +97,17 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
     }
 
     // Max
-    if (xmlElement.hasAttribute("Max")) {
+    _uiMax = getMaxEncodableValue();
+    if (xmlElement.getAttribute("Max", _uiMax) && (_uiMax > getMaxEncodableValue())) {
 
-        xmlElement.getAttribute("Max", _uiMax);
+        // Max value exceeded
+        std::ostringstream strStream;
 
-        if (_uiMax > getMaxEncodableValue()) {
+        strStream << "Max attribute inconsistent with maximum encodable size (" << getMaxEncodableValue() << ") for " + getKind();
 
-            // Max value exceeded
-	    std::ostringstream strStream;
+        serializingContext.setError(strStream.str());
 
-            strStream << "Max attribute inconsistent with maximum encodable size (" << getMaxEncodableValue() << ") for " + getKind();
-
-            serializingContext.setError(strStream.str());
-
-            return false;
-        }
-    } else {
-
-        _uiMax = getMaxEncodableValue();
+        return false;
     }
 
     // Base

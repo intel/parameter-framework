@@ -218,9 +218,7 @@ bool CConfigurableDomain::fromXml(const CXmlElement& xmlElement, CXmlSerializing
         static_cast<CXmlDomainImportContext&>(serializingContext);
 
     // Sequence awareness (optional)
-    if (!xmlElement.getAttribute("SequenceAware", _bSequenceAware)) {
-        _bSequenceAware = false;
-    }
+    xmlElement.getAttribute("SequenceAware", _bSequenceAware);
 
     std::string name;
     xmlElement.getAttribute("Name", name);
