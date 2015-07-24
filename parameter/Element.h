@@ -147,15 +147,6 @@ public:
     void setXmlDescriptionAttribute(CXmlElement& xmlElement) const;
 
     /**
-     * Extract the Description field from the Xml Element during XML decomposing.
-     *
-     * @param[in] xmlElement to extract the description from.
-     *
-     * @return description represented as a string, empty if not found
-     */
-    std::string getXmlDescriptionAttribute(const CXmlElement &xmlElement) const;
-
-    /**
      * Appends if found human readable description property.
      *
      * @param[out] strResult in which the description is wished to be appended.
@@ -179,6 +170,8 @@ protected:
      */
     CElement* createChild(const CXmlElement& childElement,
                           CXmlSerializingContext& elementSerializingContext);
+
+    static const std::string gDescriptionPropertyName;
 
 private:
     // Logging (done by root)
@@ -209,6 +202,4 @@ private:
     std::vector<CElement*> _childArray;
     // Parent
     CElement* _pParent;
-
-    static const std::string gDescriptionPropertyName;
 };

@@ -63,30 +63,15 @@ void CLinearParameterAdaptation::showProperties(string& strResult) const
 bool CLinearParameterAdaptation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Get SlopeNumerator
-    if (xmlElement.hasAttribute("SlopeNumerator")) {
+    xmlElement.getAttribute("SlopeNumerator", _dSlopeNumerator);
 
-        _dSlopeNumerator = xmlElement.getAttributeDouble("SlopeNumerator");
-
-    } else {
-        // Default
-        _dSlopeNumerator = 1;
-    }
     // Get SlopeDenominator
-    if (xmlElement.hasAttribute("SlopeDenominator")) {
-
-        _dSlopeDenominator = xmlElement.getAttributeDouble("SlopeDenominator");
+    if (xmlElement.getAttribute("SlopeDenominator", _dSlopeDenominator)
+        && (_dSlopeDenominator == 0)) {
 
         // Avoid by 0 division errors
-        if (_dSlopeDenominator == 0) {
-
-            serializingContext.setError("SlopeDenominator attribute can't be 0 on element" + xmlElement.getPath());
-
-            return false;
-        }
-
-    } else {
-        // Default
-        _dSlopeDenominator = 1;
+        serializingContext.setError("SlopeDenominator attribute can't be 0 on element" + xmlElement.getPath());
+        return false;
     }
 
     // Base

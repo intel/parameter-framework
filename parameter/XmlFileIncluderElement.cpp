@@ -51,7 +51,8 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     CXmlElementSerializingContext& elementSerializingContext = static_cast<CXmlElementSerializingContext&>(serializingContext);
 
     // Parse included document
-    std::string strPath = xmlElement.getAttributeString("Path");
+    std::string strPath;
+    xmlElement.getAttribute("Path", strPath);
 
     // Relative path?
     if (strPath[0] != '/') {

@@ -92,7 +92,9 @@ string CXmlDocSource::getRootElementAttributeString(const string& strAttributeNa
 {
     CXmlElement topMostElement(_pRootNode);
 
-    return topMostElement.getAttributeString(strAttributeName);
+    string attribute;
+    topMostElement.getAttribute(strAttributeName, attribute);
+    return attribute;
 }
 
 _xmlDoc* CXmlDocSource::getDoc() const

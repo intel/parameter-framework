@@ -107,7 +107,9 @@ bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& 
 {
     // Subsystem class does not rely on generic fromXml algorithm of Element class.
     // So, setting here the description if found as XML attribute.
-    setDescription(getXmlDescriptionAttribute(xmlElement));
+    string description;
+    xmlElement.getAttribute(gDescriptionPropertyName, description);
+    setDescription(description);
 
     // Context
     CXmlParameterSerializingContext& parameterBuildContext = static_cast<CXmlParameterSerializingContext&>(serializingContext);
@@ -118,7 +120,8 @@ bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& 
     CXmlElement childElement;
 
     // Manage mapping attribute
-    std::string rawMapping = xmlElement.getAttributeString("Mapping");
+    string rawMapping;
+    xmlElement.getAttribute("Mapping", rawMapping);
     if (!rawMapping.empty()) {
 
         std::string error;
@@ -159,7 +162,9 @@ bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& 
     }
 
     // Endianness
-    _bBigEndian = xmlElement.getAttributeBoolean("Endianness", "Big");
+    string strEndianness;
+    xmlElement.getAttribute("Endianness", strEndianness);
+    _bBigEndian = strEndianness == "Big";
 
     return true;
 }

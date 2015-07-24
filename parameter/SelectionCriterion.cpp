@@ -175,7 +175,7 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
 void CSelectionCriterion::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Current Value
-    xmlElement.setAttributeString("Value", _pType->getFormattedState(_iState));
+    xmlElement.setAttribute("Value", _pType->getFormattedState(_iState));
 
     // Serialize Type node
     _pType->toXml(xmlElement, serializingContext);

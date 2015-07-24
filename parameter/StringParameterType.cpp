@@ -60,7 +60,7 @@ void CStringParameterType::showProperties(string& strResult) const
 bool CStringParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // MaxLength
-    _uiMaxLength = xmlElement.getAttributeInteger("MaxLength");
+    xmlElement.getAttribute("MaxLength", _uiMaxLength);
 
     // Base
     return base::fromXml(xmlElement, serializingContext);
@@ -81,7 +81,7 @@ uint32_t CStringParameterType::getMaxLength() const
 void CStringParameterType::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
 {
     // MaxLength
-    xmlElement.setAttributeInteger("MaxLength", _uiMaxLength);
+    xmlElement.setAttribute("MaxLength", _uiMaxLength);
 
     base::toXml(xmlElement, serializingContext);
 }

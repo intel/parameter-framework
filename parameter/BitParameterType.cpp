@@ -74,10 +74,10 @@ void CBitParameterType::showProperties(string& strResult) const
 bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Pos
-    _uiBitPos = xmlElement.getAttributeInteger("Pos");
+    xmlElement.getAttribute("Pos", _uiBitPos);
 
     // Size
-    _uiBitSize = xmlElement.getAttributeInteger("Size");
+    xmlElement.getAttribute("Size", _uiBitSize);
 
     // Validate bit pos and size still fit into parent type
     const CBitParameterBlockType* pBitParameterBlockType = static_cast<const CBitParameterBlockType*>(getParent());
@@ -97,24 +97,17 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
     }
 
     // Max
-    if (xmlElement.hasAttribute("Max")) {
+    _uiMax = getMaxEncodableValue();
+    if (xmlElement.getAttribute("Max", _uiMax) && (_uiMax > getMaxEncodableValue())) {
 
-        _uiMax = xmlElement.getAttributeInteger("Max");
+        // Max value exceeded
+        std::ostringstream strStream;
 
-        if (_uiMax > getMaxEncodableValue()) {
+        strStream << "Max attribute inconsistent with maximum encodable size (" << getMaxEncodableValue() << ") for " + getKind();
 
-            // Max value exceeded
-	    std::ostringstream strStream;
+        serializingContext.setError(strStream.str());
 
-            strStream << "Max attribute inconsistent with maximum encodable size (" << getMaxEncodableValue() << ") for " + getKind();
-
-            serializingContext.setError(strStream.str());
-
-            return false;
-        }
-    } else {
-
-        _uiMax = getMaxEncodableValue();
+        return false;
     }
 
     // Base
@@ -246,13 +239,13 @@ bool CBitParameterType::isEncodable(uint64_t uiData) const
 void CBitParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Position
-    xmlElement.setAttributeString("Pos", CUtility::toString(_uiBitPos));
+    xmlElement.setAttribute("Pos", _uiBitPos);
 
     // Size
-    xmlElement.setAttributeString("Size", CUtility::toString(_uiBitSize));
+    xmlElement.setAttribute("Size", _uiBitSize);
 
     // Maximum
-    xmlElement.setAttributeString("Max", CUtility::toString(_uiMax));
+    xmlElement.setAttribute("Max", _uiMax);
 
     base::toXml(xmlElement, serializingContext);
 
