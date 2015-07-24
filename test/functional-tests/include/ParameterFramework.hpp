@@ -89,6 +89,22 @@ public:
     /** Wrap PF::setAutoSync to throw an exception on failure. */
     void setAutoSync(bool enable) { mayFailCall(&PF::setAutoSync, enable); }
 
+    /** Wrap PF::accessParameterValue in "set" mode (and rename it) to throw an
+     * exception on failure
+     */
+    void setParameter(const std::string& path, std::string& value)
+    {
+        mayFailCall(&PF::accessParameterValue, path, value, true);
+    }
+    /** Wrap PF::accessParameterValue in "get" mode (and rename it) to throw an
+     * exception on failure
+     */
+    void getParameter(const std::string& path, std::string& value)
+    {
+        mayFailCall(&PF::accessParameterValue, path, value, false);
+    }
+
+
 private:
     /** Wrap a method that may fail to throw an Exception instead of retuning a boolean.
      * @param[in] method that return a boolean to indicate failure.
