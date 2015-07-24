@@ -157,6 +157,106 @@ SCENARIO_METHOD(LazyPF, "Invalid XML configuration") {
     }
 }
 
+SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
+    auto validInstances = Config{ &Config::instances,
+        // Size is fixed at 32 and as such is optional */
+        R"(<FloatingPointParameter Name="Empty"/>
+        <FloatingPointParameter Name="trivial" Size="32"/>
+        <FloatingPointParameter Name="nominal" Size="32" Min="-50.4" Max="12.2"/>
+        <FloatingPointParameter Name="defaultMin" Size="32" Max="12.2"/>
+        <FloatingPointParameter Name="defaultMax" Size="32" Min="-50.4"/>)"
+    };
+    const auto &invalidParameters = Tests<std::string>{
+        { "invalid Size(64)", "<FloatingPointParameter Name='error' Size='64'/>" },
+        { "invalid Size(16)", "<FloatingPointParameter Name='error' Size='16'/>" },
+        { "minimum > maximum", "<FloatingPointParameter Name='error' Min='1' Max='0'/>" }
+    };
+
+    GIVEN("A Structure using an invalid FloatingPointParameters") {
+        for (auto &vec : invalidParameters) {
+            GIVEN("intentional error: " + vec.title) {
+                create(Config{ &Config::instances, vec.payload });
+                THEN("Start should fail") {
+                    CHECK_THROWS_AS(mPf->start(), Exception);
+                }
+            }
+        }
+    }
+
+    GIVEN("A Structure using valid FloatingPointParameters") {
+        create(std::move(validInstances));
+
+        THEN("Start should succeed") {
+            CHECK_NOTHROW(mPf->start());
+            REQUIRE_NOTHROW(mPf->setTuningMode(true));
+            std::string path = "/test/test/nominal";
+
+            AND_THEN("Set/Get a floating point parameter in real value space") {
+
+                for (auto &vec : Tests<std::string>{
+                            { "(too high)", "12.3" },
+                            { "(too low)", "-50.5" },
+                            { "(not a number)", "foobar" },
+                        }) {
+                    GIVEN("Invalid value " + vec.title) {
+                        CHECK_THROWS_AS(mPf->setParameter(path, vec.payload), Exception);
+                    }
+                }
+                for (auto &vec : Tests<std::string>{
+                            { "(upper limit)", "12.2" },
+                            { "(lower limit)", "-50.4" },
+                            { "(inside range)", "0" },
+                        }) {
+                    GIVEN("A valid value " + vec.title) {
+                        CHECK_NOTHROW(mPf->setParameter(path, vec.payload));
+                        std::string getValueBack;
+                        CHECK_NOTHROW(mPf->getParameter(path, getValueBack));
+                        CHECK(getValueBack == vec.payload);
+                    }
+                }
+            }
+
+            AND_THEN("Set/Get a floating point parameter in raw value space") {
+                const float tooHigh = 12.3f;
+                const float tooLow = -50.5f;
+                REQUIRE_NOTHROW(mPf->setRawValueSpace(true));
+                for (auto &vec : Tests<std::string>{
+                            { "(too high, as decimal)",
+                                std::to_string(reinterpret_cast<const uint32_t&>(tooHigh)) },
+                            { "(too low, as decimal)",
+                                std::to_string(reinterpret_cast<const uint32_t&>(tooLow)) },
+                            { "(meaningless)", "foobar" },
+                            { "(infinity)", std::to_string(std::numeric_limits<float>::infinity())},
+                            { "(NaN)", std::to_string(std::numeric_limits<float>::quiet_NaN())},
+                        }) {
+                    GIVEN("Invalid value " + vec.title) {
+                        CHECK_THROWS_AS(mPf->setParameter(path, vec.payload), Exception);
+                    }
+                }
+                const float upper = 12.2f;
+                const float lower = -50.4f;
+                const float zero = 0.0f;
+                for (auto &vec : Tests<std::string>{
+                            { "(upper limit, as decimal)",
+                                std::to_string(reinterpret_cast<const uint32_t&>(upper)) },
+                            { "(lower limit, as decimal)",
+                                std::to_string(reinterpret_cast<const uint32_t&>(lower)) },
+                            { "(inside range, as decimal)",
+                                std::to_string(reinterpret_cast<const uint32_t&>(zero)) },
+                        }) {
+                    GIVEN("A valid value " + vec.title) {
+                        CHECK_NOTHROW(mPf->setParameter(path, vec.payload));
+                        std::string getValueBack;
+                        CHECK_NOTHROW(mPf->getParameter(path, getValueBack));
+                        CHECK(getValueBack == vec.payload);
+                    }
+                }
+            }
+
+        }
+    }
+}
+
 SCENARIO_METHOD(LazyPF, "Plugin OK", "[properties][missing plugin policy]") {
     for (auto &pluginNameT : Tests<std::string>{
             {"an non existing plugin", "libdonetexist.so" },
