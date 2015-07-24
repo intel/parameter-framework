@@ -171,8 +171,7 @@ inline bool convertTo<float>(const std::string &str, float &result)
         return false;
     }
 
-    if (std::abs(result) == std::numeric_limits<float>::infinity() ||
-        result == std::numeric_limits<float>::quiet_NaN()) {
+    if (!std::isfinite(result)) {
         return false;
     }
 
@@ -201,8 +200,7 @@ inline bool convertTo<double>(const std::string &str, double &result)
         return false;
     }
 
-    if (std::abs(result) == std::numeric_limits<double>::infinity() ||
-        result == std::numeric_limits<double>::quiet_NaN()) {
+    if (!std::isfinite(result)) {
         return false;
     }
 
