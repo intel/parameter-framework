@@ -52,6 +52,7 @@ public:
         PF(getPath()) {}
 
     void start() {
+        setForceNoRemoteInterface(true);
         mayFailCall(&PF::start);
     }
 

@@ -89,7 +89,7 @@ private:
 
 
     const char *mConfigTemplate = R"(<?xml version='1.0' encoding='UTF-8'?>
-        <ParameterFrameworkConfiguration SystemClassName='test' TuningAllowed='false'>
+        <ParameterFrameworkConfiguration SystemClassName='test' TuningAllowed='true'>
             <SubsystemPlugins>
                 {plugins}
             </SubsystemPlugins>
