@@ -281,7 +281,7 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
     // Parse Structure XML file
     CXmlElementSerializingContext elementSerializingContext(strError);
 
-    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(_strXmlConfigurationFilePath, true, true, strError);
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(_strXmlConfigurationFilePath, true, true, elementSerializingContext);
     if (doc == NULL) {
         return false;
     }
@@ -363,7 +363,7 @@ bool CParameterMgr::loadStructure(string& strError)
     {
         LOG_CONTEXT("Importing system structure from file " + strXmlStructureFilePath);
 
-        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlStructureFilePath, true, true, strError);
+        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlStructureFilePath, true, true, parameterBuildContext);
         if (doc == NULL) {
             return false;
         }
@@ -459,7 +459,7 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     info() << "Importing configurable domains from file " << strXmlConfigurationDomainsFilePath
            << " "  << ( pBinarySettingsFileLocation ? "without" : "with") << " settings";
 
-    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlConfigurationDomainsFilePath, true, true, strError);
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlConfigurationDomainsFilePath, true, true, xmlDomainImportContext);
     if (doc == NULL) {
         return false;
     }
@@ -1280,7 +1280,7 @@ bool CParameterMgr::wrapLegacyXmlImport(const string& xmlSource, bool fromFile,
 
     // It doesn't make sense to resolve XIncludes on an imported file because
     // we can't reliably decide of a "base url"
-    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(xmlSource, fromFile, false, errorMsg);
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(xmlSource, fromFile, false, xmlDomainImportContext);
     if (doc == NULL) {
         return false;
     }

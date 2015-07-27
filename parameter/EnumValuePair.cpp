@@ -59,10 +59,12 @@ string CEnumValuePair::getNumericalAsString() const
 bool CEnumValuePair::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Literal
-    setName(xmlElement.getAttributeString("Literal"));
+    std::string name;
+    xmlElement.getAttribute("Literal", name);
+    setName(name);
 
     // Numerical
-    _iNumerical = xmlElement.getAttributeSignedInteger("Numerical");
+    xmlElement.getAttribute("Numerical", _iNumerical);
 
     // Base
     return base::fromXml(xmlElement, serializingContext);
@@ -80,10 +82,10 @@ void CEnumValuePair::logValue(string& strValue, CErrorContext& errorContext) con
 void CEnumValuePair::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Literal
-    xmlElement.setAttributeString("Literal", this->getName());
+    xmlElement.setAttribute("Literal", this->getName());
 
     // Numerical
-    xmlElement.setAttributeString("Numerical", getNumericalAsString());
+    xmlElement.setAttribute("Numerical", getNumericalAsString());
 
     base::toXml(xmlElement, serializingContext);
 }

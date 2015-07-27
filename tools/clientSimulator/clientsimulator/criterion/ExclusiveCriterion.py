@@ -26,40 +26,34 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import logging
-import json
-import os
+from clientsimulator.criterion.Criterion import Criterion
+from clientsimulator.criterion.Criterion import InvalidCriterionException
 
 
-class ConfigParser:
+class ExclusiveCriterion(Criterion):
 
-    """ This class define needed configuration environment information """
+    """
+    This file describe Exclusive Criterion Behavior
 
-    def __init__(self, confFileName, testsDirectory, consoleLogger):
+    This types of criterion can only have one value at a time
+    """
 
-        # Parsing of Json test file
-        with open(confFileName, "r") as testFile:
-            self.__conf = json.load(testFile)
+    def __init__(self):
+        super().__init__()
+        self.__currentValue = None
 
-        # Preparing files and directory paths
-        for key in ["CriterionFile",
-                    "ScriptsFile",
-                    "SetupScript",
-                    "ActionGathererFile",
-                    "ScenariosDirectory",
-                    "LogFile",
-                    "CoverageFile",
-                    "CoverageDir",
-                    "PfwDomainConfFile"]:
-            self.__conf[key] = os.path.join(testsDirectory, self.__conf[key])
+    @property
+    def currentValue(self):
+        return self.__currentValue
 
-        self.__logger = logging.getLogger(__name__)
-        self.__logger.addHandler(consoleLogger)
+    @currentValue.setter
+    def currentValue(self, currentValue):
+        if currentValue in self._allowedValues or currentValue == self.noValue:
+            self.__currentValue = currentValue
+        else:
+            raise InvalidCriterionException(
+                "Value {} is not allowed for {}.".format(
+                    currentValue, self.__class__.__name__))
 
-    def __getitem__(self, item):
-        try:
-            return self.__conf[item]
-        except KeyError as e:
-            self.__logger.error(
-                "The item : {} is not in the configuration file".format(item))
-            raise e
+    def __str__(self):
+        return self.__class__.__name__ + ' : ' + str(self.__currentValue)

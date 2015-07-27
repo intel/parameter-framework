@@ -26,34 +26,46 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from criterion.Criterion import Criterion
-from criterion.Criterion import InvalidCriterionException
+import logging
+import json
+import os
 
 
-class ExclusiveCriterion(Criterion):
+class ConfigParser:
 
-    """
-    This file describe Exclusive Criterion Behavior
+    """ This class define needed configuration environment information """
 
-    This types of criterion can only have one value at a time
-    """
+    def __init__(self, confFileName, testsDirectory, consoleLogger):
 
-    def __init__(self):
-        super().__init__()
-        self.__currentValue = None
+        # Parsing of Json test file
+        with open(confFileName, "r") as testFile:
+            self.__conf = json.load(testFile)
 
-    @property
-    def currentValue(self):
-        return self.__currentValue
+        # Preparing mandatory files and directory paths
+        for key in ["CriterionFile",
+                    "PfwConfFile",
+                    "ScenariosDirectory"]:
+            self.__conf[key] = os.path.join(testsDirectory, self.__conf[key])
 
-    @currentValue.setter
-    def currentValue(self, currentValue):
-        if currentValue in self._allowedValues or currentValue == self.noValue:
-            self.__currentValue = currentValue
-        else:
-            raise InvalidCriterionException(
-                "Value {} is not allowed for {}.".format(
-                    currentValue, self.__class__.__name__))
+        # Preparing optional files and directory paths
+        for key in ["ScriptsFile",
+                    "ActionGathererFile",
+                    "LogFile",
+                    "CoverageFile",
+                    "CoverageDir",
+                    "PfwDomainConfFile"]:
+            try:
+                self.__conf[key] = os.path.join(testsDirectory, self.__conf[key])
+            except KeyError as e:
+                self.__conf[key] = ""
 
-    def __str__(self):
-        return self.__class__.__name__ + ' : ' + str(self.__currentValue)
+        self.__logger = logging.getLogger(__name__)
+        self.__logger.addHandler(consoleLogger)
+
+    def __getitem__(self, item):
+        try:
+            return self.__conf[item]
+        except KeyError as e:
+            self.__logger.error(
+                "The item : {} is not in the configuration file".format(item))
+            raise e

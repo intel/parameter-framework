@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,7 +33,6 @@
 #include <libxml/xmlschemas.h>
 #include <libxml/parser.h>
 #include <libxml/xinclude.h>
-#include <libxml/xmlerror.h>
 #include <stdlib.h>
 
 using std::string;
@@ -93,7 +92,9 @@ string CXmlDocSource::getRootElementAttributeString(const string& strAttributeNa
 {
     CXmlElement topMostElement(_pRootNode);
 
-    return topMostElement.getAttributeString(strAttributeName);
+    string attribute;
+    topMostElement.getAttribute(strAttributeName, attribute);
+    return attribute;
 }
 
 _xmlDoc* CXmlDocSource::getDoc() const
@@ -108,12 +109,6 @@ bool CXmlDocSource::isParsable() const
 }
 
 bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
-{
-    return validate(serializingContext);
-
-}
-
-bool CXmlDocSource::validate(CXmlSerializingContext& serializingContext)
 {
     // Check that the doc has been created
     if (!_pDoc) {
@@ -215,8 +210,6 @@ bool CXmlDocSource::isInstanceDocumentValid()
         return false;
     }
 
-    xmlSetStructuredErrorFunc(this, schemaValidityStructuredErrorFunc);
-
     bool isDocValid = xmlSchemaValidateDoc(pValidationCtxt, _pDoc) == 0;
 
     xmlSchemaFreeValidCtxt(pValidationCtxt);
@@ -230,17 +223,7 @@ bool CXmlDocSource::isInstanceDocumentValid()
 #endif
 }
 
-void CXmlDocSource::schemaValidityStructuredErrorFunc(void* pUserData, _xmlError* pError)
-{
-    (void)pUserData;
-
-#ifdef LIBXML_SCHEMAS_ENABLED
-    // Display message
-    puts(pError->message);
-#endif
-}
-
-_xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincludes, string& errorMsg)
+_xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincludes, CXmlSerializingContext& serializingContext)
 {
     _xmlDoc* doc = NULL;
     if (fromFile) {
@@ -250,25 +233,17 @@ _xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincl
     }
 
     if (doc == NULL) {
-        errorMsg = "libxml failed to read";
+        string errorMsg = "libxml failed to read";
         if (fromFile) {
             errorMsg += " \"" + source + "\"";
         }
-
-        xmlError* details = xmlGetLastError();
-        if (details != NULL) {
-            errorMsg += ": " + string(details->message);
-        }
+        serializingContext.appendLineToError(errorMsg);
 
         return NULL;
     }
 
     if (xincludes and (xmlXIncludeProcess(doc) < 0)) {
-        errorMsg = "libxml failed to resolve XIncludes";
-        xmlError* details = xmlGetLastError();
-        if (details != NULL) {
-            errorMsg += ": " + string(details->message);
-        }
+        serializingContext.appendLineToError("libxml failed to resolve XIncludes");
 
         xmlFreeDoc(doc);
         doc = NULL;

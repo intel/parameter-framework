@@ -86,7 +86,8 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
     while (it.next(xmlConfigurableElementSettingsElement)) {
 
         // Retrieve area configuration
-        string strConfigurableElementPath = xmlConfigurableElementSettingsElement.getAttributeString("Path");
+        string strConfigurableElementPath;
+        xmlConfigurableElementSettingsElement.getAttribute("Path", strConfigurableElementPath);
 
         CAreaConfiguration* pAreaConfiguration = findAreaConfiguration(strConfigurableElementPath);
 
@@ -131,7 +132,7 @@ void CDomainConfiguration::composeSettings(CXmlElement& xmlConfigurationSettings
         xmlConfigurationSettingsElement.createChild(xmlConfigurableElementSettingsElement, "ConfigurableElement");
 
         // Set Path attribute
-        xmlConfigurableElementSettingsElement.setAttributeString("Path", pConfigurableElement->getPath());
+        xmlConfigurableElementSettingsElement.setAttribute("Path", pConfigurableElement->getPath());
 
         // Delegate composing to area configuration
         ((CDomainConfiguration&)(*this)).serializeConfigurableElementSettings((CAreaConfiguration*)pAreaConfiguration, xmlConfigurableElementSettingsElement, serializingContext, true);

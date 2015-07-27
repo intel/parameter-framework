@@ -80,7 +80,8 @@ bool CComponentInstance::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
 
     const CComponentLibrary* pComponentLibrary = parameterBuildContext.getComponentLibrary();
 
-    std::string strComponentType = xmlElement.getAttributeString("Type");
+    std::string strComponentType;
+    xmlElement.getAttribute("Type", strComponentType);
 
     _pComponentType = pComponentLibrary->getComponentType(strComponentType);
 

@@ -59,7 +59,7 @@ if not colors:
 ok, error = pfw.start()
 
 if not ok:
-    print("Error while starting the pfw: {}".format(error))
+    print("Error while starting the pfw: '{}'".format(error))
 
 ok, error = mood.setState(["sad"])
 if not ok:

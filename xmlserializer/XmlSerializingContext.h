@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -31,16 +31,34 @@
 
 #include <string>
 
+/** Class that gather errors during serialization.
+ *
+ * Provided with an initial empty buffer (strError), an instance of this class
+ * can describe an error.
+ *
+ * This error will be accessible formated in the aforementioned buffer
+ * _after_ destruction.
+ * Ie. the provided buffer (strError) is in an undefined state between
+ * construction and destruction and should not be accessed in between.
+ */
 class CXmlSerializingContext
 {
 public:
     CXmlSerializingContext(std::string& strError);
+    ~CXmlSerializingContext();
 
     // Error
     void setError(const std::string& strError);
     void appendLineToError(const std::string& strAppend);
-    const std::string& getError() const;
+    /** XML error handler
+      *
+      * @param[in] userData pointer to the serializing context
+      * @param[in] format is the xml error output format
+      *
+      */
+    static void genericErrorHandler(void* userData, const char* format, ...);
 
 private:
     std::string& _strError;
+    std::string _strXmlError;
 };

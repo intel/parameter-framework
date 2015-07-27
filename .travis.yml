@@ -14,14 +14,20 @@ compiler:
 # it will not be necessary once travis worker is based on ubuntu > 12.04.
 # Install SWIG for bindings generation
 # Install valgrind for memcheck tests
+# Adding kalakris ppa for cmake 2.8.11.
+# it is needed in case of multiple python version on host
+# Install python3-dev for the client simulator
 addons:
     apt:
         sources:
             - ubuntu-toolchain-r-test
+            - kalakris-cmake
         packages:
             - swig
             - valgrind
             - g++-4.8
+            - cmake
+            - python3-dev
 
 install:
     - pip install --user cpp-coveralls; export PATH=$HOME/.local/bin:$PATH
@@ -46,6 +52,10 @@ script:
         cmake -DCMAKE_INSTALL_PREFIX=../install . &&
         make &&
         make install )
+  - ( cd tools/clientSimulator &&
+        cmake -DCMAKE_INSTALL_PREFIX=../install . &&
+        make &&
+        make install )
 
 after_success:
     # Push coverage info on coveralls.io.
@@ -56,6 +66,7 @@ after_success:
           --exclude "build"
           --exclude "install"
           --exclude "skeleton-subsystem"
+          --exclude "tools/clientSimulator"
           --exclude "test/test-subsystem"
           --exclude "test/functional-tests"
           --exclude "bindings/c/Test.cpp"

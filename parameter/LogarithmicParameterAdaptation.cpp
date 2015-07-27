@@ -56,23 +56,17 @@ void CLogarithmicParameterAdaptation::showProperties(std::string& strResult) con
 bool CLogarithmicParameterAdaptation::fromXml(const CXmlElement& xmlElement,
                                             CXmlSerializingContext& serializingContext)
 {
-
-    if (xmlElement.hasAttribute("LogarithmBase")) {
-
-        _dLogarithmBase = xmlElement.getAttributeDouble("LogarithmBase");
-
+    if (xmlElement.getAttribute("LogarithmBase", _dLogarithmBase)
+        && (_dLogarithmBase <= 0 || _dLogarithmBase == 1)) {
         // Avoid negative and 1 values
-        if (_dLogarithmBase <= 0 || _dLogarithmBase == 1) {
-            serializingContext.setError("LogarithmBase attribute cannot be negative or 1 on element"
-                                        + xmlElement.getPath());
+        serializingContext.setError("LogarithmBase attribute cannot be negative or 1 on element"
+                                    + xmlElement.getPath());
 
-            return false;
-        }
+        return false;
     }
 
-    if (xmlElement.hasAttribute("FloorValue")) {
-        _dFloorValue = xmlElement.getAttributeDouble("FloorValue");
-    }
+    xmlElement.getAttribute("FloorValue", _dFloorValue);
+
     // Base
     return base::fromXml(xmlElement, serializingContext);
 }

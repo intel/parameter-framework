@@ -89,7 +89,8 @@ bool CComponentType::fromXml(const CXmlElement& xmlElement, CXmlSerializingConte
     // Check for Extends attribute (extensions will be populated after and not before)
     if (xmlElement.hasAttribute("Extends")) {
 
-        std::string strExtendsType = xmlElement.getAttributeString("Extends");
+        std::string strExtendsType;
+        xmlElement.getAttribute("Extends", strExtendsType);
 
         _pExtendsComponentType = pComponentLibrary->getComponentType(strExtendsType);
 

@@ -50,7 +50,8 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     CXmlElementSerializingContext& elementSerializingContext = static_cast<CXmlElementSerializingContext&>(serializingContext);
 
     // Parse included document
-    std::string strPath = xmlElement.getAttributeString("Path");
+    std::string strPath;
+    xmlElement.getAttribute("Path", strPath);
 
     // Relative path?
     if (strPath[0] != '/') {
@@ -65,12 +66,7 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
         std::string strPathToXsdFile = elementSerializingContext.getXmlSchemaPathFolder() + "/" +
                                strIncludedElementType + ".xsd";
 
-        std::string xmlErrorMsg;
-        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strPath, true, true, xmlErrorMsg);
-        if (doc == NULL) {
-            elementSerializingContext.setError(xmlErrorMsg);
-            return false;
-        }
+        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strPath, true, true, elementSerializingContext);
 
         CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
                                 strPathToXsdFile,

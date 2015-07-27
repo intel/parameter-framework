@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,41 +26,27 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# has been tested on 2.8.11 only - should not work on older versions
+cmake_minimum_required(VERSION 2.8.11)
 
-class TestVector:
+project(parameter-framework-clientSimulator)
 
-    """ This class describe a test vector which can be launched by a TestLauncher object """
+# Force usage of Python 3.x ...
+find_package(PythonInterp 3 REQUIRED)
+# ... and force the libs to be at the same version as the interpreter
+find_package(PythonLibs ${PYTHON_VERSION_STRING} EXACT REQUIRED)
+include_directories(${PYTHON_INCLUDE_DIRS})
 
-    def __init__(self, name, criterions, testType):
-        self.__name = name
-        self.__testType = testType
-        self.__criterions = criterions
+# Find the python modules install path.
+# plat_specific is needed because we are installing a shared-library python
+# module and not only a pure python module.
+# prefix='' makes get_python_lib return a relative path.
+execute_process(COMMAND
+    ${PYTHON_EXECUTABLE} -c
+        "from distutils import sysconfig;\\
+         print(sysconfig.get_python_lib(plat_specific=True, prefix=''))"
+    OUTPUT_VARIABLE PYTHON_MODULE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-    @property
-    def criterions(self):
-        return self.__criterions
+install(DIRECTORY clientsimulator DESTINATION ${PYTHON_MODULE_PATH})
 
-    @property
-    def testType(self):
-        return self.__testType
-
-    @testType.setter
-    def testType(self, value):
-        self.__testType = value
-
-    def __str__(self):
-        toString = "Test Type : {}\n".format(self.__testType)
-        for criterion in self.__criterions:
-            toString += (str(criterion) + '\n')
-        return toString
-
-
-class InvalidTestTypeValueException(Exception):
-
-    """ Exception raised in case of problem with the test type """
-
-    def __init__(self, msg):
-        self.__msg = msg
-
-    def __str__(self):
-        return "Invalid Test Type Error : " + self.__msg
+install(PROGRAMS pfClientSimulator.py DESTINATION bin)
