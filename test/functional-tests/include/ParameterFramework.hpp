@@ -31,6 +31,7 @@
 
 #include "Config.hpp"
 #include "ConfigFiles.hpp"
+#include "FailureWrapper.hpp"
 
 #include <ParameterMgrFullConnector.h>
 
@@ -41,7 +42,8 @@ namespace parameterFramework
  *  have more user friendly methods.
  */
 class ParameterFramework : private parameterFramework::ConfigFiles,
-                           private CParameterMgrFullConnector
+                           private CParameterMgrFullConnector,
+                           private FailureWrapper<CParameterMgrFullConnector>
 {
 private:
     using PF = CParameterMgrFullConnector;
@@ -49,7 +51,8 @@ private:
 public:
     ParameterFramework(const Config &config = Config()) :
         ConfigFiles(config),
-        PF(getPath()) {}
+        PF(getPath()),
+        FailureWrapper(this) {}
 
     void start() {
         setForceNoRemoteInterface(true);
@@ -104,17 +107,6 @@ public:
         mayFailCall(&PF::accessParameterValue, path, value, false);
     }
 
-
-private:
-    /** Wrap a method that may fail to throw an Exception instead of retuning a boolean.
-     * @param[in] method that return a boolean to indicate failure.
-     * @param[in] args parameters to call method call with. */
-    template <class... MArgs, class... Args>
-    void mayFailCall(bool (PF::*method)(MArgs...), Args&&... args) {
-        std::string error;
-        if (not (this->*method)(std::forward<Args>(args)..., error)) {
-            throw Exception(std::move(error));
-        }
     }
 };
 
