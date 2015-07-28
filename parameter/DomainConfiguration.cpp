@@ -146,13 +146,13 @@ bool CDomainConfiguration::importOneConfigurableElementSettings(
     CXmlElement xmlConfigurableElementSettingsElementContent;
     // Check name and kind
     if (!xmlConfigurableElementSettingsElement.getChildElement(
-                destination->getKind(),
+                destination->getXmlElementName(),
                 destination->getName(),
                 xmlConfigurableElementSettingsElementContent)) {
 
         context.setError(
                 "Couldn't find settings for " +
-                destination->getKind() + " " + destination->getName() +
+                destination->getXmlElementName() + " " + destination->getName() +
                 " for Configuration " + getPath());
 
         return false;
@@ -180,7 +180,7 @@ bool CDomainConfiguration::exportOneConfigurableElementSettings(
 
     // Create child XML element
     CXmlElement xmlConfigurableElementSettingsElementContent;
-    xmlConfigurableElementSettingsElement.createChild(xmlConfigurableElementSettingsElementContent, source->getKind());
+    xmlConfigurableElementSettingsElement.createChild(xmlConfigurableElementSettingsElementContent, source->getXmlElementName());
     xmlConfigurableElementSettingsElementContent.setNameAttribute(source->getName());
 
     // Create configuration access context

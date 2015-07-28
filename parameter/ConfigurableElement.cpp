@@ -74,7 +74,7 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             }
 
             // Check element type matches in type
-            if (xmlChildConfigurableElementSettingsElement.getType() != pChildConfigurableElement->getKind()) {
+            if (xmlChildConfigurableElementSettingsElement.getType() != pChildConfigurableElement->getXmlElementName()) {
 
                 // Type error
                 configurationAccessContext.setError("Configuration settings parsing: Settings for configurable element " + pChildConfigurableElement->getName() + " does not match expected type: " + xmlChildConfigurableElementSettingsElement.getType() + " instead of " + pChildConfigurableElement->getKind());
@@ -114,7 +114,7 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             // Create corresponding child element
             CXmlElement xmlChildConfigurableElementSettingsElement;
 
-            xmlConfigurationSettingsElementContent.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getKind());
+            xmlConfigurationSettingsElementContent.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getXmlElementName());
 
             // Handle element name attribute
             xmlChildConfigurableElementSettingsElement.setNameAttribute(pChildConfigurableElement->getName());
