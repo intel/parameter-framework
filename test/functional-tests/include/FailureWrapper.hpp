@@ -41,6 +41,19 @@ public:
     FailureWrapper(T *wrapped) : mWrapped(*wrapped) {}
 
 protected:
+    /** Wrap a const method that may fail to throw an Exception instead of
+     * retuning a boolean.
+     *
+     * @param[in] method (const) that return a boolean to indicate failure.
+     * @param[in] args parameters to call method call with. */
+    template <class... MArgs, class... Args>
+    void mayFailCall(bool (T::*method)(MArgs...) const, Args&&... args) const {
+        std::string error;
+        if (not (mWrapped.*method)(std::forward<Args>(args)..., error)) {
+            throw Exception(std::move(error));
+        }
+    }
+
     /** Wrap a method that may fail to throw an Exception instead of retuning a
      * boolean.
      *
@@ -52,6 +65,21 @@ protected:
         if (not (mWrapped.*method)(std::forward<Args>(args)..., error)) {
             throw Exception(std::move(error));
         }
+    }
+
+    /** Wrap a method that may indicate failure by returning a null pointer to
+     * throw an Exception instead of retuning a null pointer.
+     *
+     * @param[in] method that return a boolean to indicate failure.
+     * @param[in] args parameters to call method call with. */
+    template <class ReturnType, class... MArgs, class... Args>
+    ReturnType *mayFailCall(ReturnType *(T::*method)(MArgs...), Args&&... args) {
+        std::string error;
+        ReturnType *ret = (mWrapped.*method)(std::forward<Args>(args)..., error);
+        if (ret == NULL) {
+            throw Exception(std::move(error));
+        }
+        return ret;
     }
 
 private:

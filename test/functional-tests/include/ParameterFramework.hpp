@@ -32,6 +32,7 @@
 #include "Config.hpp"
 #include "ConfigFiles.hpp"
 #include "FailureWrapper.hpp"
+#include "ParameterHandle.hpp"
 
 #include <ParameterMgrFullConnector.h>
 
@@ -107,7 +108,11 @@ public:
         mayFailCall(&PF::accessParameterValue, path, value, false);
     }
 
+    // Dynamic parameter handling
+    ParameterHandle* createParameterHandle(const std::string& path) {
+        return new ParameterHandle(mayFailCall(&PF::createParameterHandle, path));
     }
+
 };
 
 } // parameterFramework
