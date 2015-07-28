@@ -52,6 +52,11 @@ public:
 
     ~ParameterHandle() { delete mHandle; }
 
+    /** Wrap PH::setAsDouble to throw an exception on failure. */
+    void setAsDouble(double value) { mayFailCall(&PH::setAsDouble, value); }
+    /** Wrap PH::getAsDouble to throw an exception on failure. */
+    void getAsDouble(double &value) const { mayFailCall(&PH::getAsDouble, value); }
+
 private:
     CParameterHandle *mHandle;
 };

@@ -253,6 +253,40 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                 }
             }
 
+            AND_THEN("Set/Get floating point parameter handle") {
+                /** @TODO: use move semantics to get an owned object so that
+                 * it will destroyed automatically */
+                ParameterHandle *handle;
+                CHECK_NOTHROW(handle = mPf->createParameterHandle(path));
+                /** @FIXME: 'set' operations on a ParameterHandle are silently
+                 * ignored in tuning mode. Does it make sense ? */
+                REQUIRE_NOTHROW(mPf->setTuningMode(false));
+
+                /* warning: even though the API below takes a double as
+                 * argument, we need to define the test vector as floats in
+                 * order to prevent rounding issues */
+                for (auto &vec : Tests<float>{
+                            { "(upper limit)", 12.2f },
+                            { "(lower limit)", -50.4f },
+                            { "(inside range)", 0.0f },
+                        }) {
+                    GIVEN("A valid value " + vec.title) {
+                        CHECK_NOTHROW(handle->setAsDouble(vec.payload));
+                        double getValueBack;
+                        CHECK_NOTHROW(handle->getAsDouble(getValueBack));
+                        CHECK(getValueBack == vec.payload);
+                    }
+                }
+                for (auto &vec : Tests<float>{
+                            { "(too high)", 12.3f },
+                            { "(too low)", -50.5f },
+                        }) {
+                    GIVEN("An invalid value " + vec.title) {
+                        CHECK_THROWS_AS(handle->setAsDouble(vec.payload), Exception);
+                    }
+                }
+                delete handle;
+            }
         }
     }
 }
