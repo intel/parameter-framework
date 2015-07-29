@@ -1,6 +1,10 @@
 <map id="parameter/ConfigurableDomains.h" name="parameter/ConfigurableDomains.h">
-<area shape="rect" id="node2" href="$BinarySerializableElement_8h.html" title="BinarySerializableElement.h" alt="" coords="176,80,375,107"/>
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="337,155,423,181"/>
-<area shape="rect" id="node11" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="72,229,195,256"/>
-<area shape="rect" id="node10" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="507,229,629,256"/>
+<area shape="rect" id="node2" href="$BinarySerializableElement_8h.html" title="BinarySerializableElement.h" alt="" coords="487,80,687,107"/>
+<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="477,155,563,181"/>
+<area shape="rect" id="node13" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="5,304,128,331"/>
+<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="551,229,636,256"/>
+<area shape="rect" id="node11" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="423,229,526,256"/>
+<area shape="rect" id="node12" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="275,229,397,256"/>
+<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="393,304,503,331"/>
+<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="528,304,701,331"/>
 </map>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['status',['Status',['../classCRuleParser.html#acdfda657fedce4d85ac96333b60e016f',1,'CRuleParser']]]
+  ['remoteprotocolmsgtype',['RemoteProtocolMsgType',['../RemoteProcessorProtocol_8h.html#aa9af03763980e012c6b2e85dac0e7536',1,'RemoteProcessorProtocol.h']]],
+  ['result',['Result',['../classCMessage.html#a59c2a51750de7ca915174fe779283387',1,'CMessage']]]
 ];

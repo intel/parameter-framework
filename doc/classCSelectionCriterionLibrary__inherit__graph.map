@@ -1,3 +1,5 @@
 <map id="CSelectionCriterionLibrary" name="CSelectionCriterionLibrary">
-<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="57,80,140,107"/>
+<area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="57,80,141,107"/>
+<area shape="rect" id="node3" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="6,5,82,32"/>
+<area shape="rect" id="node4" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="106,5,201,32"/>
 </map>

@@ -1,6 +1,10 @@
 <map id="CElementLocator::locate" name="CElementLocator::locate">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="232,5,491,46"/>
-<area shape="rect" id="node3" href="$classCParameterMgr.html#ae9941471fb32f02b3620cf46cd13ebbb" title="CParameterMgr::addConfigurable\lElementToDomain" alt="" coords="244,70,479,111"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#a4f307490c67f2dde0b08e638500dd5d4" title="CParameterMgr::removeConfigurable\lElementFromDomain" alt="" coords="232,135,491,177"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="283,201,439,228"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="232,7,491,48"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#ae9941471fb32f02b3620cf46cd13ebbb" title="CParameterMgr::addConfigurable\lElementToDomain" alt="" coords="244,73,479,115"/>
+<area shape="rect" id="node6" href="$classCParameterMgr.html#a4f307490c67f2dde0b08e638500dd5d4" title="CParameterMgr::removeConfigurable\lElementFromDomain" alt="" coords="232,141,491,183"/>
+<area shape="rect" id="node8" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="283,214,439,241"/>
+<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#a64a98bccd79559d5466ff3fd8e93b890" title="CParameterMgrFullConnector\l::accessConfigurationValue" alt="" coords="560,5,768,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a9b8231307d300d1fbc9b01b7d1047650" title="CParameterMgrFullConnector\l::addConfigurableElementToDomain" alt="" coords="539,71,789,112"/>
+<area shape="rect" id="node7" href="$classCParameterMgrFullConnector.html#aeb023e264ddb06255bea04ddb2c65708" title="CParameterMgrFullConnector\l::removeConfigurableElementFrom\lDomain" alt="" coords="542,135,786,191"/>
+<area shape="rect" id="node9" href="$classCParameterMgrFullConnector.html#a760e854b7cf96957927c1c64869909f4" title="CParameterMgrFullConnector\l::split" alt="" coords="560,215,768,256"/>
 </map>

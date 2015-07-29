@@ -1,5 +1,9 @@
 <map id="parameter/ElementLocator.cpp" name="parameter/ElementLocator.cpp">
-<area shape="rect" id="node2" href="$ElementLocator_8h.html" title="ElementLocator.h" alt="" coords="230,80,364,107"/>
-<area shape="rect" id="node10" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="424,229,547,256"/>
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="254,155,340,181"/>
+<area shape="rect" id="node2" href="$ElementLocator_8h.html" title="ElementLocator.h" alt="" coords="190,80,324,107"/>
+<area shape="rect" id="node12" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="33,229,156,256"/>
+<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="214,155,300,181"/>
+<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="294,229,380,256"/>
+<area shape="rect" id="node11" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="404,229,507,256"/>
+<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="222,304,332,331"/>
+<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="357,304,530,331"/>
 </map>

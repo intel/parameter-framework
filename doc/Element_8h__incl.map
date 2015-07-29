@@ -1,3 +1,7 @@
 <map id="parameter/Element.h" name="parameter/Element.h">
-<area shape="rect" id="node8" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="113,80,236,107"/>
+<area shape="rect" id="node6" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="232,80,318,107"/>
+<area shape="rect" id="node9" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="105,80,208,107"/>
+<area shape="rect" id="node10" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="342,80,464,107"/>
+<area shape="rect" id="node7" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="220,155,330,181"/>
+<area shape="rect" id="node8" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="22,155,195,181"/>
 </map>

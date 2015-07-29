@@ -1,5 +1,7 @@
 <map id="CFixedPointParameterType" name="CFixedPointParameterType">
-<area shape="rect" id="node2" href="$classCParameterType.html" title="CParameterType" alt="" coords="37,229,163,256"/>
-<area shape="rect" id="node3" href="$classCTypeElement.html" title="CTypeElement" alt="" coords="44,155,155,181"/>
-<area shape="rect" id="node4" href="$classCElement.html" title="CElement" alt="" coords="58,80,141,107"/>
+<area shape="rect" id="node2" href="$classCParameterType.html" title="CParameterType" alt="" coords="37,229,164,256"/>
+<area shape="rect" id="node3" href="$classCTypeElement.html" title="CTypeElement" alt="" coords="45,155,157,181"/>
+<area shape="rect" id="node4" href="$classCElement.html" title="CElement" alt="" coords="59,80,143,107"/>
+<area shape="rect" id="node5" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="8,5,84,32"/>
+<area shape="rect" id="node6" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="108,5,203,32"/>
 </map>

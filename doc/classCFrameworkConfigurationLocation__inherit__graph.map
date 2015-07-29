@@ -1,4 +1,6 @@
 <map id="CFrameworkConfigurationLocation" name="CFrameworkConfigurationLocation">
-<area shape="rect" id="node2" href="$classCKindElement.html" title="CKindElement" alt="" coords="69,155,179,181"/>
-<area shape="rect" id="node3" href="$classCElement.html" title="CElement" alt="" coords="82,80,165,107"/>
+<area shape="rect" id="node2" href="$classCKindElement.html" title="CKindElement" alt="" coords="69,155,180,181"/>
+<area shape="rect" id="node3" href="$classCElement.html" title="CElement" alt="" coords="83,80,167,107"/>
+<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="32,5,108,32"/>
+<area shape="rect" id="node5" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="132,5,227,32"/>
 </map>

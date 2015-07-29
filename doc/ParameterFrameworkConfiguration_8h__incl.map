@@ -1,4 +1,8 @@
 <map id="parameter/ParameterFrameworkConfiguration.h" name="parameter/ParameterFrameworkConfiguration.h">
-<area shape="rect" id="node2" href="$Element_8h.html" title="Element.h" alt="" coords="203,96,289,123"/>
-<area shape="rect" id="node9" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="383,171,505,197"/>
+<area shape="rect" id="node2" href="$Element_8h.html" title="Element.h" alt="" coords="279,95,366,121"/>
+<area shape="rect" id="node7" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="320,169,405,196"/>
+<area shape="rect" id="node10" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="430,169,533,196"/>
+<area shape="rect" id="node11" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="123,169,245,196"/>
+<area shape="rect" id="node8" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="309,244,419,271"/>
+<area shape="rect" id="node9" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="444,244,617,271"/>
 </map>

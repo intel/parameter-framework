@@ -1,4 +1,4 @@
 <map id="CIntegerParameterType::fromBlackboard" name="CIntegerParameterType::fromBlackboard">
-<area shape="rect" id="node2" href="$classCParameterType.html#ac32b37965ef213b6a8df9656b37596df" title="Sign extension (32 bits) " alt="" coords="225,5,429,32"/>
-<area shape="rect" id="node3" href="$classCParameterAdaptation.html#a6368917b37960db2463dd7d79ba6ee76" title="CParameterAdaptation\l::toUserValue" alt="" coords="243,57,411,98"/>
+<area shape="rect" id="node2" href="$classCParameterType.html#ac32b37965ef213b6a8df9656b37596df" title="Sign extension (32 bits) " alt="" coords="224,5,428,32"/>
+<area shape="rect" id="node3" href="$classCParameterAdaptation.html#a6368917b37960db2463dd7d79ba6ee76" title="CParameterAdaptation\l::toUserValue" alt="" coords="242,57,410,98"/>
 </map>

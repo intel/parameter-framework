@@ -1,12 +1,13 @@
 <map id="CSelectionCriteria::listSelectionCriteria" name="CSelectionCriteria::listSelectionCriteria">
-<area shape="rect" id="node2" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="208,5,424,46"/>
-<area shape="rect" id="node4" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="218,70,414,111"/>
-<area shape="rect" id="node3" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="496,16,640,43"/>
-<area shape="rect" id="node5" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="477,73,659,100"/>
-<area shape="rect" id="node6" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="473,125,663,166"/>
-<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="723,40,875,67"/>
-<area shape="rect" id="node8" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="713,91,885,133"/>
-<area shape="rect" id="node9" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="713,157,885,198"/>
-<area shape="rect" id="node10" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="713,222,885,263"/>
-<area shape="rect" id="node11" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="934,222,1106,263"/>
+<area shape="rect" id="node2" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="207,5,423,47"/>
+<area shape="rect" id="node4" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="217,71,413,112"/>
+<area shape="rect" id="node3" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="494,17,638,43"/>
+<area shape="rect" id="node5" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="475,74,657,101"/>
+<area shape="rect" id="node6" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="471,125,661,167"/>
+<area shape="rect" id="node7" href="$classCUtility.html#a5a2643fa6fbbd1bae67b2f05b9d54f03" title="Utility to underline. " alt="" coords="721,23,869,50"/>
+<area shape="rect" id="node8" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="719,74,871,101"/>
+<area shape="rect" id="node9" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="709,125,881,167"/>
+<area shape="rect" id="node10" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="709,191,881,232"/>
+<area shape="rect" id="node11" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="709,256,881,297"/>
+<area shape="rect" id="node12" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="929,256,1101,297"/>
 </map>

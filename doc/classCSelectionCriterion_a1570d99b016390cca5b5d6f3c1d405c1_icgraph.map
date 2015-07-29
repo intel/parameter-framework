@@ -1,8 +1,9 @@
 <map id="CSelectionCriterion::getCriterionName" name="CSelectionCriterion::getCriterionName">
-<area shape="rect" id="node2" href="$classCSelectionCriterionRule.html#a4ee8e0274ac8c7bf5a2452002aa7ae0e" title="CSelectionCriterionRule\l::parse" alt="" coords="197,5,368,46"/>
-<area shape="rect" id="node3" href="$classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" title="CRuleParser::parse" alt="" coords="416,12,557,39"/>
-<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a3b12c8d561b1e468bd03214326bdf450" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="606,5,773,46"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomain.html#ab28e6a66ae7197d4fa131193f32891f4" title="CConfigurableDomain\l::setApplicationRule" alt="" coords="822,5,983,46"/>
-<area shape="rect" id="node6" href="$classCConfigurableDomains.html#ac2b2354eecc80c7ca4a71fe2f40606ed" title="CConfigurableDomains\l::setApplicationRule" alt="" coords="1032,5,1200,46"/>
-<area shape="rect" id="node7" href="$classCParameterMgr.html#af63f9ad7f792b2bf226afd791c1db70e" title="CParameterMgr::setApplicationRule" alt="" coords="1249,12,1495,39"/>
+<area shape="rect" id="node2" href="$classCSelectionCriterionRule.html#a4ee8e0274ac8c7bf5a2452002aa7ae0e" title="CSelectionCriterionRule\l::parse" alt="" coords="197,5,368,47"/>
+<area shape="rect" id="node3" href="$classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" title="CRuleParser::parse" alt="" coords="416,13,557,39"/>
+<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a3b12c8d561b1e468bd03214326bdf450" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="605,5,772,47"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#ab28e6a66ae7197d4fa131193f32891f4" title="CConfigurableDomain\l::setApplicationRule" alt="" coords="820,5,981,47"/>
+<area shape="rect" id="node6" href="$classCConfigurableDomains.html#ac2b2354eecc80c7ca4a71fe2f40606ed" title="CConfigurableDomains\l::setApplicationRule" alt="" coords="1029,5,1197,47"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#af63f9ad7f792b2bf226afd791c1db70e" title="CParameterMgr::setApplicationRule" alt="" coords="1245,13,1492,39"/>
+<area shape="rect" id="node8" href="$classCParameterMgrFullConnector.html#a7a0323667af932143f43399070f7fe62" title="CParameterMgrFullConnector\l::setApplicationRule" alt="" coords="1540,5,1748,47"/>
 </map>

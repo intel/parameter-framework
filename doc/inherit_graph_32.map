@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classCXmlSerializingContext.html" title="Class that gather errors during serialization. " alt="" coords="5,60,176,87"/>
+<area shape="rect" id="node2" href="$classCXmlElementSerializingContext.html" title="CXmlElementSerializingContext" alt="" coords="224,60,447,87"/>
+<area shape="rect" id="node3" href="$classCXmlDomainSerializingContext.html" title="CXmlDomainSerializingContext" alt="" coords="495,31,715,57"/>
+<area shape="rect" id="node6" href="$classCXmlParameterSerializingContext.html" title="CXmlParameterSerializing\lContext" alt="" coords="511,82,698,123"/>
+<area shape="rect" id="node4" href="$classCXmlDomainExportContext.html" title="CXmlDomainExportContext" alt="" coords="763,5,959,32"/>
+<area shape="rect" id="node5" href="$classCXmlDomainImportContext.html" title="CXmlDomainImportContext" alt="" coords="763,56,960,83"/>
+</map>

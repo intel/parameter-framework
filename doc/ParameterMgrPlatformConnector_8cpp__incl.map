@@ -1,14 +1,25 @@
 <map id="parameter/ParameterMgrPlatformConnector.cpp" name="parameter/ParameterMgrPlatformConnector.cpp">
-<area shape="rect" id="node3" href="$ParameterMgr_8h.html" title="ParameterMgr.h" alt="" coords="705,171,828,197"/>
-<area shape="rect" id="node29" href="$ParameterMgrLogger_8h.html" title="ParameterMgrLogger.h" alt="" coords="841,96,1009,123"/>
-<area shape="rect" id="node8" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="203,320,460,347"/>
-<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="144,469,267,496"/>
-<area shape="rect" id="node14" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="638,320,812,347"/>
-<area shape="rect" id="node15" href="$Element_8h.html" title="Element.h" alt="" coords="367,395,453,421"/>
-<area shape="rect" id="node19" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="637,245,784,272"/>
-<area shape="rect" id="node23" href="$XmlDomainExportContext_8h.html" title="XmlDomainExportContext.h" alt="" coords="1206,320,1404,347"/>
-<area shape="rect" id="node9" href="$RemoteCommandHandler_8h.html" title="RemoteCommandHandler.h" alt="" coords="478,395,676,421"/>
-<area shape="rect" id="node10" href="$RemoteCommand_8h.html" title="RemoteCommand.h" alt="" coords="693,469,843,496"/>
-<area shape="rect" id="node24" href="$XmlDomainSerializingContext_8h.html" title="XmlDomainSerializingContext.h" alt="" coords="1194,395,1416,421"/>
-<area shape="rect" id="node25" href="$XmlElementSerializingContext_8h.html" title="XmlElementSerializingContext.h" alt="" coords="1552,469,1779,496"/>
+<area shape="rect" id="node2" href="$ParameterMgrPlatformConnector_8h.html" title="ParameterMgrPlatformConnector.h" alt="" coords="18,244,262,271"/>
+<area shape="rect" id="node10" href="$ParameterMgr_8h.html" title="ParameterMgr.h" alt="" coords="937,169,1061,196"/>
+<area shape="rect" id="node32" href="$ParameterMgrLogger_8h.html" title="ParameterMgrLogger.h" alt="" coords="794,95,962,121"/>
+<area shape="rect" id="node3" href="$SelectionCriterionTypeInterface_8h.html" title="SelectionCriterionTypeInterface.h" alt="" coords="93,393,324,420"/>
+<area shape="rect" id="node5" href="$SelectionCriterionInterface_8h.html" title="SelectionCriterionInterface.h" alt="" coords="274,319,476,345"/>
+<area shape="rect" id="node6" href="$ParameterHandle_8h.html" title="ParameterHandle.h" alt="" coords="127,468,274,495"/>
+<area shape="rect" id="node9" href="$ParameterMgrLoggerForward_8h.html" title="ParameterMgrLoggerForward.h" alt="" coords="31,319,250,345"/>
+<area shape="rect" id="node14" href="$RemoteCommandHandlerTemplate_8h.html" title="RemoteCommandHandlerTemplate.h" alt="" coords="614,393,872,420"/>
+<area shape="rect" id="node17" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="602,468,724,495"/>
+<area shape="rect" id="node18" href="$SelectionCriterionType_8h.html" title="SelectionCriterionType.h" alt="" coords="844,319,1018,345"/>
+<area shape="rect" id="node19" href="$Element_8h.html" title="Element.h" alt="" coords="1022,393,1109,420"/>
+<area shape="rect" id="node24" href="$SelectionCriterion_8h.html" title="SelectionCriterion.h" alt="" coords="992,244,1139,271"/>
+<area shape="rect" id="node25" href="$XmlDocSink_8h.html" title="XmlDocSink.h" alt="" coords="1721,393,1832,420"/>
+<area shape="rect" id="node26" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="1827,468,1955,495"/>
+<area shape="rect" id="node27" href="$XmlDomainExportContext_8h.html" title="XmlDomainExportContext.h" alt="" coords="1424,319,1622,345"/>
+<area shape="rect" id="node15" href="$RemoteCommandHandler_8h.html" title="RemoteCommandHandler.h" alt="" coords="749,468,948,495"/>
+<area shape="rect" id="node16" href="$RemoteCommand_8h.html" title="RemoteCommand.h" alt="" coords="745,543,896,569"/>
+<area shape="rect" id="node20" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="1200,468,1286,495"/>
+<area shape="rect" id="node23" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="1073,468,1176,495"/>
+<area shape="rect" id="node21" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="1130,543,1241,569"/>
+<area shape="rect" id="node22" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="1526,543,1699,569"/>
+<area shape="rect" id="node28" href="$XmlDomainSerializingContext_8h.html" title="XmlDomainSerializingContext.h" alt="" coords="1474,393,1697,420"/>
+<area shape="rect" id="node29" href="$XmlElementSerializingContext_8h.html" title="XmlElementSerializingContext.h" alt="" coords="1576,468,1803,495"/>
 </map>

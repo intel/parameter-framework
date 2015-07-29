@@ -1,4 +1,6 @@
 <map id="CInstanceDefinition" name="CInstanceDefinition">
-<area shape="rect" id="node2" href="$classCTypeElement.html" title="CTypeElement" alt="" coords="41,155,152,181"/>
-<area shape="rect" id="node3" href="$classCElement.html" title="CElement" alt="" coords="55,80,139,107"/>
+<area shape="rect" id="node2" href="$classCTypeElement.html" title="CTypeElement" alt="" coords="42,155,154,181"/>
+<area shape="rect" id="node3" href="$classCElement.html" title="CElement" alt="" coords="56,80,140,107"/>
+<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="5,5,81,32"/>
+<area shape="rect" id="node5" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="105,5,200,32"/>
 </map>

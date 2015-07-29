@@ -1,11 +1,14 @@
 <map id="CSelectionCriteriaDefinition::getSelectionCriterion" name="CSelectionCriteriaDefinition::getSelectionCriterion">
-<area shape="rect" id="node2" href="$classCSelectionCriteria.html#ad95866d8f8615b75a6b68daeddb561ad" title="CSelectionCriteria\l::getSelectionCriterion" alt="" coords="254,5,418,46"/>
-<area shape="rect" id="node4" href="$classCSelectionCriterionRule.html#a4ee8e0274ac8c7bf5a2452002aa7ae0e" title="CSelectionCriterionRule\l::parse" alt="" coords="251,70,421,111"/>
-<area shape="rect" id="node10" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule\l::fromXml" alt="" coords="251,135,421,177"/>
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a06ce1937c480d46ff3b01bd7bb500b39" title="CParameterMgr::getSelection\lCriterion" alt="" coords="469,5,680,46"/>
-<area shape="rect" id="node5" href="$classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" title="CRuleParser::parse" alt="" coords="504,77,645,104"/>
-<area shape="rect" id="node6" href="$classCDomainConfiguration.html#a3b12c8d561b1e468bd03214326bdf450" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="729,70,895,111"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomain.html#ab28e6a66ae7197d4fa131193f32891f4" title="CConfigurableDomain\l::setApplicationRule" alt="" coords="945,70,1106,111"/>
-<area shape="rect" id="node8" href="$classCConfigurableDomains.html#ac2b2354eecc80c7ca4a71fe2f40606ed" title="CConfigurableDomains\l::setApplicationRule" alt="" coords="1155,70,1323,111"/>
-<area shape="rect" id="node9" href="$classCParameterMgr.html#af63f9ad7f792b2bf226afd791c1db70e" title="CParameterMgr::setApplicationRule" alt="" coords="1371,77,1618,104"/>
+<area shape="rect" id="node2" href="$classCSelectionCriteria.html#ad95866d8f8615b75a6b68daeddb561ad" title="CSelectionCriteria\l::getSelectionCriterion" alt="" coords="253,71,417,112"/>
+<area shape="rect" id="node6" href="$classCSelectionCriterionRule.html#a4ee8e0274ac8c7bf5a2452002aa7ae0e" title="CSelectionCriterionRule\l::parse" alt="" coords="249,136,420,177"/>
+<area shape="rect" id="node13" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule\l::fromXml" alt="" coords="249,201,420,243"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a06ce1937c480d46ff3b01bd7bb500b39" title="CParameterMgr::getSelection\lCriterion" alt="" coords="468,71,679,112"/>
+<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#a154ba4d561d880279078f1c4b44b2bc4" title="CParameterMgrFullConnector\l::getSelectionCriterion" alt="" coords="744,5,952,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgrPlatformConnector.html#aef85f8578cfa110c62f258f5584fe7a0" title="CParameterMgrPlatformConnector\l::getSelectionCriterion" alt="" coords="727,71,969,112"/>
+<area shape="rect" id="node7" href="$classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" title="CRuleParser::parse" alt="" coords="503,143,644,170"/>
+<area shape="rect" id="node8" href="$classCDomainConfiguration.html#a3b12c8d561b1e468bd03214326bdf450" title="CDomainConfiguration\l::setApplicationRule" alt="" coords="765,136,931,177"/>
+<area shape="rect" id="node9" href="$classCConfigurableDomain.html#ab28e6a66ae7197d4fa131193f32891f4" title="CConfigurableDomain\l::setApplicationRule" alt="" coords="1017,136,1179,177"/>
+<area shape="rect" id="node10" href="$classCConfigurableDomains.html#ac2b2354eecc80c7ca4a71fe2f40606ed" title="CConfigurableDomains\l::setApplicationRule" alt="" coords="1227,136,1395,177"/>
+<area shape="rect" id="node11" href="$classCParameterMgr.html#af63f9ad7f792b2bf226afd791c1db70e" title="CParameterMgr::setApplicationRule" alt="" coords="1443,143,1689,170"/>
+<area shape="rect" id="node12" href="$classCParameterMgrFullConnector.html#a7a0323667af932143f43399070f7fe62" title="CParameterMgrFullConnector\l::setApplicationRule" alt="" coords="1737,136,1945,177"/>
 </map>

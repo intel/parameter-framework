@@ -1,5 +1,7 @@
 <map id="CLogarithmicParameterAdaptation" name="CLogarithmicParameterAdaptation">
-<area shape="rect" id="node2" href="$classCLinearParameterAdaptation.html" title="CLinearParameterAdaptation" alt="" coords="23,229,229,256"/>
+<area shape="rect" id="node2" href="$classCLinearParameterAdaptation.html" title="CLinearParameterAdaptation" alt="" coords="23,229,230,256"/>
 <area shape="rect" id="node3" href="$classCParameterAdaptation.html" title="CParameterAdaptation" alt="" coords="43,155,211,181"/>
-<area shape="rect" id="node4" href="$classCElement.html" title="CElement" alt="" coords="85,80,168,107"/>
+<area shape="rect" id="node4" href="$classCElement.html" title="CElement" alt="" coords="85,80,169,107"/>
+<area shape="rect" id="node5" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="34,5,110,32"/>
+<area shape="rect" id="node6" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="134,5,229,32"/>
 </map>

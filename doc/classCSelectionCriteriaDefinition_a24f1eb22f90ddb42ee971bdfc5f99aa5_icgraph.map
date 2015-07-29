@@ -1,4 +1,8 @@
 <map id="CSelectionCriteriaDefinition::listSelectionCriteria" name="CSelectionCriteriaDefinition::listSelectionCriteria">
-<area shape="rect" id="node2" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="251,5,405,46"/>
-<area shape="rect" id="node3" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="453,12,611,39"/>
+<area shape="rect" id="node2" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="249,39,403,80"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="451,46,608,73"/>
+<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" title="CParameterMgrFullConnector\l::start" alt="" coords="673,5,881,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="656,71,899,112"/>
+<area shape="rect" id="node6" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="947,78,1021,105"/>
+<area shape="rect" id="node7" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1069,78,1228,105"/>
 </map>

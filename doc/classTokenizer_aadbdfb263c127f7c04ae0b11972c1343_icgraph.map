@@ -1,0 +1,6 @@
+<map id="Tokenizer::next" name="Tokenizer::next">
+<area shape="rect" id="node2" href="$classCMappingData.html#ae5e7e90a449524a2a623fdc4a0a670f8" title="Initialize mapping data through a raw value. " alt="" coords="171,8,313,35"/>
+<area shape="rect" id="node4" href="$classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec" title="Return a vector of all tokens. " alt="" coords="185,60,299,87"/>
+<area shape="rect" id="node3" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="365,5,530,32"/>
+<area shape="rect" id="node5" href="$classCSelectionCriterionType.html#ad0b2b579a2da72257e6abdb7aa5f97a7" title="Retrieve the numerical value from the std::string representation of the criterion type..." alt="" coords="361,57,533,98"/>
+</map>

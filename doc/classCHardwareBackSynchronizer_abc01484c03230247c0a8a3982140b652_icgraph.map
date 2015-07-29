@@ -1,3 +1,7 @@
 <map id="CHardwareBackSynchronizer::sync" name="CHardwareBackSynchronizer::sync">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="261,12,419,39"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="260,46,417,73"/>
+<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" title="CParameterMgrFullConnector\l::start" alt="" coords="483,5,691,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="465,71,708,112"/>
+<area shape="rect" id="node5" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="756,78,831,105"/>
+<area shape="rect" id="node6" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="879,78,1037,105"/>
 </map>

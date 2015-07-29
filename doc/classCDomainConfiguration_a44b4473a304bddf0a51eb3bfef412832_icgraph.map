@@ -1,5 +1,6 @@
 <map id="CDomainConfiguration::setElementSequence" name="CDomainConfiguration::setElementSequence">
-<area shape="rect" id="node2" href="$classCConfigurableDomain.html#a1778bfe42d19352dac62ae88f907b6d2" title="CConfigurableDomain\l::setElementSequence" alt="" coords="222,5,389,46"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#abad5c37e114fa09153d08c3fe2589235" title="CConfigurableDomains\l::setElementSequence" alt="" coords="437,5,605,46"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#aa57a75f10ccb35c8ea0b72e089bc5fc8" title="CParameterMgr::setElement\lSequence" alt="" coords="653,5,856,46"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomain.html#a1778bfe42d19352dac62ae88f907b6d2" title="CConfigurableDomain\l::setElementSequence" alt="" coords="220,5,387,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#abad5c37e114fa09153d08c3fe2589235" title="CConfigurableDomains\l::setElementSequence" alt="" coords="435,5,603,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#aa57a75f10ccb35c8ea0b72e089bc5fc8" title="CParameterMgr::setElement\lSequence" alt="" coords="651,5,853,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a8420aa7985d160ae89fafc434919704d" title="CParameterMgrFullConnector\l::setElementSequence" alt="" coords="901,5,1109,47"/>
 </map>

@@ -1,6 +1,7 @@
 <map id="CXmlElementSerializingContext" name="CXmlElementSerializingContext">
-<area shape="rect" id="node3" href="$classCXmlDomainSerializingContext.html" title="CXmlDomainSerializingContext" alt="" coords="103,163,323,189"/>
-<area shape="rect" id="node6" href="$classCXmlParameterSerializingContext.html" title="CXmlParameterSerializing\lContext" alt="" coords="348,155,535,197"/>
-<area shape="rect" id="node4" href="$classCXmlDomainExportContext.html" title="CXmlDomainExportContext" alt="" coords="5,245,200,272"/>
-<area shape="rect" id="node5" href="$classCXmlDomainImportContext.html" title="CXmlDomainImportContext" alt="" coords="225,245,423,272"/>
+<area shape="rect" id="node3" href="$classCXmlDomainSerializingContext.html" title="CXmlDomainSerializingContext" alt="" coords="104,162,324,189"/>
+<area shape="rect" id="node6" href="$classCXmlParameterSerializingContext.html" title="CXmlParameterSerializing\lContext" alt="" coords="349,155,535,196"/>
+<area shape="rect" id="node2" href="$classCXmlSerializingContext.html" title="Class that gather errors during serialization. " alt="" coords="242,5,413,32"/>
+<area shape="rect" id="node4" href="$classCXmlDomainExportContext.html" title="CXmlDomainExportContext" alt="" coords="5,244,201,271"/>
+<area shape="rect" id="node5" href="$classCXmlDomainImportContext.html" title="CXmlDomainImportContext" alt="" coords="226,244,423,271"/>
 </map>

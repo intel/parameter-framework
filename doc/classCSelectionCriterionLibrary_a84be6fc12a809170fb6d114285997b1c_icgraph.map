@@ -1,4 +1,6 @@
 <map id="CSelectionCriterionLibrary::createSelectionCriterionType" name="CSelectionCriterionLibrary::createSelectionCriterionType">
-<area shape="rect" id="node2" href="$classCSelectionCriteria.html#a450f1208de1f19ad99740510b896a3af" title="CSelectionCriteria\l::createSelectionCriterionType" alt="" coords="267,5,479,46"/>
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a4d2a54a91f937ac71a1f7bbea2ffa1c2" title="CParameterMgr::createSelection\lCriterionType" alt="" coords="529,5,759,46"/>
+<area shape="rect" id="node2" href="$classCSelectionCriteria.html#a450f1208de1f19ad99740510b896a3af" title="CSelectionCriteria\l::createSelectionCriterionType" alt="" coords="265,39,477,80"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a4d2a54a91f937ac71a1f7bbea2ffa1c2" title="CParameterMgr::createSelection\lCriterionType" alt="" coords="525,39,756,80"/>
+<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#a664df3b9fa02b02d7fb72df7101d6e78" title="CParameterMgrFullConnector\l::createSelectionCriterionType" alt="" coords="819,5,1031,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgrPlatformConnector.html#a025538f1532d26442e0acb7c3ed7497b" title="CParameterMgrPlatformConnector\l::createSelectionCriterionType" alt="" coords="804,71,1047,112"/>
 </map>

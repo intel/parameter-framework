@@ -1,5 +1,9 @@
 <map id="parameter/StringParameterType.h" name="parameter/StringParameterType.h">
-<area shape="rect" id="node3" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="79,96,193,123"/>
-<area shape="rect" id="node4" href="$Element_8h.html" title="Element.h" alt="" coords="177,171,263,197"/>
-<area shape="rect" id="node10" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="212,245,335,272"/>
+<area shape="rect" id="node3" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="479,95,593,121"/>
+<area shape="rect" id="node4" href="$Element_8h.html" title="Element.h" alt="" coords="347,169,434,196"/>
+<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="483,244,568,271"/>
+<area shape="rect" id="node11" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="291,244,394,271"/>
+<area shape="rect" id="node12" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="93,244,216,271"/>
+<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="282,319,393,345"/>
+<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="417,319,591,345"/>
 </map>

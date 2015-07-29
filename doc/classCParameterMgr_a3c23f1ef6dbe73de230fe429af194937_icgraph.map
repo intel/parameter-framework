@@ -1,3 +1,5 @@
 <map id="CParameterMgr::sync" name="CParameterMgr::sync">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="213,5,424,32"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="212,13,423,39"/>
+<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#a68cb9c635d0120600c68a4a3360b3e47" title="CParameterMgrFullConnector\l::sync" alt="" coords="213,64,421,105"/>
+<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#acda4d82dc8f94b84470477c6ad847f60" title="CParameterMgrFullConnector\l::setAutoSync" alt="" coords="471,5,679,47"/>
 </map>

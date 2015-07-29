@@ -1,0 +1,11 @@
+<map id="CParameterMgrPlatformConnector::createParameterHandle" name="CParameterMgrPlatformConnector::createParameterHandle">
+<area shape="rect" id="node2" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="296,97,535,139"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="583,64,813,105"/>
+<area shape="rect" id="node10" href="$classCConfigurableElement.html#a1376855eba031b3cbb715389e23b20fe" title="CConfigurableElement\l::isParameter" alt="" coords="616,129,780,171"/>
+<area shape="rect" id="node4" href="$classCPathNavigator.html#ad588f1802ca5e196e96972273f36a80d" title="CPathNavigator::navigate\lThrough" alt="" coords="865,5,1049,47"/>
+<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="881,71,1033,98"/>
+<area shape="rect" id="node8" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="861,146,1053,173"/>
+<area shape="rect" id="node5" href="$classCPathNavigator.html#a0fbd92beb48fdfb2041788cf77d44cf1" title="CPathNavigator::getCurrentPath" alt="" coords="1101,13,1328,39"/>
+<area shape="rect" id="node6" href="$classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589" title="CPathNavigator::next" alt="" coords="1136,79,1293,106"/>
+<area shape="rect" id="node9" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="1141,146,1288,173"/>
+</map>

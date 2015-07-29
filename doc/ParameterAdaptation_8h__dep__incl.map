@@ -1,9 +1,9 @@
 <map id="parameter/ParameterAdaptation.h" name="parameter/ParameterAdaptation.h">
-<area shape="rect" id="node2" href="$IntegerParameterType_8cpp.html" title="parameter/IntegerParameter\lType.cpp" alt="" coords="15,81,221,122"/>
-<area shape="rect" id="node3" href="$LinearParameterAdaptation_8h.html" title="parameter/LinearParameter\lAdaptation.h" alt="" coords="247,81,445,122"/>
-<area shape="rect" id="node8" href="$ParameterAdaptation_8cpp.html" title="parameter/ParameterAdaptation.cpp" alt="" coords="471,88,728,115"/>
-<area shape="rect" id="node4" href="$LinearParameterAdaptation_8cpp.html" title="parameter/LinearParameter\lAdaptation.cpp" alt="" coords="5,171,204,213"/>
-<area shape="rect" id="node5" href="$LogarithmicParameterAdaptation_8h.html" title="parameter/LogarithmicParameter\lAdaptation.h" alt="" coords="229,171,464,213"/>
-<area shape="rect" id="node7" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="396,269,605,296"/>
-<area shape="rect" id="node6" href="$LogarithmicParameterAdaptation_8cpp.html" title="parameter/LogarithmicParameter\lAdaptation.cpp" alt="" coords="137,262,372,303"/>
+<area shape="rect" id="node2" href="$IntegerParameterType_8cpp.html" title="parameter/IntegerParameter\lType.cpp" alt="" coords="15,80,222,121"/>
+<area shape="rect" id="node3" href="$LinearParameterAdaptation_8h.html" title="parameter/LinearParameter\lAdaptation.h" alt="" coords="247,80,447,121"/>
+<area shape="rect" id="node8" href="$ParameterAdaptation_8cpp.html" title="parameter/ParameterAdaptation.cpp" alt="" coords="471,87,729,114"/>
+<area shape="rect" id="node4" href="$LinearParameterAdaptation_8cpp.html" title="parameter/LinearParameter\lAdaptation.cpp" alt="" coords="5,169,205,211"/>
+<area shape="rect" id="node5" href="$LogarithmicParameterAdaptation_8h.html" title="parameter/LogarithmicParameter\lAdaptation.h" alt="" coords="229,169,465,211"/>
+<area shape="rect" id="node7" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="396,266,607,293"/>
+<area shape="rect" id="node6" href="$LogarithmicParameterAdaptation_8cpp.html" title="parameter/LogarithmicParameter\lAdaptation.cpp" alt="" coords="137,259,373,300"/>
 </map>

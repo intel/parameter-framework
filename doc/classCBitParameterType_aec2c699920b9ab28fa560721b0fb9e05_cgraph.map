@@ -1,3 +1,4 @@
 <map id="CBitParameterType::toXml" name="CBitParameterType::toXml">
-<area shape="rect" id="node2" href="$classCElement.html#aacdd6d54c10cd1494a820d78be779362" title="CElement::toString" alt="" coords="204,13,347,39"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="204,5,396,47"/>
+<area shape="rect" id="node3" href="$classCUtility.html#ab3df96a32e36befd9149af606affd8c3" title="Utility to easily convert a builtin type into string. " alt="" coords="237,71,363,98"/>
 </map>

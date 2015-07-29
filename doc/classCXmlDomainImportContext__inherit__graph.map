@@ -1,4 +1,5 @@
 <map id="CXmlDomainImportContext" name="CXmlDomainImportContext">
-<area shape="rect" id="node2" href="$classCXmlDomainSerializingContext.html" title="CXmlDomainSerializingContext" alt="" coords="6,155,225,181"/>
-<area shape="rect" id="node3" href="$classCXmlElementSerializingContext.html" title="CXmlElementSerializingContext" alt="" coords="5,80,227,107"/>
+<area shape="rect" id="node2" href="$classCXmlDomainSerializingContext.html" title="CXmlDomainSerializingContext" alt="" coords="7,155,227,181"/>
+<area shape="rect" id="node3" href="$classCXmlElementSerializingContext.html" title="CXmlElementSerializingContext" alt="" coords="5,80,228,107"/>
+<area shape="rect" id="node4" href="$classCXmlSerializingContext.html" title="Class that gather errors during serialization. " alt="" coords="31,5,202,32"/>
 </map>

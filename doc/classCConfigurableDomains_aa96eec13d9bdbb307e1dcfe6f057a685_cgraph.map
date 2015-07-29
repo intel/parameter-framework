@@ -1,8 +1,8 @@
 <map id="CConfigurableDomains::createConfiguration" name="CConfigurableDomains::createConfiguration">
-<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="222,5,405,46"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" title="CConfigurableDomain\l::createConfiguration" alt="" coords="233,70,394,111"/>
-<area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="456,12,603,39"/>
-<area shape="rect" id="node5" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="459,63,600,89"/>
-<area shape="rect" id="node6" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="453,113,605,140"/>
-<area shape="rect" id="node7" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="456,164,603,191"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="221,5,404,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" title="CConfigurableDomain\l::createConfiguration" alt="" coords="232,71,393,112"/>
+<area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="455,13,601,39"/>
+<area shape="rect" id="node5" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="457,63,599,90"/>
+<area shape="rect" id="node6" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="452,114,604,141"/>
+<area shape="rect" id="node7" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="455,165,601,191"/>
 </map>

@@ -1,10 +1,10 @@
 <map id="parameter/XmlDomainExportContext.h" name="parameter/XmlDomainExportContext.h">
-<area shape="rect" id="node2" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="5,96,256,123"/>
-<area shape="rect" id="node3" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="280,96,536,123"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="743,96,939,123"/>
-<area shape="rect" id="node6" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="401,171,611,197"/>
-<area shape="rect" id="node5" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="637,171,869,197"/>
-<area shape="rect" id="node7" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="823,246,1028,287"/>
-<area shape="rect" id="node8" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="945,171,1185,197"/>
-<area shape="rect" id="node9" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="1086,246,1324,287"/>
+<area shape="rect" id="node2" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="5,95,256,121"/>
+<area shape="rect" id="node3" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="280,95,536,121"/>
+<area shape="rect" id="node4" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="743,95,939,121"/>
+<area shape="rect" id="node6" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="401,169,612,196"/>
+<area shape="rect" id="node5" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="637,169,870,196"/>
+<area shape="rect" id="node7" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="823,244,1028,285"/>
+<area shape="rect" id="node8" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="945,169,1185,196"/>
+<area shape="rect" id="node9" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="1086,244,1325,285"/>
 </map>

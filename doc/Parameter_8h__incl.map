@@ -1,9 +1,13 @@
 <map id="parameter/Parameter.h" name="parameter/Parameter.h">
-<area shape="rect" id="node3" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="419,80,551,107"/>
-<area shape="rect" id="node5" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="536,155,757,181"/>
-<area shape="rect" id="node6" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="523,229,769,256"/>
-<area shape="rect" id="node14" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="656,304,771,331"/>
-<area shape="rect" id="node7" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="330,304,496,331"/>
-<area shape="rect" id="node8" href="$Element_8h.html" title="Element.h" alt="" coords="370,379,456,405"/>
-<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="208,453,331,480"/>
+<area shape="rect" id="node3" href="$BaseParameter_8h.html" title="BaseParameter.h" alt="" coords="43,80,175,107"/>
+<area shape="rect" id="node5" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="432,155,653,181"/>
+<area shape="rect" id="node6" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="419,229,667,256"/>
+<area shape="rect" id="node16" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="751,304,865,331"/>
+<area shape="rect" id="node7" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="398,304,565,331"/>
+<area shape="rect" id="node8" href="$Element_8h.html" title="Element.h" alt="" coords="438,379,525,405"/>
+<area shape="rect" id="node11" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="584,453,669,480"/>
+<area shape="rect" id="node14" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="457,453,559,480"/>
+<area shape="rect" id="node15" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="309,453,432,480"/>
+<area shape="rect" id="node12" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="405,528,515,555"/>
+<area shape="rect" id="node13" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="540,528,713,555"/>
 </map>

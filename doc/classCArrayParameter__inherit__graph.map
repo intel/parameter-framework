@@ -1,8 +1,10 @@
 <map id="CArrayParameter" name="CArrayParameter">
-<area shape="rect" id="node2" href="$classCParameter.html" title="CParameter" alt="" coords="65,469,164,496"/>
-<area shape="rect" id="node3" href="$classCBaseParameter.html" title="CBaseParameter" alt="" coords="49,395,179,421"/>
-<area shape="rect" id="node4" href="$classCInstanceConfigurableElement.html" title="CInstanceConfigurableElement" alt="" coords="5,320,224,347"/>
-<area shape="rect" id="node5" href="$classCConfigurableElementWithMapping.html" title="Base class for all Configurable Elements that can have a Mapping attribute. " alt="" coords="19,230,209,271"/>
-<area shape="rect" id="node6" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="33,155,196,181"/>
-<area shape="rect" id="node7" href="$classCElement.html" title="CElement" alt="" coords="73,80,156,107"/>
+<area shape="rect" id="node2" href="$classCParameter.html" title="CParameter" alt="" coords="65,468,164,495"/>
+<area shape="rect" id="node3" href="$classCBaseParameter.html" title="CBaseParameter" alt="" coords="49,393,180,420"/>
+<area shape="rect" id="node4" href="$classCInstanceConfigurableElement.html" title="CInstanceConfigurableElement" alt="" coords="5,319,224,345"/>
+<area shape="rect" id="node5" href="$classCConfigurableElementWithMapping.html" title="Base class for all Configurable Elements that can have a Mapping attribute. " alt="" coords="19,229,210,271"/>
+<area shape="rect" id="node6" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="33,155,197,181"/>
+<area shape="rect" id="node7" href="$classCElement.html" title="CElement" alt="" coords="73,80,157,107"/>
+<area shape="rect" id="node8" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="22,5,98,32"/>
+<area shape="rect" id="node9" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="122,5,217,32"/>
 </map>

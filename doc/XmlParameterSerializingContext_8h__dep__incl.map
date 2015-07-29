@@ -1,7 +1,7 @@
 <map id="parameter/XmlParameterSerializingContext.h" name="parameter/XmlParameterSerializingContext.h">
-<area shape="rect" id="node2" href="$ComponentInstance_8cpp.html" title="parameter/ComponentInstance.cpp" alt="" coords="5,104,256,131"/>
-<area shape="rect" id="node3" href="$ComponentType_8cpp.html" title="parameter/ComponentType.cpp" alt="" coords="280,104,503,131"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="528,104,737,131"/>
-<area shape="rect" id="node5" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="763,104,956,131"/>
-<area shape="rect" id="node6" href="$XmlParameterSerializingContext_8cpp.html" title="parameter/XmlParameterSerializing\lContext.cpp" alt="" coords="981,97,1232,138"/>
+<area shape="rect" id="node2" href="$ComponentInstance_8cpp.html" title="parameter/ComponentInstance.cpp" alt="" coords="5,102,256,129"/>
+<area shape="rect" id="node3" href="$ComponentType_8cpp.html" title="parameter/ComponentType.cpp" alt="" coords="280,102,504,129"/>
+<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="528,102,739,129"/>
+<area shape="rect" id="node5" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="763,102,957,129"/>
+<area shape="rect" id="node6" href="$XmlParameterSerializingContext_8cpp.html" title="parameter/XmlParameterSerializing\lContext.cpp" alt="" coords="981,95,1232,136"/>
 </map>

@@ -1,5 +1,9 @@
 <map id="parameter/ComponentInstance.h" name="parameter/ComponentInstance.h">
 <area shape="rect" id="node2" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="113,80,228,107"/>
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="337,155,423,181"/>
-<area shape="rect" id="node10" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="516,229,639,256"/>
+<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="471,155,558,181"/>
+<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="308,229,393,256"/>
+<area shape="rect" id="node11" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="418,229,521,256"/>
+<area shape="rect" id="node12" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="599,229,721,256"/>
+<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="413,304,523,331"/>
+<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="215,304,388,331"/>
 </map>

@@ -1,16 +1,21 @@
 <map id="CAreaConfiguration::serializeXmlSettings" name="CAreaConfiguration::serializeXmlSettings">
-<area shape="rect" id="node2" href="$classCParameterAccessContext.html#a5c8a052ad42c4e93476715cd85f1d6e3" title="CParameterAccessContext\l::setParameterBlackboard" alt="" coords="214,5,407,46"/>
-<area shape="rect" id="node3" href="$classCParameterAccessContext.html#a17213d6a90130c62faf41761549e64a6" title="CParameterAccessContext\l::setBaseOffset" alt="" coords="214,70,407,111"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="229,135,393,177"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="229,315,393,357"/>
-<area shape="rect" id="node7" href="$classCConfigurationAccessContext.html#ac0a975afc840488e5e82345441de56cc" title="CConfigurationAccessContext\l::serializeOut" alt="" coords="456,174,667,215"/>
-<area shape="rect" id="node6" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="470,240,653,267"/>
-<area shape="rect" id="node8" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="489,291,633,317"/>
-<area shape="rect" id="node9" href="$classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef" title="CErrorContext::setError" alt="" coords="476,341,647,368"/>
-<area shape="rect" id="node10" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="485,392,637,419"/>
-<area shape="rect" id="node11" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="491,443,631,469"/>
-<area shape="rect" id="node12" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="479,493,643,520"/>
-<area shape="rect" id="node13" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext\l::getElementLibrary" alt="" coords="718,427,941,469"/>
-<area shape="rect" id="node14" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="715,493,943,520"/>
-<area shape="rect" id="node15" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="756,544,903,571"/>
+<area shape="rect" id="node2" href="$classCParameterAccessContext.html#a5c8a052ad42c4e93476715cd85f1d6e3" title="CParameterAccessContext\l::setParameterBlackboard" alt="" coords="212,5,405,47"/>
+<area shape="rect" id="node3" href="$classCParameterAccessContext.html#a17213d6a90130c62faf41761549e64a6" title="CParameterAccessContext\l::setBaseOffset" alt="" coords="212,71,405,112"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="227,136,391,177"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="227,375,391,416"/>
+<area shape="rect" id="node7" href="$classCConfigurationAccessContext.html#ac0a975afc840488e5e82345441de56cc" title="CConfigurationAccessContext\l::serializeOut" alt="" coords="464,123,675,164"/>
+<area shape="rect" id="node6" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="478,189,661,215"/>
+<area shape="rect" id="node8" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="497,239,641,266"/>
+<area shape="rect" id="node9" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator\l::next" alt="" coords="468,291,671,332"/>
+<area shape="rect" id="node11" href="$classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef" title="CErrorContext::setError" alt="" coords="484,357,655,383"/>
+<area shape="rect" id="node12" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="493,407,645,434"/>
+<area shape="rect" id="node13" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="487,458,652,485"/>
+<area shape="rect" id="node14" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="499,509,639,535"/>
+<area shape="rect" id="node15" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="453,610,685,637"/>
+<area shape="rect" id="node18" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="475,559,663,586"/>
+<area shape="rect" id="node19" href="$classCXmlElement.html#a011852f913ce7102341352588f0efa51" title="CXmlElement::setNameAttribute" alt="" coords="454,665,685,691"/>
+<area shape="rect" id="node10" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="733,423,947,450"/>
+<area shape="rect" id="node16" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="743,599,937,640"/>
+<area shape="rect" id="node17" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="995,606,1189,633"/>
+<area shape="rect" id="node20" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="744,664,936,705"/>
 </map>

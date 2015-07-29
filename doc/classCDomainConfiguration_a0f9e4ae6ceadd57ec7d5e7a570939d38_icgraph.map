@@ -1,5 +1,6 @@
 <map id="CDomainConfiguration::getApplicationRule" name="CDomainConfiguration::getApplicationRule">
-<area shape="rect" id="node2" href="$classCConfigurableDomain.html#a172bcb617227f40d21b29e91b2424ee0" title="CConfigurableDomain\l::getApplicationRule" alt="" coords="222,5,383,46"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a2c09cdf7f3d0ce257831c2df930cb60b" title="CConfigurableDomains\l::getApplicationRule" alt="" coords="432,5,600,46"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#a001de36ae98f163d21ec23f2d8a626d3" title="CParameterMgr::getApplicationRule" alt="" coords="649,12,895,39"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomain.html#a172bcb617227f40d21b29e91b2424ee0" title="CConfigurableDomain\l::getApplicationRule" alt="" coords="220,5,381,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a2c09cdf7f3d0ce257831c2df930cb60b" title="CConfigurableDomains\l::getApplicationRule" alt="" coords="429,5,597,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#a001de36ae98f163d21ec23f2d8a626d3" title="CParameterMgr::getApplicationRule" alt="" coords="645,13,892,39"/>
+<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a589da51b0bc42b1d19fb26a3e09b88d8" title="CParameterMgrFullConnector\l::getApplicationRule" alt="" coords="940,5,1148,47"/>
 </map>
