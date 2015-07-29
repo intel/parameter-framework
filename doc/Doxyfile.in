@@ -754,8 +754,10 @@ WARN_LOGFILE           =
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = @PROJECT_SOURCE_DIR@/bindings/c \
+INPUT                  = @PROJECT_SOURCE_DIR@/README.md \
+                         @PROJECT_SOURCE_DIR@/bindings/c \
                          @PROJECT_SOURCE_DIR@/parameter \
+                         @PROJECT_SOURCE_DIR@/parameter/include \
                          @PROJECT_SOURCE_DIR@/remote-process \
                          @PROJECT_SOURCE_DIR@/remote-processor \
                          @PROJECT_SOURCE_DIR@/Schemas \
