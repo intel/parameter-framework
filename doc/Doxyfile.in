@@ -756,6 +756,7 @@ WARN_LOGFILE           =
 
 INPUT                  = @PROJECT_SOURCE_DIR@/bindings/c \
                          @PROJECT_SOURCE_DIR@/parameter \
+                         @PROJECT_SOURCE_DIR@/parameter/include \
                          @PROJECT_SOURCE_DIR@/remote-process \
                          @PROJECT_SOURCE_DIR@/remote-processor \
                          @PROJECT_SOURCE_DIR@/Schemas \
