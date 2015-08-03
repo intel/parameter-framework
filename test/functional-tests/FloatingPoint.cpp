@@ -29,134 +29,17 @@
  */
 
 #include "Config.hpp"
-#include "StoreLogger.hpp"
 #include "ParameterFramework.hpp"
+#include "Test.hpp"
 
 #include <catch.hpp>
 
-#include <list>
 #include <string>
 
-#include <cstdio>
-
-#ifndef SCENARIO_METHOD
-    /** SCENARIO_METHOD is not available in catch on ubuntu 12.04 */
-#   define SCENARIO_METHOD(className, ...) \
-        TEST_CASE_METHOD(className, "Scenario: " __VA_ARGS__)
-#endif
+using std::string;
 
 namespace parameterFramework
 {
-
-template <class Value>
-struct Test
-{
-    std::string title;
-    Value payload;
-};
-
-/** Using C style array instead of a C++ collection to workaround
- *  initializer list not supporting move semantic.
- */
-template <class Value>
-using Tests = Test<Value>[];
-
-/** Defer Parameter Framework creation.
- * A custom configuration can be provided.
- */
-class LazyPF
-{
-public:
-    using PF = ParameterFramework;
-
-    void create(Config &&configFile)
-    {
-        mPf.reset(new PF{ std::move(configFile) });
-    }
-    std::unique_ptr<PF> mPf;
-};
-
-/** PF that will log a warning at start. */
-struct WarningPF : public ParameterFramework
-{
-    WarningPF() :
-        ParameterFramework{ { &Config::domains, "<InvalidDomain/>" } }
-    {
-        setFailureOnFailedSettingsLoad(false);
-    }
-};
-
-SCENARIO_METHOD(ParameterFramework, "Default logger", "[log]") {
-    WHEN("No logger is set") {
-        THEN("Start should succeed") {
-            CHECK_NOTHROW(start());
-        }
-    }
-}
-
-SCENARIO_METHOD(ParameterFramework, "No Logger", "[log]") {
-    WHEN("A nullptr logger is set") {
-        setLogger(nullptr);
-        THEN("Start should succeed") {
-            CHECK_NOTHROW(start());
-        }
-    }
-}
-
-SCENARIO_METHOD(WarningPF, "Logger should receive info and warnings", "[log]") {
-    GIVEN("Config files that emit warnings") {
-        GIVEN("A logger that stores logs") {
-            StoreLogger logger{};
-            WHEN("The record logger is set") {
-                setLogger(&logger);
-                THEN("Start should succeed") {
-                    REQUIRE_NOTHROW(start());
-                    AND_THEN("The logger should have stored info and warning log") {
-                        using Logs = StoreLogger::Logs;
-                        using Level = StoreLogger::Log::Level;
-                        CHECK(logger.filter(Level::warning) != Logs{});
-                        CHECK(logger.getLogs() != Logs{});
-                    }
-                }
-                AND_WHEN("A nullptr logger is set") {
-                    setLogger(nullptr);
-                    THEN("Start should succeed") {
-                        REQUIRE_NOTHROW(start());
-                        AND_THEN("The record logger should NOT have stored any info or warning log") {
-                            CHECK(logger.getLogs() == StoreLogger::Logs{});
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-SCENARIO_METHOD(LazyPF, "Tuning OK", "[properties][remote interface]") {
-}
-
-SCENARIO_METHOD(LazyPF, "Invalid XML configuration") {
-    for (auto &xmlT : Tests<std::string>{
-            {"an unknown tag", "<unknown_tag/>" },
-            {"an unclosed tag", "<unclosed>" } }) {
-        auto invalidXml = xmlT.payload;
-        GIVEN("An invalid xml: containing " + xmlT.title) {
-            Config::Plugins ps{};
-            for (auto &&configT : Tests<Config>{
-                    {"top config", { &Config::plugins, { { "", { invalidXml } } } } },
-                    {"structure", { &Config::instances, invalidXml } },
-                    {"settings", { &Config::domains, invalidXml } } }) {
-                WHEN("Used in the " + configT.title) {
-                    create(std::move(configT.payload));
-                    THEN("Start should fail") {
-                        CHECK_THROWS_AS(mPf->start(), Exception);
-                    }
-                }
-            }
-        }
-    }
-}
-
 SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
     auto validInstances = Config{ &Config::instances,
         // Size is fixed at 32 and as such is optional */
@@ -166,7 +49,7 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
         <FloatingPointParameter Name="defaultMin" Size="32" Max="12.2"/>
         <FloatingPointParameter Name="defaultMax" Size="32" Min="-50.4"/>)"
     };
-    const auto &invalidParameters = Tests<std::string>{
+    const auto &invalidParameters = Tests<string>{
         { "invalid Size(64)", "<FloatingPointParameter Name='error' Size='64'/>" },
         { "invalid Size(16)", "<FloatingPointParameter Name='error' Size='16'/>" },
         { "minimum > maximum", "<FloatingPointParameter Name='error' Min='1' Max='0'/>" }
@@ -189,11 +72,11 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
         THEN("Start should succeed") {
             CHECK_NOTHROW(mPf->start());
             REQUIRE_NOTHROW(mPf->setTuningMode(true));
-            std::string path = "/test/test/nominal";
+            string path = "/test/test/nominal";
 
             AND_THEN("Set/Get a floating point parameter in real value space") {
 
-                for (auto &vec : Tests<std::string>{
+                for (auto &vec : Tests<string>{
                             { "(too high)", "12.3" },
                             { "(too low)", "-50.5" },
                             { "(not a number)", "foobar" },
@@ -202,14 +85,14 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                         CHECK_THROWS_AS(mPf->setParameter(path, vec.payload), Exception);
                     }
                 }
-                for (auto &vec : Tests<std::string>{
+                for (auto &vec : Tests<string>{
                             { "(upper limit)", "12.2" },
                             { "(lower limit)", "-50.4" },
                             { "(inside range)", "0" },
                         }) {
                     GIVEN("A valid value " + vec.title) {
                         CHECK_NOTHROW(mPf->setParameter(path, vec.payload));
-                        std::string getValueBack;
+                        string getValueBack;
                         CHECK_NOTHROW(mPf->getParameter(path, getValueBack));
                         CHECK(getValueBack == vec.payload);
                     }
@@ -220,7 +103,7 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                 const float tooHigh = 12.3f;
                 const float tooLow = -50.5f;
                 REQUIRE_NOTHROW(mPf->setRawValueSpace(true));
-                for (auto &vec : Tests<std::string>{
+                for (auto &vec : Tests<string>{
                             { "(too high, as decimal)",
                                 std::to_string(reinterpret_cast<const uint32_t&>(tooHigh)) },
                             { "(too low, as decimal)",
@@ -236,7 +119,7 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                 const float upper = 12.2f;
                 const float lower = -50.4f;
                 const float zero = 0.0f;
-                for (auto &vec : Tests<std::string>{
+                for (auto &vec : Tests<string>{
                             { "(upper limit, as decimal)",
                                 std::to_string(reinterpret_cast<const uint32_t&>(upper)) },
                             { "(lower limit, as decimal)",
@@ -246,7 +129,7 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                         }) {
                     GIVEN("A valid value " + vec.title) {
                         CHECK_NOTHROW(mPf->setParameter(path, vec.payload));
-                        std::string getValueBack;
+                        string getValueBack;
                         CHECK_NOTHROW(mPf->getParameter(path, getValueBack));
                         CHECK(getValueBack == vec.payload);
                     }
@@ -290,59 +173,4 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
         }
     }
 }
-
-SCENARIO_METHOD(LazyPF, "Plugin OK", "[properties][missing plugin policy]") {
-    for (auto &pluginNameT : Tests<std::string>{
-            {"an non existing plugin", "libdonetexist.so" },
-            {"an existing library but invalid (linux) PF plugin", "libc.so.6" } })
-    {
-        GIVEN("An" + pluginNameT.title)
-        {
-            create({ &Config::plugins, { { "", { pluginNameT.payload } } } });
-            WHEN("The missing subsystem policy is left to default") {
-                THEN("Start should fail") {
-                    CHECK_THROWS_AS(mPf->start(), Exception);
-                }
-            }
-            WHEN("The missing subsystem policy is set to failure") {
-                mPf->setFailureOnMissingSubsystem(true);
-                THEN("Start should fail") {
-                    CHECK_THROWS_AS(mPf->start(), Exception);
-                }
-            }
-            WHEN("The missing subsystem policy is set to ignore") {
-                mPf->setFailureOnMissingSubsystem(false);
-                THEN("Start should success") {
-                    CHECK_NOTHROW(mPf->start());
-                }
-            }
-        }
-    }
 }
-
-
-SCENARIO_METHOD(LazyPF, "Invalid domains", "[properties]") {
-    GIVEN("An invalid domain file") {
-        create({ &Config::domains, "<Domain name='Invalid'/>" });
-        THEN("Start should fail") {
-            CHECK_THROWS_AS(mPf->start(), Exception);
-        }
-        WHEN("Changing failure setting load policy to ignore") {
-            mPf->setFailureOnFailedSettingsLoad(false);
-            THEN("Start should succeed") {
-                CHECK_NOTHROW(mPf->start());
-            }
-        }
-    }
-}
-
-SCENARIO_METHOD(ParameterFramework, "Raw value space") {
-    WHEN("Raw value space is set") {
-        setRawValueSpace(true);
-        THEN("Value space should be raw") {
-            CHECK(isValueSpaceRaw() == true);
-        }
-    }
-}
-
-} // parameterFramework
