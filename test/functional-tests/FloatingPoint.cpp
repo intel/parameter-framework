@@ -40,38 +40,44 @@ using std::string;
 
 namespace parameterFramework
 {
-SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
-    auto validInstances = Config{ &Config::instances,
-        // Size is fixed at 32 and as such is optional */
-        R"(<FloatingPointParameter Name="Empty"/>
-        <FloatingPointParameter Name="trivial" Size="32"/>
-        <FloatingPointParameter Name="nominal" Size="32" Min="-50.4" Max="12.2"/>
-        <FloatingPointParameter Name="defaultMin" Size="32" Max="12.2"/>
-        <FloatingPointParameter Name="defaultMax" Size="32" Min="-50.4"/>)"
-    };
-    const auto &invalidParameters = Tests<string>{
-        { "invalid Size(64)", "<FloatingPointParameter Name='error' Size='64'/>" },
-        { "invalid Size(16)", "<FloatingPointParameter Name='error' Size='16'/>" },
-        { "minimum > maximum", "<FloatingPointParameter Name='error' Min='1' Max='0'/>" }
-    };
 
-    GIVEN("A Structure using an invalid FloatingPointParameters") {
-        for (auto &vec : invalidParameters) {
-            GIVEN("intentional error: " + vec.title) {
-                create(Config{ &Config::instances, vec.payload });
-                THEN("Start should fail") {
-                    CHECK_THROWS_AS(mPf->start(), Exception);
-                }
+
+const auto validInstances = Config{ &Config::instances,
+    // Size is fixed at 32 and as such is optional */
+    R"(<FloatingPointParameter Name="Empty"/>
+    <FloatingPointParameter Name="trivial" Size="32"/>
+    <FloatingPointParameter Name="nominal" Size="32" Min="-50.4" Max="12.2"/>
+    <FloatingPointParameter Name="defaultMin" Size="32" Max="12.2"/>
+    <FloatingPointParameter Name="defaultMax" Size="32" Min="-50.4"/>)"
+};
+const auto &invalidParameters = Tests<string>{
+    { "invalid Size(64)", "<FloatingPointParameter Name='error' Size='64'/>" },
+    { "invalid Size(16)", "<FloatingPointParameter Name='error' Size='16'/>" },
+    { "minimum > maximum", "<FloatingPointParameter Name='error' Min='1' Max='0'/>" }
+};
+
+struct FloatsPF : public ParameterFramework
+{
+    FloatsPF()
+        : ParameterFramework{ std::move(validInstances) } {}
+};
+
+SCENARIO_METHOD(LazyPF, "Invalid floating points XML structure", "[floating point]") {
+    for (auto &vec : invalidParameters) {
+        GIVEN("intentional error: " + vec.title) {
+            create(Config{ &Config::instances, vec.payload });
+            THEN("Start should fail") {
+                CHECK_THROWS_AS(mPf->start(), Exception);
             }
         }
     }
+}
 
-    GIVEN("A Structure using valid FloatingPointParameters") {
-        create(std::move(validInstances));
-
+SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
+    GIVEN("A valid XML structure file") {
         THEN("Start should succeed") {
-            CHECK_NOTHROW(mPf->start());
-            REQUIRE_NOTHROW(mPf->setTuningMode(true));
+            CHECK_NOTHROW(start());
+            REQUIRE_NOTHROW(setTuningMode(true));
             string path = "/test/test/nominal";
 
             AND_THEN("Set/Get a floating point parameter in real value space") {
@@ -82,7 +88,7 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                             { "(not a number)", "foobar" },
                         }) {
                     GIVEN("Invalid value " + vec.title) {
-                        CHECK_THROWS_AS(mPf->setParameter(path, vec.payload), Exception);
+                        CHECK_THROWS_AS(setParameter(path, vec.payload), Exception);
                     }
                 }
                 for (auto &vec : Tests<string>{
@@ -91,9 +97,9 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                             { "(inside range)", "0" },
                         }) {
                     GIVEN("A valid value " + vec.title) {
-                        CHECK_NOTHROW(mPf->setParameter(path, vec.payload));
+                        CHECK_NOTHROW(setParameter(path, vec.payload));
                         string getValueBack;
-                        CHECK_NOTHROW(mPf->getParameter(path, getValueBack));
+                        CHECK_NOTHROW(getParameter(path, getValueBack));
                         CHECK(getValueBack == vec.payload);
                     }
                 }
@@ -102,7 +108,7 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
             AND_THEN("Set/Get a floating point parameter in raw value space") {
                 const float tooHigh = 12.3f;
                 const float tooLow = -50.5f;
-                REQUIRE_NOTHROW(mPf->setRawValueSpace(true));
+                REQUIRE_NOTHROW(setRawValueSpace(true));
                 for (auto &vec : Tests<string>{
                             { "(too high, as decimal)",
                                 std::to_string(reinterpret_cast<const uint32_t&>(tooHigh)) },
@@ -113,7 +119,7 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                             { "(NaN)", std::to_string(std::numeric_limits<float>::quiet_NaN())},
                         }) {
                     GIVEN("Invalid value " + vec.title) {
-                        CHECK_THROWS_AS(mPf->setParameter(path, vec.payload), Exception);
+                        CHECK_THROWS_AS(setParameter(path, vec.payload), Exception);
                     }
                 }
                 const float upper = 12.2f;
@@ -128,9 +134,9 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                                 std::to_string(reinterpret_cast<const uint32_t&>(zero)) },
                         }) {
                     GIVEN("A valid value " + vec.title) {
-                        CHECK_NOTHROW(mPf->setParameter(path, vec.payload));
+                        CHECK_NOTHROW(setParameter(path, vec.payload));
                         string getValueBack;
-                        CHECK_NOTHROW(mPf->getParameter(path, getValueBack));
+                        CHECK_NOTHROW(getParameter(path, getValueBack));
                         CHECK(getValueBack == vec.payload);
                     }
                 }
@@ -140,10 +146,10 @@ SCENARIO_METHOD(LazyPF, "Floating points", "[floating point]") {
                 /** @TODO: use move semantics to get an owned object so that
                  * it will destroyed automatically */
                 ParameterHandle *handle;
-                CHECK_NOTHROW(handle = mPf->createParameterHandle(path));
+                CHECK_NOTHROW(handle = createParameterHandle(path));
                 /** @FIXME: 'set' operations on a ParameterHandle are silently
                  * ignored in tuning mode. Does it make sense ? */
-                REQUIRE_NOTHROW(mPf->setTuningMode(false));
+                REQUIRE_NOTHROW(setTuningMode(false));
 
                 /* warning: even though the API below takes a double as
                  * argument, we need to define the test vector as floats in
