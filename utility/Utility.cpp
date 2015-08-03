@@ -85,3 +85,8 @@ void CUtility::appendTitle(string& strTo, const string& strTitle)
     }
     strTo += "\n";
 }
+
+bool CUtility::isHexadecimal(const string& strValue)
+{
+    return (strValue.compare(0, 2, "0x") == 0) or (strValue.compare(0, 2, "0X") == 0);
+}

@@ -116,7 +116,7 @@ bool CFixedPointParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerial
 
 bool CFixedPointParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    bool bValueProvidedAsHexa = isHexadecimal(strValue);
+    bool bValueProvidedAsHexa = CUtility::isHexadecimal(strValue);
 
     // Check data integrity
     if (bValueProvidedAsHexa && !parameterAccessContext.valueSpaceIsRaw()) {
@@ -161,7 +161,7 @@ void CFixedPointParameterType::setOutOfRangeError(const string& strValue, CParam
 
         strStream << "raw range [";
 
-        if (isHexadecimal(strValue)) {
+        if (CUtility::isHexadecimal(strValue)) {
 
             // Format Min
             strStream << "0x" << std::hex << std::uppercase <<
@@ -273,11 +273,6 @@ void CFixedPointParameterType::getRange(double& dMin, double& dMax) const
 {
     dMax = (double)((1UL << (_uiIntegral + _uiFractional)) - 1) / (1UL << _uiFractional);
     dMin = -(double)(1UL << (_uiIntegral + _uiFractional)) / (1UL << _uiFractional);
-}
-
-bool CFixedPointParameterType::isHexadecimal(const string& strValue) const
-{
-    return !strValue.compare(0, 2, "0x");
 }
 
 bool CFixedPointParameterType::convertFromHexadecimal(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const

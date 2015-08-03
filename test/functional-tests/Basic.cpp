@@ -28,6 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "Test.hpp"
 #include "Config.hpp"
 #include "StoreLogger.hpp"
 #include "ParameterFramework.hpp"
@@ -39,52 +40,8 @@
 
 #include <cstdio>
 
-#ifndef SCENARIO_METHOD
-    /** SCENARIO_METHOD is not available in catch on ubuntu 12.04 */
-#   define SCENARIO_METHOD(className, ...) \
-        TEST_CASE_METHOD(className, "Scenario: " __VA_ARGS__)
-#endif
-
 namespace parameterFramework
 {
-
-template <class Value>
-struct Test
-{
-    std::string title;
-    Value payload;
-};
-
-/** Using C style array instead of a C++ collection to workaround
- *  initializer list not supporting move semantic.
- */
-template <class Value>
-using Tests = Test<Value>[];
-
-/** Defer Parameter Framework creation.
- * A custom configuration can be provided.
- */
-class LazyPF
-{
-public:
-    using PF = ParameterFramework;
-
-    void create(Config &&configFile)
-    {
-        mPf.reset(new PF{ std::move(configFile) });
-    }
-    std::unique_ptr<PF> mPf;
-};
-
-/** PF that will log a warning at start. */
-struct WarningPF : public ParameterFramework
-{
-    WarningPF() :
-        ParameterFramework{ { &Config::domains, "<InvalidDomain/>" } }
-    {
-        setFailureOnFailedSettingsLoad(false);
-    }
-};
 
 SCENARIO_METHOD(ParameterFramework, "Default logger", "[log]") {
     WHEN("No logger is set") {

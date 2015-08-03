@@ -57,6 +57,7 @@ add_library(parameter SHARED
     EnumValuePair.cpp
     ErrorContext.cpp
     FixedPointParameterType.cpp
+    FloatingPointParameterType.cpp
     FormattedSubsystemObject.cpp
     FrameworkConfigurationLocation.cpp
     HardwareBackSynchronizer.cpp

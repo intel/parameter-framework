@@ -29,6 +29,7 @@
  */
 #include "BooleanParameterType.h"
 #include "ParameterAccessContext.h"
+#include "Utility.h"
 
 #define base CParameterType
 
@@ -58,10 +59,7 @@ bool CBooleanParameterType::toBlackboard(const std::string& strValue, uint32_t& 
     } else {
         parameterAccessContext.setError(strValue + " value not part of numerical space {");
 
-        // Hexa
-        bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
-
-        if (bValueProvidedAsHexa) {
+        if (CUtility::isHexadecimal(strValue)) {
 
             parameterAccessContext.appendToError("0x0, 0x1");
         } else {

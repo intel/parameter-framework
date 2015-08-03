@@ -117,9 +117,6 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
 // Conversion
 bool CBitParameterType::toBlackboard(const string& strValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    // Hexa
-    bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
-
     // Get value
     uint64_t uiConvertedValue = strtoull(strValue.c_str(), NULL, 0);
 
@@ -130,7 +127,7 @@ bool CBitParameterType::toBlackboard(const string& strValue, uint64_t& uiValue, 
 
         strStream << "Value " << strValue << " standing out of admitted range [";
 
-        if (bValueProvidedAsHexa) {
+        if (CUtility::isHexadecimal(strValue)) {
 
             strStream << "0x0, " << "0x" << std::hex << std::uppercase;
         } else {

@@ -31,6 +31,8 @@
 
 #include "Config.hpp"
 #include "ConfigFiles.hpp"
+#include "FailureWrapper.hpp"
+#include "ParameterHandle.hpp"
 
 #include <ParameterMgrFullConnector.h>
 
@@ -41,7 +43,8 @@ namespace parameterFramework
  *  have more user friendly methods.
  */
 class ParameterFramework : private parameterFramework::ConfigFiles,
-                           private CParameterMgrFullConnector
+                           private CParameterMgrFullConnector,
+                           private FailureWrapper<CParameterMgrFullConnector>
 {
 private:
     using PF = CParameterMgrFullConnector;
@@ -49,9 +52,11 @@ private:
 public:
     ParameterFramework(const Config &config = Config()) :
         ConfigFiles(config),
-        PF(getPath()) {}
+        PF(getPath()),
+        FailureWrapper(this) {}
 
     void start() {
+        setForceNoRemoteInterface(true);
         mayFailCall(&PF::start);
     }
 
@@ -88,17 +93,26 @@ public:
     /** Wrap PF::setAutoSync to throw an exception on failure. */
     void setAutoSync(bool enable) { mayFailCall(&PF::setAutoSync, enable); }
 
-private:
-    /** Wrap a method that may fail to throw an Exception instead of retuning a boolean.
-     * @param[in] method that return a boolean to indicate failure.
-     * @param[in] args parameters to call method call with. */
-    template <class... MArgs, class... Args>
-    void mayFailCall(bool (PF::*method)(MArgs...), Args&&... args) {
-        std::string error;
-        if (not (this->*method)(std::forward<Args>(args)..., error)) {
-            throw Exception(std::move(error));
-        }
+    /** Wrap PF::accessParameterValue in "set" mode (and rename it) to throw an
+     * exception on failure
+     */
+    void setParameter(const std::string& path, std::string& value)
+    {
+        mayFailCall(&PF::accessParameterValue, path, value, true);
     }
+    /** Wrap PF::accessParameterValue in "get" mode (and rename it) to throw an
+     * exception on failure
+     */
+    void getParameter(const std::string& path, std::string& value)
+    {
+        mayFailCall(&PF::accessParameterValue, path, value, false);
+    }
+
+    // Dynamic parameter handling
+    ParameterHandle* createParameterHandle(const std::string& path) {
+        return new ParameterHandle(mayFailCall(&PF::createParameterHandle, path));
+    }
+
 };
 
 } // parameterFramework

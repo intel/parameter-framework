@@ -68,16 +68,6 @@ private:
     void getRange(double& dMin, double& dMax) const;
 
     /**
-     * Checks if a string has the written representation of an hexadecimal number (Which is
-     * the prefix "Ox" in C++).
-     *
-     * @param[in] strValue Parameter read from the XML file representated as a string.
-     *
-     * @return true if the string is written as hexa, false otherwise.
-     */
-    bool isHexadecimal(const std::string& strValue) const;
-
-    /**
      * Convert a decimal raw represented string into an unsigned long integer.
      * In case of a failing conversion or encodability, this function set the error to
      * illegal value provided and gives the range allowed for the parameter.

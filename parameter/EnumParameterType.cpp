@@ -102,7 +102,7 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
         /// Numerical value provided
 
         // Hexa
-        bool bValueProvidedAsHexa = !strValue.compare(0, 2, "0x");
+        bool bValueProvidedAsHexa = CUtility::isHexadecimal(strValue);
 
         errno = 0;
         char *pcStrEnd;
