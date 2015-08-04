@@ -108,6 +108,8 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
             AND_THEN("Set/Get a floating point parameter in raw value space") {
                 const float tooHigh = 12.3f;
                 const float tooLow = -50.5f;
+                const float nan = std::numeric_limits<float>::quiet_NaN();
+                const float inf = std::numeric_limits<float>::infinity();
                 REQUIRE_NOTHROW(setRawValueSpace(true));
                 for (auto &vec : Tests<string>{
                             { "(too high, as decimal)",
@@ -115,8 +117,8 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                             { "(too low, as decimal)",
                                 std::to_string(reinterpret_cast<const uint32_t&>(tooLow)) },
                             { "(meaningless)", "foobar" },
-                            { "(infinity)", std::to_string(std::numeric_limits<float>::infinity())},
-                            { "(NaN)", std::to_string(std::numeric_limits<float>::quiet_NaN())},
+                            { "(infinity)", std::to_string(reinterpret_cast<const uint32_t&>(inf))},
+                            { "(NaN)", std::to_string(reinterpret_cast<const uint32_t&>(nan))},
                         }) {
                     GIVEN("Invalid value " + vec.title) {
                         CHECK_THROWS_AS(setParameter(path, vec.payload), Exception);
