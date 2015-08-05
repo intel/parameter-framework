@@ -85,5 +85,7 @@ void CEnumValuePair::toXml(CXmlElement& xmlElement, CXmlSerializingContext& seri
     // Numerical
     xmlElement.setAttribute("Numerical", getNumericalAsString());
 
-    base::toXml(xmlElement, serializingContext);
+    // Ask for children processing only so as to avoid setting the Name attribute
+    // which does not exist for this element
+    base::childrenToXml(xmlElement, serializingContext);
 }
