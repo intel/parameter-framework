@@ -31,6 +31,10 @@ option(DOXYGEN
        "Enable doxygen generation (you still have to run 'make doc')"
        OFF)
 
+option(REQUIREMENTS
+       "Generate the html version of the 'requirements' documentation"
+       OFF)
+
 include(CMakeDependentOption)
 # Only present DOXYGEN_GRAPHS if DOXYGEN is ON and if so, default to ON.
 # Else, set to OFF.
@@ -57,4 +61,29 @@ if(DOXYGEN)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating documentation with Doxygen"
         VERBATIM)
+endif()
+
+if(REQUIREMENTS)
+    find_program(PANDOC pandoc)
+
+    if(NOT PANDOC)
+        message(SEND_ERROR
+                "'pandoc' executable has not been found."
+                " Please install it to be able to generate the html version of"
+                " the 'requirements' documentation.")
+    endif()
+
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc.css
+        ${CMAKE_CURRENT_BINARY_DIR}/doc.css
+        COPYONLY)
+    add_custom_target(requirements-doc
+        ${PANDOC} --output ${CMAKE_CURRENT_BINARY_DIR}/requirements/index.html
+                  --from markdown --to html5
+                  --number-sections --table-of-contents
+                  --smart # typographic dashes
+                  --variable pagetitle:'Parameter Framework Requirements'
+                  --id-prefix 'doc-' # avoid tag name conflicts
+                  --css ../doc.css # this path is relative to the html doc
+                  --css http://sindresorhus.com/github-markdown-css/github-markdown.css
+                  ${CMAKE_CURRENT_SOURCE_DIR}/requirements/Requirements.md)
 endif()

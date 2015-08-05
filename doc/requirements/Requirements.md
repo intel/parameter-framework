@@ -1,3 +1,5 @@
+<article class="markdown-body">
+
 High level requirements
 =======================
 
@@ -681,3 +683,4 @@ The PF host API **SHOULD** expose parameter values with the same API syncer use.
 <why>The current reference implementation abstracts the memory layout of
 parameters. This memory layout is specified in the parameter structure thus
 TODO</why>
+</article>
