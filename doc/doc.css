@@ -1,0 +1,44 @@
+.markdown-body {
+    min-width: 200px;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+nb::before,ko::before {
+    content: "Note: ";
+    font-style: normal;
+}
+
+ko::before {
+    color: red;
+}
+
+why::before {
+    content: "Why: ";
+    font-style: normal;
+}
+
+nb, ko, why {
+    font-style: italic;
+    display: block;
+    color: grey;
+}
+
+#doc-TOC {
+    display: block;
+    float: left;
+    height: 100%;
+    padding: 5px;
+
+    overflow: hidden;
+    font-family: "Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+nav>ul {
+    list-style: none;
+    padding-left: 0;
+}
