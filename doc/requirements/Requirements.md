@@ -342,8 +342,10 @@ set since the PF start.
 with the mapped hardware current state.</nb>
 <why>To allow introspection of the hardware.</why>
 
-A mode with synchronisation on client request **MAY** be supported.
-<why>The reference implementation supports it.</why>
+A mode with synchronisation on client request **SHOULD** be supported.
+<why>The user may want to group the synchronization of multiple parameters --
+for instance if a syncer contains more than 1 parameter -- in order to avoid
+undesired intermediary states.</why>
 
 Syncers **MAY** report an 'out-of-sync' condition indicating that the hardware
 parameter values are not (or no longer) reflecting the last values set by the
@@ -390,6 +392,11 @@ contain:
  - 2 values: (A,B) or (A,C) or (B,C); or
  - 3 values: (A,B,C).
 </dd>
+
+<dt>Rogue Parameter</dt>
+<dd>
+A Parameter that is not contained by any configuration.
+<dd>
 </dl>
 
 ## Configuration
@@ -540,7 +547,13 @@ The PF data **SHOULD** be serializable.
 <why>In order to save a PF instance state and restore it later. This achieve
 destruction recovery. The reference implementation supports it.</why>
 
+The PF data **SHOULD** be serializable/deserializable by parts. <why>For easier
+configuration management: for versioning; for selecting only wanted parts of a
+complete configuration.</why>
+
 **TODO**: XML ?
+
+**TODO**: get the binary content of an element.
 
 # Introspection
 ## Philosophy
@@ -556,7 +569,7 @@ This includes:
     - configurations of a domains
     - parameters
     - a domain's associated parameters
-- displaying their properties. Including:
+- getting their properties. Including:
     - parameters values, min, max, size...
 
 PF **MAY** offer pretty print of data. Including:
@@ -566,6 +579,11 @@ PF **MAY** offer pretty print of data. Including:
 - pretty print parameter tree (such as the Unix tree command for files)
     <why>In order to ease runtime debug.</why>
 
+Users **SHOULD** be able to modify rogue parameters through the native API at
+all time.
+<why>Otherwise, a rogue parameter is of no use.</why>
+<ko>In the reference implementation, under certain conditions, this is not
+possible (tuning mode)</ko>
 
 # Tuning
 ## Philosophy
