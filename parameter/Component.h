@@ -45,5 +45,12 @@ public:
     {
         return EComponent;
     }
+
+    std::string getXmlElementName() const override
+    {
+        // Once instantiated components are reflected as parameter blocks
+        // in XML documents
+        return "ParameterBlock";
+    }
 };
 

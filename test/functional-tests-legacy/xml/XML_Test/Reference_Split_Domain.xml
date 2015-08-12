@@ -27,8 +27,8 @@
 		<Settings>
 			<Configuration Name="Conf_1_1">
 				<ConfigurableElement Path="/Test/Test/TEST_MAIN">
-				<Component Name="TEST_MAIN">
-					<Component Name="TEST_DIR_0">
+				<ParameterBlock Name="TEST_MAIN">
+					<ParameterBlock Name="TEST_DIR_0">
 						<!-- Tested Booleans -->
 						<BooleanParameter Name="BOOL">0</BooleanParameter>
 						<!-- Tested FixedPoints -->
@@ -62,24 +62,24 @@
 						<IntegerParameter Name="UINT8_Max_ARRAY">0</IntegerParameter>
 						<!-- Tested String-->
 						<StringParameter Name="STR_CHAR128">string_Conf_1_1</StringParameter>
-					</Component>
-					<Component Name="TEST_DIR_1">
+					</ParameterBlock>
+					<ParameterBlock Name="TEST_DIR_1">
 						<IntegerParameter Name="Param_00">4</IntegerParameter>
 						<IntegerParameter Name="Param_01">4</IntegerParameter>
 						<IntegerParameter Name="Param_02">4</IntegerParameter>
-					</Component>
-					<Component Name="TEST_DIR_2">
+					</ParameterBlock>
+					<ParameterBlock Name="TEST_DIR_2">
 						<IntegerParameter Name="Param_10">4</IntegerParameter>
 						<IntegerParameter Name="Param_11">4</IntegerParameter>
 						<IntegerParameter Name="Param_12">4</IntegerParameter>
-					</Component>
-				</Component>
+					</ParameterBlock>
+				</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 			<Configuration Name="Conf_1_0">
 				<ConfigurableElement Path="/Test/Test/TEST_MAIN">
-				    <Component Name="TEST_MAIN">
-					    <Component Name="TEST_DIR_0">
+				    <ParameterBlock Name="TEST_MAIN">
+					    <ParameterBlock Name="TEST_DIR_0">
 						    <!-- Tested Booleans -->
 						    <BooleanParameter Name="BOOL">0</BooleanParameter>
 						    <!-- Tested FixedPoints -->
@@ -113,18 +113,18 @@
 						    <IntegerParameter Name="UINT8_Max_ARRAY">0</IntegerParameter>
 						    <!-- Tested String-->
 						    <StringParameter Name="STR_CHAR128">string_Conf_1_1</StringParameter>
-					    </Component>
-					    <Component Name="TEST_DIR_1">
+					    </ParameterBlock>
+					    <ParameterBlock Name="TEST_DIR_1">
 						    <IntegerParameter Name="Param_00">5</IntegerParameter>
 						    <IntegerParameter Name="Param_01">5</IntegerParameter>
 						    <IntegerParameter Name="Param_02">5</IntegerParameter>
-					    </Component>
-					    <Component Name="TEST_DIR_2">
+					    </ParameterBlock>
+					    <ParameterBlock Name="TEST_DIR_2">
 						    <IntegerParameter Name="Param_10">5</IntegerParameter>
 						    <IntegerParameter Name="Param_11">5</IntegerParameter>
 						    <IntegerParameter Name="Param_12">5</IntegerParameter>
-					    </Component>
-					</Component>
+					    </ParameterBlock>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 		</Settings>
