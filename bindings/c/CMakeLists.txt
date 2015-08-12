@@ -35,7 +35,7 @@ install(FILES ParameterFramework.h
 
 target_link_libraries(cparameter parameter)
 
-install(TARGETS cparameter LIBRARY DESTINATION lib)
+install(TARGETS cparameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 
 if(BUILD_TESTING)
     # Add catch unit test framework

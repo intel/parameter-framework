@@ -58,7 +58,7 @@ include_directories(
 target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LIBXML2_DEFINITIONS}")
 
-install(TARGETS xmlserializer LIBRARY DESTINATION lib)
+install(TARGETS xmlserializer LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 install(FILES
     XmlSink.h
     XmlSource.h

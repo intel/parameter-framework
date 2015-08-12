@@ -114,7 +114,7 @@ include_directories(
 find_library(dl dl)
 target_link_libraries(parameter xmlserializer pfw_utility dl)
 
-install(TARGETS parameter LIBRARY DESTINATION lib)
+install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 # Client headers
 install(FILES
     include/ParameterHandle.h
