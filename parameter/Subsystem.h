@@ -32,7 +32,6 @@
 #include "parameter_export.h"
 
 #include "ConfigurableElement.h"
-#include "ConfigurableElementWithMapping.h"
 #include "Mapper.h"
 #include "MappingContext.h"
 #include <log/Logger.h>
@@ -49,7 +48,7 @@ class CSubsystemObjectCreator;
 class CInstanceConfigurableElement;
 class CMappingData;
 
-class PARAMETER_EXPORT CSubsystem : public CConfigurableElementWithMapping, private IMapper
+class PARAMETER_EXPORT CSubsystem : public CConfigurableElement, private IMapper
 {
     // Subsystem objects iterator
     typedef std::list<CSubsystemObject*>::const_iterator SubsystemObjectListIterator;
@@ -138,14 +137,14 @@ private:
      *
      * @param[in] strKey The key on which the error refers
      * @param[in] strMessage The error message
-     * @param[in] pConfigurableElementWithMapping The element on which the error refers
+     * @param[in] pConfigurableElement The element on which the error refers
      *
      * returns The formated error std::string
      */
     std::string getMappingError(
             const std::string& strKey,
             const std::string& strMessage,
-            const CConfigurableElementWithMapping* pConfigurableElementWithMapping) const;
+            const CConfigurableElement* pConfigurableElement) const;
 
     /**
      * Format the mapping data of the ConfigurableElements that have been gathered through recursive
@@ -202,14 +201,14 @@ private:
      *
      * Feed context with mapping data of the current element
      *
-     * @param[in] pConfigurableElementWithMapping The element containing mapping data
+     * @param[in] pConfigurableElement The element containing mapping data
      * @param[out] context The context mapping to update with the current element mapping values
      * @param[out] strError The formated error std::string
      *
      * @return true on success
      */
     bool handleMappingContext(
-            const CConfigurableElementWithMapping* pConfigurableElementWithMapping,
+            const CConfigurableElement* pConfigurableElement,
             CMappingContext& context,
             std::string& strError) const;
 

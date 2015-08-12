@@ -31,7 +31,7 @@
 
 #include "parameter_export.h"
 
-#include "ConfigurableElementWithMapping.h"
+#include "ConfigurableElement.h"
 #include "TypeElement.h"
 
 #include <list>
@@ -41,7 +41,7 @@ class IMapper;
 class CParameterBlackboard;
 class CParameterAccessContext;
 
-class PARAMETER_EXPORT CInstanceConfigurableElement : public CConfigurableElementWithMapping
+class PARAMETER_EXPORT CInstanceConfigurableElement : public CConfigurableElement
 {
 public:
     enum Type {

@@ -133,7 +133,6 @@ install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
     BitParameterBlockType.h
     ConfigurableElement.h
-    ConfigurableElementWithMapping.h
     DefaultElementLibrary.h
     Element.h
     ElementBuilder.h

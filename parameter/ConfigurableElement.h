@@ -152,6 +152,16 @@ public:
     // Element properties
     virtual void showProperties(std::string& strResult) const;
 
+    /**
+     * Get the value associated to a mapping key in the object's mapping
+     *
+     * @param[in] strKey the mapping key
+     * @param[out] pStrValue the associated value
+     *
+     * @return true if @p strKey is found in the object's mapping, false if not
+     */
+    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const = 0;
+
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 
