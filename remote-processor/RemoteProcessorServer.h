@@ -30,7 +30,7 @@
 #pragma once
 
 #include <stdint.h>
-#include <pthread.h>
+#include <thread>
 #include "RemoteProcessorServerInterface.h"
 
 class CListeningSocket;
@@ -49,7 +49,6 @@ public:
 
 private:
     // Thread
-    static void* thread_func(void* pData);
     void run();
 
     // New connection
@@ -66,6 +65,6 @@ private:
     // Inband pipe
     int _aiInbandPipe[2];
     // Thread
-    pthread_t _ulThreadId;
+    std::thread thread;
 };
 
