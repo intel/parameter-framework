@@ -144,7 +144,7 @@ PfwHandler *pfwCreate()
 
 void pfwDestroy(PfwHandler *handle)
 {
-    if(handle != NULL and handle->pfw != NULL) {
+    if(handle != NULL && handle->pfw != NULL) {
         delete handle->pfw;
     }
     delete handle;
@@ -152,7 +152,7 @@ void pfwDestroy(PfwHandler *handle)
 
 void PfwHandler::setLogger(const PfwLogger *logger)
 {
-    if (logger != NULL and logger->logCb == NULL) {
+    if (logger != NULL && logger->logCb == NULL) {
         return; // There is no callback, do not log => do not add a logger
     }
     mLogger = logger != NULL ? *logger : defaultLogger;

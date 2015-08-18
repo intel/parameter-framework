@@ -44,7 +44,7 @@
 using std::string;
 
 CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
-    _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL), _ulThreadId(0)
+    _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL)
 {
 }
 
@@ -75,11 +75,11 @@ bool CRemoteProcessorServer::start(string &error)
     // Thread needs to access to the listning socket.
     _pListeningSocket = pListeningSocket.get();
     // Create thread
-    errno = pthread_create(&_ulThreadId, NULL, thread_func, this);
-    if (errno != 0) {
-
-        error = "Could not create a remote processor thread: ";
-        error += strerror(errno);
+    try {
+        thread = std::thread(&CRemoteProcessorServer::run, this);
+    }
+    catch (std::exception &e) {
+        error = "Could not create a remote processor thread: " + std::string(e.what());
         return false;
     }
 
@@ -108,10 +108,12 @@ void CRemoteProcessorServer::stop()
     }
 
     // Join thread
-    errno = pthread_join(_ulThreadId, NULL);
-    if (errno != 0) {
+    try {
+        thread.join();
+    }
+    catch (std::exception &e) {
         std::cout << "Could not join with remote processor thread: "
-                  << strerror(errno) << std::endl;
+                  << std::string(e.what()) << std::endl;
         assert(false);
     }
 
@@ -125,14 +127,6 @@ void CRemoteProcessorServer::stop()
 bool CRemoteProcessorServer::isStarted() const
 {
     return _bIsStarted;
-}
-
-// Thread
-void* CRemoteProcessorServer::thread_func(void* pData)
-{
-    reinterpret_cast<CRemoteProcessorServer*>(pData)->run();
-
-    return NULL;
 }
 
 void CRemoteProcessorServer::run()

@@ -342,10 +342,6 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath) :
     _bValidateSchemasOnStart(false)
 
 {
-    // Tuning Mode Mutex
-    bzero(&_blackboardMutex, sizeof(_blackboardMutex));
-    pthread_mutex_init(&_blackboardMutex, NULL);
-
     // Deal with children
     addChild(new CParameterFrameworkConfiguration);
     addChild(new CSelectionCriteria);
@@ -394,9 +390,6 @@ CParameterMgr::~CParameterMgr()
 
         dlclose(_pvLibRemoteProcessorHandle);
     }
-
-    // Tuning Mode Mutex
-    pthread_mutex_destroy(&_blackboardMutex);
 }
 
 string CParameterMgr::getKind() const
@@ -777,7 +770,7 @@ void CParameterMgr::applyConfigurations()
     CAutoLog autoLog(this, "Configuration application request");
 
     // Lock state
-    CAutoLock autoLock(&_blackboardMutex);
+    CAutoLock autoLock(getBlackboardMutex());
 
     if (!_bTuningModeIsOn) {
 
@@ -1849,7 +1842,7 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
 bool CParameterMgr::accessValue(CParameterAccessContext& parameterAccessContext, const string& strPath, string& strValue, bool bSet, string& strError)
 {
     // Lock state
-    CAutoLock autoLock(&_blackboardMutex);
+    CAutoLock autoLock(getBlackboardMutex());
 
     CPathNavigator pathNavigator(strPath);
 
@@ -1876,7 +1869,7 @@ bool CParameterMgr::setTuningMode(bool bOn, string& strError)
         return false;
     }
     // Lock state
-    CAutoLock autoLock(&_blackboardMutex);
+    CAutoLock autoLock(getBlackboardMutex());
 
     // Warn domains about exiting tuning mode
     if (!bOn && _bTuningModeIsOn) {
@@ -2424,9 +2417,9 @@ bool CParameterMgr::checkTuningModeOn(string& strError) const
 }
 
 // Tuning mutex dynamic parameter handling
-pthread_mutex_t* CParameterMgr::getBlackboardMutex()
+std::mutex &CParameterMgr::getBlackboardMutex()
 {
-    return &_blackboardMutex;
+    return _blackboardMutex;
 }
 
 // Blackboard reference (dynamic parameter handling)
