@@ -74,7 +74,7 @@ Also, CMake can build a project out-of-tree, which is the recommended method:
 
     mkdir /path/to/build/directory
     cd /path/to/build/directory
-    cmake /path/to/parameter-framework/sources
+    cmake /path/to/sources/of/parameter-framework
     make
 
 After an install you may want to run the parameter-framework tests with
