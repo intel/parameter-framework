@@ -242,7 +242,7 @@ _xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincl
         return NULL;
     }
 
-    if (xincludes and (xmlXIncludeProcess(doc) < 0)) {
+    if (xincludes && (xmlXIncludeProcess(doc) < 0)) {
         serializingContext.appendLineToError("libxml failed to resolve XIncludes");
 
         xmlFreeDoc(doc);
