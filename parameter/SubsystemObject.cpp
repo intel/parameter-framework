@@ -215,36 +215,42 @@ void CSubsystemObject::blackboardWrite(const void* pvData, uint32_t uiSize)
 // Logging
 void CSubsystemObject::log_info(const string& strMessage, ...) const
 {
+    int ret_val;
     char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
+    ret_val = vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
 
     va_end(listPointer);
 
-    if (pacBuffer != NULL) {
-        _pInstanceConfigurableElement->log_info(pacBuffer);
+    if (ret_val == -1) {
+        return ;
     }
+
+    _pInstanceConfigurableElement->log_info(pacBuffer);
 
     free(pacBuffer);
 }
 
 void CSubsystemObject::log_warning(const string& strMessage, ...) const
 {
+    int ret_val;
     char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
+    ret_val = vasprintf(&pacBuffer,  strMessage.c_str(), listPointer);
 
     va_end(listPointer);
 
-    if (pacBuffer != NULL) {
-        _pInstanceConfigurableElement->log_warning(pacBuffer);
+    if (ret_val == -1) {
+        return ;
     }
+
+    _pInstanceConfigurableElement->log_warning(pacBuffer);
 
     free(pacBuffer);
 }
