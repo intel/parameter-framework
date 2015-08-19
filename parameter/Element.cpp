@@ -52,36 +52,42 @@ CElement::~CElement()
 // Logging
 void CElement::log_info(const char* strMessage, ...) const
 {
+    int ret_val;
     char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vasprintf(&pacBuffer,  strMessage, listPointer);
+    ret_val = vasprintf(&pacBuffer,  strMessage, listPointer);
 
     va_end(listPointer);
 
-    if (pacBuffer != NULL) {
-        doLog(false, pacBuffer);
+    if (ret_val == -1) {
+        return;
     }
+
+    doLog(true, pacBuffer);
 
     free(pacBuffer);
 }
 
 void CElement::log_warning(const char* strMessage, ...) const
 {
+    int ret_val;
     char *pacBuffer;
     va_list listPointer;
 
     va_start(listPointer, strMessage);
 
-    vasprintf(&pacBuffer,  strMessage, listPointer);
+    ret_val = vasprintf(&pacBuffer,  strMessage, listPointer);
 
     va_end(listPointer);
 
-    if (pacBuffer != NULL) {
-        doLog(true, pacBuffer);
+    if (ret_val == -1) {
+        return;
     }
+
+    doLog(true, pacBuffer);
 
     free(pacBuffer);
 }
