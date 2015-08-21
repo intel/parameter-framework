@@ -29,7 +29,7 @@
  */
 #pragma once
 
-#include <pthread.h>
+#include <mutex>
 #include <map>
 #include <vector>
 #include <list>
@@ -521,7 +521,7 @@ private:
     bool checkTuningModeOn(std::string& strError) const;
 
     // Blackboard (dynamic parameter handling)
-    pthread_mutex_t* getBlackboardMutex();
+    std::mutex &getBlackboardMutex();
 
     // Blackboard reference (dynamic parameter handling)
     CParameterBlackboard* getParameterBlackboard();
@@ -717,7 +717,7 @@ private:
     uint32_t _uiMaxCommandUsageLength;
 
     // Blackboard access mutex
-    pthread_mutex_t _blackboardMutex;
+    std::mutex _blackboardMutex;
 
     // Logging
     ILogger* _pLogger;
