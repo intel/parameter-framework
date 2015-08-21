@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Parameter Framework Requirements</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="requirements.css">
+  <link rel="stylesheet" href="http://sindresorhus.com/github-markdown-css/github-markdown.css">
+</head>
+<body>
+<header>
+<h1 class="title">Parameter Framework<br />High level requirements</h1>
+</header>
+<nav id="req-TOC">
+<ul>
+<li><a href="#req-introduction"><span class="toc-section-number">1</span> Introduction</a><ul>
+<li><a href="#req-philosophy"><span class="toc-section-number">1.1</span> Philosophy</a><ul>
+<li><a href="#req-hardware-api-abstraction"><span class="toc-section-number">1.1.1</span> Hardware api abstraction</a></li>
+<li><a href="#req-hardware-parameter-abstraction"><span class="toc-section-number">1.1.2</span> Hardware parameter abstraction</a></li>
+<li><a href="#req-high-level-hardware-independent-abstraction"><span class="toc-section-number">1.1.3</span> High level hardware independent abstraction</a></li>
+</ul></li>
+<li><a href="#req-requirements"><span class="toc-section-number">1.2</span> Requirements</a><ul>
+<li><a href="#req-reusability"><span class="toc-section-number">1.2.1</span> Reusability</a></li>
+<li><a href="#req-instances-independence"><span class="toc-section-number">1.2.2</span> Instances independence</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#req-parameters"><span class="toc-section-number">2</span> Parameters</a><ul>
+<li><a href="#req-definitions"><span class="toc-section-number">2.1</span> Definitions</a></li>
+<li><a href="#req-requirements-1"><span class="toc-section-number">2.2</span> Requirements</a></li>
+<li><a href="#req-value"><span class="toc-section-number">2.3</span> Value</a><ul>
+<li><a href="#req-mutability"><span class="toc-section-number">2.3.1</span> Mutability</a></li>
+<li><a href="#req-set-ability"><span class="toc-section-number">2.3.2</span> Set ability</a></li>
+<li><a href="#req-get-ability"><span class="toc-section-number">2.3.3</span> Get ability</a></li>
+<li><a href="#req-data-type"><span class="toc-section-number">2.3.4</span> Data type</a></li>
+<li><a href="#req-parameter-adaptation"><span class="toc-section-number">2.3.5</span> Parameter adaptation</a></li>
+<li><a href="#req-parameter-tree"><span class="toc-section-number">2.3.6</span> Parameter tree</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#req-syncer"><span class="toc-section-number">3</span> Syncer</a><ul>
+<li><a href="#req-philosophy-3"><span class="toc-section-number">3.1</span> Philosophy</a></li>
+<li><a href="#req-definition-2"><span class="toc-section-number">3.2</span> Definition</a></li>
+<li><a href="#req-requirements-4"><span class="toc-section-number">3.3</span> Requirements</a><ul>
+<li><a href="#req-mapping"><span class="toc-section-number">3.3.1</span> Mapping</a></li>
+<li><a href="#req-uniqueness"><span class="toc-section-number">3.3.2</span> Uniqueness</a></li>
+<li><a href="#req-read-hardware"><span class="toc-section-number">3.3.3</span> Read hardware</a></li>
+</ul></li>
+<li><a href="#req-parameter-introspection"><span class="toc-section-number">3.4</span> Parameter introspection</a></li>
+<li><a href="#req-plugins"><span class="toc-section-number">3.5</span> Plugins</a><ul>
+<li><a href="#req-definition-3"><span class="toc-section-number">3.5.1</span> Definition</a></li>
+<li><a href="#req-requirements-5"><span class="toc-section-number">3.5.2</span> Requirements</a></li>
+<li><a href="#req-identifier-1"><span class="toc-section-number">3.5.3</span> Identifier</a></li>
+<li><a href="#req-loading"><span class="toc-section-number">3.5.4</span> Loading</a></li>
+</ul></li>
+<li><a href="#req-mapping-1"><span class="toc-section-number">3.6</span> Mapping</a><ul>
+<li><a href="#req-definition-4"><span class="toc-section-number">3.6.1</span> Definition</a></li>
+<li><a href="#req-requirements-6"><span class="toc-section-number">3.6.2</span> Requirements</a></li>
+</ul></li>
+<li><a href="#req-sync"><span class="toc-section-number">3.7</span> Sync</a><ul>
+<li><a href="#req-sync-on-change"><span class="toc-section-number">3.7.1</span> Sync on change</a></li>
+<li><a href="#req-read-hardware-1"><span class="toc-section-number">3.7.2</span> Read hardware</a></li>
+<li><a href="#req-explicit-sync"><span class="toc-section-number">3.7.3</span> Explicit sync</a></li>
+<li><a href="#req-out-of-sync"><span class="toc-section-number">3.7.4</span> Out of sync</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#req-rule-based-dynamic-abstraction"><span class="toc-section-number">4</span> Rule based dynamic abstraction</a><ul>
+<li><a href="#req-philosophy-4"><span class="toc-section-number">4.1</span> Philosophy</a></li>
+<li><a href="#req-definition-5"><span class="toc-section-number">4.2</span> Definition</a></li>
+<li><a href="#req-configuration"><span class="toc-section-number">4.3</span> Configuration</a><ul>
+<li><a href="#req-support-5"><span class="toc-section-number">4.3.1</span> Support</a></li>
+<li><a href="#req-eligibility"><span class="toc-section-number">4.3.2</span> Eligibility</a></li>
+<li><a href="#req-default"><span class="toc-section-number">4.3.3</span> Default</a></li>
+<li><a href="#req-predicate-implementation"><span class="toc-section-number">4.3.4</span> Predicate implementation</a></li>
+</ul></li>
+<li><a href="#req-selection-criterion"><span class="toc-section-number">4.4</span> Selection criterion</a><ul>
+<li><a href="#req-state-uniqueness"><span class="toc-section-number">4.4.1</span> State uniqueness</a></li>
+<li><a href="#req-state-validity"><span class="toc-section-number">4.4.2</span> State validity</a></li>
+<li><a href="#req-state-domain-specification"><span class="toc-section-number">4.4.3</span> State domain specification</a></li>
+<li><a href="#req-criteria-number"><span class="toc-section-number">4.4.4</span> Criteria number</a></li>
+<li><a href="#req-definitions-1"><span class="toc-section-number">4.4.5</span> Definitions</a></li>
+<li><a href="#req-criterion-changes"><span class="toc-section-number">4.4.6</span> Criterion changes</a></li>
+<li><a href="#req-rules"><span class="toc-section-number">4.4.7</span> Rules</a></li>
+</ul></li>
+<li><a href="#req-domains"><span class="toc-section-number">4.5</span> Domains</a><ul>
+<li><a href="#req-definition-6"><span class="toc-section-number">4.5.1</span> Definition</a></li>
+<li><a href="#req-philosophy-5"><span class="toc-section-number">4.5.2</span> Philosophy</a></li>
+<li><a href="#req-requirement"><span class="toc-section-number">4.5.3</span> Requirement</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#req-deserialization"><span class="toc-section-number">5</span> (de)serialization</a><ul>
+<li><a href="#req-philosophy-6"><span class="toc-section-number">5.1</span> Philosophy</a></li>
+<li><a href="#req-definition-7"><span class="toc-section-number">5.2</span> Definition</a></li>
+<li><a href="#req-requirement-1"><span class="toc-section-number">5.3</span> Requirement</a><ul>
+<li><a href="#req-deserializable"><span class="toc-section-number">5.3.1</span> Deserializable</a></li>
+<li><a href="#req-deserializable-from-a-file"><span class="toc-section-number">5.3.2</span> Deserializable from a file</a></li>
+<li><a href="#req-serializable"><span class="toc-section-number">5.3.3</span> Serializable</a></li>
+<li><a href="#req-deserialization-of-individual-data"><span class="toc-section-number">5.3.4</span> (De)Serialization of individual data</a></li>
+<li><a href="#req-serialization-format"><span class="toc-section-number">5.3.5</span> Serialization format</a></li>
+<li><a href="#req-implementation"><span class="toc-section-number">5.3.6</span> Implementation</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#req-post-mortem-debug"><span class="toc-section-number">6</span> Post mortem debug</a></li>
+<li><a href="#req-introspection"><span class="toc-section-number">7</span> Introspection</a><ul>
+<li><a href="#req-philosophy-7"><span class="toc-section-number">7.1</span> Philosophy</a></li>
+<li><a href="#req-requirements-7"><span class="toc-section-number">7.2</span> Requirements</a><ul>
+<li><a href="#req-support-6"><span class="toc-section-number">7.2.1</span> Support</a></li>
+<li><a href="#req-pretty-print"><span class="toc-section-number">7.2.2</span> Pretty print</a></li>
+<li><a href="#req-rogue-parameter"><span class="toc-section-number">7.2.3</span> Rogue parameter</a></li>
+<li><a href="#req-parameter-identifiers"><span class="toc-section-number">7.2.4</span> Parameter Identifiers</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#req-tuning"><span class="toc-section-number">8</span> Tuning</a><ul>
+<li><a href="#req-definition-8"><span class="toc-section-number">8.1</span> Definition</a></li>
+<li><a href="#req-philosophy-8"><span class="toc-section-number">8.2</span> Philosophy</a></li>
+<li><a href="#req-requirements-8"><span class="toc-section-number">8.3</span> Requirements</a><ul>
+<li><a href="#req-inference-engine"><span class="toc-section-number">8.3.1</span> Inference engine</a></li>
+<li><a href="#req-native-api"><span class="toc-section-number">8.3.2</span> Native api</a></li>
+<li><a href="#req-parameter-overwriting"><span class="toc-section-number">8.3.3</span> Parameter overwriting</a></li>
+<li><a href="#req-disabling"><span class="toc-section-number">8.3.4</span> Disabling</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#req-command-line-interface"><span class="toc-section-number">9</span> Command line interface</a><ul>
+<li><a href="#req-support-8"><span class="toc-section-number">9.1</span> Support</a></li>
+<li><a href="#req-introspection-tunning"><span class="toc-section-number">9.2</span> Introspection &amp; tunning</a></li>
+<li><a href="#req-auto-completion"><span class="toc-section-number">9.3</span> Auto completion</a></li>
+</ul></li>
+<li><a href="#req-bindings"><span class="toc-section-number">10</span> Bindings</a><ul>
+<li><a href="#req-c"><span class="toc-section-number">10.1</span> C</a></li>
+<li><a href="#req-programing-language"><span class="toc-section-number">10.2</span> Programing language</a></li>
+</ul></li>
+<li><a href="#req-performance"><span class="toc-section-number">11</span> Performance</a></li>
+<li><a href="#req-next"><span class="toc-section-number">12</span> Next</a><ul>
+<li><a href="#req-multi-os"><span class="toc-section-number">12.1</span> Multi OS</a></li>
+<li><a href="#req-tuning-1"><span class="toc-section-number">12.2</span> Tuning</a><ul>
+<li><a href="#req-get-and-set-multiple-parameter-values-in-one-request."><span class="toc-section-number">12.2.1</span> Get and set multiple parameter values in one request.</a></li>
+<li><a href="#req-get-and-set-parameters-as-binary"><span class="toc-section-number">12.2.2</span> Get and set parameters as binary</a></li>
+</ul></li>
+<li><a href="#req-stage-and-commit-sync"><span class="toc-section-number">12.3</span> Stage and commit Sync</a></li>
+<li><a href="#req-structured-api-api"><span class="toc-section-number">12.4</span> Structured api API</a><ul>
+<li><a href="#req-implementation-language"><span class="toc-section-number">12.4.1</span> Implementation language</a></li>
+</ul></li>
+<li><a href="#req-long-term"><span class="toc-section-number">12.5</span> Long term</a><ul>
+<li><a href="#req-custom-parameter-types"><span class="toc-section-number">12.5.1</span> Custom parameter types</a></li>
+<li><a href="#req-structure-tunning"><span class="toc-section-number">12.5.2</span> Structure tunning</a></li>
+<li><a href="#req-immutable-parameters"><span class="toc-section-number">12.5.3</span> Immutable parameters</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<!--
+Copyright (c) 2015, Intel Corporation
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation and/or
+other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+may be used to endorse or promote products derived from this software without
+specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<article class="markdown-body">
+
+<note>
+Some requirements are only motivated by the fact that the reference implementation implements them. Search for “reference implementation”.
+</note>
+
+<h1 id="req-introduction"><a href="#req-introduction"><span class="header-section-number">1</span> Introduction</a></h1>
+<p>The Parameter Framework is abreviated as PF in the rest of the document.</p>
+<h2 id="req-philosophy"><a href="#req-philosophy"><span class="header-section-number">1.1</span> Philosophy</a></h2>
+<p>The Parameter Framework aims to be a hardware control abstraction layer. Specificaly the PF contains 3 stacked abstraction layers:</p>
+<ol type="1">
+<li>hardware api abstraction</li>
+<li>hardware parameter abstraction</li>
+<li>high level hardware independent abstraction</li>
+</ol>
+<p>The fundamental constraint on the underlined hardware is to be representable by independent parameters. Ie: When changing one parameter it must not change an other.</p>
+<h3 id="req-hardware-api-abstraction"><a href="#req-hardware-api-abstraction"><span class="header-section-number">1.1.1</span> Hardware api abstraction</a></h3>
+<p>The goal of this layer is to abstract the apis of the underline hardwares. Each abstracted hardware usualy have different apis, this layer responsibility is to set and get parameters using the underlined native api.</p>
+<p>See the [syncer] chapter. <!--Fixme why are pandoc auto references not working ? --></p>
+<h3 id="req-hardware-parameter-abstraction"><a href="#req-hardware-parameter-abstraction"><span class="header-section-number">1.1.2</span> Hardware parameter abstraction</a></h3>
+<p>The goal if this layer is to name and organize and describing the hardware parameter properties (domain of validity, size, human representation…).</p>
+<p>See the “Parameters” chapter.</p>
+<h3 id="req-high-level-hardware-independent-abstraction"><a href="#req-high-level-hardware-independent-abstraction"><span class="header-section-number">1.1.3</span> High level hardware independent abstraction</a></h3>
+<p>The goal of this layer is to abstract the hardware parameters behind abstract parameters (called criterion in the reference implementation).</p>
+<p>This is done by linking those abstract parameters and the hardware parameters with arbitrary rules.</p>
+<p>See the “Rule based dynamic abstraction”.</p>
+<h2 id="req-requirements"><a href="#req-requirements"><span class="header-section-number">1.2</span> Requirements</a></h2>
+<h3 id="req-reusability"><a href="#req-reusability"><span class="header-section-number">1.2.1</span> Reusability</a></h3>
+<p>The PF <strong>SHOULD</strong> be reusable between components. <why>To be reused in different components.</why></p>
+<h3 id="req-instances-independence"><a href="#req-instances-independence"><span class="header-section-number">1.2.2</span> Instances independence</a></h3>
+PF instances <strong>MUST NOT</strong> mutate each others.
+<note>
+This may be implemented by not sharing any mutable data between PF instances.
+</note>
+<p><why>Different PF instances are expected to be completely independent thus accessing one should not impact any others.</why></p>
+<h1 id="req-parameters"><a href="#req-parameters"><span class="header-section-number">2</span> Parameters</a></h1>
+<note>
+TODO: add a paragraph/requirement about parameter independences. Ie parameter set order should not impact the final state. Need to find justification for this. Maybe it is only a convention? Maybe it is a consequences of the domains ?
+</note>
+
+
+<h2 id="req-definitions"><a href="#req-definitions"><span class="header-section-number">2.1</span> Definitions</a></h2>
+<dl>
+<dt>
+Parameter
+</dt>
+<dd>
+TODO
+</dd>
+<dt>
+Hardware
+</dt>
+<dd>
+<p>System controlled by the PF. Not necessary material system. This term was chosen because:</p>
+<ul>
+<li>historically the PF reference implementation was used to abstract hardware</li>
+<li>the subsystem term would arguably fit best is already used.</li>
+</ul>
+(FIXME: choose “subsystem” instead of “hardware” ?)
+</dd>
+</dl>
+
+<h2 id="req-requirements-1"><a href="#req-requirements-1"><span class="header-section-number">2.2</span> Requirements</a></h2>
+<p>A PF <strong>MUST</strong> be able to handle parameters. <why>because the PF aims to abstract hardware and model it by parameters.</why></p>
+<h2 id="req-value"><a href="#req-value"><span class="header-section-number">2.3</span> Value</a></h2>
+<p>A parameter <strong>MUST</strong> have a value. <why>because a parameter without value would not abstract any hardware.</why></p>
+<h3 id="req-mutability"><a href="#req-mutability"><span class="header-section-number">2.3.1</span> Mutability</a></h3>
+<p>A PF <strong>MUST</strong> support mutable parameters. <why>To control the underlined hardware.</why></p>
+<h3 id="req-set-ability"><a href="#req-set-ability"><span class="header-section-number">2.3.2</span> Set ability</a></h3>
+<p>This value <strong>MUST</strong> be settable for a mutable parameter. <why>By definition, a mutable parameter that can not be mutated it a immutable parameter.</why></p>
+<h3 id="req-get-ability"><a href="#req-get-ability"><span class="header-section-number">2.3.3</span> Get ability</a></h3>
+<p>This value <strong>SHOULD</strong> be gettable for a mutable parameter. <why>To dump all parameter value, debug a hardware state, save parameters values, display the current hardware state, for coherency with the immutable parameter…</why></p>
+<h3 id="req-data-type"><a href="#req-data-type"><span class="header-section-number">2.3.4</span> Data type</a></h3>
+<h4 id="req-definition"><a href="#req-definition"><span class="header-section-number">2.3.4.1</span> Definition</a></h4>
+<dl>
+<dt>
+Data type
+</dt>
+<dd>
+<p>All parameters have a data type. A data type designates parameter invariants.</p>
+A data type is the meaning of the data and the way values of that type can be stored.
+</dd>
+</dl>
+
+
+<h4 id="req-philosophy-1"><a href="#req-philosophy-1"><span class="header-section-number">2.3.4.2</span> Philosophy</a></h4>
+<p>A data type defines the value properties:</p>
+<ul>
+<li>memory layout</li>
+<li>value constrains</li>
+</ul>
+<p>A value type is mostly used to:</p>
+<ul>
+<li>pretty display parameter values (not just a as an array of bits)</li>
+<li>check for user error when setting it (out of bound, invalid…)</li>
+<li>offer a type safe API</li>
+</ul>
+<h4 id="req-requirements-2"><a href="#req-requirements-2"><span class="header-section-number">2.3.4.3</span> Requirements</a></h4>
+<h5 id="req-supported-types"><a href="#req-supported-types"><span class="header-section-number">2.3.4.3.1</span> Supported types</a></h5>
+<p>A PF <strong>SHOULD</strong> support the following types. If a type is chosen to be supported, it <strong>MUST</strong> respect all MUST clause, <strong>SHOULD</strong> respect all SHOULD clause, <strong>MAY</strong> respect all MAY clause of the type. <why>All type are not necessary to use the PF. For example any parameter could be represented as an array of char (string). But this would not permit to check parameter validity (invariants) nor a pretty display of the values.</why></p>
+<h5 id="req-typed-api"><a href="#req-typed-api"><span class="header-section-number">2.3.4.3.2</span> Typed API</a></h5>
+<p>Implementation <strong>MAY</strong> add another API to access a parameter value. <why>For example a C++ implementation may give access to a string as an std::string object.</why></p>
+<h5 id="req-integers"><a href="#req-integers"><span class="header-section-number">2.3.4.3.3</span> Integers</a></h5>
+<h6 id="req-signed-and-unsigned-support"><a href="#req-signed-and-unsigned-support"><span class="header-section-number">2.3.4.3.3.1</span> Signed and unsigned support</a></h6>
+<p>PF <strong>SHOULD</strong> support signed and unsigned integer parameters <why>The reference implementation supports it.</why></p>
+<h6 id="req-size-immutability"><a href="#req-size-immutability"><span class="header-section-number">2.3.4.3.3.2</span> Size immutability</a></h6>
+<p>PF <strong>MUST</strong> support integer with invariant size. <why>It is common in C API to expect numbers to have a fixed maximum size.</why></p>
+<h6 id="req-abi"><a href="#req-abi"><span class="header-section-number">2.3.4.3.3.3</span> ABI</a></h6>
+<p>The API to access it <strong>MUST</strong> respect C integer ABI. <why>For easy access from C code.</why></p>
+<h6 id="req-supported-size"><a href="#req-supported-size"><span class="header-section-number">2.3.4.3.3.4</span> Supported size</a></h6>
+<p>Supported integer size <strong>SHOULD</strong> be at least 8, 16 and 32 bits. <why>The reference implementation supports it.</why></p>
+<h6 id="req-min-max-support"><a href="#req-min-max-support"><span class="header-section-number">2.3.4.3.3.5</span> Min max support</a></h6>
+<p>PF <strong>MAY</strong> support constraining the parameter minimum and maximum value. <why>To catch user out of valid range errors when changing the parameter value.</why></p>
+<h5 id="req-string"><a href="#req-string"><span class="header-section-number">2.3.4.3.4</span> String</a></h5>
+<h6 id="req-support"><a href="#req-support"><span class="header-section-number">2.3.4.3.4.1</span> Support</a></h6>
+<p>PF <strong>SHOULD</strong> support array of characters. <why>Everything that a computer can store fits in an array of characters. It can be used as a fallback type if no other matches the parameter.</why></p>
+<h6 id="req-string-max-size"><a href="#req-string-max-size"><span class="header-section-number">2.3.4.3.4.2</span> String max size</a></h6>
+<p>The array maximum size <strong>MAY</strong> be invariant (immutable). <unknown>This is what the reference implementation does.</unknown></p>
+<h6 id="req-api"><a href="#req-api"><span class="header-section-number">2.3.4.3.4.3</span> API</a></h6>
+<p>The API to access the string value <strong>SHOULD</strong> support null terminated character array. As it is commonly done in C. <why>For easy access from C code.</why></p>
+<h5 id="req-fix-point-parameter"><a href="#req-fix-point-parameter"><span class="header-section-number">2.3.4.3.5</span> Fix point parameter</a></h5>
+<h6 id="req-support-1"><a href="#req-support-1"><span class="header-section-number">2.3.4.3.5.1</span> Support</a></h6>
+<p>PF <strong>SHOULD</strong> support fix point parameters. I.e. integers divided by a fixed power of two. <unknown>The reference implementation supports it.</unknown></p>
+<h6 id="req-api-1"><a href="#req-api-1"><span class="header-section-number">2.3.4.3.5.2</span> API</a></h6>
+<p>The API to access the values <strong>SHOULD</strong> respect the Qm.n and UQm.n standards. <why>It is the main standard for fix point parameters.</why></p>
+<h6 id="req-size"><a href="#req-size"><span class="header-section-number">2.3.4.3.5.3</span> Size</a></h6>
+<p>PF <strong>SHOULD</strong> support at least <code>0 &lt;= m + n &lt;= 31</code> for a Signed Qm.n and <code>0 &lt;= m + n &lt;= 32</code> for an Unsigned Qm.n (or “UQm.n”). <unknown>The reference implementation supports it.</unknown> <ko>The reference implementation only supports Signed Qn.m</ko></p>
+<h6 id="req-min-and-max-support"><a href="#req-min-and-max-support"><span class="header-section-number">2.3.4.3.5.4</span> Min and max support</a></h6>
+<p>PF <strong>MAY</strong> support constraining the parameter minimum and maximum value. <why>To catch user out of valid range errors when changing the parameter value.</why> <unknown>The reference implementation does not support it</unknown></p>
+<h5 id="req-floating-point"><a href="#req-floating-point"><span class="header-section-number">2.3.4.3.6</span> Floating point</a></h5>
+<h6 id="req-support-2"><a href="#req-support-2"><span class="header-section-number">2.3.4.3.6.1</span> Support</a></h6>
+<p>PF <strong>SHOULD</strong> support floating point parameters . <unknown>The reference implementation supports it.</unknown></p>
+<h6 id="req-api-2"><a href="#req-api-2"><span class="header-section-number">2.3.4.3.6.2</span> API</a></h6>
+The API to access the values <strong>SHOULD</strong> respect C platform float abi.
+<note>
+Usually the IEEE 754 standard.
+</note>
+
+<h6 id="req-size-1"><a href="#req-size-1"><span class="header-section-number">2.3.4.3.6.3</span> Size</a></h6>
+<p>PF <strong>SHOULD</strong> support at least 32 and 64 bit size floats. <why>The reference implementation supports it.</why> <unknown>The reference implementation only supports 32bits</unknown></p>
+<h6 id="req-min-and-max-support-1"><a href="#req-min-and-max-support-1"><span class="header-section-number">2.3.4.3.6.4</span> Min and max support</a></h6>
+<p>PF <strong>MAY</strong> support constraining the parameter minimum and maximum value. <why>To catch user out of valid range errors when changing the parameter value.</why></p>
+<h5 id="req-bit-field"><a href="#req-bit-field"><span class="header-section-number">2.3.4.3.7</span> Bit field</a></h5>
+<h6 id="req-support-3"><a href="#req-support-3"><span class="header-section-number">2.3.4.3.7.1</span> Support</a></h6>
+<p>PF <strong>SHOULD</strong> support 1 or more bit sized integers. <unknown>The reference implementation supports it.</unknown></p>
+<h6 id="req-single-bit-access-api"><a href="#req-single-bit-access-api"><span class="header-section-number">2.3.4.3.7.2</span> Single bit access API</a></h6>
+<p>The API to access a bit parameter is implementation defined. <why>C has no way to point to a single (or more) bits. Thus there is no </why></p>
+<h6 id="req-bit-field-access-api"><a href="#req-bit-field-access-api"><span class="header-section-number">2.3.4.3.7.3</span> Bit field access API</a></h6>
+Such bit parameters <strong>SHOULD</strong> be grouped in a bit field. A bit field is an ordered set of bit parameter. The API to access a bit filed <strong>SHOULD</strong> give access to a packed bit field following the C abi.
+<note>
+This bit field may contain only bit parameter.
+</note>
+<p><why>To offer a C compatible api to fit field.</why></p>
+<h3 id="req-parameter-adaptation"><a href="#req-parameter-adaptation"><span class="header-section-number">2.3.5</span> Parameter adaptation</a></h3>
+<h4 id="req-definition-1"><a href="#req-definition-1"><span class="header-section-number">2.3.5.1</span> Definition</a></h4>
+<dl>
+<dt>
+Parameter adaptation
+<dt>
+<dd>
+<p>A bijective pure function converting a parameter value between the syncer and other parameter reader/writer (including the inference engine).</p>
+<p>The adaptation function maps the syncer and client space. It:</p>
+<ul>
+<li>scales the user value to the hardware value (client =&gt; syncer)</li>
+<li>converts the hardware value to the user’s value space. (syncer =&gt; client)</li>
+</ul>
+<why>For coherency a client getting a previously set parameter should return the setted value, thus the transformation must be bijective. </why>
+</dd>
+</dl>
+
+<h4 id="req-philosophy-2"><a href="#req-philosophy-2"><span class="header-section-number">2.3.5.2</span> Philosophy</a></h4>
+Parameters exposed by hardware sometimes need to be normalized.
+<note>
+For example a hardware integer parameter could have a range 64-128 but it might be necessary for upper layer to access in a range 0-100.
+</note>
+<br /> This transformation can also permits to change the unit of a parameter.
+<note>
+For example the hardware could expose a parameter in cm but it might better to expose it in mm.
+</note>
+<br /> Parameters types offer a way to abstract underlined implementation.
+<note>
+For example a Q2,2 (see [fix-point-parameter]) when setting 1 will be translated to 0100.
+</note>
+<br /> With parameter adaptation, types can be even further parameterised.
+<note>
+For example, Qn,m Fix point parameter could be emulated with a <span class="math"> * 2<sup><em>n</em></sup></span> adaptation over an n + m integer.
+</note>
+<p><br /> Parameter adaptation could be implemented by the syncer. Nevertheless syncers are supposed to contain only business logic and should not be impacted by upper layer needs.</p>
+<h4 id="req-requirements-3"><a href="#req-requirements-3"><span class="header-section-number">2.3.5.3</span> Requirements</a></h4>
+<h5 id="req-support-4"><a href="#req-support-4"><span class="header-section-number">2.3.5.3.1</span> Support</a></h5>
+<p>The following parameter adaptation <strong>SHOULD</strong> be supported</p>
+<ul>
+<li><p>Affine adaptation: <code>affAd(value) = slope * value + offset</code> where slope and offset and user-defined constants <unknown>The reference implementation supports it.</unknown></p></li>
+<li>Logarithm adaptation: <code>logAd(base, value) = ln(value) / ln(base)</code> where <code>ln</code> is the natural logarithm and base is a user-defined constant. <unknown>The reference application supports it.</unknown>
+<note>
+The reference implementation also supports passing a floor value to be applied after conversion.
+</note>
+</li>
+</ul>
+<h5 id="req-composition"><a href="#req-composition"><span class="header-section-number">2.3.5.3.2</span> Composition</a></h5>
+A PF <strong>MAY</strong> offer Parameter adaptation composition. I.e. combine multiple parameter adaptation
+<note>
+E.g.: composing the affine and logarithm adaptation to <code>compAd(value) = slope * logAd(base, value) + offset</code>.
+</note>
+<p><why>To avoid combination explosion of parameter adaptations. The idea is to builtin basic function and let the user compose them to meet its need.</why> <ko>The reference application supports in a tricky way: the logarithm adaptation is always combined with the affine adaptation</ko></p>
+<h3 id="req-parameter-tree"><a href="#req-parameter-tree"><span class="header-section-number">2.3.6</span> Parameter tree</a></h3>
+<p>A parameter <strong>SHOULD</strong> be structured in a tree. Each parameter being a distinct tree leaf. <why>Tree is a simple data structure that can be easily represented and is enough to map underlined layers.</why></p>
+<h4 id="req-identifier"><a href="#req-identifier"><span class="header-section-number">2.3.6.1</span> Identifier</a></h4>
+<p>Each node of the tree <strong>SHOULD</strong> have its own identifier with the same characteristics (type, independence…) than a parameter. <why>To represent the tree without treating the leaf nodes specifically.</why></p>
+<h1 id="req-syncer"><a href="#req-syncer"><span class="header-section-number">3</span> Syncer</a></h1>
+<h2 id="req-philosophy-3"><a href="#req-philosophy-3"><span class="header-section-number">3.1</span> Philosophy</a></h2>
+<p>The PF philosophy is to map the hardware characteristics to parameters. In order to impact the hardware when parameters are modified, a hardware specific code must be used.</p>
+<p>Syncers are responsible for synchronizing the values of parameters to the underlined hardware. Ie, it is the glue between hardware and parameters. It contains the code specific to access an hardware.</p>
+<p>The aim of the PF is to keep this hardware specific code as light as possible.</p>
+<h2 id="req-definition-2"><a href="#req-definition-2"><span class="header-section-number">3.2</span> Definition</a></h2>
+<dl>
+<dt>
+Syncer
+<dt>
+<dd>
+Entity that keeps synchronised PF parameters and their associated hardware.
+</dd>
+</dl>
+
+<h2 id="req-requirements-4"><a href="#req-requirements-4"><span class="header-section-number">3.3</span> Requirements</a></h2>
+<h3 id="req-mapping"><a href="#req-mapping"><span class="header-section-number">3.3.1</span> Mapping</a></h3>
+<p>A syncer <strong>MUST</strong> be mapped to one or more parameters. <why>The hardware minimal access may be bigger than one parameter.</why></p>
+<h3 id="req-uniqueness"><a href="#req-uniqueness"><span class="header-section-number">3.3.2</span> Uniqueness</a></h3>
+<p>One parameter <strong>MUST NOT</strong> be mapped to two or more syncer. Ie: a parameter MUST be mapped to zero or one syncer. <why>Which syncer should be responsible to retrieve the initial parameter value if they are multiple per parameter?</why></p>
+<h3 id="req-read-hardware"><a href="#req-read-hardware"><span class="header-section-number">3.3.3</span> Read hardware</a></h3>
+<p>A syncer <strong>MUST</strong> support retrieving the mapped parameters value from the mapped hardware. <why>to retrieve a parameter value at the start of the PF.</why></p>
+<h4 id="req-write-hardware"><a href="#req-write-hardware"><span class="header-section-number">3.3.3.1</span> Write hardware</a></h4>
+<p>A syncer <strong>MUST</strong> support setting the mapped parameters value to the mapped hardware. <why>to synchronise hardware on parameter change.</why></p>
+<h4 id="req-api-3"><a href="#req-api-3"><span class="header-section-number">3.3.3.2</span> API</a></h4>
+This API <strong>MAY</strong> be a packed parameter structure, following the C ABI without padding.
+<note>
+This is what the reference implementation does.
+</note>
+<p><unknown>TODO</unknown></p>
+<h2 id="req-parameter-introspection"><a href="#req-parameter-introspection"><span class="header-section-number">3.4</span> Parameter introspection</a></h2>
+<p>The syncer API <strong>SHOULD</strong> allow introspection of the mapped parameters. <why>the parameter structure may be useful for the syncer to communicate with the hardware. For example a syncer might need each to know each associated parameter type to send it to the hardware.</why></p>
+<h2 id="req-plugins"><a href="#req-plugins"><span class="header-section-number">3.5</span> Plugins</a></h2>
+<ul>
+<li>This formation is object oriented. Requirements should not require any programing paradigm.</li>
+<li>Is this section about syncer creation and builders too close to implementation ?</li>
+</ul>
+<h3 id="req-definition-3"><a href="#req-definition-3"><span class="header-section-number">3.5.1</span> Definition</a></h3>
+<p>The PF creates syncer using syncer builder.</p>
+<h3 id="req-requirements-5"><a href="#req-requirements-5"><span class="header-section-number">3.5.2</span> Requirements</a></h3>
+<p>The PF <strong>MUST</strong> be able to create syncers. <why>To bind on the corresponding parameters.</why></p>
+<h3 id="req-identifier-1"><a href="#req-identifier-1"><span class="header-section-number">3.5.3</span> Identifier</a></h3>
+<h4 id="req-syncer-library"><a href="#req-syncer-library"><span class="header-section-number">3.5.3.1</span> Syncer library</a></h4>
+All syncers mapping to the same hardware <strong>SHOULD</strong> have their builders regrouped in a syncer library.
+<note>
+<p>FIXME:</p>
+<ul>
+<li>Is this syncer library concept not a definition ? Ie a syncer builder set.</li>
+<li>The concept is needed by other requirement but it does not stand by itself.</li>
+<li>Why is there a requirement of “same hardware” ? Is this not more a convention than a requirement ?</li>
+</ul>
+</note>
+<p><why>To be able to link a group of parameters and a given hardware. For example all parameters that are mapped to sound card should be linked to a sound card syncer library. (Each parameter are then individually mapped to a specific syncer.) </why></p>
+<h4 id="req-syncer-id"><a href="#req-syncer-id"><span class="header-section-number">3.5.3.2</span> Syncer ID</a></h4>
+<p>A syncer builder <strong>MUST</strong> have a unique identifier in its containing syncer library. <why>To uniquely identify the syncer that should bind on parameters. Given that the syncer library has already been specified.</why></p>
+<h4 id="req-library-uid"><a href="#req-library-uid"><span class="header-section-number">3.5.3.3</span> Library UID</a></h4>
+<p>A syncer library <strong>MUST</strong> have a unique identifier in the host system. <why>To identify the library associated to parameters.</why></p>
+<h3 id="req-loading"><a href="#req-loading"><span class="header-section-number">3.5.4</span> Loading</a></h3>
+<h4 id="req-dll"><a href="#req-dll"><span class="header-section-number">3.5.4.1</span> DLL</a></h4>
+<p>Syncer library or/and builder <strong>MAY</strong> be loaded from dynamically linked libraries (called syncer plugins). <unknown>The reference implementation supports it.</unknown></p>
+<h4 id="req-plugin-entry-point"><a href="#req-plugin-entry-point"><span class="header-section-number">3.5.4.2</span> Plugin entry point</a></h4>
+Such syncer plugins <strong>SHOULD</strong> have an unique entry point that – when called – should register its payload (syncer library/builder) in the provided gatherer.
+<note>
+This permit to merge multiple syncer libraries in one shared library.
+</note>
+<p><unknown>The reference implementation supports it.</unknown></p>
+<h4 id="req-plugin-interdependancies"><a href="#req-plugin-interdependancies"><span class="header-section-number">3.5.4.3</span> Plugin interdependancies</a></h4>
+<p>Multiple syncer plugins, may depend on each other. The PF should appropriately handle the case and not fail. <unknown>The reference implementation supports it.</unknown></p>
+<h2 id="req-mapping-1"><a href="#req-mapping-1"><span class="header-section-number">3.6</span> Mapping</a></h2>
+<h3 id="req-definition-4"><a href="#req-definition-4"><span class="header-section-number">3.6.1</span> Definition</a></h3>
+<dl>
+<dt>
+Virtual Parameter
+</dt>
+<dd>
+A parameter not bound to a syncer. (Todo: remove if not used in the requirements.)
+</dd>
+</dl>
+
+<h3 id="req-requirements-6"><a href="#req-requirements-6"><span class="header-section-number">3.6.2</span> Requirements</a></h3>
+<p><strong>TODO</strong>: - Plugins - association builder &lt;-&gt; parameters</p>
+<h2 id="req-sync"><a href="#req-sync"><span class="header-section-number">3.7</span> Sync</a></h2>
+<h3 id="req-sync-on-change"><a href="#req-sync-on-change"><span class="header-section-number">3.7.1</span> Sync on change</a></h3>
+<p>Syncer <strong>SHOULD</strong> synchronise the mapped hardware on parameter change. <why>To always keep synchronise the underlined hardware and the PF parameters.</why></p>
+<h3 id="req-read-hardware-1"><a href="#req-read-hardware-1"><span class="header-section-number">3.7.2</span> Read hardware</a></h3>
+Syncer <strong>SHOULD</strong> retrieve parameter value from the hardware if no value has be set since the PF start.
+<note>
+This is usually implemented on PF start, initialize the parameter values with the mapped hardware current state.
+</note>
+<p><why>To allow introspection of the hardware.</why></p>
+<h3 id="req-explicit-sync"><a href="#req-explicit-sync"><span class="header-section-number">3.7.3</span> Explicit sync</a></h3>
+<p>A mode with synchronisation on client request <strong>SHOULD</strong> be supported. <why>The user may want to group the synchronization of multiple parameters – for instance if a syncer contains more than 1 parameter – in order to avoid undesired intermediary states.</why></p>
+<h3 id="req-out-of-sync"><a href="#req-out-of-sync"><span class="header-section-number">3.7.4</span> Out of sync</a></h3>
+<p>Syncers <strong>MAY</strong> report an ‘out-of-sync’ condition indicating that the hardware parameter values are not (or no longer) reflecting the last values set by the Parameter Framework. <why>This can happen when the underlying hardware subsystem crashes/reboots/…</why></p>
+<h4 id="req-recovery"><a href="#req-recovery"><span class="header-section-number">3.7.4.1</span> Recovery</a></h4>
+<p>When a syncer reports an out-of-sync condition, the PF <strong>MUST</strong> try to resync the hardware values.</p>
+<h1 id="req-rule-based-dynamic-abstraction"><a href="#req-rule-based-dynamic-abstraction"><span class="header-section-number">4</span> Rule based dynamic abstraction</a></h1>
+<h2 id="req-philosophy-4"><a href="#req-philosophy-4"><span class="header-section-number">4.1</span> Philosophy</a></h2>
+<p>The PF offers parameters mapped on hardware. This is a good but weak abstraction as there is often a 1/1 relation between a parameter and the hardware it maps. Ie: parameter abstract how to access hardware and what hardware but are still hardware specific.</p>
+<p>A PF offers a mechanism to abstract the parameters to a higher level concept.</p>
+<p>The goal is to hide numerous parameters and their dynamic values behind simple and human friendly API.</p>
+<p>It works by grouping parameters with similar management and defining configurations for each “scenario”. These “scenario” are then given a priority and a detection predicate. Configuration are applied when their associated “scenario” is detected.</p>
+<p>“Scenario” are detected through arbitrary criterion provided by the PF host (see below).</p>
+<h2 id="req-definition-5"><a href="#req-definition-5"><span class="header-section-number">4.2</span> Definition</a></h2>
+<dl>
+<dt>
+Configuration
+</dt>
+<dd>
+<p>Set of values for different parameters. A configuration <strong>MUST NOT</strong> contain 2 values of the same parameter.</p>
+<p>For example, given a PF with 3 integer parameters A,B,C, a configuration can contain:</p>
+<ul>
+<li>1 value: (A) or (B) or (C); or</li>
+<li>2 values: (A,B) or (A,C) or (B,C); or</li>
+<li>3 values: (A,B,C).
+</dd>
+</li>
+</ul>
+<dt>
+Rogue Parameter
+</dt>
+<dd>
+A Parameter that is not contained by any configuration.
+<dd>
+</dl>
+
+<h2 id="req-configuration"><a href="#req-configuration"><span class="header-section-number">4.3</span> Configuration</a></h2>
+<h3 id="req-support-5"><a href="#req-support-5"><span class="header-section-number">4.3.1</span> Support</a></h3>
+A PF <strong>MUST</strong> offer configurations as described in the Definition chapter.
+<note>
+rule based parameter engine does not manipulate directly values, it applies configuration on the parameters.
+</note>
+<p><unknown>This is what the reference implementation does.</unknown></p>
+<h3 id="req-eligibility"><a href="#req-eligibility"><span class="header-section-number">4.3.2</span> Eligibility</a></h3>
+<p>Each configuration <strong>MUST</strong> be associated with a predicate that condition its eligibility. A configuration with a predicate that evaluates to <code>true</code> is called an “eligible configuration” <why>This is what the reference implementation does.</why></p>
+<h3 id="req-default"><a href="#req-default"><span class="header-section-number">4.3.3</span> Default</a></h3>
+<p>It <strong>SHOULD</strong> be possible to express a predicate to always evaluates to <code>true</code>. Ie: It <em>SHOULD</em> be possible to make a configuration always eligible. <why>In order to have parameters set to constant values or have a fallback configuration in a domain – see below.</why></p>
+<h3 id="req-predicate-implementation"><a href="#req-predicate-implementation"><span class="header-section-number">4.3.4</span> Predicate implementation</a></h3>
+<p>The predicate <strong>SHOULD</strong> be a “selection criterion rule”. See next chapter for a definition. <why>The reference implementation uses a boolean expression based engine.</why></p>
+<h2 id="req-selection-criterion"><a href="#req-selection-criterion"><span class="header-section-number">4.4</span> Selection criterion</a></h2>
+<h3 id="req-state-uniqueness"><a href="#req-state-uniqueness"><span class="header-section-number">4.4.1</span> State uniqueness</a></h3>
+<p>A selection criterion <strong>MUST</strong> have one, and only one, state at a given time.</p>
+<h3 id="req-state-validity"><a href="#req-state-validity"><span class="header-section-number">4.4.2</span> State validity</a></h3>
+<p>A selection criterion <strong>MUST</strong> have a always known immutable domain of definition. Ie All the possible state that a selection criterion can take <strong>MUST</strong> be known at all time. <why>To be able to validate:<br /> - rules on start<br /> - state changes </why></p>
+<h3 id="req-state-domain-specification"><a href="#req-state-domain-specification"><span class="header-section-number">4.4.3</span> State domain specification</a></h3>
+<h4 id="req-naive"><a href="#req-naive"><span class="header-section-number">4.4.3.1</span> Naive</a></h4>
+The selection criterion possible states <strong>MUST</strong> be specifiable by directly a state set (<code>Input -&gt; states == identity</code>)
+<note>
+called <strong>exclusive criterion</strong>
+</note>
+<note>
+An empty set is not allowed as the criterion could not have a state.
+</note>
+<p><why>Any criterion can be created from this API.</why></p>
+<h4 id="req-combination"><a href="#req-combination"><span class="header-section-number">4.4.3.2</span> Combination</a></h4>
+The selection criterion possible states <strong>SHOULD</strong> be specifiable by a combination of values
+<note>
+combination in the <a href="https://en.wikipedia.org/wiki/Combination">mathematical sense</a> <code>&quot;ab&quot; -&gt; [&quot;&quot;, &quot;a&quot;, &quot;b&quot;, &quot;ab&quot;]</code>
+</note>
+<note>
+called <strong>inclusive criterion</strong>
+</note>
+<note>
+An empty value set is allowed as its combination – a set containing the empty set – would not be empty. The empty set would be the only possible criteria state.
+</note>
+<p><why>The reference implementation supports it.</why></p>
+<h3 id="req-criteria-number"><a href="#req-criteria-number"><span class="header-section-number">4.4.4</span> Criteria number</a></h3>
+<p>The PF <strong>SHOULD NOT</strong> limit the number of criteria.</p>
+<h4 id="req-state-number"><a href="#req-state-number"><span class="header-section-number">4.4.4.1</span> State number</a></h4>
+<p>The PF <strong>SHOULD NOT</strong> limit the number of possible states of any given criterion <ko>The reference implementation only supports 32 values for an inclusive criterion and 2^32 values for an exclusive criterion</ko></p>
+<h3 id="req-definitions-1"><a href="#req-definitions-1"><span class="header-section-number">4.4.5</span> Definitions</a></h3>
+<dl>
+<dt>
+Selection criterion rule
+</dt>
+<dd>
+Function (in the mathematical sense) that <strong>MUST</strong> given selection criteria return a Boolean. Ie, a <a href="https://en.wikipedia.org/wiki/Predicate_%28mathematical_logic%29">predicate</a>.
+</dd>
+
+<dt>
+Rule
+</dt>
+<dd>
+A Boolean expression of Selection criterion rules.
+<note>
+implementation only allows AND and OR combination
+</note>
+<dd>
+</dl>
+
+<h3 id="req-criterion-changes"><a href="#req-criterion-changes"><span class="header-section-number">4.4.6</span> Criterion changes</a></h3>
+<h4 id="req-multiple-criterion-change-atomicity"><a href="#req-multiple-criterion-change-atomicity"><span class="header-section-number">4.4.6.1</span> Multiple criterion change atomicity</a></h4>
+<p>The API to change criterion values <strong>MUST</strong> allow atomicity regarding configuration application. I.e. it <strong>MUST</strong> be possible to change multiple criterion values without triggering a configuration application. <why>Two criterion might have an excluding state. If configuration application was triggered after each criterion change this transitory incompatible state would impact the system. For example 2 criterion <code>Tx</code> and <code>Rx</code> with 2 values <code>&quot;on&quot;</code> and <code>&quot;off&quot;</code> may have an incompatible state <code>Tx = Rx = &quot;on&quot;</code>. Ie this state is unspecified and the inference engine would gave unknown result.<br />When going:<br /> - from <code>Tx = &quot;on&quot; and Rx = &quot;on&quot;</code> (state 1)<br /> - to <code>Tx = &quot;off&quot; and Rx = &quot;off&quot;</code> (state 2)<br /><!-- FIXME: why are list closing the why block ?  --> a transitory state <code>Tx = &quot;on&quot; and Rx = &quot;on&quot;</code> may be reached. Nevertheless the inference engine must not be run on such. There must be a way to go from one state 1 to state 2 without triggering configuration application. </why></p>
+<h3 id="req-rules"><a href="#req-rules"><span class="header-section-number">4.4.7</span> Rules</a></h3>
+<p>It <strong>MUST</strong> always be able to express a selection criterion rule from a given selection criterion state. I.e.: a criteria <strong>MUST</strong> always have a state that can be matched by a rule. <why>If no rules can be formulated from a criterion state, the hardware can not be abstracted in this state witch defeats the PF purpose.</why></p>
+<p>Parameter values change <strong>SHOULD</strong> be selected by Rules. <why>A rule based inference engine has been chosen based on implementation and configuration ease</why></p>
+<h2 id="req-domains"><a href="#req-domains"><span class="header-section-number">4.5</span> Domains</a></h2>
+<h3 id="req-definition-6"><a href="#req-definition-6"><span class="header-section-number">4.5.1</span> Definition</a></h3>
+<dl>
+<dt>
+Domain
+</dt>
+<dd>
+Ordered set of configuration, all of which contain the values for the same parameters.
+</dd>
+</dl>
+
+<h3 id="req-philosophy-5"><a href="#req-philosophy-5"><span class="header-section-number">4.5.2</span> Philosophy</a></h3>
+<p>When creating configurations for parameters, a pattern emerges. Some parameters are naturally grouping together. Ie changing on the same predicates.</p>
+<p>Without carefully crafting configuration predicates for mutual exclusivity, multiples configuration of the same parameter could be eligible on the same criterion state. This would lead to an ambiguity: which configuration should be applied.</p>
+<p>Multiple solution could be imagine like: - ask to the client/user - having configuration predicate mutual exclusive - choose randomly - group configuration applicable on the same in a priority ordered set</p>
+<p>The domains this specification recommend is this last solution. It has been chosen as the recommended solution (just like parameter tree) because it is a simple solution and is implemented in the reference implementation.</p>
+<p>The constraint of this solution is that a configuration can no longer be shared between domains. For example a global default configuration can not exist. It must be split up for each domain.</p>
+<p>This choice also force parameters to be independently accessible.</p>
+<h3 id="req-requirement"><a href="#req-requirement"><span class="header-section-number">4.5.3</span> Requirement</a></h3>
+<h4 id="req-configuration-application-ambiguity"><a href="#req-configuration-application-ambiguity"><span class="header-section-number">4.5.3.1</span> Configuration application ambiguity</a></h4>
+<p>There <strong>MUST</strong> be a mechanism to avoid ambiguity on multiple configuration eligibility for the same parameter. <why>Applying multiple configurations would leave the parameters in an unknown state.</why></p>
+<h4 id="req-domain-support"><a href="#req-domain-support"><span class="header-section-number">4.5.3.2</span> Domain support</a></h4>
+<p>Each configuration <strong>SHOULD</strong> be in a “domain” (see Definition chapter). <why>Domains are mostly a way to define the priority of configuration application for some parameters.</why> <ko>It is not a MUST because this goal could also be achieve with (for example) global configurations and per parameter priority. It is not a MAY because the reference implementation uses domains.</ko></p>
+<h4 id="req-configuration-priority"><a href="#req-configuration-priority"><span class="header-section-number">4.5.3.3</span> Configuration priority</a></h4>
+<p>If multiple configuration are eligible, the first one <strong>MUST</strong> be applied. <why>If multiple configuration are eligible, there must be a way to discriminate them. The order was arbitrary chosen. See the domain philosophy section for more information about this choice.</why></p>
+<h4 id="req-lazy-application"><a href="#req-lazy-application"><span class="header-section-number">4.5.3.4</span> Lazy application</a></h4>
+If no configuration is eligible, no configuration <strong>MUST</strong> be applied.
+<note>
+It means that if none of the configurations is eligible, none is applied. This also mean that no function can be defined between criteria and states. I.e.: parameter values MAY depend on previous selection criterion states.
+</note>
+<p><why>This is what the reference implementation does.</why></p>
+<h4 id="req-sequence-indifference"><a href="#req-sequence-indifference"><span class="header-section-number">4.5.3.5</span> Sequence indifference</a></h4>
+<p>Parameter set and get order MUST not change the final state. <why>Their is no way to order such access if the parameters are from different domains.</why></p>
+<h4 id="req-sequence-aware-domain"><a href="#req-sequence-aware-domain"><span class="header-section-number">4.5.3.6</span> Sequence aware domain</a></h4>
+<p>Domains <strong>MAY</strong> be sequence aware. Such domains update their associated parameters in a specific, predictable and configurable order. <ko>The reference application supports it.</ko> <why>Some parameters might require specific ordering on set. This is contradictory with the fact that parameters MUST be accessed independently.</why></p>
+<h1 id="req-deserialization"><a href="#req-deserialization"><span class="header-section-number">5</span> (de)serialization</a></h1>
+<h2 id="req-philosophy-6"><a href="#req-philosophy-6"><span class="header-section-number">5.1</span> Philosophy</a></h2>
+<p>Serialization and deserialization are meant to support destruction recovery and configuration deployment.</p>
+<p>These are the same requirements than for a database, it needs to be able to save its state and restore for backup, deployment, reboot…</p>
+<h2 id="req-definition-7"><a href="#req-definition-7"><span class="header-section-number">5.2</span> Definition</a></h2>
+<p>PF data includes:</p>
+<ul>
+<li>parameters tree</li>
+<li>configurations:
+<ul>
+<li>selection rule</li>
+<li>parameter/value couples</li>
+</ul></li>
+<li>domain:
+<ul>
+<li>list of associated configurations</li>
+<li>order of priority</li>
+</ul></li>
+</ul>
+<h2 id="req-requirement-1"><a href="#req-requirement-1"><span class="header-section-number">5.3</span> Requirement</a></h2>
+<h3 id="req-deserializable"><a href="#req-deserializable"><span class="header-section-number">5.3.1</span> Deserializable</a></h3>
+<p>The PF data <strong>MUST</strong> be deserializable. <why>Otherwise a PF instance could only be created empty and then be filled by the tuning interface. The reference implementation supports it.</why></p>
+<h3 id="req-deserializable-from-a-file"><a href="#req-deserializable-from-a-file"><span class="header-section-number">5.3.2</span> Deserializable from a file</a></h3>
+<p>The PF data <strong>SHOULD</strong> be deserializable from a config file. <why>This is usually how program configuration are stored. The reference implementation supports it.</why></p>
+<h3 id="req-serializable"><a href="#req-serializable"><span class="header-section-number">5.3.3</span> Serializable</a></h3>
+<p>The PF data <strong>SHOULD</strong> be serializable. <why>In order to save a PF instance state and restore it later. This achieve destruction recovery. The reference implementation supports it.</why></p>
+<h3 id="req-deserialization-of-individual-data"><a href="#req-deserialization-of-individual-data"><span class="header-section-number">5.3.4</span> (De)Serialization of individual data</a></h3>
+<p>The PF data <strong>SHOULD</strong> be serializable/deserializable by parts. <why>For easier configuration management: for versioning; for selecting only wanted parts of a complete configuration.</why></p>
+<h3 id="req-serialization-format"><a href="#req-serialization-format"><span class="header-section-number">5.3.5</span> Serialization format</a></h3>
+<p><strong>TODO</strong>: XML ?</p>
+<h3 id="req-implementation"><a href="#req-implementation"><span class="header-section-number">5.3.6</span> Implementation</a></h3>
+<p>Syncer build and syncer library identifiers <strong>SHOULD</strong> be strings. <unknown>The reference application does so.</unknown></p>
+<h1 id="req-post-mortem-debug"><a href="#req-post-mortem-debug"><span class="header-section-number">6</span> Post mortem debug</a></h1>
+A PF <strong>MAY</strong> save all data needed to replay it’s state evolution.
+<note>
+<p>Eg: log criterion change, configuration application, parameter external change.</p>
+This is implementing by logging events by the reference implementation.
+</note>
+<p><why>In order for the user to debug the user configuration after a bug occurred (post mortem or rare bug). This is kind of like the bash -x feature. </why></p>
+<h1 id="req-introspection"><a href="#req-introspection"><span class="header-section-number">7</span> Introspection</a></h1>
+<h2 id="req-philosophy-7"><a href="#req-philosophy-7"><span class="header-section-number">7.1</span> Philosophy</a></h2>
+<p>In order to debug the user configuration, allow introspection of PF data at runtime. As data is meant to be displayed to user, lots are requirements are towards pretty printing PF data.</p>
+<h2 id="req-requirements-7"><a href="#req-requirements-7"><span class="header-section-number">7.2</span> Requirements</a></h2>
+<h3 id="req-support-6"><a href="#req-support-6"><span class="header-section-number">7.2.1</span> Support</a></h3>
+<p>User <strong>SHOULD</strong> be able to inspect PF data. <why>To offer run time debugging. This includes:<br />- listing<br />    + domains<br />    + configurations of a domains<br />    + parameters<br />    + a domain’s associated parameters<br />- getting their properties. Including:<br />    + parameters values, min, max, size… </why></p>
+<h3 id="req-pretty-print"><a href="#req-pretty-print"><span class="header-section-number">7.2.2</span> Pretty print</a></h3>
+<p>PF <strong>MAY</strong> offer pretty print of data. Including:</p>
+<ul>
+<li>printing parameter value in decimal <why>For human readability</why></li>
+<li>pretty print parameter tree (such as the Unix tree command for files) <why>In order to ease runtime debug.</why></li>
+</ul>
+<h3 id="req-rogue-parameter"><a href="#req-rogue-parameter"><span class="header-section-number">7.2.3</span> Rogue parameter</a></h3>
+<p>Users <strong>SHOULD</strong> be able to modify rogue parameters through the native API at all time. <why>Otherwise, a rogue parameter is of no use.</why> <ko>In the reference implementation, under certain conditions, this is not possible (tuning mode)</ko></p>
+<h3 id="req-parameter-identifiers"><a href="#req-parameter-identifiers"><span class="header-section-number">7.2.4</span> Parameter Identifiers</a></h3>
+<h4 id="req-support-7"><a href="#req-support-7"><span class="header-section-number">7.2.4.1</span> Support</a></h4>
+<p>Every parameter <strong>MUST</strong> have an identifier that uniquely identifies it. <why>to identify a parameter outside the framework</why></p>
+<h4 id="req-string-1"><a href="#req-string-1"><span class="header-section-number">7.2.4.2</span> String</a></h4>
+<p>This identifier <strong>SHOULD</strong> be a string. <why>So that a human user can identify a parameter with ease.</why></p>
+<h4 id="req-determinism"><a href="#req-determinism"><span class="header-section-number">7.2.4.3</span> Determinism</a></h4>
+<p>Two PF instances with the same parameters <strong>MUST</strong> have the same identifier for those parameters. I.e. this identifier should be the same across all instances with the same configuration. <why>Persistence of parameter identifier across PF instances with the same configuration. To identify parameters independently of the host machine and PF instance</why></p>
+<h4 id="req-tree-path"><a href="#req-tree-path"><span class="header-section-number">7.2.4.4</span> Tree path</a></h4>
+<p>The identifier of each node of a parameter tree <strong>SHOULD</strong> be a combination of its parents. More specifically, if the identifier is a string it <strong>SHOULD</strong> be formated in a similar way as a file system path. E.g. <code>/root/child1/4/parameter1</code>. <why>Usual syntax to address trees.</why></p>
+<h1 id="req-tuning"><a href="#req-tuning"><span class="header-section-number">8</span> Tuning</a></h1>
+<h2 id="req-definition-8"><a href="#req-definition-8"><span class="header-section-number">8.1</span> Definition</a></h2>
+<dl>
+<dt>
+Tuning
+</dt>
+<dd>
+Tuning is the ability to modify the PF data structure at runtime.
+</dd>
+</dl>
+
+<note>
+Is this naming “Tuning” not too audio oriented.
+</note>
+
+<h2 id="req-philosophy-8"><a href="#req-philosophy-8"><span class="header-section-number">8.2</span> Philosophy</a></h2>
+<p>As the PF might model a complex system with its dynamic parameter value engine (rule based in the default implementation), its behaviour might be hard to understand and should be easily modified not correct.</p>
+<p>To address this need, a fast modify-update-test cycle should be possible.</p>
+<h2 id="req-requirements-8"><a href="#req-requirements-8"><span class="header-section-number">8.3</span> Requirements</a></h2>
+<h3 id="req-inference-engine"><a href="#req-inference-engine"><span class="header-section-number">8.3.1</span> Inference engine</a></h3>
+<p>Users <strong>SHOULD</strong> be able to modify the PF inference engine behaviour (rules, configuration…) with minimal effort. <why>To enable a fast modify-update-test cycle during tuning. This usually mean avoiding for the user to:<br /> - recompile<br /> - restart the host process/service </why></p>
+<note>
+<p>No requirement is made on the persistence of those changes, they may or may not disappear on PF restart. This could be implemented in several way, for example:</p>
+<ul>
+<li>exposed in the PF API</li>
+<li>changing a config file and sending a signal to the PF</li>
+<li>providing a IPC</li>
+<li>directly modifying the memory</li>
+</ul>
+</note>
+
+<h3 id="req-native-api"><a href="#req-native-api"><span class="header-section-number">8.3.2</span> Native api</a></h3>
+<p>Tuning <strong>SHOULD</strong> be possible from the PF native API. <why>In order to let the host system implement its own tuning mechanism.</why></p>
+<h3 id="req-parameter-overwriting"><a href="#req-parameter-overwriting"><span class="header-section-number">8.3.3</span> Parameter overwriting</a></h3>
+Users <strong>SHOULD</strong> be able to modify the parameter values at any time. This change <strong>SHOULD NOT</strong> be overwritten without a user action.
+<note>
+User overwritten user action could be a log out, leaving some tuning mode, forcing an inference engine update…
+</note>
+<p><why>Even if a parameter is managed by the inference engine, it often is useful (test, debugging) to overwrite its value temporally.</why></p>
+<h3 id="req-disabling"><a href="#req-disabling"><span class="header-section-number">8.3.4</span> Disabling</a></h3>
+<p>A PF tuning capability <strong>MAY</strong> be disabled in a context where no tuning is needed. <why>The reference implementation does so (phone end users can not change the tuning).</why></p>
+<h1 id="req-command-line-interface"><a href="#req-command-line-interface"><span class="header-section-number">9</span> Command line interface</a></h1>
+<p><ko>Is this not an implementation detail? Does a client really needs it?</ko></p>
+<h2 id="req-support-8"><a href="#req-support-8"><span class="header-section-number">9.1</span> Support</a></h2>
+The PF <strong>MAY</strong> offer a command line interface that binds to its IPC. <why>To have a reference way to interact with a PF without implementing its IPC protocol.</why>
+<note>
+This requirement is fulfilled by remote-processor and remote-command on the reference implementation.
+</note>
+
+<h2 id="req-introspection-tunning"><a href="#req-introspection-tunning"><span class="header-section-number">9.2</span> Introspection &amp; tunning</a></h2>
+<p>This command line interface <strong>SHOULD</strong> support all tuning and introspection ability. <why>In order to be used in scripting and live tuning/debugging on an embedded system.</why></p>
+<h2 id="req-auto-completion"><a href="#req-auto-completion"><span class="header-section-number">9.3</span> Auto completion</a></h2>
+<p>This command line interface <strong>MAY</strong> offer argument auto completion. <why>Is more user friendly.</why></p>
+<h1 id="req-bindings"><a href="#req-bindings"><span class="header-section-number">10</span> Bindings</a></h1>
+<h2 id="req-c"><a href="#req-c"><span class="header-section-number">10.1</span> C</a></h2>
+<p>The PF <strong>SHOULD</strong> expose its API in C. <why>The PF aims to be a hardware abstraction thus middle ware which is often written in C or a language compatible with C. Virtually all programing language support C Foreign Procedure Call, having a C API ease integration whichever the host language is.</why></p>
+<h2 id="req-programing-language"><a href="#req-programing-language"><span class="header-section-number">10.2</span> Programing language</a></h2>
+<p>The PF <strong>MAY</strong> expose its API to multiple programing language. <unknown>The reference implementation has python bindings.</unknown></p>
+<h1 id="req-performance"><a href="#req-performance"><span class="header-section-number">11</span> Performance</a></h1>
+<p>The reference Parameter Framework implementation is mainly intended for use in consumer electronics such as smartphones and tablets. Such platforms are often referred to as “embedded” platforms but their capacity today is so huge in terms of both computing and memory that they can be considered as small personal computers.</p>
+<p>Moreover, since one of the Parameter Framework’s primary feature is to implement storage of</p>
+<ul>
+<li>hardware description</li>
+<li>settings</li>
+</ul>
+<p>its memory footprint largely depends on how many such items are stored.</p>
+<p>For those reasons, there are no performance requirements imposed on the architecture. Performance considerations are left to the implementation of the Parameter Framework and/or the client and/or the build chain.</p>
+<h1 id="req-next"><a href="#req-next"><span class="header-section-number">12</span> Next</a></h1>
+<p><ko> The following requirements are not implemented in the reference implementation and are to be considered draft. </ko></p>
+<h2 id="req-multi-os"><a href="#req-multi-os"><span class="header-section-number">12.1</span> Multi OS</a></h2>
+<p>PF <strong>MAY</strong> support at least:</p>
+<ul>
+<li>Linux (and Android)</li>
+<li>Windows</li>
+<li>Mac OSX</li>
+</ul>
+<p><why>As the reference PF implementation leaves its original Android environment, needs emerge to use it on other platform.</why></p>
+<h2 id="req-tuning-1"><a href="#req-tuning-1"><span class="header-section-number">12.2</span> Tuning</a></h2>
+<h3 id="req-get-and-set-multiple-parameter-values-in-one-request."><a href="#req-get-and-set-multiple-parameter-values-in-one-request."><span class="header-section-number">12.2.1</span> Get and set multiple parameter values in one request.</a></h3>
+<p>Get and set the content of one or more parameter or multiple parameters as xml. <why>For performance reason. Tools often need to update multiple parameter and having one call per parameter is too slow. (benchmark ?)</why></p>
+<h3 id="req-get-and-set-parameters-as-binary"><a href="#req-get-and-set-parameters-as-binary"><span class="header-section-number">12.2.2</span> Get and set parameters as binary</a></h3>
+<p>The PF host API <strong>SHOULD</strong> expose parameter values with the same API syncer use. <why>The current reference implementation abstracts the memory layout of parameters. This memory layout is specified in the parameter structure thus is known </why></p>
+<h2 id="req-stage-and-commit-sync"><a href="#req-stage-and-commit-sync"><span class="header-section-number">12.3</span> Stage and commit Sync</a></h2>
+<p>Explicit sync <strong>SHOULD</strong> only sync parameters which values were updated since last sync. <why>For performance reason or when an hardware does not support certain transition state, manual parameter synchronisation is requested.</p>
+<p>Sync request was implemented in the reference implementation by syncing all parameters, including the one that were not changed since last sync.</p>
+<p>For performance reason only the changed parameters should be send to hardware.</why></p>
+<h2 id="req-structured-api-api"><a href="#req-structured-api-api"><span class="header-section-number">12.4</span> Structured api API</a></h2>
+<p>The PF host API <strong>SHOULD</strong> be structured. I.e.: the PF, when requested for a list of domains, should return a list of structured object, each containing configuration objects, containing their values… <why>The reference implementation has a string oriented API. E.g/: The list of domains is returned as a concatenation of domains name in one big string. This leads to hard to use API from C and C++ code. Especially for testing</why></p>
+<h3 id="req-implementation-language"><a href="#req-implementation-language"><span class="header-section-number">12.4.1</span> Implementation language</a></h3>
+<p>The main implementation will transition to C++11 for - cross platform support of multi-threading - remove dependency to pthread - reduce the gap with the “next” branch It will be compatible with android thank to clang’s libc++&quot;</p>
+<note>
+Put this in a design document.
+</note>
+
+<h2 id="req-long-term"><a href="#req-long-term"><span class="header-section-number">12.5</span> Long term</a></h2>
+<p>The following requirements are not planned to be implemented any time soon as their is not need identified but are rather a long term guidance.</p>
+<h3 id="req-custom-parameter-types"><a href="#req-custom-parameter-types"><span class="header-section-number">12.5.1</span> Custom parameter types</a></h3>
+<p>The client <strong>MAY</strong> inject custom parameters types. <why>As the client creates parameters it should also be able to specify the parameter contains ie its types. Without this possibility the client has to choose a built-in that may not match what he wants.</p>
+<p>For example representing a prime number with an integer would not allow to enforce primness.</p>
+<p>For example a complex number could be represented with two float but <code>a+bi</code> format could not be used.</p>
+<p>For example stocking a parameter with a dynamic type, say either a string or a number could be done with a boolean a string and a number but this could not be pretty print and not memory efficient. </why></p>
+<h3 id="req-structure-tunning"><a href="#req-structure-tunning"><span class="header-section-number">12.5.2</span> Structure tunning</a></h3>
+<p>Users <strong>MAY</strong> be able to modify the parameters (types, identifiers, tree…) with minimal effort (in the same way they can modify the inference engine). <ko>The reference implementation does not support it.</ko> <why>To enable a fast modify-update-test cycle on PF configuration.</why></p>
+<h3 id="req-immutable-parameters"><a href="#req-immutable-parameters"><span class="header-section-number">12.5.3</span> Immutable parameters</a></h3>
+<p>A PF <strong>MAY</strong> support immutable parameters, i.e. parameters which value is determined on start then read only. <why>To permit hardware read only value reflection.</why> <ko>This is not implemented in the PF reference implementation.</ko></p>
+<p>This value <strong>MUST</strong> be gettable for an immutable parameter. <why>A parameter that can not be accessed (read or write) is of no use.</why></p>
+</article>
+</body>
+</html>
