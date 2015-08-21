@@ -32,6 +32,7 @@
 #include <string>
 #include <vector>
 #include <stdint.h>
+#include <stdio.h>
 #include <list>
 #include "XmlSink.h"
 #include "XmlSource.h"
@@ -52,6 +53,7 @@ public:
     void log_info(const char* strMessage, ...) const;
     void log_warning(const char* strMessage, ...) const;
     void log_table(bool bIsWarning, const std::list<std::string> lstrMessage) const;
+    void vLog(bool bIsWarning, const char *strMessage, va_list args) const;
 
     // Description
     void setDescription(const std::string& strDescription);
