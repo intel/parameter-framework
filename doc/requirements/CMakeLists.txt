@@ -27,36 +27,38 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-option(DOXYGEN
-       "Enable doxygen generation (you still have to run 'make doc')"
+option(REQUIREMENTS
+       "Generate the html version of the 'requirements' documentation"
        OFF)
 
-include(CMakeDependentOption)
-# Only present DOXYGEN_GRAPHS if DOXYGEN is ON and if so, default to ON.
-# Else, set to OFF.
-cmake_dependent_option(DOXYGEN_GRAPHS
-       "Generate graphs in the doxygen documentation (you need the 'dot'
-       utility)"
-       ON
-       "DOXYGEN" OFF)
+if(REQUIREMENTS)
+    find_program(PANDOC pandoc)
 
-if(DOXYGEN)
-    find_package(Doxygen REQUIRED)
-
-    if(DOXYGEN_GRAPHS AND (NOT DOXYGEN_DOT_FOUND))
-        message(SEND_ERROR "
-        The 'dot' utility was  not found;"
-        " install it or deactivate graph generation (DOXYGEN_GRAPHS=OFF).")
+    if(NOT PANDOC)
+        message(SEND_ERROR
+                "'pandoc' executable has not been found."
+                " Please install it to be able to generate the html version of"
+                " the 'requirements' documentation.")
     endif()
 
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
-       ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-       @ONLY)
-    add_custom_target(doc
-        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Generating documentation with Doxygen"
-        VERBATIM)
-endif()
+    configure_file(requirements.css
+                   ${CMAKE_CURRENT_BINARY_DIR}/requirements.css
+                   COPYONLY)
 
-add_subdirectory(requirements)
+    set(REQ_OUT_DOC ${CMAKE_CURRENT_BINARY_DIR}/index.html)
+
+    add_custom_target(requirements-doc DEPENDS ${REQ_OUT_DOC})
+
+    add_custom_command(OUTPUT ${REQ_OUT_DOC}
+                       DEPENDS requirements.md requirements.css
+                       VERBATIM COMMAND
+        ${PANDOC} --output ${REQ_OUT_DOC}
+                  --from markdown --to html5
+                  --number-sections --table-of-contents
+                  --smart # typographic dashes
+                  --variable "pagetitle:Parameter Framework Requirements"
+                  --id-prefix req- # avoid tag name conflicts
+                  --css requirements.css # this path is relative to the html doc
+                  --css http://sindresorhus.com/github-markdown-css/github-markdown.css
+                  ${CMAKE_CURRENT_SOURCE_DIR}/requirements.md)
+endif()
