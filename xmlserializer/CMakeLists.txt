@@ -34,22 +34,27 @@ add_library(xmlserializer SHARED
     XmlMemoryDocSource.cpp
     XmlStreamDocSink.cpp)
 
-include(FindLibXml2)
-if(NOT LIBXML2_FOUND)
-    message(SEND_ERROR "
-    libxml2 NOT found.  The parameter-framework wont compile.
-    Please install the development package (e.g. libxml2-dev on debian-based
-    Linux distributions).")
-else(NOT LIBXML2_FOUND)
-    # libxml2 has been found, but does it support XInclude ?
-    include(CheckLibraryExists)
-    check_library_exists(xml2 xmlXIncludeProcess "" XML2_XINCLUDE_SUPPORT)
-    if(NOT XML2_XINCLUDE_SUPPORT)
-        message(SEND_ERROR "libxml2 has not been built with support for XInclude."
-                           "xmlserializer needs that feature."
-                           "Please install a version of libxml2 supporting it.")
-    endif()
-endif(NOT LIBXML2_FOUND)
+if (WIN32)
+    set(CMAKE_PREFIX_PATH "${libxml2_prebuilts}")
+endif()
+find_package(LibXml2 REQUIRED)
+
+# libxml2 has been found, but does it support XInclude ?
+include(CheckLibraryExists)
+# The first argument of check_library_exists is used as a library to be linked
+# into a test executable.
+# As such, this argument can only contain *one* library. Here, we use the
+# result of CMake's libxml2 detection - the variable name suggests that several
+# libraries can be found. At the time of writing, with CMake 2.8, this is not
+# the case.
+# Thus, it is probably safe to do so.
+check_library_exists("${LIBXML2_LIBRARIES}" xmlXIncludeProcess "" XML2_XINCLUDE_SUPPORT)
+if(NOT XML2_XINCLUDE_SUPPORT)
+    message(SEND_ERROR
+            "libxml2 has not been built with support for XInclude."
+            "xmlserializer needs that feature;"
+            "please install a version of libxml2 supporting it.")
+endif()
 
 include_directories(
     ${LIBXML2_INCLUDE_DIR}
