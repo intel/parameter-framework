@@ -47,16 +47,14 @@ class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnect
 public:
     CParameterMgrPlatformConnectorLogger() {}
 
-    virtual void log(bool bIsWarning, const string& strLog)
+    virtual void info(const string& log)
     {
+        std::cout << log << std::endl;
+    }
 
-        if (bIsWarning) {
-
-	    std::cerr << strLog << std::endl;
-        } else {
-
-	    std::cout << strLog << std::endl;
-        }
+    virtual void warning(const string& log)
+    {
+        std::cerr << log << std::endl;
     }
 };
 
@@ -307,9 +305,9 @@ bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(
 
         const std::string& strValue = remoteCommand.getArgument(uiState + 1);
 
-        if (!pCriterionType->addValuePair(uiState, strValue)) {
+        if (!pCriterionType->addValuePair(uiState, strValue, strResult)) {
 
-            strResult = "Unable to add value: " + strValue;
+            strResult = "Unable to add value: " + strValue + ": " + strResult;
 
             return false;
         }
@@ -339,9 +337,10 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
 
         const std::string& strValue = remoteCommand.getArgument(uiState + 1);
 
-        if (!pCriterionType->addValuePair(0x1 << uiState, strValue)) {
+        if (!pCriterionType->addValuePair(
+                    0x1 << uiState, strValue, strResult)) {
 
-            strResult = "Unable to add value: " + strValue;
+            strResult = "Unable to add value: " + strValue + ": " + strResult;
 
             return false;
         }
@@ -369,9 +368,11 @@ bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName,
         ostrValue << "State_";
         ostrValue << uistate;
 
-        if (!pCriterionType->addValuePair(uistate, ostrValue.str())) {
+        if (!pCriterionType->addValuePair(
+                    uistate, ostrValue.str(), strResult)) {
 
-            strResult = "Unable to add value: " + ostrValue.str();
+            strResult = "Unable to add value: "
+                + ostrValue.str() + ": " + strResult;
 
             return false;
         }
@@ -398,9 +399,11 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
         ostrValue << "State_0x";
         ostrValue << (0x1 << uiState);
 
-        if (!pCriterionType->addValuePair(0x1 << uiState, ostrValue.str())) {
+        if (!pCriterionType->addValuePair(
+                    0x1 << uiState, ostrValue.str(), strResult)) {
 
-            strResult = "Unable to add value: " + ostrValue.str();
+            strResult = "Unable to add value: "
+                + ostrValue.str() + ": " + strResult;
 
             return false;
         }

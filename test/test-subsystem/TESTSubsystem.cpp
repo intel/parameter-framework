@@ -43,7 +43,8 @@
 const char* gacFwNamePropName = getenv("PFW_RESULT");
 
 // Implementation
-CTESTSubsystem::CTESTSubsystem(const std::string& strName) : base(strName)
+CTESTSubsystem::CTESTSubsystem(const std::string& strName, core::log::Logger& logger)
+    : base(strName, logger)
 {
     // Provide mapping keys to upper layer
     addContextMappingKey("Directory");

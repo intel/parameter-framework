@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,8 +30,9 @@
 #pragma once
 
 #include "Syncer.h"
-#include <stdint.h>
+#include <log/Logger.h>
 
+#include <stdint.h>
 #include <string>
 
 class CInstanceConfigurableElement;
@@ -41,7 +42,8 @@ class CSubsystem;
 class CSubsystemObject : private ISyncer
 {
 public:
-    CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement);
+    CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                     core::log::Logger& logger);
     virtual ~CSubsystemObject();
 
     /**
@@ -82,15 +84,11 @@ protected:
     // Blackboard access from subsystems
     void blackboardRead(void* pvData, uint32_t uiSize);
     void blackboardWrite(const void* pvData, uint32_t uiSize);
-    // Logging
-    // Copy the string format because:
-    //  - passing char * would break compatibility
-    //  - passing a const std::string & in forbiden by the c++ standard
-    //    as va_start second argument must not be a reference.
-    void log_info(std::string strMessage, ...) const;
-    void log_warning(std::string strMessage, ...) const;
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
+
+    /** Application Logger */
+    core::log::Logger& _logger;
 
 private:
     // from ISyncer

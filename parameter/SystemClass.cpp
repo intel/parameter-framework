@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,9 +33,8 @@
 #include <ctype.h>
 #include "SystemClass.h"
 #include "SubsystemLibrary.h"
-#include "AutoLog.h"
 #include "VirtualSubsystem.h"
-#include "NamedElementBuilderTemplate.h"
+#include "LoggingElementBuilderTemplate.h"
 #include <assert.h>
 #include "PluginLocation.h"
 #include "Utility.h"
@@ -44,6 +43,9 @@
 
 using std::list;
 using std::string;
+
+// FIXME: integrate SystemClass to core namespace
+using namespace core;
 
 /**
  * A plugin file name is of the form:
@@ -61,9 +63,10 @@ const char* gpcPluginSymbolPrefix = "get";
 const char* gpcPluginSymbolSuffix = "SubsystemBuilder";
 
 // Used by subsystem plugins
-typedef void (*GetSubsystemBuilder)(CSubsystemLibrary*);
+typedef void (*GetSubsystemBuilder)(CSubsystemLibrary*, core::log::Logger& logger);
 
-CSystemClass::CSystemClass() : _pSubsystemLibrary(new CSubsystemLibrary)
+CSystemClass::CSystemClass(log::Logger& logger)
+    : _pSubsystemLibrary(new CSubsystemLibrary()), _logger(logger)
 {
 }
 
@@ -98,38 +101,29 @@ bool CSystemClass::loadSubsystems(string& strError,
                                   const CSubsystemPlugins* pSubsystemPlugins,
                                   bool bVirtualSubsystemFallback)
 {
-    CAutoLog autoLog_info(this, "Loading subsystem plugins");
-
     // Start clean
     _pSubsystemLibrary->clean();
 
+    typedef TLoggingElementBuilderTemplate<CVirtualSubsystem> VirtualSubsystemBuilder;
     // Add virtual subsystem builder
-    _pSubsystemLibrary->addElementBuilder("Virtual",
-                                          new TNamedElementBuilderTemplate<CVirtualSubsystem>());
+    _pSubsystemLibrary->addElementBuilder("Virtual", new VirtualSubsystemBuilder(_logger));
     // Set virtual subsytem as builder fallback if required
-    _pSubsystemLibrary->enableDefaultMechanism(bVirtualSubsystemFallback);
+    if (bVirtualSubsystemFallback) {
+        _pSubsystemLibrary->setDefaultBuilder(new VirtualSubsystemBuilder(_logger));
+    }
 
     // Add subsystem defined in shared libraries
-    list<string> lstrError;
-    bool bLoadPluginsSuccess = loadSubsystemsFromSharedLibraries(lstrError, pSubsystemPlugins);
+    core::Results errors;
+    bool bLoadPluginsSuccess = loadSubsystemsFromSharedLibraries(errors, pSubsystemPlugins);
 
-    if (bLoadPluginsSuccess) {
-        log_info("All subsystem plugins successfully loaded");
-    } else {
-        // Log plugin as warning if no fallback available
-        log_table(!bVirtualSubsystemFallback, lstrError);
-    }
-
-    if (!bVirtualSubsystemFallback) {
-        // Any problem reported is an error as there is no fallback.
-        // Fill strError for caller.
-        CUtility::asString(lstrError, strError);
-    }
+    // Fill strError for caller, he has to decide if there is a problem depending on
+    // bVirtualSubsystemFallback value
+    CUtility::asString(errors, strError);
 
     return bLoadPluginsSuccess || bVirtualSubsystemFallback;
 }
 
-bool CSystemClass::loadSubsystemsFromSharedLibraries(list<string>& lstrError,
+bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
                                                      const CSubsystemPlugins* pSubsystemPlugins)
 {
     // Plugin list
@@ -167,7 +161,7 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(list<string>& lstrError,
         // process failed to load at least one of them
 
         // Attempt to load the complete list
-        if (!loadPlugins(lstrPluginFiles, lstrError)) {
+        if (!loadPlugins(lstrPluginFiles, errors)) {
 
             // Unable to load at least one plugin
             break;
@@ -179,7 +173,7 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(list<string>& lstrError,
         string strPluginUnloaded;
         CUtility::asString(lstrPluginFiles, strPluginUnloaded, ", ");
 
-        lstrError.push_back("Unable to load the following plugins: " + strPluginUnloaded + ".");
+        errors.push_back("Unable to load the following plugins: " + strPluginUnloaded + ".");
         return false;
     }
 
@@ -210,7 +204,7 @@ string CSystemClass::getPluginSymbol(const string& strPluginPath)
 }
 
 // Plugin loading
-bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstrError)
+bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& errors)
 {
     assert(lstrPluginFiles.size());
 
@@ -222,8 +216,6 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
 
         string strPluginFileName = *it;
 
-        log_info("Attempting to load subsystem plugin path \"%s\"", strPluginFileName.c_str());
-
         // Load attempt
         void* lib_handle = dlopen(strPluginFileName.c_str(), RTLD_LAZY);
 
@@ -232,9 +224,9 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
             const char *err = dlerror();
             // Failed
             if (err == NULL) {
-                lstrError.push_back("dlerror failed");
+                errors.push_back("dlerror failed");
             } else {
-                lstrError.push_back("Plugin load failed: " + string(err));
+                errors.push_back("Plugin load failed: " + string(err));
             }
             // Next plugin
             ++it;
@@ -253,8 +245,8 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
 
         if (!pfnGetSubsystemBuilder) {
 
-            lstrError.push_back("Subsystem plugin " + strPluginFileName +
-                                " does not contain " + strPluginSymbol + " symbol.");
+            errors.push_back("Subsystem plugin " + strPluginFileName +
+                             " does not contain " + strPluginSymbol + " symbol.");
             // Next plugin
             ++it;
 
@@ -265,7 +257,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, list<string>& lstr
         bAtLeastOneSubsystemPluginSuccessfullyLoaded = true;
 
         // Fill library
-        pfnGetSubsystemBuilder(_pSubsystemLibrary);
+        pfnGetSubsystemBuilder(_pSubsystemLibrary, _logger);
 
         // Remove successfully loaded plugin from list and select next
         lstrPluginFiles.erase(it++);
@@ -279,7 +271,7 @@ const CSubsystemLibrary* CSystemClass::getSubsystemLibrary() const
     return _pSubsystemLibrary;
 }
 
-void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet)
+void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet, core::Results& infos)
 {
     size_t uiNbChildren = getNbChildren();
     size_t uiChild;
@@ -291,7 +283,7 @@ void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet)
         // Collect and consume the need for a resync
         if (pSubsystem->needResync(true)) {
 
-            log_info("Resynchronizing subsystem: %s", pSubsystem->getName().c_str());
+            infos.push_back("Resynchronizing subsystem: " + pSubsystem->getName());
             // get all subsystem syncers
             pSubsystem->fillSyncerSet(syncerSet);
         }

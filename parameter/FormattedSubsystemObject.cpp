@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -38,15 +38,17 @@
 using std::string;
 
 CFormattedSubsystemObject::CFormattedSubsystemObject(
-        CInstanceConfigurableElement* pInstanceConfigurableElement)
-    : base(pInstanceConfigurableElement)
+        CInstanceConfigurableElement* pInstanceConfigurableElement,
+        core::log::Logger& logger)
+    : base(pInstanceConfigurableElement, logger)
 {
 }
 
 CFormattedSubsystemObject::CFormattedSubsystemObject(
         CInstanceConfigurableElement* pInstanceConfigurableElement,
+        core::log::Logger& logger,
         const string& strMappingValue)
-    : base(pInstanceConfigurableElement), _strFormattedMappingValue(strMappingValue)
+    : base(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)
 {
 
 }
@@ -54,11 +56,12 @@ CFormattedSubsystemObject::CFormattedSubsystemObject(
 
 CFormattedSubsystemObject::CFormattedSubsystemObject(
         CInstanceConfigurableElement* pInstanceConfigurableElement,
+        core::log::Logger& logger,
         const string& strMappingValue,
         uint32_t uiFirstAmendKey,
         uint32_t uiNbAmendKeys,
         const CMappingContext& context)
-    : base(pInstanceConfigurableElement), _strFormattedMappingValue(strMappingValue)
+    : base(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)
 {
     // Cope with quotes in the name
     if (strMappingValue[0] == '\'' && strMappingValue.length() >= 2) {
