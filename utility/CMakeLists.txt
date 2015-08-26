@@ -32,8 +32,10 @@ add_library(pfw_utility STATIC
     FullIo.cpp
     NaiveTokenizer.cpp)
 
-# '-fPIC' needed for linking against shared libraries (e.g. libparameter)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+if (NOT WIN32)
+    # '-fPIC' needed for linking against shared libraries (e.g. libparameter)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+endif ()
 
 install(FILES
     Utility.h
