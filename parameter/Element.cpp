@@ -137,10 +137,8 @@ void CElement::showDescriptionProperty(std::string &strResult) const
 }
 
 // Content dumping
-void CElement::logValue(string& strValue, CErrorContext& errorContext) const
+void CElement::logValue(string& /*strValue*/, CErrorContext& /*ctx*/) const
 {
-    (void)strValue;
-    (void)errorContext;
 }
 
 // From IXmlSink

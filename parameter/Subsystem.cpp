@@ -98,10 +98,8 @@ bool CSubsystem::isAlive() const
 }
 
 // Resynchronization after subsystem restart needed
-bool CSubsystem::needResync(bool bClear)
+bool CSubsystem::needResync(bool /*bClear*/)
 {
-    (void)bClear;
-
     return false;
 }
 

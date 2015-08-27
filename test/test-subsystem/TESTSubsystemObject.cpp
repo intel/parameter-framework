@@ -39,13 +39,12 @@
 
 #define base CSubsystemObject
 
-CTESTSubsystemObject::CTESTSubsystemObject(const std::string& strMappingValue,
+CTESTSubsystemObject::CTESTSubsystemObject(const std::string& /*strMappingValue*/,
                                            CInstanceConfigurableElement* pInstanceConfigurableElement,
                                            const CMappingContext& context,
                                            core::log::Logger& logger)
     : base(pInstanceConfigurableElement, logger)
 {
-    (void)strMappingValue;
     // Get actual element type
     const CParameterType* pParameterType = static_cast<const CParameterType*>(pInstanceConfigurableElement->getTypeElement());
 
@@ -78,9 +77,8 @@ bool CTESTSubsystemObject::sendToHW(std::string& strError)
 }
 
 
-bool CTESTSubsystemObject::receiveFromHW(std::string& strError)
+bool CTESTSubsystemObject::receiveFromHW(std::string& /*strError*/)
 {
-    (void)strError;
     std::ifstream inputFile;
 
     inputFile.open(_strFilePath.c_str());

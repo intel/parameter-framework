@@ -167,10 +167,8 @@ bool CSubsystemObject::sendToHW(string& strError)
     return false;
 }
 
-bool CSubsystemObject::receiveFromHW(string& strError)
+bool CSubsystemObject::receiveFromHW(string& /*strError*/)
 {
-    (void)strError;
-
     // Back synchronization is not supported at subsystem level.
     // Rely on blackboard content
 

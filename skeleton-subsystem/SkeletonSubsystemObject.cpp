@@ -95,10 +95,8 @@ bool CSkeletonSubsystemObject::accessHW(bool bReceive, string& strError)
     return base::accessHW(bReceive, strError);
 }
 
-bool CSkeletonSubsystemObject::sendToHW(string& strError)
+bool CSkeletonSubsystemObject::sendToHW(string& /*strError*/)
 {
-    (void) strError;
-
     uint32_t uiIndex;
 
     void* pvValue = alloca(_uiScalarSize);
@@ -115,10 +113,8 @@ bool CSkeletonSubsystemObject::sendToHW(string& strError)
     return true;
 }
 
-bool CSkeletonSubsystemObject::receiveFromHW(string& strError)
+bool CSkeletonSubsystemObject::receiveFromHW(string& /*strError*/)
 {
-    (void) strError;
-
     uint32_t uiIndex;
 
     void* pvValue = alloca(_uiScalarSize);

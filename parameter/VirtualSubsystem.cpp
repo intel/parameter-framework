@@ -51,11 +51,8 @@ ISyncer* CVirtualSubsystem::getSyncer() const
 }
 
 // From IMapper
-bool CVirtualSubsystem::mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, string& strError)
+bool CVirtualSubsystem::mapBegin(CInstanceConfigurableElement* /*elem*/, bool& bKeepDiving, string& /*strError*/)
 {
-    (void)pInstanceConfigurableElement;
-    (void)strError;
-
     // Do nothing: prevent any subsystem object from being mapped
 
     // Stop diving

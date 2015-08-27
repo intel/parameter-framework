@@ -40,10 +40,8 @@ CTESTSubsystemString::CTESTSubsystemString(const std::string& strMappingValue,
 {
 }
 
-std::string CTESTSubsystemString::toString(const void* pvValue, uint32_t uiSize) const
+std::string CTESTSubsystemString::toString(const void* pvValue, uint32_t /*uiSize*/) const
 {
-    (void)uiSize;
-
     return (const char*)pvValue;
 }
 

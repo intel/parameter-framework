@@ -83,10 +83,8 @@ bool CConfigurableDomain::childrenAreDynamic() const
 }
 
 // Content dumping
-void CConfigurableDomain::logValue(string& strValue, CErrorContext& errorContext) const
+void CConfigurableDomain::logValue(string& strValue, CErrorContext& /*ctx*/) const
 {
-    (void)errorContext;
-
     strValue = "{";
 
     // Sequence awareness
