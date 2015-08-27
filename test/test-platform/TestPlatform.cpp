@@ -58,10 +58,9 @@ public:
     }
 };
 
-CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber, sem_t& exitSemaphore) :
+CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
     _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
-    _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger),
-    _exitSemaphore(exitSemaphore)
+    _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger)
 {
     _pCommandHandler = new CCommandHandler(this);
 
@@ -146,13 +145,24 @@ CTestPlatform::~CTestPlatform()
     delete _pParameterMgrPlatformConnector;
 }
 
+bool CTestPlatform::waitForExit(std::string& strError)
+{
+    try {
+        exitRequest.get_future().wait();
+        return true;
+    } catch (std::exception& e) {
+        strError = e.what();
+        return false;
+    }
+}
+
 CTestPlatform::CommandReturn CTestPlatform::exit(
     const IRemoteCommand& remoteCommand, string& strResult)
 {
     (void)remoteCommand;
 
-    // Release the main blocking semaphore to quit application
-    sem_post(&_exitSemaphore);
+    // Notify of the exit request to quit application
+    exitRequest.set_value();
 
     return CTestPlatform::CCommandHandler::EDone;
 }

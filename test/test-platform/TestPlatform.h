@@ -33,7 +33,7 @@
 #include "RemoteCommandHandlerTemplate.h"
 #include <string>
 #include <list>
-#include <semaphore.h>
+#include <future>
 
 class CParameterMgrPlatformConnectorLogger;
 class CRemoteProcessorServer;
@@ -44,11 +44,14 @@ class CTestPlatform
     typedef TRemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
     typedef CCommandHandler::CommandStatus CommandReturn;
 public:
-    CTestPlatform(const std::string &strclass, int iPortNumber, sem_t& exitSemaphore);
+    CTestPlatform(const std::string &strclass, int iPortNumber);
     virtual ~CTestPlatform();
 
     // Init
     bool load(std::string& strError);
+
+    /** Wait for a remote client exit request */
+    bool waitForExit(std::string& strError);
 
 private:
     //////////////// Remote command parsers
@@ -153,7 +156,7 @@ private:
     // Remote Processor Server
     CRemoteProcessorServer* _pRemoteProcessorServer;
 
-    // Semaphore used by calling thread to avoid exiting
-    sem_t& _exitSemaphore;
+    /** Future used to notify of an exit command */
+    std::promise<void> exitRequest;
 };
 
