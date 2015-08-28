@@ -37,6 +37,7 @@
 #include "XmlDomainExportContext.h"
 #include "ConfigurationAccessContext.h"
 #include <assert.h>
+#include <cstdlib>
 #include "RuleParser.h"
 
 #define base CBinarySerializableElement
@@ -510,7 +511,8 @@ CAreaConfiguration* CDomainConfiguration::getAreaConfiguration(const CConfigurab
         }
     }
     // Not found?
-    assert(0);
+    // FIXME: replace by a always enabled assert
+    abort();
 
     return NULL;
 }
@@ -592,7 +594,8 @@ CAreaConfiguration* CDomainConfiguration::getAreaConfiguration(uint32_t uiAreaCo
         }
     }
 
-    assert(0);
+    // FIXME: replace by a always enabled assert
+    abort();
 
     return NULL;
 }
