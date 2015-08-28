@@ -62,75 +62,6 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
     _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
     _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger)
 {
-    _pCommandHandler = new CCommandHandler(this);
-
-    // Add command parsers
-    _pCommandHandler->addCommandParser("exit", &CTestPlatform::exit,
-                                       0, "", "Exit TestPlatform");
-    _pCommandHandler->addCommandParser(
-        "createExclusiveSelectionCriterionFromStateList",
-        &CTestPlatform::createExclusiveSelectionCriterionFromStateList,
-        2, "<name> <stateList>",
-        "Create inclusive selection criterion from state name list");
-    _pCommandHandler->addCommandParser(
-        "createInclusiveSelectionCriterionFromStateList",
-        &CTestPlatform::createInclusiveSelectionCriterionFromStateList,
-        2, "<name> <stateList>",
-        "Create exclusive selection criterion from state name list");
-
-    _pCommandHandler->addCommandParser(
-        "createExclusiveSelectionCriterion",
-        &CTestPlatform::createExclusiveSelectionCriterion,
-        2, "<name> <nbStates>", "Create inclusive selection criterion");
-    _pCommandHandler->addCommandParser(
-        "createInclusiveSelectionCriterion",
-        &CTestPlatform::createInclusiveSelectionCriterion,
-        2, "<name> <nbStates>", "Create exclusive selection criterion");
-
-    _pCommandHandler->addCommandParser("start", &CTestPlatform::startParameterMgr,
-                                       0, "", "Start ParameterMgr");
-
-    _pCommandHandler->addCommandParser("setCriterionState", &CTestPlatform::setCriterionState,
-                                       2, "<name> <state>",
-                                       "Set the current state of a selection criterion");
-    _pCommandHandler->addCommandParser(
-        "applyConfigurations",
-        &CTestPlatform::applyConfigurations,
-        0, "", "Apply configurations selected by current selection criteria states");
-
-    _pCommandHandler->addCommandParser(
-        "setFailureOnMissingSubsystem",
-        &CTestPlatform::setter<& CParameterMgrPlatformConnector::setFailureOnMissingSubsystem>,
-        1, "true|false", "Set policy for missing subsystems, "
-                         "either abort start or fallback on virtual subsystem.");
-    _pCommandHandler->addCommandParser(
-        "getMissingSubsystemPolicy",
-        &CTestPlatform::getter<& CParameterMgrPlatformConnector::getFailureOnMissingSubsystem>,
-        0, "", "Get policy for missing subsystems, "
-               "either abort start or fallback on virtual subsystem.");
-
-    _pCommandHandler->addCommandParser(
-        "setFailureOnFailedSettingsLoad",
-        &CTestPlatform::setter<& CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad>,
-        1, "true|false",
-        "Set policy for failed settings load, either abort start or continue without domains.");
-    _pCommandHandler->addCommandParser(
-        "getFailedSettingsLoadPolicy",
-        &CTestPlatform::getter<& CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad>,
-        0, "",
-        "Get policy for failed settings load, either abort start or continue without domains.");
-
-    _pCommandHandler->addCommandParser(
-        "setValidateSchemasOnStart",
-        &CTestPlatform::setter<& CParameterMgrPlatformConnector::setValidateSchemasOnStart>,
-        1, "true|false",
-        "Set policy for schema validation based on .xsd files (false by default).");
-    _pCommandHandler->addCommandParser(
-        "getValidateSchemasOnStart",
-        &CTestPlatform::getter<& CParameterMgrPlatformConnector::getValidateSchemasOnStart>,
-        0, "",
-        "Get policy for schema validation based on .xsd files.");
-
     // Create server
     _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber);
 
@@ -140,7 +71,6 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
 CTestPlatform::~CTestPlatform()
 {
     delete _pRemoteProcessorServer;
-    delete _pCommandHandler;
     delete _pParameterMgrPlatformConnectorLogger;
     delete _pParameterMgrPlatformConnector;
 }
@@ -162,7 +92,76 @@ bool CTestPlatform::run(std::string& strError)
         return false;
     }
 
-    _pRemoteProcessorServer->process(*_pCommandHandler);
+    CCommandHandler commandHandler(this);
+
+    // Add command parsers
+    commandHandler.addCommandParser("exit", &CTestPlatform::exit,
+                                       0, "", "Exit TestPlatform");
+    commandHandler.addCommandParser(
+        "createExclusiveSelectionCriterionFromStateList",
+        &CTestPlatform::createExclusiveSelectionCriterionFromStateList,
+        2, "<name> <stateList>",
+        "Create inclusive selection criterion from state name list");
+    commandHandler.addCommandParser(
+        "createInclusiveSelectionCriterionFromStateList",
+        &CTestPlatform::createInclusiveSelectionCriterionFromStateList,
+        2, "<name> <stateList>",
+        "Create exclusive selection criterion from state name list");
+
+    commandHandler.addCommandParser(
+        "createExclusiveSelectionCriterion",
+        &CTestPlatform::createExclusiveSelectionCriterion,
+        2, "<name> <nbStates>", "Create inclusive selection criterion");
+    commandHandler.addCommandParser(
+        "createInclusiveSelectionCriterion",
+        &CTestPlatform::createInclusiveSelectionCriterion,
+        2, "<name> <nbStates>", "Create exclusive selection criterion");
+
+    commandHandler.addCommandParser("start", &CTestPlatform::startParameterMgr,
+                                       0, "", "Start ParameterMgr");
+
+    commandHandler.addCommandParser("setCriterionState", &CTestPlatform::setCriterionState,
+                                       2, "<name> <state>",
+                                       "Set the current state of a selection criterion");
+    commandHandler.addCommandParser(
+        "applyConfigurations",
+        &CTestPlatform::applyConfigurations,
+        0, "", "Apply configurations selected by current selection criteria states");
+
+    commandHandler.addCommandParser(
+        "setFailureOnMissingSubsystem",
+        &CTestPlatform::setter<& CParameterMgrPlatformConnector::setFailureOnMissingSubsystem>,
+        1, "true|false", "Set policy for missing subsystems, "
+                         "either abort start or fallback on virtual subsystem.");
+    commandHandler.addCommandParser(
+        "getMissingSubsystemPolicy",
+        &CTestPlatform::getter<& CParameterMgrPlatformConnector::getFailureOnMissingSubsystem>,
+        0, "", "Get policy for missing subsystems, "
+               "either abort start or fallback on virtual subsystem.");
+
+    commandHandler.addCommandParser(
+        "setFailureOnFailedSettingsLoad",
+        &CTestPlatform::setter<& CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad>,
+        1, "true|false",
+        "Set policy for failed settings load, either abort start or continue without domains.");
+    commandHandler.addCommandParser(
+        "getFailedSettingsLoadPolicy",
+        &CTestPlatform::getter<& CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad>,
+        0, "",
+        "Get policy for failed settings load, either abort start or continue without domains.");
+
+    commandHandler.addCommandParser(
+        "setValidateSchemasOnStart",
+        &CTestPlatform::setter<& CParameterMgrPlatformConnector::setValidateSchemasOnStart>,
+        1, "true|false",
+        "Set policy for schema validation based on .xsd files (false by default).");
+    commandHandler.addCommandParser(
+        "getValidateSchemasOnStart",
+        &CTestPlatform::getter<& CParameterMgrPlatformConnector::getValidateSchemasOnStart>,
+        0, "",
+        "Get policy for schema validation based on .xsd files.");
+
+    _pRemoteProcessorServer->process(commandHandler);
 
     return true;
 }

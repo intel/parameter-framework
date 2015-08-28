@@ -146,9 +146,6 @@ private:
     // Logger
     CParameterMgrPlatformConnectorLogger* _pParameterMgrPlatformConnectorLogger;
 
-    // Command Handler
-    CCommandHandler* _pCommandHandler;
-
     // Remote Processor Server
     CRemoteProcessorServer* _pRemoteProcessorServer;
 };
