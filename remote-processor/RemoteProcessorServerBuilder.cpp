@@ -35,8 +35,8 @@
 class BackgroundRemoteProcessorServer final : public IRemoteProcessorServerInterface
 {
 public:
-    BackgroundRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
-        _server(uiPort, pCommandHandler) {}
+    BackgroundRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler &commandHandler) :
+        _server(uiPort), mCommandHandler(commandHandler) {}
 
     ~BackgroundRemoteProcessorServer() { stop(); }
 
@@ -47,7 +47,8 @@ public:
         }
 
         try {
-            mThread = std::thread(&CRemoteProcessorServer::run, std::ref(_server));
+            mThread = std::thread(&CRemoteProcessorServer::process, &_server,
+                                  std::ref(mCommandHandler));
         }
         catch (std::exception &e) {
             error = "Could not create a remote processor thread: " + std::string(e.what());
@@ -70,6 +71,7 @@ public:
 
 private:
     CRemoteProcessorServer _server;
+    IRemoteCommandHandler &mCommandHandler;
     std::thread mThread;
 };
 
@@ -78,7 +80,10 @@ extern "C"
 {
 IRemoteProcessorServerInterface* createRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler)
 {
-    return new BackgroundRemoteProcessorServer(uiPort, pCommandHandler);
+    if (pCommandHandler == NULL) {
+        return NULL;
+    }
+    return new BackgroundRemoteProcessorServer(uiPort, *pCommandHandler);
 }
 }
 

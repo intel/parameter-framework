@@ -132,7 +132,7 @@ CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
         "Get policy for schema validation based on .xsd files.");
 
     // Create server
-    _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber, _pCommandHandler);
+    _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber);
 
     _pParameterMgrPlatformConnector->setLogger(_pParameterMgrPlatformConnectorLogger);
 }
@@ -162,7 +162,7 @@ bool CTestPlatform::run(std::string& strError)
         return false;
     }
 
-    _pRemoteProcessorServer->run();
+    _pRemoteProcessorServer->process(*_pCommandHandler);
 
     return true;
 }
