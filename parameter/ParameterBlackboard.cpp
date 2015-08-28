@@ -28,8 +28,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "ParameterBlackboard.h"
-#include <string.h>
 #include <assert.h>
+#include <algorithm>
 
 CParameterBlackboard::CParameterBlackboard() : _pucData(NULL), _uiSize(0)
 {
@@ -48,9 +48,9 @@ void CParameterBlackboard::setSize(uint32_t uiSize)
         delete [] _pucData;
     }
 
-    _pucData = new uint8_t[uiSize];
-
-    memset(_pucData, 0, uiSize);
+    //Initializer is an empty pair of parentheses,
+    //each element is value-initialized.
+    _pucData = new uint8_t[uiSize]();
 
     _uiSize = uiSize;
 }
@@ -65,18 +65,14 @@ void CParameterBlackboard::writeInteger(const void* pvSrcData, uint32_t uiSize, 
 {
     assert(uiSize + uiOffset <= _uiSize);
 
+    auto first = static_cast<const char *>(pvSrcData);
+    auto last = first + uiSize;
+    auto dest_first = _pucData + uiOffset;
+
     if (!bBigEndian) {
-
-        memcpy(_pucData + uiOffset, pvSrcData, uiSize);
+        std::copy(first, last, dest_first);
     } else {
-
-        uint32_t uiIndex;
-        const uint8_t* puiSrcData = (const uint8_t*)pvSrcData;
-
-        for (uiIndex = 0; uiIndex < uiSize; uiIndex++) {
-
-            _pucData[uiIndex + uiOffset] = puiSrcData[uiSize - uiIndex - 1];
-        }
+        std::reverse_copy(first, last, dest_first);
     }
 }
 
@@ -84,24 +80,22 @@ void CParameterBlackboard::readInteger(void* pvDstData, uint32_t uiSize, uint32_
 {
     assert(uiSize + uiOffset <= _uiSize);
 
+    auto first = _pucData + uiOffset;
+    auto last = first + uiSize;
+    auto dest_first = static_cast<char *>(pvDstData);
+
     if (!bBigEndian) {
-
-        memcpy(pvDstData, _pucData + uiOffset, uiSize);
+        std::copy(first, last, dest_first);
     } else {
-
-        uint32_t uiIndex;
-        uint8_t* puiDstData = (uint8_t*)pvDstData;
-
-        for (uiIndex = 0; uiIndex < uiSize; uiIndex++) {
-
-            puiDstData[uiSize - uiIndex - 1] = _pucData[uiIndex + uiOffset];
-        }
+        std::reverse_copy(first, last, dest_first);
     }
 }
 
 void CParameterBlackboard::writeString(const std::string &input, uint32_t uiOffset)
 {
-    strcpy((char*)_pucData + uiOffset, input.c_str());
+    assert(input.size() + 1 + uiOffset <= _uiSize);
+    auto dest_last = std::copy(begin(input), end(input), _pucData + uiOffset);
+    *dest_last = '\0';
 }
 
 void CParameterBlackboard::readString(std::string &output, uint32_t uiOffset) const
@@ -118,12 +112,12 @@ uint8_t* CParameterBlackboard::getLocation(uint32_t uiOffset)
 // Configuration handling
 void CParameterBlackboard::restoreFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset)
 {
-    memcpy(_pucData + uiOffset, pFromBlackboard->_pucData, pFromBlackboard->_uiSize);
+    std::copy_n(pFromBlackboard->_pucData, pFromBlackboard->_uiSize, _pucData + uiOffset);
 }
 
 void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const
 {
-    memcpy(pToBlackboard->_pucData, _pucData + uiOffset, pToBlackboard->_uiSize);
+    std::copy_n(_pucData + uiOffset, pToBlackboard->_uiSize, pToBlackboard->_pucData);
 }
 
 // Serialization
