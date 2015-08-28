@@ -51,6 +51,9 @@ CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHa
 CRemoteProcessorServer::~CRemoteProcessorServer()
 {
     stop();
+
+    // Remove listening socket
+    delete _pListeningSocket;
 }
 
 // State
@@ -74,15 +77,6 @@ bool CRemoteProcessorServer::start(string &error)
 
     // Thread needs to access to the listning socket.
     _pListeningSocket = pListeningSocket.get();
-    // Create thread
-    try {
-        thread = std::thread(&CRemoteProcessorServer::run, this);
-    }
-    catch (std::exception &e) {
-        error = "Could not create a remote processor thread: " + std::string(e.what());
-        return false;
-    }
-
     // State
     _bIsStarted = true;
     pListeningSocket.release();
@@ -106,22 +100,6 @@ void CRemoteProcessorServer::stop()
                   << strerror(errno) << std::endl;
         assert(false);
     }
-
-    // Join thread
-    try {
-        thread.join();
-    }
-    catch (std::exception &e) {
-        std::cout << "Could not join with remote processor thread: "
-                  << std::string(e.what()) << std::endl;
-        assert(false);
-    }
-
-    _bIsStarted = false;
-
-    // Remove listening socket
-    delete _pListeningSocket;
-    _pListeningSocket = NULL;
 }
 
 void CRemoteProcessorServer::run()

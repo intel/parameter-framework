@@ -28,13 +28,57 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RemoteProcessorServer.h"
+#include <thread>
+#include <iostream>
+#include <assert.h>
+
+class BackgroundRemoteProcessorServer final : public IRemoteProcessorServerInterface
+{
+public:
+    BackgroundRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
+        _server(uiPort, pCommandHandler) {}
+
+    ~BackgroundRemoteProcessorServer() { stop(); }
+
+    bool start(std::string &error) override
+    {
+        if (!_server.start(error)) {
+            return false;
+        }
+
+        try {
+            mThread = std::thread(&CRemoteProcessorServer::run, std::ref(_server));
+        }
+        catch (std::exception &e) {
+            error = "Could not create a remote processor thread: " + std::string(e.what());
+            return false;
+        }
+        return true;
+    }
+
+    void stop() override {
+        _server.stop();
+
+        try {
+            mThread.join();
+        } catch (std::exception &e) {
+            std::cout << "Could not join with remote processor thread: "
+                << std::string(e.what()) << std::endl;
+            assert(false);
+        }
+    }
+
+private:
+    CRemoteProcessorServer _server;
+    std::thread mThread;
+};
 
 
 extern "C"
 {
 IRemoteProcessorServerInterface* createRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler)
 {
-    return new CRemoteProcessorServer(uiPort, pCommandHandler);
+    return new BackgroundRemoteProcessorServer(uiPort, pCommandHandler);
 }
 }
 
