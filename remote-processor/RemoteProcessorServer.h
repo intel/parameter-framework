@@ -45,10 +45,9 @@ public:
     // State
     virtual bool start(std::string &error);
     virtual void stop();
+    void run();
 
 private:
-    // Thread
-    void run();
 
     // New connection
     void handleNewConnection();
@@ -63,7 +62,5 @@ private:
     CListeningSocket* _pListeningSocket;
     // Inband pipe
     int _aiInbandPipe[2];
-    // Thread
-    std::thread thread;
 };
 
