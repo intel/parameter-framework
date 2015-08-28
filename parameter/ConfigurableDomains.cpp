@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -32,7 +32,6 @@
 #include "ConfigurableDomain.h"
 #include "ConfigurableElement.h"
 #include "BinaryStream.h"
-#include "AutoLog.h"
 
 #define base CBinarySerializableElement
 
@@ -68,10 +67,11 @@ void CConfigurableDomains::validate(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Configuration application if required
-void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet& syncerSet, bool bForce) const
+void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard,
+                                 CSyncerSet& syncerSet,
+                                 bool bForce,
+                                 core::Results& infos) const
 {
-   CAutoLog autoLog(this, "Applying configurations");
-
     /// Delegate to domains
 
     // Start with domains that can be synchronized all at once (with passed syncer set)
@@ -82,8 +82,13 @@ void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, CSy
 
         const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
 
+        std::string info;
         // Apply and collect syncers when relevant
-        pChildConfigurableDomain->apply(pParameterBlackboard, &syncerSet, bForce);
+        pChildConfigurableDomain->apply(pParameterBlackboard, &syncerSet, bForce, info);
+
+        if (!info.empty()) {
+            infos.push_back(info);
+        }
     }
     // Synchronize those collected syncers
     syncerSet.sync(*pParameterBlackboard, false, NULL);
@@ -93,8 +98,12 @@ void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, CSy
 
         const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
 
+        std::string info;
         // Apply and synchronize when relevant
-        pChildConfigurableDomain->apply(pParameterBlackboard, NULL, bForce);
+        pChildConfigurableDomain->apply(pParameterBlackboard, NULL, bForce, info);
+        if (!info.empty()) {
+            infos.push_back(info);
+        }
     }
 }
 
@@ -118,8 +127,6 @@ bool CConfigurableDomains::createDomain(const string& strName, string& strError)
 
         return false;
     }
-
-    log_info("Creating configurable domain \"%s\"", strName.c_str());
 
     // Creation/Hierarchy
     addChild(new CConfigurableDomain(strName));
@@ -145,8 +152,6 @@ bool CConfigurableDomains::addDomain(CConfigurableDomain& domain, bool bOverwrit
         deleteDomain(*pExistingDomain);
     }
 
-    log_info("Adding configurable domain \"%s\"", strDomainName.c_str());
-
     addChild(&domain);
 
     return true;
@@ -154,8 +159,6 @@ bool CConfigurableDomains::addDomain(CConfigurableDomain& domain, bool bOverwrit
 
 void CConfigurableDomains::deleteDomain(CConfigurableDomain& configurableDomain)
 {
-    log_info("Deleting configurable domain \"%s\"", configurableDomain.getName().c_str() );
-
     removeChild(&configurableDomain);
 
     delete &configurableDomain;
@@ -175,8 +178,6 @@ bool CConfigurableDomains::deleteDomain(const string& strName, string& strError)
 
 void CConfigurableDomains::deleteAllDomains()
 {
-    log_info("Deleting all configurable domains");
-
     //remove Children
     clean();
 }
@@ -189,8 +190,6 @@ bool CConfigurableDomains::renameDomain(const string& strName, const string& str
 
         return false;
     }
-
-    log_info("Renaming configurable domain \"%s\" to \"%s\"", strName.c_str(), strNewName.c_str());
 
     // Rename
     return pConfigurableDomain->rename(strNewName, strError);
@@ -293,17 +292,21 @@ bool CConfigurableDomains::listDomainElements(const string& strDomain, string& s
     return true;
 }
 
-bool CConfigurableDomains::split(const string& strDomain, CConfigurableElement* pConfigurableElement, string& strError)
+bool CConfigurableDomains::split(const string& domainName,
+                                 CConfigurableElement* element,
+                                 core::Results& infos)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
+    std::string error;
+    CConfigurableDomain* domain = findConfigurableDomain(domainName, error);
 
-    if (!pConfigurableDomain) {
+    if (domain == NULL) {
 
+        infos.push_back(error);
         return false;
     }
     // Delegate
-    pConfigurableDomain->split(pConfigurableElement, strError);
+    domain->split(element, infos);
 
     return true;
 }
@@ -399,19 +402,23 @@ void CConfigurableDomains::gatherAllOwnedConfigurableElements(std::set<const CCo
 }
 
 // Config restore
-bool CConfigurableDomains::restoreConfiguration(const string& strDomain, const string& strConfiguration, CParameterBlackboard* pMainBlackboard, bool bAutoSync, std::list<string>& lstrError) const
+bool CConfigurableDomains::restoreConfiguration(const string& domainName,
+                                                const string& configurationName,
+                                                CParameterBlackboard* mainBlackboard,
+                                                bool autoSync,
+                                                core::Results& errors) const
 {
-    string strError;
+    string error;
     // Find domain
-    const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
+    const CConfigurableDomain* domain = findConfigurableDomain(domainName, error);
 
-    if (!pConfigurableDomain) {
+    if (domain == NULL) {
 
-        lstrError.push_back(strError);
+        errors.push_back(error);
         return false;
     }
     // Delegate
-    return pConfigurableDomain->restoreConfiguration(strConfiguration, pMainBlackboard, bAutoSync, lstrError);
+    return domain->restoreConfiguration(configurationName, mainBlackboard, autoSync, errors);
 }
 
 // Config save
@@ -510,17 +517,23 @@ void CConfigurableDomains::listLastAppliedConfigurations(string& strResult) cons
 }
 
 // Configurable element - domain association
-bool CConfigurableDomains::addConfigurableElementToDomain(const string& strDomain, CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard, string& strError)
+bool CConfigurableDomains::addConfigurableElementToDomain(
+        const string& domainName,
+        CConfigurableElement* element,
+        const CParameterBlackboard* mainBlackboard,
+        core::Results& infos)
 {
     // Find domain
-    CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
+    std::string error;
+    CConfigurableDomain* domain = findConfigurableDomain(domainName, error);
 
-    if (!pConfigurableDomain) {
+    if (domain == NULL) {
 
+        infos.push_back(error);
         return false;
     }
     // Delegate
-    return pConfigurableDomain->addConfigurableElement(pConfigurableElement, pMainBlackboard, strError);
+    return domain->addConfigurableElement(element, mainBlackboard, infos);
 }
 
 bool CConfigurableDomains::removeConfigurableElementFromDomain(const string& strDomain, CConfigurableElement* pConfigurableElement, string& strError)
@@ -543,9 +556,6 @@ CParameterBlackboard* CConfigurableDomains::findConfigurationBlackboard(const st
                                                        bool& bIsLastApplied,
                                                        string& strError) const
 {
-    log_info("Find configuration blackboard for Domain:%s, Configuration:%s, Element:%s",
-             strDomain.c_str(), strConfiguration.c_str(), pConfigurableElement->getPath().c_str());
-
     // Find domain
     const CConfigurableDomain* pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 

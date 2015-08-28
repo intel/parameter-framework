@@ -1,4 +1,4 @@
-# Copyright (c) 2011-2014, Intel Corporation
+# Copyright (c) 2011-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -44,7 +44,6 @@ common_copy_headers := \
 common_src_files := \
         AreaConfiguration.cpp \
         ArrayParameter.cpp \
-        AutoLog.cpp \
         BaseParameter.cpp \
         BinarySerializableElement.cpp \
         BinaryStream.cpp \
@@ -130,6 +129,7 @@ common_cflags := \
 
 common_c_includes := \
     $(LOCAL_PATH)/include/ \
+    $(LOCAL_PATH)/log/include/ \
     $(LOCAL_PATH)/../utility/ \
     $(LOCAL_PATH)/../remote-processor/
 

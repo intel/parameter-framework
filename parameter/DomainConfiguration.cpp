@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -375,7 +375,9 @@ void CDomainConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Apply data to current
-bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<string>* plstrError) const
+bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard,
+                                   bool bSync,
+                                   core::Results* errors) const
 {
     bool bSuccess = true;
 
@@ -386,7 +388,7 @@ bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool b
 
         const CAreaConfiguration* pAreaConfiguration = *it;
 
-        bSuccess &= pAreaConfiguration->restore(pMainBlackboard, bSync, plstrError);
+        bSuccess &= pAreaConfiguration->restore(pMainBlackboard, bSync, errors);
     }
 
     return bSuccess;

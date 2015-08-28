@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,6 +33,8 @@
 #include "ConfigurableElementWithMapping.h"
 #include "Mapper.h"
 #include "MappingContext.h"
+#include <log/Logger.h>
+
 #include <list>
 #include <stack>
 #include <string>
@@ -50,7 +52,14 @@ class CSubsystem : public CConfigurableElementWithMapping, private IMapper
     // Subsystem objects iterator
     typedef std::list<CSubsystemObject*>::const_iterator SubsystemObjectListIterator;
 public:
-    CSubsystem(const std::string& strName);
+
+    /**
+     * Class Constructor
+     *
+     * @param[in] strName subsystem name
+     * @param[in] logger the main logger of the application
+     */
+    CSubsystem(const std::string& strName, core::log::Logger& logger);
     virtual ~CSubsystem();
 
     // From IXmlSink
@@ -250,4 +259,7 @@ private:
 
     //! Contains the mapping info at Subsystem level
     CMappingData* _pMappingData;
+
+    /** Logger which has to be provided to subsystem objects */
+    core::log::Logger& _logger;
 };

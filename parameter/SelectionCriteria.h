@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,6 +33,7 @@
 #include "Element.h"
 #include "SelectionCriterionType.h"
 #include "SelectionCriterion.h"
+#include <log/Logger.h>
 
 #include <string>
 
@@ -51,7 +52,9 @@ public:
 
     // Selection Criteria/Type creation
     CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
-    CSelectionCriterion* createSelectionCriterion(const std::string& strName, const CSelectionCriterionType* pSelectionCriterionType);
+    CSelectionCriterion* createSelectionCriterion(const std::string& strName,
+                                                  const CSelectionCriterionType* pType,
+                                                  core::log::Logger& logger);
     // Selection criterion retrieval
     CSelectionCriterion* getSelectionCriterion(const std::string& strName);
 

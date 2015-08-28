@@ -46,13 +46,27 @@ class CParameterMgrFullConnector
     friend class CParameterMgrLogger<CParameterMgrFullConnector>;
 
 public:
+
+    /** String list type which can hold list of error/info and can be presented to client */
+    typedef std::list<std::string> Results;
+
     CParameterMgrFullConnector(const std::string& strConfigurationFilePath);
     ~CParameterMgrFullConnector();
 
+    /** Interface to implement to provide a custom logger to the PF.
+     *
+      * Either:
+      *     - override info and warning methods
+      *     - override the log method
+      *
+      * Choice between the 2 is left to the client convenience.
+      * @Note Errors are always returned synchronously. Never logged.
+      */
     class ILogger
     {
     public:
-        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
+        virtual void info(const std::string& strLog) = 0;
+        virtual void warning(const std::string& strLog) = 0;
     protected:
         virtual ~ILogger() {}
     };
@@ -182,8 +196,17 @@ public:
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
     bool renameConfiguration(const std::string& strDomain, const std::string& strConfiguration, const std::string& strNewConfiguration, std::string& strError);
 
-    // Save/Restore
-    bool restoreConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::list<std::string>& strError);
+    /** Restore a configuration
+     *
+     * @param[in] strDomain the domain name
+     * @param[in] strConfiguration the configuration name
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restoreConfiguration(const std::string& strDomain,
+                              const std::string& strConfiguration,
+                              Results& errors);
+
     bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
 
     // Configurable element - domain association
@@ -281,11 +304,13 @@ private:
     CParameterMgrFullConnector(const CParameterMgrFullConnector&);
     CParameterMgrFullConnector& operator=(const CParameterMgrFullConnector&);
 
-    void doLog(bool bIsWarning, const std::string& strLog);
+    void info(const std::string& log);
+    void warning(const std::string& log);
+
+    // Log wrapper
+    CParameterMgrLogger<CParameterMgrFullConnector>* _pParameterMgrLogger;
 
     CParameterMgr* _pParameterMgr;
 
     ILogger* _pLogger;
-    // Log wrapper
-    CParameterMgrLogger<CParameterMgrFullConnector>* _pParameterMgrLogger;
 };

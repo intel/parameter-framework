@@ -28,15 +28,16 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "SubsystemLibrary.h"
-#include "NamedElementBuilderTemplate.h"
+#include "LoggingElementBuilderTemplate.h"
 #include "TESTSubsystem.h"
 
 
 extern "C"
 {
-void getTESTSubsystemBuilder(CSubsystemLibrary* pSubsystemLibrary)
+void getTESTSubsystemBuilder(CSubsystemLibrary* pSubsystemLibrary, core::log::Logger& logger)
 {
     pSubsystemLibrary->addElementBuilder("TEST",
-                                         new TNamedElementBuilderTemplate<CTESTSubsystem>());
+                                         new TLoggingElementBuilderTemplate<CTESTSubsystem>(
+                                             logger));
 }
 }

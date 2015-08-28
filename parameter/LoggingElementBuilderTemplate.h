@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,27 +27,44 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "AutoLog.h"
+#pragma once
 
-using std::string;
+#include "ElementBuilder.h"
 
-CAutoLog::CAutoLog(const CElement* pElement, const string& strContext, bool bLogOn)
-    : _pElement(pElement), _strContext(strContext), _bLogOn(bLogOn)
+/**
+ * Builder for elements which need logger at construction
+ *
+ * @tparam ElementType the type of the element to build
+ */
+template <class ElementType>
+class TLoggingElementBuilderTemplate : public CElementBuilder
 {
-    if (_bLogOn) {
-        // Log
-        _pElement->doLog(false, _strContext + " {");
-        // Nest
-        _pElement->nestLog();
-    }
-}
+public:
 
-CAutoLog::~CAutoLog()
-{
-    if (_bLogOn) {
-        // Unnest
-        _pElement->unnestLog();
-        // Log
-        _pElement->doLog(false, "} " + _strContext);
+    /**
+     * Class Constructor
+     *
+     * @param[in] logger the logger provided by the client
+     */
+    TLoggingElementBuilderTemplate(core::log::Logger& logger)
+        : CElementBuilder(), mLogger(logger)
+    {
     }
-}
+
+    /**
+     * Create a new element
+     *
+     * @param[in] xmlElement the description of the object to create
+     *
+     * @return pointer to the generated element
+     */
+    virtual CElement* createElement(const CXmlElement& xmlElement) const
+    {
+        return new ElementType(xmlElement.getNameAttribute(), mLogger);
+    }
+
+private:
+
+    /** Application Logger */
+    core::log::Logger& mLogger;
+};

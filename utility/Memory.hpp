@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,58 +27,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "SyncerSet.h"
-#include "Syncer.h"
 
-CSyncerSet::CSyncerSet()
+#include <memory>
+
+/** Implementation of C++14's std::make_unique.
+ *
+ * TODO: Specialisation for array types is not implemented.
+ */
+template<class T, class... Args>
+std::unique_ptr<T> make_unique(Args &&... args)
 {
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
-const CSyncerSet& CSyncerSet::operator+=(ISyncer* pRightSyncer)
-{
-    _syncerSet.insert(pRightSyncer);
-
-    return *this;
-}
-
-const CSyncerSet& CSyncerSet::operator+=(const CSyncerSet& rightSyncerSet)
-{
-    if (&rightSyncerSet != this) {
-
-        _syncerSet.insert(rightSyncerSet._syncerSet.begin(), rightSyncerSet._syncerSet.end());
-    }
-
-    return *this;
-}
-
-void CSyncerSet::clear()
-{
-    _syncerSet.clear();
-}
-
-bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard,
-                      bool bBack,
-                      core::Results* errors) const
-{
-    bool bSuccess = true;
-
-    std::string strError;
-
-    // Propagate
-    SyncerSetConstIterator it;
-
-    for (it = _syncerSet.begin(); it != _syncerSet.end(); ++it) {
-
-        ISyncer* pSyncer = *it;
-
-        if (!pSyncer->sync(parameterBlackboard, bBack, strError)) {
-
-            if (errors != NULL) {
-
-                errors->push_back(strError);
-            }
-            bSuccess = false;
-        }
-    }
-    return bSuccess;
-}
