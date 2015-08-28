@@ -42,7 +42,10 @@ execute_process(COMMAND git describe --tags --dirty
     OUTPUT_VARIABLE PARAMETER_FRAMEWORK_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 if (WIN32)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX")
+    # Force include iso646.h to support alternative operator form (and, or, not...)
+    # Such support is require by the standard and can be enabled with /Za
+    # but doing so breaks compilation of windows headers...
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /FI iso646.h")
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra")
 endif ()
