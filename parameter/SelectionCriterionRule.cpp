@@ -58,10 +58,8 @@ string CSelectionCriterionRule::getKind() const
 }
 
 // Content dumping
-void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& errorContext) const
+void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& /*cxt*/) const
 {
-    (void)errorContext;
-
     // Dump rule
     dump(strValue);
 }
@@ -198,10 +196,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
 }
 
 // From IXmlSource
-void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingContext& /*ctx*/) const
 {
-    (void)serializingContext;
-
     assert(_pSelectionCriterion);
 
     // Set selection criterion

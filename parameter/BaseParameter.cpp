@@ -87,86 +87,54 @@ bool CBaseParameter::isParameter() const
 
 /// Value access
 // Boolean access
-bool CBaseParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsBoolean(bool& /*bValue*/, bool /*bSet*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)bValue;
-    (void)bSet;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
-bool CBaseParameter::accessAsBooleanArray(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsBooleanArray(std::vector<bool>& /*abValues*/, bool /*bSet*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)abValues;
-    (void)bSet;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
 // Integer Access
-bool CBaseParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsInteger(uint32_t& /*uiValue*/, bool /*bSet*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)uiValue;
-    (void)bSet;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
-bool CBaseParameter::accessAsIntegerArray(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsIntegerArray(std::vector<uint32_t>& /*auiValues*/, bool /*bSet*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)auiValues;
-    (void)bSet;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
 // Signed Integer Access
-bool CBaseParameter::accessAsSignedInteger(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsSignedInteger(int32_t& /*iValue*/, bool /*bSet*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)iValue;
-    (void)bSet;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
-bool CBaseParameter::accessAsSignedIntegerArray(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsSignedIntegerArray(std::vector<int32_t>& /*aiValues*/, bool /*bSet*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)aiValues;
-    (void)bSet;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
 // Double Access
-bool CBaseParameter::accessAsDouble(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsDouble(double& /*dValue*/, bool /*bSet*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)dValue;
-    (void)bSet;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
-bool CBaseParameter::accessAsDoubleArray(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsDoubleArray(std::vector<double>& /*adValues*/, bool /*bSet*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)adValues;
-    (void)bSet;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
@@ -196,12 +164,8 @@ bool CBaseParameter::accessAsString(string& strValue, bool bSet, CParameterAcces
     return true;
 }
 
-bool CBaseParameter::accessAsStringArray(std::vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBaseParameter::accessAsStringArray(std::vector<string>& /*astrValues*/, bool /*bSet*/, CParameterAccessContext& /*ctx*/) const
 {
-    (void)astrValues;
-    (void)bSet;
-    (void)parameterAccessContext;
-
     // Generic string array access to scalar parameter must have been filtered out before
     assert(0);
 

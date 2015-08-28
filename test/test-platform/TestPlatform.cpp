@@ -157,10 +157,8 @@ bool CTestPlatform::waitForExit(std::string& strError)
 }
 
 CTestPlatform::CommandReturn CTestPlatform::exit(
-    const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& /*command*/, string& /*strResult*/)
 {
-    (void)remoteCommand;
-
     // Notify of the exit request to quit application
     exitRequest.set_value();
 
@@ -218,10 +216,8 @@ CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterion(
 }
 
 CTestPlatform::CommandReturn CTestPlatform::startParameterMgr(
-    const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& /*remoteCommand*/, string& strResult)
 {
-    (void)remoteCommand;
-
     return _pParameterMgrPlatformConnector->start(strResult) ?
            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
@@ -244,10 +240,8 @@ CTestPlatform::CommandReturn CTestPlatform::setter(
 
 template <CTestPlatform::getter_t getFunction>
 CTestPlatform::CommandReturn CTestPlatform::getter(
-    const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand& /*command*/, string& strResult)
 {
-    (void)remoteCommand;
-
     strResult = (_pParameterMgrPlatformConnector->*getFunction)() ? "true" : "false";
 
     return CTestPlatform::CCommandHandler::ESucceeded;
@@ -282,12 +276,9 @@ CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
 
 }
 
-CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCommand& remoteCommand,
-                                                                string& strResult)
+CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCommand& /*command*/,
+                                                                string& /*strResult*/)
 {
-    (void)remoteCommand;
-    (void)strResult;
-
     _pParameterMgrPlatformConnector->applyConfigurations();
 
     return CTestPlatform::CCommandHandler::EDone;
