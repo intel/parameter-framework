@@ -42,16 +42,6 @@ using namespace std;
 
 const int iDefaultPortNumber = 5001;
 
-// Starts test-platform in blocking mode
-static bool startBlockingTestPlatform(const char *filePath, int portNumber, string &strError)
-{
-    // Create param mgr
-    CTestPlatform testPlatform(filePath, portNumber);
-
-    // Start platformmgr
-    return testPlatform.load(strError) && testPlatform.waitForExit(strError);
-}
-
 static void showUsage()
 {
     cerr << "test-platform [-h] <file path> [port number, default "
@@ -106,9 +96,7 @@ int main(int argc, char *argv[])
     portNumber = argc > indexFilePath + 1 ? atoi(argv[indexFilePath + 1]) : iDefaultPortNumber;
 
     string strError;
-    bool startError = startBlockingTestPlatform(filePath, portNumber, strError);
-
-    if (!startError) {
+    if (!CTestPlatform(filePath, portNumber).run(strError)) {
 
         cerr << "Test-platform error:" << strError.c_str() << endl;
         return -1;

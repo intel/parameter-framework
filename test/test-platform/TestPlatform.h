@@ -33,7 +33,6 @@
 #include "RemoteCommandHandlerTemplate.h"
 #include <string>
 #include <list>
-#include <future>
 
 class CParameterMgrPlatformConnectorLogger;
 class CRemoteProcessorServer;
@@ -48,10 +47,7 @@ public:
     virtual ~CTestPlatform();
 
     // Init
-    bool load(std::string& strError);
-
-    /** Wait for a remote client exit request */
-    bool waitForExit(std::string& strError);
+    bool run(std::string& strError);
 
 private:
     //////////////// Remote command parsers
@@ -155,8 +151,5 @@ private:
 
     // Remote Processor Server
     CRemoteProcessorServer* _pRemoteProcessorServer;
-
-    /** Future used to notify of an exit command */
-    std::promise<void> exitRequest;
 };
 

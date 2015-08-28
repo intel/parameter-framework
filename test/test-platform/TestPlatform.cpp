@@ -145,27 +145,15 @@ CTestPlatform::~CTestPlatform()
     delete _pParameterMgrPlatformConnector;
 }
 
-bool CTestPlatform::waitForExit(std::string& strError)
-{
-    try {
-        exitRequest.get_future().wait();
-        return true;
-    } catch (std::exception& e) {
-        strError = e.what();
-        return false;
-    }
-}
-
 CTestPlatform::CommandReturn CTestPlatform::exit(
     const IRemoteCommand& /*command*/, string& /*strResult*/)
 {
-    // Notify of the exit request to quit application
-    exitRequest.set_value();
+    _pRemoteProcessorServer->stop();
 
     return CTestPlatform::CCommandHandler::EDone;
 }
 
-bool CTestPlatform::load(std::string& strError)
+bool CTestPlatform::run(std::string& strError)
 {
     // Start remote processor server
     if (!_pRemoteProcessorServer->start(strError)) {
@@ -173,6 +161,8 @@ bool CTestPlatform::load(std::string& strError)
         strError = "TestPlatform: Unable to start remote processor server: " + strError;
         return false;
     }
+
+    _pRemoteProcessorServer->run();
 
     return true;
 }
