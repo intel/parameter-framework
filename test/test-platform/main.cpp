@@ -33,7 +33,6 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <semaphore.h>
 #include <string.h>
 #include <unistd.h>
 #include <cerrno>
@@ -46,29 +45,11 @@ const int iDefaultPortNumber = 5001;
 // Starts test-platform in blocking mode
 static bool startBlockingTestPlatform(const char *filePath, int portNumber, string &strError)
 {
-
-    // Init semaphore
-    sem_t sem;
-
-    sem_init(&sem, false, 0);
-
     // Create param mgr
-    CTestPlatform testPlatform(filePath, portNumber, sem);
+    CTestPlatform testPlatform(filePath, portNumber);
 
     // Start platformmgr
-    if (!testPlatform.load(strError)) {
-
-        sem_destroy(&sem);
-
-        return false;
-    }
-
-    // Block here
-    sem_wait(&sem);
-
-    sem_destroy(&sem);
-
-    return true;
+    return testPlatform.load(strError) && testPlatform.waitForExit(strError);
 }
 
 static void showUsage()
