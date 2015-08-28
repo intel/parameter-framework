@@ -43,8 +43,8 @@
 
 using std::string;
 
-CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
-    _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL)
+CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort) :
+    _uiPort(uiPort), _bIsStarted(false), _pListeningSocket(NULL)
 {
 }
 
@@ -102,7 +102,7 @@ void CRemoteProcessorServer::stop()
     }
 }
 
-void CRemoteProcessorServer::run()
+void CRemoteProcessorServer::process(IRemoteCommandHandler &commandHandler)
 {
     struct pollfd _aPollFds[2];
 
@@ -121,7 +121,7 @@ void CRemoteProcessorServer::run()
         if (_aPollFds[0].revents & POLLIN) {
 
             // New incoming connection
-            handleNewConnection();
+            handleNewConnection(commandHandler);
         }
         if (_aPollFds[1].revents & POLLIN) {
 
@@ -140,7 +140,7 @@ void CRemoteProcessorServer::run()
 }
 
 // New connection
-void CRemoteProcessorServer::handleNewConnection()
+void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandHandler)
 {
     const std::auto_ptr<CSocket> clientSocket(_pListeningSocket->accept());
 
@@ -177,16 +177,7 @@ void CRemoteProcessorServer::handleNewConnection()
 
         string strResult;
 
-        if (_pCommandHandler) {
-
-            bSuccess = _pCommandHandler->remoteCommandProcess(requestMessage, strResult);
-
-        } else {
-
-            strResult = "No handler!";
-
-            bSuccess = false;
-        }
+        bSuccess = commandHandler.remoteCommandProcess(requestMessage, strResult);
 
         // Send back answer
         // Create answer message
