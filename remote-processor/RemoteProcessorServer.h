@@ -39,23 +39,22 @@ class IRemoteCommandHandler;
 class CRemoteProcessorServer : public IRemoteProcessorServerInterface
 {
 public:
-    CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
+    CRemoteProcessorServer(uint16_t uiPort);
     virtual ~CRemoteProcessorServer();
 
     // State
     virtual bool start(std::string &error);
     virtual void stop();
-    void run();
+    void process(IRemoteCommandHandler &commandHandler);
 
 private:
 
     // New connection
-    void handleNewConnection();
+    void handleNewConnection(IRemoteCommandHandler &commandHandler);
 
     // Port number
     uint16_t _uiPort;
-    // Command handler
-    IRemoteCommandHandler* _pCommandHandler;
+
     // State
     bool _bIsStarted;
     // Listening socket
