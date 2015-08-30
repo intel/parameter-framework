@@ -301,7 +301,7 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
         core::Results infos;
         if (!addConfigurableElement(pConfigurableElement, NULL, infos)) {
 
-            CUtility::asString(infos, strError);
+            strError = CUtility::asString(infos);
             serializingContext.setError(strError);
 
             return false;

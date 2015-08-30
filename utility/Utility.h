@@ -34,20 +34,39 @@
 #include <list>
 #include <map>
 #include <sstream>
+#include <numeric>
 
 class CUtility
 {
 public:
+
+    /** Join all elements in [first, last[ with op.
+     *
+     *  If their is no element to join, return empty.
+     *
+     *  @example let op = [](auto l, auto r){ return l + "|" + r; }
+     *           let [first, last[ = list<string>{"1", "2", "3"}
+     *           then join(first, last, op) == "1|2|3"
+     */
+    template<class T, class InputIt, class BinaryOperation>
+    static T join(InputIt first, InputIt last, BinaryOperation op, T empty = T{})
+    {
+        if (first == last) { return empty; }
+        auto init = *first++;
+
+        return std::accumulate(first, last, init, op);
+    }
+
     /**
     * Format the items of a map into a string as a list of key-value pairs. The map must be
     * composed of pairs of strings.
     *
     * @param[in] mapStr A map of strings
-    * @param[out] strOutput The output string
     * @param[in] separator The separator to use between each item
+    *
+    * @return the concatenated elements.
     */
-    static void asString(const std::list<std::string>& lstr,
-                         std::string& strOutput,
+    static std::string asString(const std::list<std::string>& lstr,
                          const std::string& separator = "\n");
 
     /**
@@ -59,8 +78,7 @@ public:
      * @param[in] strItemSeparator The separator to use between each item (key-value pair)
      * @param[in] strKeyValueSeparator The separator to use between key and value
      */
-    static void asString(const std::map<std::string, std::string>& mapStr,
-                         std::string& strOutput,
+    static std::string asString(const std::map<std::string, std::string>& mapStr,
                          const std::string& strItemSeparator = ", ",
                          const std::string& strKeyValueSeparator = ":");
 

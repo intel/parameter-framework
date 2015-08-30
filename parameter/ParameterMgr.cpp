@@ -854,9 +854,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
     list<string> lstrSelectionCriteria;
     getSelectionCriteria()->listSelectionCriteria(lstrSelectionCriteria, false, true);
     // Concatenate the criterion list as the command result
-    string strCriteriaStates;
-    CUtility::asString(lstrSelectionCriteria, strCriteriaStates);
-    strResult += strCriteriaStates;
+    strResult += CUtility::asString(lstrSelectionCriteria);
 
     return CCommandHandler::ESucceeded;
 }
@@ -1028,7 +1026,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
         getSelectionCriteria()->listSelectionCriteria(lstrResult, true, bHumanReadable);
 
         // Concatenate the criterion list as the command result
-        CUtility::asString(lstrResult, strResult);
+        strResult += CUtility::asString(lstrResult);
 
         return CCommandHandler::ESucceeded;
     }
@@ -1165,7 +1163,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfiguratio
     core::Results result;
     if (!restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), result)) {
         //Concatenate the error list as the command result
-        CUtility::asString(result, strResult);
+        strResult = CUtility::asString(result);
 
         return  CCommandHandler::EFailed;
     }
@@ -1859,7 +1857,7 @@ bool CParameterMgr::sync(string& strError)
     core::Results error;
     if (! syncerSet.sync(*_pMainParameterBlackboard, false, &error)){
 
-        CUtility::asString(error, strError);
+        strError = CUtility::asString(error);
         return false;
     };
 
@@ -2058,7 +2056,7 @@ bool CParameterMgr::addConfigurableElementToDomain(const string& strDomain, cons
         warning() << infos;
     }
 
-    CUtility::asString(infos, strError);
+    strError = CUtility::asString(infos);
     return isSuccess;
 }
 
@@ -2126,7 +2124,7 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
         warning() << infos;
     }
 
-    CUtility::asString(infos, strError);
+    strError = CUtility::asString(infos);
     return isSuccess;
 }
 
