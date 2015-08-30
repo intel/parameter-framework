@@ -29,70 +29,84 @@
  */
 
 #include "TestPlatform.h"
+#include "convert.hpp"
+#include "Utility.h"
 
 #include <iostream>
-#include <cstdlib>
-#include <string.h>
-#include <unistd.h>
-#include <cerrno>
-#include <cassert>
+#include <string>
+#include <vector>
+#include <algorithm>
 
-using namespace std;
+using std::cerr;
+using std::endl;
+using std::string;
 
-const int iDefaultPortNumber = 5001;
+static const int iDefaultPortNumber = 5001;
 
 static void showUsage()
 {
-    cerr << "test-platform [-h] <file path> [port number, default "
+    cerr << "test-platform [-h|--help] <file path> [port number, default "
          << iDefaultPortNumber << "]" << endl;
 }
 
-static void showInvalidUsage()
+static void showInvalidUsage(const string &error)
 {
-    cerr << "Invalid arguments: ";
+    cerr << "Invalid arguments: " << error;
     showUsage();
 }
 
 static void showHelp()
 {
     showUsage();
-    cerr << "<file path> must be a valid .xml file, oftenly ParameterFrameworkConfiguration.xml" << endl;
-    cerr << "Arguments:" << endl
-        << "    -h  display this help and exit" << endl;
+    cerr << "<file path> must be a valid Paramter top level config file, "
+         << "often named ParameterFrameworkConfiguration.xml.\n"
+         << "Arguments:" << endl
+         << "    -h|--help  display this help and exit" << endl;
 }
+
 
 int main(int argc, char *argv[])
 {
-    // Option found by call to getopt()
-    int opt;
+    using Options = std::list<string>;
+    // argv[0] is the program name, not an option
+    Options options(argv + 1, argv + argc);
 
-    // Port number to be used by test-platform
-    int portNumber;
-
-    // Index of the <file path> argument in the arguments list provided
-    int indexFilePath = 1;
-
-    // Handle the -h option
-    while ((opt = getopt(argc, argv, "h")) != -1) {
-        switch (opt) {
-        case 'h':
-            showHelp();
-            return 0;
-        default:
-            showInvalidUsage();
-            return -1;
-        }
+    // Handle help option
+    auto helpOpts = { "-h", "--help" };
+    auto match = std::find_first_of(begin(options), end(options),
+                                    begin(helpOpts), end(helpOpts));
+    if (match != end(options)) {
+        showHelp();
+        return 0;
     }
 
-    // Check the number of arguments
-    if ((argc < indexFilePath + 1) || (argc > indexFilePath + 2)) {
-
-        showInvalidUsage();
+    if (options.empty()) {
+        showInvalidUsage("Expected a path to a Parameter Framework config file.");
         return -1;
     }
 
-    char *filePath = argv[indexFilePath];
-    portNumber = argc > indexFilePath + 1 ? atoi(argv[indexFilePath + 1]) : iDefaultPortNumber;
+    auto filePath = options.front();
+    options.pop_front();
+
+    // Handle optional port number argument
+    int portNumber = iDefaultPortNumber;
+
+    if (not options.empty()) {
+        if (convertTo(options.front(), portNumber)) {
+            showInvalidUsage("Could not convert \"" + options.front() +
+                             "\" to a socket port number.");
+            return -1;
+        };
+        options.pop_front();
+    }
+
+    // All arguments should have been consumed
+    if (not options.empty()) {
+        std::string extraArgs;
+        CUtility::asString(options, extraArgs);
+        showInvalidUsage("Unexpected extra arguments: " + extraArgs);
+        return -1;
+    }
 
     string strError;
     if (!CTestPlatform(filePath, portNumber).run(strError)) {
