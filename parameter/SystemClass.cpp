@@ -151,10 +151,8 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
 
     if (!lstrPluginFiles.empty()) {
         // Unable to load at least one plugin
-        string strPluginUnloaded;
-        CUtility::asString(lstrPluginFiles, strPluginUnloaded, ", ");
-
-        errors.push_back("Unable to load the following plugins: " + strPluginUnloaded + ".");
+        errors.push_back("Unable to load the following plugins: " +
+                         CUtility::asString(lstrPluginFiles, ", ") + ".");
         return false;
     }
 

@@ -100,9 +100,8 @@ public:
      */
     LogWrapper& operator<<(const std::list<std::string>& logs)
     {
-        std::string formatedLogs;
         std::string separator = "\n" + mProlog;
-        CUtility::asString(logs, formatedLogs, separator);
+        std::string formatedLogs = CUtility::asString(logs, separator);
 
         // Check if there is something in the log to know if we have to add a prefix
         if (!mLog.str().empty() && mLog.str()[mLog.str().length() - 1] == separator[0]) {
