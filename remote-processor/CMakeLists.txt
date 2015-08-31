@@ -33,8 +33,7 @@ add_library(remote-processor SHARED
         Message.cpp
         RequestMessage.cpp
         AnswerMessage.cpp
-        RemoteProcessorServer.cpp
-        RemoteProcessorServerBuilder.cpp)
+        RemoteProcessorServer.cpp)
 
 set(CMAKE_THREAD_PREFER_PTHREAD 1)
 find_package(Threads REQUIRED)

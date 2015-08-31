@@ -28,6 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RemoteProcessorServer.h"
+#include <memory>
 #include <thread>
 #include <iostream>
 #include <assert.h>
@@ -35,8 +36,9 @@
 class BackgroundRemoteProcessorServer final : public IRemoteProcessorServerInterface
 {
 public:
-    BackgroundRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler &commandHandler) :
-        _server(uiPort), mCommandHandler(commandHandler) {}
+    BackgroundRemoteProcessorServer(uint16_t uiPort,
+                                    std::unique_ptr<IRemoteCommandHandler> &commandHandler) :
+        _server(uiPort), mCommandHandler(std::move(commandHandler)) {}
 
     ~BackgroundRemoteProcessorServer() { stop(); }
 
@@ -48,7 +50,7 @@ public:
 
         try {
             mThread = std::thread(&CRemoteProcessorServer::process, &_server,
-                                  std::ref(mCommandHandler));
+                                  std::ref(*mCommandHandler));
         }
         catch (std::exception &e) {
             error = "Could not create a remote processor thread: " + std::string(e.what());
@@ -71,19 +73,7 @@ public:
 
 private:
     CRemoteProcessorServer _server;
-    IRemoteCommandHandler &mCommandHandler;
+    std::unique_ptr<IRemoteCommandHandler> mCommandHandler;
     std::thread mThread;
 };
-
-
-extern "C"
-{
-IRemoteProcessorServerInterface* createRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler)
-{
-    if (pCommandHandler == NULL) {
-        return NULL;
-    }
-    return new BackgroundRemoteProcessorServer(uiPort, *pCommandHandler);
-}
-}
 

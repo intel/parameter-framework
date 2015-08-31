@@ -718,9 +718,6 @@ private:
     // Whole system structure checksum
     uint8_t _uiStructureChecksum;
 
-    // Command Handler
-    CCommandHandler* _pCommandHandler;
-
     // Remote Processor Server
     IRemoteProcessorServerInterface* _pRemoteProcessorServer;
 
