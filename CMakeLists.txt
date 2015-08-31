@@ -42,6 +42,12 @@ execute_process(COMMAND git describe --tags --dirty
     OUTPUT_VARIABLE PARAMETER_FRAMEWORK_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 if (WIN32)
+    # By default cmake adds a warning level.
+    # Nevertheless a different level is wanted for this project.
+    # If a two different warning levels are present on the command line, cl raises a warning.
+    # Thus delete the default level to set a different one.
+    STRING(REGEX REPLACE "/W[0-4]" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+
     # Force include iso646.h to support alternative operator form (and, or, not...)
     # Such support is require by the standard and can be enabled with /Za
     # but doing so breaks compilation of windows headers...
