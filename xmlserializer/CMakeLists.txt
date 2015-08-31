@@ -45,10 +45,10 @@ else(NOT LIBXML2_FOUND)
     include(CheckLibraryExists)
     check_library_exists(xml2 xmlXIncludeProcess "" XML2_XINCLUDE_SUPPORT)
     if(NOT XML2_XINCLUDE_SUPPORT)
-        message(SEND_ERROR "
-    libxml2 has not been built with support for XInclude.  xmlserializer needs
-    that feature; please install a version of libxml2 supporting it.")
-    endif(NOT XML2_XINCLUDE_SUPPORT)
+        message(SEND_ERROR "libxml2 has not been built with support for XInclude."
+                           "xmlserializer needs that feature."
+                           "Please install a version of libxml2 supporting it.")
+    endif()
 endif(NOT LIBXML2_FOUND)
 
 include_directories(
