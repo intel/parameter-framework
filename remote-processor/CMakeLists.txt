@@ -26,21 +26,20 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_library(remote-processor SHARED
+add_library(remote-processor STATIC
         Socket.cpp
         ListeningSocket.cpp
         ConnectionSocket.cpp
         Message.cpp
         RequestMessage.cpp
         AnswerMessage.cpp
-        RemoteProcessorServer.cpp
-        RemoteProcessorServerBuilder.cpp)
+        RemoteProcessorServer.cpp)
 
-set(CMAKE_THREAD_PREFER_PTHREAD 1)
-find_package(Threads REQUIRED)
+if (NOT WIN32)
+    # '-fPIC' needed for linking against shared libraries
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+endif ()
 
 include_directories("${PROJECT_SOURCE_DIR}/utility")
 
-target_link_libraries(remote-processor pfw_utility ${CMAKE_THREAD_LIBS_INIT})
-
-install(TARGETS remote-processor LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+target_link_libraries(remote-processor pfw_utility)

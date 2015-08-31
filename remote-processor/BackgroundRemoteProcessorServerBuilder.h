@@ -75,15 +75,3 @@ private:
     std::thread mThread;
 };
 
-
-extern "C"
-{
-IRemoteProcessorServerInterface* createRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler)
-{
-    if (pCommandHandler == NULL) {
-        return NULL;
-    }
-    return new BackgroundRemoteProcessorServer(uiPort, *pCommandHandler);
-}
-}
-

@@ -65,7 +65,7 @@
 #include "BitParameterType.h"
 #include "StringParameterType.h"
 #include "EnumParameterType.h"
-#include "RemoteProcessorServerInterface.h"
+#include "BackgroundRemoteProcessorServerBuilder.h"
 #include "ElementLocator.h"
 #include "CompoundRule.h"
 #include "SelectionCriterionRule.h"
@@ -2550,54 +2550,29 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
         return true;
     }
 
-    // Start server if tuning allowed
-    if (getConstFrameworkConfiguration()->isTuningAllowed()) {
+    // Start server only if tuning allowed
+    if (!getConstFrameworkConfiguration()->isTuningAllowed()) {
+        return true;
+    }
 
-        info() << "Loading remote processor library";
+    if (_pCommandHandler == NULL) {
+        strError = "Invalid command handler";
+        return false;
+    }
 
-        // Load library
-        _pvLibRemoteProcessorHandle = dlopen("libremote-processor.so", RTLD_NOW);
+    auto port = getConstFrameworkConfiguration()->getServerPort();
 
-        if (!_pvLibRemoteProcessorHandle) {
+    _pRemoteProcessorServer = new BackgroundRemoteProcessorServer(port, *_pCommandHandler);
 
-            // Return error
-            const char* pcError = dlerror();
+    info() << "Starting remote processor server on port " << port;
 
-            if (pcError) {
+    if (_pRemoteProcessorServer == NULL || !_pRemoteProcessorServer->start(strError)) {
 
-                strError = pcError;
-            } else {
+        ostringstream oss;
+        oss << "ParameterMgr: Unable to start remote processor server on port " << port;
+        strError = oss.str() + ": " + strError;
 
-                strError = "Unable to load libremote-processor.so library";
-            }
-
-            return false;
-        }
-
-        CreateRemoteProcessorServer pfnCreateRemoteProcessorServer = (CreateRemoteProcessorServer)dlsym(_pvLibRemoteProcessorHandle, "createRemoteProcessorServer");
-
-        if (!pfnCreateRemoteProcessorServer) {
-
-            strError = "libremote-process.so does not contain createRemoteProcessorServer symbol.";
-
-            return false;
-        }
-
-        // Create server
-        _pRemoteProcessorServer = pfnCreateRemoteProcessorServer(getConstFrameworkConfiguration()->getServerPort(), _pCommandHandler);
-
-        info() << "Starting remote processor server on port "
-               << getConstFrameworkConfiguration()->getServerPort();
-        // Start
-        if (!_pRemoteProcessorServer->start(strError)) {
-
-            ostringstream oss;
-            oss << "ParameterMgr: Unable to start remote processor server on port "
-                << getConstFrameworkConfiguration()->getServerPort();
-            strError = oss.str() + ": " + strError;
-
-            return false;
-        }
+        return false;
     }
 
     return true;
