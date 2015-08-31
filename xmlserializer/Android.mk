@@ -47,7 +47,6 @@ common_module_tags := optional
 common_cflags := \
         -Wall \
         -Wextra \
-        -Wno-unused-parameter
 
 common_c_includes := \
     external/libxml2/include \
