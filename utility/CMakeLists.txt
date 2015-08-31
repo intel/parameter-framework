@@ -37,6 +37,7 @@ if (NOT WIN32)
 endif ()
 
 install(FILES
+    NonCopyable.hpp
     Utility.h
     convert.hpp
     DESTINATION "include/utility")

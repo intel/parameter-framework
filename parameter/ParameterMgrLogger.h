@@ -31,13 +31,14 @@
 
 #include "ParameterMgrLoggerForward.h"
 #include <log/ILogger.h>
+#include <NonCopyable.hpp>
 
 #include <string>
 
 /* Wrap a class to expose its logging [info, warning] capabilities
  * through ILogger. */
 template<class T>
-class CParameterMgrLogger : public core::log::ILogger
+class CParameterMgrLogger : public core::log::ILogger, private utility::NonCopyable
 {
 public:
     CParameterMgrLogger(T& parameterMgrConnector) :

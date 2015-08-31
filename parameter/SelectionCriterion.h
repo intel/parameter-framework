@@ -33,10 +33,12 @@
 #include "SelectionCriterionType.h"
 #include "SelectionCriterionInterface.h"
 #include <log/Logger.h>
+#include <NonCopyable.hpp>
 
 #include <string>
 
-class CSelectionCriterion : public CElement, public ISelectionCriterionInterface
+class CSelectionCriterion : public CElement, public ISelectionCriterionInterface,
+                            private utility::NonCopyable
 {
 public:
     CSelectionCriterion(const std::string& strName,

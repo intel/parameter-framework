@@ -30,8 +30,9 @@
 #pragma once
 
 #include "Element.h"
+#include <NonCopyable.hpp>
 
-class CElementBuilder
+class CElementBuilder : private utility::NonCopyable
 {
 public:
     virtual ~CElementBuilder() {}
