@@ -45,7 +45,9 @@ if (WIN32)
     # Force include iso646.h to support alternative operator form (and, or, not...)
     # Such support is require by the standard and can be enabled with /Za
     # but doing so breaks compilation of windows headers...
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /FI iso646.h")
+    # Suppress warning 4127 (Conditional expression is constant) as it break
+    # compilation when testing template value arguments or writing `while(true)`.
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /FI iso646.h -wd4127")
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra")
 endif ()
