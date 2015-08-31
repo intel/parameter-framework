@@ -65,7 +65,7 @@
 #include "BitParameterType.h"
 #include "StringParameterType.h"
 #include "EnumParameterType.h"
-#include "RemoteProcessorServerInterface.h"
+#include "BackgroundRemoteProcessorServerBuilder.h"
 #include "ElementLocator.h"
 #include "CompoundRule.h"
 #include "SelectionCriterionRule.h"
@@ -357,22 +357,6 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     addChild(new CSystemClass(_logger));
     addChild(new CConfigurableDomains);
 
-    _pCommandHandler = new CCommandHandler(this);
-
-    // Add command parsers
-    uint32_t uiRemoteCommandParserItem;
-
-    for (uiRemoteCommandParserItem = 0; uiRemoteCommandParserItem < guiNbRemoteCommandParserItems; uiRemoteCommandParserItem++) {
-
-        const SRemoteCommandParserItem* pRemoteCommandParserItem = &gastRemoteCommandParserItems[uiRemoteCommandParserItem];
-
-        _pCommandHandler->addCommandParser(pRemoteCommandParserItem->_pcCommandName,
-                                           pRemoteCommandParserItem->_pfnParser,
-                                           pRemoteCommandParserItem->_uiMinArgumentCount,
-                                           pRemoteCommandParserItem->_pcHelp,
-                                           pRemoteCommandParserItem->_pcDescription);
-    }
-
     // Configuration file folder
     std::string::size_type slashPos = _strXmlConfigurationFilePath.rfind('/', -1);
     if(slashPos == std::string::npos) {
@@ -390,7 +374,6 @@ CParameterMgr::~CParameterMgr()
 {
     // Children
     delete _pRemoteProcessorServer;
-    delete _pCommandHandler;
     delete _pMainParameterBlackboard;
     delete _pElementLibrarySet;
 
@@ -2550,56 +2533,40 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
         return true;
     }
 
-    // Start server if tuning allowed
-    if (getConstFrameworkConfiguration()->isTuningAllowed()) {
-
-        info() << "Loading remote processor library";
-
-        // Load library
-        _pvLibRemoteProcessorHandle = dlopen("libremote-processor.so", RTLD_NOW);
-
-        if (!_pvLibRemoteProcessorHandle) {
-
-            // Return error
-            const char* pcError = dlerror();
-
-            if (pcError) {
-
-                strError = pcError;
-            } else {
-
-                strError = "Unable to load libremote-processor.so library";
-            }
-
-            return false;
-        }
-
-        CreateRemoteProcessorServer pfnCreateRemoteProcessorServer = (CreateRemoteProcessorServer)dlsym(_pvLibRemoteProcessorHandle, "createRemoteProcessorServer");
-
-        if (!pfnCreateRemoteProcessorServer) {
-
-            strError = "libremote-process.so does not contain createRemoteProcessorServer symbol.";
-
-            return false;
-        }
-
-        // Create server
-        _pRemoteProcessorServer = pfnCreateRemoteProcessorServer(getConstFrameworkConfiguration()->getServerPort(), _pCommandHandler);
-
-        info() << "Starting remote processor server on port "
-               << getConstFrameworkConfiguration()->getServerPort();
-        // Start
-        if (!_pRemoteProcessorServer->start(strError)) {
-
-            ostringstream oss;
-            oss << "ParameterMgr: Unable to start remote processor server on port "
-                << getConstFrameworkConfiguration()->getServerPort();
-            strError = oss.str() + ": " + strError;
-
-            return false;
-        }
+    // Start server only if tuning allowed
+    if (!getConstFrameworkConfiguration()->isTuningAllowed()) {
+        return true;
     }
 
+    CCommandHandler *commandHandler = new CCommandHandler(this);
+
+    // Add command parsers
+    for (const auto &remoteCommandParserItem : gastRemoteCommandParserItems) {
+        commandHandler->addCommandParser(remoteCommandParserItem._pcCommandName,
+                                         remoteCommandParserItem._pfnParser,
+                                         remoteCommandParserItem._uiMinArgumentCount,
+                                         remoteCommandParserItem._pcHelp,
+                                         remoteCommandParserItem._pcDescription);
+    }
+    std::unique_ptr<IRemoteCommandHandler> remoteCommandHandler(commandHandler);
+
+    auto port = getConstFrameworkConfiguration()->getServerPort();
+
+    // The ownership of remoteComandHandler is given to Bg remote processor server.
+    _pRemoteProcessorServer = new BackgroundRemoteProcessorServer(port, remoteCommandHandler);
+
+    if (_pRemoteProcessorServer == NULL) {
+        strError = "ParameterMgr: Unable to create Remote Processor Server";
+        return false;
+    }
+
+    if (!_pRemoteProcessorServer->start(strError)) {
+        ostringstream oss;
+        oss << "ParameterMgr: Unable to start remote processor server on port " << port;
+        strError = oss.str() + ": " + strError;
+        return false;
+    }
+    info() << "Remote Processor Server started on port " << port;
     return true;
 }
 
