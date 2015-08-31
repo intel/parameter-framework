@@ -124,11 +124,6 @@ void CRemoteProcessorServer::stop()
     _pListeningSocket = NULL;
 }
 
-bool CRemoteProcessorServer::isStarted() const
-{
-    return _bIsStarted;
-}
-
 void CRemoteProcessorServer::run()
 {
     struct pollfd _aPollFds[2];

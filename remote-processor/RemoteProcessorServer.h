@@ -45,7 +45,6 @@ public:
     // State
     virtual bool start(std::string &error);
     virtual void stop();
-    virtual bool isStarted() const;
 
 private:
     // Thread
