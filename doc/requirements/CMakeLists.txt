@@ -26,11 +26,6 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
-option(REQUIREMENTS
-       "Generate the html version of the 'requirements' documentation"
-       OFF)
-
 if(REQUIREMENTS)
     find_program(PANDOC pandoc)
 

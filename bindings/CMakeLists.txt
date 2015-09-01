@@ -26,12 +26,10 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-option(PYTHON_BINDINGS "Python library to use the pfw from python" ON)
 if(PYTHON_BINDINGS)
     add_subdirectory(python)
 endif()
 
-option(C_BINDINGS "Python library to use the pfw from python" ON)
 if(C_BINDINGS)
     add_subdirectory(c)
 endif()
