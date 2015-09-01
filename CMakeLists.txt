@@ -36,6 +36,14 @@ endif(COMMAND cmake_policy)
 
 project(parameter-framework)
 
+option(COVERAGE "Build with coverage support" OFF)
+option(BASH_COMPLETION "Install bash completion configuration" ON)
+option(DOXYGEN "Enable doxygen generation (you still have to run 'make doc')" OFF)
+option(REQUIREMENTS "Generate the html version of the 'requirements' documentation" OFF)
+option(PYTHON_BINDINGS "Python library to use the Parameter Framrwork from python" ON)
+option(C_BINDINGS "Library to use the Parameter Framework using a C API" ON)
+
+
 # find and set the Parameter Framework's version
 execute_process(COMMAND git describe --tags --dirty
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
@@ -48,7 +56,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 include(ctest/CMakeLists.txt)
 
-option(COVERAGE "Build with coverage support" OFF)
 if(COVERAGE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
@@ -63,7 +70,6 @@ add_subdirectory(remote-process)
 
 add_subdirectory(test)
 
-option(BASH_COMPLETION "Install bash completion configuration" ON)
 if (BASH_COMPLETION)
     add_subdirectory(tools/bash_completion)
 endif()
