@@ -29,49 +29,27 @@
  */
 #pragma once
 
-#include "NonCopyable.hpp"
+namespace utility {
 
-#include <string>
-#include <vector>
-
-/** Tokenizer class
+/** Base class for private inheritance to make the derived class non copyable.
  *
- * Must be initialized with a string to be tokenized and, optionally, a string
- * of delimiters (@see Tokenizer::defaultDelimiters).
+ * Sometime implementing copy/move semantic is complicated or not useful.
+ * The traditional way is to declare the relevant methods private in c++ < 11
+ * or deleted in c++ > 11.
  *
- * Multiple consecutive delimiters (even if different) are considered as a
- * single one. As a result, there can't be empty tokens.
- */
-class Tokenizer : private utility::NonCopyable
+ * It is easier and self documented to derive from this class.
+ *
+ * For more documentation see:
+ * http://www.boost.org/doc/libs/release/libs/utility/utility.htm#Class_noncopyable
+ * */
+class NonCopyable
 {
 public:
-    /** Constructs a Tokenizer
-     *
-     * @param[in] input The string to be tokenized
-     * @param[in] delimiters A string containing all the token delimiters
-     *            (hence, each delimiter can only be a single character)
-     */
-    Tokenizer(const std::string &input, const std::string &delimiters=defaultDelimiters);
-    ~Tokenizer() {};
-
-    /** Return the next token or an empty string if no more token
-     *
-     * Multiple consecutive delimiters are considered as a single one - i.e.
-     * "a     bc d   " will be tokenized as ("a", "bc", "d") if the delimiter
-     * is ' '.
-     */
-    std::string next();
-
-    /** Return a vector of all tokens
-     */
-    std::vector<std::string> split();
-
-    /** Default list of delimiters (" \n\r\t\v\f") */
-    static const std::string defaultDelimiters;
-
-private:
-    const std::string _input; //< string to be tokenized
-    const std::string _delimiters; //< token delimiters
-
-    std::string::size_type _position; //< end of the last returned token
+    NonCopyable() = default;
+    NonCopyable(const NonCopyable &) = delete;
+    NonCopyable(NonCopyable &&) = delete;
+    NonCopyable &operator=(const NonCopyable &) = delete;
+    NonCopyable &operator=(NonCopyable &&) = delete;
 };
+
+} // namespace utility

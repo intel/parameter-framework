@@ -125,7 +125,6 @@ common_cflags := \
         -Wall \
         -Werror \
         -Wextra \
-        -Wno-unused-parameter
 
 common_c_includes := \
     $(LOCAL_PATH)/include/ \

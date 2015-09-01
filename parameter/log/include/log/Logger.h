@@ -32,6 +32,8 @@
 #include "log/ILogger.h"
 #include "log/LogWrapper.h"
 
+#include "NonCopyable.hpp"
+
 namespace core
 {
 namespace log
@@ -43,7 +45,7 @@ namespace log
  * methods.
  * This is the class you want to use to log in the project.
  */
-class Logger
+class Logger : private utility::NonCopyable
 {
 public:
 

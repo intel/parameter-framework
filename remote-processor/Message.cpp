@@ -34,6 +34,7 @@
 #include <string.h>
 #include <assert.h>
 #include <errno.h>
+#include <vector>
 
 using std::string;
 
@@ -98,16 +99,16 @@ void CMessage::readString(string& strData)
     readData(&uiSize, sizeof(uiSize));
 
     // Data
-    char pcData[uiSize + 1];
+    std::vector<char> string(uiSize + 1);
 
     // Content
-    readData(pcData, uiSize);
+    readData(string.data(), uiSize);
 
     // NULL-terminate string
-    pcData[uiSize] = '\0';
+    string.back() = '\0';
 
     // Output
-    strData = pcData;
+    strData = string.data();
 }
 
 size_t CMessage::getStringSize(const string& strData) const

@@ -48,7 +48,6 @@ common_cflags := \
         -Wall \
         -Werror \
         -Wextra \
-        -Wno-unused-parameter \
 
 #############################
 # Target build

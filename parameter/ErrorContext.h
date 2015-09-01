@@ -30,8 +30,9 @@
 #pragma once
 
 #include <string>
+#include <NonCopyable.hpp>
 
-class CErrorContext
+class CErrorContext : private utility::NonCopyable
 {
 public:
     CErrorContext(std::string& strError);

@@ -31,11 +31,13 @@
 
 #include "ConfigurableElementAggregator.h"
 #include "ConfigurableElement.h"
+#include <NonCopyable.hpp>
+
 #include <list>
 
 class CParameterBlackboard;
 
-class CBackSynchronizer
+class CBackSynchronizer : private utility::NonCopyable
 {
 public:
     CBackSynchronizer(const CConfigurableElement* pConfigurableElement)

@@ -30,11 +30,13 @@
 #pragma once
 
 #include "ConfigurableElement.h"
+#include "NonCopyable.hpp"
+
 #include <list>
 #include <string>
 
 
-class CConfigurableElementAggregator
+class CConfigurableElementAggregator : private utility::NonCopyable
 {
 public:
     // Matching check method type

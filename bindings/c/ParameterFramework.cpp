@@ -31,6 +31,8 @@
 #include "ParameterFramework.h"
 #include <ParameterMgrPlatformConnector.h>
 
+#include <NonCopyable.hpp>
+
 #include <iostream>
 #include <limits>
 #include <string>
@@ -124,7 +126,7 @@ private:
 ///////////// Core ////////////
 ///////////////////////////////
 
-struct PfwHandler_
+struct PfwHandler_ : private utility::NonCopyable
 {
     void setLogger(const PfwLogger *logger);
     bool createCriteria(const PfwCriterion criteria[], size_t criterionNb);
@@ -138,7 +140,6 @@ struct PfwHandler_
 private:
     LogWrapper mLogger;
 };
-
 
 PfwHandler *pfwCreate()
 {

@@ -49,9 +49,19 @@ extern "C" {
 /** Lots of function in this API require non null pointer parameter.
   * Such arguments are marked NONNULL.
   */
-#define NONNULL  __attribute__((nonnull))
-#define NONNULL_(...)  __attribute__((nonnull (__VA_ARGS__)))
-#define USERESULT __attribute__((warn_unused_result))
+#if defined(__clang__) || defined(__GNUC__)
+#    define NONNULL  __attribute__((nonnull))
+#    define NONNULL_(...)  __attribute__((nonnull (__VA_ARGS__)))
+#    define USERESULT __attribute__((warn_unused_result))
+#elif defined(_MSC_VER)
+    // In visual studio's cl there is no
+    // equivalent of nonnull
+#    define NONNULL
+#    define NONNULL_(...)
+#    define USERESULT _Check_return_
+#else
+#   error "Unknown compilator"
+#endif
 
 /** Private handle to a parameter framework.
   * A PfwHandler* is valid if:
