@@ -143,13 +143,6 @@ CMessage::Result CMessage::send(CSocket* pSocket, string& strError)
         return error;
     }
 
-    // Msg Id
-    if (!pSocket->write(&_ucMsgId, sizeof(_ucMsgId))) {
-
-        strError += string("Msg write failed: ") + strerror(errno);
-        return error;
-    }
-
     // Data
     if (!pSocket->write(_pucData, _uiDataSize)) {
 
@@ -168,13 +161,6 @@ CMessage::Result CMessage::recv(CSocket* pSocket, string& strError)
     if (!pSocket->read(&uiSize, sizeof(uiSize))) {
 
         strError = string("Size read failed: ") + strerror(errno);
-        return error;
-    }
-
-    // Msg Id
-    if (!pSocket->read(&_ucMsgId, sizeof(_ucMsgId))) {
-
-        strError = string("Msg id read failed: ") + strerror(errno);
         return error;
     }
 
