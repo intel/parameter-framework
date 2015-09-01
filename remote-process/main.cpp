@@ -41,7 +41,7 @@ bool sendAndDisplayCommand(CConnectionSocket &connectionSocket, CRequestMessage 
 {
     string strError;
 
-    if (requestMessage.serialize(&connectionSocket, true, strError)
+    if (requestMessage.send(&connectionSocket, strError)
             != CRequestMessage::success) {
 
         cerr << "Unable to send command to target: " << strError << endl;
@@ -50,7 +50,7 @@ bool sendAndDisplayCommand(CConnectionSocket &connectionSocket, CRequestMessage 
 
     ///// Get answer
     CAnswerMessage answerMessage;
-    if (answerMessage.serialize(&connectionSocket, false, strError)
+    if (answerMessage.recv(&connectionSocket, strError)
             != CRequestMessage::success) {
 
         cerr << "Unable to received answer from target: " << strError << endl;

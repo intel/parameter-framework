@@ -47,11 +47,9 @@ public:
         error
     };
 
-    /** Write or read the message on pSocket.
+    /** Write the message on pSocket.
      *
-     * @param[in,out] pSocket is the socket on wich IO operation will be made.
-     * @param[in] bOut if true message should be read,
-     *                 if false it should be written.
+     * @param[in] pSocket is the socket on wich IO operation will be made.
      * @param[out] strError on failure, a string explaining the error,
      *                      on success, undefined.
      *
@@ -59,7 +57,19 @@ public:
      *         peerDisconnected if the peer disconnected before the first socket access.
      *         error if the message could not be read/write for any other reason
      */
-    Result serialize(CSocket* pSocket, bool bOut, std::string &strError);
+    Result send(CSocket* pSocket, std::string &strError);
+
+    /** Read the message on pSocket.
+     *
+     * @param[in] pSocket is the socket on wich IO operation will be made.
+     * @param[out] strError on failure, a string explaining the error,
+     *                      on success, undefined.
+     *
+     * @return success if a correct message could be recv/send
+     *         peerDisconnected if the peer disconnected before the first socket access.
+     *         error if the message could not be read/write for any other reason
+     */
+    Result recv(CSocket* pSocket, std::string &strError);
 
 protected:
     // Msg Id

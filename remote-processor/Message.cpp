@@ -123,129 +123,129 @@ size_t CMessage::getRemainingDataSize() const
     return _uiDataSize - _uiIndex;
 }
 
-// Send/Receive
-CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
+CMessage::Result CMessage::send(CSocket* pSocket, string& strError)
 {
-    if (bOut) {
+    // Make room for data to send
+    allocateData(getDataSize());
 
-        // Make room for data to send
-        allocateData(getDataSize());
+    // Get data from derived
+    fillDataToSend();
 
-        // Get data from derived
-        fillDataToSend();
+    // Finished providing data?
+    assert(_uiIndex == _uiDataSize);
 
-        // Finished providing data?
-        assert(_uiIndex == _uiDataSize);
+    // First send sync word
+    uint16_t uiSyncWord = SYNC_WORD;
 
-        // First send sync word
-        uint16_t uiSyncWord = SYNC_WORD;
+    if (!pSocket->write(&uiSyncWord, sizeof(uiSyncWord))) {
 
-        if (!pSocket->write(&uiSyncWord, sizeof(uiSyncWord))) {
-
-            if (pSocket->hasPeerDisconnected()) {
-                return peerDisconnected;
-            }
-            return error;
+        if (pSocket->hasPeerDisconnected()) {
+            return peerDisconnected;
         }
-
-        // Size
-        uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + _uiDataSize);
-
-        if (!pSocket->write(&uiSize, sizeof(uiSize))) {
-
-            strError += string("Size write failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Msg Id
-        if (!pSocket->write(&_ucMsgId, sizeof(_ucMsgId))) {
-
-            strError += string("Msg write failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Data
-        if (!pSocket->write(_pucData, _uiDataSize)) {
-
-            strError = string("Data write failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Checksum
-        uint8_t ucChecksum = computeChecksum();
-
-        if (!pSocket->write(&ucChecksum, sizeof(ucChecksum))) {
-
-            strError = string("Checksum write failed: ") + strerror(errno);
-            return error;
-        }
-
-    } else {
-        // First read sync word
-        uint16_t uiSyncWord;
-
-        if (!pSocket->read(&uiSyncWord, sizeof(uiSyncWord))) {
-
-            strError = string("Sync read failed: ") + strerror(errno);
-            if (pSocket->hasPeerDisconnected()) {
-                return peerDisconnected;
-            }
-            return error;
-        }
-
-        // Check Sync word
-        if (uiSyncWord != SYNC_WORD) {
-
-            strError = "Sync word incorrect";
-            return error;
-        }
-
-        // Size
-        uint32_t uiSize;
-
-        if (!pSocket->read(&uiSize, sizeof(uiSize))) {
-
-            strError = string("Size read failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Msg Id
-        if (!pSocket->read(&_ucMsgId, sizeof(_ucMsgId))) {
-
-            strError = string("Msg id read failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Data
-
-        // Allocate
-        allocateData(uiSize - sizeof(_ucMsgId));
-
-        // Data receive
-        if (!pSocket->read(_pucData, _uiDataSize)) {
-
-            strError = string("Data read failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Checksum
-        uint8_t ucChecksum;
-
-        if (!pSocket->read(&ucChecksum, sizeof(ucChecksum))) {
-
-            strError = string("Checksum read failed: ") + strerror(errno);
-            return error;
-        }
-        // Compare
-        if (ucChecksum != computeChecksum()) {
-
-            strError = "Received checksum != computed checksum";
-            return error;
-        }
-
-        // Collect data in derived
-        collectReceivedData();
+        return error;
     }
+
+    // Size
+    uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + _uiDataSize);
+
+    if (!pSocket->write(&uiSize, sizeof(uiSize))) {
+
+        strError += string("Size write failed: ") + strerror(errno);
+        return error;
+    }
+
+    // Msg Id
+    if (!pSocket->write(&_ucMsgId, sizeof(_ucMsgId))) {
+
+        strError += string("Msg write failed: ") + strerror(errno);
+        return error;
+    }
+
+    // Data
+    if (!pSocket->write(_pucData, _uiDataSize)) {
+
+        strError = string("Data write failed: ") + strerror(errno);
+        return error;
+    }
+
+    // Checksum
+    uint8_t ucChecksum = computeChecksum();
+
+    if (!pSocket->write(&ucChecksum, sizeof(ucChecksum))) {
+
+        strError = string("Checksum write failed: ") + strerror(errno);
+        return error;
+    }
+
+    return success;
+}
+
+CMessage::Result CMessage::recv(CSocket* pSocket, string& strError)
+{
+    // First read sync word
+    uint16_t uiSyncWord;
+
+    if (!pSocket->read(&uiSyncWord, sizeof(uiSyncWord))) {
+
+        strError = string("Sync read failed: ") + strerror(errno);
+        if (pSocket->hasPeerDisconnected()) {
+            return peerDisconnected;
+        }
+        return error;
+    }
+
+    // Check Sync word
+    if (uiSyncWord != SYNC_WORD) {
+
+        strError = "Sync word incorrect";
+        return error;
+    }
+
+    // Size
+    uint32_t uiSize;
+
+    if (!pSocket->read(&uiSize, sizeof(uiSize))) {
+
+        strError = string("Size read failed: ") + strerror(errno);
+        return error;
+    }
+
+    // Msg Id
+    if (!pSocket->read(&_ucMsgId, sizeof(_ucMsgId))) {
+
+        strError = string("Msg id read failed: ") + strerror(errno);
+        return error;
+    }
+
+    // Data
+
+    // Allocate
+    allocateData(uiSize - sizeof(_ucMsgId));
+
+    // Data receive
+    if (!pSocket->read(_pucData, _uiDataSize)) {
+
+        strError = string("Data read failed: ") + strerror(errno);
+        return error;
+    }
+
+    // Checksum
+    uint8_t ucChecksum;
+
+    if (!pSocket->read(&ucChecksum, sizeof(ucChecksum))) {
+
+        strError = string("Checksum read failed: ") + strerror(errno);
+        return error;
+    }
+    // Compare
+    if (ucChecksum != computeChecksum()) {
+
+        strError = "Received checksum != computed checksum";
+        return error;
+    }
+
+    // Collect data in derived
+    collectReceivedData();
 
     return success;
 }

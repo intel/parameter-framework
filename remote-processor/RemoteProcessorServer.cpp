@@ -160,7 +160,7 @@ void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandH
         string strError;
         ///// Receive command
         CRequestMessage::Result res;
-        res = requestMessage.serialize(clientSocket.get(), false, strError);
+        res = requestMessage.recv(clientSocket.get(), strError);
 
         switch (res) {
         case CRequestMessage::error:
@@ -185,7 +185,7 @@ void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandH
         CAnswerMessage answerMessage(strResult, bSuccess);
 
         ///// Send answer
-        res = answerMessage.serialize(clientSocket.get(), true, strError);
+        res = answerMessage.send(clientSocket.get(), strError);
 
         switch (res) {
         case CRequestMessage::peerDisconnected:
