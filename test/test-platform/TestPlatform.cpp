@@ -161,9 +161,7 @@ bool CTestPlatform::run(std::string& strError)
         0, "",
         "Get policy for schema validation based on .xsd files.");
 
-    _pRemoteProcessorServer->process(commandHandler);
-
-    return true;
+    return _pRemoteProcessorServer->process(commandHandler);
 }
 
 //////////////// Remote command parsers

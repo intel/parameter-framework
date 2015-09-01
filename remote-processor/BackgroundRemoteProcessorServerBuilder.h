@@ -29,9 +29,7 @@
  */
 #include "RemoteProcessorServer.h"
 #include <memory>
-#include <thread>
-#include <iostream>
-#include <assert.h>
+#include <future>
 
 class BackgroundRemoteProcessorServer final : public IRemoteProcessorServerInterface
 {
@@ -47,33 +45,26 @@ public:
         if (!_server.start(error)) {
             return false;
         }
-
         try {
-            mThread = std::thread(&CRemoteProcessorServer::process, &_server,
-                                  std::ref(*mCommandHandler));
-        }
-        catch (std::exception &e) {
+            mServerSuccess = std::async(std::launch::async,
+                                        &CRemoteProcessorServer::process, &_server,
+                                        std::ref(*mCommandHandler));
+        } catch (std::exception &e) {
             error = "Could not create a remote processor thread: " + std::string(e.what());
             return false;
         }
+
         return true;
     }
 
-    void stop() override {
+    bool stop() override {
         _server.stop();
-
-        try {
-            mThread.join();
-        } catch (std::exception &e) {
-            std::cout << "Could not join with remote processor thread: "
-                << std::string(e.what()) << std::endl;
-            assert(false);
-        }
+        return mServerSuccess.get();
     }
 
 private:
     CRemoteProcessorServer _server;
     std::unique_ptr<IRemoteCommandHandler> mCommandHandler;
-    std::thread mThread;
+    std::future<bool> mServerSuccess;
 };
 
