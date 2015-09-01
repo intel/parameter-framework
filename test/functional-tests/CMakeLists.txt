@@ -47,7 +47,7 @@ if(BUILD_TESTING)
                    catch.cpp)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-    target_link_libraries(parameterFunctionalTest parameter)
+    target_link_libraries(parameterFunctionalTest parameter remote-processor)
     add_test(NAME parameterFunctionalTest
              COMMAND parameterFunctionalTest)
 

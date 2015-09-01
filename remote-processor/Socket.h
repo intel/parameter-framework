@@ -50,12 +50,6 @@ public:
     CSocket(int iSockId);
     virtual ~CSocket();
 
-    // Non blocking state
-    void setNonBlocking(bool bNonBlocking);
-
-    // Communication timeout
-    void setTimeout(uint32_t uiMilliseconds);
-
     /* Read data
      *
      * On failure errno will be set appropriately (see send).
