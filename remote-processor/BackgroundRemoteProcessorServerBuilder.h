@@ -28,7 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RemoteProcessorServer.h"
-#include <thread>
+#include <future>
 #include <iostream>
 #include <assert.h>
 
@@ -45,33 +45,27 @@ public:
         if (!_server.start(error)) {
             return false;
         }
-
         try {
-            mThread = std::thread(&CRemoteProcessorServer::process, &_server,
-                                  std::ref(mCommandHandler));
-        }
-        catch (std::exception &e) {
+            mServerSuccess = std::async(std::launch::async,
+                                        &CRemoteProcessorServer::process, &_server,
+                                        std::ref(mCommandHandler));
+        } catch (std::exception &e) {
             error = "Could not create a remote processor thread: " + std::string(e.what());
             return false;
         }
+
         return true;
     }
 
-    void stop() override {
+    bool stop() override {
         _server.stop();
-
-        try {
-            mThread.join();
-        } catch (std::exception &e) {
-            std::cout << "Could not join with remote processor thread: "
-                << std::string(e.what()) << std::endl;
-            assert(false);
-        }
+        mServerSuccess.wait();
+        return mServerSuccess.get();
     }
 
 private:
     CRemoteProcessorServer _server;
     IRemoteCommandHandler &mCommandHandler;
-    std::thread mThread;
+    std::future<bool> mServerSuccess;
 };
 

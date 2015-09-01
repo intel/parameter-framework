@@ -84,12 +84,11 @@ bool CRemoteProcessorServer::start(string &error)
     return true;
 }
 
-void CRemoteProcessorServer::stop()
+bool CRemoteProcessorServer::stop()
 {
     // Check state
     if (!_bIsStarted) {
-
-        return;
+        return true;
     }
 
     // Cause exiting of the thread
@@ -98,11 +97,13 @@ void CRemoteProcessorServer::stop()
         std::cerr << "Could not query command processor thread to terminate: "
                      "fail to write on inband pipe: "
                   << strerror(errno) << std::endl;
-        assert(false);
+        return false;
     }
+
+    return true;
 }
 
-void CRemoteProcessorServer::process(IRemoteCommandHandler &commandHandler)
+bool CRemoteProcessorServer::process(IRemoteCommandHandler &commandHandler)
 {
     struct pollfd _aPollFds[2];
 
@@ -130,11 +131,11 @@ void CRemoteProcessorServer::process(IRemoteCommandHandler &commandHandler)
             if (not utility::fullRead(_aiInbandPipe[0], &ucData, sizeof(ucData))) {
                     std::cerr << "Remote processor could not receive exit request"
                               << strerror(errno) << std::endl;
-                    assert(false);
+                    return false;
             }
 
             // Exit
-            return;
+            return true;
         }
     }
 }
