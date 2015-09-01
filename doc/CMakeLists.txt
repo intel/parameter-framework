@@ -26,11 +26,6 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
-option(DOXYGEN
-       "Enable doxygen generation (you still have to run 'make doc')"
-       OFF)
-
 include(CMakeDependentOption)
 # Only present DOXYGEN_GRAPHS if DOXYGEN is ON and if so, default to ON.
 # Else, set to OFF.
