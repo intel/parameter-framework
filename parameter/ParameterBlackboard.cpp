@@ -28,46 +28,29 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "ParameterBlackboard.h"
-#include <assert.h>
+#include <cassert>
 #include <algorithm>
 
-CParameterBlackboard::CParameterBlackboard() : _pucData(NULL), _uiSize(0)
-{
-}
-
-CParameterBlackboard::~CParameterBlackboard()
-{
-    delete [] _pucData;
-}
 
 // Size
 void CParameterBlackboard::setSize(uint32_t uiSize)
 {
-    if (_pucData) {
-
-        delete [] _pucData;
-    }
-
-    //Initializer is an empty pair of parentheses,
-    //each element is value-initialized.
-    _pucData = new uint8_t[uiSize]();
-
-    _uiSize = uiSize;
+    mBlackboard.resize(uiSize);
 }
 
 uint32_t CParameterBlackboard::getSize() const
 {
-    return _uiSize;
+    return mBlackboard.size();
 }
 
 // Single parameter access
 void CParameterBlackboard::writeInteger(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian)
 {
-    assert(uiSize + uiOffset <= _uiSize);
+    assert(uiSize + uiOffset <= getSize());
 
-    auto first = static_cast<const char *>(pvSrcData);
+    auto first = static_cast<const uint8_t *>(pvSrcData);
     auto last = first + uiSize;
-    auto dest_first = _pucData + uiOffset;
+    auto dest_first = atOffset(uiOffset);
 
     if (!bBigEndian) {
         std::copy(first, last, dest_first);
@@ -78,11 +61,11 @@ void CParameterBlackboard::writeInteger(const void* pvSrcData, uint32_t uiSize, 
 
 void CParameterBlackboard::readInteger(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const
 {
-    assert(uiSize + uiOffset <= _uiSize);
+    assert(uiSize + uiOffset <= getSize());
 
-    auto first = _pucData + uiOffset;
+    auto first = atOffset(uiOffset);
     auto last = first + uiSize;
-    auto dest_first = static_cast<char *>(pvDstData);
+    auto dest_first = static_cast<uint8_t *>(pvDstData);
 
     if (!bBigEndian) {
         std::copy(first, last, dest_first);
@@ -93,31 +76,42 @@ void CParameterBlackboard::readInteger(void* pvDstData, uint32_t uiSize, uint32_
 
 void CParameterBlackboard::writeString(const std::string &input, uint32_t uiOffset)
 {
-    assert(input.size() + 1 + uiOffset <= _uiSize);
-    auto dest_last = std::copy(begin(input), end(input), _pucData + uiOffset);
+    assert(input.size() + 1 + uiOffset <= getSize());
+    auto dest_last = std::copy(begin(input), end(input), atOffset(uiOffset));
     *dest_last = '\0';
 }
 
 void CParameterBlackboard::readString(std::string &output, uint32_t uiOffset) const
 {
-    output = std::string((const char*)_pucData + uiOffset);
+    // As the string is null terminated in the blackboard,
+    // the size that will be read is known. (>= 1)
+    assert(uiOffset + 1 <= getSize());
+
+    // Get the pointer to the null terminated string
+    const uint8_t *first = &mBlackboard[uiOffset];
+    output = reinterpret_cast<const char *>(first);
 }
 
 // Access from/to subsystems
 uint8_t* CParameterBlackboard::getLocation(uint32_t uiOffset)
 {
-    return _pucData + uiOffset;
+    assert(uiOffset < getSize());
+    return &mBlackboard[uiOffset];
 }
 
 // Configuration handling
 void CParameterBlackboard::restoreFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset)
 {
-    std::copy_n(pFromBlackboard->_pucData, pFromBlackboard->_uiSize, _pucData + uiOffset);
+    const auto &fromBB = pFromBlackboard->mBlackboard;
+    assert(fromBB.size() + uiOffset <= getSize());
+    std::copy(begin(fromBB), end(fromBB), atOffset(uiOffset));
 }
 
 void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const
 {
-    std::copy_n(_pucData + uiOffset, pToBlackboard->_uiSize, pToBlackboard->_pucData);
+    auto &toBB = pToBlackboard->mBlackboard;
+    assert(toBB.size() + uiOffset <= getSize());
+    std::copy_n(atOffset(uiOffset), toBB.size(), begin(toBB));
 }
 
 // Serialization
@@ -125,9 +119,9 @@ void CParameterBlackboard::serialize(CBinaryStream& binaryStream)
 {
     if (binaryStream.isOut()) {
 
-        binaryStream.write(_pucData, _uiSize);
+        binaryStream.write(mBlackboard.data(), getSize());
     } else {
 
-        binaryStream.read(_pucData, _uiSize);
+        binaryStream.read(mBlackboard.data(), getSize());
     }
 }

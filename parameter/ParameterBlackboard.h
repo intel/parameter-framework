@@ -29,16 +29,16 @@
  */
 #pragma once
 
-#include <stdint.h>
+#include "NonCopyable.hpp"
 #include "BinaryStream.h"
-#include <string>
 
-class CParameterBlackboard
+#include <cstdint>
+#include <string>
+#include <vector>
+
+class CParameterBlackboard : private utility::NonCopyable
 {
 public:
-    CParameterBlackboard();
-    ~CParameterBlackboard();
-
     // Size
     void setSize(uint32_t uiSize);
     uint32_t getSize() const;
@@ -46,6 +46,7 @@ public:
     // Single parameter access
     void writeInteger(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian);
     void readInteger(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const;
+
     void writeString(const std::string &input, uint32_t uiOffset);
     void readString(std::string &output, uint32_t uiOffset) const;
 
@@ -58,11 +59,12 @@ public:
 
     // Serialization
     void serialize(CBinaryStream& binaryStream);
-private:
-    CParameterBlackboard(const CParameterBlackboard&);
-    CParameterBlackboard& operator=(const CParameterBlackboard&);
 
-    uint8_t* _pucData;
-    uint32_t _uiSize;
+private:
+    using Blackboard = std::vector<uint8_t>;
+    Blackboard mBlackboard;
+
+    Blackboard::iterator atOffset(size_t offset) { return begin(mBlackboard) + offset; }
+    Blackboard::const_iterator atOffset(size_t offset) const { return begin(mBlackboard) + offset; }
 };
 
