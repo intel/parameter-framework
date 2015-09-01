@@ -44,8 +44,8 @@ public:
 
     // State
     virtual bool start(std::string &error);
-    virtual void stop();
-    void process(IRemoteCommandHandler &commandHandler);
+    virtual bool stop();
+    bool process(IRemoteCommandHandler &commandHandler);
 
 private:
 
