@@ -129,9 +129,6 @@ private:
     */
     virtual size_t getDataSize() const = 0;
 
-    // Checksum
-    uint8_t computeChecksum() const;
-
     // MsgId
     uint8_t _ucMsgId;
     // Data

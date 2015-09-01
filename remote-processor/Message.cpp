@@ -157,15 +157,6 @@ CMessage::Result CMessage::send(CSocket* pSocket, string& strError)
         return error;
     }
 
-    // Checksum
-    uint8_t ucChecksum = computeChecksum();
-
-    if (!pSocket->write(&ucChecksum, sizeof(ucChecksum))) {
-
-        strError = string("Checksum write failed: ") + strerror(errno);
-        return error;
-    }
-
     return success;
 }
 
@@ -199,40 +190,10 @@ CMessage::Result CMessage::recv(CSocket* pSocket, string& strError)
         return error;
     }
 
-    // Checksum
-    uint8_t ucChecksum;
-
-    if (!pSocket->read(&ucChecksum, sizeof(ucChecksum))) {
-
-        strError = string("Checksum read failed: ") + strerror(errno);
-        return error;
-    }
-    // Compare
-    if (ucChecksum != computeChecksum()) {
-
-        strError = "Received checksum != computed checksum";
-        return error;
-    }
-
     // Collect data in derived
     collectReceivedData();
 
     return success;
-}
-
-// Checksum
-uint8_t CMessage::computeChecksum() const
-{
-    uint8_t uiChecksum = _ucMsgId;
-
-    uint32_t uiIndex;
-
-    for (uiIndex = 0; uiIndex < _uiDataSize; uiIndex++) {
-
-        uiChecksum += _pucData[uiIndex];
-    }
-
-    return uiChecksum;
 }
 
 // Allocation of room to store the message
