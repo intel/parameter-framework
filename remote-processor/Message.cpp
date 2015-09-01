@@ -134,17 +134,6 @@ CMessage::Result CMessage::send(CSocket* pSocket, string& strError)
     // Finished providing data?
     assert(_uiIndex == _uiDataSize);
 
-    // First send sync word
-    uint16_t uiSyncWord = SYNC_WORD;
-
-    if (!pSocket->write(&uiSyncWord, sizeof(uiSyncWord))) {
-
-        if (pSocket->hasPeerDisconnected()) {
-            return peerDisconnected;
-        }
-        return error;
-    }
-
     // Size
     uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + _uiDataSize);
 
@@ -182,25 +171,6 @@ CMessage::Result CMessage::send(CSocket* pSocket, string& strError)
 
 CMessage::Result CMessage::recv(CSocket* pSocket, string& strError)
 {
-    // First read sync word
-    uint16_t uiSyncWord;
-
-    if (!pSocket->read(&uiSyncWord, sizeof(uiSyncWord))) {
-
-        strError = string("Sync read failed: ") + strerror(errno);
-        if (pSocket->hasPeerDisconnected()) {
-            return peerDisconnected;
-        }
-        return error;
-    }
-
-    // Check Sync word
-    if (uiSyncWord != SYNC_WORD) {
-
-        strError = "Sync word incorrect";
-        return error;
-    }
-
     // Size
     uint32_t uiSize;
 

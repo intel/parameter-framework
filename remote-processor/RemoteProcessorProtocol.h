@@ -29,8 +29,6 @@
  */
 #pragma once
 
-#define SYNC_WORD 0xBABE
-
 enum RemoteProtocolMsgType
 {
     ECommandRequest,
