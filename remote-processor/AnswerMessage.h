@@ -34,27 +34,24 @@
 class CAnswerMessage : public CMessage
 {
 public:
-    CAnswerMessage(const std::string& strAnswer, bool bSuccess);
-    CAnswerMessage();
+    CAnswerMessage(const std::string& strAnswer, bool bSuccess) :
+                   _success(bSuccess), _strAnswer(strAnswer) {}
+    CAnswerMessage() {}
 
     // Answer
     const std::string& getAnswer() const;
 
     // Status
-    bool success() const;
+    bool success() const { return _success; }
 private:
-    // Fill data to send
-    virtual void fillDataToSend();
-    // Collect received data
-    virtual void collectReceivedData();
+    virtual std::vector<uint8_t> getDataToSend();
+    virtual void processData(const std::vector<uint8_t> &data);
 
-    /** @return size of the answer message in bytes
-    */
-    virtual size_t getDataSize() const;
     // Answer
     void setAnswer(const std::string& strAnswer);
 
     // Answer
+    bool _success;
     std::string _strAnswer;
 };
 

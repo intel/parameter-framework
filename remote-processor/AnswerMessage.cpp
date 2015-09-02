@@ -28,20 +28,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "AnswerMessage.h"
-#include "RemoteProcessorProtocol.h"
 #include <assert.h>
 
-#define base CMessage
-
 using std::string;
-
-CAnswerMessage::CAnswerMessage(const string& strAnswer, bool bSuccess) : base(bSuccess ? ESuccessAnswer : EFailureAnswer), _strAnswer(strAnswer)
-{
-}
-
-CAnswerMessage::CAnswerMessage()
-{
-}
 
 // Answer
 void CAnswerMessage::setAnswer(const string& strAnswer)
@@ -54,33 +43,22 @@ const string& CAnswerMessage::getAnswer() const
     return _strAnswer;
 }
 
-// Status
-bool CAnswerMessage::success() const
-{
-    return getMsgId() == ESuccessAnswer;
-}
-
-// Size
-size_t CAnswerMessage::getDataSize() const
-{
-    // Answer
-    return getStringSize(getAnswer());
-}
-
 // Fill data to send
-void CAnswerMessage::fillDataToSend()
+std::vector<uint8_t> CAnswerMessage::getDataToSend()
 {
-    // Send answer
-    writeString(getAnswer());
+    std::vector<uint8_t> data;
+
+    // Send command
+    data.insert(data.end(), getAnswer().begin(), getAnswer().end());
+
+    return data;
 }
 
-// Collect received data
-void CAnswerMessage::collectReceivedData()
+void CAnswerMessage::processData(const std::vector<uint8_t> &data)
 {
-    // Receive answer
-    string strAnswer;
+    // Receive command
+    string strCommand(&data[0], &data[data.size()]);
 
-    readString(strAnswer);
-
-    setAnswer(strAnswer);
+    setAnswer(strCommand);
 }
+

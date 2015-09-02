@@ -31,15 +31,15 @@
 
 #include <stdint.h>
 #include <string>
+#include <vector>
 
 class CSocket;
 
 class CMessage
 {
 public:
-    CMessage(uint8_t ucMsgId);
-    CMessage();
-    virtual ~CMessage();
+    CMessage() = default;
+    virtual ~CMessage() {}
 
     enum Result {
         success,
@@ -71,70 +71,11 @@ public:
      */
     Result recv(CSocket* pSocket, std::string &strError);
 
-protected:
-    // Msg Id
-    uint8_t getMsgId() const;
-
-    /** Write raw data to the message
-    *
-    * @param[in] pvData pointer to the data array
-    * @param[in] uiSize array size in bytes
-    */
-    void writeData(const void* pvData, size_t uiSize);
-
-    /** Read raw data from the message
-    *
-    * @param[out] pvData pointer to the data array
-    * @param[in] uiSize array size in bytes
-    */
-    void readData(void* pvData, size_t uiSize);
-
-    /** Write string to the message
-    *
-    * @param[in] strData the string to write
-    */
-    void writeString(const std::string& strData);
-
-    /** Write string to the message
-    *
-    * @param[out] strData the string to read to
-    */
-    void readString(std::string& strData);
-
-    /** @return string length plus room to store its length
-    *
-    * @param[in] strData the string to get the size from
-    */
-    size_t getStringSize(const std::string& strData) const;
-
-    /** @return remaining data size to read or to write depending on the context
-    * (request: write, answer: read)
-    */
-    size_t getRemainingDataSize() const;
 private:
-    CMessage(const CMessage&);
-    CMessage& operator=(const CMessage&);
+    CMessage(const CMessage&) = delete;
+    CMessage& operator=(const CMessage&) = delete;
 
-    /** Allocate room to store the message
-    *
-    * @param[int] uiDataSize the szie to allocate in bytes
-    */
-    void allocateData(size_t uiDataSize);
     // Fill data to send
-    virtual void fillDataToSend() = 0;
-    // Collect received data
-    virtual void collectReceivedData() = 0;
-
-    /** @return size of the transaction data in bytes
-    */
-    virtual size_t getDataSize() const = 0;
-
-    // MsgId
-    uint8_t _ucMsgId;
-    // Data
-    uint8_t* _pucData;
-    /** Size of the allocated memory to store the message */
-    size_t _uiDataSize;
-    /** Read/Write Index used to iterate across the message data */
-    size_t _uiIndex;
+    virtual std::vector<uint8_t> getDataToSend() = 0;
+    virtual void processData(const std::vector<uint8_t> &data) = 0;
 };

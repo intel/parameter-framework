@@ -28,24 +28,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RequestMessage.h"
-#include "RemoteProcessorProtocol.h"
 #include <assert.h>
 #include <algorithm>
 #include <ctype.h>
 
-#define base CMessage
-
 using std::string;
 
 const char* const CRequestMessage::gacDelimiters = " \t\n\v\f\r";
-
-CRequestMessage::CRequestMessage(const string& strCommand) : base(ECommandRequest), _strCommand(strCommand)
-{
-}
-
-CRequestMessage::CRequestMessage()
-{
-}
 
 // Command Name
 void CRequestMessage::setCommand(const string& strCommand)
@@ -104,55 +93,46 @@ const string CRequestMessage::packArguments(uint32_t uiStartArgument, uint32_t u
 }
 
 // Fill data to send
-void CRequestMessage::fillDataToSend()
+std::vector<uint8_t> CRequestMessage::getDataToSend()
 {
+    std::vector<uint8_t> data;
+
     // Send command
-    writeString(getCommand());
+    data.insert(data.end(), getCommand().begin(), getCommand().end());
 
     // Arguments
     uint32_t uiArgument;
 
     for (uiArgument = 0; uiArgument < getArgumentCount(); uiArgument++) {
-
-        writeString(getArgument(uiArgument));
+        const string& arg = getArgument(uiArgument);
+        data.push_back(static_cast<uint8_t>(' '));
+        data.insert(data.end(), arg.begin(), arg.end());
     }
+    return data;
 }
 
 // Collect received data
-void CRequestMessage::collectReceivedData()
+void CRequestMessage::processData(const std::vector<uint8_t> &data)
 {
     // Receive command
-    string strCommand;
+    string strCommand(&data[0], &data[data.size()]);
 
-    readString(strCommand);
+    auto next = strCommand.find(' ');
+    decltype(next) prev = 0;
 
-    setCommand(strCommand);
+    /* FIXME assert when no command name found? */
+    setCommand(std::string(strCommand, prev, next));
 
-    // Arguments
-    while (getRemainingDataSize()) {
-
-        string strArgument;
-
-        readString(strArgument);
-
-        addArgument(strArgument);
-    }
-}
-
-// Size
-size_t CRequestMessage::getDataSize() const
-{
-    // Command
-    size_t uiSize = getStringSize(getCommand());
+    prev = next;
+    next = strCommand.find(' ', prev + 1);
 
     // Arguments
-    uint32_t uiArgument;
+    while (prev != std::string::npos) {
 
-    for (uiArgument = 0; uiArgument < getArgumentCount(); uiArgument++) {
-
-        uiSize += getStringSize(getArgument(uiArgument));
+        addArgument(std::string(strCommand, prev, next));
+        prev = next;
+        next = strCommand.find(' ', prev + 1);
     }
-    return uiSize;
 }
 
 // Trim input string

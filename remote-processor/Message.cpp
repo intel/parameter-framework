@@ -30,7 +30,6 @@
 #include "Message.h"
 #include <assert.h>
 #include "Socket.h"
-#include "RemoteProcessorProtocol.h"
 #include <string.h>
 #include <assert.h>
 #include <errno.h>
@@ -38,113 +37,21 @@
 
 using std::string;
 
-CMessage::CMessage(uint8_t ucMsgId) : _ucMsgId(ucMsgId), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
-{
-}
-
-CMessage::CMessage() : _ucMsgId((uint8_t)-1), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
-{
-}
-
-CMessage::~CMessage()
-{
-    delete [] _pucData;
-}
-
-// Msg Id
-uint8_t CMessage::getMsgId() const
-{
-    return _ucMsgId;
-}
-
-// Data
-void CMessage::writeData(const void* pvData, size_t uiSize)
-{
-    assert(_uiIndex + uiSize <= _uiDataSize);
-
-    // Copy
-    memcpy(&_pucData[_uiIndex], pvData, uiSize);
-
-    // Index
-    _uiIndex += uiSize;
-}
-
-void CMessage::readData(void* pvData, size_t uiSize)
-{
-    assert(_uiIndex + uiSize <= _uiDataSize);
-
-    // Copy
-    memcpy(pvData, &_pucData[_uiIndex], uiSize);
-
-    // Index
-    _uiIndex += uiSize;
-}
-
-void CMessage::writeString(const string& strData)
-{
-    // Size
-    uint32_t uiSize = strData.length();
-
-    writeData(&uiSize, sizeof(uiSize));
-
-    // Content
-    writeData(strData.c_str(), uiSize);
-}
-
-void CMessage::readString(string& strData)
-{
-    // Size
-    uint32_t uiSize;
-
-    readData(&uiSize, sizeof(uiSize));
-
-    // Data
-    std::vector<char> string(uiSize + 1);
-
-    // Content
-    readData(string.data(), uiSize);
-
-    // NULL-terminate string
-    string.back() = '\0';
-
-    // Output
-    strData = string.data();
-}
-
-size_t CMessage::getStringSize(const string& strData) const
-{
-    // Return string length plus room to store its length
-    return strData.length() + sizeof(uint32_t);
-}
-
-// Remaining data size
-size_t CMessage::getRemainingDataSize() const
-{
-    return _uiDataSize - _uiIndex;
-}
-
 CMessage::Result CMessage::send(CSocket* pSocket, string& strError)
 {
-    // Make room for data to send
-    allocateData(getDataSize());
-
     // Get data from derived
-    fillDataToSend();
-
-    // Finished providing data?
-    assert(_uiIndex == _uiDataSize);
+    std::vector<uint8_t> data = getDataToSend();
 
     // Size
-    uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + _uiDataSize);
-
-    if (!pSocket->write(&uiSize, sizeof(uiSize))) {
+    uint16_t size = data.size();
+    if (!pSocket->write(&size, sizeof(size))) {
 
         strError += string("Size write failed: ") + strerror(errno);
         return error;
     }
 
     // Data
-    if (!pSocket->write(_pucData, _uiDataSize)) {
+    if (!pSocket->write((const char *)&data[0], data.size())) {
 
         strError = string("Data write failed: ") + strerror(errno);
         return error;
@@ -156,9 +63,8 @@ CMessage::Result CMessage::send(CSocket* pSocket, string& strError)
 CMessage::Result CMessage::recv(CSocket* pSocket, string& strError)
 {
     // Size
-    uint32_t uiSize;
-
-    if (!pSocket->read(&uiSize, sizeof(uiSize))) {
+    uint16_t size;
+    if (!pSocket->read(&size, sizeof(size))) {
 
         strError = string("Size read failed: ") + strerror(errno);
         return error;
@@ -166,36 +72,16 @@ CMessage::Result CMessage::recv(CSocket* pSocket, string& strError)
 
     // Data
 
-    // Allocate
-    allocateData(uiSize - sizeof(_ucMsgId));
+    std::vector<uint8_t> data(size);
 
     // Data receive
-    if (!pSocket->read(_pucData, _uiDataSize)) {
+    if (!pSocket->read((char *)&data[0], data.size())) {
 
         strError = string("Data read failed: ") + strerror(errno);
         return error;
     }
 
-    // Collect data in derived
-    collectReceivedData();
+    processData(data);
 
     return success;
-}
-
-// Allocation of room to store the message
-void CMessage::allocateData(size_t uiSize)
-{
-    // Remove previous one
-    if (_pucData) {
-
-        delete [] _pucData;
-    }
-    // Do allocate
-    _pucData = new uint8_t[uiSize];
-
-    // Record size
-    _uiDataSize = uiSize;
-
-    // Reset Index
-    _uiIndex = 0;
 }

@@ -37,8 +37,8 @@
 class CRequestMessage : public CMessage, public IRemoteCommand
 {
 public:
-    CRequestMessage(const std::string& strCommand);
-    CRequestMessage();
+    CRequestMessage(const std::string& strCommand) : _strCommand(strCommand) {}
+    CRequestMessage() {}
 
     // Command Name
     void setCommand(const std::string& strCommand);
@@ -59,15 +59,9 @@ private:
       */
     static const char* const gacDelimiters;
 
-    // Fill data to send
-    virtual void fillDataToSend();
-    // Collect received data
-    virtual void collectReceivedData();
-    // Size
-    /**
-     * @return size of the request message in bytes
-     */
-    virtual size_t getDataSize() const;
+    virtual std::vector<uint8_t> getDataToSend();
+    virtual void processData(const std::vector<uint8_t> &data);
+
     // Trim input std::string
     static std::string trim(const std::string& strToTrim);
 
