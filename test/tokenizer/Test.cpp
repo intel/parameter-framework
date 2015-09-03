@@ -43,7 +43,26 @@ SCENARIO("Tokenizer tests") {
     GIVEN("A default tokenizer") {
 
         GIVEN("A trivial string") {
-            Tokenizer tokenizer("a bcd ef");
+            Tokenizer tokenizer("a bcd ef", Tokenizer::defaultDelimiters, false);
+
+            THEN("next() api should work") {
+                CHECK(tokenizer.next() == "a");
+                CHECK(tokenizer.next() == "bcd");
+                CHECK(tokenizer.next() == "ef");
+                CHECK(tokenizer.next() == "");
+            }
+            THEN("split() api should work") {
+                vector<string> expected;
+                expected.push_back("a");
+                expected.push_back("bcd");
+                expected.push_back("ef");
+
+                CHECK(tokenizer.split() == expected);
+            }
+        }
+
+        GIVEN("A zero-delimited string") {
+            Tokenizer tokenizer(string("a\0bcd\0ef", 8), string("\0", 1), false);
 
             THEN("next() api should work") {
                 CHECK(tokenizer.next() == "a");
@@ -64,6 +83,9 @@ SCENARIO("Tokenizer tests") {
         GIVEN("An empty string") {
             Tokenizer tokenizer("");
 
+            THEN("done() should be true") {
+                CHECK(tokenizer.done());
+            }
             THEN("next() api should work") {
                 CHECK(tokenizer.next() == "");
             }
@@ -95,7 +117,7 @@ SCENARIO("Tokenizer tests") {
             }
         }
 
-        GIVEN("Multiple separators in a row") {
+        GIVEN("Multiple separators in a row - skip empties") {
             Tokenizer tokenizer("  a \n\t bc  ");
 
             THEN("next() api should work") {
@@ -107,6 +129,27 @@ SCENARIO("Tokenizer tests") {
                 vector<string> expected;
                 expected.push_back("a");
                 expected.push_back("bc");
+
+                CHECK(tokenizer.split() == expected);
+            }
+        }
+
+        GIVEN("Multiple separators in a row - don't skip empties") {
+            Tokenizer tokenizer("  a \n\t bc  ", Tokenizer::defaultDelimiters, false);
+
+            THEN("next() api should work") {
+                CHECK(tokenizer.next() == "");
+                CHECK(tokenizer.next() == "");
+                CHECK(tokenizer.next() == "a");
+                CHECK(tokenizer.next() == "");
+                CHECK(tokenizer.next() == "");
+                CHECK(tokenizer.next() == "");
+                CHECK(tokenizer.next() == "bc");
+                CHECK(tokenizer.next() == "");
+                CHECK(tokenizer.next() == "");
+            }
+            THEN("split() api should work") {
+                vector<string> expected = {"", "", "a", "", "", "", "bc", "", ""};
 
                 CHECK(tokenizer.split() == expected);
             }

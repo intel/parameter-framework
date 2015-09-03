@@ -34,30 +34,38 @@ using std::vector;
 
 const string Tokenizer::defaultDelimiters = " \n\r\t\v\f";
 
-Tokenizer::Tokenizer(const string &input, const string &delimiters)
-    : _input(input), _delimiters(delimiters), _position(0)
+Tokenizer::Tokenizer(const string &input, const string &delimiters, bool skipEmpty)
+    : _input(input), _delimiters(delimiters), _skipEmpty(skipEmpty), _position(0)
 {
+    // Deal with strings with no token
+    if (_skipEmpty) {
+        _position = _input.find_first_not_of(_delimiters);
+    }
 }
 
 string Tokenizer::next()
 {
-    string token;
-
-    // Skip all leading delimiters
-    string::size_type tokenStart = _input.find_first_not_of(_delimiters, _position);
-
-    // Special case if there isn't any token anymore (string::substr's
-    // throws when pos==npos)
-    if (tokenStart == string::npos) {
+    if (done()) {
         return "";
     }
 
-    // Starting from the token's start, find the first delimiter
-    string::size_type tokenEnd = _input.find_first_of(_delimiters, tokenStart);
+    auto tokenStart = _position;
+    _position = _input.find_first_of(_delimiters, tokenStart);
+    string::size_type count;
 
-    _position = tokenEnd;
+    // We consumed all of the input
+    if (done()) {
+        count = string::npos;
+    } else {
+        count = _position - tokenStart;
+        _position++;
+        // Deal with future empty tokens (so that the user can reliably call done())
+        if (_skipEmpty) {
+           _position = _input.find_first_not_of(_delimiters, _position);
+        }
+    }
 
-    return _input.substr(tokenStart, tokenEnd - tokenStart);
+    return _input.substr(tokenStart, count);
 }
 
 vector<string> Tokenizer::split()
@@ -65,11 +73,15 @@ vector<string> Tokenizer::split()
     vector<string> result;
     string token;
 
-    while (true) {
+    while (not done()) {
         token = next();
-        if (token.empty()) {
-            return result;
-        }
         result.push_back(token);
     }
+
+    return result;
+}
+
+bool Tokenizer::done()
+{
+    return _position > _input.size();
 }

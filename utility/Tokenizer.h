@@ -50,19 +50,38 @@ public:
      * @param[in] input The string to be tokenized
      * @param[in] delimiters A string containing all the token delimiters
      *            (hence, each delimiter can only be a single character)
+     * @param[in] skipEmpty Whether the tokenizer should skip empty tokens, i.e.
+     *            consider consecutive delimiters as one delimiter - see next().
      */
-    Tokenizer(const std::string &input, const std::string &delimiters=defaultDelimiters);
+    Tokenizer(const std::string &input,
+              const std::string &delimiters = defaultDelimiters,
+              bool skipEmpty = true);
     ~Tokenizer() {};
 
     /** Return the next token or an empty string if no more token
      *
-     * Multiple consecutive delimiters are considered as a single one - i.e.
-     * "a     bc d   " will be tokenized as ("a", "bc", "d") if the delimiter
-     * is ' '.
+     * If the input is the empty string, this will return an empty string on
+     * the first call - that is why done() should be called even before calling
+     * next() for the first time.
+     *
+     * If requested during construction, multiple consecutive delimiters can
+     * considered as a single one - i.e. if the delimiter is '.', then
+     * "a...bc.d.." will either be tokenized as
+     * ("a", "bc", "d") or ("a", "", "", "bc", "d", "", "")
+     * depending on how the tokenizer was constructed.
      */
     std::string next();
 
-    /** Return a vector of all tokens
+    /** Has all the string been completely tokenized ?
+     *
+     * If this returns true, the caller shoud stop calling next().
+     *
+     * @returns false if there is still data to be tokenized in the input
+     *          string, true otherwise.
+     */
+    bool done();
+
+    /** Return a vector of all remaining tokens
      */
     std::vector<std::string> split();
 
@@ -72,6 +91,7 @@ public:
 private:
     const std::string _input; //< string to be tokenized
     const std::string _delimiters; //< token delimiters
+    bool _skipEmpty; //< skip empty tokens ?
 
     std::string::size_type _position; //< end of the last returned token
 };
