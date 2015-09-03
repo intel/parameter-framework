@@ -51,19 +51,8 @@ public:
     virtual const std::string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const;
 
 private:
-
-    /**
-      * Constant character array.
-      * This value defines the delimiters used to separate the arguments
-      * in the request command.
-      */
-    static const char* const gacDelimiters;
-
     virtual std::vector<uint8_t> getDataToSend();
     virtual void processData(const std::vector<uint8_t> &data);
-
-    // Trim input std::string
-    static std::string trim(const std::string& strToTrim);
 
     // Command
     std::string _strCommand;

@@ -164,7 +164,7 @@ void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandH
 
         switch (res) {
         case CRequestMessage::error:
-            std::cout << "Error while receiving message: " << strError << std::endl;
+            //std::cout << "Error while receiving message: " << strError << std::endl;
             // fall through
         case CRequestMessage::peerDisconnected:
             // Consider peer disconnection as normal, no log

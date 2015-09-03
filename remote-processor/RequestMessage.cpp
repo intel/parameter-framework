@@ -28,18 +28,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RequestMessage.h"
+#include "Tokenizer.h"
 #include <assert.h>
 #include <algorithm>
 #include <ctype.h>
 
 using std::string;
 
-const char* const CRequestMessage::gacDelimiters = " \t\n\v\f\r";
-
 // Command Name
 void CRequestMessage::setCommand(const string& strCommand)
 {
-    _strCommand = trim(strCommand);
+    _strCommand = strCommand;
 }
 
 const string& CRequestMessage::getCommand() const
@@ -50,7 +49,7 @@ const string& CRequestMessage::getCommand() const
 // Arguments
 void CRequestMessage::addArgument(const string& strArgument)
 {
-    _argumentVector.push_back(trim(strArgument));
+    _argumentVector.push_back(strArgument);
 }
 
 uint32_t CRequestMessage::getArgumentCount() const
@@ -105,7 +104,7 @@ std::vector<uint8_t> CRequestMessage::getDataToSend()
 
     for (uiArgument = 0; uiArgument < getArgumentCount(); uiArgument++) {
         const string& arg = getArgument(uiArgument);
-        data.push_back(static_cast<uint8_t>(' '));
+        data.push_back(static_cast<uint8_t>('\0'));
         data.insert(data.end(), arg.begin(), arg.end());
     }
     return data;
@@ -117,33 +116,13 @@ void CRequestMessage::processData(const std::vector<uint8_t> &data)
     // Receive command
     string strCommand(&data[0], &data[data.size()]);
 
-    auto next = strCommand.find(' ');
-    decltype(next) prev = 0;
+    Tokenizer tok(strCommand, std::string("\0", 1), false);
 
-    /* FIXME assert when no command name found? */
-    setCommand(std::string(strCommand, prev, next));
-
-    prev = next;
-    next = strCommand.find(' ', prev + 1);
+    setCommand(tok.next());
 
     // Arguments
-    while (prev != std::string::npos) {
-
-        addArgument(std::string(strCommand, prev, next));
-        prev = next;
-        next = strCommand.find(' ', prev + 1);
+    for (auto &arg : tok.split()) {
+        addArgument(arg);
     }
 }
 
-// Trim input string
-string CRequestMessage::trim(const string& strToTrim)
-{
-    // Trim string
-    string strTrimmed = strToTrim;
-
-    strTrimmed.erase(strTrimmed.find_last_not_of(gacDelimiters) + 1 );
-
-    strTrimmed.erase(0, strTrimmed.find_first_not_of(gacDelimiters));
-
-    return strTrimmed;
-}

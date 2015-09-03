@@ -38,17 +38,12 @@ public:
                    _success(bSuccess), _strAnswer(strAnswer) {}
     CAnswerMessage() {}
 
-    // Answer
-    const std::string& getAnswer() const;
-
-    // Status
+    const std::string& getAnswer() const { return _strAnswer; }
     bool success() const { return _success; }
+
 private:
     virtual std::vector<uint8_t> getDataToSend();
     virtual void processData(const std::vector<uint8_t> &data);
-
-    // Answer
-    void setAnswer(const std::string& strAnswer);
 
     // Answer
     bool _success;

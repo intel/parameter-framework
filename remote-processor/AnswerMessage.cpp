@@ -32,21 +32,12 @@
 
 using std::string;
 
-// Answer
-void CAnswerMessage::setAnswer(const string& strAnswer)
-{
-    _strAnswer = strAnswer;
-}
-
-const string& CAnswerMessage::getAnswer() const
-{
-    return _strAnswer;
-}
-
 // Fill data to send
 std::vector<uint8_t> CAnswerMessage::getDataToSend()
 {
     std::vector<uint8_t> data;
+
+    data.push_back((uint8_t)_success);
 
     // Send command
     data.insert(data.end(), getAnswer().begin(), getAnswer().end());
@@ -56,9 +47,12 @@ std::vector<uint8_t> CAnswerMessage::getDataToSend()
 
 void CAnswerMessage::processData(const std::vector<uint8_t> &data)
 {
-    // Receive command
-    string strCommand(&data[0], &data[data.size()]);
+    bool success = data[0];
 
-    setAnswer(strCommand);
+    // Receive command
+    string strAnswer(&data[1], &data[data.size()]);
+
+    _success = success;
+    _strAnswer = strAnswer;
 }
 

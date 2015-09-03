@@ -164,7 +164,7 @@ private:
         if (!pRemoteCommandParserItem) {
 
             // Not found
-            strResult = "Command not found!\nUse \"help\" to show available commands";
+            strResult = "Command '" + remoteCommand.getCommand() + "'not found!\nUse \"help\" to show available commands";
 
             return false;
         }
