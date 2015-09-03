@@ -29,9 +29,9 @@
  */
 #pragma once
 
-#include "Message.h"
+#include "RemoteCommand.h"
 
-class CAnswerMessage : public CMessage
+class CAnswerMessage : public IRemoteCommand
 {
 public:
     CAnswerMessage(const std::string& strAnswer, bool bSuccess) :
@@ -41,9 +41,9 @@ public:
     const std::string& getAnswer() const { return _strAnswer; }
     bool success() const { return _success; }
 
+    std::vector<uint8_t> serialize() const override;
+    void deserialize(const std::vector<uint8_t> &data) override;
 private:
-    virtual std::vector<uint8_t> getDataToSend();
-    virtual void processData(const std::vector<uint8_t> &data);
 
     // Answer
     bool _success;

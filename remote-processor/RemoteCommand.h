@@ -36,12 +36,9 @@
 class IRemoteCommand
 {
 public:
-    // Command Name
-    virtual const std::string& getCommand() const = 0;
-
-    // Arguments
-    virtual void addArgument(const std::string& strArgument) = 0;
-    virtual const std::vector<std::string> &getArguments() const = 0;
+    // Fill data to send
+    virtual std::vector<uint8_t> serialize() const = 0;
+    virtual void deserialize(const std::vector<uint8_t> &data) = 0;
 
 protected:
     virtual ~IRemoteCommand() {}

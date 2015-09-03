@@ -33,7 +33,7 @@
 using std::string;
 
 // Fill data to send
-std::vector<uint8_t> CAnswerMessage::getDataToSend()
+std::vector<uint8_t> CAnswerMessage::serialize() const
 {
     std::vector<uint8_t> data;
 
@@ -45,7 +45,7 @@ std::vector<uint8_t> CAnswerMessage::getDataToSend()
     return data;
 }
 
-void CAnswerMessage::processData(const std::vector<uint8_t> &data)
+void CAnswerMessage::deserialize(const std::vector<uint8_t> &data)
 {
     bool success = data[0];
 

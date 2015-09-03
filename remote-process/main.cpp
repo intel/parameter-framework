@@ -41,21 +41,28 @@ bool sendAndDisplayCommand(CConnectionSocket &connectionSocket, CRequestMessage 
 {
     string strError;
 
-    if (requestMessage.send(&connectionSocket, strError)
-            != CRequestMessage::success) {
+    CMessage service(&connectionSocket);
 
-        cerr << "Unable to send command to target: " << strError << endl;
+    std::vector<uint8_t> payload = requestMessage.serialize();
+
+    auto res = service.send(payload);
+    if (res.first != CMessage::Code::success) {
+
+        cerr << "Unable to send command to target: " << res.second << endl;
         return false;
     }
 
     ///// Get answer
-    CAnswerMessage answerMessage;
-    if (answerMessage.recv(&connectionSocket, strError)
-            != CRequestMessage::success) {
+    res = service.recv(payload);
+    if (res.first != CMessage::Code::success) {
 
-        cerr << "Unable to received answer from target: " << strError << endl;
+        cerr << "Unable to received answer from target: " << res.second << endl;
         return false;
     }
+
+    CAnswerMessage answerMessage;
+
+    answerMessage.deserialize(payload);
 
     // Success?
     if (!answerMessage.success()) {

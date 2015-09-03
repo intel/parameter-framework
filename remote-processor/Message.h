@@ -38,44 +38,22 @@ class CSocket;
 class CMessage
 {
 public:
-    CMessage() = default;
+    CMessage(CSocket* pSocket) : _socket(pSocket) {}
     virtual ~CMessage() {}
 
-    enum Result {
+    enum class Code {
         success,
         peerDisconnected,
         error
     };
+    using Result = std::pair<Code, std::string>;
 
-    /** Write the message on pSocket.
-     *
-     * @param[in] pSocket is the socket on wich IO operation will be made.
-     * @param[out] strError on failure, a string explaining the error,
-     *                      on success, undefined.
-     *
-     * @return success if a correct message could be recv/send
-     *         peerDisconnected if the peer disconnected before the first socket access.
-     *         error if the message could not be read/write for any other reason
-     */
-    Result send(CSocket* pSocket, std::string &strError);
+    Result send(const std::vector<uint8_t> &data);
 
-    /** Read the message on pSocket.
-     *
-     * @param[in] pSocket is the socket on wich IO operation will be made.
-     * @param[out] strError on failure, a string explaining the error,
-     *                      on success, undefined.
-     *
-     * @return success if a correct message could be recv/send
-     *         peerDisconnected if the peer disconnected before the first socket access.
-     *         error if the message could not be read/write for any other reason
-     */
-    Result recv(CSocket* pSocket, std::string &strError);
+    Result recv(std::vector<uint8_t> &data);
 
 private:
     CMessage(const CMessage&) = delete;
     CMessage& operator=(const CMessage&) = delete;
-
-    // Fill data to send
-    virtual std::vector<uint8_t> getDataToSend() = 0;
-    virtual void processData(const std::vector<uint8_t> &data) = 0;
+    CSocket *_socket;
 };

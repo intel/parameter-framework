@@ -150,28 +150,30 @@ void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandH
         return;
     }
 
+    CMessage service(clientSocket.get());
+
     // Process all incoming requests from the client
     while (true) {
 
-        // Process requests
-        // Create command message
-        CRequestMessage requestMessage;
+        std::vector<uint8_t> payload;
+        auto res = service.recv(payload);
 
-        string strError;
-        ///// Receive command
-        CRequestMessage::Result res;
-        res = requestMessage.recv(clientSocket.get(), strError);
+        using Code = CMessage::Code;
 
-        switch (res) {
-        case CRequestMessage::error:
-            //std::cout << "Error while receiving message: " << strError << std::endl;
+        switch (res.first) {
+        case Code::error:
+            std::cout << "Error while receiving message: " << res.second << std::endl;
             // fall through
-        case CRequestMessage::peerDisconnected:
+        case Code::peerDisconnected:
             // Consider peer disconnection as normal, no log
             return; // Bail out
-        case CRequestMessage::success:
+        case Code::success:
             break; // No error, continue
         }
+
+        CRequestMessage requestMessage;
+
+        requestMessage.deserialize(payload);
 
         // Actually process the request
         bool bSuccess;
@@ -184,17 +186,19 @@ void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandH
         // Create answer message
         CAnswerMessage answerMessage(strResult, bSuccess);
 
-        ///// Send answer
-        res = answerMessage.send(clientSocket.get(), strError);
+        payload = answerMessage.serialize();
 
-        switch (res) {
-        case CRequestMessage::peerDisconnected:
+        ///// Send answer
+        res = service.send(payload);
+
+        switch (res.first) {
+        case Code::peerDisconnected:
             // Peer should not disconnect while waiting for an answer
             // Fall through to log the error and bail out
-        case CRequestMessage::error:
-            std::cout << "Error while receiving message: " << strError << std::endl;
+        case Code::error:
+            std::cout << "Error while receiving message: " << res.second << std::endl;
             return; // Bail out
-        case CRequestMessage::success:
+        case Code::success:
             break; // No error, continue
         }
     }

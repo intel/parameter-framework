@@ -53,7 +53,7 @@ void CRequestMessage::addArgument(const string& strArgument)
 }
 
 // Fill data to send
-std::vector<uint8_t> CRequestMessage::getDataToSend()
+std::vector<uint8_t> CRequestMessage::serialize() const
 {
     std::vector<uint8_t> data;
 
@@ -64,13 +64,14 @@ std::vector<uint8_t> CRequestMessage::getDataToSend()
         /* Add a separator */
         data.push_back(static_cast<uint8_t>('\0'));
 
+        /* push back the argument itself */
         data.insert(data.end(), arg.begin(), arg.end());
     }
     return data;
 }
 
 // Collect received data
-void CRequestMessage::processData(const std::vector<uint8_t> &data)
+void CRequestMessage::deserialize(const std::vector<uint8_t> &data)
 {
     // Receive command
     string strCommand(&data[0], &data[data.size()]);

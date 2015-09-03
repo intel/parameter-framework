@@ -34,7 +34,7 @@
 #include <vector>
 #include <string>
 
-class CRequestMessage : public CMessage, public IRemoteCommand
+class CRequestMessage : public IRemoteCommand
 {
 public:
     CRequestMessage(const std::string& strCommand) : _strCommand(strCommand) {}
@@ -45,13 +45,13 @@ public:
     virtual const std::string& getCommand() const;
 
     // Arguments
-    virtual void addArgument(const std::string& strArgument);
-    const std::vector<std::string> &getArguments() const override { return _arguments; }
+    void addArgument(const std::string& strArgument);
+    const std::vector<std::string> &getArguments() const { return _arguments; }
+
+    std::vector<uint8_t> serialize() const override;
+    void deserialize(const std::vector<uint8_t> &data) override;
 
 private:
-    virtual std::vector<uint8_t> getDataToSend();
-    virtual void processData(const std::vector<uint8_t> &data);
-
     // Command
     std::string _strCommand;
     // Arguments

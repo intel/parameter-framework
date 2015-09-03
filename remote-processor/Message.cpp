@@ -37,51 +37,43 @@
 
 using std::string;
 
-CMessage::Result CMessage::send(CSocket* pSocket, string& strError)
+CMessage::Result CMessage::send(const std::vector<uint8_t> &data)
 {
-    // Get data from derived
-    std::vector<uint8_t> data = getDataToSend();
-
     // Size
     uint16_t size = data.size();
-    if (!pSocket->write(&size, sizeof(size))) {
+    if (!_socket->write(&size, sizeof(size))) {
 
-        strError += string("Size write failed: ") + strerror(errno);
-        return error;
+        return make_pair(Code::error, string("Size write failed: ") + strerror(errno));
     }
 
     // Data
-    if (!pSocket->write((const char *)&data[0], data.size())) {
+    if (!_socket->write((const char *)&data[0], data.size())) {
 
-        strError = string("Data write failed: ") + strerror(errno);
-        return error;
+        return make_pair(Code::error, string("Data write failed: ") + strerror(errno));
     }
 
-    return success;
+    return make_pair(Code::success, std::string("Success"));
 }
 
-CMessage::Result CMessage::recv(CSocket* pSocket, string& strError)
+CMessage::Result CMessage::recv(std::vector<uint8_t> &data)
 {
-    // Size
     uint16_t size;
-    if (!pSocket->read(&size, sizeof(size))) {
+    if (!_socket->read(&size, sizeof(size))) {
 
-        strError = string("Size read failed: ") + strerror(errno);
-        return error;
+        return make_pair(errno == ECONNRESET ? Code::peerDisconnected : Code::error,
+                         string("Size read failed: ") + strerror(errno));
     }
 
-    // Data
-
-    std::vector<uint8_t> data(size);
+    /* discard spurious content if any */
+    data.clear();
+    data.resize(size);
 
     // Data receive
-    if (!pSocket->read((char *)&data[0], data.size())) {
+    if (!_socket->read((char *)&data[0], data.size())) {
 
-        strError = string("Data read failed: ") + strerror(errno);
-        return error;
+        return make_pair(errno == ECONNRESET ? Code::peerDisconnected : Code::error,
+                         string("Data read failed: ") + strerror(errno));
     }
 
-    processData(data);
-
-    return success;
+    return make_pair(Code::success, std::string("Success"));
 }
