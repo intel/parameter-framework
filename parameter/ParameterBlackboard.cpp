@@ -31,6 +31,20 @@
 #include <cassert>
 #include <algorithm>
 
+#ifdef _MSC_VER
+#   include <iterator>
+    /** Visual studio raises a warning if the check iterator feature is activated
+     * but a raw pointer is used as iterator (as it can not check it's bounds).
+     * As it is a safety feature, do not silent the warning, but use the
+     * microsoft specific `make_check_array_iterator` that take a pointer
+     * and the size of the underline buffer.
+     * For other compiler, use the raw pointer.
+     */
+#   define MAKE_ARRAY_ITERATOR(begin, size) stdext::make_checked_array_iterator(begin, size)
+#else
+    /** By default an array iterator is a pointer to the first element. */
+#   define MAKE_ARRAY_ITERATOR(begin, size) begin
+#endif
 
 // Size
 void CParameterBlackboard::setSize(uint32_t uiSize)
@@ -48,7 +62,7 @@ void CParameterBlackboard::writeInteger(const void* pvSrcData, uint32_t uiSize, 
 {
     assert(uiSize + uiOffset <= getSize());
 
-    auto first = static_cast<const uint8_t *>(pvSrcData);
+    auto first = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvSrcData), uiSize);
     auto last = first + uiSize;
     auto dest_first = atOffset(uiOffset);
 
@@ -65,7 +79,7 @@ void CParameterBlackboard::readInteger(void* pvDstData, uint32_t uiSize, uint32_
 
     auto first = atOffset(uiOffset);
     auto last = first + uiSize;
-    auto dest_first = static_cast<uint8_t *>(pvDstData);
+    auto dest_first = MAKE_ARRAY_ITERATOR(static_cast<uint8_t *>(pvDstData), uiSize);
 
     if (!bBigEndian) {
         std::copy(first, last, dest_first);
