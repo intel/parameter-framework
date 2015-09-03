@@ -51,7 +51,7 @@ public:
      *
      * @return the command execution status, @see CommandStatus
      */
-    typedef CommandStatus (CCommandParser::*RemoteCommandParser)(const IRemoteCommand& remoteCommand, std::string& strResult);
+    typedef CommandStatus (CCommandParser::*RemoteCommandParser)(const CRequestMessage& remoteCommand, std::string& strResult);
 
 private:
     // Parser descriptions
@@ -85,7 +85,7 @@ private:
             return _strCommandName + " " + _strHelp;
         }
 
-        bool parse(CCommandParser* pCommandParser, const IRemoteCommand& remoteCommand, std::string& strResult) const
+        bool parse(CCommandParser* pCommandParser, const CRequestMessage& remoteCommand, std::string& strResult) const
         {
             // Check enough arguments supplied
             if (remoteCommand.getArguments().size() < _uiMinArgumentCount) {
@@ -156,7 +156,7 @@ public:
 
 private:
     // Command processing
-    bool remoteCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult)
+    bool remoteCommandProcess(const CRequestMessage& remoteCommand, std::string& strResult)
     {
         // Dispatch
         const CRemoteCommandParserItem* pRemoteCommandParserItem = findCommandParserItem(remoteCommand.getCommand());
