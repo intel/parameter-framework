@@ -31,6 +31,7 @@
 
 #include <stdint.h>
 #include <string>
+#include <vector>
 
 class IRemoteCommand
 {
@@ -41,6 +42,7 @@ public:
     // Arguments
     virtual void addArgument(const std::string& strArgument) = 0;
     virtual uint32_t getArgumentCount() const = 0;
+    virtual const std::vector<std::string> &getArguments() const = 0;
     virtual const std::string& getArgument(uint32_t uiArgument) const = 0;
     virtual const std::string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const = 0;
 

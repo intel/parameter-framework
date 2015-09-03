@@ -99,14 +99,10 @@ std::vector<uint8_t> CRequestMessage::getDataToSend()
     // Send command
     data.insert(data.end(), getCommand().begin(), getCommand().end());
 
-    using It = decltype(_arguments)::const_iterator;
-
-    for (It it = _arguments.begin(); it < _arguments.end(); ++it) {
+    for (const auto &arg: _arguments) {
         /* Add a separator */
         data.push_back(static_cast<uint8_t>('\0'));
 
-        /* push back the argument itself */
-        const string &arg = *it;
         data.insert(data.end(), arg.begin(), arg.end());
     }
     return data;
