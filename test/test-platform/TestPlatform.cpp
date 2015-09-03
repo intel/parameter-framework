@@ -170,7 +170,7 @@ CTestPlatform::CommandReturn CTestPlatform::createExclusiveSelectionCriterionFro
     const IRemoteCommand& remoteCommand, string& strResult)
 {
     return createExclusiveSelectionCriterionFromStateList(
-        remoteCommand.getArgument(0), remoteCommand, strResult) ?
+        remoteCommand.getArguments()[0], remoteCommand, strResult) ?
            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
@@ -178,7 +178,7 @@ CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterionFro
     const IRemoteCommand& remoteCommand, string& strResult)
 {
     return createInclusiveSelectionCriterionFromStateList(
-        remoteCommand.getArgument(0), remoteCommand, strResult) ?
+        remoteCommand.getArguments()[0], remoteCommand, strResult) ?
            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
@@ -186,8 +186,8 @@ CTestPlatform::CommandReturn CTestPlatform::createExclusiveSelectionCriterion(
     const IRemoteCommand& remoteCommand, string& strResult)
 {
     return createExclusiveSelectionCriterion(
-        remoteCommand.getArgument(0),
-        strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
+        remoteCommand.getArguments()[0],
+        strtoul(remoteCommand.getArguments()[1].c_str(), NULL, 0),
         strResult) ?
            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
@@ -196,8 +196,8 @@ CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterion(
     const IRemoteCommand& remoteCommand, string& strResult)
 {
     return createInclusiveSelectionCriterion(
-        remoteCommand.getArgument(0),
-        strtoul(remoteCommand.getArgument(1).c_str(), NULL, 0),
+        remoteCommand.getArguments()[0],
+        strtoul(remoteCommand.getArguments()[1].c_str(), NULL, 0),
         strResult) ?
            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
@@ -213,7 +213,7 @@ template <CTestPlatform::setter_t setFunction>
 CTestPlatform::CommandReturn CTestPlatform::setter(
     const IRemoteCommand& remoteCommand, string& strResult)
 {
-    const string& strAbort = remoteCommand.getArgument(0);
+    const string& strAbort = remoteCommand.getArguments()[0];
 
     bool bFail;
 
@@ -240,7 +240,7 @@ CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
 
     bool bSuccess;
 
-    const char* pcState = remoteCommand.getArgument(1).c_str();
+    const char* pcState = remoteCommand.getArguments()[1].c_str();
 
     char* pcStrEnd;
 
@@ -251,7 +251,7 @@ CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
 
     if (!errno && (*pcStrEnd == '\0')) {
         // Sucessfull conversion, set criterion state by numerical state
-        bSuccess = setCriterionState(remoteCommand.getArgument(0), state, strResult);
+        bSuccess = setCriterionState(remoteCommand.getArguments()[0], state, strResult);
 
     } else {
         // Conversion failed, set criterion state by lexical state
@@ -286,12 +286,12 @@ bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(
 
     assert(pCriterionType != NULL);
 
-    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
+    uint32_t uiNbStates = remoteCommand.getArguments().size() - 1;
     uint32_t uiState;
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
 
-        const std::string& strValue = remoteCommand.getArgument(uiState + 1);
+        const std::string& strValue = remoteCommand.getArguments()[uiState + 1];
 
         if (!pCriterionType->addValuePair(uiState, strValue, strResult)) {
 
@@ -318,12 +318,12 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
 
     assert(pCriterionType != NULL);
 
-    uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
+    uint32_t uiNbStates = remoteCommand.getArguments().size() - 1;
     uint32_t uiState;
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
 
-        const std::string& strValue = remoteCommand.getArgument(uiState + 1);
+        const std::string& strValue = remoteCommand.getArguments()[uiState + 1];
 
         if (!pCriterionType->addValuePair(
                     0x1 << uiState, strValue, strResult)) {
@@ -424,7 +424,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
 {
 
     // Get criterion name
-    std::string strCriterionName = remoteCommand.getArgument(0);
+    std::string strCriterionName = remoteCommand.getArguments()[0];
 
     ISelectionCriterionInterface* pCriterion =
         _pParameterMgrPlatformConnector->getSelectionCriterion(strCriterionName);
@@ -440,7 +440,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
     const ISelectionCriterionTypeInterface* pCriterionType = pCriterion->getCriterionType();
 
     // Get substate number, the first argument (index 0) is the criterion name
-    uint32_t uiNbSubStates = remoteCommand.getArgumentCount() - 1;
+    uint32_t uiNbSubStates = remoteCommand.getArguments().size() - 1;
 
     // Check that exclusive criterion has only one substate
     if (!pCriterionType->isTypeInclusive() && uiNbSubStates != 1) {
@@ -469,7 +469,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
         if (uiLexicalSubStateIndex != 1) {
             strLexicalState += "|";
         }
-        strLexicalState += remoteCommand.getArgument(uiLexicalSubStateIndex);
+        strLexicalState += remoteCommand.getArguments()[uiLexicalSubStateIndex];
     }
 
     // Translate lexical to numerical substate

@@ -926,13 +926,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
 /// Tuning Mode
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setTuningModeCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    if (remoteCommand.getArgument(0) == "on") {
+    if (remoteCommand.getArguments()[0] == "on") {
 
         if (setTuningMode(true, strResult)) {
 
             return CCommandHandler::EDone;
         }
-    } else if (remoteCommand.getArgument(0) == "off") {
+    } else if (remoteCommand.getArguments()[0] == "off") {
 
         if (setTuningMode(false, strResult)) {
 
@@ -955,13 +955,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getTuningModeComman
 /// Value Space
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setValueSpaceCommandProcess(const IRemoteCommand& remoteCommand, string& /*strResult*/)
 {
-    if (remoteCommand.getArgument(0) == "raw") {
+    if (remoteCommand.getArguments()[0] == "raw") {
 
         setValueSpace(true);
 
         return CCommandHandler::EDone;
 
-    } else if (remoteCommand.getArgument(0) == "real") {
+    } else if (remoteCommand.getArguments()[0] == "real") {
 
         setValueSpace(false);
 
@@ -984,13 +984,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getValueSpaceComman
 /// Output Raw Format
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setOutputRawFormatCommandProcess(const IRemoteCommand& remoteCommand, string& /*strResult*/)
 {
-    if (remoteCommand.getArgument(0) == "hex") {
+    if (remoteCommand.getArguments()[0] == "hex") {
 
         setOutputRawFormat(true);
 
         return CCommandHandler::EDone;
 
-    } else if (remoteCommand.getArgument(0) == "dec") {
+    } else if (remoteCommand.getArguments()[0] == "dec") {
 
         setOutputRawFormat(false);
 
@@ -1013,13 +1013,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getOutputRawFormatC
 /// Sync
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setAutoSyncCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    if (remoteCommand.getArgument(0) == "on") {
+    if (remoteCommand.getArguments()[0] == "on") {
 
         if (setAutoSync(true, strResult)) {
 
             return CCommandHandler::EDone;
         }
-    } else if (remoteCommand.getArgument(0) == "off") {
+    } else if (remoteCommand.getArguments()[0] == "off") {
 
         if (setAutoSync(false, strResult)) {
 
@@ -1047,7 +1047,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::syncCommandProcess(
 /// Criteria
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    if (remoteCommand.getArgumentCount() > 1) {
+    if (remoteCommand.getArguments().size() > 1) {
 
         return CCommandHandler::EShowUsage;
     }
@@ -1055,10 +1055,10 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
     string strOutputFormat;
 
     // Look for optional arguments
-    if (remoteCommand.getArgumentCount() == 1) {
+    if (remoteCommand.getArguments().size() == 1) {
 
         // Get requested format
-        strOutputFormat = remoteCommand.getArgument(0);
+        strOutputFormat = remoteCommand.getArguments()[0];
 
         // Capitalize
         std::transform(strOutputFormat.begin(), strOutputFormat.end(), strOutputFormat.begin(), ::toupper);
@@ -1106,12 +1106,12 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listDomainsCommandP
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::createDomainCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createDomain(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return createDomain(remoteCommand.getArguments()[0], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteDomainCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return deleteDomain(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return deleteDomain(remoteCommand.getArguments()[0], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteAllDomainsCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
@@ -1121,7 +1121,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteAllDomainsCom
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameDomainCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return renameDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ?
+    return renameDomain(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1], strResult) ?
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
@@ -1130,11 +1130,11 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setSequenceAwarenes
     // Set property
     bool bSequenceAware;
 
-    if (remoteCommand.getArgument(1) == "true") {
+    if (remoteCommand.getArguments()[1] == "true") {
 
         bSequenceAware = true;
 
-    } else if (remoteCommand.getArgument(1) == "false") {
+    } else if (remoteCommand.getArguments()[1] == "false") {
 
         bSequenceAware = false;
 
@@ -1143,7 +1143,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setSequenceAwarenes
         return CCommandHandler::EShowUsage;
     }
 
-    return setSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult) ?
+    return setSequenceAwareness(remoteCommand.getArguments()[0], bSequenceAware, strResult) ?
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
@@ -1152,7 +1152,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSequenceAwarenes
     // Get property
     bool bSequenceAware;
 
-    if (!getSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult)) {
+    if (!getSequenceAwareness(remoteCommand.getArguments()[0], bSequenceAware, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1164,28 +1164,30 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSequenceAwarenes
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listDomainElementsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return getConfigurableDomains()->listDomainElements(remoteCommand.getArgument(0), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return getConfigurableDomains()->listDomainElements(remoteCommand.getArguments()[0], strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::addElementCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return addConfigurableElementToDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return addConfigurableElementToDomain(remoteCommand.getArguments()[0],
+remoteCommand.getArguments()[1], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::removeElementCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return removeConfigurableElementFromDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return removeConfigurableElementFromDomain(remoteCommand.getArguments()[0],
+remoteCommand.getArguments()[1], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::splitDomainCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return split(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return split(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 /// Configurations
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listConfigurationsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return getConstConfigurableDomains()->listConfigurations(remoteCommand.getArgument(0), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return getConstConfigurableDomains()->listConfigurations(remoteCommand.getArguments()[0], strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpDomainsCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
@@ -1202,30 +1204,30 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpDomainsCommandP
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::createConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return createConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return createConfiguration(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return deleteConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return deleteConfiguration(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return renameConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
-            remoteCommand.getArgument(2), strResult) ?
+    return renameConfiguration(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1],
+            remoteCommand.getArguments()[2], strResult) ?
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::saveConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return saveConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return saveConfiguration(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     core::Results result;
-    if (!restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), result)) {
+    if (!restoreConfiguration(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1], result)) {
         //Concatenate the error list as the command result
         CUtility::asString(result, strResult);
 
@@ -1237,17 +1239,11 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfiguratio
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     // Build configurable element path list
-    std::vector<string> astrNewElementSequence;
-
-    uint32_t uiArgument;
-
-    for (uiArgument = 2; uiArgument < remoteCommand.getArgumentCount(); uiArgument++) {
-
-        astrNewElementSequence.push_back(remoteCommand.getArgument(uiArgument));
-    }
+    std::vector<string> astrNewElementSequence(remoteCommand.getArguments().begin() + 2,
+                                               remoteCommand.getArguments().end());
 
     // Delegate to configurable domains
-    return setElementSequence(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+    return setElementSequence(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1],
             astrNewElementSequence, strResult) ?
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
@@ -1255,7 +1251,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceC
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSequenceCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     // Delegate to configurable domains
-    return getConfigurableDomains()->getElementSequence(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return getConfigurableDomains()->getElementSequence(remoteCommand.getArguments()[0],
+remoteCommand.getArguments()[1], strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setRuleCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1272,7 +1269,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setRuleCommandProce
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::clearRuleCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     // Delegate to configurable domains
-    return clearApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+    return clearApplicationRule(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1],
             strResult) ?
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
@@ -1280,7 +1277,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::clearRuleCommandPro
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getRuleCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     // Delegate to configurable domains
-    return getApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+    return getApplicationRule(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1],
             strResult) ?
         CCommandHandler::ESucceeded : CCommandHandler::EFailed;
 }
@@ -1292,7 +1289,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listElementsCommand
 
     CElement* pLocatedElement = NULL;
 
-    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+    if (!elementLocator.locate(remoteCommand.getArguments()[0], &pLocatedElement, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1320,7 +1317,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listParametersComma
 
     CElement* pLocatedElement = NULL;
 
-    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+    if (!elementLocator.locate(remoteCommand.getArguments()[0], &pLocatedElement, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1347,7 +1344,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandP
 
     CElement* pLocatedElement = NULL;
 
-    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+    if (!elementLocator.locate(remoteCommand.getArguments()[0], &pLocatedElement, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1368,7 +1365,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSizeComma
 
     CElement* pLocatedElement = NULL;
 
-    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+    if (!elementLocator.locate(remoteCommand.getArguments()[0], &pLocatedElement, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1388,7 +1385,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showPropertiesComma
 
     CElement* pLocatedElement = NULL;
 
-    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+    if (!elementLocator.locate(remoteCommand.getArguments()[0], &pLocatedElement, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1406,7 +1403,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommand
 {
     string strValue;
 
-    if (!accessParameterValue(remoteCommand.getArgument(0), strValue, false, strResult)) {
+    if (!accessParameterValue(remoteCommand.getArguments()[0], strValue, false, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1432,7 +1429,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listBelongingDomain
 
     CElement* pLocatedElement = NULL;
 
-    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+    if (!elementLocator.locate(remoteCommand.getArguments()[0], &pLocatedElement, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1452,7 +1449,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listAssociatedDomai
 
     CElement* pLocatedElement = NULL;
 
-    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+    if (!elementLocator.locate(remoteCommand.getArguments()[0], &pLocatedElement, strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1492,7 +1489,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getConfigurationPar
     string strOutputValue;
     string strError;
 
-    if (!accessConfigurationValue(remoteCommand.getArgument(0), remoteCommand.getArgument(1), remoteCommand.getArgument(2), strOutputValue, false, strError)) {
+    if (!accessConfigurationValue(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1],
+                                  remoteCommand.getArguments()[2], strOutputValue, false, strError)) {
 
         strResult = strError;
         return CCommandHandler::EFailed;
@@ -1520,7 +1518,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showMappingCommandP
         const IRemoteCommand& remoteCommand,
         string& strResult)
 {
-    if (!getParameterMapping(remoteCommand.getArgument(0), strResult)) {
+    if (!getParameterMapping(remoteCommand.getArguments()[0], strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1533,7 +1531,7 @@ CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::exportDomainsXMLCommandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
-    string strFileName = remoteCommand.getArgument(0);
+    string strFileName = remoteCommand.getArguments()[0];
     return exportDomainsXml(strFileName, false, true, strResult) ?
             CCommandHandler::EDone : CCommandHandler::EFailed;
 }
@@ -1542,7 +1540,7 @@ CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::importDomainsXMLCommandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), false, true, strResult) ?
+    return importDomainsXml(remoteCommand.getArguments()[0], false, true, strResult) ?
             CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
@@ -1550,7 +1548,7 @@ CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::exportDomainsWithSettingsXMLCommandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
-    string strFileName = remoteCommand.getArgument(0);
+    string strFileName = remoteCommand.getArguments()[0];
     return exportDomainsXml(strFileName, true, true, strResult) ?
             CCommandHandler::EDone : CCommandHandler::EFailed;
 }
@@ -1559,15 +1557,15 @@ CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::exportDomainWithSettingsXMLCommandProcess(
                 const IRemoteCommand& remoteCommand, string& result)
 {
-    string domainName = remoteCommand.getArgument(0);
-    string fileName = remoteCommand.getArgument(1);
+    string domainName = remoteCommand.getArguments()[0];
+    string fileName = remoteCommand.getArguments()[1];
     return exportSingleDomainXml(fileName, domainName, true, true, result) ?
             CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainsWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), true, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return importDomainsXml(remoteCommand.getArguments()[0], true, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1575,9 +1573,9 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainWithSet
     bool bOverwrite = false;
 
     // Look for optional arguments
-    if (remoteCommand.getArgumentCount() > 1) {
+    if (remoteCommand.getArguments().size() > 1) {
 
-        if (remoteCommand.getArgument(1) == "overwrite") {
+        if (remoteCommand.getArguments()[1] == "overwrite") {
 
             bOverwrite = true;
         } else {
@@ -1586,18 +1584,18 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainWithSet
         }
     }
 
-    return importSingleDomainXml(remoteCommand.getArgument(0), bOverwrite, true, true, strResult) ?
+    return importSingleDomainXml(remoteCommand.getArguments()[0], bOverwrite, true, true, strResult) ?
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportSettingsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return exportDomainsBinary(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return exportDomainsBinary(remoteCommand.getArguments()[0], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importSettingsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return importDomainsBinary(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return importDomainsBinary(remoteCommand.getArguments()[0], strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus
@@ -1616,7 +1614,7 @@ CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::getDomainWithSettingsXMLCommandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
-    string strDomainName = remoteCommand.getArgument(0);
+    string strDomainName = remoteCommand.getArguments()[0];
 
     return exportSingleDomainXml(strResult, strDomainName, true, false, strResult) ?
         CCommandHandler::ESucceeded : CCommandHandler::EFailed;
@@ -1626,7 +1624,7 @@ CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::setDomainsWithSettingsXMLCommandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), true, false, strResult) ?
+    return importDomainsXml(remoteCommand.getArguments()[0], true, false, strResult) ?
             CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
@@ -1636,9 +1634,9 @@ CParameterMgr::CCommandHandler::CommandStatus
 {
     bool overwrite = false;
 
-    if (remoteCommand.getArgumentCount() > 1) {
+    if (remoteCommand.getArguments().size() > 1) {
 
-        if (remoteCommand.getArgument(1) == "overwrite") {
+        if (remoteCommand.getArguments()[1] == "overwrite") {
 
             overwrite = true;
         } else {
@@ -1647,7 +1645,7 @@ CParameterMgr::CCommandHandler::CommandStatus
         }
     }
 
-    return importSingleDomainXml(remoteCommand.getArgument(0), overwrite, true, false, result) ?
+    return importSingleDomainXml(remoteCommand.getArguments()[0], overwrite, true, false, result) ?
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 

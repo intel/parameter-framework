@@ -46,9 +46,7 @@ public:
 
     // Arguments
     virtual void addArgument(const std::string& strArgument);
-    virtual uint32_t getArgumentCount() const;
     const std::vector<std::string> &getArguments() const override { return _arguments; }
-    virtual const std::string& getArgument(uint32_t uiArgument) const;
 
 private:
     virtual std::vector<uint8_t> getDataToSend();

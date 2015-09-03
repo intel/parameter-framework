@@ -88,7 +88,7 @@ private:
         bool parse(CCommandParser* pCommandParser, const IRemoteCommand& remoteCommand, std::string& strResult) const
         {
             // Check enough arguments supplied
-            if (remoteCommand.getArgumentCount() < _uiMinArgumentCount) {
+            if (remoteCommand.getArguments().size() < _uiMinArgumentCount) {
 
                 strResult = std::string("Not enough arguments supplied\nUsage:\n") + usage();
 

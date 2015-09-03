@@ -52,18 +52,6 @@ void CRequestMessage::addArgument(const string& strArgument)
     _arguments.push_back(strArgument);
 }
 
-uint32_t CRequestMessage::getArgumentCount() const
-{
-    return _arguments.size();
-}
-
-const string& CRequestMessage::getArgument(uint32_t uiArgument) const
-{
-    assert(uiArgument < _arguments.size());
-
-    return _arguments[uiArgument];
-}
-
 // Fill data to send
 std::vector<uint8_t> CRequestMessage::getDataToSend()
 {
