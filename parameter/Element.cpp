@@ -332,18 +332,11 @@ CElement* CElement::createChild(const CXmlElement& childElement,
 
 bool CElement::removeChild(CElement* pChild)
 {
-    ChildArrayIterator it;
+    auto childIt = find(begin(_childArray), end(_childArray), pChild);
+    if (childIt != end(_childArray)) {
 
-    for (it = _childArray.begin(); it != _childArray.end(); ++it) {
-
-        CElement* pElement = *it;
-
-        if (pElement == pChild) {
-
-            _childArray.erase(it);
-
-            return true;
-        }
+        _childArray.erase(it);
+        return true;
     }
     return false;
 }
