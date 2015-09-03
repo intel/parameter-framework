@@ -57,6 +57,6 @@ private:
     // Command
     std::string _strCommand;
     // Arguments
-    std::vector<std::string> _argumentVector;
+    std::vector<std::string> _arguments;
 };
 

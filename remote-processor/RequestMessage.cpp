@@ -49,26 +49,26 @@ const string& CRequestMessage::getCommand() const
 // Arguments
 void CRequestMessage::addArgument(const string& strArgument)
 {
-    _argumentVector.push_back(strArgument);
+    _arguments.push_back(strArgument);
 }
 
 uint32_t CRequestMessage::getArgumentCount() const
 {
-    return _argumentVector.size();
+    return _arguments.size();
 }
 
 const string& CRequestMessage::getArgument(uint32_t uiArgument) const
 {
-    assert(uiArgument < _argumentVector.size());
+    assert(uiArgument < _arguments.size());
 
-    return _argumentVector[uiArgument];
+    return _arguments[uiArgument];
 }
 
 const string CRequestMessage::packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const
 {
     string strPackedArguments;
 
-    assert(uiStartArgument + uiNbArguments <= _argumentVector.size());
+    assert(uiStartArgument + uiNbArguments <= _arguments.size());
 
     // Pack arguments, separating them with a space
     uint32_t uiArgument;
@@ -85,7 +85,7 @@ const string CRequestMessage::packArguments(uint32_t uiStartArgument, uint32_t u
             bFirst = false;
         }
 
-        strPackedArguments += _argumentVector[uiArgument];
+        strPackedArguments += _arguments[uiArgument];
     }
 
     return strPackedArguments;
@@ -99,12 +99,14 @@ std::vector<uint8_t> CRequestMessage::getDataToSend()
     // Send command
     data.insert(data.end(), getCommand().begin(), getCommand().end());
 
-    // Arguments
-    uint32_t uiArgument;
+    using It = decltype(_arguments)::const_iterator;
 
-    for (uiArgument = 0; uiArgument < getArgumentCount(); uiArgument++) {
-        const string& arg = getArgument(uiArgument);
+    for (It it = _arguments.begin(); it < _arguments.end(); ++it) {
+        /* Add a separator */
         data.push_back(static_cast<uint8_t>('\0'));
+
+        /* push back the argument itself */
+        const string &arg = *it;
         data.insert(data.end(), arg.begin(), arg.end());
     }
     return data;
