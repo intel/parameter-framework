@@ -1260,9 +1260,12 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSequenceC
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setRuleCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
+    string strValue = CUtility::join(remoteCommand.getArguments().begin() + 2,
+                                     remoteCommand.getArguments().end(), " ");
+
     // Delegate to configurable domains
-    return setApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
-            remoteCommand.packArguments(2, remoteCommand.getArgumentCount() - 2), strResult) ?
+    return setApplicationRule(remoteCommand.getArguments()[0], remoteCommand.getArguments()[1],
+                              strValue, strResult) ?
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
@@ -1416,9 +1419,11 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommand
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setParameterCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
     // Get value to set
-    string strValue = remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1);
+    string strValue = CUtility::join(remoteCommand.getArguments().begin() + 1,
+                                     remoteCommand.getArguments().end(), " ");
 
-    return accessParameterValue(remoteCommand.getArgument(0), strValue, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+
+    return accessParameterValue(remoteCommand.getArguments()[0], strValue, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listBelongingDomainsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
@@ -1500,13 +1505,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getConfigurationPar
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setConfigurationParameterCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
 {
-    // Get value to set
-    string strValue = remoteCommand.packArguments(3, remoteCommand.getArgumentCount() - 3);
+    string strValue = CUtility::join(remoteCommand.getArguments().begin() + 3,
+                                     remoteCommand.getArguments().end(), " ");
 
-    bool bSuccess = accessConfigurationValue(remoteCommand.getArgument(0),
-                                            remoteCommand.getArgument(1),
-                                            remoteCommand.getArgument(2),
-                                            strValue, true, strResult);
+    bool bSuccess = accessConfigurationValue(remoteCommand.getArguments()[0],
+                                             remoteCommand.getArguments()[1],
+                                             remoteCommand.getArguments()[2],
+                                             strValue, true, strResult);
 
     return bSuccess ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
