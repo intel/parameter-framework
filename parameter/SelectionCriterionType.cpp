@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -119,6 +119,39 @@ bool CSelectionCriterionType::getAtomicNumericalValue(const std::string& strValu
 
 bool CSelectionCriterionType::getLiteralValue(int iValue, std::string& strValue) const
 {
+    if (_bInclusive) {
+
+        // Need to go through all bit fields
+        uint32_t uiBit;
+        bool bFirst = true;
+
+        for (uiBit = 0; uiBit < sizeof(iValue) * 8; uiBit++) {
+
+            int iSingleBitValue = iValue & (1 << uiBit);
+            // Check if current bit is set
+            if (!iSingleBitValue) {
+                continue;
+            }
+            // Simple translation
+            std::string strSingleValue;
+            if (!getAtomicLiteralValue(iSingleBitValue, strSingleValue)) {
+                return false;
+            }
+
+            if (bFirst) {
+                bFirst = false;
+            } else {
+                strValue += "|";
+            }
+            strValue += strSingleValue;
+        }
+        return true;
+    }
+    return  getAtomicLiteralValue(iValue, strValue);
+}
+
+bool CSelectionCriterionType::getAtomicLiteralValue(int iValue, std::string& strValue) const
+{
     NumToLitMapConstIt it;
 
     for (it = _numToLitMap.begin(); it != _numToLitMap.end(); ++it) {
@@ -168,43 +201,8 @@ std::string CSelectionCriterionType::getFormattedState(int iValue) const
 {
     std::string strFormattedState;
 
-    if (_bInclusive) {
-
-        // Need to go through all set bit
-        uint32_t uiBit;
-        bool bFirst = true;
-
-        for (uiBit = 0; uiBit < sizeof(iValue) * 8; uiBit++) {
-
-            int iSingleBitValue = iValue & (1 << uiBit);
-
-            // Check if current bit is set
-            if (!iSingleBitValue) {
-
-                continue;
-            }
-
-            // Simple translation
-            std::string strSingleValue;
-
-            if (!getLiteralValue(iSingleBitValue, strSingleValue)) {
-                // Numeric value not part supported values for this criterion type.
-                continue;
-            }
-
-            if (bFirst) {
-
-                bFirst = false;
-            } else {
-                strFormattedState += "|";
-            }
-
-            strFormattedState += strSingleValue;
-        }
-
-    } else {
-        // Simple translation
-        getLiteralValue(iValue, strFormattedState);
+    if (!getLiteralValue(iValue, strFormattedState)) {
+        strFormattedState = "<none>";
     }
 
     // Sometimes nothing is set
