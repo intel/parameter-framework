@@ -526,29 +526,3 @@ string CElement::getQualifiedPath() const
 {
     return getPath() + " [" + getKind() + "]";
 }
-
-// Checksum for integrity checks
-uint8_t CElement::computeStructureChecksum() const
-{
-    // Base checksum computation on element kind
-    string strKind = getKind();
-
-    // Get element kind
-    const char* pcData = strKind.c_str();
-
-    // Cumulate
-    uint8_t uiChecksum = 0;
-
-    while (*pcData) {
-
-        uiChecksum += *pcData++;
-    }
-
-    // Propagate
-    for (CElement* pChild : _childArray) {
-
-        uiChecksum += pChild->computeStructureChecksum();
-    }
-
-    return uiChecksum;
-}

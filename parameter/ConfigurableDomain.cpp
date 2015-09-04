@@ -37,7 +37,7 @@
 #include "Utility.h"
 #include <assert.h>
 
-#define base CBinarySerializableElement
+#define base CElement
 
 using std::string;
 

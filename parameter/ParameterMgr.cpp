@@ -297,12 +297,6 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<file path> [overwrite]", "Import a single domain including settings from XML file."
             " Does not overwrite an existing domain unless 'overwrite' is passed as second"
             " argument. Provide an absolute path or relative to the client's working directory)" },
-    { "exportSettings", &CParameterMgr::exportSettingsCommandProcess, 1,
-            "<file path>", "Export settings to binary file (provide an absolute path or relative"
-                            "to the client's working directory)" },
-    { "importSettings", &CParameterMgr::importSettingsCommandProcess, 1,
-            "<file path>", "Import settings from binary file (provide an absolute path or relative"
-                            "to the client's working directory)" },
     { "getDomainsWithSettingsXML",
             &CParameterMgr::getDomainsWithSettingsXMLCommandProcess, 0,
             "", "Print domains including settings as XML" },
@@ -337,7 +331,6 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     _pElementLibrarySet(new CElementLibrarySet),
     _strXmlConfigurationFilePath(strConfigurationFilePath),
     _pSubsystemPlugins(NULL),
-    _uiStructureChecksum(0),
     _pRemoteProcessorServer(NULL),
     _maxCommandUsageLength(0),
     _logger(logger),
@@ -608,16 +601,6 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
 
         return true;
     }
-    // Get binary settings file location
-    const CFrameworkConfigurationLocation* pBinarySettingsFileLocation = static_cast<const CFrameworkConfigurationLocation*>(pParameterConfigurationGroup->findChildOfKind("BinarySettingsFileLocation"));
-
-    string strXmlBinarySettingsFilePath;
-
-    if (pBinarySettingsFileLocation) {
-
-        // Get Xml binary settings file name
-        strXmlBinarySettingsFilePath = pBinarySettingsFileLocation->getFilePath(_strXmlConfigurationFolderPath);
-    }
 
     // Get configurable domains element
     const CFrameworkConfigurationLocation* pConfigurableDomainsFileLocation = static_cast<const CFrameworkConfigurationLocation*>(pParameterConfigurationGroup->findChildOfKind("ConfigurableDomainsFileLocation"));
@@ -637,39 +620,26 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     // Get Xml configuration domains folder
     string strXmlConfigurationDomainsFolder = pConfigurableDomainsFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
 
-    // Parse configuration domains XML file (ask to read settings from XML file if they are not provided as binary)
-    CXmlDomainImportContext xmlDomainImportContext(strError, !pBinarySettingsFileLocation,
-            *getSystemClass());
+    // Parse configuration domains XML file
+    CXmlDomainImportContext xmlDomainImportContext(strError, true, *getSystemClass());
 
     // Selection criteria definition for rule creation
     xmlDomainImportContext.setSelectionCriteriaDefinition(getConstSelectionCriteria()->getSelectionCriteriaDefinition());
 
-    // Auto validation of configurations if no binary settings provided
-    xmlDomainImportContext.setAutoValidationRequired(!pBinarySettingsFileLocation);
+    // Auto validation of configurations
+    xmlDomainImportContext.setAutoValidationRequired(true);
 
     info() << "Importing configurable domains from file " << strXmlConfigurationDomainsFilePath
-           << " "  << ( pBinarySettingsFileLocation ? "without" : "with") << " settings";
+           << " with settings";
 
     _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlConfigurationDomainsFilePath, true, true, xmlDomainImportContext);
     if (doc == NULL) {
         return false;
     }
 
-    if (!xmlParse(xmlDomainImportContext, pConfigurableDomains, doc, strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary, "SystemClassName")) {
-
-        return false;
-    }
-    // We have loaded the whole system structure, compute checksum
-    const CSystemClass* pSystemClass = getConstSystemClass();
-    _uiStructureChecksum = pSystemClass->computeStructureChecksum() + getConfigurableDomains()->computeStructureChecksum() + getSelectionCriteria()->computeStructureChecksum();
-
-    // Load binary settings if any provided
-    if (pBinarySettingsFileLocation && !pConfigurableDomains->serializeSettings(strXmlBinarySettingsFilePath, false, _uiStructureChecksum, strError)) {
-
-        return false;
-    }
-
-    return true;
+    return xmlParse(xmlDomainImportContext, pConfigurableDomains, doc,
+                    strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary,
+                    "SystemClassName");
 }
 
 // XML parsing
@@ -1573,16 +1543,6 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainWithSet
         CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportSettingsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
-{
-    return exportDomainsBinary(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
-}
-
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importSettingsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
-{
-    return importDomainsBinary(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
-}
-
 CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::getDomainsWithSettingsXMLCommandProcess(
                 const IRemoteCommand& /*command*/, string& strResult)
@@ -2396,33 +2356,6 @@ bool CParameterMgr::wrapLegacyXmlExportToString(string& xmlDest,
     return true;
 }
 
-// Binary Import/Export
-bool CParameterMgr::importDomainsBinary(const string& strFileName, string& strError)
-{
-    // Check tuning mode
-    if (!checkTuningModeOn(strError)) {
-
-        return false;
-    }
-
-    LOG_CONTEXT("Importing domains from binary file \"" + strFileName + '"');
-    // Root element
-    CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
-
-    // Serialize in
-    return pConfigurableDomains->serializeSettings(strFileName, false, _uiStructureChecksum, strError);
-}
-
-bool CParameterMgr::exportDomainsBinary(const string& strFileName, string& strError)
-{
-    LOG_CONTEXT("Exporting domains to binary file \"" + strFileName + '"');
-    // Root element
-    CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
-
-    // Serialize out
-    return pConfigurableDomains->serializeSettings(strFileName, true, _uiStructureChecksum, strError);
-}
-
 // For tuning, check we're in tuning mode
 bool CParameterMgr::checkTuningModeOn(string& strError) const
 {
@@ -2460,7 +2393,6 @@ void CParameterMgr::feedElementLibraries()
     pFrameworkConfigurationLibrary->addElementBuilder("StructureDescriptionFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
     pFrameworkConfigurationLibrary->addElementBuilder("SettingsConfiguration", new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>());
     pFrameworkConfigurationLibrary->addElementBuilder("ConfigurableDomainsFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
-    pFrameworkConfigurationLibrary->addElementBuilder("BinarySettingsFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
 
     _pElementLibrarySet->addElementLibrary(pFrameworkConfigurationLibrary);
 

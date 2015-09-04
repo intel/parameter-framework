@@ -23,7 +23,6 @@
     <xs:complexType name="SettingsConfigurationType">
         <xs:sequence>
             <xs:element name="ConfigurableDomainsFileLocation" type="ConfigurationFilePath"/>
-        	<xs:element name="BinarySettingsFileLocation" type="ConfigurationFilePath" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
     <xs:element name="ParameterFrameworkConfiguration">

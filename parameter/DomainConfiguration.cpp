@@ -40,7 +40,7 @@
 #include <cstdlib>
 #include "RuleParser.h"
 
-#define base CBinarySerializableElement
+#define base CElement
 
 using std::string;
 
@@ -556,47 +556,6 @@ void CDomainConfiguration::reorderAreaConfigurations(const std::list<CAreaConfig
     _orderedAreaConfigurationList.insert(_orderedAreaConfigurationList.begin(), areaConfigurationList.begin(), areaConfigurationList.end());
 }
 
-// Find area configuration rank from regular list: for ordered list maintainance
-size_t CDomainConfiguration::getAreaConfigurationRank(const CAreaConfiguration* pAreaConfiguration) const
-{
-    size_t areaConfigurationRank;
-    AreaConfigurationListIterator it;
-
-    // Propagate request to areas
-    for (it = _areaConfigurationList.begin(), areaConfigurationRank = 0; it != _areaConfigurationList.end(); ++it, ++areaConfigurationRank) {
-
-        if (*it == pAreaConfiguration) {
-
-            return areaConfigurationRank;
-        }
-    }
-
-    assert(0);
-
-    return 0;
-}
-
-// Find area configuration from regular list based on rank: for ordered list maintainance
-CAreaConfiguration* CDomainConfiguration::getAreaConfiguration(size_t areaConfigurationRank) const
-{
-    AreaConfigurationListIterator it;
-    size_t currentAreaConfigurationRank;
-
-    // Propagate request to areas
-    for (it = _areaConfigurationList.begin(), currentAreaConfigurationRank = 0; it != _areaConfigurationList.end(); ++it, ++currentAreaConfigurationRank) {
-
-        if (currentAreaConfigurationRank == areaConfigurationRank) {
-
-            return *it;
-        }
-    }
-
-    // FIXME: replace by a always enabled assert
-    abort();
-
-    return NULL;
-}
-
 // Rule
 const CCompoundRule* CDomainConfiguration::getRule() const
 {
@@ -632,59 +591,4 @@ void CDomainConfiguration::setRule(CCompoundRule* pRule)
         // Chain
         addChild(pRule);
     }
-}
-
-// Serialization
-void CDomainConfiguration::binarySerialize(CBinaryStream& binaryStream)
-{
-    AreaConfigurationListIterator it;
-
-    // Area configurations order
-    if (binaryStream.isOut()) {
-
-        for (it = _orderedAreaConfigurationList.begin(); it != _orderedAreaConfigurationList.end(); ++it) {
-
-            // Get rank
-            size_t areaConfigurationRank = getAreaConfigurationRank(*it);
-
-            // Store it
-            binaryStream.write((const uint8_t*)&areaConfigurationRank, sizeof(areaConfigurationRank));
-        }
-    } else {
-
-        // Empty ordered list first
-        _orderedAreaConfigurationList.resize(0);
-
-        for (size_t areaConfiguration = 0; areaConfiguration < _areaConfigurationList.size(); areaConfiguration++) {
-
-            // Get rank
-            size_t areaConfigurationRank;
-
-            binaryStream.read((uint8_t*)&areaConfigurationRank, sizeof(areaConfigurationRank));
-
-            _orderedAreaConfigurationList.push_back(getAreaConfiguration(areaConfigurationRank));
-        }
-    }
-
-    // Propagate to areas
-    for (it = _areaConfigurationList.begin(); it != _areaConfigurationList.end(); ++it) {
-
-        CAreaConfiguration* pAreaConfiguration = *it;
-
-        pAreaConfiguration->serialize(binaryStream);
-    }
-}
-
-// Data size
-size_t CDomainConfiguration::getDataSize() const
-{
-    // Add necessary size to store area configurations order
-    size_t dataSize = _areaConfigurationList.size() * sizeof(size_t);
-
-    // Propagate request to areas
-    for (const auto *pAreaConfiguration : _areaConfigurationList) {
-
-        dataSize += pAreaConfiguration->getSize();
-    }
-    return dataSize;
 }

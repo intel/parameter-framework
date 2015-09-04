@@ -34,8 +34,6 @@ add_library(parameter SHARED
     AreaConfiguration.cpp
     ArrayParameter.cpp
     BaseParameter.cpp
-    BinarySerializableElement.cpp
-    BinaryStream.cpp
     BitParameterBlock.cpp
     BitParameterBlockType.cpp
     BitParameter.cpp

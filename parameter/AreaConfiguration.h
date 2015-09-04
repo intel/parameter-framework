@@ -30,7 +30,6 @@
 #pragma once
 
 #include "ParameterBlackboard.h"
-#include "BinaryStream.h"
 #include "SyncerSet.h"
 #include "Results.h"
 
@@ -78,12 +77,6 @@ public:
 
     // XML configuration settings parsing/composing
     bool serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElementContent, CConfigurationAccessContext& configurationAccessContext);
-
-    // Serialization
-    void serialize(CBinaryStream& binaryStream);
-
-    // Data size
-    size_t getSize() const;
 
     // Fetch the Configuration Blackboard
     CParameterBlackboard& getBlackboard();

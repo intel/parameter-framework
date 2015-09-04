@@ -31,9 +31,8 @@
 #include "ConfigurableDomains.h"
 #include "ConfigurableDomain.h"
 #include "ConfigurableElement.h"
-#include "BinaryStream.h"
 
-#define base CBinarySerializableElement
+#define base CElement
 
 using std::string;
 
@@ -569,29 +568,6 @@ CParameterBlackboard* CConfigurableDomains::findConfigurationBlackboard(const st
 
     // Find Configuration Blackboard and Base Offset
     return pConfigurableDomain->findConfigurationBlackboard(strConfiguration, pConfigurableElement, baseOffset, bIsLastApplied, strError);
-}
-
-// Binary settings load/store
-bool CConfigurableDomains::serializeSettings(const string& strBinarySettingsFilePath, bool bOut, uint8_t uiStructureChecksum, string& strError)
-{
-    // Instantiate byte stream
-    CBinaryStream binarySettingsStream(strBinarySettingsFilePath, bOut, getDataSize(), uiStructureChecksum);
-
-    // Open file
-    if (!binarySettingsStream.open(strError)) {
-
-        strError = "Unable to open binary settings file " + strBinarySettingsFilePath + ": " + strError;
-
-        return false;
-    }
-
-    // Serialize
-    binarySerialize(binarySettingsStream);
-
-    // Close stream
-    binarySettingsStream.close();
-
-    return true;
 }
 
 // Domain retrieval

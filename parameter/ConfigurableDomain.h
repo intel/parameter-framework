@@ -29,7 +29,6 @@
  */
 #pragma once
 
-#include "BinarySerializableElement.h"
 #include "XmlSerializingContext.h"
 #include "XmlDomainImportContext.h"
 #include "SyncerSet.h"
@@ -44,7 +43,7 @@ class CDomainConfiguration;
 class CParameterBlackboard;
 class CSelectionCriteriaDefinition;
 
-class CConfigurableDomain : public CBinarySerializableElement
+class CConfigurableDomain : public CElement
 {
     typedef std::list<CConfigurableElement*>::const_iterator ConfigurableElementListIterator;
     typedef std::map<const CConfigurableElement*, CSyncerSet*>::const_iterator ConfigurableElementToSyncerSetMapIterator;

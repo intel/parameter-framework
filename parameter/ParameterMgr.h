@@ -338,10 +338,6 @@ public:
     bool exportSingleDomainXml(std::string& xmlDest, const std::string& domainName,
                                bool withSettings, bool toFile, std::string& errorMsg) const;
 
-    // Binary Import/Export
-    bool importDomainsBinary(const std::string& strFileName, std::string& strError);
-    bool exportDomainsBinary(const std::string& strFileName, std::string& strError);
-
     /**
       * Method that exports an Xml description of the passed element into a string
       *
@@ -447,8 +443,6 @@ private:
       */
     CCommandHandler::CommandStatus exportDomainWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& result);
     CCommandHandler::CommandStatus importDomainWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
-    CCommandHandler::CommandStatus exportSettingsCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
-    CCommandHandler::CommandStatus importSettingsCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     /**
       * Command handler method for getDomainsWithSettings command.
