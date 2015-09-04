@@ -29,7 +29,6 @@
  */
 #include "Message.h"
 #include <assert.h>
-#include "Socket.h"
 #include <string.h>
 #include <assert.h>
 #include <errno.h>
@@ -39,16 +38,16 @@ using std::string;
 
 CMessage::Result CMessage::send(const std::vector<uint8_t> &data)
 {
-    // Size
+    asio::error_code error;
+
     uint16_t size = data.size();
-    if (!_socket->write(&size, sizeof(size))) {
+    if (!asio::write(_socket, asio::buffer(&size, sizeof(size)), error)) {
 
         return make_pair(Code::error, string("Size write failed: ") + strerror(errno));
     }
 
     // Data
-    if (!_socket->write((const char *)&data[0], data.size())) {
-
+    if (!asio::write(_socket, asio::buffer(data), error)) {
         return make_pair(Code::error, string("Data write failed: ") + strerror(errno));
     }
 
@@ -58,9 +57,11 @@ CMessage::Result CMessage::send(const std::vector<uint8_t> &data)
 CMessage::Result CMessage::recv(std::vector<uint8_t> &data)
 {
     uint16_t size;
-    if (!_socket->read(&size, sizeof(size))) {
+    asio::error_code error;
 
-        return make_pair(errno == ECONNRESET ? Code::peerDisconnected : Code::error,
+    if (!asio::read(_socket, asio::buffer(&size, sizeof(size)), error)) {
+
+        return make_pair(error == asio::error::eof ? Code::peerDisconnected : Code::error,
                          string("Size read failed: ") + strerror(errno));
     }
 
@@ -69,9 +70,9 @@ CMessage::Result CMessage::recv(std::vector<uint8_t> &data)
     data.resize(size);
 
     // Data receive
-    if (!_socket->read((char *)&data[0], data.size())) {
+    if (!asio::read(_socket, asio::buffer(data), error)) {
 
-        return make_pair(errno == ECONNRESET ? Code::peerDisconnected : Code::error,
+        return make_pair(error == asio::error::eof ? Code::peerDisconnected : Code::error,
                          string("Data read failed: ") + strerror(errno));
     }
 

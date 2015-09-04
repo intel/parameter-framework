@@ -28,15 +28,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RemoteProcessorServer.h"
-#include "ListeningSocket.h"
-#include "FullIo.hpp"
 #include <iostream>
 #include <memory>
 #include <assert.h>
-#include <poll.h>
-#include <unistd.h>
 #include <string.h>
-#include <errno.h>
 #include "RequestMessage.h"
 #include "AnswerMessage.h"
 #include "RemoteCommandHandler.h"
@@ -44,113 +39,79 @@
 using std::string;
 
 CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort) :
-    _uiPort(uiPort), _bIsStarted(false), _pListeningSocket(NULL)
+    _uiPort(uiPort), _io_service(), _acceptor(_io_service), _socket(_io_service)
 {
 }
 
 CRemoteProcessorServer::~CRemoteProcessorServer()
 {
     stop();
-
-    // Remove listening socket
-    delete _pListeningSocket;
 }
 
 // State
-bool CRemoteProcessorServer::start(string &error)
+bool CRemoteProcessorServer::start(string &)
 {
-    assert(!_bIsStarted);
+    using namespace asio;
 
-    if (pipe(_aiInbandPipe) == -1) {
-        error = "Could not create a pipe for remote processor communication: ";
-        error += strerror(errno);
-        return false;
-    }
+    ip::tcp::endpoint endpoint(ip::tcp::v4(), _uiPort);
 
-    // Create server socket
-    std::auto_ptr<CListeningSocket> pListeningSocket(new CListeningSocket);
+    _acceptor.open(endpoint.protocol());
 
-    if (!pListeningSocket->listen(_uiPort, error)) {
+    _acceptor.set_option(ip::tcp::acceptor::reuse_address(true));
+    _acceptor.set_option(asio::socket_base::linger(true, 0));
+    _acceptor.set_option(socket_base::enable_connection_aborted(true));
 
-        return false;
-    }
-
-    // Thread needs to access to the listning socket.
-    _pListeningSocket = pListeningSocket.get();
-    // State
-    _bIsStarted = true;
-    pListeningSocket.release();
+    _acceptor.bind(endpoint);
+    _acceptor.listen();
 
     return true;
 }
 
 bool CRemoteProcessorServer::stop()
 {
-    // Check state
-    if (!_bIsStarted) {
-        return true;
-    }
-
-    // Cause exiting of the processing loop
-    uint8_t ucData = 0;
-    if (not utility::fullWrite(_aiInbandPipe[1], &ucData, sizeof(ucData))) {
-        std::cerr << "Could not query command processor loop to terminate: "
-                     "fail to write on inband pipe: "
-                  << strerror(errno) << std::endl;
-        return false;
-    }
+    _io_service.stop();
 
     return true;
 }
 
+void CRemoteProcessorServer::acceptRegister(IRemoteCommandHandler &commandHandler)
+{
+    auto peerHandler = [this, &commandHandler](asio::error_code ec)
+    {
+        if (ec) {
+            std::cerr << "Accept failed: " << ec.message() << std::endl;
+            return;
+        }
+
+        handleNewConnection(commandHandler);
+
+        _socket.close();
+
+        acceptRegister(commandHandler);
+    };
+
+    _acceptor.async_accept(_socket, peerHandler);
+}
+
 bool CRemoteProcessorServer::process(IRemoteCommandHandler &commandHandler)
 {
-    struct pollfd _aPollFds[2];
+    acceptRegister(commandHandler);
 
-    bzero(_aPollFds, sizeof(_aPollFds));
+    asio::error_code ec;
 
-    // Build poll elements
-    _aPollFds[0].fd = _pListeningSocket->getFd();
-    _aPollFds[1].fd = _aiInbandPipe[0];
-    _aPollFds[0].events = POLLIN;
-    _aPollFds[1].events = POLLIN;
+    _io_service.run(ec);
 
-    while (true) {
-
-        poll(_aPollFds, 2, -1);
-
-        if (_aPollFds[0].revents & POLLIN) {
-
-            // New incoming connection
-            handleNewConnection(commandHandler);
-        }
-        if (_aPollFds[1].revents & POLLIN) {
-
-            // Consume exit request
-            uint8_t ucData;
-            if (not utility::fullRead(_aiInbandPipe[0], &ucData, sizeof(ucData))) {
-                    std::cerr << "Remote processor could not receive exit request"
-                              << strerror(errno) << std::endl;
-                    return false;
-            }
-
-            // Exit
-            return true;
-        }
+    if (ec) {
+        std::cerr << "Server failed: " << ec.message() << std::endl;
     }
+
+    return bool(ec);
 }
 
 // New connection
 void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandHandler)
 {
-    const std::auto_ptr<CSocket> clientSocket(_pListeningSocket->accept());
-
-    if (clientSocket.get() == NULL) {
-
-        return;
-    }
-
-    CMessage service(clientSocket.get());
+    CMessage service(_socket);
 
     // Process all incoming requests from the client
     while (true) {

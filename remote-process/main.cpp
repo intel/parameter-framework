@@ -33,15 +33,14 @@
 #include <stdlib.h>
 #include "RequestMessage.h"
 #include "AnswerMessage.h"
-#include "ConnectionSocket.h"
 
 using namespace std;
 
-bool sendAndDisplayCommand(CConnectionSocket &connectionSocket, CRequestMessage &requestMessage)
+bool sendAndDisplayCommand(asio::ip::tcp::socket &socket, CRequestMessage &requestMessage)
 {
     string strError;
 
-    CMessage service(&connectionSocket);
+    CMessage service(socket);
 
     std::vector<uint8_t> payload = requestMessage.serialize();
 
@@ -93,17 +92,18 @@ int main(int argc, char *argv[])
 
         return 1;
     }
-    // Get port number
-    uint16_t uiPort = (uint16_t)strtoul(argv[2], NULL, 0);
+    using asio::ip::tcp;
+    asio::io_service io_service;
+    tcp::resolver resolver(io_service);
 
-    // Connect to target
-    CConnectionSocket connectionSocket;
+    tcp::socket connectionSocket(io_service);
 
-    string strError;
-    // Connect
-    if (!connectionSocket.connect(argv[1], uiPort, strError)) {
+    asio::error_code ec;
+    asio::connect(connectionSocket, resolver.resolve(tcp::resolver::query(argv[1], (argv[2]))), ec);
 
-        cerr << strError << endl;
+    if (ec) {
+
+        cerr << "Connexion failed: " << ec.message() << endl;
 
         return 1;
     }

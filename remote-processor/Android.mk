@@ -32,9 +32,6 @@ LOCAL_PATH := $(call my-dir)
 # Common definitions
 
 common_src_files := \
-        Socket.cpp \
-        ListeningSocket.cpp \
-        ConnectionSocket.cpp \
         Message.cpp \
         RequestMessage.cpp \
         AnswerMessage.cpp \

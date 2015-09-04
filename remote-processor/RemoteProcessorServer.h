@@ -30,8 +30,8 @@
 #pragma once
 
 #include <stdint.h>
-#include <thread>
 #include "RemoteProcessorServerInterface.h"
+#include <asio.hpp>
 
 class CListeningSocket;
 class IRemoteCommandHandler;
@@ -48,6 +48,7 @@ public:
     bool process(IRemoteCommandHandler &commandHandler);
 
 private:
+    void acceptRegister(IRemoteCommandHandler &commandHandler);
 
     // New connection
     void handleNewConnection(IRemoteCommandHandler &commandHandler);
@@ -55,11 +56,8 @@ private:
     // Port number
     uint16_t _uiPort;
 
-    // State
-    bool _bIsStarted;
-    // Listening socket
-    CListeningSocket* _pListeningSocket;
-    // Inband pipe
-    int _aiInbandPipe[2];
+    asio::io_service _io_service;
+    asio::ip::tcp::acceptor _acceptor;
+    asio::ip::tcp::socket _socket;
 };
 

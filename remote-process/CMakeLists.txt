@@ -34,6 +34,7 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/remote-processor"
     "${PROJECT_SOURCE_DIR}/utility")
 
-target_link_libraries(remote-process remote-processor pfw_utility)
+find_package(Threads REQUIRED)
+target_link_libraries(remote-process remote-processor pfw_utility ${CMAKE_THREAD_LIBS_INIT})
 
 install(TARGETS remote-process RUNTIME DESTINATION bin)

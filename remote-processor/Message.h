@@ -32,13 +32,12 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
-
-class CSocket;
+#include <asio.hpp>
 
 class CMessage
 {
 public:
-    CMessage(CSocket* pSocket) : _socket(pSocket) {}
+    CMessage(asio::ip::tcp::socket &socket) : _socket(socket) {}
     virtual ~CMessage() {}
 
     enum class Code {
@@ -55,5 +54,5 @@ public:
 private:
     CMessage(const CMessage&) = delete;
     CMessage& operator=(const CMessage&) = delete;
-    CSocket *_socket;
+    asio::ip::tcp::socket &_socket;
 };
