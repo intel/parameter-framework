@@ -40,120 +40,122 @@ using std::string;
 using std::vector;
 
 SCENARIO("Tokenizer tests") {
-    GIVEN("A default tokenizer") {
+    GIVEN("A trivial string") {
+        string input = "a bcd ef";
+        const vector<string> expected = {"a", "bcd", "ef"};
 
-        GIVEN("A trivial string") {
-            Tokenizer tokenizer("a bcd ef", Tokenizer::defaultDelimiters, false);
+        GIVEN("A skip-empty tokenizer") {
+            Tokenizer skipTokenizer(input);
 
             THEN("next() api should work") {
-                CHECK(tokenizer.next() == "a");
-                CHECK(tokenizer.next() == "bcd");
-                CHECK(tokenizer.next() == "ef");
-                CHECK(tokenizer.next() == "");
+                for (auto &token : expected) {
+                    CHECK(skipTokenizer.next() == token);
+                }
+                CHECK(skipTokenizer.done());
+                CHECK(skipTokenizer.next() == "");
             }
             THEN("split() api should work") {
-                vector<string> expected;
-                expected.push_back("a");
-                expected.push_back("bcd");
-                expected.push_back("ef");
+                CHECK(skipTokenizer.split() == expected);
+            }
 
-                CHECK(tokenizer.split() == expected);
+            THEN("split() after next() should return the remaining tokens") {
+                auto head = expected.front();
+                auto tail = vector<string>(expected.begin() + 1, expected.end());
+                CHECK(skipTokenizer.next() == expected[0]);
+                CHECK(skipTokenizer.split() == tail);
             }
         }
 
-        GIVEN("A zero-delimited string") {
-            Tokenizer tokenizer(string("a\0bcd\0ef", 8), string("\0", 1), false);
+        GIVEN("A no-skip-empty tokenizer") {
+            Tokenizer noSkipTokenizer(input, Tokenizer::defaultDelimiters, false);
 
             THEN("next() api should work") {
-                CHECK(tokenizer.next() == "a");
-                CHECK(tokenizer.next() == "bcd");
-                CHECK(tokenizer.next() == "ef");
-                CHECK(tokenizer.next() == "");
+                for (auto &token : expected) {
+                    CHECK(noSkipTokenizer.next() == token);
+                }
+                CHECK(noSkipTokenizer.done());
+                CHECK(noSkipTokenizer.next() == "");
             }
             THEN("split() api should work") {
-                vector<string> expected;
-                expected.push_back("a");
-                expected.push_back("bcd");
-                expected.push_back("ef");
-
-                CHECK(tokenizer.split() == expected);
-            }
-        }
-
-        GIVEN("An empty string") {
-            Tokenizer tokenizer("");
-
-            THEN("done() should be true") {
-                CHECK(tokenizer.done());
-            }
-            THEN("next() api should work") {
-                CHECK(tokenizer.next() == "");
-            }
-            THEN("split() api should work") {
-                vector<string> expected;
-
-                CHECK(tokenizer.split().empty());
-            }
-        }
-
-        GIVEN("A slash-separated string and tokenizer") {
-            Tokenizer tokenizer("/a/bcd/ef g/h/", "/");
-
-            THEN("next() api should work") {
-                CHECK(tokenizer.next() == "a");
-                CHECK(tokenizer.next() == "bcd");
-                CHECK(tokenizer.next() == "ef g");
-                CHECK(tokenizer.next() == "h");
-                CHECK(tokenizer.next() == "");
-            }
-            THEN("split() api should work") {
-                vector<string> expected;
-                expected.push_back("a");
-                expected.push_back("bcd");
-                expected.push_back("ef g");
-                expected.push_back("h");
-
-                CHECK(tokenizer.split() == expected);
-            }
-        }
-
-        GIVEN("Multiple separators in a row - skip empties") {
-            Tokenizer tokenizer("  a \n\t bc  ");
-
-            THEN("next() api should work") {
-                CHECK(tokenizer.next() == "a");
-                CHECK(tokenizer.next() == "bc");
-                CHECK(tokenizer.next() == "");
-            }
-            THEN("split() api should work") {
-                vector<string> expected;
-                expected.push_back("a");
-                expected.push_back("bc");
-
-                CHECK(tokenizer.split() == expected);
-            }
-        }
-
-        GIVEN("Multiple separators in a row - don't skip empties") {
-            Tokenizer tokenizer("  a \n\t bc  ", Tokenizer::defaultDelimiters, false);
-
-            THEN("next() api should work") {
-                CHECK(tokenizer.next() == "");
-                CHECK(tokenizer.next() == "");
-                CHECK(tokenizer.next() == "a");
-                CHECK(tokenizer.next() == "");
-                CHECK(tokenizer.next() == "");
-                CHECK(tokenizer.next() == "");
-                CHECK(tokenizer.next() == "bc");
-                CHECK(tokenizer.next() == "");
-                CHECK(tokenizer.next() == "");
-            }
-            THEN("split() api should work") {
-                vector<string> expected = {"", "", "a", "", "", "", "bc", "", ""};
-
-                CHECK(tokenizer.split() == expected);
+                CHECK(noSkipTokenizer.split() == expected);
             }
         }
     }
 
+    GIVEN("A zero-delimited string") {
+        Tokenizer tokenizer(string("a\0bcd\0ef", 8), string("\0", 1));
+        const vector<string> expected = {"a", "bcd", "ef"};
+
+        THEN("next() api should work") {
+            for (auto &token : expected) {
+                CHECK(tokenizer.next() == token);
+            }
+            CHECK(tokenizer.done());
+        }
+        THEN("split() api should work") {
+            CHECK(tokenizer.split() == expected);
+        }
+    }
+
+    GIVEN("An empty string") {
+        Tokenizer skipTokenizer("");
+        Tokenizer noSkipTokenizer("", "ignored", false);
+
+        THEN("The skip-empty tokenizer should find no token") {
+            CHECK(skipTokenizer.done());
+        }
+        THEN("The no-skip-empty tokenizer should find a token") {
+            CHECK(not noSkipTokenizer.done());
+            CHECK(noSkipTokenizer.next() == "");
+        }
+    }
+
+    GIVEN("A slash-separated string and tokenizer") {
+        Tokenizer tokenizer("/a/bcd/ef g/h/", "/");
+        const vector<string> expected = {"a", "bcd", "ef g", "h"};
+
+        THEN("next() api should work") {
+            for (auto &token : expected) {
+                CHECK(tokenizer.next() == token);
+            }
+            CHECK(tokenizer.done());
+        }
+        THEN("split() api should work") {
+            CHECK(tokenizer.split() == expected);
+        }
+    }
+
+    GIVEN("Multiple separators in a row - skip empties") {
+        string input = "  a \n\t bc  ";
+        const vector<string> expected = {"a", "bc"};
+        Tokenizer tokenizer(input);
+
+        THEN("next() api should work") {
+            for (auto &token : expected) {
+                CHECK(tokenizer.next() == token);
+            }
+            CHECK(tokenizer.done());
+        }
+        THEN("split() api should work") {
+            CHECK(tokenizer.split() == expected);
+        }
+    }
+
+    GIVEN("Multiple separators in a row - don't skip empties") {
+        string input = "  a \n\t bc  ";
+        vector<string> expected = {"", "", "a", "", "", "", "bc", "", ""};
+        Tokenizer tokenizer(input, Tokenizer::defaultDelimiters, false);
+
+        THEN("next() api should work") {
+            for (auto &token : expected) {
+                CHECK(tokenizer.next() == token);
+            }
+            CHECK(tokenizer.done());
+        }
+        THEN("split() api should work") {
+            vector<string> expected = {"", "", "a", "", "", "", "bc", "", ""};
+
+            CHECK(tokenizer.split() == expected);
+        }
+    }
 }
