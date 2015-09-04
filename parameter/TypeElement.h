@@ -68,7 +68,7 @@ public:
     bool isScalar() const;
 
     // Array Length
-    uint32_t getArrayLength() const;
+    size_t getArrayLength() const;
 
     /**
      * Converts size optimized integer input data (int8, int16, int32) to plain int
@@ -92,7 +92,7 @@ private:
     CMappingData* getMappingData();
 
     // For Arrays. 0 means scalar
-    uint32_t _uiArrayLength;
+    size_t _arrayLength;
 
     // Mapping info
     CMappingData* _pMappingData;

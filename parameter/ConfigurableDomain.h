@@ -108,7 +108,7 @@ public:
     // Blackboard Configuration and Base Offset retrieval
     CParameterBlackboard* findConfigurationBlackboard(const std::string& strConfiguration,
                                                       const CConfigurableElement* pConfigurableElement,
-                                                      uint32_t& uiBaseOffset,
+                                                      size_t& baseOffset,
                                                       bool& bIsLastApplied,
                                                       std::string& strError) const;
 

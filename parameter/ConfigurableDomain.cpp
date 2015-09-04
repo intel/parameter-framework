@@ -414,7 +414,7 @@ bool CConfigurableDomain::removeConfigurableElement(CConfigurableElement* pConfi
 * @param[in] strConfiguration                           Name of the Configuration.
 * @param[in] pCandidateDescendantConfigurableElement    Pointer to a CConfigurableElement that
 *                                                       belongs to the Domain.
-* @param[out] uiBaseOffset                              The base offset of the CConfigurableElement.
+* @param[out] baseOffset                              The base offset of the CConfigurableElement.
 * @param[out] bIsLastApplied                            Boolean indicating that the Configuration is
 *                                                       the last one applied of the Domain.
 * @param[out] strError                                  Error message
@@ -423,7 +423,7 @@ bool CConfigurableDomain::removeConfigurableElement(CConfigurableElement* pConfi
 */
 CParameterBlackboard* CConfigurableDomain::findConfigurationBlackboard(const string& strConfiguration,
                                                                        const CConfigurableElement* pCandidateDescendantConfigurableElement,
-                                                                       uint32_t& uiBaseOffset,
+                                                                       size_t& baseOffset,
                                                                        bool& bIsLastApplied,
                                                                        string& strError) const
 {
@@ -448,7 +448,7 @@ CParameterBlackboard* CConfigurableDomain::findConfigurationBlackboard(const str
         if ((pCandidateDescendantConfigurableElement == pAssociatedConfigurableElement) ||
             (pCandidateDescendantConfigurableElement->isDescendantOf(pAssociatedConfigurableElement))) {
 
-            uiBaseOffset = pAssociatedConfigurableElement->getOffset();
+            baseOffset = pAssociatedConfigurableElement->getOffset();
             bIsLastApplied = (pDomainConfiguration == _pLastAppliedConfiguration);
 
             return pDomainConfiguration->getBlackboard(pAssociatedConfigurableElement);
@@ -486,9 +486,7 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement,
         return false;
     }
 
-    size_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbConfigurableElementChildren; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurableElementChildren; uiChild++) {
 
         CConfigurableElement* pChildConfigurableElement = static_cast<CConfigurableElement*>(pConfigurableElement->getChild(uiChild));
 
@@ -498,7 +496,7 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement,
     // Delegate to configurations
     size_t uiNbConfigurations = getNbChildren();
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
 
@@ -844,9 +842,8 @@ void CConfigurableDomain::validate(const CParameterBlackboard* pMainBlackboard)
 
     // Propagate
     size_t uiNbConfigurations = getNbChildren();
-    size_t uiChild;
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
 
@@ -859,9 +856,8 @@ void CConfigurableDomain::validateAreas(const CConfigurableElement* pConfigurabl
 {
     // Propagate
     size_t uiNbConfigurations = getNbChildren();
-    size_t uiChild;
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
 
@@ -899,9 +895,8 @@ void CConfigurableDomain::autoValidateAreas(const CConfigurableElement* pConfigu
 
     // Validate all other configurations against found one, if any
     size_t uiNbConfigurations = getNbChildren();
-    size_t uiChild;
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
 
@@ -917,9 +912,8 @@ bool CConfigurableDomain::autoValidateConfiguration(CDomainConfiguration* pDomai
 {
     // Find another configuration than this one, that ought to be valid!
     size_t uiNbConfigurations = getNbChildren();
-    size_t uiChild;
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         const CDomainConfiguration* pPotententialValidDomainConfiguration = static_cast<const CDomainConfiguration*>(getChild(uiChild));
 
@@ -938,9 +932,8 @@ bool CConfigurableDomain::autoValidateConfiguration(CDomainConfiguration* pDomai
 const CDomainConfiguration* CConfigurableDomain::findValidDomainConfiguration(const CConfigurableElement* pConfigurableElement) const
 {
     size_t uiNbConfigurations = getNbChildren();
-    size_t uiChild;
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(getChild(uiChild));
 
@@ -956,9 +949,8 @@ const CDomainConfiguration* CConfigurableDomain::findValidDomainConfiguration(co
 const CDomainConfiguration* CConfigurableDomain::findApplicableDomainConfiguration() const
 {
     size_t uiNbConfigurations = getNbChildren();
-    size_t uiChild;
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(getChild(uiChild));
 
@@ -1037,9 +1029,8 @@ void CConfigurableDomain::mergeConfigurations(CConfigurableElement* pToConfigura
 {
     // Propagate to domain configurations
     size_t uiNbConfigurations = getNbChildren();
-    size_t uiChild;
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
 
@@ -1070,9 +1061,8 @@ void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfig
 
     // Inform configurations
     size_t uiNbConfigurations = getNbChildren();
-    size_t uiChild;
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
 
@@ -1113,9 +1103,8 @@ void CConfigurableDomain::doRemoveConfigurableElement(CConfigurableElement* pCon
 
     // Inform configurations
     size_t uiNbConfigurations = getNbChildren();
-    size_t uiChild;
 
-    for (uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
+    for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
         CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
 

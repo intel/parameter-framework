@@ -86,7 +86,7 @@ class CParameterMgr : private CElement
     {
         const char* _pcCommandName;
         CParameterMgr::RemoteCommandParser _pfnParser;
-        uint32_t _uiMinArgumentCount;
+        size_t _minArgumentCount;
         const char* _pcHelp;
         const char* _pcDescription;
     };
@@ -719,11 +719,8 @@ private:
     // Parser description array
     static const SRemoteCommandParserItem gastRemoteCommandParserItems[];
 
-    // Parser description array size
-    static const uint32_t guiNbRemoteCommandParserItems;
-
     // Maximum command usage length
-    uint32_t _uiMaxCommandUsageLength;
+    size_t _maxCommandUsageLength;
 
     // Blackboard access mutex
     std::mutex _blackboardMutex;

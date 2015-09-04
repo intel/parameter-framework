@@ -88,15 +88,15 @@ void CFixedPointParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigu
 bool CFixedPointParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Size
-    uint32_t uiSizeInBits;
-    xmlElement.getAttribute("Size", uiSizeInBits);
+    size_t sizeInBits;
+    xmlElement.getAttribute("Size", sizeInBits);
 
     // Q notation
     xmlElement.getAttribute("Integral", _uiIntegral);
     xmlElement.getAttribute("Fractional", _uiFractional);
 
     // Size vs. Q notation integrity check
-    if (uiSizeInBits < getUtilSizeInBits()) {
+    if (sizeInBits < getUtilSizeInBits()) {
 
         std::string size;
         xmlElement.getAttribute("Size", size);
@@ -109,7 +109,7 @@ bool CFixedPointParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerial
     }
 
     // Set the size
-    setSize(uiSizeInBits / 8);
+    setSize(sizeInBits / 8);
 
     return base::fromXml(xmlElement, serializingContext);
 }
@@ -261,7 +261,7 @@ bool CFixedPointParameterType::fromBlackboard(double& dUserValue, uint32_t uiVal
 }
 
 // Util size
-uint32_t CFixedPointParameterType::getUtilSizeInBits() const
+size_t CFixedPointParameterType::getUtilSizeInBits() const
 {
     return _uiIntegral + _uiFractional + 1;
 }

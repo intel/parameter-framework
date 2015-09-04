@@ -63,13 +63,13 @@ std::string CFrameworkConfigurationLocation::getFilePath(const std::string& strB
 // Folder path
 std::string CFrameworkConfigurationLocation::getFolderPath(const std::string& strBaseFolder) const
 {
-    uint32_t uiSlashPos = _strPath.rfind('/', -1);
+    auto slashPos = _strPath.rfind('/', -1);
 
     if (isPathRelative()) {
 
-        if (uiSlashPos != (uint32_t)-1) {
+        if (slashPos != std::string::npos) {
 
-            return strBaseFolder + "/" + _strPath.substr(0, uiSlashPos);
+            return strBaseFolder + "/" + _strPath.substr(0, slashPos);
 
         } else {
 
@@ -77,9 +77,9 @@ std::string CFrameworkConfigurationLocation::getFolderPath(const std::string& st
         }
     } else {
 
-        assert(uiSlashPos != (uint32_t)-1);
+        assert(slashPos != std::string::npos);
 
-        return _strPath.substr(0, uiSlashPos);
+        return _strPath.substr(0, slashPos);
     }
 }
 

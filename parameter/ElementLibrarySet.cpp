@@ -36,11 +36,10 @@ CElementLibrarySet::CElementLibrarySet()
 
 CElementLibrarySet::~CElementLibrarySet()
 {
-    uint32_t uiIndex;
+    // FIXME: use an array of unique_ptr
+    for (auto *elementLibrary : _elementLibraryArray) {
 
-    for (uiIndex = 0; uiIndex < _elementLibraryArray.size(); uiIndex++) {
-
-        delete _elementLibraryArray[uiIndex];
+        delete elementLibrary;
     }
 }
 
@@ -49,9 +48,9 @@ void CElementLibrarySet::addElementLibrary(CElementLibrary* pElementLibrary)
     _elementLibraryArray.push_back(pElementLibrary);
 }
 
-CElementLibrary* CElementLibrarySet::getElementLibrary(uint32_t uiIndex) const
+CElementLibrary* CElementLibrarySet::getElementLibrary(size_t index) const
 {
-    assert(uiIndex <= _elementLibraryArray.size());
+    assert(index <= _elementLibraryArray.size());
 
-    return _elementLibraryArray[uiIndex];
+    return _elementLibraryArray[index];
 }

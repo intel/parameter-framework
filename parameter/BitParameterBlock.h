@@ -37,13 +37,13 @@ public:
     CBitParameterBlock(const std::string& strName, const CTypeElement* pTypeElement);
 
     // Instantiation, allocation
-    virtual uint32_t getFootPrint() const;
+    virtual size_t getFootPrint() const;
 
     // Type
     virtual Type getType() const;
 
     // Size
-    uint32_t getSize() const;
+    size_t getSize() const;
 
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;

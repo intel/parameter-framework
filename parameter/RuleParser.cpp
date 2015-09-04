@@ -48,7 +48,7 @@ CRuleParser::CRuleParser(const string& strApplicationRule, const CSelectionCrite
     _strApplicationRule(strApplicationRule),
     _pSelectionCriteriaDefinition(pSelectionCriteriaDefinition),
     _uiCurrentPos(0),
-    _uiCurrentDeepness(0),
+    _currentDeepness(0),
     _eStatus(CRuleParser::EInit),
     _pRootRule(NULL)
 {
@@ -168,12 +168,12 @@ bool CRuleParser::iterate(string& strError)
             _eStatus = EBeginCompoundRule;
             // Extract type
             _strRuleType = _strApplicationRule.substr(_uiCurrentPos, delimiter - _uiCurrentPos);
-            _uiCurrentDeepness++;
+            _currentDeepness++;
             break;
         case '}':
             _eStatus = EEndCompoundRule;
 
-            if (!_uiCurrentDeepness--) {
+            if (!_currentDeepness--) {
 
                 strError = "Missing opening brace";
 
@@ -193,7 +193,7 @@ bool CRuleParser::iterate(string& strError)
         _uiCurrentPos = delimiter + 1;
     } else {
 
-        if (_uiCurrentDeepness) {
+        if (_currentDeepness) {
 
             strError = "Missing closing brace";
 

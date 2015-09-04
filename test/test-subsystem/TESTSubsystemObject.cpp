@@ -48,8 +48,8 @@ CTESTSubsystemObject::CTESTSubsystemObject(const std::string& /*strMappingValue*
     // Get actual element type
     const CParameterType* pParameterType = static_cast<const CParameterType*>(pInstanceConfigurableElement->getTypeElement());
 
-    _uiScalarSize = pParameterType->getSize();
-    _uiArraySize = pInstanceConfigurableElement->getFootPrint() / _uiScalarSize;
+    _scalarSize = pParameterType->getSize();
+    _arraySize = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
     _bIsScalar = pParameterType->isScalar();
 
     _strFilePath = context.getItem(ETESTDirectory) + "/" + pInstanceConfigurableElement->getName();
@@ -96,18 +96,16 @@ bool CTESTSubsystemObject::receiveFromHW(std::string& /*strError*/)
 
 void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
 {
-    uint32_t uiIndex;
+    for (size_t index = 0 ; index < _arraySize ; index++) {
 
-    for (uiIndex = 0 ; uiIndex < _uiArraySize ; uiIndex++) {
-
-        std::vector<uint8_t> aucValue(_uiScalarSize);
+        std::vector<uint8_t> aucValue(_scalarSize);
 
         void* pvValue = aucValue.data();
 
         // Read Value in BlackBoard
-        blackboardRead(pvValue, _uiScalarSize);
+        blackboardRead(pvValue, _scalarSize);
 
-        std::string strValue = toString(pvValue, _uiScalarSize);
+        std::string strValue = toString(pvValue, _scalarSize);
 
         outputFile << strValue << std::endl;
 
@@ -120,7 +118,7 @@ void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
             } else {
 
                 _logger.info() << "TESTSUBSYSTEM: Writing '" << strValue << "' to file "
-                               << _strFilePath << "[" << uiIndex << "]";
+                               << _strFilePath << "[" << index << "]";
             }
         }
     }
@@ -128,11 +126,9 @@ void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
 
 void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
 {
-    uint32_t uiIndex;
+    for (size_t index = 0 ; index < _arraySize ; index++) {
 
-    for (uiIndex = 0 ; uiIndex < _uiArraySize ; uiIndex++) {
-
-        std::vector<uint8_t> aucValue(_uiScalarSize);
+        std::vector<uint8_t> aucValue(_scalarSize);
 
         void* pvValue = aucValue.data();
 
@@ -149,13 +145,13 @@ void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
             } else {
 
                 _logger.info() << "TESTSUBSYSTEM: Reading '" << strValue << "' to file "
-                               << _strFilePath << "[" << uiIndex << "]";
+                               << _strFilePath << "[" << index << "]";
             }
         }
 
-        fromString(strValue, pvValue, _uiScalarSize);
+        fromString(strValue, pvValue, _scalarSize);
 
         // Write Value in Blackboard
-        blackboardWrite(pvValue, _uiScalarSize);
+        blackboardWrite(pvValue, _scalarSize);
     }
 }

@@ -171,12 +171,11 @@ void CBinaryStream::read(uint8_t* puiData, size_t uiSize)
 
 uint8_t CBinaryStream::computeChecksum() const
 {
-    uint32_t uiIndex;
     uint8_t uiDataChecksum = _uiStructureChecksum;
 
-    for (uiIndex = 0; uiIndex < _uiDataSize; uiIndex++) {
+    for (size_t index = 0; index < _uiDataSize; index++) {
 
-        uiDataChecksum += _puiData[uiIndex];
+        uiDataChecksum += _puiData[index];
     }
     return uiDataChecksum;
 }

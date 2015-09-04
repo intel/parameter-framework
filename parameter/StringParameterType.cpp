@@ -35,7 +35,7 @@
 
 using std::string;
 
-CStringParameterType::CStringParameterType(const string& strName) : base(strName), _uiMaxLength(0)
+CStringParameterType::CStringParameterType(const string& strName) : base(strName), _maxLength(0)
 {
 }
 
@@ -52,7 +52,7 @@ void CStringParameterType::showProperties(string& strResult) const
 
     // Max length
     strResult += "Max length: ";
-    strResult += CUtility::toString(_uiMaxLength);
+    strResult += CUtility::toString(_maxLength);
     strResult += "\n";
 }
 
@@ -60,7 +60,7 @@ void CStringParameterType::showProperties(string& strResult) const
 bool CStringParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // MaxLength
-    xmlElement.getAttribute("MaxLength", _uiMaxLength);
+    xmlElement.getAttribute("MaxLength", _maxLength);
 
     // Base
     return base::fromXml(xmlElement, serializingContext);
@@ -72,16 +72,16 @@ CInstanceConfigurableElement* CStringParameterType::doInstantiate() const
 }
 
 // Max length
-uint32_t CStringParameterType::getMaxLength() const
+size_t CStringParameterType::getMaxLength() const
 {
-    return _uiMaxLength;
+    return _maxLength;
 }
 
 // From IXmlSource
 void CStringParameterType::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
 {
     // MaxLength
-    xmlElement.setAttribute("MaxLength", _uiMaxLength);
+    xmlElement.setAttribute("MaxLength", _maxLength);
 
     base::toXml(xmlElement, serializingContext);
 }

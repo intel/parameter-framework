@@ -134,7 +134,7 @@ bool CInstanceConfigurableElement::isScalar() const
 }
 
 // Array Length
-uint32_t CInstanceConfigurableElement::getArrayLength() const
+size_t CInstanceConfigurableElement::getArrayLength() const
 {
     return _pTypeElement->getArrayLength();
 }

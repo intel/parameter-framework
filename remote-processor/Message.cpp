@@ -53,26 +53,26 @@ uint8_t CMessage::getMsgId() const
 }
 
 // Data
-void CMessage::writeData(const void* pvData, size_t uiSize)
+void CMessage::writeData(const void* pvData, size_t size)
 {
-    assert(_uiIndex + uiSize <= _uiDataSize);
+    assert(_uiIndex + size <= _uiDataSize);
 
     // Copy
-    memcpy(&_pucData[_uiIndex], pvData, uiSize);
+    memcpy(&_pucData[_uiIndex], pvData, size);
 
     // Index
-    _uiIndex += uiSize;
+    _uiIndex += size;
 }
 
-void CMessage::readData(void* pvData, size_t uiSize)
+void CMessage::readData(void* pvData, size_t size)
 {
-    assert(_uiIndex + uiSize <= _uiDataSize);
+    assert(_uiIndex + size <= _uiDataSize);
 
     // Copy
-    memcpy(pvData, &_pucData[_uiIndex], uiSize);
+    memcpy(pvData, &_pucData[_uiIndex], size);
 
     // Index
-    _uiIndex += uiSize;
+    _uiIndex += size;
 }
 
 void CMessage::writeString(const string& strData)
@@ -247,18 +247,16 @@ uint8_t CMessage::computeChecksum() const
 {
     uint8_t uiChecksum = _ucMsgId;
 
-    uint32_t uiIndex;
+    for (size_t index = 0; index < _uiDataSize; index++) {
 
-    for (uiIndex = 0; uiIndex < _uiDataSize; uiIndex++) {
-
-        uiChecksum += _pucData[uiIndex];
+        uiChecksum += _pucData[index];
     }
 
     return uiChecksum;
 }
 
 // Allocation of room to store the message
-void CMessage::allocateData(size_t uiSize)
+void CMessage::allocateData(size_t size)
 {
     // Remove previous one
     if (_pucData) {
@@ -266,10 +264,10 @@ void CMessage::allocateData(size_t uiSize)
         delete [] _pucData;
     }
     // Do allocate
-    _pucData = new uint8_t[uiSize];
+    _pucData = new uint8_t[size];
 
     // Record size
-    _uiDataSize = uiSize;
+    _uiDataSize = size;
 
     // Reset Index
     _uiIndex = 0;

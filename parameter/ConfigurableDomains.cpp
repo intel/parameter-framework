@@ -55,12 +55,11 @@ bool CConfigurableDomains::childrenAreDynamic() const
 void CConfigurableDomains::validate(const CParameterBlackboard* pMainBlackboard)
 {
     // Delegate to domains
-    size_t uiChild;
     size_t uiNbConfigurableDomains = getNbChildren();
 
-    for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
+    for (size_t child = 0; child < uiNbConfigurableDomains; child++) {
 
-        CConfigurableDomain* pChildConfigurableDomain = static_cast<CConfigurableDomain*>(getChild(uiChild));
+        CConfigurableDomain* pChildConfigurableDomain = static_cast<CConfigurableDomain*>(getChild(child));
 
         pChildConfigurableDomain->validate(pMainBlackboard);
     }
@@ -75,12 +74,11 @@ void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard,
     /// Delegate to domains
 
     // Start with domains that can be synchronized all at once (with passed syncer set)
-    size_t uiChild;
     size_t uiNbConfigurableDomains = getNbChildren();
 
-    for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
+    for (size_t child = 0; child < uiNbConfigurableDomains; child++) {
 
-        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
+        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(child));
 
         std::string info;
         // Apply and collect syncers when relevant
@@ -94,9 +92,9 @@ void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard,
     syncerSet.sync(*pParameterBlackboard, false, NULL);
 
     // Then deal with domains that need to synchronize along apply
-    for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
+    for (size_t child = 0; child < uiNbConfigurableDomains; child++) {
 
-        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
+        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(child));
 
         std::string info;
         // Apply and synchronize when relevant
@@ -367,12 +365,11 @@ void CConfigurableDomains::listDomains(string& strResult) const
     strResult = "\n";
 
     // List domains
-    size_t uiChild;
     size_t uiNbConfigurableDomains = getNbChildren();
 
-    for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
+    for (size_t child = 0; child < uiNbConfigurableDomains; child++) {
 
-        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
+        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(child));
 
         // Name
         strResult += pChildConfigurableDomain->getName();
@@ -390,12 +387,11 @@ void CConfigurableDomains::listDomains(string& strResult) const
 void CConfigurableDomains::gatherAllOwnedConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const
 {
     // Delegate to domains
-    size_t uiChild;
     size_t uiNbConfigurableDomains = getNbChildren();
 
-    for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
+    for (size_t child = 0; child < uiNbConfigurableDomains; child++) {
 
-        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
+        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(child));
 
         pChildConfigurableDomain->gatherConfigurableElements(configurableElementSet);
     }
@@ -505,12 +501,11 @@ bool CConfigurableDomains::getApplicationRule(const string& strDomain, const str
 void CConfigurableDomains::listLastAppliedConfigurations(string& strResult) const
 {
     // Browse domains
-    size_t uiChild;
     size_t uiNbConfigurableDomains = getNbChildren();
 
-    for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
+    for (size_t child = 0; child < uiNbConfigurableDomains; child++) {
 
-        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
+        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(child));
 
         strResult += pChildConfigurableDomain->getName() + ": " + pChildConfigurableDomain->getLastAppliedConfigurationName() + " [" + pChildConfigurableDomain->getPendingConfigurationName() + "]\n";
     }
@@ -552,7 +547,7 @@ bool CConfigurableDomains::removeConfigurableElementFromDomain(const string& str
 CParameterBlackboard* CConfigurableDomains::findConfigurationBlackboard(const string& strDomain,
                                                        const string& strConfiguration,
                                                        const CConfigurableElement* pConfigurableElement,
-                                                       uint32_t& uiBaseOffset,
+                                                       size_t& baseOffset,
                                                        bool& bIsLastApplied,
                                                        string& strError) const
 {
@@ -573,7 +568,7 @@ CParameterBlackboard* CConfigurableDomains::findConfigurationBlackboard(const st
     }
 
     // Find Configuration Blackboard and Base Offset
-    return pConfigurableDomain->findConfigurationBlackboard(strConfiguration, pConfigurableElement, uiBaseOffset, bIsLastApplied, strError);
+    return pConfigurableDomain->findConfigurationBlackboard(strConfiguration, pConfigurableElement, baseOffset, bIsLastApplied, strError);
 }
 
 // Binary settings load/store

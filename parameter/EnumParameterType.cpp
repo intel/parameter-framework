@@ -82,11 +82,11 @@ void CEnumParameterType::showProperties(string& strResult) const
 bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Size in bits
-    uint32_t uiSizeInBits;
-    xmlElement.getAttribute("Size", uiSizeInBits);
+    size_t sizeInBits;
+    xmlElement.getAttribute("Size", sizeInBits);
 
     // Size
-    setSize(uiSizeInBits / 8);
+    setSize(sizeInBits / 8);
 
     // Base
     return base::fromXml(xmlElement, serializingContext);

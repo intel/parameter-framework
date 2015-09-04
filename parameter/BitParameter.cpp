@@ -50,27 +50,27 @@ CInstanceConfigurableElement::Type CBitParameter::getType() const
 }
 
 // Size
-uint32_t CBitParameter::getBelongingBlockSize() const
+size_t CBitParameter::getBelongingBlockSize() const
 {
     return static_cast<const CBitParameterBlock*>(getParent())->getSize();
 }
 
 // Instantiation, allocation
-uint32_t CBitParameter::getFootPrint() const
+size_t CBitParameter::getFootPrint() const
 {
     // Allocation done at parent level
     return 0;
 }
 
 // Actual parameter access (tuning)
-bool CBitParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameter::doSetValue(const string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
-    return doSet(strValue, uiOffset, parameterAccessContext);
+    return doSet(strValue, offset, parameterAccessContext);
 }
 
-void CBitParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+void CBitParameter::doGetValue(string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
-    doGet(strValue, uiOffset, parameterAccessContext);
+    doGet(strValue, offset, parameterAccessContext);
 }
 
 /// Value access
@@ -110,12 +110,12 @@ bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCon
 // Integer Access
 bool CBitParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
-    uint32_t uiOffset = getOffset();
+    size_t offset = getOffset();
 
     if (bSet) {
 
         // Set Value
-        if (!doSet(uiValue, uiOffset, parameterAccessContext)) {
+        if (!doSet(uiValue, offset, parameterAccessContext)) {
 
             appendParameterPathToError(parameterAccessContext);
             return false;
@@ -129,13 +129,13 @@ bool CBitParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAcce
     } else {
 
         // Convert
-        doGet(uiValue, uiOffset, parameterAccessContext);
+        doGet(uiValue, offset, parameterAccessContext);
     }
     return true;
 }
 
 template <typename type>
-bool CBitParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameter::doSet(type value, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
     uint64_t uiData = 0;
 
@@ -143,7 +143,7 @@ bool CBitParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), offset, parameterAccessContext.isBigEndianSubsystem());
 
     // Convert
     if (!static_cast<const CBitParameterType*>(getTypeElement())->toBlackboard(value, uiData, parameterAccessContext)) {
@@ -151,13 +151,13 @@ bool CBitParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext
         return false;
     }
     // Write blackboard
-    pBlackboard->writeInteger(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->writeInteger(&uiData, getBelongingBlockSize(), offset, parameterAccessContext.isBigEndianSubsystem());
 
     return true;
 }
 
 template <typename type>
-void CBitParameter::doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+void CBitParameter::doGet(type& value, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
     uint64_t uiData = 0;
 
@@ -165,7 +165,7 @@ void CBitParameter::doGet(type& value, uint32_t uiOffset, CParameterAccessContex
     const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), offset, parameterAccessContext.isBigEndianSubsystem());
 
     // Convert
     static_cast<const CBitParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);

@@ -57,20 +57,17 @@ CSubsystem::CSubsystem(const string& strName, core::log::Logger& logger)
 
 CSubsystem::~CSubsystem()
 {
-    // Remove subsystem objects
-    SubsystemObjectListIterator subsystemObjectIt;
+    // FIXME use unique_ptr, would make this method empty
 
-    for (subsystemObjectIt = _subsystemObjectList.begin(); subsystemObjectIt != _subsystemObjectList.end(); ++subsystemObjectIt) {
+    for (auto *subsystemObject : _subsystemObjectList) {
 
-        delete *subsystemObjectIt;
+        delete subsystemObject;
     }
 
     // Remove susbsystem creators
-    uint32_t uiIndex;
+    for (auto *subsystemObjectCreator : _subsystemObjectCreatorArray) {
 
-    for (uiIndex = 0; uiIndex < _subsystemObjectCreatorArray.size(); uiIndex++) {
-
-        delete _subsystemObjectCreatorArray[uiIndex];
+        delete subsystemObjectCreator;
     }
 
     // Order matters!
@@ -190,12 +187,11 @@ bool CSubsystem::mapSubsystemElements(string& strError)
     _contextStack.push(context);
 
     // Map all instantiated subelements in subsystem
-    size_t uiNbChildren = getNbChildren();
-    size_t uiChild;
+    size_t nbChildren = getNbChildren();
 
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
+    for (size_t child = 0; child < nbChildren; child++) {
 
-        CInstanceConfigurableElement* pInstanceConfigurableChildElement = static_cast<CInstanceConfigurableElement*>(getChild(uiChild));
+        CInstanceConfigurableElement* pInstanceConfigurableChildElement = static_cast<CInstanceConfigurableElement*>(getChild(child));
 
         if (!pInstanceConfigurableChildElement->map(*this, strError)) {
 
@@ -389,16 +385,14 @@ bool CSubsystem::handleMappingContext(
         string& strError) const
 {
     // Feed context with found mapping data
-    uint32_t uiItem;
+    for (size_t item = 0; item < _contextMappingKeyArray.size(); item++) {
 
-    for (uiItem = 0; uiItem < _contextMappingKeyArray.size(); uiItem++) {
-
-        const string& strKey = _contextMappingKeyArray[uiItem];
+        const string& strKey = _contextMappingKeyArray[item];
         const string* pStrValue;
 
         if (pConfigurableElementWithMapping->getMappingData(strKey, pStrValue)) {
             // Assign item to context
-            if (!context.setItem(uiItem, &strKey, pStrValue)) {
+            if (!context.setItem(item, &strKey, pStrValue)) {
 
                 strError = getMappingError(strKey, "Already set", pConfigurableElementWithMapping);
 
@@ -414,13 +408,9 @@ bool CSubsystem::handleSubsystemObjectCreation(
         CInstanceConfigurableElement* pInstanceConfigurableElement,
         CMappingContext& context, bool& bHasCreatedSubsystemObject, string& strError)
 {
-    uint32_t uiItem;
     bHasCreatedSubsystemObject = false;
 
-    for (uiItem = 0; uiItem < _subsystemObjectCreatorArray.size(); uiItem++) {
-
-        const CSubsystemObjectCreator* pSubsystemObjectCreator =
-                _subsystemObjectCreatorArray[uiItem];
+    for (const auto *pSubsystemObjectCreator : _subsystemObjectCreatorArray) {
 
         // Mapping key
         string strKey = pSubsystemObjectCreator->getMappingKey();
@@ -431,10 +421,9 @@ bool CSubsystem::handleSubsystemObjectCreation(
 
             // First check context consistency
             // (required ancestors must have been set prior to object creation)
-            uint32_t uiAncestorKey;
             uint32_t uiAncestorMask = pSubsystemObjectCreator->getAncestorMask();
 
-            for (uiAncestorKey = 0; uiAncestorKey < _contextMappingKeyArray.size(); uiAncestorKey++) {
+            for (size_t uiAncestorKey = 0; uiAncestorKey < _contextMappingKeyArray.size(); uiAncestorKey++) {
 
                 if (!((1 << uiAncestorKey) & uiAncestorMask)) {
                     // Ancestor not required

@@ -54,7 +54,7 @@ bool CParameterHandle::isArray() const
 }
 
 // Array Length
-uint32_t CParameterHandle::getArrayLength() const
+size_t CParameterHandle::getArrayLength() const
 {
     return _pBaseParameter->getArrayLength();
 }
@@ -436,7 +436,7 @@ bool CParameterHandle::getAsString(string& strValue, string& strError) const
 bool CParameterHandle::setAsStringArray(const std::vector<string>& astrValues, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, (uint32_t)astrValues.size(), strError)) {
+    if (!checkAccessValidity(true, astrValues.size(), strError)) {
 
         return false;
     }
@@ -475,7 +475,7 @@ bool CParameterHandle::getAsStringArray(std::vector<string>& astrValues, string&
 }
 
 // Access validity
-bool CParameterHandle::checkAccessValidity(bool bSet, size_t uiArrayLength, string& strError) const
+bool CParameterHandle::checkAccessValidity(bool bSet, size_t arrayLength, string& strError) const
 {
     if (bSet && !isRogue()) {
 
@@ -486,7 +486,7 @@ bool CParameterHandle::checkAccessValidity(bool bSet, size_t uiArrayLength, stri
         return false;
     }
 
-    if (uiArrayLength && !isArray()) {
+    if (arrayLength && !isArray()) {
 
         strError = "Parameter is scalar: ";
 
@@ -495,7 +495,7 @@ bool CParameterHandle::checkAccessValidity(bool bSet, size_t uiArrayLength, stri
         return false;
     }
 
-    if (!uiArrayLength && isArray()) {
+    if (!arrayLength && isArray()) {
 
         strError = "Parameter is an array: ";
 
@@ -504,7 +504,7 @@ bool CParameterHandle::checkAccessValidity(bool bSet, size_t uiArrayLength, stri
         return false;
     }
 
-    if (bSet && uiArrayLength && (uiArrayLength != getArrayLength())) {
+    if (bSet && arrayLength && (arrayLength != getArrayLength())) {
 
         strError = "Array length mismatch: ";
 

@@ -35,20 +35,20 @@ CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  CParameterBlackboard* pParameterBlackboard,
                                                  bool bValueSpaceIsRaw,
                                                  bool bOutputRawFormatIsHex,
-                                                 uint32_t uiBaseOffset)
+                                                 size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard),
     _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
-    _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(uiBaseOffset)
+    _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(baseOffset)
 {
 }
 
 CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  bool bBigEndianSubsystem,
                                                  CParameterBlackboard* pParameterBlackboard,
-                                                 uint32_t uiBaseOffset)
+                                                 size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard), _bValueSpaceIsRaw(false),
     _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(bBigEndianSubsystem), _bAutoSync(true),
-    _uiBaseOffset(uiBaseOffset)
+    _uiBaseOffset(baseOffset)
 {
 }
 
@@ -71,12 +71,12 @@ void CParameterAccessContext::setParameterBlackboard(CParameterBlackboard* pBlac
 }
 
 // Base offset for blackboard access
-void CParameterAccessContext::setBaseOffset(uint32_t uiBaseOffset)
+void CParameterAccessContext::setBaseOffset(size_t baseOffset)
 {
-    _uiBaseOffset = uiBaseOffset;
+    _uiBaseOffset = baseOffset;
 }
 
-uint32_t CParameterAccessContext::getBaseOffset() const
+size_t CParameterAccessContext::getBaseOffset() const
 {
     return _uiBaseOffset;
 }

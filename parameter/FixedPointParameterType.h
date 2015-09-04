@@ -63,7 +63,7 @@ public:
     virtual std::string getKind() const;
 private:
     // Util size
-    uint32_t getUtilSizeInBits() const;
+    size_t getUtilSizeInBits() const;
     // Range computation
     void getRange(double& dMin, double& dMax) const;
 

@@ -88,20 +88,20 @@ bool CFloatingPointParameterType::fromXml(const CXmlElement& xmlElement,
                                           CXmlSerializingContext& serializingContext)
 {
     // Size. The XSD fixes it to 32
-    uint32_t uiSizeInBits = 32;
-    xmlElement.getAttribute("Size", uiSizeInBits);
+    size_t sizeInBits = 32;
+    xmlElement.getAttribute("Size", sizeInBits);
 
     // Size support check: only floats are supported
     // (e.g. doubles are not supported)
-    if (uiSizeInBits != sizeof(float) * CHAR_BIT) {
+    if (sizeInBits != sizeof(float) * CHAR_BIT) {
 
-        serializingContext.setError("Unsupported size (" + CUtility::toString(uiSizeInBits) +
+        serializingContext.setError("Unsupported size (" + CUtility::toString(sizeInBits) +
             ") for " + getKind() + " " + xmlElement.getPath() + ". For now, only 32 is supported.");
 
         return false;
     }
 
-    setSize(uiSizeInBits / CHAR_BIT);
+    setSize(sizeInBits / CHAR_BIT);
 
     xmlElement.getAttribute("Min", _fMin);
     xmlElement.getAttribute("Max", _fMax);

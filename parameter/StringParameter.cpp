@@ -46,12 +46,12 @@ CInstanceConfigurableElement::Type CStringParameter::getType() const
     return EStringParameter;
 }
 
-uint32_t CStringParameter::getFootPrint() const
+size_t CStringParameter::getFootPrint() const
 {
     return getSize();
 }
 
-uint32_t CStringParameter::getSize() const
+size_t CStringParameter::getSize() const
 {
     return static_cast<const CStringParameterType*>(getTypeElement())->getMaxLength() + 1;
 }
@@ -66,7 +66,7 @@ void CStringParameter::setDefaultValues(CParameterAccessContext& parameterAccess
 }
 
 // Actual parameter access (tuning)
-bool CStringParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+bool CStringParameter::doSetValue(const string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
     if (strValue.length() >= getSize()) {
 
@@ -78,12 +78,12 @@ bool CStringParameter::doSetValue(const string& strValue, uint32_t uiOffset, CPa
     // Write blackboard
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
-    pBlackboard->writeString(strValue, uiOffset);
+    pBlackboard->writeString(strValue, offset);
 
     return true;
 }
 
-void CStringParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+void CStringParameter::doGetValue(string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
-    parameterAccessContext.getParameterBlackboard()->readString(strValue, uiOffset);
+    parameterAccessContext.getParameterBlackboard()->readString(strValue, offset);
 }
