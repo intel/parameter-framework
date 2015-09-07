@@ -87,19 +87,15 @@ bool CBooleanParameterType::fromBlackboard(std::string& strValue, const uint32_t
 }
 
 // Value access
-bool CBooleanParameterType::toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBooleanParameterType::toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    (void)parameterAccessContext;
-
     uiValue = bUserValue;
 
     return true;
 }
 
-bool CBooleanParameterType::fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBooleanParameterType::fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    (void)parameterAccessContext;
-
     bUserValue = uiValue != 0;
 
     return true;
@@ -118,10 +114,8 @@ bool CBooleanParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue
     return true;
 }
 
-bool CBooleanParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBooleanParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    (void)parameterAccessContext;
-
     uiUserValue = uiValue != 0;
 
     return true;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,7 @@
  */
 #include "SelectionCriterionType.h"
 #include "Tokenizer.h"
+#include <sstream>
 
 #define base CElement
 
@@ -49,12 +50,17 @@ std::string CSelectionCriterionType::getKind() const
 }
 
 // From ISelectionCriterionTypeInterface
-bool CSelectionCriterionType::addValuePair(int iValue, const std::string& strValue)
+bool CSelectionCriterionType::addValuePair(
+        int iValue, const std::string& strValue, std::string& strError)
 {
     // Check 1 bit set only for inclusive types
     if (_bInclusive && (!iValue || (iValue & (iValue - 1)))) {
 
-        log_warning("Rejecting value pair association: 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
+        std::ostringstream error;
+        error << "Rejecting value pair association: 0x" << std::hex << iValue
+              << " - " << strValue << " for Selection Criterion Type "
+              << getName();
+        strError = error.str();
 
         return false;
     }
@@ -62,15 +68,21 @@ bool CSelectionCriterionType::addValuePair(int iValue, const std::string& strVal
     // Check already inserted
     if (_numToLitMap.find(strValue) != _numToLitMap.end()) {
 
-        log_warning("Rejecting value pair association (literal already present): 0x%X - %s for Selection Criterion Type %s", iValue, strValue.c_str(), getName().c_str());
+        std::ostringstream error;
+        error << "Rejecting value pair association (literal already present): 0x"
+              << std::hex << iValue << " - " << strValue
+              << " for Selection Criterion Type " << getName();
+        strError = error.str();
 
         return false;
     }
     for (NumToLitMapConstIt it = _numToLitMap.begin(); it != _numToLitMap.end(); ++it) {
         if (it->second == iValue) {
-            log_warning("Rejecting value pair association (numerical already present): 0x%X - %s"
-                        " for Selection Criterion Type %s",
-                        iValue, strValue.c_str(), getName().c_str());
+            std::ostringstream error;
+            error << "Rejecting value pair association (numerical already present):"
+                  << " 0x" << std::hex << iValue << " - " << strValue
+                  << " for Selection Criterion Type " << getName();
+            strError = error.str();
             return false;
         }
     }

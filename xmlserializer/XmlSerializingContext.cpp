@@ -33,7 +33,7 @@
 
 CXmlSerializingContext::CXmlSerializingContext(std::string& strError) : _strError(strError)
 {
-    xmlSetGenericErrorFunc(this, genericErrorHandler);
+    xmlSetStructuredErrorFunc(this, structuredErrorHandler);
 }
 
 CXmlSerializingContext::~CXmlSerializingContext()
@@ -53,21 +53,14 @@ void CXmlSerializingContext::appendLineToError(const std::string& strAppend)
     _strError += "\n" + strAppend;
 }
 
-void CXmlSerializingContext::genericErrorHandler(void* userData, const char* format, ...)
+/** XML error handler
+  *
+  * @param[in] userData pointer to the serializing context
+  * @param[in] format is the xml error output format
+  *
+  */
+void CXmlSerializingContext::structuredErrorHandler(void* userData, xmlErrorPtr error)
 {
-    char *buffer = NULL;
-
-    va_list args;
-    va_start(args, format);
-    int success = vasprintf(&buffer, format, args);
-    va_end(args);
-
-    if (success == -1) {
-        return;
-    }
-
-    CXmlSerializingContext& self = *static_cast<CXmlSerializingContext *>(userData);
-    self._strXmlError += std::string(buffer);
-
-    free(buffer);
+    CXmlSerializingContext *self = static_cast<CXmlSerializingContext *>(userData);
+    self->_strXmlError += error->message;
 }

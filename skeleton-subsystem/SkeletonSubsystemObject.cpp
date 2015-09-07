@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -48,9 +48,11 @@ using std::string;
 CSkeletonSubsystemObject::CSkeletonSubsystemObject(
             const string& strMappingValue,
             CInstanceConfigurableElement* pInstanceConfigurableElement,
-            const CMappingContext& context
+            const CMappingContext& context,
+            core::log::Logger& logger
         ) :
         base(pInstanceConfigurableElement,
+             logger,
              strMappingValue,
              EAmend1,
              EAmendEnd - EAmend1 + 1,
@@ -93,10 +95,8 @@ bool CSkeletonSubsystemObject::accessHW(bool bReceive, string& strError)
     return base::accessHW(bReceive, strError);
 }
 
-bool CSkeletonSubsystemObject::sendToHW(string& strError)
+bool CSkeletonSubsystemObject::sendToHW(string& /*strError*/)
 {
-    (void) strError;
-
     uint32_t uiIndex;
 
     void* pvValue = alloca(_uiScalarSize);
@@ -113,10 +113,8 @@ bool CSkeletonSubsystemObject::sendToHW(string& strError)
     return true;
 }
 
-bool CSkeletonSubsystemObject::receiveFromHW(string& strError)
+bool CSkeletonSubsystemObject::receiveFromHW(string& /*strError*/)
 {
-    (void) strError;
-
     uint32_t uiIndex;
 
     void* pvValue = alloca(_uiScalarSize);

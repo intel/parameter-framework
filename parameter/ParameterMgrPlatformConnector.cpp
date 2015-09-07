@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,11 +37,10 @@ using std::string;
 // Construction
 CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
         const string& strConfigurationFilePath) :
-    _pParameterMgr(new CParameterMgr(strConfigurationFilePath)), _bStarted(false), _pLogger(NULL)
+    _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrPlatformConnector>(*this)),
+    _pParameterMgr(new CParameterMgr(strConfigurationFilePath, *_pParameterMgrLogger)),
+    _bStarted(false), _pLogger(NULL)
 {
-    // Logging
-    _pParameterMgrLogger = new CParameterMgrLogger<CParameterMgrPlatformConnector>(*this);
-    _pParameterMgr->setLogger(_pParameterMgrLogger);
 }
 
 CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
@@ -187,10 +186,18 @@ bool CParameterMgrPlatformConnector::isStarted() const
 }
 
 // Private logging
-void CParameterMgrPlatformConnector::doLog(bool bIsWarning, const string& strLog)
+void CParameterMgrPlatformConnector::info(const string& log)
 {
     if (_pLogger) {
 
-        _pLogger->log(bIsWarning, strLog);
+        _pLogger->info(log);
+    }
+}
+
+void CParameterMgrPlatformConnector::warning(const string& log)
+{
+    if (_pLogger) {
+
+        _pLogger->warning(log);
     }
 }

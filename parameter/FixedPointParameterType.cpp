@@ -245,10 +245,8 @@ bool CFixedPointParameterType::toBlackboard(double dUserValue, uint32_t& uiValue
     return true;
 }
 
-bool CFixedPointParameterType::fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CFixedPointParameterType::fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    (void)parameterAccessContext;
-
     int32_t iData = uiValue;
 
     // Check unsigned value is encodable

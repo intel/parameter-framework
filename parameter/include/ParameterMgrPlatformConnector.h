@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -44,7 +44,8 @@ public:
     class ILogger
     {
     public:
-        virtual void log(bool bIsWarning, const std::string& strLog) = 0;
+        virtual void info(const std::string& strLog) = 0;
+        virtual void warning(const std::string& strLog) = 0;
     protected:
         virtual ~ILogger() {}
     };
@@ -160,14 +161,15 @@ private:
     CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector&);
     CParameterMgrPlatformConnector& operator=(const CParameterMgrPlatformConnector&);
     // Private logging
-    void doLog(bool bIsWarning, const std::string& strLog);
+    void info(const std::string& log);
+    void warning(const std::string& log);
 
+    // Private logging
+    CParameterMgrLogger<CParameterMgrPlatformConnector>* _pParameterMgrLogger;
     // Implementation
     CParameterMgr* _pParameterMgr;
     // State
     bool _bStarted;
     // Logging
     ILogger* _pLogger;
-    // Private logging
-    CParameterMgrLogger<CParameterMgrPlatformConnector>* _pParameterMgrLogger;
 };

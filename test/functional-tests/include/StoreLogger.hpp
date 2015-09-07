@@ -61,11 +61,15 @@ public:
     };
     using Logs = std::vector<Log>;
 
-    void log(bool bIsWarning, const std::string& strLog) override
+    void warning(const std::string& strLog) override
     {
-        Log::Level level = bIsWarning ? Log::Level::warning : Log::Level::info;
-        logs.push_back({ level, strLog });
+        logs.push_back({ Log::Level::warning, strLog });
     }
+    void info(const std::string& strLog) override
+    {
+        logs.push_back({ Log::Level::info, strLog });
+    }
+
     const Logs &getLogs() const { return logs; }
 
     const Logs filter(Log::Level level) const {

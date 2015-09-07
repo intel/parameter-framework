@@ -1,6 +1,6 @@
 #! /usr/bin/python
 #
-# Copyright (c) 2011-2014, Intel Corporation
+# Copyright (c) 2011-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -113,9 +113,11 @@ class PfwLogger(PyPfw.ILogger):
         super(PfwLogger, self).__init__()
         self.__logger = logging.root.getChild("parameter-framework")
 
-    def log(self, is_warning, message):
-        log_func = self.__logger.warning if is_warning else self.__logger.info
-        log_func(message)
+    def warning(self, message):
+        self.__logger.warning(message)
+
+    def info(self, message):
+        self.__logger.info(message)
 
 # If this file is directly executed
 if __name__ == "__main__":

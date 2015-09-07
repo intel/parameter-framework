@@ -246,10 +246,8 @@ bool CEnumParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CPa
     return true;
 }
 
-bool CEnumParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CEnumParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    (void)parameterAccessContext;
-
     int32_t iValue = uiValue;
 
     // Sign extend

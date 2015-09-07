@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -27,23 +27,45 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "RemoteProcessorServer.h"
+#include <memory>
+#include <future>
 
-#pragma once
-
-class NaiveTokenizer {
+class BackgroundRemoteProcessorServer final : public IRemoteProcessorServerInterface
+{
 public:
-    /** tokenize a space-separated string, handling quotes
-     *
-     * The input is tokenized, using " " (space) as the tokenizer; multiple
-     * spaces are regarded as a single separator.  If the input begins with a
-     * quote (either single (') or double (")), the next token will be all the
-     * characters (including spaces) until the next identical quote.
-     * Warning: This function modifies its argument in-place !
-     *
-     * It aims at reproducing the parsing of a shell.
-     *
-     * @param[inout] line The string to be tokenized. Warning: modified in-place
-     * @return Pointer to the next token (which is actually the original value of 'line'
-     */
-    static char* getNextToken(char** line);
+    BackgroundRemoteProcessorServer(uint16_t uiPort,
+                                    std::unique_ptr<IRemoteCommandHandler> &commandHandler) :
+        _server(uiPort), mCommandHandler(std::move(commandHandler)) {}
+
+    ~BackgroundRemoteProcessorServer() { stop(); }
+
+    bool start(std::string &error) override
+    {
+        if (!_server.start(error)) {
+            return false;
+        }
+        try {
+            mServerSuccess = std::async(std::launch::async,
+                                        &CRemoteProcessorServer::process, &_server,
+                                        std::ref(*mCommandHandler));
+        } catch (std::exception &e) {
+            error = "Could not create a remote processor thread: " + std::string(e.what());
+            return false;
+        }
+
+        return true;
+    }
+
+    bool stop() override {
+        _server.stop();
+        mServerSuccess.wait();
+        return mServerSuccess.get();
+    }
+
+private:
+    CRemoteProcessorServer _server;
+    std::unique_ptr<IRemoteCommandHandler> mCommandHandler;
+    std::future<bool> mServerSuccess;
 };
+

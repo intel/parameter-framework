@@ -43,14 +43,17 @@
 
 using std::string;
 
-CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
-    _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL), _ulThreadId(0)
+CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort) :
+    _uiPort(uiPort), _bIsStarted(false), _pListeningSocket(NULL)
 {
 }
 
 CRemoteProcessorServer::~CRemoteProcessorServer()
 {
     stop();
+
+    // Remove listening socket
+    delete _pListeningSocket;
 }
 
 // State
@@ -74,15 +77,6 @@ bool CRemoteProcessorServer::start(string &error)
 
     // Thread needs to access to the listning socket.
     _pListeningSocket = pListeningSocket.get();
-    // Create thread
-    errno = pthread_create(&_ulThreadId, NULL, thread_func, this);
-    if (errno != 0) {
-
-        error = "Could not create a remote processor thread: ";
-        error += strerror(errno);
-        return false;
-    }
-
     // State
     _bIsStarted = true;
     pListeningSocket.release();
@@ -90,12 +84,11 @@ bool CRemoteProcessorServer::start(string &error)
     return true;
 }
 
-void CRemoteProcessorServer::stop()
+bool CRemoteProcessorServer::stop()
 {
     // Check state
     if (!_bIsStarted) {
-
-        return;
+        return true;
     }
 
     // Cause exiting of the thread
@@ -104,38 +97,13 @@ void CRemoteProcessorServer::stop()
         std::cerr << "Could not query command processor thread to terminate: "
                      "fail to write on inband pipe: "
                   << strerror(errno) << std::endl;
-        assert(false);
+        return false;
     }
 
-    // Join thread
-    errno = pthread_join(_ulThreadId, NULL);
-    if (errno != 0) {
-        std::cout << "Could not join with remote processor thread: "
-                  << strerror(errno) << std::endl;
-        assert(false);
-    }
-
-    _bIsStarted = false;
-
-    // Remove listening socket
-    delete _pListeningSocket;
-    _pListeningSocket = NULL;
+    return true;
 }
 
-bool CRemoteProcessorServer::isStarted() const
-{
-    return _bIsStarted;
-}
-
-// Thread
-void* CRemoteProcessorServer::thread_func(void* pData)
-{
-    reinterpret_cast<CRemoteProcessorServer*>(pData)->run();
-
-    return NULL;
-}
-
-void CRemoteProcessorServer::run()
+bool CRemoteProcessorServer::process(IRemoteCommandHandler &commandHandler)
 {
     struct pollfd _aPollFds[2];
 
@@ -154,7 +122,7 @@ void CRemoteProcessorServer::run()
         if (_aPollFds[0].revents & POLLIN) {
 
             // New incoming connection
-            handleNewConnection();
+            handleNewConnection(commandHandler);
         }
         if (_aPollFds[1].revents & POLLIN) {
 
@@ -163,17 +131,17 @@ void CRemoteProcessorServer::run()
             if (not utility::fullRead(_aiInbandPipe[0], &ucData, sizeof(ucData))) {
                     std::cerr << "Remote processor could not receive exit request"
                               << strerror(errno) << std::endl;
-                    assert(false);
+                    return false;
             }
 
             // Exit
-            return;
+            return true;
         }
     }
 }
 
 // New connection
-void CRemoteProcessorServer::handleNewConnection()
+void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandHandler)
 {
     const std::auto_ptr<CSocket> clientSocket(_pListeningSocket->accept());
 
@@ -210,16 +178,7 @@ void CRemoteProcessorServer::handleNewConnection()
 
         string strResult;
 
-        if (_pCommandHandler) {
-
-            bSuccess = _pCommandHandler->remoteCommandProcess(requestMessage, strResult);
-
-        } else {
-
-            strResult = "No handler!";
-
-            bSuccess = false;
-        }
+        bSuccess = commandHandler.remoteCommandProcess(requestMessage, strResult);
 
         // Send back answer
         // Create answer message

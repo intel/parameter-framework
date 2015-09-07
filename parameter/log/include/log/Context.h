@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,10 +27,47 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#pragma once
 
-#ifndef UNUSED_H
-#define UNUSED_H
+#include "log/Logger.h"
+#include <string>
 
-#define __unused __attribute__((__unused__))
+namespace core
+{
+namespace log
+{
 
-#endif // UNUSED_H
+/** Log formatter which provide context indentation */
+class Context {
+public:
+
+    /**
+     * Class Constructor
+     *
+     * @param[in] logger application logger
+     * @param[in] context name of the context to open
+     */
+    Context(Logger& logger, const std::string& context)
+        : mLogger(logger)
+    {
+        mLogger.info() << context << " {";
+        mLogger.mProlog += "    ";
+    }
+
+    /** Class Destructor */
+    ~Context()
+    {
+        mLogger.mProlog.resize(mLogger.mProlog.size() - 4);
+        mLogger.info() << "}";
+    }
+
+private:
+    Context(const Context&);
+    Context& operator=(const Context&);
+
+    /** Application logger */
+    Logger& mLogger;
+};
+
+} /** log namespace */
+} /** core namespace */

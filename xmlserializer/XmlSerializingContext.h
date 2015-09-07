@@ -31,6 +31,9 @@
 
 #include <string>
 
+/** Forward declare libxml2 handler structure. */
+struct _xmlError;
+
 /** Class that gather errors during serialization.
  *
  * Provided with an initial empty buffer (strError), an instance of this class
@@ -50,13 +53,14 @@ public:
     // Error
     void setError(const std::string& strError);
     void appendLineToError(const std::string& strAppend);
+
     /** XML error handler
       *
       * @param[in] userData pointer to the serializing context
       * @param[in] format is the xml error output format
       *
       */
-    static void genericErrorHandler(void* userData, const char* format, ...);
+    static void structuredErrorHandler(void* userData, _xmlError *error);
 
 private:
     std::string& _strError;

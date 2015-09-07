@@ -27,27 +27,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "AutoLog.h"
 
-using std::string;
+#include <memory>
 
-CAutoLog::CAutoLog(const CElement* pElement, const string& strContext, bool bLogOn)
-    : _pElement(pElement), _strContext(strContext), _bLogOn(bLogOn)
+/** Implementation of C++14's std::make_unique.
+ *
+ * TODO: Specialisation for array types is not implemented.
+ */
+template<class T, class... Args>
+std::unique_ptr<T> make_unique(Args &&... args)
 {
-    if (_bLogOn) {
-        // Log
-        _pElement->doLog(false, _strContext + " {");
-        // Nest
-        _pElement->nestLog();
-    }
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
-CAutoLog::~CAutoLog()
-{
-    if (_bLogOn) {
-        // Unnest
-        _pElement->unnestLog();
-        // Log
-        _pElement->doLog(false, "} " + _strContext);
-    }
-}

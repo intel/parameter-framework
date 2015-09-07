@@ -46,10 +46,8 @@ const std::list<std::string>& CPluginLocation::getPluginList() const
     return _pluginList;
 }
 
-bool CPluginLocation::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext)
+bool CPluginLocation::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &/*ctx*/)
 {
-    (void) serializingContext;
-
     // Retrieve folder
     xmlElement.getAttribute("Folder", _strFolder);
 

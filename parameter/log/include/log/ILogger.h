@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,36 +27,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "NaiveTokenizer.h"
-#include <cstring>
+#pragma once
 
-char* NaiveTokenizer::getNextToken(char** line)
+#include <string>
+
+namespace core
 {
-    const char *quotes = "'\""; // single or double quotes
-    char separator[2] = " ";
-    char first[2];
+namespace log
+{
 
-    if (*line == NULL || (*line)[0] == '\0') {
-        return NULL;
-    }
+/** Logger interface provided by client */
+class ILogger
+{
+public:
+    virtual void info(const std::string& strLog) = 0;
+    virtual void warning(const std::string& strLog) = 0;
+protected:
+    virtual ~ILogger() {}
+};
 
-    // Copy the first character into its own new string
-    first[0] = (*line)[0];
-    first[1] = '\0';
-
-    // Check if the first character is a quote
-    if (strstr(quotes, first) != NULL) {
-        // If so, move forward and set the separator to that quote
-        (*line)++;
-        strncpy(separator, first, sizeof(separator));
-    }
-    // If it is not, get the next space-delimited token
-    // First, move the cursor forward if the first character is a space
-    // This effectively ignores multiple spaces in a row
-    else if (strstr(separator, first) != NULL) {
-        (*line)++;
-        return NaiveTokenizer::getNextToken(line);
-    }
-
-    return strsep(line, separator);
-}
+} /** log namespace */
+} /** core namespace */
