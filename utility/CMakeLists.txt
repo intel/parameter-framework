@@ -26,9 +26,20 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+if (WIN32)
+    set(UTILITY_OS_SPECIFIC_FILES windows/DynamicLibrary.cpp)
+else ()
+    set(UTILITY_OS_SPECIFIC_FILES posix/DynamicLibrary.cpp)
+endif ()
+
+include_directories(
+    "${CMAKE_CURRENT_SOURCE_DIR}")
+
 add_library(pfw_utility STATIC
+    ${UTILITY_OS_SPECIFIC_FILES}
     Tokenizer.cpp
     Utility.cpp
+    DynamicLibrary.cpp
     FullIo.cpp)
 
 if (NOT WIN32)
