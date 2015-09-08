@@ -129,45 +129,14 @@ int32_t CEnumParameterType::getMax() const {
     return getMaxValue<int32_t>();
 }
 
-bool CEnumParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CEnumParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    // Take care of format
-    if (parameterAccessContext.valueSpaceIsRaw()) {
+    // Convert the raw value from the blackboard
+    int32_t iValue = uiValue;
+    signExtend(iValue);
 
-        // Format
-	std::ostringstream strStream;
-
-        // Numerical format requested
-        if (parameterAccessContext.outputRawFormatIsHex()) {
-
-            // Hexa display with unecessary bits cleared out
-            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(uiValue);
-
-            strValue = strStream.str();
-        } else {
-
-            // Integer display
-            int32_t iValue = uiValue;
-
-            // Sign extend
-            signExtend(iValue);
-
-            strStream << iValue;
-
-            strValue = strStream.str();
-        }
-    } else {
-
-        // Integer display
-        int32_t iValue = uiValue;
-
-        // Sign extend
-        signExtend(iValue);
-
-        // Literal display requested (should succeed)
-        getLiteral(iValue, strValue);
-    }
-    return true;
+    // Convert from numerical space to literal space
+    return getLiteral(iValue, strValue);
 }
 
 // Value access
