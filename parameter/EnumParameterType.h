@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -62,18 +62,21 @@ public:
     // CElement
     virtual std::string getKind() const;
 private:
+    // Specialized version of toBlackboard in case the access context is in raw
+    // value space
+    bool toBlackboardFromRaw(const std::string& strUserValue, uint32_t& uiValue,
+                             CParameterAccessContext& parameterAccessContext) const;
+
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
-    // Check std::string is a number
-    static bool isNumber(const std::string& strValue);
 
     // Literal - numerical conversions
     bool getLiteral(int32_t iNumerical, std::string& strLiteral) const;
     bool getNumerical(const std::string& strLiteral, int& iNumerical) const;
 
     // Numerical validity
-    bool isValid(int iNumerical, CParameterAccessContext& parameterAccessContext) const;
+    bool checkValueAgainstSpace(int32_t iNumerical) const;
 
-    // Range validity
-    bool checkValueAgainstRange(const std::string& strValue, int64_t value, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const;
+    int32_t getMin() const;
+    int32_t getMax() const;
 };
