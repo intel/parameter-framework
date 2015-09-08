@@ -37,6 +37,7 @@
 #include "LoggingElementBuilderTemplate.h"
 #include <assert.h>
 #include "PluginLocation.h"
+#include "DynamicLibrary.hpp"
 #include "Utility.h"
 #include "Memory.hpp"
 
@@ -78,14 +79,6 @@ CSystemClass::~CSystemClass()
     // Destroy child subsystems *before* unloading the libraries (otherwise crashes will occur
     // as unmapped code will be referenced)
     clean();
-
-    // Close all previously opened subsystem libraries
-    list<void*>::const_iterator it;
-
-    for (it = _subsystemLibraryHandleList.begin(); it != _subsystemLibraryHandleList.end(); ++it) {
-
-        dlclose(*it);
-    }
 }
 
 bool CSystemClass::childrenAreDynamic() const
@@ -217,37 +210,25 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
 
         string strPluginFileName = *it;
 
-        // Load attempt
-        void* lib_handle = dlopen(strPluginFileName.c_str(), RTLD_LAZY);
-
-        if (!lib_handle) {
-
-            const char *err = dlerror();
-            // Failed
-            if (err == NULL) {
-                errors.push_back("dlerror failed");
-            } else {
-                errors.push_back("Plugin load failed: " + string(err));
-            }
-            // Next plugin
-            ++it;
-
-            continue;
-        }
-
-        // Store libraries handles
-        _subsystemLibraryHandleList.push_back(lib_handle);
-
         // Get plugin symbol
         string strPluginSymbol = getPluginSymbol(strPluginFileName);
 
-        // Load symbol from library
-        GetSubsystemBuilder pfnGetSubsystemBuilder = (GetSubsystemBuilder)dlsym(lib_handle, strPluginSymbol.c_str());
+        // Load attempt
+        try {
+            auto library = make_unique<DynamicLibrary>(strPluginFileName);
 
-        if (!pfnGetSubsystemBuilder) {
+            // Load symbol from library
+            auto subSystemBuilder = library->getSymbol<GetSubsystemBuilder>(strPluginSymbol);
 
-            errors.push_back("Subsystem plugin " + strPluginFileName +
-                             " does not contain " + strPluginSymbol + " symbol.");
+            // Store libraries handles
+            _subsystemLibraryHandleList.push_back(std::move(library));
+
+            // Fill library
+            subSystemBuilder(_pSubsystemLibrary, _logger);
+
+        } catch (std::exception& e) {
+            errors.push_back(e.what());
+
             // Next plugin
             ++it;
 
@@ -256,9 +237,6 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
 
         // Account for this success
         bAtLeastOneSubsystemPluginSuccessfullyLoaded = true;
-
-        // Fill library
-        pfnGetSubsystemBuilder(_pSubsystemLibrary, _logger);
 
         // Remove successfully loaded plugin from list and select next
         lstrPluginFiles.erase(it++);
