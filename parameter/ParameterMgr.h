@@ -710,11 +710,6 @@ private:
     // Subsystem plugin location
     const CSubsystemPlugins* _pSubsystemPlugins;
 
-    /**
-     * Remote processor library handle
-     */
-    void* _pvLibRemoteProcessorHandle;
-
     // Whole system structure checksum
     uint8_t _uiStructureChecksum;
 
