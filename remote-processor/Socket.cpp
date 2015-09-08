@@ -90,34 +90,6 @@ void CSocket::initSockAddrIn(struct sockaddr_in* pSockAddrIn, uint32_t uiInAddr,
     bzero(&pSockAddrIn->sin_zero, sizeof(pSockAddrIn->sin_zero));
 }
 
-// Non blocking state
-void CSocket::setNonBlocking(bool bNonBlocking)
-{
-    int iFlags = fcntl(_iSockFd, F_GETFL, 0);
-
-    assert(iFlags != -1);
-
-    if (bNonBlocking) {
-
-        iFlags |= O_NONBLOCK;
-    } else {
-
-        iFlags &= ~O_NONBLOCK;
-    }
-    fcntl(_iSockFd, F_SETFL, iFlags);
-}
-
-// Communication timeout
-void CSocket::setTimeout(uint32_t uiMilliseconds)
-{
-    struct timeval tv;
-    tv.tv_sec = uiMilliseconds / 1000;
-    tv.tv_usec = (uiMilliseconds % 1000) * 1000;
-
-    setsockopt(_iSockFd, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
-    setsockopt(_iSockFd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
-}
-
 // Read
 bool CSocket::read(void* pvData, uint32_t uiSize)
 {
