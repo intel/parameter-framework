@@ -28,102 +28,105 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "ParameterBlackboard.h"
-#include <string.h>
-#include <assert.h>
+#include <cassert>
+#include <algorithm>
 
-CParameterBlackboard::CParameterBlackboard() : _pucData(NULL), _uiSize(0)
-{
-}
-
-CParameterBlackboard::~CParameterBlackboard()
-{
-    delete [] _pucData;
-}
+#ifdef _MSC_VER
+#   include <iterator>
+    /** Visual studio raises a warning if the check iterator feature is activated
+     * but a raw pointer is used as iterator (as it can not check it's bounds).
+     * As it is a safety feature, do not silent the warning, but use the
+     * microsoft specific `make_check_array_iterator` that take a pointer
+     * and the size of the underline buffer.
+     * For other compiler, use the raw pointer.
+     */
+#   define MAKE_ARRAY_ITERATOR(begin, size) stdext::make_checked_array_iterator(begin, size)
+#else
+    /** By default an array iterator is a pointer to the first element. */
+#   define MAKE_ARRAY_ITERATOR(begin, size) begin
+#endif
 
 // Size
 void CParameterBlackboard::setSize(uint32_t uiSize)
 {
-    if (_pucData) {
-
-        delete [] _pucData;
-    }
-
-    _pucData = new uint8_t[uiSize];
-
-    memset(_pucData, 0, uiSize);
-
-    _uiSize = uiSize;
+    mBlackboard.resize(uiSize);
 }
 
 uint32_t CParameterBlackboard::getSize() const
 {
-    return _uiSize;
+    return mBlackboard.size();
 }
 
 // Single parameter access
 void CParameterBlackboard::writeInteger(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian)
 {
-    assert(uiSize + uiOffset <= _uiSize);
+    assertValidAccess(uiOffset, uiSize);
+
+    auto first = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvSrcData), uiSize);
+    auto last = first + uiSize;
+    auto dest_first = atOffset(uiOffset);
 
     if (!bBigEndian) {
-
-        memcpy(_pucData + uiOffset, pvSrcData, uiSize);
+        std::copy(first, last, dest_first);
     } else {
-
-        uint32_t uiIndex;
-        const uint8_t* puiSrcData = (const uint8_t*)pvSrcData;
-
-        for (uiIndex = 0; uiIndex < uiSize; uiIndex++) {
-
-            _pucData[uiIndex + uiOffset] = puiSrcData[uiSize - uiIndex - 1];
-        }
+        std::reverse_copy(first, last, dest_first);
     }
 }
 
 void CParameterBlackboard::readInteger(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const
 {
-    assert(uiSize + uiOffset <= _uiSize);
+    assertValidAccess(uiOffset, uiSize);
+
+    auto first = atOffset(uiOffset);
+    auto last = first + uiSize;
+    auto dest_first = MAKE_ARRAY_ITERATOR(static_cast<uint8_t *>(pvDstData), uiSize);
 
     if (!bBigEndian) {
-
-        memcpy(pvDstData, _pucData + uiOffset, uiSize);
+        std::copy(first, last, dest_first);
     } else {
-
-        uint32_t uiIndex;
-        uint8_t* puiDstData = (uint8_t*)pvDstData;
-
-        for (uiIndex = 0; uiIndex < uiSize; uiIndex++) {
-
-            puiDstData[uiSize - uiIndex - 1] = _pucData[uiIndex + uiOffset];
-        }
+        std::reverse_copy(first, last, dest_first);
     }
 }
 
 void CParameterBlackboard::writeString(const std::string &input, uint32_t uiOffset)
 {
-    strcpy((char*)_pucData + uiOffset, input.c_str());
+    assertValidAccess(uiOffset, input.size() + 1);
+
+    auto dest_last = std::copy(begin(input), end(input), atOffset(uiOffset));
+    *dest_last = '\0';
 }
 
 void CParameterBlackboard::readString(std::string &output, uint32_t uiOffset) const
 {
-    output = std::string((const char*)_pucData + uiOffset);
+    // As the string is null terminated in the blackboard,
+    // the size that will be read is not known. (>= 1)
+    assertValidAccess(uiOffset, sizeof('\0'));
+
+    // Get the pointer to the null terminated string
+    const uint8_t *first = &mBlackboard[uiOffset];
+    output = reinterpret_cast<const char *>(first);
 }
 
 // Access from/to subsystems
 uint8_t* CParameterBlackboard::getLocation(uint32_t uiOffset)
 {
-    return _pucData + uiOffset;
+    assertValidAccess(uiOffset, 1);
+    return &mBlackboard[uiOffset];
 }
 
 // Configuration handling
 void CParameterBlackboard::restoreFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset)
 {
-    memcpy(_pucData + uiOffset, pFromBlackboard->_pucData, pFromBlackboard->_uiSize);
+    const auto &fromBB = pFromBlackboard->mBlackboard;
+    assertValidAccess(uiOffset, fromBB.size());
+    std::copy(begin(fromBB), end(fromBB), atOffset(uiOffset));
 }
 
 void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const
 {
-    memcpy(pToBlackboard->_pucData, _pucData + uiOffset, pToBlackboard->_uiSize);
+    auto &toBB = pToBlackboard->mBlackboard;
+    assertValidAccess(uiOffset, toBB.size());
+    std::copy_n(atOffset(uiOffset), toBB.size(), begin(toBB));
 }
 
 // Serialization
@@ -131,9 +134,14 @@ void CParameterBlackboard::serialize(CBinaryStream& binaryStream)
 {
     if (binaryStream.isOut()) {
 
-        binaryStream.write(_pucData, _uiSize);
+        binaryStream.write(mBlackboard.data(), getSize());
     } else {
 
-        binaryStream.read(_pucData, _uiSize);
+        binaryStream.read(mBlackboard.data(), getSize());
     }
+}
+
+void CParameterBlackboard::assertValidAccess(size_t offset, size_t size) const
+{
+    assert(offset + size <= getSize());
 }
