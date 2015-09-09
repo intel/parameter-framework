@@ -60,7 +60,7 @@ uint32_t CParameterBlackboard::getSize() const
 // Single parameter access
 void CParameterBlackboard::writeInteger(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian)
 {
-    assert(uiSize + uiOffset <= getSize());
+    assertValidAccess(uiOffset, uiSize);
 
     auto first = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvSrcData), uiSize);
     auto last = first + uiSize;
@@ -75,7 +75,7 @@ void CParameterBlackboard::writeInteger(const void* pvSrcData, uint32_t uiSize, 
 
 void CParameterBlackboard::readInteger(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const
 {
-    assert(uiSize + uiOffset <= getSize());
+    assertValidAccess(uiOffset, uiSize);
 
     auto first = atOffset(uiOffset);
     auto last = first + uiSize;
@@ -90,7 +90,8 @@ void CParameterBlackboard::readInteger(void* pvDstData, uint32_t uiSize, uint32_
 
 void CParameterBlackboard::writeString(const std::string &input, uint32_t uiOffset)
 {
-    assert(input.size() + 1 + uiOffset <= getSize());
+    assertValidAccess(uiOffset, input.size() + 1);
+
     auto dest_last = std::copy(begin(input), end(input), atOffset(uiOffset));
     *dest_last = '\0';
 }
@@ -98,8 +99,8 @@ void CParameterBlackboard::writeString(const std::string &input, uint32_t uiOffs
 void CParameterBlackboard::readString(std::string &output, uint32_t uiOffset) const
 {
     // As the string is null terminated in the blackboard,
-    // the size that will be read is known. (>= 1)
-    assert(uiOffset + 1 <= getSize());
+    // the size that will be read is not known. (>= 1)
+    assertValidAccess(uiOffset, sizeof('\0'));
 
     // Get the pointer to the null terminated string
     const uint8_t *first = &mBlackboard[uiOffset];
@@ -109,7 +110,7 @@ void CParameterBlackboard::readString(std::string &output, uint32_t uiOffset) co
 // Access from/to subsystems
 uint8_t* CParameterBlackboard::getLocation(uint32_t uiOffset)
 {
-    assert(uiOffset < getSize());
+    assertValidAccess(uiOffset, 1);
     return &mBlackboard[uiOffset];
 }
 
@@ -117,14 +118,14 @@ uint8_t* CParameterBlackboard::getLocation(uint32_t uiOffset)
 void CParameterBlackboard::restoreFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset)
 {
     const auto &fromBB = pFromBlackboard->mBlackboard;
-    assert(fromBB.size() + uiOffset <= getSize());
+    assertValidAccess(uiOffset, fromBB.size());
     std::copy(begin(fromBB), end(fromBB), atOffset(uiOffset));
 }
 
 void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const
 {
     auto &toBB = pToBlackboard->mBlackboard;
-    assert(toBB.size() + uiOffset <= getSize());
+    assertValidAccess(uiOffset, toBB.size());
     std::copy_n(atOffset(uiOffset), toBB.size(), begin(toBB));
 }
 
@@ -138,4 +139,9 @@ void CParameterBlackboard::serialize(CBinaryStream& binaryStream)
 
         binaryStream.read(mBlackboard.data(), getSize());
     }
+}
+
+void CParameterBlackboard::assertValidAccess(size_t offset, size_t size) const
+{
+    assert(offset + size <= getSize());
 }

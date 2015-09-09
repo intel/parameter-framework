@@ -61,6 +61,8 @@ public:
     void serialize(CBinaryStream& binaryStream);
 
 private:
+    void assertValidAccess(size_t offset, size_t size) const;
+
     using Blackboard = std::vector<uint8_t>;
     Blackboard mBlackboard;
 
