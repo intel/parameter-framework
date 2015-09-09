@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,10 +26,17 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_subdirectory(test-platform)
-add_subdirectory(test-fixed-point-parameter)
-add_subdirectory(tokenizer)
-add_subdirectory(functional-tests-legacy)
-add_subdirectory(functional-tests)
-add_subdirectory(test-subsystem)
-add_subdirectory(catch)
+if(BUILD_TESTING)
+    # Add catch unit test framework
+    # TODO Use gtest as it is the team recommendation
+    #      Unfortunately gtest is very hard to setup as not binary distributed
+    #      catch is only one header so it is very easy
+    # Catch can be downloaded from:
+    # https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
+    # Then append the download folder to the CMAKE_INCLUDE_PATH variable or
+    # copy it in a standard location (/usr/include on most linux distribution).
+    find_path(CATCH_HEADER catch.hpp)
+    include_directories(${CATCH_HEADER})
+    add_library(catch STATIC catch.cpp)
+    target_include_directories(catch PUBLIC "${CATCH_HEADER}")
+endif()
