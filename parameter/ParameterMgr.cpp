@@ -1733,10 +1733,6 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
     CParameterBlackboard* pConfigurationBlackboard = NULL;
 
     {
-        LOG_CONTEXT("Find configuration blackboard for Domain: " + strDomain +
-                    ", Configuration: " + strConfiguration +
-                    ", Element: " + pConfigurableElement->getPath());
-
         pConfigurationBlackboard =
             getConstConfigurableDomains()->findConfigurationBlackboard(strDomain,
                                                                        strConfiguration,
