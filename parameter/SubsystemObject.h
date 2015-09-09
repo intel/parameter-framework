@@ -57,7 +57,9 @@ public:
     const CInstanceConfigurableElement* getConfigurableElement() const;
 
 protected:
-    // Blackboard data location
+    /** FIXME: plugins should not have direct access to blackboard memory.
+     *         Ie: This method should be removed or return a abstracted iterator.
+     */
     uint8_t* getBlackboardLocation() const;
     // Size
     uint32_t getSize() const;
