@@ -43,7 +43,6 @@ option(REQUIREMENTS "Generate the html version of the 'requirements' documentati
 option(PYTHON_BINDINGS "Python library to use the Parameter Framrwork from python" ON)
 option(C_BINDINGS "Library to use the Parameter Framework using a C API" ON)
 
-
 # find and set the Parameter Framework's version
 execute_process(COMMAND git describe --tags --dirty
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}

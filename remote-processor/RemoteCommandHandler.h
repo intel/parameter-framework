@@ -29,14 +29,14 @@
  */
 #pragma once
 
-#include "RemoteCommand.h"
+#include "RequestMessage.h"
 #include <string>
 
 class IRemoteCommandHandler
 {
 public:
     // Return true on success, fill result in any cases
-    virtual bool remoteCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult) = 0;
+    virtual bool remoteCommandProcess(const CRequestMessage& remoteCommand, std::string& strResult) = 0;
 
     virtual ~IRemoteCommandHandler() {}
 };

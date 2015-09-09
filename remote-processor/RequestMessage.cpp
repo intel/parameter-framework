@@ -28,29 +28,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RequestMessage.h"
-#include "RemoteProcessorProtocol.h"
+#include "Tokenizer.h"
 #include <assert.h>
 #include <algorithm>
 #include <ctype.h>
 
-#define base CMessage
-
 using std::string;
-
-const char* const CRequestMessage::gacDelimiters = " \t\n\v\f\r";
-
-CRequestMessage::CRequestMessage(const string& strCommand) : base(ECommandRequest), _strCommand(strCommand)
-{
-}
-
-CRequestMessage::CRequestMessage()
-{
-}
 
 // Command Name
 void CRequestMessage::setCommand(const string& strCommand)
 {
-    _strCommand = trim(strCommand);
+    _strCommand = strCommand;
 }
 
 const string& CRequestMessage::getCommand() const
@@ -61,109 +49,40 @@ const string& CRequestMessage::getCommand() const
 // Arguments
 void CRequestMessage::addArgument(const string& strArgument)
 {
-    _argumentVector.push_back(trim(strArgument));
-}
-
-uint32_t CRequestMessage::getArgumentCount() const
-{
-    return _argumentVector.size();
-}
-
-const string& CRequestMessage::getArgument(uint32_t uiArgument) const
-{
-    assert(uiArgument < _argumentVector.size());
-
-    return _argumentVector[uiArgument];
-}
-
-const string CRequestMessage::packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const
-{
-    string strPackedArguments;
-
-    assert(uiStartArgument + uiNbArguments <= _argumentVector.size());
-
-    // Pack arguments, separating them with a space
-    uint32_t uiArgument;
-
-    bool bFirst = true;
-
-    for (uiArgument = uiStartArgument; uiArgument < uiStartArgument + uiNbArguments; uiArgument++) {
-
-        if (!bFirst) {
-
-            strPackedArguments += " ";
-        } else {
-
-            bFirst = false;
-        }
-
-        strPackedArguments += _argumentVector[uiArgument];
-    }
-
-    return strPackedArguments;
+    _arguments.push_back(strArgument);
 }
 
 // Fill data to send
-void CRequestMessage::fillDataToSend()
+std::vector<uint8_t> CRequestMessage::serialize() const
 {
+    std::vector<uint8_t> data;
+
     // Send command
-    writeString(getCommand());
+    data.insert(data.end(), getCommand().begin(), getCommand().end());
 
-    // Arguments
-    uint32_t uiArgument;
+    for (const auto &arg: _arguments) {
+        /* Add a separator */
+        data.push_back(static_cast<uint8_t>('\0'));
 
-    for (uiArgument = 0; uiArgument < getArgumentCount(); uiArgument++) {
-
-        writeString(getArgument(uiArgument));
+        /* push back the argument itself */
+        data.insert(data.end(), arg.begin(), arg.end());
     }
+    return data;
 }
 
 // Collect received data
-void CRequestMessage::collectReceivedData()
+void CRequestMessage::deserialize(const std::vector<uint8_t> &data)
 {
     // Receive command
-    string strCommand;
+    string strCommand(&data[0], &data[data.size()]);
 
-    readString(strCommand);
+    Tokenizer tok(strCommand, std::string("\0", 1), false);
 
-    setCommand(strCommand);
+    setCommand(tok.next());
 
     // Arguments
-    while (getRemainingDataSize()) {
-
-        string strArgument;
-
-        readString(strArgument);
-
-        addArgument(strArgument);
+    for (auto &arg : tok.split()) {
+        addArgument(arg);
     }
 }
 
-// Size
-size_t CRequestMessage::getDataSize() const
-{
-    // Command
-    size_t uiSize = getStringSize(getCommand());
-
-    // Arguments
-    uint32_t uiArgument;
-
-    for (uiArgument = 0; uiArgument < getArgumentCount(); uiArgument++) {
-
-        uiSize += getStringSize(getArgument(uiArgument));
-    }
-    return uiSize;
-}
-
-// Trim input string
-string CRequestMessage::trim(const string& strToTrim)
-{
-    // Trim string
-    string strTrimmed = strToTrim;
-
-    strTrimmed.erase(strTrimmed.find_last_not_of(gacDelimiters) + 1 );
-
-    strTrimmed.erase(0, strTrimmed.find_first_not_of(gacDelimiters));
-
-    return strTrimmed;
-}

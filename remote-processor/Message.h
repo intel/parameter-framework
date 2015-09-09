@@ -31,103 +31,28 @@
 
 #include <stdint.h>
 #include <string>
-
-class CSocket;
+#include <vector>
+#include <asio.hpp>
 
 class CMessage
 {
 public:
-    CMessage(uint8_t ucMsgId);
-    CMessage();
-    virtual ~CMessage();
+    CMessage(asio::ip::tcp::socket &socket) : _socket(socket) {}
+    virtual ~CMessage() {}
 
-    enum Result {
+    enum class Code {
         success,
         peerDisconnected,
         error
     };
+    using Result = std::pair<Code, std::string>;
 
-    /** Write or read the message on pSocket.
-     *
-     * @param[in,out] pSocket is the socket on wich IO operation will be made.
-     * @param[in] bOut if true message should be read,
-     *                 if false it should be written.
-     * @param[out] strError on failure, a string explaining the error,
-     *                      on success, undefined.
-     *
-     * @return success if a correct message could be recv/send
-     *         peerDisconnected if the peer disconnected before the first socket access.
-     *         error if the message could not be read/write for any other reason
-     */
-    Result serialize(CSocket* pSocket, bool bOut, std::string &strError);
+    Result send(const std::vector<uint8_t> &data);
 
-protected:
-    // Msg Id
-    uint8_t getMsgId() const;
+    Result recv(std::vector<uint8_t> &data);
 
-    /** Write raw data to the message
-    *
-    * @param[in] pvData pointer to the data array
-    * @param[in] uiSize array size in bytes
-    */
-    void writeData(const void* pvData, size_t uiSize);
-
-    /** Read raw data from the message
-    *
-    * @param[out] pvData pointer to the data array
-    * @param[in] uiSize array size in bytes
-    */
-    void readData(void* pvData, size_t uiSize);
-
-    /** Write string to the message
-    *
-    * @param[in] strData the string to write
-    */
-    void writeString(const std::string& strData);
-
-    /** Write string to the message
-    *
-    * @param[out] strData the string to read to
-    */
-    void readString(std::string& strData);
-
-    /** @return string length plus room to store its length
-    *
-    * @param[in] strData the string to get the size from
-    */
-    size_t getStringSize(const std::string& strData) const;
-
-    /** @return remaining data size to read or to write depending on the context
-    * (request: write, answer: read)
-    */
-    size_t getRemainingDataSize() const;
 private:
-    CMessage(const CMessage&);
-    CMessage& operator=(const CMessage&);
-
-    /** Allocate room to store the message
-    *
-    * @param[int] uiDataSize the szie to allocate in bytes
-    */
-    void allocateData(size_t uiDataSize);
-    // Fill data to send
-    virtual void fillDataToSend() = 0;
-    // Collect received data
-    virtual void collectReceivedData() = 0;
-
-    /** @return size of the transaction data in bytes
-    */
-    virtual size_t getDataSize() const = 0;
-
-    // Checksum
-    uint8_t computeChecksum() const;
-
-    // MsgId
-    uint8_t _ucMsgId;
-    // Data
-    uint8_t* _pucData;
-    /** Size of the allocated memory to store the message */
-    size_t _uiDataSize;
-    /** Read/Write Index used to iterate across the message data */
-    size_t _uiIndex;
+    CMessage(const CMessage&) = delete;
+    CMessage& operator=(const CMessage&) = delete;
+    asio::ip::tcp::socket &_socket;
 };

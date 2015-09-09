@@ -29,32 +29,24 @@
  */
 #pragma once
 
-#include "Message.h"
+#include "RemoteCommand.h"
 
-class CAnswerMessage : public CMessage
+class CAnswerMessage : public IRemoteCommand
 {
 public:
-    CAnswerMessage(const std::string& strAnswer, bool bSuccess);
-    CAnswerMessage();
+    CAnswerMessage(const std::string& strAnswer, bool bSuccess) :
+                   _success(bSuccess), _strAnswer(strAnswer) {}
+    CAnswerMessage() {}
 
-    // Answer
-    const std::string& getAnswer() const;
+    const std::string& getAnswer() const { return _strAnswer; }
+    bool success() const { return _success; }
 
-    // Status
-    bool success() const;
+    std::vector<uint8_t> serialize() const override;
+    void deserialize(const std::vector<uint8_t> &data) override;
 private:
-    // Fill data to send
-    virtual void fillDataToSend();
-    // Collect received data
-    virtual void collectReceivedData();
-
-    /** @return size of the answer message in bytes
-    */
-    virtual size_t getDataSize() const;
-    // Answer
-    void setAnswer(const std::string& strAnswer);
 
     // Answer
+    bool _success;
     std::string _strAnswer;
 };
 

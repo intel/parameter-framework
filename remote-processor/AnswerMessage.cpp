@@ -28,59 +28,31 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "AnswerMessage.h"
-#include "RemoteProcessorProtocol.h"
 #include <assert.h>
-
-#define base CMessage
 
 using std::string;
 
-CAnswerMessage::CAnswerMessage(const string& strAnswer, bool bSuccess) : base(bSuccess ? ESuccessAnswer : EFailureAnswer), _strAnswer(strAnswer)
+// Fill data to send
+std::vector<uint8_t> CAnswerMessage::serialize() const
 {
+    std::vector<uint8_t> data;
+
+    data.push_back((uint8_t)_success);
+
+    // Send command
+    data.insert(data.end(), getAnswer().begin(), getAnswer().end());
+
+    return data;
 }
 
-CAnswerMessage::CAnswerMessage()
+void CAnswerMessage::deserialize(const std::vector<uint8_t> &data)
 {
-}
+    bool success = data[0];
 
-// Answer
-void CAnswerMessage::setAnswer(const string& strAnswer)
-{
+    // Receive command
+    string strAnswer(&data[1], &data[data.size()]);
+
+    _success = success;
     _strAnswer = strAnswer;
 }
 
-const string& CAnswerMessage::getAnswer() const
-{
-    return _strAnswer;
-}
-
-// Status
-bool CAnswerMessage::success() const
-{
-    return getMsgId() == ESuccessAnswer;
-}
-
-// Size
-size_t CAnswerMessage::getDataSize() const
-{
-    // Answer
-    return getStringSize(getAnswer());
-}
-
-// Fill data to send
-void CAnswerMessage::fillDataToSend()
-{
-    // Send answer
-    writeString(getAnswer());
-}
-
-// Collect received data
-void CAnswerMessage::collectReceivedData()
-{
-    // Receive answer
-    string strAnswer;
-
-    readString(strAnswer);
-
-    setAnswer(strAnswer);
-}

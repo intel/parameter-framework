@@ -29,256 +29,91 @@
  */
 #include "Message.h"
 #include <assert.h>
-#include "Socket.h"
-#include "RemoteProcessorProtocol.h"
 #include <string.h>
+#include <type_traits>
 #include <assert.h>
 #include <errno.h>
 #include <vector>
 
 using std::string;
 
-CMessage::CMessage(uint8_t ucMsgId) : _ucMsgId(ucMsgId), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
+struct Header {
+    Header() : magic(0), version(0), size(0) {}
+    Header(uint32_t hsize) : magic(MAGIC), version(VERSION), size(hsize) {}
+
+    static const uint16_t MAGIC = 0xC0EA;
+    static const uint16_t VERSION = 2;
+
+    const uint16_t magic;
+    const uint16_t version;
+    const uint32_t size;
+};
+
+static_assert(std::is_standard_layout<Header>::value, "Bad header layout");
+
+CMessage::Result CMessage::send(const std::vector<uint8_t> &data)
 {
-}
+    asio::error_code error;
 
-CMessage::CMessage() : _ucMsgId((uint8_t)-1), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
-{
-}
+    Header h(data.size());
 
-CMessage::~CMessage()
-{
-    delete [] _pucData;
-}
-
-// Msg Id
-uint8_t CMessage::getMsgId() const
-{
-    return _ucMsgId;
-}
-
-// Data
-void CMessage::writeData(const void* pvData, size_t uiSize)
-{
-    assert(_uiIndex + uiSize <= _uiDataSize);
-
-    // Copy
-    memcpy(&_pucData[_uiIndex], pvData, uiSize);
-
-    // Index
-    _uiIndex += uiSize;
-}
-
-void CMessage::readData(void* pvData, size_t uiSize)
-{
-    assert(_uiIndex + uiSize <= _uiDataSize);
-
-    // Copy
-    memcpy(pvData, &_pucData[_uiIndex], uiSize);
-
-    // Index
-    _uiIndex += uiSize;
-}
-
-void CMessage::writeString(const string& strData)
-{
-    // Size
-    uint32_t uiSize = strData.length();
-
-    writeData(&uiSize, sizeof(uiSize));
-
-    // Content
-    writeData(strData.c_str(), uiSize);
-}
-
-void CMessage::readString(string& strData)
-{
-    // Size
-    uint32_t uiSize;
-
-    readData(&uiSize, sizeof(uiSize));
+    if (!asio::write(_socket, asio::buffer(&h, sizeof(h)), error)) {
+        return make_pair(Code::error, string("Size write failed: ") + strerror(errno));
+    }
 
     // Data
-    std::vector<char> string(uiSize + 1);
-
-    // Content
-    readData(string.data(), uiSize);
-
-    // NULL-terminate string
-    string.back() = '\0';
-
-    // Output
-    strData = string.data();
-}
-
-size_t CMessage::getStringSize(const string& strData) const
-{
-    // Return string length plus room to store its length
-    return strData.length() + sizeof(uint32_t);
-}
-
-// Remaining data size
-size_t CMessage::getRemainingDataSize() const
-{
-    return _uiDataSize - _uiIndex;
-}
-
-// Send/Receive
-CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
-{
-    if (bOut) {
-
-        // Make room for data to send
-        allocateData(getDataSize());
-
-        // Get data from derived
-        fillDataToSend();
-
-        // Finished providing data?
-        assert(_uiIndex == _uiDataSize);
-
-        // First send sync word
-        uint16_t uiSyncWord = SYNC_WORD;
-
-        if (!pSocket->write(&uiSyncWord, sizeof(uiSyncWord))) {
-
-            if (pSocket->hasPeerDisconnected()) {
-                return peerDisconnected;
-            }
-            return error;
-        }
-
-        // Size
-        uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + _uiDataSize);
-
-        if (!pSocket->write(&uiSize, sizeof(uiSize))) {
-
-            strError += string("Size write failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Msg Id
-        if (!pSocket->write(&_ucMsgId, sizeof(_ucMsgId))) {
-
-            strError += string("Msg write failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Data
-        if (!pSocket->write(_pucData, _uiDataSize)) {
-
-            strError = string("Data write failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Checksum
-        uint8_t ucChecksum = computeChecksum();
-
-        if (!pSocket->write(&ucChecksum, sizeof(ucChecksum))) {
-
-            strError = string("Checksum write failed: ") + strerror(errno);
-            return error;
-        }
-
-    } else {
-        // First read sync word
-        uint16_t uiSyncWord;
-
-        if (!pSocket->read(&uiSyncWord, sizeof(uiSyncWord))) {
-
-            strError = string("Sync read failed: ") + strerror(errno);
-            if (pSocket->hasPeerDisconnected()) {
-                return peerDisconnected;
-            }
-            return error;
-        }
-
-        // Check Sync word
-        if (uiSyncWord != SYNC_WORD) {
-
-            strError = "Sync word incorrect";
-            return error;
-        }
-
-        // Size
-        uint32_t uiSize;
-
-        if (!pSocket->read(&uiSize, sizeof(uiSize))) {
-
-            strError = string("Size read failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Msg Id
-        if (!pSocket->read(&_ucMsgId, sizeof(_ucMsgId))) {
-
-            strError = string("Msg id read failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Data
-
-        // Allocate
-        allocateData(uiSize - sizeof(_ucMsgId));
-
-        // Data receive
-        if (!pSocket->read(_pucData, _uiDataSize)) {
-
-            strError = string("Data read failed: ") + strerror(errno);
-            return error;
-        }
-
-        // Checksum
-        uint8_t ucChecksum;
-
-        if (!pSocket->read(&ucChecksum, sizeof(ucChecksum))) {
-
-            strError = string("Checksum read failed: ") + strerror(errno);
-            return error;
-        }
-        // Compare
-        if (ucChecksum != computeChecksum()) {
-
-            strError = "Received checksum != computed checksum";
-            return error;
-        }
-
-        // Collect data in derived
-        collectReceivedData();
+    if (!asio::write(_socket, asio::buffer(data), error)) {
+        return make_pair(Code::error, string("Data write failed: ") + strerror(errno));
     }
 
-    return success;
+    return make_pair(Code::success, std::string("Success"));
 }
 
-// Checksum
-uint8_t CMessage::computeChecksum() const
+CMessage::Result CMessage::recv(std::vector<uint8_t> &data)
 {
-    uint8_t uiChecksum = _ucMsgId;
+    Header h;
+    asio::error_code error;
 
-    uint32_t uiIndex;
-
-    for (uiIndex = 0; uiIndex < _uiDataSize; uiIndex++) {
-
-        uiChecksum += _pucData[uiIndex];
+    if (!asio::read(_socket, asio::buffer(&h, sizeof(h)), error)) {
+        return make_pair(error == asio::error::eof ? Code::peerDisconnected : Code::error,
+                         string("Size read failed: ") + strerror(errno));
     }
 
-    return uiChecksum;
-}
+    /* detect former 'protocol' */
+    if (h.magic == 0xBABE) {
+        const uint8_t payload[] = {
+            /* this wonderful array stands for "Wrong Protocol Version: got 'legacy' expected '2'"
+             * in the previous protocol encoding */
+            0xbe, 0xba, 0x36, 0x00, 0x00, 0x00, 0x02, 0x31, 0x00, 0x00, 0x00, 0x57, 0x72, 0x6f,
+            0x6e, 0x67, 0x20, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x20, 0x56, 0x65,
+            0x72, 0x73, 0x69, 0x6f, 0x6e, 0x3a, 0x20, 0x67, 0x6f, 0x74, 0x20, 0x27, 0x6c, 0x65,
+            0x67, 0x61, 0x63, 0x79, 0x27, 0x20, 0x65, 0x78, 0x70, 0x65, 0x63, 0x74, 0x65, 0x64,
+            0x20, 0x27, 0x32, 0x27, 0x51 };
 
-// Allocation of room to store the message
-void CMessage::allocateData(size_t uiSize)
-{
-    // Remove previous one
-    if (_pucData) {
-
-        delete [] _pucData;
+        asio::write(_socket, asio::buffer(payload, sizeof(payload)), error);
+        return make_pair(Code::error,  string("Message of invalid protocol version received"));
     }
-    // Do allocate
-    _pucData = new uint8_t[uiSize];
 
-    // Record size
-    _uiDataSize = uiSize;
+    if (h.magic != Header::MAGIC) {
+        return make_pair(Code::error, string("Invalid magic in message header: expected ")
+                + std::to_string(Header::MAGIC) + " got " + std::to_string(h.magic));
+    }
 
-    // Reset Index
-    _uiIndex = 0;
+    if (h.version != Header::VERSION) {
+        return make_pair(Code::error, string("Invalid version in message header: expected ")
+                + std::to_string(Header::VERSION) + " got " + std::to_string(h.version));
+    }
+
+    /* discard spurious content if any */
+    data.clear();
+    data.resize(h.size);
+
+    // Data receive
+    if (!asio::read(_socket, asio::buffer(data), error)) {
+
+        return make_pair(error == asio::error::eof ? Code::peerDisconnected : Code::error,
+                         string("Data read failed: ") + strerror(errno));
+    }
+
+    return make_pair(Code::success, std::string("Success"));
 }

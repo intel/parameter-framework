@@ -33,11 +33,23 @@
 #include <string>
 #include <list>
 #include <map>
+#include <numeric>
 #include <sstream>
 
 class CUtility
 {
 public:
+    template <class ContainerIterator>
+    static std::string join(const ContainerIterator &begin,
+                     const ContainerIterator &end,
+                     const std::string &separator)
+    {
+        return std::accumulate(begin, end, std::string(),
+                               [&separator](const std::string& a, const std::string& b)
+                               { return a == "" ?  b : a + separator + b; }
+                               );
+    }
+
     /**
     * Format the items of a map into a string as a list of key-value pairs. The map must be
     * composed of pairs of strings.

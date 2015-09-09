@@ -33,29 +33,35 @@
 #include <stdlib.h>
 #include "RequestMessage.h"
 #include "AnswerMessage.h"
-#include "ConnectionSocket.h"
 
 using namespace std;
 
-bool sendAndDisplayCommand(CConnectionSocket &connectionSocket, CRequestMessage &requestMessage)
+bool sendAndDisplayCommand(asio::ip::tcp::socket &socket, CRequestMessage &requestMessage)
 {
     string strError;
 
-    if (requestMessage.serialize(&connectionSocket, true, strError)
-            != CRequestMessage::success) {
+    CMessage service(socket);
 
-        cerr << "Unable to send command to target: " << strError << endl;
+    std::vector<uint8_t> payload = requestMessage.serialize();
+
+    auto res = service.send(payload);
+    if (res.first != CMessage::Code::success) {
+
+        cerr << "Unable to send command to target: " << res.second << endl;
         return false;
     }
 
     ///// Get answer
-    CAnswerMessage answerMessage;
-    if (answerMessage.serialize(&connectionSocket, false, strError)
-            != CRequestMessage::success) {
+    res = service.recv(payload);
+    if (res.first != CMessage::Code::success) {
 
-        cerr << "Unable to received answer from target: " << strError << endl;
+        cerr << "Unable to received answer from target: " << res.second << endl;
         return false;
     }
+
+    CAnswerMessage answerMessage;
+
+    answerMessage.deserialize(payload);
 
     // Success?
     if (!answerMessage.success()) {
@@ -86,17 +92,18 @@ int main(int argc, char *argv[])
 
         return 1;
     }
-    // Get port number
-    uint16_t uiPort = (uint16_t)strtoul(argv[2], NULL, 0);
+    using asio::ip::tcp;
+    asio::io_service io_service;
+    tcp::resolver resolver(io_service);
 
-    // Connect to target
-    CConnectionSocket connectionSocket;
+    tcp::socket connectionSocket(io_service);
 
-    string strError;
-    // Connect
-    if (!connectionSocket.connect(argv[1], uiPort, strError)) {
+    asio::error_code ec;
+    asio::connect(connectionSocket, resolver.resolve(tcp::resolver::query(argv[1], (argv[2]))), ec);
 
-        cerr << strError << endl;
+    if (ec) {
+
+        cerr << "Connexion failed: " << ec.message() << endl;
 
         return 1;
     }

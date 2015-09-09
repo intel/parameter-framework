@@ -51,7 +51,7 @@ public:
      *
      * @return the command execution status, @see CommandStatus
      */
-    typedef CommandStatus (CCommandParser::*RemoteCommandParser)(const IRemoteCommand& remoteCommand, std::string& strResult);
+    typedef CommandStatus (CCommandParser::*RemoteCommandParser)(const CRequestMessage& remoteCommand, std::string& strResult);
 
 private:
     // Parser descriptions
@@ -85,10 +85,10 @@ private:
             return _strCommandName + " " + _strHelp;
         }
 
-        bool parse(CCommandParser* pCommandParser, const IRemoteCommand& remoteCommand, std::string& strResult) const
+        bool parse(CCommandParser* pCommandParser, const CRequestMessage& remoteCommand, std::string& strResult) const
         {
             // Check enough arguments supplied
-            if (remoteCommand.getArgumentCount() < _uiMinArgumentCount) {
+            if (remoteCommand.getArguments().size() < _uiMinArgumentCount) {
 
                 strResult = std::string("Not enough arguments supplied\nUsage:\n") + usage();
 
@@ -156,7 +156,7 @@ public:
 
 private:
     // Command processing
-    bool remoteCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult)
+    bool remoteCommandProcess(const CRequestMessage& remoteCommand, std::string& strResult)
     {
         // Dispatch
         const CRemoteCommandParserItem* pRemoteCommandParserItem = findCommandParserItem(remoteCommand.getCommand());
@@ -164,7 +164,7 @@ private:
         if (!pRemoteCommandParserItem) {
 
             // Not found
-            strResult = "Command not found!\nUse \"help\" to show available commands";
+            strResult = "Command '" + remoteCommand.getCommand() + "'not found!\nUse \"help\" to show available commands";
 
             return false;
         }

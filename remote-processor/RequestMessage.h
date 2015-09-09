@@ -34,46 +34,27 @@
 #include <vector>
 #include <string>
 
-class CRequestMessage : public CMessage, public IRemoteCommand
+class CRequestMessage : public IRemoteCommand
 {
 public:
-    CRequestMessage(const std::string& strCommand);
-    CRequestMessage();
+    CRequestMessage(const std::string& strCommand) : _strCommand(strCommand) {}
+    CRequestMessage() {}
 
     // Command Name
     void setCommand(const std::string& strCommand);
     virtual const std::string& getCommand() const;
 
     // Arguments
-    virtual void addArgument(const std::string& strArgument);
-    virtual uint32_t getArgumentCount() const;
-    virtual const std::string& getArgument(uint32_t uiArgument) const;
-    virtual const std::string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const;
+    void addArgument(const std::string& strArgument);
+    const std::vector<std::string> &getArguments() const { return _arguments; }
+
+    std::vector<uint8_t> serialize() const override;
+    void deserialize(const std::vector<uint8_t> &data) override;
 
 private:
-
-    /**
-      * Constant character array.
-      * This value defines the delimiters used to separate the arguments
-      * in the request command.
-      */
-    static const char* const gacDelimiters;
-
-    // Fill data to send
-    virtual void fillDataToSend();
-    // Collect received data
-    virtual void collectReceivedData();
-    // Size
-    /**
-     * @return size of the request message in bytes
-     */
-    virtual size_t getDataSize() const;
-    // Trim input std::string
-    static std::string trim(const std::string& strToTrim);
-
     // Command
     std::string _strCommand;
     // Arguments
-    std::vector<std::string> _argumentVector;
+    std::vector<std::string> _arguments;
 };
 
