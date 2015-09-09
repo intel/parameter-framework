@@ -28,16 +28,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "EnumParameterType.h"
-#include <stdlib.h>
-#include <sstream>
-#include <iomanip>
-#include <ctype.h>
-#include <assert.h>
-#include "ParameterAccessContext.h"
 #include "EnumValuePair.h"
-#include "Utility.h"
+#include "ParameterAccessContext.h"
 #include "convert.hpp"
-#include <errno.h>
 
 #define base CParameterType
 

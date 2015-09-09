@@ -31,7 +31,6 @@
 
 #include "ParameterType.h"
 
-#include <list>
 #include <string>
 
 class CEnumParameterType : public CParameterType
