@@ -34,9 +34,6 @@ add_library(xmlserializer SHARED
     XmlMemoryDocSource.cpp
     XmlStreamDocSink.cpp)
 
-if (WIN32)
-    set(CMAKE_PREFIX_PATH "${libxml2_prebuilts}")
-endif()
 find_package(LibXml2 REQUIRED)
 
 # libxml2 has been found, but does it support XInclude ?

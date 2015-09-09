@@ -71,6 +71,15 @@ directory, you may do so by passing it to the `cmake .` command; e.g.
 
     cmake -DCMAKE_INSTALL_PREFIX=/path/to/custom/install .
 
+If you want to provide your own dependencies (e.g. your own version of
+libxml2), you should pass the base paths as the `CMAKE_PREFIX_PATH` variable,
+e.g.:
+
+    cmake -DCMAKE_PREFIX_PATH='/path/to/dependency1/;/path/to/dependency2/'
+
+For more information on how to use `CMAKE_PREFIX_PATH`, see CMake's
+documentation.
+
 Also, CMake can build a project out-of-tree, which is the recommended method:
 
     mkdir /path/to/build/directory
@@ -80,3 +89,6 @@ Also, CMake can build a project out-of-tree, which is the recommended method:
 
 After an install you may want to run the parameter-framework tests with
 `make test`.
+
+You may take a look at `.travis.yml` and `appveyor.yml` for examples on how we
+build the Parameter Framework in the CI.

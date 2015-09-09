@@ -15,8 +15,8 @@ cache:
 - C:\ProgramData\chocolatey\lib -> appveyor.yml
 build_script:
 - mkdir build\64bits-release& cd build\64bits-release
-- cmake -G "NMake Makefiles" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -Dlibxml2_prebuilts="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64" ..\..
+- cmake -G "NMake Makefiles" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64" ..\..
 - cmake --build . --config release --target xmlserializer
 - cd ..& mkdir 64bits-debug& cd 64bits-debug
-- cmake -G "NMake Makefiles" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -Dlibxml2_prebuilts="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug" ..\..
+- cmake -G "NMake Makefiles" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug" ..\..
 - cmake --build . --config debug --target xmlserializer
