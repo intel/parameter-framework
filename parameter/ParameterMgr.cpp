@@ -340,7 +340,6 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     _pElementLibrarySet(new CElementLibrarySet),
     _strXmlConfigurationFilePath(strConfigurationFilePath),
     _pSubsystemPlugins(NULL),
-    _pvLibRemoteProcessorHandle(NULL),
     _uiStructureChecksum(0),
     _pRemoteProcessorServer(NULL),
     _uiMaxCommandUsageLength(0),
@@ -376,12 +375,6 @@ CParameterMgr::~CParameterMgr()
     delete _pRemoteProcessorServer;
     delete _pMainParameterBlackboard;
     delete _pElementLibrarySet;
-
-    // Close remote processor library
-    if (_pvLibRemoteProcessorHandle) {
-
-        dlclose(_pvLibRemoteProcessorHandle);
-    }
 }
 
 string CParameterMgr::getKind() const
