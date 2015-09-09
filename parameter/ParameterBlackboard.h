@@ -50,6 +50,9 @@ public:
     void writeString(const std::string &input, uint32_t uiOffset);
     void readString(std::string &output, uint32_t uiOffset) const;
 
+    void writeBuffer(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset);
+    void readBuffer(void* pvDstData, uint32_t uiSize, uint32_t uiOffset) const;
+
     // Access from/to subsystems
     uint8_t* getLocation(uint32_t uiOffset);
 

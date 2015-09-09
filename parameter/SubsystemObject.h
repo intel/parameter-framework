@@ -97,6 +97,9 @@ private:
     // Default back synchronization
     void setDefaultValues(CParameterBlackboard& parameterBlackboard) const;
 
+    /** @return the offset in the main blackboard of the sync values. */
+    size_t getOffset() const;
+
     // Prevent unsupported operators
     CSubsystemObject(const CSubsystemObject&);
 
@@ -108,7 +111,7 @@ private:
     // Data size
     uint32_t _uiDataSize;
     // Blackboard data location
-    uint8_t* _pucBlackboardLocation;
+    CParameterBlackboard* _blackboard;
     // Accessed index for Subsystem read/write from/to blackboard
     uint32_t _uiAccessedIndex;
 };
