@@ -103,15 +103,17 @@ add_library(parameter SHARED
     XmlFileIncluderElement.cpp
     XmlParameterSerializingContext.cpp)
 
-include_directories(
-    include
-    "${PROJECT_SOURCE_DIR}/xmlserializer"
-    "${PROJECT_SOURCE_DIR}/utility"
-    "${PROJECT_SOURCE_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/parameter/log/include")
 
 find_library(dl dl)
-target_link_libraries(parameter xmlserializer remote-processor pfw_utility dl)
+target_link_libraries(parameter 
+    # unfortunatly xmlSink and xmlSource need to be exposed to the plugins
+    PUBLIC xmlserializer
+    PRIVATE remote-processor pfw_utility dl)
+
+target_include_directories(parameter
+    PUBLIC include log/include
+    # FIXE: define . as an include directory only for plugins
+    PUBLIC .)
 
 install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 # Client headers

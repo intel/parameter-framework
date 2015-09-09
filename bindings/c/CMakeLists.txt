@@ -28,18 +28,14 @@
 
 add_library(cparameter SHARED ParameterFramework.cpp)
 
-include_directories("${PROJECT_SOURCE_DIR}/parameter/include")
-
 install(FILES ParameterFramework.h
         DESTINATION "include/parameter/c")
 
-target_link_libraries(cparameter parameter)
+target_link_libraries(cparameter PRIVATE parameter pfw_utility)
 
 install(TARGETS cparameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 
 if(BUILD_TESTING)
-    include_directories("${PROJECT_SOURCE_DIR}/utility")
-
     # Add unit test
     add_executable(cparameterUnitTest Test.cpp)
     # Do not warn about passing a null pointer for arguments marked as requiring
@@ -48,7 +44,8 @@ if(BUILD_TESTING)
     # proper failure.
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-nonnull")
 
-    target_link_libraries(cparameterUnitTest catch cparameter pfw_utility)
+    target_link_libraries(cparameterUnitTest PRIVATE catch cparameter pfw_utility)
+
     add_test(NAME cparameterUnitTest
              COMMAND cparameterUnitTest)
 

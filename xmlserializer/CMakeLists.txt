@@ -53,11 +53,16 @@ if(NOT XML2_XINCLUDE_SUPPORT)
             "please install a version of libxml2 supporting it.")
 endif()
 
-include_directories(
-    ${LIBXML2_INCLUDE_DIR}
-    "${PROJECT_SOURCE_DIR}/utility")
+target_include_directories(xmlserializer
+    PRIVATE ${LIBXML2_INCLUDE_DIR}
+    PUBLIC .)
 
-target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
+target_link_libraries(xmlserializer
+    PUBLIC pfw_utility # For NonCopyable
+    PRIVATE ${LIBXML2_LIBRARIES})
+
+# TODO: check if the libxml2 definitions are not already part of the interface
+#       See: http://www.cmake.org/cmake/help/v3.1/manual/cmake-buildsystem.7.html#transitive-usage-requirements
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LIBXML2_DEFINITIONS}")
 
 install(TARGETS xmlserializer LIBRARY DESTINATION lib RUNTIME DESTINATION bin)

@@ -38,8 +38,9 @@ add_library(remote-processor SHARED
 set(CMAKE_THREAD_PREFER_PTHREAD 1)
 find_package(Threads REQUIRED)
 
-include_directories("${PROJECT_SOURCE_DIR}/utility")
+target_link_libraries(remote-processor PRIVATE pfw_utility ${CMAKE_THREAD_LIBS_INIT})
 
-target_link_libraries(remote-processor pfw_utility ${CMAKE_THREAD_LIBS_INIT})
+# TODO: separate remote-processor's includes in half (public/private)
+target_include_directories(remote-processor PUBLIC .)
 
 install(TARGETS remote-processor LIBRARY DESTINATION lib RUNTIME DESTINATION bin)

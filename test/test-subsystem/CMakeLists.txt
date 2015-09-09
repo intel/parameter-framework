@@ -35,11 +35,5 @@ if (BUILD_TESTING)
         TESTSubsystemString.cpp
         TESTSubsystemBuilder.cpp)
 
-    include_directories(
-        "${PROJECT_SOURCE_DIR}/xmlserializer"
-        "${PROJECT_SOURCE_DIR}/utility"
-        "${PROJECT_SOURCE_DIR}/parameter/log/include"
-        "${PROJECT_SOURCE_DIR}/parameter")
-
-    target_link_libraries(test-subsystem parameter)
+    target_link_libraries(test-subsystem PRIVATE parameter)
 endif()
