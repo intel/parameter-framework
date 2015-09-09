@@ -33,8 +33,7 @@ add_library(remote-processor SHARED
         Message.cpp
         RequestMessage.cpp
         AnswerMessage.cpp
-        RemoteProcessorServer.cpp
-        RemoteProcessorServerBuilder.cpp)
+        RemoteProcessorServer.cpp)
 
 set(CMAKE_THREAD_PREFER_PTHREAD 1)
 find_package(Threads REQUIRED)
@@ -43,4 +42,4 @@ include_directories("${PROJECT_SOURCE_DIR}/utility")
 
 target_link_libraries(remote-processor pfw_utility ${CMAKE_THREAD_LIBS_INIT})
 
-install(TARGETS remote-processor LIBRARY DESTINATION lib)
+install(TARGETS remote-processor LIBRARY DESTINATION lib RUNTIME DESTINATION bin)

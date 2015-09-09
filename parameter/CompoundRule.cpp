@@ -57,10 +57,8 @@ bool CCompoundRule::childrenAreDynamic() const
 }
 
 // Content dumping
-void CCompoundRule::logValue(string& strValue, CErrorContext& errorContext) const
+void CCompoundRule::logValue(string& strValue, CErrorContext& /*ctx*/) const
 {
-    (void)errorContext;
-
     // Type
     strValue = _apcTypes[_bTypeAll];
 }

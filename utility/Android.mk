@@ -34,7 +34,6 @@ LOCAL_PATH := $(call my-dir)
 common_src_files := \
     Tokenizer.cpp \
     Utility.cpp \
-    NaiveTokenizer.cpp \
     FullIo.cpp \
 
 common_module := libpfw_utility
@@ -44,7 +43,6 @@ common_cflags := \
         -Wall \
         -Werror \
         -Wextra \
-        -Wno-unused-parameter
 
 #############################
 # Target build

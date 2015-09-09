@@ -49,7 +49,22 @@ execute_process(COMMAND git describe --tags --dirty
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     OUTPUT_VARIABLE PARAMETER_FRAMEWORK_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
+if (WIN32)
+    # By default cmake adds a warning level.
+    # Nevertheless a different level is wanted for this project.
+    # If a two different warning levels are present on the command line, cl raises a warning.
+    # Thus delete the default level to set a different one.
+    STRING(REGEX REPLACE "/W[0-4]" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+
+    # Force include iso646.h to support alternative operator form (and, or, not...)
+    # Such support is require by the standard and can be enabled with /Za
+    # but doing so breaks compilation of windows headers...
+    # Suppress warning 4127 (Conditional expression is constant) as it break
+    # compilation when testing template value arguments or writing `while(true)`.
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /FI iso646.h -wd4127")
+else ()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra")
+endif ()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)

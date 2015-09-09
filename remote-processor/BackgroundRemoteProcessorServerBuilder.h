@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -27,36 +27,44 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "NaiveTokenizer.h"
-#include <cstring>
+#include "RemoteProcessorServer.h"
+#include <memory>
+#include <future>
 
-char* NaiveTokenizer::getNextToken(char** line)
+class BackgroundRemoteProcessorServer final : public IRemoteProcessorServerInterface
 {
-    const char *quotes = "'\""; // single or double quotes
-    char separator[2] = " ";
-    char first[2];
+public:
+    BackgroundRemoteProcessorServer(uint16_t uiPort,
+                                    std::unique_ptr<IRemoteCommandHandler> &commandHandler) :
+        _server(uiPort), mCommandHandler(std::move(commandHandler)) {}
 
-    if (*line == NULL || (*line)[0] == '\0') {
-        return NULL;
+    ~BackgroundRemoteProcessorServer() { stop(); }
+
+    bool start(std::string &error) override
+    {
+        if (!_server.start(error)) {
+            return false;
+        }
+        try {
+            mServerSuccess = std::async(std::launch::async,
+                                        &CRemoteProcessorServer::process, &_server,
+                                        std::ref(*mCommandHandler));
+        } catch (std::exception &e) {
+            error = "Could not create a remote processor thread: " + std::string(e.what());
+            return false;
+        }
+
+        return true;
     }
 
-    // Copy the first character into its own new string
-    first[0] = (*line)[0];
-    first[1] = '\0';
-
-    // Check if the first character is a quote
-    if (strstr(quotes, first) != NULL) {
-        // If so, move forward and set the separator to that quote
-        (*line)++;
-        strncpy(separator, first, sizeof(separator));
-    }
-    // If it is not, get the next space-delimited token
-    // First, move the cursor forward if the first character is a space
-    // This effectively ignores multiple spaces in a row
-    else if (strstr(separator, first) != NULL) {
-        (*line)++;
-        return NaiveTokenizer::getNextToken(line);
+    bool stop() override {
+        _server.stop();
+        return mServerSuccess.get();
     }
 
-    return strsep(line, separator);
-}
+private:
+    CRemoteProcessorServer _server;
+    std::unique_ptr<IRemoteCommandHandler> mCommandHandler;
+    std::future<bool> mServerSuccess;
+};
+

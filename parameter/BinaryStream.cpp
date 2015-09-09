@@ -69,10 +69,25 @@ bool CBinaryStream::open(string& strError)
     if (!_bOut) {
 
         // Get file size
-        size_t uiFileSize = _fileStream.tellg();
+        auto uiFileSize = _fileStream.tellg();
+
+        // `istream::pos_type` represent the position in a file stream.
+        // Thus when at the end of the file, it represent it's size.
+        // As a result `pos_type` must be able to represent any file size.
+        // 
+        // `size_t` on the other hand must be able to represent any contiguous
+        // memory array size.
+        // 
+        // Those two type are not necessary the same but it is safe to assume
+        // that `pos_type` is equal or bigger than `size_t`, as supported
+        // system can all have files a lot bigger than the usual memory size.
+        // 
+        // As a result when comparing a file size and a structure size, use
+        // `pos_type`.
+        decltype(uiFileSize) expectedSize = _uiDataSize + sizeof(_uiStructureChecksum);
 
         // Validate file size
-        if (_uiDataSize + sizeof(_uiStructureChecksum) != uiFileSize) {
+        if (expectedSize != uiFileSize) {
 
             // Size different from expected
             strError = "Unexpected file size";

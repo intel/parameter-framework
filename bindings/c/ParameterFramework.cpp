@@ -31,6 +31,8 @@
 #include "ParameterFramework.h"
 #include <ParameterMgrPlatformConnector.h>
 
+#include <NonCopyable.hpp>
+
 #include <iostream>
 #include <limits>
 #include <string>
@@ -105,15 +107,18 @@ public:
     LogWrapper() : mLogger() {}
     virtual ~LogWrapper() {}
 private:
-    virtual void log(bool bIsWarning, const string &strLog)
+    void info(const string &msg) override { log(pfwLogInfo, msg); }
+
+    void warning(const string &msg) override  { log(pfwLogWarning, msg); }
+
+    void log(PfwLogLevel level, const string &strLog)
     {
         // A LogWrapper should NOT be register to the pfw (thus log called)
         // if logCb is NULL.
         assert(mLogger.logCb != NULL);
-        mLogger.logCb(mLogger.userCtx,
-                      bIsWarning ? pfwLogWarning : pfwLogInfo,
-                      strLog.c_str());
+        mLogger.logCb(mLogger.userCtx, level, strLog.c_str());
     }
+
     PfwLogger mLogger;
 };
 
@@ -121,7 +126,7 @@ private:
 ///////////// Core ////////////
 ///////////////////////////////
 
-struct PfwHandler_
+struct PfwHandler_ : private utility::NonCopyable
 {
     void setLogger(const PfwLogger *logger);
     bool createCriteria(const PfwCriterion criteria[], size_t criterionNb);
@@ -135,7 +140,6 @@ struct PfwHandler_
 private:
     LogWrapper mLogger;
 };
-
 
 PfwHandler *pfwCreate()
 {
@@ -196,9 +200,10 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
                 value = valueIndex;
             }
             const char * valueName = criterion.values[valueIndex];
-            if(not type->addValuePair(value, valueName)) {
+            string error;
+            if (not type->addValuePair(value, valueName, error)) {
                 return status.failure("Could not add value " + string(valueName) +
-                                      " to criterion " + criterion.name);
+                                      " to criterion " + criterion.name + ": " + error);
             }
         }
         // Create criterion and add it to the pfw

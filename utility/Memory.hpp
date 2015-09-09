@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Intel Corporation
+ * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,51 +27,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#pragma once
 
-#include "NonCopyable.hpp"
+#include <memory>
 
-#include <string>
-#include <vector>
-
-/** Tokenizer class
+/** Implementation of C++14's std::make_unique.
  *
- * Must be initialized with a string to be tokenized and, optionally, a string
- * of delimiters (@see Tokenizer::defaultDelimiters).
- *
- * Multiple consecutive delimiters (even if different) are considered as a
- * single one. As a result, there can't be empty tokens.
+ * TODO: Specialisation for array types is not implemented.
  */
-class Tokenizer : private utility::NonCopyable
+template<class T, class... Args>
+std::unique_ptr<T> make_unique(Args &&... args)
 {
-public:
-    /** Constructs a Tokenizer
-     *
-     * @param[in] input The string to be tokenized
-     * @param[in] delimiters A string containing all the token delimiters
-     *            (hence, each delimiter can only be a single character)
-     */
-    Tokenizer(const std::string &input, const std::string &delimiters=defaultDelimiters);
-    ~Tokenizer() {};
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
 
-    /** Return the next token or an empty string if no more token
-     *
-     * Multiple consecutive delimiters are considered as a single one - i.e.
-     * "a     bc d   " will be tokenized as ("a", "bc", "d") if the delimiter
-     * is ' '.
-     */
-    std::string next();
-
-    /** Return a vector of all tokens
-     */
-    std::vector<std::string> split();
-
-    /** Default list of delimiters (" \n\r\t\v\f") */
-    static const std::string defaultDelimiters;
-
-private:
-    const std::string _input; //< string to be tokenized
-    const std::string _delimiters; //< token delimiters
-
-    std::string::size_type _position; //< end of the last returned token
-};

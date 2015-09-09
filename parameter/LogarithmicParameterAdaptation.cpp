@@ -30,13 +30,16 @@
 
 #include "LogarithmicParameterAdaptation.h"
 #include "Utility.h"
-#include <math.h>
+#include <cmath>
 
 #define base CLinearParameterAdaptation
 
-// M_E is the base of the natural logarithm for 'e' from math.h
 CLogarithmicParameterAdaptation::CLogarithmicParameterAdaptation() : base("Logarithmic"),
-    _dLogarithmBase(M_E), _dFloorValue(-INFINITY)
+    // std::exp(1) == e^1 == e == natural logarithm base
+    // Make sure there is no precision lose by using std::exp overload that
+    // return the same type as _dLogarithmBase
+    _dLogarithmBase{std::exp(decltype(_dLogarithmBase){1})},
+    _dFloorValue(-INFINITY)
 {
 }
 

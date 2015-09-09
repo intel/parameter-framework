@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -48,81 +48,6 @@ CElement::~CElement()
 {
     removeChildren();
 }
-
-// Logging
-void CElement::log_info(const char* strMessage, ...) const
-{
-    char *pacBuffer;
-    va_list listPointer;
-
-    va_start(listPointer, strMessage);
-
-    vasprintf(&pacBuffer,  strMessage, listPointer);
-
-    va_end(listPointer);
-
-    if (pacBuffer != NULL) {
-        doLog(false, pacBuffer);
-    }
-
-    free(pacBuffer);
-}
-
-void CElement::log_warning(const char* strMessage, ...) const
-{
-    char *pacBuffer;
-    va_list listPointer;
-
-    va_start(listPointer, strMessage);
-
-    vasprintf(&pacBuffer,  strMessage, listPointer);
-
-    va_end(listPointer);
-
-    if (pacBuffer != NULL) {
-        doLog(true, pacBuffer);
-    }
-
-    free(pacBuffer);
-}
-
-// Log each element of the string list
-void CElement::log_table(bool bIsWarning, const std::list<string> lstrMessage) const
-{
-    std::list<string>::const_iterator iterator(lstrMessage.begin());
-    std::list<string>::const_iterator end(lstrMessage.end());
-
-    while (iterator != end) {
-        // Log current list element
-        doLog(bIsWarning, iterator->c_str());
-        ++iterator;
-    }
-}
-
-void CElement::doLog(bool bIsWarning, const string& strLog) const
-{
-    assert(_pParent);
-
-    // Propagate till root
-    _pParent->doLog(bIsWarning, strLog);
-}
-
-void CElement::nestLog() const
-{
-    assert(_pParent);
-
-    // Propagate till root
-    _pParent->nestLog();
-}
-
-void CElement::unnestLog() const
-{
-    assert(_pParent);
-
-    // Propagate till root
-    _pParent->unnestLog();
-}
-
 
 void CElement::setDescription(const string& strDescription)
 {
@@ -212,10 +137,8 @@ void CElement::showDescriptionProperty(std::string &strResult) const
 }
 
 // Content dumping
-void CElement::logValue(string& strValue, CErrorContext& errorContext) const
+void CElement::logValue(string& /*strValue*/, CErrorContext& /*ctx*/) const
 {
-    (void)strValue;
-    (void)errorContext;
 }
 
 // From IXmlSink
@@ -655,16 +578,6 @@ string CElement::getPath() const
 string CElement::getQualifiedPath() const
 {
     return getPath() + " [" + getKind() + "]";
-}
-
-uint32_t CElement::getDepth() const
-{
-    if (_pParent) {
-
-        return _pParent->getDepth() + 1;
-    }
-
-    return 0;
 }
 
 // Checksum for integrity checks

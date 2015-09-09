@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,10 +27,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#pragma once
 
-#ifndef UNUSED_H
-#define UNUSED_H
+#include <string>
 
-#define __unused __attribute__((__unused__))
+namespace core
+{
+namespace log
+{
 
-#endif // UNUSED_H
+/** Logger interface provided by client */
+class ILogger
+{
+public:
+    virtual void info(const std::string& strLog) = 0;
+    virtual void warning(const std::string& strLog) = 0;
+protected:
+    virtual ~ILogger() {}
+};
+
+} /** log namespace */
+} /** core namespace */

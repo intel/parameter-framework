@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,23 +27,62 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 #pragma once
 
-class NaiveTokenizer {
+#include "log/ILogger.h"
+#include "log/LogWrapper.h"
+
+#include "NonCopyable.hpp"
+
+namespace core
+{
+namespace log
+{
+
+/** Application logger object (Thread unsafe)
+ * Provide contextualisable logging API.
+ * Streams can be used through Info and Warning objects returned by dedicated
+ * methods.
+ * This is the class you want to use to log in the project.
+ */
+class Logger : private utility::NonCopyable
+{
 public:
-    /** tokenize a space-separated string, handling quotes
+
+    /** Context class is friend let the prolog by externally modified */
+    friend class Context;
+
+    /** @param[in] logger, raw logger provided by client */
+    Logger(ILogger& logger) : mLogger(logger) {}
+
+    /**
+     * Retrieve wrapped information logger
      *
-     * The input is tokenized, using " " (space) as the tokenizer; multiple
-     * spaces are regarded as a single separator.  If the input begins with a
-     * quote (either single (') or double (")), the next token will be all the
-     * characters (including spaces) until the next identical quote.
-     * Warning: This function modifies its argument in-place !
-     *
-     * It aims at reproducing the parsing of a shell.
-     *
-     * @param[inout] line The string to be tokenized. Warning: modified in-place
-     * @return Pointer to the next token (which is actually the original value of 'line'
+     * @return Info logger
      */
-    static char* getNextToken(char** line);
+    details::Info info()
+    {
+        return details::Info(mLogger, mProlog);
+    }
+
+    /**
+     * Retrieve wrapped warning logger
+     *
+     * @return Warning logger
+     */
+    details::Warning warning()
+    {
+        return details::Warning(mLogger, mProlog);
+    }
+
+private:
+
+    /** Raw logger provided by client */
+    ILogger& mLogger;
+
+    /** Log prolog, owns the context indentation */
+    std::string mProlog;
 };
+
+} /** log namespace */
+} /** core namespace */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -56,7 +56,9 @@ void CSyncerSet::clear()
     _syncerSet.clear();
 }
 
-bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::list<std::string>* plstrError) const
+bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard,
+                      bool bBack,
+                      core::Results* errors) const
 {
     bool bSuccess = true;
 
@@ -71,9 +73,9 @@ bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard, bool bBack, std
 
         if (!pSyncer->sync(parameterBlackboard, bBack, strError)) {
 
-            if (plstrError) {
+            if (errors != NULL) {
 
-                plstrError->push_back(strError);
+                errors->push_back(strError);
             }
             bSuccess = false;
         }

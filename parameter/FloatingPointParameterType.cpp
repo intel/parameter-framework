@@ -41,7 +41,7 @@ using std::string;
 
 CFloatingPointParameterType::CFloatingPointParameterType(const string& strName)
     : base(strName),
-      _fMin(-std::numeric_limits<float>::max()),
+      _fMin(-std::numeric_limits<float>::lowest()),
       _fMax(std::numeric_limits<float>::max())
 {
 }
@@ -265,10 +265,8 @@ bool CFloatingPointParameterType::toBlackboard(
 bool CFloatingPointParameterType::fromBlackboard(
         double& dUserValue,
         uint32_t uiValue,
-        CParameterAccessContext& parameterAccessContext) const
+        CParameterAccessContext& /*ctx*/) const
 {
-    (void) parameterAccessContext;
-
     // Move from "raw memory" value space to real space
     float fValue = reinterpret_cast<const float&>(uiValue);
 

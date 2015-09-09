@@ -31,6 +31,9 @@
 #pragma once
 #include "XmlElement.h"
 #include "XmlSerializingContext.h"
+
+#include "NonCopyable.hpp"
+
 #include <string>
 
 struct _xmlDoc;
@@ -44,7 +47,7 @@ struct _xmlError;
   * for different purposes by implementing the populate method and then
   * use it with any existing implementation of CXmlDocSink.
   */
-class CXmlDocSource
+class CXmlDocSource : private utility::NonCopyable
 {
 public:
     /**
