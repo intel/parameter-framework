@@ -28,13 +28,15 @@
 
 add_executable(remote-process main.cpp)
 
-# TODO: separate remote-processor's includes in half (public/private)
-# And use only public headers here
-include_directories(
-    "${PROJECT_BINARY_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/utility")
+set(CMAKE_THREAD_PREFER_PTHREAD 1)
+find_package(Threads REQUIRED)
 
-target_link_libraries(remote-process remote-processor pfw_utility)
+target_link_libraries(remote-process
+    PRIVATE remote-processor pfw_utility
+    # Remote-process does not use thread,
+    # nevertheless it uses asio resolver wich may use a thread (for async resolve).
+    # As a result remote-process must link with a thread library although not
+    # using the corresponding symbols.
+    PRIVATE "${CMAKE_THREAD_LIBS_INIT}")
 
 install(TARGETS remote-process RUNTIME DESTINATION bin)

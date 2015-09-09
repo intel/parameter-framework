@@ -105,21 +105,18 @@ add_library(parameter SHARED
 include (GenerateExportHeader)
 generate_export_header(parameter)
 
-include_directories(
-    include
-    "${CMAKE_CURRENT_BINARY_DIR}"
-    "${PROJECT_SOURCE_DIR}/parameter"
-    "${PROJECT_SOURCE_DIR}/xmlserializer"
-    "${PROJECT_SOURCE_DIR}/utility"
-    "${PROJECT_BINARY_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/parameter/log/include")
+target_link_libraries(parameter
+    # Unfortunatly xmlSink and xmlSource need to be exposed to the plugins
+    PUBLIC xmlserializer
+    PRIVATE remote-processor pfw_utility
+    PRIVATE ${CMAKE_DL_LIBS})
 
-find_library(DL_LIB dl)
-if(UNIX)
-    target_link_libraries(parameter ${DL_LIB})
-endif()
-target_link_libraries(parameter xmlserializer remote-processor pfw_utility)
+target_include_directories(parameter
+    PUBLIC include log/include
+    # Export symbol macro header
+    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}"
+    # FIXE: define . as an PUBLIC include directory only for plugins
+    PUBLIC .)
 
 install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
 # Client headers

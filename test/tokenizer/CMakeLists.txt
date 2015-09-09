@@ -30,8 +30,7 @@ if(BUILD_TESTING)
     # Add unit test
     add_executable(tokenizerTest Test.cpp)
 
-    include_directories(${PROJECT_SOURCE_DIR}/utility)
-    target_link_libraries(tokenizerTest pfw_utility catch)
+    target_link_libraries(tokenizerTest PRIVATE pfw_utility catch)
 
     add_test(NAME tokenizerTest
              COMMAND tokenizerTest)

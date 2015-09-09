@@ -31,27 +31,26 @@ add_library(cparameter SHARED ParameterFramework.cpp)
 include (GenerateExportHeader)
 generate_export_header(cparameter)
 
-include_directories(
-        "${CMAKE_CURRENT_BINARY_DIR}"
-        "${PROJECT_SOURCE_DIR}/utility"
-        "${PROJECT_BINARY_DIR}/parameter"
-        "${PROJECT_SOURCE_DIR}/parameter/include")
-
 install(FILES ParameterFramework.h
               "${CMAKE_CURRENT_BINARY_DIR}/cparameter_export.h"
         DESTINATION "include/parameter/c")
 
-target_link_libraries(cparameter parameter)
+target_link_libraries(cparameter PRIVATE parameter pfw_utility)
+
+target_include_directories(cparameter
+    # Fixme use an include folder
+    PUBLIC .
+    # Export symbol macro header
+    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 
 install(TARGETS cparameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 
 if(BUILD_TESTING)
-    include_directories("${PROJECT_SOURCE_DIR}/utility")
-
     # Add unit test
     add_executable(cparameterUnitTest Test.cpp)
 
-    target_link_libraries(cparameterUnitTest catch cparameter pfw_utility)
+    target_link_libraries(cparameterUnitTest PRIVATE catch cparameter pfw_utility)
+
     add_test(NAME cparameterUnitTest
              COMMAND cparameterUnitTest)
 

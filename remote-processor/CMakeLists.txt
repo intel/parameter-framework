@@ -44,10 +44,8 @@ find_package(Threads REQUIRED)
 # If asio isn't installed in a standard directory, add the correct directory to
 # CMAKE_PREFIX_PATH (see the main README for more information).
 find_path(ASIO_DIR NAMES asio.hpp)
+# FIXME: asio header should not leak to remote-processor users
 target_include_directories(remote-processor SYSTEM PUBLIC "${ASIO_DIR}")
-
-include_directories("${PROJECT_SOURCE_DIR}/utility"
-                    "${CMAKE_CURRENT_BINARY_DIR}")
 
 # Ubuntu 14.04 packages asio 1.10.1 and clang 3.4.1.
 # In this environment, asio stand alone (set ASIO_STANDALONE)
@@ -55,6 +53,12 @@ include_directories("${PROJECT_SOURCE_DIR}/utility"
 # Force the use of std::chrono by setting ASIO_HAS_STD_CHRONO
 target_compile_definitions(remote-processor PUBLIC ASIO_STANDALONE ASIO_HAS_STD_CHRONO)
 
-target_link_libraries(remote-processor pfw_utility ${CMAKE_THREAD_LIBS_INIT})
+target_include_directories(remote-processor
+    # Symbol export macro header
+    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}"
+    # TODO: separate remote-processor's includes in half (public/private)
+    PUBLIC .)
+
+target_link_libraries(remote-processor PRIVATE pfw_utility ${CMAKE_THREAD_LIBS_INIT})
 
 install(TARGETS remote-processor LIBRARY DESTINATION lib RUNTIME DESTINATION bin)

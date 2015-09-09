@@ -56,12 +56,22 @@ if(NOT XML2_XINCLUDE_SUPPORT)
             "please install a version of libxml2 supporting it.")
 endif()
 
-include_directories(
-    ${LIBXML2_INCLUDE_DIR}
-    "${PROJECT_SOURCE_DIR}/utility")
+# Unfortunatly libxml2 include dir and definition need to be manualy added as:
+# "many modules currently shipped with CMake do not currently provide IMPORTED targets."
+# https://cmake.org/cmake/help/v3.2/prop_tgt/INTERFACE_INCLUDE_DIRECTORIES.html
+# When this will be fixed, remove the LIBXML2_INCLUDE_DIR and LIBXML2_DEFINITIONS
+# lines, and replace LIBXML2_LIBRARIES by libxml2.
+target_include_directories(xmlserializer
+    PRIVATE ${LIBXML2_INCLUDE_DIR}
+    PUBLIC .)
 
-target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LIBXML2_DEFINITIONS}")
+target_compile_definitions(xmlserializer PRIVATE "${LIBXML2_DEFINITIONS}")
+
+
+target_link_libraries(xmlserializer
+    PUBLIC pfw_utility # For NonCopyable
+    PRIVATE ${LIBXML2_LIBRARIES})
+
 
 install(FILES
     XmlSink.h

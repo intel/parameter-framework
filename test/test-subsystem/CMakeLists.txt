@@ -35,13 +35,5 @@ if (BUILD_TESTING)
         TESTSubsystemString.cpp
         TESTSubsystemBuilder.cpp)
 
-    include_directories(
-        "${CMAKE_CURRENT_BINARY_DIR}"
-        "${PROJECT_SOURCE_DIR}/xmlserializer"
-        "${PROJECT_SOURCE_DIR}/utility"
-        "${PROJECT_SOURCE_DIR}/parameter/log/include"
-        "${PROJECT_BINARY_DIR}/parameter"
-        "${PROJECT_SOURCE_DIR}/parameter")
-
-    target_link_libraries(test-subsystem parameter)
+    target_link_libraries(test-subsystem PRIVATE parameter)
 endif()
