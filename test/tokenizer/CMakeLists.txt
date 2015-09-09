@@ -27,22 +27,11 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 if(BUILD_TESTING)
-    # Add catch unit test framework
-    # TODO Use gtest as it is the team recommendation
-    #      Unfortunately gtest is very hard to setup as not binary distributed
-    #      catch is only one header so it is very easy
-    # Catch can be downloaded from:
-    # https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
-    # Then append the download folder to the CMAKE_INCLUDE_PATH variable or
-    # copy it in a standard location (/usr/include on most linux distribution).
-    find_path(CATCH_HEADER catch.hpp)
-    include_directories(${CATCH_HEADER})
-
     # Add unit test
     add_executable(tokenizerTest Test.cpp)
 
     include_directories(${PROJECT_SOURCE_DIR}/utility)
-    target_link_libraries(tokenizerTest pfw_utility)
+    target_link_libraries(tokenizerTest pfw_utility catch)
 
     add_test(NAME tokenizerTest
              COMMAND tokenizerTest)
