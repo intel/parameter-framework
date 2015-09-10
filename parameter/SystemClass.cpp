@@ -27,15 +27,12 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <dlfcn.h>
-#include <dirent.h>
 #include <algorithm>
-#include <ctype.h>
 #include "SystemClass.h"
 #include "SubsystemLibrary.h"
 #include "VirtualSubsystem.h"
 #include "LoggingElementBuilderTemplate.h"
-#include <assert.h>
+#include <cassert>
 #include "PluginLocation.h"
 #include "DynamicLibrary.hpp"
 #include "Utility.h"

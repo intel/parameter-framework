@@ -72,9 +72,7 @@
 #include "SimulatedBackSynchronizer.h"
 #include "HardwareBackSynchronizer.h"
 #include "AutoLock.h"
-#include <strings.h>
-#include <dlfcn.h>
-#include <assert.h>
+#include <cassert>
 #include "ParameterHandle.h"
 #include "LinearParameterAdaptation.h"
 #include "LogarithmicParameterAdaptation.h"
@@ -89,7 +87,6 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
-#include <ctype.h>
 
 #define base CElement
 
