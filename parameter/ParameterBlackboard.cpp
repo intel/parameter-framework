@@ -107,6 +107,15 @@ void CParameterBlackboard::readString(std::string &output, uint32_t uiOffset) co
     output = reinterpret_cast<const char *>(first);
 }
 
+void CParameterBlackboard::writeBuffer(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset)
+{
+    writeInteger(pvSrcData, uiSize, uiOffset, false);
+}
+void CParameterBlackboard::readBuffer(void* pvDstData, uint32_t uiSize, uint32_t uiOffset) const
+{
+    readInteger(pvDstData, uiSize, uiOffset, false);
+}
+
 // Access from/to subsystems
 uint8_t* CParameterBlackboard::getLocation(uint32_t uiOffset)
 {

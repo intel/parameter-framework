@@ -57,7 +57,9 @@ public:
     const CInstanceConfigurableElement* getConfigurableElement() const;
 
 protected:
-    // Blackboard data location
+    /** FIXME: plugins should not have direct access to blackboard memory.
+     *         Ie: This method should be removed or return a abstracted iterator.
+     */
     uint8_t* getBlackboardLocation() const;
     // Size
     uint32_t getSize() const;
@@ -92,10 +94,16 @@ protected:
 
 private:
     // from ISyncer
-    virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::string& strError);
+    /** This method is not supposed to be overridden by plugins
+     *  as if not called, plugins will not work (sets _blackboard).
+     */
+    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::string& strError) override final;
 
     // Default back synchronization
     void setDefaultValues(CParameterBlackboard& parameterBlackboard) const;
+
+    /** @return the offset in the main blackboard of the sync values. */
+    size_t getOffset() const;
 
     // Prevent unsupported operators
     CSubsystemObject(const CSubsystemObject&);
@@ -108,7 +116,7 @@ private:
     // Data size
     uint32_t _uiDataSize;
     // Blackboard data location
-    uint8_t* _pucBlackboardLocation;
+    CParameterBlackboard* _blackboard;
     // Accessed index for Subsystem read/write from/to blackboard
     uint32_t _uiAccessedIndex;
 };

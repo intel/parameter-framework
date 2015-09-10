@@ -47,7 +47,7 @@ CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfig
     : _logger(logger),
       _pInstanceConfigurableElement(pInstanceConfigurableElement),
       _uiDataSize(pInstanceConfigurableElement->getFootPrint()),
-      _pucBlackboardLocation(NULL),
+      _blackboard(NULL),
       _uiAccessedIndex(0)
 {
     // Syncer
@@ -68,7 +68,7 @@ string CSubsystemObject::getFormattedMappingValue() const
 // Blackboard data location
 uint8_t* CSubsystemObject::getBlackboardLocation() const
 {
-    return _pucBlackboardLocation;
+    return _blackboard->getLocation(getOffset());
 }
 
 // Size
@@ -125,7 +125,7 @@ void CSubsystemObject::setDefaultValues(CParameterBlackboard& parameterBlackboar
 bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError)
 {
     // Get blackboard location
-    _pucBlackboardLocation = parameterBlackboard.getLocation(_pInstanceConfigurableElement->getOffset());
+    _blackboard = &parameterBlackboard;
     // Access index init
     _uiAccessedIndex = 0;
 
@@ -191,18 +191,14 @@ bool CSubsystemObject::accessHW(bool bReceive, string& strError)
 // Blackboard access from subsystems
 void CSubsystemObject::blackboardRead(void* pvData, uint32_t uiSize)
 {
-    assert(_uiAccessedIndex + uiSize <= _uiDataSize);
-
-    memcpy(pvData, _pucBlackboardLocation + _uiAccessedIndex, uiSize);
+    _blackboard->readBuffer(pvData, uiSize, getOffset() + _uiAccessedIndex);
 
     _uiAccessedIndex += uiSize;
 }
 
 void CSubsystemObject::blackboardWrite(const void* pvData, uint32_t uiSize)
 {
-    assert(_uiAccessedIndex + uiSize <= _uiDataSize);
-
-    memcpy(_pucBlackboardLocation + _uiAccessedIndex, pvData, uiSize);
+    _blackboard->writeBuffer(pvData, uiSize, getOffset() + _uiAccessedIndex);
 
     _uiAccessedIndex += uiSize;
 }
@@ -216,4 +212,9 @@ const CInstanceConfigurableElement* CSubsystemObject::getConfigurableElement() c
 const CSubsystem* CSubsystemObject::getSubsystem() const
 {
     return _pInstanceConfigurableElement->getBelongingSubsystem();
+}
+
+size_t CSubsystemObject::getOffset() const
+{
+    return _pInstanceConfigurableElement->getOffset();
 }
