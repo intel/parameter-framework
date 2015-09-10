@@ -115,6 +115,8 @@ if(UNIX)
 endif()
 target_link_libraries(parameter xmlserializer remote-processor pfw_utility)
 
+target_compile_definitions(parameter PRIVATE SYMBOL_EXPORTS)
+
 install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 # Client headers
 install(FILES
