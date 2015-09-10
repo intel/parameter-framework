@@ -100,7 +100,7 @@ bool CSystemClass::loadSubsystems(string& strError,
     _pSubsystemLibrary->addElementBuilder("Virtual", new VirtualSubsystemBuilder(_logger));
     // Set virtual subsytem as builder fallback if required
     if (bVirtualSubsystemFallback) {
-        _pSubsystemLibrary->setDefaultBuilder(make_unique<VirtualSubsystemBuilder>(_logger));
+        _pSubsystemLibrary->setDefaultBuilder(utility::make_unique<VirtualSubsystemBuilder>(_logger));
     }
 
     // Add subsystem defined in shared libraries
@@ -212,7 +212,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
 
         // Load attempt
         try {
-            auto library = make_unique<DynamicLibrary>(strPluginFileName);
+            auto library = utility::make_unique<DynamicLibrary>(strPluginFileName);
 
             // Load symbol from library
             auto subSystemBuilder = library->getSymbol<GetSubsystemBuilder>(strPluginSymbol);
