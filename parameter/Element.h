@@ -120,6 +120,13 @@ public:
     virtual void childrenToXml(CXmlElement& xmlElement,
                                CXmlSerializingContext& serializingContext) const;
 
+    /**
+    * @return the "Name" attribute value of an xml element or
+    * empty string if attribute is not present
+    * @param[in] xmlElement the XML element
+    */
+    static std::string getXmlNameAttribute(const CXmlElement& xmlElement);
+
     // Content structure dump
     void dumpContent(std::string& strContent, CErrorContext& errorContext, const uint32_t uiDepth = 0) const;
 
