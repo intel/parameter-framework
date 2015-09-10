@@ -33,6 +33,8 @@ install:
     - pip install --user cpp-coveralls; export PATH=$HOME/.local/bin:$PATH
     - wget --directory-prefix $PREFIX/include
               https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
+    - wget 'https://01.org/sites/default/files/asio-1.10.6.tar.gz'
+    - tar xf asio-1.10.6.tar.gz -C $PREFIX --strip-components=1
 
 before_script:
     - if [ "$CC" = "gcc" ]; then export CC=gcc-4.8 CXX=g++-4.8; fi
