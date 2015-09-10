@@ -52,3 +52,12 @@ install(FILES
     Utility.h
     convert.hpp
     DESTINATION "include/utility")
+
+if(BUILD_TESTING)
+    # Add unit test
+    add_executable(utilityUnitTest test/utility.cpp)
+
+    target_link_libraries(utilityUnitTest pfw_utility catch)
+    add_test(NAME utilityUnitTest
+             COMMAND utilityUnitTest)
+endif()
