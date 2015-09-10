@@ -29,7 +29,6 @@
  */
 
 #include "TestPlatform.h"
-#include "FullIo.hpp"
 
 #include <iostream>
 #include <cstdlib>

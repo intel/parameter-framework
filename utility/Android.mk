@@ -34,7 +34,6 @@ LOCAL_PATH := $(call my-dir)
 common_src_files := \
     Tokenizer.cpp \
     Utility.cpp \
-    FullIo.cpp \
 
 common_module := libpfw_utility
 common_module_tags := optional
