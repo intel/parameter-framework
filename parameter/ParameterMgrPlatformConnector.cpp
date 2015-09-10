@@ -201,3 +201,8 @@ void CParameterMgrPlatformConnector::warning(const string& log)
         _pLogger->warning(log);
     }
 }
+
+void CParameterMgrPlatformConnector::initForMultiThreading()
+{
+    CParameterMgr::initForMultiThreading();
+}

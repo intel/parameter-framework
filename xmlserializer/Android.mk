@@ -1,4 +1,4 @@
-# Copyright (c) 2011-2014, Intel Corporation
+# Copyright (c) 2011-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -38,6 +38,7 @@ common_src_files := \
         XmlMemoryDocSink.cpp \
         XmlMemoryDocSource.cpp \
         XmlStreamDocSink.cpp \
+        XmlUtil.cpp
 
 common_module := libxmlserializer
 

@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -32,7 +32,8 @@ add_library(xmlserializer SHARED
     XmlDocSource.cpp
     XmlMemoryDocSink.cpp
     XmlMemoryDocSource.cpp
-    XmlStreamDocSink.cpp)
+    XmlStreamDocSink.cpp
+    XmlUtil.cpp)
 
 find_package(LibXml2 REQUIRED)
 

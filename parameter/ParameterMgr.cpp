@@ -83,6 +83,7 @@
 #include "XmlDocSource.h"
 #include "XmlMemoryDocSource.h"
 #include "SelectionCriteriaDefinition.h"
+#include "XmlUtil.h"
 #include "Utility.h"
 #include <sstream>
 #include <fstream>
@@ -2671,4 +2672,9 @@ log::details::Info CParameterMgr::info()
 log::details::Warning CParameterMgr::warning()
 {
     return _logger.warning();
+}
+
+void CParameterMgr::initForMultiThreading()
+{
+    CXmlUtil::initForMultiThreading();
 }
