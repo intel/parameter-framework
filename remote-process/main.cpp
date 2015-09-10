@@ -27,21 +27,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+#include <asio.hpp>
+
 #include <iostream>
 #include <string>
 #include <cstring>
 #include <stdlib.h>
 #include "RequestMessage.h"
 #include "AnswerMessage.h"
-#include "ConnectionSocket.h"
 
 using namespace std;
 
-bool sendAndDisplayCommand(CConnectionSocket &connectionSocket, CRequestMessage &requestMessage)
+bool sendAndDisplayCommand(asio::ip::tcp::socket &socket, CRequestMessage &requestMessage)
 {
     string strError;
 
-    if (requestMessage.serialize(&connectionSocket, true, strError)
+    if (requestMessage.serialize(socket, true, strError)
             != CRequestMessage::success) {
 
         cerr << "Unable to send command to target: " << strError << endl;
@@ -50,7 +52,7 @@ bool sendAndDisplayCommand(CConnectionSocket &connectionSocket, CRequestMessage 
 
     ///// Get answer
     CAnswerMessage answerMessage;
-    if (answerMessage.serialize(&connectionSocket, false, strError)
+    if (answerMessage.serialize(socket, false, strError)
             != CRequestMessage::success) {
 
         cerr << "Unable to received answer from target: " << strError << endl;
@@ -86,17 +88,18 @@ int main(int argc, char *argv[])
 
         return 1;
     }
-    // Get port number
-    uint16_t uiPort = (uint16_t)strtoul(argv[2], NULL, 0);
+    using asio::ip::tcp;
+    asio::io_service io_service;
+    tcp::resolver resolver(io_service);
 
-    // Connect to target
-    CConnectionSocket connectionSocket;
+    tcp::socket connectionSocket(io_service);
 
-    string strError;
-    // Connect
-    if (!connectionSocket.connect(argv[1], uiPort, strError)) {
+    asio::error_code ec;
+    asio::connect(connectionSocket, resolver.resolve(tcp::resolver::query(argv[1], (argv[2]))), ec);
 
-        cerr << strError << endl;
+    if (ec) {
+
+        cerr << "Connexion failed: " << ec.message() << endl;
 
         return 1;
     }

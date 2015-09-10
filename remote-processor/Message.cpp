@@ -28,12 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "Message.h"
-#include <assert.h>
-#include "Socket.h"
 #include "RemoteProcessorProtocol.h"
-#include <string.h>
-#include <assert.h>
-#include <errno.h>
 #include <vector>
 
 using std::string;
@@ -124,9 +119,10 @@ size_t CMessage::getRemainingDataSize() const
 }
 
 // Send/Receive
-CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
+CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, string& strError)
 {
     if (bOut) {
+        asio::error_code ec;
 
         // Make room for data to send
         allocateData(getDataSize());
@@ -140,9 +136,9 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
         // First send sync word
         uint16_t uiSyncWord = SYNC_WORD;
 
-        if (!pSocket->write(&uiSyncWord, sizeof(uiSyncWord))) {
+        if (!asio::write(socket, asio::buffer(&uiSyncWord, sizeof(uiSyncWord)), ec)) {
 
-            if (pSocket->hasPeerDisconnected()) {
+            if (ec == asio::error::eof) {
                 return peerDisconnected;
             }
             return error;
@@ -151,43 +147,43 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
         // Size
         uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + _uiDataSize);
 
-        if (!pSocket->write(&uiSize, sizeof(uiSize))) {
+        if (!asio::write(socket, asio::buffer(&uiSize, sizeof(uiSize)), ec)) {
 
-            strError += string("Size write failed: ") + strerror(errno);
+            strError += string("Size write failed: ") + ec.message();
             return error;
         }
 
         // Msg Id
-        if (!pSocket->write(&_ucMsgId, sizeof(_ucMsgId))) {
+        if (!asio::write(socket, asio::buffer(&_ucMsgId, sizeof(_ucMsgId)), ec)) {
 
-            strError += string("Msg write failed: ") + strerror(errno);
+            strError += string("Msg write failed: ") + ec.message();
             return error;
         }
 
         // Data
-        if (!pSocket->write(_pucData, _uiDataSize)) {
+        if (!asio::write(socket, asio::buffer(_pucData, _uiDataSize), ec)) {
 
-            strError = string("Data write failed: ") + strerror(errno);
+            strError = string("Data write failed: ") + ec.message();
             return error;
         }
 
         // Checksum
         uint8_t ucChecksum = computeChecksum();
 
-        if (!pSocket->write(&ucChecksum, sizeof(ucChecksum))) {
+        if (!asio::write(socket, asio::buffer(&ucChecksum, sizeof(ucChecksum)), ec)) {
 
-            strError = string("Checksum write failed: ") + strerror(errno);
+            strError = string("Checksum write failed: ") + ec.message();
             return error;
         }
 
     } else {
         // First read sync word
         uint16_t uiSyncWord;
+        asio::error_code ec;
 
-        if (!pSocket->read(&uiSyncWord, sizeof(uiSyncWord))) {
-
-            strError = string("Sync read failed: ") + strerror(errno);
-            if (pSocket->hasPeerDisconnected()) {
+        if (!asio::read(socket, asio::buffer(&uiSyncWord, sizeof(uiSyncWord)), ec)) {
+            strError = string("Sync read failed: ") + ec.message();
+            if (ec == asio::error::eof) {
                 return peerDisconnected;
             }
             return error;
@@ -203,16 +199,14 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
         // Size
         uint32_t uiSize;
 
-        if (!pSocket->read(&uiSize, sizeof(uiSize))) {
-
-            strError = string("Size read failed: ") + strerror(errno);
+        if (!asio::read(socket, asio::buffer(&uiSize, sizeof(uiSize)), ec)) {
+            strError = string("Size read failed: ") + ec.message();
             return error;
         }
 
         // Msg Id
-        if (!pSocket->read(&_ucMsgId, sizeof(_ucMsgId))) {
-
-            strError = string("Msg id read failed: ") + strerror(errno);
+        if (!asio::read(socket, asio::buffer(&_ucMsgId, sizeof(_ucMsgId)), ec)) {
+            strError = string("Msg id read failed: ") + ec.message();
             return error;
         }
 
@@ -222,18 +216,16 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
         allocateData(uiSize - sizeof(_ucMsgId));
 
         // Data receive
-        if (!pSocket->read(_pucData, _uiDataSize)) {
-
-            strError = string("Data read failed: ") + strerror(errno);
+        if (!asio::read(socket, asio::buffer(_pucData, _uiDataSize), ec)) {
+            strError = string("Data read failed: ") + ec.message();
             return error;
         }
 
         // Checksum
         uint8_t ucChecksum;
 
-        if (!pSocket->read(&ucChecksum, sizeof(ucChecksum))) {
-
-            strError = string("Checksum read failed: ") + strerror(errno);
+        if (!asio::read(socket, asio::buffer(&ucChecksum, sizeof(ucChecksum)), ec)) {
+            strError = string("Checksum read failed: ") + ec.message();
             return error;
         }
         // Compare
