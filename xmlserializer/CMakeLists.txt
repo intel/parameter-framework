@@ -26,13 +26,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_library(xmlserializer SHARED
+add_library(xmlserializer STATIC
     XmlElement.cpp
     XmlSerializingContext.cpp
     XmlDocSource.cpp
     XmlMemoryDocSink.cpp
     XmlMemoryDocSource.cpp
     XmlStreamDocSink.cpp)
+
+set_target_properties(xmlserializer PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 
 find_package(LibXml2 REQUIRED)
 
@@ -60,7 +62,6 @@ include_directories(
 target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LIBXML2_DEFINITIONS}")
 
-install(TARGETS xmlserializer LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 install(FILES
     XmlSink.h
     XmlSource.h
