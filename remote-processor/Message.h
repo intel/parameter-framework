@@ -29,6 +29,7 @@
  */
 #pragma once
 
+#include <asio.hpp>
 #include <stdint.h>
 #include <string>
 
@@ -49,7 +50,7 @@ public:
 
     /** Write or read the message on pSocket.
      *
-     * @param[in,out] pSocket is the socket on wich IO operation will be made.
+     * @param[in,out] socket is the socket on wich IO operation will be made.
      * @param[in] bOut if true message should be read,
      *                 if false it should be written.
      * @param[out] strError on failure, a string explaining the error,
@@ -59,7 +60,7 @@ public:
      *         peerDisconnected if the peer disconnected before the first socket access.
      *         error if the message could not be read/write for any other reason
      */
-    Result serialize(CSocket* pSocket, bool bOut, std::string &strError);
+    Result serialize(asio::ip::tcp::socket &socket, bool bOut, std::string &strError);
 
 protected:
     // Msg Id

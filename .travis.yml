@@ -28,6 +28,7 @@ addons:
             - g++-4.8
             - cmake
             - python3-dev
+            - libasio-dev
 
 install:
     - pip install --user cpp-coveralls; export PATH=$HOME/.local/bin:$PATH
