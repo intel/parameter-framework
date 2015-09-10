@@ -110,8 +110,10 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/remote-processor"
     "${PROJECT_SOURCE_DIR}/parameter/log/include")
 
-find_library(dl dl)
-target_link_libraries(parameter xmlserializer remote-processor pfw_utility dl)
+if(UNIX)
+    target_link_libraraies(parameter dl)
+endif()
+target_link_libraries(parameter xmlserializer remote-processor pfw_utility)
 
 install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 # Client headers
