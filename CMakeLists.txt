@@ -61,7 +61,7 @@ if (WIN32)
     # but doing so breaks compilation of windows headers...
     # Suppress warning 4127 (Conditional expression is constant) as it break
     # compilation when testing template value arguments or writing `while(true)`.
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /FI iso646.h -wd4127")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /FI iso646.h -wd4127")
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra")
 endif ()
