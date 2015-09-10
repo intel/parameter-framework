@@ -39,8 +39,7 @@ add_library(pfw_utility STATIC
     ${UTILITY_OS_SPECIFIC_FILES}
     Tokenizer.cpp
     Utility.cpp
-    DynamicLibrary.cpp
-    FullIo.cpp)
+    DynamicLibrary.cpp)
 
 if (NOT WIN32)
     # '-fPIC' needed for linking against shared libraries (e.g. libparameter)
