@@ -41,10 +41,9 @@ const std::string DynamicLibrary::_osLibraryPrefix = "lib";
 const std::string DynamicLibrary::_osLibrarySuffix = ".so";
 
 DynamicLibrary::DynamicLibrary(const std::string& path)
+    : _path(osSanitizePathName(path))
 {
-    std::string sanitizedPath = osSanitizePathName(path);
-
-    _handle = dlopen(sanitizedPath.c_str(), RTLD_LAZY);
+    _handle = dlopen(_path.c_str(), RTLD_LAZY);
 
     if (_handle == nullptr) {
 
