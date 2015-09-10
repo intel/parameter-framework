@@ -28,14 +28,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "AnswerMessage.h"
-#include "RemoteProcessorProtocol.h"
 #include <assert.h>
 
 #define base CMessage
 
 using std::string;
 
-CAnswerMessage::CAnswerMessage(const string& strAnswer, bool bSuccess) : base(bSuccess ? ESuccessAnswer : EFailureAnswer), _strAnswer(strAnswer)
+CAnswerMessage::CAnswerMessage(const string& strAnswer, bool bSuccess) :
+    base(bSuccess ? MsgType::ESuccessAnswer : MsgType::EFailureAnswer),
+    _strAnswer(strAnswer)
 {
 }
 
@@ -57,7 +58,11 @@ const string& CAnswerMessage::getAnswer() const
 // Status
 bool CAnswerMessage::success() const
 {
-    return getMsgId() == ESuccessAnswer;
+    /* FIXME this test is buggy because MsgType mixes up two different information: message type
+     * (answer or request), and content of the message (answer is success or failure).  Getting a
+     * message id 'ECommandRequest' would deserve an assert, when here it is just misinterpreted as
+     * a failure... */
+    return getMsgId() == MsgType::ESuccessAnswer;
 }
 
 // Size
