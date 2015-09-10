@@ -85,6 +85,11 @@ private:
     void *_handle;
 
     /**
+     * Path to the library
+     */
+    const std::string _path;
+
+    /**
     * OS Specific library name patterns
     * @{
     */

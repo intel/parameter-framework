@@ -41,18 +41,17 @@ const std::string DynamicLibrary::_osLibraryPrefix = "";
 const std::string DynamicLibrary::_osLibrarySuffix = ".dll";
 
 DynamicLibrary::DynamicLibrary(const std::string& path)
+    : _path(osSanitizePathName(path))
 {
-    static_assert(sizeof(void *) == (sizeof(HMODULE), "Incompatible object size");
+    static_assert(sizeof(void *) == sizeof(HMODULE), "Incompatible object size");
 
-    std::string sanitizedPath = osSanitizePathName(path);
-
-    HMODULE module = LoadLibrary(sanitizedPath.c_str()));
+    HMODULE module = LoadLibrary(_path.c_str());
 
     _handle = reinterpret_cast<void *>(module);
 
     if (_handle == nullptr) {
 
-        throw std::runtime_error(sanitizedPath + ": cannot open shared object file.");
+        throw std::runtime_error(_path + ": cannot open shared object file.");
     }
 }
 
@@ -67,11 +66,11 @@ void *DynamicLibrary::osGetSymbol(const std::string& symbol) const
 {
     HMODULE module = reinterpret_cast<HMODULE>(_handle);
 
-    void *sym = reinterpret_cast<void *>(GetProcAddress(Module, symbol.c_str()));
+    void *sym = reinterpret_cast<void *>(GetProcAddress(module, symbol.c_str()));
 
     if (sym == nullptr) {
 
-        throw std::runtime_error(sanitizedPath + ": undefined symbol: " + symbol);
+        throw std::runtime_error(_path + ": undefined symbol: " + symbol);
     }
 
     return sym;
