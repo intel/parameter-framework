@@ -40,7 +40,7 @@ class MyLogger(PyPfw.ILogger):
     def info(self, msg):
         logging.info(msg)
     def warning(self, msg):
-        logging.warning(mgg)
+        logging.warning(msg)
 
 
 logging.root.setLevel(logging.INFO)
