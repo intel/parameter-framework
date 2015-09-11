@@ -91,8 +91,26 @@ public:
     bool getAsStringArray(std::vector<std::string>& astrValues, std::string& strError) const;
 
 private:
-    // Access validity
-    bool checkAccessValidity(bool bSet, size_t arrayLength, std::string& strError) const;
+    /** Check that the parameter value can be modify.
+     *
+     * @param arrayLength[in] If accessing as an array: the new value array length
+     *                        Otherwise: 0
+     * @param error[out] If access is forbidden: a human readable message explaining why
+     *                   Otherwise: not modified.
+     *
+     * @return true if the parameter value can be retrieved, false otherwise.
+     */
+    bool checkSetValidity(size_t arrayLength, std::string& error) const;
+
+    /** Check that the parameter value can be retrieved.
+     *
+     * @param asArray[in] true if accessing as an array, false otherwise.
+     * @param error[out] If access is forbidden, a human readable message explaining why
+     *                   Otherwise, not modified.
+     *
+     * @return true if the parameter value can be retrieved, false otherwise.
+     */
+    bool checkGetValidity(bool asArray, std::string& error) const;
 
     // Accessed parameter instance
     const CBaseParameter* _pBaseParameter;
