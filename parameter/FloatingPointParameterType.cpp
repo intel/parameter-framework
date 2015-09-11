@@ -56,8 +56,8 @@ void CFloatingPointParameterType::showProperties(string& strResult) const
 {
     base::showProperties(strResult);
 
-    strResult += "Min:" + CUtility::toString(_fMin) + "\n" +
-                 "Max:" + CUtility::toString(_fMax) + "\n";
+    strResult += "Min:" + std::to_string(_fMin) + "\n" +
+                 "Max:" + std::to_string(_fMax) + "\n";
 }
 
 void CFloatingPointParameterType::handleValueSpaceAttribute(
@@ -95,7 +95,7 @@ bool CFloatingPointParameterType::fromXml(const CXmlElement& xmlElement,
     // (e.g. doubles are not supported)
     if (sizeInBits != sizeof(float) * CHAR_BIT) {
 
-        serializingContext.setError("Unsupported size (" + CUtility::toString(sizeInBits) +
+        serializingContext.setError("Unsupported size (" + std::to_string(sizeInBits) +
             ") for " + getKind() + " " + xmlElement.getPath() + ". For now, only 32 is supported.");
 
         return false;
@@ -107,8 +107,8 @@ bool CFloatingPointParameterType::fromXml(const CXmlElement& xmlElement,
     xmlElement.getAttribute("Max", _fMax);
 
     if (_fMin > _fMax) {
-        serializingContext.setError("Min (" + CUtility::toString(_fMin) +
-                ") can't be greater than Max (" + CUtility::toString(_fMax) + ")");
+        serializingContext.setError("Min (" + std::to_string(_fMin) +
+                ") can't be greater than Max (" + std::to_string(_fMax) + ")");
         return false;
     }
 

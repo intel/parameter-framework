@@ -52,7 +52,7 @@ void CStringParameterType::showProperties(string& strResult) const
 
     // Max length
     strResult += "Max length: ";
-    strResult += CUtility::toString(_maxLength);
+    strResult += std::to_string(_maxLength);
     strResult += "\n";
 }
 

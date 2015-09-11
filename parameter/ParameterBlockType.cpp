@@ -61,7 +61,7 @@ void CParameterBlockType::populate(CElement* pElement) const
         // Create child elements
         for (size_t child = 0; child < arrayLength; child++) {
 
-            CParameterBlock* pChildParameterBlock = new CParameterBlock(CUtility::toString(child),
+            CParameterBlock* pChildParameterBlock = new CParameterBlock(std::to_string(child),
                                                                         this);
 
             pElement->addChild(pChildParameterBlock);

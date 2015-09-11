@@ -383,11 +383,11 @@ string CParameterMgr::getVersion() const
     string strVersion;
 
     // Major
-    strVersion = CUtility::toString(guiEditionMajor) + ".";
+    strVersion = std::to_string(guiEditionMajor) + ".";
     // Minor
-    strVersion += CUtility::toString(guiEditionMinor) + ".";
+    strVersion += std::to_string(guiEditionMinor) + ".";
     // Revision
-    strVersion += CUtility::toString(guiRevision);
+    strVersion += std::to_string(guiRevision);
 
     return strVersion;
 }

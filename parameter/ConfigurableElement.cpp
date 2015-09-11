@@ -34,7 +34,6 @@
 #include "ConfigurationAccessContext.h"
 #include "ConfigurableElementAggregator.h"
 #include "AreaConfiguration.h"
-#include "Utility.h"
 #include <assert.h>
 
 #define base CElement
@@ -356,7 +355,7 @@ bool CConfigurableElement::isRogue() const
 std::string CConfigurableElement::getFootprintAsString() const
 {
     // Get size as string
-    return CUtility::toString(getFootPrint()) + " byte(s)";
+    return std::to_string(getFootPrint()) + " byte(s)";
 }
 
 // Matching check for no domain association

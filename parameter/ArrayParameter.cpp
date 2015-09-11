@@ -63,7 +63,7 @@ void CArrayParameter::showProperties(string& strResult) const
 
     // Array length
     strResult += "Array length: ";
-    strResult += CUtility::toString(getArrayLength());
+    strResult += std::to_string(getArrayLength());
     strResult += "\n";
 }
 
@@ -283,7 +283,7 @@ bool CArrayParameter::setValues(size_t uiStartIndex, size_t baseOffset, const st
 
             // Append parameter path to error
             parameterAccessContext.appendToError(" " + getPath() + "/" +
-                                                 CUtility::toString(valueIndex + uiStartIndex));
+                                                 std::to_string(valueIndex + uiStartIndex));
 
             return false;
         }
