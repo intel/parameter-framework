@@ -1,5 +1,5 @@
-/* 
- * Copyright (c) 2011-2015, Intel Corporation
+/*
+ * Copyright (c) 2014, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,35 +29,12 @@
  */
 #pragma once
 
-#include <stdint.h>
-#include "RemoteProcessorServerInterface.h"
-#include <asio.hpp>
-#include "SymbolExport.h"
-
-class IRemoteCommandHandler;
-
-class CRemoteProcessorServer : public IRemoteProcessorServerInterface
-{
-public:
-    EXPORT_API CRemoteProcessorServer(uint16_t uiPort);
-    EXPORT_API virtual ~CRemoteProcessorServer();
-
-    // State
-    EXPORT_API virtual bool start(std::string &error);
-    EXPORT_API virtual bool stop();
-    EXPORT_API bool process(IRemoteCommandHandler &commandHandler);
-
-private:
-    void acceptRegister(IRemoteCommandHandler &commandHandler);
-
-    // New connection
-    void handleNewConnection(IRemoteCommandHandler &commandHandler);
-
-    // Port number
-    uint16_t _uiPort;
-
-    asio::io_service _io_service;
-    asio::ip::tcp::acceptor _acceptor;
-    asio::ip::tcp::socket _socket;
-};
-
+#ifdef _MSC_VER
+#ifdef SYMBOL_EXPORTS
+#define EXPORT_API __declspec(dllexport)
+#else
+#define EXPORT_API __declspec(dllimport)
+#endif
+#else
+#define EXPORT_API
+#endif

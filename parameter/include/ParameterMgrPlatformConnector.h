@@ -33,10 +33,11 @@
 #include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
 #include "ParameterMgrLoggerForward.h"
+#include "SymbolExport.h"
 
 class CParameterMgr;
 
-class CParameterMgrPlatformConnector
+class EXPORT_API CParameterMgrPlatformConnector
 {
     friend class CParameterMgrLogger<CParameterMgrPlatformConnector>;
 public:

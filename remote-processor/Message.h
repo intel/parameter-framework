@@ -32,15 +32,16 @@
 #include <asio.hpp>
 #include <stdint.h>
 #include <string>
+#include "SymbolExport.h"
 
 class CSocket;
 
 class CMessage
 {
 public:
-    CMessage(uint8_t ucMsgId);
-    CMessage();
-    virtual ~CMessage();
+    EXPORT_API CMessage(uint8_t ucMsgId);
+    EXPORT_API CMessage();
+    EXPORT_API virtual ~CMessage();
 
     enum Result {
         success,
@@ -60,7 +61,7 @@ public:
      *         peerDisconnected if the peer disconnected before the first socket access.
      *         error if the message could not be read/write for any other reason
      */
-    Result serialize(asio::ip::tcp::socket &socket, bool bOut, std::string &strError);
+    EXPORT_API Result serialize(asio::ip::tcp::socket &socket, bool bOut, std::string &strError);
 
 protected:
     // Msg Id
