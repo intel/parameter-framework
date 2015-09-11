@@ -208,17 +208,11 @@ private:
 
             std::string strUsage = pRemoteCommandParserItem->usage();
 
-            strResult += strUsage;
-
             // Align
             size_t spacesToAdd = _maxCommandUsageLength + 5 - strUsage.length();
 
-            while (spacesToAdd--) {
-
-                strResult += " ";
-            }
-
-            strResult += std::string("=> ") + std::string(pRemoteCommandParserItem->getDescription()) + "\n";
+            strResult += strUsage + std::string(spacesToAdd, ' ') + "=> " +
+                         pRemoteCommandParserItem->getDescription() + '\n';
         }
     }
 
