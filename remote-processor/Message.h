@@ -33,8 +33,6 @@
 #include <string>
 #include <cstdint>
 
-class CSocket;
-
 class CMessage
 {
 public:
