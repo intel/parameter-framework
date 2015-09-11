@@ -31,6 +31,7 @@
 #include "LogarithmicParameterAdaptation.h"
 #include "Utility.h"
 #include <cmath>
+#include <limits>
 
 #define base CLinearParameterAdaptation
 
@@ -39,8 +40,11 @@ CLogarithmicParameterAdaptation::CLogarithmicParameterAdaptation() : base("Logar
     // Make sure there is no precision lose by using std::exp overload that
     // return the same type as _dLogarithmBase
     _dLogarithmBase{std::exp(decltype(_dLogarithmBase){1})},
-    _dFloorValue(-INFINITY)
+    _dFloorValue(-std::numeric_limits<double>::infinity())
 {
+    static_assert(std::numeric_limits<double>::is_iec559,
+            "Only double-precision floating points that are compliant with"
+            " IEC 559 (aka IEEE 754) are supported");
 }
 
 // Element properties
