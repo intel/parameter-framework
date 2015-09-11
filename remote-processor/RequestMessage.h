@@ -29,12 +29,14 @@
  */
 #pragma once
 
+#include "remote_processor_export.h"
+
 #include "Message.h"
 #include "RemoteCommand.h"
 #include <vector>
 #include <string>
 
-class CRequestMessage : public CMessage, public IRemoteCommand
+class REMOTE_PROCESSOR_EXPORT CRequestMessage : public CMessage, public IRemoteCommand
 {
 public:
     CRequestMessage(const std::string& strCommand);

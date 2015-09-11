@@ -30,6 +30,7 @@ add_library(cparameter SHARED ParameterFramework.cpp)
 
 include_directories(
         "${PROJECT_SOURCE_DIR}/utility"
+        "${PROJECT_BINARY_DIR}/parameter"
         "${PROJECT_SOURCE_DIR}/parameter/include")
 
 install(FILES ParameterFramework.h

@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include "Syncer.h"
 #include <log/Logger.h>
 
@@ -39,7 +41,7 @@ class CInstanceConfigurableElement;
 class CMappingContext;
 class CSubsystem;
 
-class CSubsystemObject : private ISyncer
+class PARAMETER_EXPORT CSubsystemObject : private ISyncer
 {
 public:
     CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,

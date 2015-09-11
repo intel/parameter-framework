@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,13 +29,15 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include "Element.h"
 #include <string>
 
 class CMappingData;
 class CInstanceConfigurableElement;
 
-class CTypeElement : public CElement
+class PARAMETER_EXPORT CTypeElement : public CElement
 {
 public:
     CTypeElement(const std::string& strName = "");

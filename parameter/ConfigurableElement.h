@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include "Element.h"
 
 #include <list>
@@ -41,7 +43,7 @@ class CConfigurationAccessContext;
 class CParameterAccessContext;
 class CAreaConfiguration;
 
-class CConfigurableElement : public CElement
+class PARAMETER_EXPORT CConfigurableElement : public CElement
 {
     friend class CConfigurableDomain;
     friend class CDomainConfiguration;

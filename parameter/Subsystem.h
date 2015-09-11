@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include "ConfigurableElement.h"
 #include "ConfigurableElementWithMapping.h"
 #include "Mapper.h"
@@ -47,7 +49,7 @@ class CSubsystemObjectCreator;
 class CInstanceConfigurableElement;
 class CMappingData;
 
-class CSubsystem : public CConfigurableElementWithMapping, private IMapper
+class PARAMETER_EXPORT CSubsystem : public CConfigurableElementWithMapping, private IMapper
 {
     // Subsystem objects iterator
     typedef std::list<CSubsystemObject*>::const_iterator SubsystemObjectListIterator;

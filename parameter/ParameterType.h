@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include <stdint.h>
 #include <limits>
 
@@ -39,7 +41,7 @@
 class CParameterAccessContext;
 class CConfigurationAccessContext;
 
-class CParameterType : public CTypeElement
+class PARAMETER_EXPORT CParameterType : public CTypeElement
 {
 public:
     CParameterType(const std::string& strName);

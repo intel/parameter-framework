@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include "SelectionCriterionTypeInterface.h"
 #include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
@@ -36,7 +38,7 @@
 
 class CParameterMgr;
 
-class CParameterMgrPlatformConnector
+class PARAMETER_EXPORT CParameterMgrPlatformConnector
 {
     friend class CParameterMgrLogger<CParameterMgrPlatformConnector>;
 public:
