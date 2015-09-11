@@ -28,15 +28,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "EnumParameterType.h"
-#include <stdlib.h>
-#include <sstream>
-#include <iomanip>
-#include <ctype.h>
-#include <assert.h>
-#include "ParameterAccessContext.h"
 #include "EnumValuePair.h"
-#include "Utility.h"
-#include <errno.h>
+#include "ParameterAccessContext.h"
+#include "convert.hpp"
 
 #define base CParameterType
 
@@ -95,152 +89,71 @@ bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
 // Conversion (tuning)
 bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    int64_t iData;
+    int32_t iParsedUserValue;
 
-    if (isNumber(strValue)) {
+    // Try to read the user-provided string as an integer
+    if (not convertTo(strValue, iParsedUserValue)) {
+        // If it fails to parse as an integer, first try to convert it from
+        // lexical to numerical space.
+        int32_t iNumerical;
+        if (not getNumerical(strValue, iNumerical)) {
 
-        /// Numerical value provided
-
-        // Hexa
-        bool bValueProvidedAsHexa = CUtility::isHexadecimal(strValue);
-
-        errno = 0;
-        char *pcStrEnd;
-
-        // Get value
-        iData = strtoll(strValue.c_str(), &pcStrEnd, 0);
-
-        // Conversion error when the input string does not contain any digit or the number is out of range (int32_t type)
-        bool bConversionSucceeded = !errno && (strValue.c_str() != pcStrEnd);
-
-        // Check validity against type
-        if (!checkValueAgainstRange(strValue, iData, parameterAccessContext, bValueProvidedAsHexa, bConversionSucceeded)) {
+            parameterAccessContext.setError("Provided value '" + strValue +
+                                            "' is not part of the lexical space"
+                                            " or not within the numerical range.");
 
             return false;
         }
-
-        if (bValueProvidedAsHexa) {
-
-            // Sign extend
-            signExtend(iData);
-        }
-
-        // Check validity against lexical space
-        string strError;
-        if (!isValid(iData, parameterAccessContext)) {
-
-            parameterAccessContext.setError(strError);
-
-            return false;
-        }
-    } else {
-        /// Literal value provided
-
-        // Check validity against lexical space
-        int iNumerical;
-        if (!getNumerical(strValue, iNumerical)) {
-
-            parameterAccessContext.setError("Provided value not part of lexical space");
-
-            return false;
-        }
-        iData = iNumerical;
-
-        // Check validity against type
-        if (!checkValueAgainstRange(strValue, iData, parameterAccessContext, false, isEncodable((uint64_t)iData, true))) {
-
-            return false;
-        }
+        iParsedUserValue = iNumerical;
     }
 
-    // Return data
-    uiValue = (uint32_t)iData;
-
-    return true;
+    // Once it has been converted to a number (either through parsing or
+    // through lexical->numerical conversion), call the numerical overload of
+    // toBlackboard.
+    return toBlackboard(iParsedUserValue, uiValue, parameterAccessContext);
 }
 
-// Range checking
-bool CEnumParameterType::checkValueAgainstRange(const string& strValue, int64_t value, CParameterAccessContext& parameterAccessContext, bool bHexaValue, bool bConversionSucceeded) const
-{
+int32_t CEnumParameterType::getMin() const {
     // Enums are always signed, it means we have one less util bit
-    int64_t maxValue = getMaxValue<uint64_t>();
-    int64_t minValue = -maxValue - 1;
-
-    if (!bConversionSucceeded || value < minValue || value > maxValue) {
-
-	std::ostringstream strStream;
-
-        strStream << "Value " << strValue << " standing out of admitted range [";
-
-        if (bHexaValue) {
-
-            // Format Min
-            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(minValue);
-            // Format Max
-            strStream << ", 0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(maxValue);
-
-        } else {
-
-            strStream << minValue << ", " <<  maxValue;
-        }
-
-        strStream << "] for " << getKind();
-
-        parameterAccessContext.setError(strStream.str());
-
-        return false;
-    }
-    return true;
+    return -getMax() - 1;
 }
 
-bool CEnumParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+int32_t CEnumParameterType::getMax() const {
+    return getMaxValue<int32_t>();
+}
+
+bool CEnumParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    // Take care of format
-    if (parameterAccessContext.valueSpaceIsRaw()) {
+    // Convert the raw value from the blackboard
+    int32_t iValue = uiValue;
+    signExtend(iValue);
 
-        // Format
-	std::ostringstream strStream;
-
-        // Numerical format requested
-        if (parameterAccessContext.outputRawFormatIsHex()) {
-
-            // Hexa display with unecessary bits cleared out
-            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(uiValue);
-
-            strValue = strStream.str();
-        } else {
-
-            // Integer display
-            int32_t iValue = uiValue;
-
-            // Sign extend
-            signExtend(iValue);
-
-            strStream << iValue;
-
-            strValue = strStream.str();
-        }
-    } else {
-
-        // Integer display
-        int32_t iValue = uiValue;
-
-        // Sign extend
-        signExtend(iValue);
-
-        // Literal display requested (should succeed)
-        getLiteral(iValue, strValue);
-    }
-    return true;
+    // Convert from numerical space to literal space
+    return getLiteral(iValue, strValue);
 }
 
 // Value access
 bool CEnumParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    if (!isValid(iUserValue, parameterAccessContext)) {
+    if (!checkValueAgainstSpace(iUserValue)) {
+
+        parameterAccessContext.setError(std::to_string(iUserValue) +
+                " is not part of numerical space.");
 
         return false;
     }
+
+    if (iUserValue < getMin() or iUserValue > getMax()) {
+
+        // FIXME: values provided as hexa (either on command line or in a config
+        // file will appear in decimal base instead of hexa base...
+        parameterAccessContext.setError(
+                "Value " + std::to_string(iUserValue) + " standing out of admitted range [" +
+                std::to_string(getMin()) + ", " + std::to_string(getMax()) + "] for " + getKind()
+                );
+        return false;
+    }
+
     uiValue = iUserValue;
 
     return true;
@@ -270,14 +183,6 @@ uint32_t CEnumParameterType::getDefaultValue() const
     return static_cast<const CEnumValuePair*>(getChild(0))->getNumerical();
 }
 
-// Check string is a number
-bool CEnumParameterType::isNumber(const string& strValue)
-{
-    char cFirst = strValue[0];
-
-    return isdigit(cFirst) || cFirst == '+' || cFirst == '-';
-}
-
 // Literal - numerical conversions
 bool CEnumParameterType::getLiteral(int32_t iNumerical, string& strLiteral) const
 {
@@ -299,7 +204,7 @@ bool CEnumParameterType::getLiteral(int32_t iNumerical, string& strLiteral) cons
     return false;
 }
 
-bool CEnumParameterType::getNumerical(const string& strLiteral, int& iNumerical) const
+bool CEnumParameterType::getNumerical(const string& strLiteral, int32_t& iNumerical) const
 {
     size_t uiChild;
     size_t uiNbChildren = getNbChildren();
@@ -320,7 +225,7 @@ bool CEnumParameterType::getNumerical(const string& strLiteral, int& iNumerical)
 }
 
 // Numerical validity of the enum value
-bool CEnumParameterType::isValid(int iNumerical, CParameterAccessContext& parameterAccessContext) const
+bool CEnumParameterType::checkValueAgainstSpace(int32_t iNumerical) const
 {
     // Check that the value is part of the allowed values for this kind of enum
     size_t uiChild;
@@ -336,10 +241,9 @@ bool CEnumParameterType::isValid(int iNumerical, CParameterAccessContext& parame
         }
     }
 
-    parameterAccessContext.setError("Provided value not part of numerical space");
-
     return false;
 }
+
 // From IXmlSource
 void CEnumParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
