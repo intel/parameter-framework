@@ -30,15 +30,22 @@
 #pragma once
 
 #include <asio.hpp>
-#include <stdint.h>
 #include <string>
+#include <cstdint>
 
 class CSocket;
 
 class CMessage
 {
 public:
-    CMessage(uint8_t ucMsgId);
+
+    enum class MsgType : std::uint8_t
+    {
+        ECommandRequest,
+        ESuccessAnswer,
+        EFailureAnswer
+    };
+    CMessage(MsgType ucMsgId);
     CMessage();
     virtual ~CMessage();
 
@@ -64,7 +71,7 @@ public:
 
 protected:
     // Msg Id
-    uint8_t getMsgId() const;
+    MsgType getMsgId() const;
 
     /** Write raw data to the message
     *
@@ -124,11 +131,13 @@ private:
     uint8_t computeChecksum() const;
 
     // MsgId
-    uint8_t _ucMsgId;
+    MsgType _ucMsgId;
     // Data
     uint8_t* _pucData;
     /** Size of the allocated memory to store the message */
     size_t _uiDataSize;
     /** Read/Write Index used to iterate across the message data */
     size_t _uiIndex;
+
+    static const uint16_t SYNC_WORD = 0xBABE;
 };

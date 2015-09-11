@@ -28,7 +28,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RequestMessage.h"
-#include "RemoteProcessorProtocol.h"
 #include <assert.h>
 #include <algorithm>
 #include <ctype.h>
@@ -39,7 +38,8 @@ using std::string;
 
 const char* const CRequestMessage::gacDelimiters = " \t\n\v\f\r";
 
-CRequestMessage::CRequestMessage(const string& strCommand) : base(ECommandRequest), _strCommand(strCommand)
+CRequestMessage::CRequestMessage(const string& strCommand) :
+    base(MsgType::ECommandRequest), _strCommand(strCommand)
 {
 }
 

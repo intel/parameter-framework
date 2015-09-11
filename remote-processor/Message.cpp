@@ -28,16 +28,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "Message.h"
-#include "RemoteProcessorProtocol.h"
 #include <vector>
 
 using std::string;
 
-CMessage::CMessage(uint8_t ucMsgId) : _ucMsgId(ucMsgId), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
+CMessage::CMessage(MsgType ucMsgId) :
+    _ucMsgId(ucMsgId), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
 {
 }
 
-CMessage::CMessage() : _ucMsgId((uint8_t)-1), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
+CMessage::CMessage() :
+    _ucMsgId(static_cast<MsgType>(-1)), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
 {
 }
 
@@ -47,7 +48,7 @@ CMessage::~CMessage()
 }
 
 // Msg Id
-uint8_t CMessage::getMsgId() const
+CMessage::MsgType CMessage::getMsgId() const
 {
     return _ucMsgId;
 }
@@ -245,7 +246,7 @@ CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, s
 // Checksum
 uint8_t CMessage::computeChecksum() const
 {
-    uint8_t uiChecksum = _ucMsgId;
+    auto uiChecksum = static_cast<uint8_t>(_ucMsgId);
 
     uint32_t uiIndex;
 
