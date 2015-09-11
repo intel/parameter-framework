@@ -45,7 +45,7 @@ public:
     bool isRogue() const;
     bool isArray() const;
     // Array Length
-    uint32_t getArrayLength() const; // Returns 0 for scalar
+    size_t getArrayLength() const; // Returns 0 for scalar
     // Parameter path
     std::string getPath() const;
     // Parameter kind
@@ -92,7 +92,7 @@ public:
 
 private:
     // Access validity
-    bool checkAccessValidity(bool bSet, size_t uiArrayLength, std::string& strError) const;
+    bool checkAccessValidity(bool bSet, size_t arrayLength, std::string& strError) const;
 
     // Accessed parameter instance
     const CBaseParameter* _pBaseParameter;

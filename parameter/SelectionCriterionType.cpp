@@ -30,6 +30,7 @@
 #include "SelectionCriterionType.h"
 #include "Tokenizer.h"
 #include <sstream>
+#include <climits>
 
 #define base CElement
 
@@ -183,12 +184,11 @@ std::string CSelectionCriterionType::getFormattedState(int iValue) const
     if (_bInclusive) {
 
         // Need to go through all set bit
-        uint32_t uiBit;
         bool bFirst = true;
 
-        for (uiBit = 0; uiBit < sizeof(iValue) * 8; uiBit++) {
+        for (size_t bit = 0; bit < sizeof(iValue) * CHAR_BIT; bit++) {
 
-            int iSingleBitValue = iValue & (1 << uiBit);
+            int iSingleBitValue = iValue & (1 << bit);
 
             // Check if current bit is set
             if (!iSingleBitValue) {

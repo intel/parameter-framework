@@ -96,27 +96,27 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
     xmlElement.getAttribute("Signed", _bSigned);
 
     // Size in bits
-    uint32_t uiSizeInBits = 0;
-    xmlElement.getAttribute("Size", uiSizeInBits);
+    size_t sizeInBits = 0;
+    xmlElement.getAttribute("Size", sizeInBits);
 
     // Size
-    setSize(uiSizeInBits / 8);
+    setSize(sizeInBits / 8);
 
     // Min / Max
     // TODO: Make IntegerParameter template
     if (_bSigned) {
 
         // Signed means we have one less util bit
-        uiSizeInBits--;
+        sizeInBits--;
 
         if (!xmlElement.getAttribute("Min", (int32_t &)_uiMin)) {
 
-            _uiMin = 1UL << uiSizeInBits;
+            _uiMin = 1UL << sizeInBits;
         }
 
         if (!xmlElement.getAttribute("Max", (int32_t &)_uiMax)) {
 
-            _uiMax = (1UL << uiSizeInBits) - 1;
+            _uiMax = (1UL << sizeInBits) - 1;
         }
         signExtend((int32_t&)_uiMin);
         signExtend((int32_t&)_uiMax);
@@ -128,7 +128,7 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 
         if (!xmlElement.getAttribute("Max", _uiMax)) {
 
-            _uiMax = (uint32_t)-1L >> (8 * sizeof(uint32_t) - uiSizeInBits);
+            _uiMax = (size_t)-1L >> (8 * sizeof(size_t) - sizeInBits);
         }
     }
 

@@ -64,30 +64,28 @@ void CRequestMessage::addArgument(const string& strArgument)
     _argumentVector.push_back(trim(strArgument));
 }
 
-uint32_t CRequestMessage::getArgumentCount() const
+size_t CRequestMessage::getArgumentCount() const
 {
     return _argumentVector.size();
 }
 
-const string& CRequestMessage::getArgument(uint32_t uiArgument) const
+const string& CRequestMessage::getArgument(size_t argument) const
 {
-    assert(uiArgument < _argumentVector.size());
+    assert(argument < _argumentVector.size());
 
-    return _argumentVector[uiArgument];
+    return _argumentVector[argument];
 }
 
-const string CRequestMessage::packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const
+const string CRequestMessage::packArguments(size_t uiStartArgument, size_t uiNbArguments) const
 {
     string strPackedArguments;
 
     assert(uiStartArgument + uiNbArguments <= _argumentVector.size());
 
     // Pack arguments, separating them with a space
-    uint32_t uiArgument;
-
     bool bFirst = true;
 
-    for (uiArgument = uiStartArgument; uiArgument < uiStartArgument + uiNbArguments; uiArgument++) {
+    for (size_t argument = uiStartArgument; argument < uiStartArgument + uiNbArguments; argument++) {
 
         if (!bFirst) {
 
@@ -97,7 +95,7 @@ const string CRequestMessage::packArguments(uint32_t uiStartArgument, uint32_t u
             bFirst = false;
         }
 
-        strPackedArguments += _argumentVector[uiArgument];
+        strPackedArguments += _argumentVector[argument];
     }
 
     return strPackedArguments;
@@ -110,11 +108,9 @@ void CRequestMessage::fillDataToSend()
     writeString(getCommand());
 
     // Arguments
-    uint32_t uiArgument;
+    for (size_t argument = 0; argument < getArgumentCount(); argument++) {
 
-    for (uiArgument = 0; uiArgument < getArgumentCount(); uiArgument++) {
-
-        writeString(getArgument(uiArgument));
+        writeString(getArgument(argument));
     }
 }
 
@@ -146,9 +142,7 @@ size_t CRequestMessage::getDataSize() const
     size_t uiSize = getStringSize(getCommand());
 
     // Arguments
-    uint32_t uiArgument;
-
-    for (uiArgument = 0; uiArgument < getArgumentCount(); uiArgument++) {
+    for (size_t uiArgument = 0; uiArgument < getArgumentCount(); uiArgument++) {
 
         uiSize += getStringSize(getArgument(uiArgument));
     }

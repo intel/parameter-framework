@@ -77,7 +77,7 @@ void CUtility::appendTitle(string& strTo, const string& strTitle)
 {
     strTo += "\n" + strTitle + "\n";
 
-    uint32_t uiLength = strTitle.size();
+    size_t uiLength = strTitle.size();
 
     while (uiLength--) {
 

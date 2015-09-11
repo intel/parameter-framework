@@ -40,12 +40,12 @@ CTESTSubsystemString::CTESTSubsystemString(const std::string& strMappingValue,
 {
 }
 
-std::string CTESTSubsystemString::toString(const void* pvValue, uint32_t /*uiSize*/) const
+std::string CTESTSubsystemString::toString(const void* pvValue, size_t /*size*/) const
 {
     return (const char*)pvValue;
 }
 
-void CTESTSubsystemString::fromString(const std::string& strValue, void* pvValue, uint32_t uiSize)
+void CTESTSubsystemString::fromString(const std::string& strValue, void* pvValue, size_t size)
 {
-    strncpy((char*)pvValue, strValue.c_str(), uiSize);
+    strncpy((char*)pvValue, strValue.c_str(), size);
 }

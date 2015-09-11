@@ -126,16 +126,20 @@ private:
     // Area configuration ordering
     void reorderAreaConfigurations(const std::list<CAreaConfiguration*>& areaConfigurationList);
     // Find area configuration rank from regular std::list: for ordered std::list maintainance
-    uint32_t getAreaConfigurationRank(const CAreaConfiguration* pAreaConfiguration) const;
+    size_t getAreaConfigurationRank(const CAreaConfiguration* pAreaConfiguration) const;
     // Find area configuration from regular std::list based on rank: for ordered std::list maintainance
-    CAreaConfiguration* getAreaConfiguration(uint32_t uiAreaConfigurationRank) const;
+    CAreaConfiguration* getAreaConfiguration(size_t areaConfigurationRank) const;
 
     // Rule
     const CCompoundRule* getRule() const;
     CCompoundRule* getRule();
     void setRule(CCompoundRule* pRule);
 
-    // AreaConfigurations
+    /** FIXME: It seems that a random access containor should be used.
+     *         getAreaConfiguration and getAreaConfigurationRank are the implementation
+     *         of operator[] and operator-(iterator, iterator) for a list.
+     *         Consider using a vector<config> or a map<rank, config>.
+     */
     std::list<CAreaConfiguration*> _areaConfigurationList;
     std::list<CAreaConfiguration*> _orderedAreaConfigurationList;
 };

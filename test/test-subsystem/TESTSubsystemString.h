@@ -42,7 +42,7 @@ public:
 private:
     // from CTESTSubsystemObject
     // Format Data
-    virtual std::string toString(const void* pvValue, uint32_t uiSize) const;
-    virtual void fromString(const std::string& strValue, void* pvValue, uint32_t uiSize);
+    virtual std::string toString(const void* pvValue, size_t size) const;
+    virtual void fromString(const std::string& strValue, void* pvValue, size_t size);
 
 };

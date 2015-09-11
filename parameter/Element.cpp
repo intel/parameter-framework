@@ -31,6 +31,7 @@
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
 #include "ErrorContext.h"
+#include <algorithm>
 #include <assert.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -67,13 +68,10 @@ bool CElement::childrenAreDynamic() const
 
 bool CElement::init(string& strError)
 {
-    uint32_t uiIndex;
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
+    for (CElement* child : _childArray) {
 
-        CElement* pElement = _childArray[uiIndex];;
-
-        if (!pElement->init(strError)) {
+        if (!child->init(strError)) {
 
             return false;
         }
@@ -82,14 +80,14 @@ bool CElement::init(string& strError)
     return true;
 }
 
-void CElement::dumpContent(string& strContent, CErrorContext& errorContext, const uint32_t uiDepth) const
+void CElement::dumpContent(string& strContent, CErrorContext& errorContext, const size_t depth) const
 {
     string strIndent;
 
     // Level
-    uint32_t uiNbIndents = uiDepth;
+    size_t indents = depth;
 
-    while (uiNbIndents--) {
+    while (indents--) {
 
         strIndent += "    ";
     }
@@ -113,11 +111,9 @@ void CElement::dumpContent(string& strContent, CErrorContext& errorContext, cons
 
     strContent += "\n";
 
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
-
-        _childArray[uiIndex]->dumpContent(strContent, errorContext, uiDepth + 1);
+        pChild->dumpContent(strContent, errorContext, depth + 1);
     }
 }
 
@@ -193,12 +189,7 @@ void CElement::childrenToXml(CXmlElement& xmlElement,
                              CXmlSerializingContext& serializingContext) const
 {
     // Browse children and propagate
-    size_t uiNbChildren = getNbChildren();
-    size_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-        const CElement* pChild = _childArray[uiChild];
+    for (CElement* pChild : _childArray) {
 
         // Create corresponding child element
         CXmlElement xmlChildElement;
@@ -252,12 +243,7 @@ bool CElement::rename(const string& strName, string& strError)
     // Check for conflict with brotherhood if relevant
     if (_pParent && _pParent->childrenAreDynamic()) {
 
-        size_t uiParentChild;
-        size_t uiParentNbChildren = _pParent->getNbChildren();
-
-        for (uiParentChild = 0; uiParentChild < uiParentNbChildren; uiParentChild++) {
-
-            const CElement* pParentChild = _pParent->getChild(uiParentChild);
+        for (CElement* pParentChild : _pParent->_childArray) {
 
             if (pParentChild != this && pParentChild->getName() == strName) {
 
@@ -293,18 +279,18 @@ void CElement::addChild(CElement* pChild)
     pChild->_pParent = this;
 }
 
-CElement* CElement::getChild(size_t uiIndex)
+CElement* CElement::getChild(size_t index)
 {
-    assert(uiIndex <= _childArray.size());
+    assert(index <= _childArray.size());
 
-    return _childArray[uiIndex];
+    return _childArray[index];
 }
 
-const CElement* CElement::getChild(size_t uiIndex) const
+const CElement* CElement::getChild(size_t index) const
 {
-    assert(uiIndex <= _childArray.size());
+    assert(index <= _childArray.size());
 
-    return _childArray[uiIndex];
+    return _childArray[index];
 }
 
 CElement* CElement::createChild(const CXmlElement& childElement,
@@ -332,18 +318,11 @@ CElement* CElement::createChild(const CXmlElement& childElement,
 
 bool CElement::removeChild(CElement* pChild)
 {
-    ChildArrayIterator it;
+    auto childIt = find(begin(_childArray), end(_childArray), pChild);
+    if (childIt != end(_childArray)) {
 
-    for (it = _childArray.begin(); it != _childArray.end(); ++it) {
-
-        CElement* pElement = *it;
-
-        if (pElement == pChild) {
-
-            _childArray.erase(it);
-
-            return true;
-        }
+        _childArray.erase(childIt);
+        return true;
     }
     return false;
 }
@@ -353,37 +332,27 @@ void CElement::listChildren(string& strChildList) const
     strChildList = "\n";
 
     // Get list of children names
-    size_t uiNbChildren = getNbChildren();
-    size_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-        const CElement* pChild = _childArray[uiChild];
+    for (CElement* pChild : _childArray) {
 
         strChildList += pChild->getName() + "\n";
     }
 }
 
-string CElement::listQualifiedPaths(bool bDive, uint32_t uiLevel) const
+string CElement::listQualifiedPaths(bool bDive, size_t level) const
 {
-    size_t uiNbChildren = getNbChildren();
     string strResult;
 
     // Dive Will cause only leaf nodes to be printed
-    if (!bDive || !uiNbChildren) {
+    if (!bDive || !getNbChildren()) {
 
         strResult = getQualifiedPath() + "\n";
     }
 
-    if (bDive || !uiLevel) {
+    if (bDive || !level) {
         // Get list of children paths
-        size_t uiChild;
+        for (CElement* pChild : _childArray) {
 
-        for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-            const CElement* pChild = _childArray[uiChild];
-
-            strResult += pChild->listQualifiedPaths(bDive, uiLevel + 1);
+            strResult += pChild->listQualifiedPaths(bDive, level + 1);
         }
     }
     return strResult;
@@ -392,12 +361,7 @@ string CElement::listQualifiedPaths(bool bDive, uint32_t uiLevel) const
 void CElement::listChildrenPaths(string& strChildList) const
 {
     // Get list of children paths
-    size_t uiNbChildren = getNbChildren();
-    size_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-        const CElement* pChild = _childArray[uiChild];
+    for (CElement* pChild : _childArray) {
 
         strChildList += pChild->getPath() + "\n";
     }
@@ -425,11 +389,9 @@ void CElement::clean()
         removeChildren();
     } else {
         // Just propagate
-        uint32_t uiIndex;
+        for (CElement* pChild : _childArray) {
 
-        for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
-
-            _childArray[uiIndex]->clean();
+            pChild->clean();
         }
     }
 }
@@ -499,15 +461,12 @@ bool CElement::isDescendantOf(const CElement* pCandidateAscendant) const
 
 CElement* CElement::findChild(const string& strName)
 {
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
 
-        CElement* pElement = _childArray[uiIndex];
+        if (pChild->getPathName() == strName) {
 
-        if (pElement->getPathName() == strName) {
-
-            return pElement;
+            return pChild;
         }
     }
 
@@ -516,15 +475,11 @@ CElement* CElement::findChild(const string& strName)
 
 const CElement* CElement::findChild(const string& strName) const
 {
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
+        if (pChild->getPathName() == strName) {
 
-        const CElement* pElement = _childArray[uiIndex];
-
-        if (pElement->getPathName() == strName) {
-
-            return pElement;
+            return pChild;
         }
     }
 
@@ -533,15 +488,11 @@ const CElement* CElement::findChild(const string& strName) const
 
 CElement* CElement::findChildOfKind(const string& strKind)
 {
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
+        if (pChild->getKind() == strKind) {
 
-        CElement* pElement = _childArray[uiIndex];
-
-        if (pElement->getKind() == strKind) {
-
-            return pElement;
+            return pChild;
         }
     }
 
@@ -550,15 +501,11 @@ CElement* CElement::findChildOfKind(const string& strKind)
 
 const CElement* CElement::findChildOfKind(const string& strKind) const
 {
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
+        if (pChild->getKind() == strKind) {
 
-        const CElement* pElement = _childArray[uiIndex];;
-
-        if (pElement->getKind() == strKind) {
-
-            return pElement;
+            return pChild;
         }
     }
 
@@ -598,10 +545,7 @@ uint8_t CElement::computeStructureChecksum() const
     }
 
     // Propagate
-    uint32_t uiIndex;
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
-
-        const CElement* pChild = _childArray[uiIndex];
+    for (CElement* pChild : _childArray) {
 
         uiChecksum += pChild->computeStructureChecksum();
     }

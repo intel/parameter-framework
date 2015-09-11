@@ -62,15 +62,15 @@ public:
      * @param[in] logger the logger provided by the client
      * @param[in] strMappingValue A std::string corresponding to the mapping of the element. The
      * std::string contains Amend (%) and needs to be formatted with information from the context.
-     * @param[in] uiFirstAmendKey Index of the first Amend key
-     * @param[in] uiNbAmendKeys Number of Amends
+     * @param[in] firstAmendKey Index of the first Amend key
+     * @param[in] nbAmendKeys Number of Amends
      * @param[in] context Contains values associated to Amend keys
      */
     CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
                               core::log::Logger& logger,
                               const std::string& strMappingValue,
-                              uint32_t uiFirstAmendKey,
-                              uint32_t uiNbAmendKeys,
+                              size_t firstAmendKey,
+                              size_t nbAmendKeys,
                               const CMappingContext& context);
     virtual ~CFormattedSubsystemObject();
 
@@ -90,7 +90,7 @@ private:
      *
      * @return true if the index of the Amend key is > 0 and <= 9.
      */
-    static bool isAmendKeyValid(uint32_t uiAmendKey);
+    static bool isAmendKeyValid(size_t uiAmendKey);
 
     /**
      * Generic mapping formatting
@@ -98,17 +98,17 @@ private:
      * Format a std::string from mapping data and its context, replacing amendments by their value
      *
      * @param[in] strMappingValue The input mapping std::string containing amendments
-     * @param[in] context uiFirstAmendKey The index of the first Amend key in the key list of the
+     * @param[in] context firstAmendKey The index of the first Amend key in the key list of the
      * context
-     * @param[in] uiNbAmendKeys Number of Amend keys in the context
+     * @param[in] nbAmendKeys Number of Amend keys in the context
      * @param[in] context The context containing Amend values
      *
      * @return The formatted std::string, corresponding to the input strMappingValue where %n have been
      * replaced by their value
      */
     static std::string formatMappingValue(const std::string& strMappingValue,
-                                     uint32_t uiFirstAmendKey,
-                                     uint32_t uiNbAmendKeys,
+                                     size_t firstAmendKey,
+                                     size_t nbAmendKeys,
                                      const CMappingContext& context);
 
     /**

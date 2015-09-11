@@ -58,8 +58,8 @@ CFormattedSubsystemObject::CFormattedSubsystemObject(
         CInstanceConfigurableElement* pInstanceConfigurableElement,
         core::log::Logger& logger,
         const string& strMappingValue,
-        uint32_t uiFirstAmendKey,
-        uint32_t uiNbAmendKeys,
+        size_t firstAmendKey,
+        size_t nbAmendKeys,
         const CMappingContext& context)
     : base(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)
 {
@@ -68,8 +68,8 @@ CFormattedSubsystemObject::CFormattedSubsystemObject(
 
         _strFormattedMappingValue = strMappingValue.substr(1, strMappingValue.length() - 2);
     }
-    _strFormattedMappingValue = formatMappingValue(_strFormattedMappingValue, uiFirstAmendKey,
-                                                   uiNbAmendKeys, context);
+    _strFormattedMappingValue = formatMappingValue(_strFormattedMappingValue, firstAmendKey,
+                                                   nbAmendKeys, context);
 }
 
 CFormattedSubsystemObject::~CFormattedSubsystemObject()
@@ -81,15 +81,15 @@ string CFormattedSubsystemObject::getFormattedMappingValue() const
     return _strFormattedMappingValue;
 }
 
-bool CFormattedSubsystemObject::isAmendKeyValid(uint32_t uiAmendKey)
+bool CFormattedSubsystemObject::isAmendKeyValid(size_t uiAmendKey)
 {
 
     return (uiAmendKey > 0) && (uiAmendKey <= 9);
 }
 
 string CFormattedSubsystemObject::formatMappingValue(const string& strMappingValue,
-                                                     uint32_t uiFirstAmendKey,
-                                                     uint32_t uiNbAmendKeys,
+                                                     size_t firstAmendKey,
+                                                     size_t nbAmendKeys,
                                                      const CMappingContext& context)
 {
     string strFormattedValue = strMappingValue;
@@ -98,18 +98,18 @@ string CFormattedSubsystemObject::formatMappingValue(const string& strMappingVal
     string::size_type uiPercentPos = strFormattedValue.find('%', 0);
 
     // Amendment limited to one digit (values from 1 to 9)
-    assert(isAmendKeyValid(uiNbAmendKeys));
+    assert(isAmendKeyValid(nbAmendKeys));
 
     // Check we found one and that there's room for value
     if (uiPercentPos != string::npos && uiPercentPos < strFormattedValue.size() - 1) {
 
         // Get Amend number
-        uint32_t uiAmendNumber = strFormattedValue[uiPercentPos + 1] - '0';
+        size_t uiAmendNumber = strFormattedValue[uiPercentPos + 1] - '0';
 
         // Check if current Amend number is Valid
-        if ((uiAmendNumber > 0) && (uiAmendNumber <= uiNbAmendKeys)) {
+        if ((uiAmendNumber > 0) && (uiAmendNumber <= nbAmendKeys)) {
 
-            uint32_t uiAmendType = uiFirstAmendKey + uiAmendNumber - 1;
+            size_t uiAmendType = firstAmendKey + uiAmendNumber - 1;
 
             // Check if current Amend type is Set in the context
             if (context.iSet(uiAmendType)) {
@@ -118,8 +118,8 @@ string CFormattedSubsystemObject::formatMappingValue(const string& strMappingVal
                 string strEndOfLine = strFormattedValue.substr(uiPercentPos + 2,
                                                                strFormattedValue.size()
                                                                - uiPercentPos - 2);
-                string strEndOfLineAmended = formatMappingValue(strEndOfLine, uiFirstAmendKey,
-                                                                uiNbAmendKeys, context);
+                string strEndOfLineAmended = formatMappingValue(strEndOfLine, firstAmendKey,
+                                                                nbAmendKeys, context);
 
                 // Get current Amend value
                 string strAmendValue = context.getItem(uiAmendType);

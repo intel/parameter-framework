@@ -41,7 +41,7 @@ public:
     CStringParameterType(const std::string& strName);
 
     // Max length
-    uint32_t getMaxLength() const;
+    size_t getMaxLength() const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -59,5 +59,5 @@ private:
     virtual CInstanceConfigurableElement* doInstantiate() const;
 
     // Max length in bytes
-    uint32_t _uiMaxLength;
+    size_t _maxLength;
 };

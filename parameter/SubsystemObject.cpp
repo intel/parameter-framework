@@ -46,9 +46,9 @@ CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfig
                                    core::log::Logger& logger)
     : _logger(logger),
       _pInstanceConfigurableElement(pInstanceConfigurableElement),
-      _uiDataSize(pInstanceConfigurableElement->getFootPrint()),
+      _dataSize(pInstanceConfigurableElement->getFootPrint()),
       _blackboard(NULL),
-      _uiAccessedIndex(0)
+      _accessedIndex(0)
 {
     // Syncer
     _pInstanceConfigurableElement->setSyncer(this);
@@ -72,9 +72,9 @@ uint8_t* CSubsystemObject::getBlackboardLocation() const
 }
 
 // Size
-uint32_t CSubsystemObject::getSize() const
+size_t CSubsystemObject::getSize() const
 {
-    return _uiDataSize;
+    return _dataSize;
 }
 
 // Conversion utility
@@ -127,7 +127,7 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
     // Get blackboard location
     _blackboard = &parameterBlackboard;
     // Access index init
-    _uiAccessedIndex = 0;
+    _accessedIndex = 0;
 
 #ifdef SIMULATION
     return true;
@@ -189,18 +189,18 @@ bool CSubsystemObject::accessHW(bool bReceive, string& strError)
 }
 
 // Blackboard access from subsystems
-void CSubsystemObject::blackboardRead(void* pvData, uint32_t uiSize)
+void CSubsystemObject::blackboardRead(void* pvData, size_t size)
 {
-    _blackboard->readBuffer(pvData, uiSize, getOffset() + _uiAccessedIndex);
+    _blackboard->readBuffer(pvData, size, getOffset() + _accessedIndex);
 
-    _uiAccessedIndex += uiSize;
+    _accessedIndex += size;
 }
 
-void CSubsystemObject::blackboardWrite(const void* pvData, uint32_t uiSize)
+void CSubsystemObject::blackboardWrite(const void* pvData, size_t size)
 {
-    _blackboard->writeBuffer(pvData, uiSize, getOffset() + _uiAccessedIndex);
+    _blackboard->writeBuffer(pvData, size, getOffset() + _accessedIndex);
 
-    _uiAccessedIndex += uiSize;
+    _accessedIndex += size;
 }
 
 // Configurable element retrieval

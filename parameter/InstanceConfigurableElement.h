@@ -86,7 +86,7 @@ public:
     bool isScalar() const;
 
     // Array Length
-    uint32_t getArrayLength() const;
+    size_t getArrayLength() const;
 
     /**
      * Get the list of all the ancestors that have a mapping.

@@ -39,7 +39,7 @@ public:
     CBitParameterBlockType(const std::string& strName);
 
     // Size
-    uint32_t getSize() const;
+    size_t getSize() const;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -55,6 +55,6 @@ private:
     virtual CInstanceConfigurableElement* doInstantiate() const;
 
     // Size in bytes
-    uint32_t _uiSize;
+    size_t _size;
 };
 

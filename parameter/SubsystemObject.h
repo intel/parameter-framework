@@ -62,7 +62,7 @@ protected:
      */
     uint8_t* getBlackboardLocation() const;
     // Size
-    uint32_t getSize() const;
+    size_t getSize() const;
     // Conversion utility
     static uint32_t asInteger(const std::string& strValue);
     static std::string asString(uint32_t uiValue);
@@ -84,8 +84,8 @@ protected:
     // Fall back HW access
     virtual bool accessHW(bool bReceive, std::string& strError);
     // Blackboard access from subsystems
-    void blackboardRead(void* pvData, uint32_t uiSize);
-    void blackboardWrite(const void* pvData, uint32_t uiSize);
+    void blackboardRead(void* pvData, size_t size);
+    void blackboardWrite(const void* pvData, size_t size);
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
 
@@ -114,10 +114,10 @@ private:
     // Instance element to sync from/to
     CInstanceConfigurableElement* _pInstanceConfigurableElement;
     // Data size
-    uint32_t _uiDataSize;
+    size_t _dataSize;
     // Blackboard data location
     CParameterBlackboard* _blackboard;
     // Accessed index for Subsystem read/write from/to blackboard
-    uint32_t _uiAccessedIndex;
+    size_t _accessedIndex;
 };
 

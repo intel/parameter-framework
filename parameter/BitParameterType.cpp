@@ -39,7 +39,7 @@
 
 using std::string;
 
-CBitParameterType::CBitParameterType(const string& strName) : base(strName), _uiBitPos(0), _uiBitSize(0), _uiMax(uint64_t(-1))
+CBitParameterType::CBitParameterType(const string& strName) : base(strName), _bitPos(0), _uiBitSize(0), _uiMax(uint64_t(-1))
 {
 }
 
@@ -56,7 +56,7 @@ void CBitParameterType::showProperties(string& strResult) const
 
     // Bit Pos
     strResult += "Bit pos: ";
-    strResult += CUtility::toString(_uiBitPos);
+    strResult += CUtility::toString(_bitPos);
     strResult += "\n";
 
     // Bit size
@@ -74,7 +74,7 @@ void CBitParameterType::showProperties(string& strResult) const
 bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Pos
-    xmlElement.getAttribute("Pos", _uiBitPos);
+    xmlElement.getAttribute("Pos", _bitPos);
 
     // Size
     xmlElement.getAttribute("Size", _uiBitSize);
@@ -82,9 +82,9 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
     // Validate bit pos and size still fit into parent type
     const CBitParameterBlockType* pBitParameterBlockType = static_cast<const CBitParameterBlockType*>(getParent());
 
-    uint32_t uiParentBlockBitSize = pBitParameterBlockType->getSize() * 8;
+    size_t uiParentBlockBitSize = pBitParameterBlockType->getSize() * 8;
 
-    if (_uiBitPos + _uiBitSize > uiParentBlockBitSize) {
+    if (_bitPos + _uiBitSize > uiParentBlockBitSize) {
 
         // Range exceeded
 	std::ostringstream strStream;
@@ -142,14 +142,14 @@ bool CBitParameterType::toBlackboard(const string& strValue, uint64_t& uiValue, 
     }
 
     // Do bitwise RMW operation
-    uiValue = (uiValue & ~getMask()) | (uiConvertedValue << _uiBitPos);
+    uiValue = (uiValue & ~getMask()) | (uiConvertedValue << _bitPos);
 
     return true;
 }
 
 void CBitParameterType::fromBlackboard(string& strValue, const uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    uint64_t uiConvertedValue = (uiValue & getMask()) >> _uiBitPos;
+    uint64_t uiConvertedValue = (uiValue & getMask()) >> _bitPos;
 
     // Format
     std::ostringstream strStream;
@@ -177,14 +177,14 @@ bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CP
     }
 
     // Do bitwise RMW operation
-    uiValue = (uiValue & ~getMask()) | (uiUserValue << _uiBitPos);
+    uiValue = (uiValue & ~getMask()) | (uiUserValue << _bitPos);
 
     return true;
 }
 
 void CBitParameterType::fromBlackboard(uint32_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    uiUserValue = (uiValue & getMask()) >> _uiBitPos;
+    uiUserValue = (uiValue & getMask()) >> _bitPos;
 }
 
 // Access from area configuration
@@ -194,7 +194,7 @@ uint64_t CBitParameterType::merge(uint64_t uiOriginData, uint64_t uiNewData) con
 }
 
 // Bit Size
-uint32_t CBitParameterType::getBitSize() const
+size_t CBitParameterType::getBitSize() const
 {
     return _uiBitSize;
 }
@@ -213,13 +213,13 @@ uint64_t CBitParameterType::getMaxEncodableValue() const
 // Biwise mask
 uint64_t CBitParameterType::getMask() const
 {
-    return getMaxEncodableValue() << _uiBitPos;
+    return getMaxEncodableValue() << _bitPos;
 }
 
 // Check data has no bit set outside available range
 bool CBitParameterType::isEncodable(uint64_t uiData) const
 {
-    uint32_t uiShift = 8 * sizeof(uiData) - _uiBitSize;
+    size_t uiShift = 8 * sizeof(uiData) - _uiBitSize;
 
     if (uiShift) {
 
@@ -234,7 +234,7 @@ bool CBitParameterType::isEncodable(uint64_t uiData) const
 void CBitParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
 {
     // Position
-    xmlElement.setAttribute("Pos", _uiBitPos);
+    xmlElement.setAttribute("Pos", _bitPos);
 
     // Size
     xmlElement.setAttribute("Size", _uiBitSize);

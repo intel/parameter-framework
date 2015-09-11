@@ -120,12 +120,12 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
     // Plugin list
     list<string> lstrPluginFiles;
 
-    uint32_t uiPluginLocation;
+    size_t pluginLocation;
 
-    for (uiPluginLocation = 0; uiPluginLocation <  pSubsystemPlugins->getNbChildren(); uiPluginLocation++) {
+    for (pluginLocation = 0; pluginLocation <  pSubsystemPlugins->getNbChildren(); pluginLocation++) {
 
         // Get Folder for current Plugin Location
-        const CPluginLocation* pPluginLocation = static_cast<const CPluginLocation*>(pSubsystemPlugins->getChild(uiPluginLocation));
+        const CPluginLocation* pPluginLocation = static_cast<const CPluginLocation*>(pSubsystemPlugins->getChild(pluginLocation));
 
         string strFolder(pPluginLocation->getFolder());
         if (!strFolder.empty()) {

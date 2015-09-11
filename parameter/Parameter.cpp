@@ -63,12 +63,12 @@ void CParameter::handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSe
     static_cast<const CParameterType*>(getTypeElement())->handleValueSpaceAttribute(xmlConfigurableElementSettingsElement, configurationAccessContext);
 }
 
-uint32_t CParameter::getFootPrint() const
+size_t CParameter::getFootPrint() const
 {
     return getSize();
 }
 
-uint32_t CParameter::getSize() const
+size_t CParameter::getSize() const
 {
     return static_cast<const CParameterType*>(getTypeElement())->getSize();
 }
@@ -88,14 +88,14 @@ void CParameter::setDefaultValues(CParameterAccessContext& parameterAccessContex
 
 /// Actual parameter access
 // String access
-bool CParameter::doSetValue(const string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::doSetValue(const string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
-    return doSet(strValue, uiOffset, parameterAccessContext);
+    return doSet(strValue, offset, parameterAccessContext);
 }
 
-void CParameter::doGetValue(string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+void CParameter::doGetValue(string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
-    doGet(strValue, uiOffset, parameterAccessContext);
+    doGet(strValue, offset, parameterAccessContext);
 }
 
 // Boolean access
@@ -155,7 +155,7 @@ bool CParameter::doAccess(type& value, bool bSet,
 }
 
 template <typename type>
-bool CParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::doSet(type value, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiData;
 
@@ -167,13 +167,13 @@ bool CParameter::doSet(type value, uint32_t uiOffset, CParameterAccessContext& p
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->writeInteger(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->writeInteger(&uiData, getSize(), offset, parameterAccessContext.isBigEndianSubsystem());
 
     return true;
 }
 
 template <typename type>
-bool CParameter::doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::doGet(type& value, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
     uint32_t uiData = 0;
 
@@ -181,7 +181,7 @@ bool CParameter::doGet(type& value, uint32_t uiOffset, CParameterAccessContext& 
     const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->readInteger(&uiData, getSize(), uiOffset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->readInteger(&uiData, getSize(), offset, parameterAccessContext.isBigEndianSubsystem());
 
     return static_cast<const CParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);
 }

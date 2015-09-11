@@ -83,19 +83,19 @@ public:
     void serialize(CBinaryStream& binaryStream);
 
     // Data size
-    uint32_t getSize() const;
+    size_t getSize() const;
 
     // Fetch the Configuration Blackboard
     CParameterBlackboard& getBlackboard();
     const CParameterBlackboard& getBlackboard() const;
 
 protected:
-    CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, uint32_t uiSize);
+    CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, size_t size);
 
 private:
     // Blackboard copies
-    virtual void copyTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const;
-    virtual void copyFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset);
+    virtual void copyTo(CParameterBlackboard* pToBlackboard, size_t offset) const;
+    virtual void copyFrom(const CParameterBlackboard* pFromBlackboard, size_t offset);
 
     // Store validity
     void setValid(bool bValid);

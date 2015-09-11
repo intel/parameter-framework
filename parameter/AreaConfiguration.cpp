@@ -40,11 +40,11 @@ CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurable
     _blackboard.setSize(_pConfigurableElement->getFootPrint());
 }
 
-CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, uint32_t uiSize)
+CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, size_t size)
     : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet), _bValid(false)
 {
     // Size blackboard
-    _blackboard.setSize(uiSize);
+    _blackboard.setSize(size);
 }
 
 // Save data from current
@@ -162,7 +162,7 @@ void CAreaConfiguration::serialize(CBinaryStream& binaryStream)
 }
 
 // Data size
-uint32_t CAreaConfiguration::getSize() const
+size_t CAreaConfiguration::getSize() const
 {
     return _blackboard.getSize();
 }
@@ -184,13 +184,13 @@ void CAreaConfiguration::setValid(bool bValid)
 }
 
 // Blackboard copies
-void CAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const
+void CAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, size_t offset) const
 {
-    pToBlackboard->restoreFrom(&_blackboard, uiOffset);
+    pToBlackboard->restoreFrom(&_blackboard, offset);
 }
 
-void CAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset)
+void CAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackboard, size_t offset)
 {
-   pFromBlackboard->saveTo(&_blackboard, uiOffset);
+   pFromBlackboard->saveTo(&_blackboard, offset);
 }
 

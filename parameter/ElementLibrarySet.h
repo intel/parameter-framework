@@ -38,7 +38,7 @@ public:
     ~CElementLibrarySet();
 
     void addElementLibrary(CElementLibrary* pElementLibrary);
-    CElementLibrary* getElementLibrary(uint32_t uiIndex) const;
+    CElementLibrary* getElementLibrary(size_t index) const;
 
 private:
     typedef std::vector<CElementLibrary*>::iterator CElementLibraryArrayIterator;

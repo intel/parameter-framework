@@ -48,6 +48,7 @@ CMappingContext::~CMappingContext()
 // Copy constructor
 CMappingContext::CMappingContext(const CMappingContext& from) : _pstItemArray(new CMappingContext::SItem[from._uiNbItemTypes]), _uiNbItemTypes(from._uiNbItemTypes)
 {
+    // FIXME: delegate constructor
     // Copy content items
     memcpy(_pstItemArray, from._pstItemArray, sizeof(*_pstItemArray) * _uiNbItemTypes);
 }
@@ -55,6 +56,7 @@ CMappingContext::CMappingContext(const CMappingContext& from) : _pstItemArray(ne
 // Affectation
 CMappingContext& CMappingContext::operator=(const CMappingContext& right)
 {
+    // FIXME: use a vector of CMappingContext::SItem
     if (&right != this) {
 
         // Size
@@ -74,67 +76,65 @@ CMappingContext& CMappingContext::operator=(const CMappingContext& right)
 }
 
 // Item access
-bool CMappingContext::setItem(uint32_t uiItemType, const string* pStrKey, const string* pStrItem)
+bool CMappingContext::setItem(size_t itemType, const string* pStrKey, const string* pStrItem)
 {
-    size_t uiIndex;
-
     // Do some checks
-    for (uiIndex = 0; uiIndex < _uiNbItemTypes; uiIndex++) {
+    for (size_t index = 0; index < _uiNbItemTypes; index++) {
 
         // Does key already exist ?
-        assert(_pstItemArray[uiIndex].strKey != pStrKey);
+        assert(_pstItemArray[index].strKey != pStrKey);
     }
 
-    if (_pstItemArray[uiItemType].bSet) {
+    if (_pstItemArray[itemType].bSet) {
 
         // Already set!
         return false;
     }
 
     // Set item key
-    _pstItemArray[uiItemType].strKey = pStrKey;
+    _pstItemArray[itemType].strKey = pStrKey;
 
     // Set item value
-    _pstItemArray[uiItemType].strItem = pStrItem;
+    _pstItemArray[itemType].strItem = pStrItem;
 
     // Now is set
-    _pstItemArray[uiItemType].bSet = true;
+    _pstItemArray[itemType].bSet = true;
 
     return true;
 }
 
-const string&  CMappingContext::getItem(uint32_t uiItemType) const
+const string&  CMappingContext::getItem(size_t itemType) const
 {
-    return *_pstItemArray[uiItemType].strItem;
+    return *_pstItemArray[itemType].strItem;
 }
 
-uint32_t CMappingContext::getItemAsInteger(uint32_t uiItemType) const
+size_t CMappingContext::getItemAsInteger(size_t itemType) const
 {
-    if (!_pstItemArray[uiItemType].strItem) {
+    if (!_pstItemArray[itemType].strItem) {
 
         return 0;
     }
 
-    return strtoul(_pstItemArray[uiItemType].strItem->c_str(), NULL, 0);
+    return strtoul(_pstItemArray[itemType].strItem->c_str(), NULL, 0);
 }
 
 const string* CMappingContext::getItem(const string& strKey) const
 {
-    size_t uiItemType;
+    size_t itemType;
 
-    for (uiItemType = 0; uiItemType < _uiNbItemTypes; uiItemType++) {
+    for (itemType = 0; itemType < _uiNbItemTypes; itemType++) {
 
-        if (_pstItemArray[uiItemType].strKey != NULL &&
-            strKey == *_pstItemArray[uiItemType].strKey) {
+        if (_pstItemArray[itemType].strKey != NULL &&
+            strKey == *_pstItemArray[itemType].strKey) {
 
-            return _pstItemArray[uiItemType].strItem;
+            return _pstItemArray[itemType].strItem;
         }
     }
 
     return NULL;
 }
 
-bool CMappingContext::iSet(uint32_t uiItemType) const
+bool CMappingContext::iSet(size_t itemType) const
 {
-    return _pstItemArray[uiItemType].bSet;
+    return _pstItemArray[itemType].bSet;
 }

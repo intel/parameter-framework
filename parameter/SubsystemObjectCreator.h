@@ -36,12 +36,12 @@
 class CSubsystemObjectCreator
 {
 public:
-    CSubsystemObjectCreator(const std::string& strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize);
+    CSubsystemObjectCreator(const std::string& strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize);
 
     // Accessors
     const std::string& getMappingKey() const;
     uint32_t getAncestorMask() const;
-    uint32_t getMaxConfigurableElementSize() const;
+    size_t getMaxConfigurableElementSize() const;
 
     // Object creation
     virtual CSubsystemObject* objectCreate(
@@ -58,6 +58,6 @@ private:
     // Mask of must-be-specified ancestors
     uint32_t _uiAncestorIdMask;
     // Masximum expected size for configurable elment (-1 means none)
-    uint32_t _uiMaxConfigurableElementSize;
+    size_t _maxConfigurableElementSize;
 };
 

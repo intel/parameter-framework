@@ -217,11 +217,9 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
 // XML MatchesWhen attribute parsing
 bool CSelectionCriterionRule::setMatchesWhen(const string& strMatchesWhen, string& strError)
 {
-    uint32_t uiMatchesWhen;
+    for (size_t matchesWhen = 0; matchesWhen < ENbMatchesWhen; matchesWhen++) {
 
-    for (uiMatchesWhen = 0; uiMatchesWhen < ENbMatchesWhen; uiMatchesWhen++) {
-
-        const SMatchingRuleDescription* pstMatchingRuleDescription = &_astMatchesWhen[uiMatchesWhen];
+        const SMatchingRuleDescription* pstMatchingRuleDescription = &_astMatchesWhen[matchesWhen];
 
         if (strMatchesWhen == pstMatchingRuleDescription->pcMatchesWhen) {
 
@@ -239,7 +237,7 @@ bool CSelectionCriterionRule::setMatchesWhen(const string& strMatchesWhen, strin
             }
 
             // Store
-            _eMatchesWhen = (MatchesWhen)uiMatchesWhen;
+            _eMatchesWhen = (MatchesWhen)matchesWhen;
 
             return true;
         }

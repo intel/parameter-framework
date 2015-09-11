@@ -240,11 +240,8 @@ bool CDomainConfiguration::setElementSequence(const std::vector<string>& astrNew
     // Build a new list of AreaConfiguration objects
     std::list<CAreaConfiguration*> areaConfigurationList;
 
-    uint32_t uiConfigurableElement;
 
-    for (uiConfigurableElement = 0; uiConfigurableElement < astrNewElementSequence.size(); uiConfigurableElement++) {
-
-        string strConfigurableElementPath = astrNewElementSequence[uiConfigurableElement];
+    for (std::string strConfigurableElementPath : astrNewElementSequence) {
 
         CAreaConfiguration* pAreaConfiguration = findAreaConfiguration(strConfigurableElementPath);
 
@@ -560,17 +557,17 @@ void CDomainConfiguration::reorderAreaConfigurations(const std::list<CAreaConfig
 }
 
 // Find area configuration rank from regular list: for ordered list maintainance
-uint32_t CDomainConfiguration::getAreaConfigurationRank(const CAreaConfiguration* pAreaConfiguration) const
+size_t CDomainConfiguration::getAreaConfigurationRank(const CAreaConfiguration* pAreaConfiguration) const
 {
-    uint32_t uiAreaConfigurationRank;
+    size_t areaConfigurationRank;
     AreaConfigurationListIterator it;
 
     // Propagate request to areas
-    for (it = _areaConfigurationList.begin(), uiAreaConfigurationRank = 0; it != _areaConfigurationList.end(); ++it, ++uiAreaConfigurationRank) {
+    for (it = _areaConfigurationList.begin(), areaConfigurationRank = 0; it != _areaConfigurationList.end(); ++it, ++areaConfigurationRank) {
 
         if (*it == pAreaConfiguration) {
 
-            return uiAreaConfigurationRank;
+            return areaConfigurationRank;
         }
     }
 
@@ -580,15 +577,15 @@ uint32_t CDomainConfiguration::getAreaConfigurationRank(const CAreaConfiguration
 }
 
 // Find area configuration from regular list based on rank: for ordered list maintainance
-CAreaConfiguration* CDomainConfiguration::getAreaConfiguration(uint32_t uiAreaConfigurationRank) const
+CAreaConfiguration* CDomainConfiguration::getAreaConfiguration(size_t areaConfigurationRank) const
 {
     AreaConfigurationListIterator it;
-    uint32_t uiCurrentAreaConfigurationRank;
+    size_t currentAreaConfigurationRank;
 
     // Propagate request to areas
-    for (it = _areaConfigurationList.begin(), uiCurrentAreaConfigurationRank = 0; it != _areaConfigurationList.end(); ++it, ++uiCurrentAreaConfigurationRank) {
+    for (it = _areaConfigurationList.begin(), currentAreaConfigurationRank = 0; it != _areaConfigurationList.end(); ++it, ++currentAreaConfigurationRank) {
 
-        if (uiCurrentAreaConfigurationRank == uiAreaConfigurationRank) {
+        if (currentAreaConfigurationRank == areaConfigurationRank) {
 
             return *it;
         }
@@ -648,26 +645,24 @@ void CDomainConfiguration::binarySerialize(CBinaryStream& binaryStream)
         for (it = _orderedAreaConfigurationList.begin(); it != _orderedAreaConfigurationList.end(); ++it) {
 
             // Get rank
-            uint32_t uiAreaConfigurationRank = getAreaConfigurationRank(*it);
+            size_t areaConfigurationRank = getAreaConfigurationRank(*it);
 
             // Store it
-            binaryStream.write((const uint8_t*)&uiAreaConfigurationRank, sizeof(uiAreaConfigurationRank));
+            binaryStream.write((const uint8_t*)&areaConfigurationRank, sizeof(areaConfigurationRank));
         }
     } else {
 
         // Empty ordered list first
         _orderedAreaConfigurationList.resize(0);
 
-        uint32_t uiAreaConfiguration;
-
-        for (uiAreaConfiguration = 0; uiAreaConfiguration < _areaConfigurationList.size(); uiAreaConfiguration++) {
+        for (size_t areaConfiguration = 0; areaConfiguration < _areaConfigurationList.size(); areaConfiguration++) {
 
             // Get rank
-            uint32_t uiAreaConfigurationRank;
+            size_t areaConfigurationRank;
 
-            binaryStream.read((uint8_t*)&uiAreaConfigurationRank, sizeof(uiAreaConfigurationRank));
+            binaryStream.read((uint8_t*)&areaConfigurationRank, sizeof(areaConfigurationRank));
 
-            _orderedAreaConfigurationList.push_back(getAreaConfiguration(uiAreaConfigurationRank));
+            _orderedAreaConfigurationList.push_back(getAreaConfiguration(areaConfigurationRank));
         }
     }
 
@@ -683,19 +678,13 @@ void CDomainConfiguration::binarySerialize(CBinaryStream& binaryStream)
 // Data size
 size_t CDomainConfiguration::getDataSize() const
 {
-    size_t uiDataSize;
-
     // Add necessary size to store area configurations order
-    uiDataSize = _areaConfigurationList.size() * sizeof(uint32_t);
+    size_t dataSize = _areaConfigurationList.size() * sizeof(size_t);
 
     // Propagate request to areas
-    AreaConfigurationListIterator it;
+    for (const auto *pAreaConfiguration : _areaConfigurationList) {
 
-    for (it = _areaConfigurationList.begin(); it != _areaConfigurationList.end(); ++it) {
-
-        const CAreaConfiguration* pAreaConfiguration = *it;
-
-        uiDataSize += pAreaConfiguration->getSize();
+        dataSize += pAreaConfiguration->getSize();
     }
-    return uiDataSize;
+    return dataSize;
 }

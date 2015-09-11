@@ -108,10 +108,9 @@ int main(int argc, char *argv[])
     CRequestMessage requestMessage(argv[3]);
 
     // Add arguments
-    uint32_t uiArg;
-    for (uiArg = 4; uiArg < (uint32_t)argc; uiArg++) {
+    for (int arg = 4; arg < argc; arg++) {
 
-        requestMessage.addArgument(argv[uiArg]);
+        requestMessage.addArgument(argv[arg]);
     }
 
     if (!sendAndDisplayCommand(connectionSocket, requestMessage)) {

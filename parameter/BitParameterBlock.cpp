@@ -46,13 +46,13 @@ CInstanceConfigurableElement::Type CBitParameterBlock::getType() const
 }
 
 // Instantiation, allocation
-uint32_t CBitParameterBlock::getFootPrint() const
+size_t CBitParameterBlock::getFootPrint() const
 {
     return getSize();
 }
 
 // Size
-uint32_t CBitParameterBlock::getSize() const
+size_t CBitParameterBlock::getSize() const
 {
     return static_cast<const CBitParameterBlockType*>(getTypeElement())->getSize();
 }

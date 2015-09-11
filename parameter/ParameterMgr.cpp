@@ -326,8 +326,6 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
 };
 
 // Remote command parsers array Size
-const uint32_t CParameterMgr::guiNbRemoteCommandParserItems = sizeof(gastRemoteCommandParserItems) / sizeof(gastRemoteCommandParserItems[0]);
-
 CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogger& logger) :
     _bTuningModeIsOn(false),
     _bValueSpaceIsRaw(false),
@@ -339,7 +337,7 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     _pSubsystemPlugins(NULL),
     _uiStructureChecksum(0),
     _pRemoteProcessorServer(NULL),
-    _uiMaxCommandUsageLength(0),
+    _maxCommandUsageLength(0),
     _logger(logger),
     _bForceNoRemoteInterface(false),
     _bFailOnMissingSubsystem(true),
@@ -1229,11 +1227,9 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceC
     // Build configurable element path list
     std::vector<string> astrNewElementSequence;
 
-    uint32_t uiArgument;
+    for (size_t argument = 2; argument < remoteCommand.getArgumentCount(); argument++) {
 
-    for (uiArgument = 2; uiArgument < remoteCommand.getArgumentCount(); uiArgument++) {
-
-        astrNewElementSequence.push_back(remoteCommand.getArgument(uiArgument));
+        astrNewElementSequence.push_back(remoteCommand.getArgument(argument));
     }
 
     // Delegate to configurable domains
@@ -1724,7 +1720,7 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
     const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
 
     // Get the Configuration blackboard and the Base Offset of the configurable element in this blackboard
-    uint32_t uiBaseOffset;
+    size_t baseOffset;
     bool bIsLastApplied;
 
     CParameterBlackboard* pConfigurationBlackboard = NULL;
@@ -1734,7 +1730,7 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
             getConstConfigurableDomains()->findConfigurationBlackboard(strDomain,
                                                                        strConfiguration,
                                                                        pConfigurableElement,
-                                                                       uiBaseOffset,
+                                                                       baseOffset,
                                                                        bIsLastApplied,
                                                                        strError);
         if (!pConfigurationBlackboard) {
@@ -1745,12 +1741,12 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
     }
 
     info() << "Element " << strPath << " in Domain " << strDomain << ", offset: "
-           << pConfigurableElement->getOffset() << ", base offset: " << uiBaseOffset;
+           << pConfigurableElement->getOffset() << ", base offset: " << baseOffset;
 
     /// Update the Configuration Blackboard
 
     // Define Configuration context using Base Offset and keep Auto Sync off to prevent access to HW
-    CParameterAccessContext parameterAccessContext(strError, pConfigurationBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, uiBaseOffset);
+    CParameterAccessContext parameterAccessContext(strError, pConfigurationBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, baseOffset);
 
     // Deactivate the auto synchronization with the hardware during the Configuration Blackboard
     // access (only Main Blackboard shall be synchronized, Configurations Blackboards are copied
@@ -2530,7 +2526,7 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
     for (const auto &remoteCommandParserItem : gastRemoteCommandParserItems) {
         commandHandler->addCommandParser(remoteCommandParserItem._pcCommandName,
                                          remoteCommandParserItem._pfnParser,
-                                         remoteCommandParserItem._uiMinArgumentCount,
+                                         remoteCommandParserItem._minArgumentCount,
                                          remoteCommandParserItem._pcHelp,
                                          remoteCommandParserItem._pcDescription);
     }

@@ -39,7 +39,7 @@
 
 #define base CElement
 
-CConfigurableElement::CConfigurableElement(const std::string& strName) : base(strName), _uiOffset(0)
+CConfigurableElement::CConfigurableElement(const std::string& strName) : base(strName), _offset(0)
 {
 }
 
@@ -50,7 +50,6 @@ CConfigurableElement::~CConfigurableElement()
 // XML configuration settings parsing
 bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {
-    size_t uiIndex;
     size_t uiNbChildren = getNbChildren();
 
     if (!configurationAccessContext.serializeOut()) {
@@ -60,10 +59,10 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
         CXmlElement xmlChildConfigurableElementSettingsElement;
 
         // Propagate to children
-        for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
+        for (size_t index = 0; index < uiNbChildren; index++) {
 
             // Get child
-            const CConfigurableElement* pChildConfigurableElement = static_cast<const CConfigurableElement*>(getChild(uiIndex));
+            const CConfigurableElement* pChildConfigurableElement = static_cast<const CConfigurableElement*>(getChild(index));
 
             if (!it.next(xmlChildConfigurableElementSettingsElement)) {
 
@@ -107,9 +106,9 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
         }
     } else {
         // Propagate to children
-        for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
+        for (size_t index = 0; index < uiNbChildren; index++) {
 
-            const CConfigurableElement* pChildConfigurableElement = static_cast<const CConfigurableElement*>(getChild(uiIndex));
+            const CConfigurableElement* pChildConfigurableElement = static_cast<const CConfigurableElement*>(getChild(index));
 
             // Create corresponding child element
             CXmlElement xmlChildConfigurableElementSettingsElement;
@@ -175,12 +174,11 @@ void CConfigurableElement::getListOfElementsWithMapping(
 void CConfigurableElement::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
 {
     // Propagate to children
-    size_t uiIndex;
     size_t uiNbChildren = getNbChildren();
 
-    for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
+    for (size_t index = 0; index < uiNbChildren; index++) {
 
-        const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(getChild(uiIndex));
+        const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(getChild(index));
 
         pConfigurableElement->setDefaultValues(parameterAccessContext);
     }
@@ -195,40 +193,38 @@ void CConfigurableElement::showProperties(std::string& strResult) const
 }
 
 // Offset
-void CConfigurableElement::setOffset(uint32_t uiOffset)
+void CConfigurableElement::setOffset(size_t offset)
 {
     // Assign offset locally
-    _uiOffset = uiOffset;
+    _offset = offset;
 
     // Propagate to children
-    size_t uiIndex;
     size_t uiNbChildren = getNbChildren();
 
-    for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
+    for (size_t index = 0; index < uiNbChildren; index++) {
 
-        CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(getChild(uiIndex));
+        CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(getChild(index));
 
-        pConfigurableElement->setOffset(uiOffset);
+        pConfigurableElement->setOffset(offset);
 
-        uiOffset += pConfigurableElement->getFootPrint();
+        offset += pConfigurableElement->getFootPrint();
     }
 }
 
-uint32_t CConfigurableElement::getOffset() const
+size_t CConfigurableElement::getOffset() const
 {
-    return _uiOffset;
+    return _offset;
 }
 
 // Memory
-uint32_t CConfigurableElement::getFootPrint() const
+size_t CConfigurableElement::getFootPrint() const
 {
-    uint32_t uiSize = 0;
-    size_t uiIndex;
+    size_t uiSize = 0;
     size_t uiNbChildren = getNbChildren();
 
-    for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
+    for (size_t index = 0; index < uiNbChildren; index++) {
 
-        const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(getChild(uiIndex));
+        const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(getChild(index));
 
         uiSize += pConfigurableElement->getFootPrint();
     }
@@ -271,12 +267,11 @@ void CConfigurableElement::fillSyncerSet(CSyncerSet& syncerSet) const
 void CConfigurableElement::fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const
 {
     // Dig
-    size_t uiIndex;
     size_t uiNbChildren = getNbChildren();
 
-    for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
+    for (size_t index = 0; index < uiNbChildren; index++) {
 
-        const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(getChild(uiIndex));
+        const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(getChild(index));
 
         pConfigurableElement->fillSyncerSetFromDescendant(syncerSet);
     }
