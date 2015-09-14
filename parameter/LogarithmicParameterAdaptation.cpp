@@ -29,7 +29,6 @@
  */
 
 #include "LogarithmicParameterAdaptation.h"
-#include "Utility.h"
 #include <cmath>
 #include <limits>
 
@@ -53,10 +52,10 @@ void CLogarithmicParameterAdaptation::showProperties(std::string& strResult) con
     base::showProperties(strResult);
 
     strResult += " - LogarithmBase: ";
-    strResult += CUtility::toString(_dLogarithmBase);
+    strResult += std::to_string(_dLogarithmBase);
     strResult += "\n";
     strResult += " - FloorValue: ";
-    strResult += CUtility::toString(_dFloorValue);
+    strResult += std::to_string(_dFloorValue);
     strResult += "\n";
 }
 

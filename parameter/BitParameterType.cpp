@@ -56,17 +56,17 @@ void CBitParameterType::showProperties(string& strResult) const
 
     // Bit Pos
     strResult += "Bit pos: ";
-    strResult += CUtility::toString(_bitPos);
+    strResult += std::to_string(_bitPos);
     strResult += "\n";
 
     // Bit size
     strResult += "Bit size: ";
-    strResult += CUtility::toString(_uiBitSize);
+    strResult += std::to_string(_uiBitSize);
     strResult += "\n";
 
     // Max
     strResult += "Max: ";
-    strResult += CUtility::toString(_uiMax);
+    strResult += std::to_string(_uiMax);
     strResult += "\n";
 }
 

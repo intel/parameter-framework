@@ -28,7 +28,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "EnumValuePair.h"
-#include "Utility.h"
 
 #define base CElement
 
@@ -52,7 +51,7 @@ int32_t CEnumValuePair::getNumerical() const
 
 string CEnumValuePair::getNumericalAsString() const
 {
-    return CUtility::toString(_iNumerical);
+    return std::to_string(_iNumerical);
 }
 
 // From IXmlSink

@@ -70,12 +70,12 @@ void CIntegerParameterType::showProperties(string& strResult) const
 
     // Min
     strResult += "Min: ";
-    strResult += _bSigned ? CUtility::toString((int32_t)_uiMin) : CUtility::toString(_uiMin);
+    strResult += _bSigned ? std::to_string((int32_t)_uiMin) : std::to_string(_uiMin);
     strResult += "\n";
 
     // Max
     strResult += "Max: ";
-    strResult += _bSigned ? CUtility::toString((int32_t)_uiMax) : CUtility::toString(_uiMax);
+    strResult += _bSigned ? std::to_string((int32_t)_uiMax) : std::to_string(_uiMax);
     strResult += "\n";
 
     // Check if there's an adaptation object available

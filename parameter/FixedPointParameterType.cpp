@@ -60,9 +60,9 @@ void CFixedPointParameterType::showProperties(string& strResult) const
 
     // Notation
     strResult += "Notation: Q";
-    strResult += CUtility::toString(_uiIntegral);
+    strResult += std::to_string(_uiIntegral);
     strResult += ".";
-    strResult += CUtility::toString(_uiFractional);
+    strResult += std::to_string(_uiFractional);
     strResult += "\n";
 }
 
