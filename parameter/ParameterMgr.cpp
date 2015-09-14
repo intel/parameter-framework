@@ -353,17 +353,10 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     addChild(new CSystemClass(_logger));
     addChild(new CConfigurableDomains);
 
-    // Configuration file folder
-    std::string::size_type slashPos = _strXmlConfigurationFilePath.rfind('/', -1);
-    if(slashPos == std::string::npos) {
-        // Configuration folder is the current folder
-        _strXmlConfigurationFolderPath = '.';
-    } else {
-        _strXmlConfigurationFolderPath = _strXmlConfigurationFilePath.substr(0, slashPos);
-    }
 
-    // Schema absolute folder location
-    _strSchemaFolderLocation = _strXmlConfigurationFolderPath + "/" + gacSystemSchemasSubFolder;
+    _strXmlConfigurationFolderPath = CUtility::dirName(_strXmlConfigurationFilePath);
+
+    _strSchemaFolderLocation = _strXmlConfigurationFolderPath + gacSystemSchemasSubFolder;
 }
 
 CParameterMgr::~CParameterMgr()

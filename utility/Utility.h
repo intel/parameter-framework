@@ -77,4 +77,20 @@ public:
      */
     static bool isHexadecimal(const std::string& strValue);
 
+    /**
+     * Returns the string up to, but not including, the final os separator (/ on linux, \ on
+     * windows). This function aims to mock dirname() behaviour in a portable way.
+     * @param[in] path
+     *
+     * @return the dirname
+     */
+    static std::string dirName(const std::string &path);
+
+    /**
+     * Tells if a path is relative.
+     * @param[in] path
+     *
+     * @return true if path is relative, false otherwise
+     */
+    static bool isPathRelative(const std::string &path);
 };

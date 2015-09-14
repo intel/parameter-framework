@@ -32,6 +32,7 @@
 #include "XmlMemoryDocSink.h"
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
+#include "Utility.h"
 #include <assert.h>
 #include <fstream>
 
@@ -54,7 +55,7 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     xmlElement.getAttribute("Path", strPath);
 
     // Relative path?
-    if (strPath[0] != '/') {
+    if (CUtility::isPathRelative(strPath)) {
 
         strPath = elementSerializingContext.getXmlFolder() + "/" + strPath;
     }

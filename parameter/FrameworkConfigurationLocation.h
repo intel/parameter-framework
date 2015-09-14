@@ -47,9 +47,6 @@ public:
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 private:
-    // Detect relative path
-    bool isPathRelative() const;
-
     // Path
     std::string _strPath;
 };

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,58 +27,21 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "FrameworkConfigurationLocation.h"
+
 #include "Utility.h"
-#include <assert.h>
 
-#define base CKindElement
+#include <libgen.h>
 
-CFrameworkConfigurationLocation::CFrameworkConfigurationLocation(const std::string& strName, const std::string& strKind) : base(strName, strKind)
+std::string CUtility::dirName(const std::string &path)
 {
-}
-
-// From IXmlSink
-bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
-{
-    xmlElement.getAttribute("Path", _strPath);
-
-    if (_strPath.empty()) {
-
-        serializingContext.setError("Empty Path attribute in element " + xmlElement.getPath());
-
-        return false;
+    auto slashPos = path.rfind('/', -1);
+    if (slashPos == std::string::npos) {
+        return { "" };
     }
-    return true;
+    return path.substr(0, slashPos);
 }
 
-// File path
-std::string CFrameworkConfigurationLocation::getFilePath(const std::string& strBaseFolder) const
+bool CUtility::isPathRelative(const std::string &path)
 {
-    if (CUtility::isPathRelative(_strPath)) {
-
-        return strBaseFolder + "/" + _strPath;
-    }
-    return _strPath;
+    return path[0] != '/';
 }
-
-// Folder path
-std::string CFrameworkConfigurationLocation::getFolderPath(const std::string& strBaseFolder) const
-{
-    auto slashPos = _strPath.rfind('/', -1);
-
-    if (CUtility::isPathRelative(_strPath)) {
-
-        if (slashPos == std::string::npos) {
-
-            return strBaseFolder;
-        }
-
-        return strBaseFolder + "/" + CUtility::dirName(_strPath);
-    } else {
-
-        assert(slashPos != std::string::npos);
-
-        return CUtility::dirName(_strPath);
-    }
-}
-
