@@ -12,14 +12,12 @@ compiler:
 
 before_install:
     - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-    - sudo add-apt-repository --yes ppa:kalakris/cmake # Non official cmake backport
+    - sudo add-apt-repository --yes ppa:smspillaz/cmake-2.8.12 # Non official cmake backport
     - sudo apt-get update -qq
 
 install:
-    - sudo apt-get install --yes swig cmake valgrind g++-4.8 python3-dev libasio-dev
+    - sudo apt-get install --yes swig cmake cmake-data valgrind g++-4.8 python3-dev libasio-dev
     - sudo pip install cpp-coveralls
-    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
-    - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 100
     - wget --directory-prefix $PREFIX/include
               https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
     - wget 'https://01.org/sites/default/files/asio-1.10.6.tar.gz'
