@@ -29,11 +29,6 @@
 # working on 2.8.12 - broken on older versions
 cmake_minimum_required(VERSION 2.8.12)
 
-# linking policy (see cmake --help-policy CMP0003)
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
-
 project(parameter-framework)
 
 include(CMakeDependentOption)
