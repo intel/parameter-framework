@@ -14,14 +14,14 @@ compiler:
 # it will not be necessary once travis worker is based on ubuntu > 12.04.
 # Install SWIG for bindings generation
 # Install valgrind for memcheck tests
-# Adding kalakris ppa for cmake 2.8.11.
+# Adding kubuntu-backports ppa for for cmake 2.8.12.
 # it is needed in case of multiple python version on host
 # Install python3-dev for the client simulator
 addons:
     apt:
         sources:
             - ubuntu-toolchain-r-test
-            - kalakris-cmake
+            - kubuntu-backports
         packages:
             - swig
             - valgrind
