@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include <string>
 #include <vector>
 #include <stdint.h>
@@ -40,7 +42,7 @@
 class CXmlElementSerializingContext;
 class CErrorContext;
 
-class CElement : public IXmlSink, public IXmlSource
+class PARAMETER_EXPORT CElement : public IXmlSink, public IXmlSource
 {
 public:
     CElement(const std::string& strName = "");

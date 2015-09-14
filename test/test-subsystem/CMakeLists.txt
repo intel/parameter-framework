@@ -39,6 +39,7 @@ if (BUILD_TESTING)
         "${PROJECT_SOURCE_DIR}/xmlserializer"
         "${PROJECT_SOURCE_DIR}/utility"
         "${PROJECT_SOURCE_DIR}/parameter/log/include"
+        "${PROJECT_BINARY_DIR}/parameter"
         "${PROJECT_SOURCE_DIR}/parameter")
 
     target_link_libraries(test-subsystem parameter)

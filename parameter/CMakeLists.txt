@@ -26,6 +26,10 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Hide symbols by default, then exposed symbols are the same in linux and windows
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+
 add_library(parameter SHARED
     AreaConfiguration.cpp
     ArrayParameter.cpp
@@ -104,10 +108,16 @@ add_library(parameter SHARED
     XmlFileIncluderElement.cpp
     XmlParameterSerializingContext.cpp)
 
+include (GenerateExportHeader)
+generate_export_header(parameter)
+
 include_directories(
     include
+    "${CMAKE_CURRENT_BINARY_DIR}"
+    "${PROJECT_SOURCE_DIR}/parameter"
     "${PROJECT_SOURCE_DIR}/xmlserializer"
     "${PROJECT_SOURCE_DIR}/utility"
+    "${PROJECT_BINARY_DIR}/remote-processor"
     "${PROJECT_SOURCE_DIR}/remote-processor"
     "${PROJECT_SOURCE_DIR}/parameter/log/include")
 
@@ -120,6 +130,7 @@ target_link_libraries(parameter xmlserializer remote-processor pfw_utility)
 install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 # Client headers
 install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
     include/ParameterHandle.h
     include/ParameterMgrLoggerForward.h
     include/ParameterMgrFullConnector.h
@@ -129,6 +140,7 @@ install(FILES
     DESTINATION "include/parameter/client")
 # Core (plugin) headers
 install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
     BitParameterBlockType.h
     ConfigurableElement.h
     ConfigurableElementWithMapping.h

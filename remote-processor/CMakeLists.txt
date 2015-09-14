@@ -26,11 +26,19 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Hide symbols by default, then exposed symbols are the same in linux and windows
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+
 add_library(remote-processor SHARED
         Message.cpp
         RequestMessage.cpp
         AnswerMessage.cpp
         RemoteProcessorServer.cpp)
+
+include (GenerateExportHeader)
+generate_export_header(remote-processor
+                       BASE_NAME remote_processor)
 
 set(CMAKE_THREAD_PREFER_PTHREAD 1)
 find_package(Threads REQUIRED)
@@ -42,7 +50,8 @@ find_package(Threads REQUIRED)
 find_path(ASIO_DIR NAMES asio.hpp)
 target_include_directories(remote-processor PUBLIC "${ASIO_DIR}")
 
-include_directories("${PROJECT_SOURCE_DIR}/utility")
+include_directories("${PROJECT_SOURCE_DIR}/utility"
+                    "${CMAKE_CURRENT_BINARY_DIR}")
 
 target_compile_definitions(remote-processor PUBLIC ASIO_STANDALONE)
 

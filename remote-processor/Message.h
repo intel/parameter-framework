@@ -33,7 +33,10 @@
 #include <string>
 #include <cstdint>
 
-class CMessage
+#include <remote_processor_export.h>
+
+
+class REMOTE_PROCESSOR_EXPORT CMessage
 {
 public:
 

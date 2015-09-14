@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include <stdint.h>
 #include <string>
 #include <vector>
@@ -36,7 +38,7 @@
 class CBaseParameter;
 class CParameterMgr;
 
-class CParameterHandle
+class PARAMETER_EXPORT CParameterHandle
 {
 public:
     CParameterHandle(const CBaseParameter* pParameter, CParameterMgr* pParameterMgr);

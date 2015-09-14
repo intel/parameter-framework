@@ -29,13 +29,15 @@
  */
 #pragma once
 
+#include "remote_processor_export.h"
+
 #include <stdint.h>
 #include "RemoteProcessorServerInterface.h"
 #include <asio.hpp>
 
 class IRemoteCommandHandler;
 
-class CRemoteProcessorServer : public IRemoteProcessorServerInterface
+class REMOTE_PROCESSOR_EXPORT CRemoteProcessorServer : public IRemoteProcessorServerInterface
 {
 public:
     CRemoteProcessorServer(uint16_t uiPort);

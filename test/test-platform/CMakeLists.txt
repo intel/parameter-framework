@@ -31,7 +31,9 @@ add_executable(test-platform
     TestPlatform.cpp)
 
 include_directories(
+    "${PROJECT_BINARY_DIR}/parameter"
     "${PROJECT_SOURCE_DIR}/parameter/include"
+    "${PROJECT_BINARY_DIR}/remote-processor"
     "${PROJECT_SOURCE_DIR}/remote-processor"
     "${PROJECT_SOURCE_DIR}/utility")
 

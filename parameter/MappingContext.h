@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,10 +29,13 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
+
 #include <stdint.h>
 #include <string>
 
-class CMappingContext
+class PARAMETER_EXPORT CMappingContext
 {
     // Item structure
     struct SItem {

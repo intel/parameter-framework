@@ -29,11 +29,13 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include "SubsystemObject.h"
 #include "MappingContext.h"
 #include <string>
 
-class CSubsystemObjectCreator
+class PARAMETER_EXPORT CSubsystemObjectCreator
 {
 public:
     CSubsystemObjectCreator(const std::string& strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize);
