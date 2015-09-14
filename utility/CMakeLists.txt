@@ -40,10 +40,8 @@ add_library(pfw_utility STATIC
 
 target_include_directories(pfw_utility PUBLIC .)
 
-if (NOT WIN32)
-    # '-fPIC' needed for linking against shared libraries (e.g. libparameter)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
-endif ()
+# Needed for linking against shared libraries on Linux (no-op on Windows)
+set_target_properties(pfw_utility PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 
 install(FILES
     NonCopyable.hpp
