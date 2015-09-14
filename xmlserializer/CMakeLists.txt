@@ -60,7 +60,7 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/utility")
 
 target_link_libraries(xmlserializer "${LIBXML2_LIBRARIES}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LIBXML2_DEFINITIONS}")
+target_compile_options(xmlserializer PRIVATE "${LIBXML2_DEFINITIONS}")
 
 install(FILES
     XmlSink.h
