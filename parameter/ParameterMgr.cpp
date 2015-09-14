@@ -71,7 +71,6 @@
 #include "SelectionCriterionRule.h"
 #include "SimulatedBackSynchronizer.h"
 #include "HardwareBackSynchronizer.h"
-#include "AutoLock.h"
 #include <cassert>
 #include "ParameterHandle.h"
 #include "LinearParameterAdaptation.h"
@@ -87,6 +86,7 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
+#include <mutex>
 
 #define base CElement
 
@@ -116,6 +116,8 @@ using std::vector;
 using std::ostringstream;
 using std::ofstream;
 using std::ifstream;
+using std::mutex;
+using std::lock_guard;
 
 // FIXME: integrate ParameterMgr to core namespace
 using namespace core;
@@ -739,7 +741,7 @@ void CParameterMgr::applyConfigurations()
     LOG_CONTEXT("Configuration application request");
 
     // Lock state
-    CAutoLock autoLock(getBlackboardMutex());
+    lock_guard<mutex> autoLock(getBlackboardMutex());
 
     if (!_bTuningModeIsOn) {
 
@@ -1787,7 +1789,7 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
 bool CParameterMgr::accessValue(CParameterAccessContext& parameterAccessContext, const string& strPath, string& strValue, bool bSet, string& strError)
 {
     // Lock state
-    CAutoLock autoLock(getBlackboardMutex());
+    lock_guard<mutex> autoLock(getBlackboardMutex());
 
     CPathNavigator pathNavigator(strPath);
 
@@ -1814,7 +1816,7 @@ bool CParameterMgr::setTuningMode(bool bOn, string& strError)
         return false;
     }
     // Lock state
-    CAutoLock autoLock(getBlackboardMutex());
+    lock_guard<mutex> autoLock(getBlackboardMutex());
 
     // Warn domains about exiting tuning mode
     if (!bOn && _bTuningModeIsOn) {
