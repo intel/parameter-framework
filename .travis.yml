@@ -1,5 +1,5 @@
 # Use travis docker infrastructure
-sudo: false
+sudo: required
 language: cpp
 
 env:
@@ -10,28 +10,16 @@ compiler:
     - gcc
     - clang
 
-# Install a recent gcc and gcov,
-# it will not be necessary once travis worker is based on ubuntu > 12.04.
-# Install SWIG for bindings generation
-# Install valgrind for memcheck tests
-# Adding kalakris ppa for cmake 2.8.11.
-# it is needed in case of multiple python version on host
-# Install python3-dev for the client simulator
-addons:
-    apt:
-        sources:
-            - ubuntu-toolchain-r-test
-            - kalakris-cmake
-        packages:
-            - swig
-            - valgrind
-            - g++-4.8
-            - cmake
-            - python3-dev
-            - libasio-dev
+before_install:
+    - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+    - sudo add-apt-repository --yes ppa:kalakris/cmake # Non official cmake backport
+    - sudo apt-get update -qq
 
 install:
-    - pip install --user cpp-coveralls; export PATH=$HOME/.local/bin:$PATH
+    - sudo apt-get install --yes swig cmake valgrind g++-4.8 python3-dev libasio-dev
+    - sudo pip install cpp-coveralls
+    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
+    - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 100
     - wget --directory-prefix $PREFIX/include
               https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
     - wget 'https://01.org/sites/default/files/asio-1.10.6.tar.gz'
