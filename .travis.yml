@@ -19,9 +19,13 @@ compiler:
 # Install python3-dev for the client simulator
 addons:
     apt:
+        # Travis white list of ppa
+        # https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
         sources:
             - ubuntu-toolchain-r-test
             - kubuntu-backports
+        # Travis white list of dpkg packages
+        # https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
         packages:
             - swig
             - valgrind
