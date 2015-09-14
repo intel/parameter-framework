@@ -29,28 +29,28 @@
 if (BUILD_TESTING)
     find_program(python2 python2)
 
-    set(PFW_ROOT ${CMAKE_BINARY_DIR}/tmp/test-parameters)
-    set(PFW_RESULT ${PFW_ROOT}/result)
+    set(PFW_ROOT "${CMAKE_BINARY_DIR}/tmp/test-parameters")
+    set(PFW_RESULT "${PFW_ROOT}/result")
 
     configure_file(
-        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestSubsystem.xml.in
-        ${PFW_ROOT}/xml/configuration/Structure/Test/TestSubsystem.xml @ONLY)
+        "${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestSubsystem.xml.in"
+        "${PFW_ROOT}/xml/configuration/Structure/Test/TestSubsystem.xml" @ONLY)
     configure_file(
-        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestClass.xml
-        ${PFW_ROOT}/xml/configuration/Structure/Test/TestClass.xml
+        "${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestClass.xml"
+        "${PFW_ROOT}/xml/configuration/Structure/Test/TestClass.xml"
         COPYONLY)
     configure_file(
-        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/ParameterFrameworkConfiguration.xml
-        ${PFW_ROOT}/xml/configuration/ParameterFrameworkConfiguration.xml
+        "${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/ParameterFrameworkConfiguration.xml"
+        "${PFW_ROOT}/xml/configuration/ParameterFrameworkConfiguration.xml"
         COPYONLY)
     configure_file(
-        ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
-        ${PFW_ROOT}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
+        "${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Settings/Test/TestConfigurableDomains.xml"
+        "${PFW_ROOT}/xml/configuration/Settings/Test/TestConfigurableDomains.xml"
         COPYONLY)
 
     add_test(NAME functional-test-legacy
-             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-             COMMAND ${python2} ACTCampaignEngine.py)
+             WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+             COMMAND "${python2}" ACTCampaignEngine.py)
 
     # Custom function defined in the top-level CMakeLists
     set_test_env(functional-test-legacy)

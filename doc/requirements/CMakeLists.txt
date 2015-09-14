@@ -37,17 +37,17 @@ if(REQUIREMENTS)
     endif()
 
     configure_file(requirements.css
-                   ${CMAKE_CURRENT_BINARY_DIR}/requirements.css
+                   "${CMAKE_CURRENT_BINARY_DIR}/requirements.css"
                    COPYONLY)
 
-    set(REQ_OUT_DOC ${CMAKE_CURRENT_BINARY_DIR}/index.html)
+    set(REQ_OUT_DOC "${CMAKE_CURRENT_BINARY_DIR}/index.html")
 
-    add_custom_target(requirements-doc DEPENDS ${REQ_OUT_DOC})
+    add_custom_target(requirements-doc DEPENDS "${REQ_OUT_DOC}")
 
-    add_custom_command(OUTPUT ${REQ_OUT_DOC}
+    add_custom_command(OUTPUT "${REQ_OUT_DOC}"
                        DEPENDS requirements.md requirements.css
                        VERBATIM COMMAND
-        ${PANDOC} --output ${REQ_OUT_DOC}
+        "${PANDOC}" --output "${REQ_OUT_DOC}"
                   --from markdown --to html5
                   --number-sections --table-of-contents
                   --smart # typographic dashes
@@ -55,5 +55,5 @@ if(REQUIREMENTS)
                   --id-prefix req- # avoid tag name conflicts
                   --css requirements.css # this path is relative to the html doc
                   --css http://sindresorhus.com/github-markdown-css/github-markdown.css
-                  ${CMAKE_CURRENT_SOURCE_DIR}/requirements.md)
+                  "${CMAKE_CURRENT_SOURCE_DIR}/requirements.md")
 endif()

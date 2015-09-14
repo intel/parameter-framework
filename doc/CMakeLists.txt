@@ -44,12 +44,12 @@ if(DOXYGEN)
         " install it or deactivate graph generation (DOXYGEN_GRAPHS=OFF).")
     endif()
 
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
-       ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in"
+       "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile"
        @ONLY)
     add_custom_target(doc
-        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        "${DOXYGEN_EXECUTABLE}" "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile"
+        WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
         COMMENT "Generating documentation with Doxygen"
         VERBATIM)
 endif()

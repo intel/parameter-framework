@@ -45,12 +45,12 @@ set(MEMORYCHECK_COMMAND_OPTIONS
 include(CTest)
 
 # Ctest requires its configuration to be placed at the build root
-configure_file(${CMAKE_CURRENT_LIST_DIR}/CTestCustom.cmake ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file("${CMAKE_CURRENT_LIST_DIR}/CTestCustom.cmake" "${CMAKE_BINARY_DIR}" COPYONLY)
 
 # Set environement variables so that executables and libraries can be find by tests.
 # (avoids a make install before make test)
 function(set_test_env TestName)
-    set_property(TEST ${TestName} PROPERTY ENVIRONMENT
+    set_property(TEST "${TestName}" PROPERTY ENVIRONMENT
                  PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
                  LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH}
                  PYTHONPATH=${CMAKE_BINARY_DIR}/bindings/python:$ENV{PYTHONPATH})

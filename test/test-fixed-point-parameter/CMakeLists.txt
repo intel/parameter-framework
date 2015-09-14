@@ -30,8 +30,8 @@ if (BUILD_TESTING AND PYTHON_BINDINGS)
     find_program(python2 python2)
 
     add_test(NAME fix_point_parameter
-             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-             COMMAND ${python2} Main.py)
+             WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+             COMMAND "${python2}" Main.py)
 
     # Custom function defined in the top-level CMakeLists
     set_test_env(fix_point_parameter)

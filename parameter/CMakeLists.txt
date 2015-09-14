@@ -123,7 +123,7 @@ include_directories(
 
 find_library(DL_LIB dl)
 if(UNIX)
-    target_link_libraries(parameter ${DL_LIB})
+    target_link_libraries(parameter "${DL_LIB}")
 endif()
 target_link_libraries(parameter xmlserializer remote-processor pfw_utility)
 

@@ -56,10 +56,10 @@ if(NOT XML2_XINCLUDE_SUPPORT)
 endif()
 
 include_directories(
-    ${LIBXML2_INCLUDE_DIR}
+    "${LIBXML2_INCLUDE_DIR}"
     "${PROJECT_SOURCE_DIR}/utility")
 
-target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
+target_link_libraries(xmlserializer "${LIBXML2_LIBRARIES}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LIBXML2_DEFINITIONS}")
 
 install(FILES

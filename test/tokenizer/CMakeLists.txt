@@ -36,12 +36,12 @@ if(BUILD_TESTING)
     # Then append the download folder to the CMAKE_INCLUDE_PATH variable or
     # copy it in a standard location (/usr/include on most linux distribution).
     find_path(CATCH_HEADER catch.hpp)
-    include_directories(${CATCH_HEADER})
+    include_directories("${CATCH_HEADER}")
 
     # Add unit test
     add_executable(tokenizerTest Test.cpp)
 
-    include_directories(${PROJECT_SOURCE_DIR}/utility)
+    include_directories("${PROJECT_SOURCE_DIR}/utility")
     target_link_libraries(tokenizerTest pfw_utility)
 
     add_test(NAME tokenizerTest

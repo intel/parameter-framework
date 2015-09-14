@@ -43,20 +43,19 @@ endif ()
 find_path(PFW_CORE_ROOT_DIR NAMES include/parameter/plugin/Subsystem.h)
 
 find_library(PFW_CORE_LIBRARY NAMES parameter
-    HINTS ${PFW_CORE_ROOT_DIR}/lib)
+    HINTS "${PFW_CORE_ROOT_DIR}/lib")
 
 find_path(PFW_CORE_INCLUDE_DIR NAMES Subsystem.h
-    HINTS ${PFW_CORE_ROOT_DIR}/include/parameter/plugin)
+    HINTS "${PFW_CORE_ROOT_DIR}/include/parameter/plugin")
 find_path(PFW_XMLSERIALIZER_INCLUDE_DIR NAMES XmlSink.h
-    HINTS ${PFW_CORE_ROOT_DIR}/include/xmlserializer)
+    HINTS "${PFW_CORE_ROOT_DIR}/include/xmlserializer")
 find_path(PFW_UTILITY_INCLUDE_DIR NAMES Utility.h
-    HINTS ${PFW_CORE_ROOT_DIR}/include/utility)
+    HINTS "${PFW_CORE_ROOT_DIR}/include/utility")
 
 set(PFW_INCLUDE_DIRS
-    ${PFW_CORE_INCLUDE_DIR}
-    ${PFW_XMLSERIALIZER_INCLUDE_DIR}
-    ${PFW_UTILITY_INCLUDE_DIR})
-set(PFW_LIBRARIES ${PFW_CORE_LIBRARY})
+    "${PFW_CORE_INCLUDE_DIR}"
+    "${PFW_XMLSERIALIZER_INCLUDE_DIR}"
+    "${PFW_UTILITY_INCLUDE_DIR}")
 
 add_library(skeleton-subsystem SHARED
 SkeletonSubsystemBuilder.cpp

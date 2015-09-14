@@ -34,7 +34,7 @@ project(parameter-framework-clientSimulator)
 # Force usage of Python 3.x ...
 find_package(PythonInterp 3 REQUIRED)
 # ... and force the libs to be at the same version as the interpreter
-find_package(PythonLibs ${PYTHON_VERSION_STRING} EXACT REQUIRED)
+find_package(PythonLibs "${PYTHON_VERSION_STRING}" EXACT REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
 # Find the python modules install path.
@@ -42,11 +42,11 @@ include_directories(${PYTHON_INCLUDE_DIRS})
 # module and not only a pure python module.
 # prefix='' makes get_python_lib return a relative path.
 execute_process(COMMAND
-    ${PYTHON_EXECUTABLE} -c
+    "${PYTHON_EXECUTABLE}" -c
         "from distutils import sysconfig;\\
          print(sysconfig.get_python_lib(plat_specific=True, prefix=''))"
     OUTPUT_VARIABLE PYTHON_MODULE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-install(DIRECTORY clientsimulator DESTINATION ${PYTHON_MODULE_PATH})
+install(DIRECTORY clientsimulator DESTINATION "${PYTHON_MODULE_PATH}")
 
 install(PROGRAMS pfClientSimulator.py DESTINATION bin)

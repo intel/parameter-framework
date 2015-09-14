@@ -27,13 +27,13 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 find_package(SWIG REQUIRED)
-include(${SWIG_USE_FILE})
+include("${SWIG_USE_FILE}")
 
 # Force usage of Python 2.7.x ...
 find_package(PythonInterp 2.7 REQUIRED)
 
 # ... and force the libs to be at the same version as the interpreter
-find_package(PythonLibs ${PYTHON_VERSION_STRING} EXACT REQUIRED)
+find_package(PythonLibs "${PYTHON_VERSION_STRING}" EXACT REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
 include_directories(
@@ -54,7 +54,7 @@ swig_link_libraries(PyPfw parameter ${PYTHON_LIBRARIES})
 # needs to contain both _PyPfw.so and PyPfw.py. Without the line below,
 # _PyPfw.so would be put in ${CMAKE_BINARY_DIR}/lib while PyPfw.py is put in
 # ${CMAKE_CURRENT_BINARY_DIR}.
-set_property(TARGET _PyPfw PROPERTY LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+set_property(TARGET _PyPfw PROPERTY LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
 
 # '-DSWIG_PYTHON_SILENT_MEMLEAK' is needed because the "memleak" warning
 # pollutes the standard output. At the time of writing, the only warning is
@@ -70,12 +70,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSWIG_PYTHON_SILENT_MEMLEAK -Wno-error"
 # module and not only a pure python module.
 # prefix='' makes get_python_lib return a relative path.
 execute_process(COMMAND
-    ${PYTHON_EXECUTABLE} -c
+    "${PYTHON_EXECUTABLE}" -c
         "from distutils import sysconfig;\\
          print(sysconfig.get_python_lib(plat_specific=True, prefix=''))"
     OUTPUT_VARIABLE PYTHON_MODULE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-install(TARGETS _PyPfw LIBRARY DESTINATION ${PYTHON_MODULE_PATH})
+install(TARGETS _PyPfw LIBRARY DESTINATION "${PYTHON_MODULE_PATH}")
 
 # install the generated Python file as well
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PyPfw.py DESTINATION ${PYTHON_MODULE_PATH})
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/PyPfw.py" DESTINATION "${PYTHON_MODULE_PATH}")
