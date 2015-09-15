@@ -87,7 +87,7 @@ Also, CMake can build a project out-of-tree, which is the recommended method:
     cmake /path/to/sources/of/parameter-framework
     make
 
-After an install you may want to run the parameter-framework tests with
+After a build you may want to run the parameter-framework tests with
 `make test`.
 
 You may take a look at `.travis.yml` and `appveyor.yml` for examples on how we
