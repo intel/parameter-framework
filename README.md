@@ -88,7 +88,7 @@ Also, CMake can build a project out-of-tree, which is the recommended method:
     make
 
 After a build you may want to run the parameter-framework tests with
-`make test`.
+`make test` or `ctest`.
 
 You may take a look at `.travis.yml` and `appveyor.yml` for examples on how we
 build the Parameter Framework in the CI.
