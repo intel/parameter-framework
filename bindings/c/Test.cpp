@@ -76,23 +76,20 @@ struct Test
     public:
         TmpFile(const std::string &content) {
             char tmpName[] = "./tmpPfwUnitTestXXXXXX";
-            mFd = mkstemp(tmpName);
-            CAPTURE(errno);
-            REQUIRE(mFd != -1);
-            mPath = tmpName;
-            std::ofstream f(tmpName);
+            char *path = tmpnam(tmpName);
+            REQUIRE(path != NULL);
+            mPath = path;
+            std::ofstream f(path);
             f.exceptions(~std::ios::goodbit);
             f << content;
         }
         ~TmpFile() {
-            CHECK(close(mFd) != -1);
             unlink(mPath.c_str());
         }
         operator const char *() const { return mPath.c_str(); }
         const std::string &path() const { return mPath; }
     private:
         std::string mPath;
-        int mFd;
     };
 
     /** Log in logLines. */
