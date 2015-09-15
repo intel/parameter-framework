@@ -28,7 +28,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <strings.h>
 #include <iostream>
 #include <stdlib.h>
 #include <sstream>
