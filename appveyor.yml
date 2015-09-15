@@ -17,7 +17,9 @@ install:
     wget --no-check-certificate https://01.org/sites/default/files/asio-1.10.6.tar.gz &
     7z x asio-1.10.6.tar.gz &
     7z x -i"!asio*/include" asio-1.10.6.tar)
-- set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6
+- if not exist catch (
+    wget --no-check-certificate https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp --directory-prefix catch )
+- set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6;%APPVEYOR_BUILD_FOLDER%\catch
 - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
 cache:
 - C:\ProgramData\chocolatey\bin -> appveyor.yml
@@ -25,10 +27,11 @@ cache:
 - libxml2-x86_64                -> appveyor.yml
 - libxml2-x86_64-debug          -> appveyor.yml
 - asio-1.10.6                   -> appveyor.yml
+- catch                         -> appveyor.yml
 build_script:
 - mkdir build\64bits-release& cd build\64bits-release
-- cmake -G "NMake Makefiles" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64;%PREFIX_PATH%" ..\..
+- cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64;%PREFIX_PATH%" ..\..
 - cmake --build . --config release
 - cd ..& mkdir 64bits-debug& cd 64bits-debug
-- cmake -G "NMake Makefiles" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug;%PREFIX_PATH%" ..\..
+- cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug;%PREFIX_PATH%" ..\..
 - cmake --build . --config debug
