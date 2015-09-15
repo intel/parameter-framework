@@ -19,9 +19,7 @@ cache:
 build_script:
 - mkdir build\64bits-release& cd build\64bits-release
 - cmake -G "NMake Makefiles" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64;%APPVEYOR_BUILD_FOLDER%\asio-1.10.6" ..\..
-- cmake --build . --config release --target test-platform
-- cmake --build . --config release --target remote-process
+- cmake --build . --config release
 - cd ..& mkdir 64bits-debug& cd 64bits-debug
 - cmake -G "NMake Makefiles" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug;%APPVEYOR_BUILD_FOLDER%\asio-1.10.6" ..\..
-- cmake --build . --config debug --target test-platform
-- cmake --build . --config debug --target remote-process
+- cmake --build . --config debug
