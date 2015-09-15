@@ -46,6 +46,21 @@
 namespace parameterFramework
 {
 
+/** Value to test with a title.
+ *
+ * When testing code it is often useful to have an list of possible
+ * values and run the test for each of them.
+ * This class represents one element of this list. For the complete list
+ * see Tests.
+ *
+ * Catch has no build-in support for such need
+ * (in fact it has but it is still experimental, look for "generators")
+ * but it can be emulated with a loop over Tests.
+ *
+ * Each Test MUST specify a unique title, Ie all titles of a Tests MUST
+ * be different. This is dued to the way that catch detects that a SECTION
+ * has already been run. For more explanation see Tests.
+ */
 template <class Value>
 struct Test
 {
@@ -53,11 +68,46 @@ struct Test
     Value payload;
 };
 
-/** Using C style array instead of a C++ collection to workaround
- *  initializer list not supporting move semantic.
+/** Use a vector to represent a collection of test input.
+ *
+ * This type is designed to be used to parametrize tests.
+ * Use it as follow:
+ *     for (auto &test : Tests<std::string>{
+ *     //                      ^~~~~~~~~~~ Test parameter type
+ *             {"an invalid tag", "<invalid tag\"/> "},
+ *           //^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Test parameters
+ *             {"an unknown tag", "<unknown_tag/>"},
+ *           // ^~~~~~~~~~~~~~~~ Unique title across the tests
+ *             {"an unclosed tag", "<unclosed>"} }) {
+ *           //                    ^~~~~~~~~~~ Value to test
+ *         SECTION("Testing: " + test.title) {
+ *         //                     ^~~~~~~~~~ Section title MUST unique
+ *            test.payload //< value to test
+ *            REQUIRE(getTag() != test.payload); // Example
+ *            ...
+ *         }
+ *     }
+ *
+ *
+ * Beware that if Value is not copyable, only movable this will
+ * fail to compile as initializer_list does not support move semantic
+ * (lets hope it will be fix in C++17).
+ *
+ * If a new test vector needs to support move, define:
+ *     template <class Value>
+ *     using MovableTests = Test<value>[];
+ * This could be the default but VS2013 does not support it.
+ * VS requires that an array size be defined. Thus define
+ *     template <class Value, size_t size>
+ *     using MovableTests = Test<value>[size];
+ * will fix the VS compilation. Nevertheless this means that
+ * all move only test vector will need to specify their size
+ * which is redondant.
+ * This is why it is not the default.
+ * Hopefully it will be when VS will support deducing the size.
  */
 template <class Value>
-using Tests = Test<Value>[];
+using Tests = std::vector<Test<Value>>;
 
 /** Defer Parameter Framework creation.
  * A custom configuration can be provided.
