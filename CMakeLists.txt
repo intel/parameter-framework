@@ -59,9 +59,16 @@ if (WIN32)
     # Force include iso646.h to support alternative operator form (and, or, not...)
     # Such support is require by the standard and can be enabled with /Za
     # but doing so breaks compilation of windows headers...
+    #
     # Suppress warning 4127 (Conditional expression is constant) as it break
     # compilation when testing template value arguments or writing `while(true)`.
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /FIiso646.h -wd4127")
+    #
+    # Suppress warning 4251 (related to exported symbol without dll interface)
+    # as it refers to private members (coding style forbids exposing attribute)
+    # and thus are not to be used by the client. A better fix would be to export
+    # only public methods instead of the whole class, but they are too many to
+    # do that. A separated plugin interface would fix that.
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /FIiso646.h -wd4127 -wd4251")
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra")
 endif ()
