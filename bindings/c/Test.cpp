@@ -30,6 +30,8 @@
 
 #include "ParameterFramework.h"
 
+#include "TmpFile.hpp"
+
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main()
 #include <catch.hpp>
 
@@ -40,6 +42,7 @@
 #include <cstring>
 #include <cerrno>
 #include <climits>
+
 
 struct Test
 {
@@ -70,26 +73,20 @@ struct Test
         }
     }
 
-    /** Class to create a temporary file */
-    class TmpFile
+    /** Wrap utility::TmpFile to add an implicit convertion to the temporary file.
+     *
+     * This avoids dozens of .getPath() in the following tests. */
+    class TmpFile : private parameterFramework::utility::TmpFile
     {
-    public:
-        TmpFile(const std::string &content) {
-            char tmpName[] = "./tmpPfwUnitTestXXXXXX";
-            char *path = tmpnam(tmpName);
-            REQUIRE(path != NULL);
-            mPath = path;
-            std::ofstream f(path);
-            f.exceptions(~std::ios::goodbit);
-            f << content;
-        }
-        ~TmpFile() {
-            unlink(mPath.c_str());
-        }
-        operator const char *() const { return mPath.c_str(); }
-        const std::string &path() const { return mPath; }
     private:
-        std::string mPath;
+        using Base = parameterFramework::utility::TmpFile;
+    public:
+        /** `using Base::TmpFile` does not work on VS 2013*/
+        TmpFile(std::string content) : Base(content) {}
+        
+        using Base::getPath;
+        /** Implicitly convert to the path of the temporary file. */
+        operator const char *() const { return getPath().c_str(); }
     };
 
     /** Log in logLines. */
@@ -139,13 +136,13 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
         </Subsystem>");
     TmpFile libraries("<?xml version='1.0' encoding='UTF-8'?>\
         <SystemClass Name='test'>\
-            <SubsystemInclude Path='" + system.path() + "'/>\
+            <SubsystemInclude Path='" + system.getPath() + "'/>\
         </SystemClass>");
     TmpFile config("<?xml version='1.0' encoding='UTF-8'?>\
         <ParameterFrameworkConfiguration\
             SystemClassName='test' TuningAllowed='false'>\
             <SubsystemPlugins/>\
-            <StructureDescriptionFileLocation Path='" + libraries.path() + "'/>\
+            <StructureDescriptionFileLocation Path='" + libraries.getPath() + "'/>\
         </ParameterFrameworkConfiguration>");
 
     GIVEN("A created parameter framework") {
