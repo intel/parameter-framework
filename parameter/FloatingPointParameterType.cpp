@@ -201,7 +201,7 @@ void CFloatingPointParameterType::setOutOfRangeError(
         if (CUtility::isHexadecimal(strValue)) {
 
             ostrStream << std::showbase << std::hex
-                       << std::setw(getSize() * 2) << std::setfill('0');
+                       << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0');
         }
 
         ostrStream << "raw range [" << uiMin << ", " << uiMax << "]";
@@ -223,7 +223,7 @@ bool CFloatingPointParameterType::fromBlackboard(
         if (parameterAccessContext.outputRawFormatIsHex()) {
 
             ostrStream << std::showbase << std::hex
-                       << std::setw(getSize() * 2) << std::setfill('0');
+                       << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0');
         }
 
         ostrStream << uiValue;

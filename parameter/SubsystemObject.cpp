@@ -34,6 +34,7 @@
 #include "ParameterAccessContext.h"
 #include "MappingContext.h"
 #include "ParameterType.h"
+#include "convert.hpp"
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -80,7 +81,14 @@ size_t CSubsystemObject::getSize() const
 // Conversion utility
 uint32_t CSubsystemObject::asInteger(const string& strValue)
 {
-    return strtoul(strValue.c_str(), NULL, 0);
+    uint32_t value;
+
+    if (!convertTo(strValue, value)) {
+
+        return 0u;
+    }
+
+    return value;
 }
 
 string CSubsystemObject::asString(uint32_t uiValue)

@@ -29,8 +29,10 @@
  */
 #include "Message.h"
 #include "Iterator.hpp"
+#include "AlwaysAssert.hpp"
 #include <vector>
 #include <numeric>
+#include <limits>
 #include <cassert>
 
 using std::string;
@@ -83,15 +85,17 @@ void CMessage::readData(void* pvData, size_t size)
     _uiIndex += size;
 }
 
-void CMessage::writeString(const string& strData)
+void CMessage::writeString(const string& data)
 {
     // Size
-    uint32_t uiSize = strData.length();
+    ALWAYS_ASSERT(data.length() <= std::numeric_limits<uint32_t>::max(), "String length overflow");
 
-    writeData(&uiSize, sizeof(uiSize));
+    uint32_t size = static_cast<uint32_t>(data.length());
+
+    writeData(&size, sizeof(size));
 
     // Content
-    writeData(strData.c_str(), uiSize);
+    writeData(data.c_str(), size);
 }
 
 void CMessage::readString(string& strData)
