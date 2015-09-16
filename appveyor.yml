@@ -5,18 +5,26 @@ branches:
 os: Visual Studio 2015
 install:
 - cinst cmake.portable wget 7zip.commandline
-- wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip
-- wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip
-- wget --no-check-certificate https://01.org/sites/default/files/asio-1.10.6.tar.gz
-- 7z x libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip
-- 7z x libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip
-- 7z x asio-1.10.6.tar.gz
-- 7z x asio-1.10.6.tar
+- dir
+- if not exist libxml2-x86_64 (
+    wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip &
+    7z x libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
+- if not exist libxml2-x86_64-debug (
+    wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip &
+    7z x libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
+- if not exist asio-1.10.6 (
+    wget --no-check-certificate https://01.org/sites/default/files/asio-1.10.6.tar.gz &
+    7z x asio-1.10.6.tar.gz &
+    7z x asio-1.10.6.tar)
+- dir
 - set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64;%APPVEYOR_BUILD_FOLDER%\asio-1.10.6
 - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
 cache:
 - C:\ProgramData\chocolatey\bin -> appveyor.yml
 - C:\ProgramData\chocolatey\lib -> appveyor.yml
+- libxml2-x86_64                -> appveyor.yml
+- libxml2-x86_64-debug          -> appveyor.yml
+- asio-1.10.6                   -> appveyor.yml
 build_script:
 - mkdir build\64bits-release& cd build\64bits-release
 - cmake -G "NMake Makefiles" -DBUILD_TESTING=OFF -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" ..\..
