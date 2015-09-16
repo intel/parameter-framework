@@ -33,9 +33,12 @@
 #include "Subsystem.h"
 #include <assert.h>
 #include "ParameterMgr.h"
-#include "AutoLock.h"
+
+#include <mutex>
 
 using std::string;
+using std::mutex;
+using std::lock_guard;
 
 CParameterHandle::CParameterHandle(const CBaseParameter* pParameter, CParameterMgr* pParameterMgr)
     : _pBaseParameter(pParameter), _pParameterMgr(pParameterMgr), _bBigEndianSubsystem(pParameter->getBelongingSubsystem()->isBigEndian())
@@ -80,7 +83,7 @@ bool CParameterHandle::setAsBoolean(bool bValue, string& strError)
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -102,7 +105,7 @@ bool CParameterHandle::getAsBoolean(bool& bValue, string& strError) const
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -118,7 +121,7 @@ bool CParameterHandle::setAsBooleanArray(const std::vector<bool>& abValues, stri
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -143,7 +146,7 @@ bool CParameterHandle::getAsBooleanArray(std::vector<bool>& abValues, string& st
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -160,7 +163,7 @@ bool CParameterHandle::setAsInteger(uint32_t uiValue, string& strError)
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -182,7 +185,7 @@ bool CParameterHandle::getAsInteger(uint32_t& uiValue, string& strError) const
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -198,7 +201,7 @@ bool CParameterHandle::setAsIntegerArray(const std::vector<uint32_t>& auiValues,
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -223,7 +226,7 @@ bool CParameterHandle::getAsIntegerArray(std::vector<uint32_t>& auiValues, strin
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -240,7 +243,7 @@ bool CParameterHandle::setAsSignedInteger(int32_t iValue, string& strError)
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -262,7 +265,7 @@ bool CParameterHandle::getAsSignedInteger(int32_t& iValue, string& strError) con
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -278,7 +281,7 @@ bool CParameterHandle::setAsSignedIntegerArray(const std::vector<int32_t>& aiVal
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -303,7 +306,7 @@ bool CParameterHandle::getAsSignedIntegerArray(std::vector<int32_t>& aiValues, s
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -320,7 +323,7 @@ bool CParameterHandle::setAsDouble(double dValue, string& strError)
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -342,7 +345,7 @@ bool CParameterHandle::getAsDouble(double& dValue, string& strError) const
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -358,7 +361,7 @@ bool CParameterHandle::setAsDoubleArray(const std::vector<double>& adValues, str
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -383,7 +386,7 @@ bool CParameterHandle::getAsDoubleArray(std::vector<double>& adValues, string& s
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -400,7 +403,7 @@ bool CParameterHandle::setAsString(const string& strValue, string& strError)
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -425,7 +428,7 @@ bool CParameterHandle::getAsString(string& strValue, string& strError) const
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -441,7 +444,7 @@ bool CParameterHandle::setAsStringArray(const std::vector<string>& astrValues, s
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -466,7 +469,7 @@ bool CParameterHandle::getAsStringArray(std::vector<string>& astrValues, string&
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
