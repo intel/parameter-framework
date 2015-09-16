@@ -163,12 +163,13 @@ void CFixedPointParameterType::setOutOfRangeError(const string& strValue, CParam
 
         if (CUtility::isHexadecimal(strValue)) {
 
+            strStream << std::hex << std::uppercase <<
+                      std::setw(static_cast<int>(getSize()) * 2) << std::setfill('0');
+
             // Format Min
-            strStream << "0x" << std::hex << std::uppercase <<
-                std::setw(getSize() * 2) << std::setfill('0') << makeEncodable(iMin);
+            strStream << "0x" << makeEncodable(iMin);
             // Format Max
-            strStream << ", 0x" << std::hex << std::uppercase <<
-                std::setw(getSize() * 2) << std::setfill('0') << makeEncodable(iMax);
+            strStream << ", 0x" << makeEncodable(iMax);
 
         } else {
 
@@ -198,7 +199,7 @@ bool CFixedPointParameterType::fromBlackboard(string& strValue, const uint32_t& 
         // Hexa formatting?
         if (parameterAccessContext.outputRawFormatIsHex()) {
 
-            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << (uint32_t)iData;
+            strStream << "0x" << std::hex << std::uppercase << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0') << (uint32_t)iData;
         } else {
 
             // Sign extend
@@ -269,8 +270,8 @@ size_t CFixedPointParameterType::getUtilSizeInBits() const
 // Compute the range for the type (minimum and maximum values)
 void CFixedPointParameterType::getRange(double& dMin, double& dMax) const
 {
-    dMax = (double)((1UL << (_uiIntegral + _uiFractional)) - 1) / (1UL << _uiFractional);
-    dMin = -(double)(1UL << (_uiIntegral + _uiFractional)) / (1UL << _uiFractional);
+    dMax = (double)((1UL << (_uiIntegral + _uiFractional)) - 1) / double(1UL << _uiFractional);
+    dMin = -(double)(1UL << (_uiIntegral + _uiFractional)) / double(1UL << _uiFractional);
 }
 
 bool CFixedPointParameterType::convertFromHexadecimal(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
@@ -331,7 +332,7 @@ bool CFixedPointParameterType::checkValueAgainstRange(double dValue) const
 int32_t CFixedPointParameterType::doubleToBinaryQnm(double dValue) const
 {
     // For Qn.m number, multiply by 2^n and round to the nearest integer
-    int32_t iData = static_cast<int32_t>(round(dValue * (1UL << _uiFractional)));
+    int32_t iData = static_cast<int32_t>(round(dValue * double(1UL << _uiFractional)));
     // Left justify
     // For a Qn.m number, shift 32 - (n + m + 1) bits to the left (the rest of
     // the bits aren't used)
@@ -345,7 +346,7 @@ double CFixedPointParameterType::binaryQnmToDouble(int32_t iValue) const
 {
     // Unjustify
     iValue >>= getSize() * 8 - getUtilSizeInBits();
-    return static_cast<double>(iValue) / (1UL << _uiFractional);
+    return static_cast<double>(iValue) / double(1UL << _uiFractional);
 }
 
 // From IXmlSource

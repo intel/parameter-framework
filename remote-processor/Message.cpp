@@ -86,12 +86,12 @@ void CMessage::readData(void* pvData, size_t size)
 void CMessage::writeString(const string& strData)
 {
     // Size
-    uint32_t uiSize = strData.length();
+    uint32_t size = static_cast<uint32_t>(strData.length());
 
-    writeData(&uiSize, sizeof(uiSize));
+    writeData(&size, sizeof(size));
 
     // Content
-    writeData(strData.c_str(), uiSize);
+    writeData(strData.c_str(), size);
 }
 
 void CMessage::readString(string& strData)

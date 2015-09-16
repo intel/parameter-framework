@@ -31,12 +31,13 @@
 
 #include "SubsystemObjectCreator.h"
 #include <string>
+#include <limits>
 
 template <class SubsystemObjectType>
 class TSubsystemObjectFactory : public CSubsystemObjectCreator
 {
 public:
-    TSubsystemObjectFactory(const std::string& strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize = -1) :
+    TSubsystemObjectFactory(const std::string& strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize = std::numeric_limits<size_t>::max()) :
         CSubsystemObjectCreator(strMappingKey, uiAncestorIdMask, maxConfigurableElementSize) {}
 
     // Object creation

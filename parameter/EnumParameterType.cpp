@@ -127,7 +127,7 @@ int32_t CEnumParameterType::getMax() const {
 bool CEnumParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& /*ctx*/) const
 {
     // Convert the raw value from the blackboard
-    int32_t iValue = uiValue;
+    int32_t iValue = int32_t(uiValue);
     signExtend(iValue);
 
     // Convert from numerical space to literal space
@@ -156,14 +156,14 @@ bool CEnumParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CPa
         return false;
     }
 
-    uiValue = iUserValue;
+    uiValue = uint32_t(iUserValue);
 
     return true;
 }
 
 bool CEnumParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    int32_t iValue = uiValue;
+    int32_t iValue = int32_t(uiValue);
 
     // Sign extend
     signExtend(iValue);

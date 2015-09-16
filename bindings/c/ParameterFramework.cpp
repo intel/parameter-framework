@@ -195,7 +195,7 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
                 }
                 value = 1 << valueIndex;
             } else {
-                value = valueIndex;
+                value = int(valueIndex);
             }
             const char * valueName = criterion.values[valueIndex];
             string error;

@@ -188,7 +188,7 @@ bool CIntegerParameterType::fromBlackboard(string& strValue, const uint32_t& uiV
     if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
 
         // Hexa display with unecessary bits cleared out
-        strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << uiValue;
+        strStream << "0x" << std::hex << std::uppercase << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0') << uiValue;
     } else {
 
         if (_bSigned) {
@@ -392,9 +392,9 @@ template <typename type> bool CIntegerParameterType::checkValueAgainstRange(cons
         if (bHexaValue) {
 
             // Format Min
-            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(minValue);
+            strStream << "0x" << std::hex << std::uppercase << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0') << makeEncodable(static_cast<uint32_t>(minValue));
             // Format Max
-            strStream << ", 0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(maxValue);
+            strStream << ", 0x" << std::hex << std::uppercase << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0') << makeEncodable(static_cast<uint32_t>(maxValue));
 
         } else {
 
