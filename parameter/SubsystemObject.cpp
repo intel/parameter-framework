@@ -34,6 +34,7 @@
 #include "ParameterAccessContext.h"
 #include "MappingContext.h"
 #include "ParameterType.h"
+#include "convert.hpp"
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
