@@ -87,7 +87,20 @@ private:
         if (path == nullptr) {
             throw std::runtime_error("Could not create tmp file: " + strerror());
         }
-        return path;
+#       ifdef WIN32
+            // From: https://msdn.microsoft.com/en-us/library/vstudio/hs3e7355%28v=vs.100%29.aspx
+            // > `tmpnam` returns a name unique in the current working directory.
+            // > When a file name is pre-pended with a backslash
+            // > and no path information, such as "\fname21", this indicates that
+            // > the name is valid for the current working directory.
+            //
+            // From the above it seems that `tmpnam` always returns a file name
+            // prefixed by `\`. Thus `.` need to be appended to transform it to
+            // a path to the current directory.
+            return std::string(".") + path;
+#       else
+            return path;
+#       endif
     }
     static std::string strerror() {
         return '(' + std::to_string(errno) + ')' + std::strerror(errno);
