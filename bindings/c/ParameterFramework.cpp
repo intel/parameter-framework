@@ -148,9 +148,7 @@ PfwHandler *pfwCreate()
 
 void pfwDestroy(PfwHandler *handle)
 {
-    if (handle->pfw != NULL) {
-        delete handle->pfw;
-    }
+    delete handle->pfw;
     delete handle;
 }
 
