@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,23 +28,21 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "Message.h"
+#include "Iterator.hpp"
 #include <vector>
+#include <numeric>
+#include <cassert>
 
 using std::string;
 
 CMessage::CMessage(MsgType ucMsgId) :
-    _ucMsgId(ucMsgId), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
+    _ucMsgId(ucMsgId), _uiIndex(0)
 {
 }
 
 CMessage::CMessage() :
-    _ucMsgId(static_cast<MsgType>(-1)), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
+    _ucMsgId(static_cast<MsgType>(-1)), _uiIndex(0)
 {
-}
-
-CMessage::~CMessage()
-{
-    delete [] _pucData;
 }
 
 // Msg Id
@@ -53,26 +51,35 @@ CMessage::MsgType CMessage::getMsgId() const
     return _ucMsgId;
 }
 
+void CMessage::assertValidAccess(size_t offset, size_t size) const
+{
+    assert(offset + size <= getMessageDataSize());
+}
+
 // Data
 void CMessage::writeData(const void* pvData, size_t size)
 {
-    assert(_uiIndex + size <= _uiDataSize);
+    assertValidAccess(_uiIndex, size);
 
-    // Copy
-    memcpy(&_pucData[_uiIndex], pvData, size);
+    auto first = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvData), size);
+    auto last = first + size;
+    auto destFirst = begin(mData) + _uiIndex;
 
-    // Index
+    std::copy(first, last, destFirst);
+
     _uiIndex += size;
 }
 
 void CMessage::readData(void* pvData, size_t size)
 {
-    assert(_uiIndex + size <= _uiDataSize);
+    assertValidAccess(_uiIndex, size);
 
-    // Copy
-    memcpy(pvData, &_pucData[_uiIndex], size);
+    auto first = begin(mData) + _uiIndex;
+    auto last = first + size;
+    auto destFirst = MAKE_ARRAY_ITERATOR(static_cast<uint8_t *>(pvData), size);
 
-    // Index
+    std::copy(first, last, destFirst);
+
     _uiIndex += size;
 }
 
@@ -116,7 +123,7 @@ size_t CMessage::getStringSize(const string& strData) const
 // Remaining data size
 size_t CMessage::getRemainingDataSize() const
 {
-    return _uiDataSize - _uiIndex;
+    return getMessageDataSize() - _uiIndex;
 }
 
 // Send/Receive
@@ -132,7 +139,7 @@ CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, s
         fillDataToSend();
 
         // Finished providing data?
-        assert(_uiIndex == _uiDataSize);
+        assert(_uiIndex == getMessageDataSize());
 
         // First send sync word
         uint16_t uiSyncWord = SYNC_WORD;
@@ -146,7 +153,7 @@ CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, s
         }
 
         // Size
-        uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + _uiDataSize);
+        uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + getMessageDataSize());
 
         if (!asio::write(socket, asio::buffer(&uiSize, sizeof(uiSize)), ec)) {
 
@@ -162,7 +169,7 @@ CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, s
         }
 
         // Data
-        if (!asio::write(socket, asio::buffer(_pucData, _uiDataSize), ec)) {
+        if (!asio::write(socket, asio::buffer(mData), ec)) {
 
             strError = string("Data write failed: ") + ec.message();
             return error;
@@ -217,7 +224,7 @@ CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, s
         allocateData(uiSize - sizeof(_ucMsgId));
 
         // Data receive
-        if (!asio::read(socket, asio::buffer(_pucData, _uiDataSize), ec)) {
+        if (!asio::read(socket, asio::buffer(mData), ec)) {
             strError = string("Data read failed: ") + ec.message();
             return error;
         }
@@ -246,29 +253,17 @@ CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, s
 // Checksum
 uint8_t CMessage::computeChecksum() const
 {
-    auto uiChecksum = static_cast<uint8_t>(_ucMsgId);
-
-    for (size_t index = 0; index < _uiDataSize; index++) {
-
-        uiChecksum += _pucData[index];
-    }
-
-    return uiChecksum;
+    return accumulate(begin(mData), end(mData), static_cast<uint8_t>(_ucMsgId));
 }
 
 // Allocation of room to store the message
 void CMessage::allocateData(size_t size)
 {
     // Remove previous one
-    if (_pucData) {
+    mData.clear();
 
-        delete [] _pucData;
-    }
     // Do allocate
-    _pucData = new uint8_t[size];
-
-    // Record size
-    _uiDataSize = size;
+    mData.resize(size);
 
     // Reset Index
     _uiIndex = 0;

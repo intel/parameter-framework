@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,55 +27,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#pragma once
 
-#include "parameter_export.h"
+#include <iterator>
 
-
-#include <stdint.h>
-#include <string>
-#include <vector>
-
-class PARAMETER_EXPORT CMappingContext
-{
-private:
-    // Item structure
-    struct SItem {
-        const std::string* strKey;
-        const std::string* strItem;
-        bool bSet;
-    };
-
-public:
-    CMappingContext(size_t uiNbItemTypes) : mItems(uiNbItemTypes) {}
-
-    // Item access
-    /**
-     * Set context mapping item key and value.
-     *
-     * @param[in] itemType Mapping item index.
-     * @param[in] pStrKey Mapping item key name.
-     * @param[in] pStrItem Mapping item value.
-     *
-     * @return False if already set, true else.
+#ifdef _MSC_VER
+#   include <iterator>
+    /** Visual studio raises a warning if the check iterator feature is activated
+     * but a raw pointer is used as iterator (as it can not check it's bounds).
+     * As it is a safety feature, do not silent the warning, but use the
+     * microsoft specific `make_check_array_iterator` that take a pointer
+     * and the size of the underline buffer.
+     * For other compiler, use the raw pointer.
      */
-    bool setItem(size_t itemType, const std::string* pStrKey, const std::string* pStrItem);
-    const std::string& getItem(size_t itemType) const;
-    size_t getItemAsInteger(size_t itemType) const;
-    /**
-     * Get mapping item value from its key name.
-     *
-     * @param[in] strKey Mapping item key name.
-     *
-     * @return Mapping item value pointer if found, NULL else.
-     */
-    const std::string* getItem(const std::string& strKey) const;
-    bool iSet(size_t itemType) const;
-
-private:
-    size_t getNbItems() const { return mItems.size(); }
-
-    using Items = std::vector<SItem>;
-    Items mItems;
-};
-
+#   define MAKE_ARRAY_ITERATOR(begin, size) stdext::make_checked_array_iterator(begin, size)
+#else
+    /** By default an array iterator is a pointer to the first element. */
+#   define MAKE_ARRAY_ITERATOR(begin, size) begin
+#endif

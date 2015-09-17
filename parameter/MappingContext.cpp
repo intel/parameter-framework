@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,113 +28,59 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "MappingContext.h"
-#include <assert.h>
-#include <string.h>
-#include <stdlib.h>
+#include <cassert>
+#include <algorithm>
+#include <cstdlib>
 
 using std::string;
-
-CMappingContext::CMappingContext(size_t uiNbItemTypes) : _pstItemArray(new CMappingContext::SItem[uiNbItemTypes]), _uiNbItemTypes(uiNbItemTypes)
-{
-    // Clear items
-    memset(_pstItemArray, 0, sizeof(*_pstItemArray) * uiNbItemTypes);
-}
-
-CMappingContext::~CMappingContext()
-{
-    delete [] _pstItemArray;
-}
-
-// Copy constructor
-CMappingContext::CMappingContext(const CMappingContext& from) : _pstItemArray(new CMappingContext::SItem[from._uiNbItemTypes]), _uiNbItemTypes(from._uiNbItemTypes)
-{
-    // FIXME: delegate constructor
-    // Copy content items
-    memcpy(_pstItemArray, from._pstItemArray, sizeof(*_pstItemArray) * _uiNbItemTypes);
-}
-
-// Affectation
-CMappingContext& CMappingContext::operator=(const CMappingContext& right)
-{
-    // FIXME: use a vector of CMappingContext::SItem
-    if (&right != this) {
-
-        // Size
-        _uiNbItemTypes = right._uiNbItemTypes;
-
-        // Content
-        // Delete previous array
-        delete [] _pstItemArray;
-
-        // Reallocate it
-        _pstItemArray = new CMappingContext::SItem[_uiNbItemTypes];
-
-        // Copy content items
-        memcpy(_pstItemArray, right._pstItemArray, sizeof(*_pstItemArray) * _uiNbItemTypes);
-    }
-    return *this;
-}
 
 // Item access
 bool CMappingContext::setItem(size_t itemType, const string* pStrKey, const string* pStrItem)
 {
-    // Do some checks
-    for (size_t index = 0; index < _uiNbItemTypes; index++) {
-
+    for (const auto &item : mItems) {
         // Does key already exist ?
-        assert(_pstItemArray[index].strKey != pStrKey);
+        assert(item.strKey != pStrKey);
     }
-
-    if (_pstItemArray[itemType].bSet) {
-
+    if (mItems[itemType].bSet) {
         // Already set!
         return false;
     }
 
     // Set item key
-    _pstItemArray[itemType].strKey = pStrKey;
+    mItems[itemType].strKey = pStrKey;
 
     // Set item value
-    _pstItemArray[itemType].strItem = pStrItem;
+    mItems[itemType].strItem = pStrItem;
 
     // Now is set
-    _pstItemArray[itemType].bSet = true;
-
+    mItems[itemType].bSet = true;
     return true;
 }
 
 const string&  CMappingContext::getItem(size_t itemType) const
 {
-    return *_pstItemArray[itemType].strItem;
+    return *mItems[itemType].strItem;
 }
 
 size_t CMappingContext::getItemAsInteger(size_t itemType) const
 {
-    if (!_pstItemArray[itemType].strItem) {
+    if (!mItems[itemType].strItem) {
 
         return 0;
     }
 
-    return strtoul(_pstItemArray[itemType].strItem->c_str(), NULL, 0);
+    return strtoul(mItems[itemType].strItem->c_str(), NULL, 0);
 }
 
 const string* CMappingContext::getItem(const string& strKey) const
 {
-    size_t itemType;
-
-    for (itemType = 0; itemType < _uiNbItemTypes; itemType++) {
-
-        if (_pstItemArray[itemType].strKey != NULL &&
-            strKey == *_pstItemArray[itemType].strKey) {
-
-            return _pstItemArray[itemType].strItem;
-        }
-    }
-
-    return NULL;
+    auto itemFound = find_if(begin(mItems), end(mItems), [&](const SItem &item) {
+        return item.strKey != NULL && strKey == *item.strKey;
+    });
+    return (itemFound != end(mItems)) ? itemFound->strKey : NULL;
 }
 
 bool CMappingContext::iSet(size_t itemType) const
 {
-    return _pstItemArray[itemType].bSet;
+    return mItems[itemType].bSet;
 }
