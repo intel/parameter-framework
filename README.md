@@ -1,7 +1,7 @@
 # parameter-framework
 
 [![Build Status](https://travis-ci.org/01org/parameter-framework.svg?branch=master)](https://travis-ci.org/01org/parameter-framework)
-[![Windows Build Status](https://ci.appveyor.com/api/projects/status/ga24jp8tet0qimbu/branch/windows_port)](https://ci.appveyor.com/project/dawagner/parameter-framework)
+[![Windows Build Status](https://ci.appveyor.com/api/projects/status/ga24jp8tet0qimbu/branch/windows_port)](https://ci.appveyor.com/project/parameter-framework/parameter-framework)
 [![Coverage Status](https://coveralls.io/repos/01org/parameter-framework/badge.svg?branch=master)](https://coveralls.io/r/01org/parameter-framework)
 
 ## Introduction
