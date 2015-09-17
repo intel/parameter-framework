@@ -27,6 +27,14 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 if (BUILD_TESTING)
+    if("${CMAKE_CURRENT_BINARY_DIR}" MATCHES ".* .*")
+        message(WARNING
+            "The build directory path contains a space. Unfortunately, the"
+            " legacy functional tests are known not to work in such a case."
+            " For this reason, they will be deactivated for this build.")
+        return()
+    endif()
+
     find_program(python2 python2)
 
     set(PFW_ROOT "${CMAKE_BINARY_DIR}/tmp/test-parameters")
