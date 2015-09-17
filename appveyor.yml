@@ -16,7 +16,7 @@ install:
 - if not exist asio-1.10.6 (
     wget --no-check-certificate https://01.org/sites/default/files/asio-1.10.6.tar.gz &
     7z x asio-1.10.6.tar.gz &
-    7z x asio-1.10.6.tar)
+    7z x -i"!asio*/include" asio-1.10.6.tar)
 - set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6
 - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
 cache:
