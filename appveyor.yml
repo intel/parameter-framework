@@ -43,6 +43,8 @@ install:
 
   # Instruct cmake were to find external dependancies
   - set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6;%APPVEYOR_BUILD_FOLDER%\catch
+  # function tests legacy are bash specific
+  - set CTEST_PARAMS=--output-on-failure --exclude-regex functional-test-legacy
   # Setup Visual studio build environement
   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
 
@@ -58,11 +60,17 @@ build_script:
   - mkdir build && cd build
 
   - mkdir 64bits-debug && cd 64bits-debug
-  - cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug;%PREFIX_PATH%" ..\..
+  # Add debug libxml2.dll in the path so that cmake & tests can find it
+  - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug\bin;%PATH%
+  - cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" ..\..
   - cmake --build . --config debug
-  - cd ..
-  
+  - ctest --build-config debug %CTEST_PARAMS%
+  - set PATH=%OLD_PATH% && cd ..
+
   - mkdir 64bits-release & cd 64bits-release
-  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64;%PREFIX_PATH%" ..\..
+  # Add release libxml2.dll in the path so that cmake & tests can find it
+  - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64\bin;%PATH%
+  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" ..\..
   - cmake --build . --config release
-  - cd ..
+  - ctest --build-config release %CTEST_PARAMS%
+  - set PATH=%OLD_PATH% && cd ..
