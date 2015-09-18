@@ -43,9 +43,14 @@ cache:
 - asio-1.10.6                   -> appveyor.yml
 - catch                         -> appveyor.yml
 build_script:
-- mkdir build\64bits-release& cd build\64bits-release
+- mkdir build & cd build
+
+- mkdir 64bits-release & cd 64bits-release
 - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64;%PREFIX_PATH%" ..\..
 - cmake --build . --config release
-- cd ..& mkdir 64bits-debug& cd 64bits-debug
+- cd ..
+
+- mkdir 64bits-debug & cd 64bits-debug
 - cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug;%PREFIX_PATH%" ..\..
 - cmake --build . --config debug
+- cd ..
