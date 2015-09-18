@@ -27,6 +27,8 @@
 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+#include "test_subsystem_export.h"
+
 #include "SubsystemLibrary.h"
 #include "LoggingElementBuilderTemplate.h"
 #include "TESTSubsystem.h"
@@ -34,6 +36,7 @@
 
 extern "C"
 {
+TEST_SUBSYSTEM_EXPORT
 void getTESTSubsystemBuilder(CSubsystemLibrary* pSubsystemLibrary, core::log::Logger& logger)
 {
     pSubsystemLibrary->addElementBuilder("TEST",

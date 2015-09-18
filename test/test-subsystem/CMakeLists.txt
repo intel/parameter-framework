@@ -35,7 +35,12 @@ if (BUILD_TESTING)
         TESTSubsystemString.cpp
         TESTSubsystemBuilder.cpp)
 
+    include (GenerateExportHeader)
+    generate_export_header(test-subsystem
+                           BASE_NAME test_subsystem)
+
     include_directories(
+        "${CMAKE_CURRENT_BINARY_DIR}"
         "${PROJECT_SOURCE_DIR}/xmlserializer"
         "${PROJECT_SOURCE_DIR}/utility"
         "${PROJECT_SOURCE_DIR}/parameter/log/include"
