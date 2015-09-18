@@ -43,60 +43,79 @@ class CConfigurationAccessContext;
 class CParameterAccessContext;
 class CAreaConfiguration;
 
-class PARAMETER_EXPORT CConfigurableElement : public CElement
+class CConfigurableElement : public CElement
 {
     friend class CConfigurableDomain;
     friend class CDomainConfiguration;
     typedef std::list<const CConfigurableDomain*>::const_iterator ConfigurableDomainListConstIterator;
 public:
+    PARAMETER_EXPORT
     CConfigurableElement(const std::string& strName = "");
+    PARAMETER_EXPORT
     virtual ~CConfigurableElement();
 
     // Offset in main blackboard
+    PARAMETER_EXPORT
     void setOffset(size_t offset);
+    PARAMETER_EXPORT
     size_t getOffset() const;
 
     // Allocation
+    PARAMETER_EXPORT
     virtual size_t getFootPrint() const;
 
     // Syncer set (me, ascendant or descendant ones)
+    PARAMETER_EXPORT
     void fillSyncerSet(CSyncerSet& syncerSet) const;
 
     // Belonging domain
+    PARAMETER_EXPORT
     bool belongsTo(const CConfigurableDomain* pConfigurableDomain) const;
 
     // Belonging domains
+    PARAMETER_EXPORT
     void listBelongingDomains(std::string& strResult, bool bVertical = true) const;
 
     // Matching check for domain association
+    PARAMETER_EXPORT
     bool hasNoDomainAssociated() const;
 
     // Matching check for no valid associated domains
+    PARAMETER_EXPORT
     bool hasNoValidDomainAssociated() const;
 
     // Owning domains
+    PARAMETER_EXPORT
     void listAssociatedDomains(std::string& strResult, bool bVertical = true) const;
+    PARAMETER_EXPORT
     size_t getBelongingDomainCount() const;
 
     // Elements with no domains
+    PARAMETER_EXPORT
     void listRogueElements(std::string& strResult) const;
 
     // Belonging to no domains
+    PARAMETER_EXPORT
     bool isRogue() const;
 
     // Footprint as string
+    PARAMETER_EXPORT
     std::string getFootprintAsString() const;
 
     // Belonging subsystem
+    PARAMETER_EXPORT
     virtual const CSubsystem* getBelongingSubsystem() const;
 
     // Check element is a parameter
+    PARAMETER_EXPORT
     virtual bool isParameter() const;
 
     // AreaConfiguration creation
+    PARAMETER_EXPORT
     virtual CAreaConfiguration* createAreaConfiguration(const CSyncerSet* pSyncerSet) const;
 
     // Parameter access
+    PARAMETER_EXPORT
     virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     /**
@@ -112,23 +131,30 @@ public:
      * the last one.
      *
      */
+    PARAMETER_EXPORT
     virtual void getListOfElementsWithMapping(std::list<const CConfigurableElement*>&
                                                configurableElementPath) const;
 
     // Used for simulation and virtual subsystems
+    PARAMETER_EXPORT
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
     // Element properties
+    PARAMETER_EXPORT
     virtual void showProperties(std::string& strResult) const;
 
     // XML configuration settings parsing
+    PARAMETER_EXPORT
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 protected:
     // Syncer (me or ascendant)
+    PARAMETER_EXPORT
     virtual ISyncer* getSyncer() const;
     // Syncer set (descendant)
+    PARAMETER_EXPORT
     virtual void fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const;
     // Configuration Domain local search
+    PARAMETER_EXPORT
     bool containsConfigurableDomain(const CConfigurableDomain* pConfigurableDomain) const;
 
 private:

@@ -43,7 +43,7 @@
 
 class CParameterMgr;
 
-class PARAMETER_EXPORT CParameterMgrFullConnector
+class CParameterMgrFullConnector
 {
     friend class CParameterMgrLogger<CParameterMgrFullConnector>;
 
@@ -52,7 +52,9 @@ public:
     /** String list type which can hold list of error/info and can be presented to client */
     typedef std::list<std::string> Results;
 
+    PARAMETER_EXPORT
     CParameterMgrFullConnector(const std::string& strConfigurationFilePath);
+    PARAMETER_EXPORT
     ~CParameterMgrFullConnector();
 
     /** Interface to implement to provide a custom logger to the PF.
@@ -64,7 +66,7 @@ public:
       * Choice between the 2 is left to the client convenience.
       * @Note Errors are always returned synchronously. Never logged.
       */
-    class ILogger
+    class PARAMETER_EXPORT ILogger
     {
     public:
         virtual void info(const std::string& strLog) = 0;
@@ -74,21 +76,28 @@ public:
     };
     // Logging
     /** Should be called before start */
+    PARAMETER_EXPORT
     void setLogger(ILogger* pLogger);
 
 
+    PARAMETER_EXPORT
     bool start(std::string& strError);
 
     // Dynamic parameter handling
+    PARAMETER_EXPORT
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError);
 
+    PARAMETER_EXPORT
     ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive);
+    PARAMETER_EXPORT
     ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName,
             const ISelectionCriterionTypeInterface* pSelectionCriterionType);
+    PARAMETER_EXPORT
     ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
 
     /** Is the remote interface forcefully disabled ?
      */
+    PARAMETER_EXPORT
     bool getForceNoRemoteInterface() const;
 
     /**
@@ -98,8 +107,10 @@ public:
      *
      * @param[in] bForceNoRemoteInterface disable the remote interface if true.
      */
+    PARAMETER_EXPORT
     void setForceNoRemoteInterface(bool bForceNoRemoteInterface);
 
+    PARAMETER_EXPORT
     void applyConfigurations();
 
     /** Should start fail in case of missing subsystems.
@@ -107,12 +118,14 @@ public:
       * @param[in] bFail: If set to true,  parameterMgr start will fail on missing subsystems.
       *                   If set to false, missing subsystems will fallback on virtual subsystem.
       */
+    PARAMETER_EXPORT
     void setFailureOnMissingSubsystem(bool bFail);
 
     /** Would start fail in case of missing subsystems.
       *
       * @return true if the subsystem will fail on missing subsystem, false otherwise.
       */
+    PARAMETER_EXPORT
     bool getFailureOnMissingSubsystem() const;
 
     /** Should start fail in failed settings load.
@@ -120,23 +133,27 @@ public:
       * @param[in] bFail: If set to true, parameterMgr start will fail on failed settings load.
       *                   If set to false, failed settings load will be ignored.
       */
+    PARAMETER_EXPORT
     void setFailureOnFailedSettingsLoad(bool bFail);
     /** Would start fail in case of failed settings load.
       *
       * @return failure on failed settings load policy state.
       */
+    PARAMETER_EXPORT
     bool getFailureOnFailedSettingsLoad() const;
 
     /** Get the path to the directory containing the XML Schemas
      *
      * @returns the directory containing the XML Schemas
      */
+    PARAMETER_EXPORT
     const std::string& getSchemaFolderLocation() const;
 
     /** Override the directory containing the XML Schemas
      *
      * @param[in] strSchemaFolderLocation directory containing the XML Schemas
      */
+    PARAMETER_EXPORT
     void setSchemaFolderLocation(const std::string& strSchemaFolderLocation);
 
     /** Should .xml files be validated on start ?
@@ -149,32 +166,45 @@ public:
      *
      * @return false if unable to set, true otherwise.
      */
+    PARAMETER_EXPORT
     void setValidateSchemasOnStart(bool bValidate);
 
     /** Would .xml files be validated on start?
      *
      * @return areSchemasValidated
      */
+    PARAMETER_EXPORT
     bool getValidateSchemasOnStart() const;
     //////////// Tuning /////////////
     // Tuning mode
+    PARAMETER_EXPORT
     bool setTuningMode(bool bOn, std::string& strError);
+    PARAMETER_EXPORT
     bool isTuningModeOn() const;
 
     // Current value space for user set/get value interpretation
+    PARAMETER_EXPORT
     void setValueSpace(bool bIsRaw);
+    PARAMETER_EXPORT
     bool isValueSpaceRaw() const;
 
     // Current Output Raw Format for user get value interpretation
+    PARAMETER_EXPORT
     void setOutputRawFormat(bool bIsHex);
+    PARAMETER_EXPORT
     bool isOutputRawFormatHex() const;
     // Automatic hardware synchronization control (during tuning session)
+    PARAMETER_EXPORT
     bool setAutoSync(bool bAutoSyncOn, std::string& strError);
+    PARAMETER_EXPORT
     bool isAutoSyncOn() const;
+    PARAMETER_EXPORT
     bool sync(std::string& strError);
 
     // User set/get parameters
+    PARAMETER_EXPORT
     bool accessParameterValue(const std::string& strPath, std::string& strValue, bool bSet, std::string& strError);
+    PARAMETER_EXPORT
     bool accessConfigurationValue(const std::string &strDomain, const std::string &strConfiguration, const std::string& strPath, std::string& strValue, bool bSet, std::string& strError);
 
     /**
@@ -185,17 +215,27 @@ public:
      *
      * @return true if a mapping was found for this element
      */
+    PARAMETER_EXPORT
     bool getParameterMapping(const std::string& strPath, std::string& strValue) const;
     ////////// Configuration/Domains handling //////////////
     // Creation/Deletion
+    PARAMETER_EXPORT
     bool createDomain(const std::string& strName, std::string& strError);
+    PARAMETER_EXPORT
     bool deleteDomain(const std::string& strName, std::string& strError);
+    PARAMETER_EXPORT
     bool renameDomain(const std::string& strName, const std::string& strNewName, std::string& strError);
+    PARAMETER_EXPORT
     bool deleteAllDomains(std::string& strError);
+    PARAMETER_EXPORT
     bool setSequenceAwareness(const std::string& strName, bool bSequenceAware, std::string& strResult);
+    PARAMETER_EXPORT
     bool getSequenceAwareness(const std::string& strName, bool& bSequenceAware, std::string& strResult);
+    PARAMETER_EXPORT
     bool createConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
+    PARAMETER_EXPORT
     bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
+    PARAMETER_EXPORT
     bool renameConfiguration(const std::string& strDomain, const std::string& strConfiguration, const std::string& strNewConfiguration, std::string& strError);
 
     /** Restore a configuration
@@ -205,22 +245,31 @@ public:
      * @param[out] errors, errors encountered during restoration
      * @return true if success false otherwise
      */
+    PARAMETER_EXPORT
     bool restoreConfiguration(const std::string& strDomain,
                               const std::string& strConfiguration,
                               Results& errors);
 
+    PARAMETER_EXPORT
     bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
 
     // Configurable element - domain association
+    PARAMETER_EXPORT
     bool addConfigurableElementToDomain(const std::string& strDomain, const std::string& strConfigurableElementPath, std::string& strError);
+    PARAMETER_EXPORT
     bool removeConfigurableElementFromDomain(const std::string& strDomain, const std::string& strConfigurableElementPath, std::string& strError);
+    PARAMETER_EXPORT
     bool split(const std::string& strDomain, const std::string& strConfigurableElementPath, std::string& strError);
+    PARAMETER_EXPORT
     bool setElementSequence(const std::string& strDomain, const std::string& strConfiguration, const std::vector<std::string>& astrNewElementSequence, std::string& strError);
 
+    PARAMETER_EXPORT
     bool setApplicationRule(const std::string& strDomain, const std::string& strConfiguration,
                             const std::string& strApplicationRule, std::string& strError);
+    PARAMETER_EXPORT
     bool getApplicationRule(const std::string& strDomain, const std::string& strConfiguration,
                             std::string& strResult);
+    PARAMETER_EXPORT
     bool clearApplicationRule(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
 
     /**
@@ -235,6 +284,7 @@ public:
       *
       * @return false if any error occures
       */
+    PARAMETER_EXPORT
     bool importDomainsXml(const std::string& strXmlSource, bool bWithSettings, bool bFromFile,
                           std::string& strError);
     /**
@@ -251,6 +301,7 @@ public:
       *
       * @return false if any error occurs
       */
+    PARAMETER_EXPORT
     bool importSingleDomainXml(const std::string& xmlSource, bool overwrite, bool withSettings,
                                bool toFile, std::string& errorMsg);
     /**
@@ -266,6 +317,7 @@ public:
       *
       * @return false if any error occurs
       */
+    PARAMETER_EXPORT
     bool importSingleDomainXml(const std::string& strXmlSource, bool bOverwrite,
                                std::string& strError);
 
@@ -282,6 +334,7 @@ public:
       *
       * @return false if any error occures, true otherwise.
       */
+    PARAMETER_EXPORT
     bool exportDomainsXml(std::string& strXmlDest, bool bWithSettings, bool bToFile,
                           std::string& strError) const;
 
@@ -298,6 +351,7 @@ public:
       *
       * @return false if any error occurs, true otherwise.
       */
+    PARAMETER_EXPORT
     bool exportSingleDomainXml(std::string& strXmlDest, const std::string& strDomainName, bool bWithSettings,
                                bool bToFile, std::string& strError) const;
 

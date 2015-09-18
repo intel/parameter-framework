@@ -35,7 +35,7 @@
 #include <stdint.h>
 #include <string>
 
-class PARAMETER_EXPORT CMappingContext
+class CMappingContext
 {
     // Item structure
     struct SItem {
@@ -46,13 +46,17 @@ class PARAMETER_EXPORT CMappingContext
 
 public:
     // Regular Constructor
+    PARAMETER_EXPORT
     CMappingContext(size_t uiNbItemTypes);
+    PARAMETER_EXPORT
     ~CMappingContext();
 
     // Copy constructor
+    PARAMETER_EXPORT
     CMappingContext(const CMappingContext& from);
 
     // Affectation
+    PARAMETER_EXPORT
     CMappingContext& operator=(const CMappingContext& right);
 
     // Item access
@@ -65,8 +69,11 @@ public:
      *
      * @return False if already set, true else.
      */
+    PARAMETER_EXPORT
     bool setItem(size_t itemType, const std::string* pStrKey, const std::string* pStrItem);
+    PARAMETER_EXPORT
     const std::string& getItem(size_t itemType) const;
+    PARAMETER_EXPORT
     size_t getItemAsInteger(size_t itemType) const;
     /**
      * Get mapping item value from its key name.
@@ -75,7 +82,9 @@ public:
      *
      * @return Mapping item value pointer if found, NULL else.
      */
+    PARAMETER_EXPORT
     const std::string* getItem(const std::string& strKey) const;
+    PARAMETER_EXPORT
     bool iSet(size_t itemType) const;
 
 private:
