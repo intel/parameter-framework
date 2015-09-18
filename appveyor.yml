@@ -5,6 +5,20 @@ branches:
 # Only download the 50 first commits like travis to speedup clone
 clone_depth: 50
 os: Visual Studio 2015
+init:
+# Disable popups as they hang the build as there is nobody to click on the OK button...
+# Hanging the build is a lot less user friendly than reporting a build failure.
+#
+# Disable of system hard error popup
+# See: https://msdn.microsoft.com/en-us/library/bb513638%28VS.85%29.aspx
+- reg add "HKLM\SYSTEM\CurrentControlSet\Control\Windows" /f /v ErrorMode /d 2
+# Disable the following popup on program failure:
+#     |       ** <program name> has stopped working **        |
+#     | Windows can check online for a solution to the problem|
+#     |  - Check online for a solution and close the program  |
+#     |  - Close the program                                  |
+# See: https://msdn.microsoft.com/en-us/library/bb513638%28VS.85%29.aspx
+- reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /f /v DontShowUI /d 1
 install:
 - cinst cmake.portable wget 7zip.commandline
 - if not exist libxml2-x86_64 (
