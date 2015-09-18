@@ -35,23 +35,29 @@
 #include "MappingContext.h"
 #include <string>
 
-class PARAMETER_EXPORT CSubsystemObjectCreator
+class CSubsystemObjectCreator
 {
 public:
+    PARAMETER_EXPORT
     CSubsystemObjectCreator(const std::string& strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize);
 
     // Accessors
+    PARAMETER_EXPORT
     const std::string& getMappingKey() const;
+    PARAMETER_EXPORT
     uint32_t getAncestorMask() const;
+    PARAMETER_EXPORT
     size_t getMaxConfigurableElementSize() const;
 
     // Object creation
+    PARAMETER_EXPORT
     virtual CSubsystemObject* objectCreate(
             const std::string& strMappingValue,
             CInstanceConfigurableElement* pInstanceConfigurableElement,
             const CMappingContext& context,
             core::log::Logger& logger) const = 0;
 
+    PARAMETER_EXPORT
     virtual ~CSubsystemObjectCreator() {}
 
 private:

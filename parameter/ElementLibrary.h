@@ -38,14 +38,16 @@
 
 class CElementBuilder;
 
-class PARAMETER_EXPORT CElementLibrary
+class CElementLibrary
 {
     typedef std::map<std::string, const CElementBuilder*> ElementBuilderMap;
     typedef ElementBuilderMap::iterator ElementBuilderMapIterator;
     typedef ElementBuilderMap::const_iterator ElementBuilderMapConstIterator;
 
 public:
+    PARAMETER_EXPORT
     CElementLibrary();
+    PARAMETER_EXPORT
     virtual ~CElementLibrary();
 
     /** Add a xml tag and it's corresponding builder in the library.
@@ -54,10 +56,13 @@ public:
        *               create a new element.
        * @param[in] pElementBuilder is the tag associated element builder.
        */
+    PARAMETER_EXPORT
     void addElementBuilder(const std::string& type, const CElementBuilder *pElementBuilder);
+    PARAMETER_EXPORT
     void clean();
 
     // Instantiation
+    PARAMETER_EXPORT
     CElement* createElement(const CXmlElement& xmlElement) const;
 
 private:

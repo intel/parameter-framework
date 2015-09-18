@@ -41,40 +41,57 @@
 class CParameterAccessContext;
 class CConfigurationAccessContext;
 
-class PARAMETER_EXPORT CParameterType : public CTypeElement
+class CParameterType : public CTypeElement
 {
 public:
+    PARAMETER_EXPORT
     CParameterType(const std::string& strName);
+    PARAMETER_EXPORT
     virtual ~CParameterType();
 
     // Size
+    PARAMETER_EXPORT
     size_t getSize() const;
 
     // Unit
+    PARAMETER_EXPORT
     std::string getUnit() const;
+    PARAMETER_EXPORT
     void setUnit(const std::string& strUnit);
 
     // From IXmlSink
+    PARAMETER_EXPORT
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     // From IXmlSource
+    PARAMETER_EXPORT
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     /// Conversions
     // String
+    PARAMETER_EXPORT
     virtual bool toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const = 0;
+    PARAMETER_EXPORT
     virtual bool fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const = 0;
     // Boolean
+    PARAMETER_EXPORT
     virtual bool toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    PARAMETER_EXPORT
     virtual bool fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Integer
+    PARAMETER_EXPORT
     virtual bool toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    PARAMETER_EXPORT
     virtual bool fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Signed Integer
+    PARAMETER_EXPORT
     virtual bool toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    PARAMETER_EXPORT
     virtual bool fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
     // Double
+    PARAMETER_EXPORT
     virtual bool toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    PARAMETER_EXPORT
     virtual bool fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
 
     /** Value space handling for settings import/export from/to XML
@@ -89,12 +106,15 @@ public:
      * @param[in,out] xmlConfigurableElementSettingsElement the element being imported or exported
      * @param[in,out] configurationAccessContext the import or export context
      */
+    PARAMETER_EXPORT
     virtual void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
 
     // Element properties
+    PARAMETER_EXPORT
     virtual void showProperties(std::string& strResult) const;
 
     // Default value handling (simulation only)
+    PARAMETER_EXPORT
     virtual uint32_t getDefaultValue() const;
 
     /**
@@ -102,6 +122,7 @@ public:
      *
      * @param[in:out] iData the data which will be sign extended
      */
+    PARAMETER_EXPORT
     void signExtend(int32_t& iData) const;
 
     /**
@@ -109,6 +130,7 @@ public:
      *
      * @param[in:out] iData the data which will be sign extended
      */
+    PARAMETER_EXPORT
     void signExtend(int64_t& iData) const;
 
 protected:

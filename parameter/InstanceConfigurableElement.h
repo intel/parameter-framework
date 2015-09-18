@@ -41,7 +41,7 @@ class IMapper;
 class CParameterBlackboard;
 class CParameterAccessContext;
 
-class PARAMETER_EXPORT CInstanceConfigurableElement : public CConfigurableElementWithMapping
+class CInstanceConfigurableElement : public CConfigurableElementWithMapping
 {
 public:
     enum Type {
@@ -53,11 +53,14 @@ public:
         EComponent
     };
 
+    PARAMETER_EXPORT
     CInstanceConfigurableElement(const std::string& strName, const CTypeElement* pTypeElement);
 
     // Instantiated type
+    PARAMETER_EXPORT
     const CTypeElement* getTypeElement() const;
 
+    PARAMETER_EXPORT
     virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
 
     /**
@@ -66,28 +69,37 @@ public:
      *
      * @return A std::string containing the formatted mapping
      */
+    PARAMETER_EXPORT
     std::string getFormattedMapping() const;
 
     // From CElement
+    PARAMETER_EXPORT
     virtual std::string getKind() const;
 
     // Syncer to/from HW
+    PARAMETER_EXPORT
     void setSyncer(ISyncer* pSyncer);
+    PARAMETER_EXPORT
     void unsetSyncer();
 
     // Type
+    PARAMETER_EXPORT
     virtual Type getType() const = 0;
 
     // Mapping execution
+    PARAMETER_EXPORT
     bool map(IMapper& mapper, std::string& strError);
 
     // Element properties
+    PARAMETER_EXPORT
     virtual void showProperties(std::string& strResult) const;
 
     // Scalar or Array?
+    PARAMETER_EXPORT
     bool isScalar() const;
 
     // Array Length
+    PARAMETER_EXPORT
     size_t getArrayLength() const;
 
     /**
@@ -102,9 +114,11 @@ public:
      * that have a mapping. Elements are added at the end of the list, so the root Element will be
      * the last one.
      */
+    PARAMETER_EXPORT
     virtual void getListOfElementsWithMapping(std::list<const CConfigurableElement*>&
                                                configurableElementPath) const;
 
+    PARAMETER_EXPORT
     virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
 protected:
