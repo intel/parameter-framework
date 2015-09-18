@@ -22,14 +22,14 @@ init:
 install:
 - cinst cmake.portable wget 7zip.commandline
 - if not exist libxml2-x86_64 (
-    wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip &
+    wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip &&
     7z x libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
 - if not exist libxml2-x86_64-debug (
-    wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip &
+    wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip &&
     7z x libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
 - if not exist asio-1.10.6 (
-    wget --no-check-certificate https://01.org/sites/default/files/asio-1.10.6.tar.gz &
-    7z x asio-1.10.6.tar.gz &
+    wget --no-check-certificate https://01.org/sites/default/files/asio-1.10.6.tar.gz &&
+    7z x asio-1.10.6.tar.gz &&
     7z x -i"!asio*/include" asio-1.10.6.tar)
 - if not exist catch (
     wget --no-check-certificate https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp --directory-prefix catch )
@@ -43,9 +43,9 @@ cache:
 - asio-1.10.6                   -> appveyor.yml
 - catch                         -> appveyor.yml
 build_script:
-- mkdir build & cd build
+- mkdir build && cd build
 
-- mkdir 64bits-debug & cd 64bits-debug
+- mkdir 64bits-debug && cd 64bits-debug
 - cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug;%PREFIX_PATH%" ..\..
 - cmake --build . --config debug
 - cd ..
