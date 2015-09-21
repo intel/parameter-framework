@@ -29,9 +29,11 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include "SubsystemObject.h"
 
-class CFormattedSubsystemObject : public CSubsystemObject
+class PARAMETER_EXPORT CFormattedSubsystemObject : public CSubsystemObject
 {
 public:
     /**
