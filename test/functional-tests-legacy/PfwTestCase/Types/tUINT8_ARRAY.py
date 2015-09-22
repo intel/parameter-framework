@@ -53,6 +53,7 @@ Test cases :
     - Testing array index out of bounds
     - Testing value format error
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

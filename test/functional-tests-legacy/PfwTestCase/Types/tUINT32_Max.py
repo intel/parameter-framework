@@ -52,6 +52,7 @@ Test cases :
     - UINT16 parameter max value out of bounds = 4294967296
     - UINT16 parameter in nominal case = 50
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

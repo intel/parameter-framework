@@ -50,6 +50,7 @@ Test cases :
     - INT32_Max parameter max value out of bounds = 2147483648
     - INT32_Max parameter in nominal case = 50
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

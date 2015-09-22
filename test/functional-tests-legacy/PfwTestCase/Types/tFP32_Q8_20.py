@@ -51,6 +51,7 @@ Test cases :
     - FP32_Q8.20 parameter max value out of bounds = 3200.8888
     - FP32_Q8.20 parameter in nominal case = -128.123456
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

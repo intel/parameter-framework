@@ -52,6 +52,7 @@ Test cases :
     - UINT32 parameter max value out of bounds = 1001
     - UINT32 parameter in nominal case = 50
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

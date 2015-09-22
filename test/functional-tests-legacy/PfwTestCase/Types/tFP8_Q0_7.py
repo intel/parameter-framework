@@ -51,6 +51,7 @@ Test cases :
     - FP8_Q0.7 parameter max value out of bounds = 0.992189
     - FP8_Q0.7 parameter in nominal case = 0.50
 """
+import os
 import commands
 import unittest
 from Util.PfwUnitTestLib import PfwTestCase
