@@ -66,6 +66,7 @@ Test cases :
     - UINT16 parameter max value out of bounds = 0x03E9 :
         - Writing Raw
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

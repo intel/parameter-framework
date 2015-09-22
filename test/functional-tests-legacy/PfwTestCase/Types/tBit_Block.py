@@ -54,6 +54,7 @@ Test cases :
     - Testing out of size TestCase : Bit define on a wrong position
 """
 
+import os
 import commands
 import unittest
 from Util.PfwUnitTestLib import PfwTestCase

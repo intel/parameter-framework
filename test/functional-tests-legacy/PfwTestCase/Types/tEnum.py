@@ -50,6 +50,7 @@ Test cases :
     - Enum parameter out of size value = ENUM_OOS : 256
     - Enum parameter undefined value = UNDEF
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

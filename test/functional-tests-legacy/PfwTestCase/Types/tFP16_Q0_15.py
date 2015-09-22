@@ -51,6 +51,7 @@ Test cases :
     - FP16_Q0.15 parameter max value out of bounds = 0.99997
     - FP16_Q0.15 parameter in nominal case = 0.2453
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

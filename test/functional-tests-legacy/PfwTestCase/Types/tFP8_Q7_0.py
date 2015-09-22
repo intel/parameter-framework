@@ -51,6 +51,7 @@ Test cases :
     - FP8_Q7.0 parameter max value out of bounds = 127.1
     - FP8_Q7.0 parameter in nominal case = 64
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging

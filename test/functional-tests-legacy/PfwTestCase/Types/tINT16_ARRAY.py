@@ -51,6 +51,7 @@ Test cases :
     - Testing maximum overflow
     - Testing array index out of bounds
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
