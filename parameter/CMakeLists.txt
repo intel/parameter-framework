@@ -71,7 +71,6 @@ add_library(parameter SHARED
     LogarithmicParameterAdaptation.cpp
     MappingContext.cpp
     MappingData.cpp
-    NamedElementBuilderTemplate.cpp
     ParameterAccessContext.cpp
     ParameterAdaptation.cpp
     ParameterBlackboard.cpp
