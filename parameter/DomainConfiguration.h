@@ -29,7 +29,7 @@
  */
 #pragma once
 
-#include "BinarySerializableElement.h"
+#include "Element.h"
 #include "Results.h"
 #include <list>
 #include <string>
@@ -42,7 +42,7 @@ class CCompoundRule;
 class CSyncerSet;
 class CSelectionCriteriaDefinition;
 
-class CDomainConfiguration : public CBinarySerializableElement
+class CDomainConfiguration : public CElement
 {
     enum ChildElementType {
         ECompoundRule
@@ -103,12 +103,6 @@ public:
     bool parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext);
     void composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext) const;
 
-    // Serialization
-    virtual void binarySerialize(CBinaryStream& binaryStream);
-
-    // Data size
-    virtual size_t getDataSize() const;
-
     // Class kind
     virtual std::string getKind() const;
 
@@ -125,10 +119,6 @@ private:
     CAreaConfiguration* findAreaConfiguration(const std::string& strConfigurableElementPath, const std::list<CAreaConfiguration*>& areaConfigurationList) const;
     // Area configuration ordering
     void reorderAreaConfigurations(const std::list<CAreaConfiguration*>& areaConfigurationList);
-    // Find area configuration rank from regular std::list: for ordered std::list maintainance
-    size_t getAreaConfigurationRank(const CAreaConfiguration* pAreaConfiguration) const;
-    // Find area configuration from regular std::list based on rank: for ordered std::list maintainance
-    CAreaConfiguration* getAreaConfiguration(size_t areaConfigurationRank) const;
 
     // Rule
     const CCompoundRule* getRule() const;

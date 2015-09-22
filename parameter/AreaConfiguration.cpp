@@ -30,7 +30,6 @@
 #include "AreaConfiguration.h"
 #include "ConfigurableElement.h"
 #include "ConfigurationAccessContext.h"
-#include "BinaryStream.h"
 #include <assert.h>
 
 CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet)
@@ -146,25 +145,6 @@ void CAreaConfiguration::copyFromOuter(const CAreaConfiguration* pFromAreaConfig
 
     // Inner becomes valid
     setValid(true);
-}
-
-// Serialization
-void CAreaConfiguration::serialize(CBinaryStream& binaryStream)
-{
-    // Delegate to blackboard
-    _blackboard.serialize(binaryStream);
-
-    if (!binaryStream.isOut()) {
-
-        // Serialized in areas are valid
-        _bValid = true;
-    }
-}
-
-// Data size
-size_t CAreaConfiguration::getSize() const
-{
-    return _blackboard.getSize();
 }
 
 CParameterBlackboard& CAreaConfiguration::getBlackboard()

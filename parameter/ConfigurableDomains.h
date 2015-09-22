@@ -29,7 +29,7 @@
  */
 #pragma once
 
-#include "BinarySerializableElement.h"
+#include "Element.h"
 #include "Results.h"
 #include <set>
 #include <string>
@@ -41,7 +41,7 @@ class CSyncerSet;
 class CConfigurableDomain;
 class CSelectionCriteriaDefinition;
 
-class CConfigurableDomains : public CBinarySerializableElement
+class CConfigurableDomains : public CElement
 {
 public:
     CConfigurableDomains();
@@ -151,9 +151,6 @@ public:
 
     const CConfigurableDomain* findConfigurableDomain(const std::string& strDomain,
                                                       std::string& strError) const;
-
-    // Binary settings load/store
-    bool serializeSettings(const std::string& strBinarySettingsFilePath, bool bOut, uint8_t uiStructureChecksum, std::string& strError);
 
     // From IXmlSource
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;

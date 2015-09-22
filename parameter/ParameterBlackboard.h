@@ -30,7 +30,6 @@
 #pragma once
 
 #include "NonCopyable.hpp"
-#include "BinaryStream.h"
 
 #include <cstdint>
 #include <string>
@@ -59,9 +58,6 @@ public:
     // Configuration handling
     void restoreFrom(const CParameterBlackboard* pFromBlackboard, size_t offset);
     void saveTo(CParameterBlackboard* pToBlackboard, size_t offset) const;
-
-    // Serialization
-    void serialize(CBinaryStream& binaryStream);
 
 private:
     void assertValidAccess(size_t offset, size_t size) const;

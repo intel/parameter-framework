@@ -138,18 +138,6 @@ void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, size_t of
     std::copy_n(atOffset(offset), toBB.size(), begin(toBB));
 }
 
-// Serialization
-void CParameterBlackboard::serialize(CBinaryStream& binaryStream)
-{
-    if (binaryStream.isOut()) {
-
-        binaryStream.write(mBlackboard.data(), getSize());
-    } else {
-
-        binaryStream.read(mBlackboard.data(), getSize());
-    }
-}
-
 void CParameterBlackboard::assertValidAccess(size_t offset, size_t size) const
 {
     assert(offset + size <= getSize());

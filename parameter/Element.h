@@ -128,9 +128,6 @@ public:
     // Element properties
     virtual void showProperties(std::string& strResult) const;
 
-    // Checksum for integrity checks
-    uint8_t computeStructureChecksum() const;
-
     // Class kind
     virtual std::string getKind() const = 0;
 
