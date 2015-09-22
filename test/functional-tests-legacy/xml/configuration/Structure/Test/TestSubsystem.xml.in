@@ -65,9 +65,9 @@
 				<BitParameter Name="BIT_7_1" Size="1" Pos="7"/>
 			</BitParameterBlock>
 			<ParameterBlock Name="BLOCK_PARAMETER">
-				<IntegerParameter Name="UINT8" Size="8" Signed="false" Mapping="Binary:BLOCK_UINT8"/>
-				<IntegerParameter Name="UINT16" Size="16" Signed="false" Mapping="Binary:BLOCK_UINT16"/>
-				<IntegerParameter Name="UINT32" Size="32" Signed="false" Mapping="Binary:BLOCK_UINT32"/>
+				<IntegerParameter Name="BLOCK_UINT8" Size="8" Signed="false" Mapping="Binary:BLOCK_UINT8"/>
+				<IntegerParameter Name="BLOCK_UINT16" Size="16" Signed="false" Mapping="Binary:BLOCK_UINT16"/>
+				<IntegerParameter Name="BLOCK_UINT32" Size="32" Signed="false" Mapping="Binary:BLOCK_UINT32"/>
 			</ParameterBlock>
 		</ComponentType>
 		<ComponentType Name="TEST_MAIN">
