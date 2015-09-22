@@ -76,9 +76,9 @@ log=ACTLogging.Logger()
 class TestCases(PfwTestCase):
     def setUp(self):
         self.param_name = "/Test/Test/TEST_DIR/UINT16_Max"
-        self.filesystem_name="$PFW_RESULT/UINT16_Max"
+        self.filesystem_name=os.environ["PFW_RESULT"] + "/UINT16_Max"
         self.param_name_2 = "/Test/Test/TEST_DIR/UINT16"
-        self.filesystem_name_2="$PFW_RESULT/UINT16"
+        self.filesystem_name_2=os.environ["PFW_RESULT"] + "/UINT16"
         self.pfw.sendCmd("setTuningMode", "on")
 
     def tearDown(self):
