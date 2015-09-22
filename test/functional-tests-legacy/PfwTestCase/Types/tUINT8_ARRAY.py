@@ -116,8 +116,7 @@ class TestCases(PfwTestCase):
             assert out == str(indexed_array_value), log.F("BLACKBOARD : Incorrect value for %s[%s], expected: %s, found: %s"
                                                           % (self.param_name, str(index), str(indexed_array_value), out))
             #Check parameter value on filesystem
-            files_system_check = "awk -v ligne="+str(index)+" 'NR == ligne+1 { print $0}' "+self.param_short_name
-            indexed_files_system_array_value = commands.getoutput(files_system_check)
+            indexed_files_system_array_value = open(self.param_short_name).read().splitlines()[index]
             assert indexed_files_system_array_value == hex_indexed_array_value, log.F("FILESSYSTEM : %s[%s] update error"
                                                                                       % (self.param_name, str(index)))
 
@@ -157,8 +156,7 @@ class TestCases(PfwTestCase):
         assert out == str(indexed_array_value), log.F("BLACKBOARD : Incorrect value for %s[%s], expected: %s, found: %s"
                                                       % (self.param_name, str(index), str(indexed_array_value), out))
         #Check parameter value on filesystem
-        files_system_check = "awk -v ligne="+str(index)+" 'NR == ligne+1 { print $0}' "+self.param_short_name
-        indexed_files_system_array_value = commands.getoutput(files_system_check)
+        indexed_files_system_array_value = open(self.param_short_name).read().splitlines()[index]
         assert indexed_files_system_array_value == hex_indexed_array_value, log.F("FILESSYSTEM : %s[%s] update error"
                                                                                   % (self.param_name, str(index)))
 
@@ -190,8 +188,7 @@ class TestCases(PfwTestCase):
                                   % (self.param_name, str(index), err))
         assert out == "Done", log.F("when setting parameter %s[%s]: %s"
                                   % (self.param_name, str(index), out))
-        files_system_check = "awk -v ligne="+str(index)+" 'NR == ligne+1 { print $0}' "+self.param_short_name
-        param_check = commands.getoutput(files_system_check)
+        param_check= open(self.param_short_name).read().splitlines()[index]
         #Check final parameter value setting
         indexed_array_value = indexed_array_value - 1
         out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path), str(indexed_array_value))
@@ -200,7 +197,7 @@ class TestCases(PfwTestCase):
         assert out != "Done", log.F("Error not detected when setting parameter %s[%s] out of bounds"
                                     % (self.param_name, str(index)))
         #Check parameter value on filesystem
-        indexed_files_system_array_value = commands.getoutput(files_system_check)
+        indexed_files_system_array_value = open(self.param_short_name).read().splitlines()[index]
         assert indexed_files_system_array_value == param_check, log.F("FILESSYSTEM : %s[%s] forbiden update"
                                                                       % (self.param_name, str(index)))
 
@@ -240,8 +237,7 @@ class TestCases(PfwTestCase):
         assert out == str(indexed_array_value), log.F("BLACKBOARD : Incorrect value for %s[%s], expected: %s, found: %s"
                                                       % (self.param_name, str(index), str(indexed_array_value), out))
         #Check parameter value on filesystem
-        files_system_check = "awk -v ligne="+str(index)+" 'NR == ligne+1 { print $0}' "+self.param_short_name
-        indexed_files_system_array_value = commands.getoutput(files_system_check)
+        indexed_files_system_array_value = open(self.param_short_name).read().splitlines()[index]
         assert indexed_files_system_array_value == hex_indexed_array_value, log.F("FILESSYSTEM : %s[%s] update error"
                                                                                   % (self.param_name, str(index)))
 
@@ -273,8 +269,7 @@ class TestCases(PfwTestCase):
                                   % (self.param_name, str(index), err))
         assert out == "Done", log.F("when setting parameter %s[%s]: %s"
                                   % (self.param_name, str(index), out))
-        files_system_check = "awk -v ligne="+str(index)+" 'NR == ligne+1 { print $0}' "+self.param_short_name
-        param_check = commands.getoutput(files_system_check)
+        param_check= open(self.param_short_name).read().splitlines()[index]
         #Check final parameter value setting
         indexed_array_value = indexed_array_value + 1
         out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path), str(indexed_array_value))
@@ -283,7 +278,7 @@ class TestCases(PfwTestCase):
         assert out != "Done", log.F("Error not detected when setting parameter %s[%s] out of bounds"
                                     % (self.param_name, str(index)))
         #Check parameter value on filesystem
-        indexed_files_system_array_value = commands.getoutput(files_system_check)
+        indexed_files_system_array_value = open(self.param_short_name).read().splitlines()[index]
         assert indexed_files_system_array_value == param_check, log.F("FILESSYSTEM : %s[%s] forbiden update"
                                                                       % (self.param_name, str(index)))
 
@@ -360,10 +355,8 @@ class TestCases(PfwTestCase):
                                   % (self.param_name, str(index+1), err))
         assert out == "Done", log.F("when setting parameter %s[%s]: %s"
                                   % (self.param_name, str(index+1), out))
-        files_system_check_1 = "awk -v ligne="+str(index)+" 'NR == ligne+1 { print $0}' "+self.param_short_name
-        param_check_1 = commands.getoutput(files_system_check_1)
-        files_system_check_2 = "awk -v ligne="+str(index+1)+" 'NR == ligne+1 { print $0}' "+self.param_short_name
-        param_check_2 = commands.getoutput(files_system_check_2)
+        param_check_1 = open(self.param_short_name).read().splitlines()[index]
+        param_check_2 = open(self.param_short_name).read().splitlines()[index + 1]
         #Check final parameter value setting (!= or == ?)
         out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path_1), str(var_uint16))
         assert err == None, log.E("Error when setting parameter %s[%s]: %s"
@@ -372,6 +365,6 @@ class TestCases(PfwTestCase):
         assert out == "Done", log.F("Error not detected when setting parameter %s[%s] out of bounds"
                              % (self.param_name, str(index)))
         #Check parameter value on filesystem
-        indexed_files_system_array_value_2 = commands.getoutput(files_system_check_2)
+        indexed_files_system_array_value_2 = open(self.param_short_name).read().splitlines()[index + 1]
         assert indexed_files_system_array_value_2 == param_check_2, log.F("FILESSYSTEM : %s[%s] forbiden update"
                                                                           % (self.param_name, str(index)))
