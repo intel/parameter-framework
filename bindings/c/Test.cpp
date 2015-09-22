@@ -159,19 +159,10 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
             CHECK(empty(pfwGetLastError(pfw)));
         }
 
-        WHEN("The pfw is started without an handler") {
-            CHECK(not pfwStart(NULL, config, criteria, criterionNb, &logger));
-        }
-        WHEN("The pfw is started without a config path") {
-            REQUIRE_FAILURE(pfwStart(pfw, NULL, criteria, criterionNb, &logger));
-        }
         WHEN("The pfw is started without an existent file") {
             REQUIRE_FAILURE(pfwStart(pfw, "/doNotExist", criteria, criterionNb, &logger));
         }
 
-        WHEN("The pfw is started without a criteria list") {
-            REQUIRE_FAILURE(pfwStart(pfw, config, NULL, criterionNb, &logger));
-        }
         WHEN("The pfw is started with duplicated criterion value") {
             const PfwCriterion duplicatedCriteria[] = {
                 {"duplicated name", true, letterList},
@@ -283,15 +274,6 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
             REQUIRE_SUCCESS(pfwStart(pfw, config, criteria, criterionNb, &logger));
             int value;
 
-            WHEN("Get criterion without an handle") {
-                REQUIRE(not pfwGetCriterion(NULL, criteria[0].name, &value));
-            }
-            WHEN("Get criterion without a name") {
-                REQUIRE_FAILURE(pfwGetCriterion(pfw, NULL, &value));
-            }
-            WHEN("Get criterion without an output value") {
-                REQUIRE_FAILURE(pfwGetCriterion(pfw, criteria[0].name, NULL));
-            }
             WHEN("Get not existing criterion") {
                 REQUIRE_FAILURE(pfwGetCriterion(pfw, "Do not exist", &value));
             }
@@ -304,12 +286,6 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
                 }
             }
 
-            WHEN("Set criterion without an handle") {
-                REQUIRE(not pfwSetCriterion(NULL, criteria[0].name, 1));
-            }
-            WHEN("Set criterion without a name") {
-                REQUIRE_FAILURE(pfwSetCriterion(pfw, NULL, 2));
-            }
             WHEN("Set not existing criterion") {
                 REQUIRE_FAILURE(pfwSetCriterion(pfw, "Do not exist", 3));
             }
@@ -339,37 +315,16 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
                     }
                 }
             }
-            WHEN("Commit criteria without a pfw") {
-                REQUIRE(not pfwApplyConfigurations(NULL));
-            }
             WHEN("Commit criteria of a started pfw") {
                 REQUIRE_SUCCESS(pfwApplyConfigurations(pfw));
-            }
-
-            WHEN("Bind parameter without a pfw") {
-                REQUIRE(pfwBindParameter(NULL, intParameterPath) == NULL);
-            }
-            WHEN("Bind parameter without a path") {
-                REQUIRE_FAILURE(pfwBindParameter(pfw, NULL) != NULL);
             }
             WHEN("Bind a non existing parameter") {
                 REQUIRE_FAILURE(pfwBindParameter(pfw, "do/not/exist") != NULL);
             }
 
-            WHEN("Set an int parameter without a parameter handle") {
-                REQUIRE(not pfwSetIntParameter(NULL, value));
-            }
-            WHEN("Get an int parameter without a parameter handle") {
-                REQUIRE(not pfwGetIntParameter(NULL, &value));
-            }
-
             GIVEN("An integer parameter handle") {
                 PfwParameterHandler *param = pfwBindParameter(pfw, intParameterPath);
                 REQUIRE_SUCCESS(param != NULL);
-
-                WHEN("Get an int parameter without an output value") {
-                    REQUIRE_FAILURE(pfwGetIntParameter(param, NULL));
-                }
 
                 WHEN("Set parameter out of range") {
                     REQUIRE_FAILURE(pfwSetIntParameter(param, 101));
@@ -390,10 +345,6 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
                 PfwParameterHandler *param = pfwBindParameter(pfw, stringParameterPath);
                 REQUIRE_SUCCESS(param != NULL);
 
-                WHEN("Get an int parameter without an output value") {
-                    REQUIRE_FAILURE(pfwGetStringParameter(param, NULL));
-                }
-
                 WHEN("Set parameter out of range") {
                     REQUIRE_FAILURE(pfwSetStringParameter(param, "ko_1234567"));
                 }
@@ -413,11 +364,5 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
         }
 
         pfwDestroy(pfw);
-    }
-}
-
-SCENARIO("Get last error without a pfw") {
-    THEN("Should return NULL") {
-        CHECK(pfwGetLastError(NULL) == NULL);
     }
 }

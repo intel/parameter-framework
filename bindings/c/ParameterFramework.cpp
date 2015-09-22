@@ -148,7 +148,7 @@ PfwHandler *pfwCreate()
 
 void pfwDestroy(PfwHandler *handle)
 {
-    if(handle != NULL and handle->pfw != NULL) {
+    if (handle->pfw != NULL) {
         delete handle->pfw;
     }
     delete handle;
@@ -218,20 +218,10 @@ bool pfwStart(PfwHandler *handle, const char *configPath,
               const PfwLogger *logger)
 {
     // Check that the api is correctly used
-    if (handle == NULL) { return Status::failure(); }
     Status &status = handle->lastStatus;
 
     if (handle->pfw != NULL) {
         return status.failure("Can not start an already started parameter framework");
-    }
-    if (configPath == NULL) {
-        return status.failure("char *configPath is NULL, "
-                              "while starting the parameter framework");
-    }
-    if (criteria == NULL) {
-        return status.failure("char *criteria is NULL, "
-                              "while starting the parameter framework "
-                              "(config path is " + string(configPath) + ")");
     }
     // Create a pfw
     handle->pfw = new CParameterMgrPlatformConnector(configPath);
@@ -247,7 +237,7 @@ bool pfwStart(PfwHandler *handle, const char *configPath,
 
 const char *pfwGetLastError(const PfwHandler *handle)
 {
-    return handle == NULL ? NULL : handle->lastStatus.msg().c_str();
+    return handle->lastStatus.msg().c_str();
 }
 
 static pfw::Criterion *getCriterion(const pfw::Criteria &criteria,
@@ -259,12 +249,7 @@ static pfw::Criterion *getCriterion(const pfw::Criteria &criteria,
 
 bool pfwSetCriterion(PfwHandler *handle, const char name[], int value)
 {
-    if (handle == NULL) { return Status::failure(); }
     Status &status = handle->lastStatus;
-    if (name == NULL) {
-        return status.failure("char *name of the criterion is NULL, "
-                              "while setting a criterion.");
-    }
     if (handle->pfw == NULL) {
         return status.failure("Can not set criterion \"" + string(name) +
                               "\" as the parameter framework is not started.");
@@ -278,19 +263,10 @@ bool pfwSetCriterion(PfwHandler *handle, const char name[], int value)
 }
 bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value)
 {
-    if (handle == NULL) { return Status::failure(); }
     Status &status = handle->lastStatus;
-    if (name == NULL) {
-        return status.failure("char *name of the criterion is NULL, "
-                              "while getting a criterion.");
-    }
     if (handle->pfw == NULL) {
         return status.failure("Can not get criterion \"" + string(name) +
                               "\" as the parameter framework is not started.");
-    }
-    if (value == NULL) {
-        return status.failure("Can not get criterion \"" + string(name) +
-                              "\" as the out value is NULL.");
     }
     pfw::Criterion *criterion = getCriterion(handle->criteria, name);
     if (criterion == NULL) {
@@ -302,7 +278,6 @@ bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value)
 
 bool pfwApplyConfigurations(const PfwHandler *handle)
 {
-    if (handle == NULL) { return Status::failure(); }
     Status &status = handle->lastStatus;
     if (handle->pfw == NULL) {
         return status.failure("Can not commit criteria "
@@ -324,12 +299,7 @@ struct PfwParameterHandler_
 
 PfwParameterHandler *pfwBindParameter(PfwHandler *handle, const char path[])
 {
-    if (handle == NULL) { return NULL; }
     Status &status = handle->lastStatus;
-    if (path == NULL) {
-        status.failure("Can not bind a parameter without its path");
-        return NULL;
-    }
     if (handle->pfw == NULL) {
         status.failure("The parameter framework is not started, "
                        "while trying to bind parameter \"" + string(path) + "\")");
@@ -349,7 +319,6 @@ PfwParameterHandler *pfwBindParameter(PfwHandler *handle, const char path[])
 
 void pfwUnbindParameter(PfwParameterHandler *handle)
 {
-    if (handle == NULL) { return; }
     delete &handle->parameter;
     delete handle;
 }
@@ -357,31 +326,18 @@ void pfwUnbindParameter(PfwParameterHandler *handle)
 
 bool pfwGetIntParameter(const PfwParameterHandler *handle, int32_t *value)
 {
-    if (handle == NULL) { return Status::failure(); }
     Status &status = handle->pfw.lastStatus;
-    if (value == NULL) {
-        return status.failure("int32_t *value is NULL, "
-                    "while trying to get parameter \"" +
-                    handle->parameter.getPath() + "\" value as int)");
-    }
     return status.forward(handle->parameter.getAsSignedInteger(*value, status.msg()));
 }
 bool pfwSetIntParameter(PfwParameterHandler *handle, int32_t value)
 {
-    if (handle == NULL) { return Status::failure(); }
     Status &status = handle->pfw.lastStatus;
     return status.forward(handle->parameter.setAsSignedInteger(value, status.msg()));
 }
 
 bool pfwGetStringParameter(const PfwParameterHandler *handle, const char *value[])
 {
-    if (handle == NULL) { return Status::failure(); }
     Status &status = handle->pfw.lastStatus;
-    if (value == NULL) {
-        return status.failure("char **value is NULL, "
-                    "while trying to get parameter \"" +
-                    handle->parameter.getPath() + "\" value as string)");
-    }
     *value = NULL;
     string retValue;
     bool success = handle->parameter.getAsString(retValue, status.msg());
@@ -393,7 +349,6 @@ bool pfwGetStringParameter(const PfwParameterHandler *handle, const char *value[
 
 bool pfwSetStringParameter(PfwParameterHandler *handle, const char value[])
 {
-    if (handle == NULL) { return Status::failure(); }
     Status &status = handle->pfw.lastStatus;
     return status.forward(handle->parameter.setAsString(value, status.msg()));
 }
