@@ -69,6 +69,7 @@ add_library(parameter SHARED
     IntegerParameterType.cpp
     LinearParameterAdaptation.cpp
     LogarithmicParameterAdaptation.cpp
+    LoggingElementBuilderTemplate.cpp
     MappingContext.cpp
     MappingData.cpp
     ParameterAccessContext.cpp
