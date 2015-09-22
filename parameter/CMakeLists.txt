@@ -151,9 +151,9 @@ install(FILES
     FileIncluderElementBuilder.h
     FormattedSubsystemObject.h
     InstanceConfigurableElement.h
+    LoggingElementBuilderTemplate.h
     Mapper.h
     MappingContext.h
-    LoggingElementBuilderTemplate.h
     ParameterBlockType.h
     ParameterType.h
     PathNavigator.h
