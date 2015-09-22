@@ -53,7 +53,7 @@ class TestCases(PfwTestCase):
 
         self.pfw.sendCmd("setTuningMode", "on")
 
-        pfw_test_tools=os.getenv("PFW_TEST_TOOLS")
+        pfw_test_tools=os.environ["PFW_TEST_TOOLS"]
         self.reference_dumpDomains_xml = pfw_test_tools+"/xml/XML_Test/Reference_dumpDomains.xml"
         self.reference_dumpDomains_file = pfw_test_tools+"/xml/XML_Test/Reference_dumpDomains"
         self.initial_xml = pfw_test_tools+"/xml/TestConfigurableDomains.xml"
