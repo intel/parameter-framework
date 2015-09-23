@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,7 @@
  */
 #pragma once
 
+#include "NonCopyable.hpp"
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteCommandHandlerTemplate.h"
 #include <string>
@@ -38,7 +39,7 @@ class CParameterMgrPlatformConnectorLogger;
 class CRemoteProcessorServer;
 class ISelectionCriterionInterface;
 
-class CTestPlatform
+class CTestPlatform : private utility::NonCopyable
 {
     typedef TRemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
     typedef CCommandHandler::CommandStatus CommandReturn;
