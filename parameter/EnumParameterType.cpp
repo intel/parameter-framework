@@ -76,8 +76,10 @@ void CEnumParameterType::showProperties(string& strResult) const
 bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Size in bits
-    size_t sizeInBits;
-    xmlElement.getAttribute("Size", sizeInBits);
+    size_t sizeInBits = 0;
+    if (not xmlElement.getAttribute("Size", sizeInBits)) {
+        return false;
+    }
 
     // Size
     setSize(sizeInBits / 8);
@@ -89,7 +91,7 @@ bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
 // Conversion (tuning)
 bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    int32_t iParsedUserValue;
+    int32_t iParsedUserValue = 0;
 
     // Try to read the user-provided string as an integer
     if (not convertTo(strValue, iParsedUserValue)) {

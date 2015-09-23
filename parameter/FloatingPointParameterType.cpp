@@ -132,18 +132,15 @@ bool CFloatingPointParameterType::toBlackboard(
     }
 
     if (parameterAccessContext.valueSpaceIsRaw()) {
-
-        uint32_t uiData;
-
         // Raw value: interpret the user input as the memory content of the
         // parameter
-        if (!convertTo(strValue, uiData)) {
+        if (!convertTo(strValue, uiValue)) {
 
             parameterAccessContext.setError("Value '" + strValue + "' is invalid");
             return false;
         }
 
-        float fData = reinterpret_cast<const float&>(uiData);
+        float fData = reinterpret_cast<const float &>(uiValue);
 
         // Check against NaN or infinity
         if (!std::isfinite(fData)) {
@@ -157,13 +154,11 @@ bool CFloatingPointParameterType::toBlackboard(
             setOutOfRangeError(strValue, parameterAccessContext);
             return false;
         }
-
-        uiValue = uiData;
         return true;
     }
     else {
 
-        float fValue;
+        float fValue = 0.0f;
 
         // Interpret the user input as float
         if (!convertTo(strValue, fValue)) {
@@ -179,7 +174,9 @@ bool CFloatingPointParameterType::toBlackboard(
         }
 
         // Move to the "raw memory" value space
-        uiValue = reinterpret_cast<const uint32_t&>(fValue);
+        // Using an intermediary reference variable to avoid klocwork false positive
+        const uint32_t &value = reinterpret_cast<const uint32_t &>(fValue);
+        uiValue = value;
         return true;
     }
 }
@@ -257,8 +254,9 @@ bool CFloatingPointParameterType::toBlackboard(
 
     // Cast is fine because dValue has been checked against the value range
     float fValue = static_cast<float>(dUserValue);
-
-    uiValue = reinterpret_cast<const uint32_t&>(fValue);
+    // Using an intermediary reference variable to avoid klocwork false positive
+    const uint32_t &value = reinterpret_cast<const uint32_t &>(fValue);
+    uiValue = value;
     return true;
 }
 
@@ -268,7 +266,8 @@ bool CFloatingPointParameterType::fromBlackboard(
         CParameterAccessContext& /*ctx*/) const
 {
     // Move from "raw memory" value space to real space
-    float fValue = reinterpret_cast<const float&>(uiValue);
+    // Using an intermediary reference variable to avoid klocwork false positive
+    const float &fValue = reinterpret_cast<const float &>(uiValue);
 
     dUserValue = fValue;
     return true;

@@ -186,7 +186,7 @@ CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, s
 
     } else {
         // First read sync word
-        uint16_t uiSyncWord;
+        uint16_t uiSyncWord = 0;
         asio::error_code ec;
 
         if (!asio::read(socket, asio::buffer(&uiSyncWord, sizeof(uiSyncWord)), ec)) {
@@ -205,7 +205,7 @@ CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, s
         }
 
         // Size
-        uint32_t uiSize;
+        uint32_t uiSize = 0;
 
         if (!asio::read(socket, asio::buffer(&uiSize, sizeof(uiSize)), ec)) {
             strError = string("Size read failed: ") + ec.message();
@@ -230,7 +230,7 @@ CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, s
         }
 
         // Checksum
-        uint8_t ucChecksum;
+        uint8_t ucChecksum = 0;
 
         if (!asio::read(socket, asio::buffer(&ucChecksum, sizeof(ucChecksum)), ec)) {
             strError = string("Checksum read failed: ") + ec.message();
