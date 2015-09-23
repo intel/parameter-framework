@@ -43,8 +43,7 @@ install:
 
   # Instruct cmake were to find external dependancies
   - set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6;%APPVEYOR_BUILD_FOLDER%\catch
-  # function tests legacy are bash specific
-  - set CTEST_PARAMS=--output-on-failure --exclude-regex functional-test-legacy
+  - set CTEST_PARAMS=--output-on-failure
   # Setup Visual studio build environement
   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
 
