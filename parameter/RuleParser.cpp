@@ -30,6 +30,7 @@
 #include "RuleParser.h"
 #include "CompoundRule.h"
 #include "SelectionCriterionRule.h"
+#include "AlwaysAssert.hpp"
 #include <assert.h>
 
 using std::string;
@@ -116,6 +117,7 @@ bool CRuleParser::parse(CCompoundRule* pParentRule, string& strError)
                 return false;
             }
 
+            ALWAYS_ASSERT(pParentRule != NULL, "Invalid parent rule given to rule parser");
             // Chain
             pParentRule->addChild(pCriterionRule);
 
@@ -150,7 +152,7 @@ bool CRuleParser::iterate(string& strError)
 {
     string::size_type delimiter;
 
-    assert(_uiCurrentPos <= _strApplicationRule.length());
+    ALWAYS_ASSERT(_uiCurrentPos <= _strApplicationRule.length(), "Current Position outside range");
 
     // Consume spaces
     if ((delimiter = _strApplicationRule.find_first_not_of(" ", _uiCurrentPos)) != string::npos) {

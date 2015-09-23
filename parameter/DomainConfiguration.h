@@ -47,7 +47,6 @@ class CDomainConfiguration : public CElement
     enum ChildElementType {
         ECompoundRule
     };
-    typedef std::list<CAreaConfiguration*>::const_iterator AreaConfigurationListIterator;
 public:
     CDomainConfiguration(const std::string& strName);
     virtual ~CDomainConfiguration();
@@ -130,6 +129,8 @@ private:
      *         of operator[] and operator-(iterator, iterator) for a list.
      *         Consider using a vector<config> or a map<rank, config>.
      */
-    std::list<CAreaConfiguration*> _areaConfigurationList;
-    std::list<CAreaConfiguration*> _orderedAreaConfigurationList;
+    using AreaConfigurationList = std::list<CAreaConfiguration *>;
+    AreaConfigurationList _areaConfigurationList;
+    AreaConfigurationList _orderedAreaConfigurationList;
+
 };
