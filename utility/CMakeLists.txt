@@ -27,9 +27,11 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 if (WIN32)
-    set(UTILITY_OS_SPECIFIC_FILES windows/DynamicLibrary.cpp)
+    set(UTILITY_OS_SPECIFIC_FILES windows/DynamicLibrary.cpp
+                                  windows/TmpFile.cpp)
 else ()
-    set(UTILITY_OS_SPECIFIC_FILES posix/DynamicLibrary.cpp)
+    set(UTILITY_OS_SPECIFIC_FILES posix/DynamicLibrary.cpp
+                                  posix/TmpFile.cpp)
 endif ()
 
 include_directories(

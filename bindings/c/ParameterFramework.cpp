@@ -132,7 +132,7 @@ struct PfwHandler_ : private utility::NonCopyable
     bool createCriteria(const PfwCriterion criteria[], size_t criterionNb);
 
     pfw::Criteria criteria;
-    pfw::Pfw *pfw;
+    pfw::Pfw *pfw = nullptr;
     /** Status of the last called function.
       * Is mutable because even a const function can fail.
       */
@@ -148,9 +148,7 @@ PfwHandler *pfwCreate()
 
 void pfwDestroy(PfwHandler *handle)
 {
-    if (handle->pfw != NULL) {
-        delete handle->pfw;
-    }
+    delete handle->pfw;
     delete handle;
 }
 

@@ -27,69 +27,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#pragma once
 
-#include "Exception.hpp"
+#include "TmpFile.hpp"
 
-#include <exception>
-#include <fstream>
-#include <string>
-#include <array>
-
-#include <cerrno>
-#include <cstring>
+#include <stdlib.h>
+#include <unistd.h>
 
 namespace parameterFramework
 {
+namespace utility
+{
 
-/** Create a temporary file with the given content. */
-class TmpFile {
-public:
-    TmpFile(std::string content) : mPath(mktmp())
-    {
-        std::ofstream file(mPath);
-        file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-        std::ofstream(mPath) << content;
-    }
+std::string TmpFile::mktmp()
+{
+    using std::string;
 
-    TmpFile(TmpFile &&right) noexcept :
-        mPath(std::move(right.mPath))
-    {
-        right.mPath.clear();
+    char path[] = "Tmp_ParameterFramework_XXXXXX";
+    int fd = mkstemp(path);
+    if (fd == -1) {
+        throwErrnoError("Could not create tmp file with pattern \"" + string(path) + '"');
     }
+    if (close(fd) != 0) {
+        throwErrnoError("Could not close tmp file \"" + string(path) + '"');
+    }
+    return path;
+}
 
-    TmpFile &operator= (TmpFile &&right)
-    {
-        remove();
-        mPath = std::move(right.mPath);
-        right.mPath.clear();
-        return *this;
-    }
-
-    ~TmpFile() { remove(); }
-
-    const std::string &getPath() { return mPath; }
-private:
-    std::string mktmp() {
-        std::array<char, L_tmpnam> buffer;
-        char *res = std::tmpnam(buffer.data());
-        if (res == nullptr) {
-            throw Exception("Could not create tmp file: " + strerror());
-        }
-        return res;
-    }
-    static std::string strerror() {
-        return '(' + std::to_string(errno) + ')' + std::strerror(errno);
-    }
-    void remove()
-    {
-        if (not mPath.empty()) {
-            if (std::remove(mPath.c_str()) != 0) {
-                throw Exception("Could not delete tmp file: " + strerror());
-            }
-        }
-    }
-    std::string mPath;
-};
-
+} // utility
 } // parameterFramework

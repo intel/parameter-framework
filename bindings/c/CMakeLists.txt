@@ -28,12 +28,17 @@
 
 add_library(cparameter SHARED ParameterFramework.cpp)
 
+include (GenerateExportHeader)
+generate_export_header(cparameter)
+
 include_directories(
+        "${CMAKE_CURRENT_BINARY_DIR}"
         "${PROJECT_SOURCE_DIR}/utility"
         "${PROJECT_BINARY_DIR}/parameter"
         "${PROJECT_SOURCE_DIR}/parameter/include")
 
 install(FILES ParameterFramework.h
+              "${CMAKE_CURRENT_BINARY_DIR}/cparameter_export.h"
         DESTINATION "include/parameter/c")
 
 target_link_libraries(cparameter parameter)

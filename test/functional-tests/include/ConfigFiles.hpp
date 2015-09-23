@@ -116,9 +116,10 @@ private:
              {domains}
          </ConfigurableDomains>
     )";
-    TmpFile mStructureFile;
-    TmpFile mDomainsFile;
-    TmpFile mConfigFile;
+
+    utility::TmpFile mStructureFile;
+    utility::TmpFile mDomainsFile;
+    utility::TmpFile mConfigFile;
 };
 
 } // parameterFramework

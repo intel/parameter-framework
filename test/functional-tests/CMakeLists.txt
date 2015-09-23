@@ -40,6 +40,7 @@ if(BUILD_TESTING)
     include_directories("${PROJECT_BINARY_DIR}/parameter")
     include_directories("${PROJECT_SOURCE_DIR}/parameter/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+    include_directories("${PROJECT_SOURCE_DIR}/utility")
 
     # Add unit test
     add_executable(parameterFunctionalTest
