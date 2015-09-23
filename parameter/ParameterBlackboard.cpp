@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,23 +28,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "ParameterBlackboard.h"
+#include "Iterator.hpp"
 #include <cassert>
 #include <algorithm>
-
-#ifdef _MSC_VER
-#   include <iterator>
-    /** Visual studio raises a warning if the check iterator feature is activated
-     * but a raw pointer is used as iterator (as it can not check it's bounds).
-     * As it is a safety feature, do not silent the warning, but use the
-     * microsoft specific `make_check_array_iterator` that take a pointer
-     * and the size of the underline buffer.
-     * For other compiler, use the raw pointer.
-     */
-#   define MAKE_ARRAY_ITERATOR(begin, size) stdext::make_checked_array_iterator(begin, size)
-#else
-    /** By default an array iterator is a pointer to the first element. */
-#   define MAKE_ARRAY_ITERATOR(begin, size) begin
-#endif
 
 // Size
 void CParameterBlackboard::setSize(size_t size)

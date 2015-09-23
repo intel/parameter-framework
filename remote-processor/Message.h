@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,7 @@
  */
 #pragma once
 
+#include "NonCopyable.hpp"
 #include <asio.hpp>
 #include <string>
 #include <cstdint>
@@ -36,7 +37,7 @@
 #include <remote_processor_export.h>
 
 
-class REMOTE_PROCESSOR_EXPORT CMessage
+class REMOTE_PROCESSOR_EXPORT CMessage : private utility::NonCopyable
 {
 public:
 
@@ -48,7 +49,7 @@ public:
     };
     CMessage(MsgType ucMsgId);
     CMessage();
-    virtual ~CMessage();
+    virtual ~CMessage() = default;
 
     enum Result {
         success,
@@ -110,9 +111,9 @@ protected:
     * (request: write, answer: read)
     */
     size_t getRemainingDataSize() const;
+
 private:
-    CMessage(const CMessage&);
-    CMessage& operator=(const CMessage&);
+    void assertValidAccess(size_t offset, size_t size) const;
 
     /** Allocate room to store the message
     *
@@ -133,10 +134,11 @@ private:
 
     // MsgId
     MsgType _ucMsgId;
-    // Data
-    uint8_t* _pucData;
-    /** Size of the allocated memory to store the message */
-    size_t _uiDataSize;
+
+    size_t getMessageDataSize() const { return mData.size(); }
+
+    using Data = std::vector<uint8_t>;
+    Data mData;
     /** Read/Write Index used to iterate across the message data */
     size_t _uiIndex;
 
