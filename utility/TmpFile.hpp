@@ -80,36 +80,23 @@ public:
      */
     const std::string &getPath() const { return mPath; }
 private:
-    std::string mktmp()
-    {
-        std::array<char, L_tmpnam> buffer;
-        char *path = std::tmpnam(buffer.data());
-        if (path == nullptr) {
-            throw std::runtime_error("Could not create tmp file: " + strerror());
-        }
-#       ifdef WIN32
-            // From: https://msdn.microsoft.com/en-us/library/vstudio/hs3e7355%28v=vs.100%29.aspx
-            // > `tmpnam` returns a name unique in the current working directory.
-            // > When a file name is pre-pended with a backslash
-            // > and no path information, such as "\fname21", this indicates that
-            // > the name is valid for the current working directory.
-            //
-            // From the above it seems that `tmpnam` always returns a file name
-            // prefixed by `\`. Thus `.` need to be appended to transform it to
-            // a path to the current directory.
-            return std::string(".") + path;
-#       else
-            return path;
-#       endif
+    /** @return a valid unique file name. */
+    std::string mktmp();
+
+    /** Throw an std::runtime_error with a message constructed from the context and std::errno.
+     *
+     * Call it after a c standard function failure.
+     */
+    static void throwErrnoError(std::string context) {
+        auto message = context + ": (" + std::to_string(errno) + ") " + std::strerror(errno);
+        throw std::runtime_error(message);
     }
-    static std::string strerror() {
-        return '(' + std::to_string(errno) + ')' + std::strerror(errno);
-    }
+
     void remove()
     {
         if (not mPath.empty()) {
             if (std::remove(mPath.c_str()) != 0) {
-                throw std::runtime_error("Could not delete tmp file: " + strerror());
+                throwErrnoError("Could not delete tmpfile");
             }
         }
     }
