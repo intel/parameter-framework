@@ -522,45 +522,35 @@ const CDomainConfiguration* CConfigurableDomain::getPendingConfiguration() const
 }
 
 // Configuration application if required
-void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard, CSyncerSet* pSyncerSet, bool bForce) const
+void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard,
+                                CSyncerSet& syncerSet,
+                                bool bForce) const
 {
-    // Apply configuration only if the blackboard will
-    // be synchronized either now or by syncerSet.
-    if(!pSyncerSet ^ _bSequenceAware) {
-        // The configuration can not be syncronised
-        return;
-    }
-
     if (bForce) {
         // Force a configuration restore by forgetting about last applied configuration
         _pLastAppliedConfiguration = NULL;
     }
     const CDomainConfiguration* pApplicableDomainConfiguration = findApplicableDomainConfiguration();
 
-    if (pApplicableDomainConfiguration) {
+    // Check the last applied configuration is different from this one before apply
+    if (pApplicableDomainConfiguration != NULL &&
+            _pLastAppliedConfiguration != pApplicableDomainConfiguration) {
 
-        // Check not the last one before applying
-        if (!_pLastAppliedConfiguration || _pLastAppliedConfiguration != pApplicableDomainConfiguration) {
+        log_info("Applying configuration \"%s\" from domain \"%s\"",
+                 pApplicableDomainConfiguration->getName().c_str(),
+                 getName().c_str());
 
-            log_info("Applying configuration \"%s\" from domain \"%s\"",
-                     pApplicableDomainConfiguration->getName().c_str(),
-                     getName().c_str());
+        // Do the restore, and synchronize if we are sequence aware
+        pApplicableDomainConfiguration->restore(pParameterBlackboard, _bSequenceAware, NULL);
 
-            // Check if we need to synchronize during restore
-            bool bSync = !pSyncerSet && _bSequenceAware;
+        // Record last applied configuration
+        _pLastAppliedConfiguration = pApplicableDomainConfiguration;
 
-            // Do the restore
-            pApplicableDomainConfiguration->restore(pParameterBlackboard, bSync, NULL);
+        // Check we need to provide syncer set to caller
+        if (!_bSequenceAware) {
 
-            // Record last applied configuration
-            _pLastAppliedConfiguration = pApplicableDomainConfiguration;
-
-            // Check we need to provide syncer set to caller
-            if (pSyncerSet && !_bSequenceAware) {
-
-                // Since we applied changes, add our own sync set to the given one
-                *pSyncerSet += _syncerSet;
-            }
+            // Since we applied changes, add our own sync set to the given one
+            syncerSet += _syncerSet;
         }
     }
 }

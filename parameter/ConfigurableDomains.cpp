@@ -83,19 +83,10 @@ void CConfigurableDomains::apply(CParameterBlackboard* pParameterBlackboard, CSy
         const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
 
         // Apply and collect syncers when relevant
-        pChildConfigurableDomain->apply(pParameterBlackboard, &syncerSet, bForce);
+        pChildConfigurableDomain->apply(pParameterBlackboard, syncerSet, bForce);
     }
     // Synchronize those collected syncers
     syncerSet.sync(*pParameterBlackboard, false, NULL);
-
-    // Then deal with domains that need to synchronize along apply
-    for (uiChild = 0; uiChild < uiNbConfigurableDomains; uiChild++) {
-
-        const CConfigurableDomain* pChildConfigurableDomain = static_cast<const CConfigurableDomain*>(getChild(uiChild));
-
-        // Apply and synchronize when relevant
-        pChildConfigurableDomain->apply(pParameterBlackboard, NULL, bForce);
-    }
 }
 
 // From IXmlSource
