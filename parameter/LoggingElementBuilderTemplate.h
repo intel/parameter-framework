@@ -29,7 +29,36 @@
  */
 #pragma once
 
+#include <parameter_export.h>
+
 #include "ElementBuilder.h"
+#include <log/Logger.h>
+
+namespace detail
+{
+/** Part of the implementation of `TLoggingElementBuilderTemplate`
+ * that does not need to be template.
+ *
+ * If this was implemented in this header, the xmlElement implementation
+ * would leak to sources including this header.
+ *
+ * Plugins are including this header. As a result they would include
+ * the xmlElement implementation if it was not hidden in a cpp.
+ *
+ * FIXME: The xml concept (forward declared) is still leaked to the plugin.
+ *        A solution would be have two level of builders:
+ *         - a PluginBuilder that wraps the plugin
+ *         - and an ElementBuilder that wraps the PluginBuilder
+ *        This way the plugin can only see the PluginBuilder and is not
+ *        contaminated by any core specific concept.
+ *
+ * @param[in] xmlElement the XML element
+ * @return the "Name" attribute value of an xml element or
+ * empty string if attribute is not present
+ *
+ */
+std::string PARAMETER_EXPORT getName(const CXmlElement& xmlElement);
+}
 
 /**
  * Builder for elements which need logger at construction
@@ -60,9 +89,8 @@ public:
      */
     virtual CElement* createElement(const CXmlElement& xmlElement) const
     {
-        return new ElementType(xmlElement.getNameAttribute(), mLogger);
+        return new ElementType(detail::getName(xmlElement), mLogger);
     }
-
 private:
 
     /** Application Logger */

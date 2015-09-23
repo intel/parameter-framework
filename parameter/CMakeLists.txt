@@ -63,9 +63,9 @@ add_library(parameter SHARED
     IntegerParameterType.cpp
     LinearParameterAdaptation.cpp
     LogarithmicParameterAdaptation.cpp
+    LoggingElementBuilderTemplate.cpp
     MappingContext.cpp
     MappingData.cpp
-    NamedElementBuilderTemplate.cpp
     ParameterAccessContext.cpp
     ParameterAdaptation.cpp
     ParameterBlackboard.cpp
@@ -145,9 +145,9 @@ install(FILES
     FileIncluderElementBuilder.h
     FormattedSubsystemObject.h
     InstanceConfigurableElement.h
+    LoggingElementBuilderTemplate.h
     Mapper.h
     MappingContext.h
-    LoggingElementBuilderTemplate.h
     ParameterBlockType.h
     ParameterType.h
     PathNavigator.h
