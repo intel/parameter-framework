@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ParameterFrameworkConfiguration SystemClassName="Test" ServerPort="5000" TuningAllowed="true">
+<ParameterFrameworkConfiguration
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Schemas/ParameterFrameworkConfiguration.xsd"
+ SystemClassName="Test" ServerPort="5000" TuningAllowed="true">
     <SubsystemPlugins>
         <Location Folder="">
             <Plugin Name="libtest-subsystem.so"/>
