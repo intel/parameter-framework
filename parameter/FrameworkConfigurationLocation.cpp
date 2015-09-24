@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "XmlDocSource.h"
 #include "FrameworkConfigurationLocation.h"
 #include <assert.h>
 
@@ -53,38 +54,5 @@ bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXm
 // File path
 std::string CFrameworkConfigurationLocation::getFilePath(const std::string& strBaseFolder) const
 {
-    if (isPathRelative()) {
-
-        return strBaseFolder + "/" + _strPath;
-    }
-    return _strPath;
-}
-
-// Folder path
-std::string CFrameworkConfigurationLocation::getFolderPath(const std::string& strBaseFolder) const
-{
-    auto slashPos = _strPath.rfind('/', -1);
-
-    if (isPathRelative()) {
-
-        if (slashPos != std::string::npos) {
-
-            return strBaseFolder + "/" + _strPath.substr(0, slashPos);
-
-        } else {
-
-            return strBaseFolder;
-        }
-    } else {
-
-        assert(slashPos != std::string::npos);
-
-        return _strPath.substr(0, slashPos);
-    }
-}
-
-// Detect relative path
-bool CFrameworkConfigurationLocation::isPathRelative() const
-{
-    return _strPath[0] != '/';
+    return CXmlDocSource::mkUri(strBaseFolder, _strPath);
 }

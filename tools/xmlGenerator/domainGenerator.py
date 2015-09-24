@@ -162,7 +162,7 @@ if __name__ == "__main__":
             help="Directory of parameter-framework XML Schemas on target \
         machine (may be different than generating machine). \
         Defaults to \"Schemas\"",
-            default="Schemas")
+            default="Schemas/")
     argparser.add_argument('--validate',
             help="Validate the settings against XML schemas",
             action='store_true')
@@ -272,7 +272,7 @@ if __name__ == "__main__":
             if args.schemas_dir is not None:
                 schemas_dir = args.schemas_dir
             else:
-                schemas_dir = os.path.join(install_path, "Schemas")
+                schemas_dir = os.path.join(install_path, "Schemas/")
             pfw.setSchemaFolderLocation(schemas_dir)
 
         logger = PfwLogger()

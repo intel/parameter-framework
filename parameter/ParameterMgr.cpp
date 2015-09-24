@@ -126,7 +126,7 @@ using namespace core;
 typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
 
 // Global Schemas folder (fixed)
-const char* gacSystemSchemasSubFolder = "Schemas";
+const char* gacSystemSchemasSubFolder = "Schemas/";
 
 // Config File System looks normally like this:
 // ---------------------------------------------
@@ -347,16 +347,10 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     addChild(new CConfigurableDomains);
 
     // Configuration file folder
-    std::string::size_type slashPos = _strXmlConfigurationFilePath.rfind('/', -1);
-    if(slashPos == std::string::npos) {
-        // Configuration folder is the current folder
-        _strXmlConfigurationFolderPath = '.';
-    } else {
-        _strXmlConfigurationFolderPath = _strXmlConfigurationFilePath.substr(0, slashPos);
-    }
+    _strXmlConfigurationFolderPath = CXmlDocSource::mkUri(_strXmlConfigurationFilePath, ".");
 
     // Schema absolute folder location
-    _strSchemaFolderLocation = _strXmlConfigurationFolderPath + "/" + gacSystemSchemasSubFolder;
+    _strSchemaFolderLocation = CXmlDocSource::mkUri(_strXmlConfigurationFolderPath, gacSystemSchemasSubFolder);
 }
 
 CParameterMgr::~CParameterMgr()
@@ -535,11 +529,11 @@ bool CParameterMgr::loadStructure(string& strError)
         return false;
     }
 
-    // Get Xml structure folder
-    string strXmlStructureFolder = pStructureDescriptionFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
-
     // Get Xml structure file name
     string strXmlStructureFilePath = pStructureDescriptionFileLocation->getFilePath(_strXmlConfigurationFolderPath);
+
+    // Get Xml structure folder
+    string strXmlStructureFolder = CXmlDocSource::mkUri(strXmlStructureFilePath, ".");
 
     // Parse Structure XML file
     CXmlParameterSerializingContext parameterBuildContext(strError);
@@ -618,7 +612,7 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     string strXmlConfigurationDomainsFilePath = pConfigurableDomainsFileLocation->getFilePath(_strXmlConfigurationFolderPath);
 
     // Get Xml configuration domains folder
-    string strXmlConfigurationDomainsFolder = pConfigurableDomainsFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
+    string strXmlConfigurationDomainsFolder = CXmlDocSource::mkUri(_strXmlConfigurationFolderPath, ".");
 
     // Parse configuration domains XML file
     CXmlDomainImportContext xmlDomainImportContext(strError, true, *getSystemClass());
@@ -651,13 +645,9 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
 {
     // Init serializing context
     elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(
-                                      eElementLibrary), strXmlFolder, _strSchemaFolderLocation);
-
-    // Get Schema file associated to root element
-    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pRootElement->getKind() + ".xsd";
+                                  eElementLibrary), strXmlFolder);
 
     CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
-                            strXmlSchemaFilePath,
                             pRootElement->getKind(),
                             pRootElement->getName(),
                             strNameAttributeName);
@@ -2267,8 +2257,7 @@ bool CParameterMgr::serializeElement(std::ostream& output,
     }
 
     // Get Schema file associated to root element
-    string xmlSchemaFilePath = _strSchemaFolderLocation + "/" +
-                                  element.getKind() + ".xsd";
+    string xmlSchemaFilePath = CXmlDocSource::mkUri(_strSchemaFolderLocation, element.getKind() + ".xsd");
 
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(&element, _bValidateSchemasOnStart,
