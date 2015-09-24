@@ -24,6 +24,11 @@ init:
   # See: https://msdn.microsoft.com/en-us/library/bb513638%28VS.85%29.aspx
   - reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /f /v DontShowUI /d 1
 
+  # Instruct cmake were to find external dependencies
+  - set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6;%APPVEYOR_BUILD_FOLDER%\catch
+  # legacy functional tests are bash specific
+  - set CTEST_PARAMS=--output-on-failure --exclude-regex functional-test-legacy
+
 install:
   - cinst cmake.portable wget 7zip.commandline
 
@@ -41,10 +46,6 @@ install:
   - if not exist catch (
       wget --no-check-certificate https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp --directory-prefix catch )
 
-  # Instruct cmake were to find external dependancies
-  - set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6;%APPVEYOR_BUILD_FOLDER%\catch
-  # function tests legacy are bash specific
-  - set CTEST_PARAMS=--output-on-failure --exclude-regex functional-test-legacy
   # Setup Visual studio build environement
   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
 
