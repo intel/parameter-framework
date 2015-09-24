@@ -28,7 +28,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "DomainConfiguration.h"
-#include "AreaConfiguration.h"
 #include "ConfigurableElement.h"
 #include "CompoundRule.h"
 #include "Subsystem.h"
@@ -51,13 +50,6 @@ CDomainConfiguration::CDomainConfiguration(const string& strName) : base(strName
 {
 }
 
-CDomainConfiguration::~CDomainConfiguration()
-{
-    for (auto areaConfiguration : _areaConfigurationList) {
-        delete areaConfiguration;
-    }
-}
-
 // Class kind
 string CDomainConfiguration::getKind() const
 {
@@ -76,41 +68,38 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
     // Actual XML context
     CXmlDomainImportContext& xmlDomainImportContext = static_cast<CXmlDomainImportContext&>(serializingContext);
 
-    // Take care of configurable elements / area configurations ranks
-    AreaConfigurationList areaConfigurationList;
-
     // Parse configurable element's configuration settings
     CXmlElement::CChildIterator it(xmlConfigurationSettingsElement);
 
     CXmlElement xmlConfigurableElementSettingsElement;
+    auto insertLocation = begin(mAreaConfigurationList);
 
     while (it.next(xmlConfigurableElementSettingsElement)) {
 
         // Retrieve area configuration
-        string strConfigurableElementPath;
-        xmlConfigurableElementSettingsElement.getAttribute("Path", strConfigurableElementPath);
+        string configurableElementPath;
+        xmlConfigurableElementSettingsElement.getAttribute("Path", configurableElementPath);
 
-        CAreaConfiguration* pAreaConfiguration = findAreaConfiguration(strConfigurableElementPath);
+        auto areaConfiguration = findAreaConfigurationByPath(configurableElementPath);
+        if (areaConfiguration == end(mAreaConfigurationList)) {
 
-        if (!pAreaConfiguration) {
-
-            xmlDomainImportContext.setError("Configurable Element " + strConfigurableElementPath  + " referred to by Configuration " + getPath() + " not associated to Domain");
+            xmlDomainImportContext.setError("Configurable Element " + configurableElementPath  + " referred to by Configuration " + getPath() + " not associated to Domain");
 
             return false;
         }
-        // Ranks
-        areaConfigurationList.push_back(pAreaConfiguration);
-
         // Parse
-        if (!serializeConfigurableElementSettings(pAreaConfiguration, xmlConfigurableElementSettingsElement, xmlDomainImportContext, false)) {
+        if (!serializeConfigurableElementSettings(areaConfiguration->get(), xmlConfigurableElementSettingsElement, xmlDomainImportContext, false)) {
 
             return false;
         }
+        // Take into account the new configuration order by moving the configuration associated to
+        // the element to the n-th position of the configuration list.
+        // It will result in prepending to the configuration list wit the configuration of all
+        // elements found in XML, keeping the order of the processing of the XML file.
+        mAreaConfigurationList.splice(insertLocation, mAreaConfigurationList, areaConfiguration);
+        // areaConfiguration is still valid, but now refer to the reorderer list
+        insertLocation = std::next(areaConfiguration);
     }
-
-    // Reorder area configurations according to XML content
-    reorderAreaConfigurations(areaConfigurationList);
-
     return true;
 }
 
@@ -118,7 +107,7 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
 void CDomainConfiguration::composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext) const
 {
     // Go through all are configurations
-    for (auto areaConfiguration : _orderedAreaConfigurationList) {
+    for (auto &areaConfiguration : mAreaConfigurationList) {
 
         // Retrieve configurable element
         const CConfigurableElement* pConfigurableElement = areaConfiguration->getConfigurableElement();
@@ -132,19 +121,19 @@ void CDomainConfiguration::composeSettings(CXmlElement& xmlConfigurationSettings
         xmlConfigurableElementSettingsElement.setAttribute("Path", pConfigurableElement->getPath());
 
         // Delegate composing to area configuration
-        ((CDomainConfiguration&)(*this)).serializeConfigurableElementSettings((CAreaConfiguration*)areaConfiguration, xmlConfigurableElementSettingsElement, serializingContext, true);
+        ((CDomainConfiguration&)(*this)).serializeConfigurableElementSettings(areaConfiguration.get(), xmlConfigurableElementSettingsElement, serializingContext, true);
     }
 }
 
 // Serialize one configuration for one configurable element
-bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfiguration* pAreaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlSerializingContext& serializingContext, bool bSerializeOut)
+bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfiguration *areaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlSerializingContext& serializingContext, bool bSerializeOut)
 {
     // Actual XML context
     CXmlDomainExportContext& xmlDomainExportContext =
         static_cast<CXmlDomainExportContext&>(serializingContext);
 
     // Configurable Element
-    const CConfigurableElement* pConfigurableElement = pAreaConfiguration->getConfigurableElement();
+    const CConfigurableElement* pConfigurableElement = areaConfiguration->getConfigurableElement();
 
     // Element content
     CXmlElement xmlConfigurableElementSettingsElementContent;
@@ -201,7 +190,7 @@ bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfigurati
     }
 
     // Have domain configuration parse settings for configurable element
-    if (!pAreaConfiguration->serializeXmlSettings(xmlConfigurableElementSettingsElementContent, configurationAccessContext)) {
+    if (!areaConfiguration->serializeXmlSettings(xmlConfigurableElementSettingsElementContent, configurationAccessContext)) {
 
         // Forward error
         xmlDomainExportContext.setError(strError);
@@ -211,65 +200,54 @@ bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfigurati
     return true;
 }
 
-// Configurable Elements association
-void CDomainConfiguration::addConfigurableElement(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet)
+void CDomainConfiguration::addConfigurableElement(const CConfigurableElement *configurableElement, const CSyncerSet *syncerSet)
 {
-    CAreaConfiguration* pAreaConfiguration = pConfigurableElement->createAreaConfiguration(pSyncerSet);
-
-    _areaConfigurationList.push_back(pAreaConfiguration);
-    _orderedAreaConfigurationList.push_back(pAreaConfiguration);
+    mAreaConfigurationList.emplace_back(configurableElement->createAreaConfiguration(syncerSet));
 }
 
 void CDomainConfiguration::removeConfigurableElement(const CConfigurableElement* pConfigurableElement)
 {
-    CAreaConfiguration* pAreaConfigurationToRemove = getAreaConfiguration(pConfigurableElement);
+    auto &areaConfigurationToRemove = getAreaConfiguration(pConfigurableElement);
 
-    _areaConfigurationList.remove(pAreaConfigurationToRemove);
-    _orderedAreaConfigurationList.remove(pAreaConfigurationToRemove);
-
-    delete pAreaConfigurationToRemove;
+    mAreaConfigurationList.remove(areaConfigurationToRemove);
 }
 
-// Sequence management
-bool CDomainConfiguration::setElementSequence(const std::vector<string>& astrNewElementSequence, string& strError)
+bool CDomainConfiguration::setElementSequence(const std::vector<string> &newElementSequence, string &error)
 {
-    // Build a new list of AreaConfiguration objects
-    AreaConfigurationList areaConfigurationList;
+    std::vector<string> elementSequenceSet;
+    auto insertLocation = begin(mAreaConfigurationList);
 
+    for (const std::string &elementPath : newElementSequence) {
 
-    for (const std::string &strConfigurableElementPath : astrNewElementSequence) {
+        auto areaConfiguration = findAreaConfigurationByPath(elementPath);
+        if (areaConfiguration == end(mAreaConfigurationList)) {
 
-        CAreaConfiguration* pAreaConfiguration = findAreaConfiguration(strConfigurableElementPath);
-
-        if (!pAreaConfiguration) {
-
-            strError = "Element " + strConfigurableElementPath + " not found in domain";
+            error = "Element " + elementPath + " not found in domain";
 
             return false;
         }
-        // Check not already present in the list
-        if (findAreaConfiguration(strConfigurableElementPath, areaConfigurationList)) {
-
-            strError = "Element " + strConfigurableElementPath + " provided more than once";
-
+        auto it = find(begin(elementSequenceSet), end(elementSequenceSet), elementPath);
+        if (it != end(elementSequenceSet)) {
+            error = "Element " + elementPath + " provided more than once";
             return false;
         }
-
-        // Store new ordered area configuration
-        areaConfigurationList.push_back(pAreaConfiguration);
+        elementSequenceSet.push_back(elementPath);
+        // Take into account the new configuration order by moving the configuration associated to
+        // the element to the n-th position of the configuration list.
+        // It will result in prepending to the configuration list wit the configuration of all
+        // elements found in XML, keeping the order of the processing of the XML file.
+        mAreaConfigurationList.splice(insertLocation, mAreaConfigurationList, areaConfiguration);
+        // areaConfiguration is still valid, but now refer to the reorderer list
+        insertLocation = std::next(areaConfiguration);
     }
-
-    // Reorder area configurations according to given path list
-    reorderAreaConfigurations(areaConfigurationList);
-
     return true;
 }
 
 void CDomainConfiguration::getElementSequence(string& strResult) const
 {
     // List configurable element paths out of ordered area configuration list
-    strResult = accumulate(begin(_orderedAreaConfigurationList), end(_orderedAreaConfigurationList),
-                           string("\n"), [](const string &a, const CAreaConfiguration *conf) {
+    strResult = accumulate(begin(mAreaConfigurationList), end(mAreaConfigurationList),
+                           string("\n"), [](const string &a, const AreaConfiguration &conf) {
         return a + conf->getConfigurableElement()->getPath() + "\n";
     });
 }
@@ -329,11 +307,11 @@ void CDomainConfiguration::getApplicationRule(string& strResult) const
  */
 CParameterBlackboard* CDomainConfiguration::getBlackboard(const CConfigurableElement* pConfigurableElement) const
 {
-    auto it = find_if(begin(_areaConfigurationList), end(_areaConfigurationList),
-                      [&](const CAreaConfiguration *conf) {
+    const auto &it = find_if(begin(mAreaConfigurationList), end(mAreaConfigurationList),
+                      [&](const AreaConfiguration &conf) {
         return conf != NULL && conf->getConfigurableElement() == pConfigurableElement;
     });
-    ALWAYS_ASSERT(it != end(_areaConfigurationList), "Configurable Element "
+    ALWAYS_ASSERT(it != end(mAreaConfigurationList), "Configurable Element "
                   << pConfigurableElement->getName() << " not found in any area Configuration");
     return &(*it)->getBlackboard();
 }
@@ -342,7 +320,7 @@ CParameterBlackboard* CDomainConfiguration::getBlackboard(const CConfigurableEle
 void CDomainConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 {
     // Just propagate to areas
-    for(auto areaConfiguration : _areaConfigurationList) {
+    for(auto &areaConfiguration : mAreaConfigurationList) {
         areaConfiguration->save(pMainBlackboard);
     }
 }
@@ -352,8 +330,8 @@ bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard,
                                    bool bSync,
                                    core::Results* errors) const
 {
-    return std::accumulate(begin(_orderedAreaConfigurationList), end(_orderedAreaConfigurationList),
-                           true, [&](bool accumulator, const CAreaConfiguration *conf) {
+    return std::accumulate(begin(mAreaConfigurationList), end(mAreaConfigurationList),
+                           true, [&](bool accumulator, const AreaConfiguration &conf) {
         return conf->restore(pMainBlackboard, bSync, errors) && accumulator;
     });
 }
@@ -361,16 +339,16 @@ bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard,
 // Ensure validity for configurable element area configuration
 void CDomainConfiguration::validate(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard)
 {
-    CAreaConfiguration* pAreaConfigurationToValidate = getAreaConfiguration(pConfigurableElement);
+    auto &areaConfigurationToValidate = getAreaConfiguration(pConfigurableElement);
 
     // Delegate
-    pAreaConfigurationToValidate->validate(pMainBlackboard);
+    areaConfigurationToValidate->validate(pMainBlackboard);
 }
 
 // Ensure validity of all area configurations
 void CDomainConfiguration::validate(const CParameterBlackboard* pMainBlackboard)
 {
-    for(auto areaConfiguration : _areaConfigurationList) {
+    for(auto &areaConfiguration : mAreaConfigurationList) {
         areaConfiguration->validate(pMainBlackboard);
     }
 }
@@ -379,39 +357,38 @@ void CDomainConfiguration::validate(const CParameterBlackboard* pMainBlackboard)
 bool CDomainConfiguration::isValid(const CConfigurableElement* pConfigurableElement) const
 {
     // Get child configurable elemnt's area configuration
-    CAreaConfiguration* pAreaConfiguration = getAreaConfiguration(pConfigurableElement);
+    auto &areaConfiguration = getAreaConfiguration(pConfigurableElement);
 
-    ALWAYS_ASSERT(pAreaConfiguration != NULL, "Configurable Element "
+    ALWAYS_ASSERT(areaConfiguration != NULL, "Configurable Element "
                   << pConfigurableElement->getName() << " not found in any area Configuration");
 
-    return pAreaConfiguration->isValid();
+    return areaConfiguration->isValid();
 }
 
 // Ensure validity of configurable element's area configuration by copying in from a valid one
 void CDomainConfiguration::validateAgainst(const CDomainConfiguration* pValidDomainConfiguration, const CConfigurableElement* pConfigurableElement)
 {
     // Retrieve related area configurations
-    CAreaConfiguration* pAreaConfigurationToValidate = getAreaConfiguration(pConfigurableElement);
-    const CAreaConfiguration* pAreaConfigurationToValidateAgainst = pValidDomainConfiguration->getAreaConfiguration(pConfigurableElement);
+    auto &areaConfigurationToValidate = getAreaConfiguration(pConfigurableElement);
+    const auto &areaConfigurationToValidateAgainst = pValidDomainConfiguration->getAreaConfiguration(pConfigurableElement);
 
     // Delegate to area
-    pAreaConfigurationToValidate->validateAgainst(pAreaConfigurationToValidateAgainst);
+    areaConfigurationToValidate->validateAgainst(areaConfigurationToValidateAgainst.get());
 }
 
-// Ensure validity of all configurable element's area configuration by copying in from a valid ones
-void CDomainConfiguration::validateAgainst(const CDomainConfiguration* pValidDomainConfiguration)
+void CDomainConfiguration::validateAgainst(const CDomainConfiguration *validDomainConfiguration)
 {
-    ALWAYS_ASSERT(_areaConfigurationList.size() == pValidDomainConfiguration->_areaConfigurationList.size(),
+    ALWAYS_ASSERT(mAreaConfigurationList.size() == validDomainConfiguration->mAreaConfigurationList.size(),
                   "Cannot validate domain configuration " << getPath()
                   << " since area configuration list does not have the same size"
                      "than the configuration list to check against");
-    // Copy in configuration data from against domain
-    auto itAgainst = pValidDomainConfiguration->_areaConfigurationList.cbegin();
-
-    for (auto areaConfigurationToValidate : _areaConfigurationList) {
+    for (const auto &configurationToValidateAgainst : validDomainConfiguration->mAreaConfigurationList) {
+        // Get the area configuration associated to the configurable element of the
+        // valid area configuration, it will assert if none found.
+        auto configurableElement = configurationToValidateAgainst->getConfigurableElement();
+        auto &configurationToValidate = getAreaConfiguration(configurableElement);
         // Delegate to area
-        areaConfigurationToValidate->validateAgainst(*itAgainst);
-        std::advance(itAgainst, 1);
+        configurationToValidate->validateAgainst(configurationToValidateAgainst.get());
     }
 }
 
@@ -427,18 +404,18 @@ bool CDomainConfiguration::isApplicable() const
 void CDomainConfiguration::merge(CConfigurableElement* pToConfigurableElement, CConfigurableElement* pFromConfigurableElement)
 {
     // Retrieve related area configurations
-    CAreaConfiguration* pAreaConfigurationToMergeTo = getAreaConfiguration(pToConfigurableElement);
-    const CAreaConfiguration* pAreaConfigurationToMergeFrom = getAreaConfiguration(pFromConfigurableElement);
+    auto &areaConfigurationToMergeTo = getAreaConfiguration(pToConfigurableElement);
+    const auto &areaConfigurationToMergeFrom = getAreaConfiguration(pFromConfigurableElement);
 
     // Do the merge
-    pAreaConfigurationToMergeFrom->copyToOuter(pAreaConfigurationToMergeTo);
+    areaConfigurationToMergeFrom->copyToOuter(areaConfigurationToMergeTo.get());
 }
 
 // Domain splitting
 void CDomainConfiguration::split(CConfigurableElement* pFromConfigurableElement)
 {
     // Retrieve related area configuration
-    const CAreaConfiguration* pAreaConfigurationToSplitFrom = getAreaConfiguration(pFromConfigurableElement);
+    const auto &areaConfigurationToSplitFrom = getAreaConfiguration(pFromConfigurableElement);
 
     // Go through children areas to copy configuration data to them
     size_t uiNbConfigurableElementChildren = pFromConfigurableElement->getNbChildren();
@@ -449,54 +426,31 @@ void CDomainConfiguration::split(CConfigurableElement* pFromConfigurableElement)
         CConfigurableElement* pToChildConfigurableElement = static_cast<CConfigurableElement*>(pFromConfigurableElement->getChild(uiChild));
 
         // Get child configurable elemnt's area configuration
-        CAreaConfiguration* pChildAreaConfiguration = getAreaConfiguration(pToChildConfigurableElement);
+        auto &childAreaConfiguration = getAreaConfiguration(pToChildConfigurableElement);
 
         // Do the copy
-        pChildAreaConfiguration->copyFromOuter(pAreaConfigurationToSplitFrom);
+        childAreaConfiguration->copyFromOuter(areaConfigurationToSplitFrom.get());
     }
 }
 
-// AreaConfiguration retrieval from configurable element
-CAreaConfiguration* CDomainConfiguration::getAreaConfiguration(const CConfigurableElement* pConfigurableElement) const
+const CDomainConfiguration::AreaConfiguration &CDomainConfiguration::getAreaConfiguration(const CConfigurableElement* pConfigurableElement) const
 {
-    auto it = find_if(begin(_areaConfigurationList), end(_areaConfigurationList),
-                      [&](const CAreaConfiguration *conf) {
+    const auto &it = find_if(begin(mAreaConfigurationList), end(mAreaConfigurationList),
+                      [&](const AreaConfiguration &conf) {
         return conf->getConfigurableElement() == pConfigurableElement;
     });
-    ALWAYS_ASSERT(it != end(_areaConfigurationList), "Configurable Element "
+    ALWAYS_ASSERT(it != end(mAreaConfigurationList), "Configurable Element "
                   << pConfigurableElement->getName() << " not found in Domain Configuration list");
     return *it;
 }
 
-// AreaConfiguration retrieval from present area configurations
-CAreaConfiguration* CDomainConfiguration::findAreaConfiguration(const string& strConfigurableElementPath) const
+CDomainConfiguration::AreaConfigurations::iterator CDomainConfiguration::findAreaConfigurationByPath(const std::string &configurableElementPath)
 {
-    return findAreaConfiguration(strConfigurableElementPath, _areaConfigurationList);
-}
-
-// AreaConfiguration retrieval from given area configuration list
-CAreaConfiguration* CDomainConfiguration::findAreaConfiguration(const string& strConfigurableElementPath, const std::list<CAreaConfiguration*>& areaConfigurationList) const
-{
-    auto it = find_if(begin(areaConfigurationList), end(areaConfigurationList),
-                      [&](const CAreaConfiguration *conf) {
-        return conf->getConfigurableElement()->getPath() == strConfigurableElementPath;
+    auto areaConfiguration = find_if(begin(mAreaConfigurationList), end(mAreaConfigurationList),
+                                         [&](const AreaConfiguration &conf) {
+        return conf->getConfigurableElement()->getPath() == configurableElementPath;
     });
-    return (it != end(areaConfigurationList)) ? *it :  NULL;
-}
-
-// Area configuration ordering
-void CDomainConfiguration::reorderAreaConfigurations(const std::list<CAreaConfiguration*>& areaConfigurationList)
-{
-    // Ensure elements in provided list appear first and ordered the same way in internal one
-
-    // Remove all elements present in the provided list from the internal one
-    for (auto areaConfiguration : areaConfigurationList) {
-
-        _orderedAreaConfigurationList.remove(areaConfiguration);
-    }
-
-    // Prepended provided elements into internal list
-    _orderedAreaConfigurationList.insert(_orderedAreaConfigurationList.begin(), areaConfigurationList.begin(), areaConfigurationList.end());
+    return areaConfiguration;
 }
 
 // Rule
