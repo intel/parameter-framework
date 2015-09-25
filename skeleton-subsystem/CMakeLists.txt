@@ -37,6 +37,10 @@ else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra")
 endif ()
 
+# Hide symbols by default, then exposed symbols are the same in linux and windows
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN true)
+
 #
 # Find PFW libraries and include directories
 #
@@ -54,8 +58,7 @@ SkeletonSubsystemBuilder.cpp
 SkeletonSubsystem.cpp
 SkeletonSubsystemObject.cpp)
 
-include_directories(${PFW_INCLUDE_DIRS})
-
+target_include_directories(skeleton-subsystem PRIVATE ${PFW_INCLUDE_DIRS})
 target_link_libraries(skeleton-subsystem ${PFW_CORE_LIBRARY})
 
 install(TARGETS skeleton-subsystem
