@@ -333,13 +333,21 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
     assert(pCriterionType != NULL);
 
     uint32_t uiNbStates = remoteCommand.getArgumentCount() - 1;
+
+    if (uiNbStates > 32) {
+
+        strResult = "Maximum number of states for inclusive criterion is 32";
+
+        return false;
+    }
+
     uint32_t uiState;
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
 
         const std::string& strValue = remoteCommand.getArgument(uiState + 1);
 
-        if (!pCriterionType->addValuePair(0x1 << uiState, strValue)) {
+        if (!pCriterionType->addValuePair(1U << uiState, strValue)) {
 
             strResult = "Unable to add value: " + strValue;
 
@@ -389,6 +397,13 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
     ISelectionCriterionTypeInterface* pCriterionType =
         _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
 
+    if (uiNbStates > 32) {
+
+        strResult = "Maximum number of states for inclusive criterion is 32";
+
+        return false;
+    }
+
     uint32_t uiState;
 
     for (uiState = 0; uiState < uiNbStates; uiState++) {
@@ -398,7 +413,7 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
         ostrValue << "State_0x";
         ostrValue << (0x1 << uiState);
 
-        if (!pCriterionType->addValuePair(0x1 << uiState, ostrValue.str())) {
+        if (!pCriterionType->addValuePair(1U << uiState, ostrValue.str())) {
 
             strResult = "Unable to add value: " + ostrValue.str();
 
@@ -460,7 +475,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
     }
 
     /// Translate lexical state to numerical state
-    int iNumericalState = 0;
+    unsigned int uiNumericalState = 0;
     uint32_t uiLexicalSubStateIndex;
 
     // Parse lexical substates
@@ -482,7 +497,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
     }
 
     // Translate lexical to numerical substate
-    if (!pCriterionType->getNumericalValue(strLexicalState, iNumericalState)) {
+    if (!pCriterionType->getNumericalValue(strLexicalState, uiNumericalState)) {
 
         strResult = "Unable to find lexical state \""
             + strLexicalState + "\" in criteria " + strCriterionName;
@@ -491,7 +506,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
     }
 
     // Set criterion new state
-    pCriterion->setCriterionState(iNumericalState);
+    pCriterion->setCriterionState(uiNumericalState);
 
     return true;
 }

@@ -201,11 +201,11 @@ class ISelectionCriterionTypeInterface
 %}
 
 public:
-    virtual bool addValuePair(int iValue, const std::string& strValue) = 0;
-    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const = 0;
-    virtual bool getLiteralValue(int iValue, std::string& strValue) const = 0;
+    virtual bool addValuePair(unsigned int uiValue, const std::string& strValue) = 0;
+    virtual bool getNumericalValue(const std::string& strValue, unsigned int& uiValue) const = 0;
+    virtual bool getLiteralValue(unsigned int uiValue, std::string& strValue) const = 0;
     virtual bool isTypeInclusive() const = 0;
-    virtual std::string getFormattedState(int iValue) const = 0;
+    virtual std::string getFormattedState(unsigned int uiValue) const = 0;
 
 protected:
     virtual ~ISelectionCriterionTypeInterface() {}

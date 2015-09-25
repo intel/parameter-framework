@@ -204,8 +204,8 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
         }
         GIVEN("A criteria with lots of values")
         {
-            // Build a criterion with as many value as there is bits in int.
-            std::vector<char> names(sizeof(int) * CHAR_BIT + 1, 'a');
+            // Build a criterion with as many value as there is bits in unsigned int + 1
+            std::vector<char> names(sizeof(unsigned int) * CHAR_BIT + 2, 'a');
             names.back() = '\0';
             std::vector<const char *> values(names.size());
             for(size_t i = 0; i < values.size(); ++i) {
@@ -238,14 +238,14 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
              * values[n] = NULL
              *
              */
-            const PfwCriterion duplicatedCriteria[] = {{"name", true, &values[0]}};
+            const PfwCriterion longCriteria[] = {{"name", true, &values[0]}};
 
             WHEN("The pfw is started with a too long criterion state list") {
-                REQUIRE_FAILURE(pfwStart(pfw, config, duplicatedCriteria, 1, &logger));
+                REQUIRE_FAILURE(pfwStart(pfw, config, longCriteria, 1, &logger));
             }
             WHEN("The pfw is started with max length criterion state list") {
                 values[values.size() - 2] = NULL; // Hide last value
-                REQUIRE_SUCCESS(pfwStart(pfw, config, duplicatedCriteria, 1, &logger));
+                REQUIRE_SUCCESS(pfwStart(pfw, config, longCriteria, 1, &logger));
             }
         }
 
