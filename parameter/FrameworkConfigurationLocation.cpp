@@ -40,9 +40,9 @@ CFrameworkConfigurationLocation::CFrameworkConfigurationLocation(const std::stri
 // From IXmlSink
 bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
-    xmlElement.getAttribute("Path", _strPath);
+    xmlElement.getAttribute("Path", _configurationUri);
 
-    if (_strPath.empty()) {
+    if (_configurationUri.empty()) {
 
         serializingContext.setError("Empty Path attribute in element " + xmlElement.getPath());
 
@@ -51,8 +51,7 @@ bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXm
     return true;
 }
 
-// File path
-std::string CFrameworkConfigurationLocation::getFilePath(const std::string& strBaseFolder) const
+const std::string& CFrameworkConfigurationLocation::getUri() const
 {
-    return CXmlDocSource::mkUri(strBaseFolder, _strPath);
+    return _configurationUri;
 }

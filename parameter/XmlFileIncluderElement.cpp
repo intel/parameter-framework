@@ -52,7 +52,7 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Parse included document
     std::string strPath;
     xmlElement.getAttribute("Path", strPath);
-    strPath = CXmlDocSource::mkUri(elementSerializingContext.getXmlFolder(), strPath);
+    strPath = CXmlDocSource::mkUri(elementSerializingContext.getXmlUri(), strPath);
 
     // Instantiate parser
     std::string strIncludedElementType = getIncludedElementType();
