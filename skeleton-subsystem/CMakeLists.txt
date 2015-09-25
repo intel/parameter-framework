@@ -32,7 +32,10 @@ cmake_minimum_required(VERSION 2.8.12)
 project(parameter-framework-plugins-skeleton)
 
 if (WIN32)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+    # Force include iso646.h to support alternative operator form (and, or, not...)
+    # Such support is require by the standard and can be enabled with /Za
+    # but doing so breaks compilation of windows headers...
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /FIiso646.h")
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra")
 endif ()
