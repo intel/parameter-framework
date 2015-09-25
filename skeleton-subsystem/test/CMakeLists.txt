@@ -26,49 +26,14 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# working on 2.8.12 - broken on older versions
-cmake_minimum_required(VERSION 2.8.12)
+configure_file(structure.xml "${CMAKE_CURRENT_BINARY_DIR}" COPYONLY)
+configure_file(toplevel.xml "${CMAKE_CURRENT_BINARY_DIR}" COPYONLY)
 
-project(parameter-framework-plugins-skeleton)
+add_executable(skeleton-test main.cpp)
+target_include_directories(skeleton-test PRIVATE "${PFW_INCLUDE_ROOT}/parameter/client")
+target_link_libraries(skeleton-test "${PFW_CORE_LIBRARY}")
 
-if (WIN32)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
-else ()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra")
-endif ()
-
-# Hide symbols by default, then exposed symbols are the same in linux and windows
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN true)
-
-# Force libs and executable to all be at a known place - simplifies a lot of
-# things, expecially setting the test environment
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-#
-# Find PFW libraries and include directories
-#
-find_path(PFW_INCLUDE_ROOT NAMES parameter/plugin/Plugin.h)
-
-find_library(PFW_CORE_LIBRARY NAMES parameter)
-
-set(PFW_INCLUDE_DIRS
-    ${PFW_INCLUDE_ROOT}/parameter/plugin
-    ${PFW_INCLUDE_ROOT}/xmlserializer
-    ${PFW_INCLUDE_ROOT}/utility)
-
-add_library(skeleton-subsystem MODULE
-SkeletonSubsystemBuilder.cpp
-SkeletonSubsystem.cpp
-SkeletonSubsystemObject.cpp)
-
-target_include_directories(skeleton-subsystem PRIVATE ${PFW_INCLUDE_DIRS})
-target_link_libraries(skeleton-subsystem ${PFW_CORE_LIBRARY})
-
-install(TARGETS skeleton-subsystem
-        LIBRARY DESTINATION lib
-        RUNTIME DESTINATION bin)
-
-include(../ctest/CMakeLists.txt)
-add_subdirectory(test)
+add_test(NAME skeleton-test
+         WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+         COMMAND skeleton-test)
+set_test_env(skeleton-test)

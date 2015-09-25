@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParameterFrameworkConfiguration SystemClassName="class" ServerPort="1" TuningAllowed="false">
+    <SubsystemPlugins>
+        <Location Folder="">
+            <Plugin Name="skeleton-subsystem"/>
+        </Location>
+    </SubsystemPlugins>
+    <StructureDescriptionFileLocation Path="structure.xml"/>
+</ParameterFrameworkConfiguration>
