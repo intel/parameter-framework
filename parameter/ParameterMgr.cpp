@@ -125,9 +125,6 @@ using namespace core;
 // Used for remote processor server creation
 typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
 
-// Global Schemas folder (fixed)
-const char* gacSystemSchemasSubFolder = "Schemas/";
-
 // Config File System looks normally like this:
 // ---------------------------------------------
 //|-- <ParameterFrameworkConfiguration>.xml
@@ -348,9 +345,6 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
 
     // Configuration file folder
     _strXmlConfigurationFolderPath = CXmlDocSource::mkUri(_strXmlConfigurationFilePath, ".");
-
-    // Schema absolute folder location
-    _strSchemaFolderLocation = CXmlDocSource::mkUri(_strXmlConfigurationFolderPath, gacSystemSchemasSubFolder);
 }
 
 CParameterMgr::~CParameterMgr()
@@ -652,6 +646,9 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
                             pRootElement->getName(),
                             strNameAttributeName);
 
+    // Schema Uri
+    setSchemaUri(docSource.getSchemaUri());
+
     // Start clean
     pRootElement->clean();
 
@@ -785,14 +782,14 @@ bool CParameterMgr::getFailureOnFailedSettingsLoad() const
     return _bFailOnFailedSettingsLoad;
 }
 
-const string& CParameterMgr::getSchemaFolderLocation() const
+const string& CParameterMgr::getSchemaUri() const
 {
-    return _strSchemaFolderLocation;
+    return _schemaUri;
 }
 
-void CParameterMgr::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+void CParameterMgr::setSchemaUri(const string& schemaUri)
 {
-    _strSchemaFolderLocation = strSchemaFolderLocation;
+    _schemaUri = schemaUri;
 }
 
 void CParameterMgr::setValidateSchemasOnStart(bool bValidate)
@@ -2256,13 +2253,10 @@ bool CParameterMgr::serializeElement(std::ostream& output,
         return false;
     }
 
-    // Get Schema file associated to root element
-    string xmlSchemaFilePath = CXmlDocSource::mkUri(_strSchemaFolderLocation, element.getKind() + ".xsd");
-
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(&element, _bValidateSchemasOnStart,
                                      element.getKind(),
-                                     xmlSchemaFilePath,
+                                     getSchemaUri(),
                                      "parameter-framework",
                                      getVersion());
 

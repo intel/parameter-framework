@@ -36,16 +36,18 @@
 
 CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource, bool bValidateWithSchema,
                                          const std::string& strRootElementType,
-                                         const std::string& strXmlSchemaFile,
+                                         const std::string& schemaBaseUri,
                                          const std::string& strProduct,
                                          const std::string& strVersion):
      base(xmlNewDoc(BAD_CAST "1.0"), bValidateWithSchema,
           xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
      _pXmlSource(pXmlSource),
-     _strXmlSchemaFile(strXmlSchemaFile),
      _strProduct(strProduct),
      _strVersion(strVersion)
 {
+    // Get Schema file
+    _strXmlSchemaFile = CXmlDocSource::mkUri(schemaBaseUri, strRootElementType + ".xsd");
+
     init();
 }
 

@@ -97,8 +97,8 @@ public:
     void setFailureOnFailedSettingsLoad(bool bFail);
     bool getFailureOnFailedSettingsLoad() const;
 
-    void setSchemaFolderLocation(const std::string& strSchemaFolderLocation);
-    const std::string& getSchemaFolderLocation() const;
+    void setSchemaUri(const std::string& schemaUri);
+    const std::string& getSchemaUri() const;
 
     void setValidateSchemasOnStart(bool bValidate);
     bool getValidateSchemasOnStart() const;

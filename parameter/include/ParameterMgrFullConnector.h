@@ -127,17 +127,17 @@ public:
       */
     bool getFailureOnFailedSettingsLoad() const;
 
-    /** Get the path to the directory containing the XML Schemas
+    /** Get the XML Schemas URI
      *
-     * @returns the directory containing the XML Schemas
+     * @returns the XML Schemas URI
      */
-    const std::string& getSchemaFolderLocation() const;
+    const std::string& getSchemaUri() const;
 
-    /** Override the directory containing the XML Schemas
+    /** Override the XML Schemas URI
      *
-     * @param[in] strSchemaFolderLocation directory containing the XML Schemas
+     * @param[in] schemaUri the XML Schemas URI
      */
-    void setSchemaFolderLocation(const std::string& strSchemaFolderLocation);
+    void setSchemaUri(const std::string& schemaUri);
 
     /** Should .xml files be validated on start ?
      *
