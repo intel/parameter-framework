@@ -704,9 +704,6 @@ private:
     // Subsystem plugin location
     const CSubsystemPlugins* _pSubsystemPlugins;
 
-    // Whole system structure checksum
-    uint8_t _uiStructureChecksum;
-
     // Remote Processor Server
     IRemoteProcessorServerInterface* _pRemoteProcessorServer;
 
