@@ -151,6 +151,7 @@ install(FILES
     ParameterBlockType.h
     ParameterType.h
     PathNavigator.h
+    Plugin.h
     Subsystem.h
     SubsystemLibrary.h
     SubsystemObject.h

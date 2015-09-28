@@ -40,7 +40,7 @@ endif ()
 #
 # Find PFW libraries and include directories
 #
-find_path(PFW_INCLUDE_ROOT NAMES parameter/plugin/Subsystem.h)
+find_path(PFW_INCLUDE_ROOT NAMES parameter/plugin/Plugin.h)
 
 find_library(PFW_CORE_LIBRARY NAMES parameter)
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,14 +27,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "Plugin.h"
-#include "LoggingElementBuilderTemplate.h"
-#include "SkeletonSubsystem.h"
+#pragma once
 
+/** @file
+ *
+ * This file is intended to be used by the plugins.
+ *
+ * The compilation unit defining the entry point (aka the Subsystem Builder)
+ * should include this file a define a function corresponding to the one
+ * declared below.
+ */
 
-void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary* pSubsystemLibrary, core::log::Logger& logger)
-{
-    pSubsystemLibrary->addElementBuilder(
-            "Skeleton",
-            new TLoggingElementBuilderTemplate<CSkeletonSubsystem>(logger));
+#include <SubsystemLibrary.h>
+
+extern "C" {
+#if defined(__clang__) || defined(__GNUC__)
+    __attribute__((visibility("default")))
+#elif defined(_MSC_VER)
+    __declspec(dllexport)
+#endif
+    void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary*, core::log::Logger&);
 }
