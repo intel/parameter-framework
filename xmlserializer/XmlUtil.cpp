@@ -29,6 +29,7 @@
  */
 
 #include <libxml/parser.h>
+#include <cstdlib>
 
 /* Provides miscellaneous utility functions */
 class CXmlUtil
@@ -40,6 +41,7 @@ public:
      */
     CXmlUtil() {
         xmlInitParser();
+        atexit(xmlCleanupParser);
     }
 };
 
