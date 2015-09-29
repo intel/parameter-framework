@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ConfigurableDomains xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/home/lab/ICS/hardware/intel/PRIVATE/parameter-framework/test/configuration/Schemas/ConfigurableDomains.xsd" SystemClassName="Test">
+<ConfigurableDomains
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Schemas/ConfigurableDomains.xsd"
+  SystemClassName="Test">
 	<ConfigurableDomain Name="Domain_1">
 		<Configurations>
 			<Configuration Name="Conf_1_0">

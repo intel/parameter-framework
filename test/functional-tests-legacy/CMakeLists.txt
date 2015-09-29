@@ -32,6 +32,8 @@ if (BUILD_TESTING)
     set(PFW_ROOT ${CMAKE_BINARY_DIR}/tmp/test-parameters)
     set(PFW_RESULT ${PFW_ROOT}/result)
 
+    file(COPY ${CMAKE_SOURCE_DIR}/Schemas/ DESTINATION ${PFW_ROOT}/xml/Schemas)
+
     configure_file(
         ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestSubsystem.xml.in
         ${PFW_ROOT}/xml/configuration/Structure/Test/TestSubsystem.xml @ONLY)
@@ -47,10 +49,14 @@ if (BUILD_TESTING)
         ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
         ${PFW_ROOT}/xml/configuration/Settings/Test/TestConfigurableDomains.xml
         COPYONLY)
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/ACTCampaignEngine.py DESTINATION ${PFW_ROOT}/)
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/PfwTestCase DESTINATION ${PFW_ROOT}/)
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Util DESTINATION ${PFW_ROOT}/)
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/xml/XML_Test DESTINATION ${PFW_ROOT}/xml/)
 
     add_test(NAME functional-test-legacy
-             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-             COMMAND ${python2} ACTCampaignEngine.py)
+             WORKING_DIRECTORY ${PFW_ROOT}
+             COMMAND ${python2} ${PFW_ROOT}/ACTCampaignEngine.py)
 
     # Custom function defined in the top-level CMakeLists
     set_test_env(functional-test-legacy)

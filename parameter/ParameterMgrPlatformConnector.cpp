@@ -137,14 +137,14 @@ bool CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad() const
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
 }
 
-const string& CParameterMgrPlatformConnector::getSchemaFolderLocation() const
+const string& CParameterMgrPlatformConnector::getSchemaUri() const
 {
-    return _pParameterMgr->getSchemaFolderLocation();
+    return _pParameterMgr->getSchemaUri();
 }
 
-void CParameterMgrPlatformConnector::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+void CParameterMgrPlatformConnector::setSchemaUri(const string& schemaUri)
 {
-    _pParameterMgr->setSchemaFolderLocation(strSchemaFolderLocation);
+    _pParameterMgr->setSchemaUri(schemaUri);
 }
 
 bool CParameterMgrPlatformConnector::setValidateSchemasOnStart(

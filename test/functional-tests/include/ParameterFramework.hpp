@@ -71,8 +71,8 @@ public:
     using PF::setFailureOnFailedSettingsLoad;
     using PF::getForceNoRemoteInterface;
     using PF::setForceNoRemoteInterface;
-    using PF::getSchemaFolderLocation;
-    using PF::setSchemaFolderLocation;
+    using PF::getSchemaUri;
+    using PF::setSchemaUri;
     using PF::getValidateSchemasOnStart;
     using PF::setValidateSchemasOnStart;
     using PF::isValueSpaceRaw;

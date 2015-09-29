@@ -171,17 +171,17 @@ public:
       */
     bool getFailureOnFailedSettingsLoad() const;
 
-    /** Get the path to the directory containing the XML Schemas
+    /** Get the XML Schemas URI
      *
-     * @returns the directory containing the XML Schemas
+     * @returns the XML Schemas URI
      */
-    const std::string& getSchemaFolderLocation() const;
+    const std::string& getSchemaUri() const;
 
-    /** Override the directory containing the XML Schemas
+    /** Override the XML Schemas URI
      *
-     * @param[in] strSchemaFolderLocation directory containing the XML Schemas
+     * @param[in] schemaUri XML Schemas URI
      */
-    void setSchemaFolderLocation(const std::string& strSchemaFolderLocation);
+    void setSchemaUri(const std::string& schemaUri);
 
     /** Should .xml files be validated on start ?
      *
@@ -543,14 +543,14 @@ private:
      * @param[in] elementSerializingContext serializing context
      * @param[out] pRootElement the receiving element
      * @param[in] input the input XML stream
-     * @param[in] strXmlFolder the folder containing the XML input file (if applicable) or ""
+     * @param[in] baseUri the XML input file URI or ""
      * @param[in] eElementLibrary which element library to be used
      * @param[in] strNameAttributeName the name of the element's XML "name" attribute
      *
      * @returns true if parsing succeeded, false otherwise
      */
     bool xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement,
-                  _xmlDoc* doc, const std::string& strXmlFolder,
+                  _xmlDoc* doc, const std::string& baseUri,
                   ElementLibrary eElementLibrary, const std::string& strNameAttributeName = "Name");
 
     /** Wrapper for converting public APIs semantics to internal API
@@ -697,9 +697,8 @@ private:
     CElementLibrarySet* _pElementLibrarySet;
 
     // XML parsing, object creation handling
-    std::string _strXmlConfigurationFilePath; // Configuration file path
-    std::string _strXmlConfigurationFolderPath; // Root folder for configuration file
-    std::string _strSchemaFolderLocation; // Place where schemas stand
+    std::string _xmlConfigurationUri;
+    std::string _schemaUri; // Place where schemas stand
 
     // Subsystem plugin location
     const CSubsystemPlugins* _pSubsystemPlugins;

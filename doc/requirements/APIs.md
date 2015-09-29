@@ -61,7 +61,7 @@ Currently only used for XML generation. There is no requirement associated.
 
 Currently only used for XML generaton. There is no requirement associated.
 
-## `setSchemaFolderLocation` and `getSchemaFolderLocation`; `setValidateSchemasOnStart` and `getValidateSchemasOnStart`
+## `setSchemaUri` and `getSchemaUri`; `setValidateSchemasOnStart` and `getValidateSchemasOnStart`
 
 **???**
 

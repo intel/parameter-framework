@@ -52,24 +52,14 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Parse included document
     std::string strPath;
     xmlElement.getAttribute("Path", strPath);
-
-    // Relative path?
-    if (strPath[0] != '/') {
-
-        strPath = elementSerializingContext.getXmlFolder() + "/" + strPath;
-    }
+    strPath = CXmlDocSource::mkUri(elementSerializingContext.getXmlUri(), strPath);
 
     // Instantiate parser
     std::string strIncludedElementType = getIncludedElementType();
     {
-        // Use a doc source that load data from a file
-        std::string strPathToXsdFile = elementSerializingContext.getXmlSchemaPathFolder() + "/" +
-                               strIncludedElementType + ".xsd";
-
         _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strPath, true, true, elementSerializingContext);
 
         CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
-                                strPathToXsdFile,
                                 strIncludedElementType);
 
         if (!docSource.isParsable()) {

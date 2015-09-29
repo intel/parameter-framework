@@ -125,9 +125,6 @@ using namespace core;
 // Used for remote processor server creation
 typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
 
-// Global Schemas folder (fixed)
-const char* gacSystemSchemasSubFolder = "Schemas";
-
 // Config File System looks normally like this:
 // ---------------------------------------------
 //|-- <ParameterFrameworkConfiguration>.xml
@@ -329,7 +326,7 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     _bAutoSyncOn(true),
     _pMainParameterBlackboard(new CParameterBlackboard),
     _pElementLibrarySet(new CElementLibrarySet),
-    _strXmlConfigurationFilePath(strConfigurationFilePath),
+    _xmlConfigurationUri(CXmlDocSource::mkUri(strConfigurationFilePath, "")),
     _pSubsystemPlugins(NULL),
     _pRemoteProcessorServer(NULL),
     _maxCommandUsageLength(0),
@@ -345,18 +342,6 @@ CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogge
     addChild(new CSelectionCriteria);
     addChild(new CSystemClass(_logger));
     addChild(new CConfigurableDomains);
-
-    // Configuration file folder
-    std::string::size_type slashPos = _strXmlConfigurationFilePath.rfind('/', -1);
-    if(slashPos == std::string::npos) {
-        // Configuration folder is the current folder
-        _strXmlConfigurationFolderPath = '.';
-    } else {
-        _strXmlConfigurationFolderPath = _strXmlConfigurationFilePath.substr(0, slashPos);
-    }
-
-    // Schema absolute folder location
-    _strSchemaFolderLocation = _strXmlConfigurationFolderPath + "/" + gacSystemSchemasSubFolder;
 }
 
 CParameterMgr::~CParameterMgr()
@@ -465,13 +450,13 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
     // Parse Structure XML file
     CXmlElementSerializingContext elementSerializingContext(strError);
 
-    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(_strXmlConfigurationFilePath, true, true, elementSerializingContext);
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(_xmlConfigurationUri, true, true, elementSerializingContext);
     if (doc == NULL) {
         return false;
     }
 
     if (!xmlParse(elementSerializingContext, getFrameworkConfiguration(), doc,
-                  _strXmlConfigurationFolderPath, EFrameworkConfigurationLibrary)) {
+                  _xmlConfigurationUri, EFrameworkConfigurationLibrary)) {
 
         return false;
     }
@@ -535,24 +520,21 @@ bool CParameterMgr::loadStructure(string& strError)
         return false;
     }
 
-    // Get Xml structure folder
-    string strXmlStructureFolder = pStructureDescriptionFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
-
-    // Get Xml structure file name
-    string strXmlStructureFilePath = pStructureDescriptionFileLocation->getFilePath(_strXmlConfigurationFolderPath);
-
     // Parse Structure XML file
     CXmlParameterSerializingContext parameterBuildContext(strError);
 
     {
-        LOG_CONTEXT("Importing system structure from file " + strXmlStructureFilePath);
+        // Get structure URI
+        string structureUri = CXmlDocSource::mkUri(_xmlConfigurationUri, pStructureDescriptionFileLocation->getUri());
 
-        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlStructureFilePath, true, true, parameterBuildContext);
+        LOG_CONTEXT("Importing system structure from file " + structureUri);
+
+        _xmlDoc *doc = CXmlDocSource::mkXmlDoc(structureUri, true, true, parameterBuildContext);
         if (doc == NULL) {
             return false;
         }
 
-        if (!xmlParse(parameterBuildContext, pSystemClass, doc, strXmlStructureFolder, EParameterCreationLibrary)) {
+        if (!xmlParse(parameterBuildContext, pSystemClass, doc, structureUri, EParameterCreationLibrary)) {
 
             return false;
         }
@@ -614,11 +596,8 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     // Get destination root element
     CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
 
-    // Get Xml configuration domains file name
-    string strXmlConfigurationDomainsFilePath = pConfigurableDomainsFileLocation->getFilePath(_strXmlConfigurationFolderPath);
-
-    // Get Xml configuration domains folder
-    string strXmlConfigurationDomainsFolder = pConfigurableDomainsFileLocation->getFolderPath(_strXmlConfigurationFolderPath);
+    // Get Xml configuration domains URI
+    string configurationDomainsUri = CXmlDocSource::mkUri(_xmlConfigurationUri, pConfigurableDomainsFileLocation->getUri());
 
     // Parse configuration domains XML file
     CXmlDomainImportContext xmlDomainImportContext(strError, true, *getSystemClass());
@@ -629,38 +608,37 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     // Auto validation of configurations
     xmlDomainImportContext.setAutoValidationRequired(true);
 
-    info() << "Importing configurable domains from file " << strXmlConfigurationDomainsFilePath
+    info() << "Importing configurable domains from file " << configurationDomainsUri
            << " with settings";
 
-    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strXmlConfigurationDomainsFilePath, true, true, xmlDomainImportContext);
+    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(configurationDomainsUri, true, true, xmlDomainImportContext);
     if (doc == NULL) {
         return false;
     }
 
     return xmlParse(xmlDomainImportContext, pConfigurableDomains, doc,
-                    strXmlConfigurationDomainsFolder, EParameterConfigurationLibrary,
+                    _xmlConfigurationUri, EParameterConfigurationLibrary,
                     "SystemClassName");
 }
 
 // XML parsing
 bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingContext,
                              CElement* pRootElement, _xmlDoc* doc,
-                             const string& strXmlFolder,
+                             const string& baseUri,
                              CParameterMgr::ElementLibrary eElementLibrary,
                              const string& strNameAttributeName)
 {
     // Init serializing context
     elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(
-                                      eElementLibrary), strXmlFolder, _strSchemaFolderLocation);
-
-    // Get Schema file associated to root element
-    string strXmlSchemaFilePath = _strSchemaFolderLocation + "/" + pRootElement->getKind() + ".xsd";
+                                  eElementLibrary), baseUri);
 
     CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
-                            strXmlSchemaFilePath,
                             pRootElement->getKind(),
                             pRootElement->getName(),
                             strNameAttributeName);
+
+    // Schema Uri
+    setSchemaUri(docSource.getSchemaUri());
 
     // Start clean
     pRootElement->clean();
@@ -795,14 +773,14 @@ bool CParameterMgr::getFailureOnFailedSettingsLoad() const
     return _bFailOnFailedSettingsLoad;
 }
 
-const string& CParameterMgr::getSchemaFolderLocation() const
+const string& CParameterMgr::getSchemaUri() const
 {
-    return _strSchemaFolderLocation;
+    return _schemaUri;
 }
 
-void CParameterMgr::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+void CParameterMgr::setSchemaUri(const string& schemaUri)
 {
-    _strSchemaFolderLocation = strSchemaFolderLocation;
+    _schemaUri = schemaUri;
 }
 
 void CParameterMgr::setValidateSchemasOnStart(bool bValidate)
@@ -2266,14 +2244,10 @@ bool CParameterMgr::serializeElement(std::ostream& output,
         return false;
     }
 
-    // Get Schema file associated to root element
-    string xmlSchemaFilePath = _strSchemaFolderLocation + "/" +
-                                  element.getKind() + ".xsd";
-
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(&element, _bValidateSchemasOnStart,
                                      element.getKind(),
-                                     xmlSchemaFilePath,
+                                     getSchemaUri(),
                                      "parameter-framework",
                                      getVersion());
 

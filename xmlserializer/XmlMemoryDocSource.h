@@ -52,7 +52,7 @@ public:
       */
     CXmlMemoryDocSource(const IXmlSource* pXmlSource, bool bValidateWithSchema,
                         const std::string& strRootElementType,
-                        const std::string& strXmlSchemaFile = "",
+                        const std::string& schemaBaseUri = "",
                         const std::string& strProduct = "",
                         const std::string& strVersion = "");
 

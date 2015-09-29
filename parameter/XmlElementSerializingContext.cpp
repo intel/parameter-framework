@@ -38,11 +38,10 @@ CXmlElementSerializingContext::CXmlElementSerializingContext(string& strError) :
 }
 
 // Init
-void CXmlElementSerializingContext::set(const CElementLibrary* pElementLibrary, const string& strXmlFolder, const string& strXmlSchemaFolder)
+void CXmlElementSerializingContext::set(const CElementLibrary* pElementLibrary, const string& xmlUri)
 {
     _pElementLibrary = pElementLibrary;
-    _strXmlFolder = strXmlFolder;
-    _strXmlSchemaFolder = strXmlSchemaFolder;
+    _xmlUri = xmlUri;
 }
 
 // ElementLibrary
@@ -52,14 +51,7 @@ const CElementLibrary* CXmlElementSerializingContext::getElementLibrary() const
 }
 
 // XML Folder Path
-const string& CXmlElementSerializingContext::getXmlFolder() const
+const string& CXmlElementSerializingContext::getXmlUri() const
 {
-    return _strXmlFolder;
+    return _xmlUri;
 }
-
-// XML Schema Path
-const string& CXmlElementSerializingContext::getXmlSchemaPathFolder() const
-{
-    return _strXmlSchemaFolder;
-}
-
