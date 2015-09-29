@@ -100,9 +100,6 @@ private:
     bool loadSubsystemsFromSharedLibraries(core::Results& errors,
                                            const CSubsystemPlugins* pSubsystemPlugins);
 
-    // Plugin symbol computation
-    static std::string getPluginSymbol(const std::string& strPluginPath);
-
     /** Load subsystem plugin shared libraries.
      *
      * @param[in:out] lstrPluginFiles is the path list of the plugins shared libraries to load.
@@ -121,5 +118,9 @@ private:
 
     /** Application Logger we need to provide to plugins */
     core::log::Logger& _logger;
+
+    /** The entry point symbol that must be implemented by plugins
+     */
+    static const char entryPointSymbol[];
 };
 

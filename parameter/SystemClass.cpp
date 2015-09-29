@@ -40,29 +40,19 @@
 
 #define base CConfigurableElement
 
+#ifndef PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1
+#   error Missing PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1 macro definition
+#endif
+#define QUOTE(X) #X
+#define MACRO_TO_STR(X) QUOTE(X)
+const char CSystemClass::entryPointSymbol[] = MACRO_TO_STR(PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1);
+using PluginEntryPointV1 = void (*)(CSubsystemLibrary*, core::log::Logger&);
+
 using std::list;
 using std::string;
 
 // FIXME: integrate SystemClass to core namespace
 using namespace core;
-
-/**
- * A plugin file name is of the form:
- * lib<type>-subsystem.so or lib<type>-subsystem._host.so
- *
- * The plugin symbol is of the form:
- * get<TYPE>SubsystemBuilder
-*/
-// Plugin file naming
-const char* gpcPluginSuffix = "-subsystem";
-const char* gpcPluginPrefix = "lib";
-
-// Plugin symbol naming
-const char* gpcPluginSymbolPrefix = "get";
-const char* gpcPluginSymbolSuffix = "SubsystemBuilder";
-
-// Used by subsystem plugins
-typedef void (*GetSubsystemBuilder)(CSubsystemLibrary*, core::log::Logger& logger);
 
 CSystemClass::CSystemClass(log::Logger& logger)
     : _pSubsystemLibrary(new CSubsystemLibrary()), _logger(logger)
@@ -171,28 +161,6 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
     return true;
 }
 
-// Plugin symbol computation
-string CSystemClass::getPluginSymbol(const string& strPluginPath)
-{
-    // Extract plugin type out of file name
-    string strPluginSuffix = gpcPluginSuffix;
-    string strPluginPrefix = gpcPluginPrefix;
-
-    // Remove folder and library prefix
-    size_t iPluginTypePos = strPluginPath.rfind('/') + 1 + strPluginPrefix.length();
-
-    // Get index of -subsystem.so or -subsystem_host.so suffix
-    size_t iSubsystemPos = strPluginPath.find(strPluginSuffix, iPluginTypePos);
-
-    // Get type (between iPluginTypePos and iSubsystemPos)
-    string strPluginType = strPluginPath.substr(iPluginTypePos, iSubsystemPos - iPluginTypePos);
-
-    // Make it upper case
-    std::transform(strPluginType.begin(), strPluginType.end(), strPluginType.begin(), ::toupper);
-
-    // Get plugin symbol
-    return gpcPluginSymbolPrefix + strPluginType + gpcPluginSymbolSuffix;
-}
 
 // Plugin loading
 bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& errors)
@@ -207,15 +175,13 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
 
         string strPluginFileName = *it;
 
-        // Get plugin symbol
-        string strPluginSymbol = getPluginSymbol(strPluginFileName);
-
         // Load attempt
         try {
             auto library = utility::make_unique<DynamicLibrary>(strPluginFileName);
 
             // Load symbol from library
-            auto subSystemBuilder = library->getSymbol<GetSubsystemBuilder>(strPluginSymbol);
+            auto subSystemBuilder =
+                library->getSymbol<PluginEntryPointV1>(entryPointSymbol);
 
             // Store libraries handles
             _subsystemLibraryHandleList.push_back(std::move(library));

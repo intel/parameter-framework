@@ -34,6 +34,15 @@
 #include "LoggingElementBuilderTemplate.h"
 #include <string>
 
+/** Plugin entry point symbol
+ *
+ * Needs to be implemented by plugin libraries. This function's purpose is to
+ * register element builders;
+ *
+ * "V1" refers to the version of this entry-point API.
+ */
+#define PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1 ParameterFrameworkPluginEntryPointMagicV1
+
 class CSubsystemLibrary :
         public CDefaultElementLibrary<TLoggingElementBuilderTemplate<CVirtualSubsystem> >
 {
