@@ -35,16 +35,12 @@
 #include <libxml/parser.h>
 #include <libxml/xinclude.h>
 #include <libxml/uri.h>
-#include <stdlib.h>
 #include <memory>
 #include <stdexcept>
 
 using std::string;
 using xml_unique_ptr = std::unique_ptr<xmlChar, decltype(xmlFree)>;
 
-
-// Schedule for libxml2 library
-bool CXmlDocSource::_bLibXml2CleanupScheduled;
 
 CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
                              _xmlNode *pRootNode) :
@@ -55,7 +51,6 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
       _strNameAttributeName(""),
       _bValidateWithSchema(bValidateWithSchema)
 {
-    init();
 }
 
 CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
@@ -69,7 +64,6 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
     _strNameAttributeName(strNameAttributeName),
     _bValidateWithSchema(bValidateWithSchema)
 {
-    init();
 }
 
 CXmlDocSource::~CXmlDocSource()
@@ -165,17 +159,6 @@ bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
     }
 
     return true;
-}
-
-void CXmlDocSource::init()
-{
-    if (!_bLibXml2CleanupScheduled) {
-
-        // Schedule cleanup
-        atexit(xmlCleanupParser);
-
-        _bLibXml2CleanupScheduled = true;
-    }
 }
 
 bool CXmlDocSource::isInstanceDocumentValid()

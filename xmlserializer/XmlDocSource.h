@@ -176,17 +176,7 @@ protected:
       */
     _xmlNode* _pRootNode;
 
-    /**
-      * libxml2 library cleanup
-      */
-    static bool _bLibXml2CleanupScheduled;
-
 private:
-
-    /**
-      * Method that initializes class internal attributes in constructor
-      */
-    void init();
 
     /** Method that check the validity of the document with the xsd file.
       *
