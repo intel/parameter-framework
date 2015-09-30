@@ -218,11 +218,11 @@ class TestCases(PfwTestCase):
         log.I("Adding a new domain element to domain %s" % (self.domain_name))
         out, err = self.pfw.sendCmd("addElement", str(self.domain_name), str(self.elem_1_path))
         assert err == None, "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_1_path)
-        assert out == "Done", "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_1_path)
+        assert out == "Done", "ERROR : command [addElement] - Error while adding new domain element %s: %s" % (self.elem_1_path, out)
         log.I("Adding a new domain element to domain %s" % (self.domain_name))
         out, err = self.pfw.sendCmd("addElement", str(self.domain_name), str(self.elem_2_path))
         assert err == None, "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_2_path)
-        assert out == "Done", "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_2_path)
+        assert out == "Done", "ERROR : command [addElement] - Error while adding new domain element %s: %s" % (self.elem_2_path, out)
         log.I("New domain elements %s and %s added to domain %s" % (self.elem_1_path, self.elem_2_path, self.domain_name))
 
         # Getting elements sequence from selected configuration

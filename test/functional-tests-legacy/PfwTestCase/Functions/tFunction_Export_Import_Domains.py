@@ -147,7 +147,7 @@ class TestCases(PfwTestCase):
                 line=f_Config_Backup.readline()
                 config_nbr+=1
             f_Config_Backup.close()
-            assert config_nbr==self.nb_conf_per_domains_in_reference_xml[index], log.F("Number of listed config for %s is not compliant with the file %s - expected : %s - found : %s"%(domain_name, self.reference_xml,self.nb_conf_per_domains_in_reference_xml[index], domains_nbr))
+            assert config_nbr==self.nb_conf_per_domains_in_reference_xml[index], log.F("Number of listed config for %s is not compliant with the file %s - expected : %s - found : %s"%(domain_name, self.reference_xml,self.nb_conf_per_domains_in_reference_xml[index], config_nbr))
         log.I("Config checking : OK")
 
         #Check number of config per domain(2 config per domains are setup in the reference XML)
@@ -774,7 +774,7 @@ class TestCases(PfwTestCase):
             domains_nbr+=1
         f_Domains_Backup.close()
         log.I("Actual domains number : %s" % domains_nbr)
-        assert domains_nbr==self.nb_domains_in_reference_xml, log.F("Number of listed domains is not compliant with the file %s - expected : %s - found : %s"%(self.reference_xml,self.nb_domains_in_reference_xml, domains_nbr))
+        assert domains_nbr==self.nb_domains_in_reference_xml, log.F("Number of listed domains is not compliant with the file %s - expected %s domains, found domains: %s"%(self.reference_xml,self.nb_domains_in_reference_xml, domains_nbr))
         #Check number of config per domain(2 config per domains are setup in the reference XML)
         # Config listing
         domain_basename="Domain_"
