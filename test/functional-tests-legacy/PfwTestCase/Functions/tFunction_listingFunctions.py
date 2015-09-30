@@ -166,7 +166,7 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_05_listCriteria_Case.__doc__)
         log.I("Command [listCriteria]")
-        out, err = self.pfw.sendCmd("listCriteria","")
+        out, err = self.pfw.sendCmd("listCriteria", "XML")
         assert err == None, log.E("Command [listCriteria] : %s"%(err))
         self.assertNotEqual(out, "")
         log.I("Command [listCriteria] - correctly executed")
