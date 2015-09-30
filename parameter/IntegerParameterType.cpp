@@ -111,12 +111,12 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 
         if (!xmlElement.getAttribute("Min", (int32_t &)_uiMin)) {
 
-            _uiMin = 1UL << sizeInBits;
+            _uiMin = 1U << sizeInBits;
         }
 
         if (!xmlElement.getAttribute("Max", (int32_t &)_uiMax)) {
 
-            _uiMax = (1UL << sizeInBits) - 1;
+            _uiMax = (1U << sizeInBits) - 1;
         }
         signExtend((int32_t&)_uiMin);
         signExtend((int32_t&)_uiMax);
@@ -128,7 +128,7 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 
         if (!xmlElement.getAttribute("Max", _uiMax)) {
 
-            _uiMax = (size_t)-1L >> (8 * sizeof(size_t) - sizeInBits);
+            _uiMax = ~0U >> (8 * sizeof(size_t) - sizeInBits);
         }
     }
 
