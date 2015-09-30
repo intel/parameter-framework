@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
     uint16_t portNumber = defaultPortNumber;
 
     if (not options.empty()) {
-        if (convertTo(options.front(), portNumber)) {
+        if (not convertTo(options.front(), portNumber)) {
             showInvalidUsage("Could not convert \"" + options.front() +
                              "\" to a socket port number.");
             return -1;
