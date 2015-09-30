@@ -119,37 +119,6 @@ static inline bool convertTo(const std::string &str, T &result)
 }
 
 /**
- * Specialization for int16_t of convertTo template function.
- *
- * This function follows the same paradigm than it's generic version.
- *
- * The specific implementation is made necessary because the stlport version of
- * string streams is bugged and does not fail when giving overflowed values.
- * This specialisation can be safely removed when stlport behaviour is fixed.
- *
- * @param[in]  str    the string to parse.
- * @param[out] result reference to object where to store the result.
- *
- * @return true if conversion was successful, false otherwise.
- */
-template<>
-inline bool convertTo<int16_t>(const std::string &str, int16_t &result)
-{
-    int64_t res;
-
-    if (!convertTo<int64_t>(str, res)) {
-        return false;
-    }
-
-    if (res > std::numeric_limits<int16_t>::max() || res < std::numeric_limits<int16_t>::min()) {
-        return false;
-    }
-
-    result = static_cast<int16_t>(res);
-    return true;
-}
-
-/**
  * Specialization for float of convertTo template function.
  *
  * This function follows the same paradigm than it's generic version and is
