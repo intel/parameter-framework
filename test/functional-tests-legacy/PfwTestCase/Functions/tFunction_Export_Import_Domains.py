@@ -138,7 +138,7 @@ class TestCases(PfwTestCase):
             assert err == None, log.E("Command [listConfigurations %s] : %s"%(domain_name,err))
             log.I("Command [listConfigurations %s] - correctly executed"%(domain_name))
             f_Config_Backup = open(self.temp_config, "w")
-            f_Config_Backup.write(out)
+            f_Config_Backup.write(out.strip('\r\n'))
             f_Config_Backup.close()
             f_Config_Backup = open(self.temp_config, "r")
             config_nbr = 0
@@ -608,7 +608,7 @@ class TestCases(PfwTestCase):
         log.I("Command [listDomains] - correctly executed")
         # Domains listing backup
         f_Domains_Backup = open(self.temp_domain, "w")
-        f_Domains_Backup.write(out)
+        f_Domains_Backup.write(out.strip('\r\n'))
         f_Domains_Backup.close()
         f_Domains_Backup = open(self.temp_domain, "r")
         domains_nbr = 0
@@ -629,7 +629,7 @@ class TestCases(PfwTestCase):
             assert err == None, log.E("Command [listConfigurations %s] : %s"%(domain_name,err))
             log.I("Command [listConfigurations %s] - correctly executed"%(domain_name))
             f_Config_Backup = open(self.temp_config, "w")
-            f_Config_Backup.write(out)
+            f_Config_Backup.write(out.strip('\r\n'))
             f_Config_Backup.close()
             f_Config_Backup = open(self.temp_config, "r")
             config_nbr = 0
@@ -764,7 +764,7 @@ class TestCases(PfwTestCase):
         log.I("Command [listDomains] - correctly executed")
         # Domains listing backup
         f_Domains_Backup = open(self.temp_domain, "w")
-        f_Domains_Backup.write(out)
+        f_Domains_Backup.write(out.strip('\r\n'))
         f_Domains_Backup.close()
         f_Domains_Backup = open(self.temp_domain, "r")
         domains_nbr = 0
@@ -785,7 +785,7 @@ class TestCases(PfwTestCase):
             assert err == None, log.E("Command [listConfigurations %s] : %s"%(domain_name,err))
             log.I("Command [listConfigurations %s] - correctly executed"%(domain_name))
             f_Config_Backup = open(self.temp_config, "w")
-            f_Config_Backup.write(out)
+            f_Config_Backup.write(out.strip('\r\n'))
             f_Config_Backup.close()
             f_Config_Backup = open(self.temp_config, "r")
             config_nbr = 0
