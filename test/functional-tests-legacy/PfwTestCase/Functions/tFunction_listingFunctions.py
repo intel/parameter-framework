@@ -102,7 +102,7 @@ class TestCases(PfwTestCase):
         log.I("Command [dumpDomains]")
         out, err = self.pfw.sendCmd("dumpDomains","","")
         assert err == None, log.E("Command [dumpDomains] : %s"%(err))
-        assert out == commands.getoutput("cat %s"%(self.reference_dumpDomains_file)), log.F("A diff is found between dumpDomains output and %s"%(self.reference_dumpDomains_file))
+        assert out == open(self.reference_dumpDomains_file).read()[:-1], log.F("A diff is found between dumpDomains output and %s"%(self.reference_dumpDomains_file))
         log.I("Command [dumpDomains] - correctly executed")
 
     def test_03_help_Case(self):
