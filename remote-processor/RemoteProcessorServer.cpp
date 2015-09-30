@@ -106,7 +106,7 @@ bool CRemoteProcessorServer::process(IRemoteCommandHandler &commandHandler)
         std::cerr << "Server failed: " << ec.message() << std::endl;
     }
 
-    return bool(ec);
+    return ec.value() == 0;
 }
 
 // New connection
