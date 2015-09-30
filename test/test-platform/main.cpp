@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 
     if (options.empty()) {
         showInvalidUsage("Expected a path to a Parameter Framework config file.");
-        return -1;
+        return 1;
     }
 
     auto filePath = options.front();
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
         if (not convertTo(options.front(), portNumber)) {
             showInvalidUsage("Could not convert \"" + options.front() +
                              "\" to a socket port number.");
-            return -1;
+            return 2;
         };
         options.pop_front();
     }
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
         std::string extraArgs;
         CUtility::asString(options, extraArgs);
         showInvalidUsage("Unexpected extra arguments: " + extraArgs);
-        return -1;
+        return 3;
     }
 
     string strError;
