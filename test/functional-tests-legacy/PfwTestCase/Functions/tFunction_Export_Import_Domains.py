@@ -196,7 +196,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_01, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_01, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
         #Param_00
         expected_value="4"
         hex_value="0x4"
@@ -205,7 +205,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_02, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_02, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
         #Param_12
         expected_value="4"
         hex_value="0x4"
@@ -214,7 +214,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_03, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_03, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
         log.I("Parameters checking : OK")
 
     def test_02_exportDomainsWithSettingsXML_Nominal_Case(self):
@@ -260,9 +260,9 @@ class TestCases(PfwTestCase):
         init_value_01, err = self.pfw.sendCmd("getParameter", self.param_name_01, "")
         init_value_02, err = self.pfw.sendCmd("getParameter", self.param_name_02, "")
         init_value_03, err = self.pfw.sendCmd("getParameter", self.param_name_03, "")
-        init_filesystem_01 = commands.getoutput("cat %s"%(self.filesystem_01))
-        init_filesystem_02 = commands.getoutput("cat %s"%(self.filesystem_02))
-        init_filesystem_03 = commands.getoutput("cat %s"%(self.filesystem_03))
+        init_filesystem_01 = open(self.filesystem_01).read()[:-1]
+        init_filesystem_02 = open(self.filesystem_02).read()[:-1]
+        init_filesystem_03 = open(self.filesystem_03).read()[:-1]
 
         ### END OF INIT ###
 
@@ -299,7 +299,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_01, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_01, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
         #Param_00
         expected_value=str(int(init_value_02)+1)
         log.I("Param_00 parameter= %s"%(expected_value))
@@ -307,7 +307,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_02, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_02, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
         #Param_12
         expected_value=str(int(init_value_03)+1)
         log.I("Param_12 parameter= %s"%(expected_value))
@@ -315,7 +315,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_03, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_03, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
 
         #Import the temp XML file
         self.pfw.sendCmd("setTuningMode", "on","")
@@ -333,7 +333,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_01, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_01, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) == init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] == init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
         #Param_00
         expected_value=init_value_02
         log.I("Param_00 parameter= %s"%(expected_value))
@@ -341,7 +341,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_02, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_02, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) == init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] == init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
         #Param_12
         expected_value=init_value_03
         log.I("Param_12 parameter= %s"%(expected_value))
@@ -349,7 +349,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_03, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_03, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) == init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] == init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
 
     def test_03_exportImportXML_withoutSettings_Nominal_Case(self):
         """
@@ -396,9 +396,9 @@ class TestCases(PfwTestCase):
         init_value_01, err = self.pfw.sendCmd("getParameter", self.param_name_01, "")
         init_value_02, err = self.pfw.sendCmd("getParameter", self.param_name_02, "")
         init_value_03, err = self.pfw.sendCmd("getParameter", self.param_name_03, "")
-        init_filesystem_01 = commands.getoutput("cat %s"%(self.filesystem_01))
-        init_filesystem_02 = commands.getoutput("cat %s"%(self.filesystem_02))
-        init_filesystem_03 = commands.getoutput("cat %s"%(self.filesystem_03))
+        init_filesystem_01 = open(self.filesystem_01).read()[:-1]
+        init_filesystem_02 = open(self.filesystem_02).read()[:-1]
+        init_filesystem_03 = open(self.filesystem_03).read()[:-1]
 
         ### END OF INIT ###
 
@@ -435,7 +435,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_01, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_01, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
         #Param_00
         expected_value=str(int(init_value_02)+1)
         log.I("Param_00 parameter= %s"%(expected_value))
@@ -443,7 +443,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_02, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_02, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
         #Param_12
         expected_value=str(int(init_value_03)+1)
         log.I("Param_12 parameter= %s"%(expected_value))
@@ -451,7 +451,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_03, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_03, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
 
         #Import the temp XML file without
         self.pfw.sendCmd("setTuningMode", "on","")
@@ -469,7 +469,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_01, err))
         assert out != unexpected_value, log.F("BLACKBOARD : Unexpected value found for %s: %s" % (self.param_name_01, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
         #Param_00
         unexpected_value=init_value_02
         log.I("Param_00 parameter= %s"%(unexpected_value))
@@ -477,7 +477,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_02, err))
         assert out != unexpected_value, log.F("BLACKBOARD : Unexpected value found for %s: %s" % (self.param_name_02, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
         #Param_12
         unexpected_value=init_value_03
         log.I("Param_12 parameter= %s"%(unexpected_value))
@@ -485,7 +485,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_03, err))
         assert out != unexpected_value, log.F("BLACKBOARD : Unexpected value found for %s: %s"% (self.param_name_03, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
 
         #Import the reference_XML file without settings
         self.pfw.sendCmd("setTuningMode", "on","")
@@ -503,7 +503,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_01, err))
         assert out != unexpected_value, log.F("BLACKBOARD : Unexpected value found for %s: %s" % (self.param_name_01, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
         #Param_00
         unexpected_value=init_value_02
         log.I("Param_00 parameter= %s"%(unexpected_value))
@@ -511,7 +511,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_02, err))
         assert out != unexpected_value, log.F("BLACKBOARD : Unexpected value found for %s: %s" % (self.param_name_02, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
         #Param_12
         unexpected_value=init_value_03
         log.I("Param_12 parameter= %s"%(unexpected_value))
@@ -519,7 +519,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_03, err))
         assert out != unexpected_value, log.F("BLACKBOARD : Unexpected value found for %s: %s" % (self.param_name_03, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
 
     @unittest.expectedFailure
     def test_05_Import_XML_With_Settings_Error_Case(self):
@@ -562,9 +562,9 @@ class TestCases(PfwTestCase):
         init_value_01, err = self.pfw.sendCmd("getParameter", self.param_name_01, "")
         init_value_02, err = self.pfw.sendCmd("getParameter", self.param_name_02, "")
         init_value_03, err = self.pfw.sendCmd("getParameter", self.param_name_03, "")
-        init_filesystem_01 = commands.getoutput("cat %s"%(self.filesystem_01))
-        init_filesystem_02 = commands.getoutput("cat %s"%(self.filesystem_02))
-        init_filesystem_03 = commands.getoutput("cat %s"%(self.filesystem_03))
+        init_filesystem_01 = open(self.filesystem_01).read()[:-1]
+        init_filesystem_02 = open(self.filesystem_02).read()[:-1]
+        init_filesystem_03 = open(self.filesystem_03).read()[:-1]
         xml_path="$PFW_TEST_TOOLS/xml/XML_Test/"
         ### END OF INIT ###
 
@@ -658,7 +658,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_01, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_01, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
         #Param_00
         expected_value=init_value_02
         hex_value=init_filesystem_02
@@ -667,7 +667,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_02, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_02, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
         #Param_12
         expected_value=init_value_03
         hex_value=init_filesystem_03
@@ -676,7 +676,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name_03, err))
         assert out == expected_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name_03, expected_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] == hex_value, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
         log.I("Parameters checking : OK")
 
         #### END check domains and settings ####

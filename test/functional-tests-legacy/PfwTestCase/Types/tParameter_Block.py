@@ -178,7 +178,7 @@ class TestCases(PfwTestCase):
                                    % (self.block_name))
         log.I("Check filesystem value")
         for index_param in range(len(self.param_name)):
-            assert (commands.getoutput("cat %s"%(self.filesystem_name[index_param]))
+            assert (open(self.filesystem_name[index_param]).read()[:-1]
                 == init_filesystem_value[index_param]), log.F("FILESYSTEM : parameter update error for %s"
                                                             %(self.block_name))
 
@@ -237,7 +237,7 @@ class TestCases(PfwTestCase):
             assert out == init_value_param[index_param], log.F("BLACKBOARD: Forbidden change value for %s - Expected : %s Found : %s"
                                                              %(self.param_name[index_param],init_value_param[index_param],out))
         log.I("Check filesystem value")
-        assert (commands.getoutput("cat %s"%(self.filesystem_name[index_param]))
+        assert (open(self.filesystem_name[index_param]).read()[:-1]
                 == init_filesystem_value[index_param]), log.F("FILESYSTEM : parameter update error for %s"
                                                               %(self.block_name))
 
@@ -288,6 +288,6 @@ class TestCases(PfwTestCase):
             assert out == init_value_param[index_param], log.F("BLACKBOARD: Forbidden change value for %s - Expected : %s Found : %s"
                                                              %(self.param_name[index_param],init_value_param[index_param],out))
         log.I("Check filesystem value")
-        assert (commands.getoutput("cat %s"%(self.filesystem_name[index_param]))
+        assert (open(self.filesystem_name[index_param]).read()[:-1]
                 == init_filesystem_value[index_param]), log.F("FILESYSTEM : parameter update error for %s"
                                                               %(self.block_name))
