@@ -29,12 +29,14 @@
  */
 #pragma once
 
+#include "remote_processor_export.h"
+
 #include "Message.h"
 #include "RemoteCommand.h"
 #include <vector>
 #include <string>
 
-class CRequestMessage : public CMessage, public IRemoteCommand
+class REMOTE_PROCESSOR_EXPORT CRequestMessage : public CMessage, public IRemoteCommand
 {
 public:
     CRequestMessage(const std::string& strCommand);
@@ -46,9 +48,9 @@ public:
 
     // Arguments
     virtual void addArgument(const std::string& strArgument);
-    virtual uint32_t getArgumentCount() const;
-    virtual const std::string& getArgument(uint32_t uiArgument) const;
-    virtual const std::string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const;
+    virtual size_t getArgumentCount() const;
+    virtual const std::string& getArgument(size_t argument) const;
+    virtual const std::string packArguments(size_t startArgument, size_t nbArguments) const;
 
 private:
 

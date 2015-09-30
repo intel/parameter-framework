@@ -27,20 +27,30 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 add_library(remote-processor SHARED
-        Socket.cpp
-        ListeningSocket.cpp
-        ConnectionSocket.cpp
         Message.cpp
         RequestMessage.cpp
         AnswerMessage.cpp
-        RemoteProcessorServer.cpp
-        RemoteProcessorServerBuilder.cpp)
+        RemoteProcessorServer.cpp)
+
+include (GenerateExportHeader)
+generate_export_header(remote-processor
+                       BASE_NAME remote_processor)
 
 set(CMAKE_THREAD_PREFER_PTHREAD 1)
 find_package(Threads REQUIRED)
 
-include_directories("${PROJECT_SOURCE_DIR}/utility")
+# Find ASIO (the standalone version, not Boost) and declare it as a dependency
+# for remote-processor's users too. (FIXME: this should not be the case)
+# If asio isn't installed in a standard directory, add the correct directory to
+# CMAKE_PREFIX_PATH (see the main README for more information).
+find_path(ASIO_DIR NAMES asio.hpp)
+target_include_directories(remote-processor PUBLIC "${ASIO_DIR}")
+
+include_directories("${PROJECT_SOURCE_DIR}/utility"
+                    "${CMAKE_CURRENT_BINARY_DIR}")
+
+target_compile_definitions(remote-processor PUBLIC ASIO_STANDALONE)
 
 target_link_libraries(remote-processor pfw_utility ${CMAKE_THREAD_LIBS_INIT})
 
-install(TARGETS remote-processor LIBRARY DESTINATION lib)
+install(TARGETS remote-processor LIBRARY DESTINATION lib RUNTIME DESTINATION bin)

@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,30 +26,35 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_library(xmlserializer SHARED
+add_library(xmlserializer STATIC
     XmlElement.cpp
     XmlSerializingContext.cpp
     XmlDocSource.cpp
     XmlMemoryDocSink.cpp
     XmlMemoryDocSource.cpp
-    XmlStreamDocSink.cpp)
+    XmlStreamDocSink.cpp
+    XmlUtil.cpp)
 
-include(FindLibXml2)
-if(NOT LIBXML2_FOUND)
-    message(SEND_ERROR "
-    libxml2 NOT found.  The parameter-framework wont compile.
-    Please install the development package (e.g. libxml2-dev on debian-based
-    Linux distributions).")
-else(NOT LIBXML2_FOUND)
-    # libxml2 has been found, but does it support XInclude ?
-    include(CheckLibraryExists)
-    check_library_exists(xml2 xmlXIncludeProcess "" XML2_XINCLUDE_SUPPORT)
-    if(NOT XML2_XINCLUDE_SUPPORT)
-        message(SEND_ERROR "
-    libxml2 has not been built with support for XInclude.  xmlserializer needs
-    that feature; please install a version of libxml2 supporting it.")
-    endif(NOT XML2_XINCLUDE_SUPPORT)
-endif(NOT LIBXML2_FOUND)
+set_target_properties(xmlserializer PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
+
+find_package(LibXml2 REQUIRED)
+
+# libxml2 has been found, but does it support XInclude ?
+include(CheckLibraryExists)
+# The first argument of check_library_exists is used as a library to be linked
+# into a test executable.
+# As such, this argument can only contain *one* library. Here, we use the
+# result of CMake's libxml2 detection - the variable name suggests that several
+# libraries can be found. At the time of writing, with CMake 2.8, this is not
+# the case.
+# Thus, it is probably safe to do so.
+check_library_exists("${LIBXML2_LIBRARIES}" xmlXIncludeProcess "" XML2_XINCLUDE_SUPPORT)
+if(NOT XML2_XINCLUDE_SUPPORT)
+    message(SEND_ERROR
+            "libxml2 has not been built with support for XInclude."
+            "xmlserializer needs that feature;"
+            "please install a version of libxml2 supporting it.")
+endif()
 
 include_directories(
     ${LIBXML2_INCLUDE_DIR}
@@ -58,7 +63,6 @@ include_directories(
 target_link_libraries(xmlserializer ${LIBXML2_LIBRARIES})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${LIBXML2_DEFINITIONS}")
 
-install(TARGETS xmlserializer LIBRARY DESTINATION lib)
 install(FILES
     XmlSink.h
     XmlSource.h

@@ -30,6 +30,7 @@
 #include "RuleParser.h"
 #include "CompoundRule.h"
 #include "SelectionCriterionRule.h"
+#include "AlwaysAssert.hpp"
 #include <assert.h>
 
 using std::string;
@@ -48,7 +49,7 @@ CRuleParser::CRuleParser(const string& strApplicationRule, const CSelectionCrite
     _strApplicationRule(strApplicationRule),
     _pSelectionCriteriaDefinition(pSelectionCriteriaDefinition),
     _uiCurrentPos(0),
-    _uiCurrentDeepness(0),
+    _currentDeepness(0),
     _eStatus(CRuleParser::EInit),
     _pRootRule(NULL)
 {
@@ -116,6 +117,7 @@ bool CRuleParser::parse(CCompoundRule* pParentRule, string& strError)
                 return false;
             }
 
+            ALWAYS_ASSERT(pParentRule != NULL, "Invalid parent rule given to rule parser");
             // Chain
             pParentRule->addChild(pCriterionRule);
 
@@ -150,7 +152,7 @@ bool CRuleParser::iterate(string& strError)
 {
     string::size_type delimiter;
 
-    assert(_uiCurrentPos <= _strApplicationRule.length());
+    ALWAYS_ASSERT(_uiCurrentPos <= _strApplicationRule.length(), "Current Position outside range");
 
     // Consume spaces
     if ((delimiter = _strApplicationRule.find_first_not_of(" ", _uiCurrentPos)) != string::npos) {
@@ -168,12 +170,12 @@ bool CRuleParser::iterate(string& strError)
             _eStatus = EBeginCompoundRule;
             // Extract type
             _strRuleType = _strApplicationRule.substr(_uiCurrentPos, delimiter - _uiCurrentPos);
-            _uiCurrentDeepness++;
+            _currentDeepness++;
             break;
         case '}':
             _eStatus = EEndCompoundRule;
 
-            if (!_uiCurrentDeepness--) {
+            if (!_currentDeepness--) {
 
                 strError = "Missing opening brace";
 
@@ -193,7 +195,7 @@ bool CRuleParser::iterate(string& strError)
         _uiCurrentPos = delimiter + 1;
     } else {
 
-        if (_uiCurrentDeepness) {
+        if (_currentDeepness) {
 
             strError = "Missing closing brace";
 

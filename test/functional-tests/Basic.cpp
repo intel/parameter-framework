@@ -100,7 +100,7 @@ SCENARIO_METHOD(LazyPF, "Invalid XML configuration") {
         GIVEN("An invalid xml: containing " + xmlT.title) {
             Config::Plugins ps{};
             for (auto &&configT : Tests<Config>{
-                    {"top config", { &Config::plugins, { { "", { invalidXml } } } } },
+                    {"top config", { &Config::plugins, Config::Plugins{ { "", { invalidXml } } } } },
                     {"structure", { &Config::instances, invalidXml } },
                     {"settings", { &Config::domains, invalidXml } } }) {
                 WHEN("Used in the " + configT.title) {
@@ -121,7 +121,7 @@ SCENARIO_METHOD(LazyPF, "Plugin OK", "[properties][missing plugin policy]") {
     {
         GIVEN("An" + pluginNameT.title)
         {
-            create({ &Config::plugins, { { "", { pluginNameT.payload } } } });
+            create({ &Config::plugins, Config::Plugins{ { "", { pluginNameT.payload } } } });
             WHEN("The missing subsystem policy is left to default") {
                 THEN("Start should fail") {
                     CHECK_THROWS_AS(mPf->start(), Exception);

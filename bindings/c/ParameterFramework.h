@@ -38,9 +38,12 @@
 
 #pragma once
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#include "cparameter_export.h"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -49,9 +52,19 @@ extern "C" {
 /** Lots of function in this API require non null pointer parameter.
   * Such arguments are marked NONNULL.
   */
-#define NONNULL  __attribute__((nonnull))
-#define NONNULL_(...)  __attribute__((nonnull (__VA_ARGS__)))
-#define USERESULT __attribute__((warn_unused_result))
+#if defined(__clang__) || defined(__GNUC__)
+#    define NONNULL  __attribute__((nonnull))
+#    define NONNULL_(...)  __attribute__((nonnull (__VA_ARGS__)))
+#    define USERESULT __attribute__((warn_unused_result))
+#elif defined(_MSC_VER)
+    // In visual studio's cl there is no
+    // equivalent of nonnull
+#    define NONNULL
+#    define NONNULL_(...)
+#    define USERESULT _Check_return_
+#else
+#   error "Unknown compilator"
+#endif
 
 /** Private handle to a parameter framework.
   * A PfwHandler* is valid if:
@@ -122,9 +135,11 @@ typedef struct {
 /** Create a parameter framework instance.
   * Can not fail except for memory allocation.
   */
+CPARAMETER_EXPORT
 PfwHandler *pfwCreate() USERESULT;
 
 /** Destroy a parameter framework. Can not fail. */
+CPARAMETER_EXPORT
 void pfwDestroy(PfwHandler *handle) NONNULL;
 
 /** Start a parameter framework.
@@ -137,6 +152,7 @@ void pfwDestroy(PfwHandler *handle) NONNULL;
   *                                errors to standard error.
   * @return true on success, false on failure.
   */
+CPARAMETER_EXPORT
 bool pfwStart(PfwHandler *handle, const char *configPath,
               const PfwCriterion criteria[], size_t criterionNb,
               const PfwLogger *loggger) NONNULL_(1, 2, 3) USERESULT;
@@ -151,6 +167,7 @@ bool pfwStart(PfwHandler *handle, const char *configPath,
   * As a result, calling a pfw function with a NULL PfwHandler will result in a
   * failure WITHOUT updating the last error.
   */
+CPARAMETER_EXPORT
 const char *pfwGetLastError(const PfwHandler *handle) NONNULL;
 
 /** Set a criterion value given its name and value.
@@ -169,11 +186,13 @@ const char *pfwGetLastError(const PfwHandler *handle) NONNULL;
   *
   * @return true on success and false on failure.
   */
+CPARAMETER_EXPORT
 bool pfwSetCriterion(PfwHandler *handle, const char name[], int value) NONNULL USERESULT;
 /** Get a criterion value given its name.
   * Same usage as pfwSetCriterion except that value is an out param.
   * Get criterion will return the last value setted with pfwSetCriterion independantly of pfwCommitCritenio.
   */
+CPARAMETER_EXPORT
 bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value) NONNULL USERESULT;
 
 /** Commit criteria change and change parameters according to the configurations.
@@ -185,6 +204,7 @@ bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value) NO
   * @param handle[in] @see PfwHandler
   * @return true on success and false on failure.
   */
+CPARAMETER_EXPORT
 bool pfwApplyConfigurations(const PfwHandler *handle) NONNULL USERESULT;
 
 ///////////////////////////////
@@ -211,8 +231,10 @@ typedef struct PfwParameterHandler_ PfwParameterHandler;
   * @return a PfwParameterHandler on success, NULL on error.
   *         @see pfwGetLastError for error detail.
   */
+CPARAMETER_EXPORT
 PfwParameterHandler *pfwBindParameter(PfwHandler *handle, const char path[]) NONNULL;
 /** Destroy a parameter handle. Can not fail. */
+CPARAMETER_EXPORT
 void pfwUnbindParameter(PfwParameterHandler *handle) NONNULL;
 
 /** Access the value of a previously bind int parameter.
@@ -221,6 +243,7 @@ void pfwUnbindParameter(PfwParameterHandler *handle) NONNULL;
   *        hold the parameter value on success, undefined otherwise.
   * return true of success, false on failure.
   */
+CPARAMETER_EXPORT
 bool pfwGetIntParameter(const PfwParameterHandler *handle, int32_t *value ) NONNULL USERESULT;
 
 /** Set the value of a previously bind int parameter.
@@ -228,6 +251,7 @@ bool pfwGetIntParameter(const PfwParameterHandler *handle, int32_t *value ) NONN
   * @param value[in] The parameter value to set.
   * return true of success, false on failure.
   */
+CPARAMETER_EXPORT
 bool pfwSetIntParameter(PfwParameterHandler *handle, int32_t value) NONNULL USERESULT;
 
 /** Access the value of a previously bind string parameter.
@@ -238,12 +262,14 @@ bool pfwSetIntParameter(PfwParameterHandler *handle, int32_t value) NONNULL USER
   *                   The callee MUST free the returned string using pfwFree after use.
   * @return true on success, false on failure.
   */
+CPARAMETER_EXPORT
 bool pfwGetStringParameter(const PfwParameterHandler *handle, const char *value[]) NONNULL;
 
 /** Set the value of a previously bind string parameter.
   * @param handle[in] Handler to a valid parameter
   * @param value[in] Non null pointer to a null terminated string to set.
   */
+CPARAMETER_EXPORT
 bool pfwSetStringParameter(PfwParameterHandler *handle, const char value[]) NONNULL USERESULT;
 
 /** Frees the memory space pointed to by ptr,
@@ -254,6 +280,7 @@ bool pfwSetStringParameter(PfwParameterHandler *handle, const char value[]) NONN
   * @note Wrapper around the standard free to avoid problems
   *       in case of a different pfw and client allocator.
   */
+CPARAMETER_EXPORT
 void pfwFree(void *ptr);
 
 #undef NONNULL

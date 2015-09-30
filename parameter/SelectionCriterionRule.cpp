@@ -58,10 +58,8 @@ string CSelectionCriterionRule::getKind() const
 }
 
 // Content dumping
-void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& errorContext) const
+void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& /*cxt*/) const
 {
-    (void)errorContext;
-
     // Dump rule
     dump(strValue);
 }
@@ -198,10 +196,8 @@ bool CSelectionCriterionRule::fromXml(const CXmlElement& xmlElement, CXmlSeriali
 }
 
 // From IXmlSource
-void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingContext& /*ctx*/) const
 {
-    (void)serializingContext;
-
     assert(_pSelectionCriterion);
 
     // Set selection criterion
@@ -221,11 +217,9 @@ void CSelectionCriterionRule::toXml(CXmlElement& xmlElement, CXmlSerializingCont
 // XML MatchesWhen attribute parsing
 bool CSelectionCriterionRule::setMatchesWhen(const string& strMatchesWhen, string& strError)
 {
-    uint32_t uiMatchesWhen;
+    for (size_t matchesWhen = 0; matchesWhen < ENbMatchesWhen; matchesWhen++) {
 
-    for (uiMatchesWhen = 0; uiMatchesWhen < ENbMatchesWhen; uiMatchesWhen++) {
-
-        const SMatchingRuleDescription* pstMatchingRuleDescription = &_astMatchesWhen[uiMatchesWhen];
+        const SMatchingRuleDescription* pstMatchingRuleDescription = &_astMatchesWhen[matchesWhen];
 
         if (strMatchesWhen == pstMatchingRuleDescription->pcMatchesWhen) {
 
@@ -243,7 +237,7 @@ bool CSelectionCriterionRule::setMatchesWhen(const string& strMatchesWhen, strin
             }
 
             // Store
-            _eMatchesWhen = (MatchesWhen)uiMatchesWhen;
+            _eMatchesWhen = (MatchesWhen)matchesWhen;
 
             return true;
         }

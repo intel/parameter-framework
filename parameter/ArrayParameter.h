@@ -37,7 +37,7 @@ public:
     CArrayParameter(const std::string& strName, const CTypeElement* pTypeElement);
 
     // Instantiation, allocation
-    virtual uint32_t getFootPrint() const;
+    virtual size_t getFootPrint() const;
 
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
@@ -65,13 +65,13 @@ protected:
     virtual void showProperties(std::string& strResult) const;
 private:
     // Array length
-    uint32_t getArrayLength() const;
+    size_t getArrayLength() const;
     // Common set value processing
-    bool setValues(uint32_t uiStartIndex, uint32_t uiBaseOffset, const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
+    bool setValues(size_t uiStartIndex, size_t baseOffset, const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
     // Log / get values common
-    void getValues(uint32_t uiBaseOffset, std::string& strValues, CParameterAccessContext& parameterAccessContext) const;
+    void getValues(size_t baseOffset, std::string& strValues, CParameterAccessContext& parameterAccessContext) const;
     // Index retrieval from user set/get request
-    bool getIndex(CPathNavigator& pathNavigator, uint32_t& uiIndex, CParameterAccessContext& parameterAccessContext) const;
+    bool getIndex(CPathNavigator& pathNavigator, size_t& index, CParameterAccessContext& parameterAccessContext) const;
 
     /// Value access
     // Generic Access
@@ -82,7 +82,7 @@ private:
     template <typename type>
     bool getValues(std::vector<type>& values, CParameterAccessContext& parameterAccessContext) const;
     template <typename type>
-    bool doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    bool doSet(type value, size_t offset, CParameterAccessContext& parameterAccessContext) const;
     template <typename type>
-    bool doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    bool doGet(type& value, size_t offset, CParameterAccessContext& parameterAccessContext) const;
 };

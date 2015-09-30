@@ -33,9 +33,12 @@
 #include "Subsystem.h"
 #include <assert.h>
 #include "ParameterMgr.h"
-#include "AutoLock.h"
+
+#include <mutex>
 
 using std::string;
+using std::mutex;
+using std::lock_guard;
 
 CParameterHandle::CParameterHandle(const CBaseParameter* pParameter, CParameterMgr* pParameterMgr)
     : _pBaseParameter(pParameter), _pParameterMgr(pParameterMgr), _bBigEndianSubsystem(pParameter->getBelongingSubsystem()->isBigEndian())
@@ -54,7 +57,7 @@ bool CParameterHandle::isArray() const
 }
 
 // Array Length
-uint32_t CParameterHandle::getArrayLength() const
+size_t CParameterHandle::getArrayLength() const
 {
     return _pBaseParameter->getArrayLength();
 }
@@ -75,12 +78,12 @@ string CParameterHandle::getKind() const
 bool CParameterHandle::setAsBoolean(bool bValue, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, 0, strError)) {
+    if (!checkSetValidity(0, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -97,12 +100,12 @@ bool CParameterHandle::setAsBoolean(bool bValue, string& strError)
 bool CParameterHandle::getAsBoolean(bool& bValue, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, 0, strError)) {
+    if (!checkGetValidity(false, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -113,12 +116,12 @@ bool CParameterHandle::getAsBoolean(bool& bValue, string& strError) const
 bool CParameterHandle::setAsBooleanArray(const std::vector<bool>& abValues, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, abValues.size(), strError)) {
+    if (!checkSetValidity(abValues.size(), strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -138,12 +141,12 @@ bool CParameterHandle::setAsBooleanArray(const std::vector<bool>& abValues, stri
 bool CParameterHandle::getAsBooleanArray(std::vector<bool>& abValues, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, -1, strError)) {
+    if (!checkGetValidity(true, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -155,12 +158,12 @@ bool CParameterHandle::getAsBooleanArray(std::vector<bool>& abValues, string& st
 bool CParameterHandle::setAsInteger(uint32_t uiValue, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, 0, strError)) {
+    if (!checkSetValidity(0, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -177,12 +180,12 @@ bool CParameterHandle::setAsInteger(uint32_t uiValue, string& strError)
 bool CParameterHandle::getAsInteger(uint32_t& uiValue, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, 0, strError)) {
+    if (!checkGetValidity(false, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -193,12 +196,12 @@ bool CParameterHandle::getAsInteger(uint32_t& uiValue, string& strError) const
 bool CParameterHandle::setAsIntegerArray(const std::vector<uint32_t>& auiValues, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, auiValues.size(), strError)) {
+    if (!checkSetValidity(auiValues.size(), strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -218,12 +221,12 @@ bool CParameterHandle::setAsIntegerArray(const std::vector<uint32_t>& auiValues,
 bool CParameterHandle::getAsIntegerArray(std::vector<uint32_t>& auiValues, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, -1, strError)) {
+    if (!checkGetValidity(true, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -235,12 +238,12 @@ bool CParameterHandle::getAsIntegerArray(std::vector<uint32_t>& auiValues, strin
 bool CParameterHandle::setAsSignedInteger(int32_t iValue, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, 0, strError)) {
+    if (!checkSetValidity(0, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -257,12 +260,12 @@ bool CParameterHandle::setAsSignedInteger(int32_t iValue, string& strError)
 bool CParameterHandle::getAsSignedInteger(int32_t& iValue, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, 0, strError)) {
+    if (!checkGetValidity(false, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -273,12 +276,12 @@ bool CParameterHandle::getAsSignedInteger(int32_t& iValue, string& strError) con
 bool CParameterHandle::setAsSignedIntegerArray(const std::vector<int32_t>& aiValues, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, aiValues.size(), strError)) {
+    if (!checkSetValidity(aiValues.size(), strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -298,12 +301,12 @@ bool CParameterHandle::setAsSignedIntegerArray(const std::vector<int32_t>& aiVal
 bool CParameterHandle::getAsSignedIntegerArray(std::vector<int32_t>& aiValues, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, -1, strError)) {
+    if (!checkGetValidity(true, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -315,12 +318,12 @@ bool CParameterHandle::getAsSignedIntegerArray(std::vector<int32_t>& aiValues, s
 bool CParameterHandle::setAsDouble(double dValue, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, 0, strError)) {
+    if (!checkSetValidity(0, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -337,12 +340,12 @@ bool CParameterHandle::setAsDouble(double dValue, string& strError)
 bool CParameterHandle::getAsDouble(double& dValue, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, 0, strError)) {
+    if (!checkGetValidity(false, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -353,12 +356,12 @@ bool CParameterHandle::getAsDouble(double& dValue, string& strError) const
 bool CParameterHandle::setAsDoubleArray(const std::vector<double>& adValues, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, adValues.size(), strError)) {
+    if (!checkSetValidity(adValues.size(), strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -378,12 +381,12 @@ bool CParameterHandle::setAsDoubleArray(const std::vector<double>& adValues, str
 bool CParameterHandle::getAsDoubleArray(std::vector<double>& adValues, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, -1, strError)) {
+    if (!checkGetValidity(true, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -395,12 +398,12 @@ bool CParameterHandle::getAsDoubleArray(std::vector<double>& adValues, string& s
 bool CParameterHandle::setAsString(const string& strValue, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, 0, strError)) {
+    if (!checkSetValidity(0, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -420,12 +423,12 @@ bool CParameterHandle::setAsString(const string& strValue, string& strError)
 bool CParameterHandle::getAsString(string& strValue, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, 0, strError)) {
+    if (!checkGetValidity(false, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -436,12 +439,12 @@ bool CParameterHandle::getAsString(string& strValue, string& strError) const
 bool CParameterHandle::setAsStringArray(const std::vector<string>& astrValues, string& strError)
 {
     // Check operation validity
-    if (!checkAccessValidity(true, (uint32_t)astrValues.size(), strError)) {
+    if (!checkSetValidity(astrValues.size(), strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // When in tuning mode, silently skip the request
     if (_pParameterMgr->tuningModeOn()) {
@@ -461,12 +464,12 @@ bool CParameterHandle::setAsStringArray(const std::vector<string>& astrValues, s
 bool CParameterHandle::getAsStringArray(std::vector<string>& astrValues, string& strError) const
 {
     // Check operation validity
-    if (!checkAccessValidity(false, -1, strError)) {
+    if (!checkGetValidity(true, strError)) {
 
         return false;
     }
     // Ensure we're safe against blackboard foreign access
-    CAutoLock autoLock(_pParameterMgr->getBlackboardMutex());
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
     CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
@@ -474,42 +477,39 @@ bool CParameterHandle::getAsStringArray(std::vector<string>& astrValues, string&
     return _pBaseParameter->accessAsStringArray(astrValues, false, parameterAccessContext);
 }
 
-// Access validity
-bool CParameterHandle::checkAccessValidity(bool bSet, size_t uiArrayLength, string& strError) const
+bool CParameterHandle::checkGetValidity(bool asArray, string& error) const
 {
-    if (bSet && !isRogue()) {
+    if (asArray != isArray()) {
 
-        strError = "Parameter is not rogue: ";
-
-        strError += getPath();
-
+        auto toStr = [](bool array) { return array ? "an array" : "a scalar"; };
+        error = "Can not get \"" + getPath() + "\" as " + toStr(asArray) +
+                   " because it is " + toStr(isArray());
         return false;
     }
 
-    if (uiArrayLength && !isArray()) {
+    return true;
+}
 
-        strError = "Parameter is scalar: ";
-
-        strError += getPath();
-
+// Access validity
+bool CParameterHandle::checkSetValidity(size_t arrayLength, string& error) const
+{
+    // Settings a parameter necessitates the right to get it
+    if (not checkGetValidity(arrayLength != 0, error)) {
         return false;
     }
 
-    if (!uiArrayLength && isArray()) {
+    if (!isRogue()) {
 
-        strError = "Parameter is an array: ";
-
-        strError += getPath();
-
+        error = "Can not set parameter \"" + getPath() + "\" as it is not rogue.";
         return false;
     }
 
-    if (bSet && uiArrayLength && (uiArrayLength != getArrayLength())) {
+    if (arrayLength && (arrayLength != getArrayLength())) {
 
-        strError = "Array length mismatch: ";
-
-        strError += getPath();
-
+        using std::to_string;
+        error = "Array length mismatch for \"" + getPath() +
+                  "\", expected: " + to_string(getArrayLength()) +
+                  ", got: " + to_string(arrayLength);
         return false;
     }
 

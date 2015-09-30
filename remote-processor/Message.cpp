@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,55 +28,59 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "Message.h"
-#include <assert.h>
-#include "Socket.h"
-#include "RemoteProcessorProtocol.h"
-#include <string.h>
-#include <assert.h>
-#include <errno.h>
+#include "Iterator.hpp"
+#include <vector>
+#include <numeric>
+#include <cassert>
 
 using std::string;
 
-CMessage::CMessage(uint8_t ucMsgId) : _ucMsgId(ucMsgId), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
+CMessage::CMessage(MsgType ucMsgId) :
+    _ucMsgId(ucMsgId), _uiIndex(0)
 {
 }
 
-CMessage::CMessage() : _ucMsgId((uint8_t)-1), _pucData(NULL), _uiDataSize(0), _uiIndex(0)
+CMessage::CMessage() :
+    _ucMsgId(static_cast<MsgType>(-1)), _uiIndex(0)
 {
-}
-
-CMessage::~CMessage()
-{
-    delete [] _pucData;
 }
 
 // Msg Id
-uint8_t CMessage::getMsgId() const
+CMessage::MsgType CMessage::getMsgId() const
 {
     return _ucMsgId;
 }
 
-// Data
-void CMessage::writeData(const void* pvData, size_t uiSize)
+void CMessage::assertValidAccess(size_t offset, size_t size) const
 {
-    assert(_uiIndex + uiSize <= _uiDataSize);
-
-    // Copy
-    memcpy(&_pucData[_uiIndex], pvData, uiSize);
-
-    // Index
-    _uiIndex += uiSize;
+    assert(offset + size <= getMessageDataSize());
 }
 
-void CMessage::readData(void* pvData, size_t uiSize)
+// Data
+void CMessage::writeData(const void* pvData, size_t size)
 {
-    assert(_uiIndex + uiSize <= _uiDataSize);
+    assertValidAccess(_uiIndex, size);
 
-    // Copy
-    memcpy(pvData, &_pucData[_uiIndex], uiSize);
+    auto first = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvData), size);
+    auto last = first + size;
+    auto destFirst = begin(mData) + _uiIndex;
 
-    // Index
-    _uiIndex += uiSize;
+    std::copy(first, last, destFirst);
+
+    _uiIndex += size;
+}
+
+void CMessage::readData(void* pvData, size_t size)
+{
+    assertValidAccess(_uiIndex, size);
+
+    auto first = begin(mData) + _uiIndex;
+    auto last = first + size;
+    auto destFirst = MAKE_ARRAY_ITERATOR(static_cast<uint8_t *>(pvData), size);
+
+    std::copy(first, last, destFirst);
+
+    _uiIndex += size;
 }
 
 void CMessage::writeString(const string& strData)
@@ -98,16 +102,16 @@ void CMessage::readString(string& strData)
     readData(&uiSize, sizeof(uiSize));
 
     // Data
-    char pcData[uiSize + 1];
+    std::vector<char> string(uiSize + 1);
 
     // Content
-    readData(pcData, uiSize);
+    readData(string.data(), uiSize);
 
     // NULL-terminate string
-    pcData[uiSize] = '\0';
+    string.back() = '\0';
 
     // Output
-    strData = pcData;
+    strData = string.data();
 }
 
 size_t CMessage::getStringSize(const string& strData) const
@@ -119,13 +123,14 @@ size_t CMessage::getStringSize(const string& strData) const
 // Remaining data size
 size_t CMessage::getRemainingDataSize() const
 {
-    return _uiDataSize - _uiIndex;
+    return getMessageDataSize() - _uiIndex;
 }
 
 // Send/Receive
-CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strError)
+CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, string& strError)
 {
     if (bOut) {
+        asio::error_code ec;
 
         // Make room for data to send
         allocateData(getDataSize());
@@ -134,59 +139,59 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
         fillDataToSend();
 
         // Finished providing data?
-        assert(_uiIndex == _uiDataSize);
+        assert(_uiIndex == getMessageDataSize());
 
         // First send sync word
         uint16_t uiSyncWord = SYNC_WORD;
 
-        if (!pSocket->write(&uiSyncWord, sizeof(uiSyncWord))) {
+        if (!asio::write(socket, asio::buffer(&uiSyncWord, sizeof(uiSyncWord)), ec)) {
 
-            if (pSocket->hasPeerDisconnected()) {
+            if (ec == asio::error::eof) {
                 return peerDisconnected;
             }
             return error;
         }
 
         // Size
-        uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + _uiDataSize);
+        uint32_t uiSize = (uint32_t)(sizeof(_ucMsgId) + getMessageDataSize());
 
-        if (!pSocket->write(&uiSize, sizeof(uiSize))) {
+        if (!asio::write(socket, asio::buffer(&uiSize, sizeof(uiSize)), ec)) {
 
-            strError += string("Size write failed: ") + strerror(errno);
+            strError += string("Size write failed: ") + ec.message();
             return error;
         }
 
         // Msg Id
-        if (!pSocket->write(&_ucMsgId, sizeof(_ucMsgId))) {
+        if (!asio::write(socket, asio::buffer(&_ucMsgId, sizeof(_ucMsgId)), ec)) {
 
-            strError += string("Msg write failed: ") + strerror(errno);
+            strError += string("Msg write failed: ") + ec.message();
             return error;
         }
 
         // Data
-        if (!pSocket->write(_pucData, _uiDataSize)) {
+        if (!asio::write(socket, asio::buffer(mData), ec)) {
 
-            strError = string("Data write failed: ") + strerror(errno);
+            strError = string("Data write failed: ") + ec.message();
             return error;
         }
 
         // Checksum
         uint8_t ucChecksum = computeChecksum();
 
-        if (!pSocket->write(&ucChecksum, sizeof(ucChecksum))) {
+        if (!asio::write(socket, asio::buffer(&ucChecksum, sizeof(ucChecksum)), ec)) {
 
-            strError = string("Checksum write failed: ") + strerror(errno);
+            strError = string("Checksum write failed: ") + ec.message();
             return error;
         }
 
     } else {
         // First read sync word
-        uint16_t uiSyncWord;
+        uint16_t uiSyncWord = 0;
+        asio::error_code ec;
 
-        if (!pSocket->read(&uiSyncWord, sizeof(uiSyncWord))) {
-
-            strError = string("Sync read failed: ") + strerror(errno);
-            if (pSocket->hasPeerDisconnected()) {
+        if (!asio::read(socket, asio::buffer(&uiSyncWord, sizeof(uiSyncWord)), ec)) {
+            strError = string("Sync read failed: ") + ec.message();
+            if (ec == asio::error::eof) {
                 return peerDisconnected;
             }
             return error;
@@ -200,18 +205,16 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
         }
 
         // Size
-        uint32_t uiSize;
+        uint32_t uiSize = 0;
 
-        if (!pSocket->read(&uiSize, sizeof(uiSize))) {
-
-            strError = string("Size read failed: ") + strerror(errno);
+        if (!asio::read(socket, asio::buffer(&uiSize, sizeof(uiSize)), ec)) {
+            strError = string("Size read failed: ") + ec.message();
             return error;
         }
 
         // Msg Id
-        if (!pSocket->read(&_ucMsgId, sizeof(_ucMsgId))) {
-
-            strError = string("Msg id read failed: ") + strerror(errno);
+        if (!asio::read(socket, asio::buffer(&_ucMsgId, sizeof(_ucMsgId)), ec)) {
+            strError = string("Msg id read failed: ") + ec.message();
             return error;
         }
 
@@ -221,18 +224,16 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
         allocateData(uiSize - sizeof(_ucMsgId));
 
         // Data receive
-        if (!pSocket->read(_pucData, _uiDataSize)) {
-
-            strError = string("Data read failed: ") + strerror(errno);
+        if (!asio::read(socket, asio::buffer(mData), ec)) {
+            strError = string("Data read failed: ") + ec.message();
             return error;
         }
 
         // Checksum
-        uint8_t ucChecksum;
+        uint8_t ucChecksum = 0;
 
-        if (!pSocket->read(&ucChecksum, sizeof(ucChecksum))) {
-
-            strError = string("Checksum read failed: ") + strerror(errno);
+        if (!asio::read(socket, asio::buffer(&ucChecksum, sizeof(ucChecksum)), ec)) {
+            strError = string("Checksum read failed: ") + ec.message();
             return error;
         }
         // Compare
@@ -252,31 +253,17 @@ CMessage::Result CMessage::serialize(CSocket* pSocket, bool bOut, string& strErr
 // Checksum
 uint8_t CMessage::computeChecksum() const
 {
-    uint8_t uiChecksum = _ucMsgId;
-
-    uint32_t uiIndex;
-
-    for (uiIndex = 0; uiIndex < _uiDataSize; uiIndex++) {
-
-        uiChecksum += _pucData[uiIndex];
-    }
-
-    return uiChecksum;
+    return accumulate(begin(mData), end(mData), static_cast<uint8_t>(_ucMsgId));
 }
 
 // Allocation of room to store the message
-void CMessage::allocateData(size_t uiSize)
+void CMessage::allocateData(size_t size)
 {
     // Remove previous one
-    if (_pucData) {
+    mData.clear();
 
-        delete [] _pucData;
-    }
     // Do allocate
-    _pucData = new uint8_t[uiSize];
-
-    // Record size
-    _uiDataSize = uiSize;
+    mData.resize(size);
 
     // Reset Index
     _uiIndex = 0;

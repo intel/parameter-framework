@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include <stdint.h>
 #include <limits>
 
@@ -39,14 +41,14 @@
 class CParameterAccessContext;
 class CConfigurationAccessContext;
 
-class CParameterType : public CTypeElement
+class PARAMETER_EXPORT CParameterType : public CTypeElement
 {
 public:
     CParameterType(const std::string& strName);
     virtual ~CParameterType();
 
     // Size
-    uint32_t getSize() const;
+    size_t getSize() const;
 
     // Unit
     std::string getUnit() const;
@@ -113,7 +115,7 @@ protected:
     // Object creation
     virtual void populate(CElement* pElement) const;
     // Size
-    void setSize(uint32_t uiSize);
+    void setSize(size_t size);
 
     // Check data has no bit set outside available range (based on byte size) and
     // check data is consistent with available range, with respect to its sign
@@ -143,7 +145,7 @@ private:
     bool doIsEncodable(type data, bool bIsSigned) const;
 
     // Size in bytes
-    uint32_t _uiSize;
+    size_t _size;
     // Unit
     std::string _strUnit;
 

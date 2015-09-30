@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,19 +29,23 @@
  */
 #pragma once
 
-#include "Syncer.h"
-#include <stdint.h>
+#include "parameter_export.h"
 
+#include "Syncer.h"
+#include <log/Logger.h>
+
+#include <stdint.h>
 #include <string>
 
 class CInstanceConfigurableElement;
 class CMappingContext;
 class CSubsystem;
 
-class CSubsystemObject : private ISyncer
+class PARAMETER_EXPORT CSubsystemObject : private ISyncer
 {
 public:
-    CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement);
+    CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
+                     core::log::Logger& logger);
     virtual ~CSubsystemObject();
 
     /**
@@ -55,10 +59,12 @@ public:
     const CInstanceConfigurableElement* getConfigurableElement() const;
 
 protected:
-    // Blackboard data location
+    /** FIXME: plugins should not have direct access to blackboard memory.
+     *         Ie: This method should be removed or return a abstracted iterator.
+     */
     uint8_t* getBlackboardLocation() const;
     // Size
-    uint32_t getSize() const;
+    size_t getSize() const;
     // Conversion utility
     static uint32_t asInteger(const std::string& strValue);
     static std::string asString(uint32_t uiValue);
@@ -80,24 +86,26 @@ protected:
     // Fall back HW access
     virtual bool accessHW(bool bReceive, std::string& strError);
     // Blackboard access from subsystems
-    void blackboardRead(void* pvData, uint32_t uiSize);
-    void blackboardWrite(const void* pvData, uint32_t uiSize);
-    // Logging
-    // Copy the string format because:
-    //  - passing char * would break compatibility
-    //  - passing a const std::string & in forbiden by the c++ standard
-    //    as va_start second argument must not be a reference.
-    void log_info(std::string strMessage, ...) const;
-    void log_warning(std::string strMessage, ...) const;
+    void blackboardRead(void* pvData, size_t size);
+    void blackboardWrite(const void* pvData, size_t size);
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
 
+    /** Application Logger */
+    core::log::Logger& _logger;
+
 private:
     // from ISyncer
-    virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::string& strError);
+    /** This method is not supposed to be overridden by plugins
+     *  as if not called, plugins will not work (sets _blackboard).
+     */
+    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::string& strError) override final;
 
     // Default back synchronization
     void setDefaultValues(CParameterBlackboard& parameterBlackboard) const;
+
+    /** @return the offset in the main blackboard of the sync values. */
+    size_t getOffset() const;
 
     // Prevent unsupported operators
     CSubsystemObject(const CSubsystemObject&);
@@ -108,10 +116,10 @@ private:
     // Instance element to sync from/to
     CInstanceConfigurableElement* _pInstanceConfigurableElement;
     // Data size
-    uint32_t _uiDataSize;
+    size_t _dataSize;
     // Blackboard data location
-    uint8_t* _pucBlackboardLocation;
+    CParameterBlackboard* _blackboard;
     // Accessed index for Subsystem read/write from/to blackboard
-    uint32_t _uiAccessedIndex;
+    size_t _accessedIndex;
 };
 

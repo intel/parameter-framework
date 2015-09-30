@@ -26,16 +26,30 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+if (WIN32)
+    set(UTILITY_OS_SPECIFIC_FILES windows/DynamicLibrary.cpp
+                                  windows/TmpFile.cpp)
+else ()
+    set(UTILITY_OS_SPECIFIC_FILES posix/DynamicLibrary.cpp
+                                  posix/TmpFile.cpp)
+endif ()
+
+include_directories(
+    "${CMAKE_CURRENT_SOURCE_DIR}")
+
 add_library(pfw_utility STATIC
+    ${UTILITY_OS_SPECIFIC_FILES}
     Tokenizer.cpp
     Utility.cpp
-    FullIo.cpp
-    NaiveTokenizer.cpp)
+    DynamicLibrary.cpp)
 
-# '-fPIC' needed for linking against shared libraries (e.g. libparameter)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+if (NOT WIN32)
+    # '-fPIC' needed for linking against shared libraries (e.g. libparameter)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+endif ()
 
 install(FILES
+    NonCopyable.hpp
     Utility.h
     convert.hpp
     DESTINATION "include/utility")

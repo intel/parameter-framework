@@ -35,30 +35,33 @@
 
 #define base CTESTSubsystemObject
 
-CTESTSubsystemBinary::CTESTSubsystemBinary(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context)
-    : base(strMappingValue, pInstanceConfigurableElement, context)
+CTESTSubsystemBinary::CTESTSubsystemBinary(const std::string& strMappingValue,
+                                           CInstanceConfigurableElement* pInstanceConfigurableElement,
+                                           const CMappingContext& context,
+                                           core::log::Logger& logger)
+    : base(strMappingValue, pInstanceConfigurableElement, context, logger)
 {
 }
 
-std::string CTESTSubsystemBinary::toString(const void* pvValue, uint32_t uiSize) const
+std::string CTESTSubsystemBinary::toString(const void* pvValue, size_t size) const
 {
     std::ostringstream strStream;
     uint32_t uiValue = 0;
 
-    assert(uiSize <= sizeof(uiValue));
+    assert(size <= sizeof(uiValue));
 
-    memcpy((void*)&uiValue, pvValue, uiSize);
+    memcpy((void*)&uiValue, pvValue, size);
 
     strStream << "0x" << std::hex << uiValue;
 
     return strStream.str();
 }
 
-void CTESTSubsystemBinary::fromString(const std::string& strValue, void* pvValue, uint32_t uiSize)
+void CTESTSubsystemBinary::fromString(const std::string& strValue, void* pvValue, size_t size)
 {
     uint32_t uiValue = strtoul(strValue.c_str(), NULL, 0);
 
-    assert(uiSize <= sizeof(uiValue));
+    assert(size <= sizeof(uiValue));
 
-    memcpy(pvValue, (const void*)&uiValue, uiSize);
+    memcpy(pvValue, (const void*)&uiValue, size);
 }

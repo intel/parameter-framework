@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,22 +29,28 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include "SubsystemObject.h"
 #include "MappingContext.h"
 #include <string>
 
-class CSubsystemObjectCreator
+class PARAMETER_EXPORT CSubsystemObjectCreator
 {
 public:
-    CSubsystemObjectCreator(const std::string& strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize);
+    CSubsystemObjectCreator(const std::string& strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize);
 
     // Accessors
     const std::string& getMappingKey() const;
     uint32_t getAncestorMask() const;
-    uint32_t getMaxConfigurableElementSize() const;
+    size_t getMaxConfigurableElementSize() const;
 
     // Object creation
-    virtual CSubsystemObject* objectCreate(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context) const = 0;
+    virtual CSubsystemObject* objectCreate(
+            const std::string& strMappingValue,
+            CInstanceConfigurableElement* pInstanceConfigurableElement,
+            const CMappingContext& context,
+            core::log::Logger& logger) const = 0;
 
     virtual ~CSubsystemObjectCreator() {}
 
@@ -54,6 +60,6 @@ private:
     // Mask of must-be-specified ancestors
     uint32_t _uiAncestorIdMask;
     // Masximum expected size for configurable elment (-1 means none)
-    uint32_t _uiMaxConfigurableElementSize;
+    size_t _maxConfigurableElementSize;
 };
 

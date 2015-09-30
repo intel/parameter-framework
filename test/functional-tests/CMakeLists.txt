@@ -37,8 +37,10 @@ if(BUILD_TESTING)
     # copy it in a standard location (/usr/include on most linux distribution).
     find_path(CATCH_HEADER catch.hpp)
     include_directories(${CATCH_HEADER})
+    include_directories("${PROJECT_BINARY_DIR}/parameter")
     include_directories("${PROJECT_SOURCE_DIR}/parameter/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+    include_directories("${PROJECT_SOURCE_DIR}/utility")
 
     # Add unit test
     add_executable(parameterFunctionalTest

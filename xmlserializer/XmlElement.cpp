@@ -30,7 +30,6 @@
 #include "XmlElement.h"
 #include <libxml/tree.h>
 #include "convert.hpp"
-#include "Utility.h"
 #include <stdlib.h>
 
 using std::string;
@@ -216,7 +215,7 @@ void CXmlElement::setAttribute(const string &name, const char *value)
 template <typename T>
 void CXmlElement::setAttribute(const std::string& name, const T &value)
 {
-    setAttribute(name, CUtility::toString(value).c_str());
+    setAttribute(name, std::to_string(value).c_str());
 }
 
 void CXmlElement::setNameAttribute(const string& strValue)

@@ -35,7 +35,7 @@
 
 #define base CElement
 
-CTypeElement::CTypeElement(const std::string& strName) : base(strName), _uiArrayLength(0), _pMappingData(NULL)
+CTypeElement::CTypeElement(const std::string& strName) : base(strName), _arrayLength(0), _pMappingData(NULL)
 {
 }
 
@@ -46,12 +46,12 @@ CTypeElement::~CTypeElement()
 
 bool CTypeElement::isScalar() const
 {
-    return !_uiArrayLength;
+    return !_arrayLength;
 }
 
-uint32_t CTypeElement::getArrayLength() const
+size_t CTypeElement::getArrayLength() const
 {
-    return _uiArrayLength;
+    return _arrayLength;
 }
 
 int CTypeElement::toPlainInteger(int iSizeOptimizedData) const
@@ -103,7 +103,7 @@ void CTypeElement::populate(CElement* pElement) const
 bool CTypeElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Array Length attribute
-    xmlElement.getAttribute("ArrayLength", _uiArrayLength);
+    xmlElement.getAttribute("ArrayLength", _arrayLength);
     // Manage mapping attribute
     std::string rawMapping;
     if (xmlElement.getAttribute("Mapping", rawMapping) && !rawMapping.empty()) {

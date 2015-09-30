@@ -60,12 +60,12 @@ private:
     public:
         CRemoteCommandParserItem(const std::string& strCommandName,
                                  RemoteCommandParser pfnParser,
-                                 uint32_t uiMinArgumentCount,
+                                 size_t minArgumentCount,
                                  const std::string& strHelp,
                                  const std::string& strDescription)
             : _strCommandName(strCommandName),
               _pfnParser(pfnParser),
-              _uiMinArgumentCount(uiMinArgumentCount),
+              _minArgumentCount(minArgumentCount),
               _strHelp(strHelp),
               _strDescription(strDescription) {}
 
@@ -88,7 +88,7 @@ private:
         bool parse(CCommandParser* pCommandParser, const IRemoteCommand& remoteCommand, std::string& strResult) const
         {
             // Check enough arguments supplied
-            if (remoteCommand.getArgumentCount() < _uiMinArgumentCount) {
+            if (remoteCommand.getArgumentCount() < _minArgumentCount) {
 
                 strResult = std::string("Not enough arguments supplied\nUsage:\n") + usage();
 
@@ -114,31 +114,30 @@ private:
     private:
         std::string _strCommandName;
         RemoteCommandParser _pfnParser;
-        uint32_t _uiMinArgumentCount;
+        size_t _minArgumentCount;
         std::string _strHelp;
         std::string _strDescription;
     };
 
 public:
-    TRemoteCommandHandlerTemplate(CCommandParser* pCommandParser) : _pCommandParser(pCommandParser), _uiMaxCommandUsageLength(0)
+    TRemoteCommandHandlerTemplate(CCommandParser* pCommandParser) : _pCommandParser(pCommandParser), _maxCommandUsageLength(0)
     {
         // Help Command
         addCommandParser("help", NULL, 0, "", "Show commands description and usage");
     }
     ~TRemoteCommandHandlerTemplate()
     {
-        uint32_t uiIndex;
+        // FIXME use unique_ptr
+        for (auto *parser : _remoteCommandParserVector) {
 
-        for (uiIndex = 0; uiIndex < _remoteCommandParserVector.size(); uiIndex++) {
-
-            delete _remoteCommandParserVector[uiIndex];
+            delete parser;
         }
     }
 
     // Parsers
     bool addCommandParser(const std::string& strCommandName,
         RemoteCommandParser pfnParser,
-        uint32_t uiMinArgumentCount,
+        size_t minArgumentCount,
         const std::string& strHelp,
         const std::string& strDescription)
     {
@@ -149,7 +148,7 @@ public:
         }
 
         // Add command
-        _remoteCommandParserVector.push_back(new CRemoteCommandParserItem(strCommandName, pfnParser, uiMinArgumentCount, strHelp, strDescription));
+        _remoteCommandParserVector.push_back(new CRemoteCommandParserItem(strCommandName, pfnParser, minArgumentCount, strHelp, strDescription));
 
         return true;
     }
@@ -182,19 +181,15 @@ private:
     // Max command usage length, use for formatting
     void initMaxCommandUsageLength()
     {
-        if (!_uiMaxCommandUsageLength) {
+        if (!_maxCommandUsageLength) {
             // Show usages
-            uint32_t uiIndex;
+            for (const auto * pRemoteCommandParserItem : _remoteCommandParserVector) {
 
-            for (uiIndex = 0; uiIndex < _remoteCommandParserVector.size(); uiIndex++) {
+                size_t remoteCommandUsageLength = pRemoteCommandParserItem->usage().length();
 
-                const CRemoteCommandParserItem* pRemoteCommandParserItem = _remoteCommandParserVector[uiIndex];
+                if (remoteCommandUsageLength > _maxCommandUsageLength) {
 
-                uint32_t uiRemoteCommandUsageLength = (uint32_t)pRemoteCommandParserItem->usage().length();
-
-                if (uiRemoteCommandUsageLength > _uiMaxCommandUsageLength) {
-
-                    _uiMaxCommandUsageLength = uiRemoteCommandUsageLength;
+                    _maxCommandUsageLength = remoteCommandUsageLength;
                 }
             }
         }
@@ -209,20 +204,16 @@ private:
         strResult = "\n";
 
         // Show usages
-        uint32_t uiIndex;
-
-        for (uiIndex = 0; uiIndex < _remoteCommandParserVector.size(); uiIndex++) {
-
-            const CRemoteCommandParserItem* pRemoteCommandParserItem = _remoteCommandParserVector[uiIndex];
+        for (const auto *pRemoteCommandParserItem : _remoteCommandParserVector) {
 
             std::string strUsage = pRemoteCommandParserItem->usage();
 
             strResult += strUsage;
 
             // Align
-            uint32_t uiToSpacesAdd = _uiMaxCommandUsageLength + 5 - (uint32_t)strUsage.length();
+            size_t spacesToAdd = _maxCommandUsageLength + 5 - strUsage.length();
 
-            while (uiToSpacesAdd--) {
+            while (spacesToAdd--) {
 
                 strResult += " ";
             }
@@ -233,11 +224,7 @@ private:
 
     const CRemoteCommandParserItem* findCommandParserItem(const std::string& strCommandName) const
     {
-        uint32_t uiIndex;
-
-        for (uiIndex = 0; uiIndex < _remoteCommandParserVector.size(); uiIndex++) {
-
-            const CRemoteCommandParserItem* pRemoteCommandParserItem = _remoteCommandParserVector[uiIndex];
+        for (const auto *pRemoteCommandParserItem : _remoteCommandParserVector) {
 
             if (pRemoteCommandParserItem->getCommandName() == strCommandName) {
 
@@ -250,6 +237,6 @@ private:
 private:
     CCommandParser* _pCommandParser;
     std::vector<CRemoteCommandParserItem*> _remoteCommandParserVector;
-    uint32_t _uiMaxCommandUsageLength;
+    size_t _maxCommandUsageLength;
 };
 

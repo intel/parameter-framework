@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "NonCopyable.hpp"
+
 #include <string>
 #include <vector>
 
@@ -40,7 +42,7 @@
  * Multiple consecutive delimiters (even if different) are considered as a
  * single one. As a result, there can't be empty tokens.
  */
-class Tokenizer
+class Tokenizer : private utility::NonCopyable
 {
 public:
     /** Constructs a Tokenizer

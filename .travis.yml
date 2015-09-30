@@ -14,25 +14,32 @@ compiler:
 # it will not be necessary once travis worker is based on ubuntu > 12.04.
 # Install SWIG for bindings generation
 # Install valgrind for memcheck tests
-# Adding kalakris ppa for cmake 2.8.11.
+# Adding kubuntu-backports ppa for for cmake 2.8.12.
 # it is needed in case of multiple python version on host
 # Install python3-dev for the client simulator
 addons:
     apt:
+        # Travis white list of ppa
+        # https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
         sources:
             - ubuntu-toolchain-r-test
-            - kalakris-cmake
+            - kubuntu-backports
+        # Travis white list of dpkg packages
+        # https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
         packages:
             - swig
             - valgrind
             - g++-4.8
             - cmake
             - python3-dev
+            - libasio-dev
 
 install:
     - pip install --user cpp-coveralls; export PATH=$HOME/.local/bin:$PATH
     - wget --directory-prefix $PREFIX/include
               https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
+    - wget 'https://01.org/sites/default/files/asio-1.10.6.tar.gz'
+    - tar xf asio-1.10.6.tar.gz -C $PREFIX --strip-components=1
 
 before_script:
     - if [ "$CC" = "gcc" ]; then export CC=gcc-4.8 CXX=g++-4.8; fi

@@ -1,6 +1,6 @@
 #! /usr/bin/python
 #
-# Copyright (c) 2011-2014, Intel Corporation
+# Copyright (c) 2011-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -113,9 +113,11 @@ class PfwLogger(PyPfw.ILogger):
         super(PfwLogger, self).__init__()
         self.__logger = logging.root.getChild("parameter-framework")
 
-    def log(self, is_warning, message):
-        log_func = self.__logger.warning if is_warning else self.__logger.info
-        log_func(message)
+    def warning(self, message):
+        self.__logger.warning(message)
+
+    def info(self, message):
+        self.__logger.info(message)
 
 # If this file is directly executed
 if __name__ == "__main__":
@@ -160,7 +162,7 @@ if __name__ == "__main__":
             help="Directory of parameter-framework XML Schemas on target \
         machine (may be different than generating machine). \
         Defaults to \"Schemas\"",
-            default="Schemas")
+            default="Schemas/")
     argparser.add_argument('--validate',
             help="Validate the settings against XML schemas",
             action='store_true')
@@ -269,9 +271,7 @@ if __name__ == "__main__":
             pfw.setValidateSchemasOnStart(True)
             if args.schemas_dir is not None:
                 schemas_dir = args.schemas_dir
-            else:
-                schemas_dir = os.path.join(install_path, "Schemas")
-            pfw.setSchemaFolderLocation(schemas_dir)
+                pfw.setSchemaUri(schemas_dir)
 
         logger = PfwLogger()
         pfw.setLogger(logger)
@@ -324,7 +324,9 @@ if __name__ == "__main__":
     # dirty hack: we change the schema location (right before exporting the
     # domains) to their location on the target (which may be different than on
     # the machine that is generating the domains)
-    pfw.setSchemaFolderLocation(args.target_schemas_dir)
+
+    if args.target_schema_dir is not None:
+        pfw.setSchemaUri(args.target_schema_dir)
 
     # Export the resulting settings to the standard output
     ok, domains, error = pfw.exportDomainsXml("", True, False)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -31,11 +31,20 @@
 
 #include "DefaultElementLibrary.h"
 #include "VirtualSubsystem.h"
-#include "NamedElementBuilderTemplate.h"
+#include "LoggingElementBuilderTemplate.h"
 #include <string>
 
+/** Plugin entry point symbol
+ *
+ * Needs to be implemented by plugin libraries. This function's purpose is to
+ * register element builders;
+ *
+ * "V1" refers to the version of this entry-point API.
+ */
+#define PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1 ParameterFrameworkPluginEntryPointMagicV1
+
 class CSubsystemLibrary :
-        public CDefaultElementLibrary<TNamedElementBuilderTemplate<CVirtualSubsystem> >
+        public CDefaultElementLibrary<TLoggingElementBuilderTemplate<CVirtualSubsystem> >
 {
 private:
     // Builder type (based on element's name attribute)

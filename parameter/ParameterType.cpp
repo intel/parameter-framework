@@ -31,7 +31,8 @@
 #include "Parameter.h"
 #include "ArrayParameter.h"
 #include "ParameterAccessContext.h"
-#include "Utility.h"
+
+#include <climits>
 
 #define base CTypeElement
 
@@ -39,7 +40,7 @@ using std::string;
 
 const std::string CParameterType::gUnitPropertyName = "Unit";
 
-CParameterType::CParameterType(const string& strName) : base(strName), _uiSize(0)
+CParameterType::CParameterType(const string& strName) : base(strName), _size(0)
 {
 }
 
@@ -48,21 +49,20 @@ CParameterType::~CParameterType()
 }
 
 // Object creation
-void CParameterType::populate(CElement* pElement) const
+void CParameterType::populate(CElement* /*elem*/) const
 {
-    (void)pElement;
     // Prevent further digging for instantiaton since we're leaf on the strcture tree
 }
 
 // Size
-void CParameterType::setSize(uint32_t uiSize)
+void CParameterType::setSize(size_t size)
 {
-    _uiSize = uiSize;
+    _size = size;
 }
 
-uint32_t CParameterType::getSize() const
+size_t CParameterType::getSize() const
 {
-    return _uiSize;
+    return _size;
 }
 
 // Unit
@@ -100,10 +100,9 @@ void CParameterType::setXmlUnitAttribute(CXmlElement& xmlElement) const
 
 // XML Serialization value space handling
 // Value space handling for configuration import/export
-void CParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
+void CParameterType::handleValueSpaceAttribute(CXmlElement& /*xmlConfigurableElementSettingsElement*/,
+                                               CConfigurationAccessContext& /*ctx*/) const
 {
-    (void)xmlConfigurableElementSettingsElement;
-    (void)configurationAccessContext;
     // Do nothing by default
 }
 
@@ -118,7 +117,7 @@ void CParameterType::showProperties(string& strResult) const
     }
 
     // Scalar size
-    strResult += "Scalar size: " + CUtility::toString(getSize()) + " byte(s) \n";
+    strResult += "Scalar size: " + std::to_string(getSize()) + " byte(s) \n";
 }
 
 // Default value handling (simulation only)
@@ -153,13 +152,13 @@ void CParameterType::signExtend(int64_t& iData) const
 template <typename type>
 void CParameterType::doSignExtend(type& data) const
 {
-    uint32_t uiSizeInBits = getSize() * 8;
-    uint32_t uiShift = 8 * sizeof(data) - uiSizeInBits;
-
-    if (uiShift) {
-
-        data = (data << uiShift) >> uiShift;
-    }
+    size_t shift = CHAR_BIT * (sizeof(data) - getSize());
+    // FIXME: If `data` has a signed type and nonnegative value,
+    //        and `data × 2^shift` is representable in the result type,
+    //        then that is the resulting value;
+    //        otherwise, **the behavior is undeﬁned**.
+    //        ISO C99 (6.5.7/4) & ISO C++11 [expr.shift]
+    data = (data << shift) >> shift;
 }
 
 // Check data has no bit set outside available range (32 bits)
@@ -183,33 +182,33 @@ bool CParameterType::doIsEncodable(type data, bool bIsSigned) const
         return true;
     }
 
-    uint32_t uiShift = getSize() * 8;
+    size_t shift = getSize() * 8;
 
     if (!bIsSigned) {
 
         // Check high bits are clean
-        return !(data >> uiShift);
+        return !(data >> shift);
 
     } else {
 
         // Negative value?
-        bool bIsValueExpectedNegative = (data & (1 << (uiShift - 1))) != 0;
+        bool bIsValueExpectedNegative = (data & (type(1) << (shift - 1))) != 0;
 
         // Check high bits are clean
-        return bIsValueExpectedNegative ? !(~data >> uiShift) : !(data >> uiShift);
+        return bIsValueExpectedNegative ? !(~data >> shift) : !(data >> shift);
     }
 }
 
 // Remove all bits set outside available range
 uint32_t CParameterType::makeEncodable(uint32_t uiData) const
 {
-    if (getSize() == sizeof(uint32_t)) {
+    if (getSize() == sizeof(size_t)) {
 
         return uiData;
     }
-    uint32_t uiSizeInBits = getSize() * 8;
+    size_t sizeInBits = getSize() * 8;
 
-    uint32_t uiMask = (1 << uiSizeInBits) - 1;
+    uint32_t uiMask = (1 << sizeInBits) - 1;
 
     return uiData & uiMask;
 }
@@ -217,92 +216,56 @@ uint32_t CParameterType::makeEncodable(uint32_t uiData) const
 // Conversions (dynamic access)
 // Value access
 // Boolean
-bool CParameterType::toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CParameterType::toBlackboard(bool /*bUserValue*/, uint32_t& /*uiValue*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)bUserValue;
-    (void)uiValue;
-    (void)parameterAccessContext;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
-bool CParameterType::fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CParameterType::fromBlackboard(bool& /*bUserValue*/, uint32_t /*uiValue*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)bUserValue;
-    (void)uiValue;
-    (void)parameterAccessContext;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
 // Integer
-bool CParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CParameterType::toBlackboard(uint32_t /*uiUserValue*/, uint32_t& /*uiValue*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)uiUserValue;
-    (void)uiValue;
-    (void)parameterAccessContext;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
-bool CParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CParameterType::fromBlackboard(uint32_t& /*uiUserValue*/, uint32_t /*uiValue*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)uiUserValue;
-    (void)uiValue;
-    (void)parameterAccessContext;
-
     parameterAccessContext.setError("Unsupported conversion");
-
     return false;
 }
 
 // Signed Integer
-bool CParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CParameterType::toBlackboard(int32_t /*iUserValue*/, uint32_t& /*uiValue*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)iUserValue;
-    (void)uiValue;
-    (void)parameterAccessContext;
-
     parameterAccessContext.setError("Unsupported conversion");
 
     return false;
 }
 
-bool CParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CParameterType::fromBlackboard(int32_t& /*iUserValue*/, uint32_t /*uiValue*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)iUserValue;
-    (void)uiValue;
-    (void)parameterAccessContext;
-
     parameterAccessContext.setError("Unsupported conversion");
 
     return false;
 }
 
 // Double
-bool CParameterType::toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CParameterType::toBlackboard(double /*dUserValue*/, uint32_t& /*uiValue*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)dUserValue;
-    (void)uiValue;
-    (void)parameterAccessContext;
-
     parameterAccessContext.setError("Unsupported conversion");
 
     return false;
 }
 
-bool CParameterType::fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CParameterType::fromBlackboard(double& /*dUserValue*/, uint32_t /*uiValue*/, CParameterAccessContext& parameterAccessContext) const
 {
-    (void)dUserValue;
-    (void)uiValue;
-    (void)parameterAccessContext;
-
     parameterAccessContext.setError("Unsupported conversion");
 
     return false;

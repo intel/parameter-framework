@@ -42,11 +42,11 @@ public:
                             CParameterBlackboard* pParameterBlackboard,
                             bool bValueSpaceIsRaw,
                             bool bOutputRawFormatIsHex = false,
-                            uint32_t uiOffsetBase = 0);
+                            size_t offsetBase = 0);
     CParameterAccessContext(std::string& strError,
                             bool bBigEndianSubsystem,
                             CParameterBlackboard* pParameterBlackboard,
-                            uint32_t uiOffsetBase = 0);
+                            size_t offsetBase = 0);
     CParameterAccessContext(std::string& strError);
 
     // ParameterBlackboard
@@ -81,8 +81,8 @@ public:
     bool getAutoSync() const;
 
     // Base offset for blackboard access
-    void setBaseOffset(uint32_t uiBaseOffset);
-    uint32_t getBaseOffset() const;
+    void setBaseOffset(size_t baseOffset);
+    size_t getBaseOffset() const;
 
 private:
     // Blackboard
@@ -96,6 +96,6 @@ private:
     // Automatic synchronization to HW
     bool _bAutoSync;
     // Base offset where parameters are stored in configuration blackboards
-    uint32_t _uiBaseOffset;
+    size_t _uiBaseOffset;
 };
 

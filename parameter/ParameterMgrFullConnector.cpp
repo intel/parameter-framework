@@ -36,10 +36,10 @@
 using std::string;
 
 CParameterMgrFullConnector::CParameterMgrFullConnector(const string& strConfigurationFilePath) :
-    _pParameterMgr(new CParameterMgr(strConfigurationFilePath)), _pLogger(NULL)
+    _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrFullConnector>(*this)),
+    _pParameterMgr(new CParameterMgr(strConfigurationFilePath, *_pParameterMgrLogger)),
+    _pLogger(NULL)
 {
-    _pParameterMgrLogger = new CParameterMgrLogger<CParameterMgrFullConnector>(*this);
-    _pParameterMgr->setLogger(_pParameterMgrLogger);
 }
 
 CParameterMgrFullConnector::~CParameterMgrFullConnector()
@@ -61,11 +61,19 @@ void CParameterMgrFullConnector::setLogger(CParameterMgrFullConnector::ILogger* 
 }
 
 // Private logging
-void CParameterMgrFullConnector::doLog(bool bIsWarning, const string& strLog)
+void CParameterMgrFullConnector::info(const string& log)
 {
     if (_pLogger) {
 
-        _pLogger->log(bIsWarning, strLog);
+        _pLogger->info(log);
+    }
+}
+
+void CParameterMgrFullConnector::warning(const string& log)
+{
+    if (_pLogger) {
+
+        _pLogger->warning(log);
     }
 }
 
@@ -130,14 +138,14 @@ bool CParameterMgrFullConnector::getFailureOnFailedSettingsLoad() const
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
 }
 
-const string& CParameterMgrFullConnector::getSchemaFolderLocation() const
+const string& CParameterMgrFullConnector::getSchemaUri() const
 {
-    return _pParameterMgr->getSchemaFolderLocation();
+    return _pParameterMgr->getSchemaUri();
 }
 
-void CParameterMgrFullConnector::setSchemaFolderLocation(const string& strSchemaFolderLocation)
+void CParameterMgrFullConnector::setSchemaUri(const string& schemaUri)
 {
-    _pParameterMgr->setSchemaFolderLocation(strSchemaFolderLocation);
+    _pParameterMgr->setSchemaUri(schemaUri);
 }
 
 void CParameterMgrFullConnector::setValidateSchemasOnStart(bool bValidate)
@@ -267,9 +275,9 @@ bool CParameterMgrFullConnector::saveConfiguration(const string& strDomain,
 
 bool CParameterMgrFullConnector::restoreConfiguration(const string& strDomain,
                                                       const string& strConfiguration,
-                                                      std::list<string>& lstrError)
+                                                      Results& errors)
 {
-    return _pParameterMgr->restoreConfiguration(strDomain, strConfiguration, lstrError);
+    return _pParameterMgr->restoreConfiguration(strDomain, strConfiguration, errors);
 }
 
 bool CParameterMgrFullConnector::setSequenceAwareness(const string& strName, bool bSequenceAware,

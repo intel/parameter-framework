@@ -50,9 +50,30 @@ configure_file(${CMAKE_CURRENT_LIST_DIR}/CTestCustom.cmake ${CMAKE_BINARY_DIR} C
 # Set environement variables so that executables and libraries can be find by tests.
 # (avoids a make install before make test)
 function(set_test_env TestName)
+    # A cmake PROPERTY value is just a string.
+    # The ENVIRONMENT PROPERTY is implemented as a semicolon separated
+    # list of value pair. Each value pair being separated by `=`
+    # Eg: the python env equivalent of `{"A":"1", "B":"/;/bin"}` is `A=1;B=/\;/bin`
+    #
+    # As a consequences cmake can not differentiate between a `;` that separates
+    # two environment variable and a `;` contained in a variable.
+    #
+    # Thus all `;` in environment variables must be escaped
+    # before inserting them in the ENVIRONMENT PROPERTY.
+    string(REPLACE ";" "\\;" TEST_PATH "$ENV{PATH}")
+    string(REPLACE ";" "\\;" TEST_LD_LIBRARY_PATH "$ENV{LD_LIBRARY_PATH}")
+    string(REPLACE ";" "\\;" TEST_PYTHONPATH "$ENV{PYTHONPATH}")
+
+    if (WIN32)
+        set(SEP "\\;")
+    else ()
+        set(SEP ":")
+    endif ()
+
+    # Quotes are necessary. Otherwise `;` escapes are discarded
     set_property(TEST ${TestName} PROPERTY ENVIRONMENT
-                 PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}:$ENV{PATH}
-                 LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:$ENV{LD_LIBRARY_PATH}
-                 PYTHONPATH=${CMAKE_BINARY_DIR}/bindings/python:$ENV{PYTHONPATH})
+                 "PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}${SEP}${TEST_PATH}"
+                 "LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}${SEP}${TEST_LD_LIBRARY_PATH}"
+                 "PYTHONPATH=${CMAKE_BINARY_DIR}/bindings/python${SEP}${TEST_PYTHONPATH}")
 endfunction()
 

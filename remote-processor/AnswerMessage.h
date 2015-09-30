@@ -29,9 +29,11 @@
  */
 #pragma once
 
+#include "remote_processor_export.h"
+
 #include "Message.h"
 
-class CAnswerMessage : public CMessage
+class REMOTE_PROCESSOR_EXPORT CAnswerMessage : public CMessage
 {
 public:
     CAnswerMessage(const std::string& strAnswer, bool bSuccess);

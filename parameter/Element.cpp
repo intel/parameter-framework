@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -31,6 +31,7 @@
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
 #include "ErrorContext.h"
+#include <algorithm>
 #include <assert.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -48,81 +49,6 @@ CElement::~CElement()
 {
     removeChildren();
 }
-
-// Logging
-void CElement::log_info(const char* strMessage, ...) const
-{
-    char *pacBuffer;
-    va_list listPointer;
-
-    va_start(listPointer, strMessage);
-
-    vasprintf(&pacBuffer,  strMessage, listPointer);
-
-    va_end(listPointer);
-
-    if (pacBuffer != NULL) {
-        doLog(false, pacBuffer);
-    }
-
-    free(pacBuffer);
-}
-
-void CElement::log_warning(const char* strMessage, ...) const
-{
-    char *pacBuffer;
-    va_list listPointer;
-
-    va_start(listPointer, strMessage);
-
-    vasprintf(&pacBuffer,  strMessage, listPointer);
-
-    va_end(listPointer);
-
-    if (pacBuffer != NULL) {
-        doLog(true, pacBuffer);
-    }
-
-    free(pacBuffer);
-}
-
-// Log each element of the string list
-void CElement::log_table(bool bIsWarning, const std::list<string> lstrMessage) const
-{
-    std::list<string>::const_iterator iterator(lstrMessage.begin());
-    std::list<string>::const_iterator end(lstrMessage.end());
-
-    while (iterator != end) {
-        // Log current list element
-        doLog(bIsWarning, iterator->c_str());
-        ++iterator;
-    }
-}
-
-void CElement::doLog(bool bIsWarning, const string& strLog) const
-{
-    assert(_pParent);
-
-    // Propagate till root
-    _pParent->doLog(bIsWarning, strLog);
-}
-
-void CElement::nestLog() const
-{
-    assert(_pParent);
-
-    // Propagate till root
-    _pParent->nestLog();
-}
-
-void CElement::unnestLog() const
-{
-    assert(_pParent);
-
-    // Propagate till root
-    _pParent->unnestLog();
-}
-
 
 void CElement::setDescription(const string& strDescription)
 {
@@ -142,13 +68,10 @@ bool CElement::childrenAreDynamic() const
 
 bool CElement::init(string& strError)
 {
-    uint32_t uiIndex;
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
+    for (CElement* child : _childArray) {
 
-        CElement* pElement = _childArray[uiIndex];;
-
-        if (!pElement->init(strError)) {
+        if (!child->init(strError)) {
 
             return false;
         }
@@ -157,14 +80,14 @@ bool CElement::init(string& strError)
     return true;
 }
 
-void CElement::dumpContent(string& strContent, CErrorContext& errorContext, const uint32_t uiDepth) const
+void CElement::dumpContent(string& strContent, CErrorContext& errorContext, const size_t depth) const
 {
     string strIndent;
 
     // Level
-    uint32_t uiNbIndents = uiDepth;
+    size_t indents = depth;
 
-    while (uiNbIndents--) {
+    while (indents--) {
 
         strIndent += "    ";
     }
@@ -188,11 +111,9 @@ void CElement::dumpContent(string& strContent, CErrorContext& errorContext, cons
 
     strContent += "\n";
 
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
-
-        _childArray[uiIndex]->dumpContent(strContent, errorContext, uiDepth + 1);
+        pChild->dumpContent(strContent, errorContext, depth + 1);
     }
 }
 
@@ -212,10 +133,8 @@ void CElement::showDescriptionProperty(std::string &strResult) const
 }
 
 // Content dumping
-void CElement::logValue(string& strValue, CErrorContext& errorContext) const
+void CElement::logValue(string& /*strValue*/, CErrorContext& /*ctx*/) const
 {
-    (void)strValue;
-    (void)errorContext;
 }
 
 // From IXmlSink
@@ -270,12 +189,7 @@ void CElement::childrenToXml(CXmlElement& xmlElement,
                              CXmlSerializingContext& serializingContext) const
 {
     // Browse children and propagate
-    size_t uiNbChildren = getNbChildren();
-    size_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-        const CElement* pChild = _childArray[uiChild];
+    for (CElement* pChild : _childArray) {
 
         // Create corresponding child element
         CXmlElement xmlChildElement;
@@ -329,12 +243,7 @@ bool CElement::rename(const string& strName, string& strError)
     // Check for conflict with brotherhood if relevant
     if (_pParent && _pParent->childrenAreDynamic()) {
 
-        size_t uiParentChild;
-        size_t uiParentNbChildren = _pParent->getNbChildren();
-
-        for (uiParentChild = 0; uiParentChild < uiParentNbChildren; uiParentChild++) {
-
-            const CElement* pParentChild = _pParent->getChild(uiParentChild);
+        for (CElement* pParentChild : _pParent->_childArray) {
 
             if (pParentChild != this && pParentChild->getName() == strName) {
 
@@ -370,18 +279,18 @@ void CElement::addChild(CElement* pChild)
     pChild->_pParent = this;
 }
 
-CElement* CElement::getChild(size_t uiIndex)
+CElement* CElement::getChild(size_t index)
 {
-    assert(uiIndex <= _childArray.size());
+    assert(index <= _childArray.size());
 
-    return _childArray[uiIndex];
+    return _childArray[index];
 }
 
-const CElement* CElement::getChild(size_t uiIndex) const
+const CElement* CElement::getChild(size_t index) const
 {
-    assert(uiIndex <= _childArray.size());
+    assert(index <= _childArray.size());
 
-    return _childArray[uiIndex];
+    return _childArray[index];
 }
 
 CElement* CElement::createChild(const CXmlElement& childElement,
@@ -409,18 +318,11 @@ CElement* CElement::createChild(const CXmlElement& childElement,
 
 bool CElement::removeChild(CElement* pChild)
 {
-    ChildArrayIterator it;
+    auto childIt = find(begin(_childArray), end(_childArray), pChild);
+    if (childIt != end(_childArray)) {
 
-    for (it = _childArray.begin(); it != _childArray.end(); ++it) {
-
-        CElement* pElement = *it;
-
-        if (pElement == pChild) {
-
-            _childArray.erase(it);
-
-            return true;
-        }
+        _childArray.erase(childIt);
+        return true;
     }
     return false;
 }
@@ -430,37 +332,27 @@ void CElement::listChildren(string& strChildList) const
     strChildList = "\n";
 
     // Get list of children names
-    size_t uiNbChildren = getNbChildren();
-    size_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-        const CElement* pChild = _childArray[uiChild];
+    for (CElement* pChild : _childArray) {
 
         strChildList += pChild->getName() + "\n";
     }
 }
 
-string CElement::listQualifiedPaths(bool bDive, uint32_t uiLevel) const
+string CElement::listQualifiedPaths(bool bDive, size_t level) const
 {
-    size_t uiNbChildren = getNbChildren();
     string strResult;
 
     // Dive Will cause only leaf nodes to be printed
-    if (!bDive || !uiNbChildren) {
+    if (!bDive || !getNbChildren()) {
 
         strResult = getQualifiedPath() + "\n";
     }
 
-    if (bDive || !uiLevel) {
+    if (bDive || !level) {
         // Get list of children paths
-        size_t uiChild;
+        for (CElement* pChild : _childArray) {
 
-        for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-            const CElement* pChild = _childArray[uiChild];
-
-            strResult += pChild->listQualifiedPaths(bDive, uiLevel + 1);
+            strResult += pChild->listQualifiedPaths(bDive, level + 1);
         }
     }
     return strResult;
@@ -469,12 +361,7 @@ string CElement::listQualifiedPaths(bool bDive, uint32_t uiLevel) const
 void CElement::listChildrenPaths(string& strChildList) const
 {
     // Get list of children paths
-    size_t uiNbChildren = getNbChildren();
-    size_t uiChild;
-
-    for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
-
-        const CElement* pChild = _childArray[uiChild];
+    for (CElement* pChild : _childArray) {
 
         strChildList += pChild->getPath() + "\n";
     }
@@ -502,11 +389,9 @@ void CElement::clean()
         removeChildren();
     } else {
         // Just propagate
-        uint32_t uiIndex;
+        for (CElement* pChild : _childArray) {
 
-        for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
-
-            _childArray[uiIndex]->clean();
+            pChild->clean();
         }
     }
 }
@@ -576,15 +461,12 @@ bool CElement::isDescendantOf(const CElement* pCandidateAscendant) const
 
 CElement* CElement::findChild(const string& strName)
 {
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
 
-        CElement* pElement = _childArray[uiIndex];
+        if (pChild->getPathName() == strName) {
 
-        if (pElement->getPathName() == strName) {
-
-            return pElement;
+            return pChild;
         }
     }
 
@@ -593,15 +475,11 @@ CElement* CElement::findChild(const string& strName)
 
 const CElement* CElement::findChild(const string& strName) const
 {
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
+        if (pChild->getPathName() == strName) {
 
-        const CElement* pElement = _childArray[uiIndex];
-
-        if (pElement->getPathName() == strName) {
-
-            return pElement;
+            return pChild;
         }
     }
 
@@ -610,15 +488,11 @@ const CElement* CElement::findChild(const string& strName) const
 
 CElement* CElement::findChildOfKind(const string& strKind)
 {
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
+        if (pChild->getKind() == strKind) {
 
-        CElement* pElement = _childArray[uiIndex];
-
-        if (pElement->getKind() == strKind) {
-
-            return pElement;
+            return pChild;
         }
     }
 
@@ -627,15 +501,11 @@ CElement* CElement::findChildOfKind(const string& strKind)
 
 const CElement* CElement::findChildOfKind(const string& strKind) const
 {
-    uint32_t uiIndex;
+    for (CElement* pChild : _childArray) {
 
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
+        if (pChild->getKind() == strKind) {
 
-        const CElement* pElement = _childArray[uiIndex];;
-
-        if (pElement->getKind() == strKind) {
-
-            return pElement;
+            return pChild;
         }
     }
 
@@ -655,43 +525,4 @@ string CElement::getPath() const
 string CElement::getQualifiedPath() const
 {
     return getPath() + " [" + getKind() + "]";
-}
-
-uint32_t CElement::getDepth() const
-{
-    if (_pParent) {
-
-        return _pParent->getDepth() + 1;
-    }
-
-    return 0;
-}
-
-// Checksum for integrity checks
-uint8_t CElement::computeStructureChecksum() const
-{
-    // Base checksum computation on element kind
-    string strKind = getKind();
-
-    // Get element kind
-    const char* pcData = strKind.c_str();
-
-    // Cumulate
-    uint8_t uiChecksum = 0;
-
-    while (*pcData) {
-
-        uiChecksum += *pcData++;
-    }
-
-    // Propagate
-    uint32_t uiIndex;
-    for (uiIndex = 0; uiIndex < _childArray.size(); uiIndex++) {
-
-        const CElement* pChild = _childArray[uiIndex];
-
-        uiChecksum += pChild->computeStructureChecksum();
-    }
-
-    return uiChecksum;
 }

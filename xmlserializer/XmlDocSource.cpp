@@ -29,44 +29,41 @@
  */
 
 #include "XmlDocSource.h"
+#include "AlwaysAssert.hpp"
 #include <libxml/tree.h>
 #include <libxml/xmlschemas.h>
 #include <libxml/parser.h>
 #include <libxml/xinclude.h>
-#include <stdlib.h>
+#include <libxml/uri.h>
+#include <memory>
+#include <stdexcept>
 
 using std::string;
+using xml_unique_ptr = std::unique_ptr<xmlChar, decltype(xmlFree)>;
 
-// Schedule for libxml2 library
-bool CXmlDocSource::_bLibXml2CleanupScheduled;
 
 CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
                              _xmlNode *pRootNode) :
       _pDoc(pDoc),
       _pRootNode(pRootNode),
-      _strXmlSchemaFile(""),
       _strRootElementType(""),
       _strRootElementName(""),
       _strNameAttributeName(""),
       _bValidateWithSchema(bValidateWithSchema)
 {
-    init();
 }
 
 CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
-                             const string& strXmlSchemaFile,
                              const string& strRootElementType,
                              const string& strRootElementName,
                              const string& strNameAttributeName) :
     _pDoc(pDoc),
     _pRootNode(xmlDocGetRootElement(pDoc)),
-    _strXmlSchemaFile(strXmlSchemaFile),
     _strRootElementType(strRootElementType),
     _strRootElementName(strRootElementName),
     _strNameAttributeName(strNameAttributeName),
     _bValidateWithSchema(bValidateWithSchema)
 {
-    init();
 }
 
 CXmlDocSource::~CXmlDocSource()
@@ -95,6 +92,11 @@ string CXmlDocSource::getRootElementAttributeString(const string& strAttributeNa
     string attribute;
     topMostElement.getAttribute(strAttributeName, attribute);
     return attribute;
+}
+
+string CXmlDocSource::getSchemaUri() const
+{
+    return mkUri(string((const char *)_pDoc->URL), getRootElementAttributeString("noNamespaceSchemaLocation"));
 }
 
 _xmlDoc* CXmlDocSource::getDoc() const
@@ -159,21 +161,12 @@ bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
     return true;
 }
 
-void CXmlDocSource::init()
-{
-    if (!_bLibXml2CleanupScheduled) {
-
-        // Schedule cleanup
-        atexit(xmlCleanupParser);
-
-        _bLibXml2CleanupScheduled = true;
-    }
-}
-
 bool CXmlDocSource::isInstanceDocumentValid()
 {
 #ifdef LIBXML_SCHEMAS_ENABLED
-    xmlDocPtr pSchemaDoc = xmlReadFile(_strXmlSchemaFile.c_str(), NULL, XML_PARSE_NONET);
+    string schemaUri = getSchemaUri();
+
+    xmlDocPtr pSchemaDoc = xmlReadFile(schemaUri.c_str(), NULL, XML_PARSE_NONET);
 
     if (!pSchemaDoc) {
         // Unable to load Schema
@@ -221,6 +214,19 @@ bool CXmlDocSource::isInstanceDocumentValid()
 #else
     return true;
 #endif
+}
+
+std::string CXmlDocSource::mkUri(const std::string& base, const std::string& relative)
+{
+    xml_unique_ptr baseUri(xmlPathToURI((const xmlChar *)base.c_str()), xmlFree);
+    xml_unique_ptr relativeUri(xmlPathToURI((const xmlChar *)relative.c_str()), xmlFree);
+    /* return null pointer if baseUri or relativeUri are null pointer  */
+    xml_unique_ptr xmlUri(xmlBuildURI(relativeUri.get(), baseUri.get()), xmlFree);
+
+    ALWAYS_ASSERT(xmlUri != nullptr, "unable to make URI from: \""
+                                      << base << "\" and \"" << relative << "\"");
+
+    return (const char *)xmlUri.get();
 }
 
 _xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincludes, CXmlSerializingContext& serializingContext)

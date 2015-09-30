@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,10 +29,11 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include <string>
 #include <vector>
 #include <stdint.h>
-#include <list>
 #include "XmlSink.h"
 #include "XmlSource.h"
 
@@ -41,17 +42,11 @@
 class CXmlElementSerializingContext;
 class CErrorContext;
 
-class CElement : public IXmlSink, public IXmlSource
+class PARAMETER_EXPORT CElement : public IXmlSink, public IXmlSource
 {
-    friend class CAutoLog;
 public:
     CElement(const std::string& strName = "");
     virtual ~CElement();
-
-    // Logging
-    void log_info(const char* strMessage, ...) const;
-    void log_warning(const char* strMessage, ...) const;
-    void log_table(bool bIsWarning, const std::list<std::string> lstrMessage) const;
 
     // Description
     void setDescription(const std::string& strDescription);
@@ -72,7 +67,7 @@ public:
     void addChild(CElement* pChild);
     bool removeChild(CElement* pChild);
     void listChildren(std::string& strChildList) const;
-    std::string listQualifiedPaths(bool bDive, uint32_t uiLevel = 0) const;
+    std::string listQualifiedPaths(bool bDive, size_t level = 0) const;
     void listChildrenPaths(std::string& strChildPathList) const;
 
     // Hierarchy query
@@ -86,20 +81,20 @@ public:
      *
      * Note: this method will assert if given a wrong child index (>= number of children)
      *
-     * @param[in] uiIndex the index of the child element from 0 to number of children - 1
+     * @param[in] index the index of the child element from 0 to number of children - 1
      * @return the child element
      */
-    const CElement* getChild(size_t uiIndex) const;
+    const CElement* getChild(size_t index) const;
 
     /**
      * Get a child element
      *
      * Note: this method will assert if given a wrong child index (>= number of children)
      *
-     * @param[in] uiIndex the index of the child element from 0 to number of children - 1
+     * @param[in] index the index of the child element from 0 to number of children - 1
      * @return the child element
      */
-    CElement* getChild(size_t uiIndex);
+    CElement* getChild(size_t index);
 
     const CElement* findChild(const std::string& strName) const;
     CElement* findChild(const std::string& strName);
@@ -128,13 +123,10 @@ public:
                                CXmlSerializingContext& serializingContext) const;
 
     // Content structure dump
-    void dumpContent(std::string& strContent, CErrorContext& errorContext, const uint32_t uiDepth = 0) const;
+    void dumpContent(std::string& strContent, CErrorContext& errorContext, const size_t depth = 0) const;
 
     // Element properties
     virtual void showProperties(std::string& strResult) const;
-
-    // Checksum for integrity checks
-    uint8_t computeStructureChecksum() const;
 
     // Class kind
     virtual std::string getKind() const = 0;
@@ -174,18 +166,12 @@ protected:
     static const std::string gDescriptionPropertyName;
 
 private:
-    // Logging (done by root)
-    virtual void doLog(bool bIsWarning, const std::string& strLog) const;
-    virtual void nestLog() const;
-    virtual void unnestLog() const;
     // Returns Name or Kind if no Name
     std::string getPathName() const;
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
     // House keeping
     void removeChildren();
-    // For logging
-    uint32_t getDepth() const;
     // Fill XmlElement during XML composing
     void setXmlNameAttribute(CXmlElement& xmlElement) const;
 

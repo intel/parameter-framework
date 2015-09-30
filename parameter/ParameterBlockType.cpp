@@ -54,16 +54,14 @@ CInstanceConfigurableElement* CParameterBlockType::doInstantiate() const
 
 void CParameterBlockType::populate(CElement* pElement) const
 {
-    uint32_t uiArrayLength = getArrayLength();
+    size_t arrayLength = getArrayLength();
 
-    if (uiArrayLength) {
+    if (arrayLength) {
 
         // Create child elements
-        size_t uiChild;
+        for (size_t child = 0; child < arrayLength; child++) {
 
-        for (uiChild = 0; uiChild < uiArrayLength; uiChild++) {
-
-            CParameterBlock* pChildParameterBlock = new CParameterBlock(CUtility::toString(uiChild),
+            CParameterBlock* pChildParameterBlock = new CParameterBlock(std::to_string(child),
                                                                         this);
 
             pElement->addChild(pChildParameterBlock);

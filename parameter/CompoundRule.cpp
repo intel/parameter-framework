@@ -57,10 +57,8 @@ bool CCompoundRule::childrenAreDynamic() const
 }
 
 // Content dumping
-void CCompoundRule::logValue(string& strValue, CErrorContext& errorContext) const
+void CCompoundRule::logValue(string& strValue, CErrorContext& /*ctx*/) const
 {
-    (void)errorContext;
-
     // Type
     strValue = _apcTypes[_bTypeAll];
 }
@@ -69,14 +67,12 @@ void CCompoundRule::logValue(string& strValue, CErrorContext& errorContext) cons
 bool CCompoundRule::parse(CRuleParser& ruleParser, string& strError)
 {
     // Get rule type
-    uint32_t uiType;
+    for (size_t typeIndex = 0; typeIndex < 2; typeIndex++) {
 
-    for (uiType = 0;  uiType < 2; uiType++) {
-
-        if (ruleParser.getType() == _apcTypes[uiType]) {
+        if (ruleParser.getType() == _apcTypes[typeIndex]) {
 
             // Set type
-            _bTypeAll = uiType != 0;
+            _bTypeAll = typeIndex != 0;
 
             return true;
         }

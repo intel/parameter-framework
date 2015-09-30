@@ -30,14 +30,15 @@
 #pragma once
 
 #include "ParameterMgrLoggerForward.h"
-#include "ParameterMgr.h"
+#include <log/ILogger.h>
+#include <NonCopyable.hpp>
 
 #include <string>
 
-/* Wrap a class to expose its logging [log(bool, string&)] capabilities
+/* Wrap a class to expose its logging [info, warning] capabilities
  * through ILogger. */
 template<class T>
-class CParameterMgrLogger : public CParameterMgr::ILogger
+class CParameterMgrLogger : public core::log::ILogger, private utility::NonCopyable
 {
 public:
     CParameterMgrLogger(T& parameterMgrConnector) :
@@ -45,9 +46,14 @@ public:
     {
     }
 
-    virtual void log(bool bIsWarning, const std::string& strLog)
+    virtual void info(const std::string& log)
     {
-        _parameterMgrConnector.doLog(bIsWarning, strLog);
+        _parameterMgrConnector.info(log);
+    }
+
+    virtual void warning(const std::string& log)
+    {
+        _parameterMgrConnector.warning(log);
     }
 
 private:

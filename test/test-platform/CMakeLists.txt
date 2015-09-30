@@ -30,11 +30,10 @@ add_executable(test-platform
     main.cpp
     TestPlatform.cpp)
 
-# FIXME: Supress the need for the -Wno-unused-parameter
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
-
 include_directories(
+    "${PROJECT_BINARY_DIR}/parameter"
     "${PROJECT_SOURCE_DIR}/parameter/include"
+    "${PROJECT_BINARY_DIR}/remote-processor"
     "${PROJECT_SOURCE_DIR}/remote-processor"
     "${PROJECT_SOURCE_DIR}/utility")
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include <stdint.h>
 #include <string>
 #include <vector>
@@ -36,7 +38,7 @@
 class CBaseParameter;
 class CParameterMgr;
 
-class CParameterHandle
+class PARAMETER_EXPORT CParameterHandle
 {
 public:
     CParameterHandle(const CBaseParameter* pParameter, CParameterMgr* pParameterMgr);
@@ -45,7 +47,7 @@ public:
     bool isRogue() const;
     bool isArray() const;
     // Array Length
-    uint32_t getArrayLength() const; // Returns 0 for scalar
+    size_t getArrayLength() const; // Returns 0 for scalar
     // Parameter path
     std::string getPath() const;
     // Parameter kind
@@ -91,8 +93,26 @@ public:
     bool getAsStringArray(std::vector<std::string>& astrValues, std::string& strError) const;
 
 private:
-    // Access validity
-    bool checkAccessValidity(bool bSet, size_t uiArrayLength, std::string& strError) const;
+    /** Check that the parameter value can be modify.
+     *
+     * @param arrayLength[in] If accessing as an array: the new value array length
+     *                        Otherwise: 0
+     * @param error[out] If access is forbidden: a human readable message explaining why
+     *                   Otherwise: not modified.
+     *
+     * @return true if the parameter value can be retrieved, false otherwise.
+     */
+    bool checkSetValidity(size_t arrayLength, std::string& error) const;
+
+    /** Check that the parameter value can be retrieved.
+     *
+     * @param asArray[in] true if accessing as an array, false otherwise.
+     * @param error[out] If access is forbidden, a human readable message explaining why
+     *                   Otherwise, not modified.
+     *
+     * @return true if the parameter value can be retrieved, false otherwise.
+     */
+    bool checkGetValidity(bool asArray, std::string& error) const;
 
     // Accessed parameter instance
     const CBaseParameter* _pBaseParameter;

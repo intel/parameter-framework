@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -48,9 +48,11 @@ using std::string;
 CSkeletonSubsystemObject::CSkeletonSubsystemObject(
             const string& strMappingValue,
             CInstanceConfigurableElement* pInstanceConfigurableElement,
-            const CMappingContext& context
+            const CMappingContext& context,
+            core::log::Logger& logger
         ) :
         base(pInstanceConfigurableElement,
+             logger,
              strMappingValue,
              EAmend1,
              EAmendEnd - EAmend1 + 1,
@@ -61,8 +63,8 @@ CSkeletonSubsystemObject::CSkeletonSubsystemObject(
     const CParameterType* pParameterType = static_cast<const CParameterType*>(pInstanceConfigurableElement->getTypeElement());
 
     // Retrieve sizes
-    _uiScalarSize = pParameterType->getSize();
-    _uiArraySize = pInstanceConfigurableElement->getFootPrint() / _uiScalarSize;
+    _scalarSize = pParameterType->getSize();
+    _arraySize = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
 
     // Construct message
     _strMessage = context.getItem(ESkeletonOwner) + ":" + strMappingValue ;
@@ -93,18 +95,14 @@ bool CSkeletonSubsystemObject::accessHW(bool bReceive, string& strError)
     return base::accessHW(bReceive, strError);
 }
 
-bool CSkeletonSubsystemObject::sendToHW(string& strError)
+bool CSkeletonSubsystemObject::sendToHW(string& /*strError*/)
 {
-    (void) strError;
+    void* pvValue = alloca(_scalarSize);
 
-    uint32_t uiIndex;
-
-    void* pvValue = alloca(_uiScalarSize);
-
-    for (uiIndex = 0 ; uiIndex < _uiArraySize ; uiIndex++) {
+    for (size_t index = 0 ; index < _arraySize ; index++) {
 
         // Read Value in BlackBoard
-        blackboardRead(pvValue, _uiScalarSize);
+        blackboardRead(pvValue, _scalarSize);
 
         // Send here the value
         std::cout << "Sending to HW: " << _strMessage << std::endl;
@@ -113,21 +111,17 @@ bool CSkeletonSubsystemObject::sendToHW(string& strError)
     return true;
 }
 
-bool CSkeletonSubsystemObject::receiveFromHW(string& strError)
+bool CSkeletonSubsystemObject::receiveFromHW(string& /*strError*/)
 {
-    (void) strError;
+    void* pvValue = alloca(_scalarSize);
 
-    uint32_t uiIndex;
-
-    void* pvValue = alloca(_uiScalarSize);
-
-    for (uiIndex = 0 ; uiIndex < _uiArraySize ; uiIndex++) {
+    for (size_t index = 0 ; index < _arraySize ; index++) {
 
         // Retreive here the value
         std::cout << "Retreive from HW: " << _strMessage << std::endl;
 
         // Write Value in Blackboard
-        blackboardWrite(pvValue, _uiScalarSize);
+        blackboardWrite(pvValue, _scalarSize);
     }
 
     return true;

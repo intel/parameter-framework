@@ -28,14 +28,22 @@
 
 add_library(cparameter SHARED ParameterFramework.cpp)
 
-include_directories("${PROJECT_SOURCE_DIR}/parameter/include")
+include (GenerateExportHeader)
+generate_export_header(cparameter)
+
+include_directories(
+        "${CMAKE_CURRENT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/utility"
+        "${PROJECT_BINARY_DIR}/parameter"
+        "${PROJECT_SOURCE_DIR}/parameter/include")
 
 install(FILES ParameterFramework.h
+              "${CMAKE_CURRENT_BINARY_DIR}/cparameter_export.h"
         DESTINATION "include/parameter/c")
 
 target_link_libraries(cparameter parameter)
 
-install(TARGETS cparameter LIBRARY DESTINATION lib)
+install(TARGETS cparameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 
 if(BUILD_TESTING)
     # Add catch unit test framework
@@ -52,11 +60,6 @@ if(BUILD_TESTING)
 
     # Add unit test
     add_executable(cparameterUnitTest Test.cpp)
-    # Do not warn about passing a null pointer for arguments marked as requiring
-    # a non-null value by the "nonnull" function attribute.
-    # This is done as the unit tests check that invalid api use result in
-    # proper failure.
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-nonnull")
 
     target_link_libraries(cparameterUnitTest cparameter pfw_utility)
     add_test(NAME cparameterUnitTest

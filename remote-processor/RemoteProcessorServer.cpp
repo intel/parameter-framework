@@ -28,23 +28,18 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "RemoteProcessorServer.h"
-#include "ListeningSocket.h"
-#include "FullIo.hpp"
 #include <iostream>
 #include <memory>
 #include <assert.h>
-#include <poll.h>
-#include <unistd.h>
 #include <string.h>
-#include <errno.h>
 #include "RequestMessage.h"
 #include "AnswerMessage.h"
 #include "RemoteCommandHandler.h"
 
 using std::string;
 
-CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler) :
-    _uiPort(uiPort), _pCommandHandler(pCommandHandler), _bIsStarted(false), _pListeningSocket(NULL), _ulThreadId(0)
+CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort) :
+    _uiPort(uiPort), _io_service(), _acceptor(_io_service), _socket(_io_service)
 {
 }
 
@@ -54,134 +49,69 @@ CRemoteProcessorServer::~CRemoteProcessorServer()
 }
 
 // State
-bool CRemoteProcessorServer::start(string &error)
+bool CRemoteProcessorServer::start(string &)
 {
-    assert(!_bIsStarted);
+    using namespace asio;
 
-    if (pipe(_aiInbandPipe) == -1) {
-        error = "Could not create a pipe for remote processor communication: ";
-        error += strerror(errno);
-        return false;
-    }
+    ip::tcp::endpoint endpoint(ip::tcp::v6(), _uiPort);
 
-    // Create server socket
-    std::auto_ptr<CListeningSocket> pListeningSocket(new CListeningSocket);
+    _acceptor.open(endpoint.protocol());
 
-    if (!pListeningSocket->listen(_uiPort, error)) {
+    _acceptor.set_option(ip::tcp::acceptor::reuse_address(true));
+    _acceptor.set_option(asio::socket_base::linger(true, 0));
+    _acceptor.set_option(socket_base::enable_connection_aborted(true));
 
-        return false;
-    }
-
-    // Thread needs to access to the listning socket.
-    _pListeningSocket = pListeningSocket.get();
-    // Create thread
-    errno = pthread_create(&_ulThreadId, NULL, thread_func, this);
-    if (errno != 0) {
-
-        error = "Could not create a remote processor thread: ";
-        error += strerror(errno);
-        return false;
-    }
-
-    // State
-    _bIsStarted = true;
-    pListeningSocket.release();
+    _acceptor.bind(endpoint);
+    _acceptor.listen();
 
     return true;
 }
 
-void CRemoteProcessorServer::stop()
+bool CRemoteProcessorServer::stop()
 {
-    // Check state
-    if (!_bIsStarted) {
+    _io_service.stop();
 
-        return;
-    }
-
-    // Cause exiting of the thread
-    uint8_t ucData = 0;
-    if (not utility::fullWrite(_aiInbandPipe[1], &ucData, sizeof(ucData))) {
-        std::cerr << "Could not query command processor thread to terminate: "
-                     "fail to write on inband pipe: "
-                  << strerror(errno) << std::endl;
-        assert(false);
-    }
-
-    // Join thread
-    errno = pthread_join(_ulThreadId, NULL);
-    if (errno != 0) {
-        std::cout << "Could not join with remote processor thread: "
-                  << strerror(errno) << std::endl;
-        assert(false);
-    }
-
-    _bIsStarted = false;
-
-    // Remove listening socket
-    delete _pListeningSocket;
-    _pListeningSocket = NULL;
+    return true;
 }
 
-bool CRemoteProcessorServer::isStarted() const
+void CRemoteProcessorServer::acceptRegister(IRemoteCommandHandler &commandHandler)
 {
-    return _bIsStarted;
-}
-
-// Thread
-void* CRemoteProcessorServer::thread_func(void* pData)
-{
-    reinterpret_cast<CRemoteProcessorServer*>(pData)->run();
-
-    return NULL;
-}
-
-void CRemoteProcessorServer::run()
-{
-    struct pollfd _aPollFds[2];
-
-    bzero(_aPollFds, sizeof(_aPollFds));
-
-    // Build poll elements
-    _aPollFds[0].fd = _pListeningSocket->getFd();
-    _aPollFds[1].fd = _aiInbandPipe[0];
-    _aPollFds[0].events = POLLIN;
-    _aPollFds[1].events = POLLIN;
-
-    while (true) {
-
-        poll(_aPollFds, 2, -1);
-
-        if (_aPollFds[0].revents & POLLIN) {
-
-            // New incoming connection
-            handleNewConnection();
-        }
-        if (_aPollFds[1].revents & POLLIN) {
-
-            // Consume exit request
-            uint8_t ucData;
-            if (not utility::fullRead(_aiInbandPipe[0], &ucData, sizeof(ucData))) {
-                    std::cerr << "Remote processor could not receive exit request"
-                              << strerror(errno) << std::endl;
-                    assert(false);
-            }
-
-            // Exit
+    auto peerHandler = [this, &commandHandler](asio::error_code ec)
+    {
+        if (ec) {
+            std::cerr << "Accept failed: " << ec.message() << std::endl;
             return;
         }
+
+        _socket.set_option(asio::ip::tcp::no_delay(true));
+        handleNewConnection(commandHandler);
+
+        _socket.close();
+
+        acceptRegister(commandHandler);
+    };
+
+    _acceptor.async_accept(_socket, peerHandler);
+}
+
+bool CRemoteProcessorServer::process(IRemoteCommandHandler &commandHandler)
+{
+    acceptRegister(commandHandler);
+
+    asio::error_code ec;
+
+    _io_service.run(ec);
+
+    if (ec) {
+        std::cerr << "Server failed: " << ec.message() << std::endl;
     }
+
+    return bool(ec);
 }
 
 // New connection
-void CRemoteProcessorServer::handleNewConnection()
+void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandHandler)
 {
-    const std::auto_ptr<CSocket> clientSocket(_pListeningSocket->accept());
-
-    if (clientSocket.get() == NULL) {
-
-        return;
-    }
-
     // Process all incoming requests from the client
     while (true) {
 
@@ -192,7 +122,7 @@ void CRemoteProcessorServer::handleNewConnection()
         string strError;
         ///// Receive command
         CRequestMessage::Result res;
-        res = requestMessage.serialize(clientSocket.get(), false, strError);
+        res = requestMessage.serialize(_socket, false, strError);
 
         switch (res) {
         case CRequestMessage::error:
@@ -210,23 +140,14 @@ void CRemoteProcessorServer::handleNewConnection()
 
         string strResult;
 
-        if (_pCommandHandler) {
-
-            bSuccess = _pCommandHandler->remoteCommandProcess(requestMessage, strResult);
-
-        } else {
-
-            strResult = "No handler!";
-
-            bSuccess = false;
-        }
+        bSuccess = commandHandler.remoteCommandProcess(requestMessage, strResult);
 
         // Send back answer
         // Create answer message
         CAnswerMessage answerMessage(strResult, bSuccess);
 
         ///// Send answer
-        res = answerMessage.serialize(clientSocket.get(), true, strError);
+        res = answerMessage.serialize(_socket, true, strError);
 
         switch (res) {
         case CRequestMessage::peerDisconnected:

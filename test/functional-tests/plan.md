@@ -344,8 +344,6 @@ Structure file:
     - w/ or w/o settings
     - to a file/from a string
     - all/single
-- *(import binary settings ?)*
-- *(export binary settings ?)*
 
 ### Error case/special cases
 

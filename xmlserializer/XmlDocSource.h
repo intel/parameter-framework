@@ -31,6 +31,9 @@
 #pragma once
 #include "XmlElement.h"
 #include "XmlSerializingContext.h"
+
+#include "NonCopyable.hpp"
+
 #include <string>
 
 struct _xmlDoc;
@@ -44,7 +47,7 @@ struct _xmlError;
   * for different purposes by implementing the populate method and then
   * use it with any existing implementation of CXmlDocSink.
   */
-class CXmlDocSource
+class CXmlDocSource : private utility::NonCopyable
 {
 public:
     /**
@@ -67,7 +70,6 @@ public:
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
     CXmlDocSource(_xmlDoc* pDoc, bool bValidateWithSchema,
-                           const std::string& strXmlSchemaFile = "",
                            const std::string& strRootElementType = "",
                            const std::string& strRootElementName = "",
                            const std::string& strNameAttributeName = "");
@@ -102,6 +104,13 @@ public:
 
     /**
       * Getter method.
+      *
+      * @return schema URI
+      */
+    std::string getSchemaUri() const;
+
+    /**
+      * Getter method.
       * Method that returns the root element's attribute with name matching strAttributeName.
       *
       * @param[in] strAttributeName is a std::string used to find the corresponding attribute
@@ -127,6 +136,23 @@ public:
     virtual bool isParsable() const;
 
     /**
+     * Helper method to build final URI from base and relative uri/path
+     *
+     * base = "/path/to/file.xml"
+     *  - uri                   - returned value
+     *  .                       /path/to/
+     *  file.xsd                /path/to/file.xsd
+     *  ../from/file.xsd        /path/from/file.xsd
+     *  /path2/file.xsd         /path2/file.xsd
+     *
+     * @param[in] base uri, if base is directory, it must contains separator last
+     * @param[in] relative uri
+    *
+    * @return new made URI if succeeded relative input otherwise
+     */
+    static std::string mkUri(const std::string& base, const std::string& relative);
+
+    /**
      * Helper method for creating an xml document from either a file or a
      * string.
      *
@@ -150,28 +176,13 @@ protected:
       */
     _xmlNode* _pRootNode;
 
-    /**
-      * libxml2 library cleanup
-      */
-    static bool _bLibXml2CleanupScheduled;
-
 private:
-
-    /**
-      * Method that initializes class internal attributes in constructor
-      */
-    void init();
 
     /** Method that check the validity of the document with the xsd file.
       *
       * @return true if document is valid, false if any error occures
       */
     bool isInstanceDocumentValid();
-
-    /**
-      * Schema file
-      */
-    std::string _strXmlSchemaFile;
 
     /**
       * Element type info

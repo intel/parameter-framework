@@ -30,7 +30,7 @@
 #include "PathNavigator.h"
 #include "Tokenizer.h"
 
-CPathNavigator::CPathNavigator(const std::string& strPath) : _uiCurrentIndex(0)
+CPathNavigator::CPathNavigator(const std::string& strPath) : _currentIndex(0)
 {
     init(strPath);
 }
@@ -82,9 +82,9 @@ bool CPathNavigator::navigateThrough(const std::string& strItemName, std::string
 
 std::string* CPathNavigator::next()
 {
-    if (_uiCurrentIndex < _astrItems.size()) {
+    if (_currentIndex < _astrItems.size()) {
 
-        return &_astrItems[_uiCurrentIndex++];
+        return &_astrItems[_currentIndex++];
     }
 
     return NULL;
@@ -94,19 +94,18 @@ std::string CPathNavigator::getCurrentPath() const
 {
     std::string strPath = "/";
 
-    if (!_uiCurrentIndex) {
+    if (!_currentIndex) {
 
         return strPath;
     }
 
-    uint32_t uiItem;
+    size_t item;
+    for (item = 0; item < _currentIndex - 1; item++) {
 
-    for (uiItem = 0; uiItem < _uiCurrentIndex - 1; uiItem++) {
-
-        strPath += _astrItems[uiItem] + "/";
+        strPath += _astrItems[item] + "/";
     }
 
-    strPath += _astrItems[uiItem];
+    strPath += _astrItems[item];
 
     return strPath;
 }

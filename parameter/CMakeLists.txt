@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -29,10 +29,7 @@
 add_library(parameter SHARED
     AreaConfiguration.cpp
     ArrayParameter.cpp
-    AutoLog.cpp
     BaseParameter.cpp
-    BinarySerializableElement.cpp
-    BinaryStream.cpp
     BitParameterBlock.cpp
     BitParameterBlockType.cpp
     BitParameter.cpp
@@ -66,6 +63,7 @@ add_library(parameter SHARED
     IntegerParameterType.cpp
     LinearParameterAdaptation.cpp
     LogarithmicParameterAdaptation.cpp
+    LoggingElementBuilderTemplate.cpp
     MappingContext.cpp
     MappingData.cpp
     ParameterAccessContext.cpp
@@ -104,19 +102,29 @@ add_library(parameter SHARED
     XmlFileIncluderElement.cpp
     XmlParameterSerializingContext.cpp)
 
+include (GenerateExportHeader)
+generate_export_header(parameter)
+
 include_directories(
     include
+    "${CMAKE_CURRENT_BINARY_DIR}"
+    "${PROJECT_SOURCE_DIR}/parameter"
     "${PROJECT_SOURCE_DIR}/xmlserializer"
     "${PROJECT_SOURCE_DIR}/utility"
-    "${PROJECT_SOURCE_DIR}/remote-processor")
+    "${PROJECT_BINARY_DIR}/remote-processor"
+    "${PROJECT_SOURCE_DIR}/remote-processor"
+    "${PROJECT_SOURCE_DIR}/parameter/log/include")
 
-# No need to link with libremote-processor: it is accessed via dlopen()
-find_library(dl dl)
-target_link_libraries(parameter xmlserializer pfw_utility dl)
+find_library(DL_LIB dl)
+if(UNIX)
+    target_link_libraries(parameter ${DL_LIB})
+endif()
+target_link_libraries(parameter xmlserializer remote-processor pfw_utility)
 
-install(TARGETS parameter LIBRARY DESTINATION lib)
+install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 # Client headers
 install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
     include/ParameterHandle.h
     include/ParameterMgrLoggerForward.h
     include/ParameterMgrFullConnector.h
@@ -126,7 +134,7 @@ install(FILES
     DESTINATION "include/parameter/client")
 # Core (plugin) headers
 install(FILES
-    AutoLog.h
+    "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
     BitParameterBlockType.h
     ConfigurableElement.h
     ConfigurableElementWithMapping.h
@@ -137,12 +145,13 @@ install(FILES
     FileIncluderElementBuilder.h
     FormattedSubsystemObject.h
     InstanceConfigurableElement.h
+    LoggingElementBuilderTemplate.h
     Mapper.h
     MappingContext.h
-    NamedElementBuilderTemplate.h
     ParameterBlockType.h
     ParameterType.h
     PathNavigator.h
+    Plugin.h
     Subsystem.h
     SubsystemLibrary.h
     SubsystemObject.h
@@ -152,3 +161,5 @@ install(FILES
     TypeElement.h
     VirtualSubsystem.h
     DESTINATION "include/parameter/plugin")
+install(DIRECTORY log/include/log/
+        DESTINATION "include/parameter/plugin/log")

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,11 +29,16 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
+
 #include <stdint.h>
 #include <string>
+#include <vector>
 
-class CMappingContext
+class PARAMETER_EXPORT CMappingContext
 {
+private:
     // Item structure
     struct SItem {
         const std::string* strKey;
@@ -42,29 +47,21 @@ class CMappingContext
     };
 
 public:
-    // Regular Constructor
-    CMappingContext(size_t uiNbItemTypes);
-    ~CMappingContext();
-
-    // Copy constructor
-    CMappingContext(const CMappingContext& from);
-
-    // Affectation
-    CMappingContext& operator=(const CMappingContext& right);
+    CMappingContext(size_t uiNbItemTypes) : mItems(uiNbItemTypes) {}
 
     // Item access
     /**
      * Set context mapping item key and value.
      *
-     * @param[in] uiItemType Mapping item index.
+     * @param[in] itemType Mapping item index.
      * @param[in] pStrKey Mapping item key name.
      * @param[in] pStrItem Mapping item value.
      *
      * @return False if already set, true else.
      */
-    bool setItem(uint32_t uiItemType, const std::string* pStrKey, const std::string* pStrItem);
-    const std::string& getItem(uint32_t uiItemType) const;
-    uint32_t getItemAsInteger(uint32_t uiItemType) const;
+    bool setItem(size_t itemType, const std::string* pStrKey, const std::string* pStrItem);
+    const std::string& getItem(size_t itemType) const;
+    size_t getItemAsInteger(size_t itemType) const;
     /**
      * Get mapping item value from its key name.
      *
@@ -73,12 +70,12 @@ public:
      * @return Mapping item value pointer if found, NULL else.
      */
     const std::string* getItem(const std::string& strKey) const;
-    bool iSet(uint32_t uiItemType) const;
+    bool iSet(size_t itemType) const;
 
 private:
-    // Item array
-    SItem* _pstItemArray;
-    // Items array size
-    size_t _uiNbItemTypes;
+    size_t getNbItems() const { return mItems.size(); }
+
+    using Items = std::vector<SItem>;
+    Items mItems;
 };
 

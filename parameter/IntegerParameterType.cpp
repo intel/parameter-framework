@@ -70,12 +70,12 @@ void CIntegerParameterType::showProperties(string& strResult) const
 
     // Min
     strResult += "Min: ";
-    strResult += _bSigned ? CUtility::toString((int32_t)_uiMin) : CUtility::toString(_uiMin);
+    strResult += _bSigned ? std::to_string((int32_t)_uiMin) : std::to_string(_uiMin);
     strResult += "\n";
 
     // Max
     strResult += "Max: ";
-    strResult += _bSigned ? CUtility::toString((int32_t)_uiMax) : CUtility::toString(_uiMax);
+    strResult += _bSigned ? std::to_string((int32_t)_uiMax) : std::to_string(_uiMax);
     strResult += "\n";
 
     // Check if there's an adaptation object available
@@ -96,27 +96,27 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
     xmlElement.getAttribute("Signed", _bSigned);
 
     // Size in bits
-    uint32_t uiSizeInBits = 0;
-    xmlElement.getAttribute("Size", uiSizeInBits);
+    size_t sizeInBits = 0;
+    xmlElement.getAttribute("Size", sizeInBits);
 
     // Size
-    setSize(uiSizeInBits / 8);
+    setSize(sizeInBits / 8);
 
     // Min / Max
     // TODO: Make IntegerParameter template
     if (_bSigned) {
 
         // Signed means we have one less util bit
-        uiSizeInBits--;
+        sizeInBits--;
 
         if (!xmlElement.getAttribute("Min", (int32_t &)_uiMin)) {
 
-            _uiMin = 1UL << uiSizeInBits;
+            _uiMin = 1UL << sizeInBits;
         }
 
         if (!xmlElement.getAttribute("Max", (int32_t &)_uiMax)) {
 
-            _uiMax = (1UL << uiSizeInBits) - 1;
+            _uiMax = (1UL << sizeInBits) - 1;
         }
         signExtend((int32_t&)_uiMin);
         signExtend((int32_t&)_uiMax);
@@ -128,7 +128,7 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 
         if (!xmlElement.getAttribute("Max", _uiMax)) {
 
-            _uiMax = (uint32_t)-1L >> (8 * sizeof(uint32_t) - uiSizeInBits);
+            _uiMax = (size_t)-1L >> (8 * sizeof(size_t) - sizeInBits);
         }
     }
 
@@ -226,10 +226,8 @@ bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    (void)parameterAccessContext;
-
     // Do assign
     uiUserValue = uiValue;
 
@@ -251,10 +249,8 @@ bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, 
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
 {
-    (void)parameterAccessContext;
-
     int32_t iValue = uiValue;
 
     // Sign extend

@@ -28,24 +28,28 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include <fstream>
-#include <alloca.h>
 #include "ParameterType.h"
 #include "MappingContext.h"
 #include "TESTMappingKeys.h"
 #include "InstanceConfigurableElement.h"
 #include "TESTSubsystemObject.h"
+#include <log/Context.h>
+#include <sstream>
+#include <vector>
 
 #define base CSubsystemObject
 
-CTESTSubsystemObject::CTESTSubsystemObject(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context)
-    : base(pInstanceConfigurableElement)
+CTESTSubsystemObject::CTESTSubsystemObject(const std::string& /*strMappingValue*/,
+                                           CInstanceConfigurableElement* pInstanceConfigurableElement,
+                                           const CMappingContext& context,
+                                           core::log::Logger& logger)
+    : base(pInstanceConfigurableElement, logger)
 {
-    (void)strMappingValue;
     // Get actual element type
     const CParameterType* pParameterType = static_cast<const CParameterType*>(pInstanceConfigurableElement->getTypeElement());
 
-    _uiScalarSize = pParameterType->getSize();
-    _uiArraySize = pInstanceConfigurableElement->getFootPrint() / _uiScalarSize;
+    _scalarSize = pParameterType->getSize();
+    _arraySize = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
     _bIsScalar = pParameterType->isScalar();
 
     _strFilePath = context.getItem(ETESTDirectory) + "/" + pInstanceConfigurableElement->getName();
@@ -73,9 +77,8 @@ bool CTESTSubsystemObject::sendToHW(std::string& strError)
 }
 
 
-bool CTESTSubsystemObject::receiveFromHW(std::string& strError)
+bool CTESTSubsystemObject::receiveFromHW(std::string& /*strError*/)
 {
-    (void)strError;
     std::ifstream inputFile;
 
     inputFile.open(_strFilePath.c_str());
@@ -93,16 +96,16 @@ bool CTESTSubsystemObject::receiveFromHW(std::string& strError)
 
 void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
 {
-    uint32_t uiIndex;
+    for (size_t index = 0 ; index < _arraySize ; index++) {
 
-    for (uiIndex = 0 ; uiIndex < _uiArraySize ; uiIndex++) {
+        std::vector<uint8_t> aucValue(_scalarSize);
 
-        void* pvValue = alloca(_uiScalarSize);
+        void* pvValue = aucValue.data();
 
         // Read Value in BlackBoard
-        blackboardRead(pvValue, _uiScalarSize);
+        blackboardRead(pvValue, _scalarSize);
 
-        std::string strValue = toString(pvValue, _uiScalarSize);
+        std::string strValue = toString(pvValue, _scalarSize);
 
         outputFile << strValue << std::endl;
 
@@ -110,10 +113,12 @@ void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
 
             if (_bIsScalar) {
 
-                log_info("TESTSUBSYSTEM: Writing \"%s\" to file %s", strValue.c_str(), _strFilePath.c_str());
+                _logger.info() << "TESTSUBSYSTEM: Writing '" << strValue
+                               << "' to file " << _strFilePath;
             } else {
 
-                log_info("TESTSUBSYSTEM: Writing \"%s\" to file %s[%d]", strValue.c_str(), _strFilePath.c_str(), uiIndex);
+                _logger.info() << "TESTSUBSYSTEM: Writing '" << strValue << "' to file "
+                               << _strFilePath << "[" << index << "]";
             }
         }
     }
@@ -121,11 +126,11 @@ void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
 
 void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
 {
-    uint32_t uiIndex;
+    for (size_t index = 0 ; index < _arraySize ; index++) {
 
-    for (uiIndex = 0 ; uiIndex < _uiArraySize ; uiIndex++) {
+        std::vector<uint8_t> aucValue(_scalarSize);
 
-        void* pvValue = alloca(_uiScalarSize);
+        void* pvValue = aucValue.data();
 
         std::string strValue;
 
@@ -135,16 +140,18 @@ void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
 
             if (_bIsScalar) {
 
-                log_info("TESTSUBSYSTEM: Writing \"%s\" from file %s", strValue.c_str(), _strFilePath.c_str());
+                _logger.info() << "TESTSUBSYSTEM: Reading '" << strValue
+                               << "' to file " << _strFilePath;
             } else {
 
-                log_info("TESTSUBSYSTEM: Writing \"%s\" from file %s[%d]", strValue.c_str(), _strFilePath.c_str(), uiIndex);
+                _logger.info() << "TESTSUBSYSTEM: Reading '" << strValue << "' to file "
+                               << _strFilePath << "[" << index << "]";
             }
         }
 
-        fromString(strValue, pvValue, _uiScalarSize);
+        fromString(strValue, pvValue, _scalarSize);
 
         // Write Value in Blackboard
-        blackboardWrite(pvValue, _uiScalarSize);
+        blackboardWrite(pvValue, _scalarSize);
     }
 }

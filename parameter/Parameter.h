@@ -41,7 +41,7 @@ public:
     CParameter(const std::string& strName, const CTypeElement* pTypeElement);
 
     // Instantiation, allocation
-    virtual uint32_t getFootPrint() const;
+    virtual size_t getFootPrint() const;
 
     // Type
     virtual Type getType() const;
@@ -65,20 +65,20 @@ protected:
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
     // Actual value access
-    virtual bool doSetValue(const std::string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
-    virtual void doGetValue(std::string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool doSetValue(const std::string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const;
+    virtual void doGetValue(std::string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const;
 
     // Value space handling for configuration import
     void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
 
     // Size
-    uint32_t getSize() const;
+    size_t getSize() const;
 private:
     // Generic Access
     template <typename type>
     bool doAccess(type& value, bool bSet, CParameterAccessContext& parameterAccessContext) const;
     template <typename type>
-    bool doSet(type value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    bool doSet(type value, size_t offset, CParameterAccessContext& parameterAccessContext) const;
     template <typename type>
-    bool doGet(type& value, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const;
+    bool doGet(type& value, size_t offset, CParameterAccessContext& parameterAccessContext) const;
 };

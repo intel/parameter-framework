@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,8 @@
  */
 #pragma once
 
+#include "parameter_export.h"
+
 #include "Element.h"
 
 #include <list>
@@ -41,7 +43,7 @@ class CConfigurationAccessContext;
 class CParameterAccessContext;
 class CAreaConfiguration;
 
-class CConfigurableElement : public CElement
+class PARAMETER_EXPORT CConfigurableElement : public CElement
 {
     friend class CConfigurableDomain;
     friend class CDomainConfiguration;
@@ -51,11 +53,11 @@ public:
     virtual ~CConfigurableElement();
 
     // Offset in main blackboard
-    void setOffset(uint32_t uiOffset);
-    uint32_t getOffset() const;
+    void setOffset(size_t offset);
+    size_t getOffset() const;
 
     // Allocation
-    virtual uint32_t getFootPrint() const;
+    virtual size_t getFootPrint() const;
 
     // Syncer set (me, ascendant or descendant ones)
     void fillSyncerSet(CSyncerSet& syncerSet) const;
@@ -145,7 +147,7 @@ private:
     bool isOfConfigurableElementType(const CElement* pParent) const;
 
     // Offset in main blackboard
-    uint32_t _uiOffset;
+    size_t _offset;
 
     // Associated configurable domains
     std::list<const CConfigurableDomain*> _configurableDomainList;

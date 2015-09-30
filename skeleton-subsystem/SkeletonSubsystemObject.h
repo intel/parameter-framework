@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -36,7 +36,10 @@ class CMappingContext;
 class CSkeletonSubsystemObject : public CFormattedSubsystemObject
 {
 public:
-    CSkeletonSubsystemObject(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context);
+    CSkeletonSubsystemObject(const std::string& strMappingValue,
+                             CInstanceConfigurableElement* pInstanceConfigurableElement,
+                             const CMappingContext& context,
+                             core::log::Logger& logger);
 
 protected:
     // from CSubsystemObject
@@ -50,8 +53,8 @@ private:
 
 protected:
     // Scalar parameter size for elementary access
-    uint32_t _uiScalarSize;
-    uint32_t _uiArraySize;
+    size_t _scalarSize;
+    size_t _arraySize;
     std::string _strMessage;
     // Delayed error about supported parameter types (always false in this example)
     bool _bWrongElementTypeError;

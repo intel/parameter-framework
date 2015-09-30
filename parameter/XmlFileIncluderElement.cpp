@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -32,7 +32,6 @@
 #include "XmlMemoryDocSink.h"
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
-#include "AutoLog.h"
 #include <assert.h>
 #include <fstream>
 
@@ -53,27 +52,14 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     // Parse included document
     std::string strPath;
     xmlElement.getAttribute("Path", strPath);
-
-    // Relative path?
-    if (strPath[0] != '/') {
-
-        strPath = elementSerializingContext.getXmlFolder() + "/" + strPath;
-    }
+    strPath = CXmlDocSource::mkUri(elementSerializingContext.getXmlUri(), strPath);
 
     // Instantiate parser
     std::string strIncludedElementType = getIncludedElementType();
     {
-        // Open a log section titled with loading file path
-        CAutoLog autolog(this, "Loading " + strPath);
-
-        // Use a doc source that load data from a file
-        std::string strPathToXsdFile = elementSerializingContext.getXmlSchemaPathFolder() + "/" +
-                               strIncludedElementType + ".xsd";
-
         _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strPath, true, true, elementSerializingContext);
 
         CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
-                                strPathToXsdFile,
                                 strIncludedElementType);
 
         if (!docSource.isParsable()) {

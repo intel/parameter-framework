@@ -58,7 +58,7 @@ public:
     uint64_t merge(uint64_t uiOriginData, uint64_t uiNewData) const;
 
     // Bit Size
-    uint32_t getBitSize() const;
+    size_t getBitSize() const;
 
     // Element properties
     virtual void showProperties(std::string& strResult) const;
@@ -72,7 +72,7 @@ public:
      *
      * @return position of the bit.
      */
-    uint32_t getBitPos() const { return _uiBitPos; }
+    size_t getBitPos() const { return _bitPos; }
 private:
     // Instantiation
     virtual CInstanceConfigurableElement* doInstantiate() const;
@@ -84,9 +84,9 @@ private:
     bool isEncodable(uint64_t uiData) const;
 
     // Pos in bits
-    uint32_t _uiBitPos;
+    size_t _bitPos;
     // Size in bits
-    uint32_t _uiBitSize;
+    size_t _uiBitSize;
     // Max value
     uint64_t _uiMax;
 };

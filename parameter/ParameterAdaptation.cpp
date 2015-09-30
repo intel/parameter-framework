@@ -28,7 +28,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "ParameterAdaptation.h"
-#include "Utility.h"
 
 #define base CElement
 
@@ -59,7 +58,7 @@ void CParameterAdaptation::showProperties(string& strResult) const
 
     // Offset
     strResult += " - Offset: ";
-    strResult += CUtility::toString(_iOffset);
+    strResult += std::to_string(_iOffset);
     strResult += "\n";
 }
 

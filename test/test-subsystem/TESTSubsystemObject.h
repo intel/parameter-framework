@@ -36,7 +36,10 @@ class CMappingContext;
 class CTESTSubsystemObject : public CSubsystemObject
 {
 public:
-    CTESTSubsystemObject(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context);
+    CTESTSubsystemObject(const std::string& strMappingValue,
+                         CInstanceConfigurableElement* pInstanceConfigurableElement,
+                         const CMappingContext& context,
+                         core::log::Logger& logger);
 
 protected:
     // from CSubsystemObject
@@ -47,12 +50,12 @@ protected:
 private:
     void sendToFile(std::ofstream& outputFile);
     void receiveFromFile(std::ifstream& inputFile);
-    virtual std::string toString(const void* pvValue, uint32_t uiSize) const = 0;
-    virtual void fromString(const std::string& strValue, void* pvValue, uint32_t uiSize) = 0;
+    virtual std::string toString(const void* pvValue, size_t size) const = 0;
+    virtual void fromString(const std::string& strValue, void* pvValue, size_t size) = 0;
 
 protected:
-    uint32_t _uiScalarSize;
-    uint32_t _uiArraySize;
+    size_t _scalarSize;
+    size_t _arraySize;
     std::string _strFilePath;
     bool _bLog;
     bool _bIsScalar;

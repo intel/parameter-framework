@@ -52,13 +52,12 @@ bool CConfigurableElementAggregator::doAggregate(const CConfigurableElement* pCo
     // Check children
     std::list<const CConfigurableElement*> childAggregateElementList;
 
-    size_t uiIndex;
     size_t uiNbChildren = pConfigurableElement->getNbChildren();
     size_t uiNbMatchingChildren = 0;
 
-    for (uiIndex = 0; uiIndex < uiNbChildren; uiIndex++) {
+    for (size_t index = 0; index < uiNbChildren; index++) {
 
-        const CConfigurableElement* pChildConfigurableElement = static_cast<const CConfigurableElement*>(pConfigurableElement->getChild(uiIndex));
+        const CConfigurableElement* pChildConfigurableElement = static_cast<const CConfigurableElement*>(pConfigurableElement->getChild(index));
 
         uiNbMatchingChildren += doAggregate(pChildConfigurableElement, childAggregateElementList);
     }

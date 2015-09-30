@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,24 +27,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "SubsystemLibrary.h"
-#include "NamedElementBuilderTemplate.h"
+#include "Plugin.h"
+#include "LoggingElementBuilderTemplate.h"
 #include "SkeletonSubsystem.h"
 
 
-extern "C"
+void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary* pSubsystemLibrary, core::log::Logger& logger)
 {
-/**
- * CARE: the naming convention used in the parameter framework:
- *
- * A plugin file name is of the form:
- * lib<type>-subsystem.so or lib<type>-subsystem._host.so
- *
- * The plugin symbol is of the form:
- * get<TYPE>SubsystemBuilder
-*/
-void getSKELETONSubsystemBuilder(CSubsystemLibrary* pSubsystemLibrary)
-{
-    pSubsystemLibrary->addElementBuilder("Skeleton", new TNamedElementBuilderTemplate<CSkeletonSubsystem>());
-}
+    pSubsystemLibrary->addElementBuilder(
+            "Skeleton",
+            new TLoggingElementBuilderTemplate<CSkeletonSubsystem>(logger));
 }

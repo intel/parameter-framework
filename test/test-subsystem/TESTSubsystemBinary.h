@@ -34,12 +34,15 @@
 class CTESTSubsystemBinary : public CTESTSubsystemObject
 {
 public:
-    CTESTSubsystemBinary(const std::string& strMappingValue, CInstanceConfigurableElement* pInstanceConfigurableElement, const CMappingContext& context);
+    CTESTSubsystemBinary(const std::string& strMappingValue,
+                         CInstanceConfigurableElement* configurableElement,
+                         const CMappingContext& context,
+                         core::log::Logger& logger);
 
 private:
     // from CTESTSubsystemObject
     // Format Data
-    virtual std::string toString(const void* pvValue, uint32_t uiSize) const;
-    virtual void fromString(const std::string& strValue, void* pvValue, uint32_t uiSize);
+    virtual std::string toString(const void* pvValue, size_t size) const;
+    virtual void fromString(const std::string& strValue, void* pvValue, size_t size);
 
 };

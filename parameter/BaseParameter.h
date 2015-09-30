@@ -78,8 +78,8 @@ protected:
     virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 
     // Actual value access (to be implemented by derived)
-    virtual bool doSetValue(const std::string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const = 0;
-    virtual void doGetValue(std::string& strValue, uint32_t uiOffset, CParameterAccessContext& parameterAccessContext) const = 0;
+    virtual bool doSetValue(const std::string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const = 0;
+    virtual void doGetValue(std::string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const = 0;
 
     /**
      * Append the parameter path to the error.

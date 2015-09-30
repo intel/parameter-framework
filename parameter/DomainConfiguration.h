@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,34 +29,41 @@
  */
 #pragma once
 
-#include "BinarySerializableElement.h"
+#include "AreaConfiguration.h"
+#include "Element.h"
+#include "Results.h"
 #include <list>
 #include <string>
+#include <memory>
 
 class CConfigurableElement;
-class CAreaConfiguration;
 class CParameterBlackboard;
 class CConfigurationAccessContext;
 class CCompoundRule;
 class CSyncerSet;
 class CSelectionCriteriaDefinition;
 
-class CDomainConfiguration : public CBinarySerializableElement
+class CDomainConfiguration : public CElement
 {
     enum ChildElementType {
         ECompoundRule
     };
-    typedef std::list<CAreaConfiguration*>::const_iterator AreaConfigurationListIterator;
 public:
     CDomainConfiguration(const std::string& strName);
-    virtual ~CDomainConfiguration();
 
     // Configurable Elements association
-    void addConfigurableElement(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet);
+    void addConfigurableElement(const CConfigurableElement *configurableElement, const CSyncerSet *syncerSet);
     void removeConfigurableElement(const CConfigurableElement* pConfigurableElement);
 
-    // Sequence management
-    bool setElementSequence(const std::vector<std::string>& astrNewElementSequence, std::string& strError);
+    /**
+     * Sequence management: Prepend provided elements into internal list in the same order than
+     * they appear in the sequence of element path.
+     * @param[in] newElementSequence sequence of path of new element
+     * @param[out] error human readable error
+     * @return true if the new sequence has been taken into account, false otherwise and error is
+     * set accordingly.
+     */
+    bool setElementSequence(const std::vector<std::string> &newElementSequence, std::string &error);
     void getElementSequence(std::string& strResult) const;
 
     // Application rule
@@ -69,8 +76,18 @@ public:
 
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);
-    // Apply data to current
-    bool restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<std::string>* plstrError = NULL) const;
+
+    /** Restore the configuration
+     *
+     * @param[in] pMainBlackboard the application main blackboard
+     * @param[in] bSync indicates if a synchronisation has to be done
+     * @param[out] errors, errors encountered during restoration
+     * @return true if success false otherwise
+     */
+    bool restore(CParameterBlackboard* pMainBlackboard,
+                 bool bSync,
+                 core::Results* errors = NULL) const;
+
     // Ensure validity for configurable element area configuration
     void validate(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard);
     // Ensure validity of all area configurations
@@ -80,7 +97,7 @@ public:
     // Ensure validity of configurable element's area configuration by copying in from a valid one
     void validateAgainst(const CDomainConfiguration* pValidDomainConfiguration, const CConfigurableElement* pConfigurableElement);
     // Ensure validity of all configurable element's area configuration by copying in from a valid ones
-    void validateAgainst(const CDomainConfiguration* pValidDomainConfiguration);
+    void validateAgainst(const CDomainConfiguration *validDomainConfiguration);
     // Applicability checking
     bool isApplicable() const;
     // Merge existing configurations to given configurable element ones
@@ -92,39 +109,32 @@ public:
     bool parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext);
     void composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext) const;
 
-    // Serialization
-    virtual void binarySerialize(CBinaryStream& binaryStream);
-
-    // Data size
-    virtual size_t getDataSize() const;
-
     // Class kind
     virtual std::string getKind() const;
 
 private:
+    using AreaConfiguration = std::unique_ptr<CAreaConfiguration>;
+    using AreaConfigurations = std::list<AreaConfiguration>;
+
     // Returns true if children dynamic creation is to be dealt with (here, will allow child deletion upon clean)
     virtual bool childrenAreDynamic() const;
     // XML configuration settings serializing
-    bool serializeConfigurableElementSettings(CAreaConfiguration* pAreaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlSerializingContext& serializingContext, bool bSerializeOut);
+    bool serializeConfigurableElementSettings(CAreaConfiguration *areaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlSerializingContext& serializingContext, bool bSerializeOut);
     // AreaConfiguration retrieval from configurable element
-    CAreaConfiguration* getAreaConfiguration(const CConfigurableElement* pConfigurableElement) const;
-    // AreaConfiguration retrieval from present area configurations
-    CAreaConfiguration* findAreaConfiguration(const std::string& strConfigurableElementPath) const;
-    // AreaConfiguration retrieval from given area configuration std::list
-    CAreaConfiguration* findAreaConfiguration(const std::string& strConfigurableElementPath, const std::list<CAreaConfiguration*>& areaConfigurationList) const;
-    // Area configuration ordering
-    void reorderAreaConfigurations(const std::list<CAreaConfiguration*>& areaConfigurationList);
-    // Find area configuration rank from regular std::list: for ordered std::list maintainance
-    uint32_t getAreaConfigurationRank(const CAreaConfiguration* pAreaConfiguration) const;
-    // Find area configuration from regular std::list based on rank: for ordered std::list maintainance
-    CAreaConfiguration* getAreaConfiguration(uint32_t uiAreaConfigurationRank) const;
+    const AreaConfiguration &getAreaConfiguration(const CConfigurableElement* pConfigurableElement) const;
+
+    /**
+     * Returns the AreaConfiguration iterator associated to the Element refered by its path
+     * @param[in] configurableElementPath to check if found in current list of areaconfigurations
+     * @return iterator on the configuration associated to the Element with the given path,
+     *                  last if not found
+     */
+    AreaConfigurations::iterator findAreaConfigurationByPath(const std::string &configurableElementPath);
 
     // Rule
     const CCompoundRule* getRule() const;
     CCompoundRule* getRule();
     void setRule(CCompoundRule* pRule);
 
-    // AreaConfigurations
-    std::list<CAreaConfiguration*> _areaConfigurationList;
-    std::list<CAreaConfiguration*> _orderedAreaConfigurationList;
+    AreaConfigurations mAreaConfigurationList;
 };

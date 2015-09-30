@@ -29,212 +29,87 @@
  */
 
 #include "TestPlatform.h"
-#include "FullIo.hpp"
+#include "convert.hpp"
+#include "Utility.h"
 
 #include <iostream>
-#include <cstdlib>
-#include <semaphore.h>
-#include <string.h>
-#include <unistd.h>
-#include <cerrno>
-#include <cassert>
+#include <string>
+#include <vector>
+#include <algorithm>
 
-using namespace std;
+using std::cerr;
+using std::endl;
+using std::string;
 
-const int iDefaultPortNumber = 5001;
-
-// Starts test-platform in blocking mode
-static bool startBlockingTestPlatform(const char *filePath, int portNumber, string &strError)
-{
-
-    // Init semaphore
-    sem_t sem;
-
-    sem_init(&sem, false, 0);
-
-    // Create param mgr
-    CTestPlatform testPlatform(filePath, portNumber, sem);
-
-    // Start platformmgr
-    if (!testPlatform.load(strError)) {
-
-        sem_destroy(&sem);
-
-        return false;
-    }
-
-    // Block here
-    sem_wait(&sem);
-
-    sem_destroy(&sem);
-
-    return true;
-}
-
-static void notifyParent(int parentFd, bool success)
-{
-    if (not utility::fullWrite(parentFd, &success, sizeof(success))) {
-        cerr << "Unable to warn parent process of load "
-             << (success ? "success" : "failure") << ": "
-             << strerror(errno) << endl;
-        assert(false);
-    }
-}
-
-// Starts test-platform in daemon mode
-static bool startDaemonTestPlatform(const char *filePath, int portNumber, string &strError)
-{
-    // Pipe used for communication between the child and the parent processes
-    int pipefd[2];
-
-    if (pipe(pipefd) == -1) {
-
-        strError = "pipe failed";
-        return false;
-    }
-
-    // Fork the current process:
-    // - Child process is used to start test-platform
-    // - Parent process is killed in order to turn its child into a daemon
-    pid_t pid = fork();
-
-    if (pid < 0) {
-
-        strError = "fork failed!";
-        return false;
-
-    } else if (pid == 0) {
-
-        // Child process : starts test-platform and notify the parent if it succeeds.
-
-        // Close read side of the pipe
-        close(pipefd[0]);
-
-        // Init semaphore
-        sem_t sem;
-
-        sem_init(&sem, false, 0);
-
-        // Create param mgr
-        CTestPlatform testPlatform(filePath, portNumber, sem);
-
-        // Message to send to parent process
-        bool loadSuccess = testPlatform.load(strError);
-
-        if (!loadSuccess) {
-
-            cerr << strError << endl;
-
-            // Notify parent of failure;
-            notifyParent(pipefd[1], false);
-
-        } else {
-
-            // Notify parent of success
-            notifyParent(pipefd[1], true);
-
-            // Block here
-            sem_wait(&sem);
-        }
-        sem_destroy(&sem);
-
-        return loadSuccess;
-
-    } else {
-
-        // Parent process : need to kill it once the child notifies the successs/failure to start
-        // test-platform (this status is used as exit value of the program).
-
-        // Close write side of the pipe
-        close(pipefd[1]);
-
-        // Message received from the child process
-        bool msgFromChild = false;
-
-        if (not utility::fullRead(pipefd[0], &msgFromChild, sizeof(msgFromChild))) {
-            strError = "Read pipe failed";
-            return false;
-        }
-
-        // return success/failure in exit status
-        return msgFromChild;
-    }
-}
+static const int iDefaultPortNumber = 5001;
 
 static void showUsage()
 {
-    cerr << "test-platform [-dh] <file path> [port number, default "
+    cerr << "test-platform [-h|--help] <file path> [port number, default "
          << iDefaultPortNumber << "]" << endl;
 }
 
-static void showInvalidUsage()
+static void showInvalidUsage(const string &error)
 {
-    cerr << "Invalid arguments: ";
+    cerr << "Invalid arguments: " << error;
     showUsage();
 }
 
 static void showHelp()
 {
     showUsage();
-    cerr << "<file path> must be a valid .xml file, oftenly ParameterFrameworkConfiguration.xml" << endl;
-    cerr << "Arguments:" << endl
-        << "    -d  starts as a deamon" << endl
-        << "    -h  display this help and exit" << endl;
+    cerr << "<file path> must be a valid Paramter top level config file, "
+         << "often named ParameterFrameworkConfiguration.xml.\n"
+         << "Arguments:" << endl
+         << "    -h|--help  display this help and exit" << endl;
 }
+
 
 int main(int argc, char *argv[])
 {
-    // Option found by call to getopt()
-    int opt;
+    using Options = std::list<string>;
+    // argv[0] is the program name, not an option
+    Options options(argv + 1, argv + argc);
 
-    // Port number to be used by test-platform
-    int portNumber;
-
-    // Daemon flag
-    bool isDaemon = false;
-
-    // Index of the <file path> argument in the arguments list provided
-    int indexFilePath = 1;
-
-    // Handle the -d option
-    while ((opt = getopt(argc, argv, "dh")) != -1) {
-        switch (opt) {
-        case 'd':
-            isDaemon = true;
-            indexFilePath = 2;
-            break;
-        case 'h':
-            showHelp();
-            return 0;
-        default:
-            showInvalidUsage();
-            return -1;
-        }
+    // Handle help option
+    auto helpOpts = { "-h", "--help" };
+    auto match = std::find_first_of(begin(options), end(options),
+                                    begin(helpOpts), end(helpOpts));
+    if (match != end(options)) {
+        showHelp();
+        return 0;
     }
 
-    // Check the number of arguments
-    if ((argc < indexFilePath + 1) || (argc > indexFilePath + 2)) {
-
-        showInvalidUsage();
+    if (options.empty()) {
+        showInvalidUsage("Expected a path to a Parameter Framework config file.");
         return -1;
     }
 
-    char *filePath = argv[indexFilePath];
-    portNumber = argc > indexFilePath + 1 ? atoi(argv[indexFilePath + 1]) : iDefaultPortNumber;
+    auto filePath = options.front();
+    options.pop_front();
 
-    // Choose either blocking or daemon test-platform
-    bool startError;
-    string strError;
+    // Handle optional port number argument
+    int portNumber = iDefaultPortNumber;
 
-    if (isDaemon) {
-
-        startError = startDaemonTestPlatform(filePath, portNumber, strError);
-    } else {
-
-        startError = startBlockingTestPlatform(filePath, portNumber, strError);
+    if (not options.empty()) {
+        if (convertTo(options.front(), portNumber)) {
+            showInvalidUsage("Could not convert \"" + options.front() +
+                             "\" to a socket port number.");
+            return -1;
+        };
+        options.pop_front();
     }
 
-    if (!startError) {
+    // All arguments should have been consumed
+    if (not options.empty()) {
+        std::string extraArgs;
+        CUtility::asString(options, extraArgs);
+        showInvalidUsage("Unexpected extra arguments: " + extraArgs);
+        return -1;
+    }
+
+    string strError;
+    if (!CTestPlatform(filePath, portNumber).run(strError)) {
 
         cerr << "Test-platform error:" << strError.c_str() << endl;
         return -1;

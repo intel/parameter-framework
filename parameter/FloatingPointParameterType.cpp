@@ -41,7 +41,7 @@ using std::string;
 
 CFloatingPointParameterType::CFloatingPointParameterType(const string& strName)
     : base(strName),
-      _fMin(-std::numeric_limits<float>::max()),
+      _fMin(std::numeric_limits<float>::lowest()),
       _fMax(std::numeric_limits<float>::max())
 {
 }
@@ -56,8 +56,8 @@ void CFloatingPointParameterType::showProperties(string& strResult) const
 {
     base::showProperties(strResult);
 
-    strResult += "Min:" + CUtility::toString(_fMin) + "\n" +
-                 "Max:" + CUtility::toString(_fMax) + "\n";
+    strResult += "Min:" + std::to_string(_fMin) + "\n" +
+                 "Max:" + std::to_string(_fMax) + "\n";
 }
 
 void CFloatingPointParameterType::handleValueSpaceAttribute(
@@ -88,27 +88,27 @@ bool CFloatingPointParameterType::fromXml(const CXmlElement& xmlElement,
                                           CXmlSerializingContext& serializingContext)
 {
     // Size. The XSD fixes it to 32
-    uint32_t uiSizeInBits = 32;
-    xmlElement.getAttribute("Size", uiSizeInBits);
+    size_t sizeInBits = 32;
+    xmlElement.getAttribute("Size", sizeInBits);
 
     // Size support check: only floats are supported
     // (e.g. doubles are not supported)
-    if (uiSizeInBits != sizeof(float) * CHAR_BIT) {
+    if (sizeInBits != sizeof(float) * CHAR_BIT) {
 
-        serializingContext.setError("Unsupported size (" + CUtility::toString(uiSizeInBits) +
+        serializingContext.setError("Unsupported size (" + std::to_string(sizeInBits) +
             ") for " + getKind() + " " + xmlElement.getPath() + ". For now, only 32 is supported.");
 
         return false;
     }
 
-    setSize(uiSizeInBits / CHAR_BIT);
+    setSize(sizeInBits / CHAR_BIT);
 
     xmlElement.getAttribute("Min", _fMin);
     xmlElement.getAttribute("Max", _fMax);
 
     if (_fMin > _fMax) {
-        serializingContext.setError("Min (" + CUtility::toString(_fMin) +
-                ") can't be greater than Max (" + CUtility::toString(_fMax) + ")");
+        serializingContext.setError("Min (" + std::to_string(_fMin) +
+                ") can't be greater than Max (" + std::to_string(_fMax) + ")");
         return false;
     }
 
@@ -132,18 +132,15 @@ bool CFloatingPointParameterType::toBlackboard(
     }
 
     if (parameterAccessContext.valueSpaceIsRaw()) {
-
-        uint32_t uiData;
-
         // Raw value: interpret the user input as the memory content of the
         // parameter
-        if (!convertTo(strValue, uiData)) {
+        if (!convertTo(strValue, uiValue)) {
 
             parameterAccessContext.setError("Value '" + strValue + "' is invalid");
             return false;
         }
 
-        float fData = reinterpret_cast<const float&>(uiData);
+        float fData = reinterpret_cast<const float &>(uiValue);
 
         // Check against NaN or infinity
         if (!std::isfinite(fData)) {
@@ -157,13 +154,11 @@ bool CFloatingPointParameterType::toBlackboard(
             setOutOfRangeError(strValue, parameterAccessContext);
             return false;
         }
-
-        uiValue = uiData;
         return true;
     }
     else {
 
-        float fValue;
+        float fValue = 0.0f;
 
         // Interpret the user input as float
         if (!convertTo(strValue, fValue)) {
@@ -179,7 +174,9 @@ bool CFloatingPointParameterType::toBlackboard(
         }
 
         // Move to the "raw memory" value space
-        uiValue = reinterpret_cast<const uint32_t&>(fValue);
+        // Using an intermediary reference variable to avoid klocwork false positive
+        const uint32_t &value = reinterpret_cast<const uint32_t &>(fValue);
+        uiValue = value;
         return true;
     }
 }
@@ -257,20 +254,20 @@ bool CFloatingPointParameterType::toBlackboard(
 
     // Cast is fine because dValue has been checked against the value range
     float fValue = static_cast<float>(dUserValue);
-
-    uiValue = reinterpret_cast<const uint32_t&>(fValue);
+    // Using an intermediary reference variable to avoid klocwork false positive
+    const uint32_t &value = reinterpret_cast<const uint32_t &>(fValue);
+    uiValue = value;
     return true;
 }
 
 bool CFloatingPointParameterType::fromBlackboard(
         double& dUserValue,
         uint32_t uiValue,
-        CParameterAccessContext& parameterAccessContext) const
+        CParameterAccessContext& /*ctx*/) const
 {
-    (void) parameterAccessContext;
-
     // Move from "raw memory" value space to real space
-    float fValue = reinterpret_cast<const float&>(uiValue);
+    // Using an intermediary reference variable to avoid klocwork false positive
+    const float &fValue = reinterpret_cast<const float &>(uiValue);
 
     dUserValue = fValue;
     return true;

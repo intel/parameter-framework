@@ -31,12 +31,12 @@
 
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteCommandHandlerTemplate.h"
+#include "RemoteProcessorServer.h"
 #include <string>
+#include <iostream>
 #include <list>
-#include <semaphore.h>
 
 class CParameterMgrPlatformConnectorLogger;
-class CRemoteProcessorServer;
 class ISelectionCriterionInterface;
 
 class CTestPlatform
@@ -44,11 +44,11 @@ class CTestPlatform
     typedef TRemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
     typedef CCommandHandler::CommandStatus CommandReturn;
 public:
-    CTestPlatform(const std::string &strclass, int iPortNumber, sem_t& exitSemaphore);
+    CTestPlatform(const std::string &strclass, int iPortNumber);
     virtual ~CTestPlatform();
 
     // Init
-    bool load(std::string& strError);
+    bool run(std::string& strError);
 
 private:
     //////////////// Remote command parsers
@@ -136,24 +136,29 @@ private:
     bool createExclusiveSelectionCriterionFromStateList(const std::string& strName, const IRemoteCommand& remoteCommand, std::string& strResult);
     bool createInclusiveSelectionCriterionFromStateList(const std::string& strName, const IRemoteCommand& remoteCommand, std::string& strResult);
 
-    bool createExclusiveSelectionCriterion(const std::string& strName, uint32_t uiNbValues, std::string& strResult);
-    bool createInclusiveSelectionCriterion(const std::string& strName, uint32_t uiNbValues, std::string& strResult);
+    bool createExclusiveSelectionCriterion(const std::string& strName, size_t nbValues, std::string& strResult);
+    bool createInclusiveSelectionCriterion(const std::string& strName, size_t nbValues, std::string& strResult);
     bool setCriterionState(const std::string& strName, uint32_t uiState, std::string& strResult);
     bool setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     // Connector
-    CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;
+    CParameterMgrPlatformConnector mParameterMgrPlatformConnector;
 
-    // Logger
-    CParameterMgrPlatformConnectorLogger* _pParameterMgrPlatformConnectorLogger;
+    class : public CParameterMgrPlatformConnector::ILogger
+    {
+        public:
+            virtual void info(const std::string& log)
+            {
+                std::cout << log << std::endl;
+            }
 
-    // Command Handler
-    CCommandHandler* _pCommandHandler;
+            virtual void warning(const std::string& log)
+            {
+                std::cerr << log << std::endl;
+            }
+    } mLogger;
 
     // Remote Processor Server
-    CRemoteProcessorServer* _pRemoteProcessorServer;
-
-    // Semaphore used by calling thread to avoid exiting
-    sem_t& _exitSemaphore;
+    CRemoteProcessorServer mRemoteProcessorServer;
 };
 

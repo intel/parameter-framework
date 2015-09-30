@@ -29,40 +29,43 @@
  */
 #pragma once
 
-#include <stdint.h>
-#include "BinaryStream.h"
-#include <string>
+#include "NonCopyable.hpp"
 
-class CParameterBlackboard
+#include <cstdint>
+#include <string>
+#include <vector>
+
+class CParameterBlackboard : private utility::NonCopyable
 {
 public:
-    CParameterBlackboard();
-    ~CParameterBlackboard();
-
     // Size
-    void setSize(uint32_t uiSize);
-    uint32_t getSize() const;
+    void setSize(size_t size);
+    size_t getSize() const;
 
     // Single parameter access
-    void writeInteger(const void* pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian);
-    void readInteger(void* pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const;
-    void writeString(const std::string &input, uint32_t uiOffset);
-    void readString(std::string &output, uint32_t uiOffset) const;
+    void writeInteger(const void* pvSrcData, size_t size, size_t offset, bool bBigEndian);
+    void readInteger(void* pvDstData, size_t size, size_t offset, bool bBigEndian) const;
+
+    void writeString(const std::string &input, size_t offset);
+    void readString(std::string &output, size_t offset) const;
+
+    void writeBuffer(const void* pvSrcData, size_t size, size_t offset);
+    void readBuffer(void* pvDstData, size_t size, size_t offset) const;
 
     // Access from/to subsystems
-    uint8_t* getLocation(uint32_t uiOffset);
+    uint8_t* getLocation(size_t offset);
 
     // Configuration handling
-    void restoreFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset);
-    void saveTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const;
+    void restoreFrom(const CParameterBlackboard* pFromBlackboard, size_t offset);
+    void saveTo(CParameterBlackboard* pToBlackboard, size_t offset) const;
 
-    // Serialization
-    void serialize(CBinaryStream& binaryStream);
 private:
-    CParameterBlackboard(const CParameterBlackboard&);
-    CParameterBlackboard& operator=(const CParameterBlackboard&);
+    void assertValidAccess(size_t offset, size_t size) const;
 
-    uint8_t* _pucData;
-    uint32_t _uiSize;
+    using Blackboard = std::vector<uint8_t>;
+    Blackboard mBlackboard;
+
+    Blackboard::iterator atOffset(size_t offset) { return begin(mBlackboard) + offset; }
+    Blackboard::const_iterator atOffset(size_t offset) const { return begin(mBlackboard) + offset; }
 };
 

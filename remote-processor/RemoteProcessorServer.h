@@ -29,43 +29,36 @@
  */
 #pragma once
 
-#include <stdint.h>
-#include <pthread.h>
-#include "RemoteProcessorServerInterface.h"
+#include "remote_processor_export.h"
 
-class CListeningSocket;
+#include <stdint.h>
+#include "RemoteProcessorServerInterface.h"
+#include <asio.hpp>
+
 class IRemoteCommandHandler;
 
-class CRemoteProcessorServer : public IRemoteProcessorServerInterface
+class REMOTE_PROCESSOR_EXPORT CRemoteProcessorServer : public IRemoteProcessorServerInterface
 {
 public:
-    CRemoteProcessorServer(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
+    CRemoteProcessorServer(uint16_t uiPort);
     virtual ~CRemoteProcessorServer();
 
     // State
     virtual bool start(std::string &error);
-    virtual void stop();
-    virtual bool isStarted() const;
+    virtual bool stop();
+    bool process(IRemoteCommandHandler &commandHandler);
 
 private:
-    // Thread
-    static void* thread_func(void* pData);
-    void run();
+    void acceptRegister(IRemoteCommandHandler &commandHandler);
 
     // New connection
-    void handleNewConnection();
+    void handleNewConnection(IRemoteCommandHandler &commandHandler);
 
     // Port number
     uint16_t _uiPort;
-    // Command handler
-    IRemoteCommandHandler* _pCommandHandler;
-    // State
-    bool _bIsStarted;
-    // Listening socket
-    CListeningSocket* _pListeningSocket;
-    // Inband pipe
-    int _aiInbandPipe[2];
-    // Thread
-    pthread_t _ulThreadId;
+
+    asio::io_service _io_service;
+    asio::ip::tcp::acceptor _acceptor;
+    asio::ip::tcp::socket _socket;
 };
 

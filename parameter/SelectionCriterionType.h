@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -42,7 +42,7 @@ public:
     CSelectionCriterionType(bool bIsInclusive);
 
     // From ISelectionCriterionTypeInterface
-    virtual bool addValuePair(int iValue, const std::string& strValue);
+    virtual bool addValuePair(int iValue, const std::string& strValue, std::string& strError);
     /**
      * Retrieve the numerical value from the std::string representation of the criterion type.
      *

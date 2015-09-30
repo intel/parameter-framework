@@ -1,6 +1,7 @@
 # parameter-framework
 
 [![Build Status](https://travis-ci.org/01org/parameter-framework.svg?branch=master)](https://travis-ci.org/01org/parameter-framework)
+[![Windows Build Status](https://ci.appveyor.com/api/projects/status/ga24jp8tet0qimbu/branch/windows_port)](https://ci.appveyor.com/project/parameter-framework/parameter-framework)
 [![Coverage Status](https://coveralls.io/repos/01org/parameter-framework/badge.svg?branch=master)](https://coveralls.io/r/01org/parameter-framework)
 
 ## Introduction
@@ -70,6 +71,15 @@ directory, you may do so by passing it to the `cmake .` command; e.g.
 
     cmake -DCMAKE_INSTALL_PREFIX=/path/to/custom/install .
 
+If you want to provide your own dependencies (e.g. your own version of
+libxml2), you should pass the base paths as the `CMAKE_PREFIX_PATH` variable,
+e.g.:
+
+    cmake -DCMAKE_PREFIX_PATH='/path/to/dependency1/;/path/to/dependency2/'
+
+For more information on how to use `CMAKE_PREFIX_PATH`, see CMake's
+documentation.
+
 Also, CMake can build a project out-of-tree, which is the recommended method:
 
     mkdir /path/to/build/directory
@@ -77,5 +87,8 @@ Also, CMake can build a project out-of-tree, which is the recommended method:
     cmake /path/to/sources/of/parameter-framework
     make
 
-After an install you may want to run the parameter-framework tests with
-`make test`.
+After a build you may want to run the parameter-framework tests with
+`make test` or `ctest`.
+
+You may take a look at `.travis.yml` and `appveyor.yml` for examples on how we
+build the Parameter Framework in the CI.

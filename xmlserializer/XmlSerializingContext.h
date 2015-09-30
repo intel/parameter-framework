@@ -29,7 +29,12 @@
  */
 #pragma once
 
+#include "NonCopyable.hpp"
+
 #include <string>
+
+/** Forward declare libxml2 handler structure. */
+struct _xmlError;
 
 /** Class that gather errors during serialization.
  *
@@ -41,7 +46,7 @@
  * Ie. the provided buffer (strError) is in an undefined state between
  * construction and destruction and should not be accessed in between.
  */
-class CXmlSerializingContext
+class CXmlSerializingContext : private utility::NonCopyable
 {
 public:
     CXmlSerializingContext(std::string& strError);
@@ -50,13 +55,14 @@ public:
     // Error
     void setError(const std::string& strError);
     void appendLineToError(const std::string& strAppend);
+
     /** XML error handler
       *
       * @param[in] userData pointer to the serializing context
       * @param[in] format is the xml error output format
       *
       */
-    static void genericErrorHandler(void* userData, const char* format, ...);
+    static void structuredErrorHandler(void* userData, _xmlError *error);
 
 private:
     std::string& _strError;

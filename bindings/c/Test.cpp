@@ -29,7 +29,8 @@
  */
 
 #include "ParameterFramework.h"
-#include "FullIo.hpp"
+
+#include "TmpFile.hpp"
 
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main()
 #include <catch.hpp>
@@ -37,14 +38,12 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <array>
 
 #include <cstring>
 #include <cerrno>
 #include <climits>
-extern "C"
-{
-#include <unistd.h>
-}
+
 
 struct Test
 {
@@ -75,27 +74,20 @@ struct Test
         }
     }
 
-    /** Class to create a temporary file */
-    class TmpFile
+    /** Wrap utility::TmpFile to add an implicit convertion to the temporary file.
+     *
+     * This avoids dozens of .getPath() in the following tests. */
+    class TmpFile : private parameterFramework::utility::TmpFile
     {
-    public:
-        TmpFile(const std::string &content) {
-            char tmpName[] = "./tmpPfwUnitTestXXXXXX";
-            mFd = mkstemp(tmpName);
-            CAPTURE(errno);
-            REQUIRE(mFd != -1);
-            mPath = tmpName;
-            REQUIRE(utility::fullWrite(mFd, content.c_str(), content.length()));
-        }
-        ~TmpFile() {
-            CHECK(close(mFd) != -1);
-            unlink(mPath.c_str());
-        }
-        operator const char *() const { return mPath.c_str(); }
-        const std::string &path() const { return mPath; }
     private:
-        std::string mPath;
-        int mFd;
+        using Base = parameterFramework::utility::TmpFile;
+    public:
+        /** `using Base::TmpFile` does not work on VS 2013*/
+        TmpFile(std::string content) : Base(content) {}
+        
+        using Base::getPath;
+        /** Implicitly convert to the path of the temporary file. */
+        operator const char *() const { return getPath().c_str(); }
     };
 
     /** Log in logLines. */
@@ -145,13 +137,13 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
         </Subsystem>");
     TmpFile libraries("<?xml version='1.0' encoding='UTF-8'?>\
         <SystemClass Name='test'>\
-            <SubsystemInclude Path='" + system.path() + "'/>\
+            <SubsystemInclude Path='" + system.getPath() + "'/>\
         </SystemClass>");
     TmpFile config("<?xml version='1.0' encoding='UTF-8'?>\
         <ParameterFrameworkConfiguration\
             SystemClassName='test' TuningAllowed='false'>\
             <SubsystemPlugins/>\
-            <StructureDescriptionFileLocation Path='" + libraries.path() + "'/>\
+            <StructureDescriptionFileLocation Path='" + libraries.getPath() + "'/>\
         </ParameterFrameworkConfiguration>");
 
     GIVEN("A created parameter framework") {
@@ -162,19 +154,10 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
             CHECK(empty(pfwGetLastError(pfw)));
         }
 
-        WHEN("The pfw is started without an handler") {
-            CHECK(not pfwStart(NULL, config, criteria, criterionNb, &logger));
-        }
-        WHEN("The pfw is started without a config path") {
-            REQUIRE_FAILURE(pfwStart(pfw, NULL, criteria, criterionNb, &logger));
-        }
         WHEN("The pfw is started without an existent file") {
             REQUIRE_FAILURE(pfwStart(pfw, "/doNotExist", criteria, criterionNb, &logger));
         }
 
-        WHEN("The pfw is started without a criteria list") {
-            REQUIRE_FAILURE(pfwStart(pfw, config, NULL, criterionNb, &logger));
-        }
         WHEN("The pfw is started with duplicated criterion value") {
             const PfwCriterion duplicatedCriteria[] = {
                 {"duplicated name", true, letterList},
@@ -286,15 +269,6 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
             REQUIRE_SUCCESS(pfwStart(pfw, config, criteria, criterionNb, &logger));
             int value;
 
-            WHEN("Get criterion without an handle") {
-                REQUIRE(not pfwGetCriterion(NULL, criteria[0].name, &value));
-            }
-            WHEN("Get criterion without a name") {
-                REQUIRE_FAILURE(pfwGetCriterion(pfw, NULL, &value));
-            }
-            WHEN("Get criterion without an output value") {
-                REQUIRE_FAILURE(pfwGetCriterion(pfw, criteria[0].name, NULL));
-            }
             WHEN("Get not existing criterion") {
                 REQUIRE_FAILURE(pfwGetCriterion(pfw, "Do not exist", &value));
             }
@@ -307,12 +281,6 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
                 }
             }
 
-            WHEN("Set criterion without an handle") {
-                REQUIRE(not pfwSetCriterion(NULL, criteria[0].name, 1));
-            }
-            WHEN("Set criterion without a name") {
-                REQUIRE_FAILURE(pfwSetCriterion(pfw, NULL, 2));
-            }
             WHEN("Set not existing criterion") {
                 REQUIRE_FAILURE(pfwSetCriterion(pfw, "Do not exist", 3));
             }
@@ -330,38 +298,28 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
                         REQUIRE(value == 3);
                     }
                 }
-            }
-            WHEN("Commit criteria without a pfw") {
-                REQUIRE(not pfwApplyConfigurations(NULL));
+                WHEN("Set a new value to a criterion without committing first") {
+                    const char *criterionName = criteria[0].name;
+                    REQUIRE_SUCCESS(pfwSetCriterion(pfw, criterionName, 0));
+                    THEN("A warning message should have been displayed") {
+                        INFO("Previous pfw log: \n" + logLines);
+                        size_t logPos = logLines.find("Warning: Selection criterion "
+                                                      "'inclusiveCrit' has been modified 1 time(s)"
+                                                      " without any configuration application");
+                        CHECK(logPos != std::string::npos);
+                    }
+                }
             }
             WHEN("Commit criteria of a started pfw") {
                 REQUIRE_SUCCESS(pfwApplyConfigurations(pfw));
-            }
-
-            WHEN("Bind parameter without a pfw") {
-                REQUIRE(pfwBindParameter(NULL, intParameterPath) == NULL);
-            }
-            WHEN("Bind parameter without a path") {
-                REQUIRE_FAILURE(pfwBindParameter(pfw, NULL) != NULL);
             }
             WHEN("Bind a non existing parameter") {
                 REQUIRE_FAILURE(pfwBindParameter(pfw, "do/not/exist") != NULL);
             }
 
-            WHEN("Set an int parameter without a parameter handle") {
-                REQUIRE(not pfwSetIntParameter(NULL, value));
-            }
-            WHEN("Get an int parameter without a parameter handle") {
-                REQUIRE(not pfwGetIntParameter(NULL, &value));
-            }
-
             GIVEN("An integer parameter handle") {
                 PfwParameterHandler *param = pfwBindParameter(pfw, intParameterPath);
                 REQUIRE_SUCCESS(param != NULL);
-
-                WHEN("Get an int parameter without an output value") {
-                    REQUIRE_FAILURE(pfwGetIntParameter(param, NULL));
-                }
 
                 WHEN("Set parameter out of range") {
                     REQUIRE_FAILURE(pfwSetIntParameter(param, 101));
@@ -382,10 +340,6 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
                 PfwParameterHandler *param = pfwBindParameter(pfw, stringParameterPath);
                 REQUIRE_SUCCESS(param != NULL);
 
-                WHEN("Get an int parameter without an output value") {
-                    REQUIRE_FAILURE(pfwGetStringParameter(param, NULL));
-                }
-
                 WHEN("Set parameter out of range") {
                     REQUIRE_FAILURE(pfwSetStringParameter(param, "ko_1234567"));
                 }
@@ -405,11 +359,5 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
         }
 
         pfwDestroy(pfw);
-    }
-}
-
-SCENARIO("Get last error without a pfw") {
-    THEN("Should return NULL") {
-        CHECK(pfwGetLastError(NULL) == NULL);
     }
 }

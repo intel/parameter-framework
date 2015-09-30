@@ -1,0 +1,76 @@
+version: 1.0.{build}
+
+branches:
+  only:
+    - windows_port
+
+# Only download the 50 first commits like travis to speedup clone
+clone_depth: 50
+
+os: Visual Studio 2015
+
+init:
+  # Disable popups as they hang the build as there is nobody to click on the OK button...
+  # Hanging the build is a lot less user friendly than reporting a build failure.
+  #
+  # Disable of system hard error popup
+  # See: https://msdn.microsoft.com/en-us/library/bb513638%28VS.85%29.aspx
+  - reg add "HKLM\SYSTEM\CurrentControlSet\Control\Windows" /f /v ErrorMode /d 2
+  # Disable the following popup on program failure:
+  #     |       ** <program name> has stopped working **        |
+  #     | Windows can check online for a solution to the problem|
+  #     |  - Check online for a solution and close the program  |
+  #     |  - Close the program                                  |
+  # See: https://msdn.microsoft.com/en-us/library/bb513638%28VS.85%29.aspx
+  - reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /f /v DontShowUI /d 1
+
+install:
+  - cinst cmake.portable wget 7zip.commandline
+
+  # Download and install external dependancy if they are not in the cache
+  - if not exist libxml2-x86_64 (
+      wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip &&
+      7z x libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
+  - if not exist libxml2-x86_64-debug (
+      wget --no-check-certificate https://01.org/sites/default/files/libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip &&
+      7z x libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
+  - if not exist asio-1.10.6 (
+      wget --no-check-certificate https://01.org/sites/default/files/asio-1.10.6.tar.gz &&
+      7z x asio-1.10.6.tar.gz &&
+      7z x -i"!asio*/include" asio-1.10.6.tar)
+  - if not exist catch (
+      wget --no-check-certificate https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp --directory-prefix catch )
+
+  # Instruct cmake were to find external dependancies
+  - set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6;%APPVEYOR_BUILD_FOLDER%\catch
+  # function tests legacy are bash specific
+  - set CTEST_PARAMS=--output-on-failure --exclude-regex functional-test-legacy
+  # Setup Visual studio build environement
+  - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
+
+cache:
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  - libxml2-x86_64                -> appveyor.yml
+  - libxml2-x86_64-debug          -> appveyor.yml
+  - asio-1.10.6                   -> appveyor.yml
+  - catch                         -> appveyor.yml
+
+build_script:
+  - mkdir build && cd build
+
+  - mkdir 64bits-debug && cd 64bits-debug
+  # Add debug libxml2.dll in the path so that cmake & tests can find it
+  - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug\bin;%PATH%
+  - cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" ..\..
+  - cmake --build . --config debug
+  - ctest --build-config debug %CTEST_PARAMS%
+  - set PATH=%OLD_PATH% && cd ..
+
+  - mkdir 64bits-release & cd 64bits-release
+  # Add release libxml2.dll in the path so that cmake & tests can find it
+  - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64\bin;%PATH%
+  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" ..\..
+  - cmake --build . --config release
+  - ctest --build-config release %CTEST_PARAMS%
+  - set PATH=%OLD_PATH% && cd ..

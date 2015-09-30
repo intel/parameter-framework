@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,7 +30,6 @@
 #include "AreaConfiguration.h"
 #include "ConfigurableElement.h"
 #include "ConfigurationAccessContext.h"
-#include "BinaryStream.h"
 #include <assert.h>
 
 CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet)
@@ -40,11 +39,11 @@ CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurable
     _blackboard.setSize(_pConfigurableElement->getFootPrint());
 }
 
-CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, uint32_t uiSize)
+CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, size_t size)
     : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet), _bValid(false)
 {
     // Size blackboard
-    _blackboard.setSize(uiSize);
+    _blackboard.setSize(size);
 }
 
 // Save data from current
@@ -54,14 +53,16 @@ void CAreaConfiguration::save(const CParameterBlackboard* pMainBlackboard)
 }
 
 // Apply data to current
-bool CAreaConfiguration::restore(CParameterBlackboard* pMainBlackboard, bool bSync, std::list<std::string>* plstrError) const
+bool CAreaConfiguration::restore(CParameterBlackboard* pMainBlackboard,
+                                 bool bSync,
+                                 core::Results* errors) const
 {
     assert(_bValid);
 
     copyTo(pMainBlackboard, _pConfigurableElement->getOffset());
 
     // Synchronize if required
-    return !bSync || _pSyncerSet->sync(*pMainBlackboard, false, plstrError);
+    return !bSync || _pSyncerSet->sync(*pMainBlackboard, false, errors);
 }
 
 // Ensure validity
@@ -146,25 +147,6 @@ void CAreaConfiguration::copyFromOuter(const CAreaConfiguration* pFromAreaConfig
     setValid(true);
 }
 
-// Serialization
-void CAreaConfiguration::serialize(CBinaryStream& binaryStream)
-{
-    // Delegate to blackboard
-    _blackboard.serialize(binaryStream);
-
-    if (!binaryStream.isOut()) {
-
-        // Serialized in areas are valid
-        _bValid = true;
-    }
-}
-
-// Data size
-uint32_t CAreaConfiguration::getSize() const
-{
-    return _blackboard.getSize();
-}
-
 CParameterBlackboard& CAreaConfiguration::getBlackboard()
 {
     return _blackboard;
@@ -182,13 +164,13 @@ void CAreaConfiguration::setValid(bool bValid)
 }
 
 // Blackboard copies
-void CAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, uint32_t uiOffset) const
+void CAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, size_t offset) const
 {
-    pToBlackboard->restoreFrom(&_blackboard, uiOffset);
+    pToBlackboard->restoreFrom(&_blackboard, offset);
 }
 
-void CAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackboard, uint32_t uiOffset)
+void CAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackboard, size_t offset)
 {
-   pFromBlackboard->saveTo(&_blackboard, uiOffset);
+   pFromBlackboard->saveTo(&_blackboard, offset);
 }
 

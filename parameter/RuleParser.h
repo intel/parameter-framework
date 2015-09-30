@@ -81,7 +81,7 @@ private:
     /** String iterator */
     std::string::size_type _uiCurrentPos;
     // Deepness
-    uint32_t _uiCurrentDeepness;
+    size_t _currentDeepness;
     // Current Type
     std::string _strRuleType;
     // Status
