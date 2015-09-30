@@ -27,7 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 if (BUILD_TESTING)
-    find_program(python2 python2)
+    find_package(PythonInterp 2 REQUIRED)
 
     set(PFW_ROOT ${CMAKE_BINARY_DIR}/tmp/test-parameters)
     set(PFW_RESULT ${PFW_ROOT}/result)
@@ -56,7 +56,7 @@ if (BUILD_TESTING)
 
     add_test(NAME functional-test-legacy
              WORKING_DIRECTORY ${PFW_ROOT}
-             COMMAND ${python2} ${PFW_ROOT}/ACTCampaignEngine.py)
+             COMMAND ${PYTHON_EXECUTABLE} ${PFW_ROOT}/ACTCampaignEngine.py)
 
     # Custom function defined in the top-level CMakeLists
     set_test_env(functional-test-legacy)
