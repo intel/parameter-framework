@@ -111,7 +111,7 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_Empty_String_Case.__doc__)
         log.I("STR_CHAR128 parameter empty string = \'\'")
-        value = "\"\""
+        value = ""
         #Set parameter value
         out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
         assert err == None, log.E("when setting parameter %s -> %s" % (self.param_name, err))
@@ -230,7 +230,7 @@ class TestCases(PfwTestCase):
         log.I("STR_CHAR128 parameter Parenthese Char = %s" % (value))
         param_check = open(os.environ["PFW_RESULT"] + "/STR_CHAR128").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, "'%s'" % (value))
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
         assert out == "Done", log.F("Expected : Done, found : %s" % (out))
         #Get parameter value
@@ -259,7 +259,7 @@ class TestCases(PfwTestCase):
         log.I("STR_CHAR128 parameter Parenthese Char = %s" % (value))
         param_check = open(os.environ["PFW_RESULT"] + "/STR_CHAR128").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, "'%s'" % value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
         assert out == "Done", log.F("Expected : Done, found : %s" % (out))
         #Get parameter value

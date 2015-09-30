@@ -35,13 +35,14 @@ import time
 
 class RemoteCli(object):
     def sendCmd(self, cmd, *args):
-        shell_cmd = " ".join([self.platform_command, cmd])
+
+        sys_cmd = self.platform_command + [cmd]
         if args is not None:
-            shell_cmd += " " + " ".join(args)
-        print "CMD  :",
-        print "[" + shell_cmd + "]"
+            sys_cmd += args
+        print "CMD  : %s" % sys_cmd
+
         try:
-            p = subprocess.Popen(shell_cmd, shell=True, stdout=subprocess.PIPE)
+            p = subprocess.Popen(sys_cmd, stdout=subprocess.PIPE)
         except Exception as (errno, strerror):
             return None, strerror
         out, err = p.communicate()
@@ -50,22 +51,20 @@ class RemoteCli(object):
         return out, err
 
 class Pfw(RemoteCli):
-    def __init__(self):
-        self.platform_command = "remote-process localhost 5000 "
+    platform_command = ["remote-process", "localhost", "5000"]
 
 class Hal(RemoteCli):
-    def __init__(self):
-        self.platform_command = "remote-process localhost 5001 "
+    testPlatformPort = "5001"
+    platform_command = ["remote-process", "localhost", testPlatformPort]
 
     # Starts the HAL exe
     def startHal(self):
-        cmd= "test-platform " + os.environ["PFW_TEST_CONFIGURATION"]
-        subprocess.Popen(cmd, shell=True)
-        pass
+        cmd= ["test-platform", os.environ["PFW_TEST_CONFIGURATION"], self.testPlatformPort]
+        subprocess.Popen(cmd)
 
     # Send command "stop" to the HAL
     def stopHal(self):
-        subprocess.call("remote-process localhost 5001 exit", shell=True)
+        self.sendCmd("exit")
 
     def createInclusiveCriterion(self, name, nb):
         self.sendCmd("createInclusiveSelectionCriterion", name, nb)
