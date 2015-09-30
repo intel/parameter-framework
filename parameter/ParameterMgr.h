@@ -91,8 +91,8 @@ class CParameterMgr : private CElement
         const char* _pcDescription;
     };
     // Version
-    static const uint32_t guiEditionMajor = 2;
-    static const uint32_t guiEditionMinor = 6;
+    static const uint32_t guiEditionMajor = 3;
+    static const uint32_t guiEditionMinor = 0;
     static const uint32_t guiRevision = 0;
 
     // Parameter handle friendship

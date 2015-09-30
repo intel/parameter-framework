@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 3.0.0-{build}
 
 # Only download the 50 first commits like travis to speedup clone
 clone_depth: 50
