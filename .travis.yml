@@ -58,6 +58,7 @@ script:
   - ( cd skeleton-subsystem &&
         cmake -DCMAKE_INSTALL_PREFIX=../install . &&
         make &&
+        CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck &&
         make install )
   - ( cd tools/clientSimulator &&
         cmake -DCMAKE_INSTALL_PREFIX=../install . &&

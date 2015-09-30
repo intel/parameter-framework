@@ -121,7 +121,7 @@ if(UNIX)
 endif()
 target_link_libraries(parameter xmlserializer remote-processor pfw_utility)
 
-install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
 # Client headers
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
