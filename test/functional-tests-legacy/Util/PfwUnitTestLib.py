@@ -28,6 +28,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+import os
 import subprocess
 import unittest
 import time
@@ -58,7 +59,7 @@ class Hal(RemoteCli):
 
     # Starts the HAL exe
     def startHal(self):
-        cmd= "test-platform $PFW_TEST_CONFIGURATION"
+        cmd= "test-platform " + os.environ["PFW_TEST_CONFIGURATION"]
         subprocess.Popen(cmd, shell=True)
         pass
 
