@@ -113,12 +113,12 @@ void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
 
             if (_bIsScalar) {
 
-                _logger.info() << "TESTSUBSYSTEM: Writing '" << strValue
-                               << "' to file " << _strFilePath;
+                info() << "TESTSUBSYSTEM: Writing '" << strValue
+                       << "' to file " << _strFilePath;
             } else {
 
-                _logger.info() << "TESTSUBSYSTEM: Writing '" << strValue << "' to file "
-                               << _strFilePath << "[" << index << "]";
+                info() << "TESTSUBSYSTEM: Writing '" << strValue << "' to file "
+                       << _strFilePath << "[" << index << "]";
             }
         }
     }
@@ -140,12 +140,12 @@ void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
 
             if (_bIsScalar) {
 
-                _logger.info() << "TESTSUBSYSTEM: Reading '" << strValue
-                               << "' to file " << _strFilePath;
+                info() << "TESTSUBSYSTEM: Reading '" << strValue
+                       << "' to file " << _strFilePath;
             } else {
 
-                _logger.info() << "TESTSUBSYSTEM: Reading '" << strValue << "' to file "
-                               << _strFilePath << "[" << index << "]";
+                info() << "TESTSUBSYSTEM: Reading '" << strValue << "' to file "
+                       << _strFilePath << "[" << index << "]";
             }
         }
 
