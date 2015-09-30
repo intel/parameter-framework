@@ -136,12 +136,12 @@ class TestCases(PfwTestCase):
         for line in range(element_nbr):
             # initial domain elements shall not have been impacted by current test
             if (line < element_nbr_init):
-                element_name = f_DomainElements.readline().strip('\n')
-                element_name_backup = f_DomainElements_Backup.readline().strip('\n')
+                element_name = f_DomainElements.readline().strip('\r\n')
+                element_name_backup = f_DomainElements_Backup.readline().strip('\r\n')
                 assert element_name==element_name_backup, "ERROR : Error while modifying domain elements on domain %s" % (self.domain_name)
             # last listed element shall be equal to the only one element added previously
             else:
-                element_name = f_DomainElements.readline().strip('\n')
+                element_name = f_DomainElements.readline().strip('\r\n')
                 assert element_name==str(self.elem_2_path), "ERROR : Error while modifying domain elements on domain %s" % (self.domain_name)
         log.I("Actual domain %s elements names conform to expected values" % (self.domain_name))
         # Temporary files deletion
@@ -222,8 +222,8 @@ class TestCases(PfwTestCase):
         f_DomainElements_Backup = open("f_DomainElements_Backup", "r")
         for line in range(element_nbr):
             # initial domain elements shall not have been impacted by current test
-            element_name = f_DomainElements.readline().strip('\n')
-            element_name_backup = f_DomainElements_Backup.readline().strip('\n')
+            element_name = f_DomainElements.readline().strip('\r\n')
+            element_name_backup = f_DomainElements_Backup.readline().strip('\r\n')
             assert element_name==element_name_backup, "ERROR : domain %s elements affected by addElement errors" % (self.domain_name)
         log.I("Actual domain %s elements names conform to expected values" % (self.domain_name))
         # Temporary files deletion
@@ -300,8 +300,8 @@ class TestCases(PfwTestCase):
         f_DomainElements_Backup = open("f_DomainElements_Backup", "r")
         for line in range(element_nbr):
             # initial domain elements shall not have been impacted by current test
-            element_name = f_DomainElements.readline().strip('\n')
-            element_name_backup = f_DomainElements_Backup.readline().strip('\n')
+            element_name = f_DomainElements.readline().strip('\r\n')
+            element_name_backup = f_DomainElements_Backup.readline().strip('\r\n')
             assert element_name==element_name_backup, "ERROR : domain %s elements affected by addElement errors" % (self.domain_name)
         log.I("Actual domain %s elements names conform to expected values" % (self.domain_name))
         # Temporary files deletion
