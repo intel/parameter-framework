@@ -42,12 +42,18 @@ install:
     - tar xf asio-1.10.6.tar.gz -C $PREFIX --strip-components=1
 
 before_script:
-    - if [ "$CC" = "gcc" ]; then export CC=gcc-4.8 CXX=g++-4.8; fi
+    - coverage=OFF
+    # Force the manualy installed 4.8 version as it is not the default
+    # Only enable coverage on gcc as clang segfault on coverage file write
+    - if [ "$CC" = "gcc" ]; then
+          export CC=gcc-4.8 CXX=g++-4.8;
+          coverage=ON;
+      fi
 
 # how to build
 script:
   - ( mkdir build_debug && cd build_debug &&
-        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON .. &&
+        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=${coverage} .. &&
         make -j &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck )
   - ( mkdir build && cd build &&
@@ -68,19 +74,20 @@ script:
 after_success:
     # Push coverage info on coveralls.io.
     # Ignore generated files, samples and tests
-    - coveralls
-          --exclude "build_debug/bindings/python"
-          --exclude "build_debug/CMakeFiles"
-          --exclude "build"
-          --exclude "install"
-          --exclude "skeleton-subsystem"
-          --exclude "tools/clientSimulator"
-          --exclude "test/test-subsystem"
-          --exclude "test/functional-tests"
-          --exclude "bindings/c/Test.cpp"
-          --exclude "test/tokenizer"
-          --gcov /usr/bin/gcov-4.8
-          --gcov-options '\--long-file-names --preserve-paths'
+    - if [ "${coverage}" = "ON" ]; then
+          coveralls --exclude "build_debug/bindings/python"
+                    --exclude "build_debug/CMakeFiles"
+                    --exclude "build"
+                    --exclude "install"
+                    --exclude "skeleton-subsystem"
+                    --exclude "tools/clientSimulator"
+                    --exclude "test/test-subsystem"
+                    --exclude "test/functional-tests"
+                    --exclude "bindings/c/Test.cpp"
+                    --exclude "test/tokenizer"
+                    --gcov /usr/bin/gcov-4.8
+                    --gcov-options '\--long-file-names --preserve-paths'
+      fi
 
 notifications:
   irc:
