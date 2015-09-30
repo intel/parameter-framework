@@ -28,7 +28,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <iostream>
 #include <stdlib.h>
 #include <sstream>
 #include <assert.h>
@@ -36,48 +35,25 @@
 #include <convert.hpp>
 #include <sstream>
 #include "TestPlatform.h"
-#include "ParameterMgrPlatformConnector.h"
-#include "RemoteProcessorServer.h"
 
 using std::string;
 
-class CParameterMgrPlatformConnectorLogger : public CParameterMgrPlatformConnector::ILogger
-{
-public:
-    CParameterMgrPlatformConnectorLogger() {}
-
-    virtual void info(const string& log)
-    {
-        std::cout << log << std::endl;
-    }
-
-    virtual void warning(const string& log)
-    {
-        std::cerr << log << std::endl;
-    }
-};
-
 CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
-    _pParameterMgrPlatformConnector(new CParameterMgrPlatformConnector(strClass)),
-    _pParameterMgrPlatformConnectorLogger(new CParameterMgrPlatformConnectorLogger)
+    mParameterMgrPlatformConnector(strClass),
+    mLogger(),
+    mRemoteProcessorServer(iPortNumber)
 {
-    // Create server
-    _pRemoteProcessorServer = new CRemoteProcessorServer(iPortNumber);
-
-    _pParameterMgrPlatformConnector->setLogger(_pParameterMgrPlatformConnectorLogger);
+    mParameterMgrPlatformConnector.setLogger(&mLogger);
 }
 
 CTestPlatform::~CTestPlatform()
 {
-    delete _pRemoteProcessorServer;
-    delete _pParameterMgrPlatformConnectorLogger;
-    delete _pParameterMgrPlatformConnector;
 }
 
 CTestPlatform::CommandReturn CTestPlatform::exit(
     const IRemoteCommand& /*command*/, string& /*strResult*/)
 {
-    _pRemoteProcessorServer->stop();
+    mRemoteProcessorServer.stop();
 
     return CTestPlatform::CCommandHandler::EDone;
 }
@@ -85,7 +61,7 @@ CTestPlatform::CommandReturn CTestPlatform::exit(
 bool CTestPlatform::run(std::string& strError)
 {
     // Start remote processor server
-    if (!_pRemoteProcessorServer->start(strError)) {
+    if (!mRemoteProcessorServer.start(strError)) {
 
         strError = "TestPlatform: Unable to start remote processor server: " + strError;
         return false;
@@ -160,7 +136,7 @@ bool CTestPlatform::run(std::string& strError)
         0, "",
         "Get policy for schema validation based on .xsd files.");
 
-    return _pRemoteProcessorServer->process(commandHandler);
+    return mRemoteProcessorServer.process(commandHandler);
 }
 
 //////////////// Remote command parsers
@@ -204,7 +180,7 @@ CTestPlatform::CommandReturn CTestPlatform::createInclusiveSelectionCriterion(
 CTestPlatform::CommandReturn CTestPlatform::startParameterMgr(
     const IRemoteCommand& /*remoteCommand*/, string& strResult)
 {
-    return _pParameterMgrPlatformConnector->start(strResult) ?
+    return mParameterMgrPlatformConnector.start(strResult) ?
            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
@@ -220,7 +196,7 @@ CTestPlatform::CommandReturn CTestPlatform::setter(
         return CTestPlatform::CCommandHandler::EShowUsage;
     }
 
-    return (_pParameterMgrPlatformConnector->*setFunction)(bFail, strResult) ?
+    return (mParameterMgrPlatformConnector.*setFunction)(bFail, strResult) ?
            CTestPlatform::CCommandHandler::EDone : CTestPlatform::CCommandHandler::EFailed;
 }
 
@@ -228,7 +204,7 @@ template <CTestPlatform::getter_t getFunction>
 CTestPlatform::CommandReturn CTestPlatform::getter(
     const IRemoteCommand& /*command*/, string& strResult)
 {
-    strResult = (_pParameterMgrPlatformConnector->*getFunction)() ? "true" : "false";
+    strResult = (mParameterMgrPlatformConnector.*getFunction)() ? "true" : "false";
 
     return CTestPlatform::CCommandHandler::ESucceeded;
 }
@@ -265,7 +241,7 @@ CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
 CTestPlatform::CommandReturn CTestPlatform::applyConfigurations(const IRemoteCommand& /*command*/,
                                                                 string& /*strResult*/)
 {
-    _pParameterMgrPlatformConnector->applyConfigurations();
+    mParameterMgrPlatformConnector.applyConfigurations();
 
     return CTestPlatform::CCommandHandler::EDone;
 }
@@ -277,11 +253,8 @@ bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(
                                                                 const IRemoteCommand& remoteCommand,
                                                                 string& strResult)
 {
-
-    assert(_pParameterMgrPlatformConnector != NULL);
-
     ISelectionCriterionTypeInterface* pCriterionType =
-        _pParameterMgrPlatformConnector->createSelectionCriterionType(false);
+        mParameterMgrPlatformConnector.createSelectionCriterionType(false);
 
     assert(pCriterionType != NULL);
 
@@ -299,7 +272,7 @@ bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(
         }
     }
 
-    _pParameterMgrPlatformConnector->createSelectionCriterion(strName, pCriterionType);
+    mParameterMgrPlatformConnector.createSelectionCriterion(strName, pCriterionType);
 
     return true;
 }
@@ -309,10 +282,8 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
                                                                 const IRemoteCommand& remoteCommand,
                                                                 string& strResult)
 {
-    assert(_pParameterMgrPlatformConnector != NULL);
-
     ISelectionCriterionTypeInterface* pCriterionType =
-        _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
+        mParameterMgrPlatformConnector.createSelectionCriterionType(true);
 
     assert(pCriterionType != NULL);
 
@@ -331,7 +302,7 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
         }
     }
 
-    _pParameterMgrPlatformConnector->createSelectionCriterion(strName, pCriterionType);
+    mParameterMgrPlatformConnector.createSelectionCriterion(strName, pCriterionType);
 
     return true;
 }
@@ -342,7 +313,7 @@ bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName,
                                                       string& strResult)
 {
     ISelectionCriterionTypeInterface* pCriterionType =
-        _pParameterMgrPlatformConnector->createSelectionCriterionType(false);
+        mParameterMgrPlatformConnector.createSelectionCriterionType(false);
 
     for (size_t state = 0; state < nbStates; state++) {
 
@@ -361,7 +332,7 @@ bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName,
         }
     }
 
-    _pParameterMgrPlatformConnector->createSelectionCriterion(strName, pCriterionType);
+    mParameterMgrPlatformConnector.createSelectionCriterion(strName, pCriterionType);
 
     return true;
 }
@@ -371,7 +342,7 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
                                                       string& strResult)
 {
     ISelectionCriterionTypeInterface* pCriterionType =
-        _pParameterMgrPlatformConnector->createSelectionCriterionType(true);
+        mParameterMgrPlatformConnector.createSelectionCriterionType(true);
 
     for (size_t state = 0; state < nbStates; state++) {
 
@@ -390,7 +361,7 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
         }
     }
 
-    _pParameterMgrPlatformConnector->createSelectionCriterion(strName, pCriterionType);
+    mParameterMgrPlatformConnector.createSelectionCriterion(strName, pCriterionType);
 
     return true;
 }
@@ -398,7 +369,7 @@ bool CTestPlatform::createInclusiveSelectionCriterion(const string& strName,
 bool CTestPlatform::setCriterionState(const string& strName, uint32_t uiState, string& strResult)
 {
     ISelectionCriterionInterface* pCriterion =
-        _pParameterMgrPlatformConnector->getSelectionCriterion(strName);
+        mParameterMgrPlatformConnector.getSelectionCriterion(strName);
 
     if (!pCriterion) {
 
@@ -420,7 +391,7 @@ bool CTestPlatform::setCriterionStateByLexicalSpace(const IRemoteCommand& remote
     std::string strCriterionName = remoteCommand.getArgument(0);
 
     ISelectionCriterionInterface* pCriterion =
-        _pParameterMgrPlatformConnector->getSelectionCriterion(strCriterionName);
+        mParameterMgrPlatformConnector.getSelectionCriterion(strCriterionName);
 
     if (!pCriterion) {
 

@@ -47,7 +47,8 @@ DynamicLibrary::DynamicLibrary(const std::string& path)
 
     if (_handle == nullptr) {
 
-        throw std::runtime_error(dlerror());
+        const char *dlError = dlerror();
+        throw std::runtime_error((dlError != NULL) ? dlError : "unknown dlopen error");
     }
 }
 
@@ -62,7 +63,8 @@ void *DynamicLibrary::osGetSymbol(const std::string& symbol) const
 
     if (sym == nullptr) {
 
-        throw std::runtime_error(dlerror());
+        const char *dlError = dlerror();
+        throw std::runtime_error((dlError != NULL) ? dlError : "unknown dlsym error");
     }
 
     return sym;

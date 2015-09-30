@@ -202,7 +202,15 @@ public:
     bool getValidateSchemasOnStart() const;
 
     //////////// Tuning /////////////
-    // Tuning mode
+    /**
+     * Activate / deactivate the tuning mode.
+     *
+     * @param[in] bOn true if tuning mode activation is requested, false for desactivation
+     * @param[out] strError human readable error
+     * @return true if request is successful, false if the Parameter Manager is already in the mode
+     *         requested or in case of error.
+     *         If false, strError is set with the associated human readable error.
+     */
     bool setTuningMode(bool bOn, std::string& strError);
     bool tuningModeOn() const;
 

@@ -31,11 +31,12 @@
 
 #include "ParameterMgrPlatformConnector.h"
 #include "RemoteCommandHandlerTemplate.h"
+#include "RemoteProcessorServer.h"
 #include <string>
+#include <iostream>
 #include <list>
 
 class CParameterMgrPlatformConnectorLogger;
-class CRemoteProcessorServer;
 class ISelectionCriterionInterface;
 
 class CTestPlatform
@@ -141,12 +142,23 @@ private:
     bool setCriterionStateByLexicalSpace(const IRemoteCommand& remoteCommand, std::string& strResult);
 
     // Connector
-    CParameterMgrPlatformConnector* _pParameterMgrPlatformConnector;
+    CParameterMgrPlatformConnector mParameterMgrPlatformConnector;
 
-    // Logger
-    CParameterMgrPlatformConnectorLogger* _pParameterMgrPlatformConnectorLogger;
+    class : public CParameterMgrPlatformConnector::ILogger
+    {
+        public:
+            virtual void info(const std::string& log)
+            {
+                std::cout << log << std::endl;
+            }
+
+            virtual void warning(const std::string& log)
+            {
+                std::cerr << log << std::endl;
+            }
+    } mLogger;
 
     // Remote Processor Server
-    CRemoteProcessorServer* _pRemoteProcessorServer;
+    CRemoteProcessorServer mRemoteProcessorServer;
 };
 

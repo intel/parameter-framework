@@ -35,7 +35,8 @@
 #include "XmlDomainImportContext.h"
 #include "XmlDomainExportContext.h"
 #include "Utility.h"
-#include <assert.h>
+#include "AlwaysAssert.hpp"
+#include <cassert>
 
 #define base CElement
 
@@ -1122,7 +1123,8 @@ CSyncerSet* CConfigurableDomain::getSyncerSet(const CConfigurableElement* pConfi
 {
     ConfigurableElementToSyncerSetMapIterator mapIt = _configurableElementToSyncerSetMap.find(pConfigurableElement);
 
-    assert(mapIt != _configurableElementToSyncerSetMap.end());
+    ALWAYS_ASSERT(mapIt != _configurableElementToSyncerSetMap.end(),
+                  "Could not find syncer set for " << getName() << " configurable domain");
 
     return mapIt->second;
 }

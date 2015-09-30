@@ -88,7 +88,7 @@ void CFixedPointParameterType::handleValueSpaceAttribute(CXmlElement& xmlConfigu
 bool CFixedPointParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {
     // Size
-    size_t sizeInBits;
+    size_t sizeInBits = 0;
     xmlElement.getAttribute("Size", sizeInBits);
 
     // Q notation
@@ -276,39 +276,33 @@ void CFixedPointParameterType::getRange(double& dMin, double& dMax) const
 bool CFixedPointParameterType::convertFromHexadecimal(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     // For hexadecimal representation, we need full 32 bit range conversion.
-    uint32_t uiData;
-    if (!convertTo(strValue, uiData) || !isEncodable(uiData, false)) {
+    if (!convertTo(strValue, uiValue) || !isEncodable(uiValue, false)) {
 
         setOutOfRangeError(strValue, parameterAccessContext);
         return false;
     }
-    signExtend((int32_t&)uiData);
+    signExtend(reinterpret_cast<int32_t &>(uiValue));
 
     // check that the data is encodable and can been safely written to the blackboard
-    assert(isEncodable(uiData, true));
-    uiValue = uiData;
+    assert(isEncodable(uiValue, true));
 
     return true;
 }
 
 bool CFixedPointParameterType::convertFromDecimal(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
-    int32_t iData;
-
-    if (!convertTo(strValue, iData) || !isEncodable((uint32_t)iData, true)) {
+    if (!convertTo(strValue, reinterpret_cast<int32_t &>(uiValue)) || !isEncodable(uiValue, true)) {
 
         setOutOfRangeError(strValue, parameterAccessContext);
         return false;
     }
-    uiValue = static_cast<uint32_t>(iData);
-
     return true;
 }
 
 bool CFixedPointParameterType::convertFromQnm(const string& strValue, uint32_t& uiValue,
                                               CParameterAccessContext& parameterAccessContext) const
 {
-    double dData;
+    double dData = 0;
 
     if (!convertTo(strValue, dData) || !checkValueAgainstRange(dData)) {
 

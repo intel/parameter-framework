@@ -1746,6 +1746,10 @@ bool CParameterMgr::accessValue(CParameterAccessContext& parameterAccessContext,
 // Tuning mode
 bool CParameterMgr::setTuningMode(bool bOn, string& strError)
 {
+    if (bOn == tuningModeOn()) {
+        strError = "Tuning mode is already in the state requested";
+        return false;
+    }
     // Tuning allowed?
     if (bOn && !getConstFrameworkConfiguration()->isTuningAllowed()) {
 
@@ -1757,7 +1761,7 @@ bool CParameterMgr::setTuningMode(bool bOn, string& strError)
     lock_guard<mutex> autoLock(getBlackboardMutex());
 
     // Warn domains about exiting tuning mode
-    if (!bOn && _bTuningModeIsOn) {
+    if (!bOn) {
 
         // Ensure application of currently selected configurations
         // Force-apply configurations
