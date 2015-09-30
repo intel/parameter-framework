@@ -91,8 +91,12 @@ protected:
     // Belonging Subsystem retrieval
     const CSubsystem* getSubsystem() const;
 
-    /** Application Logger */
-    core::log::Logger& _logger;
+    /** Logging methods
+     *@{
+     */
+    core::log::details::Info info() const { return _logger.info(); }
+    core::log::details::Warning warning() const { return _logger.warning(); }
+    /* @} */
 
 private:
     // from ISyncer
@@ -112,6 +116,9 @@ private:
 
     // Define affection operator
     const CSubsystemObject& operator=(const CSubsystemObject&);
+
+    /** Application Logger */
+    core::log::Logger& _logger;
 
     // Instance element to sync from/to
     CInstanceConfigurableElement* _pInstanceConfigurableElement;
