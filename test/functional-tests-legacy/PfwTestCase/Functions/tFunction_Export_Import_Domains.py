@@ -124,18 +124,9 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("Command [listDomains] : %s"%(err))
         log.I("Command [listDomains] - correctly executed")
         # Domains listing backup
-        f_Domains_Backup = open(self.temp_domain, "w")
-        f_Domains_Backup.write(out)
-        f_Domains_Backup.close()
-        f_Domains_Backup = open(self.temp_domain, "r")
-        domains_nbr = 0
-        line=f_Domains_Backup.readline()
-        while line!="":
-            line=f_Domains_Backup.readline()
-            domains_nbr+=1
-        f_Domains_Backup.close()
-        log.I("Actual domains number : %s" % domains_nbr)
-        assert domains_nbr==self.nb_domains_in_reference_xml, log.F("Number of listed domains is not compliant with the file %s - expected : %s - found : %s"%(self.reference_xml,self.nb_domains_in_reference_xml, domains_nbr))
+        domainBackup = out.strip('\r\n').splitlines()
+        log.I("Actual domains: %s" % domainBackup)
+        assert len(domainBackup)==self.nb_domains_in_reference_xml, log.F("Number of listed domains is not compliant with the file %s - expected : %s domains, found domains %s"%(self.reference_xml,self.nb_domains_in_reference_xml, domainBackup))
 
         #Check number of config per domain(2 config per domains are setup in the reference XML)
         # Config listing
