@@ -154,10 +154,9 @@ class TestCases(PfwTestCase):
         log.I("Configurations listing conformity check")
         f_configurations = open("f_configurations", "r")
         f_configurations_backup = open("f_configurations_backup", "r")
-        for iteration in range(self.new_conf_number):
-            listed_conf_backup = f_configurations_backup.readline().strip('\n')
-            listed_conf = f_configurations.readline().strip('\n')
-            assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
+        listed_conf_backup = f_configurations_backup.read().splitlines()
+        listed_conf = f_configurations.read().splitlines()
+        assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
         log.I("No change detected, listed configurations names conform to expected values")
 
         # New domain deletion
@@ -268,10 +267,9 @@ class TestCases(PfwTestCase):
         log.I("Configurations listing conformity check")
         f_configurations = open("f_configurations", "r")
         f_configurations_backup = open("f_configurations_backup", "r")
-        for iteration in range(self.new_conf_number):
-            listed_conf_backup = f_configurations_backup.readline().strip('\n')
-            listed_conf = f_configurations.readline().strip('\n')
-            assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
+        listed_conf_backup = f_configurations_backup.read().splitlines()
+        listed_conf = f_configurations.read().splitlines()
+        assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
         log.I("No change detected, listed configurations names conform to expected values")
 
         # Testing domain deletion
@@ -377,10 +375,9 @@ class TestCases(PfwTestCase):
         log.I("Configurations listing conformity check")
         f_configurations = open("f_configurations", "r")
         f_configurations_backup = open("f_configurations_backup", "r")
-        for iteration in range(self.new_conf_number):
-            listed_conf_backup = f_configurations_backup.readline().strip('\n')
-            listed_conf = f_configurations.readline().strip('\n')
-            assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
+        listed_conf_backup = f_configurations_backup.read().splitlines()
+        listed_conf = f_configurations.read().splitlines()
+        assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
         log.I("No change detected, listed configurations names conform to expected values")
 
         # Testing domain deletion
@@ -453,10 +450,9 @@ class TestCases(PfwTestCase):
         # Checking configurations names integrity
         log.I("Configurations listing conformity check")
         f_configurations = open("f_configurations", "r")
-        for iteration in range(self.new_conf_number):
-            new_conf_name = "".join([self.conf_test, "_", str(iteration)])
-            listed_conf = f_configurations.readline().strip('\n')
-            assert listed_conf==new_conf_name, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf, new_conf_name)
+        new_conf_names = [self.conf_test + "_" + str(iteration) for iteration in range(self.new_conf_number)]
+        listed_conf = f_configurations.read().strip('\r\n').splitlines()
+        assert listed_conf == new_conf_names, "ERROR : Error while listing configuration, expected '%s', found '%s'" % (new_conf_names, listed_conf)
         log.I("Listed configurations names conform to expected values")
 
         # Configuration renaming
