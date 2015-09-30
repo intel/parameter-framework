@@ -565,7 +565,7 @@ class TestCases(PfwTestCase):
         init_filesystem_01 = open(self.filesystem_01).read()[:-1]
         init_filesystem_02 = open(self.filesystem_02).read()[:-1]
         init_filesystem_03 = open(self.filesystem_03).read()[:-1]
-        xml_path="$PFW_TEST_TOOLS/xml/XML_Test/"
+        xml_path=os.environ["PFW_TEST_TOOLS"] + "/xml/XML_Test/"
         ### END OF INIT ###
 
         self.pfw.sendCmd("setTuningMode", "on","")
@@ -721,7 +721,7 @@ class TestCases(PfwTestCase):
         assert out == "Done", log.F("When using function importDomainsWithSettingsXML %s]"%(self.reference_xml))
 
         self.pfw.sendCmd("setTuningMode", "off","")
-        xml_path="$PFW_TEST_TOOLS/xml/XML_Test/"
+        xml_path=os.environ["PFW_TEST_TOOLS"] + "/xml/XML_Test/"
         ### END OF INIT ###
 
         self.pfw.sendCmd("setTuningMode", "on","")

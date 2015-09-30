@@ -49,7 +49,7 @@ class TestCases(PfwTestCase):
 
     def setUp(self):
         self.pfw.sendCmd("setTuningMode", "on")
-        self.reference_xml = "$PFW_TEST_TOOLS/xml/XML_Test/Reference_Criteria.xml"
+        self.reference_xml = os.environ["PFW_TEST_TOOLS"] + "/xml/XML_Test/Reference_Criteria.xml"
         self.temp_domain="f_Domains_Backup"
         self.temp_status="f_Config_Status"
         # Expected results are defined by Reference_Criteria.xml configuration settings
