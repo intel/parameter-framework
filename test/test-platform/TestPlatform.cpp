@@ -38,7 +38,7 @@
 
 using std::string;
 
-CTestPlatform::CTestPlatform(const string& strClass, int iPortNumber) :
+CTestPlatform::CTestPlatform(const string& strClass, uint16_t iPortNumber) :
     mParameterMgrPlatformConnector(strClass),
     mLogger(),
     mRemoteProcessorServer(iPortNumber)
