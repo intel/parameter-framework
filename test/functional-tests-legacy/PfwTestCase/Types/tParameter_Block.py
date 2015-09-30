@@ -124,7 +124,7 @@ class TestCases(PfwTestCase):
             assert out == value_param[index_param], log.F("getParameter %s - Expected : %s Found : %s"
                                                           %(self.param_name[index_param],value_param[index_param], out))
             log.I("Check filesystem value")
-            assert (commands.getoutput("cat %s" % (self.filesystem_name[index_param]))
+            assert (open(self.filesystem_name[index_param]).read()[:-1]
                     == filesystem_value[index_param]), log.F("FILESYSTEM : parameter update error for %s after setting %s "
                                                              %(self.block_name, self.param_name[index_param]))
 
@@ -159,8 +159,7 @@ class TestCases(PfwTestCase):
         for index_param in range(len(self.param_name)):
             out,err = self.pfw.sendCmd("getParameter",self.param_name[index_param])
             init_value_param.append(out)
-            init_filesystem_value.append(commands.getoutput("cat %s"
-                                                            %(self.filesystem_name[index_param])))
+            init_filesystem_value.append(open(self.filesystem_name[index_param]).read()[:-1])
 
         log.I("Try to set parameter %s to %s, failed expected"
               %(self.block_name,value))
@@ -221,8 +220,7 @@ class TestCases(PfwTestCase):
         for index_param in range(len(self.param_name)):
             out,err = self.pfw.sendCmd("getParameter",self.param_name[index_param])
             init_value_param.append(out)
-            init_filesystem_value.append(commands.getoutput("cat %s"
-                                                            %(self.filesystem_name[index_param])))
+            init_filesystem_value.append(open(self.filesystem_name[index_param]).read()[:-1])
 
         log.I("set parameter %s to %s, failed expected"
               %(self.param_name[1],param_value))
@@ -272,8 +270,7 @@ class TestCases(PfwTestCase):
         for index_param in range(len(self.param_name)) :
             out,err = self.pfw.sendCmd("getParameter",self.param_name[index_param])
             init_value_param.append(out)
-            init_filesystem_value.append(commands.getoutput("cat %s"
-                                                            %(self.filesystem_name[index_param])))
+            init_filesystem_value.append(open(self.filesystem_name[index_param]).read()[:-1])
 
         log.I("set parameter %s to %s, failed expected"
               %(param_undefined_name,param_value))
