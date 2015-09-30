@@ -49,7 +49,11 @@ target_include_directories(remote-processor SYSTEM PUBLIC "${ASIO_DIR}")
 include_directories("${PROJECT_SOURCE_DIR}/utility"
                     "${CMAKE_CURRENT_BINARY_DIR}")
 
-target_compile_definitions(remote-processor PUBLIC ASIO_STANDALONE)
+# Ubuntu 14.04 packages asio 1.10.1 and clang 3.4.1.
+# In this environment, asio stand alone (set ASIO_STANDALONE)
+# does not correcly detect that the stl has CHRONO support (c++11).
+# Force the use of std::chrono by setting ASIO_HAS_STD_CHRONO
+target_compile_definitions(remote-processor PUBLIC ASIO_STANDALONE ASIO_HAS_STD_CHRONO)
 
 target_link_libraries(remote-processor pfw_utility ${CMAKE_THREAD_LIBS_INIT})
 
