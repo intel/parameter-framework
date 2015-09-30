@@ -478,16 +478,12 @@ class TestCases(PfwTestCase):
         assert err == None, "ERROR : command [listConfigurations] - Error while listing configurations for domain %s" % (self.domain_name)
         log.I("command [listConfigurations] correctly executed")
         # Saving configurations names
-        f_configurations_renamed = open("f_configurations_renamed", "w")
-        f_configurations_renamed.write(out)
-        f_configurations_renamed.close()
+        configurations_renamed = out
         # Checking configurations names integrity
         log.I("Configurations listing conformity check")
-        f_configurations_renamed = open("f_configurations_renamed", "r")
-        for iteration in range(self.new_conf_number):
-            new_conf_name = "".join([self.conf_test_renamed, "_", str(iteration)])
-            listed_conf = f_configurations_renamed.readline().strip('\n')
-            assert listed_conf==new_conf_name, "ERROR : Error while renaming configuration %s (found %s)" % (new_conf_name,listed_conf)
+        new_conf_names = [self.conf_test_renamed + "_" + str(iteration) for iteration in range(self.new_conf_number)]
+        listed_conf = configurations_renamed.strip('\r\n').splitlines()
+        assert listed_conf == new_conf_names, "ERROR : Error while renaming configuration, expected '%s', found '%s'" % (new_conf_names, listed_conf)
         log.I("Listed configurations names conform to expected values, renaming successfull")
 
         # New domain deletion
@@ -501,5 +497,3 @@ class TestCases(PfwTestCase):
         # Closing and deleting temp file
         f_configurations.close()
         os.remove("f_configurations")
-        f_configurations_renamed.close()
-        os.remove("f_configurations_renamed")

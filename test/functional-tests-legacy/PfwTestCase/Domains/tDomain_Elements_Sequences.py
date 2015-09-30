@@ -107,20 +107,11 @@ class TestCases(PfwTestCase):
 
         # Checking new elements sequence order conformity for selected configuration
         log.I("Checking new elements sequence order for configuration")
-        f_ConfigElementsOrder = open("f_ConfigElementsOrder", "w")
-        f_ConfigElementsOrder.write(out)
-        f_ConfigElementsOrder.close()
-        f_ConfigElementsOrder = open("f_ConfigElementsOrder", "r")
-        element_name = f_ConfigElementsOrder.readline().strip('\n')
-        assert element_name==self.elem_2_path, "ERROR : Error while modifying configuration %s elements order on domain %s" % (self.configuration)
-        element_name = f_ConfigElementsOrder.readline().strip('\n')
-        assert element_name==self.elem_0_path, "ERROR : Error while modifying configuration %s elements order on domain %s" % (self.configuration)
-        element_name = f_ConfigElementsOrder.readline().strip('\n')
-        assert element_name==self.elem_1_path, "ERROR : Error while modifying configuration %s elements order on domain %s" % (self.configuration)
+        expected = [self.elem_2_path, self.elem_0_path, self.elem_1_path]
+        # Only check the element reordered
+        configElementOrder = out.strip('\r\n').splitlines()[:len(expected)]
+        assert configElementOrder == expected, "ERROR : Error while modifying configuration %s elements order on domain %s, expected %s, found %s" % (self.configuration, self.domain_name, expected, configElementOrder)
         log.I("New elements sequence order conform to expected order for configuration %s" % (self.configuration))
-        # Closing and removing temp file
-        f_ConfigElementsOrder.close()
-        os.remove("f_ConfigElementsOrder")
         # Removing created domain element
         out, err = self.pfw.sendCmd("removeElement", str(self.domain_name), str(self.elem_1_path))
         assert err == None, "ERROR : command [removeElement] - Error while removing domain element %s" % (self.elem_1_path)
