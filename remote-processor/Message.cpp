@@ -41,7 +41,7 @@ CMessage::CMessage(MsgType ucMsgId) :
 }
 
 CMessage::CMessage() :
-    _ucMsgId(static_cast<MsgType>(-1)), _uiIndex(0)
+    _ucMsgId(MsgType::EInvalid), _uiIndex(0)
 {
 }
 

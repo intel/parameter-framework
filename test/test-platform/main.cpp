@@ -41,12 +41,12 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-static const int iDefaultPortNumber = 5001;
+static const uint16_t defaultPortNumber = 5001;
 
 static void showUsage()
 {
     cerr << "test-platform [-h|--help] <file path> [port number, default "
-         << iDefaultPortNumber << "]" << endl;
+         << defaultPortNumber << "]" << endl;
 }
 
 static void showInvalidUsage(const string &error)
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     options.pop_front();
 
     // Handle optional port number argument
-    int portNumber = iDefaultPortNumber;
+    uint16_t portNumber = defaultPortNumber;
 
     if (not options.empty()) {
         if (convertTo(options.front(), portNumber)) {
