@@ -118,6 +118,4 @@ private:
     const CBaseParameter* _pBaseParameter;
     // Parameter Mgr
     CParameterMgr* _pParameterMgr;
-    // Subsystem endianness
-    bool _bBigEndianSubsystem;
 };

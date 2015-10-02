@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Subsystem
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/Subsystem.xsd"
-  Name="Test" Type="TEST" Endianness="Little">
+  Name="Test" Type="TEST">
 	<ComponentLibrary>
 		<ComponentType Name="TEST_DIR">
 			<!-- Tested Booleans -->

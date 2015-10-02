@@ -66,7 +66,6 @@ A Subsystem has the following attribute:
   which case, no plugin will be used and the parameters won't be synchronized.
   This is useful for debugging but may also be used for the parameter-framework
   to act as a configurable settings database;
-- `Endianness`: `Little` or `Big`;
 - `Mapping` (optional), defines a Mapping to be inherited by all Components in
   the Subsystem.
 

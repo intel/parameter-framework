@@ -46,7 +46,7 @@ using std::ostringstream;
 
 CSubsystem::CSubsystem(const string& strName, core::log::Logger& logger)
     : base(strName), _pComponentLibrary(new CComponentLibrary),
-      _pInstanceDefinition(new CInstanceDefinition), _bBigEndian(false), _pMappingData(NULL),
+      _pInstanceDefinition(new CInstanceDefinition), _pMappingData(NULL),
       _logger(logger)
 {
     // Note: A subsystem contains instance components
@@ -79,12 +79,6 @@ CSubsystem::~CSubsystem()
 string CSubsystem::getKind() const
 {
     return "Subsystem";
-}
-
-// Susbsystem Endianness
-bool CSubsystem::isBigEndian() const
-{
-    return _bBigEndian;
 }
 
 // Susbsystem sanity
@@ -158,23 +152,8 @@ bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& 
         return false;
     }
 
-    // Endianness
-    string strEndianness;
-    xmlElement.getAttribute("Endianness", strEndianness);
-    _bBigEndian = strEndianness == "Big";
-
     return true;
 }
-
-// XML configuration settings parsing
-bool CSubsystem::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
-{
-    // Fix Endianness
-    configurationAccessContext.setBigEndianSubsystem(_bBigEndian);
-
-    return base::serializeXmlSettings(xmlConfigurationSettingsElementContent, configurationAccessContext);
-}
-
 
 bool CSubsystem::mapSubsystemElements(string& strError)
 {
@@ -198,15 +177,6 @@ bool CSubsystem::mapSubsystemElements(string& strError)
         }
     }
     return true;
-}
-
-// Parameter access
-bool CSubsystem::accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
-{
-    // Deal with Endianness
-    parameterAccessContext.setBigEndianSubsystem(_bBigEndian);
-
-    return base::accessValue(pathNavigator, strValue, bSet, parameterAccessContext);
 }
 
 // Formats the mapping of the ConfigurableElements
@@ -318,22 +288,9 @@ string CSubsystem::getMapping(list<const CConfigurableElement*>& configurableEle
     return strValue;
 }
 
-void CSubsystem::logValue(string& strValue, CErrorContext& errorContext) const
-{
-    CParameterAccessContext& parameterAccessContext = static_cast<CParameterAccessContext&>(errorContext);
-
-    // Deal with Endianness
-    parameterAccessContext.setBigEndianSubsystem(_bBigEndian);
-
-    return base::logValue(strValue, errorContext);
-}
-
 // Used for simulation and virtual subsystems
 void CSubsystem::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
 {
-    // Deal with Endianness
-    parameterAccessContext.setBigEndianSubsystem(_bBigEndian);
-
     base::setDefaultValues(parameterAccessContext);
 }
 
