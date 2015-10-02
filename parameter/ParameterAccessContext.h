@@ -41,7 +41,7 @@ public:
     CParameterAccessContext(std::string& strError,
                             CParameterBlackboard* pParameterBlackboard,
                             bool bValueSpaceIsRaw,
-                            bool bOutputRawFormatIsHex = false,
+                            bool bOutputRawFormatIsHex,
                             size_t offsetBase = 0);
     CParameterAccessContext(std::string& strError,
                             CParameterBlackboard* pParameterBlackboard,

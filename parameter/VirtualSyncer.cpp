@@ -43,7 +43,7 @@ bool CVirtualSyncer::sync(CParameterBlackboard& parameterBlackboard, bool bBack,
     // Synchronize to/from HW
     if (bBack) {
         // Create access context
-        CParameterAccessContext parameterAccessContext(strError, &parameterBlackboard, false);
+        CParameterAccessContext parameterAccessContext(strError, &parameterBlackboard);
 
         // Just implement back synchronization with default values
         _pConfigurableElement->setDefaultValues(parameterAccessContext);
