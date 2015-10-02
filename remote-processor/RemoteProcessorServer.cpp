@@ -49,20 +49,25 @@ CRemoteProcessorServer::~CRemoteProcessorServer()
 }
 
 // State
-bool CRemoteProcessorServer::start(string &)
+bool CRemoteProcessorServer::start(string &error)
 {
     using namespace asio;
 
-    ip::tcp::endpoint endpoint(ip::tcp::v6(), _uiPort);
+    try {
+        ip::tcp::endpoint endpoint(ip::tcp::v6(), _uiPort);
 
-    _acceptor.open(endpoint.protocol());
+        _acceptor.open(endpoint.protocol());
 
-    _acceptor.set_option(ip::tcp::acceptor::reuse_address(true));
-    _acceptor.set_option(asio::socket_base::linger(true, 0));
-    _acceptor.set_option(socket_base::enable_connection_aborted(true));
+        _acceptor.set_option(ip::tcp::acceptor::reuse_address(true));
+        _acceptor.set_option(asio::socket_base::linger(true, 0));
+        _acceptor.set_option(socket_base::enable_connection_aborted(true));
 
-    _acceptor.bind(endpoint);
-    _acceptor.listen();
+        _acceptor.bind(endpoint);
+        _acceptor.listen();
+    } catch (std::exception &e) {
+        error = "Unable to listen on port " + std::to_string(_uiPort) + ": " + e.what();
+        return false;
+    }
 
     return true;
 }
