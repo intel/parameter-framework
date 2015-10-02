@@ -42,6 +42,7 @@ add_library(parameter SHARED
     CompoundRule.cpp
     ConfigurableDomain.cpp
     ConfigurableDomains.cpp
+    ConfigurableElementAccessor.cpp
     ConfigurableElementAggregator.cpp
     ConfigurableElement.cpp
     ConfigurationAccessContext.cpp

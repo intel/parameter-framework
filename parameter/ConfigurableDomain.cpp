@@ -828,13 +828,25 @@ string CConfigurableDomain::getLastAppliedConfigurationName() const
 // Pending configuration
 string CConfigurableDomain::getPendingConfigurationName() const
 {
-    const CDomainConfiguration* pPendingConfiguration = getPendingConfiguration();
+    const CDomainConfiguration* pApplicableDomainConfiguration = findApplicableDomainConfiguration();
 
-    if (pPendingConfiguration) {
+    if (!pApplicableDomainConfiguration) {
 
-        return pPendingConfiguration->getName();
+        // No configuration is pending
+        return "<none>";
     }
-    return "<none>";
+
+    // Check it will be applied
+    if (pApplicableDomainConfiguration != _pLastAppliedConfiguration) {
+
+        // Found config will get applied
+        return pApplicableDomainConfiguration->getName();
+    }
+    else {
+
+        // Same configuration as current
+        return "";
+    }
 }
 
 // Ensure validity on whole domain from main blackboard

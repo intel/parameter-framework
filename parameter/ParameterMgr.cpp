@@ -86,7 +86,8 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
-#include <mutex>
+#include "ConfigurableElementAccessor.h"
+
 
 #define base CElement
 
@@ -238,6 +239,12 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<elem path>|/", "List elements under element at given path or root" },
     { "listParameters", &CParameterMgr::listParametersCommandProcess, 1,
             "<elem path>|/", "List parameters under element at given path or root" },
+    { "getElementStructureXML", &CParameterMgr::getElementStructureXMLCommandProcess, 1,
+            "<elem path>", "Get structure of element at given path in XML format" },
+    { "getElementXML", &CParameterMgr::getElementXMLCommandProcess, 1,
+            "<elem path>", "Get settings of element at given path in XML format" },
+    { "setElementXML", &CParameterMgr::setElementXMLCommandProcess, 2,
+            "<elem path> <values>", "Set settings of element at given path in XML format" },
     { "dumpElement", &CParameterMgr::dumpElementCommandProcess, 1,
             "<elem path>", "Dump structure and content of element at given path" },
     { "getElementSize", &CParameterMgr::getElementSizeCommandProcess, 1,
@@ -1272,6 +1279,96 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listParametersComma
     strResult += pLocatedElement->listQualifiedPaths(true);
 
     return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementStructureXMLCommandProcess(
+    const IRemoteCommand& remoteCommand, string& strResult)
+{
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement* pLocatedElement = NULL;
+
+    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    if (!exportElementToXMLString(pLocatedElement, pLocatedElement->getKind(), strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementXMLCommandProcess(const IRemoteCommand &remoteCommand, string &result)
+{
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement *locatedElement = NULL;
+
+    if (!elementLocator.locate(remoteCommand.getArgument(0), &locatedElement, result)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    ConfigurableElementAccessor configurableElementAccessor(static_cast<CConfigurableElement *>(locatedElement),
+        _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
+
+    if (!exportElementToXMLString(&configurableElementAccessor, locatedElement->getKind(), result)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    return CCommandHandler::ESucceeded;
+}
+
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementXMLCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+{
+    // Check tuning mode
+    if (!checkTuningModeOn(strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    // Retrieve configurable element
+    CElementLocator elementLocator(getSystemClass());
+
+    CElement* pLocatedElement = NULL;
+
+    if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
+
+        return CCommandHandler::EFailed;
+    }
+
+    // Create accessor
+    CSyncerSet syncerSet;
+    ConfigurableElementAccessor configurableElementAccessor(static_cast<const CConfigurableElement*>(pLocatedElement),
+        _pMainParameterBlackboard, _bAutoSyncOn ? NULL: syncerSet, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
+
+    string strError;
+
+    CXmlSerializingContext xmlSerializingContext(strError);
+
+    // Use a doc sink by storing data into configurable element
+    CXmlMemoryDocSink memorySink(&configurableElementAccessor);
+
+    // Get value to set
+    string strValue = remoteCommand.getArgument(1);
+
+    // Use a doc source to read the doc data from a string
+    CXmlStringDocSource stringSource(strValue, "", pLocatedElement->getKind(), pLocatedElement->getName(), "Name", false);
+
+    // Do the import
+    if (!memorySink.process(stringSource, xmlSerializingContext)) {
+
+        strResult = strError;
+
+        return CCommandHandler::EFailed;
+    }
+    syncerSet.sync(_pMainParameterBlackboard);
+
+    return CCommandHandler::EDone;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
