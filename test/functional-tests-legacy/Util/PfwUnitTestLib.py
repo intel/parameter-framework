@@ -32,9 +32,14 @@ import os
 import subprocess
 import unittest
 import time
+import socket
 
 class RemoteCli(object):
+    def setRemoteProcess(self, remoteProcess):
+        self.remoteProcess = remoteProcess
+
     def sendCmd(self, cmd, *args):
+        assert self.remoteProcess.poll() == None, "Can not send command to Test platform as it has died."
 
         sys_cmd = self.platform_command + [cmd]
         if args is not None:
@@ -65,17 +70,26 @@ class Pfw(RemoteCli):
     platform_command = ["remote-process", "localhost", "5000"]
 
 class Hal(RemoteCli):
-    testPlatformPort = "5001"
-    platform_command = ["remote-process", "localhost", testPlatformPort]
+    testPlatformPort = 5001
+    platform_command = ["remote-process", "localhost", str(testPlatformPort)]
+
+    def __init__(self, pfw):
+        self.pfw = pfw
 
     # Starts the HAL exe
     def startHal(self):
-        cmd= ["test-platform", os.environ["PFW_TEST_CONFIGURATION"], self.testPlatformPort]
-        subprocess.Popen(cmd)
+        cmd= ["test-platform", os.environ["PFW_TEST_CONFIGURATION"], str(self.testPlatformPort)]
+        self.setRemoteProcess(subprocess.Popen(cmd))
+        # Wait for the test-platform listening socket
+        while socket.socket().connect_ex(("localhost", self.testPlatformPort)) != 0:
+            assert self.remoteProcess.poll() == None, "Test platform has failed to start."
+            time.sleep(0.01)
 
     # Send command "stop" to the HAL
     def stopHal(self):
         self.sendCmd("exit")
+        returncode = self.remoteProcess.wait()
+        assert returncode == 0, "test-platform did not stop succesfully: %s" % returncode
 
     def createInclusiveCriterion(self, name, nb):
         self.sendCmd("createInclusiveSelectionCriterion", name, nb)
@@ -87,15 +101,13 @@ class Hal(RemoteCli):
     def start(self):
         self.sendCmd("setValidateSchemasOnStart", "true")
         self.sendCmd("start")
+        self.pfw.setRemoteProcess(self.remoteProcess)
 
 # A PfwTestCase gather tests performed on one instance of the PFW.
 class PfwTestCase(unittest.TestCase):
 
-    hal = Hal()
-
-    def __init__(self, argv):
-        super(PfwTestCase, self).__init__(argv)
-        self.pfw = Pfw()
+    pfw = Pfw()
+    hal = Hal(pfw)
 
     @classmethod
     def setUpClass(cls):
@@ -109,7 +121,6 @@ class PfwTestCase(unittest.TestCase):
     def startHal(cls):
         # set up the Hal & pfw
         cls.hal.startHal()
-        time.sleep(0.1)
         # create criterions
         cls.hal.createInclusiveCriterion("Crit_0", "2")
         cls.hal.createExclusiveCriterion("Crit_1", "2")
@@ -119,4 +130,3 @@ class PfwTestCase(unittest.TestCase):
     @classmethod
     def stopHal(cls):
         cls.hal.stopHal()
-        time.sleep(0.1)
