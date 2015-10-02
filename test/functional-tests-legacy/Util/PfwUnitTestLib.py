@@ -42,12 +42,23 @@ class RemoteCli(object):
         print "CMD  : %s" % sys_cmd
 
         try:
-            p = subprocess.Popen(sys_cmd, stdout=subprocess.PIPE)
+            p = subprocess.Popen(sys_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except Exception as (errno, strerror):
             return None, strerror
         out, err = p.communicate()
-        if out is not None:
-            out = out.strip()
+        out = out.rstrip('\r\n')
+        if p.returncode == 0:
+            assert err == "", "test-platform succeded but stderr is not empty: %s" % err
+            # function is expected to return stderr on command failure, None on success
+            err = None
+        else:
+            # Unfortunately lots are test are bugged and will fail if errors
+            # are not hidden
+            # For now only log the error
+            print "CMD failed. stdout: '%s'\nstderr: '%s'" % (out, err)
+
+            err = None # FIXME: fix all tests that fail when this line is removed
+
         return out, err
 
 class Pfw(RemoteCli):
