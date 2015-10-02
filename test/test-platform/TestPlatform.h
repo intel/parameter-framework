@@ -44,7 +44,7 @@ class CTestPlatform
     typedef TRemoteCommandHandlerTemplate<CTestPlatform> CCommandHandler;
     typedef CCommandHandler::CommandStatus CommandReturn;
 public:
-    CTestPlatform(const std::string &strclass, int iPortNumber);
+    CTestPlatform(const std::string &strclass, uint16_t iPortNumber);
     virtual ~CTestPlatform();
 
     // Init

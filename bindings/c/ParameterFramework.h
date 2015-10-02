@@ -263,7 +263,7 @@ bool pfwSetIntParameter(PfwParameterHandler *handle, int32_t value) NONNULL USER
   * @return true on success, false on failure.
   */
 CPARAMETER_EXPORT
-bool pfwGetStringParameter(const PfwParameterHandler *handle, const char *value[]) NONNULL;
+bool pfwGetStringParameter(const PfwParameterHandler *handle, char *value[]) NONNULL;
 
 /** Set the value of a previously bind string parameter.
   * @param handle[in] Handler to a valid parameter

@@ -333,7 +333,7 @@ bool pfwSetIntParameter(PfwParameterHandler *handle, int32_t value)
     return status.forward(handle->parameter.setAsSignedInteger(value, status.msg()));
 }
 
-bool pfwGetStringParameter(const PfwParameterHandler *handle, const char *value[])
+bool pfwGetStringParameter(const PfwParameterHandler *handle, char *value[])
 {
     Status &status = handle->pfw.lastStatus;
     *value = NULL;

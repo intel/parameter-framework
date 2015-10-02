@@ -345,12 +345,12 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
                 }
 
                 WHEN("Set parameter") {
-                    const char *value;
+                    char *value;
                     REQUIRE_SUCCESS(pfwSetStringParameter(param, "ok"));
                     THEN("Get parameter should return what was set") {
                         REQUIRE_SUCCESS(pfwGetStringParameter(param, &value));
                         REQUIRE(value == std::string("ok"));
-                        pfwFree((void *)value);
+                        pfwFree(value);
                     }
                 }
 

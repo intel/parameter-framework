@@ -45,7 +45,8 @@ public:
     {
         ECommandRequest,
         ESuccessAnswer,
-        EFailureAnswer
+        EFailureAnswer,
+        EInvalid = static_cast<uint8_t>(-1),
     };
     CMessage(MsgType ucMsgId);
     CMessage();
