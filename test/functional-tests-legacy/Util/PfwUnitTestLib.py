@@ -35,10 +35,21 @@ import time
 import socket
 
 class RemoteCli(object):
+
     def setRemoteProcess(self, remoteProcess):
         self.remoteProcess = remoteProcess
 
-    def sendCmd(self, cmd, *args):
+    def sendCmd(self, cmd, *args, **kwargs):
+        """ Execute a remote-process command and assert its result.
+            @param[in] cmd, *args the command to execute and its arguments
+            @param[in] expectSuccess If True, assert that the command will succeed
+                                     If False, assert that the command will succeed
+                                     If None, do not assert result
+                                     Default to True
+            @return (command stdout, None) None is return for legacy reason
+        """
+        expectSuccess=kwargs.get("expectSuccess", True)
+
         assert self.remoteProcess.poll() == None, "Can not send command to Test platform as it has died."
 
         sys_cmd = self.platform_command + [cmd]
@@ -52,19 +63,11 @@ class RemoteCli(object):
             return None, strerror
         out, err = p.communicate()
         out = out.rstrip('\r\n')
-        if p.returncode == 0:
-            assert err == "", "test-platform succeded but stderr is not empty: %s" % err
-            # function is expected to return stderr on command failure, None on success
-            err = None
-        else:
-            # Unfortunately lots are test are bugged and will fail if errors
-            # are not hidden
-            # For now only log the error
-            print "CMD failed. stdout: '%s'\nstderr: '%s'" % (out, err)
 
-            err = None # FIXME: fix all tests that fail when this line is removed
+        if (expectSuccess != None):
+            assert (p.returncode == 0) == expectSuccess, "Unexpected command result:\nexpectedSuccess=%s\nCMD=%s\nreturncode=%s\nstdout=%s\nstderr=%s" % (expectSuccess, sys_cmd, p.returncode, out, err)
 
-        return out, err
+        return out, None
 
 class Pfw(RemoteCli):
     platform_command = ["remote-process", "localhost", "5000"]
