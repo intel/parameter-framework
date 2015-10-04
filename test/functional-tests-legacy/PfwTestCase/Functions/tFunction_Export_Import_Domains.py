@@ -75,7 +75,7 @@ class TestCases(PfwTestCase):
         self.nb_conf_per_domains_in_reference_xml=[2,2,2]
 
     def tearDown(self):
-        self.pfw.sendCmd("setTuningMode", "off")
+        self.pfw.sendCmd("setTuningMode", "off", expectSuccess=None)
         if os.path.exists(self.temp_domain):
             os.remove(self.temp_domain)
         if os.path.exists(self.temp_config):
@@ -563,35 +563,35 @@ class TestCases(PfwTestCase):
         #Import domains and settings from xml with outbound parameter value
         xml_name="Uncompliant_OutboundParameter.xml"
         log.I("Import %s with initial settings"%(xml_name))
-        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "")
+        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "", expectSuccess=False)
         assert err == None, log.E("Command [importDomainsWithSettingsXML %s] : %s"%(xml_path+xml_name,err))
         assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         log.I("Test OK : %s is not imported"%(xml_name))
         #Import domains and settings from xml using undeclared configurable element
         xml_name="Uncompliant_UndeclaredConfigurableElement.xml"
         log.I("Import %s with initial settings"%(xml_name))
-        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "")
+        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "", expectSuccess=False)
         assert err == None, log.E("Command [importDomainsWithSettingsXML %s] : %s"%(xml_path+xml_name,err))
         assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         log.I("Test OK : %s is not imported"%(xml_name))
         #Import domains and settings from xml using undeclared parameter
         xml_name="Uncompliant_UndeclaredParameter.xml"
         log.I("Import %s with initial settings"%(xml_name))
-        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "")
+        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "", expectSuccess=False)
         assert err == None, log.E("Command [importDomainsWithSettingsXML %s] : %s"%(xml_path+xml_name,err))
         assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         log.I("Test OK : %s is not imported"%(xml_name))
         #Import domains and settings from xml using wrong order of configurable element
         xml_name="Uncompliant_UnorderConfigurableElement.xml"
         log.I("Import %s with initial settings"%(xml_name))
-        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "")
+        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "", expectSuccess=False)
         assert err == None, log.E("Command [importDomainsWithSettingsXML %s] : %s"%(xml_path+xml_name,err))
         assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         log.I("Test OK : %s is not imported"%(xml_name))
         #Import domains and settings from unexistent xml
         xml_name="Unexistent.xml"
         log.I("Import %s with initial settings"%(xml_name))
-        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "")
+        out, err = self.pfw.sendCmd("importDomainsWithSettingsXML",xml_path+xml_name, "", expectSuccess=False)
         assert err == None, log.E("Command [importDomainsWithSettingsXML %s] : %s"%(xml_path+xml_name,err))
         assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         log.I("Test OK : %s is not imported"%(xml_name))
@@ -719,35 +719,35 @@ class TestCases(PfwTestCase):
         #Import domains from xml with outbound parameter value
         xml_name="Uncompliant_OutboundParameter.xml"
         log.I("Import %s without settings"%(xml_name))
-        out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "")
+        out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "", expectSuccess=False)
         assert err == None, log.E("Command [importDomainsXML %s] : %s"%(xml_path+xml_name,err))
         assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         log.I("Test OK : %s is not imported"%(xml_name))
         #Import domains from xml using undeclared configurable element
         xml_name="Uncompliant_UndeclaredConfigurableElement.xml"
         log.I("Import %s without settings"%(xml_name))
-        out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "")
+        out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "", expectSuccess=False)
         assert err == None, log.E("Command [importDomainsXML %s] : %s"%(xml_path+xml_name,err))
         assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         log.I("Test OK : %s is not imported"%(xml_name))
         #Import domains from xml using undeclared parameter
         #xml_name="Uncompliant_UndeclaredParameter.xml"
         #log.I("Import %s without settings"%(xml_name))
-        #out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "")
+        #out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "", expectSuccess=False)
         #assert err == None, log.E("Command [importDomainsXML %s] : %s"%(xml_path+xml_name,err))
         #assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         #log.I("Test OK : %s is not imported"%(xml_name))
         #Import domains from xml using wrong order of configurable element
         xml_name="Uncompliant_UnorderConfigurableElement.xml"
         log.I("Import %s without settings"%(xml_name))
-        out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "")
+        out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "", expectSuccess=False)
         assert err == None, log.E("Command [importDomainsXML %s] : %s"%(xml_path+xml_name,err))
         assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         log.I("Test OK : %s is not imported"%(xml_name))
         #Import domains from unexistent xml
         xml_name="Unexistent.xml"
         log.I("Import %s without settings"%(xml_name))
-        out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "")
+        out, err = self.pfw.sendCmd("importDomainsXML",xml_path+xml_name, "", expectSuccess=False)
         assert err == None, log.E("Command [importDomainsXML %s] : %s"%(xml_path+xml_name,err))
         assert out != "Done", log.F("Error not detected when imported %s]"%(xml_path+xml_name))
         log.I("Test OK : %s is not imported"%(xml_name))

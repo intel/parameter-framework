@@ -107,7 +107,7 @@ class TestCases(PfwTestCase):
         log.I("Adding an already existent domain name")
         log.I("command [createDomain]")
         domain_name = 'Test_Domain'
-        out, err = self.pfw.sendCmd("createDomain",domain_name, "")
+        out, err = self.pfw.sendCmd("createDomain",domain_name, "", expectSuccess=False)
         assert out != "Done", "ERROR : command [createDomain] - Error not detected when creating an already existent domain"
         assert err == None, err
         log.I("command [createDomain] - error correctly detected")
@@ -185,7 +185,7 @@ class TestCases(PfwTestCase):
         log.I("Deleting a non-existent domain name")
         log.I("command [deleteDomain]")
         domain_name = 'Wrong_Domain_Name'
-        out, err = self.pfw.sendCmd("deleteDomain",domain_name, "")
+        out, err = self.pfw.sendCmd("deleteDomain",domain_name, "", expectSuccess=False)
         assert out != "Done", "ERROR : command [deleteDomain] - Error not detected when deleting a non-existent domain"
         assert err == None, err
         log.I("command [deleteDomain] - error correctly detected")

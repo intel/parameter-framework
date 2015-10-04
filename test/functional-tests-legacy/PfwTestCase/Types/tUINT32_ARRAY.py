@@ -191,7 +191,7 @@ class TestCases(PfwTestCase):
         param_check = open(self.param_short_name).read().splitlines()[index]
         #Check final parameter value setting
         indexed_array_value = indexed_array_value - 1
-        out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path), str(indexed_array_value))
+        out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path), str(indexed_array_value), expectSuccess=False)
         assert err == None, log.E("when setting parameter %s[%s]: %s"
                                   % (self.param_name, str(index), err))
         assert out != "Done", log.F("Error not detected when setting parameter %s[%s] out of bounds"
@@ -272,7 +272,7 @@ class TestCases(PfwTestCase):
         param_check = open(self.param_short_name).read().splitlines()[index]
         #Check final parameter value setting
         indexed_array_value = indexed_array_value + 1
-        out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path), str(indexed_array_value))
+        out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path), str(indexed_array_value), expectSuccess=False)
         assert err == None, log.E("when setting parameter %s[%s]: %s"
                                   % (self.param_name, str(index), err))
         assert out != "Done", log.F("Error not detected when setting parameter %s[%s] out of bounds"
@@ -307,7 +307,7 @@ class TestCases(PfwTestCase):
             indexed_array_value = self.array_max
             indexed_array_value_path = "".join([self.param_name, "/", str(index)])
             #Check parameter value setting
-            out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path), str(indexed_array_value))
+            out, err = self.pfw.sendCmd("setParameter", str(indexed_array_value_path), str(indexed_array_value), expectSuccess=None)
             if index in [0, self.array_size-1]:
                 assert err == None, log.E("when setting parameter %s[%s]: %s"
                                           % (self.param_name, str(index), err))

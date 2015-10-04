@@ -132,19 +132,19 @@ class TestCases(PfwTestCase):
         # Clearing rule errors
         log.I("Clearing a rule on domain %s to a non-existent configuration" % (self.domain_name))
         log.I("command [clearRule]")
-        out, err = self.pfw.sendCmd("clearRule",self.domain_name,"Wrong_Config_Name")
+        out, err = self.pfw.sendCmd("clearRule",self.domain_name,"Wrong_Config_Name", expectSuccess=False)
         assert err == None, "ERROR : command [clearRule] - Error while clearing rule on domain %s to a non-existent configuration" % (self.domain_name)
         assert out != "Done", "ERROR : command [clearRule] - Error not detected while clearing rule on domain %s to a non-existent configuration" % (self.domain_name)
         log.I("error correctly detected when clearing a rule to a non-existent configuration")
         log.I("Clearing a rule on a non-existent domain")
         log.I("command [clearRule]")
-        out, err = self.pfw.sendCmd("clearRule","Wrong_Domain_Name",self.conf_2)
+        out, err = self.pfw.sendCmd("clearRule","Wrong_Domain_Name",self.conf_2, expectSuccess=False)
         assert err == None, "ERROR : command [clearRule] - Error while clearing rule on a non-existent domain"
         assert out != "Done", "ERROR : command [clearRule] - Error not detected while clearing rule on a non-existent domain"
         log.I("error correctly detected while clearing rule on a non-existent domain")
         log.I("Clearing a rule with wrong parameters order")
         log.I("command [clearRule]")
-        out, err = self.pfw.sendCmd("clearRule",self.conf_1,self.domain_name)
+        out, err = self.pfw.sendCmd("clearRule",self.conf_1,self.domain_name, expectSuccess=False)
         assert err == None, "ERROR : command [clearRule] - Error when clearing a rule with incorrect paramaters order"
         assert out != "Done", "ERROR : command [clearRule] - Error not detected when clearing a rule with incorrect paramaters order"
         log.I("error correctly detected when clearing a rule with incorrect paramaters order on domain %s and configuration %s" % (self.domain_name,self.conf_1))
@@ -209,19 +209,19 @@ class TestCases(PfwTestCase):
         # setRule :basic error cases
         log.I("Applying a new rule on domain %s to a non-existent configuration" % (self.domain_name))
         log.I("command [setRule]")
-        out, err = self.pfw.sendCmd("setRule",self.domain_name,"Wrong_Config_Name",self.rule_1)
+        out, err = self.pfw.sendCmd("setRule",self.domain_name,"Wrong_Config_Name",self.rule_1, expectSuccess=False)
         assert err == None, "ERROR : command [setRule] - Error while setting rule on domain %s to a non-existent configuration" % (self.domain_name)
         assert out != "Done", "ERROR : command [setRule] - Error not detected while setting rule on domain %s to a non-existent configuration" % (self.domain_name)
         log.I("error correctly detected when creating a rule to a non-existent configuration")
         log.I("Applying a new rule on a non-existent domain")
         log.I("command [setRule]")
-        out, err = self.pfw.sendCmd("setRule","Wrong_Domain_Name",self.conf_1,self.rule_1)
+        out, err = self.pfw.sendCmd("setRule","Wrong_Domain_Name",self.conf_1,self.rule_1, expectSuccess=False)
         assert err == None, "ERROR : command [setRule] - Error while setting rule on a non-existent domain"
         assert out != "Done", "ERROR : command [setRule] - Error not detected while setting rule on a non-existent domain"
         log.I("error correctly detected while setting rule on a non-existent domain")
         log.I("Applying a new rule with incorrect format")
         log.I("command [setRule]")
-        out, err = self.pfw.sendCmd("setRule",self.domain_name,self.conf_1,"Wrong_Rule_Format")
+        out, err = self.pfw.sendCmd("setRule",self.domain_name,self.conf_1,"Wrong_Rule_Format", expectSuccess=False)
         assert err == None, "ERROR : command [setRule] - Error when setting incorrect format rule"
         assert out != "Done", "ERROR : command [setRule] - Error not detected when setting incorrect format rule"
         log.I("error correctly detected when setting incorrect format rule on domain %s and configuration %s" % (self.domain_name,self.conf_1))
@@ -231,7 +231,7 @@ class TestCases(PfwTestCase):
         for index in range (self.rule_error_nbr):
             log.I("Rule error number %s" % (str(index)))
             rule_name = "".join(["self.rule_error_", "_", str(index)])
-            out, err = self.pfw.sendCmd("setRule",self.domain_name,self.conf_1, rule_name)
+            out, err = self.pfw.sendCmd("setRule",self.domain_name,self.conf_1, rule_name, expectSuccess=False)
             assert err == None, "ERROR : command [setRule] - Error when setting incorrect format rule %s" % (str(rule_name))
             assert out != "Done", "ERROR : command [setRule] - Error not detected when setting incorrect format rule %s" % (str(rule_name))
             log.I("error correctly detected when setting incorrect format rule on domain %s and configuration %s" % (self.domain_name,self.conf_1))
@@ -315,19 +315,19 @@ class TestCases(PfwTestCase):
         # Getting rule errors
         log.I("Getting a rule on domain %s from a non-existent configuration" % (self.domain_name))
         log.I("command [getRule]")
-        out, err = self.pfw.sendCmd("getRule",self.domain_name,"Wrong_Config_Name")
+        out, err = self.pfw.sendCmd("getRule",self.domain_name,"Wrong_Config_Name", expectSuccess=False)
         assert err == None, "ERROR : command [getRule] - Error when getting rule on domain %s from a non-existent configuration" % (self.domain_name)
         assert out != "Done", "ERROR : command [getRule] - Error not detected while getting rule on domain %s from a non-existent configuration" % (self.domain_name)
         log.I("error correctly detected when getting a rule from a non-existent configuration")
         log.I("getting a rule from a non-existent domain")
         log.I("command [getRule]")
-        out, err = self.pfw.sendCmd("getRule","Wrong_Domain_Name",self.conf_2)
+        out, err = self.pfw.sendCmd("getRule","Wrong_Domain_Name",self.conf_2, expectSuccess=False)
         assert err == None, "ERROR : command [getRule] - Error when getting rule from a non-existent domain"
         assert out != "Done", "ERROR : command [getRule] - Error not detected while getting rule from a non-existent domain"
         log.I("error correctly detected when getting rule from a non-existent domain")
         log.I("getting a rule with wrong parameters order")
         log.I("command [getRule]")
-        out, err = self.pfw.sendCmd("getRule",self.conf_1,self.domain_name)
+        out, err = self.pfw.sendCmd("getRule",self.conf_1,self.domain_name, expectSuccess=False)
         assert err == None, "ERROR : command [getRule] - Error when getting a rule with incorrect paramaters order"
         assert out != "Done", "ERROR : command [getRule] - Error not detected when getting a rule with incorrect paramaters order"
         log.I("error correctly detected when getting a rule with incorrect paramaters order on domain %s and configuration %s" % (self.domain_name,self.conf_1))

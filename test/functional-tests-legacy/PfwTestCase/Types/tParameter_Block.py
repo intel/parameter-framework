@@ -163,14 +163,14 @@ class TestCases(PfwTestCase):
 
         log.I("Try to set parameter %s to %s, failed expected"
               %(self.block_name,value))
-        out,err = self.pfw.sendCmd("setParameter",self.block_name, value)
+        out,err = self.pfw.sendCmd("setParameter",self.block_name, value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s"
                                    % (self.block_name, value, err))
         assert out != "Done", log.F("Error not detected when setting directly the block %s"
                                     % (self.block_name))
         log.I("Try to get parameter %s to %s, failed expected"
               %(self.block_name,value))
-        out,err = self.pfw.sendCmd("getParameter",self.block_name, value)
+        out,err = self.pfw.sendCmd("getParameter",self.block_name, value, expectSuccess=False)
         assert err == None, log.E("getParameter %s : %s"
                                   % (self.block_name, err))
         assert out != value, log.F("Error not detected when getting directly the block %s"
@@ -224,7 +224,7 @@ class TestCases(PfwTestCase):
 
         log.I("set parameter %s to %s, failed expected"
               %(self.param_name[1],param_value))
-        out,err = self.pfw.sendCmd("setParameter",self.param_name[1],param_value)
+        out,err = self.pfw.sendCmd("setParameter",self.param_name[1],param_value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s"
                                   % (self.param_name[1],param_value, err))
         assert out != "Done", log.F("Error not detected when setting parameter %s to out of bound value %s"
@@ -274,7 +274,7 @@ class TestCases(PfwTestCase):
 
         log.I("set parameter %s to %s, failed expected"
               %(param_undefined_name,param_value))
-        out,err = self.pfw.sendCmd("setParameter",param_undefined_name,param_value)
+        out,err = self.pfw.sendCmd("setParameter",param_undefined_name,param_value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s"
                                   % (param_undefined_name,param_value, err))
         assert out != "Done", log.F("Error not detected when setting parameter %s to out of bound value %s"

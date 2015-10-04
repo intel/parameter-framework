@@ -157,7 +157,7 @@ class TestCases(PfwTestCase):
         value = "-129"
         param_check = open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, "Error when setting parameter %s : %s" % (self.param_name, err)
         assert out != "Done", "PFW : Error not detected when setting parameter %s out of bounds" % (self.param_name)
         #Check parameter value on filesystem
@@ -222,7 +222,7 @@ class TestCases(PfwTestCase):
         value = "128"
         param_check = open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, "Error when setting parameter %s : %s" % (self.param_name, err)
         assert out != "Done", "PFW : Error not detected when setting parameter %s out of bounds" % (self.param_name)
         #Check parameter value on filesystem
