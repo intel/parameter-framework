@@ -75,7 +75,7 @@ class Hal(RemoteCli):
 
     # Starts the Pfw
     def start(self):
-        self.sendCmd("setValidateSchemasOnStart true")
+        self.sendCmd("setValidateSchemasOnStart", "true")
         self.sendCmd("start")
 
 # A PfwTestCase gather tests performed on one instance of the PFW.
