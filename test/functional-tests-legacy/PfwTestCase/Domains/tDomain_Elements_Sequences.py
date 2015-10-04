@@ -159,13 +159,13 @@ class TestCases(PfwTestCase):
 
         # Setting an element not belonging to configuration in sequence order
         log.I("Setting an element not belonging to configuration %s in sequence order" % (self.configuration))
-        out, err = self.pfw.sendCmd("setElementSequence", self.domain_name, self.configuration, self.elem_2_path, self.elem_0_path, self.elem_1_path)
+        out, err = self.pfw.sendCmd("setElementSequence", self.domain_name, self.configuration, self.elem_2_path, self.elem_0_path, self.elem_1_path, expectSuccess=False)
         assert err == None, "ERROR : command [setElementSequence] - Error while setting elements sequence for configuration %s" % (self.configuration)
         assert out != "Done", "ERROR : command [setElementSequence] - Error not detected when setting an element not belonging to configuration"
 
         # Setting undefined element in sequence order for selected configuration
         log.I("Setting undefined element in sequence order for configuration %s" % (self.configuration))
-        out, err = self.pfw.sendCmd("setElementSequence", self.domain_name, self.configuration, "Wrong_Element_Name", self.elem_0_path, self.elem_1_path)
+        out, err = self.pfw.sendCmd("setElementSequence", self.domain_name, self.configuration, "Wrong_Element_Name", self.elem_0_path, self.elem_1_path, expectSuccess=False)
         assert err == None, "ERROR : command [setElementSequence] - Error while setting elements sequence for configuration %s" % (self.configuration)
         assert out != "Done", "ERROR : command [getElementSequence] - Error not detected when setting an undefined element to configuration"
 
@@ -238,13 +238,13 @@ class TestCases(PfwTestCase):
 
         # Getting an element sequence on a wrong domain name
         log.I("Getting an element sequence on a wrong domain name")
-        out, err = self.pfw.sendCmd("getElementSequence", "Wrong_Domain_Name", self.configuration)
+        out, err = self.pfw.sendCmd("getElementSequence", "Wrong_Domain_Name", self.configuration, expectSuccess=False)
         assert err == None, "ERROR : command [getElementSequence] - Error when getting elements sequence for configuration %s" % (self.configuration)
         assert out != "Done", "ERROR : command [getElementSequence] - Error not detected when getting elements sequence for a wrong domain name"
 
         # Getting an element sequence on a wrong configuration name
         log.I("Getting an element sequence on a wrong configuration name")
-        out, err = self.pfw.sendCmd("getElementSequence", self.domain_name, "Wrong_Configuration_Name")
+        out, err = self.pfw.sendCmd("getElementSequence", self.domain_name, "Wrong_Configuration_Name", expectSuccess=False)
         assert err == None, "ERROR : command [getElementSequence] - Error when getting elements sequence on a wrong configuration name"
         assert out != "Done", "ERROR : command [getElementSequence] - Error not detected when getting elements sequence on a wrong configuration name"
 

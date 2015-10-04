@@ -187,7 +187,7 @@ class TestCases(PfwTestCase):
         init_parameter_value, err=self.pfw.sendCmd("getParameter",self.param_name)
         init_filesystem_value=open(self.filesystem_name).read()[:-1]
         log.I("Set parameter %s to %s"%(self.param_name,value))
-        out,err = self.pfw.sendCmd("setParameter",self.param_name, value)
+        out,err = self.pfw.sendCmd("setParameter",self.param_name, value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.param_name, value, err))
         assert out != "Done", log.F("Error not detected when setParameter %s %s" % (self.param_name, value))
         log.I("Check Enum parameter state")
@@ -221,7 +221,7 @@ class TestCases(PfwTestCase):
         init_parameter_value, err=self.pfw.sendCmd("getParameter",self.param_name)
         init_filesystem_value=open(self.filesystem_name).read()[:-1]
         log.I("Set parameter %s to %s"%(self.param_name,value))
-        out,err = self.pfw.sendCmd("setParameter",self.param_name, value)
+        out,err = self.pfw.sendCmd("setParameter",self.param_name, value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.param_name, value, err))
         assert out != "Done", log.F("Error not detected when setParameter %s %s" % (self.param_name, value))
         log.I("Check Enum parameter state")
@@ -255,7 +255,7 @@ class TestCases(PfwTestCase):
         init_parameter_value, err=self.pfw.sendCmd("getParameter",self.param_name)
         init_filesystem_value=open(self.filesystem_name).read()[:-1]
         log.I("Set parameter %s to %s"%(self.param_name,value))
-        out,err = self.pfw.sendCmd("setParameter",self.param_name, value)
+        out,err = self.pfw.sendCmd("setParameter",self.param_name, value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.param_name, value, err))
         assert out != "Done", log.F("Error not detected when setParameter %s %s" % (self.param_name, value))
         log.I("Check Enum parameter state")

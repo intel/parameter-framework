@@ -70,7 +70,7 @@ class TestCases(PfwTestCase):
         self.crit_change_iteration = 6
 
     def tearDown(self):
-        self.pfw.sendCmd("setTuningMode", "off")
+        self.pfw.sendCmd("setTuningMode", "off", expectSuccess=False)
 
     def test_Combinatorial_Criteria(self):
         """

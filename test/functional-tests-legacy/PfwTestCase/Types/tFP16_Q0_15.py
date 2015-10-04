@@ -159,7 +159,7 @@ class TestCases(PfwTestCase):
         param_check = open(os.environ["PFW_RESULT"] + "/FP16_Q0.15").read()[:-1]
         log.I("Setting %s to value %s" % (self.type_name, value))
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s : %s" % (self.param_name, err))
         assert out != "Done", log.F("Error not detected when setting parameter %s out of bounds" % (self.param_name))
         #Check parameter value on filesystem
@@ -225,7 +225,7 @@ class TestCases(PfwTestCase):
         param_check = open(os.environ["PFW_RESULT"] + "/FP16_Q0.15").read()[:-1]
         log.I("Setting %s to value %s" % (self.type_name, value))
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s : %s" % (self.param_name, err))
         assert out != "Done", log.F("Error not detected when setting parameter %s out of bounds" % (self.param_name))
         #Check parameter value on filesystem

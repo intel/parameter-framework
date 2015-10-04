@@ -168,7 +168,7 @@ class TestCases(PfwTestCase):
         value = "-1"
         param_check = open(os.environ["PFW_RESULT"] + "/UINT32_Max").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s : %s"
                                   % (self.param_name, err))
         assert out != "Done", log.F("PFW : Error not detected when setting parameter %s out of bounds"
@@ -239,7 +239,7 @@ class TestCases(PfwTestCase):
         value = "4294967296"
         param_check = open(os.environ["PFW_RESULT"] + "/UINT32_Max").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s : %s"
                                   % (self.param_name, err))
         assert out != "Done", log.F("PFW : Error not detected when setting parameter %s out of bounds"

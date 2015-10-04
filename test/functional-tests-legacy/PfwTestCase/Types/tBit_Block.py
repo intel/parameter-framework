@@ -160,11 +160,11 @@ class TestCases(PfwTestCase):
         init_filesystem_value=open(self.filesystem_name).read()[:-1]
 
         log.I("Try to set parameter %s to %s, failed expected"%(self.block_name,value))
-        out,err = self.pfw.sendCmd("setParameter",self.block_name, value)
+        out,err = self.pfw.sendCmd("setParameter",self.block_name, value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.block_name, value, err))
         assert out != "Done", log.F("Error not detected when setting directly the block %s" % (self.block_name))
         log.I("Try to get parameter %s to %s, failed expected"%(self.block_name,value))
-        out,err = self.pfw.sendCmd("getParameter",self.block_name, value)
+        out,err = self.pfw.sendCmd("getParameter",self.block_name, value, expectSuccess=False)
         assert err == None, log.E("getParameter %s : %s" % (self.block_name, err))
         assert out != value, log.F("Error not detected when getting directly the block %s" % (self.block_name))
         log.I("Check filesystem value")
@@ -211,7 +211,7 @@ class TestCases(PfwTestCase):
         init_filesystem_value=open(self.filesystem_name).read()[:-1]
 
         log.I("set parameter %s to %s, failed expected"%(self.bit_name[1],bit_value))
-        out,err = self.pfw.sendCmd("setParameter",self.bit_name[1],bit_value)
+        out,err = self.pfw.sendCmd("setParameter",self.bit_name[1],bit_value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.bit_name[1],bit_value, err))
         assert out != "Done", log.F("Error not detected when setting the bit %s to out of bound value %s" % (self.bit_name[1],bit_value))
         log.I("Check Bit value")
@@ -255,7 +255,7 @@ class TestCases(PfwTestCase):
         init_filesystem_value=open(self.filesystem_name).read()[:-1]
 
         log.I("set parameter %s to %s, failed expected"%(bit_undefined_name,bit_value))
-        out,err = self.pfw.sendCmd("setParameter",bit_undefined_name,bit_value)
+        out,err = self.pfw.sendCmd("setParameter",bit_undefined_name,bit_value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (bit_undefined_name,bit_value, err))
         assert out != "Done", log.F("Error not detected when setting the bit %s to out of bound value %s" % (bit_undefined_name,bit_value))
         log.I("Check Bit value")

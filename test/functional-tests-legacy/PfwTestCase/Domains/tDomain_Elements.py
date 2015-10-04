@@ -192,11 +192,11 @@ class TestCases(PfwTestCase):
 
         # Adding a new domain element errors
         log.I("Adding an already existing domain element to domain %s" % (self.domain_name))
-        out, err = self.pfw.sendCmd("addElement", str(self.domain_name), str(self.elem_0_path))
+        out, err = self.pfw.sendCmd("addElement", str(self.domain_name), str(self.elem_0_path), expectSuccess=False)
         assert err == None, "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_0_path)
         assert out != "Done", "ERROR : command [addElement] - Error not detected while adding an already existing domain element to domain %s" % (self.domain_name)
         log.I("Adding a non defined domain element to domain %s" % (self.domain_name))
-        out, err = self.pfw.sendCmd("addElement", str(self.domain_name), "Non_Defined_Element")
+        out, err = self.pfw.sendCmd("addElement", str(self.domain_name), "Non_Defined_Element", expectSuccess=False)
         assert err == None, "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_2_path)
         assert out != "Done", "ERROR : command [addElement] - Error not detected while adding a non defined domain element to domain %s" % (self.domain_name)
         log.I("Error when adding elements correctly detected")
@@ -270,11 +270,11 @@ class TestCases(PfwTestCase):
 
         # Error when removing domain elements
         log.I("Removing a domain element from a non defined domain")
-        out, err = self.pfw.sendCmd("removeElement", "Wrong_Domain_Name", str(self.elem_0_path))
+        out, err = self.pfw.sendCmd("removeElement", "Wrong_Domain_Name", str(self.elem_0_path), expectSuccess=False)
         assert err == None, "ERROR : command [removeElement] - Error when removing domain element %s" % (self.elem_0_path)
         assert out != "Done", "ERROR : command [removeElement] - Error not detected when removing domain element %s from an undefined domain"% (self.elem_0_path)
         log.I("Removing a non existent domain element from domain %s" % (self.domain_name))
-        out, err = self.pfw.sendCmd("removeElement", str(self.domain_name), "Wrong_Element_Name")
+        out, err = self.pfw.sendCmd("removeElement", str(self.domain_name), "Wrong_Element_Name", expectSuccess=False)
         assert err == None, "ERROR : command [removeElement] - Error when removing domain element %s" % (self.elem_0_path)
         assert out != "Done", "ERROR : command [removeElement] - Error not detected when removing a non existent domain element from domain %s" % (self.domain_name)
         log.I("Error when removing elements correctly detected")

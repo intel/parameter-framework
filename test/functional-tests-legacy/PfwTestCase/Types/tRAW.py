@@ -673,7 +673,7 @@ class TestCases(PfwTestCase):
         self.pfw.sendCmd("setValueSpace", value_space)
         self.pfw.sendCmd("setOutputRawFormat", outputraw_format)
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s -> %s"
                                   % (self.param_name, err))
         assert out != "Done", log.F("Error not detected when setting parameter %s out of bound"
@@ -715,7 +715,7 @@ class TestCases(PfwTestCase):
         self.pfw.sendCmd("setValueSpace", value_space)
         self.pfw.sendCmd("setOutputRawFormat", outputraw_format)
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name_2, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name_2, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s -> %s"
                                   % (self.param_name_2, err))
         assert out != "Done", log.F("Error not detected when setting parameter %s out of bound"

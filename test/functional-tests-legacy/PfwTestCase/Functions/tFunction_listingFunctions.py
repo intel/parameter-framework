@@ -256,7 +256,7 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_08_listElements_Case.__doc__)
         log.I("Command [listElements]")
-        out, err = self.pfw.sendCmd("listElements")
+        out, err = self.pfw.sendCmd("listElements", expectSuccess=False)
         assert err == None, log.E("Command [listElements] : %s"%(err))
         out, err = self.pfw.sendCmd("listElements","/Test/")
         assert err == None, log.E("Command [listElements /Test/] : %s"%(err))
@@ -280,7 +280,7 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_09_listParameters_Case.__doc__)
         log.I("Command [listParameters]")
-        out, err = self.pfw.sendCmd("listParameters")
+        out, err = self.pfw.sendCmd("listParameters", expectSuccess=False)
         assert err == None, log.E("Command [listParameters] : %s"%(err))
         out, err = self.pfw.sendCmd("listParameters","/Test/")
         assert err == None, log.E("Command [listParameters /Test/] : %s"%(err))
@@ -336,7 +336,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("Command [getElementSize /Test/] : %s"%(err))
         assert out != ""
 
-        out, err = self.pfw.sendCmd("getElementSize")
+        out, err = self.pfw.sendCmd("getElementSize", expectSuccess=False)
         assert err == None, log.E("Command [getElementSize /Test/] : %s"%(err))
 
     def test_11_showProperties_Case(self):
@@ -388,7 +388,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("Command [showProperties /Test/] : %s"%(err))
         assert out != ""
 
-        out, err = self.pfw.sendCmd("showProperties")
+        out, err = self.pfw.sendCmd("showProperties", expectSuccess=False)
         assert err == None, log.E("Command [showProperties] : %s"%(err))
 
     def test_12_listBelongingDomains_Case(self):
@@ -438,7 +438,7 @@ class TestCases(PfwTestCase):
         out, err = self.pfw.sendCmd("listBelongingDomains","/Test/")
         assert err == None, log.E("Command [listBelongingDomains /Test/] : %s"%(err))
 
-        out, err = self.pfw.sendCmd("listBelongingDomains")
+        out, err = self.pfw.sendCmd("listBelongingDomains", expectSuccess=False)
         assert err == None, log.E("Command [listBelongingDomains] : %s"%(err))
 
     def test_13_listAssociatedDomains_Case(self):
