@@ -90,9 +90,19 @@ class Hal(RemoteCli):
 
     # Send command "stop" to the HAL
     def stopHal(self):
-        self.sendCmd("exit")
-        returncode = self.remoteProcess.wait()
-        assert returncode == 0, "test-platform did not stop succesfully: %s" % returncode
+        try:
+            self.sendCmd("exit")
+        except Exception as exitEx:
+            # Kill test-platform as cooperative exit failed
+            try:
+                self.remoteProcess.terminate()
+            except Exception as killEx:
+                raise Exception("Fail to terminate after a exit request failed", exitEx, killEx)
+            raise
+        else:
+            # exit request accepted, wait for server to stop
+            returncode = self.remoteProcess.wait()
+            assert returncode == 0, "test-platform did not stop succesfully: %s" % returncode
 
     def createInclusiveCriterion(self, name, nb):
         self.sendCmd("createInclusiveSelectionCriterion", name, nb)
@@ -124,11 +134,19 @@ class PfwTestCase(unittest.TestCase):
     def startHal(cls):
         # set up the Hal & pfw
         cls.hal.startHal()
-        # create criterions
-        cls.hal.createInclusiveCriterion("Crit_0", "2")
-        cls.hal.createExclusiveCriterion("Crit_1", "2")
-        # start the Pfw
-        cls.hal.start()
+        try:
+            # create criterions
+            cls.hal.createInclusiveCriterion("Crit_0", "2")
+            cls.hal.createExclusiveCriterion("Crit_1", "2")
+            # start the Pfw
+            cls.hal.start()
+        except Exception as startE:
+            # Leave the hal stopped in case of start failure
+            try:
+                cls.stopHal()
+            except Exception as stopE:
+                raise Exception("Fail to stop after a failed start: ", startE, stopE)
+            raise
 
     @classmethod
     def stopHal(cls):
