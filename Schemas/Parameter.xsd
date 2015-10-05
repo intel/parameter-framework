@@ -11,6 +11,7 @@
 	<xs:complexType name="ComponentInstance">
 		<xs:attributeGroup ref="TypedNameable"/>
 		<xs:attribute name="Mapping" use="optional"/>
+		<xs:attributeGroup ref="ArrayLengthAttribute"/>
 	</xs:complexType>
 	<xs:simpleType name="SizeType">
 		<xs:restriction base="xs:positiveInteger">
