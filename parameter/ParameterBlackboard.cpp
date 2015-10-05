@@ -29,7 +29,7 @@
  */
 #include "ParameterBlackboard.h"
 #include "Iterator.hpp"
-#include <cassert>
+#include "AlwaysAssert.hpp"
 #include <algorithm>
 
 // Size
@@ -126,5 +126,7 @@ void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, size_t of
 
 void CParameterBlackboard::assertValidAccess(size_t offset, size_t size) const
 {
-    assert(offset + size <= getSize());
+    ALWAYS_ASSERT(offset + size <= getSize(), "Invalid data size access: offset=" << offset
+            << " size=" << size
+            << "reference size=" << getSize());
 }
