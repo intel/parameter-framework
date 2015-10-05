@@ -73,7 +73,8 @@ class Pfw(RemoteCli):
     platform_command = ["remote-process", "localhost", "5000"]
 
 class Hal(RemoteCli):
-    testPlatformPort = 5001
+    # Arbitrary choosen port, try to avoid conflicting with IANA registered ports
+    testPlatformPort = 18444
     platform_command = ["remote-process", "localhost", str(testPlatformPort)]
 
     def __init__(self, pfw):
