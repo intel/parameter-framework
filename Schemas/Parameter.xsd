@@ -140,6 +140,7 @@
 				<xs:attribute name="Size" fixed="32"/>
 				<xs:attribute name="Min" type="PointBound" use="optional"/>
 				<xs:attribute name="Max" type="PointBound" use="optional"/>
+				<xs:attribute name="Signed" type="xs:boolean" use="optional" default="false"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
