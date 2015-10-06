@@ -421,6 +421,8 @@ private:
     CCommandHandler::CommandStatus listElementsCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus listParametersCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus getElementStructureXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus getElementXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus setElementXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus dumpElementCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus getElementSizeCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus showPropertiesCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
@@ -546,6 +548,23 @@ private:
     // System class Structure loading
     bool loadSettings(std::string& strError);
     bool loadSettingsFromConfigFile(std::string& strError);
+
+    /**
+     * Assign settings to a configurable element in XML format.
+     * @param[in] configurableElement
+     * @param[in] settings the settings as XML string.
+     * @param[out] error human readable error message filled in case of error
+     * @return true in case of success, false oherwise, in which case error is filled.
+     */
+    bool setSettingsAsXML(CConfigurableElement *configurableElement, const std::string &settings, std::string &error);
+
+    /**
+     * Get settings from a configurable element in XML format.
+     * @param[in] configurableElement
+     * @param[out] settings as XML string or human readable error message in case of error
+     * @return true in case of success, false oherwise, in which case error is filled.
+     */
+    bool getSettingsAsXML(const CConfigurableElement *configurableElement, std::string &sresult) const;
 
     /** Parse an XML stream into an element
      *

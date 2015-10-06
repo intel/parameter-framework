@@ -64,8 +64,7 @@ public:
     CSubsystem(const std::string& strName, core::log::Logger& logger);
     virtual ~CSubsystem();
 
-    // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool deserializeXmlStructure(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     // Susbsystem sanity
     virtual bool isAlive() const;
