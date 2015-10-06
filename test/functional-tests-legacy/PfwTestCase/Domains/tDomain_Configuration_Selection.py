@@ -49,8 +49,7 @@ class TestCases(PfwTestCase):
 
     def setUp(self):
         self.pfw.sendCmd("setTuningMode", "on")
-        self.reference_xml = "$PFW_TEST_TOOLS/xml/XML_Test/Reference_Criteria.xml"
-        self.temp_domain="f_Domains_Backup"
+        self.reference_xml = os.environ["PFW_TEST_TOOLS"] + "/xml/XML_Test/Reference_Criteria.xml"
         self.temp_status="f_Config_Status"
         # Expected results are defined by Reference_Criteria.xml configuration settings
         self.expected_result = [["Conf_1_1", "<none>",   "Conf_3_0"] ,
@@ -71,7 +70,7 @@ class TestCases(PfwTestCase):
         self.crit_change_iteration = 6
 
     def tearDown(self):
-        self.pfw.sendCmd("setTuningMode", "off")
+        self.pfw.sendCmd("setTuningMode", "off", expectSuccess=False)
 
     def test_Combinatorial_Criteria(self):
         """
@@ -112,16 +111,6 @@ class TestCases(PfwTestCase):
         log.I("Command [listDomains] : correctly executed")
 
         # Domains listing backup
-        f_Domains_Backup = open(self.temp_domain, "w")
-        f_Domains_Backup.write(out)
-        f_Domains_Backup.close()
-        f_Domains_Backup = open(self.temp_domain, "r")
-        domains_nbr = 0
-        line=f_Domains_Backup.readline()
-        while line!="":
-            line=f_Domains_Backup.readline()
-            domains_nbr+=1
-        f_Domains_Backup.close()
 
         # Applying default configurations
         out, err = self.pfw.sendCmd("setTuningMode", "off")
@@ -167,7 +156,7 @@ class TestCases(PfwTestCase):
                 f_Config_Status.close()
 
             # Configurations checking
-            for domain in range (domains_nbr):
+            for domain in range (len(self.expected_result[0])):
                 domain_name = "".join([self.new_domain_name, "_", str(domain+1), "[<none>]"])
                 config = str(self.expected_result[iteration][domain])
                 log.I("Checking that domain %s is set to configuration : %s" % (domain_name,config))
@@ -181,5 +170,4 @@ class TestCases(PfwTestCase):
                         log.I("Domain %s - configuration correctly set to %s" % (domain_name,line))
 
         # Temporary files deletion
-        os.remove(self.temp_domain)
         os.remove(self.temp_status)

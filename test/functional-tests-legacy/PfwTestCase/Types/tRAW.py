@@ -66,6 +66,7 @@ Test cases :
     - UINT16 parameter max value out of bounds = 0x03E9 :
         - Writing Raw
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
@@ -75,9 +76,9 @@ log=ACTLogging.Logger()
 class TestCases(PfwTestCase):
     def setUp(self):
         self.param_name = "/Test/Test/TEST_DIR/UINT16_Max"
-        self.filesystem_name="$PFW_RESULT/UINT16_Max"
+        self.filesystem_name=os.environ["PFW_RESULT"] + "/UINT16_Max"
         self.param_name_2 = "/Test/Test/TEST_DIR/UINT16"
-        self.filesystem_name_2="$PFW_RESULT/UINT16"
+        self.filesystem_name_2=os.environ["PFW_RESULT"] + "/UINT16"
         self.pfw.sendCmd("setTuningMode", "on")
 
     def tearDown(self):
@@ -226,7 +227,7 @@ class TestCases(PfwTestCase):
         assert out == blackboard_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                               % (self.param_name, blackboard_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
                                                                                               % (self.param_name))
 
     def test_04_WReal_RHex_Nominal_Case(self):
@@ -276,7 +277,7 @@ class TestCases(PfwTestCase):
         assert out == blackboard_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                               % (self.param_name, blackboard_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
                                                                                               %(self.param_name))
 
     def test_05_WRaw_RDec_Nominal_Case(self):
@@ -325,7 +326,7 @@ class TestCases(PfwTestCase):
         assert out == blackboard_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                               % (self.param_name, blackboard_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
                                                                                               %(self.param_name))
 
 
@@ -377,7 +378,7 @@ class TestCases(PfwTestCase):
         assert out == blackboard_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                               % (self.param_name, blackboard_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
                                                                                               %(self.param_name))
 
     def test_07_WReal_RHex_TypeMin_Case(self):
@@ -429,7 +430,7 @@ class TestCases(PfwTestCase):
         assert out == blackboard_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                               % (self.param_name, blackboard_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
                                                                                               %(self.param_name))
 
     def test_08_WRaw_RDec_TypeMin_Case(self):
@@ -481,7 +482,7 @@ class TestCases(PfwTestCase):
         assert out == blackboard_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                               % (self.param_name, blackboard_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
                                                                                               %(self.param_name))
 
 
@@ -531,7 +532,7 @@ class TestCases(PfwTestCase):
         assert out == blackboard_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                               % (self.param_name, blackboard_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
                                                                                               %(self.param_name))
 
     def test_10_WReal_RHex_TypeMax_Case(self):
@@ -583,7 +584,7 @@ class TestCases(PfwTestCase):
         assert out == blackboard_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                               % (self.param_name, blackboard_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
                                                                                               %(self.param_name))
 
     def test_11_WRaw_RDec_TypeMax_Case(self):
@@ -635,7 +636,7 @@ class TestCases(PfwTestCase):
         assert out == blackboard_value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                               % (self.param_name, blackboard_value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"
                                                                                               %(self.param_name))
 
 
@@ -662,7 +663,7 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_12_WRaw_UINT16_Max_OutOfBound.__doc__)
         value = "0x10000"
-        filesystem_value = commands.getoutput("cat %s"%(self.filesystem_name))
+        filesystem_value = open(self.filesystem_name).read()[:-1]
         value_space = "raw"
         outputraw_format = "hex"
 
@@ -672,13 +673,13 @@ class TestCases(PfwTestCase):
         self.pfw.sendCmd("setValueSpace", value_space)
         self.pfw.sendCmd("setOutputRawFormat", outputraw_format)
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s -> %s"
                                   % (self.param_name, err))
         assert out != "Done", log.F("Error not detected when setting parameter %s out of bound"
                                     % (self.param_name))
         #Check parameter value on blackboard
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, "FILESYSTEM : Forbiden parameter change"
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, "FILESYSTEM : Forbiden parameter change"
 
 
     def test_13_WRaw_UINT16_OutOfBound(self):
@@ -704,7 +705,7 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_13_WRaw_UINT16_OutOfBound.__doc__)
         value = "0x03E9"
-        filesystem_value = commands.getoutput("cat %s"%(self.filesystem_name_2))
+        filesystem_value = open(self.filesystem_name_2).read()[:-1]
         value_space = "raw"
         outputraw_format = "hex"
 
@@ -714,10 +715,10 @@ class TestCases(PfwTestCase):
         self.pfw.sendCmd("setValueSpace", value_space)
         self.pfw.sendCmd("setOutputRawFormat", outputraw_format)
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name_2, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name_2, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s -> %s"
                                   % (self.param_name_2, err))
         assert out != "Done", log.F("Error not detected when setting parameter %s out of bound"
                                     % (self.param_name_2))
         #Check parameter value on blackboard
-        assert commands.getoutput("cat %s"%(self.filesystem_name_2)) == filesystem_value, "FILESYSTEM : Forbiden parameter change"
+        assert open(self.filesystem_name_2).read()[:-1] == filesystem_value, "FILESYSTEM : Forbiden parameter change"

@@ -122,19 +122,19 @@ class TestCases(PfwTestCase):
             new_conf_name = "".join([self.conf_test, "_", str(iteration)])
             log.I("Trying to create already existent %s configuration for domain %s" % (new_conf_name,self.domain_name))
             log.I("command [createConfiguration]")
-            out, err = self.pfw.sendCmd("createConfiguration",self.domain_name,new_conf_name)
+            out, err = self.pfw.sendCmd("createConfiguration",self.domain_name,new_conf_name, expectSuccess=False)
             assert out != "Done", "ERROR : command [createConfiguration] - Error not detected while creating already existent configuration %s" % (new_conf_name)
             assert err == None, "ERROR : command [createConfiguration] - Error while creating configuration %s" % (new_conf_name)
             log.I("command [createConfiguration] correctly executed")
             log.I("error correctly detected, no configuration created")
         log.I("Creating a configuration without specifying a name")
-        out, err = self.pfw.sendCmd("createConfiguration",self.domain_name)
+        out, err = self.pfw.sendCmd("createConfiguration",self.domain_name, expectSuccess=False)
         assert out != "Done", "ERROR : command [createConfiguration] - Error not detected while creating a configuration without specifying a name"
         assert err == None, "ERROR : command [createConfiguration] - Error while creating configuration"
         log.I("error correctly detected")
         log.I("Creating a configuration on a wrong domain name")
         new_conf_name = "new_conf"
-        out, err = self.pfw.sendCmd("createConfiguration","wrong_domain_name",new_conf_name)
+        out, err = self.pfw.sendCmd("createConfiguration","wrong_domain_name",new_conf_name, expectSuccess=False)
         assert out != "Done", "ERROR : command [createConfiguration] - Error not detected while creating a configuration on a wrong domain name"
         assert err == None, "ERROR : command [createConfiguration] - Error while creating configuration"
         log.I("error correctly detected")
@@ -154,10 +154,9 @@ class TestCases(PfwTestCase):
         log.I("Configurations listing conformity check")
         f_configurations = open("f_configurations", "r")
         f_configurations_backup = open("f_configurations_backup", "r")
-        for iteration in range(self.new_conf_number):
-            listed_conf_backup = f_configurations_backup.readline().strip('\n')
-            listed_conf = f_configurations.readline().strip('\n')
-            assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
+        listed_conf_backup = f_configurations_backup.read().splitlines()
+        listed_conf = f_configurations.read().splitlines()
+        assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
         log.I("No change detected, listed configurations names conform to expected values")
 
         # New domain deletion
@@ -236,19 +235,19 @@ class TestCases(PfwTestCase):
             new_conf_name = "".join([self.conf_test, "_", str(iteration+1)])
             log.I("Trying to rename %s on domain %s with an already used name : %s" % (conf_name,self.domain_name,new_conf_name))
             log.I("command [renameConfiguration]" )
-            out, err = self.pfw.sendCmd("renameConfiguration",self.domain_name,conf_name,new_conf_name)
+            out, err = self.pfw.sendCmd("renameConfiguration",self.domain_name,conf_name,new_conf_name, expectSuccess=False)
             assert out != "Done", "ERROR : command [renameConfiguration] - Error not detected while renaming configuration %s with an already used name" % (new_conf_name)
             assert err == None, "ERROR : command [renameConfiguration] - Error while renaming configuration %s" % (new_conf_name)
             log.I("command [renameConfiguration] correctly executed")
             log.I("error correctly detected, no configuration renamed")
         log.I("renaming a configuration without specifying a new name")
-        out, err = self.pfw.sendCmd("renameConfiguration",self.domain_name,new_conf_name)
+        out, err = self.pfw.sendCmd("renameConfiguration",self.domain_name,new_conf_name, expectSuccess=False)
         assert out != "Done", "ERROR : command [renameConfiguration] - Error not detected while renaming a configuration without specifying a new name"
         assert err == None, "ERROR : command [renameConfiguration] - Error while renaming configuration"
         log.I("error correctly detected, no configuration renamed")
         log.I("renaming a configuration on a wrong domain name")
         new_conf_name = "new_conf"
-        out, err = self.pfw.sendCmd("renameConfiguration","wrong_domain_name",new_conf_name,"Configuration")
+        out, err = self.pfw.sendCmd("renameConfiguration","wrong_domain_name",new_conf_name,"Configuration", expectSuccess=False)
         assert out != "Done", "ERROR : command [renameConfiguration] - Error not detected while renaming a configuration on a wrong domain name"
         assert err == None, "ERROR : command [renameConfiguration] - Error while renaming configuration"
         log.I("error correctly detected, no configuration renamed")
@@ -268,10 +267,9 @@ class TestCases(PfwTestCase):
         log.I("Configurations listing conformity check")
         f_configurations = open("f_configurations", "r")
         f_configurations_backup = open("f_configurations_backup", "r")
-        for iteration in range(self.new_conf_number):
-            listed_conf_backup = f_configurations_backup.readline().strip('\n')
-            listed_conf = f_configurations.readline().strip('\n')
-            assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
+        listed_conf_backup = f_configurations_backup.read().splitlines()
+        listed_conf = f_configurations.read().splitlines()
+        assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
         log.I("No change detected, listed configurations names conform to expected values")
 
         # Testing domain deletion
@@ -346,18 +344,18 @@ class TestCases(PfwTestCase):
         log.I("Trying various deletions error test cases")
         log.I("Trying to delete a wrong configuration name on domain %s" % (self.domain_name))
         log.I("command [deleteConfiguration]")
-        out, err = self.pfw.sendCmd("deleteConfiguration",self.domain_name,"wrong_configuration_name")
+        out, err = self.pfw.sendCmd("deleteConfiguration",self.domain_name,"wrong_configuration_name", expectSuccess=False)
         assert out != "Done", "ERROR : command [deleteConfiguration] - Error not detected while deleting non existent configuration name"
         assert err == None, "ERROR : command [deleteConfiguration] - Error while deleting configuration"
         log.I("command [deleteConfiguration] correctly executed")
         log.I("error correctly detected, no configuration deleted")
         log.I("deleting a configuration with no name specified")
-        out, err = self.pfw.sendCmd("deleteConfiguration",self.domain_name)
+        out, err = self.pfw.sendCmd("deleteConfiguration",self.domain_name, expectSuccess=False)
         assert out != "Done", "ERROR : command [deleteConfiguration] - Error not detected while deleting a configuration without specifying a name"
         assert err == None, "ERROR : command [deleteConfiguration] - Error while deleting configuration"
         log.I("error correctly detected, no configuration deleted")
         log.I("deleting a configuration on a wrong domain name")
-        out, err = self.pfw.sendCmd("deleteConfiguration","wrong_domain_name",new_conf_name)
+        out, err = self.pfw.sendCmd("deleteConfiguration","wrong_domain_name",new_conf_name, expectSuccess=False)
         assert out != "Done", "ERROR : command [deleteConfiguration] - Error not detected while deleting a configuration on a wrong domain name"
         assert err == None, "ERROR : command [deleteConfiguration] - Error while deleting configuration"
         log.I("error correctly detected, no configuration deleted")
@@ -377,10 +375,9 @@ class TestCases(PfwTestCase):
         log.I("Configurations listing conformity check")
         f_configurations = open("f_configurations", "r")
         f_configurations_backup = open("f_configurations_backup", "r")
-        for iteration in range(self.new_conf_number):
-            listed_conf_backup = f_configurations_backup.readline().strip('\n')
-            listed_conf = f_configurations.readline().strip('\n')
-            assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
+        listed_conf_backup = f_configurations_backup.read().splitlines()
+        listed_conf = f_configurations.read().splitlines()
+        assert listed_conf==listed_conf_backup, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf_backup, listed_conf)
         log.I("No change detected, listed configurations names conform to expected values")
 
         # Testing domain deletion
@@ -453,10 +450,9 @@ class TestCases(PfwTestCase):
         # Checking configurations names integrity
         log.I("Configurations listing conformity check")
         f_configurations = open("f_configurations", "r")
-        for iteration in range(self.new_conf_number):
-            new_conf_name = "".join([self.conf_test, "_", str(iteration)])
-            listed_conf = f_configurations.readline().strip('\n')
-            assert listed_conf==new_conf_name, "ERROR : Error while listing configuration %s (found %s)" % (listed_conf, new_conf_name)
+        new_conf_names = [self.conf_test + "_" + str(iteration) for iteration in range(self.new_conf_number)]
+        listed_conf = f_configurations.read().strip('\r\n').splitlines()
+        assert listed_conf == new_conf_names, "ERROR : Error while listing configuration, expected '%s', found '%s'" % (new_conf_names, listed_conf)
         log.I("Listed configurations names conform to expected values")
 
         # Configuration renaming
@@ -478,16 +474,12 @@ class TestCases(PfwTestCase):
         assert err == None, "ERROR : command [listConfigurations] - Error while listing configurations for domain %s" % (self.domain_name)
         log.I("command [listConfigurations] correctly executed")
         # Saving configurations names
-        f_configurations_renamed = open("f_configurations_renamed", "w")
-        f_configurations_renamed.write(out)
-        f_configurations_renamed.close()
+        configurations_renamed = out
         # Checking configurations names integrity
         log.I("Configurations listing conformity check")
-        f_configurations_renamed = open("f_configurations_renamed", "r")
-        for iteration in range(self.new_conf_number):
-            new_conf_name = "".join([self.conf_test_renamed, "_", str(iteration)])
-            listed_conf = f_configurations_renamed.readline().strip('\n')
-            assert listed_conf==new_conf_name, "ERROR : Error while renaming configuration %s (found %s)" % (new_conf_name,listed_conf)
+        new_conf_names = [self.conf_test_renamed + "_" + str(iteration) for iteration in range(self.new_conf_number)]
+        listed_conf = configurations_renamed.strip('\r\n').splitlines()
+        assert listed_conf == new_conf_names, "ERROR : Error while renaming configuration, expected '%s', found '%s'" % (new_conf_names, listed_conf)
         log.I("Listed configurations names conform to expected values, renaming successfull")
 
         # New domain deletion
@@ -501,5 +493,3 @@ class TestCases(PfwTestCase):
         # Closing and deleting temp file
         f_configurations.close()
         os.remove("f_configurations")
-        f_configurations_renamed.close()
-        os.remove("f_configurations_renamed")

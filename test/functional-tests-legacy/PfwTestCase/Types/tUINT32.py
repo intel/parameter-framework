@@ -52,6 +52,7 @@ Test cases :
     - UINT32 parameter max value out of bounds = 1001
     - UINT32 parameter in nominal case = 50
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
@@ -102,7 +103,7 @@ class TestCases(PfwTestCase):
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                    % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/UINT32') == hex_value, log.F("FILESYSTEM : parameter update error")
+        assert open(os.environ["PFW_RESULT"] + "/UINT32").read()[:-1] == hex_value, log.F("FILESYSTEM : parameter update error")
         log.I("test OK")
 
     def test_TypeMin(self):
@@ -140,7 +141,7 @@ class TestCases(PfwTestCase):
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                    % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/UINT32') == hex_value, log.F("FILESYSTEM : parameter update error")
+        assert open(os.environ["PFW_RESULT"] + "/UINT32").read()[:-1] == hex_value, log.F("FILESYSTEM : parameter update error")
         log.I("test OK")
 
     def test_TypeMin_Overflow(self):
@@ -165,15 +166,15 @@ class TestCases(PfwTestCase):
         log.D(self.test_TypeMin_Overflow.__doc__)
         log.I("UINT32 parameter min value out of bounds = -1")
         value = "-1"
-        param_check = commands.getoutput('cat $PFW_RESULT/UINT32')
+        param_check = open(os.environ["PFW_RESULT"] + "/UINT32").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s : %s"
                                   % (self.param_name, err))
         assert out != "Done", log.F("PFW : Error not detected when setting parameter %s out of bounds"
                                     % (self.param_name))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/UINT32') == param_check, log.F("FILESYSTEM : Forbiden parameter change")
+        assert open(os.environ["PFW_RESULT"] + "/UINT32").read()[:-1] == param_check, log.F("FILESYSTEM : Forbiden parameter change")
         log.I("test OK")
 
     def test_TypeMax(self):
@@ -211,7 +212,7 @@ class TestCases(PfwTestCase):
         assert out == value, log.F("BLACKBOARD : Incorrect value for %s, expected: %s, found: %s"
                                    % (self.param_name, value, out))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/UINT32') == hex_value, log.F("FILESYSTEM : parameter update error")
+        assert open(os.environ["PFW_RESULT"] + "/UINT32").read()[:-1] == hex_value, log.F("FILESYSTEM : parameter update error")
         log.I("test OK")
 
     def test_TypeMax_Overflow(self):
@@ -236,13 +237,13 @@ class TestCases(PfwTestCase):
         log.D(self.test_TypeMax_Overflow.__doc__)
         log.I("UINT32 parameter max value out of bounds = 1001")
         value = "1001"
-        param_check = commands.getoutput('cat $PFW_RESULT/UINT32')
+        param_check = open(os.environ["PFW_RESULT"] + "/UINT32").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("when setting parameter %s : %s"
                                   % (self.param_name, err))
         assert out != "Done", log.F("PFW : Error not detected when setting parameter %s out of bounds"
                                     % (self.param_name))
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/UINT32') == param_check, log.F("FILESYSTEM : Forbiden parameter change")
+        assert open(os.environ["PFW_RESULT"] + "/UINT32").read()[:-1] == param_check, log.F("FILESYSTEM : Forbiden parameter change")
         log.I("test OK")

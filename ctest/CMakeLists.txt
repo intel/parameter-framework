@@ -70,9 +70,25 @@ function(set_test_env TestName)
         set(SEP ":")
     endif ()
 
-    # Quotes are necessary. Otherwise `;` escapes are discarded
+
+    # With nmake and nmake, executables are build in:
+    #     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} => `bin/`
+    #
+    # Nevertheless Visual studio (and xcode) can build for debug and release
+    # from the same build tree. As a result those multi-configuration
+    # build systems build executables in:
+    #     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIGURATION> =>
+    #         - `bin/Debug` for debug
+    #         - `bin/Release` for release.
+    #
+    # In order to support both build system types add
+    #     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} *and* ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIGURATION>
+    # in the path.
+    #
+    # Note: Quotes are necessary. Otherwise `;` escapes are discarded
+    # TODO: when cmake 3 will be used, split long lines with trailing backslash
     set_property(TEST ${TestName} PROPERTY ENVIRONMENT
-                 "PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}${SEP}${TEST_PATH}"
+                 "PATH=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}${SEP}${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIGURATION>${SEP}${TEST_PATH}"
                  "LD_LIBRARY_PATH=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}${SEP}${TEST_LD_LIBRARY_PATH}"
                  "PYTHONPATH=${CMAKE_BINARY_DIR}/bindings/python${SEP}${TEST_PYTHONPATH}")
 endfunction()

@@ -54,7 +54,7 @@ class TestCases(PfwTestCase):
 
     def setUp(self):
 
-        pfw_filesystem=os.getenv("PFW_RESULT")
+        pfw_filesystem=os.environ["PFW_RESULT"]
 
         self.pfw.sendCmd("setTuningMode", "on")
         self.param_name_01 = "/Test/Test/TEST_DIR/BOOL"
@@ -133,9 +133,9 @@ class TestCases(PfwTestCase):
         init_value_01, err = self.pfw.sendCmd("getParameter", self.param_name_01, "")
         init_value_02, err = self.pfw.sendCmd("getParameter", self.param_name_02, "")
         init_value_03, err = self.pfw.sendCmd("getParameter", self.param_name_03, "")
-        init_filesystem_01 = commands.getoutput("cat %s"%(self.filesystem_01))
-        init_filesystem_02 = commands.getoutput("cat %s"%(self.filesystem_02))
-        init_filesystem_03 = commands.getoutput("cat %s"%(self.filesystem_03))
+        init_filesystem_01 = open(self.filesystem_01).read()[:-1]
+        init_filesystem_02 = open(self.filesystem_02).read()[:-1]
+        init_filesystem_03 = open(self.filesystem_03).read()[:-1]
         #Implement a new value
         if int(init_value_01)==0 :
             new_value_01 = "1"
@@ -155,11 +155,11 @@ class TestCases(PfwTestCase):
         self.pfw.sendCmd("setParameter", self.param_name_03, new_value_03)
         #Check the filesystem values
         #BOOL
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] != init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
         #INT16
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] != init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
         #UINT32
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] != init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
         log.I("test setAutoSync %s : OK"%(value))
         #Enable the autosync
         value = "off"
@@ -173,11 +173,11 @@ class TestCases(PfwTestCase):
         self.pfw.sendCmd("setParameter", self.param_name_03, init_value_03)
         #Check the filesystem values
         #BOOL
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) != init_filesystem_01, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] != init_filesystem_01, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_01)
         #INT16
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) != init_filesystem_02, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] != init_filesystem_02, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_02)
         #UINT32
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) != init_filesystem_03, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] != init_filesystem_03, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_03)
         log.I("test setAutoSync %s : OK"%(value))
 
 
@@ -208,9 +208,9 @@ class TestCases(PfwTestCase):
         init_value_01, err = self.pfw.sendCmd("getParameter", self.param_name_01, "")
         init_value_02, err = self.pfw.sendCmd("getParameter", self.param_name_02, "")
         init_value_03, err = self.pfw.sendCmd("getParameter", self.param_name_03, "")
-        init_filesystem_01 = commands.getoutput("cat %s"%(self.filesystem_01))
-        init_filesystem_02 = commands.getoutput("cat %s"%(self.filesystem_02))
-        init_filesystem_03 = commands.getoutput("cat %s"%(self.filesystem_03))
+        init_filesystem_01 = open(self.filesystem_01).read()[:-1]
+        init_filesystem_02 = open(self.filesystem_02).read()[:-1]
+        init_filesystem_03 = open(self.filesystem_03).read()[:-1]
         #Implement a new value
         if int(init_value_01)==0 :
             new_value_01 = "1"
@@ -230,11 +230,11 @@ class TestCases(PfwTestCase):
         self.pfw.sendCmd("setParameter", self.param_name_03, new_value_03)
         #Check the filesystem values, must not changed
         #BOOL
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) == init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] == init_filesystem_01, log.F("FILESYSTEM : parameter %s update error"%self.param_name_01)
         #INT16
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) == init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] == init_filesystem_02, log.F("FILESYSTEM : parameter %s update error"%self.param_name_02)
         #UINT32
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) == init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] == init_filesystem_03, log.F("FILESYSTEM : parameter %s update error"%self.param_name_03)
         log.I("test setAutoSync %s : OK"%(value))
         log.I("Sync")
         out,err = self.pfw.sendCmd("sync", "")
@@ -242,9 +242,9 @@ class TestCases(PfwTestCase):
         assert out == "Done", log.F("Sync - expected : Done , found : %s" % (out))
         #Check the filesystem values
         #BOOL
-        assert commands.getoutput("cat %s"%(self.filesystem_01)) != init_filesystem_01, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_01)
+        assert open(self.filesystem_01).read()[:-1] != init_filesystem_01, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_01)
         #INT16
-        assert commands.getoutput("cat %s"%(self.filesystem_02)) != init_filesystem_02, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_02)
+        assert open(self.filesystem_02).read()[:-1] != init_filesystem_02, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_02)
         #UINT32
-        assert commands.getoutput("cat %s"%(self.filesystem_03)) != init_filesystem_03, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_03)
+        assert open(self.filesystem_03).read()[:-1] != init_filesystem_03, log.F("FILESYSTEM : parameter %s  is updated, autosync is still enabled"%self.param_name_03)
         log.I("test setAutoSync %s : OK"%(value))

@@ -73,9 +73,9 @@
 							<BitParameter Name="BIT_7_1">0</BitParameter>
 						</BitParameterBlock>
 						<ParameterBlock Name="BLOCK_PARAMETER">
-							<IntegerParameter Name="UINT8">0</IntegerParameter>
-							<IntegerParameter Name="UINT16">0</IntegerParameter>
-							<IntegerParameter Name="UINT32">0</IntegerParameter>
+							<IntegerParameter Name="BLOCK_UINT8">0</IntegerParameter>
+							<IntegerParameter Name="BLOCK_UINT16">0</IntegerParameter>
+							<IntegerParameter Name="BLOCK_UINT32">0</IntegerParameter>
 						</ParameterBlock>
 					</Component>
 				</ConfigurableElement>
@@ -131,9 +131,9 @@
 							<BitParameter Name="BIT_7_1">0</BitParameter>
 						</BitParameterBlock>
 						<ParameterBlock Name="BLOCK_PARAMETER">
-							<IntegerParameter Name="UINT8">0</IntegerParameter>
-							<IntegerParameter Name="UINT16">0</IntegerParameter>
-							<IntegerParameter Name="UINT32">0</IntegerParameter>
+							<IntegerParameter Name="BLOCK_UINT8">0</IntegerParameter>
+							<IntegerParameter Name="BLOCK_UINT16">0</IntegerParameter>
+							<IntegerParameter Name="BLOCK_UINT32">0</IntegerParameter>
 						</ParameterBlock>
 					</Component>
 				</ConfigurableElement>

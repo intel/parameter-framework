@@ -28,43 +28,82 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+import os
 import subprocess
 import unittest
 import time
+import socket
 
 class RemoteCli(object):
-    def sendCmd(self, cmd, *args):
-        shell_cmd = " ".join([self.platform_command, cmd])
+
+    def setRemoteProcess(self, remoteProcess):
+        self.remoteProcess = remoteProcess
+
+    def sendCmd(self, cmd, *args, **kwargs):
+        """ Execute a remote-process command and assert its result.
+            @param[in] cmd, *args the command to execute and its arguments
+            @param[in] expectSuccess If True, assert that the command will succeed
+                                     If False, assert that the command will succeed
+                                     If None, do not assert result
+                                     Default to True
+            @return (command stdout, None) None is return for legacy reason
+        """
+        expectSuccess=kwargs.get("expectSuccess", True)
+
+        assert self.remoteProcess.poll() == None, "Can not send command to Test platform as it has died."
+
+        sys_cmd = self.platform_command + [cmd]
         if args is not None:
-            shell_cmd += " " + " ".join(args)
-        print "CMD  :",
-        print "[" + shell_cmd + "]"
+            sys_cmd += args
+        print "CMD  : %s" % sys_cmd
+
         try:
-            p = subprocess.Popen(shell_cmd, shell=True, stdout=subprocess.PIPE)
+            p = subprocess.Popen(sys_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except Exception as (errno, strerror):
             return None, strerror
         out, err = p.communicate()
-        if out is not None:
-            out = out.strip()
-        return out, err
+        out = out.rstrip('\r\n')
+
+        if (expectSuccess != None):
+            assert (p.returncode == 0) == expectSuccess, "Unexpected command result:\nexpectedSuccess=%s\nCMD=%s\nreturncode=%s\nstdout=%s\nstderr=%s" % (expectSuccess, sys_cmd, p.returncode, out, err)
+
+        return out, None
 
 class Pfw(RemoteCli):
-    def __init__(self):
-        self.platform_command = "remote-process localhost 5000 "
+    platform_command = ["remote-process", "localhost", "5000"]
 
 class Hal(RemoteCli):
-    def __init__(self):
-        self.platform_command = "remote-process localhost 5001 "
+    # Arbitrary choosen port, try to avoid conflicting with IANA registered ports
+    testPlatformPort = 18444
+    platform_command = ["remote-process", "localhost", str(testPlatformPort)]
+
+    def __init__(self, pfw):
+        self.pfw = pfw
 
     # Starts the HAL exe
     def startHal(self):
-        cmd= "test-platform $PFW_TEST_CONFIGURATION"
-        subprocess.Popen(cmd, shell=True)
-        pass
+        cmd= ["test-platform", os.environ["PFW_TEST_CONFIGURATION"], str(self.testPlatformPort)]
+        self.setRemoteProcess(subprocess.Popen(cmd))
+        # Wait for the test-platform listening socket
+        while socket.socket().connect_ex(("localhost", self.testPlatformPort)) != 0:
+            assert self.remoteProcess.poll() == None, "Test platform has failed to start."
+            time.sleep(0.01)
 
     # Send command "stop" to the HAL
     def stopHal(self):
-        subprocess.call("remote-process localhost 5001 exit", shell=True)
+        try:
+            self.sendCmd("exit")
+        except Exception as exitEx:
+            # Kill test-platform as cooperative exit failed
+            try:
+                self.remoteProcess.terminate()
+            except Exception as killEx:
+                raise Exception("Fail to terminate after a exit request failed", exitEx, killEx)
+            raise
+        else:
+            # exit request accepted, wait for server to stop
+            returncode = self.remoteProcess.wait()
+            assert returncode == 0, "test-platform did not stop succesfully: %s" % returncode
 
     def createInclusiveCriterion(self, name, nb):
         self.sendCmd("createInclusiveSelectionCriterion", name, nb)
@@ -74,17 +113,15 @@ class Hal(RemoteCli):
 
     # Starts the Pfw
     def start(self):
-        self.sendCmd("setValidateSchemasOnStart true")
+        self.sendCmd("setValidateSchemasOnStart", "true")
         self.sendCmd("start")
+        self.pfw.setRemoteProcess(self.remoteProcess)
 
 # A PfwTestCase gather tests performed on one instance of the PFW.
 class PfwTestCase(unittest.TestCase):
 
-    hal = Hal()
-
-    def __init__(self, argv):
-        super(PfwTestCase, self).__init__(argv)
-        self.pfw = Pfw()
+    pfw = Pfw()
+    hal = Hal(pfw)
 
     @classmethod
     def setUpClass(cls):
@@ -98,14 +135,20 @@ class PfwTestCase(unittest.TestCase):
     def startHal(cls):
         # set up the Hal & pfw
         cls.hal.startHal()
-        time.sleep(0.1)
-        # create criterions
-        cls.hal.createInclusiveCriterion("Crit_0", "2")
-        cls.hal.createExclusiveCriterion("Crit_1", "2")
-        # start the Pfw
-        cls.hal.start()
+        try:
+            # create criterions
+            cls.hal.createInclusiveCriterion("Crit_0", "2")
+            cls.hal.createExclusiveCriterion("Crit_1", "2")
+            # start the Pfw
+            cls.hal.start()
+        except Exception as startE:
+            # Leave the hal stopped in case of start failure
+            try:
+                cls.stopHal()
+            except Exception as stopE:
+                raise Exception("Fail to stop after a failed start: ", startE, stopE)
+            raise
 
     @classmethod
     def stopHal(cls):
         cls.hal.stopHal()
-        time.sleep(0.1)

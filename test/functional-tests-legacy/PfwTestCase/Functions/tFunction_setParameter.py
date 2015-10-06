@@ -73,18 +73,18 @@ class TestCases(PfwTestCase):
         log.D(self.test_Function_Commands_Errors.__doc__)
         #Set undefined parameter value
         log.I("Set undefined parameter value")
-        out, err = self.pfw.sendCmd("setParameter", "Undefined_parameter", "0")
+        out, err = self.pfw.sendCmd("setParameter", "Undefined_parameter", "0", expectSuccess=False)
         assert err == None, "Error when setting parameter : %s" % (err)
         assert out != "Done", "Error not detected when setting an undefined parameter"
         #Set parameter with a forbiden character value
         log.I("Set parameter with a forbiden character value")
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, "Wrong_Value")
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, "Wrong_Value", expectSuccess=False)
         assert err == None, "Error when setting parameter : %s" % (err)
         assert out != "Done", "Error not detected when setting a parameter with a forbiden character value"
         log.I("Errors correctly detected")
         #Set parameter with a Float into an Integer parameter
         log.I("Set parameter with a Float into an Integer parameter")
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, "1.2345")
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, "1.2345", expectSuccess=False)
         assert err == None, "Error when setting parameter : %s" % (err)
         assert out != "Done", "Error not detected when setting a Float into an Integer parameter"
         log.I("Errors correctly detected")

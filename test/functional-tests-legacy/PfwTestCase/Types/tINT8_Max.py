@@ -50,6 +50,7 @@ Test cases :
     - INT8_Max parameter max value out of bounds = 128
     - INT8_Max parameter in nominal case = 50
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
@@ -95,7 +96,7 @@ class TestCases(PfwTestCase):
         assert err == None, "Error when setting parameter %s : %s" % (self.param_name, err)
         assert out == value, "BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out)
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/INT8_Max') == hex_value, "FILESYSTEM : parameter update error"
+        assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == hex_value, "FILESYSTEM : parameter update error"
         print "INFO : test OK"
 
     def test_TypeMin(self):
@@ -129,7 +130,7 @@ class TestCases(PfwTestCase):
         assert err == None, "PFW : Error when setting parameter %s : %s" % (self.param_name, err)
         assert out == value, "BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out)
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/INT8_Max') == hex_value, "FILESYSTEM : parameter update error"
+        assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == hex_value, "FILESYSTEM : parameter update error"
         print "INFO : test OK"
 
     def test_TypeMin_Overflow(self):
@@ -154,13 +155,13 @@ class TestCases(PfwTestCase):
         print self.test_TypeMin_Overflow.__doc__
         print "INFO : INT8_Max parameter min value out of bounds = -129"
         value = "-129"
-        param_check = commands.getoutput('cat $PFW_RESULT/INT8_Max')
+        param_check = open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, "Error when setting parameter %s : %s" % (self.param_name, err)
         assert out != "Done", "PFW : Error not detected when setting parameter %s out of bounds" % (self.param_name)
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/INT8_Max') == param_check, "FILESYSTEM : Forbiden parameter change"
+        assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == param_check, "FILESYSTEM : Forbiden parameter change"
         print "INFO : test OK"
 
     def test_TypeMax(self):
@@ -194,7 +195,7 @@ class TestCases(PfwTestCase):
         assert err == None, "Error when setting parameter %s : %s" % (self.param_name, err)
         assert out == value, "BLACKBOARD : Incorrect value for %s, expected: %s, found: %s" % (self.param_name, value, out)
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/INT8_Max') == hex_value, "FILESYSTEM : parameter update error"
+        assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == hex_value, "FILESYSTEM : parameter update error"
         print "INFO : test OK"
 
     def test_TypeMax_Overflow(self):
@@ -219,11 +220,11 @@ class TestCases(PfwTestCase):
         print self.test_TypeMax_Overflow.__doc__
         print "INFO : INT8_Max parameter max value out of bounds = 128"
         value = "128"
-        param_check = commands.getoutput('cat $PFW_RESULT/INT8_Max')
+        param_check = open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1]
         #Set parameter value
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, "Error when setting parameter %s : %s" % (self.param_name, err)
         assert out != "Done", "PFW : Error not detected when setting parameter %s out of bounds" % (self.param_name)
         #Check parameter value on filesystem
-        assert commands.getoutput('cat $PFW_RESULT/INT8_Max') == param_check, "FILESYSTEM : Forbiden parameter change"
+        assert open(os.environ["PFW_RESULT"] + "/INT8_Max").read()[:-1] == param_check, "FILESYSTEM : Forbiden parameter change"
         print "INFO : test OK"
