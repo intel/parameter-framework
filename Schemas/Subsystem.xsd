@@ -20,14 +20,6 @@
 			</xs:element>
 		</xs:sequence>
 		<xs:attributeGroup ref="Nameable"/>
-		<xs:attribute name="Endianness" use="required">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="Little"/>
-					<xs:enumeration value="Big"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:attribute>
 		<xs:attribute name="Type" use="required"/>
 		<xs:attribute name="Mapping" use="optional"/>
 	</xs:complexType>

@@ -178,17 +178,6 @@ bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfigurati
     // Provide current output raw format
     configurationAccessContext.setOutputRawFormat(xmlDomainExportContext.outputRawFormatIsHex());
 
-    // Get subsystem
-    const CSubsystem* pSubsystem = pConfigurableElement->getBelongingSubsystem();
-
-    if (pSubsystem && pSubsystem != pConfigurableElement) {
-
-        // Element is a descendant of subsystem
-
-        // Deal with Endianness
-        configurationAccessContext.setBigEndianSubsystem(pSubsystem->isBigEndian());
-    }
-
     // Have domain configuration parse settings for configurable element
     if (!areaConfiguration->serializeXmlSettings(xmlConfigurableElementSettingsElementContent, configurationAccessContext)) {
 

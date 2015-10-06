@@ -196,13 +196,12 @@ void CArrayParameter::setDefaultValues(CParameterAccessContext& parameterAccessC
     size_t valueIndex;
     size_t size = getSize();
     size_t offset = getOffset();
-    bool bSubsystemIsBigEndian = parameterAccessContext.isBigEndianSubsystem();
     size_t arrayLength = getArrayLength();
 
     for (valueIndex = 0; valueIndex < arrayLength; valueIndex++) {
 
         // Beware this code works on little endian architectures only!
-        pBlackboard->writeInteger(&uiDefaultValue, size, offset, bSubsystemIsBigEndian);
+        pBlackboard->writeInteger(&uiDefaultValue, size, offset);
 
         offset += size;
     }
@@ -411,7 +410,7 @@ bool CArrayParameter::doSet(type value, size_t offset, CParameterAccessContext& 
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->writeInteger(&uiData, getSize(), offset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->writeInteger(&uiData, getSize(), offset);
 
     return true;
 }
@@ -425,7 +424,7 @@ bool CArrayParameter::doGet(type& value, size_t offset, CParameterAccessContext&
     const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->readInteger(&uiData, getSize(), offset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->readInteger(&uiData, getSize(), offset);
 
     return static_cast<const CParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);
 }

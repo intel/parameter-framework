@@ -1,5 +1,5 @@
 <SystemClass Name="class">
-    <Subsystem Name="subsystem" Type="Skeleton" Endianness="Little">
+    <Subsystem Name="subsystem" Type="Skeleton">
         <ComponentLibrary>
         </ComponentLibrary>
         <InstanceDefinition>

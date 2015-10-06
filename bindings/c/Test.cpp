@@ -128,7 +128,7 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use") {
     const char *intParameterPath = "/test/system/integer";
     const char *stringParameterPath = "/test/system/string";
     TmpFile system("<?xml version='1.0' encoding='UTF-8'?>\
-        <Subsystem Name='system' Type='Virtual' Endianness='Little'>\
+        <Subsystem Name='system' Type='Virtual'>\
             <ComponentLibrary/>\
             <InstanceDefinition>\
                 <IntegerParameter Name='integer' Size='32' Signed='true' Max='100'/>\

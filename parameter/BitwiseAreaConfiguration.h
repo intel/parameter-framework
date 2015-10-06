@@ -42,8 +42,5 @@ private:
     // Blackboard copies
     virtual void copyTo(CParameterBlackboard* pToBlackboard, size_t offset) const;
     virtual void copyFrom(const CParameterBlackboard* pFromBlackboard, size_t offset);
-
-    // Endianness
-    bool _bBigEndian;
 };
 

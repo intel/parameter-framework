@@ -1097,5 +1097,14 @@ on start then read only.
 This value **MUST** be gettable for an immutable parameter.
 <why>A parameter that can not be accessed (read or write) is of no use.</why>
 
+### Endianess adaptation
+A parameter or a block of parameters might be presented by the Parameter
+Framework but only used as a passthrough to the underlying subsystem (think
+"`(void *)` interfaces"). It is then possible that the endianess of the
+subsystem differs from the one the Parameter Framework is running on, an
+endianness adaptation would allow supporting those cases.
+
+This can be seen as related to the "Parameter Adaptation" requirement or even
+as a special case.
 
 </article>

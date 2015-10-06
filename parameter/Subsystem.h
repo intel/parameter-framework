@@ -67,17 +67,11 @@ public:
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
-    // Susbsystem Endianness
-    bool isBigEndian() const;
-
     // Susbsystem sanity
     virtual bool isAlive() const;
 
     // Resynchronization after subsystem restart needed
     virtual bool needResync(bool bClear);
-
-    // XML configuration settings parsing
-    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 
     // from CElement
     virtual std::string getKind() const;
@@ -101,9 +95,6 @@ public:
     virtual std::string getMapping(std::list<const CConfigurableElement*>& configurableElementPath) const;
 
 protected:
-    // Parameter access
-    virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
@@ -255,9 +246,6 @@ private:
     // Subelements
     CComponentLibrary* _pComponentLibrary;
     CInstanceDefinition* _pInstanceDefinition;
-
-    // Endianness
-    bool _bBigEndian;
 
     //! Contains the mapping info at Subsystem level
     CMappingData* _pMappingData;

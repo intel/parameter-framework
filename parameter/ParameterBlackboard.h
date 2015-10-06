@@ -43,8 +43,8 @@ public:
     size_t getSize() const;
 
     // Single parameter access
-    void writeInteger(const void* pvSrcData, size_t size, size_t offset, bool bBigEndian);
-    void readInteger(void* pvDstData, size_t size, size_t offset, bool bBigEndian) const;
+    void writeInteger(const void* pvSrcData, size_t size, size_t offset);
+    void readInteger(void* pvDstData, size_t size, size_t offset) const;
 
     void writeString(const std::string &input, size_t offset);
     void readString(std::string &output, size_t offset) const;

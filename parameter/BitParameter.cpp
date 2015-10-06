@@ -143,7 +143,7 @@ bool CBitParameter::doSet(type value, size_t offset, CParameterAccessContext& pa
     CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), offset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), offset);
 
     // Convert
     if (!static_cast<const CBitParameterType*>(getTypeElement())->toBlackboard(value, uiData, parameterAccessContext)) {
@@ -151,7 +151,7 @@ bool CBitParameter::doSet(type value, size_t offset, CParameterAccessContext& pa
         return false;
     }
     // Write blackboard
-    pBlackboard->writeInteger(&uiData, getBelongingBlockSize(), offset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->writeInteger(&uiData, getBelongingBlockSize(), offset);
 
     return true;
 }
@@ -165,7 +165,7 @@ void CBitParameter::doGet(type& value, size_t offset, CParameterAccessContext& p
     const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), offset, parameterAccessContext.isBigEndianSubsystem());
+    pBlackboard->readInteger(&uiData, getBelongingBlockSize(), offset);
 
     // Convert
     static_cast<const CBitParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);

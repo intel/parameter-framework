@@ -101,7 +101,7 @@ private:
      )";
     const char *mStructureTemplate = R"(<?xml version='1.0' encoding='UTF-8'?>
         <SystemClass Name='test'>
-            <Subsystem Name='test' Type='Virtual' Endianness='Little'>
+            <Subsystem Name='test' Type='Virtual'>
                 <ComponentLibrary>
                     {components}
                 </ComponentLibrary>

@@ -34,8 +34,7 @@
 #define base CAreaConfiguration
 
 CBitwiseAreaConfiguration::CBitwiseAreaConfiguration(const CConfigurableElement *pConfigurableElement, const CSyncerSet *pSyncerSet)
-    : base(pConfigurableElement, pSyncerSet, static_cast<const CBitParameter*>(pConfigurableElement)->getBelongingBlockSize()),
-      _bBigEndian(pConfigurableElement->getBelongingSubsystem()->isBigEndian())
+    : base(pConfigurableElement, pSyncerSet, static_cast<const CBitParameter*>(pConfigurableElement)->getBelongingBlockSize())
 {
 }
 
@@ -51,16 +50,16 @@ void CBitwiseAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, size
     /// Read/modify/write
 
     // Read dst blackboard
-    pToBlackboard->readInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), offset, _bBigEndian);
+    pToBlackboard->readInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), offset);
 
     // Read src blackboard
-    _blackboard.readInteger(&uiSrcData, pBitParameter->getBelongingBlockSize(), 0, _bBigEndian);
+    _blackboard.readInteger(&uiSrcData, pBitParameter->getBelongingBlockSize(), 0);
 
     // Convert
     uiDstData = pBitParameter->merge(uiDstData, uiSrcData);
 
     // Write dst blackboard
-    pToBlackboard->writeInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), offset, _bBigEndian);
+    pToBlackboard->writeInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), offset);
 }
 
 void CBitwiseAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackboard, size_t offset)
@@ -74,15 +73,15 @@ void CBitwiseAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackb
     /// Read/modify/write
 
     // Read dst blackboard
-    _blackboard.readInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), 0, _bBigEndian);
+    _blackboard.readInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), 0);
 
     // Read src blackboard
-    pFromBlackboard->readInteger(&uiSrcData, pBitParameter->getBelongingBlockSize(), offset, _bBigEndian);
+    pFromBlackboard->readInteger(&uiSrcData, pBitParameter->getBelongingBlockSize(), offset);
 
     // Convert
     uiDstData = pBitParameter->merge(uiDstData, uiSrcData);
 
     // Write dst blackboard
-    _blackboard.writeInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), 0, _bBigEndian);
+    _blackboard.writeInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), 0);
 }
 
