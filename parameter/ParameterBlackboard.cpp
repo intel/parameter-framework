@@ -29,7 +29,7 @@
  */
 #include "ParameterBlackboard.h"
 #include "Iterator.hpp"
-#include <cassert>
+#include "AlwaysAssert.hpp"
 #include <algorithm>
 
 // Size
@@ -44,7 +44,7 @@ size_t CParameterBlackboard::getSize() const
 }
 
 // Single parameter access
-void CParameterBlackboard::writeInteger(const void* pvSrcData, size_t size, size_t offset, bool bBigEndian)
+void CParameterBlackboard::writeInteger(const void* pvSrcData, size_t size, size_t offset)
 {
     assertValidAccess(offset, size);
 
@@ -52,14 +52,10 @@ void CParameterBlackboard::writeInteger(const void* pvSrcData, size_t size, size
     auto last = first + size;
     auto dest_first = atOffset(offset);
 
-    if (!bBigEndian) {
-        std::copy(first, last, dest_first);
-    } else {
-        std::reverse_copy(first, last, dest_first);
-    }
+    std::copy(first, last, dest_first);
 }
 
-void CParameterBlackboard::readInteger(void* pvDstData, size_t size, size_t offset, bool bBigEndian) const
+void CParameterBlackboard::readInteger(void* pvDstData, size_t size, size_t offset) const
 {
     assertValidAccess(offset, size);
 
@@ -67,11 +63,7 @@ void CParameterBlackboard::readInteger(void* pvDstData, size_t size, size_t offs
     auto last = first + size;
     auto dest_first = MAKE_ARRAY_ITERATOR(static_cast<uint8_t *>(pvDstData), size);
 
-    if (!bBigEndian) {
-        std::copy(first, last, dest_first);
-    } else {
-        std::reverse_copy(first, last, dest_first);
-    }
+    std::copy(first, last, dest_first);
 }
 
 void CParameterBlackboard::writeString(const std::string &input, size_t offset)
@@ -95,11 +87,11 @@ void CParameterBlackboard::readString(std::string &output, size_t offset) const
 
 void CParameterBlackboard::writeBuffer(const void* pvSrcData, size_t size, size_t offset)
 {
-    writeInteger(pvSrcData, size, offset, false);
+    writeInteger(pvSrcData, size, offset);
 }
 void CParameterBlackboard::readBuffer(void* pvDstData, size_t size, size_t offset) const
 {
-    readInteger(pvDstData, size, offset, false);
+    readInteger(pvDstData, size, offset);
 }
 
 // Access from/to subsystems
@@ -126,5 +118,7 @@ void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, size_t of
 
 void CParameterBlackboard::assertValidAccess(size_t offset, size_t size) const
 {
-    assert(offset + size <= getSize());
+    ALWAYS_ASSERT(offset + size <= getSize(), "Invalid data size access: offset=" << offset
+            << " size=" << size
+            << "reference size=" << getSize());
 }

@@ -115,7 +115,7 @@ void CSubsystemObject::setDefaultValues(CParameterBlackboard& parameterBlackboar
     string strError;
 
     // Create access context
-    CParameterAccessContext parameterAccessContext(strError, &parameterBlackboard, false);
+    CParameterAccessContext parameterAccessContext(strError, &parameterBlackboard);
 
     // Just implement back synchronization with default values
     _pInstanceConfigurableElement->setDefaultValues(parameterAccessContext);

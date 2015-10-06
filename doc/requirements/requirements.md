@@ -1002,17 +1002,36 @@ PF **MAY** support at least:
 needs emerge to use it on other platform.</why>
 
 ## Tuning
-### Get and set multiple parameter values in one request.
-Get and set the content of one or more parameter or multiple parameters
-as xml.
-<why>For performance reason. Tools often need to update multiple parameter
-and having one call per parameter is too slow. (benchmark ?)</why>
+### Get and set multiple parameter values in one request
+#### Atomicity
+When setting multiple parameters from one client request,
+and when one or more parameter value is invalid (eg. out of range),
+no parameter **SHOULD** be set.
+Eg: an invalid request to change parameters **SHOULD** not impact the parameters
+values nor the subsystems.
+<note>This may be implemented by first checking parameters validity
+before setting them, or implementing a rollback mechanism, or any other way.</note>
+<why>To provide parameter mutation atomicity to the client.
+This is especially important if the client wants to implement parameter consistency.
+Eg: let two parameters have excluding values,
+if a transaction fail after the first parameter is set but not the second,
+the excluding constraint may be violated.
+It also usefull for the client to know the state of the parameters
+after a parameter set without having to query the PF.</why>
 
-### Get and set parameters as binary
+#### Access parameters as Xml
+Getting and setting the content of one or more ([one, all]) parameters **SHOULD**
+be possible in xml.
+<why>For performance reason. Tools often need to update multiple parameter
+and having one call per parameter is too slow. (benchmark ?).
+This feature permit the client to save and restore from an external database parameter
+values a la `alsa.state`.</why>
+
+#### Access parameters as binary
 The PF host API **SHOULD** expose parameter values with the same API syncer use.
 <why>The current reference implementation abstracts the memory layout of
 parameters. This memory layout is specified in the parameter structure thus
-is known </why>
+is known by the client.</why>
 
 ## Stage and commit Sync
 Explicit sync **SHOULD** only sync parameters which values were updated since last sync.
@@ -1078,5 +1097,14 @@ on start then read only.
 This value **MUST** be gettable for an immutable parameter.
 <why>A parameter that can not be accessed (read or write) is of no use.</why>
 
+### Endianess adaptation
+A parameter or a block of parameters might be presented by the Parameter
+Framework but only used as a passthrough to the underlying subsystem (think
+"`(void *)` interfaces"). It is then possible that the endianess of the
+subsystem differs from the one the Parameter Framework is running on, an
+endianness adaptation would allow supporting those cases.
+
+This can be seen as related to the "Parameter Adaptation" requirement or even
+as a special case.
 
 </article>

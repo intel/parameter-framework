@@ -107,20 +107,11 @@ class TestCases(PfwTestCase):
 
         # Checking new elements sequence order conformity for selected configuration
         log.I("Checking new elements sequence order for configuration")
-        f_ConfigElementsOrder = open("f_ConfigElementsOrder", "w")
-        f_ConfigElementsOrder.write(out)
-        f_ConfigElementsOrder.close()
-        f_ConfigElementsOrder = open("f_ConfigElementsOrder", "r")
-        element_name = f_ConfigElementsOrder.readline().strip('\n')
-        assert element_name==self.elem_2_path, "ERROR : Error while modifying configuration %s elements order on domain %s" % (self.configuration)
-        element_name = f_ConfigElementsOrder.readline().strip('\n')
-        assert element_name==self.elem_0_path, "ERROR : Error while modifying configuration %s elements order on domain %s" % (self.configuration)
-        element_name = f_ConfigElementsOrder.readline().strip('\n')
-        assert element_name==self.elem_1_path, "ERROR : Error while modifying configuration %s elements order on domain %s" % (self.configuration)
+        expected = [self.elem_2_path, self.elem_0_path, self.elem_1_path]
+        # Only check the element reordered
+        configElementOrder = out.strip('\r\n').splitlines()[:len(expected)]
+        assert configElementOrder == expected, "ERROR : Error while modifying configuration %s elements order on domain %s, expected %s, found %s" % (self.configuration, self.domain_name, expected, configElementOrder)
         log.I("New elements sequence order conform to expected order for configuration %s" % (self.configuration))
-        # Closing and removing temp file
-        f_ConfigElementsOrder.close()
-        os.remove("f_ConfigElementsOrder")
         # Removing created domain element
         out, err = self.pfw.sendCmd("removeElement", str(self.domain_name), str(self.elem_1_path))
         assert err == None, "ERROR : command [removeElement] - Error while removing domain element %s" % (self.elem_1_path)
@@ -168,13 +159,13 @@ class TestCases(PfwTestCase):
 
         # Setting an element not belonging to configuration in sequence order
         log.I("Setting an element not belonging to configuration %s in sequence order" % (self.configuration))
-        out, err = self.pfw.sendCmd("setElementSequence", self.domain_name, self.configuration, self.elem_2_path, self.elem_0_path, self.elem_1_path)
+        out, err = self.pfw.sendCmd("setElementSequence", self.domain_name, self.configuration, self.elem_2_path, self.elem_0_path, self.elem_1_path, expectSuccess=False)
         assert err == None, "ERROR : command [setElementSequence] - Error while setting elements sequence for configuration %s" % (self.configuration)
         assert out != "Done", "ERROR : command [setElementSequence] - Error not detected when setting an element not belonging to configuration"
 
         # Setting undefined element in sequence order for selected configuration
         log.I("Setting undefined element in sequence order for configuration %s" % (self.configuration))
-        out, err = self.pfw.sendCmd("setElementSequence", self.domain_name, self.configuration, "Wrong_Element_Name", self.elem_0_path, self.elem_1_path)
+        out, err = self.pfw.sendCmd("setElementSequence", self.domain_name, self.configuration, "Wrong_Element_Name", self.elem_0_path, self.elem_1_path, expectSuccess=False)
         assert err == None, "ERROR : command [setElementSequence] - Error while setting elements sequence for configuration %s" % (self.configuration)
         assert out != "Done", "ERROR : command [getElementSequence] - Error not detected when setting an undefined element to configuration"
 
@@ -190,11 +181,8 @@ class TestCases(PfwTestCase):
         log.I("Checking new elements sequence order for configuration")
         f_ConfigElementsOrder = open("f_ConfigElementsOrder", "r")
         f_ConfigElementsOrder_Backup = open("f_ConfigElementsOrder_Backup", "r")
-        new_element_name = f_ConfigElementsOrder.readline().strip('\n')
-        element_name = f_ConfigElementsOrder_Backup.readline().strip('\n')
-        assert element_name==new_element_name, "ERROR : setElementSequence errors have affected elements order on domain %s" % (self.configuration)
-        new_element_name = f_ConfigElementsOrder.readline().strip('\n')
-        element_name = f_ConfigElementsOrder_Backup.readline().strip('\n')
+        new_element_name = f_ConfigElementsOrder.read().splitlines()
+        element_name = f_ConfigElementsOrder_Backup.read().splitlines()
         assert element_name==new_element_name, "ERROR : setElementSequence errors have affected elements order on domain %s" % (self.configuration)
         log.I("Elements sequence order not affected by setElementSequence errors")
 
@@ -230,11 +218,11 @@ class TestCases(PfwTestCase):
         log.I("Adding a new domain element to domain %s" % (self.domain_name))
         out, err = self.pfw.sendCmd("addElement", str(self.domain_name), str(self.elem_1_path))
         assert err == None, "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_1_path)
-        assert out == "Done", "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_1_path)
+        assert out == "Done", "ERROR : command [addElement] - Error while adding new domain element %s: %s" % (self.elem_1_path, out)
         log.I("Adding a new domain element to domain %s" % (self.domain_name))
         out, err = self.pfw.sendCmd("addElement", str(self.domain_name), str(self.elem_2_path))
         assert err == None, "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_2_path)
-        assert out == "Done", "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_2_path)
+        assert out == "Done", "ERROR : command [addElement] - Error while adding new domain element %s: %s" % (self.elem_2_path, out)
         log.I("New domain elements %s and %s added to domain %s" % (self.elem_1_path, self.elem_2_path, self.domain_name))
 
         # Getting elements sequence from selected configuration
@@ -250,13 +238,13 @@ class TestCases(PfwTestCase):
 
         # Getting an element sequence on a wrong domain name
         log.I("Getting an element sequence on a wrong domain name")
-        out, err = self.pfw.sendCmd("getElementSequence", "Wrong_Domain_Name", self.configuration)
+        out, err = self.pfw.sendCmd("getElementSequence", "Wrong_Domain_Name", self.configuration, expectSuccess=False)
         assert err == None, "ERROR : command [getElementSequence] - Error when getting elements sequence for configuration %s" % (self.configuration)
         assert out != "Done", "ERROR : command [getElementSequence] - Error not detected when getting elements sequence for a wrong domain name"
 
         # Getting an element sequence on a wrong configuration name
         log.I("Getting an element sequence on a wrong configuration name")
-        out, err = self.pfw.sendCmd("getElementSequence", self.domain_name, "Wrong_Configuration_Name")
+        out, err = self.pfw.sendCmd("getElementSequence", self.domain_name, "Wrong_Configuration_Name", expectSuccess=False)
         assert err == None, "ERROR : command [getElementSequence] - Error when getting elements sequence on a wrong configuration name"
         assert out != "Done", "ERROR : command [getElementSequence] - Error not detected when getting elements sequence on a wrong configuration name"
 
@@ -272,12 +260,9 @@ class TestCases(PfwTestCase):
         log.I("Checking new elements sequence order for configuration")
         f_ConfigElementsOrder = open("f_ConfigElementsOrder", "r")
         f_ConfigElementsOrder_Backup = open("f_ConfigElementsOrder_Backup", "r")
-        new_element_name = f_ConfigElementsOrder.readline().strip('\n')
-        element_name = f_ConfigElementsOrder_Backup.readline().strip('\n')
-        assert element_name==new_element_name, "ERROR : getElementSequence errors have affected elements order on domain %s" % (self.configuration)
-        new_element_name = f_ConfigElementsOrder.readline().strip('\n')
-        element_name = f_ConfigElementsOrder_Backup.readline().strip('\n')
-        assert element_name==new_element_name, "ERROR : getElementSequence errors have affected elements order on domain %s" % (self.configuration)
+        new_element_names = f_ConfigElementsOrder.read().splitlines()
+        element_name = f_ConfigElementsOrder_Backup.read().splitlines()
+        assert element_name==new_element_names, "ERROR : getElementSequence errors have affected elements order on domain %s" % (self.configuration)
         log.I("Elements sequence order not affected by getElementSequence errors")
 
         # Closing and removing temp file

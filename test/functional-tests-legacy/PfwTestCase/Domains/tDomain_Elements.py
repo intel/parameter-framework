@@ -136,12 +136,12 @@ class TestCases(PfwTestCase):
         for line in range(element_nbr):
             # initial domain elements shall not have been impacted by current test
             if (line < element_nbr_init):
-                element_name = f_DomainElements.readline().strip('\n')
-                element_name_backup = f_DomainElements_Backup.readline().strip('\n')
+                element_name = f_DomainElements.readline().strip('\r\n')
+                element_name_backup = f_DomainElements_Backup.readline().strip('\r\n')
                 assert element_name==element_name_backup, "ERROR : Error while modifying domain elements on domain %s" % (self.domain_name)
             # last listed element shall be equal to the only one element added previously
             else:
-                element_name = f_DomainElements.readline().strip('\n')
+                element_name = f_DomainElements.readline().strip('\r\n')
                 assert element_name==str(self.elem_2_path), "ERROR : Error while modifying domain elements on domain %s" % (self.domain_name)
         log.I("Actual domain %s elements names conform to expected values" % (self.domain_name))
         # Temporary files deletion
@@ -192,11 +192,11 @@ class TestCases(PfwTestCase):
 
         # Adding a new domain element errors
         log.I("Adding an already existing domain element to domain %s" % (self.domain_name))
-        out, err = self.pfw.sendCmd("addElement", str(self.domain_name), str(self.elem_0_path))
+        out, err = self.pfw.sendCmd("addElement", str(self.domain_name), str(self.elem_0_path), expectSuccess=False)
         assert err == None, "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_0_path)
         assert out != "Done", "ERROR : command [addElement] - Error not detected while adding an already existing domain element to domain %s" % (self.domain_name)
         log.I("Adding a non defined domain element to domain %s" % (self.domain_name))
-        out, err = self.pfw.sendCmd("addElement", str(self.domain_name), "Non_Defined_Element")
+        out, err = self.pfw.sendCmd("addElement", str(self.domain_name), "Non_Defined_Element", expectSuccess=False)
         assert err == None, "ERROR : command [addElement] - Error while adding new domain element %s" % (self.elem_2_path)
         assert out != "Done", "ERROR : command [addElement] - Error not detected while adding a non defined domain element to domain %s" % (self.domain_name)
         log.I("Error when adding elements correctly detected")
@@ -222,8 +222,8 @@ class TestCases(PfwTestCase):
         f_DomainElements_Backup = open("f_DomainElements_Backup", "r")
         for line in range(element_nbr):
             # initial domain elements shall not have been impacted by current test
-            element_name = f_DomainElements.readline().strip('\n')
-            element_name_backup = f_DomainElements_Backup.readline().strip('\n')
+            element_name = f_DomainElements.readline().strip('\r\n')
+            element_name_backup = f_DomainElements_Backup.readline().strip('\r\n')
             assert element_name==element_name_backup, "ERROR : domain %s elements affected by addElement errors" % (self.domain_name)
         log.I("Actual domain %s elements names conform to expected values" % (self.domain_name))
         # Temporary files deletion
@@ -270,11 +270,11 @@ class TestCases(PfwTestCase):
 
         # Error when removing domain elements
         log.I("Removing a domain element from a non defined domain")
-        out, err = self.pfw.sendCmd("removeElement", "Wrong_Domain_Name", str(self.elem_0_path))
+        out, err = self.pfw.sendCmd("removeElement", "Wrong_Domain_Name", str(self.elem_0_path), expectSuccess=False)
         assert err == None, "ERROR : command [removeElement] - Error when removing domain element %s" % (self.elem_0_path)
         assert out != "Done", "ERROR : command [removeElement] - Error not detected when removing domain element %s from an undefined domain"% (self.elem_0_path)
         log.I("Removing a non existent domain element from domain %s" % (self.domain_name))
-        out, err = self.pfw.sendCmd("removeElement", str(self.domain_name), "Wrong_Element_Name")
+        out, err = self.pfw.sendCmd("removeElement", str(self.domain_name), "Wrong_Element_Name", expectSuccess=False)
         assert err == None, "ERROR : command [removeElement] - Error when removing domain element %s" % (self.elem_0_path)
         assert out != "Done", "ERROR : command [removeElement] - Error not detected when removing a non existent domain element from domain %s" % (self.domain_name)
         log.I("Error when removing elements correctly detected")
@@ -300,8 +300,8 @@ class TestCases(PfwTestCase):
         f_DomainElements_Backup = open("f_DomainElements_Backup", "r")
         for line in range(element_nbr):
             # initial domain elements shall not have been impacted by current test
-            element_name = f_DomainElements.readline().strip('\n')
-            element_name_backup = f_DomainElements_Backup.readline().strip('\n')
+            element_name = f_DomainElements.readline().strip('\r\n')
+            element_name_backup = f_DomainElements_Backup.readline().strip('\r\n')
             assert element_name==element_name_backup, "ERROR : domain %s elements affected by addElement errors" % (self.domain_name)
         log.I("Actual domain %s elements names conform to expected values" % (self.domain_name))
         # Temporary files deletion

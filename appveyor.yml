@@ -1,8 +1,4 @@
-version: 1.0.{build}
-
-branches:
-  only:
-    - windows_port
+version: 3.0.0-{build}
 
 # Only download the 50 first commits like travis to speedup clone
 clone_depth: 50
@@ -24,6 +20,13 @@ init:
   # See: https://msdn.microsoft.com/en-us/library/bb513638%28VS.85%29.aspx
   - reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /f /v DontShowUI /d 1
 
+  # Instruct cmake were to find external dependencies
+  - set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6;%APPVEYOR_BUILD_FOLDER%\catch
+  # Tell CMake where to install
+  - set INSTALL=%HOMEPATH%\install
+  # legacy functional tests are bash specific
+  - set CTEST_PARAMS=--output-on-failure
+
 install:
   - cinst cmake.portable wget 7zip.commandline
 
@@ -41,10 +44,6 @@ install:
   - if not exist catch (
       wget --no-check-certificate https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp --directory-prefix catch )
 
-  # Instruct cmake were to find external dependancies
-  - set PREFIX_PATH=%APPVEYOR_BUILD_FOLDER%\asio-1.10.6;%APPVEYOR_BUILD_FOLDER%\catch
-  # function tests legacy are bash specific
-  - set CTEST_PARAMS=--output-on-failure --exclude-regex functional-test-legacy
   # Setup Visual studio build environement
   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
 
@@ -70,7 +69,23 @@ build_script:
   - mkdir 64bits-release & cd 64bits-release
   # Add release libxml2.dll in the path so that cmake & tests can find it
   - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64\bin;%PATH%
-  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" ..\..
+  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" -DCMAKE_INSTALL_PREFIX=%INSTALL% ..\..
+  # Build, test and install
   - cmake --build . --config release
   - ctest --build-config release %CTEST_PARAMS%
+  - cmake --build . --config release --target install
   - set PATH=%OLD_PATH% && cd ..
+
+  # build and test the skeleton plugin against the previously-installed build; this serves as a smoke test of the whole stack
+  - mkdir skeleton && cd skeleton
+  # %INSTALL%\lib is where the skeleton plugin is installed (see comment below)
+  # %INSTALL%\bin is where parameter.dll is installed
+  - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64\bin;%INSTALL%\lib;%INSTALL%\bin;%PATH%
+  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%INSTALL% -DCMAKE_PREFIX_PATH=%INSTALL% %APPVEYOR_BUILD_FOLDER%\skeleton-subsystem
+  # Unfortunately, the skeleton test currently doesn't work on
+  # multi-configuration build systems (Visual Studio is one of those) without
+  # installing the plugin
+  - cmake --build . --config release --target install
+  - ctest --build-config release %CTEST_PARAMS%
+  - set PATH=%OLD_PATH% && cd ..
+  - cd ..

@@ -107,7 +107,7 @@ class TestCases(PfwTestCase):
         log.I("Adding an already existent domain name")
         log.I("command [createDomain]")
         domain_name = 'Test_Domain'
-        out, err = self.pfw.sendCmd("createDomain",domain_name, "")
+        out, err = self.pfw.sendCmd("createDomain",domain_name, "", expectSuccess=False)
         assert out != "Done", "ERROR : command [createDomain] - Error not detected when creating an already existent domain"
         assert err == None, err
         log.I("command [createDomain] - error correctly detected")
@@ -133,8 +133,8 @@ class TestCases(PfwTestCase):
         f_Domains = open("f_Domains", "r")
         f_Domains_Backup = open("f_Domains_Backup", "r")
         for line in range(domains_nbr):
-            domain_backup_name = f_Domains_Backup.readline().strip('\n'),
-            domain_name = f_Domains.readline().strip('\n'),
+            domain_backup_name = f_Domains_Backup.readline().strip('\r\n'),
+            domain_name = f_Domains.readline().strip('\r\n'),
             assert domain_backup_name==domain_name, "ERROR : Error while reading domain %s" % (domain_backup_name)
         log.I("Test OK - Domains listing not affected by domain creation error")
 
@@ -185,7 +185,7 @@ class TestCases(PfwTestCase):
         log.I("Deleting a non-existent domain name")
         log.I("command [deleteDomain]")
         domain_name = 'Wrong_Domain_Name'
-        out, err = self.pfw.sendCmd("deleteDomain",domain_name, "")
+        out, err = self.pfw.sendCmd("deleteDomain",domain_name, "", expectSuccess=False)
         assert out != "Done", "ERROR : command [deleteDomain] - Error not detected when deleting a non-existent domain"
         assert err == None, err
         log.I("command [deleteDomain] - error correctly detected")
@@ -211,8 +211,8 @@ class TestCases(PfwTestCase):
         f_Domains = open("f_Domains", "r")
         f_Domains_Backup = open("f_Domains_Backup", "r")
         for line in range(domains_nbr):
-            domain_backup_name = f_Domains_Backup.readline().strip('\n'),
-            domain_name = f_Domains.readline().strip('\n'),
+            domain_backup_name = f_Domains_Backup.readline().strip('\r\n'),
+            domain_name = f_Domains.readline().strip('\r\n'),
             assert domain_backup_name==domain_name, "Error while reading domain %s" % (domain_backup_name)
         log.I("Test OK - Domains listing not affected by domain deletion error")
 
@@ -296,7 +296,7 @@ class TestCases(PfwTestCase):
         for line in range(domains_nbr):
             if (line >= (domains_nbr - self.new_domains_number)):
                 domain_name = "".join([self.new_domain_name,"_",str(line)]),
-                domain_created = tempfile.readline().strip('\n'),
+                domain_created = tempfile.readline().strip('\n\r'),
                 assert domain_name==domain_created, "ERROR : Error while creating domain %s %s" % (domain_created, domain_name)
             else:
                 domain_created = tempfile.readline()

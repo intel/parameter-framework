@@ -41,10 +41,9 @@ public:
     CParameterAccessContext(std::string& strError,
                             CParameterBlackboard* pParameterBlackboard,
                             bool bValueSpaceIsRaw,
-                            bool bOutputRawFormatIsHex = false,
+                            bool bOutputRawFormatIsHex,
                             size_t offsetBase = 0);
     CParameterAccessContext(std::string& strError,
-                            bool bBigEndianSubsystem,
                             CParameterBlackboard* pParameterBlackboard,
                             size_t offsetBase = 0);
     CParameterAccessContext(std::string& strError);
@@ -72,10 +71,6 @@ public:
      */
     bool outputRawFormatIsHex() const;
 
-    // Endianness
-    void setBigEndianSubsystem(bool bBigEndian);
-    bool isBigEndianSubsystem() const;
-
     // Automatic synchronization to HW
     void setAutoSync(bool bAutoSync);
     bool getAutoSync() const;
@@ -91,8 +86,6 @@ private:
     bool _bValueSpaceIsRaw;
     // Output Raw Format
     bool _bOutputRawFormatIsHex;
-    // Subsystem Endianness
-    bool _bBigEndianSubsystem;
     // Automatic synchronization to HW
     bool _bAutoSync;
     // Base offset where parameters are stored in configuration blackboards

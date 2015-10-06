@@ -87,7 +87,7 @@ CElement* CDefaultElementLibrary<CDefaultElementBuilder>::createElement(const CX
         return builtElement;
     }
 
-    if (_defaultBuilder == NULL) {
+    if (_defaultBuilder == nullptr) {
         // The default builder mechanism is not enabled
         return NULL;
     }

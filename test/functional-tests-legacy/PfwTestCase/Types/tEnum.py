@@ -50,6 +50,7 @@ Test cases :
     - Enum parameter out of size value = ENUM_OOS : 256
     - Enum parameter undefined value = UNDEF
 """
+import os
 import commands
 from Util.PfwUnitTestLib import PfwTestCase
 from Util import ACTLogging
@@ -59,7 +60,7 @@ log=ACTLogging.Logger()
 class TestCases(PfwTestCase):
     def setUp(self):
         self.param_name = "/Test/Test/TEST_TYPES/ENUM"
-        self.filesystem_name="$PFW_RESULT/ENUM"
+        self.filesystem_name=os.environ["PFW_RESULT"] + "/ENUM"
         self.pfw.sendCmd("setTuningMode", "on")
 
     def tearDown(self):
@@ -96,7 +97,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("getParameter %s : %s" % (self.param_name, err))
         assert out == value, log.F("getParameter %s - expected : %s , found : %s" % (self.param_name,value,out))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
 
     def test_TypeMin(self):
         """
@@ -128,7 +129,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("getParameter %s : %s" % (self.param_name, err))
         assert out == value, log.F("getParameter %s - expected : %s , found : %s" % (self.param_name,value,out))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
 
     def test_TypeMax(self):
         """
@@ -160,7 +161,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("getParameter %s : %s" % (self.param_name, err))
         assert out == value, log.F("getParameter %s - expected : %s , found : %s" % (self.param_name,value,out))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
+        assert open(self.filesystem_name).read()[:-1] == filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
 
     def test_TypeUndefined(self):
         """
@@ -184,9 +185,9 @@ class TestCases(PfwTestCase):
         value = "UNDEF"
         log.I("Check parameter %s initial value"%(self.param_name))
         init_parameter_value, err=self.pfw.sendCmd("getParameter",self.param_name)
-        init_filesystem_value=commands.getoutput("cat %s"%(self.filesystem_name))
+        init_filesystem_value=open(self.filesystem_name).read()[:-1]
         log.I("Set parameter %s to %s"%(self.param_name,value))
-        out,err = self.pfw.sendCmd("setParameter",self.param_name, value)
+        out,err = self.pfw.sendCmd("setParameter",self.param_name, value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.param_name, value, err))
         assert out != "Done", log.F("Error not detected when setParameter %s %s" % (self.param_name, value))
         log.I("Check Enum parameter state")
@@ -194,7 +195,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("getParameter %s : %s" % (self.param_name, err))
         assert out == init_parameter_value, log.F("getParameter %s - expected : %s , found : %s" % (self.param_name,init_parameter_value,out))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
+        assert open(self.filesystem_name).read()[:-1] == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
 
     def test_TypeOutOfBound(self):
         """
@@ -218,9 +219,9 @@ class TestCases(PfwTestCase):
         value = "ENUM_OOB"
         log.I("Check parameter %s initial value"%(self.param_name))
         init_parameter_value, err=self.pfw.sendCmd("getParameter",self.param_name)
-        init_filesystem_value=commands.getoutput("cat %s"%(self.filesystem_name))
+        init_filesystem_value=open(self.filesystem_name).read()[:-1]
         log.I("Set parameter %s to %s"%(self.param_name,value))
-        out,err = self.pfw.sendCmd("setParameter",self.param_name, value)
+        out,err = self.pfw.sendCmd("setParameter",self.param_name, value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.param_name, value, err))
         assert out != "Done", log.F("Error not detected when setParameter %s %s" % (self.param_name, value))
         log.I("Check Enum parameter state")
@@ -228,7 +229,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("getParameter %s : %s" % (self.param_name, err))
         assert out == init_parameter_value, log.F("getParameter %s - expected : %s , found : %s" % (self.param_name,init_parameter_value,out))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
+        assert open(self.filesystem_name).read()[:-1] == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
 
     def test_TypeOutOfSize(self):
         """
@@ -252,9 +253,9 @@ class TestCases(PfwTestCase):
         value = "ENUM_OOS"
         log.I("Check parameter %s initial value"%(self.param_name))
         init_parameter_value, err=self.pfw.sendCmd("getParameter",self.param_name)
-        init_filesystem_value=commands.getoutput("cat %s"%(self.filesystem_name))
+        init_filesystem_value=open(self.filesystem_name).read()[:-1]
         log.I("Set parameter %s to %s"%(self.param_name,value))
-        out,err = self.pfw.sendCmd("setParameter",self.param_name, value)
+        out,err = self.pfw.sendCmd("setParameter",self.param_name, value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.param_name, value, err))
         assert out != "Done", log.F("Error not detected when setParameter %s %s" % (self.param_name, value))
         log.I("Check Enum parameter state")
@@ -262,4 +263,4 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("getParameter %s : %s" % (self.param_name, err))
         assert out == init_parameter_value, log.F("getParameter %s - expected : %s , found : %s" % (self.param_name,init_parameter_value,out))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))
+        assert open(self.filesystem_name).read()[:-1] == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.param_name))

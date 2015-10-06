@@ -178,17 +178,6 @@ bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfigurati
     // Provide current output raw format
     configurationAccessContext.setOutputRawFormat(xmlDomainExportContext.outputRawFormatIsHex());
 
-    // Get subsystem
-    const CSubsystem* pSubsystem = pConfigurableElement->getBelongingSubsystem();
-
-    if (pSubsystem && pSubsystem != pConfigurableElement) {
-
-        // Element is a descendant of subsystem
-
-        // Deal with Endianness
-        configurationAccessContext.setBigEndianSubsystem(pSubsystem->isBigEndian());
-    }
-
     // Have domain configuration parse settings for configurable element
     if (!areaConfiguration->serializeXmlSettings(xmlConfigurableElementSettingsElementContent, configurationAccessContext)) {
 
@@ -309,7 +298,7 @@ CParameterBlackboard* CDomainConfiguration::getBlackboard(const CConfigurableEle
 {
     const auto &it = find_if(begin(mAreaConfigurationList), end(mAreaConfigurationList),
                       [&](const AreaConfiguration &conf) {
-        return conf != NULL && conf->getConfigurableElement() == pConfigurableElement;
+        return conf != nullptr && conf->getConfigurableElement() == pConfigurableElement;
     });
     ALWAYS_ASSERT(it != end(mAreaConfigurationList), "Configurable Element "
                   << pConfigurableElement->getName() << " not found in any area Configuration");
@@ -359,7 +348,7 @@ bool CDomainConfiguration::isValid(const CConfigurableElement* pConfigurableElem
     // Get child configurable elemnt's area configuration
     auto &areaConfiguration = getAreaConfiguration(pConfigurableElement);
 
-    ALWAYS_ASSERT(areaConfiguration != NULL, "Configurable Element "
+    ALWAYS_ASSERT(areaConfiguration != nullptr, "Configurable Element "
                   << pConfigurableElement->getName() << " not found in any area Configuration");
 
     return areaConfiguration->isValid();

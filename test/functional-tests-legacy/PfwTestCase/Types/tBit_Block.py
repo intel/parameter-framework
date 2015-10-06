@@ -54,6 +54,7 @@ Test cases :
     - Testing out of size TestCase : Bit define on a wrong position
 """
 
+import os
 import commands
 import unittest
 from Util.PfwUnitTestLib import PfwTestCase
@@ -64,7 +65,7 @@ log=ACTLogging.Logger()
 class TestCases(PfwTestCase):
     def setUp(self):
         self.block_name = "/Test/Test/TEST_TYPES/BLOCK_8BIT"
-        self.filesystem_name="$PFW_RESULT/BLOCK_8BIT"
+        self.filesystem_name=os.environ["PFW_RESULT"] + "/BLOCK_8BIT"
 
         self.bit_name=[]
 
@@ -123,7 +124,7 @@ class TestCases(PfwTestCase):
             assert err == None, log.E("getParameter %s : %s" % (self.block_name, err))
             assert out == value_bit[index_bit], log.F("getParameter %s - Expected : %s Found : %s" %(self.bit_name[index_bit],value_bit[index_bit], out))
             log.I("Check filesystem value")
-            assert commands.getoutput("cat %s"%(self.filesystem_name)) == filesystem_value[index_bit], log.F("FILESYSTEM : parameter update error for %s after setting bit %s "%(self.block_name, self.bit_name[index_bit]))
+            assert open(self.filesystem_name).read()[:-1] == filesystem_value[index_bit], log.F("FILESYSTEM : parameter update error for %s after setting bit %s "%(self.block_name, self.bit_name[index_bit]))
 
 
     def test_Set_Block_Directly_Case(self):
@@ -156,18 +157,18 @@ class TestCases(PfwTestCase):
             assert err == None, log.E("getParameter %s"%self.bit_name[index_bit])
             init_value_bit.append(out)
 
-        init_filesystem_value=commands.getoutput("cat %s"%(self.filesystem_name))
+        init_filesystem_value=open(self.filesystem_name).read()[:-1]
 
         log.I("Try to set parameter %s to %s, failed expected"%(self.block_name,value))
-        out,err = self.pfw.sendCmd("setParameter",self.block_name, value)
+        out,err = self.pfw.sendCmd("setParameter",self.block_name, value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.block_name, value, err))
         assert out != "Done", log.F("Error not detected when setting directly the block %s" % (self.block_name))
         log.I("Try to get parameter %s to %s, failed expected"%(self.block_name,value))
-        out,err = self.pfw.sendCmd("getParameter",self.block_name, value)
+        out,err = self.pfw.sendCmd("getParameter",self.block_name, value, expectSuccess=False)
         assert err == None, log.E("getParameter %s : %s" % (self.block_name, err))
         assert out != value, log.F("Error not detected when getting directly the block %s" % (self.block_name))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.block_name))
+        assert open(self.filesystem_name).read()[:-1] == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.block_name))
 
         log.I("Check Bit value")
         for index_bit in range(4):
@@ -207,10 +208,10 @@ class TestCases(PfwTestCase):
             assert err == None, log.E("getParameter %s"%self.bit_name[index_bit])
             init_value_bit.append(out)
 
-        init_filesystem_value=commands.getoutput("cat %s"%(self.filesystem_name))
+        init_filesystem_value=open(self.filesystem_name).read()[:-1]
 
         log.I("set parameter %s to %s, failed expected"%(self.bit_name[1],bit_value))
-        out,err = self.pfw.sendCmd("setParameter",self.bit_name[1],bit_value)
+        out,err = self.pfw.sendCmd("setParameter",self.bit_name[1],bit_value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (self.bit_name[1],bit_value, err))
         assert out != "Done", log.F("Error not detected when setting the bit %s to out of bound value %s" % (self.bit_name[1],bit_value))
         log.I("Check Bit value")
@@ -218,7 +219,7 @@ class TestCases(PfwTestCase):
             out,err=self.pfw.sendCmd("getParameter",self.bit_name[index_bit])
             assert out==init_value_bit[index_bit], log.F("BLACKBOARD: Forbidden change value for bit %s - Expected : %s Found : %s"%(self.bit_name[index_bit],init_value_bit[index_bit],out))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.block_name))
+        assert open(self.filesystem_name).read()[:-1] == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.block_name))
 
     def test_Undefined_Bit_Case(self):
         """
@@ -251,10 +252,10 @@ class TestCases(PfwTestCase):
             assert err == None, log.E("getParameter %s"%self.bit_name[index_bit])
             init_value_bit.append(out)
 
-        init_filesystem_value=commands.getoutput("cat %s"%(self.filesystem_name))
+        init_filesystem_value=open(self.filesystem_name).read()[:-1]
 
         log.I("set parameter %s to %s, failed expected"%(bit_undefined_name,bit_value))
-        out,err = self.pfw.sendCmd("setParameter",bit_undefined_name,bit_value)
+        out,err = self.pfw.sendCmd("setParameter",bit_undefined_name,bit_value, expectSuccess=False)
         assert err == None, log.E("setParameter %s %s : %s" % (bit_undefined_name,bit_value, err))
         assert out != "Done", log.F("Error not detected when setting the bit %s to out of bound value %s" % (bit_undefined_name,bit_value))
         log.I("Check Bit value")
@@ -262,7 +263,7 @@ class TestCases(PfwTestCase):
             out,err=self.pfw.sendCmd("getParameter",self.bit_name[index_bit])
             assert out==init_value_bit[index_bit], log.F("BLACKBOARD: Forbidden change value for bit %s - Expected : %s Found : %s"%(self.bit_name[index_bit],init_value_bit[index_bit],out))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.block_name))
+        assert open(self.filesystem_name).read()[:-1] == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.block_name))
 
     @unittest.expectedFailure
     def test_Position_Conflicting_Case(self):
@@ -305,7 +306,7 @@ class TestCases(PfwTestCase):
             out,err=self.pfw.sendCmd("getParameter",self.bit_name[index_bit])
             init_value_bit.append(out)
 
-        init_filesystem_value=commands.getoutput("cat %s"%(self.filesystem_name))
+        init_filesystem_value=open(self.filesystem_name).read()[:-1]
 
         log.I("set parameter %s to %s, failed expected"%(self.bit_name[4],bit_value_7_1))
         out,err = self.pfw.sendCmd("setParameter",self.bit_name[4],bit_value_7_1)
@@ -316,4 +317,4 @@ class TestCases(PfwTestCase):
             out,err=self.pfw.sendCmd("getParameter",self.bit_name[index_bit])
             assert out==init_value_bit[index_bit], log.F("BLACKBOARD: Forbidden change value for bit %s - Expected : %s Found : %s"%(self.bit_name[index_bit],init_value_bit[index_bit],out))
         log.I("Check filesystem value")
-        assert commands.getoutput("cat %s"%(self.filesystem_name)) == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.block_name))
+        assert open(self.filesystem_name).read()[:-1] == init_filesystem_value, log.F("FILESYSTEM : parameter update error for %s"%(self.block_name))

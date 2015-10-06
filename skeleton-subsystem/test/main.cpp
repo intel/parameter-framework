@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,45 +27,32 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#pragma once
+#include <ParameterMgrFullConnector.h>
 
-#include "NonCopyable.hpp"
+#include <iostream>
 
-#include <cstdint>
-#include <string>
-#include <vector>
-
-class CParameterBlackboard : private utility::NonCopyable
+class MyLogger final : public CParameterMgrFullConnector::ILogger
 {
 public:
-    // Size
-    void setSize(size_t size);
-    size_t getSize() const;
+    void info(const std::string& log) override {
+        std::cout << "Info: " << log << std::endl;
+    }
 
-    // Single parameter access
-    void writeInteger(const void* pvSrcData, size_t size, size_t offset);
-    void readInteger(void* pvDstData, size_t size, size_t offset) const;
-
-    void writeString(const std::string &input, size_t offset);
-    void readString(std::string &output, size_t offset) const;
-
-    void writeBuffer(const void* pvSrcData, size_t size, size_t offset);
-    void readBuffer(void* pvDstData, size_t size, size_t offset) const;
-
-    // Access from/to subsystems
-    uint8_t* getLocation(size_t offset);
-
-    // Configuration handling
-    void restoreFrom(const CParameterBlackboard* pFromBlackboard, size_t offset);
-    void saveTo(CParameterBlackboard* pToBlackboard, size_t offset) const;
-
-private:
-    void assertValidAccess(size_t offset, size_t size) const;
-
-    using Blackboard = std::vector<uint8_t>;
-    Blackboard mBlackboard;
-
-    Blackboard::iterator atOffset(size_t offset) { return begin(mBlackboard) + offset; }
-    Blackboard::const_iterator atOffset(size_t offset) const { return begin(mBlackboard) + offset; }
+    void warning(const std::string& log) override {
+        std::cerr << "Warning: " << log << std::endl;
+    }
 };
 
+int main(void) {
+    MyLogger logger;
+    CParameterMgrFullConnector instance("toplevel.xml");
+    instance.setLogger(&logger);
+
+    std::string errorMsg;
+    if (not instance.start(errorMsg)) {
+        std::cout << "Failed to start: " << errorMsg << std::endl;
+        return 1;
+    }
+
+    return 0;
+}

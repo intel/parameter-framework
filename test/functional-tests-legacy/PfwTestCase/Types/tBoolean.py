@@ -128,7 +128,7 @@ class TestCases(PfwTestCase):
         """
         print self.testBooleanNegative.__doc__
         value = "-1"
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
         assert out != "Done", log.F("When setting parameter %s : %s" % (self.param_name, out))
         out, err = self.pfw.sendCmd("getParameter", self.param_name, "")
@@ -154,7 +154,7 @@ class TestCases(PfwTestCase):
         """
         print self.testBooleanOverflow.__doc__
         value = "2"
-        out, err = self.pfw.sendCmd("setParameter", self.param_name, value)
+        out, err = self.pfw.sendCmd("setParameter", self.param_name, value, expectSuccess=False)
         assert err == None, log.E("When setting parameter %s : %s" % (self.param_name, err))
         assert out != "Done", log.F("When setting parameter %s : %s" % (self.param_name, out))
         out, err = self.pfw.sendCmd("getParameter", self.param_name, "")

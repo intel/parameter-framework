@@ -41,7 +41,7 @@ using std::mutex;
 using std::lock_guard;
 
 CParameterHandle::CParameterHandle(const CBaseParameter* pParameter, CParameterMgr* pParameterMgr)
-    : _pBaseParameter(pParameter), _pParameterMgr(pParameterMgr), _bBigEndianSubsystem(pParameter->getBelongingSubsystem()->isBigEndian())
+    : _pBaseParameter(pParameter), _pParameterMgr(pParameterMgr)
 {
 }
 
@@ -92,7 +92,7 @@ bool CParameterHandle::setAsBoolean(bool bValue, string& strError)
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsBoolean(bValue, true, parameterAccessContext);
 }
@@ -108,7 +108,7 @@ bool CParameterHandle::getAsBoolean(bool& bValue, string& strError) const
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsBoolean(bValue, false, parameterAccessContext);
 }
@@ -130,7 +130,7 @@ bool CParameterHandle::setAsBooleanArray(const std::vector<bool>& abValues, stri
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
     std::vector<bool> abUserValues = abValues;
@@ -149,7 +149,7 @@ bool CParameterHandle::getAsBooleanArray(std::vector<bool>& abValues, string& st
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsBooleanArray(abValues, false, parameterAccessContext);
 }
@@ -172,7 +172,7 @@ bool CParameterHandle::setAsInteger(uint32_t uiValue, string& strError)
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsInteger(uiValue, true, parameterAccessContext);
 }
@@ -188,7 +188,7 @@ bool CParameterHandle::getAsInteger(uint32_t& uiValue, string& strError) const
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsInteger(uiValue, false, parameterAccessContext);
 }
@@ -210,7 +210,7 @@ bool CParameterHandle::setAsIntegerArray(const std::vector<uint32_t>& auiValues,
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
     std::vector<uint32_t> auiUserValues = auiValues;
@@ -229,7 +229,7 @@ bool CParameterHandle::getAsIntegerArray(std::vector<uint32_t>& auiValues, strin
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsIntegerArray(auiValues, false, parameterAccessContext);
 }
@@ -252,7 +252,7 @@ bool CParameterHandle::setAsSignedInteger(int32_t iValue, string& strError)
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsSignedInteger(iValue, true, parameterAccessContext);
 }
@@ -268,7 +268,7 @@ bool CParameterHandle::getAsSignedInteger(int32_t& iValue, string& strError) con
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsSignedInteger(iValue, false, parameterAccessContext);
 }
@@ -290,7 +290,7 @@ bool CParameterHandle::setAsSignedIntegerArray(const std::vector<int32_t>& aiVal
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
     std::vector<int32_t> aiUserValues = aiValues;
@@ -309,7 +309,7 @@ bool CParameterHandle::getAsSignedIntegerArray(std::vector<int32_t>& aiValues, s
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsSignedIntegerArray(aiValues, false, parameterAccessContext);
 }
@@ -332,7 +332,7 @@ bool CParameterHandle::setAsDouble(double dValue, string& strError)
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsDouble(dValue, true, parameterAccessContext);
 }
@@ -348,7 +348,7 @@ bool CParameterHandle::getAsDouble(double& dValue, string& strError) const
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsDouble(dValue, false, parameterAccessContext);
 }
@@ -370,7 +370,7 @@ bool CParameterHandle::setAsDoubleArray(const std::vector<double>& adValues, str
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
     std::vector<double> adUserValues = adValues;
@@ -389,7 +389,7 @@ bool CParameterHandle::getAsDoubleArray(std::vector<double>& adValues, string& s
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsDoubleArray(adValues, false, parameterAccessContext);
 }
@@ -412,7 +412,7 @@ bool CParameterHandle::setAsString(const string& strValue, string& strError)
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     // Copy value for type adaptation
     string strUserValue = strValue;
@@ -431,7 +431,7 @@ bool CParameterHandle::getAsString(string& strValue, string& strError) const
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsString(strValue, false, parameterAccessContext);
 }
@@ -453,7 +453,7 @@ bool CParameterHandle::setAsStringArray(const std::vector<string>& astrValues, s
     }
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     // Copy values for type adaptation
     std::vector<string> astrUserValues = astrValues;
@@ -472,7 +472,7 @@ bool CParameterHandle::getAsStringArray(std::vector<string>& astrValues, string&
     lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
 
     // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr->getParameterBlackboard());
+    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
 
     return _pBaseParameter->accessAsStringArray(astrValues, false, parameterAccessContext);
 }

@@ -38,23 +38,21 @@ CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard),
     _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
-    _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(baseOffset)
+    _bAutoSync(true), _uiBaseOffset(baseOffset)
 {
 }
 
 CParameterAccessContext::CParameterAccessContext(std::string& strError,
-                                                 bool bBigEndianSubsystem,
                                                  CParameterBlackboard* pParameterBlackboard,
                                                  size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(bBigEndianSubsystem), _bAutoSync(true),
-    _uiBaseOffset(baseOffset)
+    _bOutputRawFormatIsHex(false), _bAutoSync(true), _uiBaseOffset(baseOffset)
 {
 }
 
 CParameterAccessContext::CParameterAccessContext(std::string& strError)
     : base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bBigEndianSubsystem(false), _bAutoSync(true), _uiBaseOffset(0)
+    _bOutputRawFormatIsHex(false), _bAutoSync(true), _uiBaseOffset(0)
 {
 }
 
@@ -101,17 +99,6 @@ void CParameterAccessContext::setOutputRawFormat(bool bIsHex)
 bool CParameterAccessContext::outputRawFormatIsHex() const
 {
     return _bOutputRawFormatIsHex;
-}
-
-// Endianness
-void CParameterAccessContext::setBigEndianSubsystem(bool bBigEndian)
-{
-    _bBigEndianSubsystem = bBigEndian;
-}
-
-bool CParameterAccessContext::isBigEndianSubsystem() const
-{
-    return _bBigEndianSubsystem;
 }
 
 // Automatic synchronization to HW
