@@ -25,7 +25,7 @@ init:
   # Tell CMake where to install
   - set INSTALL=%HOMEPATH%\install
   # legacy functional tests are bash specific
-  - set CTEST_PARAMS=--output-on-failure --exclude-regex functional-test-legacy
+  - set CTEST_PARAMS=--output-on-failure
 
 install:
   - cinst cmake.portable wget 7zip.commandline

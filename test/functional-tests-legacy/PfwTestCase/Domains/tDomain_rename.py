@@ -198,7 +198,7 @@ class TestCases(PfwTestCase):
         log.I("Renaming a non existent domain")
         log.I("Renaming domain FAKE to NEW_NAME")
         log.I("command [renameDomain]")
-        out, err = self.pfw.sendCmd("renameDomain",'FAKE','NEW_NAME')
+        out, err = self.pfw.sendCmd("renameDomain",'FAKE','NEW_NAME', expectSuccess=False)
         assert out != "Done", out
         assert err == None, "ERROR : command [renameDomain] - Error while renaming domain"
         log.I("command [renameDomain] - renaming error correctly detected")
@@ -230,7 +230,7 @@ class TestCases(PfwTestCase):
         log.I("renaming a domain with an already existent domain name")
         log.I("Renaming domain %s to %s" % (self.domain_name,self.new_domain_name) )
         log.I("command [renameDomain]")
-        out, err = self.pfw.sendCmd("renameDomain",self.domain_name,self.new_domain_name)
+        out, err = self.pfw.sendCmd("renameDomain",self.domain_name,self.new_domain_name, expectSuccess=False)
         assert out != "Done", out
         assert err == None, "INFO : command [renameDomain] - Error while renaming domain"
         log.I("command [renameDomain] - renaming error correctly detected")

@@ -4,7 +4,7 @@
  SystemClassName="Test" ServerPort="5000" TuningAllowed="true">
     <SubsystemPlugins>
         <Location Folder="">
-            <Plugin Name="libtest-subsystem.so"/>
+            <Plugin Name="test-subsystem"/>
         </Location>
     </SubsystemPlugins>
     <StructureDescriptionFileLocation Path="Structure/Test/TestClass.xml"/>

@@ -155,15 +155,15 @@ class TestCases(PfwTestCase):
         # Configuration saving errors
         log.I("saving configuration error test cases :")
         log.I("saving configuration with a missing argument")
-        out, err = self.pfw.sendCmd("saveConfiguration", self.domain_name)
+        out, err = self.pfw.sendCmd("saveConfiguration", self.domain_name, expectSuccess=False)
         assert err == None, "ERROR : Error when saving configuration with a missing argument"
         assert out != "Done", "ERROR : Error not detected when saving configuration with a missing argument"
         log.I("saving configuration with a wrong domain name")
-        out, err = self.pfw.sendCmd("saveConfiguration", "Wrong_Domain_Name", self.conf_1)
+        out, err = self.pfw.sendCmd("saveConfiguration", "Wrong_Domain_Name", self.conf_1, expectSuccess=False)
         assert err == None, "ERROR : Error when saving configuration with a wrong domain name"
         assert out != "Done", "ERROR : Error not detected when saving configuration with a wrong domain name"
         log.I("saving configuration with a wrong configuration name")
-        out, err = self.pfw.sendCmd("saveConfiguration", self.domain_name, "Wrong_Configuration_Name")
+        out, err = self.pfw.sendCmd("saveConfiguration", self.domain_name, "Wrong_Configuration_Name", expectSuccess=False)
         assert err == None, "ERROR : Error when saving configuration with a wrong configuration name"
         assert out != "Done", "ERROR : Error not detected when saving configuration with a wrong configuration name"
         log.I("saving configuration error test cases : errors correctly detected")
@@ -218,15 +218,15 @@ class TestCases(PfwTestCase):
         # Configuration restore errors
         log.I("restoring configuration error test cases :")
         log.I("restoring configuration with a missing argument")
-        out, err = self.pfw.sendCmd("restoreConfiguration", self.domain_name)
+        out, err = self.pfw.sendCmd("restoreConfiguration", self.domain_name, expectSuccess=False)
         assert err == None, "ERROR : Error when restoring configuration with a missing argument"
         assert out != "Done", "ERROR : Error not detected when restoring configuration with a missing argument"
         log.I("restoring configuration with a wrong domain name")
-        out, err = self.pfw.sendCmd("restoreConfiguration", "Wrong_Domain_Name", self.conf_1)
+        out, err = self.pfw.sendCmd("restoreConfiguration", "Wrong_Domain_Name", self.conf_1, expectSuccess=False)
         assert err == None, "ERROR : Error when restoring configuration with a wrong domain name"
         assert out != "Done", "ERROR : Error not detected when restoring configuration with a wrong domain name"
         log.I("restoring configuration with a wrong configuration name")
-        out, err = self.pfw.sendCmd("restoreConfiguration", self.domain_name, "Wrong_Configuration_Name")
+        out, err = self.pfw.sendCmd("restoreConfiguration", self.domain_name, "Wrong_Configuration_Name", expectSuccess=False)
         assert err == None, "ERROR : Error when restoring configuration with a wrong configuration name"
         assert out != "Done", "ERROR : Error not detected when restoring configuration with a wrong configuration name"
         log.I("restoring configuration error test cases : errors correctly detected")

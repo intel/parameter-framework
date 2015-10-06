@@ -53,7 +53,7 @@ class TestCases(PfwTestCase):
 
         self.pfw.sendCmd("setTuningMode", "on")
 
-        pfw_test_tools=os.getenv("PFW_TEST_TOOLS")
+        pfw_test_tools=os.environ["PFW_TEST_TOOLS"]
         self.reference_dumpDomains_xml = pfw_test_tools+"/xml/XML_Test/Reference_dumpDomains.xml"
         self.reference_dumpDomains_file = pfw_test_tools+"/xml/XML_Test/Reference_dumpDomains"
         self.initial_xml = pfw_test_tools+"/xml/TestConfigurableDomains.xml"
@@ -102,7 +102,7 @@ class TestCases(PfwTestCase):
         log.I("Command [dumpDomains]")
         out, err = self.pfw.sendCmd("dumpDomains","","")
         assert err == None, log.E("Command [dumpDomains] : %s"%(err))
-        assert out == commands.getoutput("cat %s"%(self.reference_dumpDomains_file)), log.F("A diff is found between dumpDomains output and %s"%(self.reference_dumpDomains_file))
+        self.assertEqual(out.splitlines(), open(self.reference_dumpDomains_file).read().splitlines())
         log.I("Command [dumpDomains] - correctly executed")
 
     def test_03_help_Case(self):
@@ -166,9 +166,9 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_05_listCriteria_Case.__doc__)
         log.I("Command [listCriteria]")
-        out, err = self.pfw.sendCmd("listCriteria","")
+        out, err = self.pfw.sendCmd("listCriteria", "XML")
         assert err == None, log.E("Command [listCriteria] : %s"%(err))
-        assert out != ""
+        self.assertNotEqual(out, "")
         log.I("Command [listCriteria] - correctly executed")
 
     def test_06_listDomains_Case(self):
@@ -256,7 +256,7 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_08_listElements_Case.__doc__)
         log.I("Command [listElements]")
-        out, err = self.pfw.sendCmd("listElements")
+        out, err = self.pfw.sendCmd("listElements", expectSuccess=False)
         assert err == None, log.E("Command [listElements] : %s"%(err))
         out, err = self.pfw.sendCmd("listElements","/Test/")
         assert err == None, log.E("Command [listElements /Test/] : %s"%(err))
@@ -280,7 +280,7 @@ class TestCases(PfwTestCase):
         """
         log.D(self.test_09_listParameters_Case.__doc__)
         log.I("Command [listParameters]")
-        out, err = self.pfw.sendCmd("listParameters")
+        out, err = self.pfw.sendCmd("listParameters", expectSuccess=False)
         assert err == None, log.E("Command [listParameters] : %s"%(err))
         out, err = self.pfw.sendCmd("listParameters","/Test/")
         assert err == None, log.E("Command [listParameters /Test/] : %s"%(err))
@@ -336,7 +336,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("Command [getElementSize /Test/] : %s"%(err))
         assert out != ""
 
-        out, err = self.pfw.sendCmd("getElementSize")
+        out, err = self.pfw.sendCmd("getElementSize", expectSuccess=False)
         assert err == None, log.E("Command [getElementSize /Test/] : %s"%(err))
 
     def test_11_showProperties_Case(self):
@@ -388,7 +388,7 @@ class TestCases(PfwTestCase):
         assert err == None, log.E("Command [showProperties /Test/] : %s"%(err))
         assert out != ""
 
-        out, err = self.pfw.sendCmd("showProperties")
+        out, err = self.pfw.sendCmd("showProperties", expectSuccess=False)
         assert err == None, log.E("Command [showProperties] : %s"%(err))
 
     def test_12_listBelongingDomains_Case(self):
@@ -438,7 +438,7 @@ class TestCases(PfwTestCase):
         out, err = self.pfw.sendCmd("listBelongingDomains","/Test/")
         assert err == None, log.E("Command [listBelongingDomains /Test/] : %s"%(err))
 
-        out, err = self.pfw.sendCmd("listBelongingDomains")
+        out, err = self.pfw.sendCmd("listBelongingDomains", expectSuccess=False)
         assert err == None, log.E("Command [listBelongingDomains] : %s"%(err))
 
     def test_13_listAssociatedDomains_Case(self):
