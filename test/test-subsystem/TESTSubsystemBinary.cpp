@@ -50,7 +50,7 @@ std::string CTESTSubsystemBinary::toString(const void* pvValue, size_t size) con
 
     assert(size <= sizeof(uiValue));
 
-    memcpy((void*)&uiValue, pvValue, size);
+    memcpy(&uiValue, pvValue, size);
 
     strStream << "0x" << std::hex << uiValue;
 
@@ -63,5 +63,5 @@ void CTESTSubsystemBinary::fromString(const std::string& strValue, void* pvValue
 
     assert(size <= sizeof(uiValue));
 
-    memcpy(pvValue, (const void*)&uiValue, size);
+    memcpy(pvValue, &uiValue, size);
 }
