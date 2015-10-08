@@ -62,15 +62,8 @@ std::string CUtility::asString(const std::map<std::string, std::string>& mapStr,
 
 void CUtility::appendTitle(string& strTo, const string& strTitle)
 {
-    strTo += "\n" + strTitle + "\n";
-
-    size_t uiLength = strTitle.size();
-
-    while (uiLength--) {
-
-        strTo += "=";
-    }
-    strTo += "\n";
+    strTo += "\n" + strTitle + "\n" +
+             string(strTitle.size(), '=') + "\n";
 }
 
 bool CUtility::isHexadecimal(const string& strValue)
