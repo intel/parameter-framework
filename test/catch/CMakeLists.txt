@@ -27,14 +27,25 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 if(BUILD_TESTING)
-    # Add unit test
-    add_executable(tokenizerTest Test.cpp)
+    # TODO Use gtest as it is the team recommendation
+    #      Unfortunately gtest is very hard to setup as not binary distributed
+    #      catch is only one header so it is very easy
+    find_path(CATCH_HEADER catch.hpp)
+    if (NOT CATCH_HEADER)
+        message(SEND_ERROR
+" Catch header `catch.hpp' could not be found.
+  Catch is a single header unit test framework required to build some tests.
+  How to install:
+    If it is not available on your package manager, Catch can be downloaded from:
+      https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
+    Then either:
+      - append the download folder to the `CMAKE_INCLUDE_PATH' or `CMAKE_PREFIX_PATH' variable
+      - set cmake variable `CATCH_HEADER' to the header directory
+      - copy it in a standard location (/usr/include on most linux distribution).
+  To remove test dependancies all together, set `BUILD_TESTING' to false.
+    It will disable test targets, thus the framework they depend on.")
+    endif()
 
-    target_link_libraries(tokenizerTest PRIVATE pfw_utility catch)
-
-    add_test(NAME tokenizerTest
-             COMMAND tokenizerTest)
-
-    # Custom function defined in the top-level CMakeLists
-    set_test_env(tokenizerTest)
+    add_library(catch STATIC catch.cpp)
+    target_include_directories(catch PUBLIC "${CATCH_HEADER}")
 endif()

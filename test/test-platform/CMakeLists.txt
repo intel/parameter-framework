@@ -30,13 +30,7 @@ add_executable(test-platform
     main.cpp
     TestPlatform.cpp)
 
-include_directories(
-    "${PROJECT_BINARY_DIR}/parameter"
-    "${PROJECT_SOURCE_DIR}/parameter/include"
-    "${PROJECT_BINARY_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/remote-processor"
-    "${PROJECT_SOURCE_DIR}/utility")
-
-target_link_libraries(test-platform parameter remote-processor)
+target_link_libraries(test-platform
+        PRIVATE parameter pfw_utility remote-processor)
 
 install(TARGETS test-platform RUNTIME DESTINATION bin)

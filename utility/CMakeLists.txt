@@ -34,14 +34,13 @@ else ()
                                   posix/TmpFile.cpp)
 endif ()
 
-include_directories(
-    "${CMAKE_CURRENT_SOURCE_DIR}")
-
 add_library(pfw_utility STATIC
     ${UTILITY_OS_SPECIFIC_FILES}
     Tokenizer.cpp
     Utility.cpp
     DynamicLibrary.cpp)
+
+target_include_directories(pfw_utility PUBLIC .)
 
 if (NOT WIN32)
     # '-fPIC' needed for linking against shared libraries (e.g. libparameter)

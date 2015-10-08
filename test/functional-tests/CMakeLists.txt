@@ -27,29 +27,15 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 if(BUILD_TESTING)
-    # Add catch unit test framework
-    # TODO Use gtest as it is the team recommendation
-    #      Unfortunately gtest is very hard to setup as not binary distributed
-    #      catch is only one header so it is very easy
-    # Catch can be downloaded from:
-    # https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
-    # Then append the download folder to the CMAKE_INCLUDE_PATH variable or
-    # copy it in a standard location (/usr/include on most linux distribution).
-    find_path(CATCH_HEADER catch.hpp)
-    include_directories(${CATCH_HEADER})
-    include_directories("${PROJECT_BINARY_DIR}/parameter")
-    include_directories("${PROJECT_SOURCE_DIR}/parameter/include")
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
-    include_directories("${PROJECT_SOURCE_DIR}/utility")
 
     # Add unit test
     add_executable(parameterFunctionalTest
                    Basic.cpp
-                   FloatingPoint.cpp
-                   catch.cpp)
+                   FloatingPoint.cpp)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-    target_link_libraries(parameterFunctionalTest parameter)
+    target_link_libraries(parameterFunctionalTest parameter catch)
     add_test(NAME parameterFunctionalTest
              COMMAND parameterFunctionalTest)
 
