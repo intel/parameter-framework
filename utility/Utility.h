@@ -36,63 +36,62 @@
 #include <sstream>
 #include <numeric>
 
-class CUtility
+namespace utility
 {
-public:
 
-    /** Join all elements in [first, last[ with op.
-     *
-     *  If their is no element to join, return empty.
-     *
-     *  @example let op = [](auto l, auto r){ return l + "|" + r; }
-     *           let [first, last[ = list<string>{"1", "2", "3"}
-     *           then join(first, last, op) == "1|2|3"
-     */
-    template<class T, class InputIt, class BinaryOperation>
-    static T join(InputIt first, InputIt last, BinaryOperation op, T empty = T{})
-    {
-        if (first == last) { return empty; }
-        auto init = *first++;
+/** Join all elements in [first, last[ with op.
+ *
+ *  If their is no element to join, return empty.
+ *
+ *  @example let op = [](auto l, auto r){ return l + "|" + r; }
+ *           let [first, last[ = list<string>{"1", "2", "3"}
+ *           then join(first, last, op) == "1|2|3"
+ */
+template<class T, class InputIt, class BinaryOperation>
+T join(InputIt first, InputIt last, BinaryOperation op, T empty = T{})
+{
+    if (first == last) { return empty; }
+    auto init = *first++;
 
-        return std::accumulate(first, last, init, op);
-    }
+    return std::accumulate(first, last, init, op);
+}
 
-    /**
-    * Format the items of a map into a string as a list of key-value pairs. The map must be
-    * composed of pairs of strings.
-    *
-    * @param[in] mapStr A map of strings
-    * @param[in] separator The separator to use between each item
-    *
-    * @return the concatenated elements.
-    */
-    static std::string asString(const std::list<std::string>& lstr,
-                         const std::string& separator = "\n");
+/**
+* Format the items of a map into a string as a list of key-value pairs. The map must be
+* composed of pairs of strings.
+*
+* @param[in] mapStr A map of strings
+* @param[in] separator The separator to use between each item
+*
+* @return the concatenated elements.
+*/
+std::string asString(const std::list<std::string>& lstr,
+                     const std::string& separator = "\n");
 
-    /**
-     * Format the items of a map into a string as a list of key-value pairs. The map must be
-     * composed of pairs of strings.
-     *
-     * @param[in] mapStr A map of strings
-     * @param[out] strOutput The output string
-     * @param[in] strItemSeparator The separator to use between each item (key-value pair)
-     * @param[in] strKeyValueSeparator The separator to use between key and value
-     */
-    static std::string asString(const std::map<std::string, std::string>& mapStr,
-                         const std::string& strItemSeparator = ", ",
-                         const std::string& strKeyValueSeparator = ":");
+/**
+ * Format the items of a map into a string as a list of key-value pairs. The map must be
+ * composed of pairs of strings.
+ *
+ * @param[in] mapStr A map of strings
+ * @param[out] strOutput The output string
+ * @param[in] strItemSeparator The separator to use between each item (key-value pair)
+ * @param[in] strKeyValueSeparator The separator to use between key and value
+ */
+std::string asString(const std::map<std::string, std::string>& mapStr,
+                     const std::string& strItemSeparator = ", ",
+                     const std::string& strKeyValueSeparator = ":");
 
-    /** Utility to underline */
-    static void appendTitle(std::string& strTo, const std::string& strTitle);
+/** Utility to underline */
+void appendTitle(std::string& strTo, const std::string& strTitle);
 
-    /**
-     * Checks if a string has the written representation of an hexadecimal
-     * number (Which is the prefix "0x" or "0X" in C++).
-     *
-     * @param[in] strValue value as string
-     *
-     * @return true if the string is written as hexa, false otherwise.
-     */
-    static bool isHexadecimal(const std::string& strValue);
+/**
+ * Checks if a string has the written representation of an hexadecimal
+ * number (Which is the prefix "0x" or "0X" in C++).
+ *
+ * @param[in] strValue value as string
+ *
+ * @return true if the string is written as hexa, false otherwise.
+ */
+bool isHexadecimal(const std::string& strValue);
 
-};
+} // utility

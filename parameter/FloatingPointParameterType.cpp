@@ -121,7 +121,7 @@ bool CFloatingPointParameterType::toBlackboard(
         CParameterAccessContext& parameterAccessContext) const
 {
     // Check Value integrity
-    if (CUtility::isHexadecimal(strValue) && !parameterAccessContext.valueSpaceIsRaw()) {
+    if (utility::isHexadecimal(strValue) && !parameterAccessContext.valueSpaceIsRaw()) {
 
         parameterAccessContext.setError("Hexadecimal values are not supported for "
                                         + getKind()
@@ -198,7 +198,7 @@ void CFloatingPointParameterType::setOutOfRangeError(
         uint32_t uiMin = reinterpret_cast<const uint32_t&>(_fMin);
         uint32_t uiMax = reinterpret_cast<const uint32_t&>(_fMax);
 
-        if (CUtility::isHexadecimal(strValue)) {
+        if (utility::isHexadecimal(strValue)) {
 
             ostrStream << std::showbase << std::hex
                        << std::setw(getSize() * 2) << std::setfill('0');

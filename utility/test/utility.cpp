@@ -37,6 +37,9 @@
 using std::list;
 using std::string;
 
+namespace utility
+{
+
 SCENARIO("join<int>") {
     struct Test
     {
@@ -58,8 +61,8 @@ SCENARIO("join<int>") {
         CAPTURE(Catch::toString(test.input));
         const auto &first = begin(test.input);
         const auto &last = end(test.input);
-        REQUIRE(CUtility::join(first, last, test.binaryOpt, test.empty) == test.result);
-        REQUIRE(CUtility::join<int>(first, last, test.binaryOpt) == test.resultNoEmpty);
+        REQUIRE(join(first, last, test.binaryOpt, test.empty) == test.result);
+        REQUIRE(join<int>(first, last, test.binaryOpt) == test.resultNoEmpty);
     }
 }
 
@@ -85,10 +88,10 @@ SCENARIO("asString(list)") {
         CAPTURE(Catch::toString(test.input));
         WHEN("Separator, " + test.title) {
             CAPTURE(test.separator);
-            REQUIRE(CUtility::asString(test.input, test.separator) == test.result);
+            REQUIRE(asString(test.input, test.separator) == test.result);
         }
         THEN("No separator, " + test.title) {
-            REQUIRE(CUtility::asString(test.input) == test.resultNoSep);
+            REQUIRE(asString(test.input) == test.resultNoSep);
         }
     }
 }
@@ -122,9 +125,9 @@ SCENARIO("asString(map)") {
         CAPTURE(Catch::toString(test.input));
         CAPTURE(test.keyValueSep);
         CAPTURE(test.itemSep);
-        REQUIRE(CUtility::asString(test.input, test.keyValueSep, test.itemSep) == test.result);
-        REQUIRE(CUtility::asString(test.input, test.keyValueSep) == test.resultNoKeyValueSep);
-        REQUIRE(CUtility::asString(test.input) == test.resultNoSep);
+        REQUIRE(asString(test.input, test.keyValueSep, test.itemSep) == test.result);
+        REQUIRE(asString(test.input, test.keyValueSep) == test.resultNoKeyValueSep);
+        REQUIRE(asString(test.input) == test.resultNoSep);
     }
 
 }
@@ -151,7 +154,7 @@ SCENARIO("appendTitle") {
             WHEN("Appending to: " + quote(test.initial)) {
                 string output = test.initial;
                 THEN("Result should be:\n" + quote(test.result)) {
-                    CUtility::appendTitle(output, test.title);
+                    appendTitle(output, test.title);
                     CHECK(output == test.result);
                 }
             }
@@ -162,13 +165,15 @@ SCENARIO("appendTitle") {
 SCENARIO("isNotHexadecimal") {
     for (auto &str : {"a", "0", "012", "13", "ABC", "Oxa"}) {
         CAPTURE(str);
-        CHECK(not CUtility::isHexadecimal(str));
+        CHECK(not isHexadecimal(str));
     }
 }
 
 SCENARIO("isHexadecimal") {
     for (auto str : {"0xa", "0X0", "0x012", "0x13", "0xConsider as hexa as starting with 0x"}) {
         CAPTURE(str);
-        CHECK(CUtility::isHexadecimal(str));
+        CHECK(isHexadecimal(str));
     }
 }
+
+} // namespace utility

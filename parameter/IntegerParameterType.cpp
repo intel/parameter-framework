@@ -140,7 +140,7 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 bool CIntegerParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Hexa
-    bool bValueProvidedAsHexa = CUtility::isHexadecimal(strValue);
+    bool bValueProvidedAsHexa = utility::isHexadecimal(strValue);
 
     // Get integer value from the string provided
     int64_t iData;

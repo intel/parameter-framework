@@ -99,7 +99,7 @@ bool CSystemClass::loadSubsystems(string& strError,
 
     // Fill strError for caller, he has to decide if there is a problem depending on
     // bVirtualSubsystemFallback value
-    strError = CUtility::asString(errors);
+    strError = utility::asString(errors);
 
     return bLoadPluginsSuccess || bVirtualSubsystemFallback;
 }
@@ -152,7 +152,7 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
     if (!lstrPluginFiles.empty()) {
         // Unable to load at least one plugin
         errors.push_back("Unable to load the following plugins: " +
-                         CUtility::asString(lstrPluginFiles, ", ") + ".");
+                         utility::asString(lstrPluginFiles, ", ") + ".");
         return false;
     }
 

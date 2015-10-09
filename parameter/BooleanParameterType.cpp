@@ -59,7 +59,7 @@ bool CBooleanParameterType::toBlackboard(const std::string& strValue, uint32_t& 
     } else {
         parameterAccessContext.setError(strValue + " value not part of numerical space {");
 
-        if (CUtility::isHexadecimal(strValue)) {
+        if (utility::isHexadecimal(strValue)) {
 
             parameterAccessContext.appendToError("0x0, 0x1");
         } else {

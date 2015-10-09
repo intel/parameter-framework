@@ -811,7 +811,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
 
     // Show status
     /// General section
-    CUtility::appendTitle(strResult, "General:");
+    utility::appendTitle(strResult, "General:");
     // System class
     strResult += "System Class: ";
     strResult += pSystemClass->getName();
@@ -838,23 +838,23 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
     strResult += "\n";
 
     /// Subsystem list
-    CUtility::appendTitle(strResult, "Subsystems:");
+    utility::appendTitle(strResult, "Subsystems:");
     string strSubsystemList;
     pSystemClass->listChildrenPaths(strSubsystemList);
     strResult += strSubsystemList;
 
     /// Last applied configurations
-    CUtility::appendTitle(strResult, "Last Applied [Pending] Configurations:");
+    utility::appendTitle(strResult, "Last Applied [Pending] Configurations:");
     string strLastAppliedConfigurations;
     getConfigurableDomains()->listLastAppliedConfigurations(strLastAppliedConfigurations);
     strResult += strLastAppliedConfigurations;
 
     /// Criteria states
-    CUtility::appendTitle(strResult, "Selection Criteria:");
+    utility::appendTitle(strResult, "Selection Criteria:");
     list<string> lstrSelectionCriteria;
     getSelectionCriteria()->listSelectionCriteria(lstrSelectionCriteria, false, true);
     // Concatenate the criterion list as the command result
-    strResult += CUtility::asString(lstrSelectionCriteria);
+    strResult += utility::asString(lstrSelectionCriteria);
 
     return CCommandHandler::ESucceeded;
 }
@@ -1026,7 +1026,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
         getSelectionCriteria()->listSelectionCriteria(lstrResult, true, bHumanReadable);
 
         // Concatenate the criterion list as the command result
-        strResult += CUtility::asString(lstrResult);
+        strResult += utility::asString(lstrResult);
 
         return CCommandHandler::ESucceeded;
     }
@@ -1163,7 +1163,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfiguratio
     core::Results result;
     if (!restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), result)) {
         //Concatenate the error list as the command result
-        strResult = CUtility::asString(result);
+        strResult = utility::asString(result);
 
         return  CCommandHandler::EFailed;
     }
@@ -1857,7 +1857,7 @@ bool CParameterMgr::sync(string& strError)
     core::Results error;
     if (! syncerSet.sync(*_pMainParameterBlackboard, false, &error)){
 
-        strError = CUtility::asString(error);
+        strError = utility::asString(error);
         return false;
     };
 
@@ -2056,7 +2056,7 @@ bool CParameterMgr::addConfigurableElementToDomain(const string& strDomain, cons
         warning() << infos;
     }
 
-    strError = CUtility::asString(infos);
+    strError = utility::asString(infos);
     return isSuccess;
 }
 
@@ -2124,7 +2124,7 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
         warning() << infos;
     }
 
-    strError = CUtility::asString(infos);
+    strError = utility::asString(infos);
     return isSuccess;
 }
 

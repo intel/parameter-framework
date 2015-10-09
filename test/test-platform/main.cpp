@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 
     // All arguments should have been consumed
     if (not options.empty()) {
-        showInvalidUsage("Unexpected extra arguments: " + CUtility::asString(options));
+        showInvalidUsage("Unexpected extra arguments: " + utility::asString(options));
         return 3;
     }
 
