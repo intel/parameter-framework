@@ -173,13 +173,10 @@ bool CArrayParameter::accessAsStringArray(std::vector<string>& astrValues, bool 
 }
 
 // Dump
-string CArrayParameter::logValue(CErrorContext& errorContext) const
+string CArrayParameter::logValue(CParameterAccessContext &context) const
 {
-    // Parameter context
-    CParameterAccessContext& parameterAccessContext = static_cast<CParameterAccessContext&>(errorContext);
-
     // Dump values
-    return getValues(0, parameterAccessContext);
+    return getValues(0, context);
 }
 
 // Used for simulation and virtual subsystems

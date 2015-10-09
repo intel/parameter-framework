@@ -75,7 +75,6 @@ public:
 protected:
     // Parameter Access
     virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    std::string logValue(CErrorContext& errorContext) const override;
 
     // Actual value access (to be implemented by derived)
     virtual bool doSetValue(const std::string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const = 0;
@@ -87,4 +86,7 @@ protected:
      * @param[in:out] parameterAccessContext Parameter Access Context object.
      */
     void appendParameterPathToError(CParameterAccessContext& parameterAccessContext) const;
+
+private:
+    std::string logValue(CParameterAccessContext &context) const override;
 };

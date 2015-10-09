@@ -70,14 +70,11 @@ bool CBaseParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsE
 }
 
 // Dump
-string CBaseParameter::logValue(CErrorContext& errorContext) const
+string CBaseParameter::logValue(CParameterAccessContext &context) const
 {
-    // Parameter context
-    CParameterAccessContext& parameterAccessContext = static_cast<CParameterAccessContext&>(errorContext);
-
     // Dump value
     string output;
-    doGetValue(output, getOffset(), parameterAccessContext);
+    doGetValue(output, getOffset(), context);
     return output;
 }
 

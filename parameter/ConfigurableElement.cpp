@@ -191,6 +191,19 @@ void CConfigurableElement::showProperties(std::string& strResult) const
     strResult += "Total size: " + getFootprintAsString() + "\n";
 }
 
+std::string CConfigurableElement::logValue(CErrorContext &context) const
+{
+    return logValue(static_cast<CParameterAccessContext &>(context));
+}
+
+std::string CConfigurableElement::logValue(CParameterAccessContext &/*ctx*/) const
+{
+    // By default, an element does not have a value. Only leaf elements have
+    // one. This method could be pure virtual but then, several derived classes
+    // would need to implement it in order to simply return an empty string.
+    return "";
+}
+
 // Offset
 void CConfigurableElement::setOffset(size_t offset)
 {

@@ -55,10 +55,10 @@ public:
 
     // Class kind
     virtual std::string getKind() const;
-protected:
+private:
     // Content dumping
     std::string logValue(CErrorContext& errorContext) const override;
-private:
+
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
 
