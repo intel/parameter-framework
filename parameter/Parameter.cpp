@@ -99,25 +99,25 @@ void CParameter::doGetValue(string& strValue, size_t offset, CParameterAccessCon
 }
 
 // Boolean access
-bool CParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::access(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return doAccess(bValue, bSet, parameterAccessContext);
 }
 
 // Integer Access
-bool CParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::access(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return doAccess(uiValue, bSet, parameterAccessContext);
 }
 
 // Signed Integer Access
-bool CParameter::accessAsSignedInteger(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::access(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return doAccess(iValue, bSet, parameterAccessContext);
 }
 
 // Double Access
-bool CParameter::accessAsDouble(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::access(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return doAccess(dValue, bSet, parameterAccessContext);
 }

@@ -42,17 +42,18 @@ public:
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 
-    // Value access
-    // Boolean
-    virtual bool accessAsBooleanArray(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    // Integer
-    virtual bool accessAsIntegerArray(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    // Signed Integer Access
-    virtual bool accessAsSignedIntegerArray(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    // Double Access
-    virtual bool accessAsDoubleArray(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    // String Access
-    virtual bool accessAsStringArray(std::vector<std::string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    /// Value access
+    using CBaseParameter::access;
+    bool access(std::vector<bool>& abValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(std::vector<uint32_t>& auiValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(std::vector<int32_t>& aiValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(std::vector<double>& adValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(std::vector<std::string>& astrValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
 
 protected:
     // User set/get

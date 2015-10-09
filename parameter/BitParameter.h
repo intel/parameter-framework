@@ -46,10 +46,10 @@ public:
 
     /// Value access
     // Boolean access
-    virtual bool accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    bool access(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const override final;
 
     // Integer Access
-    virtual bool accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    bool access(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const override final;
 
     // AreaConfiguration creation
     virtual CAreaConfiguration* createAreaConfiguration(const CSyncerSet* pSyncerSet) const;
