@@ -86,7 +86,7 @@ after_success:
                     --exclude "bindings/c/Test.cpp"
                     --exclude "test/tokenizer"
                     --gcov /usr/bin/gcov-4.8
-                    --gcov-options '\--long-file-names --preserve-paths'
+                    --gcov-options '\--long-file-names --preserve-paths';
       fi
 
 notifications:
