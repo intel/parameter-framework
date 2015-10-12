@@ -191,7 +191,7 @@ void CConfigurableElement::showProperties(std::string& strResult) const
     strResult += "Total size: " + getFootprintAsString() + "\n";
 }
 
-std::string CConfigurableElement::logValue(CErrorContext &context) const
+std::string CConfigurableElement::logValue(utility::ErrorContext &context) const
 {
     return logValue(static_cast<CParameterAccessContext &>(context));
 }

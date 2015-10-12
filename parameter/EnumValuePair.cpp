@@ -70,7 +70,7 @@ bool CEnumValuePair::fromXml(const CXmlElement& xmlElement, CXmlSerializingConte
 }
 
 // Content dumping
-string CEnumValuePair::logValue(CErrorContext& /*ctx*/) const
+string CEnumValuePair::logValue(utility::ErrorContext& /*ctx*/) const
 {
     // Convert value
     return getNumericalAsString();

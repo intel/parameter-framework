@@ -57,7 +57,7 @@ public:
     virtual std::string getKind() const;
 private:
     // Content dumping
-    std::string logValue(CErrorContext& errorContext) const override;
+    std::string logValue(utility::ErrorContext& errorContext) const override;
 
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;

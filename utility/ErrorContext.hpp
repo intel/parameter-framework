@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -32,18 +32,32 @@
 #include <string>
 #include <NonCopyable.hpp>
 
-class CErrorContext : private utility::NonCopyable
+namespace utility
+{
+
+class ErrorContext : private NonCopyable
 {
 public:
-    CErrorContext(std::string& strError);
+    ErrorContext(std::string& error) : mError(error) {}
 
-    // Error
-    void setError(const std::string& strError);
-    void appendToError(const std::string& strAppend);
-    const std::string& getError() const;
+    void setError(const std::string& error)
+    {
+        mError = error;
+    }
+
+    void appendToError(const std::string& append)
+    {
+        mError += append;
+    }
+
+    void prependToError(const std::string& prepend)
+    {
+        mError = prepend + mError;
+    }
 
 private:
     // Error reference
-    std::string& _strError;
+    std::string& mError;
 };
 
+} // namespace utility

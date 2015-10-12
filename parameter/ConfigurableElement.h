@@ -136,7 +136,7 @@ private:
     // Elements should be called with the overloaded version taking a
     // "Parameter Access Context" (The name is misleading as it is actually
     // used to access any Configurable Element).
-    std::string logValue(CErrorContext& errorContext) const override final;
+    std::string logValue(utility::ErrorContext& errorContext) const override final;
     virtual std::string logValue(CParameterAccessContext& context) const;
 
     // Configurable domain association

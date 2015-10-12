@@ -49,6 +49,7 @@ endif ()
 
 install(FILES
     NonCopyable.hpp
+    ErrorContext.hpp
     Utility.h
     convert.hpp
     DESTINATION "include/utility")

@@ -75,7 +75,7 @@ public:
     virtual std::string getKind() const;
 protected:
     // Content dumping
-    std::string logValue(CErrorContext& errorContext) const override;
+    std::string logValue(utility::ErrorContext& errorContext) const override;
 private:
     // XML MatchesWhen attribute parsing
     bool setMatchesWhen(const std::string& strMatchesWhen, std::string& strError);

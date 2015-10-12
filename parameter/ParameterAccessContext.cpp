@@ -29,7 +29,7 @@
  */
 #include "ParameterAccessContext.h"
 
-#define base CErrorContext
+#define base utility::ErrorContext
 
 CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  CParameterBlackboard* pParameterBlackboard,

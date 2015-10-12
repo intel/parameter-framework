@@ -30,7 +30,7 @@
 #include "Element.h"
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
-#include "ErrorContext.h"
+#include "ErrorContext.hpp"
 #include <algorithm>
 #include <assert.h>
 #include <stdio.h>
@@ -80,7 +80,7 @@ bool CElement::init(string& strError)
     return true;
 }
 
-string CElement::dumpContent(CErrorContext& errorContext, const size_t depth) const
+string CElement::dumpContent(utility::ErrorContext& errorContext, const size_t depth) const
 {
     string output;
     string strIndent;
@@ -135,7 +135,7 @@ void CElement::showDescriptionProperty(std::string &strResult) const
 }
 
 // Content dumping
-string CElement::logValue(CErrorContext& /*ctx*/) const
+string CElement::logValue(utility::ErrorContext& /*ctx*/) const
 {
     return "";
 }

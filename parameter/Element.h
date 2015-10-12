@@ -40,7 +40,9 @@
 #include "PathNavigator.h"
 
 class CXmlElementSerializingContext;
-class CErrorContext;
+namespace utility {
+class ErrorContext;
+}
 
 class PARAMETER_EXPORT CElement : public IXmlSink, public IXmlSource
 {
@@ -123,7 +125,7 @@ public:
                                CXmlSerializingContext& serializingContext) const;
 
     // Content structure dump
-    std::string dumpContent(CErrorContext& errorContext, const size_t depth = 0) const;
+    std::string dumpContent(utility::ErrorContext& errorContext, const size_t depth = 0) const;
 
     // Element properties
     virtual void showProperties(std::string& strResult) const;
@@ -147,7 +149,7 @@ public:
 
 protected:
     // Content dumping
-    virtual std::string logValue(CErrorContext& errorContext) const;
+    virtual std::string logValue(utility::ErrorContext& errorContext) const;
 
     // Hierarchy
     CElement* getParent();

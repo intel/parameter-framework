@@ -58,7 +58,7 @@ string CSelectionCriterionRule::getKind() const
 }
 
 // Content dumping
-string CSelectionCriterionRule::logValue(CErrorContext& /*cxt*/) const
+string CSelectionCriterionRule::logValue(utility::ErrorContext& /*cxt*/) const
 {
     // Dump rule
     return dump();

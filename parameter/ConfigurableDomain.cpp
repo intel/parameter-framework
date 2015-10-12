@@ -84,7 +84,7 @@ bool CConfigurableDomain::childrenAreDynamic() const
 }
 
 // Content dumping
-string CConfigurableDomain::logValue(CErrorContext& /*ctx*/) const
+string CConfigurableDomain::logValue(utility::ErrorContext& /*ctx*/) const
 {
     return string("{") +
 

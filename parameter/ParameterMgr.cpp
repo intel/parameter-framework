@@ -1128,7 +1128,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpDomainsCommandP
 {
     // Dummy error context
     string strError;
-    CErrorContext errorContext(strError);
+    utility::ErrorContext errorContext(strError);
 
     // Dump
     strResult = getConstConfigurableDomains()->dumpContent(errorContext);

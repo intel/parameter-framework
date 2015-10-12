@@ -30,12 +30,12 @@
 #pragma once
 
 #include <stdint.h>
-#include "ErrorContext.h"
+#include "ErrorContext.hpp"
 #include <string>
 
 class CParameterBlackboard;
 
-class CParameterAccessContext : public CErrorContext
+class CParameterAccessContext : public utility::ErrorContext
 {
 public:
     CParameterAccessContext(std::string& strError,

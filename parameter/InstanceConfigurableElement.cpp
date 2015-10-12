@@ -203,7 +203,7 @@ bool CInstanceConfigurableElement::sync(CParameterAccessContext& parameterAccess
 }
 
 // Check parameter access path well formed for leaf elements
-bool CInstanceConfigurableElement::checkPathExhausted(CPathNavigator& pathNavigator, CErrorContext& errorContext)
+bool CInstanceConfigurableElement::checkPathExhausted(CPathNavigator& pathNavigator, utility::ErrorContext& errorContext)
 {
     std::string* pStrChildName = pathNavigator.next();
 
