@@ -30,6 +30,8 @@
 #pragma once
 
 #include "AreaConfiguration.h"
+#include "XmlDomainImportContext.h"
+#include "XmlDomainExportContext.h"
 #include "Element.h"
 #include "Results.h"
 #include <list>
@@ -106,8 +108,8 @@ public:
     void split(CConfigurableElement* pFromConfigurableElement);
 
     // XML configuration settings parsing/composing
-    bool parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext);
-    void composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext) const;
+    bool parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlDomainImportContext& context);
+    void composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlDomainExportContext& context) const;
 
     // Class kind
     virtual std::string getKind() const;
@@ -119,7 +121,8 @@ private:
     // Returns true if children dynamic creation is to be dealt with (here, will allow child deletion upon clean)
     virtual bool childrenAreDynamic() const;
     // XML configuration settings serializing
-    bool serializeConfigurableElementSettings(CAreaConfiguration *areaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlSerializingContext& serializingContext, bool bSerializeOut);
+    bool importOneConfigurableElementSettings(CAreaConfiguration *areaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlDomainImportContext& context);
+    bool exportOneConfigurableElementSettings(CAreaConfiguration *areaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlDomainExportContext& context) const;
     // AreaConfiguration retrieval from configurable element
     const AreaConfiguration &getAreaConfiguration(const CConfigurableElement* pConfigurableElement) const;
 

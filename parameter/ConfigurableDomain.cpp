@@ -130,7 +130,7 @@ void CConfigurableDomain::childrenToXml(CXmlElement& xmlElement,
     composeConfigurableElements(xmlElement);
 
     // Settings
-    composeSettings(xmlElement, serializingContext);
+    composeSettings(xmlElement, static_cast<CXmlDomainExportContext &>(serializingContext));
 }
 
 // XML composing
@@ -169,13 +169,9 @@ void CConfigurableDomain::composeConfigurableElements(CXmlElement& xmlElement) c
     }
 }
 
-void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlDomainExportContext& context) const
 {
-    // Context
-    const CXmlDomainExportContext& xmlDomainExportContext =
-        static_cast<const CXmlDomainExportContext&>(serializingContext);
-
-    if (!xmlDomainExportContext.withSettings()) {
+    if (!context.withSettings()) {
 
         return;
     }
@@ -202,7 +198,7 @@ void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlSerializi
         xmlConfigurationSettingsElement.setNameAttribute(pDomainConfiguration->getName());
 
         // Serialize out configuration settings
-        pDomainConfiguration->composeSettings(xmlConfigurationSettingsElement, serializingContext);
+        pDomainConfiguration->composeSettings(xmlConfigurationSettingsElement, context);
     }
 }
 
