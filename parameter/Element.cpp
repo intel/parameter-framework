@@ -148,9 +148,6 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
     // Propagate through children
     CXmlElement::CChildIterator childIterator(xmlElement);
 
-    // Context
-    CXmlElementSerializingContext& elementSerializingContext = static_cast<CXmlElementSerializingContext&>(serializingContext);
-
     CXmlElement childElement;
 
     while (childIterator.next(childElement)) {
@@ -163,7 +160,7 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
 
             if (!pChild) {
 
-                elementSerializingContext.setError("Unable to handle XML element: " + childElement.getPath());
+                serializingContext.setError("Unable to handle XML element: " + childElement.getPath());
 
                 return false;
             }
@@ -179,7 +176,7 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
         }
 
         // Dig
-        if (!pChild->fromXml(childElement, elementSerializingContext)) {
+        if (!pChild->fromXml(childElement, serializingContext)) {
 
             return false;
         }
