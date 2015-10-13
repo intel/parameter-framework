@@ -65,6 +65,10 @@ public:
     virtual bool access(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // String Access
+    // This one is not virtual because it is very generic. You can think if it
+    // as the client saying: "I don't care about the type, here's the value as
+    // a string - convert it yourself". Then, string-to-anything and
+    // anything-to-string methods are used to convert it into a suitable type.
     bool access(std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
     virtual bool access(std::vector<std::string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
