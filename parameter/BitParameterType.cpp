@@ -182,9 +182,9 @@ bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CP
     return true;
 }
 
-void CBitParameterType::fromBlackboard(uint32_t& uiUserValue, uint64_t uiValue, CParameterAccessContext& /*ctx*/) const
+void CBitParameterType::fromBlackboard(uint64_t& userValue, uint64_t value, CParameterAccessContext& /*ctx*/) const
 {
-    uiUserValue = (uiValue & getMask()) >> _bitPos;
+    userValue = (value & getMask()) >> _bitPos;
 }
 
 // Access from area configuration
