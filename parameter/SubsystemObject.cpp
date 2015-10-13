@@ -77,21 +77,6 @@ size_t CSubsystemObject::getSize() const
     return _dataSize;
 }
 
-// Conversion utility
-uint32_t CSubsystemObject::asInteger(const string& strValue)
-{
-    return strtoul(strValue.c_str(), NULL, 0);
-}
-
-string CSubsystemObject::asString(uint32_t uiValue)
-{
-    std::ostringstream ostr;
-
-    ostr << uiValue;
-
-    return ostr.str();
-}
-
 int CSubsystemObject::toPlainInteger(
         const CInstanceConfigurableElement *instanceConfigurableElement,
         int sizeOptimizedData)
