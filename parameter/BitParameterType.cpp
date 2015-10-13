@@ -127,7 +127,7 @@ bool CBitParameterType::toBlackboard(const string& strValue, uint64_t& uiValue, 
 
         strStream << "Value " << strValue << " standing out of admitted range [";
 
-        if (CUtility::isHexadecimal(strValue)) {
+        if (utility::isHexadecimal(strValue)) {
 
             strStream << "0x0, " << "0x" << std::hex << std::uppercase;
         } else {

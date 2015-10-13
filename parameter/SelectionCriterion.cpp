@@ -134,7 +134,7 @@ std::string CSelectionCriterion::getFormattedDescription(bool bWithTypeInfo, boo
         if (bWithTypeInfo) {
 
             // Display type info
-            CUtility::appendTitle(strFormattedDescription, getName() + ":");
+            utility::appendTitle(strFormattedDescription, getName() + ":");
 
             // States
             strFormattedDescription += "Possible states ";
