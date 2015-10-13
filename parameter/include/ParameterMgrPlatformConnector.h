@@ -38,7 +38,7 @@
 
 class CParameterMgr;
 
-class PARAMETER_EXPORT CParameterMgrPlatformConnector
+class CParameterMgrPlatformConnector
 {
     friend class CParameterMgrLogger<CParameterMgrPlatformConnector>;
 public:
@@ -46,43 +46,56 @@ public:
     class ILogger
     {
     public:
+        PARAMETER_EXPORT
         virtual void info(const std::string& strLog) = 0;
+        PARAMETER_EXPORT
         virtual void warning(const std::string& strLog) = 0;
     protected:
         virtual ~ILogger() {}
     };
 
     // Construction
+    PARAMETER_EXPORT
     CParameterMgrPlatformConnector(const std::string& strConfigurationFilePath);
+    PARAMETER_EXPORT
     ~CParameterMgrPlatformConnector(); // Not virtual since not supposed to be derived!
 
     // Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
     // Should be called before start
+    PARAMETER_EXPORT
     ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive = false);
+    PARAMETER_EXPORT
     ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType);
     // Selection criterion retrieval
+    PARAMETER_EXPORT
     ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName) const;
 
     // Logging
     // Should be called before start
+    PARAMETER_EXPORT
     void setLogger(ILogger* pLogger);
 
     // Start
+    PARAMETER_EXPORT
     bool start(std::string& strError);
 
     // Started state
+    PARAMETER_EXPORT
     bool isStarted() const;
 
     // Configuration application
+    PARAMETER_EXPORT
     void applyConfigurations();
 
     // Dynamic parameter handling
     // Returned objects are owned by clients
     // Must be cassed after successfull start
+    PARAMETER_EXPORT
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError) const;
 
     /** Is the remote interface forcefully disabled ?
      */
+    PARAMETER_EXPORT
     bool getForceNoRemoteInterface() const;
 
     /**
@@ -92,6 +105,7 @@ public:
      *
      * @param[in] bForceNoRemoteInterface disable the remote interface if true.
      */
+    PARAMETER_EXPORT
     void setForceNoRemoteInterface(bool bForceNoRemoteInterface);
 
     /** Should start fail in case of missing subsystems.
@@ -105,12 +119,14 @@ public:
       *
       * @return false if unable to set, true otherwise.
       */
+    PARAMETER_EXPORT
     bool setFailureOnMissingSubsystem(bool bFail, std::string& strError);
 
     /** Would start fail in case of missing subsystems.
       *
       * @return if the subsystem load will fail on missing subsystem.
       */
+    PARAMETER_EXPORT
     bool getFailureOnMissingSubsystem() const;
 
     /** Should start fail in failed settings load.
@@ -123,23 +139,27 @@ public:
       *
       * @return false if unable to set, true otherwise.
       */
+    PARAMETER_EXPORT
     bool setFailureOnFailedSettingsLoad(bool bFail, std::string& strError);
     /** Would start fail in case of failed settings load.
       *
       * @return failure on failed settings load policy state.
       */
+    PARAMETER_EXPORT
     bool getFailureOnFailedSettingsLoad() const;
 
     /** Get the XML Schemas URI
      *
      * @returns the XML Schemas URI
      */
+    PARAMETER_EXPORT
     const std::string& getSchemaUri() const;
 
     /** Override the XML Schemas URI
      *
      * @param[in] schemaUri the XML Schemas URI
      */
+    PARAMETER_EXPORT
     void setSchemaUri(const std::string& schemaUri);
 
     /** Should .xml files be validated on start ?
@@ -151,12 +171,14 @@ public:
      *
      * @return false if unable to set, true otherwise.
      */
+    PARAMETER_EXPORT
     bool setValidateSchemasOnStart(bool bValidate, std::string &strError);
 
     /** Would .xml files be validated on start?
      *
      * @return areSchemasValidated
      */
+    PARAMETER_EXPORT
     bool getValidateSchemasOnStart() const;
 
 private:

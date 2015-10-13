@@ -37,17 +37,22 @@
 class CMappingData;
 class CInstanceConfigurableElement;
 
-class PARAMETER_EXPORT CTypeElement : public CElement
+class CTypeElement : public CElement
 {
 public:
+    PARAMETER_EXPORT
     CTypeElement(const std::string& strName = "");
+    PARAMETER_EXPORT
     virtual ~CTypeElement();
 
     // Instantiation
+    PARAMETER_EXPORT
     CInstanceConfigurableElement* instantiate() const;
 
     // Mapping info
+    PARAMETER_EXPORT
     virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
+    PARAMETER_EXPORT
     virtual bool hasMappingData() const;
 
     /**
@@ -55,21 +60,27 @@ public:
      *
      * @return A std::string containing the mapping as a comma separated key value pairs
      */
+    PARAMETER_EXPORT
     virtual std::string getFormattedMapping() const;
 
     // Element properties
+    PARAMETER_EXPORT
     virtual void showProperties(std::string& strResult) const;
 
     // From IXmlSink
+    PARAMETER_EXPORT
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     // From IXmlSource
+    PARAMETER_EXPORT
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     // Scalar or Array?
+    PARAMETER_EXPORT
     bool isScalar() const;
 
     // Array Length
+    PARAMETER_EXPORT
     size_t getArrayLength() const;
 
     /**
@@ -79,6 +90,7 @@ public:
      *
      * @return the data with int type
      */
+    PARAMETER_EXPORT
     virtual int toPlainInteger(int iSizeOptimizedData) const;
 
 protected:

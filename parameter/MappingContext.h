@@ -36,7 +36,7 @@
 #include <string>
 #include <vector>
 
-class PARAMETER_EXPORT CMappingContext
+class CMappingContext
 {
 private:
     // Item structure
@@ -47,6 +47,7 @@ private:
     };
 
 public:
+    PARAMETER_EXPORT
     CMappingContext(size_t uiNbItemTypes) : mItems(uiNbItemTypes) {}
 
     // Item access
@@ -59,8 +60,11 @@ public:
      *
      * @return False if already set, true else.
      */
+    PARAMETER_EXPORT
     bool setItem(size_t itemType, const std::string* pStrKey, const std::string* pStrItem);
+    PARAMETER_EXPORT
     const std::string& getItem(size_t itemType) const;
+    PARAMETER_EXPORT
     size_t getItemAsInteger(size_t itemType) const;
     /**
      * Get mapping item value from its key name.
@@ -69,7 +73,9 @@ public:
      *
      * @return Mapping item value pointer if found, NULL else.
      */
+    PARAMETER_EXPORT
     const std::string* getItem(const std::string& strKey) const;
+    PARAMETER_EXPORT
     bool iSet(size_t itemType) const;
 
 private:

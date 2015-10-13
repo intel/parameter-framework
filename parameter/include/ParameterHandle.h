@@ -38,22 +38,29 @@
 class CBaseParameter;
 class CParameterMgr;
 
-class PARAMETER_EXPORT CParameterHandle
+class CParameterHandle
 {
 public:
+    PARAMETER_EXPORT
     CParameterHandle(const CBaseParameter* pParameter, CParameterMgr* pParameterMgr);
 
     // Parameter features
+    PARAMETER_EXPORT
     bool isRogue() const;
+    PARAMETER_EXPORT
     bool isArray() const;
     // Array Length
+    PARAMETER_EXPORT
     size_t getArrayLength() const; // Returns 0 for scalar
     // Parameter path
+    PARAMETER_EXPORT
     std::string getPath() const;
     // Parameter kind
+    PARAMETER_EXPORT
     std::string getKind() const;
 
     // Boolean access
+    PARAMETER_EXPORT
     bool setAsBoolean(bool bValue, std::string& strError);
 
     /**
@@ -64,32 +71,51 @@ public:
      *
      * @return true on success, false otherwise
      */
+    PARAMETER_EXPORT
     bool getAsBoolean(bool& bValue, std::string& strError) const;
+    PARAMETER_EXPORT
     bool setAsBooleanArray(const std::vector<bool>& abValues, std::string& strError);
+    PARAMETER_EXPORT
     bool getAsBooleanArray(std::vector<bool>& abValues, std::string& strError) const;
 
     // Integer Access
+    PARAMETER_EXPORT
     bool setAsInteger(uint32_t uiValue, std::string& strError);
+    PARAMETER_EXPORT
     bool getAsInteger(uint32_t& uiValue, std::string& strError) const;
+    PARAMETER_EXPORT
     bool setAsIntegerArray(const std::vector<uint32_t>& auiValues, std::string& strError);
+    PARAMETER_EXPORT
     bool getAsIntegerArray(std::vector<uint32_t>& auiValues, std::string& strError) const;
 
     // Signed Integer Access
+    PARAMETER_EXPORT
     bool setAsSignedInteger(int32_t iValue, std::string& strError);
+    PARAMETER_EXPORT
     bool getAsSignedInteger(int32_t& iValue, std::string& strError) const;
+    PARAMETER_EXPORT
     bool setAsSignedIntegerArray(const std::vector<int32_t>& aiValues, std::string& strError);
+    PARAMETER_EXPORT
     bool getAsSignedIntegerArray(std::vector<int32_t>& aiValues, std::string& strError) const;
 
     // Double Access
+    PARAMETER_EXPORT
     bool setAsDouble(double dValue, std::string& strError);
+    PARAMETER_EXPORT
     bool getAsDouble(double& dValue, std::string& strError) const;
+    PARAMETER_EXPORT
     bool setAsDoubleArray(const std::vector<double>& adValues, std::string& strError);
+    PARAMETER_EXPORT
     bool getAsDoubleArray(std::vector<double>& adValues, std::string& strError) const;
 
     // String Access
+    PARAMETER_EXPORT
     bool setAsString(const std::string& strValue, std::string& strError);
+    PARAMETER_EXPORT
     bool getAsString(std::string& strValue, std::string& strError) const;
+    PARAMETER_EXPORT
     bool setAsStringArray(const std::vector<std::string>& astrValues, std::string& strError);
+    PARAMETER_EXPORT
     bool getAsStringArray(std::vector<std::string>& astrValues, std::string& strError) const;
 
 private:

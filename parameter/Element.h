@@ -42,38 +42,58 @@
 class CXmlElementSerializingContext;
 class CErrorContext;
 
-class PARAMETER_EXPORT CElement : public IXmlSink, public IXmlSource
+class CElement : public IXmlSink, public IXmlSource
 {
 public:
+    PARAMETER_EXPORT
     CElement(const std::string& strName = "");
+    PARAMETER_EXPORT
     virtual ~CElement();
 
     // Description
+    PARAMETER_EXPORT
     void setDescription(const std::string& strDescription);
+    PARAMETER_EXPORT
     const std::string& getDescription() const;
 
     // Name / Path
+    PARAMETER_EXPORT
     const std::string& getName() const;
+    PARAMETER_EXPORT
     void setName(const std::string& strName);
+    PARAMETER_EXPORT
     bool rename(const std::string& strName, std::string& strError);
+    PARAMETER_EXPORT
     std::string getPath() const;
+    PARAMETER_EXPORT
     std::string getQualifiedPath() const;
 
     // Creation / build
+    PARAMETER_EXPORT
     virtual bool init(std::string& strError);
+    PARAMETER_EXPORT
     virtual void clean();
 
     // Children management
+    PARAMETER_EXPORT
     void addChild(CElement* pChild);
+    PARAMETER_EXPORT
     bool removeChild(CElement* pChild);
+    PARAMETER_EXPORT
     void listChildren(std::string& strChildList) const;
+    PARAMETER_EXPORT
     std::string listQualifiedPaths(bool bDive, size_t level = 0) const;
+    PARAMETER_EXPORT
     void listChildrenPaths(std::string& strChildPathList) const;
 
     // Hierarchy query
+    PARAMETER_EXPORT
     size_t getNbChildren() const;
+    PARAMETER_EXPORT
     CElement* findChildOfKind(const std::string& strKind);
+    PARAMETER_EXPORT
     const CElement* findChildOfKind(const std::string& strKind) const;
+    PARAMETER_EXPORT
     const CElement* getParent() const;
 
     /**
@@ -84,6 +104,7 @@ public:
      * @param[in] index the index of the child element from 0 to number of children - 1
      * @return the child element
      */
+    PARAMETER_EXPORT
     const CElement* getChild(size_t index) const;
 
     /**
@@ -94,18 +115,26 @@ public:
      * @param[in] index the index of the child element from 0 to number of children - 1
      * @return the child element
      */
+    PARAMETER_EXPORT
     CElement* getChild(size_t index);
 
+    PARAMETER_EXPORT
     const CElement* findChild(const std::string& strName) const;
+    PARAMETER_EXPORT
     CElement* findChild(const std::string& strName);
+    PARAMETER_EXPORT
     const CElement* findDescendant(CPathNavigator& pathNavigator) const;
+    PARAMETER_EXPORT
     CElement* findDescendant(CPathNavigator& pathNavigator);
+    PARAMETER_EXPORT
     bool isDescendantOf(const CElement* pCandidateAscendant) const;
 
     // From IXmlSink
+    PARAMETER_EXPORT
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 
     // From IXmlSource
+    PARAMETER_EXPORT
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
     /**
@@ -119,16 +148,20 @@ public:
      *                object upon which this method is called)
      * @param[in,out] serializingContext information about the serialization
      */
+    PARAMETER_EXPORT
     virtual void childrenToXml(CXmlElement& xmlElement,
                                CXmlSerializingContext& serializingContext) const;
 
     // Content structure dump
+    PARAMETER_EXPORT
     void dumpContent(std::string& strContent, CErrorContext& errorContext, const size_t depth = 0) const;
 
     // Element properties
+    PARAMETER_EXPORT
     virtual void showProperties(std::string& strResult) const;
 
     // Class kind
+    PARAMETER_EXPORT
     virtual std::string getKind() const = 0;
 
     /**
@@ -136,6 +169,7 @@ public:
      *
      * @param[in,out] xmlElement to fill with the description
      */
+    PARAMETER_EXPORT
     void setXmlDescriptionAttribute(CXmlElement& xmlElement) const;
 
     /**
@@ -143,13 +177,16 @@ public:
      *
      * @param[out] strResult in which the description is wished to be appended.
      */
+    PARAMETER_EXPORT
     void showDescriptionProperty(std::string &strResult) const;
 
 protected:
     // Content dumping
+    PARAMETER_EXPORT
     virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 
     // Hierarchy
+    PARAMETER_EXPORT
     CElement* getParent();
 
     /**
@@ -160,15 +197,18 @@ protected:
      *
      * @return child a pointer on the CElement object that has been added to the tree
      */
+    PARAMETER_EXPORT
     CElement* createChild(const CXmlElement& childElement,
                           CXmlSerializingContext& elementSerializingContext);
 
+    PARAMETER_EXPORT
     static const std::string gDescriptionPropertyName;
 
 private:
     // Returns Name or Kind if no Name
     std::string getPathName() const;
     // Returns true if children dynamic creation is to be dealt with
+    PARAMETER_EXPORT
     virtual bool childrenAreDynamic() const;
     // House keeping
     void removeChildren();
