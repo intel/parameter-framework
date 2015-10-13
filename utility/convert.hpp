@@ -35,34 +35,31 @@
 #include <string>
 #include <stdint.h>
 #include <cmath>
+#include <type_traits>
 
 /* details namespace is here to hide implementation details to header end user. It
  * is NOT intended to be used outside. */
 namespace details
 {
 
-/** Helper class to limit instantiation of templates */
-template<typename T>
-struct ConvertionAllowed;
-template<typename T, typename Via>
-struct ConvertionAllowedVia;
-
 /* List of allowed types for conversion */
-template<> struct ConvertionAllowed<bool> {};
-template<> struct ConvertionAllowed<uint64_t> {};
-template<> struct ConvertionAllowed<int64_t> {};
-template<> struct ConvertionAllowed<uint32_t> {};
-template<> struct ConvertionAllowed<int32_t> {};
-template<> struct ConvertionAllowed<uint16_t> {};
-template<> struct ConvertionAllowed<int16_t> {};
-template<> struct ConvertionAllowed<int8_t> {};
-template<> struct ConvertionAllowed<uint8_t> {};
-template<> struct ConvertionAllowed<float> {};
-template<> struct ConvertionAllowed<double> {};
+template<typename T> struct ConvertionAllowed : std::false_type {};
+template<> struct ConvertionAllowed<bool> : std::true_type {};
+template<> struct ConvertionAllowed<uint64_t> : std::true_type {};
+template<> struct ConvertionAllowed<int64_t> : std::true_type {};
+template<> struct ConvertionAllowed<uint32_t> : std::true_type {};
+template<> struct ConvertionAllowed<int32_t> : std::true_type {};
+template<> struct ConvertionAllowed<uint16_t> : std::true_type {};
+template<> struct ConvertionAllowed<int16_t> : std::true_type {};
+template<> struct ConvertionAllowed<int8_t> : std::true_type {};
+template<> struct ConvertionAllowed<uint8_t> : std::true_type {};
+template<> struct ConvertionAllowed<float> : std::true_type {};
+template<> struct ConvertionAllowed<double> : std::true_type {};
 
 /* Allow chars and unsigned chars to be converted via integers */
-template<> struct ConvertionAllowedVia<uint8_t, uint32_t> {};
-template<> struct ConvertionAllowedVia<int8_t, int32_t> {};
+template<typename T, typename Via> struct ConvertionAllowedVia : std::false_type {};
+template<> struct ConvertionAllowedVia<uint8_t, uint32_t> : std::true_type {};
+template<> struct ConvertionAllowedVia<int8_t, int32_t> : std::true_type {};
 
 template<typename T>
 static inline bool convertTo(const std::string &str, T &result)
@@ -70,7 +67,7 @@ static inline bool convertTo(const std::string &str, T &result)
     /* Check that conversion to that type is allowed.
      * If this fails, this means that this template was not intended to be used
      * with this type, thus that the result is undefined. */
-    ConvertionAllowed<T>();
+    static_assert(ConvertionAllowed<T>::value, "convertTo does not support this conversion");
 
     if (str.find_first_of(std::string("\r\n\t\v ")) != std::string::npos) {
         return false;
@@ -109,7 +106,8 @@ static inline bool convertToVia(const std::string &str, T &result)
     /* Check that conversion to that type is allowed.
      * If this fails, this means that this template was not intended to be used
      * with this type, thus that the result is undefined. */
-    ConvertionAllowedVia<T, Via>();
+    static_assert(ConvertionAllowedVia<T, Via>::value,
+            "convertToVia does not support this conversion");
 
     /* We want to override the behaviour of convertTo<T> with that of
      * convertTo<Via> and then safely cast the result into a T. */
