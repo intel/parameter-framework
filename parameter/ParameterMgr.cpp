@@ -2597,15 +2597,22 @@ bool CParameterMgr::wrapLegacyXmlExportToFile(string& xmlDest,
                                               const CElement& element,
                                               CXmlDomainExportContext &context) const
 {
-    std::ofstream output(xmlDest.c_str());
+    try {
+        std::ofstream output;
+        // Force stream to throw instead of using fail/bad bit
+        // in order to retreive an error message.
+        output.exceptions(~std::ifstream::goodbit);
 
-    if (output.fail()) {
-        context.setError("Failed to open \"" + xmlDest + "\" for writing.");
+        output.open(xmlDest.c_str());
+        bool status = serializeElement(output, context, element);
+        output.close(); // Explicit close to detect errors
+
+        return status;
+
+    } catch (std::ofstream::failure& e) {
+        context.setError("Failed to open \"" + xmlDest + "\" for writing: " + e.what());
         return false;
     }
-
-    return serializeElement(output, context, element);
-
 }
 
 bool CParameterMgr::wrapLegacyXmlExportToString(string& xmlDest,
