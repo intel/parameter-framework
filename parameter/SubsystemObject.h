@@ -65,9 +65,6 @@ protected:
     uint8_t* getBlackboardLocation() const;
     // Size
     size_t getSize() const;
-    // Conversion utility
-    static uint32_t asInteger(const std::string& strValue);
-    static std::string asString(uint32_t uiValue);
 
     /**
      * Conversion of int8, int16, int32 to int (taking care of sign extension)
