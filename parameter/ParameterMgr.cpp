@@ -1502,8 +1502,11 @@ CParameterMgr::CCommandHandler::CommandStatus
         destinationUri = remoteCommand.getArgument(0);
     }
 
-    return exportDomainsXml(destinationUri, true, true, strResult) ?
-            CCommandHandler::EDone : CCommandHandler::EFailed;
+    if (not exportDomainsXml(destinationUri, true, true, strResult)) {
+            return CCommandHandler::EFailed;
+    }
+    strResult = "Exported domains with settings to \"" + destinationUri + '"';
+    return CCommandHandler::ESucceeded;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus

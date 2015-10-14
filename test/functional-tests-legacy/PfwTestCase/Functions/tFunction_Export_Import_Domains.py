@@ -70,6 +70,9 @@ class TestCases(PfwTestCase):
         self.temp_config="f_Config_Backup"
         self.temp_domain="f_Domains_Backup"
         self.temp_xml=pfw_test_tools+"/f_temp.xml"
+        self.test_domain_path = os.path.abspath(
+                os.path.join(os.path.dirname(os.environ["PFW_TEST_CONFIGURATION"]),
+                             "Settings/Test/TestConfigurableDomains.xml"))
 
         self.nb_domains_in_reference_xml=3
         self.nb_conf_per_domains_in_reference_xml=[2,2,2]
@@ -259,9 +262,14 @@ class TestCases(PfwTestCase):
 
         #Export in a temp XML file
         log.I("Export Domains with initial settings in %s"%(self.temp_xml))
-        out, err = self.pfw.sendCmd("exportDomainsWithSettingsXML",self.temp_xml, "")
-        assert err == None, log.E("Command [exportDomainsWithSettingsXML %s] : %s"%(self.temp_xml,err))
-        assert out == "Done", log.F("When using function exportDomainsWithSettingsXML %s]"%(self.temp_xml))
+        self.pfw.sendCmd("exportDomainsWithSettingsXML", "/path/that/does/not/exist", expectSuccess=False)
+
+        def testSuccessExportDomainsWithSettingsXml(path, *args):
+            out, err = self.pfw.sendCmd("exportDomainsWithSettingsXML", *args)
+            self.assertEqual(out, "Exported domains with settings to \"%s\"" % path)
+
+        testSuccessExportDomainsWithSettingsXml(self.temp_xml, self.temp_xml)
+        testSuccessExportDomainsWithSettingsXml(self.test_domain_path)
 
         #Change the value of checked parameters
         self.pfw.sendCmd("setTuningMode", "on","")
