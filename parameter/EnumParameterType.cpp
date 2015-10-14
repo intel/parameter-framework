@@ -124,51 +124,51 @@ int32_t CEnumParameterType::getMax() const {
     return getMaxValue<int32_t>();
 }
 
-bool CEnumParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& /*ctx*/) const
+bool CEnumParameterType::fromBlackboard(string& userValue, const uint32_t& value, CParameterAccessContext& /*ctx*/) const
 {
     // Convert the raw value from the blackboard
-    int32_t iValue = uiValue;
-    signExtend(iValue);
+    int32_t signedValue = static_cast<int32_t>(value);
+    signExtend(signedValue);
 
     // Convert from numerical space to literal space
-    return getLiteral(iValue, strValue);
+    return getLiteral(signedValue, userValue);
 }
 
 // Value access
-bool CEnumParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CEnumParameterType::toBlackboard(int32_t userValue, uint32_t& value, CParameterAccessContext& parameterAccessContext) const
 {
-    if (!checkValueAgainstSpace(iUserValue)) {
+    if (!checkValueAgainstSpace(userValue)) {
 
-        parameterAccessContext.setError(std::to_string(iUserValue) +
+        parameterAccessContext.setError(std::to_string(userValue) +
                 " is not part of numerical space.");
 
         return false;
     }
 
-    if (iUserValue < getMin() or iUserValue > getMax()) {
+    if (userValue < getMin() or userValue > getMax()) {
 
         // FIXME: values provided as hexa (either on command line or in a config
         // file will appear in decimal base instead of hexa base...
         parameterAccessContext.setError(
-                "Value " + std::to_string(iUserValue) + " standing out of admitted range [" +
+                "Value " + std::to_string(userValue) + " standing out of admitted range [" +
                 std::to_string(getMin()) + ", " + std::to_string(getMax()) + "] for " + getKind()
                 );
         return false;
     }
 
-    uiValue = iUserValue;
+    value = static_cast<uint32_t>(userValue);
 
     return true;
 }
 
-bool CEnumParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
+bool CEnumParameterType::fromBlackboard(int32_t& userValue, uint32_t value, CParameterAccessContext& /*ctx*/) const
 {
-    int32_t iValue = uiValue;
+    int32_t signedValue = static_cast<int32_t>(value);
 
     // Sign extend
-    signExtend(iValue);
+    signExtend(signedValue);
 
-    iUserValue = iValue;
+    userValue = signedValue;
 
     return true;
 }

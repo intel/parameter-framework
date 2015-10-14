@@ -27,7 +27,9 @@
 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+#include <convert.hpp>
 #include <string.h>
+#include <string>
 #include <sstream>
 #include <stdlib.h>
 #include <assert.h>
@@ -50,7 +52,7 @@ std::string CTESTSubsystemBinary::toString(const void* pvValue, size_t size) con
 
     assert(size <= sizeof(uiValue));
 
-    memcpy((void*)&uiValue, pvValue, size);
+    memcpy(&uiValue, pvValue, size);
 
     strStream << "0x" << std::hex << uiValue;
 
@@ -59,9 +61,13 @@ std::string CTESTSubsystemBinary::toString(const void* pvValue, size_t size) con
 
 void CTESTSubsystemBinary::fromString(const std::string& strValue, void* pvValue, size_t size)
 {
-    uint32_t uiValue = strtoul(strValue.c_str(), NULL, 0);
+    uint32_t uiValue;
 
     assert(size <= sizeof(uiValue));
 
-    memcpy(pvValue, (const void*)&uiValue, size);
+    if (!convertTo(strValue, uiValue)) {
+        throw std::string("Unable to convert \"") + strValue + std::string("\" to uint32");
+    }
+
+    memcpy(pvValue, &uiValue, size);
 }

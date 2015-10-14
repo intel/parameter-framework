@@ -87,35 +87,35 @@ bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCon
     }
 
     // Rely on integer access
-    uint32_t uiValue;
+    uint64_t value;
 
     if (bSet) {
 
-        uiValue = bValue;
+        value = bValue;
     }
 
-    if (!accessAsInteger(uiValue, bSet, parameterAccessContext)) {
+    if (!accessAsInteger(value, bSet, parameterAccessContext)) {
 
         return false;
     }
 
     if (!bSet) {
 
-        bValue = uiValue != 0;
+        bValue = value != 0;
     }
 
     return true;
 }
 
 // Integer Access
-bool CBitParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameter::accessAsInteger(uint64_t& value, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     size_t offset = getOffset();
 
     if (bSet) {
 
         // Set Value
-        if (!doSet(uiValue, offset, parameterAccessContext)) {
+        if (!doSet(value, offset, parameterAccessContext)) {
 
             appendParameterPathToError(parameterAccessContext);
             return false;
@@ -129,7 +129,7 @@ bool CBitParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAcce
     } else {
 
         // Convert
-        doGet(uiValue, offset, parameterAccessContext);
+        doGet(value, offset, parameterAccessContext);
     }
     return true;
 }
