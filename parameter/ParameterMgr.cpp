@@ -277,7 +277,7 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
             "<file path>", "Import domains from an XML file (provide an absolute path or relative"
                             "to the client's working directory)" },
     { "exportDomainsWithSettingsXML",
-            &CParameterMgr::exportDomainsWithSettingsXMLCommandProcess, 1,
+            &CParameterMgr::exportDomainsWithSettingsXMLCommandProcess, 0,
             "<file path> ", "Export domains including settings to XML file (provide an absolute path or relative"
                             "to the client's working directory)" },
     { "exportDomainWithSettingsXML",
@@ -1479,9 +1479,34 @@ CParameterMgr::CCommandHandler::CommandStatus
         CParameterMgr::exportDomainsWithSettingsXMLCommandProcess(
                 const IRemoteCommand& remoteCommand, string& strResult)
 {
-    string strFileName = remoteCommand.getArgument(0);
-    return exportDomainsXml(strFileName, true, true, strResult) ?
-            CCommandHandler::EDone : CCommandHandler::EFailed;
+    string destinationUri;
+
+    if (remoteCommand.getArgumentCount() == 0){
+        auto *settingsConfig = getConstFrameworkConfiguration()->findChildOfKind("SettingsConfiguration");
+        if (settingsConfig == nullptr) {
+            strResult = "Started without settings. Please provide an export path.";
+            return CCommandHandler::EFailed;
+        }
+
+        // Get configurable domains element
+        auto domainsFileLocation = static_cast<const CFrameworkConfigurationLocation*>(
+            settingsConfig->findChildOfKind("ConfigurableDomainsFileLocation"));
+        if (domainsFileLocation == nullptr) {
+            strResult = "Started without a initial domain file, thus can not export to it. "
+                        "Please provide an export path.";
+            return CCommandHandler::EFailed;
+        }
+
+        destinationUri = CXmlDocSource::mkUri(_xmlConfigurationUri, domainsFileLocation->getUri());
+    } else {
+        destinationUri = remoteCommand.getArgument(0);
+    }
+
+    if (not exportDomainsXml(destinationUri, true, true, strResult)) {
+            return CCommandHandler::EFailed;
+    }
+    strResult = "Exported domains with settings to \"" + destinationUri + '"';
+    return CCommandHandler::ESucceeded;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus
@@ -2306,15 +2331,22 @@ bool CParameterMgr::wrapLegacyXmlExportToFile(string& xmlDest,
                                               const CElement& element,
                                               CXmlDomainExportContext &context) const
 {
-    std::ofstream output(xmlDest.c_str());
+    try {
+        std::ofstream output;
+        // Force stream to throw instead of using fail/bad bit
+        // in order to retreive an error message.
+        output.exceptions(~std::ifstream::goodbit);
 
-    if (output.fail()) {
-        context.setError("Failed to open \"" + xmlDest + "\" for writing.");
+        output.open(xmlDest.c_str());
+        bool status = serializeElement(output, context, element);
+        output.close(); // Explicit close to detect errors
+
+        return status;
+
+    } catch (std::ofstream::failure& e) {
+        context.setError("Failed to open \"" + xmlDest + "\" for writing: " + e.what());
         return false;
     }
-
-    return serializeElement(output, context, element);
-
 }
 
 bool CParameterMgr::wrapLegacyXmlExportToString(string& xmlDest,
