@@ -69,7 +69,7 @@ public:
     // Application rule
     bool setApplicationRule(const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
     void clearApplicationRule();
-    void getApplicationRule(std::string& strResult) const;
+    std::string getApplicationRule() const;
 
     // Get Blackboard for an element of the domain
     CParameterBlackboard* getBlackboard(const CConfigurableElement* pConfigurableElement) const;

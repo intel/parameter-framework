@@ -151,7 +151,7 @@ public:
 
 protected:
     // Content dumping
-    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
+    std::string logValue(CErrorContext& errorContext) const override;
 
 private:
     // Get pending configuration

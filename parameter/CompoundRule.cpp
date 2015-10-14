@@ -57,10 +57,10 @@ bool CCompoundRule::childrenAreDynamic() const
 }
 
 // Content dumping
-void CCompoundRule::logValue(string& strValue, CErrorContext& /*ctx*/) const
+string CCompoundRule::logValue(CErrorContext& /*ctx*/) const
 {
     // Type
-    strValue = _apcTypes[_bTypeAll];
+    return _apcTypes[_bTypeAll];
 }
 
 // Parse
@@ -86,10 +86,9 @@ bool CCompoundRule::parse(CRuleParser& ruleParser, string& strError)
 }
 
 // Dump
-void CCompoundRule::dump(string& strResult) const
+string CCompoundRule::dump() const
 {
-    strResult += _apcTypes[_bTypeAll];
-    strResult += "{";
+    string output = string(_apcTypes[_bTypeAll]) + "{";
 
     // Children
     size_t uiChild;
@@ -100,18 +99,19 @@ void CCompoundRule::dump(string& strResult) const
 
         if (!bFirst) {
 
-            strResult += ", ";
+            output += ", ";
         }
 
         // Dump inner rule
         const CRule* pRule = static_cast<const CRule*>(getChild(uiChild));
 
-        pRule->dump(strResult);
+        output += pRule->dump();
 
         bFirst = false;
     }
 
-    strResult += "}";
+    output += "}";
+    return output;
 }
 
 // Rule check

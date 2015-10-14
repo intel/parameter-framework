@@ -264,22 +264,10 @@ void CDomainConfiguration::clearApplicationRule()
     setRule(NULL);
 }
 
-void CDomainConfiguration::getApplicationRule(string& strResult) const
+string CDomainConfiguration::getApplicationRule() const
 {
-    // Rule
     const CCompoundRule* pRule = getRule();
-
-    if (pRule) {
-        // Start clear
-        strResult.clear();
-
-        // Dump rule
-        pRule->dump(strResult);
-
-    } else {
-
-        strResult = "<none>";
-    }
+    return pRule ? pRule->dump() : "<none>";
 }
 
 /**

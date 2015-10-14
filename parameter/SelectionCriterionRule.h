@@ -60,7 +60,7 @@ public:
     virtual bool parse(CRuleParser& ruleParser, std::string& strError);
 
     // Dump
-    virtual void dump(std::string& strResult) const;
+    std::string dump() const override;
 
     // Rule check
     virtual bool matches() const;
@@ -75,7 +75,7 @@ public:
     virtual std::string getKind() const;
 protected:
     // Content dumping
-    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
+    std::string logValue(CErrorContext& errorContext) const override;
 private:
     // XML MatchesWhen attribute parsing
     bool setMatchesWhen(const std::string& strMatchesWhen, std::string& strError);

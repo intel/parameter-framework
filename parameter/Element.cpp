@@ -80,8 +80,9 @@ bool CElement::init(string& strError)
     return true;
 }
 
-void CElement::dumpContent(string& strContent, CErrorContext& errorContext, const size_t depth) const
+string CElement::dumpContent(CErrorContext& errorContext, const size_t depth) const
 {
+    string output;
     string strIndent;
 
     // Level
@@ -92,29 +93,30 @@ void CElement::dumpContent(string& strContent, CErrorContext& errorContext, cons
         strIndent += "    ";
     }
     // Type
-    strContent += strIndent + "- " + getKind();
+    output += strIndent + "- " + getKind();
 
     // Name
     if (!_strName.empty()) {
 
-        strContent += ": " + getName();
+        output += ": " + getName();
     }
 
     // Value
-    string strValue;
-    logValue(strValue, errorContext);
+    string strValue = logValue(errorContext);
 
     if (!strValue.empty()) {
 
-        strContent += " = " + strValue;
+        output += " = " + strValue;
     }
 
-    strContent += "\n";
+    output += "\n";
 
     for (CElement* pChild : _childArray) {
 
-        pChild->dumpContent(strContent, errorContext, depth + 1);
+        output += pChild->dumpContent(errorContext, depth + 1);
     }
+
+    return output;
 }
 
 // Element properties
@@ -133,8 +135,9 @@ void CElement::showDescriptionProperty(std::string &strResult) const
 }
 
 // Content dumping
-void CElement::logValue(string& /*strValue*/, CErrorContext& /*ctx*/) const
+string CElement::logValue(CErrorContext& /*ctx*/) const
 {
+    return "";
 }
 
 // From IXmlSink

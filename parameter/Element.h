@@ -123,7 +123,7 @@ public:
                                CXmlSerializingContext& serializingContext) const;
 
     // Content structure dump
-    void dumpContent(std::string& strContent, CErrorContext& errorContext, const size_t depth = 0) const;
+    std::string dumpContent(CErrorContext& errorContext, const size_t depth = 0) const;
 
     // Element properties
     virtual void showProperties(std::string& strResult) const;
@@ -147,7 +147,7 @@ public:
 
 protected:
     // Content dumping
-    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
+    virtual std::string logValue(CErrorContext& errorContext) const;
 
     // Hierarchy
     CElement* getParent();
