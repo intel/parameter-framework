@@ -202,10 +202,6 @@ bool CParameterType::doIsEncodable(type data, bool bIsSigned) const
 // Remove all bits set outside available range
 uint32_t CParameterType::makeEncodable(uint32_t uiData) const
 {
-    if (getSize() == sizeof(size_t)) {
-
-        return uiData;
-    }
     size_t sizeInBits = getSize() * 8;
 
     uint32_t uiMask = (1 << sizeInBits) - 1;
