@@ -91,11 +91,7 @@ bool CMappingData::getValue(const std::string& strkey, const std::string*& pStrV
 
 std::string CMappingData::asString() const
 {
-    std::string strValue;
-
-    CUtility::asString(_keyToValueMap, strValue, ", ", ":");
-
-    return strValue;
+    return utility::asString(_keyToValueMap, ", ", ":");
 }
 
 bool CMappingData::addValue(const std::string& strkey, const std::string& strValue)

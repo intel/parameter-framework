@@ -32,61 +32,46 @@
 
 #include <sstream>
 #include <iterator>
-#include <stdint.h>
+#include <algorithm>
 
 using std::string;
 
+namespace utility
+{
+
 // Format string list
-void CUtility::asString(const std::list<std::string>& lstr,
-                        std::string& strOutput,
+std::string asString(const std::list<std::string>& lstr,
                         const std::string& strSeparator)
 {
-    std::ostringstream ostrFormatedList;
-
-    std::copy(lstr.begin(), lstr.end(),
-              std::ostream_iterator<std::string>(ostrFormatedList, strSeparator.c_str()));
-
-    strOutput = ostrFormatedList.str();
-
-    // Remove last separator
-    if (strOutput.size() > strSeparator.size()) {
-
-        strOutput.erase(strOutput.size() - strSeparator.size());
-    }
+    return join<std::string>(begin(lstr), end(lstr),
+                             [strSeparator](string acc, string right) {
+                                 return acc + strSeparator + right;
+                             });
 }
 
 // Format string map
-void CUtility::asString(const std::map<std::string, std::string>& mapStr,
-                        std::string& strOutput,
-                        const std::string& strItemSeparator,
-                        const std::string& strKeyValueSeparator)
+std::string asString(const std::map<std::string, std::string>& mapStr,
+                               const std::string& strItemSeparator,
+                               const std::string& strKeyValueSeparator)
 {
     std::list<std::string> listKeysValues;
 
-    std::map<std::string, std::string>::const_iterator iter;
-
-    for(iter = mapStr.begin(); iter != mapStr.end(); ++iter) {
-
-        listKeysValues.push_back(iter->first + strKeyValueSeparator + iter->second);
+    for (const auto & item: mapStr) {
+        listKeysValues.emplace_back(item.first + strKeyValueSeparator + item.second);
     }
 
-    CUtility::asString(listKeysValues, strOutput, strItemSeparator);
+    return asString(listKeysValues, strItemSeparator);
 }
 
-void CUtility::appendTitle(string& strTo, const string& strTitle)
+void appendTitle(string& strTo, const string& strTitle)
 {
-    strTo += "\n" + strTitle + "\n";
-
-    size_t uiLength = strTitle.size();
-
-    while (uiLength--) {
-
-        strTo += "=";
-    }
-    strTo += "\n";
+    strTo += "\n" + strTitle + "\n" +
+             string(strTitle.size(), '=') + "\n";
 }
 
-bool CUtility::isHexadecimal(const string& strValue)
+bool isHexadecimal(const string& strValue)
 {
     return (strValue.compare(0, 2, "0x") == 0) or (strValue.compare(0, 2, "0X") == 0);
 }
+
+} // namespace utility
