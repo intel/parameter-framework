@@ -108,6 +108,17 @@ public:
     // From IXmlSource
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 
+
+    virtual bool structureFromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext)
+    {
+        return CElement::fromXml(xmlElement, serializingContext);
+    }
+
+    virtual void structureToXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+    {
+        CElement::toXml(xmlElement, serializingContext);
+    }
+
     /**
      * Serialize the children to XML
      *
