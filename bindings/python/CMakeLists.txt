@@ -27,6 +27,10 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 find_package(SWIG)
+# Hide these variables from CMake GUIs and `cmake -L`
+set_property(CACHE
+    SWIG_DIR SWIG_EXECUTABLE SWIG_VERSION
+    PROPERTY ADVANCED TRUE)
 if (NOT SWIG_FOUND)
     message(FATAL_ERROR
         "Swig is needed to compile the Python bindings but was not found."

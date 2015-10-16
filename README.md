@@ -92,6 +92,9 @@ preinstalled on most distributions).
 If you want to *build the code documentation*, you'll need `doxygen` and
 `graphviz`. This doc is already available to you - see the wiki.
 
+**To list all available configuration options, try** `cmake -L` (you may also
+filter-out lines starting with `CMAKE_`).
+
 ### How-To
 
 If you are already familiar with CMake, you know what to do.
