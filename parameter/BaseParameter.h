@@ -48,26 +48,29 @@ public:
     // Check element is a parameter
     virtual bool isParameter() const;
 
-    /// Value access
     // Boolean access
-    virtual bool accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool accessAsBooleanArray(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool access(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool access(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // Integer Access
-    virtual bool accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool accessAsIntegerArray(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool access(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool access(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // Signed Integer Access
-    virtual bool accessAsSignedInteger(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool accessAsSignedIntegerArray(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool access(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool access(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // Double Access
-    virtual bool accessAsDouble(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool accessAsDoubleArray(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool access(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool access(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // String Access
-    bool accessAsString(std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool accessAsStringArray(std::vector<std::string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    // This one is not virtual because it is very generic. You can think if it
+    // as the client saying: "I don't care about the type, here's the value as
+    // a string - convert it yourself". Then, string-to-anything and
+    // anything-to-string methods are used to convert it into a suitable type.
+    bool access(std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool access(std::vector<std::string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
     // From IXmlSource
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;

@@ -93,6 +93,17 @@ public:
     bool getAsStringArray(std::vector<std::string>& astrValues, std::string& strError) const;
 
 private:
+    template <class T>
+    bool setAs(const T value, std::string &error) const;
+    template <class T>
+    bool getAs(T& value, std::string &error) const;
+
+    template <class T>
+    static size_t getSize(T value);
+    template <class T>
+    static size_t getSize(std::vector<T> &values);
+
+
     /** Check that the parameter value can be modify.
      *
      * @param arrayLength[in] If accessing as an array: the new value array length

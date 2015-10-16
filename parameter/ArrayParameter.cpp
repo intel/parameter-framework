@@ -144,31 +144,31 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
 }
 
 // Boolean
-bool CArrayParameter::accessAsBooleanArray(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(abValues, bSet, parameterAccessContext);
 }
 
 // Integer
-bool CArrayParameter::accessAsIntegerArray(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(auiValues, bSet, parameterAccessContext);
 }
 
 // Signed Integer Access
-bool CArrayParameter::accessAsSignedIntegerArray(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(aiValues, bSet, parameterAccessContext);
 }
 
 // Double Access
-bool CArrayParameter::accessAsDoubleArray(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(adValues, bSet, parameterAccessContext);
 }
 
 // String Access
-bool CArrayParameter::accessAsStringArray(std::vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     return accessValues(astrValues, bSet, parameterAccessContext);
 }
