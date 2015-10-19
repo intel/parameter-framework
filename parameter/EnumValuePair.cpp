@@ -70,10 +70,10 @@ bool CEnumValuePair::fromXml(const CXmlElement& xmlElement, CXmlSerializingConte
 }
 
 // Content dumping
-void CEnumValuePair::logValue(string& strValue, CErrorContext& /*ctx*/) const
+string CEnumValuePair::logValue(utility::ErrorContext& /*ctx*/) const
 {
     // Convert value
-    strValue = getNumericalAsString();
+    return getNumericalAsString();
 }
 
 // From IXmlSource

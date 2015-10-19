@@ -52,7 +52,6 @@ add_library(parameter SHARED
     ElementLocator.cpp
     EnumParameterType.cpp
     EnumValuePair.cpp
-    ErrorContext.cpp
     FixedPointParameterType.cpp
     FloatingPointParameterType.cpp
     FormattedSubsystemObject.cpp

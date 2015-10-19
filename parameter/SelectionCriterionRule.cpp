@@ -58,10 +58,10 @@ string CSelectionCriterionRule::getKind() const
 }
 
 // Content dumping
-void CSelectionCriterionRule::logValue(string& strValue, CErrorContext& /*cxt*/) const
+string CSelectionCriterionRule::logValue(utility::ErrorContext& /*cxt*/) const
 {
     // Dump rule
-    dump(strValue);
+    return dump();
 }
 
 // Parse
@@ -114,18 +114,19 @@ bool CSelectionCriterionRule::parse(CRuleParser& ruleParser, string& strError)
 }
 
 // Dump
-void CSelectionCriterionRule::dump(string& strResult) const
+string CSelectionCriterionRule::dump() const
 {
-    // Criterion
-    strResult += _pSelectionCriterion->getName();
-    strResult += " ";
-    // Verb
-    strResult += _astMatchesWhen[_eMatchesWhen].pcMatchesWhen;
-    strResult += " ";
     // Value
-    string strValue;
-    _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, strValue);
-    strResult += strValue;
+    string value;
+    _pSelectionCriterion->getCriterionType()->getLiteralValue(_iMatchValue, value);
+
+    // "<Name> <Verb> <Value>"
+    return
+        string(_pSelectionCriterion->getName()) +
+        " " +
+        _astMatchesWhen[_eMatchesWhen].pcMatchesWhen +
+        " " +
+        value;
 }
 
 // Rule check

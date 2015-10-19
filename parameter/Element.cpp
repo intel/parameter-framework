@@ -30,7 +30,7 @@
 #include "Element.h"
 #include "XmlElementSerializingContext.h"
 #include "ElementLibrary.h"
-#include "ErrorContext.h"
+#include "ErrorContext.hpp"
 #include <algorithm>
 #include <assert.h>
 #include <stdio.h>
@@ -80,8 +80,9 @@ bool CElement::init(string& strError)
     return true;
 }
 
-void CElement::dumpContent(string& strContent, CErrorContext& errorContext, const size_t depth) const
+string CElement::dumpContent(utility::ErrorContext& errorContext, const size_t depth) const
 {
+    string output;
     string strIndent;
 
     // Level
@@ -92,29 +93,30 @@ void CElement::dumpContent(string& strContent, CErrorContext& errorContext, cons
         strIndent += "    ";
     }
     // Type
-    strContent += strIndent + "- " + getKind();
+    output += strIndent + "- " + getKind();
 
     // Name
     if (!_strName.empty()) {
 
-        strContent += ": " + getName();
+        output += ": " + getName();
     }
 
     // Value
-    string strValue;
-    logValue(strValue, errorContext);
+    string strValue = logValue(errorContext);
 
     if (!strValue.empty()) {
 
-        strContent += " = " + strValue;
+        output += " = " + strValue;
     }
 
-    strContent += "\n";
+    output += "\n";
 
     for (CElement* pChild : _childArray) {
 
-        pChild->dumpContent(strContent, errorContext, depth + 1);
+        output += pChild->dumpContent(errorContext, depth + 1);
     }
+
+    return output;
 }
 
 // Element properties
@@ -133,8 +135,9 @@ void CElement::showDescriptionProperty(std::string &strResult) const
 }
 
 // Content dumping
-void CElement::logValue(string& /*strValue*/, CErrorContext& /*ctx*/) const
+string CElement::logValue(utility::ErrorContext& /*ctx*/) const
 {
+    return "";
 }
 
 // From IXmlSink
@@ -144,9 +147,6 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
 
     // Propagate through children
     CXmlElement::CChildIterator childIterator(xmlElement);
-
-    // Context
-    CXmlElementSerializingContext& elementSerializingContext = static_cast<CXmlElementSerializingContext&>(serializingContext);
 
     CXmlElement childElement;
 
@@ -160,7 +160,7 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
 
             if (!pChild) {
 
-                elementSerializingContext.setError("Unable to handle XML element: " + childElement.getPath());
+                serializingContext.setError("Unable to handle XML element: " + childElement.getPath());
 
                 return false;
             }
@@ -176,7 +176,7 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
         }
 
         // Dig
-        if (!pChild->fromXml(childElement, elementSerializingContext)) {
+        if (!pChild->fromXml(childElement, serializingContext)) {
 
             return false;
         }

@@ -70,13 +70,12 @@ bool CBaseParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsE
 }
 
 // Dump
-void CBaseParameter::logValue(string& strValue, CErrorContext& errorContext) const
+string CBaseParameter::logValue(CParameterAccessContext &context) const
 {
-    // Parameter context
-    CParameterAccessContext& parameterAccessContext = static_cast<CParameterAccessContext&>(errorContext);
-
     // Dump value
-    doGetValue(strValue, getOffset(), parameterAccessContext);
+    string output;
+    doGetValue(output, getOffset(), context);
+    return output;
 }
 
 // Check element is a parameter

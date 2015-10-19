@@ -31,7 +31,8 @@
 #include <libxml/xmlerror.h>
 #include <cstdio>
 
-CXmlSerializingContext::CXmlSerializingContext(std::string& strError) : _strError(strError)
+CXmlSerializingContext::CXmlSerializingContext(std::string& strError)
+    : utility::ErrorContext(strError)
 {
     xmlSetStructuredErrorFunc(this, structuredErrorHandler);
 }
@@ -39,18 +40,12 @@ CXmlSerializingContext::CXmlSerializingContext(std::string& strError) : _strErro
 CXmlSerializingContext::~CXmlSerializingContext()
 {
     xmlSetGenericErrorFunc(NULL, NULL);
-    _strError = _strXmlError + _strError;
-}
-
-// Error
-void CXmlSerializingContext::setError(const std::string& strError)
-{
-    _strError = strError;
+    prependToError(_strXmlError);
 }
 
 void CXmlSerializingContext::appendLineToError(const std::string& strAppend)
 {
-    _strError += "\n" + strAppend;
+    appendToError("\n" + strAppend);
 }
 
 /** XML error handler

@@ -50,7 +50,7 @@ public:
     virtual std::string getKind() const;
 protected:
     // Content dumping
-    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
+    std::string logValue(utility::ErrorContext& errorContext) const override;
 private:
     // Numerical
     int32_t _iNumerical;

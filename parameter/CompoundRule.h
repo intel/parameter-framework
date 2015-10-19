@@ -42,7 +42,7 @@ public:
     virtual bool parse(CRuleParser& ruleParser, std::string& strError);
 
     // Dump
-    virtual void dump(std::string& strResult) const;
+    std::string dump() const override;
 
     // Rule check
     virtual bool matches() const;
@@ -55,10 +55,10 @@ public:
 
     // Class kind
     virtual std::string getKind() const;
-protected:
-    // Content dumping
-    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
 private:
+    // Content dumping
+    std::string logValue(utility::ErrorContext& errorContext) const override;
+
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
 

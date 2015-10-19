@@ -58,7 +58,6 @@ public:
 protected:
     // User set/get
     virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
@@ -70,7 +69,8 @@ private:
     // Common set value processing
     bool setValues(size_t uiStartIndex, size_t baseOffset, const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
     // Log / get values common
-    void getValues(size_t baseOffset, std::string& strValues, CParameterAccessContext& parameterAccessContext) const;
+    std::string getValues(size_t baseOffset, CParameterAccessContext& parameterAccessContext) const;
+    std::string logValue(CParameterAccessContext &context) const override;
     // Index retrieval from user set/get request
     bool getIndex(CPathNavigator& pathNavigator, size_t& index, CParameterAccessContext& parameterAccessContext) const;
 

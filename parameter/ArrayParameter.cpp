@@ -84,10 +84,9 @@ bool CArrayParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettings
     } else {
 
         // Get string value
-        string strValue;
-
-        // Whole array requested
-        getValues(configurationAccessContext.getBaseOffset(), strValue, configurationAccessContext);
+        string strValue = getValues(
+                configurationAccessContext.getBaseOffset(), // Whole array requested
+                configurationAccessContext);
 
         // Populate value into xml text node
         xmlConfigurationSettingsElementContent.setTextContent(strValue);
@@ -132,7 +131,7 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
         if (index == (size_t)-1) {
 
             // Whole array requested
-            getValues(parameterAccessContext.getBaseOffset(), strValue, parameterAccessContext);
+            strValue = getValues(parameterAccessContext.getBaseOffset(), parameterAccessContext);
 
         } else {
             // Scalar requested
@@ -174,13 +173,10 @@ bool CArrayParameter::access(std::vector<string>& astrValues, bool bSet, CParame
 }
 
 // Dump
-void CArrayParameter::logValue(string& strValue, CErrorContext& errorContext) const
+string CArrayParameter::logValue(CParameterAccessContext &context) const
 {
-    // Parameter context
-    CParameterAccessContext& parameterAccessContext = static_cast<CParameterAccessContext&>(errorContext);
-
     // Dump values
-    getValues(0, strValue, parameterAccessContext);
+    return getValues(0, context);
 }
 
 // Used for simulation and virtual subsystems
@@ -293,13 +289,13 @@ bool CArrayParameter::setValues(size_t uiStartIndex, size_t baseOffset, const st
 }
 
 // Common get value processing
-void CArrayParameter::getValues(size_t baseOffset, string& strValues, CParameterAccessContext& parameterAccessContext) const
+string CArrayParameter::getValues(size_t baseOffset, CParameterAccessContext& parameterAccessContext) const
 {
     size_t size = getSize();
     size_t offset = getOffset() - baseOffset;
     size_t arrayLength = getArrayLength();
 
-    strValues.clear();
+    string output;
 
     bool bFirst = true;
 
@@ -310,16 +306,18 @@ void CArrayParameter::getValues(size_t baseOffset, string& strValues, CParameter
 
         if (!bFirst) {
 
-            strValues += " ";
+            output += " ";
         } else {
 
             bFirst = false;
         }
 
-        strValues += strReadValue;
+        output += strReadValue;
 
         offset += size;
     }
+
+    return output;
 }
 
 // Generic Access
