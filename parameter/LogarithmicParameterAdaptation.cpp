@@ -31,6 +31,7 @@
 #include "LogarithmicParameterAdaptation.h"
 #include <cmath>
 #include <limits>
+#include <algorithm>
 
 #define base CLinearParameterAdaptation
 
@@ -78,10 +79,10 @@ bool CLogarithmicParameterAdaptation::fromXml(const CXmlElement& xmlElement,
 }
 
 
-int64_t CLogarithmicParameterAdaptation::fromUserValue(double dValue) const
+int64_t CLogarithmicParameterAdaptation::fromUserValue(double value) const
 {
-    return fmax(round(base::fromUserValue(log(dValue) / log(_dLogarithmBase))),
-                        _dFloorValue);
+    return std::max(base::fromUserValue(log(value) / log(_dLogarithmBase)),
+                        static_cast<int64_t>(_dFloorValue));
 }
 
 double CLogarithmicParameterAdaptation::toUserValue(int64_t iValue) const

@@ -215,16 +215,9 @@ CTestPlatform::CommandReturn CTestPlatform::setCriterionState(
 
     bool bSuccess;
 
-    const char* pcState = remoteCommand.getArgument(1).c_str();
+    uint32_t state;
 
-    char* pcStrEnd;
-
-    // Reset errno to check if it is updated during the conversion (strtol/strtoul)
-    errno = 0;
-
-    uint32_t state = strtoul(pcState, &pcStrEnd, 0);
-
-    if (!errno && (*pcStrEnd == '\0')) {
+    if (convertTo(remoteCommand.getArgument(1), state)) {
         // Sucessfull conversion, set criterion state by numerical state
         bSuccess = setCriterionState(remoteCommand.getArgument(0), state, strResult);
 
@@ -264,7 +257,8 @@ bool CTestPlatform::createExclusiveSelectionCriterionFromStateList(
 
         const std::string& strValue = remoteCommand.getArgument(state + 1);
 
-        if (!pCriterionType->addValuePair(state, strValue, strResult)) {
+        // FIXME state type vs addValuePair params
+        if (!pCriterionType->addValuePair(int(state), strValue, strResult)) {
 
             strResult = "Unable to add value: " + strValue + ": " + strResult;
 
@@ -322,8 +316,9 @@ bool CTestPlatform::createExclusiveSelectionCriterion(const string& strName,
         ostrValue << "State_";
         ostrValue << state;
 
+        // FIXME state type vs addValuePair params
         if (!pCriterionType->addValuePair(
-                    state, ostrValue.str(), strResult)) {
+                    int(state), ostrValue.str(), strResult)) {
 
             strResult = "Unable to add value: "
                 + ostrValue.str() + ": " + strResult;

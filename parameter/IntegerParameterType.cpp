@@ -176,36 +176,37 @@ bool CIntegerParameterType::toBlackboard(const string& strValue, uint32_t& uiVal
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::fromBlackboard(string& strValue, const uint32_t& value, CParameterAccessContext& parameterAccessContext) const
 {
     // Check unsigned value is encodable
-    assert(isEncodable(uiValue, false));
+    assert(isEncodable(value, false));
 
     // Format
-    ostringstream strStream;
+    ostringstream stream;
 
     // Take care of format
     if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
 
         // Hexa display with unecessary bits cleared out
-        strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << uiValue;
+        stream << "0x" << std::hex << std::uppercase <<
+               std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0') << value;
     } else {
 
         if (_bSigned) {
 
-            int32_t iValue = uiValue;
+            int32_t iValue = value;
 
             // Sign extend
             signExtend(iValue);
 
-            strStream << iValue;
+            stream << iValue;
         } else {
 
-            strStream << uiValue;
+            stream << value;
         }
     }
 
-    strValue = strStream.str();
+    strValue = stream.str();
 
     return true;
 }
@@ -385,25 +386,27 @@ template <typename type> bool CIntegerParameterType::checkValueAgainstRange(cons
 {
     if (value < minValue || value > maxValue) {
 
-        ostringstream strStream;
+        ostringstream stream;
 
-        strStream << "Value " << strValue << " standing out of admitted range [";
+        stream << "Value " << strValue << " standing out of admitted range [";
 
         if (bHexaValue) {
 
+            stream << "0x" << std::hex << std::uppercase <<
+                   std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0');
             // Format Min
-            strStream << "0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(minValue);
+            stream << minValue;
             // Format Max
-            strStream << ", 0x" << std::hex << std::uppercase << std::setw(getSize()*2) << std::setfill('0') << makeEncodable(maxValue);
+            stream << maxValue;
 
         } else {
 
-            strStream << minValue << ", " <<  maxValue;
+            stream << minValue << ", " <<  maxValue;
         }
 
-        strStream << "] for " << getKind();
+        stream << "] for " << getKind();
 
-        parameterAccessContext.setError(strStream.str());
+        parameterAccessContext.setError(stream.str());
 
         return false;
     }
