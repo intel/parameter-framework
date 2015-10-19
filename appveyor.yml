@@ -69,7 +69,7 @@ build_script:
   - mkdir 64bits-release & cd 64bits-release
   # Add release libxml2.dll in the path so that cmake & tests can find it
   - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64\bin;%PATH%
-  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DPYTHON_BINDINGS=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" -DCMAKE_INSTALL_PREFIX=%INSTALL% ..\..
+  - cmake -G "Visual Studio 12 2013 Win64" -DPYTHON_BINDINGS=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" -DCMAKE_INSTALL_PREFIX=%INSTALL% ..\..
   # Build, test and install
   - cmake --build . --config release
   - ctest --build-config release %CTEST_PARAMS%
@@ -81,7 +81,7 @@ build_script:
   # %INSTALL%\lib is where the skeleton plugin is installed (see comment below)
   # %INSTALL%\bin is where parameter.dll is installed
   - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64\bin;%INSTALL%\lib;%INSTALL%\bin;%PATH%
-  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%INSTALL% -DCMAKE_PREFIX_PATH=%INSTALL% %APPVEYOR_BUILD_FOLDER%\skeleton-subsystem
+  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_INSTALL_PREFIX=%INSTALL% -DCMAKE_PREFIX_PATH=%INSTALL% %APPVEYOR_BUILD_FOLDER%\skeleton-subsystem
   # Unfortunately, the skeleton test currently doesn't work on
   # multi-configuration build systems (Visual Studio is one of those) without
   # installing the plugin
