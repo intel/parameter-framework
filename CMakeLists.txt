@@ -36,11 +36,16 @@ endif(COMMAND cmake_policy)
 
 project(parameter-framework)
 
+include(CMakeDependentOption)
+
 option(COVERAGE "Build with coverage support" OFF)
-option(BASH_COMPLETION "Install bash completion configuration" ON)
+cmake_dependent_option(BASH_COMPLETION "Install bash completion configuration"
+    ON
+    UNIX # Only allow installing bash completion on Unix environments
+    OFF)
 option(DOXYGEN "Enable doxygen generation (you still have to run 'make doc')" OFF)
 option(REQUIREMENTS "Generate the html version of the 'requirements' documentation" OFF)
-option(PYTHON_BINDINGS "Python library to use the Parameter Framrwork from python" ON)
+option(PYTHON_BINDINGS "Python library to use the Parameter Framework from python" ON)
 option(C_BINDINGS "Library to use the Parameter Framework using a C API" ON)
 
 

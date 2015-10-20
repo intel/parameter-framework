@@ -60,7 +60,7 @@ function(set_test_env TestName)
     #
     # Thus all `;` in environment variables must be escaped
     # before inserting them in the ENVIRONMENT PROPERTY.
-    string(REPLACE ";" "\\;" TEST_PATH "$ENV{PATH}")
+    string(REPLACE ";" "\\;" TEST_PATH "$ENV{PATH};$ENV{TEST_PATH}")
     string(REPLACE ";" "\\;" TEST_LD_LIBRARY_PATH "$ENV{LD_LIBRARY_PATH}")
     string(REPLACE ";" "\\;" TEST_PYTHONPATH "$ENV{PYTHONPATH}")
 

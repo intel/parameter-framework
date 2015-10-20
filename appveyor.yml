@@ -43,6 +43,8 @@ install:
       7z x -i"!asio*/include" asio-1.10.6.tar)
   - if not exist catch (
       wget --no-check-certificate https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp --directory-prefix catch )
+  - set DEBUG_LIBXML2_PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug
+  - set RELEASE_LIBXML2_PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64
 
   # Setup Visual studio build environement
   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
@@ -59,33 +61,33 @@ build_script:
   - mkdir build && cd build
 
   - mkdir 64bits-debug && cd 64bits-debug
-  # Add debug libxml2.dll in the path so that cmake & tests can find it
-  - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug\bin;%PATH%
-  - cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" ..\..
+  # Add debug libxml2.dll in the path so that tests can find it
+  - set TEST_PATH=%DEBUG_LIBXML2_PATH%\bin
+  - cmake -G "NMake Makefiles" -DPYTHON_BINDINGS=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%;%DEBUG_LIBXML2_PATH%" ..\..
   - cmake --build . --config debug
   - ctest --build-config debug %CTEST_PARAMS%
-  - set PATH=%OLD_PATH% && cd ..
+  - cd ..
 
   - mkdir 64bits-release & cd 64bits-release
-  # Add release libxml2.dll in the path so that cmake & tests can find it
-  - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64\bin;%PATH%
-  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DPYTHON_BINDINGS=OFF -DBASH_COMPLETION=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%" -DCMAKE_INSTALL_PREFIX=%INSTALL% ..\..
+  # Add debug libxml2.dll in the path so that tests can find it
+  - set TEST_PATH=%RELEASE_LIBXML2_PATH%\bin
+  - cmake -G "Visual Studio 12 2013 Win64" -DPYTHON_BINDINGS=OFF -DCMAKE_PREFIX_PATH="%PREFIX_PATH%;%RELEASE_LIBXML2_PATH%" -DCMAKE_INSTALL_PREFIX=%INSTALL% ..\..
   # Build, test and install
   - cmake --build . --config release
   - ctest --build-config release %CTEST_PARAMS%
   - cmake --build . --config release --target install
-  - set PATH=%OLD_PATH% && cd ..
+  - cd ..
 
   # build and test the skeleton plugin against the previously-installed build; this serves as a smoke test of the whole stack
   - mkdir skeleton && cd skeleton
   # %INSTALL%\lib is where the skeleton plugin is installed (see comment below)
   # %INSTALL%\bin is where parameter.dll is installed
-  - set OLD_PATH=%PATH% && set PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64\bin;%INSTALL%\lib;%INSTALL%\bin;%PATH%
-  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%INSTALL% -DCMAKE_PREFIX_PATH=%INSTALL% %APPVEYOR_BUILD_FOLDER%\skeleton-subsystem
+  # Also add the path where the release libxml2.dll has been extracted
+  - set TEST_PATH=%RELEASE_LIBXML2_PATH%\bin;%INSTALL%\lib;%INSTALL%\bin
+  - cmake -G "Visual Studio 12 2013 Win64" -DCMAKE_INSTALL_PREFIX=%INSTALL% -DCMAKE_PREFIX_PATH=%INSTALL% %APPVEYOR_BUILD_FOLDER%\skeleton-subsystem
   # Unfortunately, the skeleton test currently doesn't work on
   # multi-configuration build systems (Visual Studio is one of those) without
   # installing the plugin
   - cmake --build . --config release --target install
   - ctest --build-config release %CTEST_PARAMS%
-  - set PATH=%OLD_PATH% && cd ..
   - cd ..

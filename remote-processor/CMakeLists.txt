@@ -44,6 +44,8 @@ find_package(Threads REQUIRED)
 # If asio isn't installed in a standard directory, add the correct directory to
 # CMAKE_PREFIX_PATH (see the main README for more information).
 find_path(ASIO_DIR NAMES asio.hpp)
+# Hide this variable from CMake GUIs and `cmake -L`
+set_property(CACHE ASIO_DIR PROPERTY ADVANCED TRUE)
 # FIXME: asio header should not leak to remote-processor users
 target_include_directories(remote-processor SYSTEM PUBLIC "${ASIO_DIR}")
 
