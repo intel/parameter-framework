@@ -37,6 +37,8 @@ using std::string;
 CVirtualSubsystem::CVirtualSubsystem(const string& strName, core::log::Logger& logger)
     : base(strName, logger), _pVirtualSyncer(new CVirtualSyncer(this))
 {
+    logger.warning() << "Subsystem " <<  strName << " loaded as virtual. "
+                        "Its parameters will not be synced with any external system.";
 }
 
 CVirtualSubsystem::~CVirtualSubsystem()

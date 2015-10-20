@@ -31,6 +31,7 @@ if(BUILD_TESTING)
     #      Unfortunately gtest is very hard to setup as not binary distributed
     #      catch is only one header so it is very easy
     find_path(CATCH_HEADER catch.hpp)
+    set_property(CACHE CATCH_HEADER PROPERTY ADVANCED TRUE)
     if (NOT CATCH_HEADER)
         message(SEND_ERROR
 " Catch header `catch.hpp' could not be found.
@@ -40,7 +41,6 @@ if(BUILD_TESTING)
       https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp
     Then either:
       - append the download folder to the `CMAKE_INCLUDE_PATH' or `CMAKE_PREFIX_PATH' variable
-      - set cmake variable `CATCH_HEADER' to the header directory
       - copy it in a standard location (/usr/include on most linux distribution).
   To remove test dependancies all together, set `BUILD_TESTING' to false.
     It will disable test targets, thus the framework they depend on.")

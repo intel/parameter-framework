@@ -26,7 +26,20 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-find_package(SWIG REQUIRED)
+find_package(SWIG)
+# Hide these variables from CMake GUIs and `cmake -L`
+set_property(CACHE
+    SWIG_DIR SWIG_EXECUTABLE SWIG_VERSION
+    PROPERTY ADVANCED TRUE)
+if (NOT SWIG_FOUND)
+    message(FATAL_ERROR
+        "Swig is needed to compile the Python bindings but was not found."
+        "Please either install swig2.0 or disable Python bindings by setting"
+        "PYTHON_BINDINGS to OFF (e.g. '-DPYTHON_BINDINGS=OFF' in the"
+        "invocation of CMake.). See the 'Compilation' section of README.md"
+        "for more details.")
+endif()
+
 include(${SWIG_USE_FILE})
 
 # Force usage of Python 2.7.x ...

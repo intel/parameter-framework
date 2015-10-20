@@ -63,11 +63,8 @@ bool CDomainConfiguration::childrenAreDynamic() const
 }
 
 // XML configuration settings parsing
-bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext)
+bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlDomainImportContext& context)
 {
-    // Actual XML context
-    CXmlDomainImportContext& xmlDomainImportContext = static_cast<CXmlDomainImportContext&>(serializingContext);
-
     // Parse configurable element's configuration settings
     CXmlElement::CChildIterator it(xmlConfigurationSettingsElement);
 
@@ -83,12 +80,12 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
         auto areaConfiguration = findAreaConfigurationByPath(configurableElementPath);
         if (areaConfiguration == end(mAreaConfigurationList)) {
 
-            xmlDomainImportContext.setError("Configurable Element " + configurableElementPath  + " referred to by Configuration " + getPath() + " not associated to Domain");
+            context.setError("Configurable Element " + configurableElementPath  + " referred to by Configuration " + getPath() + " not associated to Domain");
 
             return false;
         }
         // Parse
-        if (!serializeConfigurableElementSettings(areaConfiguration->get(), xmlConfigurableElementSettingsElement, xmlDomainImportContext, false)) {
+        if (!importOneConfigurableElementSettings(areaConfiguration->get(), xmlConfigurableElementSettingsElement, context)) {
 
             return false;
         }
@@ -104,7 +101,7 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
 }
 
 // XML configuration settings composing
-void CDomainConfiguration::composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlSerializingContext& serializingContext) const
+void CDomainConfiguration::composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlDomainExportContext& context) const
 {
     // Go through all are configurations
     for (auto &areaConfiguration : mAreaConfigurationList) {
@@ -121,72 +118,84 @@ void CDomainConfiguration::composeSettings(CXmlElement& xmlConfigurationSettings
         xmlConfigurableElementSettingsElement.setAttribute("Path", pConfigurableElement->getPath());
 
         // Delegate composing to area configuration
-        ((CDomainConfiguration&)(*this)).serializeConfigurableElementSettings(areaConfiguration.get(), xmlConfigurableElementSettingsElement, serializingContext, true);
+        exportOneConfigurableElementSettings(areaConfiguration.get(), xmlConfigurableElementSettingsElement, context);
     }
 }
 
 // Serialize one configuration for one configurable element
-bool CDomainConfiguration::serializeConfigurableElementSettings(CAreaConfiguration *areaConfiguration, CXmlElement& xmlConfigurableElementSettingsElement, CXmlSerializingContext& serializingContext, bool bSerializeOut)
+bool CDomainConfiguration::importOneConfigurableElementSettings(
+        CAreaConfiguration *areaConfiguration,
+        CXmlElement& xmlConfigurableElementSettingsElement,
+        CXmlDomainImportContext& context)
 {
-    // Actual XML context
-    CXmlDomainExportContext& xmlDomainExportContext =
-        static_cast<CXmlDomainExportContext&>(serializingContext);
+    const CConfigurableElement* destination = areaConfiguration->getConfigurableElement();
 
-    // Configurable Element
-    const CConfigurableElement* pConfigurableElement = areaConfiguration->getConfigurableElement();
+    // Check structure
+    if (xmlConfigurableElementSettingsElement.getNbChildElements() != 1) {
 
-    // Element content
-    CXmlElement xmlConfigurableElementSettingsElementContent;
-
-    // Deal with element itself
-    if (!bSerializeOut) {
-
-        // Check structure
-        if (xmlConfigurableElementSettingsElement.getNbChildElements() != 1) {
-
-            // Structure error
-            serializingContext.setError("Struture error encountered while parsing settings of " + pConfigurableElement->getKind() + " " + pConfigurableElement->getName() + " in Configuration " + getPath());
-
-            return false;
-        }
-
-        // Check name and kind
-        if (!xmlConfigurableElementSettingsElement.getChildElement(pConfigurableElement->getKind(), pConfigurableElement->getName(), xmlConfigurableElementSettingsElementContent)) {
-
-            serializingContext.setError("Couldn't find settings for " + pConfigurableElement->getKind() + " " + pConfigurableElement->getName() + " for Configuration " + getPath());
-
-            return false;
-        }
-    } else {
-
-        // Create child XML element
-        xmlConfigurableElementSettingsElement.createChild(xmlConfigurableElementSettingsElementContent, pConfigurableElement->getKind());
-
-        // Set Name
-        xmlConfigurableElementSettingsElementContent.setNameAttribute(pConfigurableElement->getName());
-    }
-
-    // Change context type to parameter settings access
-    string strError;
-
-    // Create configuration access context
-    CConfigurationAccessContext configurationAccessContext(strError, bSerializeOut);
-
-    // Provide current value space
-    configurationAccessContext.setValueSpaceRaw(xmlDomainExportContext.valueSpaceIsRaw());
-
-    // Provide current output raw format
-    configurationAccessContext.setOutputRawFormat(xmlDomainExportContext.outputRawFormatIsHex());
-
-    // Have domain configuration parse settings for configurable element
-    if (!areaConfiguration->serializeXmlSettings(xmlConfigurableElementSettingsElementContent, configurationAccessContext)) {
-
-        // Forward error
-        xmlDomainExportContext.setError(strError);
+        // Structure error
+        context.setError(
+                "Struture error encountered while parsing settings of " +
+                destination->getKind() + " " + destination->getName() +
+                " in Configuration " + getPath());
 
         return false;
     }
-    return true;
+
+    // Element content
+    CXmlElement xmlConfigurableElementSettingsElementContent;
+    // Check name and kind
+    if (!xmlConfigurableElementSettingsElement.getChildElement(
+                destination->getKind(),
+                destination->getName(),
+                xmlConfigurableElementSettingsElementContent)) {
+
+        context.setError(
+                "Couldn't find settings for " +
+                destination->getKind() + " " + destination->getName() +
+                " for Configuration " + getPath());
+
+        return false;
+    }
+
+    // Create configuration access context
+    string error;
+    CConfigurationAccessContext configurationAccessContext(error, false);
+
+    // Have domain configuration parse settings for configurable element
+    bool success = areaConfiguration->serializeXmlSettings(
+            xmlConfigurableElementSettingsElementContent,
+            configurationAccessContext);
+
+    context.appendToError(error);
+    return success;
+}
+
+bool CDomainConfiguration::exportOneConfigurableElementSettings(
+        CAreaConfiguration *areaConfiguration,
+        CXmlElement& xmlConfigurableElementSettingsElement,
+        CXmlDomainExportContext& context) const
+{
+    const CConfigurableElement* source = areaConfiguration->getConfigurableElement();
+
+    // Create child XML element
+    CXmlElement xmlConfigurableElementSettingsElementContent;
+    xmlConfigurableElementSettingsElement.createChild(xmlConfigurableElementSettingsElementContent, source->getKind());
+    xmlConfigurableElementSettingsElementContent.setNameAttribute(source->getName());
+
+    // Create configuration access context
+    string error;
+    CConfigurationAccessContext configurationAccessContext(error, true);
+    configurationAccessContext.setValueSpaceRaw(context.valueSpaceIsRaw());
+    configurationAccessContext.setOutputRawFormat(context.outputRawFormatIsHex());
+
+    // Have domain configuration parse settings for configurable element
+    bool success = areaConfiguration->serializeXmlSettings(
+            xmlConfigurableElementSettingsElementContent,
+            configurationAccessContext);
+
+    context.appendToError(error);
+    return success;
 }
 
 void CDomainConfiguration::addConfigurableElement(const CConfigurableElement *configurableElement, const CSyncerSet *syncerSet)
@@ -264,22 +273,10 @@ void CDomainConfiguration::clearApplicationRule()
     setRule(NULL);
 }
 
-void CDomainConfiguration::getApplicationRule(string& strResult) const
+string CDomainConfiguration::getApplicationRule() const
 {
-    // Rule
     const CCompoundRule* pRule = getRule();
-
-    if (pRule) {
-        // Start clear
-        strResult.clear();
-
-        // Dump rule
-        pRule->dump(strResult);
-
-    } else {
-
-        strResult = "<none>";
-    }
+    return pRule ? pRule->dump() : "<none>";
 }
 
 /**

@@ -29,7 +29,7 @@
  */
 #pragma once
 
-#include "NonCopyable.hpp"
+#include "ErrorContext.hpp"
 
 #include <string>
 
@@ -46,14 +46,13 @@ struct _xmlError;
  * Ie. the provided buffer (strError) is in an undefined state between
  * construction and destruction and should not be accessed in between.
  */
-class CXmlSerializingContext : private utility::NonCopyable
+class CXmlSerializingContext : public utility::ErrorContext
 {
 public:
     CXmlSerializingContext(std::string& strError);
     ~CXmlSerializingContext();
 
     // Error
-    void setError(const std::string& strError);
     void appendLineToError(const std::string& strAppend);
 
     /** XML error handler
@@ -65,6 +64,5 @@ public:
     static void structuredErrorHandler(void* userData, _xmlError *error);
 
 private:
-    std::string& _strError;
     std::string _strXmlError;
 };

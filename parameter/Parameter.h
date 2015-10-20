@@ -50,16 +50,17 @@ public:
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 
     // Boolean access
-    virtual bool accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    bool access(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const override;
 
     // Integer Access
-    virtual bool accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    bool access(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const override;
 
     // Signed Integer Access
-    virtual bool accessAsSignedInteger(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    bool access(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const override;
 
     // Double Access
-    virtual bool accessAsDouble(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    bool access(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const override;
+
 protected:
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;

@@ -42,22 +42,22 @@ public:
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
 
-    // Value access
-    // Boolean
-    virtual bool accessAsBooleanArray(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    // Integer
-    virtual bool accessAsIntegerArray(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    // Signed Integer Access
-    virtual bool accessAsSignedIntegerArray(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    // Double Access
-    virtual bool accessAsDoubleArray(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    // String Access
-    virtual bool accessAsStringArray(std::vector<std::string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    /// Value access
+    using CBaseParameter::access;
+    bool access(std::vector<bool>& abValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(std::vector<uint32_t>& auiValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(std::vector<int32_t>& aiValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(std::vector<double>& adValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(std::vector<std::string>& astrValues, bool bSet,
+                       CParameterAccessContext& parameterAccessContext) const override final;
 
 protected:
     // User set/get
     virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
-    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
 
@@ -69,7 +69,8 @@ private:
     // Common set value processing
     bool setValues(size_t uiStartIndex, size_t baseOffset, const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
     // Log / get values common
-    void getValues(size_t baseOffset, std::string& strValues, CParameterAccessContext& parameterAccessContext) const;
+    std::string getValues(size_t baseOffset, CParameterAccessContext& parameterAccessContext) const;
+    std::string logValue(CParameterAccessContext &context) const override;
     // Index retrieval from user set/get request
     bool getIndex(CPathNavigator& pathNavigator, size_t& index, CParameterAccessContext& parameterAccessContext) const;
 

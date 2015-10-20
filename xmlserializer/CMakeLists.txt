@@ -69,7 +69,7 @@ target_compile_definitions(xmlserializer PRIVATE "${LIBXML2_DEFINITIONS}")
 
 
 target_link_libraries(xmlserializer
-    PUBLIC pfw_utility # For NonCopyable
+    PUBLIC pfw_utility # For NonCopyable and ErrorContext
     PRIVATE ${LIBXML2_LIBRARIES})
 
 

@@ -31,6 +31,7 @@
 
 #include "XmlSerializingContext.h"
 #include "XmlDomainImportContext.h"
+#include "XmlDomainExportContext.h"
 #include "SyncerSet.h"
 #include "Results.h"
 #include <list>
@@ -151,7 +152,7 @@ public:
 
 protected:
     // Content dumping
-    virtual void logValue(std::string& strValue, CErrorContext& errorContext) const;
+    std::string logValue(utility::ErrorContext& errorContext) const override;
 
 private:
     // Get pending configuration
@@ -247,7 +248,7 @@ private:
     // XML composing
     void composeDomainConfigurations(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
     void composeConfigurableElements(CXmlElement& xmlElement) const;
-    void composeSettings(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    void composeSettings(CXmlElement& xmlElement, CXmlDomainExportContext& context) const;
 
     // Syncer set retrieval from configurable element
     CSyncerSet* getSyncerSet(const CConfigurableElement* pConfigurableElement) const;

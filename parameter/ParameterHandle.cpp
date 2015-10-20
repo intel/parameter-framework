@@ -74,407 +74,163 @@ string CParameterHandle::getKind() const
     return _pBaseParameter->getKind();
 }
 
+template <class T>
+struct isVector : std::false_type {};
+template <class T>
+struct isVector<std::vector<T>> : std::true_type {};
+
+template <class T>
+size_t CParameterHandle::getSize(T /*value*/) {
+    return 0;
+}
+
+template <class T>
+size_t CParameterHandle::getSize(std::vector<T> &values) {
+    return values.size();
+}
+
+template <class T>
+bool CParameterHandle::setAs(const T value, string &error) const
+{
+    if (not checkSetValidity(getSize(value), error)) {
+        return false;
+    }
+
+    // Ensure we're safe against blackboard foreign access
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
+
+    // When in tuning mode, silently skip "set" requests
+    if (_pParameterMgr->tuningModeOn()) {
+
+        return true;
+    }
+
+    CParameterAccessContext parameterAccessContext(error, _pParameterMgr->getParameterBlackboard());
+
+    // BaseParameret::access takes a non-const argument - therefore we need to
+    // copy the value
+    T copy = value;
+    return _pBaseParameter->access(copy, true, parameterAccessContext);
+}
+
+template <class T>
+bool CParameterHandle::getAs(T &value, string &error) const
+{
+    if (not checkGetValidity(isVector<T>::value, error)) {
+        return false;
+    }
+
+    // Ensure we're safe against blackboard foreign access
+    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
+
+    CParameterAccessContext parameterAccessContext(error, _pParameterMgr->getParameterBlackboard());
+
+    return _pBaseParameter->access(value, false, parameterAccessContext);
+}
+
 // Boolean access
-bool CParameterHandle::setAsBoolean(bool bValue, string& strError)
+bool CParameterHandle::setAsBoolean(bool bValue, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(0, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsBoolean(bValue, true, parameterAccessContext);
+    return setAs(bValue, error);
 }
 
-bool CParameterHandle::getAsBoolean(bool& bValue, string& strError) const
+bool CParameterHandle::getAsBoolean(bool& bValue, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(false, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsBoolean(bValue, false, parameterAccessContext);
+    return getAs(bValue, error);
 }
 
-bool CParameterHandle::setAsBooleanArray(const std::vector<bool>& abValues, string& strError)
+bool CParameterHandle::setAsBooleanArray(const std::vector<bool>& abValues, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(abValues.size(), strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    // Copy values for type adaptation
-    std::vector<bool> abUserValues = abValues;
-
-    return _pBaseParameter->accessAsBooleanArray(abUserValues, true, parameterAccessContext);
+    return setAs(abValues, error);
 }
 
-bool CParameterHandle::getAsBooleanArray(std::vector<bool>& abValues, string& strError) const
+bool CParameterHandle::getAsBooleanArray(std::vector<bool>& abValues, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(true, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsBooleanArray(abValues, false, parameterAccessContext);
+    return getAs(abValues, error);
 }
 
 // Integer Access
-bool CParameterHandle::setAsInteger(uint32_t uiValue, string& strError)
+bool CParameterHandle::setAsInteger(uint32_t uiValue, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(0, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsInteger(uiValue, true, parameterAccessContext);
+    return setAs(uiValue, error);
 }
 
-bool CParameterHandle::getAsInteger(uint32_t& uiValue, string& strError) const
+bool CParameterHandle::getAsInteger(uint32_t& uiValue, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(false, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsInteger(uiValue, false, parameterAccessContext);
+    return getAs(uiValue, error);
 }
 
-bool CParameterHandle::setAsIntegerArray(const std::vector<uint32_t>& auiValues, string& strError)
+bool CParameterHandle::setAsIntegerArray(const std::vector<uint32_t>& auiValues, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(auiValues.size(), strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    // Copy values for type adaptation
-    std::vector<uint32_t> auiUserValues = auiValues;
-
-    return _pBaseParameter->accessAsIntegerArray(auiUserValues, true, parameterAccessContext);
+    return setAs(auiValues, error);
 }
 
-bool CParameterHandle::getAsIntegerArray(std::vector<uint32_t>& auiValues, string& strError) const
+bool CParameterHandle::getAsIntegerArray(std::vector<uint32_t>& auiValues, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(true, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsIntegerArray(auiValues, false, parameterAccessContext);
+    return getAs(auiValues, error);
 }
 
 // Signed Integer Access
-bool CParameterHandle::setAsSignedInteger(int32_t iValue, string& strError)
+bool CParameterHandle::setAsSignedInteger(int32_t iValue, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(0, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsSignedInteger(iValue, true, parameterAccessContext);
+    return setAs(iValue, error);
 }
 
-bool CParameterHandle::getAsSignedInteger(int32_t& iValue, string& strError) const
+bool CParameterHandle::getAsSignedInteger(int32_t& iValue, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(false, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsSignedInteger(iValue, false, parameterAccessContext);
+    return getAs(iValue, error);
 }
 
-bool CParameterHandle::setAsSignedIntegerArray(const std::vector<int32_t>& aiValues, string& strError)
+bool CParameterHandle::setAsSignedIntegerArray(const std::vector<int32_t>& aiValues, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(aiValues.size(), strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    // Copy values for type adaptation
-    std::vector<int32_t> aiUserValues = aiValues;
-
-    return _pBaseParameter->accessAsSignedIntegerArray(aiUserValues, true, parameterAccessContext);
+    return setAs(aiValues, error);
 }
 
-bool CParameterHandle::getAsSignedIntegerArray(std::vector<int32_t>& aiValues, string& strError) const
+bool CParameterHandle::getAsSignedIntegerArray(std::vector<int32_t>& aiValues, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(true, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsSignedIntegerArray(aiValues, false, parameterAccessContext);
+    return getAs(aiValues, error);
 }
 
 // Double Access
-bool CParameterHandle::setAsDouble(double dValue, string& strError)
+bool CParameterHandle::setAsDouble(double dValue, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(0, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsDouble(dValue, true, parameterAccessContext);
+    return setAs(dValue, error);
 }
 
-bool CParameterHandle::getAsDouble(double& dValue, string& strError) const
+bool CParameterHandle::getAsDouble(double& dValue, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(false, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsDouble(dValue, false, parameterAccessContext);
+    return getAs(dValue, error);
 }
 
-bool CParameterHandle::setAsDoubleArray(const std::vector<double>& adValues, string& strError)
+bool CParameterHandle::setAsDoubleArray(const std::vector<double>& adValues, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(adValues.size(), strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    // Copy values for type adaptation
-    std::vector<double> adUserValues = adValues;
-
-    return _pBaseParameter->accessAsDoubleArray(adUserValues, true, parameterAccessContext);
+    return setAs(adValues, error);
 }
 
-bool CParameterHandle::getAsDoubleArray(std::vector<double>& adValues, string& strError) const
+bool CParameterHandle::getAsDoubleArray(std::vector<double>& adValues, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(true, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsDoubleArray(adValues, false, parameterAccessContext);
+    return getAs(adValues, error);
 }
 
 // String Access
-bool CParameterHandle::setAsString(const string& strValue, string& strError)
+bool CParameterHandle::setAsString(const string& strValue, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(0, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    // Copy value for type adaptation
-    string strUserValue = strValue;
-
-    return _pBaseParameter->accessAsString(strUserValue, true, parameterAccessContext);
+    return setAs(strValue, error);
 }
 
-bool CParameterHandle::getAsString(string& strValue, string& strError) const
+bool CParameterHandle::getAsString(string& strValue, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(false, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsString(strValue, false, parameterAccessContext);
+    return getAs(strValue, error);
 }
 
-bool CParameterHandle::setAsStringArray(const std::vector<string>& astrValues, string& strError)
+bool CParameterHandle::setAsStringArray(const std::vector<string>& astrValues, string& error)
 {
-    // Check operation validity
-    if (!checkSetValidity(astrValues.size(), strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // When in tuning mode, silently skip the request
-    if (_pParameterMgr->tuningModeOn()) {
-
-        return true;
-    }
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    // Copy values for type adaptation
-    std::vector<string> astrUserValues = astrValues;
-
-    return _pBaseParameter->accessAsStringArray(astrUserValues, true, parameterAccessContext);
+    return setAs(astrValues, error);
 }
 
-bool CParameterHandle::getAsStringArray(std::vector<string>& astrValues, string& strError) const
+bool CParameterHandle::getAsStringArray(std::vector<string>& astrValues, string& error) const
 {
-    // Check operation validity
-    if (!checkGetValidity(true, strError)) {
-
-        return false;
-    }
-    // Ensure we're safe against blackboard foreign access
-    lock_guard<mutex> autoLock(_pParameterMgr->getBlackboardMutex());
-
-    // Define access context
-    CParameterAccessContext parameterAccessContext(strError, _pParameterMgr->getParameterBlackboard());
-
-    return _pBaseParameter->accessAsStringArray(astrValues, false, parameterAccessContext);
+    return getAs(astrValues, error);
 }
 
 bool CParameterHandle::checkGetValidity(bool asArray, string& error) const

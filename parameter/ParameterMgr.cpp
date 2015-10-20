@@ -1137,10 +1137,10 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpDomainsCommandP
 {
     // Dummy error context
     string strError;
-    CErrorContext errorContext(strError);
+    utility::ErrorContext errorContext(strError);
 
     // Dump
-    getConstConfigurableDomains()->dumpContent(strResult, errorContext);
+    strResult = getConstConfigurableDomains()->dumpContent(errorContext);
 
     return CCommandHandler::ESucceeded;
 }
@@ -1428,7 +1428,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandP
     CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     // Dump elements
-    pLocatedElement->dumpContent(strResult, parameterAccessContext);
+    strResult = pLocatedElement->dumpContent(parameterAccessContext);
 
     return CCommandHandler::ESucceeded;
 }

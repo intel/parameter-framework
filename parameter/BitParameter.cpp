@@ -74,8 +74,7 @@ void CBitParameter::doGetValue(string& strValue, size_t offset, CParameterAccess
 }
 
 /// Value access
-// Boolean access
-bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameter::access(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     // Check boolean access validity here
     if (static_cast<const CBitParameterType*>(getTypeElement())->getBitSize() != 1) {
@@ -94,7 +93,7 @@ bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCon
         uiValue = bValue;
     }
 
-    if (!accessAsInteger(uiValue, bSet, parameterAccessContext)) {
+    if (!access(uiValue, bSet, parameterAccessContext)) {
 
         return false;
     }
@@ -107,8 +106,7 @@ bool CBitParameter::accessAsBoolean(bool& bValue, bool bSet, CParameterAccessCon
     return true;
 }
 
-// Integer Access
-bool CBitParameter::accessAsInteger(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameter::access(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
 {
     size_t offset = getOffset();
 

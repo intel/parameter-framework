@@ -64,11 +64,48 @@ See [the wiki on github](https://github.com/01org/parameter-framework/wiki).
 
 ## Compiling
 
+### Dependencies
+
+In order to compile you'll need, at the very least:
+
+- CMake (v2.8.12 or later);
+- A C/C++ compiler supporting C++11;
+- libxml2 headers and libraries (Provided by the `libxml2-dev` on debian-based
+distributions);
+- Standalone ASIO (1.10.6 or later) (Provided by `libasio-dev` on debian-based
+distributions) ASIO is C++ header-only ASynchronous-IO library.
+
+If you want to compile the *Python bindings*, you'll also need:
+
+- SWIG 2.0 (A binding generator);
+- Python2.7 development environment (Provided by `python2.7-dev` on debian-based
+distributions)
+
+If you want to *compile and run the tests*, you'll also need:
+
+- Catch (Provided by `catch` on debian-based distributions). Catch is a
+single-header test framework - as such you may also download it directly
+[here](https://raw.githubusercontent.com/philsquared/Catch/master/single_include/catch.hpp);
+- Python2.7 (Provided by `python2.7` on debian-based distribution - it is
+preinstalled on most distributions).
+
+If you want to *build the code documentation*, you'll need `doxygen` and
+`graphviz`. This doc is already available to you - see the wiki.
+
+**To list all available configuration options, try** `cmake -L` (you may also
+filter-out lines starting with `CMAKE_`).
+
+### How-To
+
+If you are already familiar with CMake, you know what to do.
+
 Run `cmake .` then `make`.  You may then install libraries, headers and
 binaries with `make install`.  By default, they are installed under
 `/usr/local` on unix OSes; if you want to install them under a custom
 directory, you may do so by passing it to the `cmake .` command; e.g.
 
+    # Always use absolute paths in CMake "-D" options: you don't know where
+    # relative paths will be evaluated from.
     cmake -DCMAKE_INSTALL_PREFIX=/path/to/custom/install .
 
 If you want to provide your own dependencies (e.g. your own version of
@@ -92,3 +129,20 @@ After a build you may want to run the parameter-framework tests with
 
 You may take a look at `.travis.yml` and `appveyor.yml` for examples on how we
 build the Parameter Framework in the CI.
+
+### Compiling on Windows
+
+If you don't already have libxml2 headers/libraries and don't want to build them
+by yourself, we have a precompiled version for x86-64.
+
+Compiled with Visual Studio 12 2013:
+- [in debug configuration](https://01.org/sites/default/files/libxml2-x86_64-debug-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
+- [in release configuration](https://01.org/sites/default/files/libxml2-x86_64-3eaedba1b64180668fdab7ad2eba549586017bf3.zip)
+
+We have mirrored ASIO 1.10.6 [here](https://01.org/sites/default/files/asio-1.10.6.tar.gz).
+
+Once you have downloaded and uncompressed these two dependencies, add the
+following two entries to `CMAKE_PREFIX_PATH`:
+
+    /path/to/libxml2-x86_64/
+    /path/to/asio-1.10.6/

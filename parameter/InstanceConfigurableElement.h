@@ -125,7 +125,7 @@ protected:
     bool sync(CParameterAccessContext& parameterAccessContext) const;
 
     // Check parameter access path well formed for leaf elements
-    static bool checkPathExhausted(CPathNavigator& pathNavigator, CErrorContext& errorContext);
+    static bool checkPathExhausted(CPathNavigator& pathNavigator, utility::ErrorContext& errorContext);
 private:
     // Type Element
     const CTypeElement* _pTypeElement;

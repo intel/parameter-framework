@@ -84,19 +84,17 @@ bool CConfigurableDomain::childrenAreDynamic() const
 }
 
 // Content dumping
-void CConfigurableDomain::logValue(string& strValue, CErrorContext& /*ctx*/) const
+string CConfigurableDomain::logValue(utility::ErrorContext& /*ctx*/) const
 {
-    strValue = "{";
+    return string("{") +
 
-    // Sequence awareness
-    strValue += "Sequence aware: ";
-    strValue += _bSequenceAware ? "yes" : "no";
+        "Sequence aware: " +
+        (_bSequenceAware ? "yes" : "no") +
 
-    // Last applied configuration
-    strValue += ", Last applied configuration: ";
-    strValue += _pLastAppliedConfiguration ? _pLastAppliedConfiguration->getName() : "<none>";
+        ", Last applied configuration: " +
+        (_pLastAppliedConfiguration ? _pLastAppliedConfiguration->getName() : "<none>") +
 
-    strValue += "}";
+        "}";
 }
 
 // Sequence awareness
@@ -132,7 +130,7 @@ void CConfigurableDomain::childrenToXml(CXmlElement& xmlElement,
     composeConfigurableElements(xmlElement);
 
     // Settings
-    composeSettings(xmlElement, serializingContext);
+    composeSettings(xmlElement, static_cast<CXmlDomainExportContext &>(serializingContext));
 }
 
 // XML composing
@@ -171,13 +169,9 @@ void CConfigurableDomain::composeConfigurableElements(CXmlElement& xmlElement) c
     }
 }
 
-void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlDomainExportContext& context) const
 {
-    // Context
-    const CXmlDomainExportContext& xmlDomainExportContext =
-        static_cast<const CXmlDomainExportContext&>(serializingContext);
-
-    if (!xmlDomainExportContext.withSettings()) {
+    if (!context.withSettings()) {
 
         return;
     }
@@ -204,7 +198,7 @@ void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlSerializi
         xmlConfigurationSettingsElement.setNameAttribute(pDomainConfiguration->getName());
 
         // Serialize out configuration settings
-        pDomainConfiguration->composeSettings(xmlConfigurationSettingsElement, serializingContext);
+        pDomainConfiguration->composeSettings(xmlConfigurationSettingsElement, context);
     }
 }
 
@@ -810,7 +804,7 @@ bool CConfigurableDomain::getApplicationRule(const string& strConfiguration, str
     }
 
     // Delegate to configuration
-    pDomainConfiguration->getApplicationRule(strResult);
+    strResult = pDomainConfiguration->getApplicationRule();
 
     return true;
 }
