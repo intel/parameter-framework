@@ -69,6 +69,11 @@ size_t CRequestMessage::getArgumentCount() const
     return _argumentVector.size();
 }
 
+const std::vector<string>& CRequestMessage::getArguments() const
+{
+    return _argumentVector;
+}
+
 const string& CRequestMessage::getArgument(size_t argument) const
 {
     assert(argument < _argumentVector.size());
