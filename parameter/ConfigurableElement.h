@@ -145,6 +145,36 @@ public:
 
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
+
+    bool fromXml(const CXmlElement &xmlElement,
+                         CXmlSerializingContext &serializingContext) override final;
+
+    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override final;
+
+    /** Deserialize the structure from xml. */
+    virtual bool structureFromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext)
+    {
+        // Forward to Element::fromXml.
+        // This is unfortunate as Element::fromXml will call back
+        // fromXml on each children.
+        // Thus on each non leaf node of the tree, the code will test if
+        // the setting or the structure are to be serialized.
+        // This test could be avoided by several ways including:
+        //  - split 2 roles fromXml in two function
+        //    1) construct the elements
+        //    2) recursive call on children
+        //  - dispatch in with a virtual method. This would not not remove
+        //    the branching rather hide it behind a virtual method override.
+        return CElement::fromXml(xmlElement, serializingContext);
+    }
+
+    /** Serialize the structure to xml. */
+    virtual void structureToXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+    {
+        // See structureFromXml implementation comment.
+        CElement::toXml(xmlElement, serializingContext);
+    }
+
 protected:
     // Syncer (me or ascendant)
     virtual ISyncer* getSyncer() const;

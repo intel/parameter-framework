@@ -48,6 +48,18 @@ CConfigurableElement::~CConfigurableElement()
 {
 }
 
+bool CConfigurableElement::fromXml(const CXmlElement &xmlElement,
+                                   CXmlSerializingContext &serializingContext)
+{
+    return structureFromXml(xmlElement, serializingContext);
+}
+
+void CConfigurableElement::toXml(CXmlElement &xmlElement,
+                                 CXmlSerializingContext &serializingContext) const
+{
+    structureToXml(xmlElement, serializingContext);
+}
+
 // XML configuration settings parsing
 bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {
