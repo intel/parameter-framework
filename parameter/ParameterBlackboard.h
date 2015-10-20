@@ -64,7 +64,7 @@ public:
      *    - This function asserts that the input vector's size + the offset
      *      does not exceed the size of the blackboard istelf.
      */
-    void writeBytes(const std::vector<uint8_t>& bytes, uint32_t offset);
+    void writeBytes(const std::vector<uint8_t>& bytes, size_t offset);
 
     /**
      * Raw read the blackboard memory.
@@ -79,7 +79,7 @@ public:
      *      does not exceed the size of the blackboard itself.
      *    - The user MUST reserve exactly as many elements as the amount to read
      */
-    void readBytes(std::vector<uint8_t>& bytes, uint32_t offset) const;
+    void readBytes(std::vector<uint8_t>& bytes, size_t offset) const;
 
     // Access from/to subsystems
     uint8_t* getLocation(size_t offset);
