@@ -36,6 +36,7 @@
 #include "AreaConfiguration.h"
 #include "Iterator.hpp"
 #include "Utility.h"
+#include "XmlParameterSerializingContext.h"
 #include <assert.h>
 
 #define base CElement
@@ -51,13 +52,32 @@ CConfigurableElement::~CConfigurableElement()
 bool CConfigurableElement::fromXml(const CXmlElement &xmlElement,
                                    CXmlSerializingContext &serializingContext)
 {
+    auto &context = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    auto &accessContext = context.getAccessContext();
+
+    if (accessContext.serializeSettings()) {
+        // As serialization and deserialisation are handled through the *same* function
+        // the (de)serialize object can not be const in `serializeXmlSettings` signature.
+        // As a result a const_cast is unavoidable :(.
+        // Fixme: split serializeXmlSettings in two functions (in and out) to avoid the `const_cast`
+        return serializeXmlSettings(const_cast<CXmlElement&>(xmlElement),
+                                    static_cast<CConfigurationAccessContext &>(accessContext));
+    }
     return structureFromXml(xmlElement, serializingContext);
 }
 
 void CConfigurableElement::toXml(CXmlElement &xmlElement,
                                  CXmlSerializingContext &serializingContext) const
 {
-    structureToXml(xmlElement, serializingContext);
+    auto &context = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    auto &accessContext = context.getAccessContext();
+    if (accessContext.serializeSettings()) {
+
+        serializeXmlSettings(xmlElement, static_cast<CConfigurationAccessContext &>(accessContext));
+    } else {
+
+        structureToXml(xmlElement, serializingContext);
+    }
 }
 
 // XML configuration settings parsing

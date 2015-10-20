@@ -56,6 +56,11 @@ public:
     void setValueSpaceRaw(bool bIsRaw);
     bool valueSpaceIsRaw() const;
 
+    /** @return true if setting serialization is requested,
+     *          false if structure serialization
+     */
+    virtual bool serializeSettings() const { return false; }
+
     /**
      * Assigns Output Raw Format for user get value interpretation.
      *

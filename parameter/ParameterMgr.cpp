@@ -28,6 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "ParameterMgr.h"
+#include "ConfigurationAccessContext.h"
 #include "XmlParameterSerializingContext.h"
 #include "XmlElementSerializingContext.h"
 #include "SystemClass.h"
@@ -530,7 +531,8 @@ bool CParameterMgr::loadStructure(string& strError)
     }
 
     // Parse Structure XML file
-    CXmlParameterSerializingContext parameterBuildContext(strError);
+    CParameterAccessContext accessContext(strError);
+    CXmlParameterSerializingContext parameterBuildContext(accessContext, strError);
 
     {
         // Get structure URI
