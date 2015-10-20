@@ -1,17 +1,10 @@
 <map id="CElement::getKind" name="CElement::getKind">
 <area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="221,29,385,71"/>
-<area shape="rect" id="node4" href="$classCElement.html#a49563131c5e78cc693b5c7e9b08dc787" title="CElement::dumpContent" alt="" coords="213,95,393,122"/>
+<area shape="rect" id="node4" href="$classCElement.html#af8155fa6281cb35f6794819132c091a6" title="CElement::dumpContent" alt="" coords="213,95,393,122"/>
 <area shape="rect" id="node5" href="$classCElement.html#a8c87fea54766f49f45346713d9d09880" title="CElement::showProperties" alt="" coords="208,146,397,173"/>
-<area shape="rect" id="node6" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="213,197,392,223"/>
-<area shape="rect" id="node8" href="$classCElement.html#acee1af3e8516a211731a59b85727c6b9" title="CElement::findChildOfKind" alt="" coords="209,247,396,274"/>
-<area shape="rect" id="node12" href="$classCElement.html#a893e7d2d24391fd0279245c7bda1e468" title="CElement::getQualifiedPath" alt="" coords="205,298,401,325"/>
-<area shape="rect" id="node14" href="$classCElement.html#af07c1b866509eb33bd8019d6ff8fef21" title="CElement::computeStructure\lChecksum" alt="" coords="198,373,407,415"/>
-<area shape="rect" id="node15" href="$classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10" title="CInstanceConfigurableElement\l::getKind" alt="" coords="193,439,412,480"/>
+<area shape="rect" id="node6" href="$classCElement.html#a893e7d2d24391fd0279245c7bda1e468" title="CElement::getQualifiedPath" alt="" coords="205,197,401,223"/>
+<area shape="rect" id="node8" href="$classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10" title="CInstanceConfigurableElement\l::getKind" alt="" coords="193,248,412,289"/>
 <area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="481,29,639,71"/>
-<area shape="rect" id="node7" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="495,185,625,211"/>
-<area shape="rect" id="node9" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="487,259,633,286"/>
-<area shape="rect" id="node10" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="708,252,864,293"/>
-<area shape="rect" id="node11" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="912,259,1077,286"/>
-<area shape="rect" id="node13" href="$classCElement.html#a740c0b65f45d681c3d87196d72dd578c" title="CElement::listQualifiedPaths" alt="" coords="460,334,660,361"/>
-<area shape="rect" id="node16" href="$classCParameterHandle.html#aa7a0f6b334003b2aeec2fdfa9e9969ce" title="CParameterHandle::getKind" alt="" coords="461,446,659,473"/>
+<area shape="rect" id="node7" href="$classCElement.html#a442be4dd4096eafb92adff5a41b70636" title="CElement::listQualifiedPaths" alt="" coords="460,197,660,223"/>
+<area shape="rect" id="node9" href="$classCParameterHandle.html#aa7a0f6b334003b2aeec2fdfa9e9969ce" title="CParameterHandle::getKind" alt="" coords="461,255,659,282"/>
 </map>

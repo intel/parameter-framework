@@ -1,83 +1,63 @@
 <map id="TEST_CASE_METHOD" name="TEST_CASE_METHOD">
-<area shape="rect" id="node2" href="$ParameterFramework_8cpp.html#a55629ee4900099f2df619bb80d703bba" title="Create a parameter framework instance. " alt="" coords="254,251,341,278"/>
-<area shape="rect" id="node3" href="$ParameterFramework_8cpp.html#a9b9fb986ebe5c70e84df2d781b789e28" title="pfwGetLastError" alt="" coords="235,563,359,590"/>
-<area shape="rect" id="node5" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="260,403,335,430"/>
-<area shape="rect" id="node38" href="$ParameterFramework_8cpp.html#a410a87bcb7531240f9c031db2ab2027e" title="Get a criterion value given its name. " alt="" coords="492,75,612,102"/>
-<area shape="rect" id="node41" href="$ParameterFramework_8cpp.html#afbd6366b6015f59fdb27891d1477a06a" title="Set a criterion value given its name and value. " alt="" coords="493,126,611,153"/>
-<area shape="rect" id="node43" href="$ParameterFramework_8cpp.html#a814380ca4895e4e6cd7c5c1aaf5d752a" title="Commit criteria change and change parameters according to the configurations. " alt="" coords="467,918,637,945"/>
-<area shape="rect" id="node47" href="$ParameterFramework_8cpp.html#afd987b1aa98a5fa06fd9c26fa7da667c" title="Construct the handle to a parameter given its path. " alt="" coords="228,513,367,539"/>
-<area shape="rect" id="node57" href="$ParameterFramework_8cpp.html#a8b2d55b421549731ba16e6f8599cc9ed" title="Set the value of a previously bind int parameter. " alt="" coords="223,614,371,641"/>
-<area shape="rect" id="node62" href="$ParameterFramework_8cpp.html#a6b3837f5d849a98fb3923a73626b3d28" title="Access the value of a previously bind int parameter. " alt="" coords="223,766,372,793"/>
-<area shape="rect" id="node66" href="$ParameterFramework_8cpp.html#aa7582ce8cb97399f7fadf03b4d0a1ed3" title="Destroy a parameter handle. " alt="" coords="220,867,375,894"/>
-<area shape="rect" id="node67" href="$ParameterFramework_8cpp.html#a8e7205189d8b16c5f25138694d421b55" title="Access the value of a previously bind string parameter. " alt="" coords="212,715,383,742"/>
-<area shape="rect" id="node79" href="$ParameterFramework_8cpp.html#aa3fb9546566331cb420d16d3e3559808" title="Set the value of a previously bind string parameter. " alt="" coords="212,665,383,691"/>
-<area shape="rect" id="node81" href="$ParameterFramework_8cpp.html#ac47fc11d50b2f88f3d2cb47a153506e7" title="Frees the memory space pointed to by ptr, which must have been returned by a previous call to the pfw..." alt="" coords="262,918,333,945"/>
-<area shape="rect" id="node82" href="$ParameterFramework_8cpp.html#aa2ff93b8c6588c39b32ae14c1abb889b" title="Destroy a parameter framework. " alt="" coords="251,969,344,995"/>
-<area shape="rect" id="node4" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="502,614,602,641"/>
-<area shape="rect" id="node6" href="$classStatus.html#a02f271ac768f84947beb80573366de26" title="Fail without an instance of status. " alt="" coords="787,542,898,569"/>
-<area shape="rect" id="node7" href="$structPfwHandler__.html#a239533da5b455134b8ac3b173e4b1719" title="PfwHandler_::setLogger" alt="" coords="466,243,638,270"/>
-<area shape="rect" id="node8" href="$structPfwHandler__.html#affe94703ab48bd3ee5c78ac4fffc0b45" title="PfwHandler_::createCriteria" alt="" coords="455,294,649,321"/>
-<area shape="rect" id="node11" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="493,665,611,691"/>
-<area shape="rect" id="node12" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="431,177,673,219"/>
-<area shape="rect" id="node9" href="$classISelectionCriterionTypeInterface.html#a56b4add65b5107377938694a3c67eb82" title="ISelectionCriterionTypeInterface\l::addValuePair" alt="" coords="731,287,954,328"/>
-<area shape="rect" id="node10" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="781,395,904,422"/>
-<area shape="rect" id="node13" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="764,231,921,258"/>
-<area shape="rect" id="node14" href="$classCHardwareBackSynchronizer.html#abc01484c03230247c0a8a3982140b652" title="CHardwareBackSynchronizer\l::sync" alt="" coords="1037,520,1243,561"/>
+<area shape="rect" id="node2" href="$ParameterFramework_8cpp.html#a55629ee4900099f2df619bb80d703bba" title="Create a parameter framework instance. " alt="" coords="254,386,341,413"/>
+<area shape="rect" id="node3" href="$ParameterFramework_8cpp.html#a9b9fb986ebe5c70e84df2d781b789e28" title="pfwGetLastError" alt="" coords="235,759,359,786"/>
+<area shape="rect" id="node5" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="260,487,335,514"/>
+<area shape="rect" id="node34" href="$ParameterFramework_8cpp.html#a410a87bcb7531240f9c031db2ab2027e" title="Get a criterion value given its name. " alt="" coords="492,323,612,350"/>
+<area shape="rect" id="node37" href="$ParameterFramework_8cpp.html#afbd6366b6015f59fdb27891d1477a06a" title="Set a criterion value given its name and value. " alt="" coords="493,526,611,553"/>
+<area shape="rect" id="node39" href="$ParameterFramework_8cpp.html#a814380ca4895e4e6cd7c5c1aaf5d752a" title="Commit criteria change and change parameters according to the configurations. " alt="" coords="467,627,637,654"/>
+<area shape="rect" id="node42" href="$ParameterFramework_8cpp.html#afd987b1aa98a5fa06fd9c26fa7da667c" title="Construct the handle to a parameter given its path. " alt="" coords="228,709,367,735"/>
+<area shape="rect" id="node52" href="$ParameterFramework_8cpp.html#a8b2d55b421549731ba16e6f8599cc9ed" title="Set the value of a previously bind int parameter. " alt="" coords="223,810,371,837"/>
+<area shape="rect" id="node54" href="$ParameterFramework_8cpp.html#a6b3837f5d849a98fb3923a73626b3d28" title="Access the value of a previously bind int parameter. " alt="" coords="223,861,372,887"/>
+<area shape="rect" id="node56" href="$ParameterFramework_8cpp.html#aa7582ce8cb97399f7fadf03b4d0a1ed3" title="Destroy a parameter handle. " alt="" coords="220,1013,375,1039"/>
+<area shape="rect" id="node57" href="$ParameterFramework_8cpp.html#aa3fb9546566331cb420d16d3e3559808" title="Set the value of a previously bind string parameter. " alt="" coords="212,911,383,938"/>
+<area shape="rect" id="node59" href="$ParameterFramework_8cpp.html#a548939765fedf4ca9bebb06fb4d039be" title="Access the value of a previously bind string parameter. " alt="" coords="212,962,383,989"/>
+<area shape="rect" id="node61" href="$ParameterFramework_8cpp.html#ac47fc11d50b2f88f3d2cb47a153506e7" title="Frees the memory space pointed to by ptr, which must have been returned by a previous call to the pfw..." alt="" coords="262,1063,333,1090"/>
+<area shape="rect" id="node62" href="$ParameterFramework_8cpp.html#aa2ff93b8c6588c39b32ae14c1abb889b" title="Destroy a parameter framework. " alt="" coords="251,1114,344,1141"/>
+<area shape="rect" id="node4" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="502,861,602,887"/>
+<area shape="rect" id="node6" href="$classStatus.html#a02f271ac768f84947beb80573366de26" title="Fail without an instance of status. " alt="" coords="787,494,898,521"/>
+<area shape="rect" id="node7" href="$structPfwHandler__.html#a239533da5b455134b8ac3b173e4b1719" title="PfwHandler_::setLogger" alt="" coords="466,425,638,451"/>
+<area shape="rect" id="node8" href="$structPfwHandler__.html#affe94703ab48bd3ee5c78ac4fffc0b45" title="PfwHandler_::createCriteria" alt="" coords="455,374,649,401"/>
+<area shape="rect" id="node11" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="493,911,611,938"/>
+<area shape="rect" id="node12" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="431,256,673,297"/>
+<area shape="rect" id="node9" href="$classISelectionCriterionTypeInterface.html#a6ca52ae84cba77ed8d38feaefbc1abc5" title="Add a new pair [integer, litteral] which represents a criterion. " alt="" coords="731,428,954,469"/>
+<area shape="rect" id="node10" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="781,677,904,703"/>
+<area shape="rect" id="node13" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="764,259,921,286"/>
+<area shape="rect" id="node14" href="$classCHardwareBackSynchronizer.html#abc01484c03230247c0a8a3982140b652" title="CHardwareBackSynchronizer\l::sync" alt="" coords="1037,413,1243,455"/>
 <area shape="rect" id="node17" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="1056,252,1224,293"/>
-<area shape="rect" id="node25" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="1063,135,1217,176"/>
-<area shape="rect" id="node35" href="$classCElement.html#a6fadaf69d17a61c431422ed6d8a1f8f0" title="CElement::log_table" alt="" coords="1065,201,1215,227"/>
-<area shape="rect" id="node36" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag. " alt="" coords="1316,369,1551,411"/>
-<area shape="rect" id="node15" href="$classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b" title="CSyncerSet::sync" alt="" coords="1366,655,1501,682"/>
-<area shape="rect" id="node16" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="1659,746,1765,773"/>
+<area shape="rect" id="node22" href="$classCSelectionCriteria.html#a25ca6671e46d02c906f512f6b33a44e4" title="CSelectionCriteria\l::listSelectionCriteria" alt="" coords="1063,135,1217,176"/>
+<area shape="rect" id="node32" href="$classCSystemClass.html#ae6f4699f2c40ce3a72bde018aa4453ad" title="Reset subsystems need to resync flag. " alt="" coords="1316,369,1551,411"/>
+<area shape="rect" id="node15" href="$classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5" title="Sync the blackboard. " alt="" coords="1366,435,1501,462"/>
+<area shape="rect" id="node16" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="1659,435,1765,462"/>
 <area shape="rect" id="node18" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="1621,318,1803,345"/>
-<area shape="rect" id="node19" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="1640,201,1784,227"/>
+<area shape="rect" id="node19" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="1640,201,1784,227"/>
 <area shape="rect" id="node20" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="1353,252,1514,293"/>
 <area shape="rect" id="node21" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="1629,252,1795,293"/>
-<area shape="rect" id="node22" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="1886,621,2033,663"/>
-<area shape="rect" id="node23" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="2106,721,2253,763"/>
-<area shape="rect" id="node24" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="2313,801,2477,843"/>
-<area shape="rect" id="node26" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="1325,135,1541,176"/>
-<area shape="rect" id="node27" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="1335,69,1531,111"/>
-<area shape="rect" id="node28" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="1617,103,1807,144"/>
-<area shape="rect" id="node29" href="$classCUtility.html#a5a2643fa6fbbd1bae67b2f05b9d54f03" title="Utility to underline. " alt="" coords="1885,202,2033,229"/>
-<area shape="rect" id="node30" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="1883,327,2035,354"/>
-<area shape="rect" id="node31" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="1873,5,2045,47"/>
-<area shape="rect" id="node32" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="1873,71,2045,112"/>
-<area shape="rect" id="node33" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="1873,136,2045,177"/>
-<area shape="rect" id="node34" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="2093,136,2265,177"/>
-<area shape="rect" id="node37" href="$classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4" title="CSubsystem::needResync" alt="" coords="1619,377,1805,403"/>
-<area shape="rect" id="node39" href="$ParameterFramework_8cpp.html#a1f9464a07a220fe7ed69bf34fdbaa3ef" title="getCriterion" alt="" coords="794,95,891,122"/>
-<area shape="rect" id="node40" href="$classISelectionCriterionInterface.html#a57d7270fea781a55d8de0315341175a6" title="ISelectionCriterionInterface\l::getCriterionState" alt="" coords="745,29,940,71"/>
-<area shape="rect" id="node42" href="$classISelectionCriterionInterface.html#a691565a6ffda7c44e419c3b048cc5d1e" title="ISelectionCriterionInterface\l::setCriterionState" alt="" coords="745,147,940,188"/>
-<area shape="rect" id="node44" href="$classCParameterMgrPlatformConnector.html#a03ff6b6e71e733bce73a2557b585d05c" title="CParameterMgrPlatformConnector\l::applyConfigurations" alt="" coords="721,800,964,841"/>
-<area shape="rect" id="node45" href="$classCParameterMgr.html#a8e084df8edc632b057815f533624480d" title="CParameterMgr::applyConfigurations" alt="" coords="1012,735,1268,762"/>
-<area shape="rect" id="node46" href="$classCElement.html#a100f81e35b4815020cc617e735702e61" title="CElement::log_warning" alt="" coords="1350,735,1517,762"/>
-<area shape="rect" id="node48" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="431,447,673,488"/>
-<area shape="rect" id="node49" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="723,455,962,496"/>
-<area shape="rect" id="node50" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="1025,455,1255,496"/>
-<area shape="rect" id="node56" href="$classCConfigurableElement.html#a1376855eba031b3cbb715389e23b20fe" title="CConfigurableElement\l::isParameter" alt="" coords="1058,585,1222,627"/>
-<area shape="rect" id="node51" href="$classCPathNavigator.html#ad588f1802ca5e196e96972273f36a80d" title="CPathNavigator::navigate\lThrough" alt="" coords="1341,487,1525,528"/>
-<area shape="rect" id="node54" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="1337,577,1529,603"/>
-<area shape="rect" id="node52" href="$classCPathNavigator.html#a0fbd92beb48fdfb2041788cf77d44cf1" title="CPathNavigator::getCurrentPath" alt="" coords="1599,490,1825,517"/>
-<area shape="rect" id="node53" href="$classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589" title="CPathNavigator::next" alt="" coords="1633,541,1791,567"/>
-<area shape="rect" id="node55" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="1639,591,1785,618"/>
-<area shape="rect" id="node58" href="$classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" title="CParameterHandle::setAsSigned\lInteger" alt="" coords="437,969,667,1011"/>
-<area shape="rect" id="node59" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="731,939,954,966"/>
-<area shape="rect" id="node60" href="$classCBaseParameter.html#a231e9def106391b96fb0671f4214f105" title="CBaseParameter::accessAs\lSignedInteger" alt="" coords="743,991,942,1032"/>
-<area shape="rect" id="node61" href="$classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef" title="CErrorContext::setError" alt="" coords="1348,786,1519,813"/>
-<area shape="rect" id="node63" href="$classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af" title="CParameterHandle::getPath" alt="" coords="452,1203,652,1230"/>
-<area shape="rect" id="node65" href="$classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3" title="CParameterHandle::getAsSigned\lInteger" alt="" coords="436,1137,668,1179"/>
-<area shape="rect" id="node64" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="1363,1223,1504,1250"/>
-<area shape="rect" id="node68" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="439,1086,665,1113"/>
-<area shape="rect" id="node69" href="$classCBaseParameter.html#a2b425561e193a3d54e7225d896a3d39b" title="CBaseParameter::accessAs\lString" alt="" coords="743,1056,942,1097"/>
-<area shape="rect" id="node70" href="$classCBaseParameter.html#a00d311bf1da2353a1b27d523b4a76f59" title="CBaseParameter::doSetValue" alt="" coords="1035,1005,1245,1031"/>
-<area shape="rect" id="node71" href="$classCParameterAccessContext.html#a8373a015bb145386732483ee3f6bdf63" title="CParameterAccessContext\l::getBaseOffset" alt="" coords="1043,1056,1237,1097"/>
-<area shape="rect" id="node72" href="$classCBaseParameter.html#a911cbd2df0c950a79863fdd689731f88" title="Append the parameter path to the error. " alt="" coords="1013,1121,1267,1163"/>
-<area shape="rect" id="node74" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="1031,939,1249,980"/>
-<area shape="rect" id="node78" href="$classCBaseParameter.html#aea4a2e14dbd4588fbe837bbe5cae5076" title="CBaseParameter::doGetValue" alt="" coords="1034,1187,1246,1214"/>
-<area shape="rect" id="node73" href="$classCErrorContext.html#afdd38e8aaaf045faaf575cf3ccbbc37b" title="CErrorContext::appendToError" alt="" coords="1327,1135,1539,1162"/>
-<area shape="rect" id="node75" href="$classCParameterAccessContext.html#ad073ad9ca128b5504f8a4a1d844c4e00" title="CParameterAccessContext\l::getAutoSync" alt="" coords="1337,939,1530,980"/>
-<area shape="rect" id="node76" href="$classCInstanceConfigurableElement.html#a4a613634c5012d4f32c310ccf2fc9fb4" title="CInstanceConfigurableElement\l::getSyncer" alt="" coords="1324,1004,1543,1045"/>
-<area shape="rect" id="node77" href="$classCParameterAccessContext.html#ad354dd5bf2a88f4ed4197be9a59fda20" title="CParameterAccessContext\l::getParameterBlackboard" alt="" coords="1337,1069,1530,1111"/>
-<area shape="rect" id="node80" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="439,1035,665,1062"/>
+<area shape="rect" id="node23" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="1325,135,1541,176"/>
+<area shape="rect" id="node24" href="$classCSelectionCriteriaDefinition.html#a24f1eb22f90ddb42ee971bdfc5f99aa5" title="CSelectionCriteriaDefinition\l::listSelectionCriteria" alt="" coords="1335,69,1531,111"/>
+<area shape="rect" id="node25" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="1617,103,1807,144"/>
+<area shape="rect" id="node26" href="$namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40" title="Utility to underline. " alt="" coords="1891,202,2028,229"/>
+<area shape="rect" id="node27" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="1883,391,2035,418"/>
+<area shape="rect" id="node28" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="1873,5,2045,47"/>
+<area shape="rect" id="node29" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="1873,71,2045,112"/>
+<area shape="rect" id="node30" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="1873,136,2045,177"/>
+<area shape="rect" id="node31" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="2093,136,2265,177"/>
+<area shape="rect" id="node33" href="$classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4" title="CSubsystem::needResync" alt="" coords="1619,377,1805,403"/>
+<area shape="rect" id="node35" href="$ParameterFramework_8cpp.html#a1f9464a07a220fe7ed69bf34fdbaa3ef" title="getCriterion" alt="" coords="794,377,891,403"/>
+<area shape="rect" id="node36" href="$classISelectionCriterionInterface.html#a57d7270fea781a55d8de0315341175a6" title="ISelectionCriterionInterface\l::getCriterionState" alt="" coords="745,311,940,352"/>
+<area shape="rect" id="node38" href="$classISelectionCriterionInterface.html#a691565a6ffda7c44e419c3b048cc5d1e" title="ISelectionCriterionInterface\l::setCriterionState" alt="" coords="745,545,940,587"/>
+<area shape="rect" id="node40" href="$classCParameterMgrPlatformConnector.html#a03ff6b6e71e733bce73a2557b585d05c" title="CParameterMgrPlatformConnector\l::applyConfigurations" alt="" coords="721,611,964,652"/>
+<area shape="rect" id="node41" href="$classCParameterMgr.html#a8e084df8edc632b057815f533624480d" title="CParameterMgr::applyConfigurations" alt="" coords="1012,615,1268,642"/>
+<area shape="rect" id="node43" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="431,729,673,771"/>
+<area shape="rect" id="node44" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="723,729,962,771"/>
+<area shape="rect" id="node45" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="1025,732,1255,773"/>
+<area shape="rect" id="node51" href="$classCConfigurableElement.html#a1376855eba031b3cbb715389e23b20fe" title="CConfigurableElement\l::isParameter" alt="" coords="1058,667,1222,708"/>
+<area shape="rect" id="node46" href="$classCPathNavigator.html#ad588f1802ca5e196e96972273f36a80d" title="CPathNavigator::navigate\lThrough" alt="" coords="1341,691,1525,732"/>
+<area shape="rect" id="node49" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="1337,781,1529,807"/>
+<area shape="rect" id="node47" href="$classCPathNavigator.html#a0fbd92beb48fdfb2041788cf77d44cf1" title="CPathNavigator::getCurrentPath" alt="" coords="1599,689,1825,715"/>
+<area shape="rect" id="node48" href="$classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589" title="CPathNavigator::next" alt="" coords="1633,739,1791,766"/>
+<area shape="rect" id="node50" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="1639,790,1785,817"/>
+<area shape="rect" id="node53" href="$classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" title="CParameterHandle::setAsSigned\lInteger" alt="" coords="437,795,667,836"/>
+<area shape="rect" id="node55" href="$classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3" title="CParameterHandle::getAsSigned\lInteger" alt="" coords="436,963,668,1004"/>
+<area shape="rect" id="node58" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="439,1029,665,1055"/>
+<area shape="rect" id="node60" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="439,1130,665,1157"/>
 </map>

@@ -1,0 +1,7 @@
+<map id="CParameterType::setSize" name="CParameterType::setSize">
+<area shape="rect" id="node2" href="$classCBooleanParameterType.html#a7a6aff5356ac529edaed5ae1335f0fda" title="CBooleanParameterType\l::CBooleanParameterType" alt="" coords="245,5,432,47"/>
+<area shape="rect" id="node3" href="$classCEnumParameterType.html#a9822e2ea066ea375f50bdc9c46808da2" title="CEnumParameterType\l::fromXml" alt="" coords="257,71,420,112"/>
+<area shape="rect" id="node4" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType\l::fromXml" alt="" coords="243,136,434,177"/>
+<area shape="rect" id="node5" href="$classCFloatingPointParameterType.html#afc9886b6b3b300f27057c7361f690f54" title="CFloatingPointParameterType\l::fromXml" alt="" coords="235,201,443,243"/>
+<area shape="rect" id="node6" href="$classCIntegerParameterType.html#a8d8e329f5f61b6e50108e7fe1a7f7446" title="CIntegerParameterType\l::fromXml" alt="" coords="253,267,424,308"/>
+</map>

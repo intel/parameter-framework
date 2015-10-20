@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCAutoLock.html" title="CAutoLock" alt="" coords="5,5,96,32"/>
+<area shape="rect" id="node1" href="$classCElementLibrary.html" title="CElementLibrary" alt="" coords="5,49,132,75"/>
+<area shape="rect" id="node2" href="$classCDefaultElementLibrary.html" title="Factory that creates an element given an xml element. " alt="" coords="203,5,407,47"/>
+<area shape="rect" id="node3" href="$classCDefaultElementLibrary.html" title="CDefaultElementLibrary\l\&lt; TLoggingElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt; \&gt;" alt="" coords="180,70,429,126"/>
+<area shape="rect" id="node4" href="$classCSubsystemLibrary.html" title="CSubsystemLibrary" alt="" coords="477,85,624,111"/>
 </map>

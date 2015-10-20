@@ -1,9 +1,0 @@
-<map id="parameter/BinarySerializableElement.h" name="parameter/BinarySerializableElement.h">
-<area shape="rect" id="node2" href="$Element_8h.html" title="Element.h" alt="" coords="245,95,332,121"/>
-<area shape="rect" id="node12" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="614,244,737,271"/>
-<area shape="rect" id="node7" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="127,169,213,196"/>
-<area shape="rect" id="node10" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="237,169,340,196"/>
-<area shape="rect" id="node11" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="415,169,538,196"/>
-<area shape="rect" id="node8" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="240,244,351,271"/>
-<area shape="rect" id="node9" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="42,244,215,271"/>
-</map>

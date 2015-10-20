@@ -1,4 +1,6 @@
 <map id="CParameterAccessContext::setAutoSync" name="CParameterAccessContext::setAutoSync">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#ad718888b2d13a3c6ebad7e0c97d92d20" title="CParameterMgr::accessParameter\lValue" alt="" coords="247,5,488,47"/>
-<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#adba4b6d77dce8a0615c162babf6e0d0f" title="CParameterMgrFullConnector\l::accessParameterValue" alt="" coords="536,5,744,47"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#ad718888b2d13a3c6ebad7e0c97d92d20" title="CParameterMgr::accessParameter\lValue" alt="" coords="255,5,497,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="247,71,505,112"/>
+<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#adba4b6d77dce8a0615c162babf6e0d0f" title="CParameterMgrFullConnector\l::accessParameterValue" alt="" coords="553,5,761,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a64a98bccd79559d5466ff3fd8e93b890" title="CParameterMgrFullConnector\l::accessConfigurationValue" alt="" coords="553,71,761,112"/>
 </map>

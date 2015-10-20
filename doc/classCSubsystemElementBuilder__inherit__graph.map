@@ -1,3 +1,4 @@
 <map id="CSubsystemElementBuilder" name="CSubsystemElementBuilder">
-<area shape="rect" id="node2" href="$classCElementBuilder.html" title="CElementBuilder" alt="" coords="41,5,169,32"/>
+<area shape="rect" id="node2" href="$classCElementBuilder.html" title="CElementBuilder" alt="" coords="41,80,169,107"/>
+<area shape="rect" id="node3" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="31,5,179,32"/>
 </map>

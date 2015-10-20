@@ -69,39 +69,39 @@
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
 <g id="a_node7"><a xlink:href="ParameterMgr_8cpp.html" target="_top" xlink:title="parameter/ParameterMgr.cpp">
-<polygon fill="white" stroke="black" points="745,-6 745,-25 903,-25 903,-6 745,-6"/>
-<text text-anchor="middle" x="824" y="-13" font-family="Verdana" font-size="10.00">parameter/ParameterMgr.cpp</text>
+<polygon fill="white" stroke="black" points="813,-6 813,-25 971,-25 971,-6 813,-6"/>
+<text text-anchor="middle" x="892" y="-13" font-family="Verdana" font-size="10.00">parameter/ParameterMgr.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
-<g id="edge11" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M758.032,-176.009C775.269,-169.113 793.606,-158.617 805,-143 831.834,-106.222 827.875,-47.228 825.233,-25.1823"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="756.791,-172.736 748.619,-179.479 759.213,-179.303 756.791,-172.736"/>
+<g id="edge12" class="edge"><title>Node1&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M749.186,-175.554C767.197,-168.019 788.701,-157.117 805,-143 846.303,-107.226 877.245,-47.6281 887.935,-25.3019"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="747.577,-172.428 739.594,-179.393 750.178,-178.926 747.577,-172.428"/>
 </g>
-<!-- Node11 -->
-<g id="node11" class="node"><title>Node11</title>
-<g id="a_node11"><a xlink:href="Subsystem_8cpp.html" target="_top" xlink:title="parameter/Subsystem.cpp">
+<!-- Node12 -->
+<g id="node12" class="node"><title>Node12</title>
+<g id="a_node12"><a xlink:href="Subsystem_8cpp.html" target="_top" xlink:title="parameter/Subsystem.cpp">
 <polygon fill="white" stroke="black" points="852.5,-123.5 852.5,-142.5 997.5,-142.5 997.5,-123.5 852.5,-123.5"/>
 <text text-anchor="middle" x="925" y="-130.5" font-family="Verdana" font-size="10.00">parameter/Subsystem.cpp</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node11 -->
-<g id="edge12" class="edge"><title>Node1&#45;&gt;Node11</title>
+<!-- Node1&#45;&gt;Node12 -->
+<g id="edge13" class="edge"><title>Node1&#45;&gt;Node12</title>
 <path fill="none" stroke="midnightblue" d="M757.142,-176.959C796.994,-166.76 855.363,-151.822 891.723,-142.516"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="756.254,-173.573 747.434,-179.444 757.989,-180.355 756.254,-173.573"/>
 </g>
-<!-- Node12 -->
-<g id="node12" class="node"><title>Node12</title>
-<g id="a_node12"><a xlink:href="SubsystemObject_8cpp.html" target="_top" xlink:title="parameter/SubsystemObject.cpp">
+<!-- Node13 -->
+<g id="node13" class="node"><title>Node13</title>
+<g id="a_node13"><a xlink:href="SubsystemObject_8cpp.html" target="_top" xlink:title="parameter/SubsystemObject.cpp">
 <polygon fill="white" stroke="black" points="1016,-123.5 1016,-142.5 1192,-142.5 1192,-123.5 1016,-123.5"/>
 <text text-anchor="middle" x="1104" y="-130.5" font-family="Verdana" font-size="10.00">parameter/SubsystemObject.cpp</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node12 -->
-<g id="edge13" class="edge"><title>Node1&#45;&gt;Node12</title>
+<!-- Node1&#45;&gt;Node13 -->
+<g id="edge14" class="edge"><title>Node1&#45;&gt;Node13</title>
 <path fill="none" stroke="midnightblue" d="M785.918,-178.042C859.577,-167.843 972.867,-152.157 1042.49,-142.516"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="785.222,-174.605 775.797,-179.444 786.182,-181.539 785.222,-174.605"/>
 </g>
@@ -118,55 +118,68 @@
 <path fill="none" stroke="midnightblue" d="M714,-112.805C714,-103.91 714,-93.7798 714,-86.7511"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="710.5,-113.083 714,-123.083 717.5,-113.083 710.5,-113.083"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a xlink:href="SystemClass_8cpp.html" target="_top" xlink:title="parameter/SystemClass.cpp">
-<polygon fill="white" stroke="black" points="362.5,-6 362.5,-25 515.5,-25 515.5,-6 362.5,-6"/>
-<text text-anchor="middle" x="439" y="-13" font-family="Verdana" font-size="10.00">parameter/SystemClass.cpp</text>
-</a>
-</g>
-</g>
-<!-- Node5&#45;&gt;Node9 -->
-<g id="edge9" class="edge"><title>Node5&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M635.705,-122.169C553.686,-111.492 435.755,-94.9056 429,-87 413.902,-69.3312 426.372,-39.5923 434.062,-25.0402"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="635.403,-125.659 645.77,-123.473 636.302,-118.717 635.403,-125.659"/>
-</g>
 <!-- Node10 -->
 <g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="VirtualSubsystem_8cpp.html" target="_top" xlink:title="parameter/VirtualSubsystem.cpp">
-<polygon fill="white" stroke="black" points="438,-67.5 438,-86.5 614,-86.5 614,-67.5 438,-67.5"/>
-<text text-anchor="middle" x="526" y="-74.5" font-family="Verdana" font-size="10.00">parameter/VirtualSubsystem.cpp</text>
+<g id="a_node10"><a xlink:href="SystemClass_8cpp.html" target="_top" xlink:title="parameter/SystemClass.cpp">
+<polygon fill="white" stroke="black" points="333.5,-6 333.5,-25 486.5,-25 486.5,-6 333.5,-6"/>
+<text text-anchor="middle" x="410" y="-13" font-family="Verdana" font-size="10.00">parameter/SystemClass.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node5&#45;&gt;Node10 -->
 <g id="edge10" class="edge"><title>Node5&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M621.638,-122.456C543.984,-113.614 443.374,-99.9176 429,-87 411.274,-71.0707 409.336,-40.5165 409.558,-25.4084"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="621.62,-125.976 631.948,-123.617 622.403,-119.02 621.62,-125.976"/>
+</g>
+<!-- Node11 -->
+<g id="node11" class="node"><title>Node11</title>
+<g id="a_node11"><a xlink:href="VirtualSubsystem_8cpp.html" target="_top" xlink:title="parameter/VirtualSubsystem.cpp">
+<polygon fill="white" stroke="black" points="438,-67.5 438,-86.5 614,-86.5 614,-67.5 438,-67.5"/>
+<text text-anchor="middle" x="526" y="-74.5" font-family="Verdana" font-size="10.00">parameter/VirtualSubsystem.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node5&#45;&gt;Node11 -->
+<g id="edge11" class="edge"><title>Node5&#45;&gt;Node11</title>
 <path fill="none" stroke="midnightblue" d="M674.199,-120.568C638.734,-110.381 587.634,-95.7034 555.65,-86.5164"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="673.633,-124.047 684.211,-123.444 675.566,-117.319 673.633,-124.047"/>
 </g>
 <!-- Node6&#45;&gt;Node7 -->
 <g id="edge6" class="edge"><title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M738.566,-62.7118C759.871,-51.1881 790.066,-34.855 808.269,-25.0091"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="736.891,-59.6389 729.76,-67.4751 740.221,-65.7959 736.891,-59.6389"/>
+<path fill="none" stroke="midnightblue" d="M749.205,-64.232C783.806,-52.666 835.768,-35.2966 866.544,-25.0091"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="747.878,-60.9853 739.503,-67.4751 750.097,-67.6242 747.878,-60.9853"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a xlink:href="SubsystemElementBuilder_8cpp.html" target="_top" xlink:title="parameter/SubsystemElement\lBuilder.cpp">
-<polygon fill="white" stroke="black" points="563,-0.5 563,-30.5 727,-30.5 727,-0.5 563,-0.5"/>
-<text text-anchor="start" x="571" y="-18.5" font-family="Verdana" font-size="10.00">parameter/SubsystemElement</text>
-<text text-anchor="middle" x="645" y="-7.5" font-family="Verdana" font-size="10.00">Builder.cpp</text>
+<g id="a_node8"><a xlink:href="Plugin_8h.html" target="_top" xlink:title="This file is intended to be used by the plugins. ">
+<polygon fill="white" stroke="black" points="505,-6 505,-25 613,-25 613,-6 505,-6"/>
+<text text-anchor="middle" x="559" y="-13" font-family="Verdana" font-size="10.00">parameter/Plugin.h</text>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node8 -->
 <g id="edge7" class="edge"><title>Node6&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M696.514,-60.9215C685.68,-51.579 671.86,-39.6616 661.262,-30.523"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="694.255,-63.5952 704.114,-67.4751 698.826,-58.294 694.255,-63.5952"/>
+<path fill="none" stroke="midnightblue" d="M682.173,-63.7824C652.052,-52.2199 607.621,-35.1641 581.167,-25.0091"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="681.202,-67.1588 691.792,-67.4751 683.711,-60.6238 681.202,-67.1588"/>
+</g>
+<!-- Node9 -->
+<g id="node9" class="node"><title>Node9</title>
+<g id="a_node9"><a xlink:href="SubsystemElementBuilder_8cpp.html" target="_top" xlink:title="parameter/SubsystemElement\lBuilder.cpp">
+<polygon fill="white" stroke="black" points="631,-0.5 631,-30.5 795,-30.5 795,-0.5 631,-0.5"/>
+<text text-anchor="start" x="639" y="-18.5" font-family="Verdana" font-size="10.00">parameter/SubsystemElement</text>
+<text text-anchor="middle" x="713" y="-7.5" font-family="Verdana" font-size="10.00">Builder.cpp</text>
+</a>
+</g>
 </g>
 <!-- Node6&#45;&gt;Node9 -->
 <g id="edge8" class="edge"><title>Node6&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M664.687,-65.3304C611.356,-53.7915 527.405,-35.6277 478.328,-25.0091"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="664.085,-68.7812 674.599,-67.4751 665.566,-61.9395 664.085,-68.7812"/>
+<path fill="none" stroke="midnightblue" d="M713.685,-57.2349C713.539,-48.5864 713.37,-38.4969 713.236,-30.523"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="710.189,-57.5354 713.857,-67.4751 717.188,-57.4177 710.189,-57.5354"/>
+</g>
+<!-- Node6&#45;&gt;Node10 -->
+<g id="edge9" class="edge"><title>Node6&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M660.586,-65.5456C601.691,-54.0184 508.066,-35.6939 453.475,-25.0091"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="659.958,-68.9891 670.444,-67.4751 661.303,-62.1194 659.958,-68.9891"/>
 </g>
 </g>
 </svg>

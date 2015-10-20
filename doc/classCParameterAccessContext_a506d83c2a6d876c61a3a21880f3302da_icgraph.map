@@ -1,3 +1,4 @@
 <map id="CParameterAccessContext::setValueSpaceRaw" name="CParameterAccessContext::setValueSpaceRaw">
-<area shape="rect" id="node2" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType\l::handleValueSpaceAttribute" alt="" coords="247,5,451,47"/>
+<area shape="rect" id="node2" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="Value space handling for settings import/export from/to XML. " alt="" coords="249,5,453,47"/>
+<area shape="rect" id="node3" href="$classCFloatingPointParameterType.html#a5fcda53d3c5e9e2cdab424158c808f19" title="Value space handling for settings import/export from/to XML. " alt="" coords="247,71,455,112"/>
 </map>

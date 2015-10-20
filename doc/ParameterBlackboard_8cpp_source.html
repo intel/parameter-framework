@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="ParameterBlackboard_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2014, Intel Corporation</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2015, Intel Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without modification,</span></div>
@@ -122,133 +122,117 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ParameterBlackboard_8h.html">ParameterBlackboard.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a3ed6eacd670df5642a477d82c7053aeb">   34</a></span>&#160;<a class="code" href="classCParameterBlackboard.html#a3ed6eacd670df5642a477d82c7053aeb">CParameterBlackboard::CParameterBlackboard</a>() : _pucData(NULL), _uiSize(0)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a55e42fea26cfb555ba66021568357311">   38</a></span>&#160;<a class="code" href="classCParameterBlackboard.html#a55e42fea26cfb555ba66021568357311">CParameterBlackboard::~CParameterBlackboard</a>()</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">delete</span> [] _pucData;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">// Size</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#ac03b75ea7a07a5f8d1fcdb3e1ded11dd">   44</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#ac03b75ea7a07a5f8d1fcdb3e1ded11dd">CParameterBlackboard::setSize</a>(uint32_t uiSize)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span> (_pucData) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">delete</span> [] _pucData;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Iterator_8hpp.html">Iterator.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AlwaysAssert_8hpp.html">AlwaysAssert.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// Size</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#af7f3c085b727682c9d0e81372bb50c9b">   36</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#af7f3c085b727682c9d0e81372bb50c9b">CParameterBlackboard::setSize</a>(<span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    mBlackboard.resize(size);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a518aa527b461b96187777b8e1794a818">   41</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="classCParameterBlackboard.html#a518aa527b461b96187777b8e1794a818">CParameterBlackboard::getSize</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">return</span> mBlackboard.size();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// Single parameter access</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a52d3f07a98e0e73d36cf222aa82ce3d0">   47</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#a52d3f07a98e0e73d36cf222aa82ce3d0">CParameterBlackboard::writeInteger</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* pvSrcData, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> offset)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    assertValidAccess(offset, size);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    _pucData = <span class="keyword">new</span> uint8_t[uiSize];</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    memset(_pucData, 0, uiSize);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">auto</span> first = <a class="code" href="Iterator_8hpp.html#a0e91542d055d8d8e268a70a60b636c19">MAKE_ARRAY_ITERATOR</a>(static_cast&lt;const uint8_t *&gt;(pvSrcData), size);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">auto</span> last = first + size;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">auto</span> dest_first = atOffset(offset);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    _uiSize = uiSize;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::copy(first, last, dest_first);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a1c0442d3a8907f740ce75d9b80cfa47f">   58</a></span>&#160;uint32_t <a class="code" href="classCParameterBlackboard.html#a1c0442d3a8907f740ce75d9b80cfa47f">CParameterBlackboard::getSize</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#aa87ec78e61424a92250a172b68544071">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#aa87ec78e61424a92250a172b68544071">CParameterBlackboard::readInteger</a>(<span class="keywordtype">void</span>* pvDstData, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> offset)<span class="keyword"> const</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">return</span> _uiSize;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">// Single parameter access</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#acebc8035bb3e73be7ece4fcb5169b474">   64</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#acebc8035bb3e73be7ece4fcb5169b474">CParameterBlackboard::writeInteger</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* pvSrcData, uint32_t uiSize, uint32_t uiOffset, <span class="keywordtype">bool</span> bBigEndian)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    assert(uiSize + uiOffset &lt;= _uiSize);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">if</span> (!bBigEndian) {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        memcpy(_pucData + uiOffset, pvSrcData, uiSize);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    assertValidAccess(offset, size);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">auto</span> first = atOffset(offset);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">auto</span> last = first + size;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">auto</span> dest_first = <a class="code" href="Iterator_8hpp.html#a0e91542d055d8d8e268a70a60b636c19">MAKE_ARRAY_ITERATOR</a>(static_cast&lt;uint8_t *&gt;(pvDstData), size);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    std::copy(first, last, dest_first);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a8ab588ed3946c5b368b81804a08a3251">   69</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#a8ab588ed3946c5b368b81804a08a3251">CParameterBlackboard::writeString</a>(<span class="keyword">const</span> std::string &amp;input, <span class="keywordtype">size_t</span> offset)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    assertValidAccess(offset, input.size() + 1);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        uint32_t uiIndex;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">const</span> uint8_t* puiSrcData = (<span class="keyword">const</span> uint8_t*)pvSrcData;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">for</span> (uiIndex = 0; uiIndex &lt; uiSize; uiIndex++) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            _pucData[uiIndex + uiOffset] = puiSrcData[uiSize - uiIndex - 1];</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">auto</span> dest_last = std::copy(begin(input), end(input), atOffset(offset));</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    *dest_last = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a09182c2726481979101b7be0be944483">   77</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#a09182c2726481979101b7be0be944483">CParameterBlackboard::readString</a>(std::string &amp;output, <span class="keywordtype">size_t</span> offset)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// As the string is null terminated in the blackboard,</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// the size that will be read is not known. (&gt;= 1)</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    assertValidAccess(offset, <span class="keyword">sizeof</span>(<span class="charliteral">&#39;\0&#39;</span>));</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#ab9d9a3d649fccda93ede444ed12d8791">   83</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#ab9d9a3d649fccda93ede444ed12d8791">CParameterBlackboard::readInteger</a>(<span class="keywordtype">void</span>* pvDstData, uint32_t uiSize, uint32_t uiOffset, <span class="keywordtype">bool</span> bBigEndian)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    assert(uiSize + uiOffset &lt;= _uiSize);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">if</span> (!bBigEndian) {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        memcpy(pvDstData, _pucData + uiOffset, uiSize);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        uint32_t uiIndex;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        uint8_t* puiDstData = (uint8_t*)pvDstData;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">for</span> (uiIndex = 0; uiIndex &lt; uiSize; uiIndex++) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">// Get the pointer to the null terminated string</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">const</span> uint8_t *first = &amp;mBlackboard[offset];</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    output = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span> *<span class="keyword">&gt;</span>(first);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#ae31d40f0fb954f3fc14e445cdef0fbd1">   88</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#ae31d40f0fb954f3fc14e445cdef0fbd1">CParameterBlackboard::writeBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* pvSrcData, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> offset)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="classCParameterBlackboard.html#a52d3f07a98e0e73d36cf222aa82ce3d0">writeInteger</a>(pvSrcData, size, offset);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a9ddc4545cb30be9e77acfd59830af8c3">   92</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#a9ddc4545cb30be9e77acfd59830af8c3">CParameterBlackboard::readBuffer</a>(<span class="keywordtype">void</span>* pvDstData, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> offset)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="classCParameterBlackboard.html#aa87ec78e61424a92250a172b68544071">readInteger</a>(pvDstData, size, offset);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            puiDstData[uiSize - uiIndex - 1] = _pucData[uiIndex + uiOffset];</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a7ccc33426ac800565cb6b5b11bbf32ce">  102</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#a7ccc33426ac800565cb6b5b11bbf32ce">CParameterBlackboard::writeString</a>(<span class="keyword">const</span> std::string &amp;input, uint32_t uiOffset)</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    strcpy((<span class="keywordtype">char</span>*)_pucData + uiOffset, input.c_str());</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a7d0efe77c5d8a11f6ff418b8013c8ede">  107</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#a7d0efe77c5d8a11f6ff418b8013c8ede">CParameterBlackboard::readString</a>(std::string &amp;output, uint32_t uiOffset)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    output = std::string((<span class="keyword">const</span> <span class="keywordtype">char</span>*)_pucData + uiOffset);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">// Access from/to subsystems</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a4b43184e94ee130442b5dcf72a54ff91">   98</a></span>&#160;uint8_t* <a class="code" href="classCParameterBlackboard.html#a4b43184e94ee130442b5dcf72a54ff91">CParameterBlackboard::getLocation</a>(<span class="keywordtype">size_t</span> offset)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;{</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    assertValidAccess(offset, 1);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">return</span> &amp;mBlackboard[offset];</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">// Configuration handling</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a45b06995999fa388ee28c6575f5570f2">  105</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#a45b06995999fa388ee28c6575f5570f2">CParameterBlackboard::restoreFrom</a>(<span class="keyword">const</span> <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>* pFromBlackboard, <span class="keywordtype">size_t</span> offset)</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;{</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;fromBB = pFromBlackboard-&gt;mBlackboard;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    assertValidAccess(offset, fromBB.size());</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    std::copy(begin(fromBB), end(fromBB), atOffset(offset));</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">// Access from/to subsystems</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#ac1b98fae8921c4a296d7af0faad3e0df">  113</a></span>&#160;uint8_t* <a class="code" href="classCParameterBlackboard.html#ac1b98fae8921c4a296d7af0faad3e0df">CParameterBlackboard::getLocation</a>(uint32_t uiOffset)</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;{</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">return</span> _pucData + uiOffset;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">// Configuration handling</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#ad6a2b3fd050432c1e050347222544915">  119</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#ad6a2b3fd050432c1e050347222544915">CParameterBlackboard::restoreFrom</a>(<span class="keyword">const</span> <a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>* pFromBlackboard, uint32_t uiOffset)</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;{</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    memcpy(_pucData + uiOffset, pFromBlackboard-&gt;_pucData, pFromBlackboard-&gt;_uiSize);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#a18beee9bc99021a03cd3d44fda0df97e">  124</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#a18beee9bc99021a03cd3d44fda0df97e">CParameterBlackboard::saveTo</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>* pToBlackboard, uint32_t uiOffset)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    memcpy(pToBlackboard-&gt;_pucData, _pucData + uiOffset, pToBlackboard-&gt;_uiSize);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">// Serialization</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#ad96ba821eb1035b06a5a30ef7377da39">  130</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#ad96ba821eb1035b06a5a30ef7377da39">CParameterBlackboard::serialize</a>(<a class="code" href="classCBinaryStream.html">CBinaryStream</a>&amp; binaryStream)</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;{</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">if</span> (binaryStream.<a class="code" href="classCBinaryStream.html#a362955618d8b9cbb753d59ea9e85a124">isOut</a>()) {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        binaryStream.<a class="code" href="classCBinaryStream.html#af629f3fadf931d1c104bc23838f5c7f0">write</a>(_pucData, _uiSize);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        binaryStream.<a class="code" href="classCBinaryStream.html#a82ce448e447ad3801b55d8cf4c00f61f">read</a>(_pucData, _uiSize);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
-<div class="ttc" id="classCParameterBlackboard_html_a55e42fea26cfb555ba66021568357311"><div class="ttname"><a href="classCParameterBlackboard.html#a55e42fea26cfb555ba66021568357311">CParameterBlackboard::~CParameterBlackboard</a></div><div class="ttdeci">~CParameterBlackboard()</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00038">ParameterBlackboard.cpp:38</a></div></div>
-<div class="ttc" id="classCBinaryStream_html"><div class="ttname"><a href="classCBinaryStream.html">CBinaryStream</a></div><div class="ttdef"><b>Definition:</b> <a href="BinaryStream_8h_source.html#l00036">BinaryStream.h:36</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_ab9d9a3d649fccda93ede444ed12d8791"><div class="ttname"><a href="classCParameterBlackboard.html#ab9d9a3d649fccda93ede444ed12d8791">CParameterBlackboard::readInteger</a></div><div class="ttdeci">void readInteger(void *pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00083">ParameterBlackboard.cpp:83</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_a7d0efe77c5d8a11f6ff418b8013c8ede"><div class="ttname"><a href="classCParameterBlackboard.html#a7d0efe77c5d8a11f6ff418b8013c8ede">CParameterBlackboard::readString</a></div><div class="ttdeci">void readString(std::string &amp;output, uint32_t uiOffset) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00107">ParameterBlackboard.cpp:107</a></div></div>
-<div class="ttc" id="classCBinaryStream_html_a82ce448e447ad3801b55d8cf4c00f61f"><div class="ttname"><a href="classCBinaryStream.html#a82ce448e447ad3801b55d8cf4c00f61f">CBinaryStream::read</a></div><div class="ttdeci">void read(uint8_t *puiData, size_t uiSize)</div><div class="ttdef"><b>Definition:</b> <a href="BinaryStream_8cpp_source.html#l00148">BinaryStream.cpp:148</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_acebc8035bb3e73be7ece4fcb5169b474"><div class="ttname"><a href="classCParameterBlackboard.html#acebc8035bb3e73be7ece4fcb5169b474">CParameterBlackboard::writeInteger</a></div><div class="ttdeci">void writeInteger(const void *pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00064">ParameterBlackboard.cpp:64</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_ad6a2b3fd050432c1e050347222544915"><div class="ttname"><a href="classCParameterBlackboard.html#ad6a2b3fd050432c1e050347222544915">CParameterBlackboard::restoreFrom</a></div><div class="ttdeci">void restoreFrom(const CParameterBlackboard *pFromBlackboard, uint32_t uiOffset)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00119">ParameterBlackboard.cpp:119</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_ad96ba821eb1035b06a5a30ef7377da39"><div class="ttname"><a href="classCParameterBlackboard.html#ad96ba821eb1035b06a5a30ef7377da39">CParameterBlackboard::serialize</a></div><div class="ttdeci">void serialize(CBinaryStream &amp;binaryStream)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00130">ParameterBlackboard.cpp:130</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_a1c0442d3a8907f740ce75d9b80cfa47f"><div class="ttname"><a href="classCParameterBlackboard.html#a1c0442d3a8907f740ce75d9b80cfa47f">CParameterBlackboard::getSize</a></div><div class="ttdeci">uint32_t getSize() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00058">ParameterBlackboard.cpp:58</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_a7ccc33426ac800565cb6b5b11bbf32ce"><div class="ttname"><a href="classCParameterBlackboard.html#a7ccc33426ac800565cb6b5b11bbf32ce">CParameterBlackboard::writeString</a></div><div class="ttdeci">void writeString(const std::string &amp;input, uint32_t uiOffset)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00102">ParameterBlackboard.cpp:102</a></div></div>
-<div class="ttc" id="classCBinaryStream_html_af629f3fadf931d1c104bc23838f5c7f0"><div class="ttname"><a href="classCBinaryStream.html#af629f3fadf931d1c104bc23838f5c7f0">CBinaryStream::write</a></div><div class="ttdeci">void write(const uint8_t *puiData, size_t uiSize)</div><div class="ttdef"><b>Definition:</b> <a href="BinaryStream_8cpp_source.html#l00139">BinaryStream.cpp:139</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_ac1b98fae8921c4a296d7af0faad3e0df"><div class="ttname"><a href="classCParameterBlackboard.html#ac1b98fae8921c4a296d7af0faad3e0df">CParameterBlackboard::getLocation</a></div><div class="ttdeci">uint8_t * getLocation(uint32_t uiOffset)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00113">ParameterBlackboard.cpp:113</a></div></div>
-<div class="ttc" id="classCBinaryStream_html_a362955618d8b9cbb753d59ea9e85a124"><div class="ttname"><a href="classCBinaryStream.html#a362955618d8b9cbb753d59ea9e85a124">CBinaryStream::isOut</a></div><div class="ttdeci">bool isOut() const </div><div class="ttdef"><b>Definition:</b> <a href="BinaryStream_8cpp_source.html#l00169">BinaryStream.cpp:169</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_a18beee9bc99021a03cd3d44fda0df97e"><div class="ttname"><a href="classCParameterBlackboard.html#a18beee9bc99021a03cd3d44fda0df97e">CParameterBlackboard::saveTo</a></div><div class="ttdeci">void saveTo(CParameterBlackboard *pToBlackboard, uint32_t uiOffset) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00124">ParameterBlackboard.cpp:124</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_a3ed6eacd670df5642a477d82c7053aeb"><div class="ttname"><a href="classCParameterBlackboard.html#a3ed6eacd670df5642a477d82c7053aeb">CParameterBlackboard::CParameterBlackboard</a></div><div class="ttdeci">CParameterBlackboard()</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00034">ParameterBlackboard.cpp:34</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00036">ParameterBlackboard.h:36</a></div></div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classCParameterBlackboard.html#acde8695accd70262d2785b33a09a1e37">  112</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterBlackboard.html#acde8695accd70262d2785b33a09a1e37">CParameterBlackboard::saveTo</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>* pToBlackboard, <span class="keywordtype">size_t</span> offset)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">auto</span> &amp;toBB = pToBlackboard-&gt;mBlackboard;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    assertValidAccess(offset, toBB.size());</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    std::copy_n(atOffset(offset), toBB.size(), begin(toBB));</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keywordtype">void</span> CParameterBlackboard::assertValidAccess(<span class="keywordtype">size_t</span> offset, <span class="keywordtype">size_t</span> size)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="AlwaysAssert_8hpp.html#aa7a8026477407863614c5e1b3f7708de">ALWAYS_ASSERT</a>(offset + size &lt;= <a class="code" href="classCParameterBlackboard.html#a518aa527b461b96187777b8e1794a818">getSize</a>(), <span class="stringliteral">&quot;Invalid data size access: offset=&quot;</span> &lt;&lt; offset</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            &lt;&lt; <span class="stringliteral">&quot; size=&quot;</span> &lt;&lt; size</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            &lt;&lt; <span class="stringliteral">&quot;reference size=&quot;</span> &lt;&lt; <a class="code" href="classCParameterBlackboard.html#a518aa527b461b96187777b8e1794a818">getSize</a>());</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
+<div class="ttc" id="classCParameterBlackboard_html_a52d3f07a98e0e73d36cf222aa82ce3d0"><div class="ttname"><a href="classCParameterBlackboard.html#a52d3f07a98e0e73d36cf222aa82ce3d0">CParameterBlackboard::writeInteger</a></div><div class="ttdeci">void writeInteger(const void *pvSrcData, size_t size, size_t offset)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00047">ParameterBlackboard.cpp:47</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_a8ab588ed3946c5b368b81804a08a3251"><div class="ttname"><a href="classCParameterBlackboard.html#a8ab588ed3946c5b368b81804a08a3251">CParameterBlackboard::writeString</a></div><div class="ttdeci">void writeString(const std::string &amp;input, size_t offset)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00069">ParameterBlackboard.cpp:69</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_a518aa527b461b96187777b8e1794a818"><div class="ttname"><a href="classCParameterBlackboard.html#a518aa527b461b96187777b8e1794a818">CParameterBlackboard::getSize</a></div><div class="ttdeci">size_t getSize() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00041">ParameterBlackboard.cpp:41</a></div></div>
+<div class="ttc" id="Iterator_8hpp_html_a0e91542d055d8d8e268a70a60b636c19"><div class="ttname"><a href="Iterator_8hpp.html#a0e91542d055d8d8e268a70a60b636c19">MAKE_ARRAY_ITERATOR</a></div><div class="ttdeci">#define MAKE_ARRAY_ITERATOR(begin, size)</div><div class="ttdoc">By default an array iterator is a pointer to the first element. </div><div class="ttdef"><b>Definition:</b> <a href="Iterator_8hpp_source.html#l00045">Iterator.hpp:45</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_acde8695accd70262d2785b33a09a1e37"><div class="ttname"><a href="classCParameterBlackboard.html#acde8695accd70262d2785b33a09a1e37">CParameterBlackboard::saveTo</a></div><div class="ttdeci">void saveTo(CParameterBlackboard *pToBlackboard, size_t offset) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00112">ParameterBlackboard.cpp:112</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_a45b06995999fa388ee28c6575f5570f2"><div class="ttname"><a href="classCParameterBlackboard.html#a45b06995999fa388ee28c6575f5570f2">CParameterBlackboard::restoreFrom</a></div><div class="ttdeci">void restoreFrom(const CParameterBlackboard *pFromBlackboard, size_t offset)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00105">ParameterBlackboard.cpp:105</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_af7f3c085b727682c9d0e81372bb50c9b"><div class="ttname"><a href="classCParameterBlackboard.html#af7f3c085b727682c9d0e81372bb50c9b">CParameterBlackboard::setSize</a></div><div class="ttdeci">void setSize(size_t size)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00036">ParameterBlackboard.cpp:36</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_a9ddc4545cb30be9e77acfd59830af8c3"><div class="ttname"><a href="classCParameterBlackboard.html#a9ddc4545cb30be9e77acfd59830af8c3">CParameterBlackboard::readBuffer</a></div><div class="ttdeci">void readBuffer(void *pvDstData, size_t size, size_t offset) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00092">ParameterBlackboard.cpp:92</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_a4b43184e94ee130442b5dcf72a54ff91"><div class="ttname"><a href="classCParameterBlackboard.html#a4b43184e94ee130442b5dcf72a54ff91">CParameterBlackboard::getLocation</a></div><div class="ttdeci">uint8_t * getLocation(size_t offset)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00098">ParameterBlackboard.cpp:98</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_ae31d40f0fb954f3fc14e445cdef0fbd1"><div class="ttname"><a href="classCParameterBlackboard.html#ae31d40f0fb954f3fc14e445cdef0fbd1">CParameterBlackboard::writeBuffer</a></div><div class="ttdeci">void writeBuffer(const void *pvSrcData, size_t size, size_t offset)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00088">ParameterBlackboard.cpp:88</a></div></div>
+<div class="ttc" id="AlwaysAssert_8hpp_html"><div class="ttname"><a href="AlwaysAssert_8hpp.html">AlwaysAssert.hpp</a></div></div>
+<div class="ttc" id="AlwaysAssert_8hpp_html_aa7a8026477407863614c5e1b3f7708de"><div class="ttname"><a href="AlwaysAssert_8hpp.html#aa7a8026477407863614c5e1b3f7708de">ALWAYS_ASSERT</a></div><div class="ttdeci">#define ALWAYS_ASSERT(cond, iostr)</div><div class="ttdef"><b>Definition:</b> <a href="AlwaysAssert_8hpp_source.html#l00047">AlwaysAssert.hpp:47</a></div></div>
+<div class="ttc" id="Iterator_8hpp_html"><div class="ttname"><a href="Iterator_8hpp.html">Iterator.hpp</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_aa87ec78e61424a92250a172b68544071"><div class="ttname"><a href="classCParameterBlackboard.html#aa87ec78e61424a92250a172b68544071">CParameterBlackboard::readInteger</a></div><div class="ttdeci">void readInteger(void *pvDstData, size_t size, size_t offset) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00058">ParameterBlackboard.cpp:58</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html_a09182c2726481979101b7be0be944483"><div class="ttname"><a href="classCParameterBlackboard.html#a09182c2726481979101b7be0be944483">CParameterBlackboard::readString</a></div><div class="ttdeci">void readString(std::string &amp;output, size_t offset) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00077">ParameterBlackboard.cpp:77</a></div></div>
 <div class="ttc" id="ParameterBlackboard_8h_html"><div class="ttname"><a href="ParameterBlackboard_8h.html">ParameterBlackboard.h</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html_ac03b75ea7a07a5f8d1fcdb3e1ded11dd"><div class="ttname"><a href="classCParameterBlackboard.html#ac03b75ea7a07a5f8d1fcdb3e1ded11dd">CParameterBlackboard::setSize</a></div><div class="ttdeci">void setSize(uint32_t uiSize)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8cpp_source.html#l00044">ParameterBlackboard.cpp:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

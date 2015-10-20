@@ -1,7 +1,8 @@
 <map id="parameter/VirtualSubsystem.h" name="parameter/VirtualSubsystem.h">
-<area shape="rect" id="node2" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="263,80,481,107"/>
-<area shape="rect" id="node5" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="483,162,687,189"/>
-<area shape="rect" id="node6" href="$VirtualSubsystem_8cpp.html" title="parameter/VirtualSubsystem.cpp" alt="" coords="600,80,835,107"/>
+<area shape="rect" id="node2" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="408,80,627,107"/>
+<area shape="rect" id="node6" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="651,162,855,189"/>
+<area shape="rect" id="node7" href="$VirtualSubsystem_8cpp.html" title="parameter/VirtualSubsystem.cpp" alt="" coords="745,80,980,107"/>
 <area shape="rect" id="node3" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="5,162,216,189"/>
-<area shape="rect" id="node4" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="240,155,459,196"/>
+<area shape="rect" id="node4" href="$Plugin_8h.html" title="This file is intended to be used by the plugins. " alt="" coords="240,162,384,189"/>
+<area shape="rect" id="node5" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="408,155,627,196"/>
 </map>

@@ -1,3 +1,4 @@
 <map id="CHardwareBackSynchronizer" name="CHardwareBackSynchronizer">
-<area shape="rect" id="node2" href="$classCBackSynchronizer.html" title="CBackSynchronizer" alt="" coords="36,5,181,32"/>
+<area shape="rect" id="node2" href="$classCBackSynchronizer.html" title="CBackSynchronizer" alt="" coords="36,80,181,107"/>
+<area shape="rect" id="node3" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="35,5,183,32"/>
 </map>

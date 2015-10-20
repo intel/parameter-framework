@@ -1,6 +1,6 @@
 <map id="CAreaConfiguration::CAreaConfiguration" name="CAreaConfiguration::CAreaConfiguration">
-<area shape="rect" id="node2" href="$classCParameterBlackboard.html#ac03b75ea7a07a5f8d1fcdb3e1ded11dd" title="CParameterBlackboard\l::setSize" alt="" coords="208,5,377,47"/>
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a6bc3e14e1da435b74e38ea3e95a31e62" title="CConfigurableElement\l::getFootPrint" alt="" coords="211,95,375,136"/>
+<area shape="rect" id="node2" href="$classCParameterBlackboard.html#af7f3c085b727682c9d0e81372bb50c9b" title="CParameterBlackboard\l::setSize" alt="" coords="208,5,377,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#ab674ec27478a05b77d0138747f560f7b" title="CConfigurableElement\l::getFootPrint" alt="" coords="211,95,375,136"/>
 <area shape="rect" id="node4" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="425,77,608,103"/>
-<area shape="rect" id="node5" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="445,127,589,154"/>
+<area shape="rect" id="node5" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="445,127,589,154"/>
 </map>

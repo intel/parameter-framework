@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -99,12 +99,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Interface to implement to provide a custom logger to the PF.  
+ <a href="classCParameterMgrFullConnector_1_1ILogger.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a72fc31c032fa7a11086cd9d17121018b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector_1_1ILogger.html#a72fc31c032fa7a11086cd9d17121018b">log</a> (bool bIsWarning, const std::string &amp;strLog)=0</td></tr>
-<tr class="separator:a72fc31c032fa7a11086cd9d17121018b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af11310f032bb25b447370454c0d1e36c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector_1_1ILogger.html#af11310f032bb25b447370454c0d1e36c">info</a> (const std::string &amp;strLog)=0</td></tr>
+<tr class="separator:af11310f032bb25b447370454c0d1e36c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e42578c97faa51f280ad9d8e385d1d4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector_1_1ILogger.html#a8e42578c97faa51f280ad9d8e385d1d4">warning</a> (const std::string &amp;strLog)=0</td></tr>
+<tr class="separator:a8e42578c97faa51f280ad9d8e385d1d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -112,8 +117,14 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a5c939b4ac15684102816e69eb437fd5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8h_source.html#l00052">52</a> of file <a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>.</p>
+<div class="textblock"><p>Interface to implement to provide a custom logger to the PF. </p>
+<p>Either:</p><ul>
+<li>override info and warning methods</li>
+<li>override the log method</li>
+</ul>
+<p>Choice between the 2 is left to the client convenience.  Errors are always returned synchronously. Never logged. </p>
+
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8h_source.html#l00067">67</a> of file <a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5c939b4ac15684102816e69eb437fd5e"></a>
 <div class="memitem">
@@ -136,12 +147,12 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8h_source.html#l00057">57</a> of file <a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8h_source.html#l00073">73</a> of file <a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a72fc31c032fa7a11086cd9d17121018b"></a>
+<a class="anchor" id="af11310f032bb25b447370454c0d1e36c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -149,21 +160,35 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void CParameterMgrFullConnector::ILogger::log </td>
+          <td class="memname">virtual void CParameterMgrFullConnector::ILogger::info </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bIsWarning</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strLog</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>strLog</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8e42578c97faa51f280ad9d8e385d1d4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CParameterMgrFullConnector::ILogger::warning </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>strLog</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>

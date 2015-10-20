@@ -1,4 +1,5 @@
 <map id="CIntegerParameterType::toBlackboard" name="CIntegerParameterType::toBlackboard">
-<area shape="rect" id="node2" href="$classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a" title="CParameterType::isEncodable" alt="" coords="224,5,435,32"/>
-<area shape="rect" id="node3" href="$classCParameterType.html#ac32b37965ef213b6a8df9656b37596df" title="Sign extension (32 bits) " alt="" coords="227,56,431,83"/>
+<area shape="rect" id="node2" href="$namespaceutility.html#af26524fd398a870267af79c918862662" title="Checks if a string has the written representation of an hexadecimal number (Which is the prefix &quot;0x&quot; ..." alt="" coords="251,5,407,32"/>
+<area shape="rect" id="node3" href="$classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a" title="CParameterType::isEncodable" alt="" coords="224,56,435,83"/>
+<area shape="rect" id="node4" href="$classCParameterType.html#ac32b37965ef213b6a8df9656b37596df" title="Sign extension (32 bits) " alt="" coords="227,107,431,133"/>
 </map>

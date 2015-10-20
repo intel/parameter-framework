@@ -31,7 +31,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classCConfigurableDomain.html#ac200b397f14de19463146c5f75d57020" target="_top" xlink:title="CConfigurableDomain\l::addConfigurableElement">
+<g id="a_node3"><a xlink:href="classCConfigurableDomain.html#ab671c7341528cf914119ba8fb3662090" target="_top" xlink:title="Add a configurable element to the domain. ">
 <polygon fill="white" stroke="black" points="364.5,-49.5 364.5,-79.5 504.5,-79.5 504.5,-49.5 364.5,-49.5"/>
 <text text-anchor="start" x="372.5" y="-67.5" font-family="Verdana" font-size="10.00">CConfigurableDomain</text>
 <text text-anchor="middle" x="434.5" y="-56.5" font-family="Verdana" font-size="10.00">::addConfigurableElement</text>
@@ -45,7 +45,7 @@
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classCConfigurableDomains.html#a181ae71432b21ee3fedb82abb05872e3" target="_top" xlink:title="CConfigurableDomains\l::findConfigurationBlackboard">
+<g id="a_node7"><a xlink:href="classCConfigurableDomains.html#a0fb6ef1d7480f819135a29a5dfc6463d" target="_top" xlink:title="CConfigurableDomains\l::findConfigurationBlackboard">
 <polygon fill="white" stroke="black" points="356,-0.5 356,-30.5 513,-30.5 513,-0.5 356,-0.5"/>
 <text text-anchor="start" x="364" y="-18.5" font-family="Verdana" font-size="10.00">CConfigurableDomains</text>
 <text text-anchor="middle" x="434.5" y="-7.5" font-family="Verdana" font-size="10.00">::findConfigurationBlackboard</text>
@@ -59,7 +59,7 @@
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classCConfigurableDomains.html#a5ef1a732092a341b147eca23da2f9476" target="_top" xlink:title="CConfigurableDomains\l::addConfigurableElementToDomain">
+<g id="a_node4"><a xlink:href="classCConfigurableDomains.html#a1be2d84567e3868ed69fdc50904cab3b" target="_top" xlink:title="Associate a configurable element to a domain. ">
 <polygon fill="white" stroke="black" points="552,-49.5 552,-79.5 740,-79.5 740,-49.5 552,-49.5"/>
 <text text-anchor="start" x="560" y="-67.5" font-family="Verdana" font-size="10.00">CConfigurableDomains</text>
 <text text-anchor="middle" x="646" y="-56.5" font-family="Verdana" font-size="10.00">::addConfigurableElementToDomain</text>

@@ -1,31 +1,32 @@
 <map id="CXmlElement::setXmlElement" name="CXmlElement::setXmlElement">
-<area shape="rect" id="node2" href="$classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c" title="Method that returns the root element of the Xml tree. " alt="" coords="545,165,780,191"/>
-<area shape="rect" id="node4" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="267,534,497,561"/>
-<area shape="rect" id="node18" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="855,1095,1043,1122"/>
-<area shape="rect" id="node26" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator\l::next" alt="" coords="848,804,1051,845"/>
+<area shape="rect" id="node2" href="$classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c" title="Method that returns the root element of the Xml tree. " alt="" coords="545,139,780,166"/>
+<area shape="rect" id="node4" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="267,511,497,538"/>
+<area shape="rect" id="node19" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="855,938,1043,965"/>
+<area shape="rect" id="node27" href="$classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc" title="CXmlElement::CChildIterator\l::next" alt="" coords="848,783,1051,824"/>
 <area shape="rect" id="node3" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="860,5,1039,47"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="580,391,745,418"/>
-<area shape="rect" id="node6" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance\l::fromXml" alt="" coords="869,449,1029,491"/>
-<area shape="rect" id="node7" href="$classCComponentType.html#a962c2716cd757893d0a1dafc84d538da" title="CComponentType::fromXml" alt="" coords="851,515,1047,542"/>
-<area shape="rect" id="node8" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="1169,685,1315,711"/>
-<area shape="rect" id="node10" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="1683,606,1848,633"/>
-<area shape="rect" id="node11" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="867,617,1031,643"/>
-<area shape="rect" id="node12" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType\l::fromXml" alt="" coords="854,123,1045,164"/>
-<area shape="rect" id="node13" href="$classCFrameworkConfigurationLocation.html#a2e9a4fed347353201cd0272de4952841" title="CFrameworkConfigurationLocation\l::fromXml" alt="" coords="830,188,1069,229"/>
-<area shape="rect" id="node14" href="$classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e" title="CLinearParameterAdaptation\l::fromXml" alt="" coords="846,253,1053,295"/>
-<area shape="rect" id="node15" href="$classCLogarithmicParameterAdaptation.html#ac0b21330479721a562cbc9ff572b5e8e" title="CLogarithmicParameterAdaptation\l::fromXml" alt="" coords="828,319,1071,360"/>
-<area shape="rect" id="node16" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule\l::fromXml" alt="" coords="864,384,1035,425"/>
-<area shape="rect" id="node17" href="$classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66" title="CTypeElement::fromXml" alt="" coords="1437,290,1611,317"/>
-<area shape="rect" id="node9" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="1446,644,1602,685"/>
-<area shape="rect" id="node19" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="1160,1029,1324,1071"/>
-<area shape="rect" id="node21" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration\l::composeSettings" alt="" coords="1159,1212,1325,1253"/>
-<area shape="rect" id="node22" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="1153,1095,1331,1122"/>
-<area shape="rect" id="node24" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="1156,1147,1328,1188"/>
-<area shape="rect" id="node20" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="1445,1029,1603,1071"/>
-<area shape="rect" id="node23" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="1459,1095,1589,1122"/>
-<area shape="rect" id="node25" href="$classCSelectionCriterion.html#a3942150fa9e5980d89268672fff31032" title="Export to XML. " alt="" coords="1452,1147,1596,1188"/>
-<area shape="rect" id="node27" href="$classCDomainConfiguration.html#afbcd309cfae933c862f24368b5c9eab5" title="CDomainConfiguration\l::parseSettings" alt="" coords="1159,888,1325,929"/>
-<area shape="rect" id="node28" href="$classCPluginLocation.html#a078d8017417c36f89f9d05b5e4d1b33b" title="CPluginLocation::fromXml" alt="" coords="1149,954,1335,981"/>
-<area shape="rect" id="node29" href="$classCXmlElement.html#abffb4b3c9d2ac6c552b3222a92bf0d8a" title="CXmlElement::getChildElement" alt="" coords="1413,757,1635,783"/>
-<area shape="rect" id="node30" href="$classCXmlElement.html#adf23655abe898403789f9d7c35ff3225" title="CXmlElement::getNbChildElements" alt="" coords="1119,786,1365,813"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="580,369,745,395"/>
+<area shape="rect" id="node6" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance\l::fromXml" alt="" coords="869,71,1029,112"/>
+<area shape="rect" id="node7" href="$classCComponentType.html#a962c2716cd757893d0a1dafc84d538da" title="CComponentType::fromXml" alt="" coords="851,137,1047,163"/>
+<area shape="rect" id="node8" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="1169,363,1315,390"/>
+<area shape="rect" id="node10" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="1683,285,1848,311"/>
+<area shape="rect" id="node11" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="867,289,1031,315"/>
+<area shape="rect" id="node12" href="$classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e" title="CFixedPointParameterType\l::fromXml" alt="" coords="854,391,1045,432"/>
+<area shape="rect" id="node13" href="$classCFloatingPointParameterType.html#afc9886b6b3b300f27057c7361f690f54" title="CFloatingPointParameterType\l::fromXml" alt="" coords="845,456,1053,497"/>
+<area shape="rect" id="node14" href="$classCFrameworkConfigurationLocation.html#a2e9a4fed347353201cd0272de4952841" title="CFrameworkConfigurationLocation\l::fromXml" alt="" coords="830,521,1069,563"/>
+<area shape="rect" id="node15" href="$classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e" title="CLinearParameterAdaptation\l::fromXml" alt="" coords="846,587,1053,628"/>
+<area shape="rect" id="node16" href="$classCLogarithmicParameterAdaptation.html#ac0b21330479721a562cbc9ff572b5e8e" title="CLogarithmicParameterAdaptation\l::fromXml" alt="" coords="828,652,1071,693"/>
+<area shape="rect" id="node17" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule\l::fromXml" alt="" coords="864,717,1035,759"/>
+<area shape="rect" id="node18" href="$classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66" title="CTypeElement::fromXml" alt="" coords="1437,187,1611,214"/>
+<area shape="rect" id="node9" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="1446,323,1602,364"/>
+<area shape="rect" id="node20" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="1160,865,1324,907"/>
+<area shape="rect" id="node22" href="$classCDomainConfiguration.html#a39c907e9023554f7a86836ac9f8da32f" title="CDomainConfiguration\l::composeSettings" alt="" coords="1159,996,1325,1037"/>
+<area shape="rect" id="node23" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="1153,1062,1331,1089"/>
+<area shape="rect" id="node25" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="1156,931,1328,972"/>
+<area shape="rect" id="node21" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="1445,865,1603,907"/>
+<area shape="rect" id="node24" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="1459,1062,1589,1089"/>
+<area shape="rect" id="node26" href="$classCSelectionCriterion.html#a3942150fa9e5980d89268672fff31032" title="Export to XML. " alt="" coords="1452,931,1596,972"/>
+<area shape="rect" id="node28" href="$classCDomainConfiguration.html#a07ba71bfd498ff4291eb765975360339" title="CDomainConfiguration\l::parseSettings" alt="" coords="1159,572,1325,613"/>
+<area shape="rect" id="node29" href="$classCPluginLocation.html#a078d8017417c36f89f9d05b5e4d1b33b" title="CPluginLocation::fromXml" alt="" coords="1149,689,1335,715"/>
+<area shape="rect" id="node30" href="$classCXmlElement.html#abffb4b3c9d2ac6c552b3222a92bf0d8a" title="CXmlElement::getChildElement" alt="" coords="1413,497,1635,523"/>
+<area shape="rect" id="node31" href="$classCXmlElement.html#adf23655abe898403789f9d7c35ff3225" title="CXmlElement::getNbChildElements" alt="" coords="1119,790,1365,817"/>
 </map>

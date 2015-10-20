@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -123,245 +123,258 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XmlDocSource_8h.html">XmlDocSource.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;libxml/tree.h&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;libxml/xmlschemas.h&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;libxml/parser.h&gt;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;libxml/xinclude.h&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">using</span> std::string;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// Schedule for libxml2 library</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCXmlDocSource.html#a4694fd8141031196a0319ad97bcb49dd">CXmlDocSource::_bLibXml2CleanupScheduled</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a8d19bcfd97d0f836b5ae5cad82dc92c0">   43</a></span>&#160;<a class="code" href="classCXmlDocSource.html#a8d19bcfd97d0f836b5ae5cad82dc92c0">CXmlDocSource::CXmlDocSource</a>(_xmlDoc *pDoc, <span class="keywordtype">bool</span> bValidateWithSchema,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                             _xmlNode *pRootNode) :</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;      _pDoc(pDoc),</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      _pRootNode(pRootNode),</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      _strXmlSchemaFile(<span class="stringliteral">&quot;&quot;</span>),</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      _strRootElementType(<span class="stringliteral">&quot;&quot;</span>),</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      _strRootElementName(<span class="stringliteral">&quot;&quot;</span>),</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      _strNameAttributeName(<span class="stringliteral">&quot;&quot;</span>),</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      _bValidateWithSchema(bValidateWithSchema)</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    init();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AlwaysAssert_8hpp.html">AlwaysAssert.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;libxml/tree.h&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;libxml/xmlschemas.h&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;libxml/parser.h&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;libxml/xinclude.h&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;libxml/uri.h&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">using</span> std::string;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="XmlDocSource_8cpp.html#aa5e72a43d0c4f3e7679439fb2c8963fa">   42</a></span>&#160;<span class="keyword">using</span> <a class="code" href="XmlDocSource_8cpp.html#aa5e72a43d0c4f3e7679439fb2c8963fa">xml_unique_ptr</a> = std::unique_ptr&lt;xmlChar, decltype(xmlFree)&gt;;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a8d19bcfd97d0f836b5ae5cad82dc92c0">   45</a></span>&#160;<a class="code" href="classCXmlDocSource.html#a8d19bcfd97d0f836b5ae5cad82dc92c0">CXmlDocSource::CXmlDocSource</a>(_xmlDoc *pDoc, <span class="keywordtype">bool</span> bValidateWithSchema,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                             _xmlNode *pRootNode) :</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      _pDoc(pDoc),</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      _pRootNode(pRootNode),</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      _strRootElementType(<span class="stringliteral">&quot;&quot;</span>),</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      _strRootElementName(<span class="stringliteral">&quot;&quot;</span>),</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      _strNameAttributeName(<span class="stringliteral">&quot;&quot;</span>),</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      _bValidateWithSchema(bValidateWithSchema)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#ad1fcf72297a730afc4c5b257c052dd8c">   56</a></span>&#160;<a class="code" href="classCXmlDocSource.html#a8d19bcfd97d0f836b5ae5cad82dc92c0">CXmlDocSource::CXmlDocSource</a>(_xmlDoc *pDoc, <span class="keywordtype">bool</span> bValidateWithSchema,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                             <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strXmlSchemaFile,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                             <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strRootElementType,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                             <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strRootElementName,</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                             <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strNameAttributeName) :</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    _pDoc(pDoc),</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    _pRootNode(xmlDocGetRootElement(pDoc)),</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    _strXmlSchemaFile(strXmlSchemaFile),</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    _strRootElementType(strRootElementType),</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    _strRootElementName(strRootElementName),</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    _strNameAttributeName(strNameAttributeName),</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    _bValidateWithSchema(bValidateWithSchema)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    init();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a408b5ca6829875577b3e7397d9249c90">   72</a></span>&#160;<a class="code" href="classCXmlDocSource.html#a408b5ca6829875577b3e7397d9249c90">CXmlDocSource::~CXmlDocSource</a>()</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// Free XML doc</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        xmlFreeDoc(<a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a> = NULL;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">   81</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">CXmlDocSource::getRootElement</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlRootElement)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    xmlRootElement.<a class="code" href="classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2">setXmlElement</a>(<a class="code" href="classCXmlDocSource.html#ab2e30f9979637a112bc7051400cf2e0f">_pRootNode</a>);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">   86</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">CXmlDocSource::getRootElementName</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">return</span> (<span class="keyword">const</span> <span class="keywordtype">char</span>*)<a class="code" href="classCXmlDocSource.html#ab2e30f9979637a112bc7051400cf2e0f">_pRootNode</a>-&gt;name;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933">   91</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933">CXmlDocSource::getRootElementAttributeString</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strAttributeName)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="classCXmlElement.html">CXmlElement</a> topMostElement(<a class="code" href="classCXmlDocSource.html#ab2e30f9979637a112bc7051400cf2e0f">_pRootNode</a>);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">return</span> topMostElement.<a class="code" href="classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2">getAttributeString</a>(strAttributeName);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">   98</a></span>&#160;_xmlDoc* <a class="code" href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">CXmlDocSource::getDoc</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a1e04673df5c2f8da52daac761a39daf5">  103</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCXmlDocSource.html#a1e04673df5c2f8da52daac761a39daf5">CXmlDocSource::isParsable</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">// Check that the doc has been created</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a> != NULL;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">  109</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">CXmlDocSource::populate</a>(<a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext)</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;{</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">// Check that the doc has been created</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>) {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        serializingContext.<a class="code" href="classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d">setError</a>(<span class="stringliteral">&quot;Could not parse document &quot;</span>);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="comment">// Validate if necessary</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">if</span> (_bValidateWithSchema)</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">if</span> (!isInstanceDocumentValid()) {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            serializingContext.<a class="code" href="classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d">setError</a>(<span class="stringliteral">&quot;Document is not valid&quot;</span>);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a0bf03b39716173f05aaa458c8cf79262">   56</a></span>&#160;<a class="code" href="classCXmlDocSource.html#a8d19bcfd97d0f836b5ae5cad82dc92c0">CXmlDocSource::CXmlDocSource</a>(_xmlDoc *pDoc, <span class="keywordtype">bool</span> bValidateWithSchema,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                             <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strRootElementType,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                             <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strRootElementName,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                             <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strNameAttributeName) :</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    _pDoc(pDoc),</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    _pRootNode(xmlDocGetRootElement(pDoc)),</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    _strRootElementType(strRootElementType),</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    _strRootElementName(strRootElementName),</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    _strNameAttributeName(strNameAttributeName),</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    _bValidateWithSchema(bValidateWithSchema)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a408b5ca6829875577b3e7397d9249c90">   69</a></span>&#160;<a class="code" href="classCXmlDocSource.html#a408b5ca6829875577b3e7397d9249c90">CXmlDocSource::~CXmlDocSource</a>()</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// Free XML doc</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        xmlFreeDoc(<a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a> = NULL;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">   78</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">CXmlDocSource::getRootElement</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlRootElement)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    xmlRootElement.<a class="code" href="classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2">setXmlElement</a>(<a class="code" href="classCXmlDocSource.html#ab2e30f9979637a112bc7051400cf2e0f">_pRootNode</a>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">   83</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">CXmlDocSource::getRootElementName</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">return</span> (<span class="keyword">const</span> <span class="keywordtype">char</span>*)<a class="code" href="classCXmlDocSource.html#ab2e30f9979637a112bc7051400cf2e0f">_pRootNode</a>-&gt;name;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933">   88</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933">CXmlDocSource::getRootElementAttributeString</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strAttributeName)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="classCXmlElement.html">CXmlElement</a> topMostElement(<a class="code" href="classCXmlDocSource.html#ab2e30f9979637a112bc7051400cf2e0f">_pRootNode</a>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">string</span> attribute;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    topMostElement.<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">getAttribute</a>(strAttributeName, attribute);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> attribute;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a94dea190178b4bdcfc659d830e627901">   97</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCXmlDocSource.html#a94dea190178b4bdcfc659d830e627901">CXmlDocSource::getSchemaUri</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCXmlDocSource.html#a5b4b82f588740b673d3c1127b77326d0">mkUri</a>(<span class="keywordtype">string</span>((<span class="keyword">const</span> <span class="keywordtype">char</span> *)<a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>-&gt;URL), <a class="code" href="classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933">getRootElementAttributeString</a>(<span class="stringliteral">&quot;noNamespaceSchemaLocation&quot;</span>));</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">  102</a></span>&#160;_xmlDoc* <a class="code" href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">CXmlDocSource::getDoc</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a1e04673df5c2f8da52daac761a39daf5">  107</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCXmlDocSource.html#a1e04673df5c2f8da52daac761a39daf5">CXmlDocSource::isParsable</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">// Check that the doc has been created</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a> != NULL;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">  113</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">CXmlDocSource::populate</a>(<a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext)</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;{</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">// Check that the doc has been created</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>) {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        serializingContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Could not parse document &quot;</span>);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="comment">// Validate if necessary</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">if</span> (_bValidateWithSchema)</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">if</span> (!isInstanceDocumentValid()) {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            serializingContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Document is not valid&quot;</span>);</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="comment">// Check Root element type</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">getRootElementName</a>() != _strRootElementType) {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        serializingContext.<a class="code" href="classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d">setError</a>(<span class="stringliteral">&quot;Error: Wrong XML structure document &quot;</span>);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        serializingContext.<a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(<span class="stringliteral">&quot;Root Element &quot;</span> + <a class="code" href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">getRootElementName</a>()</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                                             + <span class="stringliteral">&quot; mismatches expected type &quot;</span> + _strRootElementType);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="comment">// Check Root element type</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">getRootElementName</a>() != _strRootElementType) {</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordflow">if</span> (!_strNameAttributeName.empty()) {</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordtype">string</span> strRootElementNameCheck = <a class="code" href="classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933">getRootElementAttributeString</a>(_strNameAttributeName);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        serializingContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Error: Wrong XML structure document &quot;</span>);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        serializingContext.<a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(<span class="stringliteral">&quot;Root Element &quot;</span> + <a class="code" href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">getRootElementName</a>()</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                                             + <span class="stringliteral">&quot; mismatches expected type &quot;</span> + _strRootElementType);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="comment">// Check Root element name attribute (if any)</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">if</span> (!_strRootElementName.empty() &amp;&amp; strRootElementNameCheck != _strRootElementName) {</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            serializingContext.<a class="code" href="classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d">setError</a>(<span class="stringliteral">&quot;Error: Wrong XML structure document &quot;</span>);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            serializingContext.<a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(_strRootElementType + <span class="stringliteral">&quot; element &quot;</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                                                 + _strRootElementName + <span class="stringliteral">&quot; mismatches expected &quot;</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                                                 + _strRootElementType + <span class="stringliteral">&quot; type &quot;</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                                                 + strRootElementNameCheck);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        }</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">if</span> (!_strNameAttributeName.empty()) {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordtype">string</span> strRootElementNameCheck = <a class="code" href="classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933">getRootElementAttributeString</a>(_strNameAttributeName);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <span class="comment">// Check Root element name attribute (if any)</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">if</span> (!_strRootElementName.empty() &amp;&amp; strRootElementNameCheck != _strRootElementName) {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            serializingContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Error: Wrong XML structure document &quot;</span>);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            serializingContext.<a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(_strRootElementType + <span class="stringliteral">&quot; element &quot;</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                                                 + _strRootElementName + <span class="stringliteral">&quot; mismatches expected &quot;</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                                                 + _strRootElementType + <span class="stringliteral">&quot; type &quot;</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                                                 + strRootElementNameCheck);</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;}</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="keywordtype">void</span> CXmlDocSource::init()</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;{</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classCXmlDocSource.html#a4694fd8141031196a0319ad97bcb49dd">_bLibXml2CleanupScheduled</a>) {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        }</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;}</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="comment">// Schedule cleanup</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        atexit(xmlCleanupParser);</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <a class="code" href="classCXmlDocSource.html#a4694fd8141031196a0319ad97bcb49dd">_bLibXml2CleanupScheduled</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;}</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keywordtype">bool</span> CXmlDocSource::isInstanceDocumentValid()</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;{</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#ifdef LIBXML_SCHEMAS_ENABLED</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordtype">string</span> schemaUri = <a class="code" href="classCXmlDocSource.html#a94dea190178b4bdcfc659d830e627901">getSchemaUri</a>();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    xmlDocPtr pSchemaDoc = xmlReadFile(schemaUri.c_str(), NULL, XML_PARSE_NONET);</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="keywordtype">bool</span> CXmlDocSource::isInstanceDocumentValid()</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;{</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#ifdef LIBXML_SCHEMAS_ENABLED</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    xmlDocPtr pSchemaDoc = xmlReadFile(_strXmlSchemaFile.c_str(), NULL, XML_PARSE_NONET);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keywordflow">if</span> (!pSchemaDoc) {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="comment">// Unable to load Schema</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">if</span> (!pSchemaDoc) {</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="comment">// Unable to load Schema</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    xmlSchemaParserCtxtPtr pParserCtxt = xmlSchemaNewDocParserCtxt(pSchemaDoc);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keywordflow">if</span> (!pParserCtxt) {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    xmlSchemaParserCtxtPtr pParserCtxt = xmlSchemaNewDocParserCtxt(pSchemaDoc);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="keywordflow">if</span> (!pParserCtxt) {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="comment">// Unable to create schema context</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        xmlFreeDoc(pSchemaDoc);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    }</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="comment">// Unable to create schema context</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        xmlFreeDoc(pSchemaDoc);</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="comment">// Get Schema</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    xmlSchemaPtr pSchema = xmlSchemaParse(pParserCtxt);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordflow">if</span> (!pSchema) {</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="comment">// Get Schema</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    xmlSchemaPtr pSchema = xmlSchemaParse(pParserCtxt);</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordflow">if</span> (!pSchema) {</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="comment">// Invalid Schema</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        xmlSchemaFreeParserCtxt(pParserCtxt);</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        xmlFreeDoc(pSchemaDoc);</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    }</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    xmlSchemaValidCtxtPtr pValidationCtxt = xmlSchemaNewValidCtxt(pSchema);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordflow">if</span> (!pValidationCtxt) {</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="comment">// Unable to create validation context</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        xmlSchemaFree(pSchema);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        xmlSchemaFreeParserCtxt(pParserCtxt);</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        xmlFreeDoc(pSchemaDoc);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordtype">bool</span> isDocValid = xmlSchemaValidateDoc(pValidationCtxt, <a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>) == 0;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="comment">// Invalid Schema</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        xmlSchemaFreeParserCtxt(pParserCtxt);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        xmlFreeDoc(pSchemaDoc);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    xmlSchemaValidCtxtPtr pValidationCtxt = xmlSchemaNewValidCtxt(pSchema);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordflow">if</span> (!pValidationCtxt) {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="comment">// Unable to create validation context</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        xmlSchemaFree(pSchema);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        xmlSchemaFreeParserCtxt(pParserCtxt);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        xmlFreeDoc(pSchemaDoc);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">bool</span> isDocValid = xmlSchemaValidateDoc(pValidationCtxt, <a class="code" href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">_pDoc</a>) == 0;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    xmlSchemaFreeValidCtxt(pValidationCtxt);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    xmlSchemaFree(pSchema);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    xmlSchemaFreeParserCtxt(pParserCtxt);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    xmlFreeDoc(pSchemaDoc);</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    xmlSchemaFreeValidCtxt(pValidationCtxt);</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    xmlSchemaFree(pSchema);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    xmlSchemaFreeParserCtxt(pParserCtxt);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    xmlFreeDoc(pSchemaDoc);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordflow">return</span> isDocValid;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;}</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
-<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803">  224</a></span>&#160;_xmlDoc* <a class="code" href="classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803">CXmlDocSource::mkXmlDoc</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; source, <span class="keywordtype">bool</span> fromFile, <span class="keywordtype">bool</span> xincludes, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext)</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;{</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    _xmlDoc* doc = NULL;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordflow">if</span> (fromFile) {</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        doc = xmlReadFile(source.c_str(), NULL, 0);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        doc = xmlReadMemory(source.c_str(), (int)source.size(), <span class="stringliteral">&quot;&quot;</span>, NULL, 0);</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    }</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">if</span> (doc == NULL) {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordtype">string</span> errorMsg = <span class="stringliteral">&quot;libxml failed to read&quot;</span>;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="keywordflow">if</span> (fromFile) {</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            errorMsg += <span class="stringliteral">&quot; \&quot;&quot;</span> + source + <span class="stringliteral">&quot;\&quot;&quot;</span>;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        serializingContext.<a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(errorMsg);</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    }</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordflow">if</span> (xincludes and (xmlXIncludeProcess(doc) &lt; 0)) {</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        serializingContext.<a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(<span class="stringliteral">&quot;libxml failed to resolve XIncludes&quot;</span>);</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        xmlFreeDoc(doc);</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        doc = NULL;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    }</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordflow">return</span> doc;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;}</div>
-<div class="ttc" id="classCXmlDocSource_html_a48fcc31fe095b42d61dbfe26c1558628"><div class="ttname"><a href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">CXmlDocSource::_pDoc</a></div><div class="ttdeci">_xmlDoc * _pDoc</div><div class="ttdoc">Doc. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00146">XmlDocSource.h:146</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html_a9e5ad5515d4c68fba4313df538382da7"><div class="ttname"><a href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">CXmlSerializingContext::appendLineToError</a></div><div class="ttdeci">void appendLineToError(const std::string &amp;strAppend)</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00051">XmlSerializingContext.cpp:51</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a2a7e3d4b2568b41e56b6f553eba7b93c"><div class="ttname"><a href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">CXmlDocSource::getRootElement</a></div><div class="ttdeci">void getRootElement(CXmlElement &amp;xmlRootElement) const </div><div class="ttdoc">Method that returns the root element of the Xml tree. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00081">XmlDocSource.cpp:81</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00044">XmlSerializingContext.h:44</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a5a1330e2c0bd340ad542050053f31803"><div class="ttname"><a href="classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803">CXmlDocSource::mkXmlDoc</a></div><div class="ttdeci">static _xmlDoc * mkXmlDoc(const std::string &amp;source, bool fromFile, bool xincludes, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdoc">Helper method for creating an xml document from either a file or a string. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00224">XmlDocSource.cpp:224</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a408b5ca6829875577b3e7397d9249c90"><div class="ttname"><a href="classCXmlDocSource.html#a408b5ca6829875577b3e7397d9249c90">CXmlDocSource::~CXmlDocSource</a></div><div class="ttdeci">virtual ~CXmlDocSource()</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00072">XmlDocSource.cpp:72</a></div></div>
-<div class="ttc" id="classCXmlElement_html_a3b230e1c8e92537da6a1a365dc1e71b2"><div class="ttname"><a href="classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2">CXmlElement::setXmlElement</a></div><div class="ttdeci">void setXmlElement(_xmlNode *pXmlElement)</div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00046">XmlElement.cpp:46</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a07f17719f201049c80c47c7e6d4c4933"><div class="ttname"><a href="classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933">CXmlDocSource::getRootElementAttributeString</a></div><div class="ttdeci">std::string getRootElementAttributeString(const std::string &amp;strAttributeName) const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00091">XmlDocSource.cpp:91</a></div></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordflow">return</span> isDocValid;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;}</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a5b4b82f588740b673d3c1127b77326d0">  219</a></span>&#160;std::string <a class="code" href="classCXmlDocSource.html#a5b4b82f588740b673d3c1127b77326d0">CXmlDocSource::mkUri</a>(<span class="keyword">const</span> std::string&amp; <a class="code" href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>, <span class="keyword">const</span> std::string&amp; relative)</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;{</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="XmlDocSource_8cpp.html#aa5e72a43d0c4f3e7679439fb2c8963fa">xml_unique_ptr</a> baseUri(xmlPathToURI((<span class="keyword">const</span> xmlChar *)base.c_str()), xmlFree);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="XmlDocSource_8cpp.html#aa5e72a43d0c4f3e7679439fb2c8963fa">xml_unique_ptr</a> relativeUri(xmlPathToURI((<span class="keyword">const</span> xmlChar *)relative.c_str()), xmlFree);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="comment">/* return null pointer if baseUri or relativeUri are null pointer  */</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <a class="code" href="XmlDocSource_8cpp.html#aa5e72a43d0c4f3e7679439fb2c8963fa">xml_unique_ptr</a> xmlUri(xmlBuildURI(relativeUri.get(), baseUri.get()), xmlFree);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <a class="code" href="AlwaysAssert_8hpp.html#aa7a8026477407863614c5e1b3f7708de">ALWAYS_ASSERT</a>(xmlUri != <span class="keyword">nullptr</span>, <span class="stringliteral">&quot;unable to make URI from: \&quot;&quot;</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                                      &lt;&lt; base &lt;&lt; <span class="stringliteral">&quot;\&quot; and \&quot;&quot;</span> &lt;&lt; relative &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordflow">return</span> (<span class="keyword">const</span> <span class="keywordtype">char</span> *)xmlUri.get();</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;}</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803">  232</a></span>&#160;_xmlDoc* <a class="code" href="classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803">CXmlDocSource::mkXmlDoc</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; source, <span class="keywordtype">bool</span> fromFile, <span class="keywordtype">bool</span> xincludes, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext)</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;{</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    _xmlDoc* doc = NULL;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordflow">if</span> (fromFile) {</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        doc = xmlReadFile(source.c_str(), NULL, 0);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        doc = xmlReadMemory(source.c_str(), (int)source.size(), <span class="stringliteral">&quot;&quot;</span>, NULL, 0);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    }</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span> (doc == NULL) {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordtype">string</span> errorMsg = <span class="stringliteral">&quot;libxml failed to read&quot;</span>;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">if</span> (fromFile) {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            errorMsg += <span class="stringliteral">&quot; \&quot;&quot;</span> + source + <span class="stringliteral">&quot;\&quot;&quot;</span>;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        }</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        serializingContext.<a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(errorMsg);</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    }</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keywordflow">if</span> (xincludes and (xmlXIncludeProcess(doc) &lt; 0)) {</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        serializingContext.<a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(<span class="stringliteral">&quot;libxml failed to resolve XIncludes&quot;</span>);</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        xmlFreeDoc(doc);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        doc = NULL;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    }</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordflow">return</span> doc;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
+<div class="ttc" id="classCXmlDocSource_html_a48fcc31fe095b42d61dbfe26c1558628"><div class="ttname"><a href="classCXmlDocSource.html#a48fcc31fe095b42d61dbfe26c1558628">CXmlDocSource::_pDoc</a></div><div class="ttdeci">_xmlDoc * _pDoc</div><div class="ttdoc">Doc. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00172">XmlDocSource.h:172</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html_a9e5ad5515d4c68fba4313df538382da7"><div class="ttname"><a href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">CXmlSerializingContext::appendLineToError</a></div><div class="ttdeci">void appendLineToError(const std::string &amp;strAppend)</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00046">XmlSerializingContext.cpp:46</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a2a7e3d4b2568b41e56b6f553eba7b93c"><div class="ttname"><a href="classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c">CXmlDocSource::getRootElement</a></div><div class="ttdeci">void getRootElement(CXmlElement &amp;xmlRootElement) const </div><div class="ttdoc">Method that returns the root element of the Xml tree. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00078">XmlDocSource.cpp:78</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a5a1330e2c0bd340ad542050053f31803"><div class="ttname"><a href="classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803">CXmlDocSource::mkXmlDoc</a></div><div class="ttdeci">static _xmlDoc * mkXmlDoc(const std::string &amp;source, bool fromFile, bool xincludes, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdoc">Helper method for creating an xml document from either a file or a string. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00232">XmlDocSource.cpp:232</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a408b5ca6829875577b3e7397d9249c90"><div class="ttname"><a href="classCXmlDocSource.html#a408b5ca6829875577b3e7397d9249c90">CXmlDocSource::~CXmlDocSource</a></div><div class="ttdeci">virtual ~CXmlDocSource()</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00069">XmlDocSource.cpp:69</a></div></div>
+<div class="ttc" id="classCXmlElement_html_a3b230e1c8e92537da6a1a365dc1e71b2"><div class="ttname"><a href="classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2">CXmlElement::setXmlElement</a></div><div class="ttdeci">void setXmlElement(_xmlNode *pXmlElement)</div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00045">XmlElement.cpp:45</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a07f17719f201049c80c47c7e6d4c4933"><div class="ttname"><a href="classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933">CXmlDocSource::getRootElementAttributeString</a></div><div class="ttdeci">std::string getRootElementAttributeString(const std::string &amp;strAttributeName) const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00088">XmlDocSource.cpp:88</a></div></div>
+<div class="ttc" id="classCXmlElement_html_a6198359168c744489018bc2b8d732dc3"><div class="ttname"><a href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">CXmlElement::getAttribute</a></div><div class="ttdeci">bool getAttribute(const std::string &amp;name, T &amp;value) const </div><div class="ttdoc">Get attribute. </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00101">XmlElement.cpp:101</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a94dea190178b4bdcfc659d830e627901"><div class="ttname"><a href="classCXmlDocSource.html#a94dea190178b4bdcfc659d830e627901">CXmlDocSource::getSchemaUri</a></div><div class="ttdeci">std::string getSchemaUri() const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00097">XmlDocSource.cpp:97</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a5b4b82f588740b673d3c1127b77326d0"><div class="ttname"><a href="classCXmlDocSource.html#a5b4b82f588740b673d3c1127b77326d0">CXmlDocSource::mkUri</a></div><div class="ttdeci">static std::string mkUri(const std::string &amp;base, const std::string &amp;relative)</div><div class="ttdoc">Helper method to build final URI from base and relative uri/path. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00219">XmlDocSource.cpp:219</a></div></div>
+<div class="ttc" id="classutility_1_1ErrorContext_html_afc2e1af8c4a81e36e5013bf31127c15f"><div class="ttname"><a href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">utility::ErrorContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;error)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00043">ErrorContext.hpp:43</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a1e04673df5c2f8da52daac761a39daf5"><div class="ttname"><a href="classCXmlDocSource.html#a1e04673df5c2f8da52daac761a39daf5">CXmlDocSource::isParsable</a></div><div class="ttdeci">virtual bool isParsable() const </div><div class="ttdoc">Method that checks that the xml document has been correctly parsed. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00103">XmlDocSource.cpp:103</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a8d19bcfd97d0f836b5ae5cad82dc92c0"><div class="ttname"><a href="classCXmlDocSource.html#a8d19bcfd97d0f836b5ae5cad82dc92c0">CXmlDocSource::CXmlDocSource</a></div><div class="ttdeci">CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema=false, _xmlNode *pRootNode=NULL)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00043">XmlDocSource.cpp:43</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a87f5d62acf578217f003779459d50d81"><div class="ttname"><a href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">CXmlDocSource::getRootElementName</a></div><div class="ttdeci">std::string getRootElementName() const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00086">XmlDocSource.cpp:86</a></div></div>
+<div class="ttc" id="XmlDocSource_8cpp_html_aa5e72a43d0c4f3e7679439fb2c8963fa"><div class="ttname"><a href="XmlDocSource_8cpp.html#aa5e72a43d0c4f3e7679439fb2c8963fa">xml_unique_ptr</a></div><div class="ttdeci">std::unique_ptr&lt; xmlChar, decltype(xmlFree)&gt; xml_unique_ptr</div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00042">XmlDocSource.cpp:42</a></div></div>
+<div class="ttc" id="ArrayParameter_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="ArrayParameter_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="ArrayParameter_8cpp_source.html#l00040">ArrayParameter.cpp:40</a></div></div>
+<div class="ttc" id="AlwaysAssert_8hpp_html"><div class="ttname"><a href="AlwaysAssert_8hpp.html">AlwaysAssert.hpp</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a1e04673df5c2f8da52daac761a39daf5"><div class="ttname"><a href="classCXmlDocSource.html#a1e04673df5c2f8da52daac761a39daf5">CXmlDocSource::isParsable</a></div><div class="ttdeci">virtual bool isParsable() const </div><div class="ttdoc">Method that checks that the xml document has been correctly parsed. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00107">XmlDocSource.cpp:107</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a8d19bcfd97d0f836b5ae5cad82dc92c0"><div class="ttname"><a href="classCXmlDocSource.html#a8d19bcfd97d0f836b5ae5cad82dc92c0">CXmlDocSource::CXmlDocSource</a></div><div class="ttdeci">CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema=false, _xmlNode *pRootNode=NULL)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00045">XmlDocSource.cpp:45</a></div></div>
+<div class="ttc" id="AlwaysAssert_8hpp_html_aa7a8026477407863614c5e1b3f7708de"><div class="ttname"><a href="AlwaysAssert_8hpp.html#aa7a8026477407863614c5e1b3f7708de">ALWAYS_ASSERT</a></div><div class="ttdeci">#define ALWAYS_ASSERT(cond, iostr)</div><div class="ttdef"><b>Definition:</b> <a href="AlwaysAssert_8hpp_source.html#l00047">AlwaysAssert.hpp:47</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a87f5d62acf578217f003779459d50d81"><div class="ttname"><a href="classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81">CXmlDocSource::getRootElementName</a></div><div class="ttdeci">std::string getRootElementName() const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00083">XmlDocSource.cpp:83</a></div></div>
 <div class="ttc" id="XmlDocSource_8h_html"><div class="ttname"><a href="XmlDocSource_8h.html">XmlDocSource.h</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_ab2e30f9979637a112bc7051400cf2e0f"><div class="ttname"><a href="classCXmlDocSource.html#ab2e30f9979637a112bc7051400cf2e0f">CXmlDocSource::_pRootNode</a></div><div class="ttdeci">_xmlNode * _pRootNode</div><div class="ttdoc">Root node. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00151">XmlDocSource.h:151</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html_a32535de3d5fb180f216d837ee7d5326d"><div class="ttname"><a href="classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d">CXmlSerializingContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00046">XmlSerializingContext.cpp:46</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a60c2e8020389b6896e61fe058f611565"><div class="ttname"><a href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">CXmlDocSource::populate</a></div><div class="ttdeci">virtual bool populate(CXmlSerializingContext &amp;serializingContext)</div><div class="ttdoc">Method called by the CXmlDocSink::process method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00109">XmlDocSource.cpp:109</a></div></div>
-<div class="ttc" id="classCXmlElement_html_a4aacb946f656aab1e585e1aa8f63d4e2"><div class="ttname"><a href="classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2">CXmlElement::getAttributeString</a></div><div class="ttdeci">std::string getAttributeString(const std::string &amp;strAttributeName) const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00085">XmlElement.cpp:85</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a4694fd8141031196a0319ad97bcb49dd"><div class="ttname"><a href="classCXmlDocSource.html#a4694fd8141031196a0319ad97bcb49dd">CXmlDocSource::_bLibXml2CleanupScheduled</a></div><div class="ttdeci">static bool _bLibXml2CleanupScheduled</div><div class="ttdoc">libxml2 library cleanup </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00156">XmlDocSource.h:156</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a26377c512cf5aea36ef6c3646a90494a"><div class="ttname"><a href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">CXmlDocSource::getDoc</a></div><div class="ttdeci">_xmlDoc * getDoc() const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00098">XmlDocSource.cpp:98</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_ab2e30f9979637a112bc7051400cf2e0f"><div class="ttname"><a href="classCXmlDocSource.html#ab2e30f9979637a112bc7051400cf2e0f">CXmlDocSource::_pRootNode</a></div><div class="ttdeci">_xmlNode * _pRootNode</div><div class="ttdoc">Root node. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00177">XmlDocSource.h:177</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a60c2e8020389b6896e61fe058f611565"><div class="ttname"><a href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">CXmlDocSource::populate</a></div><div class="ttdeci">virtual bool populate(CXmlSerializingContext &amp;serializingContext)</div><div class="ttdoc">Method called by the CXmlDocSink::process method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00113">XmlDocSource.cpp:113</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a26377c512cf5aea36ef6c3646a90494a"><div class="ttname"><a href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">CXmlDocSource::getDoc</a></div><div class="ttdeci">_xmlDoc * getDoc() const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00102">XmlDocSource.cpp:102</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

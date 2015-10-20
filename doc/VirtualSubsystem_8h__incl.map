@@ -1,13 +1,19 @@
 <map id="parameter/VirtualSubsystem.h" name="parameter/VirtualSubsystem.h">
-<area shape="rect" id="node2" href="$Subsystem_8h.html" title="Subsystem.h" alt="" coords="631,80,737,107"/>
-<area shape="rect" id="node3" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="538,229,705,256"/>
-<area shape="rect" id="node14" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="560,155,808,181"/>
-<area shape="rect" id="node15" href="$Mapper_8h.html" title="Mapper.h" alt="" coords="202,229,283,256"/>
-<area shape="rect" id="node16" href="$MappingContext_8h.html" title="MappingContext.h" alt="" coords="24,453,163,480"/>
-<area shape="rect" id="node4" href="$Element_8h.html" title="Element.h" alt="" coords="505,304,591,331"/>
-<area shape="rect" id="node9" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="480,379,565,405"/>
-<area shape="rect" id="node12" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="590,379,693,405"/>
-<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="232,379,355,405"/>
-<area shape="rect" id="node10" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="426,453,537,480"/>
-<area shape="rect" id="node11" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="561,453,735,480"/>
+<area shape="rect" id="node2" href="$Subsystem_8h.html" title="Subsystem.h" alt="" coords="396,80,503,107"/>
+<area shape="rect" id="node4" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="630,229,797,256"/>
+<area shape="rect" id="node17" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="617,155,865,181"/>
+<area shape="rect" id="node18" href="$Mapper_8h.html" title="Mapper.h" alt="" coords="43,229,125,256"/>
+<area shape="rect" id="node19" href="$MappingContext_8h.html" title="MappingContext.h" alt="" coords="273,304,412,331"/>
+<area shape="rect" id="node20" href="$Logger_8h.html" title="log/Logger.h" alt="" coords="1243,379,1343,405"/>
+<area shape="rect" id="node5" href="$Element_8h.html" title="Element.h" alt="" coords="670,304,757,331"/>
+<area shape="rect" id="node9" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="977,379,1063,405"/>
+<area shape="rect" id="node14" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="850,379,953,405"/>
+<area shape="rect" id="node15" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="652,379,775,405"/>
+<area shape="rect" id="node10" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="802,453,913,480"/>
+<area shape="rect" id="node11" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="937,453,1111,480"/>
+<area shape="rect" id="node12" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="956,528,1087,555"/>
+<area shape="rect" id="node13" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="1069,603,1203,629"/>
+<area shape="rect" id="node21" href="$ILogger_8h.html" title="log/ILogger.h" alt="" coords="1111,528,1214,555"/>
+<area shape="rect" id="node22" href="$LogWrapper_8h.html" title="log/LogWrapper.h" alt="" coords="1339,453,1469,480"/>
+<area shape="rect" id="node23" href="$Utility_8h.html" title="Utility.h" alt="" coords="1586,528,1654,555"/>
 </map>

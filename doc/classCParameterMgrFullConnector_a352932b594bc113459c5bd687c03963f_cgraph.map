@@ -1,13 +1,3 @@
 <map id="CParameterMgrFullConnector::renameConfiguration" name="CParameterMgrFullConnector::renameConfiguration">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#af73dc2735e178eb3571400b76172b03e" title="CParameterMgr::renameConfiguration" alt="" coords="261,56,527,83"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a052bfda8fb27ff5a1eeb0a53444031e8" title="CConfigurableDomains\l::renameConfiguration" alt="" coords="575,49,743,90"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="791,7,973,49"/>
-<area shape="rect" id="node6" href="$classCConfigurableDomain.html#a647386b073c9dd776f9cd9dcb24088a7" title="CConfigurableDomain\l::renameConfiguration" alt="" coords="799,90,965,131"/>
-<area shape="rect" id="node5" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="1021,5,1168,32"/>
-<area shape="rect" id="node7" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="1024,56,1165,83"/>
-<area shape="rect" id="node8" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="1231,107,1383,133"/>
-<area shape="rect" id="node9" href="$classCElement.html#aa09118f89e5b3208ee92d0ec51151ccf" title="CElement::rename" alt="" coords="1023,157,1166,184"/>
-<area shape="rect" id="node10" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="1216,157,1399,184"/>
-<area shape="rect" id="node11" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="1235,208,1379,235"/>
-<area shape="rect" id="node12" href="$classCElement.html#a9018d33125b066d6cd791659af95c6fe" title="CElement::setName" alt="" coords="1232,259,1383,285"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#af73dc2735e178eb3571400b76172b03e" title="CParameterMgr::renameConfiguration" alt="" coords="261,13,527,39"/>
 </map>

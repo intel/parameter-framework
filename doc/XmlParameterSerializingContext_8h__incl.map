@@ -1,4 +1,6 @@
 <map id="parameter/XmlParameterSerializingContext.h" name="parameter/XmlParameterSerializingContext.h">
-<area shape="rect" id="node2" href="$XmlElementSerializingContext_8h.html" title="XmlElementSerializingContext.h" alt="" coords="5,95,232,121"/>
-<area shape="rect" id="node3" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="8,169,181,196"/>
+<area shape="rect" id="node2" href="$XmlElementSerializingContext_8h.html" title="XmlElementSerializingContext.h" alt="" coords="13,95,239,121"/>
+<area shape="rect" id="node3" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="15,169,189,196"/>
+<area shape="rect" id="node4" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="7,244,138,271"/>
+<area shape="rect" id="node6" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="5,319,140,345"/>
 </map>

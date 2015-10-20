@@ -1,9 +1,11 @@
 <map id="parameter/SubsystemElementBuilder.h" name="parameter/SubsystemElementBuilder.h">
-<area shape="rect" id="node2" href="$ElementBuilder_8h.html" title="ElementBuilder.h" alt="" coords="338,95,468,121"/>
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="360,169,446,196"/>
-<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="232,244,318,271"/>
-<area shape="rect" id="node11" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="105,244,208,271"/>
-<area shape="rect" id="node12" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="342,244,464,271"/>
-<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="220,319,330,345"/>
-<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="22,319,195,345"/>
+<area shape="rect" id="node2" href="$ElementBuilder_8h.html" title="ElementBuilder.h" alt="" coords="458,95,589,121"/>
+<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="248,169,335,196"/>
+<area shape="rect" id="node12" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="549,468,684,495"/>
+<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="449,244,534,271"/>
+<area shape="rect" id="node13" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="559,244,661,271"/>
+<area shape="rect" id="node14" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="75,244,198,271"/>
+<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="313,319,424,345"/>
+<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="449,319,622,345"/>
+<area shape="rect" id="node11" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="470,393,601,420"/>
 </map>

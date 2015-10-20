@@ -1,5 +1,5 @@
 <map id="CSubsystemLibrary" name="CSubsystemLibrary">
-<area shape="rect" id="node2" href="$classCDefaultElementLibrary.html" title="CDefaultElementLibrary\l\&lt; TNamedElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt; \&gt;" alt="" coords="5,200,252,256"/>
-<area shape="rect" id="node3" href="$classCElementLibrary.html" title="CElementLibrary" alt="" coords="87,5,213,32"/>
-<area shape="rect" id="node4" href="$classCDefaultElementLibrary.html" title="Factory that creates an element given an xml element. " alt="" coords="145,81,349,123"/>
+<area shape="rect" id="node2" href="$classCDefaultElementLibrary.html" title="CDefaultElementLibrary\l\&lt; TLoggingElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt; \&gt;" alt="" coords="5,200,255,256"/>
+<area shape="rect" id="node3" href="$classCElementLibrary.html" title="CElementLibrary" alt="" coords="88,5,215,32"/>
+<area shape="rect" id="node4" href="$classCDefaultElementLibrary.html" title="Factory that creates an element given an xml element. " alt="" coords="147,81,351,123"/>
 </map>

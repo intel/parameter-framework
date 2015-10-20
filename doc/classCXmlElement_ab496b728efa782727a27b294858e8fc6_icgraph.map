@@ -1,6 +1,6 @@
 <map id="CXmlElement::createChild" name="CXmlElement::createChild">
 <area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="249,29,413,71"/>
-<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration\l::composeSettings" alt="" coords="247,95,414,136"/>
+<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a39c907e9023554f7a86836ac9f8da32f" title="CDomainConfiguration\l::composeSettings" alt="" coords="247,95,414,136"/>
 <area shape="rect" id="node5" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="241,161,420,187"/>
 <area shape="rect" id="node7" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="245,212,417,253"/>
 <area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="468,29,627,71"/>

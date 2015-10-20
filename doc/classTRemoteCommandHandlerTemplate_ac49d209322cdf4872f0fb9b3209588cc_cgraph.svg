@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classTRemoteCommandHandlerTemplate.html#aac08c7501403c1777d9092bf8d29d478" target="_top" xlink:title="TRemoteCommandHandlerTemplate\l::addCommandParser">
+<g id="a_node2"><a xlink:href="classTRemoteCommandHandlerTemplate.html#abbc6756166e2bddd8dcae90e7d0b9eda" target="_top" xlink:title="TRemoteCommandHandlerTemplate\l::addCommandParser">
 <polygon fill="white" stroke="black" points="232,-0.5 232,-30.5 422,-30.5 422,-0.5 232,-0.5"/>
 <text text-anchor="start" x="240" y="-18.5" font-family="Verdana" font-size="10.00">TRemoteCommandHandlerTemplate</text>
 <text text-anchor="middle" x="327" y="-7.5" font-family="Verdana" font-size="10.00">::addCommandParser</text>

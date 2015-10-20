@@ -1,5 +1,4 @@
 <map id="CParameterType::showProperties" name="CParameterType::showProperties">
 <area shape="rect" id="node2" href="$classCParameterType.html#ab5c3d517960caa37da09645f53d2d88e" title="CParameterType::getUnit" alt="" coords="285,5,466,32"/>
-<area shape="rect" id="node3" href="$classCUtility.html#ab3df96a32e36befd9149af606affd8c3" title="Utility to easily convert a builtin type into string. " alt="" coords="313,56,438,83"/>
-<area shape="rect" id="node4" href="$classCParameterType.html#adfe9fe947066e58a062f8126f246f71a" title="CParameterType::getSize" alt="" coords="284,107,467,133"/>
+<area shape="rect" id="node3" href="$classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9" title="CParameterType::getSize" alt="" coords="284,56,467,83"/>
 </map>

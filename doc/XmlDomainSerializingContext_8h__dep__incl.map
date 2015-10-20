@@ -1,16 +1,16 @@
 <map id="parameter/XmlDomainSerializingContext.h" name="parameter/XmlDomainSerializingContext.h">
-<area shape="rect" id="node2" href="$XmlDomainImportContext_8h.html" title="parameter/XmlDomainImport\lContext.h" alt="" coords="360,95,570,136"/>
-<area shape="rect" id="node4" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="18,273,269,300"/>
-<area shape="rect" id="node7" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="856,273,1066,300"/>
-<area shape="rect" id="node8" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="617,191,873,218"/>
-<area shape="rect" id="node9" href="$SelectionCriterionRule_8cpp.html" title="parameter/SelectionCriterion\lRule.cpp" alt="" coords="26,184,232,225"/>
-<area shape="rect" id="node10" href="$XmlDomainExportContext_8h.html" title="parameter/XmlDomainExport\lContext.h" alt="" coords="764,95,974,136"/>
-<area shape="rect" id="node3" href="$ConfigurableDomain_8h.html" title="parameter/ConfigurableDomain.h" alt="" coords="307,191,543,218"/>
-<area shape="rect" id="node5" href="$ConfigurableDomains_8cpp.html" title="parameter/ConfigurableDomains.cpp" alt="" coords="293,273,552,300"/>
-<area shape="rect" id="node6" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="576,273,831,300"/>
-<area shape="rect" id="node11" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="1187,191,1383,218"/>
-<area shape="rect" id="node12" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="1091,273,1324,300"/>
-<area shape="rect" id="node13" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="1277,348,1482,389"/>
-<area shape="rect" id="node14" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="1400,273,1640,300"/>
-<area shape="rect" id="node15" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="1540,348,1779,389"/>
+<area shape="rect" id="node2" href="$XmlDomainImportContext_8h.html" title="parameter/XmlDomainImport\lContext.h" alt="" coords="629,95,840,136"/>
+<area shape="rect" id="node4" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="5,281,256,307"/>
+<area shape="rect" id="node7" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="843,281,1053,307"/>
+<area shape="rect" id="node9" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="1077,281,1333,307"/>
+<area shape="rect" id="node10" href="$SelectionCriterionRule_8cpp.html" title="parameter/SelectionCriterion\lRule.cpp" alt="" coords="169,184,375,225"/>
+<area shape="rect" id="node11" href="$XmlDomainExportContext_8h.html" title="parameter/XmlDomainExport\lContext.h" alt="" coords="865,95,1074,136"/>
+<area shape="rect" id="node3" href="$ConfigurableDomain_8h.html" title="parameter/ConfigurableDomain.h" alt="" coords="501,191,737,218"/>
+<area shape="rect" id="node8" href="$DomainConfiguration_8h.html" title="parameter/DomainConfiguration.h" alt="" coords="811,191,1053,218"/>
+<area shape="rect" id="node5" href="$ConfigurableDomains_8cpp.html" title="parameter/ConfigurableDomains.cpp" alt="" coords="280,281,539,307"/>
+<area shape="rect" id="node6" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="563,281,818,307"/>
+<area shape="rect" id="node12" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="1379,191,1575,218"/>
+<area shape="rect" id="node13" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="1621,281,1854,307"/>
+<area shape="rect" id="node14" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="1879,273,2084,315"/>
+<area shape="rect" id="node15" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="1358,273,1597,315"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="CAreaConfiguration::copyToOuter" name="CAreaConfiguration::copyToOuter">
 <area shape="rect" id="node2" href="$classCElement.html#a7653fbad5491138533ac0fa889ffecd9" title="CElement::isDescendantOf" alt="" coords="200,29,393,56"/>
 <area shape="rect" id="node3" href="$classCAreaConfiguration.html#a1f85dedf12591c3f43830a00e5c352df" title="CAreaConfiguration\l::getConfigurableElement" alt="" coords="205,81,389,122"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="215,146,379,187"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#aad502a1139a10faa1a87fd1e033e4ad4" title="CConfigurableElement\l::getOffset" alt="" coords="215,146,379,187"/>
 </map>

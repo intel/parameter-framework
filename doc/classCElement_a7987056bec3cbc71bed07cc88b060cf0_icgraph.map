@@ -1,5 +1,5 @@
 <map id="CElement::getParent" name="CElement::getParent">
-<area shape="rect" id="node2" href="$classCBitParameter.html#a5fcbaa6052e15453764a1a83da160c10" title="CBitParameter::getBelonging\lBlockSize" alt="" coords="219,5,425,47"/>
+<area shape="rect" id="node2" href="$classCBitParameter.html#a84ee75cf920c8f273519808d5c042985" title="CBitParameter::getBelonging\lBlockSize" alt="" coords="219,5,425,47"/>
 <area shape="rect" id="node3" href="$classCBitParameterType.html#a76b208c42677a4a7a90494f348924403" title="CBitParameterType::\lfromXml" alt="" coords="247,71,397,112"/>
 <area shape="rect" id="node4" href="$classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193" title="CComponentInstance\l::fromXml" alt="" coords="242,136,402,177"/>
 <area shape="rect" id="node5" href="$classCConfigurableElement.html#a78722d8443df22565bf41d01308368ab" title="Get the list of all the ancestors that have a mapping. " alt="" coords="208,291,436,332"/>
@@ -11,7 +11,7 @@
 <area shape="rect" id="node9" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="525,196,689,237"/>
 <area shape="rect" id="node10" href="$classCHardwareBackSynchronizer.html#ad06f7ec68fcd8ce9b878963a39300839" title="CHardwareBackSynchronizer\l::CHardwareBackSynchronizer" alt="" coords="799,193,1014,235"/>
 <area shape="rect" id="node11" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="827,259,986,286"/>
-<area shape="rect" id="node15" href="$classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" title="Look for subsystems that need to be resynchronized. " alt="" coords="777,128,1036,169"/>
+<area shape="rect" id="node15" href="$classCSystemClass.html#abefbe05f7e9ce5b93ccdd15b3694184e" title="Look for subsystems that need to be resynchronized. " alt="" coords="777,128,1036,169"/>
 <area shape="rect" id="node12" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="1084,230,1295,257"/>
 <area shape="rect" id="node14" href="$classCParameterMgrFullConnector.html#a68cb9c635d0120600c68a4a3360b3e47" title="CParameterMgrFullConnector\l::sync" alt="" coords="1085,281,1293,323"/>
 <area shape="rect" id="node13" href="$classCParameterMgrFullConnector.html#acda4d82dc8f94b84470477c6ad847f60" title="CParameterMgrFullConnector\l::setAutoSync" alt="" coords="1343,223,1551,264"/>

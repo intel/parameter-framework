@@ -1,14 +1,13 @@
 <map id="Status::msg" name="Status::msg">
 <area shape="rect" id="node2" href="$classStatus.html#af094cfd33ddfae117f710778ef648af5" title="Fail with the given error msg. " alt="" coords="183,5,294,32"/>
-<area shape="rect" id="node3" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="201,56,276,83"/>
-<area shape="rect" id="node5" href="$ParameterFramework_8h.html#ac50b70df5967187fbd380a8d0ef8d5e8" title="pfwGetLastError" alt="" coords="177,360,301,387"/>
-<area shape="rect" id="node9" href="$ParameterFramework_8h.html#a8af8b5749cdc5ed309c7fc73621da521" title="Construct the handle to a parameter given its path. " alt="" coords="169,107,308,133"/>
-<area shape="rect" id="node10" href="$ParameterFramework_8h.html#aa3c268896aa21de7f78ce9c99195e0ba" title="Access the value of a previously bind int parameter. " alt="" coords="164,157,313,184"/>
-<area shape="rect" id="node11" href="$ParameterFramework_8h.html#a5ca86cca5a701f0eb107ba24a05a0a68" title="Set the value of a previously bind int parameter. " alt="" coords="165,208,313,235"/>
-<area shape="rect" id="node12" href="$ParameterFramework_8h.html#a0318f736980ecc4a0a456581f44a2cf0" title="Access the value of a previously bind string parameter. " alt="" coords="153,259,324,285"/>
-<area shape="rect" id="node13" href="$ParameterFramework_8h.html#a02e479cdd18adee13f01c05affcd5892" title="Set the value of a previously bind string parameter. " alt="" coords="153,309,324,336"/>
+<area shape="rect" id="node3" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="201,107,276,133"/>
+<area shape="rect" id="node5" href="$ParameterFramework_8h.html#a4e5ebfa005afa6e7daa12058d9d6cb69" title="pfwGetLastError" alt="" coords="177,56,301,83"/>
+<area shape="rect" id="node8" href="$ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" title="Construct the handle to a parameter given its path. " alt="" coords="169,157,308,184"/>
+<area shape="rect" id="node9" href="$ParameterFramework_8h.html#a7dde5f55f3d1e45a05409912160df12f" title="Access the value of a previously bind int parameter. " alt="" coords="164,208,313,235"/>
+<area shape="rect" id="node10" href="$ParameterFramework_8h.html#af7fd08602e984c778aaf0e4526cbbded" title="Set the value of a previously bind int parameter. " alt="" coords="165,259,313,285"/>
+<area shape="rect" id="node11" href="$ParameterFramework_8h.html#a7d998384abf12976a2bbb59bc0ba82e4" title="Access the value of a previously bind string parameter. " alt="" coords="153,309,324,336"/>
+<area shape="rect" id="node12" href="$ParameterFramework_8h.html#a7913a676a9f57c14b0b6f7fa20ec9f9a" title="Set the value of a previously bind string parameter. " alt="" coords="153,360,324,387"/>
 <area shape="rect" id="node4" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="383,208,541,235"/>
-<area shape="rect" id="node6" href="$structTest.html#aa15ba29a3b6622b0e81ae92e02905c65" title="Test::REQUIRE_FAILURE" alt="" coords="379,309,545,336"/>
-<area shape="rect" id="node7" href="$structTest.html#aae5ae68c296b19c05ade6a4a18caa52a" title="Test::REQUIRE_SUCCESS" alt="" coords="372,360,552,387"/>
-<area shape="rect" id="node8" href="$Test_8cpp.html#aab19bd29125811991ec8d6781574bdba" title="SCENARIO" alt="" coords="418,411,506,437"/>
+<area shape="rect" id="node6" href="$structTest.html#aa15ba29a3b6622b0e81ae92e02905c65" title="Test::REQUIRE_FAILURE" alt="" coords="379,31,545,57"/>
+<area shape="rect" id="node7" href="$structTest.html#aae5ae68c296b19c05ade6a4a18caa52a" title="Test::REQUIRE_SUCCESS" alt="" coords="372,81,552,108"/>
 </map>

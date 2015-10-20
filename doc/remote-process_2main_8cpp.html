@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -89,38 +89,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">main.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<div class="textblock"><code>#include &lt;asio.hpp&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="RequestMessage_8h_source.html">RequestMessage.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="AnswerMessage_8h_source.html">AnswerMessage.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ConnectionSocket_8h_source.html">ConnectionSocket.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="NaiveTokenizer_8h_source.html">NaiveTokenizer.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="remote-process_2main_8cpp__incl.svg" width="996" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="remote-process_2main_8cpp__incl.svg" width="815" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
 <p><a href="remote-process_2main_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCRequestMessageGenerator.html">CRequestMessageGenerator</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af14c089a76390ab8b7424bb69fad6352"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="remote-process_2main_8cpp.html#af14c089a76390ab8b7424bb69fad6352">sendAndDisplayCommand</a> (<a class="el" href="classCConnectionSocket.html">CConnectionSocket</a> &amp;connectionSocket, <a class="el" href="classCRequestMessage.html">CRequestMessage</a> &amp;requestMessage)</td></tr>
-<tr class="separator:af14c089a76390ab8b7424bb69fad6352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d6ad099f54d8866cc57dff6eea8931b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b">sendAndDisplayCommand</a> (asio::ip::tcp::socket &amp;socket, <a class="el" href="classCRequestMessage.html">CRequestMessage</a> &amp;requestMessage)</td></tr>
+<tr class="separator:a6d6ad099f54d8866cc57dff6eea8931b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="remote-process_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -149,27 +142,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="remote-process_2main_8cpp_source.html#l00136">136</a> of file <a class="el" href="remote-process_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="remote-process_2main_8cpp_source.html#l00079">79</a> of file <a class="el" href="remote-process_2main_8cpp_source.html">main.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="remote-process_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.svg" width="871" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="remote-process_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.svg" width="808" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="af14c089a76390ab8b7424bb69fad6352"></a>
+<a class="anchor" id="a6d6ad099f54d8866cc57dff6eea8931b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool sendAndDisplayCommand </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classCConnectionSocket.html">CConnectionSocket</a> &amp;&#160;</td>
-          <td class="paramname"><em>connectionSocket</em>, </td>
+          <td class="paramtype">asio::ip::tcp::socket &amp;&#160;</td>
+          <td class="paramname"><em>socket</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -185,12 +178,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="remote-process_2main_8cpp_source.html#l00099">99</a> of file <a class="el" href="remote-process_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="remote-process_2main_8cpp_source.html#l00042">42</a> of file <a class="el" href="remote-process_2main_8cpp_source.html">main.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="remote-process_2main_8cpp_af14c089a76390ab8b7424bb69fad6352_cgraph.svg" width="730" height="227"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="remote-process_2main_8cpp_a6d6ad099f54d8866cc57dff6eea8931b_cgraph.svg" width="662" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -198,7 +191,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="remote-process_2main_8cpp_af14c089a76390ab8b7424bb69fad6352_icgraph.svg" width="304" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="remote-process_2main_8cpp_a6d6ad099f54d8866cc57dff6eea8931b_icgraph.svg" width="304" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>

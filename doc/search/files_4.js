@@ -14,6 +14,5 @@ var searchData=
   ['enumparametertype_2eh',['EnumParameterType.h',['../EnumParameterType_8h.html',1,'']]],
   ['enumvaluepair_2ecpp',['EnumValuePair.cpp',['../EnumValuePair_8cpp.html',1,'']]],
   ['enumvaluepair_2eh',['EnumValuePair.h',['../EnumValuePair_8h.html',1,'']]],
-  ['errorcontext_2ecpp',['ErrorContext.cpp',['../ErrorContext_8cpp.html',1,'']]],
-  ['errorcontext_2eh',['ErrorContext.h',['../ErrorContext_8h.html',1,'']]]
+  ['errorcontext_2ehpp',['ErrorContext.hpp',['../ErrorContext_8hpp.html',1,'']]]
 ];

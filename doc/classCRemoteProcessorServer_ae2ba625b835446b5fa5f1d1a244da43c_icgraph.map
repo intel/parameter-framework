@@ -1,6 +1,4 @@
 <map id="CRemoteProcessorServer::start" name="CRemoteProcessorServer::start">
-<area shape="rect" id="node2" href="$classCTestPlatform.html#ad74d8f79000b7a85c75607a77836de39" title="CTestPlatform::load" alt="" coords="239,31,384,57"/>
-<area shape="rect" id="node3" href="$test_2test-platform_2main_8cpp.html#a8cdd52c65098972c711a9ae39f5fc81d" title="startBlockingTestPlatform" alt="" coords="433,5,617,32"/>
-<area shape="rect" id="node5" href="$test_2test-platform_2main_8cpp.html#a9fd779abc38b1314eaae2f8f359bbb42" title="startDaemonTestPlatform" alt="" coords="432,56,619,83"/>
-<area shape="rect" id="node4" href="$test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="667,31,721,57"/>
+<area shape="rect" id="node2" href="$classBackgroundRemoteProcessorServer.html#ad87e4d6b8ef517d85133bdfcfaa19379" title="BackgroundRemoteProcessor\lServer::start" alt="" coords="239,5,449,47"/>
+<area shape="rect" id="node3" href="$classCTestPlatform.html#ad2bd3b351dea2737d1fe73702a662981" title="CTestPlatform::run" alt="" coords="275,71,413,98"/>
 </map>

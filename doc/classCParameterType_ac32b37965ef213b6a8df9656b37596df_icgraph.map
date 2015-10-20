@@ -1,9 +1,8 @@
 <map id="CParameterType::signExtend" name="CParameterType::signExtend">
-<area shape="rect" id="node2" href="$classCEnumParameterType.html#a843bba6b2e2b5b516b7939f8bc4641ab" title="Conversion. " alt="" coords="271,5,434,47"/>
-<area shape="rect" id="node3" href="$classCEnumParameterType.html#a0bd3061022ff86f0a244575b89ab8a48" title="CEnumParameterType\l::fromBlackboard" alt="" coords="271,71,434,112"/>
-<area shape="rect" id="node4" href="$classCFixedPointParameterType.html#a915d48511911653dc8ddf03cf39dc0ec" title="CFixedPointParameterType\l::fromBlackboard" alt="" coords="257,136,448,177"/>
-<area shape="rect" id="node5" href="$classCIntegerParameterType.html#a8d8e329f5f61b6e50108e7fe1a7f7446" title="CIntegerParameterType\l::fromXml" alt="" coords="267,201,438,243"/>
-<area shape="rect" id="node6" href="$classCIntegerParameterType.html#aac12d359362c7ab46915cadb574bca76" title="Conversion. " alt="" coords="267,267,438,308"/>
-<area shape="rect" id="node7" href="$classCIntegerParameterType.html#a20f5eb6c8e4cea3d1f0ccdb92e1d008c" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="267,332,438,373"/>
-<area shape="rect" id="node8" href="$classCIntegerParameterType.html#ae884925dcc3a114c6a2e4531e2c9e9b1" title="Converts size optimized integer input data (int8, int16, int32) to plain int. " alt="" coords="267,397,438,439"/>
+<area shape="rect" id="node2" href="$classCEnumParameterType.html#a0bd3061022ff86f0a244575b89ab8a48" title="CEnumParameterType\l::fromBlackboard" alt="" coords="271,5,434,47"/>
+<area shape="rect" id="node3" href="$classCFixedPointParameterType.html#a915d48511911653dc8ddf03cf39dc0ec" title="CFixedPointParameterType\l::fromBlackboard" alt="" coords="257,71,448,112"/>
+<area shape="rect" id="node4" href="$classCIntegerParameterType.html#a8d8e329f5f61b6e50108e7fe1a7f7446" title="CIntegerParameterType\l::fromXml" alt="" coords="267,136,438,177"/>
+<area shape="rect" id="node5" href="$classCIntegerParameterType.html#aac12d359362c7ab46915cadb574bca76" title="Conversion. " alt="" coords="267,201,438,243"/>
+<area shape="rect" id="node6" href="$classCIntegerParameterType.html#a20f5eb6c8e4cea3d1f0ccdb92e1d008c" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="267,267,438,308"/>
+<area shape="rect" id="node7" href="$classCIntegerParameterType.html#ae884925dcc3a114c6a2e4531e2c9e9b1" title="Converts size optimized integer input data (int8, int16, int32) to plain int. " alt="" coords="267,332,438,373"/>
 </map>

@@ -1,6 +1,0 @@
-<map id="pfwGetLastError" name="pfwGetLastError">
-<area shape="rect" id="node2" href="$structTest.html#aa15ba29a3b6622b0e81ae92e02905c65" title="Test::REQUIRE_FAILURE" alt="" coords="184,5,351,32"/>
-<area shape="rect" id="node3" href="$structTest.html#aae5ae68c296b19c05ade6a4a18caa52a" title="Test::REQUIRE_SUCCESS" alt="" coords="177,56,357,83"/>
-<area shape="rect" id="node4" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="188,107,347,133"/>
-<area shape="rect" id="node5" href="$Test_8cpp.html#aab19bd29125811991ec8d6781574bdba" title="SCENARIO" alt="" coords="223,157,311,184"/>
-</map>

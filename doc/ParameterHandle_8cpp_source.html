@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -127,540 +127,287 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Subsystem_8h.html">Subsystem.h</a>&quot;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ParameterMgr_8h.html">ParameterMgr.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AutoLock_8h.html">AutoLock.h</a>&quot;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">using</span> std::string;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a7cd4701b2270ffcd914fccab25cd5abf">   40</a></span>&#160;<a class="code" href="classCParameterHandle.html#a7cd4701b2270ffcd914fccab25cd5abf">CParameterHandle::CParameterHandle</a>(<span class="keyword">const</span> <a class="code" href="classCBaseParameter.html">CBaseParameter</a>* pParameter, <a class="code" href="classCParameterMgr.html">CParameterMgr</a>* pParameterMgr)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    : _pBaseParameter(pParameter), _pParameterMgr(pParameterMgr), _bBigEndianSubsystem(pParameter-&gt;getBelongingSubsystem()-&gt;isBigEndian())</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">// Parameter features</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a82337e6b645d3b8cdf962382f5a606e8">   46</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a82337e6b645d3b8cdf962382f5a606e8">CParameterHandle::isRogue</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCConfigurableElement.html#a67e6de36b68b0ff6c74c5a1a06f3046a">isRogue</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">   51</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">CParameterHandle::isArray</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> !_pBaseParameter-&gt;<a class="code" href="classCInstanceConfigurableElement.html#a0f1f67b9e526f8a9ae9d67292ead570a">isScalar</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">// Array Length</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a9e41d0657698335c4687a4707c2b25d8">   57</a></span>&#160;uint32_t <a class="code" href="classCParameterHandle.html#a9e41d0657698335c4687a4707c2b25d8">CParameterHandle::getArrayLength</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCInstanceConfigurableElement.html#a88419cbe46d3f8f92385605841b829fa">getArrayLength</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">// Parameter path</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">   63</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">CParameterHandle::getPath</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1">getPath</a>();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// Parameter kind</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#aa7a0f6b334003b2aeec2fdfa9e9969ce">   69</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCParameterHandle.html#aa7a0f6b334003b2aeec2fdfa9e9969ce">CParameterHandle::getKind</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10">getKind</a>();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">// Boolean access</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a">   75</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a">CParameterHandle::setAsBoolean</a>(<span class="keywordtype">bool</span> bValue, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, 0, strError)) {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#ad6c3b121c92cabe717272fba5ccb6956">accessAsBoolean</a>(bValue, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a79508645556e3081ac678040daca92a1">   97</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a79508645556e3081ac678040daca92a1">CParameterHandle::getAsBoolean</a>(<span class="keywordtype">bool</span>&amp; bValue, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, 0, strError)) {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">using</span> std::string;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">using</span> std::mutex;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">using</span> std::lock_guard;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a7cd4701b2270ffcd914fccab25cd5abf">   43</a></span>&#160;<a class="code" href="classCParameterHandle.html#a7cd4701b2270ffcd914fccab25cd5abf">CParameterHandle::CParameterHandle</a>(<span class="keyword">const</span> <a class="code" href="classCBaseParameter.html">CBaseParameter</a>* pParameter, <a class="code" href="classCParameterMgr.html">CParameterMgr</a>* pParameterMgr)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    : _pBaseParameter(pParameter), _pParameterMgr(pParameterMgr)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// Parameter features</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a82337e6b645d3b8cdf962382f5a606e8">   49</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a82337e6b645d3b8cdf962382f5a606e8">CParameterHandle::isRogue</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCConfigurableElement.html#a67e6de36b68b0ff6c74c5a1a06f3046a">isRogue</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">   54</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">CParameterHandle::isArray</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">return</span> !_pBaseParameter-&gt;<a class="code" href="classCInstanceConfigurableElement.html#a0f1f67b9e526f8a9ae9d67292ead570a">isScalar</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">// Array Length</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ac4cb5852a5c0f9ec73cc20894ac3cfd6">   60</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="classCParameterHandle.html#ac4cb5852a5c0f9ec73cc20894ac3cfd6">CParameterHandle::getArrayLength</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCInstanceConfigurableElement.html#a590967d30772d8ada0ac367f4273d248">getArrayLength</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">// Parameter path</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">   66</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">CParameterHandle::getPath</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1">getPath</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// Parameter kind</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#aa7a0f6b334003b2aeec2fdfa9e9969ce">   72</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="classCParameterHandle.html#aa7a0f6b334003b2aeec2fdfa9e9969ce">CParameterHandle::getKind</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10">getKind</a>();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="structisVector.html">   78</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structisVector.html">isVector</a> : std::false_type {};</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="structisVector_3_01std_1_1vector_3_01T_01_4_01_4.html">   80</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structisVector.html">isVector</a>&lt;<a class="code" href="namespacestd.html">std</a>::vector&lt;T&gt;&gt; : std::true_type {};</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">size_t</span> CParameterHandle::getSize(T <span class="comment">/*value*/</span>) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">size_t</span> CParameterHandle::getSize(std::vector&lt;T&gt; &amp;values) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> values.size();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keywordtype">bool</span> CParameterHandle::setAs(<span class="keyword">const</span> T value, <span class="keywordtype">string</span> &amp;error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">if</span> (not checkSetValidity(getSize(value), error)) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    lock_guard&lt;mutex&gt; autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// When in tuning mode, silently skip &quot;set&quot; requests</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(error, _pParameterMgr-&gt;getParameterBlackboard());</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#ad6c3b121c92cabe717272fba5ccb6956">accessAsBoolean</a>(bValue, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344">  113</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344">CParameterHandle::setAsBooleanArray</a>(<span class="keyword">const</span> std::vector&lt;bool&gt;&amp; abValues, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;{</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, abValues.size(), strError)) {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">// BaseParameret::access takes a non-const argument - therefore we need to</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">// copy the value</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    T copy = value;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a4d57a9add25900d5ac37e099020ce145">access</a>(copy, <span class="keyword">true</span>, parameterAccessContext);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordtype">bool</span> CParameterHandle::getAs(T &amp;value, <span class="keywordtype">string</span> &amp;error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">if</span> (not checkGetValidity(<a class="code" href="structisVector.html">isVector&lt;T&gt;::value</a>, error)) {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    lock_guard&lt;mutex&gt; autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="comment">// Copy values for type adaptation</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    std::vector&lt;bool&gt; abUserValues = abValues;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#abdb59be3eb6674e99c37360f2bde79dd">accessAsBooleanArray</a>(abUserValues, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a04e958d57b5d5fe405ed6023ac33ca74">  138</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a04e958d57b5d5fe405ed6023ac33ca74">CParameterHandle::getAsBooleanArray</a>(std::vector&lt;bool&gt;&amp; abValues, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, -1, strError)) {</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    }</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#abdb59be3eb6674e99c37360f2bde79dd">accessAsBooleanArray</a>(abValues, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;}</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">// Integer Access</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3">  155</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3">CParameterHandle::setAsInteger</a>(uint32_t uiValue, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;{</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, 0, strError)) {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(error, _pParameterMgr-&gt;getParameterBlackboard());</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a4d57a9add25900d5ac37e099020ce145">access</a>(value, <span class="keyword">false</span>, parameterAccessContext);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">// Boolean access</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a">  132</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a">CParameterHandle::setAsBoolean</a>(<span class="keywordtype">bool</span> bValue, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;{</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordflow">return</span> setAs(bValue, error);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a79508645556e3081ac678040daca92a1">  137</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a79508645556e3081ac678040daca92a1">CParameterHandle::getAsBoolean</a>(<span class="keywordtype">bool</span>&amp; bValue, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordflow">return</span> getAs(bValue, error);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344">  142</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344">CParameterHandle::setAsBooleanArray</a>(<span class="keyword">const</span> std::vector&lt;bool&gt;&amp; abValues, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;{</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">return</span> setAs(abValues, error);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a04e958d57b5d5fe405ed6023ac33ca74">  147</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a04e958d57b5d5fe405ed6023ac33ca74">CParameterHandle::getAsBooleanArray</a>(std::vector&lt;bool&gt;&amp; abValues, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">return</span> getAs(abValues, error);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">// Integer Access</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3">  153</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3">CParameterHandle::setAsInteger</a>(uint32_t uiValue, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;{</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">return</span> setAs(uiValue, error);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ae783161c39a930f49344ef7c746abb96">  158</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ae783161c39a930f49344ef7c746abb96">CParameterHandle::getAsInteger</a>(uint32_t&amp; uiValue, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keywordflow">return</span> getAs(uiValue, error);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;}</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33">  163</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33">CParameterHandle::setAsIntegerArray</a>(<span class="keyword">const</span> std::vector&lt;uint32_t&gt;&amp; auiValues, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;{</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordflow">return</span> setAs(auiValues, error);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;}</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a8386194eb61f9dcdf1fee382f4517dd2">accessAsInteger</a>(uiValue, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;}</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ae783161c39a930f49344ef7c746abb96">  177</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ae783161c39a930f49344ef7c746abb96">CParameterHandle::getAsInteger</a>(uint32_t&amp; uiValue, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, 0, strError)) {</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    }</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a8386194eb61f9dcdf1fee382f4517dd2">accessAsInteger</a>(uiValue, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;}</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33">  193</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33">CParameterHandle::setAsIntegerArray</a>(<span class="keyword">const</span> std::vector&lt;uint32_t&gt;&amp; auiValues, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;{</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, auiValues.size(), strError)) {</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    }</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    }</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="comment">// Copy values for type adaptation</span></div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    std::vector&lt;uint32_t&gt; auiUserValues = auiValues;</div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a7c0ff4aa61fbf1b5408107543f575666">  168</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a7c0ff4aa61fbf1b5408107543f575666">CParameterHandle::getAsIntegerArray</a>(std::vector&lt;uint32_t&gt;&amp; auiValues, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordflow">return</span> getAs(auiValues, error);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;}</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">// Signed Integer Access</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3">  174</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3">CParameterHandle::setAsSignedInteger</a>(int32_t iValue, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;{</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">return</span> setAs(iValue, error);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;}</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3">  179</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3">CParameterHandle::getAsSignedInteger</a>(int32_t&amp; iValue, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">return</span> getAs(iValue, error);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;}</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da">  184</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da">CParameterHandle::setAsSignedIntegerArray</a>(<span class="keyword">const</span> std::vector&lt;int32_t&gt;&amp; aiValues, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;{</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordflow">return</span> setAs(aiValues, error);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;}</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#aa5355efed0fc007cade9a7aa208925c6">  189</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#aa5355efed0fc007cade9a7aa208925c6">CParameterHandle::getAsSignedIntegerArray</a>(std::vector&lt;int32_t&gt;&amp; aiValues, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordflow">return</span> getAs(aiValues, error);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;}</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">// Double Access</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87">  195</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87">CParameterHandle::setAsDouble</a>(<span class="keywordtype">double</span> dValue, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;{</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordflow">return</span> setAs(dValue, error);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;}</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a69a79e016d6031fba2084d8ebbc32bc9">  200</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a69a79e016d6031fba2084d8ebbc32bc9">CParameterHandle::getAsDouble</a>(<span class="keywordtype">double</span>&amp; dValue, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordflow">return</span> getAs(dValue, error);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;}</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8">  205</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8">CParameterHandle::setAsDoubleArray</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; adValues, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;{</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">return</span> setAs(adValues, error);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;}</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a56a3b97c9480755ddd34cb565a9bbf8f">  210</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a56a3b97c9480755ddd34cb565a9bbf8f">CParameterHandle::getAsDoubleArray</a>(std::vector&lt;double&gt;&amp; adValues, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordflow">return</span> getAs(adValues, error);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;}</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#af569644b1f1e795de4e98bef7a4c484a">accessAsIntegerArray</a>(auiUserValues, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;}</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a7c0ff4aa61fbf1b5408107543f575666">  218</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a7c0ff4aa61fbf1b5408107543f575666">CParameterHandle::getAsIntegerArray</a>(std::vector&lt;uint32_t&gt;&amp; auiValues, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, -1, strError)) {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    }</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment">// String Access</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516">  216</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516">CParameterHandle::setAsString</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strValue, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;{</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordflow">return</span> setAs(strValue, error);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;}</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c">  221</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c">CParameterHandle::getAsString</a>(<span class="keywordtype">string</span>&amp; strValue, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">return</span> getAs(strValue, error);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;}</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a729342719068a9b0a730c32d3fb55e79">  226</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a729342719068a9b0a730c32d3fb55e79">CParameterHandle::setAsStringArray</a>(<span class="keyword">const</span> std::vector&lt;string&gt;&amp; astrValues, <span class="keywordtype">string</span>&amp; error)</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;{</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">return</span> setAs(astrValues, error);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;}</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#af569644b1f1e795de4e98bef7a4c484a">accessAsIntegerArray</a>(auiValues, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;}</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">// Signed Integer Access</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3">  235</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3">CParameterHandle::setAsSignedInteger</a>(int32_t iValue, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;{</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, 0, strError)) {</div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a7b3f0337175b369132e84429eef06959">  231</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a7b3f0337175b369132e84429eef06959">CParameterHandle::getAsStringArray</a>(std::vector&lt;string&gt;&amp; astrValues, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">return</span> getAs(astrValues, error);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;}</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="keywordtype">bool</span> CParameterHandle::checkGetValidity(<span class="keywordtype">bool</span> asArray, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordflow">if</span> (asArray != <a class="code" href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">isArray</a>()) {</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    }</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    }</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a231e9def106391b96fb0671f4214f105">accessAsSignedInteger</a>(iValue, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;}</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keyword">auto</span> toStr = [](<span class="keywordtype">bool</span> array) { <span class="keywordflow">return</span> array ? <span class="stringliteral">&quot;an array&quot;</span> : <span class="stringliteral">&quot;a scalar&quot;</span>; };</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        error = <span class="stringliteral">&quot;Can not get \&quot;&quot;</span> + <a class="code" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">getPath</a>() + <span class="stringliteral">&quot;\&quot; as &quot;</span> + toStr(asArray) +</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                   <span class="stringliteral">&quot; because it is &quot;</span> + toStr(<a class="code" href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">isArray</a>());</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;}</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">// Access validity</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="keywordtype">bool</span> CParameterHandle::checkSetValidity(<span class="keywordtype">size_t</span> arrayLength, <span class="keywordtype">string</span>&amp; error)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="comment">// Settings a parameter necessitates the right to get it</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">if</span> (not checkGetValidity(arrayLength != 0, error)) {</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    }</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
-<div class="line"><a name="l00257"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3">  257</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3">CParameterHandle::getAsSignedInteger</a>(int32_t&amp; iValue, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, 0, strError)) {</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    }</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a231e9def106391b96fb0671f4214f105">accessAsSignedInteger</a>(iValue, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;}</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da">  273</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da">CParameterHandle::setAsSignedIntegerArray</a>(<span class="keyword">const</span> std::vector&lt;int32_t&gt;&amp; aiValues, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;{</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, aiValues.size(), strError)) {</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    }</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    }</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="comment">// Copy values for type adaptation</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    std::vector&lt;int32_t&gt; aiUserValues = aiValues;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a4fb0984d60996ba29e646b9080aee070">accessAsSignedIntegerArray</a>(aiUserValues, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;}</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
-<div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#aa5355efed0fc007cade9a7aa208925c6">  298</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#aa5355efed0fc007cade9a7aa208925c6">CParameterHandle::getAsSignedIntegerArray</a>(std::vector&lt;int32_t&gt;&amp; aiValues, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, -1, strError)) {</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    }</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a4fb0984d60996ba29e646b9080aee070">accessAsSignedIntegerArray</a>(aiValues, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;}</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="comment">// Double Access</span></div>
-<div class="line"><a name="l00315"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87">  315</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87">CParameterHandle::setAsDouble</a>(<span class="keywordtype">double</span> dValue, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;{</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, 0, strError)) {</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    }</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    }</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a6082bac12d32dbf326cb7799ad7596d6">accessAsDouble</a>(dValue, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;}</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
-<div class="line"><a name="l00337"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a69a79e016d6031fba2084d8ebbc32bc9">  337</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a69a79e016d6031fba2084d8ebbc32bc9">CParameterHandle::getAsDouble</a>(<span class="keywordtype">double</span>&amp; dValue, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, 0, strError)) {</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    }</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a6082bac12d32dbf326cb7799ad7596d6">accessAsDouble</a>(dValue, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;}</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
-<div class="line"><a name="l00353"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8">  353</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8">CParameterHandle::setAsDoubleArray</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; adValues, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;{</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, adValues.size(), strError)) {</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    }</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    }</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="comment">// Copy values for type adaptation</span></div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    std::vector&lt;double&gt; adUserValues = adValues;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a3cadd88844f27bfeb36c1c410e5a3c4c">accessAsDoubleArray</a>(adUserValues, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;}</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;</div>
-<div class="line"><a name="l00378"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a56a3b97c9480755ddd34cb565a9bbf8f">  378</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a56a3b97c9480755ddd34cb565a9bbf8f">CParameterHandle::getAsDoubleArray</a>(std::vector&lt;double&gt;&amp; adValues, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, -1, strError)) {</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    }</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a3cadd88844f27bfeb36c1c410e5a3c4c">accessAsDoubleArray</a>(adValues, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;}</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment">// String Access</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516">  395</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516">CParameterHandle::setAsString</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strValue, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;{</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, 0, strError)) {</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    }</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    }</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <span class="comment">// Copy value for type adaptation</span></div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="keywordtype">string</span> strUserValue = strValue;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a2b425561e193a3d54e7225d896a3d39b">accessAsString</a>(strUserValue, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;}</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;</div>
-<div class="line"><a name="l00420"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c">  420</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c">CParameterHandle::getAsString</a>(<span class="keywordtype">string</span>&amp; strValue, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, 0, strError)) {</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    }</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a2b425561e193a3d54e7225d896a3d39b">accessAsString</a>(strValue, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;}</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;</div>
-<div class="line"><a name="l00436"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a729342719068a9b0a730c32d3fb55e79">  436</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a729342719068a9b0a730c32d3fb55e79">CParameterHandle::setAsStringArray</a>(<span class="keyword">const</span> std::vector&lt;string&gt;&amp; astrValues, <span class="keywordtype">string</span>&amp; strError)</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;{</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">true</span>, (uint32_t)astrValues.size(), strError)) {</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    }</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="comment">// When in tuning mode, silently skip the request</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <span class="keywordflow">if</span> (_pParameterMgr-&gt;<a class="code" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a>()) {</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    }</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    <span class="comment">// Copy values for type adaptation</span></div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    std::vector&lt;string&gt; astrUserValues = astrValues;</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a92227f427d1f58905437176152356ed9">accessAsStringArray</a>(astrUserValues, <span class="keyword">true</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;}</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;</div>
-<div class="line"><a name="l00461"></a><span class="lineno"><a class="line" href="classCParameterHandle.html#a7b3f0337175b369132e84429eef06959">  461</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterHandle.html#a7b3f0337175b369132e84429eef06959">CParameterHandle::getAsStringArray</a>(std::vector&lt;string&gt;&amp; astrValues, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    <span class="comment">// Check operation validity</span></div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <span class="keywordflow">if</span> (!checkAccessValidity(<span class="keyword">false</span>, -1, strError)) {</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    }</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    <span class="comment">// Ensure we&#39;re safe against blackboard foreign access</span></div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    <a class="code" href="classCAutoLock.html">CAutoLock</a> autoLock(_pParameterMgr-&gt;getBlackboardMutex());</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    <span class="comment">// Define access context</span></div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, _bBigEndianSubsystem, _pParameterMgr-&gt;getParameterBlackboard());</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <span class="keywordflow">return</span> _pBaseParameter-&gt;<a class="code" href="classCBaseParameter.html#a92227f427d1f58905437176152356ed9">accessAsStringArray</a>(astrValues, <span class="keyword">false</span>, parameterAccessContext);</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;}</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment">// Access validity</span></div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="keywordtype">bool</span> CParameterHandle::checkAccessValidity(<span class="keywordtype">bool</span> bSet, <span class="keywordtype">size_t</span> uiArrayLength, <span class="keywordtype">string</span>&amp; strError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    <span class="keywordflow">if</span> (bSet &amp;&amp; !<a class="code" href="classCParameterHandle.html#a82337e6b645d3b8cdf962382f5a606e8">isRogue</a>()) {</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;        strError = <span class="stringliteral">&quot;Parameter is not rogue: &quot;</span>;</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;        strError += <a class="code" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">getPath</a>();</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    }</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;    <span class="keywordflow">if</span> (uiArrayLength &amp;&amp; !<a class="code" href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">isArray</a>()) {</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;        strError = <span class="stringliteral">&quot;Parameter is scalar: &quot;</span>;</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;</div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;        strError += <a class="code" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">getPath</a>();</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    }</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    <span class="keywordflow">if</span> (!uiArrayLength &amp;&amp; <a class="code" href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">isArray</a>()) {</div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;        strError = <span class="stringliteral">&quot;Parameter is an array: &quot;</span>;</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;        strError += <a class="code" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">getPath</a>();</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    }</div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    <span class="keywordflow">if</span> (bSet &amp;&amp; uiArrayLength &amp;&amp; (uiArrayLength != <a class="code" href="classCParameterHandle.html#a9e41d0657698335c4687a4707c2b25d8">getArrayLength</a>())) {</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        strError = <span class="stringliteral">&quot;Array length mismatch: &quot;</span>;</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;        strError += <a class="code" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">getPath</a>();</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    }</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;}</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classCParameterHandle.html#a82337e6b645d3b8cdf962382f5a606e8">isRogue</a>()) {</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        error = <span class="stringliteral">&quot;Can not set parameter \&quot;&quot;</span> + <a class="code" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">getPath</a>() + <span class="stringliteral">&quot;\&quot; as it is not rogue.&quot;</span>;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    }</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">if</span> (arrayLength &amp;&amp; (arrayLength != <a class="code" href="classCParameterHandle.html#ac4cb5852a5c0f9ec73cc20894ac3cfd6">getArrayLength</a>())) {</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <span class="keyword">using</span> std::to_string;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        error = <span class="stringliteral">&quot;Array length mismatch for \&quot;&quot;</span> + <a class="code" href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">getPath</a>() +</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                  <span class="stringliteral">&quot;\&quot;, expected: &quot;</span> + to_string(<a class="code" href="classCParameterHandle.html#ac4cb5852a5c0f9ec73cc20894ac3cfd6">getArrayLength</a>()) +</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                  <span class="stringliteral">&quot;, got: &quot;</span> + to_string(arrayLength);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    }</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;}</div>
 <div class="ttc" id="classCParameterAccessContext_html"><div class="ttname"><a href="classCParameterAccessContext.html">CParameterAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8h_source.html#l00038">ParameterAccessContext.h:38</a></div></div>
 <div class="ttc" id="ParameterHandle_8h_html"><div class="ttname"><a href="ParameterHandle_8h.html">ParameterHandle.h</a></div></div>
-<div class="ttc" id="classCAutoLock_html"><div class="ttname"><a href="classCAutoLock.html">CAutoLock</a></div><div class="ttdef"><b>Definition:</b> <a href="AutoLock_8h_source.html#l00034">AutoLock.h:34</a></div></div>
-<div class="ttc" id="classCConfigurableElement_html_a67e6de36b68b0ff6c74c5a1a06f3046a"><div class="ttname"><a href="classCConfigurableElement.html#a67e6de36b68b0ff6c74c5a1a06f3046a">CConfigurableElement::isRogue</a></div><div class="ttdeci">bool isRogue() const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8cpp_source.html#l00355">ConfigurableElement.cpp:355</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_ad63615d783f46d0b6fa42127e4c1a6f3"><div class="ttname"><a href="classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3">CParameterHandle::getAsSignedInteger</a></div><div class="ttdeci">bool getAsSignedInteger(int32_t &amp;iValue, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00257">ParameterHandle.cpp:257</a></div></div>
+<div class="ttc" id="classCConfigurableElement_html_a67e6de36b68b0ff6c74c5a1a06f3046a"><div class="ttname"><a href="classCConfigurableElement.html#a67e6de36b68b0ff6c74c5a1a06f3046a">CConfigurableElement::isRogue</a></div><div class="ttdeci">bool isRogue() const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8cpp_source.html#l00362">ConfigurableElement.cpp:362</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_ad63615d783f46d0b6fa42127e4c1a6f3"><div class="ttname"><a href="classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3">CParameterHandle::getAsSignedInteger</a></div><div class="ttdeci">bool getAsSignedInteger(int32_t &amp;iValue, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00179">ParameterHandle.cpp:179</a></div></div>
 <div class="ttc" id="BaseParameter_8h_html"><div class="ttname"><a href="BaseParameter_8h.html">BaseParameter.h</a></div></div>
 <div class="ttc" id="ParameterAccessContext_8h_html"><div class="ttname"><a href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a7cd4701b2270ffcd914fccab25cd5abf"><div class="ttname"><a href="classCParameterHandle.html#a7cd4701b2270ffcd914fccab25cd5abf">CParameterHandle::CParameterHandle</a></div><div class="ttdeci">CParameterHandle(const CBaseParameter *pParameter, CParameterMgr *pParameterMgr)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00040">ParameterHandle.cpp:40</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_aa7a0f6b334003b2aeec2fdfa9e9969ce"><div class="ttname"><a href="classCParameterHandle.html#aa7a0f6b334003b2aeec2fdfa9e9969ce">CParameterHandle::getKind</a></div><div class="ttdeci">std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00069">ParameterHandle.cpp:69</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a7b3f0337175b369132e84429eef06959"><div class="ttname"><a href="classCParameterHandle.html#a7b3f0337175b369132e84429eef06959">CParameterHandle::getAsStringArray</a></div><div class="ttdeci">bool getAsStringArray(std::vector&lt; std::string &gt; &amp;astrValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00461">ParameterHandle.cpp:461</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a79508645556e3081ac678040daca92a1"><div class="ttname"><a href="classCParameterHandle.html#a79508645556e3081ac678040daca92a1">CParameterHandle::getAsBoolean</a></div><div class="ttdeci">bool getAsBoolean(bool &amp;bValue, std::string &amp;strError) const </div><div class="ttdoc">Fetch the parameter value as a boolean. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00097">ParameterHandle.cpp:97</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_a3cadd88844f27bfeb36c1c410e5a3c4c"><div class="ttname"><a href="classCBaseParameter.html#a3cadd88844f27bfeb36c1c410e5a3c4c">CBaseParameter::accessAsDoubleArray</a></div><div class="ttdeci">virtual bool accessAsDoubleArray(std::vector&lt; double &gt; &amp;adValues, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00163">BaseParameter.cpp:163</a></div></div>
-<div class="ttc" id="classCInstanceConfigurableElement_html_a88419cbe46d3f8f92385605841b829fa"><div class="ttname"><a href="classCInstanceConfigurableElement.html#a88419cbe46d3f8f92385605841b829fa">CInstanceConfigurableElement::getArrayLength</a></div><div class="ttdeci">uint32_t getArrayLength() const </div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8cpp_source.html#l00137">InstanceConfigurableElement.cpp:137</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a8fbb329e6cd40dbd47d3b34735ee5a96"><div class="ttname"><a href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">CParameterHandle::isArray</a></div><div class="ttdeci">bool isArray() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00051">ParameterHandle.cpp:51</a></div></div>
-<div class="ttc" id="classCParameterMgr_html_a25606ff4b96a3539dd76723fb4346d67"><div class="ttname"><a href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">CParameterMgr::tuningModeOn</a></div><div class="ttdeci">bool tuningModeOn() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterMgr_8cpp_source.html#l01897">ParameterMgr.cpp:1897</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a9e41d0657698335c4687a4707c2b25d8"><div class="ttname"><a href="classCParameterHandle.html#a9e41d0657698335c4687a4707c2b25d8">CParameterHandle::getArrayLength</a></div><div class="ttdeci">uint32_t getArrayLength() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00057">ParameterHandle.cpp:57</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a7cd4701b2270ffcd914fccab25cd5abf"><div class="ttname"><a href="classCParameterHandle.html#a7cd4701b2270ffcd914fccab25cd5abf">CParameterHandle::CParameterHandle</a></div><div class="ttdeci">CParameterHandle(const CBaseParameter *pParameter, CParameterMgr *pParameterMgr)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00043">ParameterHandle.cpp:43</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_aa7a0f6b334003b2aeec2fdfa9e9969ce"><div class="ttname"><a href="classCParameterHandle.html#aa7a0f6b334003b2aeec2fdfa9e9969ce">CParameterHandle::getKind</a></div><div class="ttdeci">std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00072">ParameterHandle.cpp:72</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a7b3f0337175b369132e84429eef06959"><div class="ttname"><a href="classCParameterHandle.html#a7b3f0337175b369132e84429eef06959">CParameterHandle::getAsStringArray</a></div><div class="ttdeci">bool getAsStringArray(std::vector&lt; std::string &gt; &amp;astrValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00231">ParameterHandle.cpp:231</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a79508645556e3081ac678040daca92a1"><div class="ttname"><a href="classCParameterHandle.html#a79508645556e3081ac678040daca92a1">CParameterHandle::getAsBoolean</a></div><div class="ttdeci">bool getAsBoolean(bool &amp;bValue, std::string &amp;strError) const </div><div class="ttdoc">Fetch the parameter value as a boolean. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00137">ParameterHandle.cpp:137</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a8fbb329e6cd40dbd47d3b34735ee5a96"><div class="ttname"><a href="classCParameterHandle.html#a8fbb329e6cd40dbd47d3b34735ee5a96">CParameterHandle::isArray</a></div><div class="ttdeci">bool isArray() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00054">ParameterHandle.cpp:54</a></div></div>
+<div class="ttc" id="classCParameterMgr_html_a25606ff4b96a3539dd76723fb4346d67"><div class="ttname"><a href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">CParameterMgr::tuningModeOn</a></div><div class="ttdeci">bool tuningModeOn() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterMgr_8cpp_source.html#l01778">ParameterMgr.cpp:1778</a></div></div>
+<div class="ttc" id="classCBaseParameter_html_a4d57a9add25900d5ac37e099020ce145"><div class="ttname"><a href="classCBaseParameter.html#a4d57a9add25900d5ac37e099020ce145">CBaseParameter::access</a></div><div class="ttdeci">virtual bool access(bool &amp;bValue, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00087">BaseParameter.cpp:87</a></div></div>
+<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace. </div></div>
 <div class="ttc" id="classCBaseParameter_html"><div class="ttname"><a href="classCBaseParameter.html">CBaseParameter</a></div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8h_source.html#l00040">BaseParameter.h:40</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_a4fb0984d60996ba29e646b9080aee070"><div class="ttname"><a href="classCBaseParameter.html#a4fb0984d60996ba29e646b9080aee070">CBaseParameter::accessAsSignedIntegerArray</a></div><div class="ttdeci">virtual bool accessAsSignedIntegerArray(std::vector&lt; int32_t &gt; &amp;aiValues, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00142">BaseParameter.cpp:142</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_aa5355efed0fc007cade9a7aa208925c6"><div class="ttname"><a href="classCParameterHandle.html#aa5355efed0fc007cade9a7aa208925c6">CParameterHandle::getAsSignedIntegerArray</a></div><div class="ttdeci">bool getAsSignedIntegerArray(std::vector&lt; int32_t &gt; &amp;aiValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00298">ParameterHandle.cpp:298</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a393a04f321892c5c25f076135d1b9a2c"><div class="ttname"><a href="classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c">CParameterHandle::getAsString</a></div><div class="ttdeci">bool getAsString(std::string &amp;strValue, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00420">ParameterHandle.cpp:420</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a04e958d57b5d5fe405ed6023ac33ca74"><div class="ttname"><a href="classCParameterHandle.html#a04e958d57b5d5fe405ed6023ac33ca74">CParameterHandle::getAsBooleanArray</a></div><div class="ttdeci">bool getAsBooleanArray(std::vector&lt; bool &gt; &amp;abValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00138">ParameterHandle.cpp:138</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_aa5355efed0fc007cade9a7aa208925c6"><div class="ttname"><a href="classCParameterHandle.html#aa5355efed0fc007cade9a7aa208925c6">CParameterHandle::getAsSignedIntegerArray</a></div><div class="ttdeci">bool getAsSignedIntegerArray(std::vector&lt; int32_t &gt; &amp;aiValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00189">ParameterHandle.cpp:189</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a393a04f321892c5c25f076135d1b9a2c"><div class="ttname"><a href="classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c">CParameterHandle::getAsString</a></div><div class="ttdeci">bool getAsString(std::string &amp;strValue, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00221">ParameterHandle.cpp:221</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a04e958d57b5d5fe405ed6023ac33ca74"><div class="ttname"><a href="classCParameterHandle.html#a04e958d57b5d5fe405ed6023ac33ca74">CParameterHandle::getAsBooleanArray</a></div><div class="ttdeci">bool getAsBooleanArray(std::vector&lt; bool &gt; &amp;abValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00147">ParameterHandle.cpp:147</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html_a0f1f67b9e526f8a9ae9d67292ead570a"><div class="ttname"><a href="classCInstanceConfigurableElement.html#a0f1f67b9e526f8a9ae9d67292ead570a">CInstanceConfigurableElement::isScalar</a></div><div class="ttdeci">bool isScalar() const </div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8cpp_source.html#l00131">InstanceConfigurableElement.cpp:131</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_ac8ddc2a8c57fa45742f94eca2d1c8516"><div class="ttname"><a href="classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516">CParameterHandle::setAsString</a></div><div class="ttdeci">bool setAsString(const std::string &amp;strValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00395">ParameterHandle.cpp:395</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a9ba3ce1ca358dbdc60c60c8dec3f7a33"><div class="ttname"><a href="classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33">CParameterHandle::setAsIntegerArray</a></div><div class="ttdeci">bool setAsIntegerArray(const std::vector&lt; uint32_t &gt; &amp;auiValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00193">ParameterHandle.cpp:193</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_ac8ddc2a8c57fa45742f94eca2d1c8516"><div class="ttname"><a href="classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516">CParameterHandle::setAsString</a></div><div class="ttdeci">bool setAsString(const std::string &amp;strValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00216">ParameterHandle.cpp:216</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_ac4cb5852a5c0f9ec73cc20894ac3cfd6"><div class="ttname"><a href="classCParameterHandle.html#ac4cb5852a5c0f9ec73cc20894ac3cfd6">CParameterHandle::getArrayLength</a></div><div class="ttdeci">size_t getArrayLength() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00060">ParameterHandle.cpp:60</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a9ba3ce1ca358dbdc60c60c8dec3f7a33"><div class="ttname"><a href="classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33">CParameterHandle::setAsIntegerArray</a></div><div class="ttdeci">bool setAsIntegerArray(const std::vector&lt; uint32_t &gt; &amp;auiValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00163">ParameterHandle.cpp:163</a></div></div>
 <div class="ttc" id="ParameterMgr_8h_html"><div class="ttname"><a href="ParameterMgr_8h.html">ParameterMgr.h</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_ae783161c39a930f49344ef7c746abb96"><div class="ttname"><a href="classCParameterHandle.html#ae783161c39a930f49344ef7c746abb96">CParameterHandle::getAsInteger</a></div><div class="ttdeci">bool getAsInteger(uint32_t &amp;uiValue, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00177">ParameterHandle.cpp:177</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_ae783161c39a930f49344ef7c746abb96"><div class="ttname"><a href="classCParameterHandle.html#ae783161c39a930f49344ef7c746abb96">CParameterHandle::getAsInteger</a></div><div class="ttdeci">bool getAsInteger(uint32_t &amp;uiValue, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00158">ParameterHandle.cpp:158</a></div></div>
 <div class="ttc" id="Subsystem_8h_html"><div class="ttname"><a href="Subsystem_8h.html">Subsystem.h</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_abdb59be3eb6674e99c37360f2bde79dd"><div class="ttname"><a href="classCBaseParameter.html#abdb59be3eb6674e99c37360f2bde79dd">CBaseParameter::accessAsBooleanArray</a></div><div class="ttdeci">virtual bool accessAsBooleanArray(std::vector&lt; bool &gt; &amp;abValues, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00100">BaseParameter.cpp:100</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_a2b425561e193a3d54e7225d896a3d39b"><div class="ttname"><a href="classCBaseParameter.html#a2b425561e193a3d54e7225d896a3d39b">CBaseParameter::accessAsString</a></div><div class="ttdeci">bool accessAsString(std::string &amp;strValue, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00174">BaseParameter.cpp:174</a></div></div>
+<div class="ttc" id="classCInstanceConfigurableElement_html_a590967d30772d8ada0ac367f4273d248"><div class="ttname"><a href="classCInstanceConfigurableElement.html#a590967d30772d8ada0ac367f4273d248">CInstanceConfigurableElement::getArrayLength</a></div><div class="ttdeci">size_t getArrayLength() const </div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8cpp_source.html#l00137">InstanceConfigurableElement.cpp:137</a></div></div>
 <div class="ttc" id="classCInstanceConfigurableElement_html_aa5e8dc0766c8bb045e61c577e114af10"><div class="ttname"><a href="classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10">CInstanceConfigurableElement::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8cpp_source.html#l00044">InstanceConfigurableElement.cpp:44</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a56a3b97c9480755ddd34cb565a9bbf8f"><div class="ttname"><a href="classCParameterHandle.html#a56a3b97c9480755ddd34cb565a9bbf8f">CParameterHandle::getAsDoubleArray</a></div><div class="ttdeci">bool getAsDoubleArray(std::vector&lt; double &gt; &amp;adValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00378">ParameterHandle.cpp:378</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a82337e6b645d3b8cdf962382f5a606e8"><div class="ttname"><a href="classCParameterHandle.html#a82337e6b645d3b8cdf962382f5a606e8">CParameterHandle::isRogue</a></div><div class="ttdeci">bool isRogue() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00046">ParameterHandle.cpp:46</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_a92227f427d1f58905437176152356ed9"><div class="ttname"><a href="classCBaseParameter.html#a92227f427d1f58905437176152356ed9">CBaseParameter::accessAsStringArray</a></div><div class="ttdeci">virtual bool accessAsStringArray(std::vector&lt; std::string &gt; &amp;astrValues, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00199">BaseParameter.cpp:199</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_ad6c3b121c92cabe717272fba5ccb6956"><div class="ttname"><a href="classCBaseParameter.html#ad6c3b121c92cabe717272fba5ccb6956">CBaseParameter::accessAsBoolean</a></div><div class="ttdeci">virtual bool accessAsBoolean(bool &amp;bValue, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdoc">Value access. </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00090">BaseParameter.cpp:90</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_a231e9def106391b96fb0671f4214f105"><div class="ttname"><a href="classCBaseParameter.html#a231e9def106391b96fb0671f4214f105">CBaseParameter::accessAsSignedInteger</a></div><div class="ttdeci">virtual bool accessAsSignedInteger(int32_t &amp;iValue, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00132">BaseParameter.cpp:132</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_ac13a0317a8b71f1dadb3316f6b340ac8"><div class="ttname"><a href="classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8">CParameterHandle::setAsDoubleArray</a></div><div class="ttdeci">bool setAsDoubleArray(const std::vector&lt; double &gt; &amp;adValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00353">ParameterHandle.cpp:353</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a729342719068a9b0a730c32d3fb55e79"><div class="ttname"><a href="classCParameterHandle.html#a729342719068a9b0a730c32d3fb55e79">CParameterHandle::setAsStringArray</a></div><div class="ttdeci">bool setAsStringArray(const std::vector&lt; std::string &gt; &amp;astrValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00436">ParameterHandle.cpp:436</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_af569644b1f1e795de4e98bef7a4c484a"><div class="ttname"><a href="classCBaseParameter.html#af569644b1f1e795de4e98bef7a4c484a">CBaseParameter::accessAsIntegerArray</a></div><div class="ttdeci">virtual bool accessAsIntegerArray(std::vector&lt; uint32_t &gt; &amp;auiValues, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00121">BaseParameter.cpp:121</a></div></div>
-<div class="ttc" id="classCElement_html_a7022c0fc8063f0aae9d97b06e74d4ac1"><div class="ttname"><a href="classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1">CElement::getPath</a></div><div class="ttdeci">std::string getPath() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00650">Element.cpp:650</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a65133e599246608b31ad9ab8d5935f87"><div class="ttname"><a href="classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87">CParameterHandle::setAsDouble</a></div><div class="ttdeci">bool setAsDouble(double dValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00315">ParameterHandle.cpp:315</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a6da6c3bb512016dff63874910e81a7a3"><div class="ttname"><a href="classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3">CParameterHandle::setAsInteger</a></div><div class="ttdeci">bool setAsInteger(uint32_t uiValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00155">ParameterHandle.cpp:155</a></div></div>
-<div class="ttc" id="classCParameterMgr_html"><div class="ttname"><a href="classCParameterMgr.html">CParameterMgr</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterMgr_8h_source.html#l00062">ParameterMgr.h:62</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_aca2f7f29237c1cef42fe6b9c2edaf0d3"><div class="ttname"><a href="classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3">CParameterHandle::setAsSignedInteger</a></div><div class="ttdeci">bool setAsSignedInteger(int32_t iValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00235">ParameterHandle.cpp:235</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_a6082bac12d32dbf326cb7799ad7596d6"><div class="ttname"><a href="classCBaseParameter.html#a6082bac12d32dbf326cb7799ad7596d6">CBaseParameter::accessAsDouble</a></div><div class="ttdeci">virtual bool accessAsDouble(double &amp;dValue, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00153">BaseParameter.cpp:153</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a69a79e016d6031fba2084d8ebbc32bc9"><div class="ttname"><a href="classCParameterHandle.html#a69a79e016d6031fba2084d8ebbc32bc9">CParameterHandle::getAsDouble</a></div><div class="ttdeci">bool getAsDouble(double &amp;dValue, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00337">ParameterHandle.cpp:337</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a7c0ff4aa61fbf1b5408107543f575666"><div class="ttname"><a href="classCParameterHandle.html#a7c0ff4aa61fbf1b5408107543f575666">CParameterHandle::getAsIntegerArray</a></div><div class="ttdeci">bool getAsIntegerArray(std::vector&lt; uint32_t &gt; &amp;auiValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00218">ParameterHandle.cpp:218</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_af37c16256784bcd4673359bb3ceb42af"><div class="ttname"><a href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">CParameterHandle::getPath</a></div><div class="ttdeci">std::string getPath() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00063">ParameterHandle.cpp:63</a></div></div>
-<div class="ttc" id="classCBaseParameter_html_a8386194eb61f9dcdf1fee382f4517dd2"><div class="ttname"><a href="classCBaseParameter.html#a8386194eb61f9dcdf1fee382f4517dd2">CBaseParameter::accessAsInteger</a></div><div class="ttdeci">virtual bool accessAsInteger(uint32_t &amp;uiValue, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="BaseParameter_8cpp_source.html#l00111">BaseParameter.cpp:111</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a9633a54d1119566d284f85bfbe26af3a"><div class="ttname"><a href="classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a">CParameterHandle::setAsBoolean</a></div><div class="ttdeci">bool setAsBoolean(bool bValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00075">ParameterHandle.cpp:75</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_ae0f615ada89362b2dbf69692fd0fe344"><div class="ttname"><a href="classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344">CParameterHandle::setAsBooleanArray</a></div><div class="ttdeci">bool setAsBooleanArray(const std::vector&lt; bool &gt; &amp;abValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00113">ParameterHandle.cpp:113</a></div></div>
-<div class="ttc" id="classCParameterHandle_html_a67cb99fb91c66be80007b4e14729c5da"><div class="ttname"><a href="classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da">CParameterHandle::setAsSignedIntegerArray</a></div><div class="ttdeci">bool setAsSignedIntegerArray(const std::vector&lt; int32_t &gt; &amp;aiValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00273">ParameterHandle.cpp:273</a></div></div>
-<div class="ttc" id="AutoLock_8h_html"><div class="ttname"><a href="AutoLock_8h.html">AutoLock.h</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a56a3b97c9480755ddd34cb565a9bbf8f"><div class="ttname"><a href="classCParameterHandle.html#a56a3b97c9480755ddd34cb565a9bbf8f">CParameterHandle::getAsDoubleArray</a></div><div class="ttdeci">bool getAsDoubleArray(std::vector&lt; double &gt; &amp;adValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00210">ParameterHandle.cpp:210</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a82337e6b645d3b8cdf962382f5a606e8"><div class="ttname"><a href="classCParameterHandle.html#a82337e6b645d3b8cdf962382f5a606e8">CParameterHandle::isRogue</a></div><div class="ttdeci">bool isRogue() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00049">ParameterHandle.cpp:49</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_ac13a0317a8b71f1dadb3316f6b340ac8"><div class="ttname"><a href="classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8">CParameterHandle::setAsDoubleArray</a></div><div class="ttdeci">bool setAsDoubleArray(const std::vector&lt; double &gt; &amp;adValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00205">ParameterHandle.cpp:205</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a729342719068a9b0a730c32d3fb55e79"><div class="ttname"><a href="classCParameterHandle.html#a729342719068a9b0a730c32d3fb55e79">CParameterHandle::setAsStringArray</a></div><div class="ttdeci">bool setAsStringArray(const std::vector&lt; std::string &gt; &amp;astrValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00226">ParameterHandle.cpp:226</a></div></div>
+<div class="ttc" id="classCElement_html_a7022c0fc8063f0aae9d97b06e74d4ac1"><div class="ttname"><a href="classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1">CElement::getPath</a></div><div class="ttdeci">std::string getPath() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00515">Element.cpp:515</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a65133e599246608b31ad9ab8d5935f87"><div class="ttname"><a href="classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87">CParameterHandle::setAsDouble</a></div><div class="ttdeci">bool setAsDouble(double dValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00195">ParameterHandle.cpp:195</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a6da6c3bb512016dff63874910e81a7a3"><div class="ttname"><a href="classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3">CParameterHandle::setAsInteger</a></div><div class="ttdeci">bool setAsInteger(uint32_t uiValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00153">ParameterHandle.cpp:153</a></div></div>
+<div class="ttc" id="classCParameterMgr_html"><div class="ttname"><a href="classCParameterMgr.html">CParameterMgr</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterMgr_8h_source.html#l00065">ParameterMgr.h:65</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_aca2f7f29237c1cef42fe6b9c2edaf0d3"><div class="ttname"><a href="classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3">CParameterHandle::setAsSignedInteger</a></div><div class="ttdeci">bool setAsSignedInteger(int32_t iValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00174">ParameterHandle.cpp:174</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a69a79e016d6031fba2084d8ebbc32bc9"><div class="ttname"><a href="classCParameterHandle.html#a69a79e016d6031fba2084d8ebbc32bc9">CParameterHandle::getAsDouble</a></div><div class="ttdeci">bool getAsDouble(double &amp;dValue, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00200">ParameterHandle.cpp:200</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a7c0ff4aa61fbf1b5408107543f575666"><div class="ttname"><a href="classCParameterHandle.html#a7c0ff4aa61fbf1b5408107543f575666">CParameterHandle::getAsIntegerArray</a></div><div class="ttdeci">bool getAsIntegerArray(std::vector&lt; uint32_t &gt; &amp;auiValues, std::string &amp;strError) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00168">ParameterHandle.cpp:168</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_af37c16256784bcd4673359bb3ceb42af"><div class="ttname"><a href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af">CParameterHandle::getPath</a></div><div class="ttdeci">std::string getPath() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00066">ParameterHandle.cpp:66</a></div></div>
+<div class="ttc" id="structisVector_html"><div class="ttname"><a href="structisVector.html">isVector</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00078">ParameterHandle.cpp:78</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a9633a54d1119566d284f85bfbe26af3a"><div class="ttname"><a href="classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a">CParameterHandle::setAsBoolean</a></div><div class="ttdeci">bool setAsBoolean(bool bValue, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00132">ParameterHandle.cpp:132</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_ae0f615ada89362b2dbf69692fd0fe344"><div class="ttname"><a href="classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344">CParameterHandle::setAsBooleanArray</a></div><div class="ttdeci">bool setAsBooleanArray(const std::vector&lt; bool &gt; &amp;abValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00142">ParameterHandle.cpp:142</a></div></div>
+<div class="ttc" id="classCParameterHandle_html_a67cb99fb91c66be80007b4e14729c5da"><div class="ttname"><a href="classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da">CParameterHandle::setAsSignedIntegerArray</a></div><div class="ttdeci">bool setAsSignedIntegerArray(const std::vector&lt; int32_t &gt; &amp;aiValues, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterHandle_8cpp_source.html#l00184">ParameterHandle.cpp:184</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

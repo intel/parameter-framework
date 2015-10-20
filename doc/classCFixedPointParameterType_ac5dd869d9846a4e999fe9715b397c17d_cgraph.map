@@ -1,9 +1,7 @@
 <map id="CFixedPointParameterType::handleValueSpaceAttribute" name="CFixedPointParameterType::handleValueSpaceAttribute">
 <area shape="rect" id="node2" href="$classCConfigurationAccessContext.html#ac0a975afc840488e5e82345441de56cc" title="CConfigurationAccessContext\l::serializeOut" alt="" coords="257,5,468,47"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="757,117,952,143"/>
+<area shape="rect" id="node3" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="266,71,459,98"/>
 <area shape="rect" id="node4" href="$classCParameterAccessContext.html#a506d83c2a6d876c61a3a21880f3302da" title="CParameterAccessContext\l::setValueSpaceRaw" alt="" coords="266,123,459,164"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a888b37c9e0fc336bd93de01d1a170bb6" title="CXmlElement::getAttribute\lBoolean" alt="" coords="266,188,459,229"/>
-<area shape="rect" id="node7" href="$classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7" title="CParameterAccessContext\l::valueSpaceIsRaw" alt="" coords="266,253,459,295"/>
-<area shape="rect" id="node8" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="267,319,459,360"/>
-<area shape="rect" id="node6" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="516,155,709,196"/>
+<area shape="rect" id="node5" href="$classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7" title="CParameterAccessContext\l::valueSpaceIsRaw" alt="" coords="266,188,459,229"/>
+<area shape="rect" id="node6" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="267,254,459,281"/>
 </map>

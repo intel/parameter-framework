@@ -1,5 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCSocket.html" title="Readable and writable socket. " alt="" coords="5,31,80,57"/>
-<area shape="rect" id="node2" href="$classCConnectionSocket.html" title="CConnectionSocket" alt="" coords="128,5,275,32"/>
-<area shape="rect" id="node3" href="$classCListeningSocket.html" title="CListeningSocket" alt="" coords="135,56,267,83"/>
+<area shape="rect" id="node1" href="$classIRemoteCommandHandler.html" title="IRemoteCommandHandler" alt="" coords="5,13,196,39"/>
+<area shape="rect" id="node2" href="$classTRemoteCommandHandlerTemplate.html" title="TRemoteCommandHandlerTemplate\l\&lt; CCommandParser \&gt;" alt="" coords="244,5,497,47"/>
 </map>

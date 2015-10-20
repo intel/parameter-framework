@@ -1,8 +1,8 @@
 <map id="CParameterMgrPlatformConnector::createSelectionCriterion" name="CParameterMgrPlatformConnector::createSelectionCriterion">
 <area shape="rect" id="node2" href="$classCParameterMgr.html#a3b6a3500b78f43bfb894263689b809a7" title="CParameterMgr::createSelection\lCriterion" alt="" coords="296,39,527,80"/>
-<area shape="rect" id="node3" href="$classCSelectionCriteria.html#af0f5289db594b0d2633c59cf8570fa50" title="CSelectionCriteria\l::createSelectionCriterion" alt="" coords="575,39,759,80"/>
+<area shape="rect" id="node3" href="$classCSelectionCriteria.html#a8ae57add042140f555532ed8c6b35221" title="CSelectionCriteria\l::createSelectionCriterion" alt="" coords="575,39,759,80"/>
 <area shape="rect" id="node4" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="807,5,1023,47"/>
-<area shape="rect" id="node6" href="$classCSelectionCriteriaDefinition.html#ad6447026bd630fa502212eeb6f419146" title="CSelectionCriteriaDefinition\l::createSelectionCriterion" alt="" coords="817,71,1013,112"/>
-<area shape="rect" id="node5" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="1072,13,1216,39"/>
+<area shape="rect" id="node6" href="$classCSelectionCriteriaDefinition.html#a721af071a21972611a6b410be8a8a240" title="CSelectionCriteriaDefinition\l::createSelectionCriterion" alt="" coords="817,71,1013,112"/>
+<area shape="rect" id="node5" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="1072,13,1216,39"/>
 <area shape="rect" id="node7" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="1071,78,1217,105"/>
 </map>

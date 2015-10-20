@@ -1,0 +1,12 @@
+<map id="CParameterType::getSize" name="CParameterType::getSize">
+<area shape="rect" id="node2" href="$classCEnumParameterType.html#a657fc941f16df1059a7f1377aa85b258" title="CEnumParameterType\l::toXml" alt="" coords="273,5,435,47"/>
+<area shape="rect" id="node3" href="$classCFixedPointParameterType.html#a915d48511911653dc8ddf03cf39dc0ec" title="CFixedPointParameterType\l::fromBlackboard" alt="" coords="259,71,449,112"/>
+<area shape="rect" id="node4" href="$classCFixedPointParameterType.html#ac9e0de762e60d0cfce00122bdbef137e" title="CFixedPointParameterType\l::toXml" alt="" coords="259,136,449,177"/>
+<area shape="rect" id="node5" href="$classCFloatingPointParameterType.html#a8547b2d6ef0c74ad34985ffc96a289a3" title="CFloatingPointParameterType\l::fromBlackboard" alt="" coords="250,201,458,243"/>
+<area shape="rect" id="node6" href="$classCFloatingPointParameterType.html#ab6a0070b3b32a68d8dd1cb3868019817" title="CFloatingPointParameterType\l::toXml" alt="" coords="250,267,458,308"/>
+<area shape="rect" id="node7" href="$classCIntegerParameterType.html#a20f5eb6c8e4cea3d1f0ccdb92e1d008c" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="269,332,439,373"/>
+<area shape="rect" id="node8" href="$classCIntegerParameterType.html#a26c10292fad5a8e6603dc0673f813d69" title="CIntegerParameterType\l::toXml" alt="" coords="269,397,439,439"/>
+<area shape="rect" id="node9" href="$classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0" title="CParameterType::showProperties" alt="" coords="239,463,469,490"/>
+<area shape="rect" id="node11" href="$classCParameterType.html#a5fe8903d0958345169b3ad4c0534ecf4" title="CParameterType::makeEncodable" alt="" coords="236,514,472,541"/>
+<area shape="rect" id="node10" href="$classCFloatingPointParameterType.html#a73e859ba1b414c497bc3562b15168087" title="CFloatingPointParameterType\l::showProperties" alt="" coords="520,456,728,497"/>
+</map>

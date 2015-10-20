@@ -1,9 +1,0 @@
-<map id="CConfigurableDomain::apply" name="CConfigurableDomain::apply">
-<area shape="rect" id="node2" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="227,5,369,32"/>
-<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="222,56,374,83"/>
-<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a1e837621d00a5ed2282c525c25a484e7" title="CDomainConfiguration\l::restore" alt="" coords="215,107,381,149"/>
-<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a5f72a0349e2309a77459650ba10918a1" title="CAreaConfiguration\l::restore" alt="" coords="429,107,576,149"/>
-<area shape="rect" id="node6" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="624,78,788,119"/>
-<area shape="rect" id="node7" href="$classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b" title="CSyncerSet::sync" alt="" coords="639,144,773,171"/>
-<area shape="rect" id="node8" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="836,144,943,171"/>
-</map>

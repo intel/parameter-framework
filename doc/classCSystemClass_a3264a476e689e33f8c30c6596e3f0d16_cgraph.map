@@ -1,8 +1,6 @@
 <map id="CSystemClass::loadSubsystems" name="CSystemClass::loadSubsystems">
 <area shape="rect" id="node2" href="$classCElementLibrary.html#a3b7e9918b93da30066b5dc21c92623f3" title="CElementLibrary::clean" alt="" coords="303,5,471,32"/>
 <area shape="rect" id="node3" href="$classCElementLibrary.html#a4c445bfb8eee5e5f4534499760add2d0" title="Add a xml tag and it&#39;s corresponding builder in the library. " alt="" coords="281,57,492,98"/>
-<area shape="rect" id="node4" href="$classCDefaultElementLibrary.html#aff3b8240cb76aa7e63f59d2471b9aa6e" title="Enable the default builder fallback mechanism. " alt="" coords="291,122,483,163"/>
-<area shape="rect" id="node5" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="316,188,457,215"/>
-<area shape="rect" id="node6" href="$classCElement.html#a6fadaf69d17a61c431422ed6d8a1f8f0" title="CElement::log_table" alt="" coords="311,239,462,265"/>
-<area shape="rect" id="node7" href="$classCUtility.html#a61d8ac9daba8e70320e5da0af931bdae" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="323,289,450,316"/>
+<area shape="rect" id="node4" href="$classCDefaultElementLibrary.html#afb350f81719eaacb86a7c09e497d198e" title="Set the default builder used in fallback mechanism. " alt="" coords="300,122,473,163"/>
+<area shape="rect" id="node5" href="$namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="329,188,445,215"/>
 </map>

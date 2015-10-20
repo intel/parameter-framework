@@ -1,5 +1,6 @@
 <map id="parameter/ConfigurationAccessContext.cpp" name="parameter/ConfigurationAccessContext.cpp">
-<area shape="rect" id="node2" href="$ConfigurationAccessContext_8h.html" title="ConfigurationAccessContext.h" alt="" coords="127,95,341,121"/>
-<area shape="rect" id="node3" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="64,169,260,196"/>
-<area shape="rect" id="node5" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="101,244,215,271"/>
+<area shape="rect" id="node2" href="$ConfigurationAccessContext_8h.html" title="ConfigurationAccessContext.h" alt="" coords="10,95,225,121"/>
+<area shape="rect" id="node3" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="87,169,283,196"/>
+<area shape="rect" id="node5" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="237,244,368,271"/>
+<area shape="rect" id="node7" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="235,319,370,345"/>
 </map>

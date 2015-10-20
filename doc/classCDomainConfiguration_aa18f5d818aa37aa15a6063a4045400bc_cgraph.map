@@ -1,6 +1,6 @@
 <map id="CDomainConfiguration::isApplicable" name="CDomainConfiguration::isApplicable">
 <area shape="rect" id="node2" href="$classCCompoundRule.html#a92c9b3e8a2c0b240af3bf85e4b2630d8" title="CCompoundRule::matches" alt="" coords="220,56,411,83"/>
 <area shape="rect" id="node3" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="459,5,641,32"/>
-<area shape="rect" id="node4" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="478,56,622,83"/>
+<area shape="rect" id="node4" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="478,56,622,83"/>
 <area shape="rect" id="node5" href="$classCRule.html#aaeeed8a6ca4a3e87ee75282df22fa01a" title="CRule::matches" alt="" coords="489,107,611,133"/>
 </map>

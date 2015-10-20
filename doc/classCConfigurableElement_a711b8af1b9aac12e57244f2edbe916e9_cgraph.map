@@ -1,5 +1,6 @@
 <map id="CConfigurableElement::hasNoValidDomainAssociated" name="CConfigurableElement::hasNoValidDomainAssociated">
-<area shape="rect" id="node2" href="$classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79" title="CConfigurableDomain\l::isApplicableConfiguration\lValid" alt="" coords="275,5,465,61"/>
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#ad5929cbe47434a4b6c9195c0a27723f6" title="CDomainConfiguration\l::isValid" alt="" coords="513,13,680,54"/>
-<area shape="rect" id="node4" href="$classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917" title="CAreaConfiguration\l::isValid" alt="" coords="728,13,875,54"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79" title="CConfigurableDomain\l::isApplicableConfiguration\lValid" alt="" coords="275,20,465,76"/>
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#ad5929cbe47434a4b6c9195c0a27723f6" title="CDomainConfiguration\l::isValid" alt="" coords="513,27,680,69"/>
+<area shape="rect" id="node4" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="728,5,880,32"/>
+<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917" title="CAreaConfiguration\l::isValid" alt="" coords="731,57,877,98"/>
 </map>

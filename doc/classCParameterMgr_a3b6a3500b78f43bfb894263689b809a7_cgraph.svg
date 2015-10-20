@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCSelectionCriteria.html#af0f5289db594b0d2633c59cf8570fa50" target="_top" xlink:title="CSelectionCriteria\l::createSelectionCriterion">
+<g id="a_node2"><a xlink:href="classCSelectionCriteria.html#a8ae57add042140f555532ed8c6b35221" target="_top" xlink:title="CSelectionCriteria\l::createSelectionCriterion">
 <polygon fill="white" stroke="black" points="209,-24.5 209,-54.5 347,-54.5 347,-24.5 209,-24.5"/>
 <text text-anchor="start" x="217" y="-42.5" font-family="Verdana" font-size="10.00">CSelectionCriteria</text>
 <text text-anchor="middle" x="278" y="-31.5" font-family="Verdana" font-size="10.00">::createSelectionCriterion</text>
@@ -45,7 +45,7 @@
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classCSelectionCriteriaDefinition.html#ad6447026bd630fa502212eeb6f419146" target="_top" xlink:title="CSelectionCriteriaDefinition\l::createSelectionCriterion">
+<g id="a_node5"><a xlink:href="classCSelectionCriteriaDefinition.html#a721af071a21972611a6b410be8a8a240" target="_top" xlink:title="CSelectionCriteriaDefinition\l::createSelectionCriterion">
 <polygon fill="white" stroke="black" points="390.5,-0.5 390.5,-30.5 537.5,-30.5 537.5,-0.5 390.5,-0.5"/>
 <text text-anchor="start" x="398.5" y="-18.5" font-family="Verdana" font-size="10.00">CSelectionCriteriaDefinition</text>
 <text text-anchor="middle" x="464" y="-7.5" font-family="Verdana" font-size="10.00">::createSelectionCriterion</text>
@@ -59,7 +59,7 @@
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" target="_top" xlink:title="Get a child element (const) ">
+<g id="a_node4"><a xlink:href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16" target="_top" xlink:title="Get a child element (const) ">
 <polygon fill="white" stroke="black" points="582,-55 582,-74 690,-74 690,-55 582,-55"/>
 <text text-anchor="middle" x="636" y="-62" font-family="Verdana" font-size="10.00">CElement::getChild</text>
 </a>

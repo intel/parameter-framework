@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -96,18 +96,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="TestPlatform_8h_source.html">TestPlatform.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="FullIo_8hpp_source.html">FullIo.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="convert_8hpp_source.html">convert.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Utility_8h_source.html">Utility.h</a>&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;cstdlib&gt;</code><br />
-<code>#include &lt;semaphore.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;cerrno&gt;</code><br />
-<code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp__incl.svg" width="1440" height="426"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp__incl.svg" width="2151" height="500"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -115,16 +113,10 @@ Include dependency graph for main.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8cdd52c65098972c711a9ae39f5fc81d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#a8cdd52c65098972c711a9ae39f5fc81d">startBlockingTestPlatform</a> (const char *filePath, int portNumber, string &amp;strError)</td></tr>
-<tr class="separator:a8cdd52c65098972c711a9ae39f5fc81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ecbd43d18222aa99e11fde8df044bd7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#a5ecbd43d18222aa99e11fde8df044bd7">notifyParent</a> (int parentFd, bool success)</td></tr>
-<tr class="separator:a5ecbd43d18222aa99e11fde8df044bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fd779abc38b1314eaae2f8f359bbb42"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#a9fd779abc38b1314eaae2f8f359bbb42">startDaemonTestPlatform</a> (const char *filePath, int portNumber, string &amp;strError)</td></tr>
-<tr class="separator:a9fd779abc38b1314eaae2f8f359bbb42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5245243a40303ea40f3e033b19d9557"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557">showUsage</a> ()</td></tr>
 <tr class="separator:ae5245243a40303ea40f3e033b19d9557"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08a4abf73d625c5f553c304cab8b8ac2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#a08a4abf73d625c5f553c304cab8b8ac2">showInvalidUsage</a> ()</td></tr>
-<tr class="separator:a08a4abf73d625c5f553c304cab8b8ac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c69b952783170105c8f058a90b3212b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b">showInvalidUsage</a> (const string &amp;error)</td></tr>
+<tr class="separator:a5c69b952783170105c8f058a90b3212b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace20b4c64e0e4391617feee761929d6a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a">showHelp</a> ()</td></tr>
 <tr class="separator:ace20b4c64e0e4391617feee761929d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
@@ -132,8 +124,8 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aeb740e44b76e59b193dfb6fc3854e90f"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#aeb740e44b76e59b193dfb6fc3854e90f">iDefaultPortNumber</a> = 5001</td></tr>
-<tr class="separator:aeb740e44b76e59b193dfb6fc3854e90f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fdf133929887a5d3e21e2889b1c173d"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_2test-platform_2main_8cpp.html#a4fdf133929887a5d3e21e2889b1c173d">defaultPortNumber</a> = 5001</td></tr>
+<tr class="separator:a4fdf133929887a5d3e21e2889b1c173d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a>
@@ -160,64 +152,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00185">185</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00068">68</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.svg" width="1172" height="283"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a5ecbd43d18222aa99e11fde8df044bd7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void notifyParent </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>parentFd</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>success</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00074">74</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a5ecbd43d18222aa99e11fde8df044bd7_cgraph.svg" width="635" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a5ecbd43d18222aa99e11fde8df044bd7_icgraph.svg" width="447" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.svg" width="391" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -245,7 +185,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00176">176</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00058">58</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -265,7 +205,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a08a4abf73d625c5f553c304cab8b8ac2"></a>
+<a class="anchor" id="a5c69b952783170105c8f058a90b3212b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -275,7 +215,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static void showInvalidUsage </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -286,12 +227,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00170">170</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00052">52</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a08a4abf73d625c5f553c304cab8b8ac2_cgraph.svg" width="288" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a5c69b952783170105c8f058a90b3212b_cgraph.svg" width="288" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -299,7 +240,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a08a4abf73d625c5f553c304cab8b8ac2_icgraph.svg" width="248" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a5c69b952783170105c8f058a90b3212b_icgraph.svg" width="248" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -327,7 +268,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00164">164</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00046">46</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -339,131 +280,23 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a8cdd52c65098972c711a9ae39f5fc81d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool startBlockingTestPlatform </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filePath</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>portNumber</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string &amp;&#160;</td>
-          <td class="paramname"><em>strError</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00047">47</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a8cdd52c65098972c711a9ae39f5fc81d_cgraph.svg" width="1067" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a8cdd52c65098972c711a9ae39f5fc81d_icgraph.svg" width="298" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a9fd779abc38b1314eaae2f8f359bbb42"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool startDaemonTestPlatform </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filePath</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>portNumber</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string &amp;&#160;</td>
-          <td class="paramname"><em>strError</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00085">85</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a9fd779abc38b1314eaae2f8f359bbb42_cgraph.svg" width="1070" height="227"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="test_2test-platform_2main_8cpp_a9fd779abc38b1314eaae2f8f359bbb42_icgraph.svg" width="300" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="aeb740e44b76e59b193dfb6fc3854e90f"></a>
+<a class="anchor" id="a4fdf133929887a5d3e21e2889b1c173d"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int iDefaultPortNumber = 5001</td>
+          <td class="memname">const uint16_t defaultPortNumber = 5001</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="test_2test-platform_2main_8cpp_source.html#l00044">44</a> of file <a class="el" href="test_2test-platform_2main_8cpp_source.html">main.cpp</a>.</p>

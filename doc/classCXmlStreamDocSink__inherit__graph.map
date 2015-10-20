@@ -1,3 +1,4 @@
 <map id="CXmlStreamDocSink" name="CXmlStreamDocSink">
-<area shape="rect" id="node2" href="$classCXmlDocSink.html" title="The CXmlDocSink class defines how to use a CXmlDocSource. " alt="" coords="29,5,136,32"/>
+<area shape="rect" id="node2" href="$classCXmlDocSink.html" title="The CXmlDocSink class defines how to use a CXmlDocSource. " alt="" coords="29,80,136,107"/>
+<area shape="rect" id="node3" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="9,5,157,32"/>
 </map>

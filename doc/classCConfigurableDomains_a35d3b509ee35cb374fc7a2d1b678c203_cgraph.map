@@ -2,7 +2,6 @@
 <area shape="rect" id="node2" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="229,5,381,32"/>
 <area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="437,78,620,119"/>
 <area shape="rect" id="node5" href="$classCConfigurableDomains.html#a26ae82c8fd65751062ea4fcffa69944f" title="Delete a domain by name. " alt="" coords="221,107,389,149"/>
-<area shape="rect" id="node6" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="235,173,376,200"/>
-<area shape="rect" id="node7" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="232,224,379,251"/>
+<area shape="rect" id="node6" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="232,173,379,200"/>
 <area shape="rect" id="node4" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="668,85,815,112"/>
 </map>

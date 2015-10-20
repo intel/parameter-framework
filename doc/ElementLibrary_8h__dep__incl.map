@@ -1,12 +1,13 @@
 <map id="parameter/ElementLibrary.h" name="parameter/ElementLibrary.h">
-<area shape="rect" id="node2" href="$DefaultElementLibrary_8h.html" title="parameter/DefaultElement\lLibrary.h" alt="" coords="43,80,237,121"/>
-<area shape="rect" id="node7" href="$Element_8cpp.html" title="parameter/Element.cpp" alt="" coords="261,87,435,114"/>
-<area shape="rect" id="node8" href="$ElementLibrary_8cpp.html" title="parameter/ElementLibrary.cpp" alt="" coords="459,87,674,114"/>
-<area shape="rect" id="node9" href="$ElementLibrarySet_8h.html" title="parameter/ElementLibrary\lSet.h" alt="" coords="698,80,889,121"/>
-<area shape="rect" id="node11" href="$XmlFileIncluderElement_8cpp.html" title="parameter/XmlFileIncluder\lElement.cpp" alt="" coords="913,80,1101,121"/>
-<area shape="rect" id="node3" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="123,177,341,203"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="583,266,793,293"/>
-<area shape="rect" id="node5" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="5,259,224,300"/>
-<area shape="rect" id="node6" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="249,266,453,293"/>
-<area shape="rect" id="node10" href="$ElementLibrarySet_8cpp.html" title="parameter/ElementLibrary\lSet.cpp" alt="" coords="565,169,755,211"/>
+<area shape="rect" id="node2" href="$DefaultElementLibrary_8h.html" title="parameter/DefaultElement\lLibrary.h" alt="" coords="94,80,287,121"/>
+<area shape="rect" id="node8" href="$Element_8cpp.html" title="parameter/Element.cpp" alt="" coords="311,87,486,114"/>
+<area shape="rect" id="node9" href="$ElementLibrary_8cpp.html" title="parameter/ElementLibrary.cpp" alt="" coords="510,87,725,114"/>
+<area shape="rect" id="node10" href="$ElementLibrarySet_8h.html" title="parameter/ElementLibrary\lSet.h" alt="" coords="749,80,939,121"/>
+<area shape="rect" id="node12" href="$XmlFileIncluderElement_8cpp.html" title="parameter/XmlFileIncluder\lElement.cpp" alt="" coords="963,80,1151,121"/>
+<area shape="rect" id="node3" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="173,177,392,203"/>
+<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="692,266,903,293"/>
+<area shape="rect" id="node5" href="$Plugin_8h.html" title="This file is intended to be used by the plugins. " alt="" coords="5,266,149,293"/>
+<area shape="rect" id="node6" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="173,259,392,300"/>
+<area shape="rect" id="node7" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="417,266,621,293"/>
+<area shape="rect" id="node11" href="$ElementLibrarySet_8cpp.html" title="parameter/ElementLibrary\lSet.cpp" alt="" coords="615,169,806,211"/>
 </map>

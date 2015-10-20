@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -104,19 +104,12 @@ Inheritance diagram for CParameterMgr:</div>
 </div>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr_1_1ILogger.html">ILogger</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a62ac187a0a8c321c3a312d4b2eeb9da2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a62ac187a0a8c321c3a312d4b2eeb9da2">CParameterMgr</a> (const std::string &amp;strConfigurationFilePath)</td></tr>
-<tr class="separator:a62ac187a0a8c321c3a312d4b2eeb9da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7738edec2c505ffa54a9f0f42975586"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#ae7738edec2c505ffa54a9f0f42975586">CParameterMgr</a> (const std::string &amp;strConfigurationFilePath, <a class="el" href="classcore_1_1log_1_1ILogger.html">core::log::ILogger</a> &amp;logger)</td></tr>
+<tr class="separator:ae7738edec2c505ffa54a9f0f42975586"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c698bbf40cd884931dee325037c35d2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a8c698bbf40cd884931dee325037c35d2">~CParameterMgr</a> ()</td></tr>
 <tr class="separator:a8c698bbf40cd884931dee325037c35d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49e950933eed4ff9845785fd7bd4ea20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a49e950933eed4ff9845785fd7bd4ea20">setLogger</a> (<a class="el" href="classCParameterMgr_1_1ILogger.html">ILogger</a> *pLogger)</td></tr>
-<tr class="separator:a49e950933eed4ff9845785fd7bd4ea20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad4830a40d67cfae091cbf1a15ff29d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0">load</a> (std::string &amp;strError)</td></tr>
 <tr class="memdesc:aad4830a40d67cfae091cbf1a15ff29d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load plugins, structures and settings from the config file given.  <a href="#aad4830a40d67cfae091cbf1a15ff29d0">More...</a><br /></td></tr>
 <tr class="separator:aad4830a40d67cfae091cbf1a15ff29d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,12 +144,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adfaaf783ec358df4be47aaffff9f3167"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#adfaaf783ec358df4be47aaffff9f3167">getFailureOnFailedSettingsLoad</a> () const </td></tr>
 <tr class="memdesc:adfaaf783ec358df4be47aaffff9f3167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Would start fail in case of failed settings load.  <a href="#adfaaf783ec358df4be47aaffff9f3167">More...</a><br /></td></tr>
 <tr class="separator:adfaaf783ec358df4be47aaffff9f3167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff274705f614853829c43570fb9798d8"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#aff274705f614853829c43570fb9798d8">getSchemaFolderLocation</a> () const </td></tr>
-<tr class="memdesc:aff274705f614853829c43570fb9798d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the path to the directory containing the XML Schemas.  <a href="#aff274705f614853829c43570fb9798d8">More...</a><br /></td></tr>
-<tr class="separator:aff274705f614853829c43570fb9798d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa189b6096ec26b4ac97e30944033f68d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#aa189b6096ec26b4ac97e30944033f68d">setSchemaFolderLocation</a> (const std::string &amp;strSchemaFolderLocation)</td></tr>
-<tr class="memdesc:aa189b6096ec26b4ac97e30944033f68d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override the directory containing the XML Schemas.  <a href="#aa189b6096ec26b4ac97e30944033f68d">More...</a><br /></td></tr>
-<tr class="separator:aa189b6096ec26b4ac97e30944033f68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8473e32d2837e26e57ef4c5957a2cb5a"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a8473e32d2837e26e57ef4c5957a2cb5a">getSchemaUri</a> () const </td></tr>
+<tr class="memdesc:a8473e32d2837e26e57ef4c5957a2cb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the XML Schemas URI.  <a href="#a8473e32d2837e26e57ef4c5957a2cb5a">More...</a><br /></td></tr>
+<tr class="separator:a8473e32d2837e26e57ef4c5957a2cb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47651f580a0ce5499c74497189975226"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a47651f580a0ce5499c74497189975226">setSchemaUri</a> (const std::string &amp;schemaUri)</td></tr>
+<tr class="memdesc:a47651f580a0ce5499c74497189975226"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override the XML Schemas URI.  <a href="#a47651f580a0ce5499c74497189975226">More...</a><br /></td></tr>
+<tr class="separator:a47651f580a0ce5499c74497189975226"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5003f9b3209fbe366f69c0b5dcb18da9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a5003f9b3209fbe366f69c0b5dcb18da9">setValidateSchemasOnStart</a> (bool bValidate)</td></tr>
 <tr class="memdesc:a5003f9b3209fbe366f69c0b5dcb18da9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should .xml files be validated on start ?  <a href="#a5003f9b3209fbe366f69c0b5dcb18da9">More...</a><br /></td></tr>
 <tr class="separator:a5003f9b3209fbe366f69c0b5dcb18da9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,6 +157,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af10e1070f48953b53c2750137be46b2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Would .xml files be validated on start?  <a href="#af10e1070f48953b53c2750137be46b2f">More...</a><br /></td></tr>
 <tr class="separator:af10e1070f48953b53c2750137be46b2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b1810f0617abdff1934c7f63afc4967"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a8b1810f0617abdff1934c7f63afc4967">setTuningMode</a> (bool bOn, std::string &amp;strError)</td></tr>
+<tr class="memdesc:a8b1810f0617abdff1934c7f63afc4967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activate / deactivate the tuning mode.  <a href="#a8b1810f0617abdff1934c7f63afc4967">More...</a><br /></td></tr>
 <tr class="separator:a8b1810f0617abdff1934c7f63afc4967"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25606ff4b96a3539dd76723fb4346d67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67">tuningModeOn</a> () const </td></tr>
 <tr class="separator:a25606ff4b96a3539dd76723fb4346d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,8 +201,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1bb4638a89187ef50cf3a1aaea566244"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af73dc2735e178eb3571400b76172b03e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#af73dc2735e178eb3571400b76172b03e">renameConfiguration</a> (const std::string &amp;strDomain, const std::string &amp;strConfiguration, const std::string &amp;strNewConfiguration, std::string &amp;strError)</td></tr>
 <tr class="separator:af73dc2735e178eb3571400b76172b03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04786772b59275eef5f1af23dc9a639d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a04786772b59275eef5f1af23dc9a639d">restoreConfiguration</a> (const std::string &amp;strDomain, const std::string &amp;strConfiguration, std::list&lt; std::string &gt; &amp;strError)</td></tr>
-<tr class="separator:a04786772b59275eef5f1af23dc9a639d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15436462aba339ed82ed9d25ae08cfdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a15436462aba339ed82ed9d25ae08cfdb">restoreConfiguration</a> (const std::string &amp;strDomain, const std::string &amp;strConfiguration, <a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;errors)</td></tr>
+<tr class="memdesc:a15436462aba339ed82ed9d25ae08cfdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore a configuration.  <a href="#a15436462aba339ed82ed9d25ae08cfdb">More...</a><br /></td></tr>
+<tr class="separator:a15436462aba339ed82ed9d25ae08cfdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabb760bc56ad6e76f32bf732005730cb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#aabb760bc56ad6e76f32bf732005730cb">saveConfiguration</a> (const std::string &amp;strDomain, const std::string &amp;strConfiguration, std::string &amp;strError)</td></tr>
 <tr class="separator:aabb760bc56ad6e76f32bf732005730cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9941471fb32f02b3620cf46cd13ebbb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#ae9941471fb32f02b3620cf46cd13ebbb">addConfigurableElementToDomain</a> (const std::string &amp;strDomain, const std::string &amp;strConfigurableElementPath, std::string &amp;strError)</td></tr>
@@ -237,10 +232,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7d317d2ce2408abccaf845b1b2d671b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a7d317d2ce2408abccaf845b1b2d671b9">exportSingleDomainXml</a> (std::string &amp;xmlDest, const std::string &amp;domainName, bool withSettings, bool toFile, std::string &amp;errorMsg) const </td></tr>
 <tr class="memdesc:a7d317d2ce2408abccaf845b1b2d671b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that exports a given Configurable Domain to an Xml destination.  <a href="#a7d317d2ce2408abccaf845b1b2d671b9">More...</a><br /></td></tr>
 <tr class="separator:a7d317d2ce2408abccaf845b1b2d671b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a119c70bbe044eceb5e8cae6cc72ca690"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a119c70bbe044eceb5e8cae6cc72ca690">importDomainsBinary</a> (const std::string &amp;strFileName, std::string &amp;strError)</td></tr>
-<tr class="separator:a119c70bbe044eceb5e8cae6cc72ca690"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ba2047e2257649af8a544d5b80396e2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#a4ba2047e2257649af8a544d5b80396e2">exportDomainsBinary</a> (const std::string &amp;strFileName, std::string &amp;strError)</td></tr>
-<tr class="separator:a4ba2047e2257649af8a544d5b80396e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8cc8e374d76e8c623b273ce39cf89b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr.html#ac8cc8e374d76e8c623b273ce39cf89b1">exportElementToXMLString</a> (const <a class="el" href="classIXmlSource.html">IXmlSource</a> *pXmlSource, const std::string &amp;strRootElementType, std::string &amp;strResult) const </td></tr>
 <tr class="memdesc:ac8cc8e374d76e8c623b273ce39cf89b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that exports an Xml description of the passed element into a string.  <a href="#ac8cc8e374d76e8c623b273ce39cf89b1">More...</a><br /></td></tr>
 <tr class="separator:ac8cc8e374d76e8c623b273ce39cf89b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -254,9 +245,9 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ParameterMgr_8h_source.html#l00062">62</a> of file <a class="el" href="ParameterMgr_8h_source.html">ParameterMgr.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8h_source.html#l00065">65</a> of file <a class="el" href="ParameterMgr_8h_source.html">ParameterMgr.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a62ac187a0a8c321c3a312d4b2eeb9da2"></a>
+<a class="anchor" id="ae7738edec2c505ffa54a9f0f42975586"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -264,18 +255,28 @@ Friends</h2></td></tr>
           <td class="memname">CParameterMgr::CParameterMgr </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strConfigurationFilePath</em></td><td>)</td>
+          <td class="paramname"><em>strConfigurationFilePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classcore_1_1log_1_1ILogger.html">core::log::ILogger</a> &amp;&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00323">323</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00322">322</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a62ac187a0a8c321c3a312d4b2eeb9da2_cgraph.svg" width="543" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ae7738edec2c505ffa54a9f0f42975586_cgraph.svg" width="436" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -303,7 +304,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00383">383</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00347">347</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 </div>
 </div>
@@ -358,12 +359,12 @@ Here is the call graph for this function:</div>
 <p>Update the Configuration Blackboard</p>
 <p>If the Configuration is the last one applied, update the Main Blackboard as well </p>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01780">1780</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01646">1646</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25055f536c2d537e86852c87a4e1a061_cgraph.svg" width="1035" height="471"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25055f536c2d537e86852c87a4e1a061_cgraph.svg" width="1247" height="642"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -414,7 +415,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01723">1723</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01589">1589</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -464,7 +465,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02105">2105</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02024">2024</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -497,15 +498,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00774">774</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8e084df8edc632b057815f533624480d_cgraph.svg" width="482" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00687">687</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -530,7 +523,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01949">1949</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01830">1830</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -572,7 +565,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02205">2205</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02159">2159</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -622,15 +615,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02048">2048</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ad60e8abcd5881a2833d24c3a531e16f0_cgraph.svg" width="914" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01944">1944</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -666,15 +651,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01987">1987</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af7d24a3ef2e52fb2aee19e303092d696_cgraph.svg" width="643" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01868">1868</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -710,7 +687,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00820">820</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00733">733</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -754,7 +731,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00760">760</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00671">671</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -788,7 +765,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00754">754</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00665">665</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -822,12 +799,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02017">2017</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01905">1905</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a927c41273e23d3303f456d3c01907391_cgraph.svg" width="602" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a927c41273e23d3303f456d3c01907391_cgraph.svg" width="587" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -872,15 +849,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02066">2066</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a1bb4638a89187ef50cf3a1aaea566244_cgraph.svg" width="932" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01969">1969</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -916,56 +885,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01999">1999</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a9981826546c533325941986134d8bbfa_cgraph.svg" width="872" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01881">1881</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a9981826546c533325941986134d8bbfa_icgraph.svg" width="487" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a4ba2047e2257649af8a544d5b80396e2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CParameterMgr::exportDomainsBinary </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strFileName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>strError</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02402">2402</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4ba2047e2257649af8a544d5b80396e2_cgraph.svg" width="931" height="268"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1020,7 +945,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occurs, true otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02314">2314</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02264">2264</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1073,12 +998,12 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true for success, false if any error occurs during the creation of the xml description (validation or encoding) </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02620">2620</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02532">2532</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac8cc8e374d76e8c623b273ce39cf89b1_cgraph.svg" width="1492" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac8cc8e374d76e8c623b273ce39cf89b1_cgraph.svg" width="1250" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1140,7 +1065,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occurs, true otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02325">2325</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02275">2275</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1190,7 +1115,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02191">2191</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02145">2145</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1244,7 +1169,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A const pointer to the corresponding <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a>. On error, NULL is returned and the error is explained in strError. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00792">792</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00705">705</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1280,7 +1205,7 @@ Here is the caller graph for this function:</div>
 <p>Would start fail in case of failed settings load. </p>
 <dl class="section return"><dt>Returns</dt><dd>failure on failed settings load policy state. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00858">858</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00771">771</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1308,7 +1233,7 @@ Here is the caller graph for this function:</div>
 <p>Would start fail in case of missing subsystems. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the subsystem will fail on missing subsystem, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00848">848</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00761">761</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1335,7 +1260,7 @@ Here is the caller graph for this function:</div>
 
 <p>Is the remote interface forcefully disabled ? </p>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02485">2485</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02408">2408</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1370,7 +1295,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee">CElement</a>.</p>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00401">401</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00355">355</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 </div>
 </div>
@@ -1408,7 +1333,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a mapping was found for this element </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01744">1744</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01610">1610</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1428,12 +1353,12 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="aff274705f614853829c43570fb9798d8"></a>
+<a class="anchor" id="a8473e32d2837e26e57ef4c5957a2cb5a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const string &amp; CParameterMgr::getSchemaFolderLocation </td>
+          <td class="memname">const string &amp; CParameterMgr::getSchemaUri </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1441,15 +1366,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Get the path to the directory containing the XML Schemas. </p>
-<dl class="section return"><dt>Returns</dt><dd>the directory containing the XML Schemas </dd></dl>
+<p>Get the XML Schemas URI. </p>
+<dl class="section return"><dt>Returns</dt><dd>the XML Schemas URI </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00863">863</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00776">776</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aff274705f614853829c43570fb9798d8_icgraph.svg" width="506" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8473e32d2837e26e57ef4c5957a2cb5a_icgraph.svg" width="524" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1470,7 +1395,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00767">767</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00680">680</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1520,7 +1445,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02042">2042</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01938">1938</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1556,48 +1481,12 @@ Here is the caller graph for this function:</div>
 <p>Would .xml files be validated on start? </p>
 <dl class="section return"><dt>Returns</dt><dd>areSchemasValidated </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00878">878</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00791">791</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af10e1070f48953b53c2750137be46b2f_icgraph.svg" width="504" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a119c70bbe044eceb5e8cae6cc72ca690"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CParameterMgr::importDomainsBinary </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strFileName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>strError</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02386">2386</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a119c70bbe044eceb5e8cae6cc72ca690_cgraph.svg" width="932" height="268"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1652,12 +1541,12 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occures </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02211">2211</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02165">2165</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac2a3211a14a825e94e0090a9ad0e4c57_cgraph.svg" width="1522" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_ac2a3211a14a825e94e0090a9ad0e4c57_cgraph.svg" width="920" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1727,7 +1616,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occurs </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02238">2238</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02192">2192</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1762,12 +1651,12 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if no error occurred, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00458">458</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00375">375</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aad4830a40d67cfae091cbf1a15ff29d0_cgraph.svg" width="1596" height="440"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aad4830a40d67cfae091cbf1a15ff29d0_cgraph.svg" width="1384" height="534"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1795,7 +1684,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01919">1919</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01800">1800</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1837,12 +1726,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02129">2129</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02063">2063</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4f307490c67f2dde0b08e638500dd5d4_cgraph.svg" width="995" height="356"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a4f307490c67f2dde0b08e638500dd5d4_cgraph.svg" width="947" height="214"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1893,15 +1782,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02059">2059</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_af73dc2735e178eb3571400b76172b03e_cgraph.svg" width="1148" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01959">1959</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1943,15 +1824,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02011">2011</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a7d8898361dc42076dccb72489e3e7a43_cgraph.svg" width="919" height="252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01896">1896</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1963,7 +1836,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a04786772b59275eef5f1af23dc9a639d"></a>
+<a class="anchor" id="a15436462aba339ed82ed9d25ae08cfdb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1982,8 +1855,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::list&lt; std::string &gt; &amp;&#160;</td>
-          <td class="paramname"><em>strError</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;&#160;</td>
+          <td class="paramname"><em>errors</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1993,20 +1866,23 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02078">2078</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Restore a configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">strDomain</td><td>the domain name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strConfiguration</td><td>the configuration name </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">errors</td><td>errors encountered during restoration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if success false otherwise </dd></dl>
 
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a04786772b59275eef5f1af23dc9a639d_cgraph.svg" width="1495" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01986">1986</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a04786772b59275eef5f1af23dc9a639d_icgraph.svg" width="528" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a15436462aba339ed82ed9d25ae08cfdb_icgraph.svg" width="528" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2043,15 +1919,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02092">2092</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aabb760bc56ad6e76f32bf732005730cb_cgraph.svg" width="1324" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02007">2007</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2099,7 +1967,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02197">2197</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02151">2151</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2145,7 +2013,7 @@ Here is the caller graph for this function:</div>
 
 <p>Sync. </p>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01926">1926</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01807">1807</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2201,7 +2069,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02177">2177</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02131">2131</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2243,7 +2111,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00853">853</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00766">766</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2277,7 +2145,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00843">843</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00756">756</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2311,38 +2179,12 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02490">2490</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02413">2413</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a0130ee3f2b1b71c9a3a5b20dd9ec7697_icgraph.svg" width="504" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a49e950933eed4ff9845785fd7bd4ea20"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CParameterMgr::setLogger </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classCParameterMgr_1_1ILogger.html">CParameterMgr::ILogger</a> *&#160;</td>
-          <td class="paramname"><em>pLogger</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00407">407</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a49e950933eed4ff9845785fd7bd4ea20_icgraph.svg" width="504" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2363,7 +2205,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01914">1914</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01795">1795</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2375,34 +2217,34 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="aa189b6096ec26b4ac97e30944033f68d"></a>
+<a class="anchor" id="a47651f580a0ce5499c74497189975226"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CParameterMgr::setSchemaFolderLocation </td>
+          <td class="memname">void CParameterMgr::setSchemaUri </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strSchemaFolderLocation</em></td><td>)</td>
+          <td class="paramname"><em>schemaUri</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Override the directory containing the XML Schemas. </p>
+<p>Override the XML Schemas URI. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">strSchemaFolderLocation</td><td>directory containing the XML Schemas </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">schemaUri</td><td>XML Schemas URI </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00868">868</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00781">781</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_aa189b6096ec26b4ac97e30944033f68d_icgraph.svg" width="504" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a47651f580a0ce5499c74497189975226_icgraph.svg" width="523" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2439,15 +2281,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02031">2031</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8392607ed686806362c9a8882a471553_cgraph.svg" width="887" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01923">1923</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2483,7 +2317,25 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01868">1868</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Activate / deactivate the tuning mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bOn</td><td>true if tuning mode activation is requested, false for desactivation </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">strError</td><td>human readable error </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if request is successful, false if the Parameter Manager is already in the mode requested or in case of error. If false, strError is set with the associated human readable error. </dd></dl>
+
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01745">1745</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a8b1810f0617abdff1934c7f63afc4967_cgraph.svg" width="507" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2518,7 +2370,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if unable to set, true otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00873">873</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l00786">786</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2544,7 +2396,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01903">1903</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01784">1784</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2586,12 +2438,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02153">2153</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l02093">2093</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a042735242f31241743085d2d9d7edcc5_cgraph.svg" width="1326" height="495"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a042735242f31241743085d2d9d7edcc5_cgraph.svg" width="1084" height="420"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2620,7 +2472,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01955">1955</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01836">1836</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2653,12 +2505,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01897">1897</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01778">1778</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25606ff4b96a3539dd76723fb4346d67_icgraph.svg" width="946" height="652"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgr_a25606ff4b96a3539dd76723fb4346d67_icgraph.svg" width="763" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2678,7 +2530,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01908">1908</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8cpp_source.html#l01789">1789</a> of file <a class="el" href="ParameterMgr_8cpp_source.html">ParameterMgr.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2709,7 +2561,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgr_8h_source.html#l00096">96</a> of file <a class="el" href="ParameterMgr_8h_source.html">ParameterMgr.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgr_8h_source.html#l00099">99</a> of file <a class="el" href="ParameterMgr_8h_source.html">ParameterMgr.h</a>.</p>
 
 </div>
 </div>

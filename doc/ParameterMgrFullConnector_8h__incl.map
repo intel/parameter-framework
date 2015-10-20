@@ -1,6 +1,6 @@
 <map id="parameter/include/ParameterMgrFullConnector.h" name="parameter/include/ParameterMgrFullConnector.h">
-<area shape="rect" id="node2" href="$SelectionCriterionTypeInterface_8h.html" title="SelectionCriterionTypeInterface.h" alt="" coords="27,169,258,196"/>
-<area shape="rect" id="node4" href="$SelectionCriterionInterface_8h.html" title="SelectionCriterionInterface.h" alt="" coords="5,95,208,121"/>
-<area shape="rect" id="node5" href="$ParameterHandle_8h.html" title="ParameterHandle.h" alt="" coords="333,95,480,121"/>
-<area shape="rect" id="node8" href="$ParameterMgrLoggerForward_8h.html" title="ParameterMgrLoggerForward.h" alt="" coords="555,95,773,121"/>
+<area shape="rect" id="node3" href="$SelectionCriterionTypeInterface_8h.html" title="SelectionCriterionTypeInterface.h" alt="" coords="24,169,255,196"/>
+<area shape="rect" id="node5" href="$SelectionCriterionInterface_8h.html" title="SelectionCriterionInterface.h" alt="" coords="173,95,376,121"/>
+<area shape="rect" id="node6" href="$ParameterHandle_8h.html" title="ParameterHandle.h" alt="" coords="450,95,597,121"/>
+<area shape="rect" id="node9" href="$ParameterMgrLoggerForward_8h.html" title="ParameterMgrLoggerForward.h" alt="" coords="672,95,890,121"/>
 </map>

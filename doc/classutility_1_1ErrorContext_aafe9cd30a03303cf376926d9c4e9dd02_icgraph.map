@@ -1,0 +1,14 @@
+<map id="utility::ErrorContext::appendToError" name="utility::ErrorContext::appendToError">
+<area shape="rect" id="node2" href="$classCBaseParameter.html#a911cbd2df0c950a79863fdd689731f88" title="Append the parameter path to the error. " alt="" coords="197,109,451,150"/>
+<area shape="rect" id="node7" href="$classCBooleanParameterType.html#a3984c73c19bf9ba8511152983b60f834" title="Conversion. " alt="" coords="235,174,413,215"/>
+<area shape="rect" id="node8" href="$classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7" title="CXmlSerializingContext\l::appendLineToError" alt="" coords="239,239,409,281"/>
+<area shape="rect" id="node3" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="499,5,717,32"/>
+<area shape="rect" id="node4" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="513,57,703,98"/>
+<area shape="rect" id="node5" href="$classCBaseParameter.html#aa0367b428dcd868c67f34989bb101020" title="CBaseParameter::access" alt="" coords="517,123,699,149"/>
+<area shape="rect" id="node6" href="$classCBitParameter.html#a830225eeed4e53e72bcd04bb62a2e8fb" title="Value access. " alt="" coords="525,173,691,200"/>
+<area shape="rect" id="node9" href="$classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565" title="Method called by the CXmlDocSink::process method. " alt="" coords="513,239,703,265"/>
+<area shape="rect" id="node13" href="$classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803" title="Helper method for creating an xml document from either a file or a string. " alt="" coords="765,289,968,316"/>
+<area shape="rect" id="node10" href="$classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91" title="Method to be called to use an xmlDocSource. " alt="" coords="784,239,949,265"/>
+<area shape="rect" id="node11" href="$classCParameterMgr.html#ac8cc8e374d76e8c623b273ce39cf89b1" title="Method that exports an Xml description of the passed element into a string. " alt="" coords="1016,217,1240,258"/>
+<area shape="rect" id="node12" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="1039,282,1217,323"/>
+</map>

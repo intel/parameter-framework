@@ -1,16 +1,5 @@
 <map id="CParameterMgr::tuningModeOn" name="CParameterMgr::tuningModeOn">
-<area shape="rect" id="node2" href="$classCParameterHandle.html#a9633a54d1119566d284f85bfbe26af3a" title="CParameterHandle::setAsBoolean" alt="" coords="276,5,515,32"/>
-<area shape="rect" id="node3" href="$classCParameterHandle.html#ae0f615ada89362b2dbf69692fd0fe344" title="CParameterHandle::setAsBoolean\lArray" alt="" coords="276,57,515,98"/>
-<area shape="rect" id="node4" href="$classCParameterHandle.html#a6da6c3bb512016dff63874910e81a7a3" title="CParameterHandle::setAsInteger" alt="" coords="279,123,511,149"/>
-<area shape="rect" id="node5" href="$classCParameterHandle.html#a9ba3ce1ca358dbdc60c60c8dec3f7a33" title="CParameterHandle::setAsInteger\lArray" alt="" coords="279,174,511,215"/>
-<area shape="rect" id="node6" href="$classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" title="CParameterHandle::setAsSigned\lInteger" alt="" coords="280,239,511,281"/>
-<area shape="rect" id="node9" href="$classCParameterHandle.html#a67cb99fb91c66be80007b4e14729c5da" title="CParameterHandle::setAsSigned\lIntegerArray" alt="" coords="280,305,511,346"/>
-<area shape="rect" id="node10" href="$classCParameterHandle.html#a65133e599246608b31ad9ab8d5935f87" title="CParameterHandle::setAsDouble" alt="" coords="279,371,511,397"/>
-<area shape="rect" id="node11" href="$classCParameterHandle.html#ac13a0317a8b71f1dadb3316f6b340ac8" title="CParameterHandle::setAsDouble\lArray" alt="" coords="279,422,511,463"/>
-<area shape="rect" id="node12" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="283,488,508,515"/>
-<area shape="rect" id="node14" href="$classCParameterHandle.html#a729342719068a9b0a730c32d3fb55e79" title="CParameterHandle::setAsString\lArray" alt="" coords="283,539,508,581"/>
-<area shape="rect" id="node15" href="$classCParameterMgrFullConnector.html#a2710b9bbb9f5cf293ffa0c8ff2803a7c" title="CParameterMgrFullConnector\l::isTuningModeOn" alt="" coords="291,605,499,646"/>
-<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a5ca86cca5a701f0eb107ba24a05a0a68" title="Set the value of a previously bind int parameter. " alt="" coords="574,295,722,321"/>
-<area shape="rect" id="node8" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="781,344,940,371"/>
-<area shape="rect" id="node13" href="$ParameterFramework_8h.html#a02e479cdd18adee13f01c05affcd5892" title="Set the value of a previously bind string parameter. " alt="" coords="563,393,733,420"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#a8b1810f0617abdff1934c7f63afc4967" title="Activate / deactivate the tuning mode. " alt="" coords="276,13,501,39"/>
+<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#a2710b9bbb9f5cf293ffa0c8ff2803a7c" title="CParameterMgrFullConnector\l::isTuningModeOn" alt="" coords="285,64,493,105"/>
+<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#a3c23fc44adad7f6cb9b8af33e7298ad1" title="CParameterMgrFullConnector\l::setTuningMode" alt="" coords="549,5,757,47"/>
 </map>

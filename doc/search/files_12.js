@@ -23,5 +23,6 @@ var searchData=
   ['xmlsink_2eh',['XmlSink.h',['../XmlSink_8h.html',1,'']]],
   ['xmlsource_2eh',['XmlSource.h',['../XmlSource_8h.html',1,'']]],
   ['xmlstreamdocsink_2ecpp',['XmlStreamDocSink.cpp',['../XmlStreamDocSink_8cpp.html',1,'']]],
-  ['xmlstreamdocsink_2eh',['XmlStreamDocSink.h',['../XmlStreamDocSink_8h.html',1,'']]]
+  ['xmlstreamdocsink_2eh',['XmlStreamDocSink.h',['../XmlStreamDocSink_8h.html',1,'']]],
+  ['xmlutil_2ecpp',['XmlUtil.cpp',['../XmlUtil_8cpp.html',1,'']]]
 ];

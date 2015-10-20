@@ -1,7 +1,0 @@
-<map id="CBaseParameter::accessAsSignedInteger" name="CBaseParameter::accessAsSignedInteger">
-<area shape="rect" id="node2" href="$classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" title="CParameterHandle::setAsSigned\lInteger" alt="" coords="253,5,483,47"/>
-<area shape="rect" id="node5" href="$classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3" title="CParameterHandle::getAsSigned\lInteger" alt="" coords="252,71,484,112"/>
-<area shape="rect" id="node3" href="$ParameterFramework_8h.html#a5ca86cca5a701f0eb107ba24a05a0a68" title="Set the value of a previously bind int parameter. " alt="" coords="533,17,681,43"/>
-<area shape="rect" id="node4" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="729,45,888,71"/>
-<area shape="rect" id="node6" href="$ParameterFramework_8h.html#aa3c268896aa21de7f78ce9c99195e0ba" title="Access the value of a previously bind int parameter. " alt="" coords="532,71,681,98"/>
-</map>

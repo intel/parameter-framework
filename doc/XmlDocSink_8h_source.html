@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -126,31 +126,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XmlDocSource_8h.html">XmlDocSource.h</a>&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="XmlSerializingContext_8h.html">XmlSerializingContext.h</a>&quot;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classCXmlDocSink.html">   42</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCXmlDocSink.html">CXmlDocSink</a></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91">   55</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91">process</a>(<a class="code" href="classCXmlDocSource.html">CXmlDocSource</a>&amp; xmlDocSource, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">if</span> (!xmlDocSource.<a class="code" href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">populate</a>(serializingContext)) {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">return</span> doProcess(xmlDocSource, serializingContext);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classCXmlDocSink.html#a3465a14db0b35ca4c9bc088020968a29">   64</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCXmlDocSink.html#a3465a14db0b35ca4c9bc088020968a29">~CXmlDocSink</a>() {}</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="NonCopyable_8hpp.html">NonCopyable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classCXmlDocSink.html">   44</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCXmlDocSink.html">CXmlDocSink</a> : <span class="keyword">private</span> <a class="code" href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91">   57</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91">process</a>(<a class="code" href="classCXmlDocSource.html">CXmlDocSource</a>&amp; xmlDocSource, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">if</span> (!xmlDocSource.<a class="code" href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">populate</a>(serializingContext)) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> doProcess(xmlDocSource, serializingContext);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> doProcess(<a class="code" href="classCXmlDocSource.html">CXmlDocSource</a>&amp; xmlDocSource, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext) = 0;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
-<div class="ttc" id="classCXmlDocSink_html_a3465a14db0b35ca4c9bc088020968a29"><div class="ttname"><a href="classCXmlDocSink.html#a3465a14db0b35ca4c9bc088020968a29">CXmlDocSink::~CXmlDocSink</a></div><div class="ttdeci">virtual ~CXmlDocSink()</div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSink_8h_source.html#l00064">XmlDocSink.h:64</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00044">XmlSerializingContext.h:44</a></div></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classCXmlDocSink.html#a3465a14db0b35ca4c9bc088020968a29">   66</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCXmlDocSink.html#a3465a14db0b35ca4c9bc088020968a29">~CXmlDocSink</a>() {}</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> doProcess(<a class="code" href="classCXmlDocSource.html">CXmlDocSource</a>&amp; xmlDocSource, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext) = 0;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
+<div class="ttc" id="classCXmlDocSink_html_a3465a14db0b35ca4c9bc088020968a29"><div class="ttname"><a href="classCXmlDocSink.html#a3465a14db0b35ca4c9bc088020968a29">CXmlDocSink::~CXmlDocSink</a></div><div class="ttdeci">virtual ~CXmlDocSink()</div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSink_8h_source.html#l00066">XmlDocSink.h:66</a></div></div>
+<div class="ttc" id="classutility_1_1NonCopyable_html"><div class="ttname"><a href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div><div class="ttdoc">Base class for private inheritance to make the derived class non copyable. </div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00045">NonCopyable.hpp:45</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
 <div class="ttc" id="XmlSerializingContext_8h_html"><div class="ttname"><a href="XmlSerializingContext_8h.html">XmlSerializingContext.h</a></div></div>
-<div class="ttc" id="classCXmlDocSink_html"><div class="ttname"><a href="classCXmlDocSink.html">CXmlDocSink</a></div><div class="ttdoc">The CXmlDocSink class defines how to use a CXmlDocSource. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSink_8h_source.html#l00042">XmlDocSink.h:42</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html"><div class="ttname"><a href="classCXmlDocSource.html">CXmlDocSource</a></div><div class="ttdoc">The CXmlDocSource is used by CXmlDocSink. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00047">XmlDocSource.h:47</a></div></div>
-<div class="ttc" id="classCXmlDocSink_html_ad795635a506e9fbe16c1d54052281d91"><div class="ttname"><a href="classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91">CXmlDocSink::process</a></div><div class="ttdeci">bool process(CXmlDocSource &amp;xmlDocSource, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdoc">Method to be called to use an xmlDocSource. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSink_8h_source.html#l00055">XmlDocSink.h:55</a></div></div>
+<div class="ttc" id="classCXmlDocSink_html"><div class="ttname"><a href="classCXmlDocSink.html">CXmlDocSink</a></div><div class="ttdoc">The CXmlDocSink class defines how to use a CXmlDocSource. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSink_8h_source.html#l00044">XmlDocSink.h:44</a></div></div>
+<div class="ttc" id="NonCopyable_8hpp_html"><div class="ttname"><a href="NonCopyable_8hpp.html">NonCopyable.hpp</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html"><div class="ttname"><a href="classCXmlDocSource.html">CXmlDocSource</a></div><div class="ttdoc">The CXmlDocSource is used by CXmlDocSink. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00050">XmlDocSource.h:50</a></div></div>
+<div class="ttc" id="classCXmlDocSink_html_ad795635a506e9fbe16c1d54052281d91"><div class="ttname"><a href="classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91">CXmlDocSink::process</a></div><div class="ttdeci">bool process(CXmlDocSource &amp;xmlDocSource, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdoc">Method to be called to use an xmlDocSource. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSink_8h_source.html#l00057">XmlDocSink.h:57</a></div></div>
 <div class="ttc" id="XmlDocSource_8h_html"><div class="ttname"><a href="XmlDocSource_8h.html">XmlDocSource.h</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a60c2e8020389b6896e61fe058f611565"><div class="ttname"><a href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">CXmlDocSource::populate</a></div><div class="ttdeci">virtual bool populate(CXmlSerializingContext &amp;serializingContext)</div><div class="ttdoc">Method called by the CXmlDocSink::process method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00109">XmlDocSource.cpp:109</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a60c2e8020389b6896e61fe058f611565"><div class="ttname"><a href="classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565">CXmlDocSource::populate</a></div><div class="ttdeci">virtual bool populate(CXmlSerializingContext &amp;serializingContext)</div><div class="ttdoc">Method called by the CXmlDocSink::process method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00113">XmlDocSource.cpp:113</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

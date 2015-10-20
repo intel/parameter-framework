@@ -1,13 +1,14 @@
 <map id="parameter/SimulatedBackSynchronizer.h" name="parameter/SimulatedBackSynchronizer.h">
-<area shape="rect" id="node2" href="$BackSynchronizer_8h.html" title="BackSynchronizer.h" alt="" coords="540,80,687,107"/>
-<area shape="rect" id="node15" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="26,379,222,405"/>
-<area shape="rect" id="node3" href="$ConfigurableElementAggregator_8h.html" title="ConfigurableElementAggregator.h" alt="" coords="652,155,890,181"/>
-<area shape="rect" id="node4" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="601,229,768,256"/>
-<area shape="rect" id="node5" href="$Element_8h.html" title="Element.h" alt="" coords="438,304,525,331"/>
-<area shape="rect" id="node10" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="576,379,662,405"/>
-<area shape="rect" id="node13" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="449,379,552,405"/>
-<area shape="rect" id="node14" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="251,379,374,405"/>
-<area shape="rect" id="node11" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="441,453,552,480"/>
-<area shape="rect" id="node12" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="576,453,750,480"/>
-<area shape="rect" id="node16" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="63,453,178,480"/>
+<area shape="rect" id="node2" href="$BackSynchronizer_8h.html" title="BackSynchronizer.h" alt="" coords="685,80,832,107"/>
+<area shape="rect" id="node18" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="735,453,931,480"/>
+<area shape="rect" id="node3" href="$ConfigurableElementAggregator_8h.html" title="ConfigurableElementAggregator.h" alt="" coords="591,155,830,181"/>
+<area shape="rect" id="node4" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="562,229,729,256"/>
+<area shape="rect" id="node14" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="902,603,1037,629"/>
+<area shape="rect" id="node6" href="$Element_8h.html" title="Element.h" alt="" coords="301,304,387,331"/>
+<area shape="rect" id="node10" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="341,379,427,405"/>
+<area shape="rect" id="node15" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="451,379,554,405"/>
+<area shape="rect" id="node16" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="93,379,216,405"/>
+<area shape="rect" id="node11" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="342,453,453,480"/>
+<area shape="rect" id="node12" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="477,453,651,480"/>
+<area shape="rect" id="node13" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="785,528,916,555"/>
 </map>

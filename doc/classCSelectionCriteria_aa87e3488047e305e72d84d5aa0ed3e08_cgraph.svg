@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" target="_top" xlink:title="Get a child element (const) ">
+<g id="a_node2"><a xlink:href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16" target="_top" xlink:title="Get a child element (const) ">
 <polygon fill="white" stroke="black" points="198,-6 198,-25 306,-25 306,-6 198,-6"/>
 <text text-anchor="middle" x="252" y="-13" font-family="Verdana" font-size="10.00">CElement::getChild</text>
 </a>

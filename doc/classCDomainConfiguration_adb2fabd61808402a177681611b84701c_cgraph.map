@@ -1,7 +1,0 @@
-<map id="CDomainConfiguration::binarySerialize" name="CDomainConfiguration::binarySerialize">
-<area shape="rect" id="node2" href="$classCBinaryStream.html#a362955618d8b9cbb753d59ea9e85a124" title="CBinaryStream::isOut" alt="" coords="632,5,792,32"/>
-<area shape="rect" id="node3" href="$classCBinaryStream.html#af629f3fadf931d1c104bc23838f5c7f0" title="CBinaryStream::write" alt="" coords="633,93,791,120"/>
-<area shape="rect" id="node4" href="$classCBinaryStream.html#a82ce448e447ad3801b55d8cf4c00f61f" title="CBinaryStream::read" alt="" coords="634,144,790,171"/>
-<area shape="rect" id="node5" href="$classCAreaConfiguration.html#af6fe64c1853ab6ecc7be1a7348a43aed" title="CAreaConfiguration\l::serialize" alt="" coords="220,57,367,98"/>
-<area shape="rect" id="node6" href="$classCParameterBlackboard.html#ad96ba821eb1035b06a5a30ef7377da39" title="CParameterBlackboard\l::serialize" alt="" coords="415,57,584,98"/>
-</map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['estatus',['EStatus',['../classCRequestMessageGenerator.html#a23926e2b4016154a162eb4650814c016',1,'CRequestMessageGenerator']]]
+  ['msgtype',['MsgType',['../classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f',1,'CMessage']]]
 ];

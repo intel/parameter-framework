@@ -1,6 +1,7 @@
 <map id="CXmlDocSource::getRootElementAttributeString" name="CXmlDocSource::getRootElementAttributeString">
-<area shape="rect" id="node2" href="$classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565" title="Method called by the CXmlDocSink::process method. " alt="" coords="288,46,477,73"/>
-<area shape="rect" id="node3" href="$classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91" title="Method to be called to use an xmlDocSource. " alt="" coords="525,46,691,73"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#ac8cc8e374d76e8c623b273ce39cf89b1" title="Method that exports an Xml description of the passed element into a string. " alt="" coords="739,5,963,47"/>
-<area shape="rect" id="node5" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="761,71,940,112"/>
+<area shape="rect" id="node2" href="$classCXmlDocSource.html#a94dea190178b4bdcfc659d830e627901" title="Getter method. " alt="" coords="288,5,513,32"/>
+<area shape="rect" id="node3" href="$classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565" title="Method called by the CXmlDocSink::process method. " alt="" coords="306,56,495,83"/>
+<area shape="rect" id="node4" href="$classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91" title="Method to be called to use an xmlDocSource. " alt="" coords="561,56,727,83"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#ac8cc8e374d76e8c623b273ce39cf89b1" title="Method that exports an Xml description of the passed element into a string. " alt="" coords="775,15,999,57"/>
+<area shape="rect" id="node6" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="797,81,976,122"/>
 </map>

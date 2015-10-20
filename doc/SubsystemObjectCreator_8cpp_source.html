@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -125,8 +125,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">using</span> std::string;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classCSubsystemObjectCreator.html#a500f80b4241a71e795dbebfe0c0eb02e">   34</a></span>&#160;<a class="code" href="classCSubsystemObjectCreator.html#a500f80b4241a71e795dbebfe0c0eb02e">CSubsystemObjectCreator::CSubsystemObjectCreator</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    : _strMappingKey(strMappingKey), _uiAncestorIdMask(uiAncestorIdMask), _uiMaxConfigurableElementSize(uiMaxConfigurableElementSize)</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classCSubsystemObjectCreator.html#a49097bcf394bb23d0f62e86dd12bdcd5">   34</a></span>&#160;<a class="code" href="classCSubsystemObjectCreator.html#a49097bcf394bb23d0f62e86dd12bdcd5">CSubsystemObjectCreator::CSubsystemObjectCreator</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strMappingKey, uint32_t uiAncestorIdMask, <span class="keywordtype">size_t</span> maxConfigurableElementSize)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    : _strMappingKey(strMappingKey), _uiAncestorIdMask(uiAncestorIdMask), _maxConfigurableElementSize(maxConfigurableElementSize)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
@@ -141,14 +141,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> _uiAncestorIdMask;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classCSubsystemObjectCreator.html#a7c779e9f32e397e5b080fc510aa4973e">   50</a></span>&#160;uint32_t <a class="code" href="classCSubsystemObjectCreator.html#a7c779e9f32e397e5b080fc510aa4973e">CSubsystemObjectCreator::getMaxConfigurableElementSize</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classCSubsystemObjectCreator.html#a3a279509f41b906328d74686fea4a919">   50</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="classCSubsystemObjectCreator.html#a3a279509f41b906328d74686fea4a919">CSubsystemObjectCreator::getMaxConfigurableElementSize</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">return</span> _uiMaxConfigurableElementSize;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">return</span> _maxConfigurableElementSize;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="ttc" id="classCSubsystemObjectCreator_html_a7c779e9f32e397e5b080fc510aa4973e"><div class="ttname"><a href="classCSubsystemObjectCreator.html#a7c779e9f32e397e5b080fc510aa4973e">CSubsystemObjectCreator::getMaxConfigurableElementSize</a></div><div class="ttdeci">uint32_t getMaxConfigurableElementSize() const </div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8cpp_source.html#l00050">SubsystemObjectCreator.cpp:50</a></div></div>
+<div class="ttc" id="classCSubsystemObjectCreator_html_a49097bcf394bb23d0f62e86dd12bdcd5"><div class="ttname"><a href="classCSubsystemObjectCreator.html#a49097bcf394bb23d0f62e86dd12bdcd5">CSubsystemObjectCreator::CSubsystemObjectCreator</a></div><div class="ttdeci">CSubsystemObjectCreator(const std::string &amp;strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize)</div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8cpp_source.html#l00034">SubsystemObjectCreator.cpp:34</a></div></div>
 <div class="ttc" id="classCSubsystemObjectCreator_html_aad4ee4c92132bddb2166da97dad680be"><div class="ttname"><a href="classCSubsystemObjectCreator.html#aad4ee4c92132bddb2166da97dad680be">CSubsystemObjectCreator::getAncestorMask</a></div><div class="ttdeci">uint32_t getAncestorMask() const </div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8cpp_source.html#l00045">SubsystemObjectCreator.cpp:45</a></div></div>
 <div class="ttc" id="classCSubsystemObjectCreator_html_a4823f048b06798b25bf97e00f3698334"><div class="ttname"><a href="classCSubsystemObjectCreator.html#a4823f048b06798b25bf97e00f3698334">CSubsystemObjectCreator::getMappingKey</a></div><div class="ttdeci">const std::string &amp; getMappingKey() const </div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8cpp_source.html#l00040">SubsystemObjectCreator.cpp:40</a></div></div>
-<div class="ttc" id="classCSubsystemObjectCreator_html_a500f80b4241a71e795dbebfe0c0eb02e"><div class="ttname"><a href="classCSubsystemObjectCreator.html#a500f80b4241a71e795dbebfe0c0eb02e">CSubsystemObjectCreator::CSubsystemObjectCreator</a></div><div class="ttdeci">CSubsystemObjectCreator(const std::string &amp;strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize)</div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8cpp_source.html#l00034">SubsystemObjectCreator.cpp:34</a></div></div>
+<div class="ttc" id="classCSubsystemObjectCreator_html_a3a279509f41b906328d74686fea4a919"><div class="ttname"><a href="classCSubsystemObjectCreator.html#a3a279509f41b906328d74686fea4a919">CSubsystemObjectCreator::getMaxConfigurableElementSize</a></div><div class="ttdeci">size_t getMaxConfigurableElementSize() const </div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8cpp_source.html#l00050">SubsystemObjectCreator.cpp:50</a></div></div>
 <div class="ttc" id="SubsystemObjectCreator_8h_html"><div class="ttname"><a href="SubsystemObjectCreator_8h.html">SubsystemObjectCreator.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

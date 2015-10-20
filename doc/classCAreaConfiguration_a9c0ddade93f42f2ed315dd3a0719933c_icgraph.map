@@ -1,12 +1,3 @@
 <map id="CAreaConfiguration::validate" name="CAreaConfiguration::validate">
-<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="200,100,367,141"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="415,100,576,141"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="624,100,792,141"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="888,78,1045,105"/>
-<area shape="rect" id="node10" href="$classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="840,135,1093,162"/>
-<area shape="rect" id="node6" href="$classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" title="CParameterMgrFullConnector\l::start" alt="" coords="1159,5,1367,47"/>
-<area shape="rect" id="node7" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="1141,71,1384,112"/>
-<area shape="rect" id="node8" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="1432,78,1507,105"/>
-<area shape="rect" id="node9" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1555,78,1713,105"/>
-<area shape="rect" id="node11" href="$classCParameterMgrFullConnector.html#aabfcc64867c0d79840b5fdfd6efaf4fa" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="1159,136,1367,177"/>
+<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a442810a2eceb0eb11da8fefef93406d5" title="CDomainConfiguration\l::validate" alt="" coords="200,5,367,47"/>
 </map>

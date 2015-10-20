@@ -1,7 +1,6 @@
 <map id="CAreaConfiguration::isValid" name="CAreaConfiguration::isValid">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#ad655f6277ec602be7fb9ce0f586555df" title="CAreaConfiguration\l::validateAgainst" alt="" coords="210,8,357,49"/>
-<area shape="rect" id="node4" href="$classCDomainConfiguration.html#ad5929cbe47434a4b6c9195c0a27723f6" title="CDomainConfiguration\l::isValid" alt="" coords="200,75,367,116"/>
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#aecafa324a80383a35a5fb9a52b9b01c0" title="CDomainConfiguration\l::validateAgainst" alt="" coords="427,5,593,47"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79" title="CConfigurableDomain\l::isApplicableConfiguration\lValid" alt="" coords="415,70,605,126"/>
-<area shape="rect" id="node6" href="$classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9" title="CConfigurableElement\l::hasNoValidDomainAssociated" alt="" coords="653,77,875,119"/>
+<area shape="rect" id="node2" href="$classCAreaConfiguration.html#ad655f6277ec602be7fb9ce0f586555df" title="CAreaConfiguration\l::validateAgainst" alt="" coords="210,5,357,47"/>
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#ad5929cbe47434a4b6c9195c0a27723f6" title="CDomainConfiguration\l::isValid" alt="" coords="200,71,367,112"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79" title="CConfigurableDomain\l::isApplicableConfiguration\lValid" alt="" coords="415,63,605,119"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a711b8af1b9aac12e57244f2edbe916e9" title="CConfigurableElement\l::hasNoValidDomainAssociated" alt="" coords="653,71,875,112"/>
 </map>

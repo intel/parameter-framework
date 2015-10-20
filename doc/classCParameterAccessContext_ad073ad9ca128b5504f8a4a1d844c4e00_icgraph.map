@@ -1,13 +1,6 @@
 <map id="CParameterAccessContext::getAutoSync" name="CParameterAccessContext::getAutoSync">
-<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="247,59,465,101"/>
-<area shape="rect" id="node3" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="518,8,737,35"/>
-<area shape="rect" id="node4" href="$classCBaseParameter.html#a2b425561e193a3d54e7225d896a3d39b" title="CBaseParameter::accessAs\lString" alt="" coords="528,59,727,101"/>
-<area shape="rect" id="node11" href="$classCBitParameter.html#ad348903f16d702fac8adcfa1c725a92b" title="CBitParameter::accessAsInteger" alt="" coords="513,136,741,163"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a4a9b3e3a2d1ea65a8dc7048559db8dc2" title="CBaseParameter::accessValue" alt="" coords="798,5,1015,32"/>
-<area shape="rect" id="node6" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="794,56,1019,83"/>
-<area shape="rect" id="node9" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="793,107,1020,133"/>
-<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a02e479cdd18adee13f01c05affcd5892" title="Set the value of a previously bind string parameter. " alt="" coords="1072,56,1243,83"/>
-<area shape="rect" id="node8" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1291,81,1449,108"/>
-<area shape="rect" id="node10" href="$ParameterFramework_8h.html#a0318f736980ecc4a0a456581f44a2cf0" title="Access the value of a previously bind string parameter. " alt="" coords="1072,107,1243,133"/>
-<area shape="rect" id="node12" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access. " alt="" coords="789,157,1024,184"/>
+<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="247,49,465,90"/>
+<area shape="rect" id="node3" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="513,5,732,32"/>
+<area shape="rect" id="node4" href="$classCBaseParameter.html#aa0367b428dcd868c67f34989bb101020" title="CBaseParameter::access" alt="" coords="531,56,714,83"/>
+<area shape="rect" id="node5" href="$classCBitParameter.html#a8cf5e6e2d4e823eca86f0c30ff837fef" title="CBitParameter::access" alt="" coords="539,107,706,133"/>
 </map>

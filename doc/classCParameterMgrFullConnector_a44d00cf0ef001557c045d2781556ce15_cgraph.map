@@ -1,6 +1,5 @@
 <map id="CParameterMgrFullConnector::deleteAllDomains" name="CParameterMgrFullConnector::deleteAllDomains">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#a927c41273e23d3303f456d3c01907391" title="CParameterMgr::deleteAll\lDomains" alt="" coords="261,23,447,65"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4fc3d6b09acd45d1d94f9191b01bf4c0" title="CConfigurableDomains\l::deleteAllDomains" alt="" coords="495,23,663,65"/>
-<area shape="rect" id="node4" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="711,5,852,32"/>
-<area shape="rect" id="node5" href="$classCElement.html#ae40b0165e010c310cc58c7d9fa174f64" title="CElement::clean" alt="" coords="718,56,845,83"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#a927c41273e23d3303f456d3c01907391" title="CParameterMgr::deleteAll\lDomains" alt="" coords="261,5,447,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4fc3d6b09acd45d1d94f9191b01bf4c0" title="CConfigurableDomains\l::deleteAllDomains" alt="" coords="495,5,663,47"/>
+<area shape="rect" id="node4" href="$classCElement.html#ae40b0165e010c310cc58c7d9fa174f64" title="CElement::clean" alt="" coords="711,13,837,39"/>
 </map>

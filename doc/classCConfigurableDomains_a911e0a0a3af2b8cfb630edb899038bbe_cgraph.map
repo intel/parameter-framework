@@ -1,8 +1,6 @@
 <map id="CConfigurableDomains::deleteConfiguration" name="CConfigurableDomains::deleteConfiguration">
-<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="221,7,404,49"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a5029ae23af30ac7b4f5ba526ac50508f" title="CConfigurableDomain\l::deleteConfiguration" alt="" coords="232,90,393,131"/>
-<area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="465,5,611,32"/>
-<area shape="rect" id="node5" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="467,56,609,83"/>
-<area shape="rect" id="node6" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="462,107,614,133"/>
-<area shape="rect" id="node7" href="$classCElement.html#a4aec98bde47367325cf332a5dc471eb9" title="CElement::removeChild" alt="" coords="452,157,624,184"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="221,5,404,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a5029ae23af30ac7b4f5ba526ac50508f" title="CConfigurableDomain\l::deleteConfiguration" alt="" coords="232,71,393,112"/>
+<area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="465,13,611,39"/>
+<area shape="rect" id="node5" href="$classCElement.html#a4aec98bde47367325cf332a5dc471eb9" title="CElement::removeChild" alt="" coords="452,78,624,105"/>
 </map>

@@ -1,6 +1,4 @@
 <map id="CEnumParameterType::fromXml" name="CEnumParameterType::fromXml">
-<area shape="rect" id="node2" href="$classCXmlElement.html#a9df6d2d6b9fb1edfe5458497c2fe9574" title="CXmlElement::getAttribute\lInteger" alt="" coords="216,5,409,47"/>
-<area shape="rect" id="node5" href="$classCParameterType.html#a001697bcc5a0c57d1e8021cd3898313a" title="CParameterType::setSize" alt="" coords="222,71,403,98"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="457,5,651,47"/>
-<area shape="rect" id="node4" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="699,13,893,39"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="216,5,409,32"/>
+<area shape="rect" id="node3" href="$classCParameterType.html#ae76c751b669d949c8f1819f547f04c90" title="CParameterType::setSize" alt="" coords="222,56,403,83"/>
 </map>

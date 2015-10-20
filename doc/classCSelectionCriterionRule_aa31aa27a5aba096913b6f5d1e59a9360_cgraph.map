@@ -1,6 +1,6 @@
 <map id="CSelectionCriterionRule::toXml" name="CSelectionCriterionRule::toXml">
-<area shape="rect" id="node2" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="239,5,431,47"/>
-<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="259,71,411,98"/>
-<area shape="rect" id="node4" href="$classCSelectionCriterion.html#a3551b612a002f7cc311f21be1685f794" title="CSelectionCriterion\l::getCriterionType" alt="" coords="263,123,407,164"/>
-<area shape="rect" id="node5" href="$classISelectionCriterionTypeInterface.html#a11719cbf09ffcc4e58bb0892253ae466" title="ISelectionCriterionTypeInterface\l::getLiteralValue" alt="" coords="224,188,447,229"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="239,5,431,32"/>
+<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="259,56,411,83"/>
+<area shape="rect" id="node4" href="$classCSelectionCriterion.html#a3551b612a002f7cc311f21be1685f794" title="CSelectionCriterion\l::getCriterionType" alt="" coords="263,107,407,149"/>
+<area shape="rect" id="node5" href="$classISelectionCriterionTypeInterface.html#a11719cbf09ffcc4e58bb0892253ae466" title="ISelectionCriterionTypeInterface\l::getLiteralValue" alt="" coords="224,173,447,214"/>
 </map>

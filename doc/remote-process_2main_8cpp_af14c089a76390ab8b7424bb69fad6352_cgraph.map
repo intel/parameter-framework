@@ -1,9 +1,0 @@
-<map id="sendAndDisplayCommand" name="sendAndDisplayCommand">
-<area shape="rect" id="node2" href="$classCMessage.html#a934d70aff67a456a92124664d6e78e84" title="Write or read the message on pSocket. " alt="" coords="275,81,423,108"/>
-<area shape="rect" id="node6" href="$classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce" title="CAnswerMessage::success" alt="" coords="252,144,445,171"/>
-<area shape="rect" id="node8" href="$classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c" title="CAnswerMessage::getAnswer" alt="" coords="244,195,453,221"/>
-<area shape="rect" id="node3" href="$classCSocket.html#a56781c4ee49b861a1177cf72bca4b058" title="CSocket::write" alt="" coords="556,5,669,32"/>
-<area shape="rect" id="node4" href="$classCSocket.html#a33d4c0e9b69e048b3ca73e435e890af2" title="CSocket::hasPeerDisconnected" alt="" coords="501,56,724,83"/>
-<area shape="rect" id="node5" href="$classCSocket.html#a476a64ffeb8843cbce048dd89a62e38c" title="CSocket::read" alt="" coords="557,107,669,133"/>
-<area shape="rect" id="node7" href="$classCMessage.html#a060b5a2b0874bf080b36b9e406e4d2e1" title="CMessage::getMsgId" alt="" coords="535,157,690,184"/>
-</map>

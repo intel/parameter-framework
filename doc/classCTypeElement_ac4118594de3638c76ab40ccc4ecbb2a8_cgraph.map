@@ -1,6 +1,5 @@
 <map id="CTypeElement::toXml" name="CTypeElement::toXml">
 <area shape="rect" id="node2" href="$classCTypeElement.html#a31edf559bc169a1e22e312280bb7a495" title="CTypeElement::isScalar" alt="" coords="235,5,405,32"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#abd180175ea22c468a4e8c4d287807062" title="CXmlElement::setAttribute\lInteger" alt="" coords="224,57,416,98"/>
-<area shape="rect" id="node5" href="$classCTypeElement.html#af00d2effc61c73560aabdf950a70f753" title="CTypeElement::getArrayLength" alt="" coords="211,123,429,149"/>
-<area shape="rect" id="node4" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="477,57,669,98"/>
+<area shape="rect" id="node3" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="224,56,416,83"/>
+<area shape="rect" id="node4" href="$classCTypeElement.html#a6f0d426a1a1be3334bcd9f6a7db2c281" title="CTypeElement::getArrayLength" alt="" coords="211,107,429,133"/>
 </map>

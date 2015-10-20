@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -185,27 +185,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
 <div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classCMappingData.html#a47f8683f2a0ec019a5e461254f54d411">   92</a></span>&#160;std::string <a class="code" href="classCMappingData.html#a47f8683f2a0ec019a5e461254f54d411">CMappingData::asString</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    std::string strValue;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="classCUtility.html#a61d8ac9daba8e70320e5da0af931bdae">CUtility::asString</a>(_keyToValueMap, strValue, <span class="stringliteral">&quot;, &quot;</span>, <span class="stringliteral">&quot;:&quot;</span>);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">return</span> strValue;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1">utility::asString</a>(_keyToValueMap, <span class="stringliteral">&quot;, &quot;</span>, <span class="stringliteral">&quot;:&quot;</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordtype">bool</span> CMappingData::addValue(<span class="keyword">const</span> std::string&amp; strkey, <span class="keyword">const</span> std::string&amp; strValue)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span> (_keyToValueMap.find(strkey) != _keyToValueMap.end()) {</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keywordtype">bool</span> CMappingData::addValue(<span class="keyword">const</span> std::string&amp; strkey, <span class="keyword">const</span> std::string&amp; strValue)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">if</span> (_keyToValueMap.find(strkey) != _keyToValueMap.end()) {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    _keyToValueMap[strkey] = strValue;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    _keyToValueMap[strkey] = strValue;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="ttc" id="namespaceutility_html_a3fb85a4dbd0307733f0dda49811db6d1"><div class="ttname"><a href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1">utility::asString</a></div><div class="ttdeci">std::string asString(const std::list&lt; std::string &gt; &amp;lstr, const std::string &amp;strSeparator)</div><div class="ttdoc">Format the items of a map into a string as a list of key-value pairs. </div><div class="ttdef"><b>Definition:</b> <a href="Utility_8cpp_source.html#l00043">Utility.cpp:43</a></div></div>
 <div class="ttc" id="classCMappingData_html_a155ca4f3f4e545108c6577ed8c0e78b2"><div class="ttname"><a href="classCMappingData.html#a155ca4f3f4e545108c6577ed8c0e78b2">CMappingData::CMappingData</a></div><div class="ttdeci">CMappingData()</div><div class="ttdef"><b>Definition:</b> <a href="MappingData_8cpp_source.html#l00035">MappingData.cpp:35</a></div></div>
-<div class="ttc" id="classTokenizer_html"><div class="ttname"><a href="classTokenizer.html">Tokenizer</a></div><div class="ttdoc">Tokenizer class. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00043">Tokenizer.h:43</a></div></div>
-<div class="ttc" id="classCUtility_html_a61d8ac9daba8e70320e5da0af931bdae"><div class="ttname"><a href="classCUtility.html#a61d8ac9daba8e70320e5da0af931bdae">CUtility::asString</a></div><div class="ttdeci">static void asString(const std::list&lt; std::string &gt; &amp;lstr, std::string &amp;strOutput, const std::string &amp;separator=&quot;\n&quot;)</div><div class="ttdoc">Format the items of a map into a string as a list of key-value pairs. </div><div class="ttdef"><b>Definition:</b> <a href="Utility_8cpp_source.html#l00040">Utility.cpp:40</a></div></div>
+<div class="ttc" id="classTokenizer_html"><div class="ttname"><a href="classTokenizer.html">Tokenizer</a></div><div class="ttdoc">Tokenizer class. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00045">Tokenizer.h:45</a></div></div>
 <div class="ttc" id="classCMappingData_html_ae5e7e90a449524a2a623fdc4a0a670f8"><div class="ttname"><a href="classCMappingData.html#ae5e7e90a449524a2a623fdc4a0a670f8">CMappingData::init</a></div><div class="ttdeci">bool init(const std::string &amp;rawMapping, std::string &amp;error)</div><div class="ttdoc">Initialize mapping data through a raw value. </div><div class="ttdef"><b>Definition:</b> <a href="MappingData_8cpp_source.html#l00039">MappingData.cpp:39</a></div></div>
 <div class="ttc" id="MappingData_8h_html"><div class="ttname"><a href="MappingData_8h.html">MappingData.h</a></div></div>
 <div class="ttc" id="Tokenizer_8h_html"><div class="ttname"><a href="Tokenizer_8h.html">Tokenizer.h</a></div></div>

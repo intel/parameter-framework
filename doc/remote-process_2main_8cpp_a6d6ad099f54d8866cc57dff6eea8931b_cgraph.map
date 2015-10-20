@@ -1,0 +1,6 @@
+<map id="sendAndDisplayCommand" name="sendAndDisplayCommand">
+<area shape="rect" id="node2" href="$classCMessage.html#a4ffffaf65b3e142bbd673eeaced870a6" title="Write or read the message on pSocket. " alt="" coords="275,5,423,32"/>
+<area shape="rect" id="node3" href="$classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce" title="CAnswerMessage::success" alt="" coords="252,56,445,83"/>
+<area shape="rect" id="node5" href="$classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c" title="CAnswerMessage::getAnswer" alt="" coords="244,107,453,133"/>
+<area shape="rect" id="node4" href="$classCMessage.html#a6e01b6cc8fdbd5f7eb8238b251b8f998" title="CMessage::getMsgId" alt="" coords="501,56,656,83"/>
+</map>

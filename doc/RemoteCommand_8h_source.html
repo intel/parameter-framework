@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -134,20 +134,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Arguments</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classIRemoteCommand.html#a2ce17e7803279ac3380f89ea425646a2">addArgument</a>(<span class="keyword">const</span> std::string&amp; strArgument) = 0;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> uint32_t <a class="code" href="classIRemoteCommand.html#a3a32bda6d4d906f660946c9f023a9f4c">getArgumentCount</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string&amp; <a class="code" href="classIRemoteCommand.html#a4189230352495e258dcb67fa32a26bff">getArgument</a>(uint32_t uiArgument) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string <a class="code" href="classIRemoteCommand.html#a7684bb48686b239c4e96c7536fcb7c21">packArguments</a>(uint32_t uiStartArgument, uint32_t uiNbArguments) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> <a class="code" href="classIRemoteCommand.html#acfcf1ecd0ab5448cc7a56c0cbbb1acf8">getArgumentCount</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string&amp; <a class="code" href="classIRemoteCommand.html#ab74bd9360a056cabefc223bda2c71fe9">getArgument</a>(<span class="keywordtype">size_t</span> argument) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string <a class="code" href="classIRemoteCommand.html#a417244e272a94f04deb8ea0bac70754a">packArguments</a>(<span class="keywordtype">size_t</span> startArgument, <span class="keywordtype">size_t</span> nbArguments) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classIRemoteCommand.html#aa2ec8b685e0851ae27c31091f25cc80f">   48</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classIRemoteCommand.html#aa2ec8b685e0851ae27c31091f25cc80f">~IRemoteCommand</a>() {}</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="ttc" id="classIRemoteCommand_html_a417244e272a94f04deb8ea0bac70754a"><div class="ttname"><a href="classIRemoteCommand.html#a417244e272a94f04deb8ea0bac70754a">IRemoteCommand::packArguments</a></div><div class="ttdeci">virtual const std::string packArguments(size_t startArgument, size_t nbArguments) const =0</div></div>
 <div class="ttc" id="classIRemoteCommand_html_aba9972b5222a6a3a8be6fa3ce04a55ba"><div class="ttname"><a href="classIRemoteCommand.html#aba9972b5222a6a3a8be6fa3ce04a55ba">IRemoteCommand::getCommand</a></div><div class="ttdeci">virtual const std::string &amp; getCommand() const =0</div></div>
 <div class="ttc" id="classIRemoteCommand_html"><div class="ttname"><a href="classIRemoteCommand.html">IRemoteCommand</a></div><div class="ttdef"><b>Definition:</b> <a href="RemoteCommand_8h_source.html#l00035">RemoteCommand.h:35</a></div></div>
-<div class="ttc" id="classIRemoteCommand_html_a3a32bda6d4d906f660946c9f023a9f4c"><div class="ttname"><a href="classIRemoteCommand.html#a3a32bda6d4d906f660946c9f023a9f4c">IRemoteCommand::getArgumentCount</a></div><div class="ttdeci">virtual uint32_t getArgumentCount() const =0</div></div>
+<div class="ttc" id="classIRemoteCommand_html_acfcf1ecd0ab5448cc7a56c0cbbb1acf8"><div class="ttname"><a href="classIRemoteCommand.html#acfcf1ecd0ab5448cc7a56c0cbbb1acf8">IRemoteCommand::getArgumentCount</a></div><div class="ttdeci">virtual size_t getArgumentCount() const =0</div></div>
 <div class="ttc" id="classIRemoteCommand_html_aa2ec8b685e0851ae27c31091f25cc80f"><div class="ttname"><a href="classIRemoteCommand.html#aa2ec8b685e0851ae27c31091f25cc80f">IRemoteCommand::~IRemoteCommand</a></div><div class="ttdeci">virtual ~IRemoteCommand()</div><div class="ttdef"><b>Definition:</b> <a href="RemoteCommand_8h_source.html#l00048">RemoteCommand.h:48</a></div></div>
 <div class="ttc" id="classIRemoteCommand_html_a2ce17e7803279ac3380f89ea425646a2"><div class="ttname"><a href="classIRemoteCommand.html#a2ce17e7803279ac3380f89ea425646a2">IRemoteCommand::addArgument</a></div><div class="ttdeci">virtual void addArgument(const std::string &amp;strArgument)=0</div></div>
-<div class="ttc" id="classIRemoteCommand_html_a7684bb48686b239c4e96c7536fcb7c21"><div class="ttname"><a href="classIRemoteCommand.html#a7684bb48686b239c4e96c7536fcb7c21">IRemoteCommand::packArguments</a></div><div class="ttdeci">virtual const std::string packArguments(uint32_t uiStartArgument, uint32_t uiNbArguments) const =0</div></div>
-<div class="ttc" id="classIRemoteCommand_html_a4189230352495e258dcb67fa32a26bff"><div class="ttname"><a href="classIRemoteCommand.html#a4189230352495e258dcb67fa32a26bff">IRemoteCommand::getArgument</a></div><div class="ttdeci">virtual const std::string &amp; getArgument(uint32_t uiArgument) const =0</div></div>
+<div class="ttc" id="classIRemoteCommand_html_ab74bd9360a056cabefc223bda2c71fe9"><div class="ttname"><a href="classIRemoteCommand.html#ab74bd9360a056cabefc223bda2c71fe9">IRemoteCommand::getArgument</a></div><div class="ttdeci">virtual const std::string &amp; getArgument(size_t argument) const =0</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

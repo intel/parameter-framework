@@ -1,6 +1,6 @@
 <map id="CTypeElement::populate" name="CTypeElement::populate">
 <area shape="rect" id="node2" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="232,5,415,32"/>
-<area shape="rect" id="node3" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="251,56,395,83"/>
+<area shape="rect" id="node3" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="251,56,395,83"/>
 <area shape="rect" id="node4" href="$classCTypeElement.html#a0fd0b5dfb3e3515ff5b54eda3d7e0a45" title="CTypeElement::instantiate" alt="" coords="229,107,417,133"/>
 <area shape="rect" id="node5" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="250,157,397,184"/>
 </map>

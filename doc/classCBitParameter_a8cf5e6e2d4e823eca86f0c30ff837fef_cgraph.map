@@ -1,0 +1,12 @@
+<map id="CBitParameter::access" name="CBitParameter::access">
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#aad502a1139a10faa1a87fd1e033e4ad4" title="CConfigurableElement\l::getOffset" alt="" coords="265,23,429,64"/>
+<area shape="rect" id="node3" href="$classCBaseParameter.html#a911cbd2df0c950a79863fdd689731f88" title="Append the parameter path to the error. " alt="" coords="220,88,473,129"/>
+<area shape="rect" id="node6" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="237,245,456,287"/>
+<area shape="rect" id="node4" href="$classutility_1_1ErrorContext.html#aafe9cd30a03303cf376926d9c4e9dd02" title="utility::ErrorContext\l::appendToError" alt="" coords="559,5,703,47"/>
+<area shape="rect" id="node5" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="560,95,701,122"/>
+<area shape="rect" id="node7" href="$classCParameterAccessContext.html#ad073ad9ca128b5504f8a4a1d844c4e00" title="CParameterAccessContext\l::getAutoSync" alt="" coords="534,147,727,188"/>
+<area shape="rect" id="node8" href="$classCInstanceConfigurableElement.html#a4a613634c5012d4f32c310ccf2fc9fb4" title="CInstanceConfigurableElement\l::getSyncer" alt="" coords="521,212,740,253"/>
+<area shape="rect" id="node9" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="559,277,703,319"/>
+<area shape="rect" id="node10" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="577,343,684,370"/>
+<area shape="rect" id="node11" href="$classCParameterAccessContext.html#ad354dd5bf2a88f4ed4197be9a59fda20" title="CParameterAccessContext\l::getParameterBlackboard" alt="" coords="534,395,727,436"/>
+</map>

@@ -1,16 +1,4 @@
 <map id="CAreaConfiguration::getConfigurableElement" name="CAreaConfiguration::getConfigurableElement">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#ae84c6459b7b261fb81026c9ebe9140f8" title="CAreaConfiguration\l::copyToOuter" alt="" coords="248,5,395,47"/>
-<area shape="rect" id="node4" href="$classCAreaConfiguration.html#aa66ebde5e339fbea35c7a5f46403c770" title="CAreaConfiguration\l::copyFromOuter" alt="" coords="248,71,395,112"/>
-<area shape="rect" id="node10" href="$classCDomainConfiguration.html#a97554abea0968d2e55151302b0260b63" title="CDomainConfiguration\l::composeSettings" alt="" coords="238,136,405,177"/>
-<area shape="rect" id="node11" href="$classCDomainConfiguration.html#a144544d874a578524147e8beeeb51047" title="CDomainConfiguration\l::getElementSequence" alt="" coords="237,201,405,243"/>
-<area shape="rect" id="node14" href="$classCDomainConfiguration.html#af62bcfe2b30d19e292a8aa4ddba3cd89" title="Get the Configuration Blackboard. " alt="" coords="238,267,405,308"/>
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#ade8c66e62cc6a64ad6e1066f4a57eaa2" title="CDomainConfiguration\l::merge" alt="" coords="475,5,641,47"/>
-<area shape="rect" id="node5" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration\l::split" alt="" coords="475,71,641,112"/>
-<area shape="rect" id="node6" href="$classCConfigurableDomain.html#aea88fe7f6e3f02217f5d9f0e2e820da2" title="CConfigurableDomain\l::split" alt="" coords="714,71,875,112"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomains.html#ae01182802f0ce424d239ea19f9365330" title="CConfigurableDomains\l::split" alt="" coords="927,71,1095,112"/>
-<area shape="rect" id="node8" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="1143,78,1299,105"/>
-<area shape="rect" id="node9" href="$classCParameterMgrFullConnector.html#a760e854b7cf96957927c1c64869909f4" title="CParameterMgrFullConnector\l::split" alt="" coords="1347,71,1555,112"/>
-<area shape="rect" id="node12" href="$classCConfigurableDomain.html#ac8d7bf149040aabe342c300b3f2683a6" title="CConfigurableDomain\l::getElementSequence" alt="" coords="474,201,642,243"/>
-<area shape="rect" id="node13" href="$classCConfigurableDomains.html#a0ed279dec1b574701cd94a6449a295e6" title="CConfigurableDomains\l::getElementSequence" alt="" coords="711,201,879,243"/>
-<area shape="rect" id="node15" href="$classCConfigurableDomain.html#a0fec7c3bd4cf280eb64db3803d226836" title="Blackboard Configuration and Base Offset retrieval. " alt="" coords="453,267,663,308"/>
+<area shape="rect" id="node2" href="$classCAreaConfiguration.html#ae84c6459b7b261fb81026c9ebe9140f8" title="CAreaConfiguration\l::copyToOuter" alt="" coords="237,5,384,47"/>
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#aa66ebde5e339fbea35c7a5f46403c770" title="CAreaConfiguration\l::copyFromOuter" alt="" coords="237,71,384,112"/>
 </map>

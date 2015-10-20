@@ -1,4 +1,6 @@
 <map id="CXmlParameterSerializingContext" name="CXmlParameterSerializingContext">
-<area shape="rect" id="node2" href="$classCXmlElementSerializingContext.html" title="CXmlElementSerializingContext" alt="" coords="5,80,228,107"/>
-<area shape="rect" id="node3" href="$classCXmlSerializingContext.html" title="Class that gather errors during serialization. " alt="" coords="31,5,202,32"/>
+<area shape="rect" id="node2" href="$classCXmlElementSerializingContext.html" title="CXmlElementSerializingContext" alt="" coords="5,229,228,256"/>
+<area shape="rect" id="node3" href="$classCXmlSerializingContext.html" title="Class that gather errors during serialization. " alt="" coords="31,155,202,181"/>
+<area shape="rect" id="node4" href="$classutility_1_1ErrorContext.html" title="utility::ErrorContext" alt="" coords="45,80,189,107"/>
+<area shape="rect" id="node5" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="43,5,191,32"/>
 </map>

@@ -1,7 +1,6 @@
 <map id="CEnumParameterType::showProperties" name="CEnumParameterType::showProperties">
 <area shape="rect" id="node2" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="235,5,417,32"/>
-<area shape="rect" id="node3" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="254,56,398,83"/>
+<area shape="rect" id="node3" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="254,56,398,83"/>
 <area shape="rect" id="node4" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="250,107,402,133"/>
 <area shape="rect" id="node5" href="$classCEnumValuePair.html#a8936c702786702895a231eac2137f518" title="CEnumValuePair::getNumerical\lAsString" alt="" coords="216,158,436,199"/>
-<area shape="rect" id="node6" href="$classCUtility.html#ab3df96a32e36befd9149af606affd8c3" title="Utility to easily convert a builtin type into string. " alt="" coords="484,165,609,192"/>
 </map>

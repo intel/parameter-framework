@@ -2,5 +2,5 @@
 <area shape="rect" id="node2" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="221,5,404,47"/>
 <area shape="rect" id="node4" href="$classCConfigurableDomain.html#a1778bfe42d19352dac62ae88f907b6d2" title="CConfigurableDomain\l::setElementSequence" alt="" coords="229,71,396,112"/>
 <area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="462,13,609,39"/>
-<area shape="rect" id="node5" href="$classCDomainConfiguration.html#a44b4473a304bddf0a51eb3bfef412832" title="CDomainConfiguration\l::setElementSequence" alt="" coords="452,71,619,112"/>
+<area shape="rect" id="node5" href="$classCDomainConfiguration.html#aa00f0e58eeaa408381003630301f83fd" title="Sequence management: Prepend provided elements into internal list in the same order than they appear ..." alt="" coords="452,71,619,112"/>
 </map>

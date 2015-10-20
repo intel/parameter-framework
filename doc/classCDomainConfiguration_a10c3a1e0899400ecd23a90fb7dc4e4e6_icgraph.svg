@@ -11,129 +11,157 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-133 1139,-133 1139,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="0,-27.5 0,-57.5 125,-57.5 125,-27.5 0,-27.5"/>
-<text text-anchor="start" x="8" y="-45.5" font-family="Verdana" font-size="10.00">CDomainConfiguration</text>
-<text text-anchor="middle" x="62.5" y="-34.5" font-family="Verdana" font-size="10.00">::validate</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-51.5 0,-81.5 125,-81.5 125,-51.5 0,-51.5"/>
+<text text-anchor="start" x="8" y="-69.5" font-family="Verdana" font-size="10.00">CDomainConfiguration</text>
+<text text-anchor="middle" x="62.5" y="-58.5" font-family="Verdana" font-size="10.00">::validate</text>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" target="_top" xlink:title="CConfigurableDomain\l::validate">
+<g id="a_node2"><a xlink:href="classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" target="_top" xlink:title="CConfigurableDomain\l::createConfiguration">
+<polygon fill="white" stroke="black" points="161,-76.5 161,-106.5 282,-106.5 282,-76.5 161,-76.5"/>
+<text text-anchor="start" x="169" y="-94.5" font-family="Verdana" font-size="10.00">CConfigurableDomain</text>
+<text text-anchor="middle" x="221.5" y="-83.5" font-family="Verdana" font-size="10.00">::createConfiguration</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node2 -->
+<g id="edge1" class="edge"><title>Node1&#45;&gt;Node2</title>
+<path fill="none" stroke="midnightblue" d="M135.131,-77.9063C143.742,-79.2773 152.463,-80.6661 160.877,-82.0058"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="135.526,-74.4251 125.1,-76.3089 134.425,-81.338 135.526,-74.4251"/>
+</g>
+<!-- Node4 -->
+<g id="node4" class="node"><title>Node4</title>
+<g id="a_node4"><a xlink:href="classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" target="_top" xlink:title="CConfigurableDomain\l::validate">
 <polygon fill="white" stroke="black" points="161,-27.5 161,-57.5 282,-57.5 282,-27.5 161,-27.5"/>
 <text text-anchor="start" x="169" y="-45.5" font-family="Verdana" font-size="10.00">CConfigurableDomain</text>
 <text text-anchor="middle" x="221.5" y="-34.5" font-family="Verdana" font-size="10.00">::validate</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node2 -->
-<g id="edge1" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M135.131,-42.5C143.742,-42.5 152.463,-42.5 160.877,-42.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="135.1,-39.0001 125.1,-42.5 135.1,-46.0001 135.1,-39.0001"/>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M135.131,-55.55C143.742,-54.2338 152.463,-52.9006 160.877,-51.6144"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="134.456,-52.1124 125.1,-57.0834 135.514,-59.0321 134.456,-52.1124"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" target="_top" xlink:title="CConfigurableDomains\l::validate">
+<g id="a_node3"><a xlink:href="classCConfigurableDomains.html#aa96eec13d9bdbb307e1dcfe6f057a685" target="_top" xlink:title="CConfigurableDomains\l::createConfiguration">
+<polygon fill="white" stroke="black" points="318,-76.5 318,-106.5 444,-106.5 444,-76.5 318,-76.5"/>
+<text text-anchor="start" x="326" y="-94.5" font-family="Verdana" font-size="10.00">CConfigurableDomains</text>
+<text text-anchor="middle" x="381" y="-83.5" font-family="Verdana" font-size="10.00">::createConfiguration</text>
+</a>
+</g>
+</g>
+<!-- Node2&#45;&gt;Node3 -->
+<g id="edge2" class="edge"><title>Node2&#45;&gt;Node3</title>
+<path fill="none" stroke="midnightblue" d="M292.29,-91.5C300.769,-91.5 309.389,-91.5 317.748,-91.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="292.044,-88.0001 282.044,-91.5 292.044,-95.0001 292.044,-88.0001"/>
+</g>
+<!-- Node5 -->
+<g id="node5" class="node"><title>Node5</title>
+<g id="a_node5"><a xlink:href="classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" target="_top" xlink:title="CConfigurableDomains\l::validate">
 <polygon fill="white" stroke="black" points="318,-27.5 318,-57.5 444,-57.5 444,-27.5 318,-27.5"/>
 <text text-anchor="start" x="326" y="-45.5" font-family="Verdana" font-size="10.00">CConfigurableDomains</text>
 <text text-anchor="middle" x="381" y="-34.5" font-family="Verdana" font-size="10.00">::validate</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node3 -->
-<g id="edge2" class="edge"><title>Node2&#45;&gt;Node3</title>
+<!-- Node4&#45;&gt;Node5 -->
+<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
 <path fill="none" stroke="midnightblue" d="M292.29,-42.5C300.769,-42.5 309.389,-42.5 317.748,-42.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="292.044,-39.0001 282.044,-42.5 292.044,-46.0001 292.044,-39.0001"/>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" target="_top" xlink:title="Load plugins, structures and settings from the config file given. ">
+<!-- Node6 -->
+<g id="node6" class="node"><title>Node6</title>
+<g id="a_node6"><a xlink:href="classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" target="_top" xlink:title="Load plugins, structures and settings from the config file given. ">
 <polygon fill="white" stroke="black" points="516,-55 516,-74 634,-74 634,-55 516,-55"/>
 <text text-anchor="middle" x="575" y="-62" font-family="Verdana" font-size="10.00">CParameterMgr::load</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge3" class="edge"><title>Node3&#45;&gt;Node4</title>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge5" class="edge"><title>Node5&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M454.216,-50.7747C474.523,-53.1016 496.346,-55.6022 515.729,-57.8231"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="454.405,-47.2736 444.072,-49.6124 453.608,-54.2281 454.405,-47.2736"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a xlink:href="classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" target="_top" xlink:title="Method that imports Configurable Domains from an Xml source. ">
+<!-- Node11 -->
+<g id="node11" class="node"><title>Node11</title>
+<g id="a_node11"><a xlink:href="classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" target="_top" xlink:title="Method that imports Configurable Domains from an Xml source. ">
 <polygon fill="white" stroke="black" points="480,-12 480,-31 670,-31 670,-12 480,-12"/>
 <text text-anchor="middle" x="575" y="-19" font-family="Verdana" font-size="10.00">CParameterMgr::importDomainsXml</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node9 -->
-<g id="edge8" class="edge"><title>Node3&#45;&gt;Node9</title>
+<!-- Node5&#45;&gt;Node11 -->
+<g id="edge10" class="edge"><title>Node5&#45;&gt;Node11</title>
 <path fill="none" stroke="midnightblue" d="M454.189,-34.6043C464.897,-33.4332 476.026,-32.216 486.996,-31.016"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="453.632,-31.1443 444.072,-35.7109 454.393,-38.1028 453.632,-31.1443"/>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" target="_top" xlink:title="CParameterMgrFullConnector\l::start">
+<!-- Node7 -->
+<g id="node7" class="node"><title>Node7</title>
+<g id="a_node7"><a xlink:href="classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" target="_top" xlink:title="CParameterMgrFullConnector\l::start">
 <polygon fill="white" stroke="black" points="719,-98.5 719,-128.5 875,-128.5 875,-98.5 719,-98.5"/>
 <text text-anchor="start" x="727" y="-116.5" font-family="Verdana" font-size="10.00">CParameterMgrFullConnector</text>
 <text text-anchor="middle" x="797" y="-105.5" font-family="Verdana" font-size="10.00">::start</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node5 -->
-<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
+<!-- Node6&#45;&gt;Node7 -->
+<g id="edge6" class="edge"><title>Node6&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M628.501,-76.1934C658.412,-82.8554 696.214,-91.2749 728.333,-98.4287"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="629.201,-72.7636 618.679,-74.0058 627.679,-79.5962 629.201,-72.7636"/>
 </g>
-<!-- Node6 -->
-<g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" target="_top" xlink:title="CParameterMgrPlatformConnector\l::start">
+<!-- Node8 -->
+<g id="node8" class="node"><title>Node8</title>
+<g id="a_node8"><a xlink:href="classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" target="_top" xlink:title="CParameterMgrPlatformConnector\l::start">
 <polygon fill="white" stroke="black" points="706,-49.5 706,-79.5 888,-79.5 888,-49.5 706,-49.5"/>
 <text text-anchor="start" x="714" y="-67.5" font-family="Verdana" font-size="10.00">CParameterMgrPlatformConnector</text>
 <text text-anchor="middle" x="797" y="-56.5" font-family="Verdana" font-size="10.00">::start</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node6 -->
-<g id="edge5" class="edge"><title>Node4&#45;&gt;Node6</title>
+<!-- Node6&#45;&gt;Node8 -->
+<g id="edge7" class="edge"><title>Node6&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M644.328,-64.5C663.713,-64.5 685.123,-64.5 705.597,-64.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="644.09,-61.0001 634.09,-64.5 644.09,-68.0001 644.09,-61.0001"/>
 </g>
-<!-- Node7 -->
-<g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" target="_top" xlink:title="pfwStart">
+<!-- Node9 -->
+<g id="node9" class="node"><title>Node9</title>
+<g id="a_node9"><a xlink:href="ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" target="_top" xlink:title="pfwStart">
 <polygon fill="white" stroke="black" points="924,-55 924,-74 980,-74 980,-55 924,-55"/>
 <text text-anchor="middle" x="952" y="-62" font-family="Verdana" font-size="10.00">pfwStart</text>
 </a>
 </g>
 </g>
-<!-- Node6&#45;&gt;Node7 -->
-<g id="edge6" class="edge"><title>Node6&#45;&gt;Node7</title>
+<!-- Node8&#45;&gt;Node9 -->
+<g id="edge8" class="edge"><title>Node8&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M898.494,-64.5C907.703,-64.5 916.397,-64.5 923.96,-64.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="898.328,-61.0001 888.328,-64.5 898.328,-68.0001 898.328,-61.0001"/>
 </g>
-<!-- Node8 -->
-<g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a xlink:href="Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" target="_top" xlink:title="TEST_CASE_METHOD">
+<!-- Node10 -->
+<g id="node10" class="node"><title>Node10</title>
+<g id="a_node10"><a xlink:href="Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" target="_top" xlink:title="TEST_CASE_METHOD">
 <polygon fill="white" stroke="black" points="1016,-55 1016,-74 1135,-74 1135,-55 1016,-55"/>
 <text text-anchor="middle" x="1075.5" y="-62" font-family="Verdana" font-size="10.00">TEST_CASE_METHOD</text>
 </a>
 </g>
 </g>
-<!-- Node7&#45;&gt;Node8 -->
-<g id="edge7" class="edge"><title>Node7&#45;&gt;Node8</title>
+<!-- Node9&#45;&gt;Node10 -->
+<g id="edge9" class="edge"><title>Node9&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M990.342,-64.5C998.329,-64.5 1006.95,-64.5 1015.53,-64.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="990.267,-61.0001 980.267,-64.5 990.267,-68.0001 990.267,-61.0001"/>
 </g>
-<!-- Node10 -->
-<g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="classCParameterMgrFullConnector.html#aabfcc64867c0d79840b5fdfd6efaf4fa" target="_top" xlink:title="Method that imports Configurable Domains from an Xml source. ">
+<!-- Node12 -->
+<g id="node12" class="node"><title>Node12</title>
+<g id="a_node12"><a xlink:href="classCParameterMgrFullConnector.html#aabfcc64867c0d79840b5fdfd6efaf4fa" target="_top" xlink:title="Method that imports Configurable Domains from an Xml source. ">
 <polygon fill="white" stroke="black" points="719,-0.5 719,-30.5 875,-30.5 875,-0.5 719,-0.5"/>
 <text text-anchor="start" x="727" y="-18.5" font-family="Verdana" font-size="10.00">CParameterMgrFullConnector</text>
 <text text-anchor="middle" x="797" y="-7.5" font-family="Verdana" font-size="10.00">::importDomainsXml</text>
 </a>
 </g>
 </g>
-<!-- Node9&#45;&gt;Node10 -->
-<g id="edge9" class="edge"><title>Node9&#45;&gt;Node10</title>
+<!-- Node11&#45;&gt;Node12 -->
+<g id="edge11" class="edge"><title>Node11&#45;&gt;Node12</title>
 <path fill="none" stroke="midnightblue" d="M680.564,-18.6482C693.46,-18.2966 706.455,-17.9421 718.839,-17.6044"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="680.158,-15.1579 670.257,-18.9293 680.349,-22.1553 680.158,-15.1579"/>
 </g>

@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -101,19 +101,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CDefaultElementLibrary&lt; CDefaultElementBuilder &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary__inherit__graph.svg" width="364" height="338"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary__inherit__graph.svg" width="362" height="338"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2fc0d5bc4ea5b60081d43e37080524a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDefaultElementLibrary.html#a2fc0d5bc4ea5b60081d43e37080524a1">CDefaultElementLibrary</a> (bool bEnableDefaultMechanism=true)</td></tr>
-<tr class="separator:a2fc0d5bc4ea5b60081d43e37080524a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d9ad25ee66a14f4e35100fdadff8d25"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDefaultElementLibrary.html#a8d9ad25ee66a14f4e35100fdadff8d25">~CDefaultElementLibrary</a> ()</td></tr>
 <tr class="separator:a8d9ad25ee66a14f4e35100fdadff8d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff3b8240cb76aa7e63f59d2471b9aa6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDefaultElementLibrary.html#aff3b8240cb76aa7e63f59d2471b9aa6e">enableDefaultMechanism</a> (bool bEnable)</td></tr>
-<tr class="memdesc:aff3b8240cb76aa7e63f59d2471b9aa6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the default builder fallback mechanism.  <a href="#aff3b8240cb76aa7e63f59d2471b9aa6e">More...</a><br /></td></tr>
-<tr class="separator:aff3b8240cb76aa7e63f59d2471b9aa6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb350f81719eaacb86a7c09e497d198e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDefaultElementLibrary.html#afb350f81719eaacb86a7c09e497d198e">setDefaultBuilder</a> (std::unique_ptr&lt; CDefaultElementBuilder &gt; defaultBuilder)</td></tr>
+<tr class="memdesc:afb350f81719eaacb86a7c09e497d198e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the default builder used in fallback mechanism.  <a href="#afb350f81719eaacb86a7c09e497d198e">More...</a><br /></td></tr>
+<tr class="separator:afb350f81719eaacb86a7c09e497d198e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77f617162a83a4129d8355b4299b13ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec">createElement</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) const </td></tr>
 <tr class="memdesc:a77f617162a83a4129d8355b4299b13ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and return an element instanciated depending on an xmlElement.  <a href="#a77f617162a83a4129d8355b4299b13ec">More...</a><br /></td></tr>
 <tr class="separator:a77f617162a83a4129d8355b4299b13ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,36 +141,8 @@ class CDefaultElementLibrary&lt; CDefaultElementBuilder &gt;</h3>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00045">45</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
+<p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00047">47</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a2fc0d5bc4ea5b60081d43e37080524a1"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class CDefaultElementBuilder &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a>&lt; CDefaultElementBuilder &gt;::<a class="el" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a> </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bEnableDefaultMechanism</em> = <code>true</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00080">80</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a8d9ad25ee66a14f4e35100fdadff8d25"></a>
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +166,7 @@ template&lt;class CDefaultElementBuilder&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00050">50</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
+<p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00051">51</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
 
 </div>
 </div>
@@ -225,9 +195,9 @@ template&lt;class CDefaultElementBuilder &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>If a matching builder is found, return an element created from the builder, otherwise: If the default mechanism is enable (</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classCDefaultElementLibrary.html#aff3b8240cb76aa7e63f59d2471b9aa6e" title="Enable the default builder fallback mechanism. ">enableDefaultMechanism</a>), create the elemen with the default element builder. otherwise, return NULL. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>enableDefaultMechanism), create the elemen with the default element builder. otherwise, return NULL. </dd></dl>
 
-<p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00085">85</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
+<p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00081">81</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -247,7 +217,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="aff3b8240cb76aa7e63f59d2471b9aa6e"></a>
+<a class="anchor" id="afb350f81719eaacb86a7c09e497d198e"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -257,10 +227,10 @@ template&lt;class CDefaultElementBuilder&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a>&lt; CDefaultElementBuilder &gt;::enableDefaultMechanism </td>
+          <td class="memname">void <a class="el" href="classCDefaultElementLibrary.html">CDefaultElementLibrary</a>&lt; CDefaultElementBuilder &gt;::setDefaultBuilder </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bEnable</em></td><td>)</td>
+          <td class="paramtype">std::unique_ptr&lt; CDefaultElementBuilder &gt;&#160;</td>
+          <td class="paramname"><em>defaultBuilder</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -271,21 +241,21 @@ template&lt;class CDefaultElementBuilder&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Enable the default builder fallback mechanism. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec" title="Create and return an element instanciated depending on an xmlElement. ">createElement()</a> for more detail on this mechanism.</dd></dl>
+<p>Set the default builder used in fallback mechanism. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classCDefaultElementLibrary.html#a77f617162a83a4129d8355b4299b13ec" title="Create and return an element instanciated depending on an xmlElement. ">createElement()</a> for more <a class="el" href="namespacedetail.html">detail</a> on this mechanism.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">bEnable</td><td>if true/false, activate/deactivate the default builder mechanism. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">defaultBuilder</td><td>if NULL default builder mechanism, else provided builder is used. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00057">57</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
+<p>Definition at line <a class="el" href="DefaultElementLibrary_8h_source.html#l00058">58</a> of file <a class="el" href="DefaultElementLibrary_8h_source.html">DefaultElementLibrary.h</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary_aff3b8240cb76aa7e63f59d2471b9aa6e_icgraph.svg" width="479" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCDefaultElementLibrary_afb350f81719eaacb86a7c09e497d198e_icgraph.svg" width="460" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>

@@ -45,7 +45,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" target="_top" xlink:title="Get a child element (const) ">
+<g id="a_node3"><a xlink:href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16" target="_top" xlink:title="Get a child element (const) ">
 <polygon fill="white" stroke="black" points="366.5,-191 366.5,-210 474.5,-210 474.5,-191 366.5,-191"/>
 <text text-anchor="middle" x="420.5" y="-198" font-family="Verdana" font-size="10.00">CElement::getChild</text>
 </a>
@@ -90,9 +90,9 @@
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classCUtility.html#a5a2643fa6fbbd1bae67b2f05b9d54f03" target="_top" xlink:title="Utility to underline. ">
-<polygon fill="white" stroke="black" points="537,-186 537,-205 648,-205 648,-186 537,-186"/>
-<text text-anchor="middle" x="592.5" y="-193" font-family="Verdana" font-size="10.00">CUtility::appendTitle</text>
+<g id="a_node7"><a xlink:href="namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40" target="_top" xlink:title="Utility to underline. ">
+<polygon fill="white" stroke="black" points="541,-186 541,-205 644,-205 644,-186 541,-186"/>
+<text text-anchor="middle" x="592.5" y="-193" font-family="Verdana" font-size="10.00">utility::appendTitle</text>
 </a>
 </g>
 </g>

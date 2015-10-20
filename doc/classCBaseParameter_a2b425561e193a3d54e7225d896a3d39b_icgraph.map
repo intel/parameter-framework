@@ -1,8 +1,0 @@
-<map id="CBaseParameter::accessAsString" name="CBaseParameter::accessAsString">
-<area shape="rect" id="node2" href="$classCBaseParameter.html#a4a9b3e3a2d1ea65a8dc7048559db8dc2" title="CBaseParameter::accessValue" alt="" coords="257,5,474,32"/>
-<area shape="rect" id="node3" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="253,56,478,83"/>
-<area shape="rect" id="node6" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="252,107,479,133"/>
-<area shape="rect" id="node4" href="$ParameterFramework_8h.html#a02e479cdd18adee13f01c05affcd5892" title="Set the value of a previously bind string parameter. " alt="" coords="527,56,697,83"/>
-<area shape="rect" id="node5" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="745,81,904,108"/>
-<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a0318f736980ecc4a0a456581f44a2cf0" title="Access the value of a previously bind string parameter. " alt="" coords="527,107,697,133"/>
-</map>

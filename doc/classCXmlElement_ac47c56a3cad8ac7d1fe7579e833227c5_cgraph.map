@@ -1,8 +1,8 @@
 <map id="CXmlElement::getPath" name="CXmlElement::getPath">
 <area shape="rect" id="node2" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="252,5,417,32"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="760,85,955,112"/>
-<area shape="rect" id="node4" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="219,111,451,137"/>
-<area shape="rect" id="node6" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="219,165,450,192"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="509,107,702,149"/>
-<area shape="rect" id="node7" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="499,173,712,200"/>
+<area shape="rect" id="node3" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="237,56,432,83"/>
+<area shape="rect" id="node4" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="219,107,451,133"/>
+<area shape="rect" id="node6" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="219,157,450,184"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="509,107,702,133"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="499,157,712,184"/>
 </map>

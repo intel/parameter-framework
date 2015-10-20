@@ -1,8 +1,11 @@
 <map id="parameter/AreaConfiguration.h" name="parameter/AreaConfiguration.h">
 <area shape="rect" id="node2" href="$AreaConfiguration_8cpp.html" title="parameter/AreaConfiguration.cpp" alt="" coords="5,80,241,107"/>
 <area shape="rect" id="node3" href="$BitwiseAreaConfiguration_8h.html" title="parameter/BitwiseAreaConfiguration.h" alt="" coords="265,80,531,107"/>
-<area shape="rect" id="node6" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="555,80,809,107"/>
-<area shape="rect" id="node7" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="834,80,1090,107"/>
-<area shape="rect" id="node4" href="$BitParameter_8cpp.html" title="parameter/BitParameter.cpp" alt="" coords="163,155,367,181"/>
-<area shape="rect" id="node5" href="$BitwiseAreaConfiguration_8cpp.html" title="parameter/BitwiseAreaConfiguration.cpp" alt="" coords="391,155,671,181"/>
+<area shape="rect" id="node6" href="$DomainConfiguration_8h.html" title="parameter/DomainConfiguration.h" alt="" coords="561,80,803,107"/>
+<area shape="rect" id="node10" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="827,80,1081,107"/>
+<area shape="rect" id="node4" href="$BitParameter_8cpp.html" title="parameter/BitParameter.cpp" alt="" coords="24,155,228,181"/>
+<area shape="rect" id="node5" href="$BitwiseAreaConfiguration_8cpp.html" title="parameter/BitwiseAreaConfiguration.cpp" alt="" coords="253,155,533,181"/>
+<area shape="rect" id="node7" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="557,155,807,181"/>
+<area shape="rect" id="node8" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="831,155,1087,181"/>
+<area shape="rect" id="node9" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="1111,155,1322,181"/>
 </map>

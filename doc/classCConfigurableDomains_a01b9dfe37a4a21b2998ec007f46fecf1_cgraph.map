@@ -1,0 +1,8 @@
+<map id="CConfigurableDomains::restoreConfiguration" name="CConfigurableDomains::restoreConfiguration">
+<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="221,5,404,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#aa07e34aa3fabe688ae8034ff0578c1c7" title="Restore a configuration. " alt="" coords="232,71,393,112"/>
+<area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="462,13,609,39"/>
+<area shape="rect" id="node5" href="$classCDomainConfiguration.html#a1ddc929e5782dabbf3d95f2c916f995e" title="Restore the configuration. " alt="" coords="452,67,619,108"/>
+<area shape="rect" id="node6" href="$classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5" title="Sync the blackboard. " alt="" coords="468,133,603,159"/>
+<area shape="rect" id="node7" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="667,133,773,159"/>
+</map>

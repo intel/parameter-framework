@@ -2,5 +2,5 @@
 <area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421" title="CInstanceConfigurableElement\l::getTypeElement" alt="" coords="272,5,491,47"/>
 <area shape="rect" id="node3" href="$classCTypeElement.html#a2d4fd9d4443f521e563ef1b6188aeeba" title="Returns the mapping associated to the current TypeElement instance. " alt="" coords="277,71,485,112"/>
 <area shape="rect" id="node4" href="$classCMappingData.html#a47f8683f2a0ec019a5e461254f54d411" title="Formats the mapping as a list of comma&#45;space separated key:value pairs. " alt="" coords="539,78,716,105"/>
-<area shape="rect" id="node5" href="$classCUtility.html#a61d8ac9daba8e70320e5da0af931bdae" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="764,78,891,105"/>
+<area shape="rect" id="node5" href="$namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="764,78,880,105"/>
 </map>

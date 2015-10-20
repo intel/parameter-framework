@@ -1,8 +1,8 @@
 <map id="Status::forward" name="Status::forward">
 <area shape="rect" id="node2" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="220,5,295,32"/>
-<area shape="rect" id="node4" href="$ParameterFramework_8h.html#aa3c268896aa21de7f78ce9c99195e0ba" title="Access the value of a previously bind int parameter. " alt="" coords="183,56,332,83"/>
-<area shape="rect" id="node5" href="$ParameterFramework_8h.html#a5ca86cca5a701f0eb107ba24a05a0a68" title="Set the value of a previously bind int parameter. " alt="" coords="183,107,331,133"/>
-<area shape="rect" id="node6" href="$ParameterFramework_8h.html#a0318f736980ecc4a0a456581f44a2cf0" title="Access the value of a previously bind string parameter. " alt="" coords="172,157,343,184"/>
-<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a02e479cdd18adee13f01c05affcd5892" title="Set the value of a previously bind string parameter. " alt="" coords="172,208,343,235"/>
+<area shape="rect" id="node4" href="$ParameterFramework_8h.html#a7dde5f55f3d1e45a05409912160df12f" title="Access the value of a previously bind int parameter. " alt="" coords="183,56,332,83"/>
+<area shape="rect" id="node5" href="$ParameterFramework_8h.html#af7fd08602e984c778aaf0e4526cbbded" title="Set the value of a previously bind int parameter. " alt="" coords="183,107,331,133"/>
+<area shape="rect" id="node6" href="$ParameterFramework_8h.html#a7d998384abf12976a2bbb59bc0ba82e4" title="Access the value of a previously bind string parameter. " alt="" coords="172,157,343,184"/>
+<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a7913a676a9f57c14b0b6f7fa20ec9f9a" title="Set the value of a previously bind string parameter. " alt="" coords="172,208,343,235"/>
 <area shape="rect" id="node3" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="391,107,549,133"/>
 </map>

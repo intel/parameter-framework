@@ -1,11 +1,13 @@
 <map id="CDomainConfiguration::validate" name="CDomainConfiguration::validate">
-<area shape="rect" id="node2" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="220,100,381,141"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="429,100,597,141"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="693,78,851,105"/>
-<area shape="rect" id="node9" href="$classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="645,135,899,162"/>
-<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" title="CParameterMgrFullConnector\l::start" alt="" coords="964,5,1172,47"/>
-<area shape="rect" id="node6" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="947,71,1189,112"/>
-<area shape="rect" id="node7" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="1237,78,1312,105"/>
-<area shape="rect" id="node8" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1360,78,1519,105"/>
-<area shape="rect" id="node10" href="$classCParameterMgrFullConnector.html#aabfcc64867c0d79840b5fdfd6efaf4fa" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="964,136,1172,177"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" title="CConfigurableDomain\l::createConfiguration" alt="" coords="220,35,381,76"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="220,100,381,141"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#aa96eec13d9bdbb307e1dcfe6f057a685" title="CConfigurableDomains\l::createConfiguration" alt="" coords="429,35,597,76"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="429,100,597,141"/>
+<area shape="rect" id="node6" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="693,78,851,105"/>
+<area shape="rect" id="node11" href="$classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="645,135,899,162"/>
+<area shape="rect" id="node7" href="$classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" title="CParameterMgrFullConnector\l::start" alt="" coords="964,5,1172,47"/>
+<area shape="rect" id="node8" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="947,71,1189,112"/>
+<area shape="rect" id="node9" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="1237,78,1312,105"/>
+<area shape="rect" id="node10" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1360,78,1519,105"/>
+<area shape="rect" id="node12" href="$classCParameterMgrFullConnector.html#aabfcc64867c0d79840b5fdfd6efaf4fa" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="964,136,1172,177"/>
 </map>

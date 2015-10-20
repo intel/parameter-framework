@@ -1,6 +1,6 @@
 <map id="CDomainConfiguration::split" name="CDomainConfiguration::split">
-<area shape="rect" id="node2" href="$classCConfigurableDomain.html#aea88fe7f6e3f02217f5d9f0e2e820da2" title="CConfigurableDomain\l::split" alt="" coords="220,5,381,47"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#ae01182802f0ce424d239ea19f9365330" title="CConfigurableDomains\l::split" alt="" coords="429,5,597,47"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomain.html#ad08b2c56e7c842f9288625d35cb66736" title="Split the domain in two. " alt="" coords="220,5,381,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a52fc8d5da4bfcae5a67017a42a327c2a" title="Split a domain in two. " alt="" coords="429,5,597,47"/>
 <area shape="rect" id="node4" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="645,13,801,39"/>
 <area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a760e854b7cf96957927c1c64869909f4" title="CParameterMgrFullConnector\l::split" alt="" coords="849,5,1057,47"/>
 </map>

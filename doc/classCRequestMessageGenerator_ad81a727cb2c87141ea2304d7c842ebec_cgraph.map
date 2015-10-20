@@ -1,5 +1,0 @@
-<map id="CRequestMessageGenerator::next" name="CRequestMessageGenerator::next">
-<area shape="rect" id="node2" href="$classNaiveTokenizer.html#ac5159be438eedc6886029d4b7a499e42" title="tokenize a space&#45;separated string, handling quotes " alt="" coords="269,5,481,32"/>
-<area shape="rect" id="node3" href="$classCRequestMessage.html#a399c6f1c96ed942b4632841e20a28555" title="CRequestMessage::setCommand" alt="" coords="257,56,492,83"/>
-<area shape="rect" id="node4" href="$classCRequestMessage.html#acabef458b313a1e9a9c1c31239c0cbd3" title="CRequestMessage::addArgument" alt="" coords="257,107,492,133"/>
-</map>

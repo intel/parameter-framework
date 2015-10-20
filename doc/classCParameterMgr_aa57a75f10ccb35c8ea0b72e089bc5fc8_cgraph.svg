@@ -72,7 +72,7 @@
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classCDomainConfiguration.html#a44b4473a304bddf0a51eb3bfef412832" target="_top" xlink:title="CDomainConfiguration\l::setElementSequence">
+<g id="a_node6"><a xlink:href="classCDomainConfiguration.html#aa00f0e58eeaa408381003630301f83fd" target="_top" xlink:title="Sequence management: Prepend provided elements into internal list in the same order than they appear ...">
 <polygon fill="white" stroke="black" points="523,-0.5 523,-30.5 648,-30.5 648,-0.5 523,-0.5"/>
 <text text-anchor="start" x="531" y="-18.5" font-family="Verdana" font-size="10.00">CDomainConfiguration</text>
 <text text-anchor="middle" x="585.5" y="-7.5" font-family="Verdana" font-size="10.00">::setElementSequence</text>

@@ -1,7 +1,5 @@
 <map id="CConfigurableDomains::listConfigurations" name="CConfigurableDomains::listConfigurations">
 <area shape="rect" id="node2" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="221,5,404,47"/>
 <area shape="rect" id="node4" href="$classCElement.html#af5b93310000754358a178340f6269d51" title="CElement::listChildren" alt="" coords="231,71,394,98"/>
-<area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="470,13,617,39"/>
-<area shape="rect" id="node5" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="452,67,635,94"/>
-<area shape="rect" id="node6" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="467,118,619,145"/>
+<area shape="rect" id="node3" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="452,13,599,39"/>
 </map>

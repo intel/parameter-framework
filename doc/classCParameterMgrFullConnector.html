@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -88,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classCParameterMgrFullConnector-members.html">List of all members</a>  </div>
@@ -101,7 +102,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector_1_1ILogger.html">ILogger</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to implement to provide a custom logger to the PF.  <a href="classCParameterMgrFullConnector_1_1ILogger.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a54ba0a3d5d8a2a877feb0e6d4de82e1a"><td class="memItemLeft" align="right" valign="top">typedef std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#a54ba0a3d5d8a2a877feb0e6d4de82e1a">Results</a></td></tr>
+<tr class="memdesc:a54ba0a3d5d8a2a877feb0e6d4de82e1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">String list type which can hold list of error/info and can be presented to client.  <a href="#a54ba0a3d5d8a2a877feb0e6d4de82e1a">More...</a><br /></td></tr>
+<tr class="separator:a54ba0a3d5d8a2a877feb0e6d4de82e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -142,12 +150,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a65bbd2b23fc23c4d6e275ba7b6498220"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#a65bbd2b23fc23c4d6e275ba7b6498220">getFailureOnFailedSettingsLoad</a> () const </td></tr>
 <tr class="memdesc:a65bbd2b23fc23c4d6e275ba7b6498220"><td class="mdescLeft">&#160;</td><td class="mdescRight">Would start fail in case of failed settings load.  <a href="#a65bbd2b23fc23c4d6e275ba7b6498220">More...</a><br /></td></tr>
 <tr class="separator:a65bbd2b23fc23c4d6e275ba7b6498220"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5e62ac191eb80520e84c68980172edc"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#ae5e62ac191eb80520e84c68980172edc">getSchemaFolderLocation</a> () const </td></tr>
-<tr class="memdesc:ae5e62ac191eb80520e84c68980172edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the path to the directory containing the XML Schemas.  <a href="#ae5e62ac191eb80520e84c68980172edc">More...</a><br /></td></tr>
-<tr class="separator:ae5e62ac191eb80520e84c68980172edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa62899916551c8e46ffd5a8bb5351d36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#aa62899916551c8e46ffd5a8bb5351d36">setSchemaFolderLocation</a> (const std::string &amp;strSchemaFolderLocation)</td></tr>
-<tr class="memdesc:aa62899916551c8e46ffd5a8bb5351d36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override the directory containing the XML Schemas.  <a href="#aa62899916551c8e46ffd5a8bb5351d36">More...</a><br /></td></tr>
-<tr class="separator:aa62899916551c8e46ffd5a8bb5351d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd1f27324632442580466a83776f6bf4"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#acd1f27324632442580466a83776f6bf4">getSchemaUri</a> () const </td></tr>
+<tr class="memdesc:acd1f27324632442580466a83776f6bf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the XML Schemas URI.  <a href="#acd1f27324632442580466a83776f6bf4">More...</a><br /></td></tr>
+<tr class="separator:acd1f27324632442580466a83776f6bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af553e05de9028a29123090d3aa2a4e93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#af553e05de9028a29123090d3aa2a4e93">setSchemaUri</a> (const std::string &amp;schemaUri)</td></tr>
+<tr class="memdesc:af553e05de9028a29123090d3aa2a4e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override the XML Schemas URI.  <a href="#af553e05de9028a29123090d3aa2a4e93">More...</a><br /></td></tr>
+<tr class="separator:af553e05de9028a29123090d3aa2a4e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad228bf877fba414aca7862d854dd4ee9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#ad228bf877fba414aca7862d854dd4ee9">setValidateSchemasOnStart</a> (bool bValidate)</td></tr>
 <tr class="memdesc:ad228bf877fba414aca7862d854dd4ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should .xml files be validated on start ?  <a href="#ad228bf877fba414aca7862d854dd4ee9">More...</a><br /></td></tr>
 <tr class="separator:ad228bf877fba414aca7862d854dd4ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,8 +205,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0cd650cbef97681f747dfc5489788d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a352932b594bc113459c5bd687c03963f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#a352932b594bc113459c5bd687c03963f">renameConfiguration</a> (const std::string &amp;strDomain, const std::string &amp;strConfiguration, const std::string &amp;strNewConfiguration, std::string &amp;strError)</td></tr>
 <tr class="separator:a352932b594bc113459c5bd687c03963f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69cc5edc495de8fca36531b65d574a78"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#a69cc5edc495de8fca36531b65d574a78">restoreConfiguration</a> (const std::string &amp;strDomain, const std::string &amp;strConfiguration, std::list&lt; std::string &gt; &amp;strError)</td></tr>
-<tr class="separator:a69cc5edc495de8fca36531b65d574a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad13cd4bc49b78b24f3c90da3b0a71aff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#ad13cd4bc49b78b24f3c90da3b0a71aff">restoreConfiguration</a> (const std::string &amp;strDomain, const std::string &amp;strConfiguration, <a class="el" href="classCParameterMgrFullConnector.html#a54ba0a3d5d8a2a877feb0e6d4de82e1a">Results</a> &amp;errors)</td></tr>
+<tr class="memdesc:ad13cd4bc49b78b24f3c90da3b0a71aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore a configuration.  <a href="#ad13cd4bc49b78b24f3c90da3b0a71aff">More...</a><br /></td></tr>
+<tr class="separator:ad13cd4bc49b78b24f3c90da3b0a71aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0483d5bf0896f58735529afa17e468c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#aa0483d5bf0896f58735529afa17e468c">saveConfiguration</a> (const std::string &amp;strDomain, const std::string &amp;strConfiguration, std::string &amp;strError)</td></tr>
 <tr class="separator:aa0483d5bf0896f58735529afa17e468c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b8231307d300d1fbc9b01b7d1047650"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrFullConnector.html#a9b8231307d300d1fbc9b01b7d1047650">addConfigurableElementToDomain</a> (const std::string &amp;strDomain, const std::string &amp;strConfigurableElementPath, std::string &amp;strError)</td></tr>
@@ -238,8 +247,25 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8h_source.html#l00044">44</a> of file <a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8h_source.html#l00046">46</a> of file <a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="a54ba0a3d5d8a2a877feb0e6d4de82e1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::list&lt;std::string&gt; <a class="el" href="classCParameterMgrFullConnector.html#a54ba0a3d5d8a2a877feb0e6d4de82e1a">CParameterMgrFullConnector::Results</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>String list type which can hold list of error/info and can be presented to client. </p>
+
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8h_source.html#l00053">53</a> of file <a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1332fa19c5b7e2da056d99d8037f42eb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -255,14 +281,6 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00038">38</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a1332fa19c5b7e2da056d99d8037f42eb_cgraph.svg" width="470" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
 
 </div>
 </div>
@@ -332,12 +350,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00204">204</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00212">212</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a64a98bccd79559d5466ff3fd8e93b890_cgraph.svg" width="1291" height="471"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a64a98bccd79559d5466ff3fd8e93b890_cgraph.svg" width="1503" height="642"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -380,7 +398,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00198">198</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00206">206</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -422,7 +440,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00287">287</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00295">295</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -447,12 +465,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00108">108</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00116">116</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a8ba983f8201a85f48dba7819db3b3ef6_cgraph.svg" width="738" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a8ba983f8201a85f48dba7819db3b3ef6_cgraph.svg" width="523" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -489,7 +507,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00332">332</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00340">340</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -531,12 +549,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00239">239</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00247">247</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_ac863444469b87e23f6aeba390e46f5b3_cgraph.svg" width="1170" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_ac863444469b87e23f6aeba390e46f5b3_cgraph.svg" width="523" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -567,12 +585,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00218">218</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00226">226</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a25e98b1d6b0eb374ad3908e6cffd475e_cgraph.svg" width="899" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a25e98b1d6b0eb374ad3908e6cffd475e_cgraph.svg" width="488" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -603,7 +621,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00072">72</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00080">80</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -639,7 +657,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00084">84</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00092">92</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -665,7 +683,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00078">78</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00086">86</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -691,12 +709,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00234">234</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00242">242</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a44d00cf0ef001557c045d2781556ce15_cgraph.svg" width="858" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a44d00cf0ef001557c045d2781556ce15_cgraph.svg" width="843" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -733,12 +751,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00246">246</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00254">254</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a0cd650cbef97681f747dfc5489788d66_cgraph.svg" width="1188" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a0cd650cbef97681f747dfc5489788d66_cgraph.svg" width="522" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -769,12 +787,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00223">223</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00231">231</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_afa596fa04ce0da764cebdc6a4e2aec12_cgraph.svg" width="1128" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_afa596fa04ce0da764cebdc6a4e2aec12_cgraph.svg" width="487" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -829,7 +847,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occures, true otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00346">346</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00354">354</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -896,7 +914,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occurs, true otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00367">367</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00375">375</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -938,7 +956,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00326">326</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00334">334</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -966,7 +984,7 @@ Here is the call graph for this function:</div>
 <p>Would start fail in case of failed settings load. </p>
 <dl class="section return"><dt>Returns</dt><dd>failure on failed settings load policy state. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00128">128</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00136">136</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -994,7 +1012,7 @@ Here is the call graph for this function:</div>
 <p>Would start fail in case of missing subsystems. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the subsystem will fail on missing subsystem, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00118">118</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00126">126</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1021,7 +1039,7 @@ Here is the call graph for this function:</div>
 
 <p>Is the remote interface forcefully disabled ? </p>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00098">98</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00106">106</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1067,7 +1085,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a mapping was found for this element </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00213">213</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00221">221</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1079,12 +1097,12 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="ae5e62ac191eb80520e84c68980172edc"></a>
+<a class="anchor" id="acd1f27324632442580466a83776f6bf4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const string &amp; CParameterMgrFullConnector::getSchemaFolderLocation </td>
+          <td class="memname">const string &amp; CParameterMgrFullConnector::getSchemaUri </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1092,15 +1110,15 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Get the path to the directory containing the XML Schemas. </p>
-<dl class="section return"><dt>Returns</dt><dd>the directory containing the XML Schemas </dd></dl>
+<p>Get the XML Schemas URI. </p>
+<dl class="section return"><dt>Returns</dt><dd>the XML Schemas URI </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00133">133</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00141">141</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_ae5e62ac191eb80520e84c68980172edc_cgraph.svg" width="471" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_acd1f27324632442580466a83776f6bf4_cgraph.svg" width="490" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1121,7 +1139,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00092">92</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00100">100</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1163,7 +1181,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00281">281</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00289">289</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1191,7 +1209,7 @@ Here is the call graph for this function:</div>
 <p>Would .xml files be validated on start? </p>
 <dl class="section return"><dt>Returns</dt><dd>areSchemasValidated </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00148">148</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00156">156</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1251,12 +1269,12 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occures </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00340">340</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00348">348</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_aabfcc64867c0d79840b5fdfd6efaf4fa_cgraph.svg" width="1778" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_aabfcc64867c0d79840b5fdfd6efaf4fa_cgraph.svg" width="1176" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1318,7 +1336,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occurs </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00359">359</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00367">367</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1380,7 +1398,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if any error occurs </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00353">353</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00361">361</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1405,7 +1423,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00188">188</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00196">196</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1430,7 +1448,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00178">178</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00186">186</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1455,7 +1473,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00158">158</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00166">166</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1480,7 +1498,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00168">168</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00176">176</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1522,12 +1540,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00294">294</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00302">302</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_aeb023e264ddb06255bea04ddb2c65708_cgraph.svg" width="1287" height="356"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_aeb023e264ddb06255bea04ddb2c65708_cgraph.svg" width="1239" height="214"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1570,12 +1588,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00253">253</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00261">261</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a352932b594bc113459c5bd687c03963f_cgraph.svg" width="1404" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a352932b594bc113459c5bd687c03963f_cgraph.svg" width="532" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1612,19 +1630,19 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00228">228</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00236">236</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a6023605e54ac2840c135950ec0fc8775_cgraph.svg" width="1175" height="252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a6023605e54ac2840c135950ec0fc8775_cgraph.svg" width="498" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a69cc5edc495de8fca36531b65d574a78"></a>
+<a class="anchor" id="ad13cd4bc49b78b24f3c90da3b0a71aff"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1643,8 +1661,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::list&lt; std::string &gt; &amp;&#160;</td>
-          <td class="paramname"><em>strError</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classCParameterMgrFullConnector.html#a54ba0a3d5d8a2a877feb0e6d4de82e1a">Results</a> &amp;&#160;</td>
+          <td class="paramname"><em>errors</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1654,12 +1672,23 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00268">268</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Restore a configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">strDomain</td><td>the domain name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strConfiguration</td><td>the configuration name </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">errors,errors</td><td>encountered during restoration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if success false otherwise </dd></dl>
+
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00276">276</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a69cc5edc495de8fca36531b65d574a78_cgraph.svg" width="1751" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_ad13cd4bc49b78b24f3c90da3b0a71aff_cgraph.svg" width="528" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1696,12 +1725,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00262">262</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00270">270</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_aa0483d5bf0896f58735529afa17e468c_cgraph.svg" width="1580" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_aa0483d5bf0896f58735529afa17e468c_cgraph.svg" width="512" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1744,7 +1773,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00316">316</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00324">324</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1780,7 +1809,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00183">183</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00191">191</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1828,7 +1857,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00307">307</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00315">315</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1862,7 +1891,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00123">123</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00131">131</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1896,7 +1925,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00113">113</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00121">121</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1931,7 +1960,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00103">103</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00111">111</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1977,7 +2006,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00173">173</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00181">181</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1989,34 +2018,34 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="aa62899916551c8e46ffd5a8bb5351d36"></a>
+<a class="anchor" id="af553e05de9028a29123090d3aa2a4e93"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CParameterMgrFullConnector::setSchemaFolderLocation </td>
+          <td class="memname">void CParameterMgrFullConnector::setSchemaUri </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strSchemaFolderLocation</em></td><td>)</td>
+          <td class="paramname"><em>schemaUri</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Override the directory containing the XML Schemas. </p>
+<p>Override the XML Schemas URI. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">strSchemaFolderLocation</td><td>directory containing the XML Schemas </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">schemaUri</td><td>the XML Schemas URI </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00138">138</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00146">146</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_aa62899916551c8e46ffd5a8bb5351d36_cgraph.svg" width="470" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_af553e05de9028a29123090d3aa2a4e93_cgraph.svg" width="488" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2053,12 +2082,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00275">275</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00283">283</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_afc37ee45fbd78e1d4498df0393e2300d_cgraph.svg" width="1143" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_afc37ee45fbd78e1d4498df0393e2300d_cgraph.svg" width="482" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2089,12 +2118,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00153">153</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00161">161</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a3c23fc44adad7f6cb9b8af33e7298ad1_cgraph.svg" width="492" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a3c23fc44adad7f6cb9b8af33e7298ad1_cgraph.svg" width="763" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2124,7 +2153,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if unable to set, true otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00143">143</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00151">151</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2150,7 +2179,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00163">163</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00171">171</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2192,12 +2221,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00301">301</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00309">309</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a760e854b7cf96957927c1c64869909f4_cgraph.svg" width="1582" height="495"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a760e854b7cf96957927c1c64869909f4_cgraph.svg" width="1340" height="420"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2223,7 +2252,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a60cb4e00e70c6a7b700e464d0de084ff_cgraph.svg" width="1852" height="440"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrFullConnector_a60cb4e00e70c6a7b700e464d0de084ff_cgraph.svg" width="1640" height="534"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -2244,7 +2273,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00193">193</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8cpp_source.html#l00201">201</a> of file <a class="el" href="ParameterMgrFullConnector_8cpp_source.html">ParameterMgrFullConnector.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2275,7 +2304,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8h_source.html#l00046">46</a> of file <a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrFullConnector_8h_source.html#l00048">48</a> of file <a class="el" href="ParameterMgrFullConnector_8h_source.html">ParameterMgrFullConnector.h</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getsubsystembuilder',['GetSubsystemBuilder',['../SystemClass_8cpp.html#ab36f97c97fd65230a02517a2f01d7451',1,'SystemClass.cpp']]]
+  ['info',['Info',['../namespacecore_1_1log_1_1details.html#a4f628b0a303ff9bd5fc7252bbf7096ed',1,'core::log::details']]]
 ];

@@ -1,6 +1,7 @@
 <map id="parameter/DefaultElementLibrary.h" name="parameter/DefaultElementLibrary.h">
-<area shape="rect" id="node2" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="240,95,459,121"/>
+<area shape="rect" id="node2" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="305,95,524,121"/>
 <area shape="rect" id="node3" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="5,177,216,203"/>
-<area shape="rect" id="node4" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="240,169,459,211"/>
-<area shape="rect" id="node5" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="483,177,687,203"/>
+<area shape="rect" id="node4" href="$Plugin_8h.html" title="This file is intended to be used by the plugins. " alt="" coords="240,177,384,203"/>
+<area shape="rect" id="node5" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="408,169,627,211"/>
+<area shape="rect" id="node6" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="651,177,855,203"/>
 </map>

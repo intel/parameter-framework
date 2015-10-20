@@ -1,11 +1,11 @@
 <map id="parameter/include/ParameterMgrLoggerForward.h" name="parameter/include/ParameterMgrLoggerForward.h">
 <area shape="rect" id="node2" href="$ParameterMgrFullConnector_8h.html" title="parameter/include/Parameter\lMgrFullConnector.h" alt="" coords="5,95,216,136"/>
-<area shape="rect" id="node4" href="$ParameterMgrPlatformConnector_8h.html" title="parameter/include/Parameter\lMgrPlatformConnector.h" alt="" coords="524,95,735,136"/>
+<area shape="rect" id="node4" href="$ParameterMgrPlatformConnector_8h.html" title="parameter/include/Parameter\lMgrPlatformConnector.h" alt="" coords="513,95,724,136"/>
 <area shape="rect" id="node10" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="240,102,480,129"/>
 <area shape="rect" id="node3" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="8,184,213,225"/>
 <area shape="rect" id="node5" href="$ParameterFramework_8cpp.html" title="bindings/c/ParameterFramework.cpp" alt="" coords="503,191,756,218"/>
 <area shape="rect" id="node6" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="239,184,478,225"/>
 <area shape="rect" id="node7" href="$TestPlatform_8h.html" title="test/test&#45;platform\l/TestPlatform.h" alt="" coords="781,184,915,225"/>
-<area shape="rect" id="node9" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="886,273,1021,315"/>
-<area shape="rect" id="node8" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="727,273,862,315"/>
+<area shape="rect" id="node8" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="701,273,835,315"/>
+<area shape="rect" id="node9" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="859,273,994,315"/>
 </map>

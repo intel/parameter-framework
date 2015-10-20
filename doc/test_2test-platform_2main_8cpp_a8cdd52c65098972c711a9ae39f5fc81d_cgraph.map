@@ -1,7 +1,0 @@
-<map id="startBlockingTestPlatform" name="startBlockingTestPlatform">
-<area shape="rect" id="node2" href="$classCTestPlatform.html#ad74d8f79000b7a85c75607a77836de39" title="CTestPlatform::load" alt="" coords="237,31,383,57"/>
-<area shape="rect" id="node3" href="$classCRemoteProcessorServer.html#ae2ba625b835446b5fa5f1d1a244da43c" title="CRemoteProcessorServer\l::start" alt="" coords="431,23,616,65"/>
-<area shape="rect" id="node4" href="$classCListeningSocket.html#a357ad090efde135d2625a515f86b4d77" title="CListeningSocket::listen" alt="" coords="664,31,839,57"/>
-<area shape="rect" id="node5" href="$classCSocket.html#a489715f4b7fc3e5b5efd832766208acd" title="CSocket::initSockAddrIn" alt="" coords="887,5,1061,32"/>
-<area shape="rect" id="node6" href="$classCSocket.html#aa925e6f828f6084610bb19c80709ff0a" title="CSocket::getFd" alt="" coords="915,56,1033,83"/>
-</map>

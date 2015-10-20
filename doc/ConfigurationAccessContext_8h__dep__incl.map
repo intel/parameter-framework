@@ -8,7 +8,8 @@
 <area shape="rect" id="node8" href="$ConfigurationAccessContext_8cpp.html" title="parameter/ConfigurationAccess\lContext.cpp" alt="" coords="1538,95,1762,136"/>
 <area shape="rect" id="node9" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="1786,102,2042,129"/>
 <area shape="rect" id="node10" href="$FixedPointParameterType_8cpp.html" title="parameter/FixedPointParameter\lType.cpp" alt="" coords="2067,95,2292,136"/>
-<area shape="rect" id="node11" href="$Parameter_8cpp.html" title="parameter/Parameter.cpp" alt="" coords="2317,102,2503,129"/>
-<area shape="rect" id="node12" href="$StringParameter_8cpp.html" title="parameter/StringParameter.cpp" alt="" coords="2528,102,2753,129"/>
-<area shape="rect" id="node13" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="2777,102,2971,129"/>
+<area shape="rect" id="node11" href="$FloatingPointParameterType_8cpp.html" title="parameter/FloatingPointParameter\lType.cpp" alt="" coords="2317,95,2559,136"/>
+<area shape="rect" id="node12" href="$Parameter_8cpp.html" title="parameter/Parameter.cpp" alt="" coords="2583,102,2770,129"/>
+<area shape="rect" id="node13" href="$StringParameter_8cpp.html" title="parameter/StringParameter.cpp" alt="" coords="2795,102,3020,129"/>
+<area shape="rect" id="node14" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="3044,102,3237,129"/>
 </map>

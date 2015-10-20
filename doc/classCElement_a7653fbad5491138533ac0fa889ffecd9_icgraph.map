@@ -1,11 +1,8 @@
 <map id="CElement::isDescendantOf" name="CElement::isDescendantOf">
 <area shape="rect" id="node2" href="$classCAreaConfiguration.html#ae84c6459b7b261fb81026c9ebe9140f8" title="CAreaConfiguration\l::copyToOuter" alt="" coords="278,5,425,47"/>
-<area shape="rect" id="node4" href="$classCAreaConfiguration.html#aa66ebde5e339fbea35c7a5f46403c770" title="CAreaConfiguration\l::copyFromOuter" alt="" coords="278,71,425,112"/>
-<area shape="rect" id="node10" href="$classCConfigurableDomain.html#a0fec7c3bd4cf280eb64db3803d226836" title="Blackboard Configuration and Base Offset retrieval. " alt="" coords="247,136,456,177"/>
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#ade8c66e62cc6a64ad6e1066f4a57eaa2" title="CDomainConfiguration\l::merge" alt="" coords="504,5,671,47"/>
-<area shape="rect" id="node5" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration\l::split" alt="" coords="504,71,671,112"/>
-<area shape="rect" id="node6" href="$classCConfigurableDomain.html#aea88fe7f6e3f02217f5d9f0e2e820da2" title="CConfigurableDomain\l::split" alt="" coords="719,71,880,112"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomains.html#ae01182802f0ce424d239ea19f9365330" title="CConfigurableDomains\l::split" alt="" coords="928,71,1096,112"/>
-<area shape="rect" id="node8" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="1144,78,1300,105"/>
-<area shape="rect" id="node9" href="$classCParameterMgrFullConnector.html#a760e854b7cf96957927c1c64869909f4" title="CParameterMgrFullConnector\l::split" alt="" coords="1348,71,1556,112"/>
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#aa66ebde5e339fbea35c7a5f46403c770" title="CAreaConfiguration\l::copyFromOuter" alt="" coords="278,71,425,112"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomain.html#aec0b138482d5cd4d42e14c9de882a16c" title="Blackboard Configuration and Base Offset retrieval. " alt="" coords="247,136,456,177"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a0fb6ef1d7480f819135a29a5dfc6463d" title="CConfigurableDomains\l::findConfigurationBlackboard" alt="" coords="504,136,713,177"/>
+<area shape="rect" id="node6" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="761,136,1020,177"/>
+<area shape="rect" id="node7" href="$classCParameterMgrFullConnector.html#a64a98bccd79559d5466ff3fd8e93b890" title="CParameterMgrFullConnector\l::accessConfigurationValue" alt="" coords="1068,136,1276,177"/>
 </map>

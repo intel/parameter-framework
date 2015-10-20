@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -105,8 +105,9 @@ Inheritance diagram for ISelectionCriterionTypeInterface:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a56b4add65b5107377938694a3c67eb82"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISelectionCriterionTypeInterface.html#a56b4add65b5107377938694a3c67eb82">addValuePair</a> (int iValue, const std::string &amp;strValue)=0</td></tr>
-<tr class="separator:a56b4add65b5107377938694a3c67eb82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ca52ae84cba77ed8d38feaefbc1abc5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISelectionCriterionTypeInterface.html#a6ca52ae84cba77ed8d38feaefbc1abc5">addValuePair</a> (int iValue, const std::string &amp;strValue, std::string &amp;strError)=0</td></tr>
+<tr class="memdesc:a6ca52ae84cba77ed8d38feaefbc1abc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new pair [integer, litteral] which represents a criterion.  <a href="#a6ca52ae84cba77ed8d38feaefbc1abc5">More...</a><br /></td></tr>
+<tr class="separator:a6ca52ae84cba77ed8d38feaefbc1abc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa28678ff4fb9acb1e216f1edaccdf85f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISelectionCriterionTypeInterface.html#aa28678ff4fb9acb1e216f1edaccdf85f">getNumericalValue</a> (const std::string &amp;strValue, int &amp;iValue) const =0</td></tr>
 <tr class="separator:aa28678ff4fb9acb1e216f1edaccdf85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11719cbf09ffcc4e58bb0892253ae466"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISelectionCriterionTypeInterface.html#a11719cbf09ffcc4e58bb0892253ae466">getLiteralValue</a> (int iValue, std::string &amp;strValue) const =0</td></tr>
@@ -146,12 +147,12 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SelectionCriterionTypeInterface_8h_source.html#l00044">44</a> of file <a class="el" href="SelectionCriterionTypeInterface_8h_source.html">SelectionCriterionTypeInterface.h</a>.</p>
+<p>Definition at line <a class="el" href="SelectionCriterionTypeInterface_8h_source.html#l00053">53</a> of file <a class="el" href="SelectionCriterionTypeInterface_8h_source.html">SelectionCriterionTypeInterface.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a56b4add65b5107377938694a3c67eb82"></a>
+<a class="anchor" id="a6ca52ae84cba77ed8d38feaefbc1abc5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -168,7 +169,13 @@ Protected Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strValue</em>&#160;</td>
+          <td class="paramname"><em>strValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>strError</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -183,12 +190,23 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classCSelectionCriterionType.html#a60d5e0c775b156da7dbf98ce398d5c40">CSelectionCriterionType</a>.</p>
+<p>Add a new pair [integer, litteral] which represents a criterion. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">iValue</td><td>integer value </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strValue</td><td>litteral value </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">strError</td><td>string containing error information we can provide to client </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if succeed false otherwise </dd></dl>
+
+<p>Implemented in <a class="el" href="classCSelectionCriterionType.html#aabfb0204740c537eb81505033b4bb7e8">CSelectionCriterionType</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classISelectionCriterionTypeInterface_a56b4add65b5107377938694a3c67eb82_icgraph.svg" width="806" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classISelectionCriterionTypeInterface_a6ca52ae84cba77ed8d38feaefbc1abc5_icgraph.svg" width="806" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>

@@ -1,19 +1,7 @@
 <map id="main" name="main">
-<area shape="rect" id="node2" href="$test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a" title="showHelp" alt="" coords="160,5,243,32"/>
-<area shape="rect" id="node4" href="$test_2test-platform_2main_8cpp.html#a08a4abf73d625c5f553c304cab8b8ac2" title="showInvalidUsage" alt="" coords="134,56,269,83"/>
-<area shape="rect" id="node5" href="$test_2test-platform_2main_8cpp.html#a9fd779abc38b1314eaae2f8f359bbb42" title="startDaemonTestPlatform" alt="" coords="108,157,295,184"/>
-<area shape="rect" id="node18" href="$test_2test-platform_2main_8cpp.html#a8cdd52c65098972c711a9ae39f5fc81d" title="startBlockingTestPlatform" alt="" coords="109,107,293,133"/>
-<area shape="rect" id="node3" href="$test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557" title="showUsage" alt="" coords="368,31,463,57"/>
-<area shape="rect" id="node6" href="$classCTestPlatform.html#ad74d8f79000b7a85c75607a77836de39" title="CTestPlatform::load" alt="" coords="343,107,488,133"/>
-<area shape="rect" id="node11" href="$test_2test-platform_2main_8cpp.html#a5ecbd43d18222aa99e11fde8df044bd7" title="notifyParent" alt="" coords="366,157,465,184"/>
-<area shape="rect" id="node16" href="$namespaceutility.html#a0aa4244b9717432e1a38e88e61b2df39" title="Fill a buffer from a file descriptor. " alt="" coords="573,208,685,235"/>
-<area shape="rect" id="node7" href="$classCRemoteProcessorServer.html#ae2ba625b835446b5fa5f1d1a244da43c" title="CRemoteProcessorServer\l::start" alt="" coords="536,91,721,133"/>
-<area shape="rect" id="node8" href="$classCListeningSocket.html#a357ad090efde135d2625a515f86b4d77" title="CListeningSocket::listen" alt="" coords="769,99,944,125"/>
-<area shape="rect" id="node9" href="$classCSocket.html#a489715f4b7fc3e5b5efd832766208acd" title="CSocket::initSockAddrIn" alt="" coords="992,61,1167,88"/>
-<area shape="rect" id="node10" href="$classCSocket.html#aa925e6f828f6084610bb19c80709ff0a" title="CSocket::getFd" alt="" coords="1020,112,1139,139"/>
-<area shape="rect" id="node12" href="$namespaceutility.html#a216338613ceade50fff86bd1d28d87c5" title="Write completely a buffer in a file descriptor. " alt="" coords="573,157,685,184"/>
-<area shape="rect" id="node13" href="$namespaceutility.html#a1a1a66526254a1d7ef59af0e5137c480" title="utility::fullAccess" alt="" coords="793,200,920,227"/>
-<area shape="rect" id="node15" href="$namespaceutility.html#a0ee98d4382ba1a27e9f02733f6640aab" title="utility::accessFailed" alt="" coords="1008,188,1151,215"/>
-<area shape="rect" id="node14" href="$namespaceutility.html#ad120ab7286308ba4bbd175e38d6d450d" title="Workaround c++ void * arithmetic interdiction. " alt="" coords="1036,239,1123,265"/>
-<area shape="rect" id="node17" href="$namespaceutility.html#ad79897ab8267ea8e4c2acfa34c0ca09b" title="utility::readFailed" alt="" coords="793,251,921,277"/>
+<area shape="rect" id="node2" href="$test_2test-platform_2main_8cpp.html#ace20b4c64e0e4391617feee761929d6a" title="showHelp" alt="" coords="134,5,217,32"/>
+<area shape="rect" id="node4" href="$test_2test-platform_2main_8cpp.html#a5c69b952783170105c8f058a90b3212b" title="showInvalidUsage" alt="" coords="108,56,243,83"/>
+<area shape="rect" id="node5" href="$convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3" title="Convert a string to a given type. " alt="" coords="134,107,217,133"/>
+<area shape="rect" id="node6" href="$namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="117,157,233,184"/>
+<area shape="rect" id="node3" href="$test_2test-platform_2main_8cpp.html#ae5245243a40303ea40f3e033b19d9557" title="showUsage" alt="" coords="291,31,385,57"/>
 </map>

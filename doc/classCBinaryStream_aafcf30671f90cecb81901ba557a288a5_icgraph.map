@@ -1,6 +1,0 @@
-<map id="CBinaryStream::close" name="CBinaryStream::close">
-<area shape="rect" id="node2" href="$classCBinaryStream.html#abb6447a8d92ee910d7ed064a29bdb06d" title="CBinaryStream::~CBinaryStream" alt="" coords="213,5,448,32"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#ae9bf3db3133286cb842a613185b7145c" title="CConfigurableDomains\l::serializeSettings" alt="" coords="247,57,415,98"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#a119c70bbe044eceb5e8cae6cc72ca690" title="CParameterMgr::importDomains\lBinary" alt="" coords="496,23,725,65"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#a4ba2047e2257649af8a544d5b80396e2" title="CParameterMgr::exportDomains\lBinary" alt="" coords="497,89,725,130"/>
-</map>

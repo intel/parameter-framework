@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -100,12 +100,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CMessage:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCMessage__inherit__graph.svg" width="310" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCMessage__inherit__graph.svg" width="310" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:aabccddfc4f9b5c1f13ed5c69cbdf671f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f">MsgType</a> : std::uint8_t { <a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671fa8617ffea109fcc13cfe5027e92ade50b">MsgType::ECommandRequest</a>, 
+<a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671fa2b50a8950e3540a13a70c002e09aa053">MsgType::ESuccessAnswer</a>, 
+<a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671fa56bc692894eb083d4713bb368839c898">MsgType::EFailureAnswer</a>, 
+<a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671fac17430a978131402c2d6bc736ea59374">MsgType::EInvalid</a> = static_cast&lt;uint8_t&gt;(-1)
+ }</td></tr>
+<tr class="separator:aabccddfc4f9b5c1f13ed5c69cbdf671f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59c2a51750de7ca915174fe779283387"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a59c2a51750de7ca915174fe779283387">Result</a> { <a class="el" href="classCMessage.html#a59c2a51750de7ca915174fe779283387a9a0d54a9b3dcea09a39ed7cf44a1a8e6">success</a>, 
 <a class="el" href="classCMessage.html#a59c2a51750de7ca915174fe779283387aa82c3dcee56be59d62b4549c217f5cc0">peerDisconnected</a>, 
 <a class="el" href="classCMessage.html#a59c2a51750de7ca915174fe779283387a30ea244171dbb1aed40d49cff51cd9b6">error</a>
@@ -114,20 +120,20 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8b883c155f797b9f57a3112976171e12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a8b883c155f797b9f57a3112976171e12">CMessage</a> (uint8_t ucMsgId)</td></tr>
-<tr class="separator:a8b883c155f797b9f57a3112976171e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac024ca2d84ab9a05e6b3ff5c8f807af5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#ac024ca2d84ab9a05e6b3ff5c8f807af5">CMessage</a> (<a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f">MsgType</a> ucMsgId)</td></tr>
+<tr class="separator:ac024ca2d84ab9a05e6b3ff5c8f807af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9977a9eeb7bc77fe25b6cc30958be980"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a9977a9eeb7bc77fe25b6cc30958be980">CMessage</a> ()</td></tr>
 <tr class="separator:a9977a9eeb7bc77fe25b6cc30958be980"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d030bfa3672c2ab25f97e6ffde2aa6f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a4d030bfa3672c2ab25f97e6ffde2aa6f">~CMessage</a> ()</td></tr>
-<tr class="separator:a4d030bfa3672c2ab25f97e6ffde2aa6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a934d70aff67a456a92124664d6e78e84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMessage.html#a59c2a51750de7ca915174fe779283387">Result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a934d70aff67a456a92124664d6e78e84">serialize</a> (<a class="el" href="classCSocket.html">CSocket</a> *pSocket, bool bOut, std::string &amp;strError)</td></tr>
-<tr class="memdesc:a934d70aff67a456a92124664d6e78e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write or read the message on pSocket.  <a href="#a934d70aff67a456a92124664d6e78e84">More...</a><br /></td></tr>
-<tr class="separator:a934d70aff67a456a92124664d6e78e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069310d01c11c45aae6bb5ab9929a3e9"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a069310d01c11c45aae6bb5ab9929a3e9">~CMessage</a> ()=default</td></tr>
+<tr class="separator:a069310d01c11c45aae6bb5ab9929a3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ffffaf65b3e142bbd673eeaced870a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMessage.html#a59c2a51750de7ca915174fe779283387">Result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a4ffffaf65b3e142bbd673eeaced870a6">serialize</a> (asio::ip::tcp::socket &amp;socket, bool bOut, std::string &amp;strError)</td></tr>
+<tr class="memdesc:a4ffffaf65b3e142bbd673eeaced870a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write or read the message on pSocket.  <a href="#a4ffffaf65b3e142bbd673eeaced870a6">More...</a><br /></td></tr>
+<tr class="separator:a4ffffaf65b3e142bbd673eeaced870a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a060b5a2b0874bf080b36b9e406e4d2e1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a060b5a2b0874bf080b36b9e406e4d2e1">getMsgId</a> () const </td></tr>
-<tr class="separator:a060b5a2b0874bf080b36b9e406e4d2e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e01b6cc8fdbd5f7eb8238b251b8f998"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f">MsgType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a6e01b6cc8fdbd5f7eb8238b251b8f998">getMsgId</a> () const </td></tr>
+<tr class="separator:a6e01b6cc8fdbd5f7eb8238b251b8f998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c554e2ab2e8228a1dda8cb0a017122b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMessage.html#a1c554e2ab2e8228a1dda8cb0a017122b">writeData</a> (const void *pvData, size_t uiSize)</td></tr>
 <tr class="memdesc:a1c554e2ab2e8228a1dda8cb0a017122b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write raw data to the message.  <a href="#a1c554e2ab2e8228a1dda8cb0a017122b">More...</a><br /></td></tr>
 <tr class="separator:a1c554e2ab2e8228a1dda8cb0a017122b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,8 +153,40 @@ Protected Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="Message_8h_source.html#l00037">37</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p>Definition at line <a class="el" href="Message_8h_source.html#l00040">40</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="aabccddfc4f9b5c1f13ed5c69cbdf671f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f">CMessage::MsgType</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="aabccddfc4f9b5c1f13ed5c69cbdf671fa8617ffea109fcc13cfe5027e92ade50b"></a>ECommandRequest&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aabccddfc4f9b5c1f13ed5c69cbdf671fa2b50a8950e3540a13a70c002e09aa053"></a>ESuccessAnswer&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aabccddfc4f9b5c1f13ed5c69cbdf671fa56bc692894eb083d4713bb368839c898"></a>EFailureAnswer&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aabccddfc4f9b5c1f13ed5c69cbdf671fac17430a978131402c2d6bc736ea59374"></a>EInvalid&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="Message_8h_source.html#l00044">44</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a59c2a51750de7ca915174fe779283387"></a>
 <div class="memitem">
 <div class="memproto">
@@ -167,26 +205,26 @@ Protected Member Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="Message_8h_source.html#l00044">44</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p>Definition at line <a class="el" href="Message_8h_source.html#l00055">55</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8b883c155f797b9f57a3112976171e12"></a>
+<a class="anchor" id="ac024ca2d84ab9a05e6b3ff5c8f807af5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">CMessage::CMessage </td>
           <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramtype"><a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f">MsgType</a>&#160;</td>
           <td class="paramname"><em>ucMsgId</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00040">40</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00038">38</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
 
 </div>
 </div>
@@ -203,11 +241,11 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00044">44</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00043">43</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4d030bfa3672c2ab25f97e6ffde2aa6f"></a>
+<a class="anchor" id="a069310d01c11c45aae6bb5ab9929a3e9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -215,7 +253,7 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">CMessage::~CMessage </td>
+          <td class="memname">virtual CMessage::~CMessage </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -223,17 +261,15 @@ Protected Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00048">48</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a060b5a2b0874bf080b36b9e406e4d2e1"></a>
+<a class="anchor" id="a6e01b6cc8fdbd5f7eb8238b251b8f998"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -241,7 +277,7 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t CMessage::getMsgId </td>
+          <td class="memname"><a class="el" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f">CMessage::MsgType</a> CMessage::getMsgId </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -254,12 +290,12 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00054">54</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00049">49</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCMessage_a060b5a2b0874bf080b36b9e406e4d2e1_icgraph.svg" width="748" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCMessage_a6e01b6cc8fdbd5f7eb8238b251b8f998_icgraph.svg" width="748" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -288,7 +324,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>remaining data size to read or to write depending on the context (request: write, answer: read) </dd></dl>
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00120">120</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00124">124</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
 
 </div>
 </div>
@@ -321,7 +357,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00113">113</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00117">117</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
 
 </div>
 </div>
@@ -366,7 +402,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00071">71</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00073">73</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -408,7 +444,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00093">93</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00097">97</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -420,15 +456,15 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a934d70aff67a456a92124664d6e78e84"></a>
+<a class="anchor" id="a4ffffaf65b3e142bbd673eeaced870a6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classCMessage.html#a59c2a51750de7ca915174fe779283387">CMessage::Result</a> CMessage::serialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classCSocket.html">CSocket</a> *&#160;</td>
-          <td class="paramname"><em>pSocket</em>, </td>
+          <td class="paramtype">asio::ip::tcp::socket &amp;&#160;</td>
+          <td class="paramname"><em>socket</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -453,7 +489,7 @@ Here is the call graph for this function:</div>
 <p>Write or read the message on pSocket. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">pSocket</td><td>is the socket on wich IO operation will be made. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">socket</td><td>is the socket on wich IO operation will be made. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">bOut</td><td>if true message should be read, if false it should be written. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">strError</td><td>on failure, a string explaining the error, on success, undefined.</td></tr>
   </table>
@@ -461,20 +497,12 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>success if a correct message could be recv/send peerDisconnected if the peer disconnected before the first socket access. error if the message could not be read/write for any other reason </dd></dl>
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00126">126</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCMessage_a934d70aff67a456a92124664d6e78e84_cgraph.svg" width="430" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00130">130</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCMessage_a934d70aff67a456a92124664d6e78e84_icgraph.svg" width="500" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCMessage_a4ffffaf65b3e142bbd673eeaced870a6_icgraph.svg" width="500" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -564,7 +592,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00082">82</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Message_8cpp_source.html#l00086">86</a> of file <a class="el" href="Message_8cpp_source.html">Message.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>

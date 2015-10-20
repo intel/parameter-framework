@@ -1,7 +1,5 @@
 <map id="CConfigurableDomain::saveConfiguration" name="CConfigurableDomain::saveConfiguration">
-<area shape="rect" id="node2" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="227,5,369,32"/>
-<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="222,56,374,83"/>
-<area shape="rect" id="node4" href="$classCDomainConfiguration.html#aff0adeb0eb6645ef3ae8a4b75c4a7892" title="CDomainConfiguration\l::save" alt="" coords="215,107,381,149"/>
-<area shape="rect" id="node5" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="429,107,576,149"/>
-<area shape="rect" id="node6" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="624,107,788,149"/>
+<area shape="rect" id="node2" href="$classCDomainConfiguration.html#aff0adeb0eb6645ef3ae8a4b75c4a7892" title="CDomainConfiguration\l::save" alt="" coords="215,5,381,47"/>
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="429,5,576,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#aad502a1139a10faa1a87fd1e033e4ad4" title="CConfigurableElement\l::getOffset" alt="" coords="624,5,788,47"/>
 </map>

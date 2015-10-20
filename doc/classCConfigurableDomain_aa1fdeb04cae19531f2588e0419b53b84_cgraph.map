@@ -1,7 +1,5 @@
 <map id="CConfigurableDomain::fromXml" name="CConfigurableDomain::fromXml">
-<area shape="rect" id="node2" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="701,31,896,57"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#a888b37c9e0fc336bd93de01d1a170bb6" title="CXmlElement::getAttribute\lBoolean" alt="" coords="217,53,410,94"/>
-<area shape="rect" id="node4" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="460,53,653,94"/>
-<area shape="rect" id="node5" href="$classCElement.html#a9018d33125b066d6cd791659af95c6fe" title="CElement::setName" alt="" coords="238,169,389,196"/>
-<area shape="rect" id="node6" href="$classCXmlDomainImportContext.html#a6131d7195b5c80cabcd9a0f0be5776bd" title="CXmlDomainImportContext\l::autoValidationRequired" alt="" coords="215,221,412,262"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="217,5,410,32"/>
+<area shape="rect" id="node3" href="$classCElement.html#a9018d33125b066d6cd791659af95c6fe" title="CElement::setName" alt="" coords="238,56,389,83"/>
+<area shape="rect" id="node4" href="$classCXmlDomainImportContext.html#a6131d7195b5c80cabcd9a0f0be5776bd" title="CXmlDomainImportContext\l::autoValidationRequired" alt="" coords="215,107,412,149"/>
 </map>

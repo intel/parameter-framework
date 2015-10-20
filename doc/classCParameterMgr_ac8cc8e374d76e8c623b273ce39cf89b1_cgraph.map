@@ -1,10 +1,10 @@
 <map id="CParameterMgr::exportElementToXMLString" name="CParameterMgr::exportElementToXMLString">
 <area shape="rect" id="node2" href="$classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91" title="Method to be called to use an xmlDocSource. " alt="" coords="277,101,443,127"/>
 <area shape="rect" id="node3" href="$classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565" title="Method called by the CXmlDocSink::process method. " alt="" coords="491,101,680,127"/>
-<area shape="rect" id="node4" href="$classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d" title="CXmlSerializingContext\l::setError" alt="" coords="780,5,951,47"/>
+<area shape="rect" id="node4" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="793,5,937,47"/>
 <area shape="rect" id="node5" href="$classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81" title="Getter method. " alt="" coords="728,71,1003,98"/>
 <area shape="rect" id="node6" href="$classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7" title="CXmlSerializingContext\l::appendLineToError" alt="" coords="780,123,951,164"/>
-<area shape="rect" id="node7" href="$classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933" title="Getter method. " alt="" coords="748,188,983,229"/>
-<area shape="rect" id="node8" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="1051,188,1244,229"/>
-<area shape="rect" id="node9" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="1292,195,1487,222"/>
+<area shape="rect" id="node8" href="$classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933" title="Getter method. " alt="" coords="748,188,983,229"/>
+<area shape="rect" id="node7" href="$classutility_1_1ErrorContext.html#aafe9cd30a03303cf376926d9c4e9dd02" title="utility::ErrorContext\l::appendToError" alt="" coords="1075,123,1219,164"/>
+<area shape="rect" id="node9" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="1051,195,1244,222"/>
 </map>

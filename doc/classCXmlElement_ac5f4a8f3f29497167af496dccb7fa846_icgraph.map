@@ -1,0 +1,28 @@
+<map id="CXmlElement::setAttribute" name="CXmlElement::setAttribute">
+<area shape="rect" id="node2" href="$classCBitParameterBlockType.html#a4d3f66cff415a8f8ef825092b92ed787" title="CBitParameterBlockType\l::toXml" alt="" coords="272,5,449,47"/>
+<area shape="rect" id="node3" href="$classCBitParameterType.html#aec2c699920b9ab28fa560721b0fb9e05" title="CBitParameterType::\ltoXml" alt="" coords="285,71,436,112"/>
+<area shape="rect" id="node4" href="$classCCompoundRule.html#a39df5f49ea5dea5b888d0983a01b2f2a" title="CCompoundRule::toXml" alt="" coords="275,137,447,163"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#a16fb6528dc374c46aa56b936611bff7c" title="CConfigurableDomain\l::toXml" alt="" coords="280,188,441,229"/>
+<area shape="rect" id="node6" href="$classCConfigurableDomains.html#a5860b741035feefdee06566ec1ab94b0" title="CConfigurableDomains\l::toXml" alt="" coords="277,253,445,295"/>
+<area shape="rect" id="node7" href="$classCDomainConfiguration.html#a39c907e9023554f7a86836ac9f8da32f" title="CDomainConfiguration\l::composeSettings" alt="" coords="277,319,444,360"/>
+<area shape="rect" id="node8" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="257,384,465,425"/>
+<area shape="rect" id="node11" href="$classCEnumParameterType.html#a657fc941f16df1059a7f1377aa85b258" title="CEnumParameterType\l::toXml" alt="" coords="279,449,442,491"/>
+<area shape="rect" id="node12" href="$classCEnumValuePair.html#af7f3d59a079b449b72e6e0eb5dd8fedc" title="CEnumValuePair::toXml" alt="" coords="275,515,446,542"/>
+<area shape="rect" id="node13" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="Value space handling for settings import/export from/to XML. " alt="" coords="259,567,463,608"/>
+<area shape="rect" id="node14" href="$classCFixedPointParameterType.html#ac9e0de762e60d0cfce00122bdbef137e" title="CFixedPointParameterType\l::toXml" alt="" coords="265,632,456,673"/>
+<area shape="rect" id="node15" href="$classCFloatingPointParameterType.html#a5fcda53d3c5e9e2cdab424158c808f19" title="Value space handling for settings import/export from/to XML. " alt="" coords="257,697,465,739"/>
+<area shape="rect" id="node16" href="$classCFloatingPointParameterType.html#ab6a0070b3b32a68d8dd1cb3868019817" title="CFloatingPointParameterType\l::toXml" alt="" coords="257,763,465,804"/>
+<area shape="rect" id="node17" href="$classCIntegerParameterType.html#a26c10292fad5a8e6603dc0673f813d69" title="CIntegerParameterType\l::toXml" alt="" coords="275,828,446,869"/>
+<area shape="rect" id="node18" href="$classCSelectionCriterion.html#a3942150fa9e5980d89268672fff31032" title="Export to XML. " alt="" coords="561,949,705,991"/>
+<area shape="rect" id="node19" href="$classCSelectionCriterionRule.html#aa31aa27a5aba096913b6f5d1e59a9360" title="CSelectionCriterionRule\l::toXml" alt="" coords="275,945,446,987"/>
+<area shape="rect" id="node20" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="275,1011,447,1052"/>
+<area shape="rect" id="node21" href="$classCStringParameterType.html#ab655874731579f60d025ae601920e463" title="CStringParameterType\l::toXml" alt="" coords="279,1076,443,1117"/>
+<area shape="rect" id="node22" href="$classCTypeElement.html#ac4118594de3638c76ab40ccc4ecbb2a8" title="CTypeElement::toXml" alt="" coords="282,1142,439,1169"/>
+<area shape="rect" id="node24" href="$classCXmlElement.html#a011852f913ce7102341352588f0efa51" title="CXmlElement::setNameAttribute" alt="" coords="245,1193,476,1219"/>
+<area shape="rect" id="node27" href="$classCXmlMemoryDocSource.html#a941e6505f7a09e355b06c98875a8e30e" title="Implementation of CXmlDocSource::populate() method. " alt="" coords="272,1244,449,1285"/>
+<area shape="rect" id="node9" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="569,362,698,389"/>
+<area shape="rect" id="node10" href="$classCInstanceConfigurableElement.html#a466b63cf9c344e256680c409c29ef9b6" title="CInstanceConfigurableElement\l::toXml" alt="" coords="524,413,743,455"/>
+<area shape="rect" id="node23" href="$classCBaseParameter.html#a0fe540f46e1b69858e68b72fd7d383a8" title="CBaseParameter::toXml" alt="" coords="546,1126,721,1153"/>
+<area shape="rect" id="node25" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="551,1201,715,1243"/>
+<area shape="rect" id="node26" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="791,1201,949,1243"/>
+</map>

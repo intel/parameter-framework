@@ -1,6 +1,6 @@
 <map id="CSelectionCriteria::getSelectionCriterion" name="CSelectionCriteria::getSelectionCriterion">
 <area shape="rect" id="node2" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="217,5,433,47"/>
 <area shape="rect" id="node4" href="$classCSelectionCriteriaDefinition.html#ade9c9f7fe7806988d3d922bf615e5994" title="CSelectionCriteriaDefinition\l::getSelectionCriterion" alt="" coords="227,71,423,112"/>
-<area shape="rect" id="node3" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="483,13,627,39"/>
+<area shape="rect" id="node3" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="483,13,627,39"/>
 <area shape="rect" id="node5" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="481,78,628,105"/>
 </map>

@@ -1,5 +1,3 @@
 <map id="CConfigurableDomains::deleteDomain" name="CConfigurableDomains::deleteDomain">
-<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a35d3b509ee35cb374fc7a2d1b678c203" title="CConfigurableDomains\l::addDomain" alt="" coords="247,5,415,47"/>
-<area shape="rect" id="node3" href="$classCParameterMgr.html#a9981826546c533325941986134d8bbfa" title="CParameterMgr::deleteDomain" alt="" coords="221,71,441,98"/>
-<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#afa596fa04ce0da764cebdc6a4e2aec12" title="CParameterMgrFullConnector\l::deleteDomain" alt="" coords="489,64,697,105"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a35d3b509ee35cb374fc7a2d1b678c203" title="CConfigurableDomains\l::addDomain" alt="" coords="221,5,389,47"/>
 </map>

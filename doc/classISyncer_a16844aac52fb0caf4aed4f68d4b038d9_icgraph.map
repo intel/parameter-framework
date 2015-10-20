@@ -1,31 +1,21 @@
 <map id="ISyncer::sync" name="ISyncer::sync">
-<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="343,121,561,162"/>
-<area shape="rect" id="node13" href="$classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b" title="CSyncerSet::sync" alt="" coords="160,376,295,403"/>
-<area shape="rect" id="node3" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="614,40,833,67"/>
-<area shape="rect" id="node4" href="$classCBaseParameter.html#a2b425561e193a3d54e7225d896a3d39b" title="CBaseParameter::accessAs\lString" alt="" coords="624,91,823,133"/>
-<area shape="rect" id="node11" href="$classCBitParameter.html#ad348903f16d702fac8adcfa1c725a92b" title="CBitParameter::accessAsInteger" alt="" coords="609,157,837,184"/>
-<area shape="rect" id="node5" href="$classCBaseParameter.html#a4a9b3e3a2d1ea65a8dc7048559db8dc2" title="CBaseParameter::accessValue" alt="" coords="898,56,1115,83"/>
-<area shape="rect" id="node6" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="894,5,1119,32"/>
-<area shape="rect" id="node9" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="893,107,1120,133"/>
-<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a02e479cdd18adee13f01c05affcd5892" title="Set the value of a previously bind string parameter. " alt="" coords="1176,31,1347,57"/>
-<area shape="rect" id="node8" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1446,107,1605,133"/>
-<area shape="rect" id="node10" href="$ParameterFramework_8h.html#a0318f736980ecc4a0a456581f44a2cf0" title="Access the value of a previously bind string parameter. " alt="" coords="1176,107,1347,133"/>
-<area shape="rect" id="node12" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access. " alt="" coords="889,157,1124,184"/>
-<area shape="rect" id="node14" href="$classCAreaConfiguration.html#a5f72a0349e2309a77459650ba10918a1" title="CAreaConfiguration\l::restore" alt="" coords="379,457,525,498"/>
-<area shape="rect" id="node17" href="$classCConfigurableDomains.html#ab8f2aa74fe0ed3e98fa052587d6c417d" title="CConfigurableDomains\l::apply" alt="" coords="1177,427,1345,469"/>
-<area shape="rect" id="node18" href="$classCConfigurableDomain.html#aa9e776e80956f8cc956b77213aae96ec" title="CConfigurableDomain\l::restoreConfiguration" alt="" coords="926,522,1087,563"/>
-<area shape="rect" id="node22" href="$classCHardwareBackSynchronizer.html#abc01484c03230247c0a8a3982140b652" title="CHardwareBackSynchronizer\l::sync" alt="" coords="349,339,555,381"/>
-<area shape="rect" id="node27" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="373,281,531,308"/>
-<area shape="rect" id="node15" href="$classCDomainConfiguration.html#a1e837621d00a5ed2282c525c25a484e7" title="CDomainConfiguration\l::restore" alt="" coords="640,457,807,498"/>
-<area shape="rect" id="node16" href="$classCConfigurableDomain.html#a928805e163719f902c207c061ab3b1c2" title="CConfigurableDomain\l::apply" alt="" coords="926,457,1087,498"/>
-<area shape="rect" id="node19" href="$classCConfigurableDomains.html#a9fa62075b2521f79af18240367662cc7" title="CConfigurableDomains\l::restoreConfiguration" alt="" coords="1177,522,1345,563"/>
-<area shape="rect" id="node20" href="$classCParameterMgr.html#a04786772b59275eef5f1af23dc9a639d" title="CParameterMgr::restoreConfiguration" alt="" coords="1395,529,1656,556"/>
-<area shape="rect" id="node21" href="$classCParameterMgrFullConnector.html#a69cc5edc495de8fca36531b65d574a78" title="CParameterMgrFullConnector\l::restoreConfiguration" alt="" coords="1704,522,1912,563"/>
-<area shape="rect" id="node23" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="645,347,802,373"/>
-<area shape="rect" id="node24" href="$classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" title="CParameterMgrFullConnector\l::start" alt="" coords="903,339,1111,381"/>
-<area shape="rect" id="node25" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="885,274,1128,315"/>
-<area shape="rect" id="node26" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="1224,219,1299,245"/>
-<area shape="rect" id="node28" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="618,281,829,308"/>
-<area shape="rect" id="node30" href="$classCParameterMgrFullConnector.html#a68cb9c635d0120600c68a4a3360b3e47" title="CParameterMgrFullConnector\l::sync" alt="" coords="619,215,827,257"/>
-<area shape="rect" id="node29" href="$classCParameterMgrFullConnector.html#acda4d82dc8f94b84470477c6ad847f60" title="CParameterMgrFullConnector\l::setAutoSync" alt="" coords="903,209,1111,250"/>
+<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="160,74,379,115"/>
+<area shape="rect" id="node6" href="$classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5" title="Sync the blackboard. " alt="" coords="202,264,337,291"/>
+<area shape="rect" id="node3" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="427,5,645,32"/>
+<area shape="rect" id="node4" href="$classCBaseParameter.html#aa0367b428dcd868c67f34989bb101020" title="CBaseParameter::access" alt="" coords="445,56,627,83"/>
+<area shape="rect" id="node5" href="$classCBitParameter.html#a8cf5e6e2d4e823eca86f0c30ff837fef" title="CBitParameter::access" alt="" coords="453,107,619,133"/>
+<area shape="rect" id="node7" href="$classCAreaConfiguration.html#a428784970faf0dd87652936a4fa29c55" title="Restore the configuration area. " alt="" coords="463,158,609,199"/>
+<area shape="rect" id="node8" href="$classCConfigurableDomain.html#aa07e34aa3fabe688ae8034ff0578c1c7" title="Restore a configuration. " alt="" coords="455,223,617,265"/>
+<area shape="rect" id="node10" href="$classCConfigurableDomains.html#a31ba1cd1d2e6df79e4050554fbbc6888" title="Apply the configuration if required. " alt="" coords="452,289,620,330"/>
+<area shape="rect" id="node11" href="$classCHardwareBackSynchronizer.html#abc01484c03230247c0a8a3982140b652" title="CHardwareBackSynchronizer\l::sync" alt="" coords="433,354,639,395"/>
+<area shape="rect" id="node17" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="457,421,615,448"/>
+<area shape="rect" id="node9" href="$classCConfigurableDomains.html#a01b9dfe37a4a21b2998ec007f46fecf1" title="Restore a configuration. " alt="" coords="715,223,883,265"/>
+<area shape="rect" id="node12" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="720,359,877,385"/>
+<area shape="rect" id="node13" href="$classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" title="CParameterMgrFullConnector\l::start" alt="" coords="969,286,1177,327"/>
+<area shape="rect" id="node14" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="952,351,1195,393"/>
+<area shape="rect" id="node15" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="1243,359,1317,385"/>
+<area shape="rect" id="node16" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1365,359,1524,385"/>
+<area shape="rect" id="node18" href="$classCParameterMgr.html#acdcc1016dc61898195e8855979803572" title="Sync. " alt="" coords="693,421,904,448"/>
+<area shape="rect" id="node20" href="$classCParameterMgrFullConnector.html#a68cb9c635d0120600c68a4a3360b3e47" title="CParameterMgrFullConnector\l::sync" alt="" coords="695,473,903,514"/>
+<area shape="rect" id="node19" href="$classCParameterMgrFullConnector.html#acda4d82dc8f94b84470477c6ad847f60" title="CParameterMgrFullConnector\l::setAutoSync" alt="" coords="969,417,1177,458"/>
 </map>

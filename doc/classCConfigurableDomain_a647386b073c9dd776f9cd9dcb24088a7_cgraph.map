@@ -1,8 +1,5 @@
 <map id="CConfigurableDomain::renameConfiguration" name="CConfigurableDomain::renameConfiguration">
-<area shape="rect" id="node2" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="219,5,361,32"/>
-<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="425,56,577,83"/>
-<area shape="rect" id="node4" href="$classCElement.html#aa09118f89e5b3208ee92d0ec51151ccf" title="CElement::rename" alt="" coords="219,107,361,133"/>
-<area shape="rect" id="node5" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="409,107,592,133"/>
-<area shape="rect" id="node6" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="429,157,573,184"/>
-<area shape="rect" id="node7" href="$classCElement.html#a9018d33125b066d6cd791659af95c6fe" title="CElement::setName" alt="" coords="425,208,576,235"/>
+<area shape="rect" id="node2" href="$classCElement.html#aa09118f89e5b3208ee92d0ec51151ccf" title="CElement::rename" alt="" coords="219,31,361,57"/>
+<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="409,5,561,32"/>
+<area shape="rect" id="node4" href="$classCElement.html#a9018d33125b066d6cd791659af95c6fe" title="CElement::setName" alt="" coords="410,56,561,83"/>
 </map>

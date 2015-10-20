@@ -1,0 +1,5 @@
+<map id="core::log::ILogger" name="core::log::ILogger">
+<area shape="rect" id="node2" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\&lt; T \&gt;" alt="" coords="187,57,389,83"/>
+<area shape="rect" id="node3" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\l\&lt; CParameterMgrPlatformConnector \&gt;" alt="" coords="692,5,964,47"/>
+<area shape="rect" id="node4" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\l\&lt; CParameterMgrFullConnector \&gt;" alt="" coords="709,83,947,124"/>
+</map>

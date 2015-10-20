@@ -16,8 +16,6 @@ var searchData=
   ['selectioncriteriontypeinterface_2eh',['SelectionCriterionTypeInterface.h',['../SelectionCriterionTypeInterface_8h.html',1,'']]],
   ['simulatedbacksynchronizer_2ecpp',['SimulatedBackSynchronizer.cpp',['../SimulatedBackSynchronizer_8cpp.html',1,'']]],
   ['simulatedbacksynchronizer_2eh',['SimulatedBackSynchronizer.h',['../SimulatedBackSynchronizer_8h.html',1,'']]],
-  ['socket_2ecpp',['Socket.cpp',['../Socket_8cpp.html',1,'']]],
-  ['socket_2eh',['Socket.h',['../Socket_8h.html',1,'']]],
   ['stringparameter_2ecpp',['StringParameter.cpp',['../StringParameter_8cpp.html',1,'']]],
   ['stringparameter_2eh',['StringParameter.h',['../StringParameter_8h.html',1,'']]],
   ['stringparametertype_2ecpp',['StringParameterType.cpp',['../StringParameterType_8cpp.html',1,'']]],

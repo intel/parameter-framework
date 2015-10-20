@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -146,37 +146,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Check children</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::list&lt;const CConfigurableElement*&gt; childAggregateElementList;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">size_t</span> uiIndex;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">size_t</span> uiNbChildren = pConfigurableElement-&gt;<a class="code" href="classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5">getNbChildren</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">size_t</span> uiNbMatchingChildren = 0;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">for</span> (uiIndex = 0; uiIndex &lt; uiNbChildren; uiIndex++) {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a>* pChildConfigurableElement = <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><a class="code" href="classCConfigurableElement.html">CConfigurableElement</a>*<span class="keyword">&gt;</span>(pConfigurableElement-&gt;<a class="code" href="classCElement.html#a9bba10d2dc72821589a898e16ace9ae5">getChild</a>(uiIndex));</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        uiNbMatchingChildren += doAggregate(pChildConfigurableElement, childAggregateElementList);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">if</span> (uiNbMatchingChildren == uiNbChildren) {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment">// All children match =&gt; self is a match</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        aggregateList.push_back(pConfigurableElement);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// Add children if any</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        aggregateList.insert(aggregateList.end(), childAggregateElementList.begin(), childAggregateElementList.end());</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
-<div class="ttc" id="classCElement_html_a58b6cdb5715497442fde6afa1e65f8e5"><div class="ttname"><a href="classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5">CElement::getNbChildren</a></div><div class="ttdeci">size_t getNbChildren() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00488">Element.cpp:488</a></div></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">size_t</span> uiNbChildren = pConfigurableElement-&gt;<a class="code" href="classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5">getNbChildren</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">size_t</span> uiNbMatchingChildren = 0;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> index = 0; index &lt; uiNbChildren; index++) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">const</span> <a class="code" href="classCConfigurableElement.html">CConfigurableElement</a>* pChildConfigurableElement = <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><a class="code" href="classCConfigurableElement.html">CConfigurableElement</a>*<span class="keyword">&gt;</span>(pConfigurableElement-&gt;<a class="code" href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16">getChild</a>(index));</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        uiNbMatchingChildren += doAggregate(pChildConfigurableElement, childAggregateElementList);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">if</span> (uiNbMatchingChildren == uiNbChildren) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="comment">// All children match =&gt; self is a match</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        aggregateList.push_back(pConfigurableElement);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// Add children if any</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        aggregateList.insert(aggregateList.end(), childAggregateElementList.begin(), childAggregateElementList.end());</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="ttc" id="classCElement_html_a58b6cdb5715497442fde6afa1e65f8e5"><div class="ttname"><a href="classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5">CElement::getNbChildren</a></div><div class="ttdeci">size_t getNbChildren() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00370">Element.cpp:370</a></div></div>
 <div class="ttc" id="ConfigurableElement_8h_html"><div class="ttname"><a href="ConfigurableElement_8h.html">ConfigurableElement.h</a></div></div>
-<div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00044">ConfigurableElement.h:44</a></div></div>
+<div class="ttc" id="classCElement_html_aee0d626525e9cd24d7639b6365afdc16"><div class="ttname"><a href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16">CElement::getChild</a></div><div class="ttdeci">const CElement * getChild(size_t index) const </div><div class="ttdoc">Get a child element (const) </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00289">Element.cpp:289</a></div></div>
+<div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00046">ConfigurableElement.h:46</a></div></div>
 <div class="ttc" id="ConfigurableElementAggregator_8h_html"><div class="ttname"><a href="ConfigurableElementAggregator_8h.html">ConfigurableElementAggregator.h</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html_a2cc804d11a5ec48d098ecb34be7c9c36"><div class="ttname"><a href="classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36">CConfigurableElementAggregator::aggegate</a></div><div class="ttdeci">void aggegate(const CConfigurableElement *pConfigurableElement)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8cpp_source.html#l00039">ConfigurableElementAggregator.cpp:39</a></div></div>
 <div class="ttc" id="classCConfigurableElementAggregator_html_a904bebdafd6cf776a60882f60e0ea44a"><div class="ttname"><a href="classCConfigurableElementAggregator.html#a904bebdafd6cf776a60882f60e0ea44a">CConfigurableElementAggregator::CConfigurableElementAggregator</a></div><div class="ttdeci">CConfigurableElementAggregator(std::list&lt; const CConfigurableElement * &gt; &amp;aggregateList, MatchesAggregationCriterion pfnMatchesAggregationCriterion)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementAggregator_8cpp_source.html#l00033">ConfigurableElementAggregator.cpp:33</a></div></div>
-<div class="ttc" id="classCElement_html_a9bba10d2dc72821589a898e16ace9ae5"><div class="ttname"><a href="classCElement.html#a9bba10d2dc72821589a898e16ace9ae5">CElement::getChild</a></div><div class="ttdeci">const CElement * getChild(size_t uiIndex) const </div><div class="ttdoc">Get a child element (const) </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00385">Element.cpp:385</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

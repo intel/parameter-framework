@@ -1,10 +1,9 @@
 <map id="CElement::getDescription" name="CElement::getDescription">
-<area shape="rect" id="node2" href="$classCElement.html#afce045b488b7c243f52a30269dae8f62" title="Appends if found human readable description property. " alt="" coords="245,46,441,87"/>
-<area shape="rect" id="node6" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="239,111,447,153"/>
+<area shape="rect" id="node2" href="$classCElement.html#afce045b488b7c243f52a30269dae8f62" title="Appends if found human readable description property. " alt="" coords="245,42,441,83"/>
+<area shape="rect" id="node6" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="239,107,447,149"/>
 <area shape="rect" id="node3" href="$classCElement.html#a8c87fea54766f49f45346713d9d09880" title="CElement::showProperties" alt="" coords="509,5,699,32"/>
 <area shape="rect" id="node4" href="$classCTypeElement.html#a71898c707fb687b3a90c06fe25c3e171" title="CTypeElement::showProperties" alt="" coords="495,56,713,83"/>
 <area shape="rect" id="node5" href="$classCInstanceConfigurableElement.html#a47a5949cc354fc3bb11cefef76f87ea7" title="CInstanceConfigurableElement\l::showProperties" alt="" coords="761,49,980,90"/>
-<area shape="rect" id="node7" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="539,116,669,143"/>
-<area shape="rect" id="node9" href="$classCInstanceConfigurableElement.html#a466b63cf9c344e256680c409c29ef9b6" title="CInstanceConfigurableElement\l::toXml" alt="" coords="495,167,713,209"/>
-<area shape="rect" id="node8" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="781,116,960,143"/>
+<area shape="rect" id="node7" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="539,111,669,137"/>
+<area shape="rect" id="node8" href="$classCInstanceConfigurableElement.html#a466b63cf9c344e256680c409c29ef9b6" title="CInstanceConfigurableElement\l::toXml" alt="" coords="495,162,713,203"/>
 </map>

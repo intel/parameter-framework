@@ -1,7 +1,3 @@
 <map id="CRemoteProcessorServer::~CRemoteProcessorServer" name="CRemoteProcessorServer::~CRemoteProcessorServer">
-<area shape="rect" id="node2" href="$classCRemoteProcessorServer.html#a956635bc1ec4cda36307fb0be9dd9935" title="CRemoteProcessorServer\l::stop" alt="" coords="257,23,443,65"/>
-<area shape="rect" id="node3" href="$namespaceutility.html#a216338613ceade50fff86bd1d28d87c5" title="Write completely a buffer in a file descriptor. " alt="" coords="491,31,603,57"/>
-<area shape="rect" id="node4" href="$namespaceutility.html#a1a1a66526254a1d7ef59af0e5137c480" title="utility::fullAccess" alt="" coords="651,5,777,32"/>
-<area shape="rect" id="node6" href="$namespaceutility.html#a0ee98d4382ba1a27e9f02733f6640aab" title="utility::accessFailed" alt="" coords="825,56,968,83"/>
-<area shape="rect" id="node5" href="$namespaceutility.html#ad120ab7286308ba4bbd175e38d6d450d" title="Workaround c++ void * arithmetic interdiction. " alt="" coords="853,5,940,32"/>
+<area shape="rect" id="node2" href="$classCRemoteProcessorServer.html#a87e40e998885f6f2f9e72ba53656b2a7" title="CRemoteProcessorServer\l::stop" alt="" coords="257,5,443,47"/>
 </map>

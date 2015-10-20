@@ -1,8 +1,0 @@
-<map id="CParameterMgr::setSequenceAwareness" name="CParameterMgr::setSequenceAwareness">
-<area shape="rect" id="node2" href="$classCConfigurableDomains.html#aa41f38a45f556c4b6c3c80609d8ad2b1" title="CConfigurableDomains\l::setSequenceAwareness" alt="" coords="268,39,451,80"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="499,5,681,47"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomain.html#a3a77775be8a0df31842b5857a238789e" title="CConfigurableDomain\l::setSequenceAwareness" alt="" coords="499,71,681,112"/>
-<area shape="rect" id="node4" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="732,13,879,39"/>
-<area shape="rect" id="node6" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="735,70,876,97"/>
-<area shape="rect" id="node7" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="729,121,881,147"/>
-</map>

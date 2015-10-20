@@ -1,0 +1,11 @@
+<map id="utility::ErrorContext" name="utility::ErrorContext">
+<area shape="rect" id="node3" href="$classCParameterAccessContext.html" title="CParameterAccessContext" alt="" coords="22,155,215,181"/>
+<area shape="rect" id="node5" href="$classCXmlSerializingContext.html" title="Class that gather errors during serialization. " alt="" coords="256,155,427,181"/>
+<area shape="rect" id="node2" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="147,5,295,32"/>
+<area shape="rect" id="node4" href="$classCConfigurationAccessContext.html" title="CConfigurationAccessContext" alt="" coords="5,229,216,256"/>
+<area shape="rect" id="node6" href="$classCXmlElementSerializingContext.html" title="CXmlElementSerializingContext" alt="" coords="239,229,462,256"/>
+<area shape="rect" id="node7" href="$classCXmlDomainSerializingContext.html" title="CXmlDomainSerializingContext" alt="" coords="127,311,347,338"/>
+<area shape="rect" id="node10" href="$classCXmlParameterSerializingContext.html" title="CXmlParameterSerializing\lContext" alt="" coords="372,304,559,345"/>
+<area shape="rect" id="node8" href="$classCXmlDomainExportContext.html" title="CXmlDomainExportContext" alt="" coords="29,393,225,420"/>
+<area shape="rect" id="node9" href="$classCXmlDomainImportContext.html" title="CXmlDomainImportContext" alt="" coords="249,393,447,420"/>
+</map>

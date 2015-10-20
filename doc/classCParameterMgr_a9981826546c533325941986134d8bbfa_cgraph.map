@@ -1,5 +1,0 @@
-<map id="CParameterMgr::deleteDomain" name="CParameterMgr::deleteDomain">
-<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a26ae82c8fd65751062ea4fcffa69944f" title="Delete a domain by name. " alt="" coords="273,5,441,47"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="489,5,672,47"/>
-<area shape="rect" id="node4" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="720,13,867,39"/>
-</map>

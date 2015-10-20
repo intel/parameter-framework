@@ -1,6 +1,6 @@
 <map id="CInstanceConfigurableElement::toXml" name="CInstanceConfigurableElement::toXml">
 <area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421" title="CInstanceConfigurableElement\l::getTypeElement" alt="" coords="272,5,491,47"/>
 <area shape="rect" id="node3" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="277,71,485,112"/>
-<area shape="rect" id="node4" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="542,49,727,75"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="539,100,731,141"/>
+<area shape="rect" id="node4" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="542,53,727,79"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="539,103,731,130"/>
 </map>

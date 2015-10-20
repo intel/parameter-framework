@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="SyncerSet_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2014, Intel Corporation</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2015, Intel Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without modification,</span></div>
@@ -123,39 +123,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;set&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class </span><a class="code" href="classISyncer.html">ISyncer</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">class </span><a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classCSyncerSet.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCSyncerSet.html">CSyncerSet</a></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">typedef</span> std::set&lt;ISyncer*&gt;::const_iterator SyncerSetConstIterator;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classCSyncerSet.html#ad8a071812dd3ce49af9608366581133b">CSyncerSet</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Filling</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a>&amp; <a class="code" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">operator+=</a>(<a class="code" href="classISyncer.html">ISyncer</a>* pRightSyncer);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a>&amp; <a class="code" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">operator+=</a>(<span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a>&amp; rightSyncerSet);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Clearing</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">clear</a>();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Sync</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b">sync</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>&amp; parameterBlackboard, <span class="keywordtype">bool</span> bBack, std::list&lt;std::string&gt;* plstrError) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::set&lt;ISyncer*&gt; _syncerSet;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Results_8h.html">Results.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">class </span><a class="code" href="classISyncer.html">ISyncer</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class </span><a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCSyncerSet.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCSyncerSet.html">CSyncerSet</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">typedef</span> std::set&lt;ISyncer*&gt;::const_iterator SyncerSetConstIterator;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classCSyncerSet.html#ad8a071812dd3ce49af9608366581133b">CSyncerSet</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Filling</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a>&amp; <a class="code" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">operator+=</a>(<a class="code" href="classISyncer.html">ISyncer</a>* pRightSyncer);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a>&amp; <a class="code" href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">operator+=</a>(<span class="keyword">const</span> <a class="code" href="classCSyncerSet.html">CSyncerSet</a>&amp; rightSyncerSet);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// Clearing</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">clear</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">sync</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>&amp; parameterBlackboard, <span class="keywordtype">bool</span> bBack, <a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a>* errors) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::set&lt;ISyncer*&gt; _syncerSet;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
 <div class="ttc" id="classCSyncerSet_html_ad8a071812dd3ce49af9608366581133b"><div class="ttname"><a href="classCSyncerSet.html#ad8a071812dd3ce49af9608366581133b">CSyncerSet::CSyncerSet</a></div><div class="ttdeci">CSyncerSet()</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00033">SyncerSet.cpp:33</a></div></div>
 <div class="ttc" id="classCSyncerSet_html_ab139f1169697d601b202eef7d6c1c754"><div class="ttname"><a href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">CSyncerSet::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00054">SyncerSet.cpp:54</a></div></div>
+<div class="ttc" id="namespacecore_html_a348873e34bd38d2a62f77d3973f1dc1c"><div class="ttname"><a href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a></div><div class="ttdeci">std::list&lt; std::string &gt; Results</div><div class="ttdoc">String list type which can hold list of error/info. </div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00039">Results.h:39</a></div></div>
 <div class="ttc" id="classCSyncerSet_html_abda7650761df37cecee929c510d70b6f"><div class="ttname"><a href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">CSyncerSet::operator+=</a></div><div class="ttdeci">const CSyncerSet &amp; operator+=(ISyncer *pRightSyncer)</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00037">SyncerSet.cpp:37</a></div></div>
-<div class="ttc" id="classCSyncerSet_html"><div class="ttname"><a href="classCSyncerSet.html">CSyncerSet</a></div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8h_source.html#l00039">SyncerSet.h:39</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00036">ParameterBlackboard.h:36</a></div></div>
+<div class="ttc" id="Results_8h_html"><div class="ttname"><a href="Results_8h.html">Results.h</a></div></div>
+<div class="ttc" id="classCSyncerSet_html"><div class="ttname"><a href="classCSyncerSet.html">CSyncerSet</a></div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8h_source.html#l00038">SyncerSet.h:38</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
 <div class="ttc" id="classISyncer_html"><div class="ttname"><a href="classISyncer.html">ISyncer</a></div><div class="ttdef"><b>Definition:</b> <a href="Syncer_8h_source.html#l00036">Syncer.h:36</a></div></div>
-<div class="ttc" id="classCSyncerSet_html_a6ee2b3a5edcccc64b8694df736312e4b"><div class="ttname"><a href="classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b">CSyncerSet::sync</a></div><div class="ttdeci">bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, std::list&lt; std::string &gt; *plstrError) const </div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00059">SyncerSet.cpp:59</a></div></div>
+<div class="ttc" id="classCSyncerSet_html_a8f8381b520a758f49ba8013c5cb8c7b5"><div class="ttname"><a href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">CSyncerSet::sync</a></div><div class="ttdeci">bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, core::Results *errors) const </div><div class="ttdoc">Sync the blackboard. </div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00059">SyncerSet.cpp:59</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

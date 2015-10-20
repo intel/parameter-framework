@@ -1,13 +1,12 @@
 <map id="xmlserializer/XmlDocSink.h" name="xmlserializer/XmlDocSink.h">
-<area shape="rect" id="node2" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="1007,87,1203,114"/>
-<area shape="rect" id="node8" href="$XmlMemoryDocSink_8h.html" title="xmlserializer/XmlMemoryDoc\lSink.h" alt="" coords="335,80,541,121"/>
-<area shape="rect" id="node11" href="$XmlStreamDocSink_8h.html" title="xmlserializer/XmlStreamDoc\lSink.h" alt="" coords="567,80,770,121"/>
+<area shape="rect" id="node2" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="929,87,1125,114"/>
+<area shape="rect" id="node7" href="$XmlMemoryDocSink_8h.html" title="xmlserializer/XmlMemoryDoc\lSink.h" alt="" coords="281,80,488,121"/>
+<area shape="rect" id="node10" href="$XmlStreamDocSink_8h.html" title="xmlserializer/XmlStreamDoc\lSink.h" alt="" coords="623,80,826,121"/>
 <area shape="rect" id="node3" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="911,177,1144,203"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="449,177,659,203"/>
-<area shape="rect" id="node5" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="1097,259,1302,300"/>
-<area shape="rect" id="node6" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="1219,177,1459,203"/>
-<area shape="rect" id="node7" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="1360,259,1599,300"/>
-<area shape="rect" id="node9" href="$XmlFileIncluderElement_8cpp.html" title="parameter/XmlFileIncluder\lElement.cpp" alt="" coords="5,169,193,211"/>
-<area shape="rect" id="node10" href="$XmlMemoryDocSink_8cpp.html" title="xmlserializer/XmlMemoryDoc\lSink.cpp" alt="" coords="217,169,424,211"/>
-<area shape="rect" id="node12" href="$XmlStreamDocSink_8cpp.html" title="xmlserializer/XmlStreamDoc\lSink.cpp" alt="" coords="683,169,886,211"/>
+<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="675,177,886,203"/>
+<area shape="rect" id="node5" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="1169,169,1374,211"/>
+<area shape="rect" id="node6" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="1399,169,1637,211"/>
+<area shape="rect" id="node8" href="$XmlFileIncluderElement_8cpp.html" title="parameter/XmlFileIncluder\lElement.cpp" alt="" coords="236,169,424,211"/>
+<area shape="rect" id="node9" href="$XmlMemoryDocSink_8cpp.html" title="xmlserializer/XmlMemoryDoc\lSink.cpp" alt="" coords="5,169,212,211"/>
+<area shape="rect" id="node11" href="$XmlStreamDocSink_8cpp.html" title="xmlserializer/XmlStreamDoc\lSink.cpp" alt="" coords="449,169,651,211"/>
 </map>

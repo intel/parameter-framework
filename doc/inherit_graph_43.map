@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCMessage.html" title="CMessage" alt="" coords="32,5,120,32"/>
-<area shape="rect" id="node2" href="$classCAnswerMessage.html" title="CAnswerMessage" alt="" coords="197,5,331,32"/>
-<area shape="rect" id="node3" href="$classCRequestMessage.html" title="CRequestMessage" alt="" coords="195,56,333,83"/>
-<area shape="rect" id="node4" href="$classIRemoteCommand.html" title="IRemoteCommand" alt="" coords="5,56,147,83"/>
-</map>

@@ -1,7 +1,14 @@
 var searchData=
 [
-  ['navigatethrough',['navigateThrough',['../classCPathNavigator.html#ad588f1802ca5e196e96972273f36a80d',1,'CPathNavigator']]],
-  ['needresync',['needResync',['../classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4',1,'CSubsystem']]],
-  ['next',['next',['../classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589',1,'CPathNavigator::next()'],['../classCRuleParser.html#a7f6198bd3656599e15aee6860c1bf4d7',1,'CRuleParser::next()'],['../classCRequestMessageGenerator.html#ad81a727cb2c87141ea2304d7c842ebec',1,'CRequestMessageGenerator::next()'],['../classTokenizer.html#aadbdfb263c127f7c04ae0b11972c1343',1,'Tokenizer::next()'],['../classCXmlElement_1_1CChildIterator.html#a65a1c3514c3fac2cfab99224991f2bdc',1,'CXmlElement::CChildIterator::next()']]],
-  ['notifyparent',['notifyParent',['../test_2test-platform_2main_8cpp.html#a5ecbd43d18222aa99e11fde8df044bd7',1,'main.cpp']]]
+  ['main',['main',['../remote-process_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp'],['../test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp']]],
+  ['make_5funique',['make_unique',['../namespaceutility.html#a301c7f13096a34ad739625a71ae64ccf',1,'utility']]],
+  ['makeencodable',['makeEncodable',['../classCParameterType.html#a5fe8903d0958345169b3ad4c0534ecf4',1,'CParameterType']]],
+  ['map',['map',['../classCInstanceConfigurableElement.html#a43d2ce5dbc487aa8de02d39af1b1c2d3',1,'CInstanceConfigurableElement']]],
+  ['mapbegin',['mapBegin',['../classIMapper.html#a729bea23fd3c18e24972ca93f89fe6f4',1,'IMapper']]],
+  ['mapend',['mapEnd',['../classIMapper.html#a07d1b4904f96cccc320500961dd89517',1,'IMapper']]],
+  ['matches',['matches',['../classCCompoundRule.html#a92c9b3e8a2c0b240af3bf85e4b2630d8',1,'CCompoundRule::matches()'],['../classCRule.html#aaeeed8a6ca4a3e87ee75282df22fa01a',1,'CRule::matches()'],['../classCSelectionCriterionRule.html#ab0a5ffe0188207742a55f443493b08a0',1,'CSelectionCriterionRule::matches()']]],
+  ['merge',['merge',['../classCBitParameter.html#a0527dce697f0e4bda7daec7055f5f9de',1,'CBitParameter::merge()'],['../classCBitParameterType.html#af1457a2d1fcce712963f2a00f697d9b3',1,'CBitParameterType::merge()'],['../classCDomainConfiguration.html#ade8c66e62cc6a64ad6e1066f4a57eaa2',1,'CDomainConfiguration::merge()']]],
+  ['mkuri',['mkUri',['../classCXmlDocSource.html#a5b4b82f588740b673d3c1127b77326d0',1,'CXmlDocSource']]],
+  ['mkxmldoc',['mkXmlDoc',['../classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803',1,'CXmlDocSource']]],
+  ['msg',['msg',['../classStatus.html#ace8ccfda8d86810fba5391d8cb84f454',1,'Status']]]
 ];

@@ -1,0 +1,5 @@
+<map id="CTestPlatform::run" name="CTestPlatform::run">
+<area shape="rect" id="node2" href="$classCRemoteProcessorServer.html#ae2ba625b835446b5fa5f1d1a244da43c" title="CRemoteProcessorServer\l::start" alt="" coords="226,5,411,47"/>
+<area shape="rect" id="node3" href="$classTRemoteCommandHandlerTemplate.html#abbc6756166e2bddd8dcae90e7d0b9eda" title="TRemoteCommandHandlerTemplate\l::addCommandParser" alt="" coords="192,71,445,112"/>
+<area shape="rect" id="node4" href="$classCRemoteProcessorServer.html#af1225610b1fbca5f6484fa37adbcf360" title="CRemoteProcessorServer\l::process" alt="" coords="226,136,411,177"/>
+</map>

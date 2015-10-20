@@ -1,8 +1,10 @@
 <map id="xmlserializer/XmlMemoryDocSink.cpp" name="xmlserializer/XmlMemoryDocSink.cpp">
-<area shape="rect" id="node2" href="$XmlMemoryDocSink_8h.html" title="XmlMemoryDocSink.h" alt="" coords="129,95,292,121"/>
-<area shape="rect" id="node3" href="$XmlDocSink_8h.html" title="XmlDocSink.h" alt="" coords="109,169,219,196"/>
-<area shape="rect" id="node9" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="215,244,300,271"/>
-<area shape="rect" id="node4" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="5,244,133,271"/>
-<area shape="rect" id="node8" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="44,319,217,345"/>
-<area shape="rect" id="node5" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="242,319,353,345"/>
+<area shape="rect" id="node2" href="$XmlMemoryDocSink_8h.html" title="XmlMemoryDocSink.h" alt="" coords="147,95,310,121"/>
+<area shape="rect" id="node3" href="$XmlDocSink_8h.html" title="XmlDocSink.h" alt="" coords="229,169,340,196"/>
+<area shape="rect" id="node11" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="61,244,146,271"/>
+<area shape="rect" id="node4" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="170,244,298,271"/>
+<area shape="rect" id="node8" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="191,319,365,345"/>
+<area shape="rect" id="node10" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="343,468,477,495"/>
+<area shape="rect" id="node5" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="5,319,116,345"/>
+<area shape="rect" id="node9" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="242,393,373,420"/>
 </map>

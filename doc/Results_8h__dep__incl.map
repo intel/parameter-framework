@@ -1,0 +1,28 @@
+<map id="parameter/Results.h" name="parameter/Results.h">
+<area shape="rect" id="node2" href="$SyncerSet_8h.html" title="parameter/SyncerSet.h" alt="" coords="1055,80,1227,107"/>
+<area shape="rect" id="node3" href="$AreaConfiguration_8h.html" title="parameter/AreaConfiguration.h" alt="" coords="520,162,741,189"/>
+<area shape="rect" id="node8" href="$DomainConfiguration_8h.html" title="parameter/DomainConfiguration.h" alt="" coords="1291,251,1533,278"/>
+<area shape="rect" id="node13" href="$ConfigurableDomain_8h.html" title="parameter/ConfigurableDomain.h" alt="" coords="1941,251,2177,278"/>
+<area shape="rect" id="node19" href="$SystemClass_8h.html" title="parameter/SystemClass.h" alt="" coords="1928,80,2117,107"/>
+<area shape="rect" id="node23" href="$ConfigurableDomains_8h.html" title="parameter/ConfigurableDomains.h" alt="" coords="2251,251,2493,278"/>
+<area shape="rect" id="node24" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="2587,80,2783,107"/>
+<area shape="rect" id="node12" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="651,333,906,360"/>
+<area shape="rect" id="node15" href="$HardwareBackSynchronizer_8h.html" title="parameter/HardwareBackSynchronizer.h" alt="" coords="1280,162,1560,189"/>
+<area shape="rect" id="node17" href="$InstanceConfigurableElement_8cpp.html" title="parameter/InstanceConfigurable\lElement.cpp" alt="" coords="1027,155,1255,196"/>
+<area shape="rect" id="node18" href="$SyncerSet_8cpp.html" title="parameter/SyncerSet.cpp" alt="" coords="816,162,1003,189"/>
+<area shape="rect" id="node4" href="$AreaConfiguration_8cpp.html" title="parameter/AreaConfiguration.cpp" alt="" coords="455,251,691,278"/>
+<area shape="rect" id="node5" href="$BitwiseAreaConfiguration_8h.html" title="parameter/BitwiseAreaConfiguration.h" alt="" coords="166,251,431,278"/>
+<area shape="rect" id="node6" href="$BitParameter_8cpp.html" title="parameter/BitParameter.cpp" alt="" coords="310,333,514,360"/>
+<area shape="rect" id="node7" href="$BitwiseAreaConfiguration_8cpp.html" title="parameter/BitwiseAreaConfiguration.cpp" alt="" coords="5,333,285,360"/>
+<area shape="rect" id="node9" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="1445,333,1696,360"/>
+<area shape="rect" id="node10" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="1145,333,1401,360"/>
+<area shape="rect" id="node11" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="1953,333,2164,360"/>
+<area shape="rect" id="node14" href="$ConfigurableDomains_8cpp.html" title="parameter/ConfigurableDomains.cpp" alt="" coords="2215,333,2473,360"/>
+<area shape="rect" id="node16" href="$HardwareBackSynchronizer_8cpp.html" title="parameter/HardwareBackSynchronizer.cpp" alt="" coords="921,251,1215,278"/>
+<area shape="rect" id="node20" href="$XmlDomainImportContext_8h.html" title="parameter/XmlDomainImport\lContext.h" alt="" coords="1635,155,1845,196"/>
+<area shape="rect" id="node22" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="1921,162,2125,189"/>
+<area shape="rect" id="node21" href="$SelectionCriterionRule_8cpp.html" title="parameter/SelectionCriterion\lRule.cpp" alt="" coords="1659,244,1866,285"/>
+<area shape="rect" id="node25" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="2569,162,2802,189"/>
+<area shape="rect" id="node26" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="2827,155,3032,196"/>
+<area shape="rect" id="node27" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="3057,155,3295,196"/>
+</map>

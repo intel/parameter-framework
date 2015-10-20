@@ -1,5 +1,5 @@
 <map id="CXmlMemoryDocSource::populate" name="CXmlMemoryDocSource::populate">
-<area shape="rect" id="node2" href="$classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d" title="CXmlSerializingContext\l::setError" alt="" coords="241,5,412,47"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="231,71,423,112"/>
-<area shape="rect" id="node4" href="$classIXmlSource.html#a8155e8851c2da0171da235020a720f8a" title="IXmlSource::toXml" alt="" coords="257,137,396,163"/>
+<area shape="rect" id="node2" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="255,5,399,47"/>
+<area shape="rect" id="node3" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="231,71,423,98"/>
+<area shape="rect" id="node4" href="$classIXmlSource.html#a8155e8851c2da0171da235020a720f8a" title="IXmlSource::toXml" alt="" coords="257,122,396,149"/>
 </map>

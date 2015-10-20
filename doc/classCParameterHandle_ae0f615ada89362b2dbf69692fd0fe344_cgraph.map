@@ -1,5 +1,0 @@
-<map id="CParameterHandle::setAsBooleanArray" name="CParameterHandle::setAsBooleanArray">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#a25606ff4b96a3539dd76723fb4346d67" title="CParameterMgr::tuningModeOn" alt="" coords="292,5,515,32"/>
-<area shape="rect" id="node3" href="$classCBaseParameter.html#abdb59be3eb6674e99c37360f2bde79dd" title="CBaseParameter::accessAs\lBooleanArray" alt="" coords="304,57,503,98"/>
-<area shape="rect" id="node4" href="$classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef" title="CErrorContext::setError" alt="" coords="563,64,733,91"/>
-</map>

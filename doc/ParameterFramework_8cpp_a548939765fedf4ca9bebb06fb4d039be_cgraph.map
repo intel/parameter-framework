@@ -1,0 +1,6 @@
+<map id="pfwGetStringParameter" name="pfwGetStringParameter">
+<area shape="rect" id="node2" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="224,5,451,32"/>
+<area shape="rect" id="node3" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="287,56,387,83"/>
+<area shape="rect" id="node4" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="278,107,397,133"/>
+<area shape="rect" id="node5" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="499,132,621,159"/>
+</map>

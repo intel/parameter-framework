@@ -1,9 +1,9 @@
 <map id="CSelectionCriterion::setCriterionState" name="CSelectionCriterion::setCriterionState">
-<area shape="rect" id="node2" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="222,5,363,32"/>
+<area shape="rect" id="node2" href="$classcore_1_1log_1_1Logger.html#a6f9d18ae0fd8ee47f0d1ad3b204cee5c" title="Retrieve wrapped information logger. " alt="" coords="213,5,373,32"/>
 <area shape="rect" id="node3" href="$classCSelectionCriterion.html#a10a460a1ee7b1a38b34ab8eb90ea74f9" title="User request. " alt="" coords="197,107,388,149"/>
 <area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="446,31,598,57"/>
-<area shape="rect" id="node10" href="$classCElement.html#a100f81e35b4815020cc617e735702e61" title="CElement::log_warning" alt="" coords="209,173,376,200"/>
-<area shape="rect" id="node4" href="$classCUtility.html#a5a2643fa6fbbd1bae67b2f05b9d54f03" title="Utility to underline. " alt="" coords="448,81,596,108"/>
+<area shape="rect" id="node10" href="$classcore_1_1log_1_1Logger.html#a2df9464630e1079288e5f04eb90cbdca" title="Retrieve wrapped warning logger. " alt="" coords="224,173,361,214"/>
+<area shape="rect" id="node4" href="$namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40" title="Utility to underline. " alt="" coords="453,81,591,108"/>
 <area shape="rect" id="node6" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="436,133,608,174"/>
 <area shape="rect" id="node7" href="$classCSelectionCriterionType.html#a31f9a40404c9564b2c54658a679db628" title="CSelectionCriterionType\l::listPossibleValues" alt="" coords="436,198,608,239"/>
 <area shape="rect" id="node8" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="436,263,608,305"/>

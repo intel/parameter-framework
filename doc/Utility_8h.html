@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -89,7 +89,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Utility.h File Reference</div>  </div>
 </div><!--header-->
@@ -98,25 +99,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;list&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;numeric&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Utility.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Utility_8h__incl.svg" width="307" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="Utility_8h__incl.svg" width="406" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Utility_8h__dep__incl.svg" width="4766" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="Utility_8h__dep__incl.svg" width="4154" height="648"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
 <p><a href="Utility_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUtility.html">CUtility</a></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceutility"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html">utility</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a09cce371085c0096b86c22fb467da3d4"><td class="memTemplParams" colspan="2">template&lt;class T , class InputIt , class BinaryOperation &gt; </td></tr>
+<tr class="memitem:a09cce371085c0096b86c22fb467da3d4"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a09cce371085c0096b86c22fb467da3d4">utility::join</a> (InputIt first, InputIt last, BinaryOperation op, T empty=T{})</td></tr>
+<tr class="separator:a09cce371085c0096b86c22fb467da3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fb85a4dbd0307733f0dda49811db6d1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1">utility::asString</a> (const std::list&lt; std::string &gt; &amp;lstr, const std::string &amp;separator=&quot;\n&quot;)</td></tr>
+<tr class="memdesc:a3fb85a4dbd0307733f0dda49811db6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format the items of a map into a string as a list of key-value pairs.  <a href="#a3fb85a4dbd0307733f0dda49811db6d1">More...</a><br /></td></tr>
+<tr class="separator:a3fb85a4dbd0307733f0dda49811db6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c420c08a1eb41e2b27ed6d28ac5a096"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a0c420c08a1eb41e2b27ed6d28ac5a096">utility::asString</a> (const std::map&lt; std::string, std::string &gt; &amp;mapStr, const std::string &amp;strItemSeparator=&quot;, &quot;, const std::string &amp;strKeyValueSeparator=&quot;:&quot;)</td></tr>
+<tr class="memdesc:a0c420c08a1eb41e2b27ed6d28ac5a096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format the items of a map into a string as a list of key-value pairs.  <a href="#a0c420c08a1eb41e2b27ed6d28ac5a096">More...</a><br /></td></tr>
+<tr class="separator:a0c420c08a1eb41e2b27ed6d28ac5a096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd9949bbd80a31bbdbc1aa57439c5d40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40">utility::appendTitle</a> (std::string &amp;strTo, const std::string &amp;strTitle)</td></tr>
+<tr class="memdesc:afd9949bbd80a31bbdbc1aa57439c5d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility to underline.  <a href="#afd9949bbd80a31bbdbc1aa57439c5d40">More...</a><br /></td></tr>
+<tr class="separator:afd9949bbd80a31bbdbc1aa57439c5d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af26524fd398a870267af79c918862662"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#af26524fd398a870267af79c918862662">utility::isHexadecimal</a> (const std::string &amp;strValue)</td></tr>
+<tr class="memdesc:af26524fd398a870267af79c918862662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a string has the written representation of an hexadecimal number (Which is the prefix "0x" or "0X" in C++).  <a href="#af26524fd398a870267af79c918862662">More...</a><br /></td></tr>
+<tr class="separator:af26524fd398a870267af79c918862662"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,3 +1,8 @@
 <map id="parameter/SubsystemObject.h" name="parameter/SubsystemObject.h">
-<area shape="rect" id="node2" href="$Syncer_8h.html" title="Syncer.h" alt="" coords="5,80,83,107"/>
+<area shape="rect" id="node3" href="$Syncer_8h.html" title="Syncer.h" alt="" coords="130,155,207,181"/>
+<area shape="rect" id="node5" href="$Logger_8h.html" title="log/Logger.h" alt="" coords="283,80,383,107"/>
+<area shape="rect" id="node6" href="$ILogger_8h.html" title="log/ILogger.h" alt="" coords="283,229,385,256"/>
+<area shape="rect" id="node7" href="$LogWrapper_8h.html" title="log/LogWrapper.h" alt="" coords="493,155,623,181"/>
+<area shape="rect" id="node14" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="333,155,468,181"/>
+<area shape="rect" id="node8" href="$Utility_8h.html" title="Utility.h" alt="" coords="605,229,673,256"/>
 </map>

@@ -17,9 +17,9 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCUtility.html#a5a2643fa6fbbd1bae67b2f05b9d54f03" target="_top" xlink:title="Utility to underline. ">
-<polygon fill="white" stroke="black" points="188,-186 188,-205 299,-205 299,-186 188,-186"/>
-<text text-anchor="middle" x="243.5" y="-193" font-family="Verdana" font-size="10.00">CUtility::appendTitle</text>
+<g id="a_node2"><a xlink:href="namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40" target="_top" xlink:title="Utility to underline. ">
+<polygon fill="white" stroke="black" points="192,-186 192,-205 295,-205 295,-186 192,-186"/>
+<text text-anchor="middle" x="243.5" y="-193" font-family="Verdana" font-size="10.00">utility::appendTitle</text>
 </a>
 </g>
 </g>

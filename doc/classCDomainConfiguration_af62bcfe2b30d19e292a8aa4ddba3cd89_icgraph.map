@@ -1,3 +1,6 @@
 <map id="CDomainConfiguration::getBlackboard" name="CDomainConfiguration::getBlackboard">
-<area shape="rect" id="node2" href="$classCConfigurableDomain.html#a0fec7c3bd4cf280eb64db3803d226836" title="Blackboard Configuration and Base Offset retrieval. " alt="" coords="220,5,429,47"/>
+<area shape="rect" id="node2" href="$classCConfigurableDomain.html#aec0b138482d5cd4d42e14c9de882a16c" title="Blackboard Configuration and Base Offset retrieval. " alt="" coords="220,5,429,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a0fb6ef1d7480f819135a29a5dfc6463d" title="CConfigurableDomains\l::findConfigurationBlackboard" alt="" coords="477,5,687,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="735,5,993,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#a64a98bccd79559d5466ff3fd8e93b890" title="CParameterMgrFullConnector\l::accessConfigurationValue" alt="" coords="1041,5,1249,47"/>
 </map>

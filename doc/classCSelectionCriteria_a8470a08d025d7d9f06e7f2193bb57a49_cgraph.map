@@ -1,7 +1,7 @@
 <map id="CSelectionCriteria::resetModifiedStatus" name="CSelectionCriteria::resetModifiedStatus">
 <area shape="rect" id="node2" href="$classCSelectionCriteria.html#aa87e3488047e305e72d84d5aa0ed3e08" title="CSelectionCriteria\l::getSelectionCriteriaDefinition" alt="" coords="212,5,428,47"/>
 <area shape="rect" id="node4" href="$classCSelectionCriteriaDefinition.html#afd90c898acdd1251a4b5ffd931c46b2b" title="CSelectionCriteriaDefinition\l::resetModifiedStatus" alt="" coords="222,71,418,112"/>
-<area shape="rect" id="node3" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="495,19,639,46"/>
+<area shape="rect" id="node3" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="495,19,639,46"/>
 <area shape="rect" id="node5" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="476,74,659,101"/>
 <area shape="rect" id="node6" href="$classCSelectionCriterion.html#a1faf6f53f52122588d3b012e29e7d635" title="CSelectionCriterion\l::resetModifiedStatus" alt="" coords="488,125,647,167"/>
 </map>

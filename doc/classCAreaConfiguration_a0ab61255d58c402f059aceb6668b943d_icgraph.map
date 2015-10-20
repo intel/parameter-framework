@@ -1,18 +1,7 @@
 <map id="CAreaConfiguration::save" name="CAreaConfiguration::save">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="210,125,357,167"/>
-<area shape="rect" id="node13" href="$classCDomainConfiguration.html#aff0adeb0eb6645ef3ae8a4b75c4a7892" title="CDomainConfiguration\l::save" alt="" coords="200,191,367,232"/>
-<area shape="rect" id="node3" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="415,125,581,167"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="633,125,794,167"/>
-<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="884,125,1052,167"/>
-<area shape="rect" id="node6" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="1187,78,1344,105"/>
-<area shape="rect" id="node11" href="$classCParameterMgr.html#ac2a3211a14a825e94e0090a9ad0e4c57" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="1139,137,1392,163"/>
-<area shape="rect" id="node7" href="$classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" title="CParameterMgrFullConnector\l::start" alt="" coords="1457,5,1665,47"/>
-<area shape="rect" id="node8" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="1440,71,1683,112"/>
-<area shape="rect" id="node9" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="1731,78,1805,105"/>
-<area shape="rect" id="node10" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1853,78,2012,105"/>
-<area shape="rect" id="node12" href="$classCParameterMgrFullConnector.html#aabfcc64867c0d79840b5fdfd6efaf4fa" title="Method that imports Configurable Domains from an Xml source. " alt="" coords="1457,136,1665,177"/>
-<area shape="rect" id="node14" href="$classCConfigurableDomain.html#a7656ea4134ae47e8a19e1565c16323f0" title="CConfigurableDomain\l::saveConfiguration" alt="" coords="417,191,579,232"/>
-<area shape="rect" id="node15" href="$classCConfigurableDomains.html#a1be81268a7220733d7aed82e75e8253c" title="CConfigurableDomains\l::saveConfiguration" alt="" coords="629,191,797,232"/>
-<area shape="rect" id="node16" href="$classCParameterMgr.html#aabb760bc56ad6e76f32bf732005730cb" title="CParameterMgr::saveConfiguration" alt="" coords="845,198,1091,225"/>
-<area shape="rect" id="node17" href="$classCParameterMgrFullConnector.html#aa0483d5bf0896f58735529afa17e468c" title="CParameterMgrFullConnector\l::saveConfiguration" alt="" coords="1161,191,1369,232"/>
+<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="210,5,357,47"/>
+<area shape="rect" id="node4" href="$classCDomainConfiguration.html#aff0adeb0eb6645ef3ae8a4b75c4a7892" title="CDomainConfiguration\l::save" alt="" coords="200,71,367,112"/>
+<area shape="rect" id="node3" href="$classCDomainConfiguration.html#a442810a2eceb0eb11da8fefef93406d5" title="CDomainConfiguration\l::validate" alt="" coords="415,5,581,47"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomain.html#a7656ea4134ae47e8a19e1565c16323f0" title="CConfigurableDomain\l::saveConfiguration" alt="" coords="417,71,579,112"/>
+<area shape="rect" id="node6" href="$classCConfigurableDomains.html#a1be81268a7220733d7aed82e75e8253c" title="CConfigurableDomains\l::saveConfiguration" alt="" coords="629,71,797,112"/>
 </map>

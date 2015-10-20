@@ -4,7 +4,7 @@
 <area shape="rect" id="node3" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="516,71,755,112"/>
 <area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#a2561bca68b84ced060cbe2be8597a812" title="CParameterMgrFullConnector\l::createParameterHandle" alt="" coords="820,5,1028,47"/>
 <area shape="rect" id="node5" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="803,71,1045,112"/>
-<area shape="rect" id="node6" href="$ParameterFramework_8h.html#a8af8b5749cdc5ed309c7fc73621da521" title="Construct the handle to a parameter given its path. " alt="" coords="1093,78,1232,105"/>
+<area shape="rect" id="node6" href="$ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" title="Construct the handle to a parameter given its path. " alt="" coords="1093,78,1232,105"/>
 <area shape="rect" id="node7" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1280,78,1439,105"/>
 <area shape="rect" id="node9" href="$classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="820,136,1028,177"/>
 </map>

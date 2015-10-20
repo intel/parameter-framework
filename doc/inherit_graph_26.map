@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCTestPlatform.html" title="CTestPlatform" alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node1" href="$classparameterFramework_1_1utility_1_1TmpFile.html" title="Create a temporary file with the given content. " alt="" coords="5,5,164,47"/>
+<area shape="rect" id="node2" href="$classTest_1_1TmpFile.html" title="Wrap utility::TmpFile to add an implicit convertion to the temporary file. " alt="" coords="212,13,315,39"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="CInstanceDefinition::createInstances" name="CInstanceDefinition::createInstances">
 <area shape="rect" id="node2" href="$classCTypeElement.html#a7cdfd91a35b67d17fb2c92f8a2883854" title="CTypeElement::populate" alt="" coords="199,107,375,133"/>
 <area shape="rect" id="node3" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="425,5,608,32"/>
-<area shape="rect" id="node4" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="445,56,589,83"/>
+<area shape="rect" id="node4" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="445,56,589,83"/>
 <area shape="rect" id="node5" href="$classCTypeElement.html#a0fd0b5dfb3e3515ff5b54eda3d7e0a45" title="CTypeElement::instantiate" alt="" coords="423,107,611,133"/>
 <area shape="rect" id="node6" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="443,157,590,184"/>
 </map>

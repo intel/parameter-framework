@@ -6,12 +6,13 @@
 <area shape="rect" id="node9" href="$classCInstanceDefinition.html" title="CInstanceDefinition" alt="" coords="456,208,601,235"/>
 <area shape="rect" id="node10" href="$classCParameterBlockType.html" title="CParameterBlockType" alt="" coords="449,259,609,285"/>
 <area shape="rect" id="node11" href="$classCParameterType.html" title="CParameterType" alt="" coords="465,309,592,336"/>
-<area shape="rect" id="node16" href="$classCStringParameterType.html" title="CStringParameterType" alt="" coords="447,360,611,387"/>
+<area shape="rect" id="node17" href="$classCStringParameterType.html" title="CStringParameterType" alt="" coords="447,360,611,387"/>
 <area shape="rect" id="node2" href="$classCElement.html" title="CElement" alt="" coords="148,183,232,209"/>
 <area shape="rect" id="node3" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="15,157,91,184"/>
 <area shape="rect" id="node4" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="5,208,100,235"/>
-<area shape="rect" id="node12" href="$classCBooleanParameterType.html" title="CBooleanParameterType" alt="" coords="671,233,850,260"/>
-<area shape="rect" id="node13" href="$classCEnumParameterType.html" title="CEnumParameterType" alt="" coords="679,284,842,311"/>
-<area shape="rect" id="node14" href="$classCFixedPointParameterType.html" title="CFixedPointParameterType" alt="" coords="665,335,856,361"/>
-<area shape="rect" id="node15" href="$classCIntegerParameterType.html" title="CIntegerParameterType" alt="" coords="675,385,846,412"/>
+<area shape="rect" id="node12" href="$classCBooleanParameterType.html" title="CBooleanParameterType" alt="" coords="680,208,859,235"/>
+<area shape="rect" id="node13" href="$classCEnumParameterType.html" title="CEnumParameterType" alt="" coords="688,259,851,285"/>
+<area shape="rect" id="node14" href="$classCFixedPointParameterType.html" title="CFixedPointParameterType" alt="" coords="674,309,865,336"/>
+<area shape="rect" id="node15" href="$classCFloatingPointParameterType.html" title="CFloatingPointParameterType" alt="" coords="665,360,873,387"/>
+<area shape="rect" id="node16" href="$classCIntegerParameterType.html" title="CIntegerParameterType" alt="" coords="684,411,855,437"/>
 </map>

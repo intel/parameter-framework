@@ -1,5 +1,6 @@
 <map id="CParameterMgrLogger&lt; T &gt;" name="CParameterMgrLogger&lt; T &gt;">
-<area shape="rect" id="node3" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\l\&lt; CParameterMgrPlatformConnector \&gt;" alt="" coords="737,5,1009,47"/>
-<area shape="rect" id="node4" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\l\&lt; CParameterMgrFullConnector \&gt;" alt="" coords="754,71,993,112"/>
-<area shape="rect" id="node2" href="$classCParameterMgr_1_1ILogger.html" title="CParameterMgr::ILogger" alt="" coords="5,46,183,73"/>
+<area shape="rect" id="node4" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\l\&lt; CParameterMgrPlatformConnector \&gt;" alt="" coords="708,5,980,47"/>
+<area shape="rect" id="node5" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\l\&lt; CParameterMgrFullConnector \&gt;" alt="" coords="725,71,963,112"/>
+<area shape="rect" id="node2" href="$classcore_1_1log_1_1ILogger.html" title="Logger interface provided by client. " alt="" coords="13,21,145,47"/>
+<area shape="rect" id="node3" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="5,71,153,98"/>
 </map>

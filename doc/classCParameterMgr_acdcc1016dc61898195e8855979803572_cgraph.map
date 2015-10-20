@@ -1,12 +1,12 @@
 <map id="CParameterMgr::setAutoSync" name="CParameterMgr::setAutoSync">
 <area shape="rect" id="node2" href="$classCParameterMgr.html#a3c23f1ef6dbe73de230fe429af194937" title="CParameterMgr::sync" alt="" coords="264,161,423,187"/>
 <area shape="rect" id="node3" href="$classCConfigurableElement.html#a0b3d6d2477e5ea7c23905604fabdb7bf" title="CConfigurableElement\l::fillSyncerSet" alt="" coords="471,95,635,136"/>
-<area shape="rect" id="node9" href="$classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b" title="CSyncerSet::sync" alt="" coords="485,161,620,187"/>
-<area shape="rect" id="node11" href="$classCUtility.html#a61d8ac9daba8e70320e5da0af931bdae" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="489,211,616,238"/>
+<area shape="rect" id="node9" href="$classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5" title="Sync the blackboard. " alt="" coords="485,161,620,187"/>
+<area shape="rect" id="node11" href="$namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="495,211,611,238"/>
 <area shape="rect" id="node4" href="$classCConfigurableElement.html#ace18ab1044203825e43ce44126c9322d" title="CConfigurableElement\l::getSyncer" alt="" coords="710,5,874,47"/>
 <area shape="rect" id="node6" href="$classCConfigurableElement.html#a9f29ba1f8a319c22896deda2cf826e78" title="CConfigurableElement\l::fillSyncerSetFromDescendant" alt="" coords="683,95,901,136"/>
 <area shape="rect" id="node5" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="963,13,1118,39"/>
 <area shape="rect" id="node7" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="949,82,1132,109"/>
-<area shape="rect" id="node8" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="969,133,1113,159"/>
+<area shape="rect" id="node8" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="969,133,1113,159"/>
 <area shape="rect" id="node10" href="$classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9" title="ISyncer::sync" alt="" coords="739,161,845,187"/>
 </map>

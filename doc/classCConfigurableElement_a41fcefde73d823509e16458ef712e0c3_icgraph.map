@@ -1,3 +1,5 @@
 <map id="CConfigurableElement::createAreaConfiguration" name="CConfigurableElement::createAreaConfiguration">
-<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a975b96f7809a15206e4e83d96d69e8c2" title="CDomainConfiguration\l::addConfigurableElement" alt="" coords="240,5,427,47"/>
+<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a2722416342b16b07ffa05b0e0253bc66" title="CDomainConfiguration\l::addConfigurableElement" alt="" coords="240,5,427,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#a82e376a127b18da449923829825bcbed" title="CConfigurableDomain\l::createConfiguration" alt="" coords="475,5,636,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomains.html#aa96eec13d9bdbb307e1dcfe6f057a685" title="CConfigurableDomains\l::createConfiguration" alt="" coords="684,5,852,47"/>
 </map>

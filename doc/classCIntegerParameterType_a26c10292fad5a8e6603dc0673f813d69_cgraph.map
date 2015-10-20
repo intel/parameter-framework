@@ -1,6 +1,4 @@
 <map id="CIntegerParameterType::toXml" name="CIntegerParameterType::toXml">
-<area shape="rect" id="node2" href="$classCXmlElement.html#aceba5aba0b7780078b55efadd4a46006" title="CXmlElement::setAttribute\lBoolean" alt="" coords="224,5,416,47"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="464,35,656,76"/>
-<area shape="rect" id="node4" href="$classCUtility.html#ab3df96a32e36befd9149af606affd8c3" title="Utility to easily convert a builtin type into string. " alt="" coords="257,122,383,149"/>
-<area shape="rect" id="node5" href="$classCParameterType.html#adfe9fe947066e58a062f8126f246f71a" title="CParameterType::getSize" alt="" coords="229,173,411,199"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="224,5,416,32"/>
+<area shape="rect" id="node3" href="$classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9" title="CParameterType::getSize" alt="" coords="229,56,411,83"/>
 </map>

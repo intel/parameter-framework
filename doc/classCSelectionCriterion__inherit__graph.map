@@ -3,4 +3,5 @@
 <area shape="rect" id="node3" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="5,5,81,32"/>
 <area shape="rect" id="node4" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="105,5,200,32"/>
 <area shape="rect" id="node5" href="$classISelectionCriterionInterface.html" title="ISelectionCriterionInterface" alt="" coords="165,80,359,107"/>
+<area shape="rect" id="node6" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="384,80,532,107"/>
 </map>

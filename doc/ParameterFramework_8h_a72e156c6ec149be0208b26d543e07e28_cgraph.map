@@ -1,7 +1,0 @@
-<map id="pfwApplyConfigurations" name="pfwApplyConfigurations">
-<area shape="rect" id="node2" href="$classStatus.html#a02f271ac768f84947beb80573366de26" title="Fail without an instance of status. " alt="" coords="290,5,401,32"/>
-<area shape="rect" id="node3" href="$classCParameterMgrPlatformConnector.html#a03ff6b6e71e733bce73a2557b585d05c" title="CParameterMgrPlatformConnector\l::applyConfigurations" alt="" coords="224,57,467,98"/>
-<area shape="rect" id="node6" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="284,123,407,149"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#a8e084df8edc632b057815f533624480d" title="CParameterMgr::applyConfigurations" alt="" coords="515,64,771,91"/>
-<area shape="rect" id="node5" href="$classCElement.html#a100f81e35b4815020cc617e735702e61" title="CElement::log_warning" alt="" coords="819,64,985,91"/>
-</map>

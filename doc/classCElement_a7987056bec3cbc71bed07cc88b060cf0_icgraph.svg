@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCBitParameter.html#a5fcbaa6052e15453764a1a83da160c10" target="_top" xlink:title="CBitParameter::getBelonging\lBlockSize">
+<g id="a_node2"><a xlink:href="classCBitParameter.html#a84ee75cf920c8f273519808d5c042985" target="_top" xlink:title="CBitParameter::getBelonging\lBlockSize">
 <polygon fill="white" stroke="black" points="160,-312.5 160,-342.5 315,-342.5 315,-312.5 160,-312.5"/>
 <text text-anchor="start" x="168" y="-330.5" font-family="Verdana" font-size="10.00">CBitParameter::getBelonging</text>
 <text text-anchor="middle" x="237.5" y="-319.5" font-family="Verdana" font-size="10.00">BlockSize</text>
@@ -188,7 +188,7 @@
 </g>
 <!-- Node15 -->
 <g id="node15" class="node"><title>Node15</title>
-<g id="a_node15"><a xlink:href="classCSystemClass.html#ab71ea33fad4ce8978ad2577314146fec" target="_top" xlink:title="Look for subsystems that need to be resynchronized. ">
+<g id="a_node15"><a xlink:href="classCSystemClass.html#abefbe05f7e9ce5b93ccdd15b3694184e" target="_top" xlink:title="Look for subsystems that need to be resynchronized. ">
 <polygon fill="white" stroke="black" points="579,-220.5 579,-250.5 773,-250.5 773,-220.5 579,-220.5"/>
 <text text-anchor="start" x="587" y="-238.5" font-family="Verdana" font-size="10.00">CSystemClass::checkForSubsystems</text>
 <text text-anchor="middle" x="676" y="-227.5" font-family="Verdana" font-size="10.00">ToResync</text>

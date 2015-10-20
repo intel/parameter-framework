@@ -1,7 +1,7 @@
 <map id="CXmlElement::CChildIterator::next" name="CXmlElement::CChildIterator::next">
 <area shape="rect" id="node2" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="583,229,739,271"/>
 <area shape="rect" id="node4" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="297,29,461,71"/>
-<area shape="rect" id="node6" href="$classCDomainConfiguration.html#afbcd309cfae933c862f24368b5c9eab5" title="CDomainConfiguration\l::parseSettings" alt="" coords="296,147,463,188"/>
+<area shape="rect" id="node6" href="$classCDomainConfiguration.html#a07ba71bfd498ff4291eb765975360339" title="CDomainConfiguration\l::parseSettings" alt="" coords="296,147,463,188"/>
 <area shape="rect" id="node7" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="306,237,453,263"/>
 <area shape="rect" id="node8" href="$classCPluginLocation.html#a078d8017417c36f89f9d05b5e4d1b33b" title="CPluginLocation::fromXml" alt="" coords="287,287,472,314"/>
 <area shape="rect" id="node9" href="$classCXmlElement.html#abffb4b3c9d2ac6c552b3222a92bf0d8a" title="CXmlElement::getChildElement" alt="" coords="551,317,772,343"/>

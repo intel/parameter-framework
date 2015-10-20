@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -122,74 +122,78 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AnswerMessage_8h.html">AnswerMessage.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="RemoteProcessorProtocol_8h.html">RemoteProcessorProtocol.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="AnswerMessage_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   34</a></span>&#160;<span class="preprocessor">#define base CMessage</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">using</span> std::string;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCAnswerMessage.html#a892a9c07265a12be367bcaad84fdacfe">   38</a></span>&#160;<a class="code" href="classCAnswerMessage.html#afdb6c4f74a1cd6ad2106a42b6433555c">CAnswerMessage::CAnswerMessage</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strAnswer, <span class="keywordtype">bool</span> bSuccess) : <a class="code" href="AnswerMessage_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(bSuccess ? <a class="code" href="RemoteProcessorProtocol_8h.html#aa9af03763980e012c6b2e85dac0e7536ab34fab1991f0b3e3598358c4a746c838">ESuccessAnswer</a> : <a class="code" href="RemoteProcessorProtocol_8h.html#aa9af03763980e012c6b2e85dac0e7536a445240aa27c11d141ecd744465c19ff0">EFailureAnswer</a>), _strAnswer(strAnswer)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classCAnswerMessage.html#afdb6c4f74a1cd6ad2106a42b6433555c">   42</a></span>&#160;<a class="code" href="classCAnswerMessage.html#afdb6c4f74a1cd6ad2106a42b6433555c">CAnswerMessage::CAnswerMessage</a>()</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// Answer</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> CAnswerMessage::setAnswer(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strAnswer)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    _strAnswer = strAnswer;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">   52</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; <a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">CAnswerMessage::getAnswer</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> _strAnswer;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">// Status</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">   58</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">CAnswerMessage::success</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCMessage.html#a060b5a2b0874bf080b36b9e406e4d2e1">getMsgId</a>() == <a class="code" href="RemoteProcessorProtocol_8h.html#aa9af03763980e012c6b2e85dac0e7536ab34fab1991f0b3e3598358c4a746c838">ESuccessAnswer</a>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">// Size</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">size_t</span> CAnswerMessage::getDataSize()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// Answer</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCMessage.html#a592179b9f2a4785fb690e65cd3ee4725">getStringSize</a>(<a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">getAnswer</a>());</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">// Fill data to send</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">void</span> CAnswerMessage::fillDataToSend()</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Send answer</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="classCMessage.html#a6f89f94e4e8a2583ff8537a058a39b8d">writeString</a>(<a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">getAnswer</a>());</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">// Collect received data</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> CAnswerMessage::collectReceivedData()</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// Receive answer</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">string</span> strAnswer;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="classCMessage.html#aa01efca25f3bf723c4b1bc8859b061c2">readString</a>(strAnswer);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    setAnswer(strAnswer);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
-<div class="ttc" id="classCAnswerMessage_html_ad5b737b114cde75702c2233d723b970c"><div class="ttname"><a href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">CAnswerMessage::getAnswer</a></div><div class="ttdeci">const std::string &amp; getAnswer() const </div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00052">AnswerMessage.cpp:52</a></div></div>
-<div class="ttc" id="classCMessage_html_a060b5a2b0874bf080b36b9e406e4d2e1"><div class="ttname"><a href="classCMessage.html#a060b5a2b0874bf080b36b9e406e4d2e1">CMessage::getMsgId</a></div><div class="ttdeci">uint8_t getMsgId() const </div><div class="ttdef"><b>Definition:</b> <a href="Message_8cpp_source.html#l00054">Message.cpp:54</a></div></div>
-<div class="ttc" id="classCAnswerMessage_html_afdb6c4f74a1cd6ad2106a42b6433555c"><div class="ttname"><a href="classCAnswerMessage.html#afdb6c4f74a1cd6ad2106a42b6433555c">CAnswerMessage::CAnswerMessage</a></div><div class="ttdeci">CAnswerMessage()</div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00042">AnswerMessage.cpp:42</a></div></div>
-<div class="ttc" id="classCMessage_html_a6f89f94e4e8a2583ff8537a058a39b8d"><div class="ttname"><a href="classCMessage.html#a6f89f94e4e8a2583ff8537a058a39b8d">CMessage::writeString</a></div><div class="ttdeci">void writeString(const std::string &amp;strData)</div><div class="ttdoc">Write string to the message. </div><div class="ttdef"><b>Definition:</b> <a href="Message_8cpp_source.html#l00082">Message.cpp:82</a></div></div>
-<div class="ttc" id="RemoteProcessorProtocol_8h_html_aa9af03763980e012c6b2e85dac0e7536ab34fab1991f0b3e3598358c4a746c838"><div class="ttname"><a href="RemoteProcessorProtocol_8h.html#aa9af03763980e012c6b2e85dac0e7536ab34fab1991f0b3e3598358c4a746c838">ESuccessAnswer</a></div><div class="ttdef"><b>Definition:</b> <a href="RemoteProcessorProtocol_8h_source.html#l00037">RemoteProcessorProtocol.h:37</a></div></div>
-<div class="ttc" id="AnswerMessage_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="AnswerMessage_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00034">AnswerMessage.cpp:34</a></div></div>
-<div class="ttc" id="classCMessage_html_aa01efca25f3bf723c4b1bc8859b061c2"><div class="ttname"><a href="classCMessage.html#aa01efca25f3bf723c4b1bc8859b061c2">CMessage::readString</a></div><div class="ttdeci">void readString(std::string &amp;strData)</div><div class="ttdoc">Write string to the message. </div><div class="ttdef"><b>Definition:</b> <a href="Message_8cpp_source.html#l00093">Message.cpp:93</a></div></div>
-<div class="ttc" id="classCAnswerMessage_html_af22d01ea3de76ad0e82513eab0d7e7ce"><div class="ttname"><a href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">CAnswerMessage::success</a></div><div class="ttdeci">bool success() const </div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00058">AnswerMessage.cpp:58</a></div></div>
-<div class="ttc" id="classCMessage_html_a592179b9f2a4785fb690e65cd3ee4725"><div class="ttname"><a href="classCMessage.html#a592179b9f2a4785fb690e65cd3ee4725">CMessage::getStringSize</a></div><div class="ttdeci">size_t getStringSize(const std::string &amp;strData) const </div><div class="ttdef"><b>Definition:</b> <a href="Message_8cpp_source.html#l00113">Message.cpp:113</a></div></div>
-<div class="ttc" id="RemoteProcessorProtocol_8h_html_aa9af03763980e012c6b2e85dac0e7536a445240aa27c11d141ecd744465c19ff0"><div class="ttname"><a href="RemoteProcessorProtocol_8h.html#aa9af03763980e012c6b2e85dac0e7536a445240aa27c11d141ecd744465c19ff0">EFailureAnswer</a></div><div class="ttdef"><b>Definition:</b> <a href="RemoteProcessorProtocol_8h_source.html#l00038">RemoteProcessorProtocol.h:38</a></div></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="AnswerMessage_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   33</a></span>&#160;<span class="preprocessor">#define base CMessage</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">using</span> std::string;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classCAnswerMessage.html#a892a9c07265a12be367bcaad84fdacfe">   37</a></span>&#160;<a class="code" href="classCAnswerMessage.html#afdb6c4f74a1cd6ad2106a42b6433555c">CAnswerMessage::CAnswerMessage</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strAnswer, <span class="keywordtype">bool</span> bSuccess) :</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="AnswerMessage_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(bSuccess ? <a class="code" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f">MsgType</a>::ESuccessAnswer : <a class="code" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f">MsgType</a>::EFailureAnswer),</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    _strAnswer(strAnswer)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCAnswerMessage.html#afdb6c4f74a1cd6ad2106a42b6433555c">   43</a></span>&#160;<a class="code" href="classCAnswerMessage.html#afdb6c4f74a1cd6ad2106a42b6433555c">CAnswerMessage::CAnswerMessage</a>()</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// Answer</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> CAnswerMessage::setAnswer(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strAnswer)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    _strAnswer = strAnswer;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">   53</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; <a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">CAnswerMessage::getAnswer</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">return</span> _strAnswer;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">// Status</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">   59</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">CAnswerMessage::success</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">/* FIXME this test is buggy because MsgType mixes up two different information: message type</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">     * (answer or request), and content of the message (answer is success or failure).  Getting a</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">     * message id &#39;ECommandRequest&#39; would deserve an assert, when here it is just misinterpreted as</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">     * a failure... */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCMessage.html#a6e01b6cc8fdbd5f7eb8238b251b8f998">getMsgId</a>() == <a class="code" href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671fa2b50a8950e3540a13a70c002e09aa053">MsgType::ESuccessAnswer</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// Size</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">size_t</span> CAnswerMessage::getDataSize()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// Answer</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCMessage.html#a592179b9f2a4785fb690e65cd3ee4725">getStringSize</a>(<a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">getAnswer</a>());</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">// Fill data to send</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> CAnswerMessage::fillDataToSend()</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// Send answer</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="classCMessage.html#a6f89f94e4e8a2583ff8537a058a39b8d">writeString</a>(<a class="code" href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">getAnswer</a>());</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">// Collect received data</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">void</span> CAnswerMessage::collectReceivedData()</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;{</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// Receive answer</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">string</span> strAnswer;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="classCMessage.html#aa01efca25f3bf723c4b1bc8859b061c2">readString</a>(strAnswer);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    setAnswer(strAnswer);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
+<div class="ttc" id="classCAnswerMessage_html_ad5b737b114cde75702c2233d723b970c"><div class="ttname"><a href="classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c">CAnswerMessage::getAnswer</a></div><div class="ttdeci">const std::string &amp; getAnswer() const </div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00053">AnswerMessage.cpp:53</a></div></div>
+<div class="ttc" id="classCAnswerMessage_html_afdb6c4f74a1cd6ad2106a42b6433555c"><div class="ttname"><a href="classCAnswerMessage.html#afdb6c4f74a1cd6ad2106a42b6433555c">CAnswerMessage::CAnswerMessage</a></div><div class="ttdeci">CAnswerMessage()</div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00043">AnswerMessage.cpp:43</a></div></div>
+<div class="ttc" id="classCMessage_html_aabccddfc4f9b5c1f13ed5c69cbdf671f"><div class="ttname"><a href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671f">CMessage::MsgType</a></div><div class="ttdeci">MsgType</div><div class="ttdef"><b>Definition:</b> <a href="Message_8h_source.html#l00044">Message.h:44</a></div></div>
+<div class="ttc" id="classCMessage_html_a6f89f94e4e8a2583ff8537a058a39b8d"><div class="ttname"><a href="classCMessage.html#a6f89f94e4e8a2583ff8537a058a39b8d">CMessage::writeString</a></div><div class="ttdeci">void writeString(const std::string &amp;strData)</div><div class="ttdoc">Write string to the message. </div><div class="ttdef"><b>Definition:</b> <a href="Message_8cpp_source.html#l00086">Message.cpp:86</a></div></div>
+<div class="ttc" id="classCMessage_html_a6e01b6cc8fdbd5f7eb8238b251b8f998"><div class="ttname"><a href="classCMessage.html#a6e01b6cc8fdbd5f7eb8238b251b8f998">CMessage::getMsgId</a></div><div class="ttdeci">MsgType getMsgId() const </div><div class="ttdef"><b>Definition:</b> <a href="Message_8cpp_source.html#l00049">Message.cpp:49</a></div></div>
+<div class="ttc" id="AnswerMessage_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="AnswerMessage_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00033">AnswerMessage.cpp:33</a></div></div>
+<div class="ttc" id="classCMessage_html_aa01efca25f3bf723c4b1bc8859b061c2"><div class="ttname"><a href="classCMessage.html#aa01efca25f3bf723c4b1bc8859b061c2">CMessage::readString</a></div><div class="ttdeci">void readString(std::string &amp;strData)</div><div class="ttdoc">Write string to the message. </div><div class="ttdef"><b>Definition:</b> <a href="Message_8cpp_source.html#l00097">Message.cpp:97</a></div></div>
+<div class="ttc" id="classCAnswerMessage_html_af22d01ea3de76ad0e82513eab0d7e7ce"><div class="ttname"><a href="classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce">CAnswerMessage::success</a></div><div class="ttdeci">bool success() const </div><div class="ttdef"><b>Definition:</b> <a href="AnswerMessage_8cpp_source.html#l00059">AnswerMessage.cpp:59</a></div></div>
+<div class="ttc" id="classCMessage_html_a592179b9f2a4785fb690e65cd3ee4725"><div class="ttname"><a href="classCMessage.html#a592179b9f2a4785fb690e65cd3ee4725">CMessage::getStringSize</a></div><div class="ttdeci">size_t getStringSize(const std::string &amp;strData) const </div><div class="ttdef"><b>Definition:</b> <a href="Message_8cpp_source.html#l00117">Message.cpp:117</a></div></div>
 <div class="ttc" id="AnswerMessage_8h_html"><div class="ttname"><a href="AnswerMessage_8h.html">AnswerMessage.h</a></div></div>
-<div class="ttc" id="RemoteProcessorProtocol_8h_html"><div class="ttname"><a href="RemoteProcessorProtocol_8h.html">RemoteProcessorProtocol.h</a></div></div>
+<div class="ttc" id="classCMessage_html_aabccddfc4f9b5c1f13ed5c69cbdf671fa2b50a8950e3540a13a70c002e09aa053"><div class="ttname"><a href="classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671fa2b50a8950e3540a13a70c002e09aa053">CMessage::MsgType::ESuccessAnswer</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

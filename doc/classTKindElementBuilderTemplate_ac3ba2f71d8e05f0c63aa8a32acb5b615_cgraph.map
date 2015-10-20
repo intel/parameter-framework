@@ -1,6 +1,5 @@
 <map id="TKindElementBuilderTemplate::createElement" name="TKindElementBuilderTemplate::createElement">
-<area shape="rect" id="node2" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="264,13,496,39"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="297,63,463,90"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="544,5,737,47"/>
-<area shape="rect" id="node4" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="785,13,980,39"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="264,5,496,32"/>
+<area shape="rect" id="node4" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="297,56,463,83"/>
+<area shape="rect" id="node3" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="544,5,737,32"/>
 </map>

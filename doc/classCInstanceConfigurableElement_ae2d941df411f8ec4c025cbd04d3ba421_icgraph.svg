@@ -44,15 +44,15 @@
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" target="_top" xlink:title="Value access. ">
-<polygon fill="white" stroke="black" points="207.5,-480 207.5,-499 383.5,-499 383.5,-480 207.5,-480"/>
-<text text-anchor="middle" x="295.5" y="-487" font-family="Verdana" font-size="10.00">CBitParameter::accessAsBoolean</text>
+<g id="a_node4"><a xlink:href="classCBitParameter.html#a830225eeed4e53e72bcd04bb62a2e8fb" target="_top" xlink:title="Value access. ">
+<polygon fill="white" stroke="black" points="233,-480 233,-499 358,-499 358,-480 233,-480"/>
+<text text-anchor="middle" x="295.5" y="-487" font-family="Verdana" font-size="10.00">CBitParameter::access</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M100.455,-381.77C121.215,-407.678 158.342,-448.76 200,-470.5 207.418,-474.371 215.543,-477.455 223.816,-479.911"/>
+<path fill="none" stroke="midnightblue" d="M100.455,-381.77C121.215,-407.678 158.342,-448.76 200,-470.5 210.088,-475.765 221.485,-479.573 232.783,-482.328"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="102.985,-379.323 94.0592,-373.615 97.4767,-383.643 102.985,-379.323"/>
 </g>
 <!-- Node5 -->
@@ -70,7 +70,7 @@
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classCBitParameterBlock.html#aad6b4447beb278e093a1c6eedab9f87a" target="_top" xlink:title="CBitParameterBlock\l::getSize">
+<g id="a_node6"><a xlink:href="classCBitParameterBlock.html#a53ab74abef6085b354322affebd7072c" target="_top" xlink:title="CBitParameterBlock\l::getSize">
 <polygon fill="white" stroke="black" points="239.5,-392.5 239.5,-422.5 351.5,-422.5 351.5,-392.5 239.5,-392.5"/>
 <text text-anchor="start" x="247.5" y="-410.5" font-family="Verdana" font-size="10.00">CBitParameterBlock</text>
 <text text-anchor="middle" x="295.5" y="-399.5" font-family="Verdana" font-size="10.00">::getSize</text>
@@ -167,7 +167,7 @@
 </g>
 <!-- Node17 -->
 <g id="node17" class="node"><title>Node17</title>
-<g id="a_node17"><a xlink:href="classCParameter.html#a3658a7f1281f902fe3b271fa01037398" target="_top" xlink:title="CParameter::getSize">
+<g id="a_node17"><a xlink:href="classCParameter.html#a8e739ef864f7e7f11b775305022bc499" target="_top" xlink:title="CParameter::getSize">
 <polygon fill="white" stroke="black" points="237.5,-594 237.5,-613 353.5,-613 353.5,-594 237.5,-594"/>
 <text text-anchor="middle" x="295.5" y="-601" font-family="Verdana" font-size="10.00">CParameter::getSize</text>
 </a>
@@ -193,7 +193,7 @@
 </g>
 <!-- Node22 -->
 <g id="node22" class="node"><title>Node22</title>
-<g id="a_node22"><a xlink:href="classCStringParameter.html#af2990a24d1de91c5cfd760eb8b7ecffd" target="_top" xlink:title="CStringParameter::getSize">
+<g id="a_node22"><a xlink:href="classCStringParameter.html#af4bab1c1d9a9c32f7b0018cdfa1c9881" target="_top" xlink:title="CStringParameter::getSize">
 <polygon fill="white" stroke="black" points="223.5,-50 223.5,-69 367.5,-69 367.5,-50 223.5,-50"/>
 <text text-anchor="middle" x="295.5" y="-57" font-family="Verdana" font-size="10.00">CStringParameter::getSize</text>
 </a>
@@ -220,7 +220,7 @@
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classCBitParameterBlock.html#a95ebf43ee26531c6f4b9b33b4af6709e" target="_top" xlink:title="CBitParameterBlock\l::getFootPrint">
+<g id="a_node7"><a xlink:href="classCBitParameterBlock.html#a2150ec48ecd90423aa42a47c49543191" target="_top" xlink:title="CBitParameterBlock\l::getFootPrint">
 <polygon fill="white" stroke="black" points="453,-416.5 453,-446.5 565,-446.5 565,-416.5 453,-416.5"/>
 <text text-anchor="start" x="461" y="-434.5" font-family="Verdana" font-size="10.00">CBitParameterBlock</text>
 <text text-anchor="middle" x="509" y="-423.5" font-family="Verdana" font-size="10.00">::getFootPrint</text>
@@ -286,7 +286,7 @@
 </g>
 <!-- Node18 -->
 <g id="node18" class="node"><title>Node18</title>
-<g id="a_node18"><a xlink:href="classCArrayParameter.html#a4608f98d60cb8e8b009aa73438c7b2a1" target="_top" xlink:title="CArrayParameter::getFoot\lPrint">
+<g id="a_node18"><a xlink:href="classCArrayParameter.html#a7b1e06bd0fc4ed9aebdadcc3b3afa7d4" target="_top" xlink:title="CArrayParameter::getFoot\lPrint">
 <polygon fill="white" stroke="black" points="438,-632.5 438,-662.5 580,-662.5 580,-632.5 438,-632.5"/>
 <text text-anchor="start" x="446" y="-650.5" font-family="Verdana" font-size="10.00">CArrayParameter::getFoot</text>
 <text text-anchor="middle" x="509" y="-639.5" font-family="Verdana" font-size="10.00">Print</text>
@@ -313,7 +313,7 @@
 </g>
 <!-- Node20 -->
 <g id="node20" class="node"><title>Node20</title>
-<g id="a_node20"><a xlink:href="classCParameter.html#ae38b6b62b0f40be758d0ac53ba3caceb" target="_top" xlink:title="CParameter::getFootPrint">
+<g id="a_node20"><a xlink:href="classCParameter.html#ab1b32c17998875bab9b1deecfb76e67d" target="_top" xlink:title="CParameter::getFootPrint">
 <polygon fill="white" stroke="black" points="440,-556 440,-575 578,-575 578,-556 440,-556"/>
 <text text-anchor="middle" x="509" y="-563" font-family="Verdana" font-size="10.00">CParameter::getFootPrint</text>
 </a>
@@ -331,7 +331,7 @@
 </g>
 <!-- Node23 -->
 <g id="node23" class="node"><title>Node23</title>
-<g id="a_node23"><a xlink:href="classCStringParameter.html#a9cdd05f362999b935a820c544069638e" target="_top" xlink:title="CStringParameter::getFoot\lPrint">
+<g id="a_node23"><a xlink:href="classCStringParameter.html#a11d3f70f1e4c7bd104adbbfde2f0358f" target="_top" xlink:title="CStringParameter::getFoot\lPrint">
 <polygon fill="white" stroke="black" points="436.5,-43.5 436.5,-73.5 581.5,-73.5 581.5,-43.5 436.5,-43.5"/>
 <text text-anchor="start" x="444.5" y="-61.5" font-family="Verdana" font-size="10.00">CStringParameter::getFoot</text>
 <text text-anchor="middle" x="509" y="-50.5" font-family="Verdana" font-size="10.00">Print</text>
@@ -345,7 +345,7 @@
 </g>
 <!-- Node24 -->
 <g id="node24" class="node"><title>Node24</title>
-<g id="a_node24"><a xlink:href="classCStringParameter.html#a6a9db60ee5c1b4c620441d6e0d82bd08" target="_top" xlink:title="CStringParameter::doSetValue">
+<g id="a_node24"><a xlink:href="classCStringParameter.html#a67ccec1129a496f5ce7beeb3dd27b096" target="_top" xlink:title="CStringParameter::doSetValue">
 <polygon fill="white" stroke="black" points="427.5,-5 427.5,-24 590.5,-24 590.5,-5 427.5,-5"/>
 <text text-anchor="middle" x="509" y="-12" font-family="Verdana" font-size="10.00">CStringParameter::doSetValue</text>
 </a>

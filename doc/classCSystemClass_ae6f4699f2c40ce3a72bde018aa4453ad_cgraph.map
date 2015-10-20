@@ -1,5 +1,5 @@
 <map id="CSystemClass::cleanSubsystemsNeedToResync" name="CSystemClass::cleanSubsystemsNeedToResync">
 <area shape="rect" id="node2" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="290,5,473,32"/>
-<area shape="rect" id="node3" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="309,56,453,83"/>
+<area shape="rect" id="node3" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="309,56,453,83"/>
 <area shape="rect" id="node4" href="$classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4" title="CSubsystem::needResync" alt="" coords="288,107,475,133"/>
 </map>

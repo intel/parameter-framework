@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -90,28 +90,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">SystemClass.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;dlfcn.h&gt;</code><br />
-<code>#include &lt;dirent.h&gt;</code><br />
-<code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;ctype.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &quot;<a class="el" href="SystemClass_8h_source.html">SystemClass.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="SubsystemLibrary_8h_source.html">SubsystemLibrary.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="AutoLog_8h_source.html">AutoLog.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="VirtualSubsystem_8h_source.html">VirtualSubsystem.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="NamedElementBuilderTemplate_8h_source.html">NamedElementBuilderTemplate.h</a>&quot;</code><br />
-<code>#include &lt;assert.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="LoggingElementBuilderTemplate_8h_source.html">LoggingElementBuilderTemplate.h</a>&quot;</code><br />
+<code>#include &lt;cassert&gt;</code><br />
 <code>#include &quot;<a class="el" href="PluginLocation_8h_source.html">PluginLocation.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="DynamicLibrary_8hpp_source.html">DynamicLibrary.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Utility_8h_source.html">Utility.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Memory_8hpp_source.html">Memory.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for SystemClass.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SystemClass_8cpp__incl.svg" width="1712" height="710"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="SystemClass_8cpp__incl.svg" width="2542" height="784"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -121,23 +118,15 @@ Include dependency graph for SystemClass.cpp:</div>
 Macros</h2></td></tr>
 <tr class="memitem:a6542a2bd356f5c5a12e03135a66e2dae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SystemClass_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>&#160;&#160;&#160;<a class="el" href="classCConfigurableElement.html">CConfigurableElement</a></td></tr>
 <tr class="separator:a6542a2bd356f5c5a12e03135a66e2dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a217b70fa5e99fbdab1686e36d7b15be4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SystemClass_8cpp.html#a217b70fa5e99fbdab1686e36d7b15be4">QUOTE</a>(X)&#160;&#160;&#160;#X</td></tr>
+<tr class="separator:a217b70fa5e99fbdab1686e36d7b15be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77c58b7c2724ab9cda0c0030c1142431"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SystemClass_8cpp.html#a77c58b7c2724ab9cda0c0030c1142431">MACRO_TO_STR</a>(X)&#160;&#160;&#160;<a class="el" href="SystemClass_8cpp.html#a217b70fa5e99fbdab1686e36d7b15be4">QUOTE</a>(X)</td></tr>
+<tr class="separator:a77c58b7c2724ab9cda0c0030c1142431"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ab36f97c97fd65230a02517a2f01d7451"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SystemClass_8cpp.html#ab36f97c97fd65230a02517a2f01d7451">GetSubsystemBuilder</a> )(<a class="el" href="classCSubsystemLibrary.html">CSubsystemLibrary</a> *)</td></tr>
-<tr class="separator:ab36f97c97fd65230a02517a2f01d7451"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a5f1093ea44473f0c8dced221257250e5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SystemClass_8cpp.html#a5f1093ea44473f0c8dced221257250e5">gpcPluginSuffix</a> = &quot;-subsystem&quot;</td></tr>
-<tr class="memdesc:a5f1093ea44473f0c8dced221257250e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A plugin file name is of the form: lib&lt;type&gt;-subsystem.so or lib&lt;type&gt;-subsystem._host.so.  <a href="#a5f1093ea44473f0c8dced221257250e5">More...</a><br /></td></tr>
-<tr class="separator:a5f1093ea44473f0c8dced221257250e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9ba8b1dcaec37df62579fd5f4d0464f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SystemClass_8cpp.html#ac9ba8b1dcaec37df62579fd5f4d0464f">gpcPluginPrefix</a> = &quot;lib&quot;</td></tr>
-<tr class="separator:ac9ba8b1dcaec37df62579fd5f4d0464f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1bbab1ef78d9a1d3b99d5bb25bc376c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SystemClass_8cpp.html#ab1bbab1ef78d9a1d3b99d5bb25bc376c">gpcPluginSymbolPrefix</a> = &quot;get&quot;</td></tr>
-<tr class="separator:ab1bbab1ef78d9a1d3b99d5bb25bc376c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a622dd3e31f31c6b124942b173c82b29a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SystemClass_8cpp.html#a622dd3e31f31c6b124942b173c82b29a">gpcPluginSymbolSuffix</a> = &quot;SubsystemBuilder&quot;</td></tr>
-<tr class="separator:a622dd3e31f31c6b124942b173c82b29a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f03b8db1fe776edb6ba222933d6e0c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SystemClass_8cpp.html#ad9f03b8db1fe776edb6ba222933d6e0c">PluginEntryPointV1</a> = void(*)(<a class="el" href="classCSubsystemLibrary.html">CSubsystemLibrary</a> *, <a class="el" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;)</td></tr>
+<tr class="separator:ad9f03b8db1fe776edb6ba222933d6e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a6542a2bd356f5c5a12e03135a66e2dae"></a>
@@ -150,82 +139,58 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00043">43</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00041">41</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a77c58b7c2724ab9cda0c0030c1142431"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MACRO_TO_STR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="SystemClass_8cpp.html#a217b70fa5e99fbdab1686e36d7b15be4">QUOTE</a>(X)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00047">47</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a217b70fa5e99fbdab1686e36d7b15be4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QUOTE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td>&#160;&#160;&#160;#X</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00046">46</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="ab36f97c97fd65230a02517a2f01d7451"></a>
+<a class="anchor" id="ad9f03b8db1fe776edb6ba222933d6e0c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* GetSubsystemBuilder)(<a class="el" href="classCSubsystemLibrary.html">CSubsystemLibrary</a> *)</td>
+          <td class="memname">using <a class="el" href="SystemClass_8cpp.html#ad9f03b8db1fe776edb6ba222933d6e0c">PluginEntryPointV1</a> =  void (*)(<a class="el" href="classCSubsystemLibrary.html">CSubsystemLibrary</a>*, <a class="el" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a>&amp;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00064">64</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="ac9ba8b1dcaec37df62579fd5f4d0464f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* gpcPluginPrefix = &quot;lib&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00057">57</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5f1093ea44473f0c8dced221257250e5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* gpcPluginSuffix = &quot;-subsystem&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A plugin file name is of the form: lib&lt;type&gt;-subsystem.so or lib&lt;type&gt;-subsystem._host.so. </p>
-<p>The plugin symbol is of the form: get&lt;TYPE&gt;SubsystemBuilder </p>
-
-<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00056">56</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab1bbab1ef78d9a1d3b99d5bb25bc376c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* gpcPluginSymbolPrefix = &quot;get&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00060">60</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a622dd3e31f31c6b124942b173c82b29a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* gpcPluginSymbolSuffix = &quot;SubsystemBuilder&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00061">61</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SystemClass_8cpp_source.html#l00049">49</a> of file <a class="el" href="SystemClass_8cpp_source.html">SystemClass.cpp</a>.</p>
 
 </div>
 </div>

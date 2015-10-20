@@ -1,25 +1,26 @@
 <map id="CXmlFileIncluderElement::fromXml" name="CXmlFileIncluderElement::fromXml">
-<area shape="rect" id="node2" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="1113,431,1307,472"/>
-<area shape="rect" id="node4" href="$classCXmlElementSerializingContext.html#a5b554140f8c2ca7047f6f0f7fa8ef6e3" title="CXmlElementSerializingContext\l::getXmlFolder" alt="" coords="235,46,457,87"/>
-<area shape="rect" id="node5" href="$classCXmlElementSerializingContext.html#a0691a9da062b3950f316853cf9e8e391" title="CXmlElementSerializingContext\l::getXmlSchemaPathFolder" alt="" coords="235,111,457,152"/>
-<area shape="rect" id="node6" href="$classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803" title="Helper method for creating an xml document from either a file or a string. " alt="" coords="524,177,727,204"/>
-<area shape="rect" id="node8" href="$classCXmlDocSource.html#a1e04673df5c2f8da52daac761a39daf5" title="Method that checks that the xml document has been correctly parsed. " alt="" coords="247,228,445,254"/>
-<area shape="rect" id="node9" href="$classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d" title="CXmlSerializingContext\l::setError" alt="" coords="843,352,1013,394"/>
-<area shape="rect" id="node10" href="$classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c" title="Method that returns the root element of the Xml tree. " alt="" coords="508,673,743,700"/>
-<area shape="rect" id="node12" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext\l::getElementLibrary" alt="" coords="235,380,457,422"/>
-<area shape="rect" id="node13" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="232,446,460,473"/>
-<area shape="rect" id="node14" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="269,497,423,524"/>
-<area shape="rect" id="node15" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="273,548,419,574"/>
-<area shape="rect" id="node16" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="263,622,429,649"/>
-<area shape="rect" id="node20" href="$classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91" title="Method to be called to use an xmlDocSource. " alt="" coords="263,278,429,305"/>
-<area shape="rect" id="node24" href="$classCElement.html#a4aec98bde47367325cf332a5dc471eb9" title="CElement::removeChild" alt="" coords="260,724,432,750"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="1355,474,1549,501"/>
-<area shape="rect" id="node7" href="$classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7" title="CXmlSerializingContext\l::appendLineToError" alt="" coords="843,170,1013,211"/>
-<area shape="rect" id="node11" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="821,648,1035,674"/>
-<area shape="rect" id="node17" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="543,572,708,598"/>
-<area shape="rect" id="node18" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="509,444,741,470"/>
-<area shape="rect" id="node19" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="510,622,741,649"/>
-<area shape="rect" id="node21" href="$classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565" title="Method called by the CXmlDocSink::process method. " alt="" coords="531,278,720,305"/>
-<area shape="rect" id="node22" href="$classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81" title="Getter method. " alt="" coords="791,236,1065,262"/>
-<area shape="rect" id="node23" href="$classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933" title="Getter method. " alt="" coords="811,287,1045,328"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="1113,197,1307,224"/>
+<area shape="rect" id="node3" href="$classCXmlDocSource.html#a5b4b82f588740b673d3c1127b77326d0" title="Helper method to build final URI from base and relative uri/path. " alt="" coords="261,396,431,422"/>
+<area shape="rect" id="node4" href="$classCXmlElementSerializingContext.html#a257b1df29ae5417c3a0dab5a0b3feb5e" title="CXmlElementSerializingContext\l::getXmlUri" alt="" coords="235,447,457,488"/>
+<area shape="rect" id="node5" href="$classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803" title="Helper method for creating an xml document from either a file or a string. " alt="" coords="524,220,727,246"/>
+<area shape="rect" id="node8" href="$classCXmlDocSource.html#a1e04673df5c2f8da52daac761a39daf5" title="Method that checks that the xml document has been correctly parsed. " alt="" coords="247,513,445,540"/>
+<area shape="rect" id="node9" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="856,72,1000,114"/>
+<area shape="rect" id="node10" href="$classCXmlDocSource.html#a2a7e3d4b2568b41e56b6f553eba7b93c" title="Method that returns the root element of the Xml tree. " alt="" coords="508,270,743,297"/>
+<area shape="rect" id="node12" href="$classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9" title="CXmlElementSerializingContext\l::getElementLibrary" alt="" coords="235,564,457,606"/>
+<area shape="rect" id="node13" href="$classCElementLibrary.html#a5ad95964216e50fc59f0c803370fb4de" title="CElementLibrary::createElement" alt="" coords="232,630,460,657"/>
+<area shape="rect" id="node14" href="$classCElement.html#a7987056bec3cbc71bed07cc88b060cf0" title="CElement::getParent" alt="" coords="269,681,423,708"/>
+<area shape="rect" id="node15" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="273,732,419,758"/>
+<area shape="rect" id="node16" href="$classCXmlElement.html#ac47c56a3cad8ac7d1fe7579e833227c5" title="CXmlElement::getPath" alt="" coords="263,345,429,372"/>
+<area shape="rect" id="node21" href="$classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91" title="Method to be called to use an xmlDocSource. " alt="" coords="263,169,429,196"/>
+<area shape="rect" id="node25" href="$classCElement.html#a4aec98bde47367325cf332a5dc471eb9" title="CElement::removeChild" alt="" coords="260,782,432,809"/>
+<area shape="rect" id="node6" href="$classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7" title="CXmlSerializingContext\l::appendLineToError" alt="" coords="843,255,1013,296"/>
+<area shape="rect" id="node7" href="$classutility_1_1ErrorContext.html#aafe9cd30a03303cf376926d9c4e9dd02" title="utility::ErrorContext\l::appendToError" alt="" coords="1138,255,1282,296"/>
+<area shape="rect" id="node11" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="821,321,1035,348"/>
+<area shape="rect" id="node17" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="543,422,708,449"/>
+<area shape="rect" id="node18" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="528,473,723,500"/>
+<area shape="rect" id="node19" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="509,372,741,398"/>
+<area shape="rect" id="node20" href="$classCXmlElement.html#a28a62e123c5042524a20eda9cc425d5f" title="CXmlElement::getParentElement" alt="" coords="510,321,741,348"/>
+<area shape="rect" id="node22" href="$classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565" title="Method called by the CXmlDocSink::process method. " alt="" coords="531,169,720,196"/>
+<area shape="rect" id="node23" href="$classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81" title="Getter method. " alt="" coords="791,138,1065,165"/>
+<area shape="rect" id="node24" href="$classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933" title="Getter method. " alt="" coords="811,190,1045,231"/>
 </map>

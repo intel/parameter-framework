@@ -1,8 +1,0 @@
-<map id="CElement::log_table" name="CElement::log_table">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#aad4830a40d67cfae091cbf1a15ff29d0" title="Load plugins, structures and settings from the config file given. " alt="" coords="239,45,397,71"/>
-<area shape="rect" id="node7" href="$classCSystemClass.html#a3264a476e689e33f8c30c6596e3f0d16" title="Load subsystem plugin and fill the corresponding libraries. " alt="" coords="204,95,432,122"/>
-<area shape="rect" id="node3" href="$classCParameterMgrFullConnector.html#a60cb4e00e70c6a7b700e464d0de084ff" title="CParameterMgrFullConnector\l::start" alt="" coords="497,5,705,47"/>
-<area shape="rect" id="node4" href="$classCParameterMgrPlatformConnector.html#a04060080b3be8780e4a7d0211fd95da7" title="CParameterMgrPlatformConnector\l::start" alt="" coords="480,71,723,112"/>
-<area shape="rect" id="node5" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="771,78,845,105"/>
-<area shape="rect" id="node6" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="893,78,1052,105"/>
-</map>

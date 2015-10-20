@@ -1,21 +1,17 @@
 <map id="CParameterMgrFullConnector::split" name="CParameterMgrFullConnector::split">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="261,173,417,200"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="261,228,417,255"/>
 <area shape="rect" id="node3" href="$classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36" title="CElementLocator::locate" alt="" coords="465,119,644,145"/>
-<area shape="rect" id="node9" href="$classCConfigurableDomains.html#ae01182802f0ce424d239ea19f9365330" title="CConfigurableDomains\l::split" alt="" coords="471,221,639,262"/>
+<area shape="rect" id="node9" href="$classCConfigurableDomains.html#a52fc8d5da4bfcae5a67017a42a327c2a" title="Split a domain in two. " alt="" coords="471,221,639,262"/>
+<area shape="rect" id="node16" href="$namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="497,287,613,313"/>
 <area shape="rect" id="node4" href="$classCPathNavigator.html#ac63504ec6203e15a9ca4a15e9775bfe8" title="CPathNavigator::isPathValid" alt="" coords="692,119,889,145"/>
 <area shape="rect" id="node5" href="$classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589" title="CPathNavigator::next" alt="" coords="942,5,1099,32"/>
-<area shape="rect" id="node6" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="945,169,1097,196"/>
+<area shape="rect" id="node6" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="945,168,1097,195"/>
 <area shape="rect" id="node7" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="695,68,887,95"/>
-<area shape="rect" id="node8" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="947,93,1094,120"/>
+<area shape="rect" id="node8" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="947,92,1094,119"/>
 <area shape="rect" id="node10" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="699,221,882,262"/>
-<area shape="rect" id="node11" href="$classCConfigurableDomain.html#aea88fe7f6e3f02217f5d9f0e2e820da2" title="CConfigurableDomain\l::split" alt="" coords="710,286,871,327"/>
-<area shape="rect" id="node12" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="950,463,1091,489"/>
-<area shape="rect" id="node13" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="950,220,1091,247"/>
-<area shape="rect" id="node14" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="1152,271,1335,297"/>
-<area shape="rect" id="node15" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="1171,388,1315,415"/>
-<area shape="rect" id="node16" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration\l::split" alt="" coords="937,322,1104,363"/>
-<area shape="rect" id="node17" href="$classCAreaConfiguration.html#aa66ebde5e339fbea35c7a5f46403c770" title="CAreaConfiguration\l::copyFromOuter" alt="" coords="1170,322,1317,363"/>
-<area shape="rect" id="node18" href="$classCElement.html#a7653fbad5491138533ac0fa889ffecd9" title="CElement::isDescendantOf" alt="" coords="1383,271,1576,297"/>
-<area shape="rect" id="node19" href="$classCAreaConfiguration.html#a1f85dedf12591c3f43830a00e5c352df" title="CAreaConfiguration\l::getConfigurableElement" alt="" coords="1387,322,1571,363"/>
-<area shape="rect" id="node20" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="1397,387,1561,429"/>
+<area shape="rect" id="node11" href="$classCConfigurableDomain.html#ad08b2c56e7c842f9288625d35cb66736" title="Split the domain in two. " alt="" coords="710,286,871,327"/>
+<area shape="rect" id="node12" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="950,293,1091,320"/>
+<area shape="rect" id="node13" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="1152,325,1335,352"/>
+<area shape="rect" id="node14" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="1171,380,1315,407"/>
+<area shape="rect" id="node15" href="$classCDomainConfiguration.html#acd4e91173fa488a4b4d31be157067eae" title="CDomainConfiguration\l::split" alt="" coords="937,345,1104,386"/>
 </map>

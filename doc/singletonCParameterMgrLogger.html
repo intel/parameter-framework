@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -98,7 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CParameterMgrLogger&lt; T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="singletonCParameterMgrLogger__inherit__graph.svg" width="1015" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="singletonCParameterMgrLogger__inherit__graph.svg" width="986" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -106,14 +106,16 @@ Inheritance diagram for CParameterMgrLogger&lt; T &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae8d08a1e71a9d7556f0697cefd9040d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="singletonCParameterMgrLogger.html#ae8d08a1e71a9d7556f0697cefd9040d1">CParameterMgrLogger</a> (T &amp;parameterMgrConnector)</td></tr>
 <tr class="separator:ae8d08a1e71a9d7556f0697cefd9040d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67f40a7fa782eb5302e4329c76b576f8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="singletonCParameterMgrLogger.html#a67f40a7fa782eb5302e4329c76b576f8">log</a> (bool bIsWarning, const std::string &amp;strLog)</td></tr>
-<tr class="separator:a67f40a7fa782eb5302e4329c76b576f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68dff8499e2a4994aded4217268ff358"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="singletonCParameterMgrLogger.html#a68dff8499e2a4994aded4217268ff358">info</a> (const std::string &amp;log)</td></tr>
+<tr class="separator:a68dff8499e2a4994aded4217268ff358"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff519c9d4d89c0ac04c7da32562cc167"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="singletonCParameterMgrLogger.html#aff519c9d4d89c0ac04c7da32562cc167">warning</a> (const std::string &amp;log)</td></tr>
+<tr class="separator:aff519c9d4d89c0ac04c7da32562cc167"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_classCParameterMgr_1_1ILogger"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameterMgr_1_1ILogger')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classCParameterMgr_1_1ILogger.html">CParameterMgr::ILogger</a></td></tr>
-<tr class="memitem:a215b689963dc29f50883fa82a03b4a82 inherit pro_methods_classCParameterMgr_1_1ILogger"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgr_1_1ILogger.html#a215b689963dc29f50883fa82a03b4a82">~ILogger</a> ()</td></tr>
-<tr class="separator:a215b689963dc29f50883fa82a03b4a82 inherit pro_methods_classCParameterMgr_1_1ILogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classcore_1_1log_1_1ILogger"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classcore_1_1log_1_1ILogger')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classcore_1_1log_1_1ILogger.html">core::log::ILogger</a></td></tr>
+<tr class="memitem:a4299d8a6d6d2c1ad89201f0512e2cca5 inherit pro_methods_classcore_1_1log_1_1ILogger"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1log_1_1ILogger.html#a4299d8a6d6d2c1ad89201f0512e2cca5">~ILogger</a> ()</td></tr>
+<tr class="separator:a4299d8a6d6d2c1ad89201f0512e2cca5 inherit pro_methods_classcore_1_1log_1_1ILogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class T&gt;<br />
@@ -146,12 +148,12 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrLogger_8h_source.html#l00043">43</a> of file <a class="el" href="ParameterMgrLogger_8h_source.html">ParameterMgrLogger.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrLogger_8h_source.html#l00044">44</a> of file <a class="el" href="ParameterMgrLogger_8h_source.html">ParameterMgrLogger.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a67f40a7fa782eb5302e4329c76b576f8"></a>
+<a class="anchor" id="a68dff8499e2a4994aded4217268ff358"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -161,21 +163,11 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void <a class="el" href="singletonCParameterMgrLogger.html">CParameterMgrLogger</a>&lt; T &gt;::log </td>
+          <td class="memname">virtual void <a class="el" href="singletonCParameterMgrLogger.html">CParameterMgrLogger</a>&lt; T &gt;::info </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bIsWarning</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strLog</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>log</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -185,9 +177,39 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classCParameterMgr_1_1ILogger.html#ab4386b07cd25d451ecc0c0be497d693a">CParameterMgr::ILogger</a>.</p>
+<p>Implements <a class="el" href="classcore_1_1log_1_1ILogger.html#a2a9a4a7636b8ea9b3017cad7a2ef913e">core::log::ILogger</a>.</p>
 
-<p>Definition at line <a class="el" href="ParameterMgrLogger_8h_source.html#l00048">48</a> of file <a class="el" href="ParameterMgrLogger_8h_source.html">ParameterMgrLogger.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrLogger_8h_source.html#l00049">49</a> of file <a class="el" href="ParameterMgrLogger_8h_source.html">ParameterMgrLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aff519c9d4d89c0ac04c7da32562cc167"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="singletonCParameterMgrLogger.html">CParameterMgrLogger</a>&lt; T &gt;::warning </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcore_1_1log_1_1ILogger.html#afb6f6c2d8561e5c1029cad8deb2d0817">core::log::ILogger</a>.</p>
+
+<p>Definition at line <a class="el" href="ParameterMgrLogger_8h_source.html#l00054">54</a> of file <a class="el" href="ParameterMgrLogger_8h_source.html">ParameterMgrLogger.h</a>.</p>
 
 </div>
 </div>

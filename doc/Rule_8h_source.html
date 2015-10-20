@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -137,7 +137,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCRule.html#acd02ec12cbb1ab6e92d219cd77b7b5cc">parse</a>(<a class="code" href="classCRuleParser.html">CRuleParser</a>&amp; ruleParser, std::string&amp; strError) = 0;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Dump</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCRule.html#aa4a929f43c17c8b7b1992062f019f530">dump</a>(std::string&amp; strResult) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCRule.html#a1f1682adc8db3c266f6c79bde39b12cd">dump</a>() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// Rule check</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCRule.html#aaeeed8a6ca4a3e87ee75282df22fa01a">matches</a>() <span class="keyword">const</span> = 0;</div>
@@ -145,9 +145,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classCRule_html"><div class="ttname"><a href="classCRule.html">CRule</a></div><div class="ttdef"><b>Definition:</b> <a href="Rule_8h_source.html#l00038">Rule.h:38</a></div></div>
 <div class="ttc" id="classCRule_html_aaeeed8a6ca4a3e87ee75282df22fa01a"><div class="ttname"><a href="classCRule.html#aaeeed8a6ca4a3e87ee75282df22fa01a">CRule::matches</a></div><div class="ttdeci">virtual bool matches() const =0</div></div>
 <div class="ttc" id="classCRuleParser_html"><div class="ttname"><a href="classCRuleParser.html">CRuleParser</a></div><div class="ttdef"><b>Definition:</b> <a href="RuleParser_8h_source.html#l00038">RuleParser.h:38</a></div></div>
-<div class="ttc" id="classCRule_html_aa4a929f43c17c8b7b1992062f019f530"><div class="ttname"><a href="classCRule.html#aa4a929f43c17c8b7b1992062f019f530">CRule::dump</a></div><div class="ttdeci">virtual void dump(std::string &amp;strResult) const =0</div></div>
 <div class="ttc" id="Element_8h_html"><div class="ttname"><a href="Element_8h.html">Element.h</a></div></div>
-<div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00044">Element.h:44</a></div></div>
+<div class="ttc" id="classCRule_html_a1f1682adc8db3c266f6c79bde39b12cd"><div class="ttname"><a href="classCRule.html#a1f1682adc8db3c266f6c79bde39b12cd">CRule::dump</a></div><div class="ttdeci">virtual std::string dump() const =0</div></div>
+<div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00047">Element.h:47</a></div></div>
 <div class="ttc" id="classCRule_html_acd02ec12cbb1ab6e92d219cd77b7b5cc"><div class="ttname"><a href="classCRule.html#acd02ec12cbb1ab6e92d219cd77b7b5cc">CRule::parse</a></div><div class="ttdeci">virtual bool parse(CRuleParser &amp;ruleParser, std::string &amp;strError)=0</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

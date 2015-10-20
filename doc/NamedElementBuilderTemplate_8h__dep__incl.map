@@ -1,6 +1,3 @@
 <map id="parameter/NamedElementBuilderTemplate.h" name="parameter/NamedElementBuilderTemplate.h">
-<area shape="rect" id="node2" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="240,95,459,121"/>
-<area shape="rect" id="node3" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="5,177,216,203"/>
-<area shape="rect" id="node5" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="483,177,687,203"/>
-<area shape="rect" id="node4" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="240,169,459,211"/>
+<area shape="rect" id="node2" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="19,95,230,121"/>
 </map>

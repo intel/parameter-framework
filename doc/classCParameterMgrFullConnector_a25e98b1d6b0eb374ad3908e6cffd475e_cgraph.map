@@ -1,7 +1,3 @@
 <map id="CParameterMgrFullConnector::createDomain" name="CParameterMgrFullConnector::createDomain">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#af7d24a3ef2e52fb2aee19e303092d696" title="CParameterMgr::createDomain" alt="" coords="261,56,483,83"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a879368ed109dc1a906205f8324d05d81" title="Domains. " alt="" coords="531,49,699,90"/>
-<area shape="rect" id="node4" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="747,5,893,32"/>
-<area shape="rect" id="node5" href="$classCElement.html#a1dee87366d307b43bf8851dd2614c160" title="CElement::log_info" alt="" coords="749,56,891,83"/>
-<area shape="rect" id="node6" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="747,107,893,133"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#af7d24a3ef2e52fb2aee19e303092d696" title="CParameterMgr::createDomain" alt="" coords="261,13,483,39"/>
 </map>

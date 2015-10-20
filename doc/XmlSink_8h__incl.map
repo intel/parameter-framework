@@ -1,4 +1,6 @@
 <map id="xmlserializer/XmlSink.h" name="xmlserializer/XmlSink.h">
-<area shape="rect" id="node2" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="5,80,116,107"/>
-<area shape="rect" id="node5" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="141,80,314,107"/>
+<area shape="rect" id="node2" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="15,80,125,107"/>
+<area shape="rect" id="node5" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="150,80,323,107"/>
+<area shape="rect" id="node6" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="202,155,333,181"/>
+<area shape="rect" id="node7" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="209,229,344,256"/>
 </map>

@@ -29,6 +29,7 @@ var searchData=
   ['parametertype_2eh',['ParameterType.h',['../ParameterType_8h.html',1,'']]],
   ['pathnavigator_2ecpp',['PathNavigator.cpp',['../PathNavigator_8cpp.html',1,'']]],
   ['pathnavigator_2eh',['PathNavigator.h',['../PathNavigator_8h.html',1,'']]],
+  ['plugin_2eh',['Plugin.h',['../Plugin_8h.html',1,'']]],
   ['pluginlocation_2ecpp',['PluginLocation.cpp',['../PluginLocation_8cpp.html',1,'']]],
   ['pluginlocation_2eh',['PluginLocation.h',['../PluginLocation_8h.html',1,'']]]
 ];

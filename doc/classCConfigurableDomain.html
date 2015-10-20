@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -99,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CConfigurableDomain:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain__inherit__graph.svg" width="212" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain__inherit__graph.svg" width="206" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -121,8 +121,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5029ae23af30ac7b4f5ba526ac50508f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a647386b073c9dd776f9cd9dcb24088a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#a647386b073c9dd776f9cd9dcb24088a7">renameConfiguration</a> (const std::string &amp;strName, const std::string &amp;strNewName, std::string &amp;strError)</td></tr>
 <tr class="separator:a647386b073c9dd776f9cd9dcb24088a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9e776e80956f8cc956b77213aae96ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#aa9e776e80956f8cc956b77213aae96ec">restoreConfiguration</a> (const std::string &amp;strName, <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pMainBlackboard, bool bAutoSync, std::list&lt; std::string &gt; &amp;strError) const </td></tr>
-<tr class="separator:aa9e776e80956f8cc956b77213aae96ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa07e34aa3fabe688ae8034ff0578c1c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#aa07e34aa3fabe688ae8034ff0578c1c7">restoreConfiguration</a> (const std::string &amp;configurationName, <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *mainBlackboard, bool autoSync, <a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;errors) const </td></tr>
+<tr class="memdesc:aa07e34aa3fabe688ae8034ff0578c1c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore a configuration.  <a href="#aa07e34aa3fabe688ae8034ff0578c1c7">More...</a><br /></td></tr>
+<tr class="separator:aa07e34aa3fabe688ae8034ff0578c1c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7656ea4134ae47e8a19e1565c16323f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#a7656ea4134ae47e8a19e1565c16323f0">saveConfiguration</a> (const std::string &amp;strName, const <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pMainBlackboard, std::string &amp;strError)</td></tr>
 <tr class="separator:a7656ea4134ae47e8a19e1565c16323f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1778bfe42d19352dac62ae88f907b6d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#a1778bfe42d19352dac62ae88f907b6d2">setElementSequence</a> (const std::string &amp;strConfiguration, const std::vector&lt; std::string &gt; &amp;astrNewElementSequence, std::string &amp;strError)</td></tr>
@@ -143,19 +144,22 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9241f07c1b008585b835b85de8a4cf19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9a458a6d15b8d7269bef13ffde421eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#ad9a458a6d15b8d7269bef13ffde421eb">listAssociatedToElements</a> (std::string &amp;strResult) const </td></tr>
 <tr class="separator:ad9a458a6d15b8d7269bef13ffde421eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac200b397f14de19463146c5f75d57020"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#ac200b397f14de19463146c5f75d57020">addConfigurableElement</a> (<a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement, const <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pMainBlackboard, std::string &amp;strError)</td></tr>
-<tr class="separator:ac200b397f14de19463146c5f75d57020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab671c7341528cf914119ba8fb3662090"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#ab671c7341528cf914119ba8fb3662090">addConfigurableElement</a> (<a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement, const <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pMainBlackboard, <a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;infos)</td></tr>
+<tr class="memdesc:ab671c7341528cf914119ba8fb3662090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a configurable element to the domain.  <a href="#ab671c7341528cf914119ba8fb3662090">More...</a><br /></td></tr>
+<tr class="separator:ab671c7341528cf914119ba8fb3662090"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf2423f10f9c85b255fb9bade2664801"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#acf2423f10f9c85b255fb9bade2664801">removeConfigurableElement</a> (<a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement, std::string &amp;strError)</td></tr>
 <tr class="separator:acf2423f10f9c85b255fb9bade2664801"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fec7c3bd4cf280eb64db3803d226836"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#a0fec7c3bd4cf280eb64db3803d226836">findConfigurationBlackboard</a> (const std::string &amp;strConfiguration, const <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement, uint32_t &amp;uiBaseOffset, bool &amp;bIsLastApplied, std::string &amp;strError) const </td></tr>
-<tr class="memdesc:a0fec7c3bd4cf280eb64db3803d226836"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blackboard Configuration and Base Offset retrieval.  <a href="#a0fec7c3bd4cf280eb64db3803d226836">More...</a><br /></td></tr>
-<tr class="separator:a0fec7c3bd4cf280eb64db3803d226836"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea88fe7f6e3f02217f5d9f0e2e820da2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#aea88fe7f6e3f02217f5d9f0e2e820da2">split</a> (<a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement, std::string &amp;strError)</td></tr>
-<tr class="separator:aea88fe7f6e3f02217f5d9f0e2e820da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0b138482d5cd4d42e14c9de882a16c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#aec0b138482d5cd4d42e14c9de882a16c">findConfigurationBlackboard</a> (const std::string &amp;strConfiguration, const <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement, size_t &amp;baseOffset, bool &amp;bIsLastApplied, std::string &amp;strError) const </td></tr>
+<tr class="memdesc:aec0b138482d5cd4d42e14c9de882a16c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blackboard Configuration and Base Offset retrieval.  <a href="#aec0b138482d5cd4d42e14c9de882a16c">More...</a><br /></td></tr>
+<tr class="separator:aec0b138482d5cd4d42e14c9de882a16c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad08b2c56e7c842f9288625d35cb66736"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#ad08b2c56e7c842f9288625d35cb66736">split</a> (<a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement, <a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;infos)</td></tr>
+<tr class="memdesc:ad08b2c56e7c842f9288625d35cb66736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split the domain in two.  <a href="#ad08b2c56e7c842f9288625d35cb66736">More...</a><br /></td></tr>
+<tr class="separator:ad08b2c56e7c842f9288625d35cb66736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2df6f85b21fa2ccbecc4a1c6d01ae2ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed">validate</a> (const <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pMainBlackboard)</td></tr>
 <tr class="separator:a2df6f85b21fa2ccbecc4a1c6d01ae2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a928805e163719f902c207c061ab3b1c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#a928805e163719f902c207c061ab3b1c2">apply</a> (<a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard, <a class="el" href="classCSyncerSet.html">CSyncerSet</a> *pSyncerSet, bool bForced) const </td></tr>
-<tr class="separator:a928805e163719f902c207c061ab3b1c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae72e3fb09dc016cc7ad903ca93b576"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#acae72e3fb09dc016cc7ad903ca93b576">apply</a> (<a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard, <a class="el" href="classCSyncerSet.html">CSyncerSet</a> *pSyncerSet, bool bForced, std::string &amp;info) const </td></tr>
+<tr class="memdesc:acae72e3fb09dc016cc7ad903ca93b576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the configuration if required.  <a href="#acae72e3fb09dc016cc7ad903ca93b576">More...</a><br /></td></tr>
+<tr class="separator:acae72e3fb09dc016cc7ad903ca93b576"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace240c416bae0554c2168c1b6e5d0d79"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#ace240c416bae0554c2168c1b6e5d0d79">isApplicableConfigurationValid</a> (const <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement) const </td></tr>
 <tr class="separator:ace240c416bae0554c2168c1b6e5d0d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1fdeb04cae19531f2588e0419b53b84"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#aa1fdeb04cae19531f2588e0419b53b84">fromXml</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext)</td></tr>
@@ -167,24 +171,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa0778bc5844d03b115e15185d173ab66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad380470c00477887efc5569ea87a3e4"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#aad380470c00477887efc5569ea87a3e4">getKind</a> () const </td></tr>
 <tr class="separator:aad380470c00477887efc5569ea87a3e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classCBinarySerializableElement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCBinarySerializableElement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCBinarySerializableElement.html">CBinarySerializableElement</a></td></tr>
-<tr class="memitem:a68a3f63bbdb0610f869f6507e4a4e580 inherit pub_methods_classCBinarySerializableElement"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBinarySerializableElement.html#a68a3f63bbdb0610f869f6507e4a4e580">CBinarySerializableElement</a> (const std::string &amp;strName=&quot;&quot;)</td></tr>
-<tr class="separator:a68a3f63bbdb0610f869f6507e4a4e580 inherit pub_methods_classCBinarySerializableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b023138703ff0807ae1a25724f1f7d4 inherit pub_methods_classCBinarySerializableElement"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBinarySerializableElement.html#a1b023138703ff0807ae1a25724f1f7d4">binarySerialize</a> (<a class="el" href="classCBinaryStream.html">CBinaryStream</a> &amp;binaryStream)</td></tr>
-<tr class="separator:a1b023138703ff0807ae1a25724f1f7d4 inherit pub_methods_classCBinarySerializableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a5d4ca3376f59642f4143629c7cd565 inherit pub_methods_classCBinarySerializableElement"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCBinarySerializableElement.html#a1a5d4ca3376f59642f4143629c7cd565">getDataSize</a> () const </td></tr>
-<tr class="separator:a1a5d4ca3376f59642f4143629c7cd565 inherit pub_methods_classCBinarySerializableElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCElement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCElement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCElement.html">CElement</a></td></tr>
 <tr class="memitem:adda0945fbca000ff1e605a9b93f74c64 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#adda0945fbca000ff1e605a9b93f74c64">CElement</a> (const std::string &amp;strName=&quot;&quot;)</td></tr>
 <tr class="separator:adda0945fbca000ff1e605a9b93f74c64 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae09302d1fbbe377cdcb7c5ceb2fb46a6 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ae09302d1fbbe377cdcb7c5ceb2fb46a6">~CElement</a> ()</td></tr>
 <tr class="separator:ae09302d1fbbe377cdcb7c5ceb2fb46a6 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dee87366d307b43bf8851dd2614c160 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a1dee87366d307b43bf8851dd2614c160">log_info</a> (const char *strMessage,...) const </td></tr>
-<tr class="separator:a1dee87366d307b43bf8851dd2614c160 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a100f81e35b4815020cc617e735702e61 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a100f81e35b4815020cc617e735702e61">log_warning</a> (const char *strMessage,...) const </td></tr>
-<tr class="separator:a100f81e35b4815020cc617e735702e61 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fadaf69d17a61c431422ed6d8a1f8f0 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a6fadaf69d17a61c431422ed6d8a1f8f0">log_table</a> (bool bIsWarning, const std::list&lt; std::string &gt; lstrMessage) const </td></tr>
-<tr class="separator:a6fadaf69d17a61c431422ed6d8a1f8f0 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5fa8c7e838a44733f3887f1bec20d7b inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ac5fa8c7e838a44733f3887f1bec20d7b">setDescription</a> (const std::string &amp;strDescription)</td></tr>
 <tr class="separator:ac5fa8c7e838a44733f3887f1bec20d7b inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c3c6e07b015c44706edf4bb8fc41c2 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2">getDescription</a> () const </td></tr>
@@ -209,8 +200,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4aec98bde47367325cf332a5dc471eb9 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5b93310000754358a178340f6269d51 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af5b93310000754358a178340f6269d51">listChildren</a> (std::string &amp;strChildList) const </td></tr>
 <tr class="separator:af5b93310000754358a178340f6269d51 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a740c0b65f45d681c3d87196d72dd578c inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a740c0b65f45d681c3d87196d72dd578c">listQualifiedPaths</a> (bool bDive, uint32_t uiLevel=0) const </td></tr>
-<tr class="separator:a740c0b65f45d681c3d87196d72dd578c inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a442be4dd4096eafb92adff5a41b70636 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a442be4dd4096eafb92adff5a41b70636">listQualifiedPaths</a> (bool bDive, size_t level=0) const </td></tr>
+<tr class="separator:a442be4dd4096eafb92adff5a41b70636 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1565e8418977482b9b054a93980c2242 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a1565e8418977482b9b054a93980c2242">listChildrenPaths</a> (std::string &amp;strChildPathList) const </td></tr>
 <tr class="separator:a1565e8418977482b9b054a93980c2242 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58b6cdb5715497442fde6afa1e65f8e5 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5">getNbChildren</a> () const </td></tr>
@@ -221,12 +212,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a101c372da4b36fee4ee86a8c100a566f inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7987056bec3cbc71bed07cc88b060cf0 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a7987056bec3cbc71bed07cc88b060cf0">getParent</a> () const </td></tr>
 <tr class="separator:a7987056bec3cbc71bed07cc88b060cf0 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bba10d2dc72821589a898e16ace9ae5 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a9bba10d2dc72821589a898e16ace9ae5">getChild</a> (size_t uiIndex) const </td></tr>
-<tr class="memdesc:a9bba10d2dc72821589a898e16ace9ae5 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element (const)  <a href="#a9bba10d2dc72821589a898e16ace9ae5">More...</a><br /></td></tr>
-<tr class="separator:a9bba10d2dc72821589a898e16ace9ae5 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6418ed9235953d267034dca545c90add inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a6418ed9235953d267034dca545c90add">getChild</a> (size_t uiIndex)</td></tr>
-<tr class="memdesc:a6418ed9235953d267034dca545c90add inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element.  <a href="#a6418ed9235953d267034dca545c90add">More...</a><br /></td></tr>
-<tr class="separator:a6418ed9235953d267034dca545c90add inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee0d626525e9cd24d7639b6365afdc16 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16">getChild</a> (size_t index) const </td></tr>
+<tr class="memdesc:aee0d626525e9cd24d7639b6365afdc16 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element (const)  <a href="#aee0d626525e9cd24d7639b6365afdc16">More...</a><br /></td></tr>
+<tr class="separator:aee0d626525e9cd24d7639b6365afdc16 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3183c1133046724e4ca83a30ace2ec9 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ab3183c1133046724e4ca83a30ace2ec9">getChild</a> (size_t index)</td></tr>
+<tr class="memdesc:ab3183c1133046724e4ca83a30ace2ec9 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element.  <a href="#ab3183c1133046724e4ca83a30ace2ec9">More...</a><br /></td></tr>
+<tr class="separator:ab3183c1133046724e4ca83a30ace2ec9 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8595814a3159f32f874269907e70b260 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a8595814a3159f32f874269907e70b260">findChild</a> (const std::string &amp;strName) const </td></tr>
 <tr class="separator:a8595814a3159f32f874269907e70b260 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af51bbf231ec74ff4d4b7fac9588be603 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af51bbf231ec74ff4d4b7fac9588be603">findChild</a> (const std::string &amp;strName)</td></tr>
@@ -237,26 +228,21 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae0fcf9bbc9468a4372a9383299057e7a inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7653fbad5491138533ac0fa889ffecd9 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a7653fbad5491138533ac0fa889ffecd9">isDescendantOf</a> (const <a class="el" href="classCElement.html">CElement</a> *pCandidateAscendant) const </td></tr>
 <tr class="separator:a7653fbad5491138533ac0fa889ffecd9 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49563131c5e78cc693b5c7e9b08dc787 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a49563131c5e78cc693b5c7e9b08dc787">dumpContent</a> (std::string &amp;strContent, <a class="el" href="classCErrorContext.html">CErrorContext</a> &amp;errorContext, const uint32_t uiDepth=0) const </td></tr>
-<tr class="separator:a49563131c5e78cc693b5c7e9b08dc787 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8155fa6281cb35f6794819132c091a6 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af8155fa6281cb35f6794819132c091a6">dumpContent</a> (<a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;errorContext, const size_t depth=0) const </td></tr>
+<tr class="separator:af8155fa6281cb35f6794819132c091a6 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c87fea54766f49f45346713d9d09880 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a8c87fea54766f49f45346713d9d09880">showProperties</a> (std::string &amp;strResult) const </td></tr>
 <tr class="separator:a8c87fea54766f49f45346713d9d09880 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af07c1b866509eb33bd8019d6ff8fef21 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af07c1b866509eb33bd8019d6ff8fef21">computeStructureChecksum</a> () const </td></tr>
-<tr class="separator:af07c1b866509eb33bd8019d6ff8fef21 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a581660a35394ecc99fe7128f9548c3d0 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a581660a35394ecc99fe7128f9548c3d0">setXmlDescriptionAttribute</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) const </td></tr>
 <tr class="memdesc:a581660a35394ecc99fe7128f9548c3d0 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the Description field of the Xml Element during XML composing.  <a href="#a581660a35394ecc99fe7128f9548c3d0">More...</a><br /></td></tr>
 <tr class="separator:a581660a35394ecc99fe7128f9548c3d0 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40a0b69c1b556a06406e022dc7d7a7eb inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a40a0b69c1b556a06406e022dc7d7a7eb">getXmlDescriptionAttribute</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) const </td></tr>
-<tr class="memdesc:a40a0b69c1b556a06406e022dc7d7a7eb inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the Description field from the Xml Element during XML decomposing.  <a href="#a40a0b69c1b556a06406e022dc7d7a7eb">More...</a><br /></td></tr>
-<tr class="separator:a40a0b69c1b556a06406e022dc7d7a7eb inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afce045b488b7c243f52a30269dae8f62 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#afce045b488b7c243f52a30269dae8f62">showDescriptionProperty</a> (std::string &amp;strResult) const </td></tr>
 <tr class="memdesc:afce045b488b7c243f52a30269dae8f62 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends if found human readable description property.  <a href="#afce045b488b7c243f52a30269dae8f62">More...</a><br /></td></tr>
 <tr class="separator:afce045b488b7c243f52a30269dae8f62 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a2dc205bb6f6e6f868c58fcf89ea6eec5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#a2dc205bb6f6e6f868c58fcf89ea6eec5">logValue</a> (std::string &amp;strValue, <a class="el" href="classCErrorContext.html">CErrorContext</a> &amp;errorContext) const </td></tr>
-<tr class="separator:a2dc205bb6f6e6f868c58fcf89ea6eec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08ed7a4fddf5820d0ed1033e5fa7876f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurableDomain.html#a08ed7a4fddf5820d0ed1033e5fa7876f">logValue</a> (<a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;errorContext) const override</td></tr>
+<tr class="separator:a08ed7a4fddf5820d0ed1033e5fa7876f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classCElement"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCElement')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classCElement.html">CElement</a></td></tr>
 <tr class="memitem:a13abc3b20f79fef64b2374e38162db0d inherit pro_methods_classCElement"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a13abc3b20f79fef64b2374e38162db0d">getParent</a> ()</td></tr>
 <tr class="separator:a13abc3b20f79fef64b2374e38162db0d inherit pro_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,10 +255,16 @@ Protected Member Functions</h2></td></tr>
 <tr class="inherit_header pro_methods_classIXmlSource"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classIXmlSource')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classIXmlSource.html">IXmlSource</a></td></tr>
 <tr class="memitem:a6fc28cbfa9688c17668d4db7bc208569 inherit pro_methods_classIXmlSource"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIXmlSource.html#a6fc28cbfa9688c17668d4db7bc208569">~IXmlSource</a> ()</td></tr>
 <tr class="separator:a6fc28cbfa9688c17668d4db7bc208569 inherit pro_methods_classIXmlSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_static_attribs_classCElement"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classCElement')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classCElement.html">CElement</a></td></tr>
+<tr class="memitem:ac3fdfaea18246188d3adbb8249982f1e inherit pro_static_attribs_classCElement"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ac3fdfaea18246188d3adbb8249982f1e">gDescriptionPropertyName</a> = &quot;Description&quot;</td></tr>
+<tr class="separator:ac3fdfaea18246188d3adbb8249982f1e inherit pro_static_attribs_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ConfigurableDomain_8h_source.html#l00046">46</a> of file <a class="el" href="ConfigurableDomain_8h_source.html">ConfigurableDomain.h</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8h_source.html#l00047">47</a> of file <a class="el" href="ConfigurableDomain_8h_source.html">ConfigurableDomain.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="adf1bbedd4cf914259fc20c6b6d7934ca"></a>
 <div class="memitem">
@@ -287,7 +279,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00043">43</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00045">45</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,7 +297,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00048">48</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00050">50</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 </div>
 </div>
@@ -330,12 +322,12 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00052">52</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00054">54</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac200b397f14de19463146c5f75d57020"></a>
+<a class="anchor" id="ab671c7341528cf914119ba8fb3662090"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -354,8 +346,8 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>strError</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;&#160;</td>
+          <td class="paramname"><em>infos</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -365,12 +357,23 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00357">357</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Add a configurable element to the domain. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pConfigurableElement</td><td>pointer to the element to add </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pMainBlackboard</td><td>pointer to the application main blackboard </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">infos</td><td>useful information we can provide to client </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if succeed false otherwise </dd></dl>
+
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00354">354</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ac200b397f14de19463146c5f75d57020_cgraph.svg" width="672" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ab671c7341528cf914119ba8fb3662090_cgraph.svg" width="672" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -378,14 +381,14 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ac200b397f14de19463146c5f75d57020_icgraph.svg" width="1078" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ab671c7341528cf914119ba8fb3662090_icgraph.svg" width="1078" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a928805e163719f902c207c061ab3b1c2"></a>
+<a class="anchor" id="acae72e3fb09dc016cc7ad903ca93b576"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -405,7 +408,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bForced</em>&#160;</td>
+          <td class="paramname"><em>bForced</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>info</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -415,12 +424,23 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00522">522</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Apply the configuration if required. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pParameterBlackboard</td><td>the blackboard to synchronize </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSyncerSet</td><td>pointer to the set containing application syncers </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bForced</td><td>boolean used to force configuration application </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>string containing useful information we can provide to client </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00526">526</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a928805e163719f902c207c061ab3b1c2_cgraph.svg" width="948" height="176"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_acae72e3fb09dc016cc7ad903ca93b576_cgraph.svg" width="387" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -428,7 +448,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a928805e163719f902c207c061ab3b1c2_icgraph.svg" width="388" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_acae72e3fb09dc016cc7ad903ca93b576_icgraph.svg" width="388" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -479,7 +499,7 @@ Here is the caller graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCElement.html#aee22d6b038603b6481a8f029bf59ff3d">CElement</a>.</p>
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00127">127</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00123">123</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 </div>
 </div>
@@ -507,7 +527,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00777">777</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00780">780</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -557,12 +577,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00591">591</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00597">597</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a82e376a127b18da449923829825bcbed_cgraph.svg" width="372" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a82e376a127b18da449923829825bcbed_cgraph.svg" width="642" height="222"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -570,7 +590,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a82e376a127b18da449923829825bcbed_icgraph.svg" width="948" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a82e376a127b18da449923829825bcbed_icgraph.svg" width="388" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -601,12 +621,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00633">633</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00638">638</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a5029ae23af30ac7b4f5ba526ac50508f_cgraph.svg" width="392" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a5029ae23af30ac7b4f5ba526ac50508f_cgraph.svg" width="392" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -614,14 +634,14 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a5029ae23af30ac7b4f5ba526ac50508f_icgraph.svg" width="947" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a5029ae23af30ac7b4f5ba526ac50508f_icgraph.svg" width="388" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a0fec7c3bd4cf280eb64db3803d226836"></a>
+<a class="anchor" id="aec0b138482d5cd4d42e14c9de882a16c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -640,8 +660,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t &amp;&#160;</td>
-          <td class="paramname"><em>uiBaseOffset</em>, </td>
+          <td class="paramtype">size_t &amp;&#160;</td>
+          <td class="paramname"><em>baseOffset</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -669,7 +689,7 @@ Here is the caller graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">strConfiguration</td><td>Name of the Configuration. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pCandidateDescendantConfigurableElement</td><td>Pointer to a <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> that belongs to the Domain. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">uiBaseOffset</td><td>The base offset of the <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">baseOffset</td><td>The base offset of the <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a>. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">bIsLastApplied</td><td>Boolean indicating that the Configuration is the last one applied of the Domain. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">strError</td><td>Error message</td></tr>
   </table>
@@ -677,12 +697,20 @@ Here is the caller graph for this function:</div>
 </dl>
 <p>return Pointer to the Blackboard of the Configuration. </p>
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00417">417</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00419">419</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a0fec7c3bd4cf280eb64db3803d226836_cgraph.svg" width="694" height="276"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aec0b138482d5cd4d42e14c9de882a16c_cgraph.svg" width="662" height="244"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aec0b138482d5cd4d42e14c9de882a16c_icgraph.svg" width="1040" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -723,12 +751,12 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a">CElement</a>.</p>
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00214">214</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00206">206</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aa1fdeb04cae19531f2588e0419b53b84_cgraph.svg" width="902" height="267"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aa1fdeb04cae19531f2588e0419b53b84_cgraph.svg" width="418" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -749,7 +777,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00966">966</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00961">961</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 </div>
 </div>
@@ -777,7 +805,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00793">793</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00796">796</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -821,12 +849,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00747">747</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00750">750</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ac8d7bf149040aabe342c300b3f2683a6_cgraph.svg" width="627" height="128"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ac8d7bf149040aabe342c300b3f2683a6_cgraph.svg" width="395" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -864,7 +892,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee">CElement</a>.</p>
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00074">74</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00076">76</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 </div>
 </div>
@@ -881,7 +909,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00810">810</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00813">813</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -914,7 +942,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00820">820</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00823">823</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -947,7 +975,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00113">113</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00109">109</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -973,12 +1001,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00566">566</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00572">572</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ace240c416bae0554c2168c1b6e5d0d79_cgraph.svg" width="611" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ace240c416bae0554c2168c1b6e5d0d79_cgraph.svg" width="616" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1007,7 +1035,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00660">660</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00663">663</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1027,7 +1055,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a2dc205bb6f6e6f868c58fcf89ea6eec5"></a>
+<a class="anchor" id="a08ed7a4fddf5820d0ed1033e5fa7876f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1035,38 +1063,28 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CConfigurableDomain::logValue </td>
+          <td class="memname">string CConfigurableDomain::logValue </td>
           <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>strValue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classCErrorContext.html">CErrorContext</a> &amp;&#160;</td>
-          <td class="paramname"><em>errorContext</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
+          <td class="paramtype"><a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;&#160;</td>
+          <td class="paramname"><em>errorContext</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCElement.html#acb7fa0283e75533bb2fa420c52e73766">CElement</a>.</p>
+<p>Reimplemented from <a class="el" href="classCElement.html#a466ec9e85ea941fa10864afb8f15678b">CElement</a>.</p>
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00085">85</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00087">87</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a2dc205bb6f6e6f868c58fcf89ea6eec5_cgraph.svg" width="372" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a08ed7a4fddf5820d0ed1033e5fa7876f_cgraph.svg" width="372" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1097,12 +1115,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00381">381</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00384">384</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_acf2423f10f9c85b255fb9bade2664801_cgraph.svg" width="423" height="163"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_acf2423f10f9c85b255fb9bade2664801_cgraph.svg" width="423" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1110,7 +1128,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_acf2423f10f9c85b255fb9bade2664801_icgraph.svg" width="1082" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_acf2423f10f9c85b255fb9bade2664801_icgraph.svg" width="483" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1147,12 +1165,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00675">675</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00678">678</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a647386b073c9dd776f9cd9dcb24088a7_cgraph.svg" width="598" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a647386b073c9dd776f9cd9dcb24088a7_cgraph.svg" width="567" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1160,14 +1178,14 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a647386b073c9dd776f9cd9dcb24088a7_icgraph.svg" width="962" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a647386b073c9dd776f9cd9dcb24088a7_icgraph.svg" width="392" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="aa9e776e80956f8cc956b77213aae96ec"></a>
+<a class="anchor" id="aa07e34aa3fabe688ae8034ff0578c1c7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1175,25 +1193,25 @@ Here is the caller graph for this function:</div>
           <td class="memname">bool CConfigurableDomain::restoreConfiguration </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strName</em>, </td>
+          <td class="paramname"><em>configurationName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *&#160;</td>
-          <td class="paramname"><em>pMainBlackboard</em>, </td>
+          <td class="paramname"><em>mainBlackboard</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bAutoSync</em>, </td>
+          <td class="paramname"><em>autoSync</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::list&lt; std::string &gt; &amp;&#160;</td>
-          <td class="paramname"><em>strError</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;&#160;</td>
+          <td class="paramname"><em>errors</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1203,12 +1221,24 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00689">689</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Restore a configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">configurationName</td><td>the configuration name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mainBlackboard</td><td>the application main blackboard </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">autoSync</td><td>boolean which indicates if auto sync mechanism is on </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">errors,errors</td><td>encountered during restoration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if success false otherwise </dd></dl>
+
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00691">691</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aa9e776e80956f8cc956b77213aae96ec_cgraph.svg" width="948" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aa07e34aa3fabe688ae8034ff0578c1c7_cgraph.svg" width="542" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1216,7 +1246,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aa9e776e80956f8cc956b77213aae96ec_icgraph.svg" width="954" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aa07e34aa3fabe688ae8034ff0578c1c7_icgraph.svg" width="388" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1253,12 +1283,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00716">716</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00720">720</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a7656ea4134ae47e8a19e1565c16323f0_cgraph.svg" width="794" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a7656ea4134ae47e8a19e1565c16323f0_cgraph.svg" width="794" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1266,7 +1296,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a7656ea4134ae47e8a19e1565c16323f0_icgraph.svg" width="938" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a7656ea4134ae47e8a19e1565c16323f0_icgraph.svg" width="388" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1309,7 +1339,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00763">763</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00766">766</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1359,7 +1389,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00733">733</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00736">736</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1393,27 +1423,19 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00103">103</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a3a77775be8a0df31842b5857a238789e_cgraph.svg" width="394" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00101">101</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a3a77775be8a0df31842b5857a238789e_icgraph.svg" width="943" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a3a77775be8a0df31842b5857a238789e_icgraph.svg" width="424" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="aea88fe7f6e3f02217f5d9f0e2e820da2"></a>
+<a class="anchor" id="ad08b2c56e7c842f9288625d35cb66736"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1426,8 +1448,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>strError</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> &amp;&#160;</td>
+          <td class="paramname"><em>infos</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1437,12 +1459,23 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00457">457</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Split the domain in two. </p>
+<p>Remove an element of a domain and create a new domain which owns the element.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pConfigurableElement</td><td>pointer to the element to remove </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">infos</td><td>useful information we can provide to client </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if succeed false otherwise </dd></dl>
+
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00459">459</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aea88fe7f6e3f02217f5d9f0e2e820da2_cgraph.svg" width="859" height="346"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ad08b2c56e7c842f9288625d35cb66736_cgraph.svg" width="618" height="259"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1450,7 +1483,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_aea88fe7f6e3f02217f5d9f0e2e820da2_icgraph.svg" width="848" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_ad08b2c56e7c842f9288625d35cb66736_icgraph.svg" width="848" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1491,12 +1524,12 @@ Here is the caller graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCElement.html#a7ce1bde0fda5cf412b652000cab473e4">CElement</a>.</p>
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00119">119</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00115">115</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a16fb6528dc374c46aa56b936611bff7c_cgraph.svg" width="652" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a16fb6528dc374c46aa56b936611bff7c_cgraph.svg" width="412" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1517,12 +1550,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00832">832</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ConfigurableDomain_8cpp_source.html#l00835">835</a> of file <a class="el" href="ConfigurableDomain_8cpp_source.html">ConfigurableDomain.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a2df6f85b21fa2ccbecc4a1c6d01ae2ed_cgraph.svg" width="1004" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurableDomain_a2df6f85b21fa2ccbecc4a1c6d01ae2ed_cgraph.svg" width="403" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>

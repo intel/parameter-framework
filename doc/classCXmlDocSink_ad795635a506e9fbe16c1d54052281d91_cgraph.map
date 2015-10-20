@@ -1,9 +1,9 @@
 <map id="CXmlDocSink::process" name="CXmlDocSink::process">
 <area shape="rect" id="node2" href="$classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565" title="Method called by the CXmlDocSink::process method. " alt="" coords="219,101,408,127"/>
-<area shape="rect" id="node3" href="$classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d" title="CXmlSerializingContext\l::setError" alt="" coords="508,5,679,47"/>
+<area shape="rect" id="node3" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="521,5,665,47"/>
 <area shape="rect" id="node4" href="$classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81" title="Getter method. " alt="" coords="456,71,731,98"/>
 <area shape="rect" id="node5" href="$classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7" title="CXmlSerializingContext\l::appendLineToError" alt="" coords="508,123,679,164"/>
-<area shape="rect" id="node6" href="$classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933" title="Getter method. " alt="" coords="476,188,711,229"/>
-<area shape="rect" id="node7" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="779,188,972,229"/>
-<area shape="rect" id="node8" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="1020,195,1215,222"/>
+<area shape="rect" id="node7" href="$classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933" title="Getter method. " alt="" coords="476,188,711,229"/>
+<area shape="rect" id="node6" href="$classutility_1_1ErrorContext.html#aafe9cd30a03303cf376926d9c4e9dd02" title="utility::ErrorContext\l::appendToError" alt="" coords="803,123,947,164"/>
+<area shape="rect" id="node8" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="779,195,972,222"/>
 </map>

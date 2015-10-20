@@ -1,3 +1,4 @@
 <map id="CXmlMemoryDocSource" name="CXmlMemoryDocSource">
-<area shape="rect" id="node2" href="$classCXmlDocSource.html" title="The CXmlDocSource is used by CXmlDocSink. " alt="" coords="31,5,157,32"/>
+<area shape="rect" id="node2" href="$classCXmlDocSource.html" title="The CXmlDocSource is used by CXmlDocSink. " alt="" coords="31,80,157,107"/>
+<area shape="rect" id="node3" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="20,5,168,32"/>
 </map>

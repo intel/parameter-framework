@@ -1,26 +1,26 @@
 <map id="CInstanceConfigurableElement::getTypeElement" name="CInstanceConfigurableElement::getTypeElement">
 <area shape="rect" id="node2" href="$classCArrayParameter.html#a92c36813ec9f475880d47409c01e52db" title="CArrayParameter::setDefault\lValues" alt="" coords="581,5,787,47"/>
 <area shape="rect" id="node3" href="$classCBaseParameter.html#a0fe540f46e1b69858e68b72fd7d383a8" title="CBaseParameter::toXml" alt="" coords="312,238,487,265"/>
-<area shape="rect" id="node4" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access. " alt="" coords="282,289,517,315"/>
+<area shape="rect" id="node4" href="$classCBitParameter.html#a830225eeed4e53e72bcd04bb62a2e8fb" title="Value access. " alt="" coords="316,289,483,315"/>
 <area shape="rect" id="node5" href="$classCBitParameter.html#a0527dce697f0e4bda7daec7055f5f9de" title="CBitParameter::merge" alt="" coords="317,339,482,366"/>
-<area shape="rect" id="node6" href="$classCBitParameterBlock.html#aad6b4447beb278e093a1c6eedab9f87a" title="CBitParameterBlock\l::getSize" alt="" coords="325,391,474,432"/>
+<area shape="rect" id="node6" href="$classCBitParameterBlock.html#a53ab74abef6085b354322affebd7072c" title="CBitParameterBlock\l::getSize" alt="" coords="325,391,474,432"/>
 <area shape="rect" id="node9" href="$classCInstanceConfigurableElement.html#a73aace151a51fbd2a2c02bfd83b24f59" title="Get the value associated to a mapping key in the object&#39;s mapping. " alt="" coords="290,456,509,497"/>
 <area shape="rect" id="node10" href="$classCInstanceConfigurableElement.html#ab64a2df11be985c8f1deecbf26681594" title="Returns the mapping data associated to the type element of the current InstanceConfigurableElement, as a formatted std::string. " alt="" coords="290,521,509,563"/>
 <area shape="rect" id="node11" href="$classCInstanceConfigurableElement.html#a43d2ce5dbc487aa8de02d39af1b1c2d3" title="CInstanceConfigurableElement::map" alt="" coords="272,611,527,638"/>
 <area shape="rect" id="node12" href="$classCInstanceConfigurableElement.html#abc77a2dd814b6696ce9c0a9a6e8af7a7" title="Get the list of all the ancestors that have a mapping. " alt="" coords="285,663,513,704"/>
 <area shape="rect" id="node13" href="$classCInstanceConfigurableElement.html#a466b63cf9c344e256680c409c29ef9b6" title="CInstanceConfigurableElement\l::toXml" alt="" coords="290,728,509,769"/>
 <area shape="rect" id="node14" href="$classCParameter.html#a7e66c668b2fabb20c8659c21423f4a29" title="CParameter::handleValueSpace\lAttribute" alt="" coords="287,793,511,835"/>
-<area shape="rect" id="node17" href="$classCParameter.html#a3658a7f1281f902fe3b271fa01037398" title="CParameter::getSize" alt="" coords="322,137,477,163"/>
+<area shape="rect" id="node17" href="$classCParameter.html#a8e739ef864f7e7f11b775305022bc499" title="CParameter::getSize" alt="" coords="322,137,477,163"/>
 <area shape="rect" id="node21" href="$classCParameter.html#a26fa5e3c97be1577ad15d04295ada708" title="CParameter::setDefaultValues" alt="" coords="577,238,791,265"/>
-<area shape="rect" id="node22" href="$classCStringParameter.html#af2990a24d1de91c5cfd760eb8b7ecffd" title="CStringParameter::getSize" alt="" coords="303,862,495,889"/>
+<area shape="rect" id="node22" href="$classCStringParameter.html#af4bab1c1d9a9c32f7b0018cdfa1c9881" title="CStringParameter::getSize" alt="" coords="303,862,495,889"/>
 <area shape="rect" id="node25" href="$classCSubsystemObject.html#a754574ad36ea1f8ef4bb9f41be6030a6" title="Conversion of int8, int16, int32 to int (taking care of sign extension) " alt="" coords="302,913,497,955"/>
-<area shape="rect" id="node7" href="$classCBitParameterBlock.html#a95ebf43ee26531c6f4b9b33b4af6709e" title="CBitParameterBlock\l::getFootPrint" alt="" coords="609,359,759,400"/>
+<area shape="rect" id="node7" href="$classCBitParameterBlock.html#a2150ec48ecd90423aa42a47c49543191" title="CBitParameterBlock\l::getFootPrint" alt="" coords="609,359,759,400"/>
 <area shape="rect" id="node8" href="$classCBitParameterBlock.html#a74485c7734eb44648b1182cf8e884d40" title="CBitParameterBlock\l::setDefaultValues" alt="" coords="609,424,759,465"/>
 <area shape="rect" id="node15" href="$classCArrayParameter.html#a192ed81d047795b1823cab20337ad283" title="CArrayParameter::serialize\lXmlSettings" alt="" coords="588,725,780,767"/>
 <area shape="rect" id="node16" href="$classCParameter.html#a74e2c5c9292fcd85c6a78181ab865cfe" title="CParameter::serializeXml\lSettings" alt="" coords="593,791,775,832"/>
-<area shape="rect" id="node18" href="$classCArrayParameter.html#a4608f98d60cb8e8b009aa73438c7b2a1" title="CArrayParameter::getFoot\lPrint" alt="" coords="589,71,779,112"/>
+<area shape="rect" id="node18" href="$classCArrayParameter.html#a7b1e06bd0fc4ed9aebdadcc3b3afa7d4" title="CArrayParameter::getFoot\lPrint" alt="" coords="589,71,779,112"/>
 <area shape="rect" id="node19" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="575,137,793,163"/>
-<area shape="rect" id="node20" href="$classCParameter.html#ae38b6b62b0f40be758d0ac53ba3caceb" title="CParameter::getFootPrint" alt="" coords="592,187,776,214"/>
-<area shape="rect" id="node23" href="$classCStringParameter.html#a9cdd05f362999b935a820c544069638e" title="CStringParameter::getFoot\lPrint" alt="" coords="587,856,781,897"/>
-<area shape="rect" id="node24" href="$classCStringParameter.html#a6a9db60ee5c1b4c620441d6e0d82bd08" title="CStringParameter::doSetValue" alt="" coords="575,922,793,949"/>
+<area shape="rect" id="node20" href="$classCParameter.html#ab1b32c17998875bab9b1deecfb76e67d" title="CParameter::getFootPrint" alt="" coords="592,187,776,214"/>
+<area shape="rect" id="node23" href="$classCStringParameter.html#a11d3f70f1e4c7bd104adbbfde2f0358f" title="CStringParameter::getFoot\lPrint" alt="" coords="587,856,781,897"/>
+<area shape="rect" id="node24" href="$classCStringParameter.html#a67ccec1129a496f5ce7beeb3dd27b096" title="CStringParameter::doSetValue" alt="" coords="575,922,793,949"/>
 </map>

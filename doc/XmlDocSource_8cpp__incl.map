@@ -1,5 +1,8 @@
 <map id="xmlserializer/XmlDocSource.cpp" name="xmlserializer/XmlDocSource.cpp">
-<area shape="rect" id="node2" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="90,80,218,107"/>
-<area shape="rect" id="node3" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="5,155,116,181"/>
-<area shape="rect" id="node6" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="191,155,365,181"/>
+<area shape="rect" id="node2" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="229,80,357,107"/>
+<area shape="rect" id="node9" href="$AlwaysAssert_8hpp.html" title="AlwaysAssert.hpp" alt="" coords="431,80,565,107"/>
+<area shape="rect" id="node3" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="16,155,127,181"/>
+<area shape="rect" id="node6" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="206,155,379,181"/>
+<area shape="rect" id="node8" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="301,304,436,331"/>
+<area shape="rect" id="node7" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="253,229,383,256"/>
 </map>

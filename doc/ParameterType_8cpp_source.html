@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -125,38 +125,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Parameter_8h.html">Parameter.h</a>&quot;</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ArrayParameter_8h.html">ArrayParameter.h</a>&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Utility_8h.html">Utility.h</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="ParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   36</a></span>&#160;<span class="preprocessor">#define base CTypeElement</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">using</span> std::string;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">const</span> std::string CParameterType::gUnitPropertyName = <span class="stringliteral">&quot;Unit&quot;</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classCParameterType.html#ae4e0ef0fd082c6c3c711594671697035">   42</a></span>&#160;<a class="code" href="classCParameterType.html#ae4e0ef0fd082c6c3c711594671697035">CParameterType::CParameterType</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strName) : <a class="code" href="ParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(strName), _uiSize(0)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classCParameterType.html#ad8c4f468d90a2dc0ba93a2f74bcebea7">   46</a></span>&#160;<a class="code" href="classCParameterType.html#ad8c4f468d90a2dc0ba93a2f74bcebea7">CParameterType::~CParameterType</a>()</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">// Object creation</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classCParameterType.html#ac9d998b20f90e7b7255d7eed8d817de1">   51</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#ac9d998b20f90e7b7255d7eed8d817de1">CParameterType::populate</a>(<a class="code" href="classCElement.html">CElement</a>* pElement)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    (void)pElement;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;climits&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="ParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">   37</a></span>&#160;<span class="preprocessor">#define base CTypeElement</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">using</span> std::string;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">const</span> std::string CParameterType::gUnitPropertyName = <span class="stringliteral">&quot;Unit&quot;</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCParameterType.html#ae4e0ef0fd082c6c3c711594671697035">   43</a></span>&#160;<a class="code" href="classCParameterType.html#ae4e0ef0fd082c6c3c711594671697035">CParameterType::CParameterType</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strName) : <a class="code" href="ParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a>(strName), _size(0)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classCParameterType.html#ad8c4f468d90a2dc0ba93a2f74bcebea7">   47</a></span>&#160;<a class="code" href="classCParameterType.html#ad8c4f468d90a2dc0ba93a2f74bcebea7">CParameterType::~CParameterType</a>()</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// Object creation</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classCParameterType.html#ac9d998b20f90e7b7255d7eed8d817de1">   52</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#ac9d998b20f90e7b7255d7eed8d817de1">CParameterType::populate</a>(<a class="code" href="classCElement.html">CElement</a>* <span class="comment">/*elem*/</span>)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword"></span>{</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// Prevent further digging for instantiaton since we&#39;re leaf on the strcture tree</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">// Size</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classCParameterType.html#a001697bcc5a0c57d1e8021cd3898313a">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#a001697bcc5a0c57d1e8021cd3898313a">CParameterType::setSize</a>(uint32_t uiSize)</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classCParameterType.html#ae76c751b669d949c8f1819f547f04c90">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#ae76c751b669d949c8f1819f547f04c90">CParameterType::setSize</a>(<span class="keywordtype">size_t</span> size)</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    _uiSize = uiSize;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    _size = size;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">   63</a></span>&#160;uint32_t <a class="code" href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">CParameterType::getSize</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9">   63</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9">CParameterType::getSize</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> _uiSize;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> _size;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// Unit</span></div>
@@ -173,7 +173,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">// From IXmlSink</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classCParameterType.html#a51d4793d6f0ab5f9c03644a88727c612">   80</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a51d4793d6f0ab5f9c03644a88727c612">CParameterType::fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext)</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classCParameterType.html#ac6718436cd7e64e0dc3cffa6d478bcbd">setUnit</a>(xmlElement.<a class="code" href="classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2">getAttributeString</a>(gUnitPropertyName));</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    xmlElement.<a class="code" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">getAttribute</a>(gUnitPropertyName, _strUnit);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">return</span> base::fromXml(xmlElement, serializingContext);</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
@@ -188,257 +188,214 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword"></span>{</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; unit = <a class="code" href="classCParameterType.html#ab5c3d517960caa37da09645f53d2d88e">getUnit</a>();</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">if</span> (!unit.empty()) {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        xmlElement.<a class="code" href="classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1">setAttributeString</a>(gUnitPropertyName, unit);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        xmlElement.<a class="code" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">setAttribute</a>(gUnitPropertyName, unit);</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">// XML Serialization value space handling</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">// Value space handling for configuration import/export</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classCParameterType.html#a9e9880b9d28918e625ba8aa4ba4e61ee">  103</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#a9e9880b9d28918e625ba8aa4ba4e61ee">CParameterType::handleValueSpaceAttribute</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlConfigurableElementSettingsElement, <a class="code" href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a>&amp; configurationAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    (void)xmlConfigurableElementSettingsElement;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    (void)configurationAccessContext;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">// Do nothing by default</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">// Element properties</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0">  111</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0">CParameterType::showProperties</a>(<span class="keywordtype">string</span>&amp; strResult)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    base::showProperties(strResult);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">// Add Unit property if found</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classCParameterType.html#ab5c3d517960caa37da09645f53d2d88e">getUnit</a>().empty()) {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        strResult += gUnitPropertyName + <span class="stringliteral">&quot;: &quot;</span> + <a class="code" href="classCParameterType.html#ab5c3d517960caa37da09645f53d2d88e">getUnit</a>() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment">// Scalar size</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    strResult += <span class="stringliteral">&quot;Scalar size: &quot;</span> + <a class="code" href="classCUtility.html#ab3df96a32e36befd9149af606affd8c3">CUtility::toString</a>(<a class="code" href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">getSize</a>()) + <span class="stringliteral">&quot; byte(s) \n&quot;</span>;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">// Default value handling (simulation only)</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classCParameterType.html#ab42ef965742e72134d10bdb4813cf124">  125</a></span>&#160;uint32_t <a class="code" href="classCParameterType.html#ab42ef965742e72134d10bdb4813cf124">CParameterType::getDefaultValue</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">// Parameter instantiation</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* CParameterType::doInstantiate()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCTypeElement.html#a31edf559bc169a1e22e312280bb7a495">isScalar</a>()) {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="comment">// Scalar parameter</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classCParameter.html">CParameter</a>(<a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">getName</a>(), <span class="keyword">this</span>);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="comment">// Array Parameter</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classCArrayParameter.html">CArrayParameter</a>(<a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">getName</a>(), <span class="keyword">this</span>);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classCParameterType.html#ac32b37965ef213b6a8df9656b37596df">  142</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#ac32b37965ef213b6a8df9656b37596df">CParameterType::signExtend</a>(int32_t&amp; iData)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    doSignExtend(iData);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classCParameterType.html#ae019e57e27400bf49f6cce644814a3b3">  147</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#ac32b37965ef213b6a8df9656b37596df">CParameterType::signExtend</a>(int64_t&amp; iData)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    doSignExtend(iData);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">// Generic sign extension</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> type&gt;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keywordtype">void</span> CParameterType::doSignExtend(type&amp; data)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    uint32_t uiSizeInBits = <a class="code" href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">getSize</a>() * 8;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    uint32_t uiShift = 8 * <span class="keyword">sizeof</span>(data) - uiSizeInBits;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">if</span> (uiShift) {</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        data = (data &lt;&lt; uiShift) &gt;&gt; uiShift;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;}</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">// Check data has no bit set outside available range (32 bits)</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a">  166</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a">CParameterType::isEncodable</a>(uint32_t uiData, <span class="keywordtype">bool</span> bIsSigned)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordflow">return</span> doIsEncodable(uiData, bIsSigned);</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;}</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">// Check data has no bit set outside available range (64 bits)</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classCParameterType.html#ab570a68c7f1c6669e5911e06f6845400">  172</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a">CParameterType::isEncodable</a>(uint64_t uiData, <span class="keywordtype">bool</span> bIsSigned)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">return</span> doIsEncodable(uiData, bIsSigned);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;}</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">// Generic encodability check</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> type&gt;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keywordtype">bool</span> CParameterType::doIsEncodable(type data, <span class="keywordtype">bool</span> bIsSigned)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">getSize</a>() == <span class="keyword">sizeof</span>(data)) {</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="comment">// Prevent inappropriate shifts</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    }</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    uint32_t uiShift = <a class="code" href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">getSize</a>() * 8;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordflow">if</span> (!bIsSigned) {</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="comment">// Check high bits are clean</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordflow">return</span> !(data &gt;&gt; uiShift);</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="comment">// Negative value?</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keywordtype">bool</span> bIsValueExpectedNegative = (data &amp; (1 &lt;&lt; (uiShift - 1))) != 0;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="comment">// Check high bits are clean</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="keywordflow">return</span> bIsValueExpectedNegative ? !(~data &gt;&gt; uiShift) : !(data &gt;&gt; uiShift);</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;}</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">// Remove all bits set outside available range</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="classCParameterType.html#a5fe8903d0958345169b3ad4c0534ecf4">  204</a></span>&#160;uint32_t <a class="code" href="classCParameterType.html#a5fe8903d0958345169b3ad4c0534ecf4">CParameterType::makeEncodable</a>(uint32_t uiData)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">getSize</a>() == <span class="keyword">sizeof</span>(uint32_t)) {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keywordflow">return</span> uiData;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    uint32_t uiSizeInBits = <a class="code" href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">getSize</a>() * 8;</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classCParameterType.html#a9e9880b9d28918e625ba8aa4ba4e61ee">  103</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#a9e9880b9d28918e625ba8aa4ba4e61ee">CParameterType::handleValueSpaceAttribute</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; <span class="comment">/*xmlConfigurableElementSettingsElement*/</span>,</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                                               <a class="code" href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a>&amp; <span class="comment">/*ctx*/</span>)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// Do nothing by default</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">// Element properties</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0">  110</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0">CParameterType::showProperties</a>(<span class="keywordtype">string</span>&amp; strResult)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    base::showProperties(strResult);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">// Add Unit property if found</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classCParameterType.html#ab5c3d517960caa37da09645f53d2d88e">getUnit</a>().empty()) {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        strResult += gUnitPropertyName + <span class="stringliteral">&quot;: &quot;</span> + <a class="code" href="classCParameterType.html#ab5c3d517960caa37da09645f53d2d88e">getUnit</a>() + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="comment">// Scalar size</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    strResult += <span class="stringliteral">&quot;Scalar size: &quot;</span> + std::to_string(<a class="code" href="classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9">getSize</a>()) + <span class="stringliteral">&quot; byte(s) \n&quot;</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">// Default value handling (simulation only)</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classCParameterType.html#ab42ef965742e72134d10bdb4813cf124">  124</a></span>&#160;uint32_t <a class="code" href="classCParameterType.html#ab42ef965742e72134d10bdb4813cf124">CParameterType::getDefaultValue</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">// Parameter instantiation</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* CParameterType::doInstantiate()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCTypeElement.html#a31edf559bc169a1e22e312280bb7a495">isScalar</a>()) {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="comment">// Scalar parameter</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classCParameter.html">CParameter</a>(<a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">getName</a>(), <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="comment">// Array Parameter</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classCArrayParameter.html">CArrayParameter</a>(<a class="code" href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">getName</a>(), <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="classCParameterType.html#ac32b37965ef213b6a8df9656b37596df">  141</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#ac32b37965ef213b6a8df9656b37596df">CParameterType::signExtend</a>(int32_t&amp; iData)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    doSignExtend(iData);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;}</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="classCParameterType.html#ae019e57e27400bf49f6cce644814a3b3">  146</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCParameterType.html#ac32b37965ef213b6a8df9656b37596df">CParameterType::signExtend</a>(int64_t&amp; iData)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    doSignExtend(iData);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">// Generic sign extension</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> type&gt;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keywordtype">void</span> CParameterType::doSignExtend(type&amp; data)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">size_t</span> shift = CHAR_BIT * (<span class="keyword">sizeof</span>(data) - <a class="code" href="classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9">getSize</a>());</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="comment">// FIXME: If `data` has a signed type and nonnegative value,</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="comment">//        and `data × 2^shift` is representable in the result type,</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="comment">//        then that is the resulting value;</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="comment">//        otherwise, **the behavior is undeﬁned**.</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="comment">//        ISO C99 (6.5.7/4) &amp; ISO C++11 [expr.shift]</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    data = (data &lt;&lt; shift) &gt;&gt; shift;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;}</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">// Check data has no bit set outside available range (32 bits)</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a">  165</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a">CParameterType::isEncodable</a>(uint32_t uiData, <span class="keywordtype">bool</span> bIsSigned)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">return</span> doIsEncodable(uiData, bIsSigned);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">// Check data has no bit set outside available range (64 bits)</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classCParameterType.html#ab570a68c7f1c6669e5911e06f6845400">  171</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a">CParameterType::isEncodable</a>(uint64_t uiData, <span class="keywordtype">bool</span> bIsSigned)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordflow">return</span> doIsEncodable(uiData, bIsSigned);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;}</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">// Generic encodability check</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> type&gt;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keywordtype">bool</span> CParameterType::doIsEncodable(type data, <span class="keywordtype">bool</span> bIsSigned)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9">getSize</a>() == <span class="keyword">sizeof</span>(data)) {</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="comment">// Prevent inappropriate shifts</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keywordtype">size_t</span> shift = <a class="code" href="classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9">getSize</a>() * 8;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">if</span> (!bIsSigned) {</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="comment">// Check high bits are clean</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">return</span> !(data &gt;&gt; shift);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="comment">// Negative value?</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordtype">bool</span> bIsValueExpectedNegative = (data &amp; (type(1) &lt;&lt; (shift - 1))) != 0;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="comment">// Check high bits are clean</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keywordflow">return</span> bIsValueExpectedNegative ? !(~data &gt;&gt; shift) : !(data &gt;&gt; shift);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;}</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">// Remove all bits set outside available range</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="classCParameterType.html#a5fe8903d0958345169b3ad4c0534ecf4">  203</a></span>&#160;uint32_t <a class="code" href="classCParameterType.html#a5fe8903d0958345169b3ad4c0534ecf4">CParameterType::makeEncodable</a>(uint32_t uiData)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordtype">size_t</span> sizeInBits = <a class="code" href="classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9">getSize</a>() * 8;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    uint32_t uiMask = (1 &lt;&lt; sizeInBits) - 1;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">return</span> uiData &amp; uiMask;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;}</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    uint32_t uiMask = (1 &lt;&lt; uiSizeInBits) - 1;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordflow">return</span> uiData &amp; uiMask;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;}</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">// Conversions (dynamic access)</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">// Value access</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">// Boolean</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="classCParameterType.html#a04a0fd09f23eba9e4295109b080be04f">  220</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType::toBlackboard</a>(<span class="keywordtype">bool</span> bUserValue, uint32_t&amp; uiValue, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    (void)bUserValue;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    (void)uiValue;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    (void)parameterAccessContext;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    parameterAccessContext.<a class="code" href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;}</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
-<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="classCParameterType.html#a149691bdd9d67a12d736e0c756b1ee56">  231</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType::fromBlackboard</a>(<span class="keywordtype">bool</span>&amp; bUserValue, uint32_t uiValue, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    (void)bUserValue;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    (void)uiValue;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    (void)parameterAccessContext;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    parameterAccessContext.<a class="code" href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">// Integer</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="classCParameterType.html#a615574fdd9f4f419b305897e2c1c7557">  243</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType::toBlackboard</a>(uint32_t uiUserValue, uint32_t&amp; uiValue, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    (void)uiUserValue;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    (void)uiValue;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    (void)parameterAccessContext;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    parameterAccessContext.<a class="code" href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;}</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00254"></a><span class="lineno"><a class="line" href="classCParameterType.html#ac64d30efbc76ac3e02e38b5942a569ff">  254</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType::fromBlackboard</a>(uint32_t&amp; uiUserValue, uint32_t uiValue, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    (void)uiUserValue;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    (void)uiValue;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    (void)parameterAccessContext;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">// Conversions (dynamic access)</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">// Value access</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">// Boolean</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno"><a class="line" href="classCParameterType.html#a04a0fd09f23eba9e4295109b080be04f">  215</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType::toBlackboard</a>(<span class="keywordtype">bool</span> <span class="comment">/*bUserValue*/</span>, uint32_t&amp; <span class="comment">/*uiValue*/</span>, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;}</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="classCParameterType.html#a149691bdd9d67a12d736e0c756b1ee56">  221</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType::fromBlackboard</a>(<span class="keywordtype">bool</span>&amp; <span class="comment">/*bUserValue*/</span>, uint32_t <span class="comment">/*uiValue*/</span>, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;}</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">// Integer</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno"><a class="line" href="classCParameterType.html#a615574fdd9f4f419b305897e2c1c7557">  228</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType::toBlackboard</a>(uint32_t <span class="comment">/*uiUserValue*/</span>, uint32_t&amp; <span class="comment">/*uiValue*/</span>, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;}</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="classCParameterType.html#ac64d30efbc76ac3e02e38b5942a569ff">  234</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType::fromBlackboard</a>(uint32_t&amp; <span class="comment">/*uiUserValue*/</span>, uint32_t <span class="comment">/*uiValue*/</span>, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;}</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">// Signed Integer</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="classCParameterType.html#a379024cc058dba5824e8a53897d727cf">  241</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType::toBlackboard</a>(int32_t <span class="comment">/*iUserValue*/</span>, uint32_t&amp; <span class="comment">/*uiValue*/</span>, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;}</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno"><a class="line" href="classCParameterType.html#aa7d15f603ffa6cd6c4ee38038a4ae1e5">  248</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType::fromBlackboard</a>(int32_t&amp; <span class="comment">/*iUserValue*/</span>, uint32_t <span class="comment">/*uiValue*/</span>, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;}</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">// Double</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="classCParameterType.html#a917de7575fb71925a698860457ffe6b5">  256</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType::toBlackboard</a>(<span class="keywordtype">double</span> <span class="comment">/*dUserValue*/</span>, uint32_t&amp; <span class="comment">/*uiValue*/</span>, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    parameterAccessContext.<a class="code" href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;}</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">// Signed Integer</span></div>
-<div class="line"><a name="l00266"></a><span class="lineno"><a class="line" href="classCParameterType.html#a379024cc058dba5824e8a53897d727cf">  266</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType::toBlackboard</a>(int32_t iUserValue, uint32_t&amp; uiValue, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    (void)iUserValue;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    (void)uiValue;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    (void)parameterAccessContext;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    parameterAccessContext.<a class="code" href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;}</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
-<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="classCParameterType.html#aa7d15f603ffa6cd6c4ee38038a4ae1e5">  277</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType::fromBlackboard</a>(int32_t&amp; iUserValue, uint32_t uiValue, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    (void)iUserValue;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    (void)uiValue;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    (void)parameterAccessContext;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    parameterAccessContext.<a class="code" href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">// Double</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="classCParameterType.html#a917de7575fb71925a698860457ffe6b5">  289</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType::toBlackboard</a>(<span class="keywordtype">double</span> dUserValue, uint32_t&amp; uiValue, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    (void)dUserValue;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    (void)uiValue;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    (void)parameterAccessContext;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    parameterAccessContext.<a class="code" href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;}</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
-<div class="line"><a name="l00300"></a><span class="lineno"><a class="line" href="classCParameterType.html#a0822d7b245dbd78fc651588fe22cf83d">  300</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType::fromBlackboard</a>(<span class="keywordtype">double</span>&amp; dUserValue, uint32_t uiValue, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    (void)dUserValue;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    (void)uiValue;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    (void)parameterAccessContext;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    parameterAccessContext.<a class="code" href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;}</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;}</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
+<div class="line"><a name="l00263"></a><span class="lineno"><a class="line" href="classCParameterType.html#a0822d7b245dbd78fc651588fe22cf83d">  263</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType::fromBlackboard</a>(<span class="keywordtype">double</span>&amp; <span class="comment">/*dUserValue*/</span>, uint32_t <span class="comment">/*uiValue*/</span>, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    parameterAccessContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unsupported conversion&quot;</span>);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;}</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
 <div class="ttc" id="classCParameterAccessContext_html"><div class="ttname"><a href="classCParameterAccessContext.html">CParameterAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8h_source.html#l00038">ParameterAccessContext.h:38</a></div></div>
 <div class="ttc" id="ParameterType_8h_html"><div class="ttname"><a href="ParameterType_8h.html">ParameterType.h</a></div></div>
 <div class="ttc" id="ParameterAccessContext_8h_html"><div class="ttname"><a href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a></div></div>
-<div class="ttc" id="classCParameterType_html_af5e79e641e4cd7929b60395d9ffd761a"><div class="ttname"><a href="classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a">CParameterType::isEncodable</a></div><div class="ttdeci">bool isEncodable(uint32_t uiData, bool bIsSigned) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00166">ParameterType.cpp:166</a></div></div>
+<div class="ttc" id="classCParameterType_html_af5e79e641e4cd7929b60395d9ffd761a"><div class="ttname"><a href="classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a">CParameterType::isEncodable</a></div><div class="ttdeci">bool isEncodable(uint32_t uiData, bool bIsSigned) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00165">ParameterType.cpp:165</a></div></div>
 <div class="ttc" id="classCTypeElement_html_a31edf559bc169a1e22e312280bb7a495"><div class="ttname"><a href="classCTypeElement.html#a31edf559bc169a1e22e312280bb7a495">CTypeElement::isScalar</a></div><div class="ttdeci">bool isScalar() const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00047">TypeElement.cpp:47</a></div></div>
-<div class="ttc" id="ParameterType_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="ParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00036">ParameterType.cpp:36</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00044">XmlSerializingContext.h:44</a></div></div>
-<div class="ttc" id="classCParameterType_html_ac32b37965ef213b6a8df9656b37596df"><div class="ttname"><a href="classCParameterType.html#ac32b37965ef213b6a8df9656b37596df">CParameterType::signExtend</a></div><div class="ttdeci">void signExtend(int32_t &amp;iData) const </div><div class="ttdoc">Sign extension (32 bits) </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00142">ParameterType.cpp:142</a></div></div>
-<div class="ttc" id="classCParameterType_html_aa7af90f44722bc279f98bcc94f7f69c0"><div class="ttname"><a href="classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0">CParameterType::showProperties</a></div><div class="ttdeci">virtual void showProperties(std::string &amp;strResult) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00111">ParameterType.cpp:111</a></div></div>
+<div class="ttc" id="ParameterType_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="ParameterType_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00037">ParameterType.cpp:37</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
+<div class="ttc" id="classCParameterType_html_ac32b37965ef213b6a8df9656b37596df"><div class="ttname"><a href="classCParameterType.html#ac32b37965ef213b6a8df9656b37596df">CParameterType::signExtend</a></div><div class="ttdeci">void signExtend(int32_t &amp;iData) const </div><div class="ttdoc">Sign extension (32 bits) </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00141">ParameterType.cpp:141</a></div></div>
+<div class="ttc" id="classCParameterType_html_aa7af90f44722bc279f98bcc94f7f69c0"><div class="ttname"><a href="classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0">CParameterType::showProperties</a></div><div class="ttdeci">virtual void showProperties(std::string &amp;strResult) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00110">ParameterType.cpp:110</a></div></div>
 <div class="ttc" id="classCParameterType_html_a9fbcbfbc2621b1d0052232b8fb16aee9"><div class="ttname"><a href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType::toBlackboard</a></div><div class="ttdeci">virtual bool toBlackboard(const std::string &amp;strValue, uint32_t &amp;uiValue, CParameterAccessContext &amp;parameterAccessContext) const =0</div><div class="ttdoc">Conversions. </div></div>
-<div class="ttc" id="classCParameterType_html_a5fe8903d0958345169b3ad4c0534ecf4"><div class="ttname"><a href="classCParameterType.html#a5fe8903d0958345169b3ad4c0534ecf4">CParameterType::makeEncodable</a></div><div class="ttdeci">uint32_t makeEncodable(uint32_t uiData) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00204">ParameterType.cpp:204</a></div></div>
+<div class="ttc" id="classCParameterType_html_a5fe8903d0958345169b3ad4c0534ecf4"><div class="ttname"><a href="classCParameterType.html#a5fe8903d0958345169b3ad4c0534ecf4">CParameterType::makeEncodable</a></div><div class="ttdeci">uint32_t makeEncodable(uint32_t uiData) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00203">ParameterType.cpp:203</a></div></div>
 <div class="ttc" id="classCParameter_html"><div class="ttname"><a href="classCParameter.html">CParameter</a></div><div class="ttdef"><b>Definition:</b> <a href="Parameter_8h_source.html#l00038">Parameter.h:38</a></div></div>
 <div class="ttc" id="classCParameterType_html_a51d4793d6f0ab5f9c03644a88727c612"><div class="ttname"><a href="classCParameterType.html#a51d4793d6f0ab5f9c03644a88727c612">CParameterType::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00080">ParameterType.cpp:80</a></div></div>
-<div class="ttc" id="classCParameterType_html_ac9d998b20f90e7b7255d7eed8d817de1"><div class="ttname"><a href="classCParameterType.html#ac9d998b20f90e7b7255d7eed8d817de1">CParameterType::populate</a></div><div class="ttdeci">virtual void populate(CElement *pElement) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00051">ParameterType.cpp:51</a></div></div>
+<div class="ttc" id="classCParameterType_html_ae76c751b669d949c8f1819f547f04c90"><div class="ttname"><a href="classCParameterType.html#ae76c751b669d949c8f1819f547f04c90">CParameterType::setSize</a></div><div class="ttdeci">void setSize(size_t size)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00058">ParameterType.cpp:58</a></div></div>
+<div class="ttc" id="classCParameterType_html_ac9d998b20f90e7b7255d7eed8d817de1"><div class="ttname"><a href="classCParameterType.html#ac9d998b20f90e7b7255d7eed8d817de1">CParameterType::populate</a></div><div class="ttdeci">virtual void populate(CElement *pElement) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00052">ParameterType.cpp:52</a></div></div>
 <div class="ttc" id="Parameter_8h_html"><div class="ttname"><a href="Parameter_8h.html">Parameter.h</a></div></div>
-<div class="ttc" id="classCUtility_html_ab3df96a32e36befd9149af606affd8c3"><div class="ttname"><a href="classCUtility.html#ab3df96a32e36befd9149af606affd8c3">CUtility::toString</a></div><div class="ttdeci">static std::string toString(T uiValue)</div><div class="ttdoc">Utility to easily convert a builtin type into string. </div><div class="ttdef"><b>Definition:</b> <a href="Utility_8h_source.html#l00072">Utility.h:72</a></div></div>
 <div class="ttc" id="classCParameterType_html_ab5c3d517960caa37da09645f53d2d88e"><div class="ttname"><a href="classCParameterType.html#ab5c3d517960caa37da09645f53d2d88e">CParameterType::getUnit</a></div><div class="ttdeci">std::string getUnit() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00069">ParameterType.cpp:69</a></div></div>
-<div class="ttc" id="classCParameterType_html_ad8c4f468d90a2dc0ba93a2f74bcebea7"><div class="ttname"><a href="classCParameterType.html#ad8c4f468d90a2dc0ba93a2f74bcebea7">CParameterType::~CParameterType</a></div><div class="ttdeci">virtual ~CParameterType()</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00046">ParameterType.cpp:46</a></div></div>
-<div class="ttc" id="classCXmlElement_html_a263dbb440f86ef0ad7a74a07f09c87d1"><div class="ttname"><a href="classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1">CXmlElement::setAttributeString</a></div><div class="ttdeci">void setAttributeString(const std::string &amp;strAttributeName, const std::string &amp;strValue)</div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00212">XmlElement.cpp:212</a></div></div>
+<div class="ttc" id="classCParameterType_html_ad8c4f468d90a2dc0ba93a2f74bcebea7"><div class="ttname"><a href="classCParameterType.html#ad8c4f468d90a2dc0ba93a2f74bcebea7">CParameterType::~CParameterType</a></div><div class="ttdeci">virtual ~CParameterType()</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00047">ParameterType.cpp:47</a></div></div>
+<div class="ttc" id="classCXmlElement_html_a6198359168c744489018bc2b8d732dc3"><div class="ttname"><a href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">CXmlElement::getAttribute</a></div><div class="ttdeci">bool getAttribute(const std::string &amp;name, T &amp;value) const </div><div class="ttdoc">Get attribute. </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00101">XmlElement.cpp:101</a></div></div>
 <div class="ttc" id="classCConfigurationAccessContext_html"><div class="ttname"><a href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurationAccessContext_8h_source.html#l00036">ConfigurationAccessContext.h:36</a></div></div>
-<div class="ttc" id="classCParameterType_html_a001697bcc5a0c57d1e8021cd3898313a"><div class="ttname"><a href="classCParameterType.html#a001697bcc5a0c57d1e8021cd3898313a">CParameterType::setSize</a></div><div class="ttdeci">void setSize(uint32_t uiSize)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00058">ParameterType.cpp:58</a></div></div>
 <div class="ttc" id="classCArrayParameter_html"><div class="ttname"><a href="classCArrayParameter.html">CArrayParameter</a></div><div class="ttdef"><b>Definition:</b> <a href="ArrayParameter_8h_source.html#l00034">ArrayParameter.h:34</a></div></div>
+<div class="ttc" id="classutility_1_1ErrorContext_html_afc2e1af8c4a81e36e5013bf31127c15f"><div class="ttname"><a href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">utility::ErrorContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;error)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00043">ErrorContext.hpp:43</a></div></div>
 <div class="ttc" id="classCParameterType_html_ac6718436cd7e64e0dc3cffa6d478bcbd"><div class="ttname"><a href="classCParameterType.html#ac6718436cd7e64e0dc3cffa6d478bcbd">CParameterType::setUnit</a></div><div class="ttdeci">void setUnit(const std::string &amp;strUnit)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00074">ParameterType.cpp:74</a></div></div>
 <div class="ttc" id="classCParameterType_html_a01a245e04347b5d969c3ea4c4ea3d5b8"><div class="ttname"><a href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType::fromBlackboard</a></div><div class="ttdeci">virtual bool fromBlackboard(std::string &amp;strValue, const uint32_t &amp;uiValue, CParameterAccessContext &amp;parameterAccessContext) const =0</div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
-<div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00042">InstanceConfigurableElement.h:42</a></div></div>
-<div class="ttc" id="classCErrorContext_html_a9d58b281c0d0fc9a6d3b83714cf812ef"><div class="ttname"><a href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">CErrorContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8cpp_source.html#l00037">ErrorContext.cpp:37</a></div></div>
-<div class="ttc" id="classCElement_html_a49581fb6412e29e932962acd82d52d6a"><div class="ttname"><a href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">CElement::getName</a></div><div class="ttdeci">const std::string &amp; getName() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00327">Element.cpp:327</a></div></div>
-<div class="ttc" id="classCParameterType_html_ae4e0ef0fd082c6c3c711594671697035"><div class="ttname"><a href="classCParameterType.html#ae4e0ef0fd082c6c3c711594671697035">CParameterType::CParameterType</a></div><div class="ttdeci">CParameterType(const std::string &amp;strName)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00042">ParameterType.cpp:42</a></div></div>
+<div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
+<div class="ttc" id="classCElement_html_a49581fb6412e29e932962acd82d52d6a"><div class="ttname"><a href="classCElement.html#a49581fb6412e29e932962acd82d52d6a">CElement::getName</a></div><div class="ttdeci">const std::string &amp; getName() const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00236">Element.cpp:236</a></div></div>
+<div class="ttc" id="classCParameterType_html_ae4e0ef0fd082c6c3c711594671697035"><div class="ttname"><a href="classCParameterType.html#ae4e0ef0fd082c6c3c711594671697035">CParameterType::CParameterType</a></div><div class="ttdeci">CParameterType(const std::string &amp;strName)</div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00043">ParameterType.cpp:43</a></div></div>
 <div class="ttc" id="classCParameterType_html_a03428e98662aa8d49a20582e3ccb8a12"><div class="ttname"><a href="classCParameterType.html#a03428e98662aa8d49a20582e3ccb8a12">CParameterType::toXml</a></div><div class="ttdeci">virtual void toXml(CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00087">ParameterType.cpp:87</a></div></div>
-<div class="ttc" id="classCXmlElement_html_a4aacb946f656aab1e585e1aa8f63d4e2"><div class="ttname"><a href="classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2">CXmlElement::getAttributeString</a></div><div class="ttdeci">std::string getAttributeString(const std::string &amp;strAttributeName) const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00085">XmlElement.cpp:85</a></div></div>
-<div class="ttc" id="Utility_8h_html"><div class="ttname"><a href="Utility_8h.html">Utility.h</a></div></div>
-<div class="ttc" id="classCParameterType_html_adfe9fe947066e58a062f8126f246f71a"><div class="ttname"><a href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">CParameterType::getSize</a></div><div class="ttdeci">uint32_t getSize() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00063">ParameterType.cpp:63</a></div></div>
-<div class="ttc" id="classCParameterType_html_a9e9880b9d28918e625ba8aa4ba4e61ee"><div class="ttname"><a href="classCParameterType.html#a9e9880b9d28918e625ba8aa4ba4e61ee">CParameterType::handleValueSpaceAttribute</a></div><div class="ttdeci">virtual void handleValueSpaceAttribute(CXmlElement &amp;xmlConfigurableElementSettingsElement, CConfigurationAccessContext &amp;configurationAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00103">ParameterType.cpp:103</a></div></div>
-<div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00044">Element.h:44</a></div></div>
-<div class="ttc" id="classCParameterType_html_ab42ef965742e72134d10bdb4813cf124"><div class="ttname"><a href="classCParameterType.html#ab42ef965742e72134d10bdb4813cf124">CParameterType::getDefaultValue</a></div><div class="ttdeci">virtual uint32_t getDefaultValue() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00125">ParameterType.cpp:125</a></div></div>
+<div class="ttc" id="classCXmlElement_html_ac5f4a8f3f29497167af496dccb7fa846"><div class="ttname"><a href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">CXmlElement::setAttribute</a></div><div class="ttdeci">void setAttribute(const std::string &amp;name, const T &amp;value)</div><div class="ttdoc">Set attribute. </div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8cpp_source.html#l00216">XmlElement.cpp:216</a></div></div>
+<div class="ttc" id="classCParameterType_html_ab57d8e9afd220f02c7671a67932cfaa9"><div class="ttname"><a href="classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9">CParameterType::getSize</a></div><div class="ttdeci">size_t getSize() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00063">ParameterType.cpp:63</a></div></div>
+<div class="ttc" id="classCParameterType_html_a9e9880b9d28918e625ba8aa4ba4e61ee"><div class="ttname"><a href="classCParameterType.html#a9e9880b9d28918e625ba8aa4ba4e61ee">CParameterType::handleValueSpaceAttribute</a></div><div class="ttdeci">virtual void handleValueSpaceAttribute(CXmlElement &amp;xmlConfigurableElementSettingsElement, CConfigurationAccessContext &amp;configurationAccessContext) const </div><div class="ttdoc">Value space handling for settings import/export from/to XML. </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00103">ParameterType.cpp:103</a></div></div>
+<div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00047">Element.h:47</a></div></div>
+<div class="ttc" id="classCParameterType_html_ab42ef965742e72134d10bdb4813cf124"><div class="ttname"><a href="classCParameterType.html#ab42ef965742e72134d10bdb4813cf124">CParameterType::getDefaultValue</a></div><div class="ttdeci">virtual uint32_t getDefaultValue() const </div><div class="ttdef"><b>Definition:</b> <a href="ParameterType_8cpp_source.html#l00124">ParameterType.cpp:124</a></div></div>
 <div class="ttc" id="ArrayParameter_8h_html"><div class="ttname"><a href="ArrayParameter_8h.html">ArrayParameter.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -1,6 +1,7 @@
 <map id="parameter/BitwiseAreaConfiguration.h" name="parameter/BitwiseAreaConfiguration.h">
-<area shape="rect" id="node2" href="$AreaConfiguration_8h.html" title="AreaConfiguration.h" alt="" coords="91,80,240,107"/>
-<area shape="rect" id="node3" href="$ParameterBlackboard_8h.html" title="ParameterBlackboard.h" alt="" coords="79,155,251,181"/>
-<area shape="rect" id="node5" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="5,229,128,256"/>
-<area shape="rect" id="node8" href="$SyncerSet_8h.html" title="SyncerSet.h" alt="" coords="275,155,375,181"/>
+<area shape="rect" id="node2" href="$AreaConfiguration_8h.html" title="AreaConfiguration.h" alt="" coords="335,80,485,107"/>
+<area shape="rect" id="node3" href="$ParameterBlackboard_8h.html" title="ParameterBlackboard.h" alt="" coords="181,155,353,181"/>
+<area shape="rect" id="node8" href="$SyncerSet_8h.html" title="SyncerSet.h" alt="" coords="448,155,548,181"/>
+<area shape="rect" id="node9" href="$Results_8h.html" title="Results.h" alt="" coords="392,229,471,256"/>
+<area shape="rect" id="node4" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="5,229,140,256"/>
 </map>

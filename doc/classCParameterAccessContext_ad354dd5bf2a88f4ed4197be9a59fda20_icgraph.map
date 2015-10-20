@@ -2,18 +2,11 @@
 <area shape="rect" id="node2" href="$classCArrayParameter.html#a92c36813ec9f475880d47409c01e52db" title="CArrayParameter::setDefault\lValues" alt="" coords="253,5,459,47"/>
 <area shape="rect" id="node3" href="$classCBitParameterBlock.html#a74485c7734eb44648b1182cf8e884d40" title="CBitParameterBlock\l::setDefaultValues" alt="" coords="281,71,431,112"/>
 <area shape="rect" id="node4" href="$classCInstanceConfigurableElement.html#a2e6e7782de8e4d7e844a869917f2f037" title="Performs the sync if the AutoSync is enabled. " alt="" coords="247,136,465,177"/>
-<area shape="rect" id="node15" href="$classCParameter.html#a26fa5e3c97be1577ad15d04295ada708" title="CParameter::setDefaultValues" alt="" coords="249,202,463,229"/>
-<area shape="rect" id="node16" href="$classCStringParameter.html#a76f587f59ddcfd51704f55fd2fa88485" title="CStringParameter::setDefault\lValues" alt="" coords="251,253,461,295"/>
-<area shape="rect" id="node17" href="$classCStringParameter.html#a6a9db60ee5c1b4c620441d6e0d82bd08" title="CStringParameter::doSetValue" alt="" coords="247,319,465,346"/>
-<area shape="rect" id="node18" href="$classCStringParameter.html#a4e52ebcdfe2da9b4e9089545d539e9fb" title="CStringParameter::doGetValue" alt="" coords="247,370,465,397"/>
-<area shape="rect" id="node5" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="518,85,737,111"/>
-<area shape="rect" id="node6" href="$classCBaseParameter.html#a2b425561e193a3d54e7225d896a3d39b" title="CBaseParameter::accessAs\lString" alt="" coords="528,136,727,177"/>
-<area shape="rect" id="node13" href="$classCBitParameter.html#ad348903f16d702fac8adcfa1c725a92b" title="CBitParameter::accessAsInteger" alt="" coords="513,213,741,239"/>
-<area shape="rect" id="node7" href="$classCBaseParameter.html#a4a9b3e3a2d1ea65a8dc7048559db8dc2" title="CBaseParameter::accessValue" alt="" coords="798,82,1015,109"/>
-<area shape="rect" id="node8" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="794,133,1019,159"/>
-<area shape="rect" id="node11" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="793,183,1020,210"/>
-<area shape="rect" id="node9" href="$ParameterFramework_8h.html#a02e479cdd18adee13f01c05affcd5892" title="Set the value of a previously bind string parameter. " alt="" coords="1072,133,1243,159"/>
-<area shape="rect" id="node10" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1291,158,1449,185"/>
-<area shape="rect" id="node12" href="$ParameterFramework_8h.html#a0318f736980ecc4a0a456581f44a2cf0" title="Access the value of a previously bind string parameter. " alt="" coords="1072,183,1243,210"/>
-<area shape="rect" id="node14" href="$classCBitParameter.html#a2e0ed93baec3479a9b92314818433a31" title="Value access. " alt="" coords="789,234,1024,261"/>
+<area shape="rect" id="node8" href="$classCParameter.html#a26fa5e3c97be1577ad15d04295ada708" title="CParameter::setDefaultValues" alt="" coords="249,202,463,229"/>
+<area shape="rect" id="node9" href="$classCStringParameter.html#a76f587f59ddcfd51704f55fd2fa88485" title="CStringParameter::setDefault\lValues" alt="" coords="251,253,461,295"/>
+<area shape="rect" id="node10" href="$classCStringParameter.html#a67ccec1129a496f5ce7beeb3dd27b096" title="CStringParameter::doSetValue" alt="" coords="247,319,465,346"/>
+<area shape="rect" id="node11" href="$classCStringParameter.html#a2e558a9119de1cd1d17ae95989400f04" title="CStringParameter::doGetValue" alt="" coords="247,370,465,397"/>
+<area shape="rect" id="node5" href="$classCArrayParameter.html#a07b3af958a03b2295be159f69b22d42d" title="CArrayParameter::accessValue" alt="" coords="513,93,732,119"/>
+<area shape="rect" id="node6" href="$classCBaseParameter.html#aa0367b428dcd868c67f34989bb101020" title="CBaseParameter::access" alt="" coords="531,143,714,170"/>
+<area shape="rect" id="node7" href="$classCBitParameter.html#a8cf5e6e2d4e823eca86f0c30ff837fef" title="CBitParameter::access" alt="" coords="539,194,706,221"/>
 </map>

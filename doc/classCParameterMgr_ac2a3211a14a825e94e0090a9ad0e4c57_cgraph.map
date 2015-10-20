@@ -1,10 +1,7 @@
 <map id="CParameterMgr::importDomainsXml" name="CParameterMgr::importDomainsXml">
 <area shape="rect" id="node2" href="$classCConfigurableDomains.html#a6fd812eea1fd18c0d4fa14ec33b57fd5" title="CConfigurableDomains\l::validate" alt="" coords="307,57,475,98"/>
 <area shape="rect" id="node3" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="732,5,915,32"/>
-<area shape="rect" id="node4" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="751,123,895,149"/>
+<area shape="rect" id="node4" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="751,123,895,149"/>
 <area shape="rect" id="node5" href="$classCConfigurableDomain.html#a2df6f85b21fa2ccbecc4a1c6d01ae2ed" title="CConfigurableDomain\l::validate" alt="" coords="523,57,684,98"/>
 <area shape="rect" id="node6" href="$classCDomainConfiguration.html#a10c3a1e0899400ecd23a90fb7dc4e4e6" title="CDomainConfiguration\l::validate" alt="" coords="740,57,907,98"/>
-<area shape="rect" id="node7" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="963,57,1109,98"/>
-<area shape="rect" id="node8" href="$classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d" title="CAreaConfiguration\l::save" alt="" coords="1157,57,1304,98"/>
-<area shape="rect" id="node9" href="$classCConfigurableElement.html#a29d61e6d09ff508ebb87aea802f2704e" title="CConfigurableElement\l::getOffset" alt="" coords="1352,57,1516,98"/>
 </map>

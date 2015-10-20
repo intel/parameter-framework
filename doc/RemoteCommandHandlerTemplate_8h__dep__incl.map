@@ -1,11 +1,10 @@
 <map id="remote&#45;processor/RemoteCommandHandlerTemplate.h" name="remote&#45;processor/RemoteCommandHandlerTemplate.h">
-<area shape="rect" id="node2" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="492,102,688,129"/>
-<area shape="rect" id="node8" href="$TestPlatform_8h.html" title="test/test&#45;platform\l/TestPlatform.h" alt="" coords="864,95,999,136"/>
+<area shape="rect" id="node2" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="503,102,699,129"/>
+<area shape="rect" id="node7" href="$TestPlatform_8h.html" title="test/test&#45;platform\l/TestPlatform.h" alt="" coords="991,95,1125,136"/>
 <area shape="rect" id="node3" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="5,191,239,218"/>
 <area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="263,191,474,218"/>
-<area shape="rect" id="node5" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="426,273,631,315"/>
-<area shape="rect" id="node6" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="549,191,789,218"/>
-<area shape="rect" id="node7" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="689,273,928,315"/>
-<area shape="rect" id="node9" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="864,184,999,225"/>
-<area shape="rect" id="node10" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="1023,184,1157,225"/>
+<area shape="rect" id="node5" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="498,184,703,225"/>
+<area shape="rect" id="node6" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="728,184,967,225"/>
+<area shape="rect" id="node8" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="991,184,1125,225"/>
+<area shape="rect" id="node9" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="1149,184,1284,225"/>
 </map>

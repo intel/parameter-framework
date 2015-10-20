@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="ParameterFramework_8h.html#af0490100e807cce5037e852f7f9c0aa6" target="_top" xlink:title="Set a criterion value given its name and value. ">
+<g id="a_node2"><a xlink:href="ParameterFramework_8h.html#a7e2da0cb4b2dad4fe639259c4a087feb" target="_top" xlink:title="Set a criterion value given its name and value. ">
 <polygon fill="white" stroke="black" points="182,-6 182,-25 271,-25 271,-6 182,-6"/>
 <text text-anchor="middle" x="226.5" y="-13" font-family="Verdana" font-size="10.00">pfwSetCriterion</text>
 </a>

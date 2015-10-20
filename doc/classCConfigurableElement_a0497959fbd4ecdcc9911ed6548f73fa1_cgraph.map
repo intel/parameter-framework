@@ -1,7 +1,6 @@
 <map id="CConfigurableElement::showProperties" name="CConfigurableElement::showProperties">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0282019ab1caa1ada2b637562a1d8479" title="CConfigurableElement\l::getFootprintAsString" alt="" coords="217,39,381,81"/>
-<area shape="rect" id="node3" href="$classCUtility.html#ab3df96a32e36befd9149af606affd8c3" title="Utility to easily convert a builtin type into string. " alt="" coords="449,5,574,32"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#a6bc3e14e1da435b74e38ea3e95a31e62" title="CConfigurableElement\l::getFootPrint" alt="" coords="429,81,593,122"/>
-<area shape="rect" id="node5" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="641,63,824,89"/>
-<area shape="rect" id="node6" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="661,113,805,140"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0282019ab1caa1ada2b637562a1d8479" title="CConfigurableElement\l::getFootprintAsString" alt="" coords="217,29,381,71"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#ab674ec27478a05b77d0138747f560f7b" title="CConfigurableElement\l::getFootPrint" alt="" coords="429,29,593,71"/>
+<area shape="rect" id="node4" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="641,11,824,38"/>
+<area shape="rect" id="node5" href="$classCElement.html#aee0d626525e9cd24d7639b6365afdc16" title="Get a child element (const) " alt="" coords="661,62,805,89"/>
 </map>

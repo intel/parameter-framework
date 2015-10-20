@@ -1,10 +1,11 @@
 <map id="parameter/ConfigurableDomains.h" name="parameter/ConfigurableDomains.h">
-<area shape="rect" id="node2" href="$BinarySerializableElement_8h.html" title="BinarySerializableElement.h" alt="" coords="487,80,687,107"/>
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="477,155,563,181"/>
-<area shape="rect" id="node13" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="5,304,128,331"/>
-<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="551,229,636,256"/>
-<area shape="rect" id="node11" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="423,229,526,256"/>
-<area shape="rect" id="node12" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="275,229,397,256"/>
-<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="393,304,503,331"/>
-<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="528,304,701,331"/>
+<area shape="rect" id="node2" href="$Element_8h.html" title="Element.h" alt="" coords="621,80,708,107"/>
+<area shape="rect" id="node14" href="$Results_8h.html" title="Results.h" alt="" coords="828,80,907,107"/>
+<area shape="rect" id="node7" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="341,155,426,181"/>
+<area shape="rect" id="node12" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="213,155,316,181"/>
+<area shape="rect" id="node13" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="727,155,850,181"/>
+<area shape="rect" id="node8" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="411,229,521,256"/>
+<area shape="rect" id="node9" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="213,229,386,256"/>
+<area shape="rect" id="node10" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="7,304,138,331"/>
+<area shape="rect" id="node11" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="5,379,140,405"/>
 </map>

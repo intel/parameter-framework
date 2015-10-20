@@ -1,10 +1,9 @@
 <map id="CSelectionCriterion::toXml" name="CSelectionCriterion::toXml">
-<area shape="rect" id="node2" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="668,103,860,145"/>
-<area shape="rect" id="node3" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="197,45,369,86"/>
-<area shape="rect" id="node5" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="197,162,369,203"/>
-<area shape="rect" id="node4" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="427,45,599,86"/>
-<area shape="rect" id="node6" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="427,162,599,203"/>
-<area shape="rect" id="node7" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="419,293,607,320"/>
-<area shape="rect" id="node9" href="$classCXmlElement.html#a5c2deb2e8b2adbeb9b8eb0b5e642cbb7" title="Set attribute with signed integer. " alt="" coords="417,227,609,269"/>
-<area shape="rect" id="node8" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="657,293,871,320"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="417,71,609,98"/>
+<area shape="rect" id="node3" href="$classCSelectionCriterionType.html#acf1d7bbd1dc0b21897cdf7cf3d362bb3" title="CSelectionCriterionType\l::getFormattedState" alt="" coords="197,5,369,47"/>
+<area shape="rect" id="node5" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="197,123,369,164"/>
+<area shape="rect" id="node4" href="$classCSelectionCriterionType.html#ae526e3679a02dd85be47abe8a548f1ee" title="CSelectionCriterionType\l::getLiteralValue" alt="" coords="427,5,599,47"/>
+<area shape="rect" id="node6" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="427,123,599,164"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="419,189,607,215"/>
+<area shape="rect" id="node8" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="657,189,871,215"/>
 </map>

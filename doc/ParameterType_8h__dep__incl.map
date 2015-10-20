@@ -4,13 +4,15 @@
 <area shape="rect" id="node4" href="$BooleanParameterType_8h.html" title="parameter/BooleanParameter\lType.h" alt="" coords="493,80,707,121"/>
 <area shape="rect" id="node7" href="$EnumParameterType_8h.html" title="parameter/EnumParameterType.h" alt="" coords="731,87,970,114"/>
 <area shape="rect" id="node9" href="$FixedPointParameterType_8h.html" title="parameter/FixedPointParameter\lType.h" alt="" coords="994,80,1219,121"/>
-<area shape="rect" id="node11" href="$IntegerParameterType_8h.html" title="parameter/IntegerParameter\lType.h" alt="" coords="1243,80,1450,121"/>
-<area shape="rect" id="node13" href="$Parameter_8cpp.html" title="parameter/Parameter.cpp" alt="" coords="1475,87,1661,114"/>
-<area shape="rect" id="node14" href="$ParameterType_8cpp.html" title="parameter/ParameterType.cpp" alt="" coords="1685,87,1901,114"/>
-<area shape="rect" id="node15" href="$SubsystemObject_8cpp.html" title="parameter/SubsystemObject.cpp" alt="" coords="1925,87,2160,114"/>
+<area shape="rect" id="node11" href="$FloatingPointParameterType_8h.html" title="parameter/FloatingPointParameter\lType.h" alt="" coords="1244,80,1487,121"/>
+<area shape="rect" id="node13" href="$IntegerParameterType_8h.html" title="parameter/IntegerParameter\lType.h" alt="" coords="1511,80,1718,121"/>
+<area shape="rect" id="node15" href="$Parameter_8cpp.html" title="parameter/Parameter.cpp" alt="" coords="1743,87,1929,114"/>
+<area shape="rect" id="node16" href="$ParameterType_8cpp.html" title="parameter/ParameterType.cpp" alt="" coords="1953,87,2169,114"/>
+<area shape="rect" id="node17" href="$SubsystemObject_8cpp.html" title="parameter/SubsystemObject.cpp" alt="" coords="2193,87,2428,114"/>
 <area shape="rect" id="node5" href="$BooleanParameterType_8cpp.html" title="parameter/BooleanParameter\lType.cpp" alt="" coords="365,169,579,211"/>
 <area shape="rect" id="node6" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="880,177,1091,203"/>
 <area shape="rect" id="node8" href="$EnumParameterType_8cpp.html" title="parameter/EnumParameterType.cpp" alt="" coords="603,177,856,203"/>
 <area shape="rect" id="node10" href="$FixedPointParameterType_8cpp.html" title="parameter/FixedPointParameter\lType.cpp" alt="" coords="1114,169,1339,211"/>
-<area shape="rect" id="node12" href="$IntegerParameterType_8cpp.html" title="parameter/IntegerParameter\lType.cpp" alt="" coords="1363,169,1570,211"/>
+<area shape="rect" id="node12" href="$FloatingPointParameterType_8cpp.html" title="parameter/FloatingPointParameter\lType.cpp" alt="" coords="1364,169,1607,211"/>
+<area shape="rect" id="node14" href="$IntegerParameterType_8cpp.html" title="parameter/IntegerParameter\lType.cpp" alt="" coords="1631,169,1838,211"/>
 </map>

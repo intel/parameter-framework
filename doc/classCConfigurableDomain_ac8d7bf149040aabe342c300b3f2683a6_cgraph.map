@@ -1,5 +1,3 @@
 <map id="CConfigurableDomain::getElementSequence" name="CConfigurableDomain::getElementSequence">
-<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a144544d874a578524147e8beeeb51047" title="CDomainConfiguration\l::getElementSequence" alt="" coords="221,47,389,88"/>
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a1f85dedf12591c3f43830a00e5c352df" title="CAreaConfiguration\l::getConfigurableElement" alt="" coords="437,5,621,47"/>
-<area shape="rect" id="node4" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="459,95,600,122"/>
+<area shape="rect" id="node2" href="$classCDomainConfiguration.html#a144544d874a578524147e8beeeb51047" title="CDomainConfiguration\l::getElementSequence" alt="" coords="221,5,389,47"/>
 </map>

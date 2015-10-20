@@ -1,6 +1,8 @@
 <map id="xmlserializer/XmlMemoryDocSource.h" name="xmlserializer/XmlMemoryDocSource.h">
-<area shape="rect" id="node3" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="45,95,173,121"/>
-<area shape="rect" id="node7" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="197,95,300,121"/>
-<area shape="rect" id="node4" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="257,169,368,196"/>
-<area shape="rect" id="node6" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="59,169,233,196"/>
+<area shape="rect" id="node3" href="$XmlDocSource_8h.html" title="XmlDocSource.h" alt="" coords="198,95,326,121"/>
+<area shape="rect" id="node9" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="57,95,160,121"/>
+<area shape="rect" id="node4" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="40,169,151,196"/>
+<area shape="rect" id="node6" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="175,169,349,196"/>
+<area shape="rect" id="node8" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="301,319,436,345"/>
+<area shape="rect" id="node7" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="218,244,349,271"/>
 </map>

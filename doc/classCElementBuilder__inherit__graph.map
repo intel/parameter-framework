@@ -1,8 +1,10 @@
 <map id="CElementBuilder" name="CElementBuilder">
-<area shape="rect" id="node2" href="$classCFileIncluderElementBuilder.html" title="This is the XmlFileIncluderElement builder class. " alt="" coords="199,5,397,32"/>
-<area shape="rect" id="node3" href="$classCSubsystemElementBuilder.html" title="CSubsystemElementBuilder" alt="" coords="198,56,398,83"/>
-<area shape="rect" id="node4" href="$classTElementBuilderTemplate.html" title="TElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="206,107,390,149"/>
-<area shape="rect" id="node5" href="$classTKindElementBuilderTemplate.html" title="TKindElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="193,173,403,214"/>
-<area shape="rect" id="node6" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="183,238,413,279"/>
-<area shape="rect" id="node7" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt;" alt="" coords="619,271,849,313"/>
+<area shape="rect" id="node3" href="$classCFileIncluderElementBuilder.html" title="This is the XmlFileIncluderElement builder class. " alt="" coords="398,5,597,32"/>
+<area shape="rect" id="node4" href="$classCSubsystemElementBuilder.html" title="CSubsystemElementBuilder" alt="" coords="397,56,597,83"/>
+<area shape="rect" id="node5" href="$classTElementBuilderTemplate.html" title="TElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="405,107,589,149"/>
+<area shape="rect" id="node6" href="$classTKindElementBuilderTemplate.html" title="TKindElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="392,173,603,214"/>
+<area shape="rect" id="node7" href="$classTLoggingElementBuilderTemplate.html" title="Builder for elements which need logger at construction. " alt="" coords="380,238,615,279"/>
+<area shape="rect" id="node8" href="$classTLoggingElementBuilderTemplate.html" title="TLoggingElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt;" alt="" coords="820,271,1055,313"/>
+<area shape="rect" id="node9" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="382,355,613,397"/>
+<area shape="rect" id="node2" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="5,180,153,207"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="CBitParameterType::toBlackboard" name="CBitParameterType::toBlackboard">
-<area shape="rect" id="node2" href="$classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824" title="CBitParameterType::\lgetKind" alt="" coords="214,5,365,47"/>
-<area shape="rect" id="node3" href="$classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef" title="CErrorContext::setError" alt="" coords="204,71,375,98"/>
+<area shape="rect" id="node2" href="$namespaceutility.html#af26524fd398a870267af79c918862662" title="Checks if a string has the written representation of an hexadecimal number (Which is the prefix &quot;0x&quot; ..." alt="" coords="204,5,360,32"/>
+<area shape="rect" id="node3" href="$classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824" title="CBitParameterType::\lgetKind" alt="" coords="207,57,357,98"/>
+<area shape="rect" id="node4" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="210,122,354,163"/>
 </map>

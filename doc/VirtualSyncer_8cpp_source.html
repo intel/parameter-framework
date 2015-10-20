@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -137,7 +137,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// Synchronize to/from HW</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span> (bBack) {</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="comment">// Create access context</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, &amp;parameterBlackboard, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a> parameterAccessContext(strError, &amp;parameterBlackboard);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">// Just implement back synchronization with default values</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        _pConfigurableElement-&gt;<a class="code" href="classCConfigurableElement.html#a8f7c88b9e89d9167fce48196cc1cc324">setDefaultValues</a>(parameterAccessContext);</div>
@@ -149,11 +149,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="ParameterAccessContext_8h_html"><div class="ttname"><a href="ParameterAccessContext_8h.html">ParameterAccessContext.h</a></div></div>
 <div class="ttc" id="ConfigurableElement_8h_html"><div class="ttname"><a href="ConfigurableElement_8h.html">ConfigurableElement.h</a></div></div>
 <div class="ttc" id="VirtualSyncer_8h_html"><div class="ttname"><a href="VirtualSyncer_8h.html">VirtualSyncer.h</a></div></div>
-<div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00044">ConfigurableElement.h:44</a></div></div>
-<div class="ttc" id="classCConfigurableElement_html_a8f7c88b9e89d9167fce48196cc1cc324"><div class="ttname"><a href="classCConfigurableElement.html#a8f7c88b9e89d9167fce48196cc1cc324">CConfigurableElement::setDefaultValues</a></div><div class="ttdeci">virtual void setDefaultValues(CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8cpp_source.html#l00175">ConfigurableElement.cpp:175</a></div></div>
+<div class="ttc" id="classCConfigurableElement_html"><div class="ttname"><a href="classCConfigurableElement.html">CConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8h_source.html#l00046">ConfigurableElement.h:46</a></div></div>
+<div class="ttc" id="classCConfigurableElement_html_a8f7c88b9e89d9167fce48196cc1cc324"><div class="ttname"><a href="classCConfigurableElement.html#a8f7c88b9e89d9167fce48196cc1cc324">CConfigurableElement::setDefaultValues</a></div><div class="ttdeci">virtual void setDefaultValues(CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8cpp_source.html#l00173">ConfigurableElement.cpp:173</a></div></div>
 <div class="ttc" id="classCVirtualSyncer_html_a26cb2061643333ba04f288448d979a14"><div class="ttname"><a href="classCVirtualSyncer.html#a26cb2061643333ba04f288448d979a14">CVirtualSyncer::CVirtualSyncer</a></div><div class="ttdeci">CVirtualSyncer(const CConfigurableElement *pConfigurableElement)</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSyncer_8cpp_source.html#l00036">VirtualSyncer.cpp:36</a></div></div>
 <div class="ttc" id="classCVirtualSyncer_html_a7dbef9e770ef4433cb113fd466c3995e"><div class="ttname"><a href="classCVirtualSyncer.html#a7dbef9e770ef4433cb113fd466c3995e">CVirtualSyncer::sync</a></div><div class="ttdeci">virtual bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="VirtualSyncer_8cpp_source.html#l00041">VirtualSyncer.cpp:41</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00036">ParameterBlackboard.h:36</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

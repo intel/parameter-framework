@@ -30,7 +30,7 @@
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a xlink:href="classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b" target="_top" xlink:title="CSyncerSet::sync">
+<g id="a_node8"><a xlink:href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5" target="_top" xlink:title="Sync the blackboard. ">
 <polygon fill="white" stroke="black" points="166,-38.5 166,-57.5 267,-57.5 267,-38.5 166,-38.5"/>
 <text text-anchor="middle" x="216.5" y="-45.5" font-family="Verdana" font-size="10.00">CSyncerSet::sync</text>
 </a>
@@ -43,9 +43,9 @@
 </g>
 <!-- Node10 -->
 <g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="classCUtility.html#a61d8ac9daba8e70320e5da0af931bdae" target="_top" xlink:title="Format the items of a map into a string as a list of key&#45;value pairs. ">
-<polygon fill="white" stroke="black" points="169,-0.5 169,-19.5 264,-19.5 264,-0.5 169,-0.5"/>
-<text text-anchor="middle" x="216.5" y="-7.5" font-family="Verdana" font-size="10.00">CUtility::asString</text>
+<g id="a_node10"><a xlink:href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" target="_top" xlink:title="Format the items of a map into a string as a list of key&#45;value pairs. ">
+<polygon fill="white" stroke="black" points="173,-0.5 173,-19.5 260,-19.5 260,-0.5 173,-0.5"/>
+<text text-anchor="middle" x="216.5" y="-7.5" font-family="Verdana" font-size="10.00">utility::asString</text>
 </a>
 </g>
 </g>
@@ -115,7 +115,7 @@
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" target="_top" xlink:title="Get a child element (const) ">
+<g id="a_node7"><a xlink:href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16" target="_top" xlink:title="Get a child element (const) ">
 <polygon fill="white" stroke="black" points="528.5,-59.5 528.5,-78.5 636.5,-78.5 636.5,-59.5 528.5,-59.5"/>
 <text text-anchor="middle" x="582.5" y="-66.5" font-family="Verdana" font-size="10.00">CElement::getChild</text>
 </a>

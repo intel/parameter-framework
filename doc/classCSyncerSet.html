@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -106,12 +106,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acdb5d93aac5d893d08a9e269348b0c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab139f1169697d601b202eef7d6c1c754"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">clear</a> ()</td></tr>
 <tr class="separator:ab139f1169697d601b202eef7d6c1c754"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ee2b3a5edcccc64b8694df736312e4b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b">sync</a> (<a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> &amp;parameterBlackboard, bool bBack, std::list&lt; std::string &gt; *plstrError) const </td></tr>
-<tr class="separator:a6ee2b3a5edcccc64b8694df736312e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f8381b520a758f49ba8013c5cb8c7b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">sync</a> (<a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> &amp;parameterBlackboard, bool bBack, <a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> *errors) const </td></tr>
+<tr class="memdesc:a8f8381b520a758f49ba8013c5cb8c7b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sync the blackboard.  <a href="#a8f8381b520a758f49ba8013c5cb8c7b5">More...</a><br /></td></tr>
+<tr class="separator:a8f8381b520a758f49ba8013c5cb8c7b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="SyncerSet_8h_source.html#l00039">39</a> of file <a class="el" href="SyncerSet_8h_source.html">SyncerSet.h</a>.</p>
+<p>Definition at line <a class="el" href="SyncerSet_8h_source.html#l00038">38</a> of file <a class="el" href="SyncerSet_8h_source.html">SyncerSet.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad8a071812dd3ce49af9608366581133b"></a>
 <div class="memitem">
@@ -184,7 +185,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6ee2b3a5edcccc64b8694df736312e4b"></a>
+<a class="anchor" id="a8f8381b520a758f49ba8013c5cb8c7b5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -203,8 +204,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::list&lt; std::string &gt; *&#160;</td>
-          <td class="paramname"><em>plstrError</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> *&#160;</td>
+          <td class="paramname"><em>errors</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -214,12 +215,23 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sync the blackboard. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">parameterBlackboard</td><td>blackboard associated to syncer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bBack</td><td>indicates if we want to back synchronise or to forward synchronise </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">errors,errors</td><td>encountered during restoration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if success false otherwise </dd></dl>
+
 <p>Definition at line <a class="el" href="SyncerSet_8cpp_source.html#l00059">59</a> of file <a class="el" href="SyncerSet_8cpp_source.html">SyncerSet.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCSyncerSet_a6ee2b3a5edcccc64b8694df736312e4b_cgraph.svg" width="300" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCSyncerSet_a8f8381b520a758f49ba8013c5cb8c7b5_cgraph.svg" width="300" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -227,7 +239,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCSyncerSet_a6ee2b3a5edcccc64b8694df736312e4b_icgraph.svg" width="1731" height="400"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCSyncerSet_a8f8381b520a758f49ba8013c5cb8c7b5_icgraph.svg" width="1279" height="367"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>

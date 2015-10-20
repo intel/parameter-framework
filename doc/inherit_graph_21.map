@@ -1,3 +1,16 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCRequestMessageGenerator.html" title="CRequestMessageGenerator" alt="" coords="5,5,209,32"/>
+<area shape="rect" id="node2" href="$structdetails_1_1ConvertionAllowed_3_01bool_01_4.html" title="details::ConvertionAllowed\l\&lt; bool \&gt;" alt="" coords="136,5,325,47"/>
+<area shape="rect" id="node3" href="$structdetails_1_1ConvertionAllowed_3_01double_01_4.html" title="details::ConvertionAllowed\l\&lt; double \&gt;" alt="" coords="136,71,325,112"/>
+<area shape="rect" id="node4" href="$structdetails_1_1ConvertionAllowed_3_01float_01_4.html" title="details::ConvertionAllowed\l\&lt; float \&gt;" alt="" coords="136,136,325,177"/>
+<area shape="rect" id="node5" href="$structdetails_1_1ConvertionAllowed_3_01int16__t_01_4.html" title="details::ConvertionAllowed\l\&lt; int16_t \&gt;" alt="" coords="136,201,325,243"/>
+<area shape="rect" id="node6" href="$structdetails_1_1ConvertionAllowed_3_01int32__t_01_4.html" title="details::ConvertionAllowed\l\&lt; int32_t \&gt;" alt="" coords="136,267,325,308"/>
+<area shape="rect" id="node7" href="$structdetails_1_1ConvertionAllowed_3_01int64__t_01_4.html" title="details::ConvertionAllowed\l\&lt; int64_t \&gt;" alt="" coords="136,332,325,373"/>
+<area shape="rect" id="node8" href="$structdetails_1_1ConvertionAllowed_3_01int8__t_01_4.html" title="details::ConvertionAllowed\l\&lt; int8_t \&gt;" alt="" coords="136,397,325,439"/>
+<area shape="rect" id="node9" href="$structdetails_1_1ConvertionAllowed_3_01uint16__t_01_4.html" title="details::ConvertionAllowed\l\&lt; uint16_t \&gt;" alt="" coords="136,463,325,504"/>
+<area shape="rect" id="node10" href="$structdetails_1_1ConvertionAllowed_3_01uint32__t_01_4.html" title="details::ConvertionAllowed\l\&lt; uint32_t \&gt;" alt="" coords="136,528,325,569"/>
+<area shape="rect" id="node11" href="$structdetails_1_1ConvertionAllowed_3_01uint64__t_01_4.html" title="details::ConvertionAllowed\l\&lt; uint64_t \&gt;" alt="" coords="136,593,325,635"/>
+<area shape="rect" id="node12" href="$structdetails_1_1ConvertionAllowed_3_01uint8__t_01_4.html" title="details::ConvertionAllowed\l\&lt; uint8_t \&gt;" alt="" coords="136,659,325,700"/>
+<area shape="rect" id="node13" href="$structdetails_1_1ConvertionAllowedVia_3_01int8__t_00_01int32__t_01_4.html" title="details::ConvertionAllowed\lVia\&lt; int8_t, int32_t \&gt;" alt="" coords="136,724,325,765"/>
+<area shape="rect" id="node14" href="$structdetails_1_1ConvertionAllowedVia_3_01uint8__t_00_01uint32__t_01_4.html" title="details::ConvertionAllowed\lVia\&lt; uint8_t, uint32_t \&gt;" alt="" coords="136,789,325,831"/>
+<area shape="rect" id="node15" href="$structisVector_3_01std_1_1vector_3_01T_01_4_01_4.html" title="isVector\&lt; std::vector\l\&lt; T \&gt; \&gt;" alt="" coords="153,855,309,896"/>
 </map>

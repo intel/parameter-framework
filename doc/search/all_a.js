@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['kindelement_2eh',['KindElement.h',['../KindElement_8h.html',1,'']]],
-  ['kindelementbuildertemplate_2eh',['KindElementBuilderTemplate.h',['../KindElementBuilderTemplate_8h.html',1,'']]]
+  ['join',['join',['../namespaceutility.html#a09cce371085c0096b86c22fb467da3d4',1,'utility']]]
 ];

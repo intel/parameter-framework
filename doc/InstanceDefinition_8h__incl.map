@@ -1,9 +1,11 @@
 <map id="parameter/InstanceDefinition.h" name="parameter/InstanceDefinition.h">
-<area shape="rect" id="node2" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="106,80,221,107"/>
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="464,155,551,181"/>
-<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="301,229,386,256"/>
-<area shape="rect" id="node11" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="411,229,513,256"/>
-<area shape="rect" id="node12" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="591,229,714,256"/>
-<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="405,304,516,331"/>
-<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="207,304,381,331"/>
+<area shape="rect" id="node2" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="237,80,352,107"/>
+<area shape="rect" id="node4" href="$Element_8h.html" title="Element.h" alt="" coords="337,155,423,181"/>
+<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="648,229,733,256"/>
+<area shape="rect" id="node13" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="521,229,623,256"/>
+<area shape="rect" id="node14" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="269,229,392,256"/>
+<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="518,304,629,331"/>
+<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="653,304,827,331"/>
+<area shape="rect" id="node11" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="671,379,801,405"/>
+<area shape="rect" id="node12" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="669,453,803,480"/>
 </map>

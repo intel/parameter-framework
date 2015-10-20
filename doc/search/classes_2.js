@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logwrapper',['LogWrapper',['../classLogWrapper.html',1,'']]]
+  ['dynamiclibrary',['DynamicLibrary',['../classDynamicLibrary.html',1,'']]]
 ];

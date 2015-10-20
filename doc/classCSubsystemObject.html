@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -89,7 +89,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="classCSubsystemObject-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CSubsystemObject Class Reference</div>  </div>
@@ -106,8 +105,8 @@ Inheritance diagram for CSubsystemObject:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a82013f3d46a655a9f5790b188d25be74"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a82013f3d46a655a9f5790b188d25be74">CSubsystemObject</a> (<a class="el" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement)</td></tr>
-<tr class="separator:a82013f3d46a655a9f5790b188d25be74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab693a002d30474f33bce4ba96a3d529f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#ab693a002d30474f33bce4ba96a3d529f">CSubsystemObject</a> (<a class="el" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement, <a class="el" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger)</td></tr>
+<tr class="separator:ab693a002d30474f33bce4ba96a3d529f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8978ae4a58f1d2f6871734c1610cf6c1"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a8978ae4a58f1d2f6871734c1610cf6c1">~CSubsystemObject</a> ()</td></tr>
 <tr class="separator:a8978ae4a58f1d2f6871734c1610cf6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32300e65e238a60f37430fc6bf6042f8"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a32300e65e238a60f37430fc6bf6042f8">getFormattedMappingValue</a> () const </td></tr>
@@ -120,9 +119,10 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a35b8554e5c3cc58ce88feb1c759415f6"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a35b8554e5c3cc58ce88feb1c759415f6">getBlackboardLocation</a> () const </td></tr>
+<tr class="memdesc:a35b8554e5c3cc58ce88feb1c759415f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">FIXME: plugins should not have direct access to blackboard memory.  <a href="#a35b8554e5c3cc58ce88feb1c759415f6">More...</a><br /></td></tr>
 <tr class="separator:a35b8554e5c3cc58ce88feb1c759415f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a83ded6c812265c95f9a068d4373439"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a7a83ded6c812265c95f9a068d4373439">getSize</a> () const </td></tr>
-<tr class="separator:a7a83ded6c812265c95f9a068d4373439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a084799c219455af9f86e043166db5aa5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a084799c219455af9f86e043166db5aa5">getSize</a> () const </td></tr>
+<tr class="separator:a084799c219455af9f86e043166db5aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a754574ad36ea1f8ef4bb9f41be6030a6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a754574ad36ea1f8ef4bb9f41be6030a6">toPlainInteger</a> (const <a class="el" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *instanceConfigurableElement, int sizeOptimizedData)</td></tr>
 <tr class="memdesc:a754574ad36ea1f8ef4bb9f41be6030a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversion of int8, int16, int32 to int (taking care of sign extension)  <a href="#a754574ad36ea1f8ef4bb9f41be6030a6">More...</a><br /></td></tr>
 <tr class="separator:a754574ad36ea1f8ef4bb9f41be6030a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,29 +132,24 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:acc72dd9fbfe6ea8a16baca26dee83f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f5099d447a1bed6cda2f69a51f1eecb"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a0f5099d447a1bed6cda2f69a51f1eecb">accessHW</a> (bool bReceive, std::string &amp;strError)</td></tr>
 <tr class="separator:a0f5099d447a1bed6cda2f69a51f1eecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49d1a1ae8cfb17e19fe3b12e7cfd3398"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a49d1a1ae8cfb17e19fe3b12e7cfd3398">blackboardRead</a> (void *pvData, uint32_t uiSize)</td></tr>
-<tr class="separator:a49d1a1ae8cfb17e19fe3b12e7cfd3398"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a136fbbf62e23ed2bcef625ac0b3297a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a136fbbf62e23ed2bcef625ac0b3297a2">blackboardWrite</a> (const void *pvData, uint32_t uiSize)</td></tr>
-<tr class="separator:a136fbbf62e23ed2bcef625ac0b3297a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89982d829209f3204dfad5d0b125c698"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a89982d829209f3204dfad5d0b125c698">log_info</a> (std::string strMessage,...) const </td></tr>
-<tr class="separator:a89982d829209f3204dfad5d0b125c698"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39524c85e8b1793565043b463417fadd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a39524c85e8b1793565043b463417fadd">log_warning</a> (std::string strMessage,...) const </td></tr>
-<tr class="separator:a39524c85e8b1793565043b463417fadd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8277100f1c7d511b85ad709abe61266f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a8277100f1c7d511b85ad709abe61266f">blackboardRead</a> (void *pvData, size_t size)</td></tr>
+<tr class="separator:a8277100f1c7d511b85ad709abe61266f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabd14ac83b01d74f22fb00f1a8c306da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#aabd14ac83b01d74f22fb00f1a8c306da">blackboardWrite</a> (const void *pvData, size_t size)</td></tr>
+<tr class="separator:aabd14ac83b01d74f22fb00f1a8c306da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae18b34938c86c5eca33f8b5036404a7c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCSubsystem.html">CSubsystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#ae18b34938c86c5eca33f8b5036404a7c">getSubsystem</a> () const </td></tr>
 <tr class="separator:ae18b34938c86c5eca33f8b5036404a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
-Static Protected Member Functions</h2></td></tr>
-<tr class="memitem:a1c8d861353d0dc509580964f501863f1"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a1c8d861353d0dc509580964f501863f1">asInteger</a> (const std::string &amp;strValue)</td></tr>
-<tr class="separator:a1c8d861353d0dc509580964f501863f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca4126f2496016e919f7be808f6d33b9"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#aca4126f2496016e919f7be808f6d33b9">asString</a> (uint32_t uiValue)</td></tr>
-<tr class="separator:aca4126f2496016e919f7be808f6d33b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:adb6a150b1e47d9815c71c413c8e4dd99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecore_1_1log_1_1details.html#a4f628b0a303ff9bd5fc7252bbf7096ed">core::log::details::Info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#adb6a150b1e47d9815c71c413c8e4dd99">info</a> () const </td></tr>
+<tr class="memdesc:adb6a150b1e47d9815c71c413c8e4dd99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logging methods.  <a href="#adb6a150b1e47d9815c71c413c8e4dd99">More...</a><br /></td></tr>
+<tr class="separator:adb6a150b1e47d9815c71c413c8e4dd99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1554340c83ecc39a03b3d3b51748067c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecore_1_1log_1_1details.html#aabb351b065b66587baaf38137dd8dee5">core::log::details::Warning</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObject.html#a1554340c83ecc39a03b3d3b51748067c">warning</a> () const </td></tr>
+<tr class="separator:a1554340c83ecc39a03b3d3b51748067c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="SubsystemObject_8h_source.html#l00041">41</a> of file <a class="el" href="SubsystemObject_8h_source.html">SubsystemObject.h</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8h_source.html#l00044">44</a> of file <a class="el" href="SubsystemObject_8h_source.html">SubsystemObject.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a82013f3d46a655a9f5790b188d25be74"></a>
+<a class="anchor" id="ab693a002d30474f33bce4ba96a3d529f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -162,18 +157,28 @@ Static Protected Member Functions</h2></td></tr>
           <td class="memname">CSubsystemObject::CSubsystemObject </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *&#160;</td>
-          <td class="paramname"><em>pInstanceConfigurableElement</em></td><td>)</td>
+          <td class="paramname"><em>pInstanceConfigurableElement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00045">45</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00046">46</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCSubsystemObject_a82013f3d46a655a9f5790b188d25be74_cgraph.svg" width="511" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCSubsystemObject_ab693a002d30474f33bce4ba96a3d529f_cgraph.svg" width="511" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -201,7 +206,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00055">55</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00058">58</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -246,7 +251,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00184">184</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00165">165</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -258,59 +263,7 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a1c8d861353d0dc509580964f501863f1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t CSubsystemObject::asInteger </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strValue</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00079">79</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aca4126f2496016e919f7be808f6d33b9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CSubsystemObject::asString </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiValue</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00084">84</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a49d1a1ae8cfb17e19fe3b12e7cfd3398"></a>
+<a class="anchor" id="a8277100f1c7d511b85ad709abe61266f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -326,8 +279,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiSize</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -342,11 +295,19 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00197">197</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00178">178</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCSubsystemObject_a8277100f1c7d511b85ad709abe61266f_cgraph.svg" width="699" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="a136fbbf62e23ed2bcef625ac0b3297a2"></a>
+<a class="anchor" id="aabd14ac83b01d74f22fb00f1a8c306da"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -362,8 +323,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiSize</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -378,7 +339,15 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00206">206</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00185">185</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCSubsystemObject_aabd14ac83b01d74f22fb00f1a8c306da_cgraph.svg" width="668" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
@@ -403,7 +372,18 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00067">67</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>FIXME: plugins should not have direct access to blackboard memory. </p>
+<p>Ie: This method should be removed or return a abstracted iterator. </p>
+
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00070">70</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCSubsystemObject_a35b8554e5c3cc58ce88feb1c759415f6_cgraph.svg" width="472" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
@@ -420,7 +400,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00253">253</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00193">193</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 </div>
 </div>
@@ -450,11 +430,11 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented in <a class="el" href="classCFormattedSubsystemObject.html#ae77fbb306a3786f569e2c304b94584f2">CFormattedSubsystemObject</a>.</p>
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00060">60</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00063">63</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7a83ded6c812265c95f9a068d4373439"></a>
+<a class="anchor" id="a084799c219455af9f86e043166db5aa5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -462,7 +442,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t CSubsystemObject::getSize </td>
+          <td class="memname">size_t CSubsystemObject::getSize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -475,7 +455,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00073">73</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00076">76</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +480,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00258">258</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00198">198</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -512,7 +492,7 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a89982d829209f3204dfad5d0b125c698"></a>
+<a class="anchor" id="adb6a150b1e47d9815c71c413c8e4dd99"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -520,83 +500,22 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CSubsystemObject::log_info </td>
+          <td class="memname"><a class="el" href="namespacecore_1_1log_1_1details.html#a4f628b0a303ff9bd5fc7252bbf7096ed">core::log::details::Info</a> CSubsystemObject::info </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>strMessage</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00216">216</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Logging methods. </p>
 
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCSubsystemObject_a89982d829209f3204dfad5d0b125c698_cgraph.svg" width="402" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a39524c85e8b1793565043b463417fadd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CSubsystemObject::log_warning </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>strMessage</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00234">234</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCSubsystemObject_a39524c85e8b1793565043b463417fadd_cgraph.svg" width="396" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8h_source.html#l00094">94</a> of file <a class="el" href="SubsystemObject_8h_source.html">SubsystemObject.h</a>.</p>
 
 </div>
 </div>
@@ -622,7 +541,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00173">173</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00156">156</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -656,7 +575,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00166">166</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00149">149</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -710,7 +629,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the data converted to int </dd></dl>
 
-<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00093">93</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObject_8cpp_source.html#l00081">81</a> of file <a class="el" href="SubsystemObject_8cpp_source.html">SubsystemObject.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -719,6 +638,31 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a1554340c83ecc39a03b3d3b51748067c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacecore_1_1log_1_1details.html#aabb351b065b66587baaf38137dd8dee5">core::log::details::Warning</a> CSubsystemObject::warning </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="SubsystemObject_8h_source.html#l00095">95</a> of file <a class="el" href="SubsystemObject_8h_source.html">SubsystemObject.h</a>.</p>
 
 </div>
 </div>

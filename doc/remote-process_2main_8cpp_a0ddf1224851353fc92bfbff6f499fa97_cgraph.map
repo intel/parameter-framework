@@ -1,17 +1,8 @@
 <map id="main" name="main">
-<area shape="rect" id="node2" href="$classCConnectionSocket.html#ac662338f1a2f2bb3538ba522cf06be78" title="CConnectionSocket::\lconnect" alt="" coords="133,49,287,90"/>
-<area shape="rect" id="node5" href="$classCRequestMessageGenerator.html#ad81a727cb2c87141ea2304d7c842ebec" title="CRequestMessageGenerator\l::next" alt="" coords="108,146,312,187"/>
-<area shape="rect" id="node8" href="$classCRequestMessage.html#acabef458b313a1e9a9c1c31239c0cbd3" title="CRequestMessage::addArgument" alt="" coords="360,208,595,235"/>
-<area shape="rect" id="node9" href="$remote-process_2main_8cpp.html#af14c089a76390ab8b7424bb69fad6352" title="sendAndDisplayCommand" alt="" coords="115,284,305,311"/>
-<area shape="rect" id="node3" href="$classCSocket.html#a489715f4b7fc3e5b5efd832766208acd" title="CSocket::initSockAddrIn" alt="" coords="390,5,565,32"/>
-<area shape="rect" id="node4" href="$classCSocket.html#aa925e6f828f6084610bb19c80709ff0a" title="CSocket::getFd" alt="" coords="418,56,537,83"/>
-<area shape="rect" id="node6" href="$classNaiveTokenizer.html#ac5159be438eedc6886029d4b7a499e42" title="tokenize a space&#45;separated string, handling quotes " alt="" coords="371,107,583,133"/>
-<area shape="rect" id="node7" href="$classCRequestMessage.html#a399c6f1c96ed942b4632841e20a28555" title="CRequestMessage::setCommand" alt="" coords="360,157,595,184"/>
-<area shape="rect" id="node10" href="$classCMessage.html#a934d70aff67a456a92124664d6e78e84" title="Write or read the message on pSocket. " alt="" coords="403,259,551,285"/>
-<area shape="rect" id="node14" href="$classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce" title="CAnswerMessage::success" alt="" coords="381,309,574,336"/>
-<area shape="rect" id="node16" href="$classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c" title="CAnswerMessage::getAnswer" alt="" coords="373,360,582,387"/>
-<area shape="rect" id="node11" href="$classCSocket.html#a56781c4ee49b861a1177cf72bca4b058" title="CSocket::write" alt="" coords="697,183,811,209"/>
-<area shape="rect" id="node12" href="$classCSocket.html#a33d4c0e9b69e048b3ca73e435e890af2" title="CSocket::hasPeerDisconnected" alt="" coords="643,233,865,260"/>
-<area shape="rect" id="node13" href="$classCSocket.html#a476a64ffeb8843cbce048dd89a62e38c" title="CSocket::read" alt="" coords="698,284,810,311"/>
-<area shape="rect" id="node15" href="$classCMessage.html#a060b5a2b0874bf080b36b9e406e4d2e1" title="CMessage::getMsgId" alt="" coords="677,335,831,361"/>
+<area shape="rect" id="node2" href="$classCRequestMessage.html#acabef458b313a1e9a9c1c31239c0cbd3" title="CRequestMessage::addArgument" alt="" coords="108,5,343,32"/>
+<area shape="rect" id="node3" href="$remote-process_2main_8cpp.html#a6d6ad099f54d8866cc57dff6eea8931b" title="sendAndDisplayCommand" alt="" coords="130,56,321,83"/>
+<area shape="rect" id="node4" href="$classCMessage.html#a4ffffaf65b3e142bbd673eeaced870a6" title="Write or read the message on pSocket. " alt="" coords="421,5,569,32"/>
+<area shape="rect" id="node5" href="$classCAnswerMessage.html#af22d01ea3de76ad0e82513eab0d7e7ce" title="CAnswerMessage::success" alt="" coords="399,56,592,83"/>
+<area shape="rect" id="node7" href="$classCAnswerMessage.html#ad5b737b114cde75702c2233d723b970c" title="CAnswerMessage::getAnswer" alt="" coords="391,107,600,133"/>
+<area shape="rect" id="node6" href="$classCMessage.html#a6e01b6cc8fdbd5f7eb8238b251b8f998" title="CMessage::getMsgId" alt="" coords="648,56,803,83"/>
 </map>

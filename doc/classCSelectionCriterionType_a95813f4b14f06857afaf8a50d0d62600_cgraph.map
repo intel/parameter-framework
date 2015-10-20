@@ -1,7 +1,6 @@
 <map id="CSelectionCriterionType::toXml" name="CSelectionCriterionType::toXml">
-<area shape="rect" id="node2" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="476,32,668,74"/>
-<area shape="rect" id="node3" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="235,28,407,70"/>
-<area shape="rect" id="node4" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="227,160,415,186"/>
-<area shape="rect" id="node6" href="$classCXmlElement.html#a5c2deb2e8b2adbeb9b8eb0b5e642cbb7" title="Set attribute with signed integer. " alt="" coords="225,94,417,135"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="465,160,679,186"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="225,5,417,32"/>
+<area shape="rect" id="node3" href="$classCSelectionCriterionType.html#ae88c284c1f002d7237f25e9c21dcf44f" title="CSelectionCriterionType\l::isTypeInclusive" alt="" coords="235,57,407,98"/>
+<area shape="rect" id="node4" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="227,123,415,149"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="465,123,679,149"/>
 </map>

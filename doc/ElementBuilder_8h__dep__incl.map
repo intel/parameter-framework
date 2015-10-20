@@ -1,13 +1,16 @@
 <map id="parameter/ElementBuilder.h" name="parameter/ElementBuilder.h">
-<area shape="rect" id="node2" href="$DefaultElementLibrary_8h.html" title="parameter/DefaultElement\lLibrary.h" alt="" coords="727,80,920,121"/>
-<area shape="rect" id="node7" href="$ElementBuilderTemplate_8h.html" title="parameter/ElementBuilder\lTemplate.h" alt="" coords="5,169,196,211"/>
-<area shape="rect" id="node8" href="$ElementLibrary_8cpp.html" title="parameter/ElementLibrary.cpp" alt="" coords="996,87,1211,114"/>
-<area shape="rect" id="node9" href="$FileIncluderElementBuilder_8h.html" title="parameter/FileIncluderElement\lBuilder.h" alt="" coords="220,169,437,211"/>
-<area shape="rect" id="node10" href="$KindElementBuilderTemplate_8h.html" title="parameter/KindElementBuilder\lTemplate.h" alt="" coords="221,80,439,121"/>
-<area shape="rect" id="node11" href="$NamedElementBuilderTemplate_8h.html" title="parameter/NamedElementBuilder\lTemplate.h" alt="" coords="464,80,703,121"/>
-<area shape="rect" id="node12" href="$SubsystemElementBuilder_8h.html" title="parameter/SubsystemElement\lBuilder.h" alt="" coords="857,169,1075,211"/>
-<area shape="rect" id="node3" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="614,177,833,203"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="374,266,585,293"/>
-<area shape="rect" id="node5" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="853,259,1071,300"/>
-<area shape="rect" id="node6" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="617,266,821,293"/>
+<area shape="rect" id="node2" href="$DefaultElementLibrary_8h.html" title="parameter/DefaultElement\lLibrary.h" alt="" coords="787,80,980,121"/>
+<area shape="rect" id="node8" href="$ElementBuilderTemplate_8h.html" title="parameter/ElementBuilder\lTemplate.h" alt="" coords="5,169,196,211"/>
+<area shape="rect" id="node9" href="$ElementLibrary_8cpp.html" title="parameter/ElementLibrary.cpp" alt="" coords="1227,87,1441,114"/>
+<area shape="rect" id="node10" href="$FileIncluderElementBuilder_8h.html" title="parameter/FileIncluderElement\lBuilder.h" alt="" coords="220,169,437,211"/>
+<area shape="rect" id="node11" href="$KindElementBuilderTemplate_8h.html" title="parameter/KindElementBuilder\lTemplate.h" alt="" coords="229,80,447,121"/>
+<area shape="rect" id="node12" href="$LoggingElementBuilderTemplate_8h.html" title="parameter/LoggingElement\lBuilderTemplate.h" alt="" coords="1005,80,1202,121"/>
+<area shape="rect" id="node14" href="$NamedElementBuilderTemplate_8h.html" title="parameter/NamedElementBuilder\lTemplate.h" alt="" coords="472,80,711,121"/>
+<area shape="rect" id="node15" href="$SubsystemElementBuilder_8h.html" title="parameter/SubsystemElement\lBuilder.h" alt="" coords="566,169,785,211"/>
+<area shape="rect" id="node3" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="809,177,1027,203"/>
+<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="369,266,579,293"/>
+<area shape="rect" id="node5" href="$Plugin_8h.html" title="This file is intended to be used by the plugins. " alt="" coords="846,266,990,293"/>
+<area shape="rect" id="node6" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="603,259,822,300"/>
+<area shape="rect" id="node7" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="1015,266,1219,293"/>
+<area shape="rect" id="node13" href="$LoggingElementBuilderTemplate_8cpp.html" title="parameter/LoggingElement\lBuilderTemplate.cpp" alt="" coords="1141,169,1338,211"/>
 </map>

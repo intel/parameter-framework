@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -129,142 +129,170 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/* details namespace is here to hide implementation details to header end user. It</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> * is NOT intended to be used outside. */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespacedetails.html">   41</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedetails.html">details</a></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed.html">   46</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/* List of allowed types for conversion */</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01bool_01_4.html">   49</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;bool&gt; {};</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01uint64__t_01_4.html">   50</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;uint64_t&gt; {};</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01int64__t_01_4.html">   51</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;int64_t&gt; {};</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01uint32__t_01_4.html">   52</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;uint32_t&gt; {};</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01int32__t_01_4.html">   53</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;int32_t&gt; {};</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01uint16__t_01_4.html">   54</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;uint16_t&gt; {};</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01int16__t_01_4.html">   55</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;int16_t&gt; {};</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01float_01_4.html">   56</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;float&gt; {};</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01double_01_4.html">   57</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;double&gt; {};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/* details namespace is here to hide implementation details to header end user. It</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> * is NOT intended to be used outside. */</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="namespacedetails.html">   42</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedetails.html">details</a></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/* List of allowed types for conversion */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed.html">   46</a></span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a> : std::false_type {};</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01bool_01_4.html">   47</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;bool&gt; : std::true_type {};</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01uint64__t_01_4.html">   48</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;uint64_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01int64__t_01_4.html">   49</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;int64_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01uint32__t_01_4.html">   50</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;uint32_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01int32__t_01_4.html">   51</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;int32_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01uint16__t_01_4.html">   52</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;uint16_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01int16__t_01_4.html">   53</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;int16_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01int8__t_01_4.html">   54</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;int8_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01uint8__t_01_4.html">   55</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;uint8_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01float_01_4.html">   56</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;float&gt; : std::true_type {};</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowed_3_01double_01_4.html">   57</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed</a>&lt;double&gt; : std::true_type {};</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">   60</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">convertTo</a>(<span class="keyword">const</span> std::string &amp;str, T &amp;result)</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">/* Check that conversion to that type is allowed.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">     * If this fails, this means that this template was not intended to be used</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">     * with this type, thus that the result is undefined. */</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed&lt;T&gt;</a>();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> (str.find_first_of(std::string(<span class="stringliteral">&quot;\r\n\t\v &quot;</span>)) != std::string::npos) {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">/* Check for a &#39;-&#39; in string. If type is unsigned and a - is found, the</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">     * parsing fails. This is made necessary because &quot;-1&quot; is read as 65535 for</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">     * uint16_t, for example */</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span> (str.find(<span class="stringliteral">&quot;-&quot;</span>) != std::string::npos</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        &amp;&amp; !std::numeric_limits&lt;T&gt;::is_signed) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    std::stringstream ss(str);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">/* Sadly, the stream conversion does not handle hexadecimal format, thus</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">     * check is done manually */</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (str.substr(0, 2) == <span class="stringliteral">&quot;0x&quot;</span>) {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">if</span> (std::numeric_limits&lt;T&gt;::is_integer) {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            ss &gt;&gt; std::hex &gt;&gt; result;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="comment">/* Conversion undefined for non integers */</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        ss &gt;&gt; result;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">return</span> ss.eof() &amp;&amp; !ss.fail() &amp;&amp; !ss.bad();</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;} <span class="comment">// namespace details</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">  116</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">convertTo</a>(<span class="keyword">const</span> std::string &amp;str, T &amp;result)</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">return</span> details::convertTo&lt;T&gt;(str, result);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="convert_8hpp.html#a0744b0d871456b49d6d1160bb8a39ba1">  136</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#a0744b0d871456b49d6d1160bb8a39ba1">convertTo&lt;int16_t&gt;</a>(<span class="keyword">const</span> std::string &amp;str, int16_t &amp;result)</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;{</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    int64_t res;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordflow">if</span> (!convertTo&lt;int64_t&gt;(str, res)) {</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">if</span> (res &gt; std::numeric_limits&lt;int16_t&gt;::max() || res &lt; std::numeric_limits&lt;int16_t&gt;::min()) {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    result = <span class="keyword">static_cast&lt;</span>int16_t<span class="keyword">&gt;</span>(res);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">/* Allow chars and unsigned chars to be converted via integers */</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowedVia.html">   60</a></span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Via&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowedVia.html">ConvertionAllowedVia</a> : std::false_type {};</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowedVia_3_01uint8__t_00_01uint32__t_01_4.html">   61</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowedVia.html">ConvertionAllowedVia</a>&lt;uint8_t, uint32_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structdetails_1_1ConvertionAllowedVia_3_01int8__t_00_01int32__t_01_4.html">   62</a></span>&#160;<span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="structdetails_1_1ConvertionAllowedVia.html">ConvertionAllowedVia</a>&lt;int8_t, int32_t&gt; : std::true_type {};</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">   65</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">convertTo</a>(<span class="keyword">const</span> std::string &amp;str, T &amp;result)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">/* Check that conversion to that type is allowed.</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">     * If this fails, this means that this template was not intended to be used</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">     * with this type, thus that the result is undefined. */</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    static_assert(<a class="code" href="structdetails_1_1ConvertionAllowed.html">ConvertionAllowed&lt;T&gt;::value</a>, <span class="stringliteral">&quot;convertTo does not support this conversion&quot;</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">if</span> (str.find_first_of(std::string(<span class="stringliteral">&quot;\r\n\t\v &quot;</span>)) != std::string::npos) {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">/* Check for a &#39;-&#39; in string. If type is unsigned and a - is found, the</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">     * parsing fails. This is made necessary because &quot;-1&quot; is read as 65535 for</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">     * uint16_t, for example */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">if</span> (str.find(<span class="stringliteral">&quot;-&quot;</span>) != std::string::npos</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        &amp;&amp; !std::numeric_limits&lt;T&gt;::is_signed) {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    std::stringstream ss(str);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">/* Sadly, the stream conversion does not handle hexadecimal format, thus</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">     * check is done manually */</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">if</span> (str.substr(0, 2) == <span class="stringliteral">&quot;0x&quot;</span>) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">if</span> (std::numeric_limits&lt;T&gt;::is_integer) {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            ss &gt;&gt; std::hex &gt;&gt; result;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="comment">/* Conversion undefined for non integers */</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        ss &gt;&gt; result;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> ss.eof() &amp;&amp; !ss.fail() &amp;&amp; !ss.bad();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Via&gt;</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="namespacedetails.html#ac241a150b3c94a33a62fd8e09ffa172f">  104</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacedetails.html#ac241a150b3c94a33a62fd8e09ffa172f">convertToVia</a>(<span class="keyword">const</span> std::string &amp;str, T &amp;result)</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">/* Check that conversion to that type is allowed.</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">     * If this fails, this means that this template was not intended to be used</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">     * with this type, thus that the result is undefined. */</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    static_assert(<a class="code" href="structdetails_1_1ConvertionAllowedVia.html">ConvertionAllowedVia&lt;T, Via&gt;::value</a>,</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="stringliteral">&quot;convertToVia does not support this conversion&quot;</span>);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">/* We want to override the behaviour of convertTo&lt;T&gt; with that of</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">     * convertTo&lt;Via&gt; and then safely cast the result into a T. */</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    Via res;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">if</span> (!convertTo&lt;Via&gt;(str, res)) {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">if</span> ((res &gt; std::numeric_limits&lt;T&gt;::max())</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        or (res &lt; std::numeric_limits&lt;T&gt;::min())) {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    result = <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(res);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;} <span class="comment">// namespace details</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">  147</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">convertTo</a>(<span class="keyword">const</span> std::string &amp;str, T &amp;result)</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;{</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">return</span> details::convertTo&lt;T&gt;(str, result);</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="convert_8hpp.html#a23f1bd42ef60f0ba502df64187327b17">  168</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#a23f1bd42ef60f0ba502df64187327b17">convertTo&lt;float&gt;</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">float</span> &amp;result)</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;{</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">details::convertTo</a>(str, result)) {</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">if</span> (std::abs(result) == std::numeric_limits&lt;float&gt;::infinity() ||</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        result == std::numeric_limits&lt;float&gt;::quiet_NaN()) {</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    }</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;}</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="convert_8hpp.html#a584da9722f957c2af7b3aeafac7a7d89">  198</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#a584da9722f957c2af7b3aeafac7a7d89">convertTo&lt;double&gt;</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">double</span> &amp;result)</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;{</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">details::convertTo</a>(str, result)) {</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    }</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordflow">if</span> (std::abs(result) == std::numeric_limits&lt;double&gt;::infinity() ||</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        result == std::numeric_limits&lt;double&gt;::quiet_NaN()) {</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    }</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;}</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="convert_8hpp.html#a7984c5e71b9c4fb64f55e71d783cabb3">  170</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#a7984c5e71b9c4fb64f55e71d783cabb3">convertTo&lt;uint8_t&gt;</a>(<span class="keyword">const</span> std::string &amp;str, uint8_t &amp;result)</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;{</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordflow">return</span> details::convertToVia&lt;uint8_t, uint32_t&gt;(str, result);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;}</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="convert_8hpp.html#aca5eab2292e7ff587749bf38269bd2fa">  180</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#aca5eab2292e7ff587749bf38269bd2fa">convertTo&lt;int8_t&gt;</a>(<span class="keyword">const</span> std::string &amp;str, int8_t &amp;result)</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;{</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keywordflow">return</span> details::convertToVia&lt;int8_t, int32_t&gt;(str, result);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;}</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="convert_8hpp.html#a23f1bd42ef60f0ba502df64187327b17">  201</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#a23f1bd42ef60f0ba502df64187327b17">convertTo&lt;float&gt;</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">float</span> &amp;result)</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;{</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">details::convertTo</a>(str, result)) {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">if</span> (!std::isfinite(result)) {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;}</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="convert_8hpp.html#aebdba503ca1852314e9b78f21f0926d4">  230</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#aebdba503ca1852314e9b78f21f0926d4">convertTo&lt;bool&gt;</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">bool</span> &amp;result)</div>
+<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="convert_8hpp.html#a584da9722f957c2af7b3aeafac7a7d89">  230</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#a584da9722f957c2af7b3aeafac7a7d89">convertTo&lt;double&gt;</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">double</span> &amp;result)</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;{</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">if</span> (str == <span class="stringliteral">&quot;0&quot;</span> || str == <span class="stringliteral">&quot;FALSE&quot;</span> || str == <span class="stringliteral">&quot;false&quot;</span>) {</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        result = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordflow">if</span> (str == <span class="stringliteral">&quot;1&quot;</span> || str == <span class="stringliteral">&quot;TRUE&quot;</span> || str == <span class="stringliteral">&quot;true&quot;</span>) {</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        result = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;}</div>
-<div class="ttc" id="convert_8hpp_html_a964ad4e5bd0e92d61880c18cbc5bd5b3"><div class="ttname"><a href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">convertTo</a></div><div class="ttdeci">static bool convertTo(const std::string &amp;str, T &amp;result)</div><div class="ttdoc">Convert a string to a given type. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00116">convert.hpp:116</a></div></div>
-<div class="ttc" id="namespacedetails_html"><div class="ttname"><a href="namespacedetails.html">details</a></div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00041">convert.hpp:41</a></div></div>
-<div class="ttc" id="convert_8hpp_html_a23f1bd42ef60f0ba502df64187327b17"><div class="ttname"><a href="convert_8hpp.html#a23f1bd42ef60f0ba502df64187327b17">convertTo&lt; float &gt;</a></div><div class="ttdeci">bool convertTo&lt; float &gt;(const std::string &amp;str, float &amp;result)</div><div class="ttdoc">Specialization for float of convertTo template function. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00168">convert.hpp:168</a></div></div>
-<div class="ttc" id="convert_8hpp_html_aebdba503ca1852314e9b78f21f0926d4"><div class="ttname"><a href="convert_8hpp.html#aebdba503ca1852314e9b78f21f0926d4">convertTo&lt; bool &gt;</a></div><div class="ttdeci">bool convertTo&lt; bool &gt;(const std::string &amp;str, bool &amp;result)</div><div class="ttdoc">Specialization for boolean of convertTo template function. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00230">convert.hpp:230</a></div></div>
-<div class="ttc" id="convert_8hpp_html_a584da9722f957c2af7b3aeafac7a7d89"><div class="ttname"><a href="convert_8hpp.html#a584da9722f957c2af7b3aeafac7a7d89">convertTo&lt; double &gt;</a></div><div class="ttdeci">bool convertTo&lt; double &gt;(const std::string &amp;str, double &amp;result)</div><div class="ttdoc">Specialization for double of convertTo template function. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00198">convert.hpp:198</a></div></div>
-<div class="ttc" id="structdetails_1_1ConvertionAllowed_html"><div class="ttname"><a href="structdetails_1_1ConvertionAllowed.html">details::ConvertionAllowed</a></div><div class="ttdoc">Helper class to limit instantiation of templates. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00046">convert.hpp:46</a></div></div>
-<div class="ttc" id="convert_8hpp_html_a0744b0d871456b49d6d1160bb8a39ba1"><div class="ttname"><a href="convert_8hpp.html#a0744b0d871456b49d6d1160bb8a39ba1">convertTo&lt; int16_t &gt;</a></div><div class="ttdeci">bool convertTo&lt; int16_t &gt;(const std::string &amp;str, int16_t &amp;result)</div><div class="ttdoc">Specialization for int16_t of convertTo template function. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00136">convert.hpp:136</a></div></div>
-<div class="ttc" id="namespacedetails_html_acc2c48b21ff278e0b862f13ae3ce7fa0"><div class="ttname"><a href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">details::convertTo</a></div><div class="ttdeci">static bool convertTo(const std::string &amp;str, T &amp;result)</div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00060">convert.hpp:60</a></div></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">details::convertTo</a>(str, result)) {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordflow">if</span> (!std::isfinite(result)) {</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;}</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="convert_8hpp.html#aebdba503ca1852314e9b78f21f0926d4">  261</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="convert_8hpp.html#aebdba503ca1852314e9b78f21f0926d4">convertTo&lt;bool&gt;</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">bool</span> &amp;result)</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;{</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">if</span> (str == <span class="stringliteral">&quot;0&quot;</span> || str == <span class="stringliteral">&quot;FALSE&quot;</span> || str == <span class="stringliteral">&quot;false&quot;</span>) {</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        result = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    }</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordflow">if</span> (str == <span class="stringliteral">&quot;1&quot;</span> || str == <span class="stringliteral">&quot;TRUE&quot;</span> || str == <span class="stringliteral">&quot;true&quot;</span>) {</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        result = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    }</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;}</div>
+<div class="ttc" id="convert_8hpp_html_aca5eab2292e7ff587749bf38269bd2fa"><div class="ttname"><a href="convert_8hpp.html#aca5eab2292e7ff587749bf38269bd2fa">convertTo&lt; int8_t &gt;</a></div><div class="ttdeci">bool convertTo&lt; int8_t &gt;(const std::string &amp;str, int8_t &amp;result)</div><div class="ttdoc">Specialization for int8_t of convertTo template function. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00180">convert.hpp:180</a></div></div>
+<div class="ttc" id="convert_8hpp_html_a964ad4e5bd0e92d61880c18cbc5bd5b3"><div class="ttname"><a href="convert_8hpp.html#a964ad4e5bd0e92d61880c18cbc5bd5b3">convertTo</a></div><div class="ttdeci">static bool convertTo(const std::string &amp;str, T &amp;result)</div><div class="ttdoc">Convert a string to a given type. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00147">convert.hpp:147</a></div></div>
+<div class="ttc" id="namespacedetails_html"><div class="ttname"><a href="namespacedetails.html">details</a></div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00042">convert.hpp:42</a></div></div>
+<div class="ttc" id="convert_8hpp_html_a23f1bd42ef60f0ba502df64187327b17"><div class="ttname"><a href="convert_8hpp.html#a23f1bd42ef60f0ba502df64187327b17">convertTo&lt; float &gt;</a></div><div class="ttdeci">bool convertTo&lt; float &gt;(const std::string &amp;str, float &amp;result)</div><div class="ttdoc">Specialization for float of convertTo template function. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00201">convert.hpp:201</a></div></div>
+<div class="ttc" id="structdetails_1_1ConvertionAllowedVia_html"><div class="ttname"><a href="structdetails_1_1ConvertionAllowedVia.html">details::ConvertionAllowedVia</a></div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00060">convert.hpp:60</a></div></div>
+<div class="ttc" id="namespacedetails_html_ac241a150b3c94a33a62fd8e09ffa172f"><div class="ttname"><a href="namespacedetails.html#ac241a150b3c94a33a62fd8e09ffa172f">details::convertToVia</a></div><div class="ttdeci">static bool convertToVia(const std::string &amp;str, T &amp;result)</div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00104">convert.hpp:104</a></div></div>
+<div class="ttc" id="convert_8hpp_html_aebdba503ca1852314e9b78f21f0926d4"><div class="ttname"><a href="convert_8hpp.html#aebdba503ca1852314e9b78f21f0926d4">convertTo&lt; bool &gt;</a></div><div class="ttdeci">bool convertTo&lt; bool &gt;(const std::string &amp;str, bool &amp;result)</div><div class="ttdoc">Specialization for boolean of convertTo template function. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00261">convert.hpp:261</a></div></div>
+<div class="ttc" id="convert_8hpp_html_a584da9722f957c2af7b3aeafac7a7d89"><div class="ttname"><a href="convert_8hpp.html#a584da9722f957c2af7b3aeafac7a7d89">convertTo&lt; double &gt;</a></div><div class="ttdeci">bool convertTo&lt; double &gt;(const std::string &amp;str, double &amp;result)</div><div class="ttdoc">Specialization for double of convertTo template function. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00230">convert.hpp:230</a></div></div>
+<div class="ttc" id="convert_8hpp_html_a7984c5e71b9c4fb64f55e71d783cabb3"><div class="ttname"><a href="convert_8hpp.html#a7984c5e71b9c4fb64f55e71d783cabb3">convertTo&lt; uint8_t &gt;</a></div><div class="ttdeci">bool convertTo&lt; uint8_t &gt;(const std::string &amp;str, uint8_t &amp;result)</div><div class="ttdoc">Specialization for uint8_t of convertTo template function. </div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00170">convert.hpp:170</a></div></div>
+<div class="ttc" id="structdetails_1_1ConvertionAllowed_html"><div class="ttname"><a href="structdetails_1_1ConvertionAllowed.html">details::ConvertionAllowed</a></div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00046">convert.hpp:46</a></div></div>
+<div class="ttc" id="namespacedetails_html_acc2c48b21ff278e0b862f13ae3ce7fa0"><div class="ttname"><a href="namespacedetails.html#acc2c48b21ff278e0b862f13ae3ce7fa0">details::convertTo</a></div><div class="ttdeci">static bool convertTo(const std::string &amp;str, T &amp;result)</div><div class="ttdef"><b>Definition:</b> <a href="convert_8hpp_source.html#l00065">convert.hpp:65</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

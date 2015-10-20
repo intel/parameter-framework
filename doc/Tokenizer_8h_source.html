@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -123,33 +123,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classTokenizer.html">   43</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTokenizer.html">Tokenizer</a></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classTokenizer.html#a46aab567d0be3756070331bf09a60ddd">Tokenizer</a>(<span class="keyword">const</span> std::string &amp;input, <span class="keyword">const</span> std::string &amp;delimiters=<a class="code" href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">defaultDelimiters</a>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classTokenizer.html#a3f60f887953edf0f95ba5f36102f7017">   53</a></span>&#160;    <a class="code" href="classTokenizer.html#a3f60f887953edf0f95ba5f36102f7017">~Tokenizer</a>() {};</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::string <a class="code" href="classTokenizer.html#aadbdfb263c127f7c04ae0b11972c1343">next</a>();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">split</a>();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">   68</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> std::string <a class="code" href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">defaultDelimiters</a>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">const</span> std::string _input; <span class="comment">//&lt; string to be tokenized</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">const</span> std::string _delimiters; <span class="comment">//&lt; token delimiters</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::string::size_type _position; <span class="comment">//&lt; end of the last returned token</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="NonCopyable_8hpp.html">NonCopyable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classTokenizer.html">   45</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTokenizer.html">Tokenizer</a> : <span class="keyword">private</span> <a class="code" href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classTokenizer.html#a46aab567d0be3756070331bf09a60ddd">Tokenizer</a>(<span class="keyword">const</span> std::string &amp;input, <span class="keyword">const</span> std::string &amp;delimiters=<a class="code" href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">defaultDelimiters</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classTokenizer.html#a3f60f887953edf0f95ba5f36102f7017">   55</a></span>&#160;    <a class="code" href="classTokenizer.html#a3f60f887953edf0f95ba5f36102f7017">~Tokenizer</a>() {};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::string <a class="code" href="classTokenizer.html#aadbdfb263c127f7c04ae0b11972c1343">next</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">split</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">   70</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> std::string <a class="code" href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">defaultDelimiters</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">const</span> std::string _input; <span class="comment">//&lt; string to be tokenized</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">const</span> std::string _delimiters; <span class="comment">//&lt; token delimiters</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::string::size_type _position; <span class="comment">//&lt; end of the last returned token</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
+<div class="ttc" id="classutility_1_1NonCopyable_html"><div class="ttname"><a href="classutility_1_1NonCopyable.html">utility::NonCopyable</a></div><div class="ttdoc">Base class for private inheritance to make the derived class non copyable. </div><div class="ttdef"><b>Definition:</b> <a href="NonCopyable_8hpp_source.html#l00045">NonCopyable.hpp:45</a></div></div>
 <div class="ttc" id="classTokenizer_html_a46aab567d0be3756070331bf09a60ddd"><div class="ttname"><a href="classTokenizer.html#a46aab567d0be3756070331bf09a60ddd">Tokenizer::Tokenizer</a></div><div class="ttdeci">Tokenizer(const std::string &amp;input, const std::string &amp;delimiters=defaultDelimiters)</div><div class="ttdoc">Constructs a Tokenizer. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8cpp_source.html#l00037">Tokenizer.cpp:37</a></div></div>
-<div class="ttc" id="classTokenizer_html"><div class="ttname"><a href="classTokenizer.html">Tokenizer</a></div><div class="ttdoc">Tokenizer class. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00043">Tokenizer.h:43</a></div></div>
-<div class="ttc" id="classTokenizer_html_a70433b3af21758bf81653cb304b899fa"><div class="ttname"><a href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">Tokenizer::defaultDelimiters</a></div><div class="ttdeci">static const std::string defaultDelimiters</div><div class="ttdoc">Default list of delimiters (" \n\r\t\v\f") </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00068">Tokenizer.h:68</a></div></div>
+<div class="ttc" id="classTokenizer_html"><div class="ttname"><a href="classTokenizer.html">Tokenizer</a></div><div class="ttdoc">Tokenizer class. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00045">Tokenizer.h:45</a></div></div>
+<div class="ttc" id="classTokenizer_html_a70433b3af21758bf81653cb304b899fa"><div class="ttname"><a href="classTokenizer.html#a70433b3af21758bf81653cb304b899fa">Tokenizer::defaultDelimiters</a></div><div class="ttdeci">static const std::string defaultDelimiters</div><div class="ttdoc">Default list of delimiters (" \n\r\t\v\f") </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00070">Tokenizer.h:70</a></div></div>
 <div class="ttc" id="classTokenizer_html_ac0873693f9de717d9dbdeb8d6b5429ec"><div class="ttname"><a href="classTokenizer.html#ac0873693f9de717d9dbdeb8d6b5429ec">Tokenizer::split</a></div><div class="ttdeci">std::vector&lt; std::string &gt; split()</div><div class="ttdoc">Return a vector of all tokens. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8cpp_source.html#l00063">Tokenizer.cpp:63</a></div></div>
+<div class="ttc" id="NonCopyable_8hpp_html"><div class="ttname"><a href="NonCopyable_8hpp.html">NonCopyable.hpp</a></div></div>
 <div class="ttc" id="classTokenizer_html_aadbdfb263c127f7c04ae0b11972c1343"><div class="ttname"><a href="classTokenizer.html#aadbdfb263c127f7c04ae0b11972c1343">Tokenizer::next</a></div><div class="ttdeci">std::string next()</div><div class="ttdoc">Return the next token or an empty string if no more token. </div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8cpp_source.html#l00042">Tokenizer.cpp:42</a></div></div>
-<div class="ttc" id="classTokenizer_html_a3f60f887953edf0f95ba5f36102f7017"><div class="ttname"><a href="classTokenizer.html#a3f60f887953edf0f95ba5f36102f7017">Tokenizer::~Tokenizer</a></div><div class="ttdeci">~Tokenizer()</div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00053">Tokenizer.h:53</a></div></div>
+<div class="ttc" id="classTokenizer_html_a3f60f887953edf0f95ba5f36102f7017"><div class="ttname"><a href="classTokenizer.html#a3f60f887953edf0f95ba5f36102f7017">Tokenizer::~Tokenizer</a></div><div class="ttdeci">~Tokenizer()</div><div class="ttdef"><b>Definition:</b> <a href="Tokenizer_8h_source.html#l00055">Tokenizer.h:55</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

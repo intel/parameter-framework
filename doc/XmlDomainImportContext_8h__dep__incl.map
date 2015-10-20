@@ -1,9 +1,10 @@
 <map id="parameter/XmlDomainImportContext.h" name="parameter/XmlDomainImportContext.h">
-<area shape="rect" id="node2" href="$ConfigurableDomain_8h.html" title="parameter/ConfigurableDomain.h" alt="" coords="431,102,667,129"/>
-<area shape="rect" id="node3" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="5,184,256,211"/>
-<area shape="rect" id="node6" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="843,184,1053,211"/>
-<area shape="rect" id="node7" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="741,102,997,129"/>
-<area shape="rect" id="node8" href="$SelectionCriterionRule_8cpp.html" title="parameter/SelectionCriterion\lRule.cpp" alt="" coords="1022,95,1229,136"/>
-<area shape="rect" id="node4" href="$ConfigurableDomains_8cpp.html" title="parameter/ConfigurableDomains.cpp" alt="" coords="280,184,539,211"/>
-<area shape="rect" id="node5" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="563,184,818,211"/>
+<area shape="rect" id="node2" href="$ConfigurableDomain_8h.html" title="parameter/ConfigurableDomain.h" alt="" coords="515,102,751,129"/>
+<area shape="rect" id="node3" href="$ConfigurableDomain_8cpp.html" title="parameter/ConfigurableDomain.cpp" alt="" coords="567,184,818,211"/>
+<area shape="rect" id="node6" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="842,184,1053,211"/>
+<area shape="rect" id="node7" href="$DomainConfiguration_8h.html" title="parameter/DomainConfiguration.h" alt="" coords="876,102,1117,129"/>
+<area shape="rect" id="node8" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="1077,184,1333,211"/>
+<area shape="rect" id="node9" href="$SelectionCriterionRule_8cpp.html" title="parameter/SelectionCriterion\lRule.cpp" alt="" coords="1193,95,1400,136"/>
+<area shape="rect" id="node4" href="$ConfigurableDomains_8cpp.html" title="parameter/ConfigurableDomains.cpp" alt="" coords="285,184,543,211"/>
+<area shape="rect" id="node5" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="5,184,260,211"/>
 </map>

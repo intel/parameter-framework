@@ -1,5 +1,4 @@
 <map id="CElement::setXmlDescriptionAttribute" name="CElement::setXmlDescriptionAttribute">
 <area shape="rect" id="node2" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="306,5,435,32"/>
-<area shape="rect" id="node4" href="$classCInstanceConfigurableElement.html#a466b63cf9c344e256680c409c29ef9b6" title="CInstanceConfigurableElement\l::toXml" alt="" coords="261,57,480,98"/>
-<area shape="rect" id="node3" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="528,5,707,32"/>
+<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#a466b63cf9c344e256680c409c29ef9b6" title="CInstanceConfigurableElement\l::toXml" alt="" coords="261,57,480,98"/>
 </map>

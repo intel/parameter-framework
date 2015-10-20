@@ -1,4 +1,9 @@
 <map id="utility/convert.hpp" name="utility/convert.hpp">
-<area shape="rect" id="node2" href="$FixedPointParameterType_8cpp.html" title="parameter/FixedPointParameter\lType.cpp" alt="" coords="5,80,231,121"/>
-<area shape="rect" id="node3" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="255,80,389,121"/>
+<area shape="rect" id="node2" href="$EnumParameterType_8cpp.html" title="parameter/EnumParameterType.cpp" alt="" coords="5,87,259,114"/>
+<area shape="rect" id="node3" href="$FixedPointParameterType_8cpp.html" title="parameter/FixedPointParameter\lType.cpp" alt="" coords="283,80,509,121"/>
+<area shape="rect" id="node4" href="$FloatingPointParameterType_8cpp.html" title="parameter/FloatingPointParameter\lType.cpp" alt="" coords="533,80,776,121"/>
+<area shape="rect" id="node5" href="$SubsystemObject_8cpp.html" title="parameter/SubsystemObject.cpp" alt="" coords="800,87,1035,114"/>
+<area shape="rect" id="node6" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="1059,80,1194,121"/>
+<area shape="rect" id="node7" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="1218,80,1353,121"/>
+<area shape="rect" id="node8" href="$XmlElement_8cpp.html" title="xmlserializer/XmlElement.cpp" alt="" coords="1377,87,1588,114"/>
 </map>

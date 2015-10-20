@@ -1,15 +1,16 @@
 <map id="parameter/Mapper.h" name="parameter/Mapper.h">
 <area shape="rect" id="node2" href="$Subsystem_8h.html" title="parameter/Subsystem.h" alt="" coords="868,87,1047,114"/>
-<area shape="rect" id="node14" href="$InstanceConfigurableElement_8cpp.html" title="parameter/InstanceConfigurable\lElement.cpp" alt="" coords="1071,80,1299,121"/>
+<area shape="rect" id="node15" href="$InstanceConfigurableElement_8cpp.html" title="parameter/InstanceConfigurable\lElement.cpp" alt="" coords="1071,80,1299,121"/>
 <area shape="rect" id="node3" href="$BitwiseAreaConfiguration_8cpp.html" title="parameter/BitwiseAreaConfiguration.cpp" alt="" coords="5,169,285,196"/>
 <area shape="rect" id="node4" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="309,169,565,196"/>
 <area shape="rect" id="node5" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="590,169,823,196"/>
 <area shape="rect" id="node6" href="$VirtualSubsystem_8h.html" title="parameter/VirtualSubsystem.h" alt="" coords="848,169,1067,196"/>
-<area shape="rect" id="node8" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="999,326,1209,353"/>
-<area shape="rect" id="node12" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="1142,169,1335,196"/>
-<area shape="rect" id="node13" href="$SubsystemObject_8cpp.html" title="parameter/SubsystemObject.cpp" alt="" coords="1360,169,1595,196"/>
+<area shape="rect" id="node8" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="1089,326,1300,353"/>
+<area shape="rect" id="node13" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="1142,169,1335,196"/>
+<area shape="rect" id="node14" href="$SubsystemObject_8cpp.html" title="parameter/SubsystemObject.cpp" alt="" coords="1360,169,1595,196"/>
 <area shape="rect" id="node7" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="848,244,1067,271"/>
-<area shape="rect" id="node10" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="489,326,693,353"/>
-<area shape="rect" id="node11" href="$VirtualSubsystem_8cpp.html" title="parameter/VirtualSubsystem.cpp" alt="" coords="589,244,824,271"/>
-<area shape="rect" id="node9" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="756,319,975,360"/>
+<area shape="rect" id="node11" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="450,326,654,353"/>
+<area shape="rect" id="node12" href="$VirtualSubsystem_8cpp.html" title="parameter/VirtualSubsystem.cpp" alt="" coords="589,244,824,271"/>
+<area shape="rect" id="node9" href="$Plugin_8h.html" title="This file is intended to be used by the plugins. " alt="" coords="679,326,823,353"/>
+<area shape="rect" id="node10" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="847,319,1065,360"/>
 </map>

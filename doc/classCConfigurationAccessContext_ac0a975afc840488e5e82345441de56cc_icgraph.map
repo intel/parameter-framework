@@ -1,7 +1,8 @@
 <map id="CConfigurationAccessContext::serializeOut" name="CConfigurationAccessContext::serializeOut">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="516,85,675,127"/>
-<area shape="rect" id="node3" href="$classCArrayParameter.html#a192ed81d047795b1823cab20337ad283" title="CArrayParameter::serialize\lXmlSettings" alt="" coords="270,37,462,79"/>
-<area shape="rect" id="node4" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="271,103,461,144"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="284,192,448,233"/>
-<area shape="rect" id="node6" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType\l::handleValueSpaceAttribute" alt="" coords="264,257,468,299"/>
+<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="520,89,679,130"/>
+<area shape="rect" id="node3" href="$classCArrayParameter.html#a192ed81d047795b1823cab20337ad283" title="CArrayParameter::serialize\lXmlSettings" alt="" coords="272,41,464,82"/>
+<area shape="rect" id="node4" href="$classCBaseParameter.html#a97e096908df72fa729a62c3f5c362ddd" title="CBaseParameter::serialize\lXmlSettings" alt="" coords="273,106,463,148"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="286,196,450,237"/>
+<area shape="rect" id="node6" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="Value space handling for settings import/export from/to XML. " alt="" coords="266,261,470,302"/>
+<area shape="rect" id="node7" href="$classCFloatingPointParameterType.html#a5fcda53d3c5e9e2cdab424158c808f19" title="Value space handling for settings import/export from/to XML. " alt="" coords="264,326,472,368"/>
 </map>

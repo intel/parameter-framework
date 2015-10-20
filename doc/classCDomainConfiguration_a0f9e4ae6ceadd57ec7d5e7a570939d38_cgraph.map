@@ -1,6 +1,0 @@
-<map id="CDomainConfiguration::getApplicationRule" name="CDomainConfiguration::getApplicationRule">
-<area shape="rect" id="node2" href="$classCCompoundRule.html#a4852b10618c0cf75059018ae60fb6eab" title="CCompoundRule::dump" alt="" coords="220,56,392,83"/>
-<area shape="rect" id="node3" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="440,5,623,32"/>
-<area shape="rect" id="node4" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="459,56,603,83"/>
-<area shape="rect" id="node5" href="$classCRule.html#aa4a929f43c17c8b7b1992062f019f530" title="CRule::dump" alt="" coords="480,107,583,133"/>
-</map>

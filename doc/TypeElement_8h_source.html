@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="TypeElement_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2014, Intel Corporation</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2015, Intel Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without modification,</span></div>
@@ -123,82 +123,74 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Element_8h.html">Element.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">class </span><a class="code" href="classCMappingData.html">CMappingData</a>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class </span><a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCTypeElement.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCTypeElement.html">CTypeElement</a> : <span class="keyword">public</span> <a class="code" href="classCElement.html">CElement</a></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d">CTypeElement</a>(<span class="keyword">const</span> std::string&amp; strName = <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCTypeElement.html#a91a95da4e9fd33f145385ad35424d842">~CTypeElement</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Instantiation</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* <a class="code" href="classCTypeElement.html#a0fd0b5dfb3e3515ff5b54eda3d7e0a45">instantiate</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// Mapping info</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCTypeElement.html#aa8d910c6cf51c03d03f183a6a81a8372">getMappingData</a>(<span class="keyword">const</span> std::string&amp; strKey, <span class="keyword">const</span> std::string*&amp; pStrValue) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCTypeElement.html#a52e9c905327db823c913041e481eacb0">hasMappingData</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCTypeElement.html#a2d4fd9d4443f521e563ef1b6188aeeba">getFormattedMapping</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// Element properties</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCTypeElement.html#a71898c707fb687b3a90c06fe25c3e171">showProperties</a>(std::string&amp; strResult) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// From IXmlSink</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// From IXmlSource</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCTypeElement.html#ac4118594de3638c76ab40ccc4ecbb2a8">toXml</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// Scalar or Array?</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCTypeElement.html#a31edf559bc169a1e22e312280bb7a495">isScalar</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// Array Length</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    uint32_t <a class="code" href="classCTypeElement.html#af00d2effc61c73560aabdf950a70f753">getArrayLength</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classCTypeElement.html#a9719eade46d3c80c55d0a269d93a4554">toPlainInteger</a>(<span class="keywordtype">int</span> iSizeOptimizedData) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">// Object creation</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCTypeElement.html#a7cdfd91a35b67d17fb2c92f8a2883854">populate</a>(<a class="code" href="classCElement.html">CElement</a>* pElement) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d">CTypeElement</a>(<span class="keyword">const</span> <a class="code" href="classCTypeElement.html">CTypeElement</a>&amp;);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="classCTypeElement.html">CTypeElement</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classCTypeElement.html">CTypeElement</a>&amp;);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// Actual instance creation</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* doInstantiate() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Mapping data creation and access</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classCMappingData.html">CMappingData</a>* getMappingData();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// For Arrays. 0 means scalar</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    uint32_t _uiArrayLength;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// Mapping info</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="classCMappingData.html">CMappingData</a>* _pMappingData;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
-<div class="ttc" id="classCTypeElement_html_a0fd0b5dfb3e3515ff5b54eda3d7e0a45"><div class="ttname"><a href="classCTypeElement.html#a0fd0b5dfb3e3515ff5b54eda3d7e0a45">CTypeElement::instantiate</a></div><div class="ttdeci">CInstanceConfigurableElement * instantiate() const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00127">TypeElement.cpp:127</a></div></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;parameter_export.h&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Element_8h.html">Element.h</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">class </span><a class="code" href="classCMappingData.html">CMappingData</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">class </span><a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCTypeElement.html">   40</a></span>&#160;<span class="keyword">class </span>PARAMETER_EXPORT <a class="code" href="classCTypeElement.html">CTypeElement</a> : <span class="keyword">public</span> <a class="code" href="classCElement.html">CElement</a></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classCTypeElement.html">CTypeElement</a>(<span class="keyword">const</span> std::string&amp; strName = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classCTypeElement.html">CTypeElement</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Instantiation</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* instantiate() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Mapping info</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> getMappingData(<span class="keyword">const</span> std::string&amp; strKey, <span class="keyword">const</span> std::string*&amp; pStrValue) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> hasMappingData() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> std::string getFormattedMapping() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Element properties</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCElement.html#a8c87fea54766f49f45346713d9d09880">showProperties</a>(std::string&amp; strResult) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// From IXmlSink</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// From IXmlSource</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCElement.html#a7ce1bde0fda5cf412b652000cab473e4">toXml</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// Scalar or Array?</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">bool</span> isScalar() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// Array Length</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">size_t</span> getArrayLength() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> toPlainInteger(<span class="keywordtype">int</span> iSizeOptimizedData) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// Object creation</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> populate(<a class="code" href="classCElement.html">CElement</a>* pElement) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="classCTypeElement.html">CTypeElement</a>(<span class="keyword">const</span> <a class="code" href="classCTypeElement.html">CTypeElement</a>&amp;);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classCTypeElement.html">CTypeElement</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classCTypeElement.html">CTypeElement</a>&amp;);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// Actual instance creation</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* doInstantiate() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// Mapping data creation and access</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="classCMappingData.html">CMappingData</a>* getMappingData();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">// For Arrays. 0 means scalar</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">size_t</span> _arrayLength;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">// Mapping info</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="classCMappingData.html">CMappingData</a>* _pMappingData;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;};</div>
 <div class="ttc" id="classCMappingData_html"><div class="ttname"><a href="classCMappingData.html">CMappingData</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingData_8h_source.html#l00035">MappingData.h:35</a></div></div>
-<div class="ttc" id="classCTypeElement_html_a31edf559bc169a1e22e312280bb7a495"><div class="ttname"><a href="classCTypeElement.html#a31edf559bc169a1e22e312280bb7a495">CTypeElement::isScalar</a></div><div class="ttdeci">bool isScalar() const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00047">TypeElement.cpp:47</a></div></div>
-<div class="ttc" id="classCTypeElement_html_aaf598b31938a8ba37fa306ee8847ed0d"><div class="ttname"><a href="classCTypeElement.html#aaf598b31938a8ba37fa306ee8847ed0d">CTypeElement::CTypeElement</a></div><div class="ttdeci">CTypeElement(const std::string &amp;strName=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00038">TypeElement.cpp:38</a></div></div>
-<div class="ttc" id="classCTypeElement_html_ac4118594de3638c76ab40ccc4ecbb2a8"><div class="ttname"><a href="classCTypeElement.html#ac4118594de3638c76ab40ccc4ecbb2a8">CTypeElement::toXml</a></div><div class="ttdeci">virtual void toXml(CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00156">TypeElement.cpp:156</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00044">XmlSerializingContext.h:44</a></div></div>
-<div class="ttc" id="classCTypeElement_html_a9719eade46d3c80c55d0a269d93a4554"><div class="ttname"><a href="classCTypeElement.html#a9719eade46d3c80c55d0a269d93a4554">CTypeElement::toPlainInteger</a></div><div class="ttdeci">virtual int toPlainInteger(int iSizeOptimizedData) const </div><div class="ttdoc">Converts size optimized integer input data (int8, int16, int32) to plain int. </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00057">TypeElement.cpp:57</a></div></div>
-<div class="ttc" id="classCTypeElement_html_aa8d910c6cf51c03d03f183a6a81a8372"><div class="ttname"><a href="classCTypeElement.html#aa8d910c6cf51c03d03f183a6a81a8372">CTypeElement::getMappingData</a></div><div class="ttdeci">virtual bool getMappingData(const std::string &amp;strKey, const std::string *&amp;pStrValue) const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00062">TypeElement.cpp:62</a></div></div>
-<div class="ttc" id="classCTypeElement_html"><div class="ttname"><a href="classCTypeElement.html">CTypeElement</a></div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8h_source.html#l00038">TypeElement.h:38</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
+<div class="ttc" id="classCElement_html_a8c87fea54766f49f45346713d9d09880"><div class="ttname"><a href="classCElement.html#a8c87fea54766f49f45346713d9d09880">CElement::showProperties</a></div><div class="ttdeci">virtual void showProperties(std::string &amp;strResult) const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00123">Element.cpp:123</a></div></div>
+<div class="ttc" id="classCElement_html_a7ce1bde0fda5cf412b652000cab473e4"><div class="ttname"><a href="classCElement.html#a7ce1bde0fda5cf412b652000cab473e4">CElement::toXml</a></div><div class="ttdeci">virtual void toXml(CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext) const </div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00204">Element.cpp:204</a></div></div>
+<div class="ttc" id="classCTypeElement_html"><div class="ttname"><a href="classCTypeElement.html">CTypeElement</a></div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8h_source.html#l00040">TypeElement.h:40</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
-<div class="ttc" id="classCTypeElement_html_a8f3a08cd11a7db4fde3bd69dde5c8b66"><div class="ttname"><a href="classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66">CTypeElement::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00103">TypeElement.cpp:103</a></div></div>
-<div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00042">InstanceConfigurableElement.h:42</a></div></div>
-<div class="ttc" id="classCTypeElement_html_a91a95da4e9fd33f145385ad35424d842"><div class="ttname"><a href="classCTypeElement.html#a91a95da4e9fd33f145385ad35424d842">CTypeElement::~CTypeElement</a></div><div class="ttdeci">virtual ~CTypeElement()</div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00042">TypeElement.cpp:42</a></div></div>
-<div class="ttc" id="classCTypeElement_html_a71898c707fb687b3a90c06fe25c3e171"><div class="ttname"><a href="classCTypeElement.html#a71898c707fb687b3a90c06fe25c3e171">CTypeElement::showProperties</a></div><div class="ttdeci">virtual void showProperties(std::string &amp;strResult) const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00077">TypeElement.cpp:77</a></div></div>
+<div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
+<div class="ttc" id="classCElement_html_a1978d50e2db432e7b8f0928f33d3f01a"><div class="ttname"><a href="classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a">CElement::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00144">Element.cpp:144</a></div></div>
 <div class="ttc" id="Element_8h_html"><div class="ttname"><a href="Element_8h.html">Element.h</a></div></div>
-<div class="ttc" id="classCTypeElement_html_a52e9c905327db823c913041e481eacb0"><div class="ttname"><a href="classCTypeElement.html#a52e9c905327db823c913041e481eacb0">CTypeElement::hasMappingData</a></div><div class="ttdeci">virtual bool hasMappingData() const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00071">TypeElement.cpp:71</a></div></div>
-<div class="ttc" id="classCTypeElement_html_a2d4fd9d4443f521e563ef1b6188aeeba"><div class="ttname"><a href="classCTypeElement.html#a2d4fd9d4443f521e563ef1b6188aeeba">CTypeElement::getFormattedMapping</a></div><div class="ttdeci">virtual std::string getFormattedMapping() const </div><div class="ttdoc">Returns the mapping associated to the current TypeElement instance. </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00146">TypeElement.cpp:146</a></div></div>
-<div class="ttc" id="classCTypeElement_html_a7cdfd91a35b67d17fb2c92f8a2883854"><div class="ttname"><a href="classCTypeElement.html#a7cdfd91a35b67d17fb2c92f8a2883854">CTypeElement::populate</a></div><div class="ttdeci">virtual void populate(CElement *pElement) const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00086">TypeElement.cpp:86</a></div></div>
-<div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00044">Element.h:44</a></div></div>
-<div class="ttc" id="classCTypeElement_html_af00d2effc61c73560aabdf950a70f753"><div class="ttname"><a href="classCTypeElement.html#af00d2effc61c73560aabdf950a70f753">CTypeElement::getArrayLength</a></div><div class="ttdeci">uint32_t getArrayLength() const </div><div class="ttdef"><b>Definition:</b> <a href="TypeElement_8cpp_source.html#l00052">TypeElement.cpp:52</a></div></div>
+<div class="ttc" id="classCElement_html"><div class="ttname"><a href="classCElement.html">CElement</a></div><div class="ttdef"><b>Definition:</b> <a href="Element_8h_source.html#l00047">Element.h:47</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

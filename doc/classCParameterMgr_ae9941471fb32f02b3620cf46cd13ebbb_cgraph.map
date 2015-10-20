@@ -1,13 +1,14 @@
 <map id="CParameterMgr::addConfigurableElementToDomain" name="CParameterMgr::addConfigurableElementToDomain">
 <area shape="rect" id="node2" href="$classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36" title="CElementLocator::locate" alt="" coords="324,105,503,131"/>
-<area shape="rect" id="node8" href="$classCConfigurableDomains.html#a5ef1a732092a341b147eca23da2f9476" title="CConfigurableDomains\l::addConfigurableElementToDomain" alt="" coords="288,207,539,248"/>
+<area shape="rect" id="node8" href="$classCConfigurableDomains.html#a1be2d84567e3868ed69fdc50904cab3b" title="Associate a configurable element to a domain. " alt="" coords="288,207,539,248"/>
+<area shape="rect" id="node14" href="$namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" title="Format the items of a map into a string as a list of key&#45;value pairs. " alt="" coords="355,273,471,299"/>
 <area shape="rect" id="node3" href="$classCPathNavigator.html#ac63504ec6203e15a9ca4a15e9775bfe8" title="CPathNavigator::isPathValid" alt="" coords="587,105,784,131"/>
 <area shape="rect" id="node4" href="$classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589" title="CPathNavigator::next" alt="" coords="835,29,993,55"/>
 <area shape="rect" id="node5" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="838,171,990,198"/>
 <area shape="rect" id="node6" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="589,54,781,81"/>
 <area shape="rect" id="node7" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="841,79,987,106"/>
 <area shape="rect" id="node9" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="594,207,777,248"/>
-<area shape="rect" id="node10" href="$classCConfigurableDomain.html#ac200b397f14de19463146c5f75d57020" title="CConfigurableDomain\l::addConfigurableElement" alt="" coords="592,272,779,313"/>
+<area shape="rect" id="node10" href="$classCConfigurableDomain.html#ab671c7341528cf914119ba8fb3662090" title="Add a configurable element to the domain. " alt="" coords="592,272,779,313"/>
 <area shape="rect" id="node11" href="$classCElement.html#a7022c0fc8063f0aae9d97b06e74d4ac1" title="CElement::getPath" alt="" coords="843,345,985,371"/>
 <area shape="rect" id="node12" href="$classCConfigurableElement.html#ac5508cd538517568bebc5448179d9d76" title="CConfigurableElement\l::belongsTo" alt="" coords="832,255,996,296"/>
 <area shape="rect" id="node13" href="$classCConfigurableElement.html#a4ff038351f85bcb55768f3fef206866c" title="CConfigurableElement\l::containsConfigurableDomain" alt="" coords="1044,255,1259,296"/>

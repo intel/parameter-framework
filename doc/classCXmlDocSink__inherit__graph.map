@@ -1,4 +1,5 @@
 <map id="CXmlDocSink" name="CXmlDocSink">
-<area shape="rect" id="node2" href="$classCXmlMemoryDocSink.html" title="Sink class used to parse an xml document and instanciate parameter&#45;framework structures. " alt="" coords="5,80,164,107"/>
-<area shape="rect" id="node3" href="$classCXmlStreamDocSink.html" title="Sink class that writes the content of any CXmlDocSource into a std::string. " alt="" coords="189,80,343,107"/>
+<area shape="rect" id="node3" href="$classCXmlMemoryDocSink.html" title="Sink class used to parse an xml document and instanciate parameter&#45;framework structures. " alt="" coords="5,155,164,181"/>
+<area shape="rect" id="node4" href="$classCXmlStreamDocSink.html" title="Sink class that writes the content of any CXmlDocSource into a std::string. " alt="" coords="189,155,343,181"/>
+<area shape="rect" id="node2" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="101,5,249,32"/>
 </map>

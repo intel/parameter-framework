@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="SubsystemObjectFactory_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2014, Intel Corporation</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2015, Intel Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without modification,</span></div>
@@ -125,27 +125,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SubsystemObjectCreator_8h.html">SubsystemObjectCreator.h</a>&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> SubsystemObjectType&gt;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classTSubsystemObjectFactory.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTSubsystemObjectFactory.html">TSubsystemObjectFactory</a> : <span class="keyword">public</span> <a class="code" href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classTSubsystemObjectFactory.html#aec4b47b0b5d3ff8ccf0b719b0c6ed719">   39</a></span>&#160;    <a class="code" href="classTSubsystemObjectFactory.html#aec4b47b0b5d3ff8ccf0b719b0c6ed719">TSubsystemObjectFactory</a>(<span class="keyword">const</span> std::string&amp; strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize = -1) : <a class="code" href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a>(strMappingKey, uiAncestorIdMask, uiMaxConfigurableElementSize) {}</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Object creation</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classTSubsystemObjectFactory.html#a61de1063d1f32209eaa718311cbbc66b">   42</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCSubsystemObject.html">CSubsystemObject</a>* <a class="code" href="classTSubsystemObjectFactory.html#a61de1063d1f32209eaa718311cbbc66b">objectCreate</a>(<span class="keyword">const</span> std::string&amp; strMappingValue, <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement, <span class="keyword">const</span> <a class="code" href="classCMappingContext.html">CMappingContext</a>&amp; context)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> SubsystemObjectType(strMappingValue, pInstanceConfigurableElement, context);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
-<div class="ttc" id="classTSubsystemObjectFactory_html"><div class="ttname"><a href="classTSubsystemObjectFactory.html">TSubsystemObjectFactory</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectFactory_8h_source.html#l00036">SubsystemObjectFactory.h:36</a></div></div>
-<div class="ttc" id="classTSubsystemObjectFactory_html_a61de1063d1f32209eaa718311cbbc66b"><div class="ttname"><a href="classTSubsystemObjectFactory.html#a61de1063d1f32209eaa718311cbbc66b">TSubsystemObjectFactory::objectCreate</a></div><div class="ttdeci">virtual CSubsystemObject * objectCreate(const std::string &amp;strMappingValue, CInstanceConfigurableElement *pInstanceConfigurableElement, const CMappingContext &amp;context) const </div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectFactory_8h_source.html#l00042">SubsystemObjectFactory.h:42</a></div></div>
-<div class="ttc" id="classCMappingContext_html"><div class="ttname"><a href="classCMappingContext.html">CMappingContext</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8h_source.html#l00035">MappingContext.h:35</a></div></div>
-<div class="ttc" id="classCSubsystemObject_html"><div class="ttname"><a href="classCSubsystemObject.html">CSubsystemObject</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObject_8h_source.html#l00041">SubsystemObject.h:41</a></div></div>
-<div class="ttc" id="classCSubsystemObjectCreator_html"><div class="ttname"><a href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8h_source.html#l00036">SubsystemObjectCreator.h:36</a></div></div>
-<div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00042">InstanceConfigurableElement.h:42</a></div></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> SubsystemObjectType&gt;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classTSubsystemObjectFactory.html">   37</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTSubsystemObjectFactory.html">TSubsystemObjectFactory</a> : <span class="keyword">public</span> <a class="code" href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classTSubsystemObjectFactory.html#a326563f3afdd0d8e13d891b3843676d1">   40</a></span>&#160;    <a class="code" href="classTSubsystemObjectFactory.html#a326563f3afdd0d8e13d891b3843676d1">TSubsystemObjectFactory</a>(<span class="keyword">const</span> std::string&amp; strMappingKey, uint32_t uiAncestorIdMask, <span class="keywordtype">size_t</span> maxConfigurableElementSize = std::numeric_limits&lt;size_t&gt;::max()) :</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a>(strMappingKey, uiAncestorIdMask, maxConfigurableElementSize) {}</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// Object creation</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classTSubsystemObjectFactory.html#ad0616e849ff7d97472ab208106bb3259">   44</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCSubsystemObject.html">CSubsystemObject</a>* <a class="code" href="classTSubsystemObjectFactory.html#ad0616e849ff7d97472ab208106bb3259">objectCreate</a>(</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keyword">const</span> std::string&amp; strMappingValue,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCMappingContext.html">CMappingContext</a>&amp; context,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a>&amp; logger)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> SubsystemObjectType(</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                strMappingValue, pInstanceConfigurableElement, context, logger);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
+<div class="ttc" id="classTSubsystemObjectFactory_html"><div class="ttname"><a href="classTSubsystemObjectFactory.html">TSubsystemObjectFactory</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectFactory_8h_source.html#l00037">SubsystemObjectFactory.h:37</a></div></div>
+<div class="ttc" id="classCMappingContext_html"><div class="ttname"><a href="classCMappingContext.html">CMappingContext</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8h_source.html#l00039">MappingContext.h:39</a></div></div>
+<div class="ttc" id="classCSubsystemObject_html"><div class="ttname"><a href="classCSubsystemObject.html">CSubsystemObject</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObject_8h_source.html#l00044">SubsystemObject.h:44</a></div></div>
+<div class="ttc" id="classCSubsystemObjectCreator_html"><div class="ttname"><a href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8h_source.html#l00038">SubsystemObjectCreator.h:38</a></div></div>
+<div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
 <div class="ttc" id="SubsystemObjectCreator_8h_html"><div class="ttname"><a href="SubsystemObjectCreator_8h.html">SubsystemObjectCreator.h</a></div></div>
-<div class="ttc" id="classTSubsystemObjectFactory_html_aec4b47b0b5d3ff8ccf0b719b0c6ed719"><div class="ttname"><a href="classTSubsystemObjectFactory.html#aec4b47b0b5d3ff8ccf0b719b0c6ed719">TSubsystemObjectFactory::TSubsystemObjectFactory</a></div><div class="ttdeci">TSubsystemObjectFactory(const std::string &amp;strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize=-1)</div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectFactory_8h_source.html#l00039">SubsystemObjectFactory.h:39</a></div></div>
+<div class="ttc" id="classTSubsystemObjectFactory_html_a326563f3afdd0d8e13d891b3843676d1"><div class="ttname"><a href="classTSubsystemObjectFactory.html#a326563f3afdd0d8e13d891b3843676d1">TSubsystemObjectFactory::TSubsystemObjectFactory</a></div><div class="ttdeci">TSubsystemObjectFactory(const std::string &amp;strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize=std::numeric_limits&lt; size_t &gt;::max())</div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectFactory_8h_source.html#l00040">SubsystemObjectFactory.h:40</a></div></div>
+<div class="ttc" id="classTSubsystemObjectFactory_html_ad0616e849ff7d97472ab208106bb3259"><div class="ttname"><a href="classTSubsystemObjectFactory.html#ad0616e849ff7d97472ab208106bb3259">TSubsystemObjectFactory::objectCreate</a></div><div class="ttdeci">virtual CSubsystemObject * objectCreate(const std::string &amp;strMappingValue, CInstanceConfigurableElement *pInstanceConfigurableElement, const CMappingContext &amp;context, core::log::Logger &amp;logger) const </div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectFactory_8h_source.html#l00044">SubsystemObjectFactory.h:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

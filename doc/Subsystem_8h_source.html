@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="Subsystem_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2014, Intel Corporation</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2015, Intel Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without modification,</span></div>
@@ -123,160 +123,146 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElement_8h.html">ConfigurableElement.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElementWithMapping_8h.html">ConfigurableElementWithMapping.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Mapper_8h.html">Mapper.h</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MappingContext_8h.html">MappingContext.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;stack&gt;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">class </span><a class="code" href="classCInstanceDefinition.html">CInstanceDefinition</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">class </span><a class="code" href="classCComponentLibrary.html">CComponentLibrary</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">class </span><a class="code" href="classCSubsystemObject.html">CSubsystemObject</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">class </span><a class="code" href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">class </span><a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">class </span><a class="code" href="classCMappingData.html">CMappingData</a>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classCSubsystem.html">   48</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCSubsystem.html">CSubsystem</a> : <span class="keyword">public</span> <a class="code" href="classCConfigurableElementWithMapping.html">CConfigurableElementWithMapping</a>, <span class="keyword">private</span> <a class="code" href="classIMapper.html">IMapper</a></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Subsystem objects iterator</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">typedef</span> std::list&lt;CSubsystemObject*&gt;::const_iterator SubsystemObjectListIterator;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classCSubsystem.html#aacd5511cd9a1c38109a33d67c7b9567c">CSubsystem</a>(<span class="keyword">const</span> std::string&amp; strName);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCSubsystem.html#ab1639d7b9cec3785d77373de2098de72">~CSubsystem</a>();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// From IXmlSink</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Susbsystem Endianness</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCSubsystem.html#a059703463381ff53d06b2425d7ad29e3">isBigEndian</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Susbsystem sanity</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCSubsystem.html#a6ebc12ceba1c9b21c1d2d44e4131cd3e">isAlive</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Resynchronization after subsystem restart needed</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4">needResync</a>(<span class="keywordtype">bool</span> bClear);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// XML configuration settings parsing</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCSubsystem.html#af32496b2659bca5762fcb7030d527ad8">serializeXmlSettings</a>(<a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlConfigurationSettingsElementContent, <a class="code" href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a>&amp; configurationAccessContext) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// from CElement</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCSubsystem.html#af42abab5b6390edd2f70b30e542fecda">getKind</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCSubsystem.html#aa9874e52216edf6895c286551035ab1d">getMappingData</a>(<span class="keyword">const</span> std::string&amp; strKey, <span class="keyword">const</span> std::string*&amp; pStrValue) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;parameter_export.h&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElement_8h.html">ConfigurableElement.h</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ConfigurableElementWithMapping_8h.html">ConfigurableElementWithMapping.h</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Mapper_8h.html">Mapper.h</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MappingContext_8h.html">MappingContext.h</a>&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="Logger_8h.html">log/Logger.h</a>&gt;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &lt;stack&gt;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">class </span><a class="code" href="classCInstanceDefinition.html">CInstanceDefinition</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">class </span><a class="code" href="classCComponentLibrary.html">CComponentLibrary</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">class </span><a class="code" href="classCSubsystemObject.html">CSubsystemObject</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">class </span><a class="code" href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">class </span><a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">class </span><a class="code" href="classCMappingData.html">CMappingData</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classCSubsystem.html">   52</a></span>&#160;<span class="keyword">class </span>PARAMETER_EXPORT <a class="code" href="classCSubsystem.html">CSubsystem</a> : <span class="keyword">public</span> <a class="code" href="classCConfigurableElementWithMapping.html">CConfigurableElementWithMapping</a>, <span class="keyword">private</span> <a class="code" href="classIMapper.html">IMapper</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// Subsystem objects iterator</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">typedef</span> std::list&lt;CSubsystemObject*&gt;::const_iterator SubsystemObjectListIterator;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classCSubsystem.html">CSubsystem</a>(<span class="keyword">const</span> std::string&amp; strName, <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a>&amp; logger);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classCSubsystem.html">CSubsystem</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// From IXmlSink</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a">fromXml</a>(<span class="keyword">const</span> <a class="code" href="classCXmlElement.html">CXmlElement</a>&amp; xmlElement, <a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a>&amp; serializingContext);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// Susbsystem sanity</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isAlive() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Resynchronization after subsystem restart needed</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> needResync(<span class="keywordtype">bool</span> bClear);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCSubsystem.html#afbe079be609fc1be07811031bfb3d52a">getMapping</a>(std::list&lt;const CConfigurableElement*&gt;&amp; configurableElementPath) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// Parameter access</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCSubsystem.html#a059d126c3193dbd43b7811619111e933">accessValue</a>(<a class="code" href="classCPathNavigator.html">CPathNavigator</a>&amp; pathNavigator, std::string&amp; strValue, <span class="keywordtype">bool</span> bSet, <a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCSubsystem.html#a46676b0c59c2653eee9e18a06e02bde8">logValue</a>(std::string&amp; strValue, <a class="code" href="classCErrorContext.html">CErrorContext</a>&amp; errorContext) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">// Used for simulation and virtual subsystems</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCSubsystem.html#aba48bd9235bc5f943815627e46b089b2">setDefaultValues</a>(<a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">// Subsystem context mapping keys publication</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSubsystem.html#a686838d12a6c4d3fc5a2fa1a0a0675b0">addContextMappingKey</a>(<span class="keyword">const</span> std::string&amp; strMappingKey);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// Subsystem object creator publication (strong reference)</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCSubsystem.html#ab3ee6160ea72deaa93795c6347b02aa1">addSubsystemObjectFactory</a>(<a class="code" href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a>* pSubsystemObjectCreator);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="classCSubsystem.html#aacd5511cd9a1c38109a33d67c7b9567c">CSubsystem</a>(<span class="keyword">const</span> <a class="code" href="classCSubsystem.html">CSubsystem</a>&amp;);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="classCSubsystem.html">CSubsystem</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classCSubsystem.html">CSubsystem</a>&amp;);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">// Belonging subsystem</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code" href="classCSubsystem.html">CSubsystem</a>* getBelongingSubsystem() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">// Mapping execution</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">bool</span> mapSubsystemElements(std::string&amp; strError);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> mapBegin(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement, <span class="keywordtype">bool</span>&amp; bKeepDiving, std::string&amp; strError);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> mapEnd();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="comment">// Mapping access</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment"></span>    std::string getMappingError(</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <span class="keyword">const</span> std::string&amp; strKey,</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="keyword">const</span> std::string&amp; strMessage,</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCConfigurableElementWithMapping.html">CConfigurableElementWithMapping</a>* pConfigurableElementWithMapping) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    std::string formatMappingDataList(</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keyword">const</span> std::list&lt;const CConfigurableElement*&gt;&amp; configurableElementPath) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSubsystemObject.html">CSubsystemObject</a>* findSubsystemObjectFromConfigurableElement(</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordtype">void</span> findSubsystemLevelMappingKeyValue(</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement,</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            std::string&amp; strMappingKey,</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            std::string&amp; strMappingValue) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    std::string getFormattedSubsystemMappingData(</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordtype">bool</span> handleMappingContext(</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCConfigurableElementWithMapping.html">CConfigurableElementWithMapping</a>* pConfigurableElementWithMapping,</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <a class="code" href="classCMappingContext.html">CMappingContext</a>&amp; context,</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            std::string&amp; strError) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordtype">bool</span> handleSubsystemObjectCreation(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement,</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                                       <a class="code" href="classCMappingContext.html">CMappingContext</a>&amp; context, <span class="keywordtype">bool</span>&amp; bHasCreatedSubsystemObject,</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                                       std::string&amp; strError);</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="comment">// Subsystem context mapping keys</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    std::vector&lt;std::string&gt; _contextMappingKeyArray;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="comment">// Subsystem object creator map</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    std::vector&lt;CSubsystemObjectCreator*&gt; _subsystemObjectCreatorArray;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="comment">// Subsystem sync objects (house keeping)</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    std::list&lt;CSubsystemObject*&gt; _subsystemObjectList;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="comment">// Mapping Context stack</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    std::stack&lt;CMappingContext&gt; _contextStack;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="comment">// Subelements</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <a class="code" href="classCComponentLibrary.html">CComponentLibrary</a>* _pComponentLibrary;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <a class="code" href="classCInstanceDefinition.html">CInstanceDefinition</a>* _pInstanceDefinition;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="comment">// Endianness</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordtype">bool</span> _bBigEndian;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <a class="code" href="classCMappingData.html">CMappingData</a>* _pMappingData;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// from CElement</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee">getKind</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCConfigurableElementWithMapping.html#a8481af528248793049d5d942200657ae">getMappingData</a>(<span class="keyword">const</span> std::string&amp; strKey, <span class="keyword">const</span> std::string*&amp; pStrValue) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">virtual</span> std::string getMapping(std::list&lt;const CConfigurableElement*&gt;&amp; configurableElementPath) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">// Used for simulation and virtual subsystems</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCConfigurableElement.html#a8f7c88b9e89d9167fce48196cc1cc324">setDefaultValues</a>(<a class="code" href="classCParameterAccessContext.html">CParameterAccessContext</a>&amp; parameterAccessContext) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// Subsystem context mapping keys publication</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> addContextMappingKey(<span class="keyword">const</span> std::string&amp; strMappingKey);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">// Subsystem object creator publication (strong reference)</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordtype">void</span> addSubsystemObjectFactory(<a class="code" href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a>* pSubsystemObjectCreator);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="classCSubsystem.html">CSubsystem</a>(<span class="keyword">const</span> <a class="code" href="classCSubsystem.html">CSubsystem</a>&amp;);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="classCSubsystem.html">CSubsystem</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classCSubsystem.html">CSubsystem</a>&amp;);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">// Belonging subsystem</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code" href="classCSubsystem.html">CSubsystem</a>* <a class="code" href="classCConfigurableElement.html#a1e30831c0d3ce07df6d0f6730ba04654">getBelongingSubsystem</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">// Mapping execution</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">bool</span> mapSubsystemElements(std::string&amp; strError);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classIMapper.html#a729bea23fd3c18e24972ca93f89fe6f4">mapBegin</a>(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement, <span class="keywordtype">bool</span>&amp; bKeepDiving, std::string&amp; strError);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classIMapper.html#a07d1b4904f96cccc320500961dd89517">mapEnd</a>();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="comment">// Mapping access</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment"></span>    std::string getMappingError(</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keyword">const</span> std::string&amp; strKey,</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            <span class="keyword">const</span> std::string&amp; strMessage,</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCConfigurableElementWithMapping.html">CConfigurableElementWithMapping</a>* pConfigurableElementWithMapping) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    std::string formatMappingDataList(</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <span class="keyword">const</span> std::list&lt;const CConfigurableElement*&gt;&amp; configurableElementPath) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keyword">const</span> <a class="code" href="classCSubsystemObject.html">CSubsystemObject</a>* findSubsystemObjectFromConfigurableElement(</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordtype">void</span> findSubsystemLevelMappingKeyValue(</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement,</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            std::string&amp; strMappingKey,</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            std::string&amp; strMappingValue) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    std::string getFormattedSubsystemMappingData(</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordtype">bool</span> handleMappingContext(</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keyword">const</span> <a class="code" href="classCConfigurableElementWithMapping.html">CConfigurableElementWithMapping</a>* pConfigurableElementWithMapping,</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <a class="code" href="classCMappingContext.html">CMappingContext</a>&amp; context,</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            std::string&amp; strError) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keywordtype">bool</span> handleSubsystemObjectCreation(<a class="code" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a>* pInstanceConfigurableElement,</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                                       <a class="code" href="classCMappingContext.html">CMappingContext</a>&amp; context, <span class="keywordtype">bool</span>&amp; bHasCreatedSubsystemObject,</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                                       std::string&amp; strError);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="comment">// Subsystem context mapping keys</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    std::vector&lt;std::string&gt; _contextMappingKeyArray;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="comment">// Subsystem object creator map</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    std::vector&lt;CSubsystemObjectCreator*&gt; _subsystemObjectCreatorArray;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="comment">// Subsystem sync objects (house keeping)</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    std::list&lt;CSubsystemObject*&gt; _subsystemObjectList;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="comment">// Mapping Context stack</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    std::stack&lt;CMappingContext&gt; _contextStack;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="comment">// Subelements</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <a class="code" href="classCComponentLibrary.html">CComponentLibrary</a>* _pComponentLibrary;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <a class="code" href="classCInstanceDefinition.html">CInstanceDefinition</a>* _pInstanceDefinition;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <a class="code" href="classCMappingData.html">CMappingData</a>* _pMappingData;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a>&amp; _logger;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;};</div>
 <div class="ttc" id="classCParameterAccessContext_html"><div class="ttname"><a href="classCParameterAccessContext.html">CParameterAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterAccessContext_8h_source.html#l00038">ParameterAccessContext.h:38</a></div></div>
-<div class="ttc" id="classCSubsystem_html_af42abab5b6390edd2f70b30e542fecda"><div class="ttname"><a href="classCSubsystem.html#af42abab5b6390edd2f70b30e542fecda">CSubsystem::getKind</a></div><div class="ttdeci">virtual std::string getKind() const </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00080">Subsystem.cpp:80</a></div></div>
 <div class="ttc" id="Mapper_8h_html"><div class="ttname"><a href="Mapper_8h.html">Mapper.h</a></div></div>
-<div class="ttc" id="classCSubsystem_html_a059d126c3193dbd43b7811619111e933"><div class="ttname"><a href="classCSubsystem.html#a059d126c3193dbd43b7811619111e933">CSubsystem::accessValue</a></div><div class="ttdeci">virtual bool accessValue(CPathNavigator &amp;pathNavigator, std::string &amp;strValue, bool bSet, CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00203">Subsystem.cpp:203</a></div></div>
 <div class="ttc" id="classCMappingData_html"><div class="ttname"><a href="classCMappingData.html">CMappingData</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingData_8h_source.html#l00035">MappingData.h:35</a></div></div>
+<div class="ttc" id="classCElement_html_aed2ca7f2a56dbf2edcd82167859535ee"><div class="ttname"><a href="classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee">CElement::getKind</a></div><div class="ttdeci">virtual std::string getKind() const =0</div></div>
+<div class="ttc" id="classcore_1_1log_1_1Logger_html"><div class="ttname"><a href="classcore_1_1log_1_1Logger.html">core::log::Logger</a></div><div class="ttdoc">Application logger object (Thread unsafe) Provide contextualisable logging API. </div><div class="ttdef"><b>Definition:</b> <a href="Logger_8h_source.html#l00048">Logger.h:48</a></div></div>
 <div class="ttc" id="ConfigurableElement_8h_html"><div class="ttname"><a href="ConfigurableElement_8h.html">ConfigurableElement.h</a></div></div>
 <div class="ttc" id="classCComponentLibrary_html"><div class="ttname"><a href="classCComponentLibrary.html">CComponentLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="ComponentLibrary_8h_source.html#l00040">ComponentLibrary.h:40</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00044">XmlSerializingContext.h:44</a></div></div>
-<div class="ttc" id="classCSubsystem_html_a059703463381ff53d06b2425d7ad29e3"><div class="ttname"><a href="classCSubsystem.html#a059703463381ff53d06b2425d7ad29e3">CSubsystem::isBigEndian</a></div><div class="ttdeci">bool isBigEndian() const </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00086">Subsystem.cpp:86</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
 <div class="ttc" id="classIMapper_html"><div class="ttname"><a href="classIMapper.html">IMapper</a></div><div class="ttdef"><b>Definition:</b> <a href="Mapper_8h_source.html#l00036">Mapper.h:36</a></div></div>
-<div class="ttc" id="classCSubsystem_html_a46676b0c59c2653eee9e18a06e02bde8"><div class="ttname"><a href="classCSubsystem.html#a46676b0c59c2653eee9e18a06e02bde8">CSubsystem::logValue</a></div><div class="ttdeci">virtual void logValue(std::string &amp;strValue, CErrorContext &amp;errorContext) const </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00320">Subsystem.cpp:320</a></div></div>
-<div class="ttc" id="classCSubsystem_html_ab1639d7b9cec3785d77373de2098de72"><div class="ttname"><a href="classCSubsystem.html#ab1639d7b9cec3785d77373de2098de72">CSubsystem::~CSubsystem</a></div><div class="ttdeci">virtual ~CSubsystem()</div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00055">Subsystem.cpp:55</a></div></div>
-<div class="ttc" id="classCPathNavigator_html"><div class="ttname"><a href="classCPathNavigator.html">CPathNavigator</a></div><div class="ttdef"><b>Definition:</b> <a href="PathNavigator_8h_source.html#l00036">PathNavigator.h:36</a></div></div>
-<div class="ttc" id="classCSubsystem_html_a4cb6e87e55f40b52408e42285e504be4"><div class="ttname"><a href="classCSubsystem.html#a4cb6e87e55f40b52408e42285e504be4">CSubsystem::needResync</a></div><div class="ttdeci">virtual bool needResync(bool bClear)</div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00098">Subsystem.cpp:98</a></div></div>
-<div class="ttc" id="classCConfigurationAccessContext_html"><div class="ttname"><a href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigurationAccessContext_8h_source.html#l00036">ConfigurationAccessContext.h:36</a></div></div>
-<div class="ttc" id="classCErrorContext_html"><div class="ttname"><a href="classCErrorContext.html">CErrorContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8h_source.html#l00034">ErrorContext.h:34</a></div></div>
-<div class="ttc" id="classCMappingContext_html"><div class="ttname"><a href="classCMappingContext.html">CMappingContext</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8h_source.html#l00035">MappingContext.h:35</a></div></div>
-<div class="ttc" id="classCSubsystemObject_html"><div class="ttname"><a href="classCSubsystemObject.html">CSubsystemObject</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObject_8h_source.html#l00041">SubsystemObject.h:41</a></div></div>
+<div class="ttc" id="classCConfigurableElement_html_a1e30831c0d3ce07df6d0f6730ba04654"><div class="ttname"><a href="classCConfigurableElement.html#a1e30831c0d3ce07df6d0f6730ba04654">CConfigurableElement::getBelongingSubsystem</a></div><div class="ttdeci">virtual const CSubsystem * getBelongingSubsystem() const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8cpp_source.html#l00484">ConfigurableElement.cpp:484</a></div></div>
+<div class="ttc" id="classCConfigurableElement_html_a8f7c88b9e89d9167fce48196cc1cc324"><div class="ttname"><a href="classCConfigurableElement.html#a8f7c88b9e89d9167fce48196cc1cc324">CConfigurableElement::setDefaultValues</a></div><div class="ttdeci">virtual void setDefaultValues(CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElement_8cpp_source.html#l00173">ConfigurableElement.cpp:173</a></div></div>
+<div class="ttc" id="classCMappingContext_html"><div class="ttname"><a href="classCMappingContext.html">CMappingContext</a></div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8h_source.html#l00039">MappingContext.h:39</a></div></div>
+<div class="ttc" id="classCSubsystemObject_html"><div class="ttname"><a href="classCSubsystemObject.html">CSubsystemObject</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObject_8h_source.html#l00044">SubsystemObject.h:44</a></div></div>
 <div class="ttc" id="classCConfigurableElementWithMapping_html"><div class="ttname"><a href="classCConfigurableElementWithMapping.html">CConfigurableElementWithMapping</a></div><div class="ttdoc">Base class for all Configurable Elements that can have a Mapping attribute. </div><div class="ttdef"><b>Definition:</b> <a href="ConfigurableElementWithMapping_8h_source.html#l00041">ConfigurableElementWithMapping.h:41</a></div></div>
-<div class="ttc" id="classCSubsystemObjectCreator_html"><div class="ttname"><a href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8h_source.html#l00036">SubsystemObjectCreator.h:36</a></div></div>
-<div class="ttc" id="classCSubsystem_html_aa114a31f4aa4b0f47b3c616b721854d4"><div class="ttname"><a href="classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4">CSubsystem::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00106">Subsystem.cpp:106</a></div></div>
+<div class="ttc" id="classCSubsystemObjectCreator_html"><div class="ttname"><a href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a></div><div class="ttdef"><b>Definition:</b> <a href="SubsystemObjectCreator_8h_source.html#l00038">SubsystemObjectCreator.h:38</a></div></div>
 <div class="ttc" id="classCXmlElement_html"><div class="ttname"><a href="classCXmlElement.html">CXmlElement</a></div><div class="ttdef"><b>Definition:</b> <a href="XmlElement_8h_source.html#l00038">XmlElement.h:38</a></div></div>
 <div class="ttc" id="classCInstanceDefinition_html"><div class="ttname"><a href="classCInstanceDefinition.html">CInstanceDefinition</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceDefinition_8h_source.html#l00036">InstanceDefinition.h:36</a></div></div>
-<div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00042">InstanceConfigurableElement.h:42</a></div></div>
-<div class="ttc" id="classCSubsystem_html_a6ebc12ceba1c9b21c1d2d44e4131cd3e"><div class="ttname"><a href="classCSubsystem.html#a6ebc12ceba1c9b21c1d2d44e4131cd3e">CSubsystem::isAlive</a></div><div class="ttdeci">virtual bool isAlive() const </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00092">Subsystem.cpp:92</a></div></div>
-<div class="ttc" id="classCSubsystem_html"><div class="ttname"><a href="classCSubsystem.html">CSubsystem</a></div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8h_source.html#l00048">Subsystem.h:48</a></div></div>
-<div class="ttc" id="classCSubsystem_html_a686838d12a6c4d3fc5a2fa1a0a0675b0"><div class="ttname"><a href="classCSubsystem.html#a686838d12a6c4d3fc5a2fa1a0a0675b0">CSubsystem::addContextMappingKey</a></div><div class="ttdeci">void addContextMappingKey(const std::string &amp;strMappingKey)</div><div class="ttdoc">Functionality intendedn for derived Subsystems. </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00346">Subsystem.cpp:346</a></div></div>
+<div class="ttc" id="classCInstanceConfigurableElement_html"><div class="ttname"><a href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a></div><div class="ttdef"><b>Definition:</b> <a href="InstanceConfigurableElement_8h_source.html#l00044">InstanceConfigurableElement.h:44</a></div></div>
+<div class="ttc" id="classCSubsystem_html"><div class="ttname"><a href="classCSubsystem.html">CSubsystem</a></div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8h_source.html#l00052">Subsystem.h:52</a></div></div>
+<div class="ttc" id="classCElement_html_a1978d50e2db432e7b8f0928f33d3f01a"><div class="ttname"><a href="classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a">CElement::fromXml</a></div><div class="ttdeci">virtual bool fromXml(const CXmlElement &amp;xmlElement, CXmlSerializingContext &amp;serializingContext)</div><div class="ttdef"><b>Definition:</b> <a href="Element_8cpp_source.html#l00144">Element.cpp:144</a></div></div>
+<div class="ttc" id="Logger_8h_html"><div class="ttname"><a href="Logger_8h.html">Logger.h</a></div></div>
 <div class="ttc" id="MappingContext_8h_html"><div class="ttname"><a href="MappingContext_8h.html">MappingContext.h</a></div></div>
-<div class="ttc" id="classCSubsystem_html_afbe079be609fc1be07811031bfb3d52a"><div class="ttname"><a href="classCSubsystem.html#afbe079be609fc1be07811031bfb3d52a">CSubsystem::getMapping</a></div><div class="ttdeci">virtual std::string getMapping(std::list&lt; const CConfigurableElement * &gt; &amp;configurableElementPath) const </div><div class="ttdoc">Fetch mapping data of an element. </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00298">Subsystem.cpp:298</a></div></div>
-<div class="ttc" id="classCSubsystem_html_aacd5511cd9a1c38109a33d67c7b9567c"><div class="ttname"><a href="classCSubsystem.html#aacd5511cd9a1c38109a33d67c7b9567c">CSubsystem::CSubsystem</a></div><div class="ttdeci">CSubsystem(const std::string &amp;strName)</div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00048">Subsystem.cpp:48</a></div></div>
+<div class="ttc" id="classIMapper_html_a07d1b4904f96cccc320500961dd89517"><div class="ttname"><a href="classIMapper.html#a07d1b4904f96cccc320500961dd89517">IMapper::mapEnd</a></div><div class="ttdeci">virtual void mapEnd()=0</div></div>
+<div class="ttc" id="classIMapper_html_a729bea23fd3c18e24972ca93f89fe6f4"><div class="ttname"><a href="classIMapper.html#a729bea23fd3c18e24972ca93f89fe6f4">IMapper::mapBegin</a></div><div class="ttdeci">virtual bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement, bool &amp;bKeepDiving, std::string &amp;strError)=0</div></div>
 <div class="ttc" id="ConfigurableElementWithMapping_8h_html"><div class="ttname"><a href="ConfigurableElementWithMapping_8h.html">ConfigurableElementWithMapping.h</a></div></div>
-<div class="ttc" id="classCSubsystem_html_ab3ee6160ea72deaa93795c6347b02aa1"><div class="ttname"><a href="classCSubsystem.html#ab3ee6160ea72deaa93795c6347b02aa1">CSubsystem::addSubsystemObjectFactory</a></div><div class="ttdeci">void addSubsystemObjectFactory(CSubsystemObjectCreator *pSubsystemObjectCreator)</div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00352">Subsystem.cpp:352</a></div></div>
-<div class="ttc" id="classCSubsystem_html_aba48bd9235bc5f943815627e46b089b2"><div class="ttname"><a href="classCSubsystem.html#aba48bd9235bc5f943815627e46b089b2">CSubsystem::setDefaultValues</a></div><div class="ttdeci">virtual void setDefaultValues(CParameterAccessContext &amp;parameterAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00331">Subsystem.cpp:331</a></div></div>
-<div class="ttc" id="classCSubsystem_html_aa9874e52216edf6895c286551035ab1d"><div class="ttname"><a href="classCSubsystem.html#aa9874e52216edf6895c286551035ab1d">CSubsystem::getMappingData</a></div><div class="ttdeci">virtual bool getMappingData(const std::string &amp;strKey, const std::string *&amp;pStrValue) const </div><div class="ttdoc">Get the value associated to a mapping key in the object&#39;s mapping. </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00370">Subsystem.cpp:370</a></div></div>
-<div class="ttc" id="classCSubsystem_html_af32496b2659bca5762fcb7030d527ad8"><div class="ttname"><a href="classCSubsystem.html#af32496b2659bca5762fcb7030d527ad8">CSubsystem::serializeXmlSettings</a></div><div class="ttdeci">virtual bool serializeXmlSettings(CXmlElement &amp;xmlConfigurationSettingsElementContent, CConfigurationAccessContext &amp;configurationAccessContext) const </div><div class="ttdef"><b>Definition:</b> <a href="Subsystem_8cpp_source.html#l00168">Subsystem.cpp:168</a></div></div>
+<div class="ttc" id="classCConfigurableElementWithMapping_html_a8481af528248793049d5d942200657ae"><div class="ttname"><a href="classCConfigurableElementWithMapping.html#a8481af528248793049d5d942200657ae">CConfigurableElementWithMapping::getMappingData</a></div><div class="ttdeci">virtual bool getMappingData(const std::string &amp;strKey, const std::string *&amp;pStrValue) const =0</div><div class="ttdoc">Get the value associated to a mapping key in the object&#39;s mapping. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

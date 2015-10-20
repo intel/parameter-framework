@@ -29,7 +29,7 @@
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="ParameterFramework_8h.html#aa3c268896aa21de7f78ce9c99195e0ba" target="_top" xlink:title="Access the value of a previously bind int parameter. ">
+<g id="a_node4"><a xlink:href="ParameterFramework_8h.html#a7dde5f55f3d1e45a05409912160df12f" target="_top" xlink:title="Access the value of a previously bind int parameter. ">
 <polygon fill="white" stroke="black" points="133,-114.5 133,-133.5 245,-133.5 245,-114.5 133,-114.5"/>
 <text text-anchor="middle" x="189" y="-121.5" font-family="Verdana" font-size="10.00">pfwGetIntParameter</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="ParameterFramework_8h.html#a5ca86cca5a701f0eb107ba24a05a0a68" target="_top" xlink:title="Set the value of a previously bind int parameter. ">
+<g id="a_node5"><a xlink:href="ParameterFramework_8h.html#af7fd08602e984c778aaf0e4526cbbded" target="_top" xlink:title="Set the value of a previously bind int parameter. ">
 <polygon fill="white" stroke="black" points="133.5,-76.5 133.5,-95.5 244.5,-95.5 244.5,-76.5 133.5,-76.5"/>
 <text text-anchor="middle" x="189" y="-83.5" font-family="Verdana" font-size="10.00">pfwSetIntParameter</text>
 </a>
@@ -55,7 +55,7 @@
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="ParameterFramework_8h.html#a0318f736980ecc4a0a456581f44a2cf0" target="_top" xlink:title="Access the value of a previously bind string parameter. ">
+<g id="a_node6"><a xlink:href="ParameterFramework_8h.html#a7d998384abf12976a2bbb59bc0ba82e4" target="_top" xlink:title="Access the value of a previously bind string parameter. ">
 <polygon fill="white" stroke="black" points="125,-38.5 125,-57.5 253,-57.5 253,-38.5 125,-38.5"/>
 <text text-anchor="middle" x="189" y="-45.5" font-family="Verdana" font-size="10.00">pfwGetStringParameter</text>
 </a>
@@ -68,7 +68,7 @@
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="ParameterFramework_8h.html#a02e479cdd18adee13f01c05affcd5892" target="_top" xlink:title="Set the value of a previously bind string parameter. ">
+<g id="a_node7"><a xlink:href="ParameterFramework_8h.html#a7913a676a9f57c14b0b6f7fa20ec9f9a" target="_top" xlink:title="Set the value of a previously bind string parameter. ">
 <polygon fill="white" stroke="black" points="125,-0.5 125,-19.5 253,-19.5 253,-0.5 125,-0.5"/>
 <text text-anchor="middle" x="189" y="-7.5" font-family="Verdana" font-size="10.00">pfwSetStringParameter</text>
 </a>

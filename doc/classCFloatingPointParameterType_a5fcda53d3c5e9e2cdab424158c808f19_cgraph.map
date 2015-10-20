@@ -1,0 +1,7 @@
+<map id="CFloatingPointParameterType::handleValueSpaceAttribute" name="CFloatingPointParameterType::handleValueSpaceAttribute">
+<area shape="rect" id="node2" href="$classCConfigurationAccessContext.html#ac0a975afc840488e5e82345441de56cc" title="CConfigurationAccessContext\l::serializeOut" alt="" coords="261,5,472,47"/>
+<area shape="rect" id="node3" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="270,71,463,98"/>
+<area shape="rect" id="node4" href="$classCParameterAccessContext.html#a506d83c2a6d876c61a3a21880f3302da" title="CParameterAccessContext\l::setValueSpaceRaw" alt="" coords="270,123,463,164"/>
+<area shape="rect" id="node5" href="$classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7" title="CParameterAccessContext\l::valueSpaceIsRaw" alt="" coords="270,188,463,229"/>
+<area shape="rect" id="node6" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="271,254,463,281"/>
+</map>

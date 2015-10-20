@@ -1,12 +1,12 @@
 <map id="parameter/include/ParameterHandle.h" name="parameter/include/ParameterHandle.h">
-<area shape="rect" id="node2" href="$ParameterMgrFullConnector_8h.html" title="parameter/include/Parameter\lMgrFullConnector.h" alt="" coords="148,95,359,136"/>
-<area shape="rect" id="node4" href="$ParameterMgrPlatformConnector_8h.html" title="parameter/include/Parameter\lMgrPlatformConnector.h" alt="" coords="527,95,737,136"/>
-<area shape="rect" id="node10" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="762,102,995,129"/>
-<area shape="rect" id="node11" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="1020,102,1231,129"/>
+<area shape="rect" id="node2" href="$ParameterMgrFullConnector_8h.html" title="parameter/include/Parameter\lMgrFullConnector.h" alt="" coords="147,95,357,136"/>
+<area shape="rect" id="node4" href="$ParameterMgrPlatformConnector_8h.html" title="parameter/include/Parameter\lMgrPlatformConnector.h" alt="" coords="391,95,601,136"/>
+<area shape="rect" id="node10" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="626,102,859,129"/>
+<area shape="rect" id="node11" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="884,102,1095,129"/>
 <area shape="rect" id="node3" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="5,184,211,225"/>
 <area shape="rect" id="node5" href="$ParameterFramework_8cpp.html" title="bindings/c/ParameterFramework.cpp" alt="" coords="235,191,488,218"/>
 <area shape="rect" id="node6" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="513,184,751,225"/>
 <area shape="rect" id="node7" href="$TestPlatform_8h.html" title="test/test&#45;platform\l/TestPlatform.h" alt="" coords="775,184,910,225"/>
-<area shape="rect" id="node9" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="881,273,1015,315"/>
-<area shape="rect" id="node8" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="722,273,857,315"/>
+<area shape="rect" id="node8" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="695,273,830,315"/>
+<area shape="rect" id="node9" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="854,273,989,315"/>
 </map>

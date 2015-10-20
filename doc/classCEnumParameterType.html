@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -130,8 +130,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae4e0ef0fd082c6c3c711594671697035 inherit pub_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8c4f468d90a2dc0ba93a2f74bcebea7 inherit pub_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#ad8c4f468d90a2dc0ba93a2f74bcebea7">~CParameterType</a> ()</td></tr>
 <tr class="separator:ad8c4f468d90a2dc0ba93a2f74bcebea7 inherit pub_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfe9fe947066e58a062f8126f246f71a inherit pub_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#adfe9fe947066e58a062f8126f246f71a">getSize</a> () const </td></tr>
-<tr class="separator:adfe9fe947066e58a062f8126f246f71a inherit pub_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab57d8e9afd220f02c7671a67932cfaa9 inherit pub_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#ab57d8e9afd220f02c7671a67932cfaa9">getSize</a> () const </td></tr>
+<tr class="separator:ab57d8e9afd220f02c7671a67932cfaa9 inherit pub_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5c3d517960caa37da09645f53d2d88e inherit pub_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#ab5c3d517960caa37da09645f53d2d88e">getUnit</a> () const </td></tr>
 <tr class="separator:ab5c3d517960caa37da09645f53d2d88e inherit pub_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6718436cd7e64e0dc3cffa6d478bcbd inherit pub_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#ac6718436cd7e64e0dc3cffa6d478bcbd">setUnit</a> (const std::string &amp;strUnit)</td></tr>
@@ -149,6 +149,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0822d7b245dbd78fc651588fe22cf83d inherit pub_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#a0822d7b245dbd78fc651588fe22cf83d">fromBlackboard</a> (double &amp;dUserValue, uint32_t uiValue, <a class="el" href="classCParameterAccessContext.html">CParameterAccessContext</a> &amp;parameterAccessContext) const </td></tr>
 <tr class="separator:a0822d7b245dbd78fc651588fe22cf83d inherit pub_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e9880b9d28918e625ba8aa4ba4e61ee inherit pub_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#a9e9880b9d28918e625ba8aa4ba4e61ee">handleValueSpaceAttribute</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlConfigurableElementSettingsElement, <a class="el" href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a> &amp;configurationAccessContext) const </td></tr>
+<tr class="memdesc:a9e9880b9d28918e625ba8aa4ba4e61ee inherit pub_methods_classCParameterType"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value space handling for settings import/export from/to XML.  <a href="#a9e9880b9d28918e625ba8aa4ba4e61ee">More...</a><br /></td></tr>
 <tr class="separator:a9e9880b9d28918e625ba8aa4ba4e61ee inherit pub_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac32b37965ef213b6a8df9656b37596df inherit pub_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#ac32b37965ef213b6a8df9656b37596df">signExtend</a> (int32_t &amp;iData) const </td></tr>
 <tr class="memdesc:ac32b37965ef213b6a8df9656b37596df inherit pub_methods_classCParameterType"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sign extension (32 bits)  <a href="#ac32b37965ef213b6a8df9656b37596df">More...</a><br /></td></tr>
@@ -172,8 +173,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2d4fd9d4443f521e563ef1b6188aeeba inherit pub_methods_classCTypeElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31edf559bc169a1e22e312280bb7a495 inherit pub_methods_classCTypeElement"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTypeElement.html#a31edf559bc169a1e22e312280bb7a495">isScalar</a> () const </td></tr>
 <tr class="separator:a31edf559bc169a1e22e312280bb7a495 inherit pub_methods_classCTypeElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af00d2effc61c73560aabdf950a70f753 inherit pub_methods_classCTypeElement"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTypeElement.html#af00d2effc61c73560aabdf950a70f753">getArrayLength</a> () const </td></tr>
-<tr class="separator:af00d2effc61c73560aabdf950a70f753 inherit pub_methods_classCTypeElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f0d426a1a1be3334bcd9f6a7db2c281 inherit pub_methods_classCTypeElement"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTypeElement.html#a6f0d426a1a1be3334bcd9f6a7db2c281">getArrayLength</a> () const </td></tr>
+<tr class="separator:a6f0d426a1a1be3334bcd9f6a7db2c281 inherit pub_methods_classCTypeElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9719eade46d3c80c55d0a269d93a4554 inherit pub_methods_classCTypeElement"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTypeElement.html#a9719eade46d3c80c55d0a269d93a4554">toPlainInteger</a> (int iSizeOptimizedData) const </td></tr>
 <tr class="memdesc:a9719eade46d3c80c55d0a269d93a4554 inherit pub_methods_classCTypeElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts size optimized integer input data (int8, int16, int32) to plain int.  <a href="#a9719eade46d3c80c55d0a269d93a4554">More...</a><br /></td></tr>
 <tr class="separator:a9719eade46d3c80c55d0a269d93a4554 inherit pub_methods_classCTypeElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,12 +183,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adda0945fbca000ff1e605a9b93f74c64 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae09302d1fbbe377cdcb7c5ceb2fb46a6 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ae09302d1fbbe377cdcb7c5ceb2fb46a6">~CElement</a> ()</td></tr>
 <tr class="separator:ae09302d1fbbe377cdcb7c5ceb2fb46a6 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dee87366d307b43bf8851dd2614c160 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a1dee87366d307b43bf8851dd2614c160">log_info</a> (const char *strMessage,...) const </td></tr>
-<tr class="separator:a1dee87366d307b43bf8851dd2614c160 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a100f81e35b4815020cc617e735702e61 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a100f81e35b4815020cc617e735702e61">log_warning</a> (const char *strMessage,...) const </td></tr>
-<tr class="separator:a100f81e35b4815020cc617e735702e61 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fadaf69d17a61c431422ed6d8a1f8f0 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a6fadaf69d17a61c431422ed6d8a1f8f0">log_table</a> (bool bIsWarning, const std::list&lt; std::string &gt; lstrMessage) const </td></tr>
-<tr class="separator:a6fadaf69d17a61c431422ed6d8a1f8f0 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5fa8c7e838a44733f3887f1bec20d7b inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ac5fa8c7e838a44733f3887f1bec20d7b">setDescription</a> (const std::string &amp;strDescription)</td></tr>
 <tr class="separator:ac5fa8c7e838a44733f3887f1bec20d7b inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c3c6e07b015c44706edf4bb8fc41c2 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2">getDescription</a> () const </td></tr>
@@ -212,8 +207,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4aec98bde47367325cf332a5dc471eb9 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5b93310000754358a178340f6269d51 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af5b93310000754358a178340f6269d51">listChildren</a> (std::string &amp;strChildList) const </td></tr>
 <tr class="separator:af5b93310000754358a178340f6269d51 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a740c0b65f45d681c3d87196d72dd578c inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a740c0b65f45d681c3d87196d72dd578c">listQualifiedPaths</a> (bool bDive, uint32_t uiLevel=0) const </td></tr>
-<tr class="separator:a740c0b65f45d681c3d87196d72dd578c inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a442be4dd4096eafb92adff5a41b70636 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a442be4dd4096eafb92adff5a41b70636">listQualifiedPaths</a> (bool bDive, size_t level=0) const </td></tr>
+<tr class="separator:a442be4dd4096eafb92adff5a41b70636 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1565e8418977482b9b054a93980c2242 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a1565e8418977482b9b054a93980c2242">listChildrenPaths</a> (std::string &amp;strChildPathList) const </td></tr>
 <tr class="separator:a1565e8418977482b9b054a93980c2242 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58b6cdb5715497442fde6afa1e65f8e5 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5">getNbChildren</a> () const </td></tr>
@@ -224,12 +219,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a101c372da4b36fee4ee86a8c100a566f inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7987056bec3cbc71bed07cc88b060cf0 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a7987056bec3cbc71bed07cc88b060cf0">getParent</a> () const </td></tr>
 <tr class="separator:a7987056bec3cbc71bed07cc88b060cf0 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bba10d2dc72821589a898e16ace9ae5 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a9bba10d2dc72821589a898e16ace9ae5">getChild</a> (size_t uiIndex) const </td></tr>
-<tr class="memdesc:a9bba10d2dc72821589a898e16ace9ae5 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element (const)  <a href="#a9bba10d2dc72821589a898e16ace9ae5">More...</a><br /></td></tr>
-<tr class="separator:a9bba10d2dc72821589a898e16ace9ae5 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6418ed9235953d267034dca545c90add inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a6418ed9235953d267034dca545c90add">getChild</a> (size_t uiIndex)</td></tr>
-<tr class="memdesc:a6418ed9235953d267034dca545c90add inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element.  <a href="#a6418ed9235953d267034dca545c90add">More...</a><br /></td></tr>
-<tr class="separator:a6418ed9235953d267034dca545c90add inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee0d626525e9cd24d7639b6365afdc16 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16">getChild</a> (size_t index) const </td></tr>
+<tr class="memdesc:aee0d626525e9cd24d7639b6365afdc16 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element (const)  <a href="#aee0d626525e9cd24d7639b6365afdc16">More...</a><br /></td></tr>
+<tr class="separator:aee0d626525e9cd24d7639b6365afdc16 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3183c1133046724e4ca83a30ace2ec9 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ab3183c1133046724e4ca83a30ace2ec9">getChild</a> (size_t index)</td></tr>
+<tr class="memdesc:ab3183c1133046724e4ca83a30ace2ec9 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element.  <a href="#ab3183c1133046724e4ca83a30ace2ec9">More...</a><br /></td></tr>
+<tr class="separator:ab3183c1133046724e4ca83a30ace2ec9 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8595814a3159f32f874269907e70b260 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a8595814a3159f32f874269907e70b260">findChild</a> (const std::string &amp;strName) const </td></tr>
 <tr class="separator:a8595814a3159f32f874269907e70b260 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af51bbf231ec74ff4d4b7fac9588be603 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af51bbf231ec74ff4d4b7fac9588be603">findChild</a> (const std::string &amp;strName)</td></tr>
@@ -243,16 +238,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aee22d6b038603b6481a8f029bf59ff3d inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#aee22d6b038603b6481a8f029bf59ff3d">childrenToXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const </td></tr>
 <tr class="memdesc:aee22d6b038603b6481a8f029bf59ff3d inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize the children to XML.  <a href="#aee22d6b038603b6481a8f029bf59ff3d">More...</a><br /></td></tr>
 <tr class="separator:aee22d6b038603b6481a8f029bf59ff3d inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49563131c5e78cc693b5c7e9b08dc787 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a49563131c5e78cc693b5c7e9b08dc787">dumpContent</a> (std::string &amp;strContent, <a class="el" href="classCErrorContext.html">CErrorContext</a> &amp;errorContext, const uint32_t uiDepth=0) const </td></tr>
-<tr class="separator:a49563131c5e78cc693b5c7e9b08dc787 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af07c1b866509eb33bd8019d6ff8fef21 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af07c1b866509eb33bd8019d6ff8fef21">computeStructureChecksum</a> () const </td></tr>
-<tr class="separator:af07c1b866509eb33bd8019d6ff8fef21 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8155fa6281cb35f6794819132c091a6 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af8155fa6281cb35f6794819132c091a6">dumpContent</a> (<a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;errorContext, const size_t depth=0) const </td></tr>
+<tr class="separator:af8155fa6281cb35f6794819132c091a6 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a581660a35394ecc99fe7128f9548c3d0 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a581660a35394ecc99fe7128f9548c3d0">setXmlDescriptionAttribute</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) const </td></tr>
 <tr class="memdesc:a581660a35394ecc99fe7128f9548c3d0 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the Description field of the Xml Element during XML composing.  <a href="#a581660a35394ecc99fe7128f9548c3d0">More...</a><br /></td></tr>
 <tr class="separator:a581660a35394ecc99fe7128f9548c3d0 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40a0b69c1b556a06406e022dc7d7a7eb inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a40a0b69c1b556a06406e022dc7d7a7eb">getXmlDescriptionAttribute</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) const </td></tr>
-<tr class="memdesc:a40a0b69c1b556a06406e022dc7d7a7eb inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the Description field from the Xml Element during XML decomposing.  <a href="#a40a0b69c1b556a06406e022dc7d7a7eb">More...</a><br /></td></tr>
-<tr class="separator:a40a0b69c1b556a06406e022dc7d7a7eb inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afce045b488b7c243f52a30269dae8f62 inherit pub_methods_classCElement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#afce045b488b7c243f52a30269dae8f62">showDescriptionProperty</a> (std::string &amp;strResult) const </td></tr>
 <tr class="memdesc:afce045b488b7c243f52a30269dae8f62 inherit pub_methods_classCElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends if found human readable description property.  <a href="#afce045b488b7c243f52a30269dae8f62">More...</a><br /></td></tr>
 <tr class="separator:afce045b488b7c243f52a30269dae8f62 inherit pub_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -262,8 +252,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classCParameterType"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCParameterType')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classCParameterType.html">CParameterType</a></td></tr>
 <tr class="memitem:ac9d998b20f90e7b7255d7eed8d817de1 inherit pro_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#ac9d998b20f90e7b7255d7eed8d817de1">populate</a> (<a class="el" href="classCElement.html">CElement</a> *pElement) const </td></tr>
 <tr class="separator:ac9d998b20f90e7b7255d7eed8d817de1 inherit pro_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a001697bcc5a0c57d1e8021cd3898313a inherit pro_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#a001697bcc5a0c57d1e8021cd3898313a">setSize</a> (uint32_t uiSize)</td></tr>
-<tr class="separator:a001697bcc5a0c57d1e8021cd3898313a inherit pro_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae76c751b669d949c8f1819f547f04c90 inherit pro_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#ae76c751b669d949c8f1819f547f04c90">setSize</a> (size_t size)</td></tr>
+<tr class="separator:ae76c751b669d949c8f1819f547f04c90 inherit pro_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5e79e641e4cd7929b60395d9ffd761a inherit pro_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#af5e79e641e4cd7929b60395d9ffd761a">isEncodable</a> (uint32_t uiData, bool bIsSigned) const </td></tr>
 <tr class="separator:af5e79e641e4cd7929b60395d9ffd761a inherit pro_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab570a68c7f1c6669e5911e06f6845400 inherit pro_methods_classCParameterType"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterType.html#ab570a68c7f1c6669e5911e06f6845400">isEncodable</a> (uint64_t uiData, bool bIsSigned) const </td></tr>
@@ -275,8 +265,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:ae849a293ebb5b314db89e5f93fec3693 inherit pro_methods_classCParameterType"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute max value according to the parameter type.  <a href="#ae849a293ebb5b314db89e5f93fec3693">More...</a><br /></td></tr>
 <tr class="separator:ae849a293ebb5b314db89e5f93fec3693 inherit pro_methods_classCParameterType"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classCElement"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classCElement')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classCElement.html">CElement</a></td></tr>
-<tr class="memitem:acb7fa0283e75533bb2fa420c52e73766 inherit pro_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#acb7fa0283e75533bb2fa420c52e73766">logValue</a> (std::string &amp;strValue, <a class="el" href="classCErrorContext.html">CErrorContext</a> &amp;errorContext) const </td></tr>
-<tr class="separator:acb7fa0283e75533bb2fa420c52e73766 inherit pro_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a466ec9e85ea941fa10864afb8f15678b inherit pro_methods_classCElement"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a466ec9e85ea941fa10864afb8f15678b">logValue</a> (<a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;errorContext) const </td></tr>
+<tr class="separator:a466ec9e85ea941fa10864afb8f15678b inherit pro_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13abc3b20f79fef64b2374e38162db0d inherit pro_methods_classCElement"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a13abc3b20f79fef64b2374e38162db0d">getParent</a> ()</td></tr>
 <tr class="separator:a13abc3b20f79fef64b2374e38162db0d inherit pro_methods_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b4cdc10e6df8fd3740255c5faf3b596 inherit pro_methods_classCElement"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596">createChild</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;childElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;elementSerializingContext)</td></tr>
@@ -288,10 +278,13 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classIXmlSource"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classIXmlSource')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classIXmlSource.html">IXmlSource</a></td></tr>
 <tr class="memitem:a6fc28cbfa9688c17668d4db7bc208569 inherit pro_methods_classIXmlSource"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIXmlSource.html#a6fc28cbfa9688c17668d4db7bc208569">~IXmlSource</a> ()</td></tr>
 <tr class="separator:a6fc28cbfa9688c17668d4db7bc208569 inherit pro_methods_classIXmlSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_static_attribs_classCElement"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classCElement')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classCElement.html">CElement</a></td></tr>
+<tr class="memitem:ac3fdfaea18246188d3adbb8249982f1e inherit pro_static_attribs_classCElement"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ac3fdfaea18246188d3adbb8249982f1e">gDescriptionPropertyName</a> = &quot;Description&quot;</td></tr>
+<tr class="separator:ac3fdfaea18246188d3adbb8249982f1e inherit pro_static_attribs_classCElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="EnumParameterType_8h_source.html#l00037">37</a> of file <a class="el" href="EnumParameterType_8h_source.html">EnumParameterType.h</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8h_source.html#l00036">36</a> of file <a class="el" href="EnumParameterType_8h_source.html">EnumParameterType.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa258fc91322b6b68d0b1bd48d6dee751"></a>
 <div class="memitem">
@@ -307,7 +300,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00045">45</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00039">39</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
 
 </div>
 </div>
@@ -352,12 +345,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classCParameterType.html#a01a245e04347b5d969c3ea4c4ea3d5b8">CParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00195">195</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00127">127</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_a0bd3061022ff86f0a244575b89ab8a48_cgraph.svg" width="688" height="271"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_a0bd3061022ff86f0a244575b89ab8a48_cgraph.svg" width="426" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -404,7 +397,7 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCParameterType.html#aa7d15f603ffa6cd6c4ee38038a4ae1e5">CParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00248">248</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00164">164</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -450,12 +443,12 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCParameterType.html#a51d4793d6f0ab5f9c03644a88727c612">CParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00082">82</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00076">76</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_a9822e2ea066ea375f50bdc9c46808da2_cgraph.svg" width="899" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_a9822e2ea066ea375f50bdc9c46808da2_cgraph.svg" width="415" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -485,7 +478,7 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCParameterType.html#ab42ef965742e72134d10bdb4813cf124">CParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00263">263</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00177">177</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -520,7 +513,15 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee">CElement</a>.</p>
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00049">49</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00043">43</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_ae61e3489340cae2e83e959d8a23d1fa5_icgraph.svg" width="384" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
@@ -548,12 +549,12 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0">CParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00060">60</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00054">54</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_ad36c8d4e9a04060581ba68f744fd41e7_cgraph.svg" width="615" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_ad36c8d4e9a04060581ba68f744fd41e7_cgraph.svg" width="442" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -599,17 +600,15 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Conversion. </p>
-<p>Numerical value provided</p>
-<p>Literal value provided </p>
 
 <p>Implements <a class="el" href="classCParameterType.html#a9fbcbfbc2621b1d0052232b8fb16aee9">CParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00095">95</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00092">92</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_a843bba6b2e2b5b516b7939f8bc4641ab_cgraph.svg" width="432" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_a843bba6b2e2b5b516b7939f8bc4641ab_cgraph.svg" width="366" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -656,7 +655,15 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCParameterType.html#a379024cc058dba5824e8a53897d727cf">CParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00237">237</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00138">138</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_ac8766fbcb17771140b2a5caca4712dc9_cgraph.svg" width="384" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
@@ -694,12 +701,12 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classCParameterType.html#a03428e98662aa8d49a20582e3ccb8a12">CParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00345">345</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
+<p>Definition at line <a class="el" href="EnumParameterType_8cpp_source.html#l00250">250</a> of file <a class="el" href="EnumParameterType_8cpp_source.html">EnumParameterType.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_a657fc941f16df1059a7f1377aa85b258_cgraph.svg" width="414" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCEnumParameterType_a657fc941f16df1059a7f1377aa85b258_cgraph.svg" width="414" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>

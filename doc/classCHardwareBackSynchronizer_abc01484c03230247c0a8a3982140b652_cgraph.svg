@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b" target="_top" xlink:title="CSyncerSet::sync">
+<g id="a_node2"><a xlink:href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5" target="_top" xlink:title="Sync the blackboard. ">
 <polygon fill="white" stroke="black" points="191,-6 191,-25 292,-25 292,-6 191,-6"/>
 <text text-anchor="middle" x="241.5" y="-13" font-family="Verdana" font-size="10.00">CSyncerSet::sync</text>
 </a>

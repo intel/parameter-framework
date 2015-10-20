@@ -1,5 +1,0 @@
-<map id="CParameterBlackboard::serialize" name="CParameterBlackboard::serialize">
-<area shape="rect" id="node2" href="$classCBinaryStream.html#a362955618d8b9cbb753d59ea9e85a124" title="CBinaryStream::isOut" alt="" coords="223,5,383,32"/>
-<area shape="rect" id="node3" href="$classCBinaryStream.html#af629f3fadf931d1c104bc23838f5c7f0" title="CBinaryStream::write" alt="" coords="224,56,381,83"/>
-<area shape="rect" id="node4" href="$classCBinaryStream.html#a82ce448e447ad3801b55d8cf4c00f61f" title="CBinaryStream::read" alt="" coords="225,107,381,133"/>
-</map>

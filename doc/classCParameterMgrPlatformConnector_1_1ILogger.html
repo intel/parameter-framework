@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -103,14 +103,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CParameterMgrPlatformConnector::ILogger:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrPlatformConnector_1_1ILogger__inherit__graph.svg" width="376" height="142"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterMgrPlatformConnector_1_1ILogger__inherit__graph.svg" width="254" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aece3ba02e0cd932943e9324470b8de5d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrPlatformConnector_1_1ILogger.html#aece3ba02e0cd932943e9324470b8de5d">log</a> (bool bIsWarning, const std::string &amp;strLog)=0</td></tr>
-<tr class="separator:aece3ba02e0cd932943e9324470b8de5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70c5f16c87cd57318b03499521cf4bbc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrPlatformConnector_1_1ILogger.html#a70c5f16c87cd57318b03499521cf4bbc">info</a> (const std::string &amp;strLog)=0</td></tr>
+<tr class="separator:a70c5f16c87cd57318b03499521cf4bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd3edf86bc5c341c6f52e6eeebff79d7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterMgrPlatformConnector_1_1ILogger.html#abd3edf86bc5c341c6f52e6eeebff79d7">warning</a> (const std::string &amp;strLog)=0</td></tr>
+<tr class="separator:abd3edf86bc5c341c6f52e6eeebff79d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -119,7 +121,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ParameterMgrPlatformConnector_8h_source.html#l00044">44</a> of file <a class="el" href="ParameterMgrPlatformConnector_8h_source.html">ParameterMgrPlatformConnector.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrPlatformConnector_8h_source.html#l00046">46</a> of file <a class="el" href="ParameterMgrPlatformConnector_8h_source.html">ParameterMgrPlatformConnector.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="af18c449c2fb5969f1c9e197fbc69e412"></a>
 <div class="memitem">
@@ -142,12 +144,12 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterMgrPlatformConnector_8h_source.html#l00049">49</a> of file <a class="el" href="ParameterMgrPlatformConnector_8h_source.html">ParameterMgrPlatformConnector.h</a>.</p>
+<p>Definition at line <a class="el" href="ParameterMgrPlatformConnector_8h_source.html#l00052">52</a> of file <a class="el" href="ParameterMgrPlatformConnector_8h_source.html">ParameterMgrPlatformConnector.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aece3ba02e0cd932943e9324470b8de5d"></a>
+<a class="anchor" id="a70c5f16c87cd57318b03499521cf4bbc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -155,21 +157,11 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void CParameterMgrPlatformConnector::ILogger::log </td>
+          <td class="memname">virtual void CParameterMgrPlatformConnector::ILogger::info </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bIsWarning</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>strLog</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>strLog</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -179,7 +171,29 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classCParameterMgrPlatformConnectorLogger.html#a07ef82d0efd490c2da1f769ff0d90b90">CParameterMgrPlatformConnectorLogger</a>.</p>
+</div>
+</div>
+<a class="anchor" id="abd3edf86bc5c341c6f52e6eeebff79d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CParameterMgrPlatformConnector::ILogger::warning </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>strLog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

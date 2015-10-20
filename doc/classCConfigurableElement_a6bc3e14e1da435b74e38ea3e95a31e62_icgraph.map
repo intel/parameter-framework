@@ -1,6 +1,0 @@
-<map id="CConfigurableElement::getFootPrint" name="CConfigurableElement::getFootPrint">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#ab7057b4cf2482e15666f538211ac65c5" title="CAreaConfiguration\l::CAreaConfiguration" alt="" coords="222,5,377,47"/>
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a450b0ccf5de682eb39949fa43438a7f5" title="CConfigurableElement\l::setOffset" alt="" coords="217,95,381,136"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#a0282019ab1caa1ada2b637562a1d8479" title="CConfigurableElement\l::getFootprintAsString" alt="" coords="217,160,381,201"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a0497959fbd4ecdcc9911ed6548f73fa1" title="CConfigurableElement\l::showProperties" alt="" coords="429,160,593,201"/>
-</map>

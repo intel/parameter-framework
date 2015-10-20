@@ -1,6 +1,0 @@
-<map id="CAreaConfiguration::serialize" name="CAreaConfiguration::serialize">
-<area shape="rect" id="node2" href="$classCParameterBlackboard.html#ad96ba821eb1035b06a5a30ef7377da39" title="CParameterBlackboard\l::serialize" alt="" coords="200,53,369,94"/>
-<area shape="rect" id="node3" href="$classCBinaryStream.html#a362955618d8b9cbb753d59ea9e85a124" title="CBinaryStream::isOut" alt="" coords="417,5,577,32"/>
-<area shape="rect" id="node4" href="$classCBinaryStream.html#af629f3fadf931d1c104bc23838f5c7f0" title="CBinaryStream::write" alt="" coords="419,57,576,84"/>
-<area shape="rect" id="node5" href="$classCBinaryStream.html#a82ce448e447ad3801b55d8cf4c00f61f" title="CBinaryStream::read" alt="" coords="419,108,575,135"/>
-</map>

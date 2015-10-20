@@ -1,5 +1,6 @@
 <map id="CFixedPointParameterType::toBlackboard" name="CFixedPointParameterType::toBlackboard">
-<area shape="rect" id="node2" href="$classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7" title="CParameterAccessContext\l::valueSpaceIsRaw" alt="" coords="244,5,437,47"/>
-<area shape="rect" id="node3" href="$classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef" title="CErrorContext::setError" alt="" coords="255,71,426,98"/>
-<area shape="rect" id="node4" href="$classCFixedPointParameterType.html#ae9b48934e686faecefd25163ba3921f3" title="CFixedPointParameterType\l::getKind" alt="" coords="245,123,436,164"/>
+<area shape="rect" id="node2" href="$namespaceutility.html#af26524fd398a870267af79c918862662" title="Checks if a string has the written representation of an hexadecimal number (Which is the prefix &quot;0x&quot; ..." alt="" coords="263,5,419,32"/>
+<area shape="rect" id="node3" href="$classCParameterAccessContext.html#aa36964a7a0cc063c1a5589adb29ed5a7" title="CParameterAccessContext\l::valueSpaceIsRaw" alt="" coords="244,57,437,98"/>
+<area shape="rect" id="node4" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="269,122,413,163"/>
+<area shape="rect" id="node5" href="$classCFixedPointParameterType.html#ae9b48934e686faecefd25163ba3921f3" title="CFixedPointParameterType\l::getKind" alt="" coords="245,187,436,229"/>
 </map>

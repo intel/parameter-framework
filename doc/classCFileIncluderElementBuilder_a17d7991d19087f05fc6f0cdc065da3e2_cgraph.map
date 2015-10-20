@@ -1,6 +1,5 @@
 <map id="CFileIncluderElementBuilder::createElement" name="CFileIncluderElementBuilder::createElement">
-<area shape="rect" id="node2" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="252,13,484,39"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="285,63,451,90"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="532,5,725,47"/>
-<area shape="rect" id="node4" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="773,13,968,39"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#a21b9cfd66e7cd6f33a889e099102ef89" title="CXmlElement::getNameAttribute" alt="" coords="252,5,484,32"/>
+<area shape="rect" id="node4" href="$classCXmlElement.html#ab2e750aaad2b93b4d875d04b624de1c4" title="CXmlElement::getType" alt="" coords="285,56,451,83"/>
+<area shape="rect" id="node3" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="532,5,725,32"/>
 </map>

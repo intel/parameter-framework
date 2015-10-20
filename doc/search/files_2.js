@@ -20,7 +20,6 @@ var searchData=
   ['configurableelementwithmapping_2eh',['ConfigurableElementWithMapping.h',['../ConfigurableElementWithMapping_8h.html',1,'']]],
   ['configurationaccesscontext_2ecpp',['ConfigurationAccessContext.cpp',['../ConfigurationAccessContext_8cpp.html',1,'']]],
   ['configurationaccesscontext_2eh',['ConfigurationAccessContext.h',['../ConfigurationAccessContext_8h.html',1,'']]],
-  ['connectionsocket_2ecpp',['ConnectionSocket.cpp',['../ConnectionSocket_8cpp.html',1,'']]],
-  ['connectionsocket_2eh',['ConnectionSocket.h',['../ConnectionSocket_8h.html',1,'']]],
+  ['context_2eh',['Context.h',['../Context_8h.html',1,'']]],
   ['convert_2ehpp',['convert.hpp',['../convert_8hpp.html',1,'']]]
 ];

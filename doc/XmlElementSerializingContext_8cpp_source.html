@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -132,39 +132,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// Init</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a45179689ee6f0e003c53552534483285">   41</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCXmlElementSerializingContext.html#a45179689ee6f0e003c53552534483285">CXmlElementSerializingContext::set</a>(<span class="keyword">const</span> <a class="code" href="classCElementLibrary.html">CElementLibrary</a>* pElementLibrary, <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strXmlFolder, <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; strXmlSchemaFolder)</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#aca106ed9055eaa1621d9fc70e5c7cf6c">   41</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCXmlElementSerializingContext.html#aca106ed9055eaa1621d9fc70e5c7cf6c">CXmlElementSerializingContext::set</a>(<span class="keyword">const</span> <a class="code" href="classCElementLibrary.html">CElementLibrary</a>* pElementLibrary, <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; xmlUri)</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    _pElementLibrary = pElementLibrary;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    _strXmlFolder = strXmlFolder;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    _strXmlSchemaFolder = strXmlSchemaFolder;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// ElementLibrary</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">   49</a></span>&#160;<span class="keyword">const</span> <a class="code" href="classCElementLibrary.html">CElementLibrary</a>* <a class="code" href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">CXmlElementSerializingContext::getElementLibrary</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> _pElementLibrary;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">// XML Folder Path</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a5b554140f8c2ca7047f6f0f7fa8ef6e3">   55</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; <a class="code" href="classCXmlElementSerializingContext.html#a5b554140f8c2ca7047f6f0f7fa8ef6e3">CXmlElementSerializingContext::getXmlFolder</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> _strXmlFolder;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// XML Schema Path</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a0691a9da062b3950f316853cf9e8e391">   61</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; <a class="code" href="classCXmlElementSerializingContext.html#a0691a9da062b3950f316853cf9e8e391">CXmlElementSerializingContext::getXmlSchemaPathFolder</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">return</span> _strXmlSchemaFolder;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    _xmlUri = xmlUri;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// ElementLibrary</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">   48</a></span>&#160;<span class="keyword">const</span> <a class="code" href="classCElementLibrary.html">CElementLibrary</a>* <a class="code" href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">CXmlElementSerializingContext::getElementLibrary</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> _pElementLibrary;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">// XML Folder Path</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classCXmlElementSerializingContext.html#a257b1df29ae5417c3a0dab5a0b3feb5e">   54</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; <a class="code" href="classCXmlElementSerializingContext.html#a257b1df29ae5417c3a0dab5a0b3feb5e">CXmlElementSerializingContext::getXmlUri</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">return</span> _xmlUri;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
 <div class="ttc" id="XmlElementSerializingContext_8h_html"><div class="ttname"><a href="XmlElementSerializingContext_8h.html">XmlElementSerializingContext.h</a></div></div>
 <div class="ttc" id="classCXmlElementSerializingContext_html_a8d5b056f2307ffc803875f27c5496e73"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a8d5b056f2307ffc803875f27c5496e73">CXmlElementSerializingContext::CXmlElementSerializingContext</a></div><div class="ttdeci">CXmlElementSerializingContext(std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00036">XmlElementSerializingContext.cpp:36</a></div></div>
-<div class="ttc" id="classCXmlElementSerializingContext_html_a45179689ee6f0e003c53552534483285"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a45179689ee6f0e003c53552534483285">CXmlElementSerializingContext::set</a></div><div class="ttdeci">void set(const CElementLibrary *pElementLibrary, const std::string &amp;strXmlFolder, const std::string &amp;strXmlSchemaFolder)</div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00041">XmlElementSerializingContext.cpp:41</a></div></div>
-<div class="ttc" id="classCXmlElementSerializingContext_html_a5b554140f8c2ca7047f6f0f7fa8ef6e3"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a5b554140f8c2ca7047f6f0f7fa8ef6e3">CXmlElementSerializingContext::getXmlFolder</a></div><div class="ttdeci">const std::string &amp; getXmlFolder() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00055">XmlElementSerializingContext.cpp:55</a></div></div>
+<div class="ttc" id="classCXmlElementSerializingContext_html_aca106ed9055eaa1621d9fc70e5c7cf6c"><div class="ttname"><a href="classCXmlElementSerializingContext.html#aca106ed9055eaa1621d9fc70e5c7cf6c">CXmlElementSerializingContext::set</a></div><div class="ttdeci">void set(const CElementLibrary *pElementLibrary, const std::string &amp;xmlUri)</div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00041">XmlElementSerializingContext.cpp:41</a></div></div>
 <div class="ttc" id="XmlElementSerializingContext_8cpp_html_a6542a2bd356f5c5a12e03135a66e2dae"><div class="ttname"><a href="XmlElementSerializingContext_8cpp.html#a6542a2bd356f5c5a12e03135a66e2dae">base</a></div><div class="ttdeci">#define base</div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00032">XmlElementSerializingContext.cpp:32</a></div></div>
-<div class="ttc" id="classCXmlElementSerializingContext_html_a6c36b7e23b9968c6ea898612d2a55ee9"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">CXmlElementSerializingContext::getElementLibrary</a></div><div class="ttdeci">const CElementLibrary * getElementLibrary() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00049">XmlElementSerializingContext.cpp:49</a></div></div>
-<div class="ttc" id="classCElementLibrary_html"><div class="ttname"><a href="classCElementLibrary.html">CElementLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrary_8h_source.html#l00039">ElementLibrary.h:39</a></div></div>
-<div class="ttc" id="classCXmlElementSerializingContext_html_a0691a9da062b3950f316853cf9e8e391"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a0691a9da062b3950f316853cf9e8e391">CXmlElementSerializingContext::getXmlSchemaPathFolder</a></div><div class="ttdeci">const std::string &amp; getXmlSchemaPathFolder() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00061">XmlElementSerializingContext.cpp:61</a></div></div>
+<div class="ttc" id="classCXmlElementSerializingContext_html_a6c36b7e23b9968c6ea898612d2a55ee9"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a6c36b7e23b9968c6ea898612d2a55ee9">CXmlElementSerializingContext::getElementLibrary</a></div><div class="ttdeci">const CElementLibrary * getElementLibrary() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00048">XmlElementSerializingContext.cpp:48</a></div></div>
+<div class="ttc" id="classCXmlElementSerializingContext_html_a257b1df29ae5417c3a0dab5a0b3feb5e"><div class="ttname"><a href="classCXmlElementSerializingContext.html#a257b1df29ae5417c3a0dab5a0b3feb5e">CXmlElementSerializingContext::getXmlUri</a></div><div class="ttdeci">const std::string &amp; getXmlUri() const </div><div class="ttdef"><b>Definition:</b> <a href="XmlElementSerializingContext_8cpp_source.html#l00054">XmlElementSerializingContext.cpp:54</a></div></div>
+<div class="ttc" id="classCElementLibrary_html"><div class="ttname"><a href="classCElementLibrary.html">CElementLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrary_8h_source.html#l00041">ElementLibrary.h:41</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

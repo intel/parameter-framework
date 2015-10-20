@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -89,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#friends">Friends</a> &#124;
+<a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="classCElement-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CElement Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CElement:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement__inherit__graph.svg" width="1676" height="1147"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement__inherit__graph.svg" width="1676" height="1172"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -110,12 +110,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adda0945fbca000ff1e605a9b93f74c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae09302d1fbbe377cdcb7c5ceb2fb46a6"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ae09302d1fbbe377cdcb7c5ceb2fb46a6">~CElement</a> ()</td></tr>
 <tr class="separator:ae09302d1fbbe377cdcb7c5ceb2fb46a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dee87366d307b43bf8851dd2614c160"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a1dee87366d307b43bf8851dd2614c160">log_info</a> (const char *strMessage,...) const </td></tr>
-<tr class="separator:a1dee87366d307b43bf8851dd2614c160"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a100f81e35b4815020cc617e735702e61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a100f81e35b4815020cc617e735702e61">log_warning</a> (const char *strMessage,...) const </td></tr>
-<tr class="separator:a100f81e35b4815020cc617e735702e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fadaf69d17a61c431422ed6d8a1f8f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a6fadaf69d17a61c431422ed6d8a1f8f0">log_table</a> (bool bIsWarning, const std::list&lt; std::string &gt; lstrMessage) const </td></tr>
-<tr class="separator:a6fadaf69d17a61c431422ed6d8a1f8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5fa8c7e838a44733f3887f1bec20d7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ac5fa8c7e838a44733f3887f1bec20d7b">setDescription</a> (const std::string &amp;strDescription)</td></tr>
 <tr class="separator:ac5fa8c7e838a44733f3887f1bec20d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c3c6e07b015c44706edf4bb8fc41c2"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2">getDescription</a> () const </td></tr>
@@ -140,8 +134,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4aec98bde47367325cf332a5dc471eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5b93310000754358a178340f6269d51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af5b93310000754358a178340f6269d51">listChildren</a> (std::string &amp;strChildList) const </td></tr>
 <tr class="separator:af5b93310000754358a178340f6269d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a740c0b65f45d681c3d87196d72dd578c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a740c0b65f45d681c3d87196d72dd578c">listQualifiedPaths</a> (bool bDive, uint32_t uiLevel=0) const </td></tr>
-<tr class="separator:a740c0b65f45d681c3d87196d72dd578c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a442be4dd4096eafb92adff5a41b70636"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a442be4dd4096eafb92adff5a41b70636">listQualifiedPaths</a> (bool bDive, size_t level=0) const </td></tr>
+<tr class="separator:a442be4dd4096eafb92adff5a41b70636"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1565e8418977482b9b054a93980c2242"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a1565e8418977482b9b054a93980c2242">listChildrenPaths</a> (std::string &amp;strChildPathList) const </td></tr>
 <tr class="separator:a1565e8418977482b9b054a93980c2242"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58b6cdb5715497442fde6afa1e65f8e5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5">getNbChildren</a> () const </td></tr>
@@ -152,12 +146,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a101c372da4b36fee4ee86a8c100a566f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7987056bec3cbc71bed07cc88b060cf0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a7987056bec3cbc71bed07cc88b060cf0">getParent</a> () const </td></tr>
 <tr class="separator:a7987056bec3cbc71bed07cc88b060cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bba10d2dc72821589a898e16ace9ae5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a9bba10d2dc72821589a898e16ace9ae5">getChild</a> (size_t uiIndex) const </td></tr>
-<tr class="memdesc:a9bba10d2dc72821589a898e16ace9ae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element (const)  <a href="#a9bba10d2dc72821589a898e16ace9ae5">More...</a><br /></td></tr>
-<tr class="separator:a9bba10d2dc72821589a898e16ace9ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6418ed9235953d267034dca545c90add"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a6418ed9235953d267034dca545c90add">getChild</a> (size_t uiIndex)</td></tr>
-<tr class="memdesc:a6418ed9235953d267034dca545c90add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element.  <a href="#a6418ed9235953d267034dca545c90add">More...</a><br /></td></tr>
-<tr class="separator:a6418ed9235953d267034dca545c90add"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee0d626525e9cd24d7639b6365afdc16"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#aee0d626525e9cd24d7639b6365afdc16">getChild</a> (size_t index) const </td></tr>
+<tr class="memdesc:aee0d626525e9cd24d7639b6365afdc16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element (const)  <a href="#aee0d626525e9cd24d7639b6365afdc16">More...</a><br /></td></tr>
+<tr class="separator:aee0d626525e9cd24d7639b6365afdc16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3183c1133046724e4ca83a30ace2ec9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ab3183c1133046724e4ca83a30ace2ec9">getChild</a> (size_t index)</td></tr>
+<tr class="memdesc:ab3183c1133046724e4ca83a30ace2ec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a child element.  <a href="#ab3183c1133046724e4ca83a30ace2ec9">More...</a><br /></td></tr>
+<tr class="separator:ab3183c1133046724e4ca83a30ace2ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8595814a3159f32f874269907e70b260"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a8595814a3159f32f874269907e70b260">findChild</a> (const std::string &amp;strName) const </td></tr>
 <tr class="separator:a8595814a3159f32f874269907e70b260"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af51bbf231ec74ff4d4b7fac9588be603"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af51bbf231ec74ff4d4b7fac9588be603">findChild</a> (const std::string &amp;strName)</td></tr>
@@ -175,28 +169,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aee22d6b038603b6481a8f029bf59ff3d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#aee22d6b038603b6481a8f029bf59ff3d">childrenToXml</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;serializingContext) const </td></tr>
 <tr class="memdesc:aee22d6b038603b6481a8f029bf59ff3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize the children to XML.  <a href="#aee22d6b038603b6481a8f029bf59ff3d">More...</a><br /></td></tr>
 <tr class="separator:aee22d6b038603b6481a8f029bf59ff3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49563131c5e78cc693b5c7e9b08dc787"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a49563131c5e78cc693b5c7e9b08dc787">dumpContent</a> (std::string &amp;strContent, <a class="el" href="classCErrorContext.html">CErrorContext</a> &amp;errorContext, const uint32_t uiDepth=0) const </td></tr>
-<tr class="separator:a49563131c5e78cc693b5c7e9b08dc787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8155fa6281cb35f6794819132c091a6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af8155fa6281cb35f6794819132c091a6">dumpContent</a> (<a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;errorContext, const size_t depth=0) const </td></tr>
+<tr class="separator:af8155fa6281cb35f6794819132c091a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c87fea54766f49f45346713d9d09880"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a8c87fea54766f49f45346713d9d09880">showProperties</a> (std::string &amp;strResult) const </td></tr>
 <tr class="separator:a8c87fea54766f49f45346713d9d09880"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af07c1b866509eb33bd8019d6ff8fef21"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#af07c1b866509eb33bd8019d6ff8fef21">computeStructureChecksum</a> () const </td></tr>
-<tr class="separator:af07c1b866509eb33bd8019d6ff8fef21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed2ca7f2a56dbf2edcd82167859535ee"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee">getKind</a> () const =0</td></tr>
 <tr class="separator:aed2ca7f2a56dbf2edcd82167859535ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a581660a35394ecc99fe7128f9548c3d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a581660a35394ecc99fe7128f9548c3d0">setXmlDescriptionAttribute</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) const </td></tr>
 <tr class="memdesc:a581660a35394ecc99fe7128f9548c3d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the Description field of the Xml Element during XML composing.  <a href="#a581660a35394ecc99fe7128f9548c3d0">More...</a><br /></td></tr>
 <tr class="separator:a581660a35394ecc99fe7128f9548c3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40a0b69c1b556a06406e022dc7d7a7eb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a40a0b69c1b556a06406e022dc7d7a7eb">getXmlDescriptionAttribute</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlElement) const </td></tr>
-<tr class="memdesc:a40a0b69c1b556a06406e022dc7d7a7eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the Description field from the Xml Element during XML decomposing.  <a href="#a40a0b69c1b556a06406e022dc7d7a7eb">More...</a><br /></td></tr>
-<tr class="separator:a40a0b69c1b556a06406e022dc7d7a7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afce045b488b7c243f52a30269dae8f62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#afce045b488b7c243f52a30269dae8f62">showDescriptionProperty</a> (std::string &amp;strResult) const </td></tr>
 <tr class="memdesc:afce045b488b7c243f52a30269dae8f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends if found human readable description property.  <a href="#afce045b488b7c243f52a30269dae8f62">More...</a><br /></td></tr>
 <tr class="separator:afce045b488b7c243f52a30269dae8f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:acb7fa0283e75533bb2fa420c52e73766"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#acb7fa0283e75533bb2fa420c52e73766">logValue</a> (std::string &amp;strValue, <a class="el" href="classCErrorContext.html">CErrorContext</a> &amp;errorContext) const </td></tr>
-<tr class="separator:acb7fa0283e75533bb2fa420c52e73766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a466ec9e85ea941fa10864afb8f15678b"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a466ec9e85ea941fa10864afb8f15678b">logValue</a> (<a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;errorContext) const </td></tr>
+<tr class="separator:a466ec9e85ea941fa10864afb8f15678b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13abc3b20f79fef64b2374e38162db0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a13abc3b20f79fef64b2374e38162db0d">getParent</a> ()</td></tr>
 <tr class="separator:a13abc3b20f79fef64b2374e38162db0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b4cdc10e6df8fd3740255c5faf3b596"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCElement.html">CElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596">createChild</a> (const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;childElement, <a class="el" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> &amp;elementSerializingContext)</td></tr>
@@ -209,14 +198,14 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a6fc28cbfa9688c17668d4db7bc208569 inherit pro_methods_classIXmlSource"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIXmlSource.html#a6fc28cbfa9688c17668d4db7bc208569">~IXmlSource</a> ()</td></tr>
 <tr class="separator:a6fc28cbfa9688c17668d4db7bc208569 inherit pro_methods_classIXmlSource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:a9f8f4f46040148958eb0d9a91c24b3be"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#a9f8f4f46040148958eb0d9a91c24b3be">CAutoLog</a></td></tr>
-<tr class="separator:a9f8f4f46040148958eb0d9a91c24b3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
+Static Protected Attributes</h2></td></tr>
+<tr class="memitem:ac3fdfaea18246188d3adbb8249982f1e"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCElement.html#ac3fdfaea18246188d3adbb8249982f1e">gDescriptionPropertyName</a> = &quot;Description&quot;</td></tr>
+<tr class="separator:ac3fdfaea18246188d3adbb8249982f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="Element_8h_source.html#l00044">44</a> of file <a class="el" href="Element_8h_source.html">Element.h</a>.</p>
+<p>Definition at line <a class="el" href="Element_8h_source.html#l00047">47</a> of file <a class="el" href="Element_8h_source.html">Element.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="adda0945fbca000ff1e605a9b93f74c64"></a>
 <div class="memitem">
@@ -232,7 +221,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00043">43</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00044">44</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -257,7 +246,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00047">47</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00048">48</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -276,12 +265,12 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00371">371</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00275">275</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_ac2ad66ee438a4a0c1390b7388874fe72_icgraph.svg" width="1851" height="651"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_ac2ad66ee438a4a0c1390b7388874fe72_icgraph.svg" width="1816" height="652"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -332,12 +321,12 @@ Here is the caller graph for this function:</div>
 
 <p>Reimplemented in <a class="el" href="classCConfigurableDomain.html#aa0778bc5844d03b115e15185d173ab66">CConfigurableDomain</a>.</p>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00269">269</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00188">188</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_aee22d6b038603b6481a8f029bf59ff3d_cgraph.svg" width="927" height="227"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_aee22d6b038603b6481a8f029bf59ff3d_cgraph.svg" width="687" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -373,45 +362,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00503">503</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00385">385</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_ae40b0165e010c310cc58c7d9fa174f64_icgraph.svg" width="900" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="af07c1b866509eb33bd8019d6ff8fef21"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t CElement::computeStructureChecksum </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00676">676</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_af07c1b866509eb33bd8019d6ff8fef21_cgraph.svg" width="408" height="76"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_af07c1b866509eb33bd8019d6ff8fef21_icgraph.svg" width="220" height="76"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -460,12 +416,12 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>child a pointer on the <a class="el" href="classCElement.html">CElement</a> object that has been added to the tree </dd></dl>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00392">392</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00296">296</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a0b4cdc10e6df8fd3740255c5faf3b596_cgraph.svg" width="1235" height="334"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a0b4cdc10e6df8fd3740255c5faf3b596_cgraph.svg" width="992" height="322"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -480,27 +436,21 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a49563131c5e78cc693b5c7e9b08dc787"></a>
+<a class="anchor" id="af8155fa6281cb35f6794819132c091a6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CElement::dumpContent </td>
+          <td class="memname">string CElement::dumpContent </td>
           <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>strContent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classCErrorContext.html">CErrorContext</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;&#160;</td>
           <td class="paramname"><em>errorContext</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint32_t&#160;</td>
-          <td class="paramname"><em>uiDepth</em> = <code>0</code>&#160;</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>depth</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -510,12 +460,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00160">160</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00083">83</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a49563131c5e78cc693b5c7e9b08dc787_cgraph.svg" width="391" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_af8155fa6281cb35f6794819132c091a6_cgraph.svg" width="391" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -536,12 +486,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00599">599</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00476">476</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a8595814a3159f32f874269907e70b260_icgraph.svg" width="2302" height="1943"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a8595814a3159f32f874269907e70b260_icgraph.svg" width="2295" height="2004"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -562,7 +512,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00582">582</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00462">462</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -580,15 +530,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00616">616</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_acee1af3e8516a211731a59b85727c6b9_cgraph.svg" width="386" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00489">489</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -614,15 +556,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00633">633</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a101c372da4b36fee4ee86a8c100a566f_cgraph.svg" width="386" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00502">502</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -640,7 +574,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00531">531</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00411">411</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -674,7 +608,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00550">550</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00430">430</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -720,14 +654,14 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classIXmlSink.html#a2b40a7a30dbc7ff0010a8680890de618">IXmlSink</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classCConfigurableDomain.html#aa1fdeb04cae19531f2588e0419b53b84">CConfigurableDomain</a>, <a class="el" href="classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c">CSelectionCriterionRule</a>, <a class="el" href="classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66">CTypeElement</a>, <a class="el" href="classCLogarithmicParameterAdaptation.html#ac0b21330479721a562cbc9ff572b5e8e">CLogarithmicParameterAdaptation</a>, <a class="el" href="classCComponentType.html#a962c2716cd757893d0a1dafc84d538da">CComponentType</a>, <a class="el" href="classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4">CSubsystem</a>, <a class="el" href="classCParameterType.html#a51d4793d6f0ab5f9c03644a88727c612">CParameterType</a>, <a class="el" href="classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193">CComponentInstance</a>, <a class="el" href="classCCompoundRule.html#a71717a28b3f33132f68825a5bf696ff2">CCompoundRule</a>, <a class="el" href="classCParameterFrameworkConfiguration.html#a9d9882f3de792f4f5a84e8a3c095e2dd">CParameterFrameworkConfiguration</a>, <a class="el" href="classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5">CComponentLibrary</a>, <a class="el" href="classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e">CLinearParameterAdaptation</a>, <a class="el" href="classCFrameworkConfigurationLocation.html#a2e9a4fed347353201cd0272de4952841">CFrameworkConfigurationLocation</a>, <a class="el" href="classCStringParameterType.html#a756cad076226c0ef05f99e4d19efae53">CStringParameterType</a>, <a class="el" href="classCBitParameterType.html#a76b208c42677a4a7a90494f348924403">CBitParameterType</a>, <a class="el" href="classCBitParameterBlockType.html#a71df01e5ca9d73091f7b5845185915a4">CBitParameterBlockType</a>, <a class="el" href="classCParameterAdaptation.html#af811befee14dc953020bb319e72a6796">CParameterAdaptation</a>, <a class="el" href="classCEnumValuePair.html#a75b1589707a64d5cf13145acde4dad03">CEnumValuePair</a>, <a class="el" href="classCIntegerParameterType.html#a8d8e329f5f61b6e50108e7fe1a7f7446">CIntegerParameterType</a>, <a class="el" href="classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa">CXmlFileIncluderElement</a>, <a class="el" href="classCEnumParameterType.html#a9822e2ea066ea375f50bdc9c46808da2">CEnumParameterType</a>, <a class="el" href="classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e">CFixedPointParameterType</a>, and <a class="el" href="classCPluginLocation.html#a078d8017417c36f89f9d05b5e4d1b33b">CPluginLocation</a>.</p>
+<p>Reimplemented in <a class="el" href="classCConfigurableDomain.html#aa1fdeb04cae19531f2588e0419b53b84">CConfigurableDomain</a>, <a class="el" href="classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c">CSelectionCriterionRule</a>, <a class="el" href="classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4">CSubsystem</a>, <a class="el" href="classCTypeElement.html#a8f3a08cd11a7db4fde3bd69dde5c8b66">CTypeElement</a>, <a class="el" href="classCLogarithmicParameterAdaptation.html#ac0b21330479721a562cbc9ff572b5e8e">CLogarithmicParameterAdaptation</a>, <a class="el" href="classCParameterType.html#a51d4793d6f0ab5f9c03644a88727c612">CParameterType</a>, <a class="el" href="classCComponentType.html#a962c2716cd757893d0a1dafc84d538da">CComponentType</a>, <a class="el" href="classCComponentInstance.html#a1943a2510a8a326f0fedd9cc8f07b193">CComponentInstance</a>, <a class="el" href="classCCompoundRule.html#a71717a28b3f33132f68825a5bf696ff2">CCompoundRule</a>, <a class="el" href="classCParameterFrameworkConfiguration.html#a9d9882f3de792f4f5a84e8a3c095e2dd">CParameterFrameworkConfiguration</a>, <a class="el" href="classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5">CComponentLibrary</a>, <a class="el" href="classCLinearParameterAdaptation.html#a3dfe0a5f0d6ddc9ca72f159bc066354e">CLinearParameterAdaptation</a>, <a class="el" href="classCStringParameterType.html#a756cad076226c0ef05f99e4d19efae53">CStringParameterType</a>, <a class="el" href="classCBitParameterType.html#a76b208c42677a4a7a90494f348924403">CBitParameterType</a>, <a class="el" href="classCFrameworkConfigurationLocation.html#a2e9a4fed347353201cd0272de4952841">CFrameworkConfigurationLocation</a>, <a class="el" href="classCBitParameterBlockType.html#a71df01e5ca9d73091f7b5845185915a4">CBitParameterBlockType</a>, <a class="el" href="classCParameterAdaptation.html#af811befee14dc953020bb319e72a6796">CParameterAdaptation</a>, <a class="el" href="classCEnumValuePair.html#a75b1589707a64d5cf13145acde4dad03">CEnumValuePair</a>, <a class="el" href="classCIntegerParameterType.html#a8d8e329f5f61b6e50108e7fe1a7f7446">CIntegerParameterType</a>, <a class="el" href="classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa">CXmlFileIncluderElement</a>, <a class="el" href="classCEnumParameterType.html#a9822e2ea066ea375f50bdc9c46808da2">CEnumParameterType</a>, <a class="el" href="classCFixedPointParameterType.html#a58d031a099f032135417110023dad31e">CFixedPointParameterType</a>, <a class="el" href="classCPluginLocation.html#a078d8017417c36f89f9d05b5e4d1b33b">CPluginLocation</a>, and <a class="el" href="classCFloatingPointParameterType.html#afc9886b6b3b300f27057c7361f690f54">CFloatingPointParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00222">222</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00144">144</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a1978d50e2db432e7b8f0928f33d3f01a_cgraph.svg" width="1468" height="566"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a1978d50e2db432e7b8f0928f33d3f01a_cgraph.svg" width="1226" height="487"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -742,7 +676,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a9bba10d2dc72821589a898e16ace9ae5"></a>
+<a class="anchor" id="aee0d626525e9cd24d7639b6365afdc16"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -750,7 +684,7 @@ Here is the caller graph for this function:</div>
           <td class="memname">const <a class="el" href="classCElement.html">CElement</a> * CElement::getChild </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>uiIndex</em></td><td>)</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -760,25 +694,25 @@ Here is the caller graph for this function:</div>
 <p>Note: this method will assert if given a wrong child index (&gt;= number of children)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">uiIndex</td><td>the index of the child element from 0 to number of children - 1 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>the index of the child element from 0 to number of children - 1 </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the child element </dd></dl>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00385">385</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00289">289</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a9bba10d2dc72821589a898e16ace9ae5_icgraph.svg" width="1911" height="1722"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_aee0d626525e9cd24d7639b6365afdc16_icgraph.svg" width="1888" height="1570"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a6418ed9235953d267034dca545c90add"></a>
+<a class="anchor" id="ab3183c1133046724e4ca83a30ace2ec9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -786,7 +720,7 @@ Here is the caller graph for this function:</div>
           <td class="memname"><a class="el" href="classCElement.html">CElement</a> * CElement::getChild </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>uiIndex</em></td><td>)</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -796,13 +730,13 @@ Here is the caller graph for this function:</div>
 <p>Note: this method will assert if given a wrong child index (&gt;= number of children)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">uiIndex</td><td>the index of the child element from 0 to number of children - 1 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>the index of the child element from 0 to number of children - 1 </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the child element </dd></dl>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00378">378</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00282">282</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -819,12 +753,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00132">132</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00058">58</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a83c3c6e07b015c44706edf4bb8fc41c2_icgraph.svg" width="986" height="215"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a83c3c6e07b015c44706edf4bb8fc41c2_icgraph.svg" width="986" height="210"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -852,12 +786,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classCParameterMgr.html#a7871a1e85adfbfc250e99b60fb2380f6">CParameterMgr</a>, <a class="el" href="classCConfigurableDomains.html#a48b940a3ba127dc0008f9680968e7afb">CConfigurableDomains</a>, <a class="el" href="classCConfigurableDomain.html#aad380470c00477887efc5569ea87a3e4">CConfigurableDomain</a>, <a class="el" href="classCDomainConfiguration.html#a3aeee00957e5c9401ff3425ac040d8a1">CDomainConfiguration</a>, <a class="el" href="classCSelectionCriterionType.html#ae5b55ed6b72a7de4acc97d2f155ef76a">CSelectionCriterionType</a>, <a class="el" href="classCSelectionCriterionRule.html#abe9fe67a6a2eae27e239070d173d04e0">CSelectionCriterionRule</a>, <a class="el" href="classCSystemClass.html#a7a03770ea06b8606c60001c7a40dfd1e">CSystemClass</a>, <a class="el" href="classCIntegerParameterType.html#a0f8e261086da60946bfe3677e441d096">CIntegerParameterType</a>, <a class="el" href="classCSubsystem.html#af42abab5b6390edd2f70b30e542fecda">CSubsystem</a>, <a class="el" href="classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10">CInstanceConfigurableElement</a>, <a class="el" href="classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824">CBitParameterType</a>, <a class="el" href="classCSelectionCriteria.html#a3aa8b452fc4812093c6ca65f31ea2729">CSelectionCriteria</a>, <a class="el" href="classCSelectionCriterion.html#aac42c32444dc2fb5b0b5e2aa9c3b9193">CSelectionCriterion</a>, <a class="el" href="classCEnumParameterType.html#ae61e3489340cae2e83e959d8a23d1fa5">CEnumParameterType</a>, <a class="el" href="classCFixedPointParameterType.html#ae9b48934e686faecefd25163ba3921f3">CFixedPointParameterType</a>, <a class="el" href="classCComponentType.html#a607b1a365fc5806af72772503f36d727">CComponentType</a>, <a class="el" href="classCComponentInstance.html#a5826d5074ff5d8cdf9d9d99d7f401f26">CComponentInstance</a>, <a class="el" href="classCCompoundRule.html#a9731e1c20cc045c3077ea0ec70410775">CCompoundRule</a>, <a class="el" href="classCStringParameterType.html#a5481926e10b7c56325e1ca923cb62050">CStringParameterType</a>, <a class="el" href="classCSelectionCriteriaDefinition.html#a397b43197ba3028633f43389104fe7e5">CSelectionCriteriaDefinition</a>, <a class="el" href="classCParameterAdaptation.html#a65ffe249fab74b43f0b927cd56cbee95">CParameterAdaptation</a>, <a class="el" href="classCBitParameterBlockType.html#a50dd50983e6a4d52459ea55afceca6fa">CBitParameterBlockType</a>, <a class="el" href="classCEnumValuePair.html#ac591efb06887c7d39d0e2ea6ebb89961">CEnumValuePair</a>, <a class="el" href="classCComponentLibrary.html#a4328cb2ad27a29ec04e6f93645ab0531">CComponentLibrary</a>, <a class="el" href="classCSelectionCriterionLibrary.html#a8d9caf31f8430ed5f01d61e60db4448c">CSelectionCriterionLibrary</a>, <a class="el" href="classCBooleanParameterType.html#a0e8c0863335cdca9486f53a12fd98f47">CBooleanParameterType</a>, <a class="el" href="classCInstanceDefinition.html#ace01300fcc36a875f0dc6b48a87cc34f">CInstanceDefinition</a>, <a class="el" href="classCKindElement.html#a2a223c8f36c2bc8c79945d60006b7165">CKindElement</a>, and <a class="el" href="classCParameterBlockType.html#a5fd53ed1f1b183dd37ad0614e2920944">CParameterBlockType</a>.</p>
+<p>Implemented in <a class="el" href="classCParameterMgr.html#a7871a1e85adfbfc250e99b60fb2380f6">CParameterMgr</a>, <a class="el" href="classCConfigurableDomains.html#a48b940a3ba127dc0008f9680968e7afb">CConfigurableDomains</a>, <a class="el" href="classCConfigurableDomain.html#aad380470c00477887efc5569ea87a3e4">CConfigurableDomain</a>, <a class="el" href="classCDomainConfiguration.html#a3aeee00957e5c9401ff3425ac040d8a1">CDomainConfiguration</a>, <a class="el" href="classCSystemClass.html#a7a03770ea06b8606c60001c7a40dfd1e">CSystemClass</a>, <a class="el" href="classCSubsystem.html#af42abab5b6390edd2f70b30e542fecda">CSubsystem</a>, <a class="el" href="classCSelectionCriterionType.html#ae5b55ed6b72a7de4acc97d2f155ef76a">CSelectionCriterionType</a>, <a class="el" href="classCSelectionCriterionRule.html#abe9fe67a6a2eae27e239070d173d04e0">CSelectionCriterionRule</a>, <a class="el" href="classCIntegerParameterType.html#a0f8e261086da60946bfe3677e441d096">CIntegerParameterType</a>, <a class="el" href="classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10">CInstanceConfigurableElement</a>, <a class="el" href="classCSelectionCriterion.html#aac42c32444dc2fb5b0b5e2aa9c3b9193">CSelectionCriterion</a>, <a class="el" href="classCSelectionCriteria.html#a3aa8b452fc4812093c6ca65f31ea2729">CSelectionCriteria</a>, <a class="el" href="classCBitParameterType.html#a869a8ec74c4c3566ea658a01dde70824">CBitParameterType</a>, <a class="el" href="classCFixedPointParameterType.html#ae9b48934e686faecefd25163ba3921f3">CFixedPointParameterType</a>, <a class="el" href="classCEnumParameterType.html#ae61e3489340cae2e83e959d8a23d1fa5">CEnumParameterType</a>, <a class="el" href="classCFloatingPointParameterType.html#a5f52d4bd31ed889604809ae79ccd771c">CFloatingPointParameterType</a>, <a class="el" href="classCComponentType.html#a607b1a365fc5806af72772503f36d727">CComponentType</a>, <a class="el" href="classCComponentInstance.html#a5826d5074ff5d8cdf9d9d99d7f401f26">CComponentInstance</a>, <a class="el" href="classCCompoundRule.html#a9731e1c20cc045c3077ea0ec70410775">CCompoundRule</a>, <a class="el" href="classCSelectionCriteriaDefinition.html#a397b43197ba3028633f43389104fe7e5">CSelectionCriteriaDefinition</a>, <a class="el" href="classCStringParameterType.html#a5481926e10b7c56325e1ca923cb62050">CStringParameterType</a>, <a class="el" href="classCParameterAdaptation.html#a65ffe249fab74b43f0b927cd56cbee95">CParameterAdaptation</a>, <a class="el" href="classCBitParameterBlockType.html#a50dd50983e6a4d52459ea55afceca6fa">CBitParameterBlockType</a>, <a class="el" href="classCEnumValuePair.html#ac591efb06887c7d39d0e2ea6ebb89961">CEnumValuePair</a>, <a class="el" href="classCComponentLibrary.html#a4328cb2ad27a29ec04e6f93645ab0531">CComponentLibrary</a>, <a class="el" href="classCSelectionCriterionLibrary.html#a8d9caf31f8430ed5f01d61e60db4448c">CSelectionCriterionLibrary</a>, <a class="el" href="classCBooleanParameterType.html#a0e8c0863335cdca9486f53a12fd98f47">CBooleanParameterType</a>, <a class="el" href="classCInstanceDefinition.html#ace01300fcc36a875f0dc6b48a87cc34f">CInstanceDefinition</a>, <a class="el" href="classCKindElement.html#a2a223c8f36c2bc8c79945d60006b7165">CKindElement</a>, and <a class="el" href="classCParameterBlockType.html#a5fd53ed1f1b183dd37ad0614e2920944">CParameterBlockType</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_aed2ca7f2a56dbf2edcd82167859535ee_icgraph.svg" width="1083" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_aed2ca7f2a56dbf2edcd82167859535ee_icgraph.svg" width="666" height="295"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -877,12 +811,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00327">327</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00236">236</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a49581fb6412e29e932962acd82d52d6a_icgraph.svg" width="2448" height="2175"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a49581fb6412e29e932962acd82d52d6a_icgraph.svg" width="2439" height="1876"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -902,12 +836,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00488">488</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00370">370</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a58b6cdb5715497442fde6afa1e65f8e5_icgraph.svg" width="1950" height="1924"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a58b6cdb5715497442fde6afa1e65f8e5_icgraph.svg" width="1927" height="1555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -927,7 +861,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00493">493</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00375">375</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -960,7 +894,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00498">498</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00380">380</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -977,7 +911,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00650">650</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00515">515</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -990,7 +924,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a7022c0fc8063f0aae9d97b06e74d4ac1_icgraph.svg" width="1572" height="1158"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a7022c0fc8063f0aae9d97b06e74d4ac1_icgraph.svg" width="1342" height="1034"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1010,7 +944,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00660">660</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00525">525</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1023,50 +957,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a893e7d2d24391fd0279245c7bda1e468_icgraph.svg" width="455" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a40a0b69c1b556a06406e022dc7d7a7eb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string CElement::getXmlDescriptionAttribute </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;&#160;</td>
-          <td class="paramname"><em>xmlElement</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Extract the Description field from the Xml Element during XML decomposing. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">xmlElement</td><td>to extract the description from.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>description represented as a string, empty if not found </dd></dl>
-
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00305">305</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a40a0b69c1b556a06406e022dc7d7a7eb_cgraph.svg" width="704" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a40a0b69c1b556a06406e022dc7d7a7eb_icgraph.svg" width="832" height="98"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a893e7d2d24391fd0279245c7bda1e468_icgraph.svg" width="455" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1095,23 +986,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00143">143</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_af2684d91c72487c9412154bf1d9e5c04_cgraph.svg" width="122" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_af2684d91c72487c9412154bf1d9e5c04_icgraph.svg" width="122" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00069">69</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -1129,7 +1004,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00569">569</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00449">449</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1142,7 +1017,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a7653fbad5491138533ac0fa889ffecd9_icgraph.svg" width="1562" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a7653fbad5491138533ac0fa889ffecd9_icgraph.svg" width="1282" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1163,15 +1038,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00433">433</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_af5b93310000754358a178340f6269d51_cgraph.svg" width="404" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00330">330</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1197,19 +1064,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00474">474</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a1565e8418977482b9b054a93980c2242_cgraph.svg" width="439" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00361">361</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a740c0b65f45d681c3d87196d72dd578c"></a>
+<a class="anchor" id="a442be4dd4096eafb92adff5a41b70636"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1222,8 +1081,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiLevel</em> = <code>0</code>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>level</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1233,135 +1092,19 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00449">449</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00341">341</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a740c0b65f45d681c3d87196d72dd578c_cgraph.svg" width="644" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a740c0b65f45d681c3d87196d72dd578c_icgraph.svg" width="211" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a442be4dd4096eafb92adff5a41b70636_cgraph.svg" width="644" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a1dee87366d307b43bf8851dd2614c160"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CElement::log_info </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>strMessage</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00053">53</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a1dee87366d307b43bf8851dd2614c160_icgraph.svg" width="1371" height="1200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a6fadaf69d17a61c431422ed6d8a1f8f0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CElement::log_table </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bIsWarning</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::list&lt; std::string &gt;&#160;</td>
-          <td class="paramname"><em>lstrMessage</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00090">90</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a6fadaf69d17a61c431422ed6d8a1f8f0_icgraph.svg" width="1058" height="128"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a100f81e35b4815020cc617e735702e61"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CElement::log_warning </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>strMessage</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00071">71</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a100f81e35b4815020cc617e735702e61_icgraph.svg" width="1198" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="acb7fa0283e75533bb2fa420c52e73766"></a>
+<a class="anchor" id="a466ec9e85ea941fa10864afb8f15678b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1369,21 +1112,11 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CElement::logValue </td>
+          <td class="memname">string CElement::logValue </td>
           <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>strValue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classCErrorContext.html">CErrorContext</a> &amp;&#160;</td>
-          <td class="paramname"><em>errorContext</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
+          <td class="paramtype"><a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a> &amp;&#160;</td>
+          <td class="paramname"><em>errorContext</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -1393,14 +1126,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classCConfigurableDomain.html#a2dc205bb6f6e6f868c58fcf89ea6eec5">CConfigurableDomain</a>, <a class="el" href="classCSubsystem.html#a46676b0c59c2653eee9e18a06e02bde8">CSubsystem</a>, <a class="el" href="classCBaseParameter.html#ae5d6b8ea62a7007c41c14d22dbabcf31">CBaseParameter</a>, <a class="el" href="classCSelectionCriterionRule.html#a11de0a5fc56c4a73ab7ba73e6c693912">CSelectionCriterionRule</a>, <a class="el" href="classCArrayParameter.html#ab37bc852e986d8296bc2323ca89ef100">CArrayParameter</a>, <a class="el" href="classCCompoundRule.html#a3f07f36e7872fbc64bdaa755e94f1b65">CCompoundRule</a>, and <a class="el" href="classCEnumValuePair.html#ac9f2ee3c41d428efb8ce394442d1b4b9">CEnumValuePair</a>.</p>
+<p>Reimplemented in <a class="el" href="classCConfigurableDomain.html#a08ed7a4fddf5820d0ed1033e5fa7876f">CConfigurableDomain</a>, <a class="el" href="classCSelectionCriterionRule.html#a9fd0608729967c6398c8bcb6f409e2f1">CSelectionCriterionRule</a>, and <a class="el" href="classCEnumValuePair.html#a385c9da226ee3a03190216e04c63c2b0">CEnumValuePair</a>.</p>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00215">215</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00138">138</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_acb7fa0283e75533bb2fa420c52e73766_icgraph.svg" width="386" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a466ec9e85ea941fa10864afb8f15678b_icgraph.svg" width="386" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1421,12 +1154,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00415">415</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00319">319</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a4aec98bde47367325cf332a5dc471eb9_icgraph.svg" width="1184" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a4aec98bde47367325cf332a5dc471eb9_icgraph.svg" width="626" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1457,12 +1190,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00332">332</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00241">241</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_aa09118f89e5b3208ee92d0ec51151ccf_cgraph.svg" width="384" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_aa09118f89e5b3208ee92d0ec51151ccf_cgraph.svg" width="354" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1470,7 +1203,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_aa09118f89e5b3208ee92d0ec51151ccf_icgraph.svg" width="1218" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_aa09118f89e5b3208ee92d0ec51151ccf_icgraph.svg" width="586" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1491,12 +1224,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00127">127</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00053">53</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_ac5fa8c7e838a44733f3887f1bec20d7b_icgraph.svg" width="807" height="90"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_ac5fa8c7e838a44733f3887f1bec20d7b_icgraph.svg" width="408" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1517,12 +1250,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00322">322</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00231">231</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a9018d33125b066d6cd791659af95c6fe_icgraph.svg" width="1462" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a9018d33125b066d6cd791659af95c6fe_icgraph.svg" width="830" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1551,12 +1284,12 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00297">297</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00211">211</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a581660a35394ecc99fe7128f9548c3d0_cgraph.svg" width="459" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a581660a35394ecc99fe7128f9548c3d0_cgraph.svg" width="459" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1564,7 +1297,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a581660a35394ecc99fe7128f9548c3d0_icgraph.svg" width="712" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a581660a35394ecc99fe7128f9548c3d0_icgraph.svg" width="486" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -1593,7 +1326,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00207">207</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00130">130</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1635,9 +1368,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classCConfigurableElement.html#a0497959fbd4ecdcc9911ed6548f73fa1">CConfigurableElement</a>, <a class="el" href="classCInstanceConfigurableElement.html#a47a5949cc354fc3bb11cefef76f87ea7">CInstanceConfigurableElement</a>, <a class="el" href="classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0">CParameterType</a>, <a class="el" href="classCIntegerParameterType.html#a7043b81bb621777fc119865daef56ca3">CIntegerParameterType</a>, <a class="el" href="classCArrayParameter.html#ad5d8e73cb182854db6fa4fd3ca5fe691">CArrayParameter</a>, <a class="el" href="classCBitParameterType.html#adbdd6083b3160709a994864d4b93c809">CBitParameterType</a>, <a class="el" href="classCEnumParameterType.html#ad36c8d4e9a04060581ba68f744fd41e7">CEnumParameterType</a>, <a class="el" href="classCFixedPointParameterType.html#ace60f1f5bc61cbe400eccdd59f820c80">CFixedPointParameterType</a>, <a class="el" href="classCTypeElement.html#a71898c707fb687b3a90c06fe25c3e171">CTypeElement</a>, <a class="el" href="classCLogarithmicParameterAdaptation.html#a7f714e7074a0c83dbad88b8594563c1d">CLogarithmicParameterAdaptation</a>, <a class="el" href="classCStringParameterType.html#a0c40b42d73bd6f3ced36f4516ad999e3">CStringParameterType</a>, <a class="el" href="classCLinearParameterAdaptation.html#a572f6d34392375d3c51ea131a6f5e6f4">CLinearParameterAdaptation</a>, and <a class="el" href="classCParameterAdaptation.html#a834e99e4cda9f48eb02c506e21a49f40">CParameterAdaptation</a>.</p>
+<p>Reimplemented in <a class="el" href="classCConfigurableElement.html#a0497959fbd4ecdcc9911ed6548f73fa1">CConfigurableElement</a>, <a class="el" href="classCParameterType.html#aa7af90f44722bc279f98bcc94f7f69c0">CParameterType</a>, <a class="el" href="classCInstanceConfigurableElement.html#a47a5949cc354fc3bb11cefef76f87ea7">CInstanceConfigurableElement</a>, <a class="el" href="classCIntegerParameterType.html#a7043b81bb621777fc119865daef56ca3">CIntegerParameterType</a>, <a class="el" href="classCArrayParameter.html#ad5d8e73cb182854db6fa4fd3ca5fe691">CArrayParameter</a>, <a class="el" href="classCBitParameterType.html#adbdd6083b3160709a994864d4b93c809">CBitParameterType</a>, <a class="el" href="classCTypeElement.html#a71898c707fb687b3a90c06fe25c3e171">CTypeElement</a>, <a class="el" href="classCFixedPointParameterType.html#ace60f1f5bc61cbe400eccdd59f820c80">CFixedPointParameterType</a>, <a class="el" href="classCFloatingPointParameterType.html#a73e859ba1b414c497bc3562b15168087">CFloatingPointParameterType</a>, <a class="el" href="classCEnumParameterType.html#ad36c8d4e9a04060581ba68f744fd41e7">CEnumParameterType</a>, <a class="el" href="classCLogarithmicParameterAdaptation.html#a7f714e7074a0c83dbad88b8594563c1d">CLogarithmicParameterAdaptation</a>, <a class="el" href="classCStringParameterType.html#a0c40b42d73bd6f3ced36f4516ad999e3">CStringParameterType</a>, <a class="el" href="classCLinearParameterAdaptation.html#a572f6d34392375d3c51ea131a6f5e6f4">CLinearParameterAdaptation</a>, and <a class="el" href="classCParameterAdaptation.html#a834e99e4cda9f48eb02c506e21a49f40">CParameterAdaptation</a>.</p>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00200">200</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00123">123</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1683,30 +1416,22 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classIXmlSource.html#a8155e8851c2da0171da235020a720f8a">IXmlSource</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classCConfigurableDomains.html#a5860b741035feefdee06566ec1ab94b0">CConfigurableDomains</a>, <a class="el" href="classCConfigurableDomain.html#a16fb6528dc374c46aa56b936611bff7c">CConfigurableDomain</a>, <a class="el" href="classCInstanceConfigurableElement.html#a466b63cf9c344e256680c409c29ef9b6">CInstanceConfigurableElement</a>, <a class="el" href="classCSelectionCriterion.html#a3942150fa9e5980d89268672fff31032">CSelectionCriterion</a>, <a class="el" href="classCBaseParameter.html#a0fe540f46e1b69858e68b72fd7d383a8">CBaseParameter</a>, <a class="el" href="classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600">CSelectionCriterionType</a>, <a class="el" href="classCSelectionCriterionRule.html#aa31aa27a5aba096913b6f5d1e59a9360">CSelectionCriterionRule</a>, <a class="el" href="classCTypeElement.html#ac4118594de3638c76ab40ccc4ecbb2a8">CTypeElement</a>, <a class="el" href="classCParameterType.html#a03428e98662aa8d49a20582e3ccb8a12">CParameterType</a>, <a class="el" href="classCCompoundRule.html#a39df5f49ea5dea5b888d0983a01b2f2a">CCompoundRule</a>, <a class="el" href="classCStringParameterType.html#ab655874731579f60d025ae601920e463">CStringParameterType</a>, <a class="el" href="classCBitParameterType.html#aec2c699920b9ab28fa560721b0fb9e05">CBitParameterType</a>, <a class="el" href="classCBitParameterBlockType.html#a4d3f66cff415a8f8ef825092b92ed787">CBitParameterBlockType</a>, <a class="el" href="classCEnumValuePair.html#af7f3d59a079b449b72e6e0eb5dd8fedc">CEnumValuePair</a>, <a class="el" href="classCIntegerParameterType.html#a26c10292fad5a8e6603dc0673f813d69">CIntegerParameterType</a>, <a class="el" href="classCEnumParameterType.html#a657fc941f16df1059a7f1377aa85b258">CEnumParameterType</a>, and <a class="el" href="classCFixedPointParameterType.html#ac9e0de762e60d0cfce00122bdbef137e">CFixedPointParameterType</a>.</p>
+<p>Reimplemented in <a class="el" href="classCConfigurableDomains.html#a5860b741035feefdee06566ec1ab94b0">CConfigurableDomains</a>, <a class="el" href="classCConfigurableDomain.html#a16fb6528dc374c46aa56b936611bff7c">CConfigurableDomain</a>, <a class="el" href="classCInstanceConfigurableElement.html#a466b63cf9c344e256680c409c29ef9b6">CInstanceConfigurableElement</a>, <a class="el" href="classCSelectionCriterion.html#a3942150fa9e5980d89268672fff31032">CSelectionCriterion</a>, <a class="el" href="classCBaseParameter.html#a0fe540f46e1b69858e68b72fd7d383a8">CBaseParameter</a>, <a class="el" href="classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600">CSelectionCriterionType</a>, <a class="el" href="classCSelectionCriterionRule.html#aa31aa27a5aba096913b6f5d1e59a9360">CSelectionCriterionRule</a>, <a class="el" href="classCTypeElement.html#ac4118594de3638c76ab40ccc4ecbb2a8">CTypeElement</a>, <a class="el" href="classCParameterType.html#a03428e98662aa8d49a20582e3ccb8a12">CParameterType</a>, <a class="el" href="classCCompoundRule.html#a39df5f49ea5dea5b888d0983a01b2f2a">CCompoundRule</a>, <a class="el" href="classCStringParameterType.html#ab655874731579f60d025ae601920e463">CStringParameterType</a>, <a class="el" href="classCBitParameterType.html#aec2c699920b9ab28fa560721b0fb9e05">CBitParameterType</a>, <a class="el" href="classCBitParameterBlockType.html#a4d3f66cff415a8f8ef825092b92ed787">CBitParameterBlockType</a>, <a class="el" href="classCEnumValuePair.html#af7f3d59a079b449b72e6e0eb5dd8fedc">CEnumValuePair</a>, <a class="el" href="classCIntegerParameterType.html#a26c10292fad5a8e6603dc0673f813d69">CIntegerParameterType</a>, <a class="el" href="classCEnumParameterType.html#a657fc941f16df1059a7f1377aa85b258">CEnumParameterType</a>, <a class="el" href="classCFixedPointParameterType.html#ac9e0de762e60d0cfce00122bdbef137e">CFixedPointParameterType</a>, and <a class="el" href="classCFloatingPointParameterType.html#ab6a0070b3b32a68d8dd1cb3868019817">CFloatingPointParameterType</a>.</p>
 
-<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00290">290</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Element_8cpp_source.html#l00204">204</a> of file <a class="el" href="Element_8cpp_source.html">Element.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a7ce1bde0fda5cf412b652000cab473e4_cgraph.svg" width="898" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a7ce1bde0fda5cf412b652000cab473e4_icgraph.svg" width="367" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCElement_a7ce1bde0fda5cf412b652000cab473e4_cgraph.svg" width="898" height="143"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a class="anchor" id="a9f8f4f46040148958eb0d9a91c24b3be"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ac3fdfaea18246188d3adbb8249982f1e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1714,17 +1439,17 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">friend class <a class="el" href="classCAutoLog.html">CAutoLog</a></td>
+          <td class="memname">const std::string CElement::gDescriptionPropertyName = &quot;Description&quot;</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Element_8h_source.html#l00046">46</a> of file <a class="el" href="Element_8h_source.html">Element.h</a>.</p>
+<p>Definition at line <a class="el" href="Element_8h_source.html#l00168">168</a> of file <a class="el" href="Element_8h_source.html">Element.h</a>.</p>
 
 </div>
 </div>

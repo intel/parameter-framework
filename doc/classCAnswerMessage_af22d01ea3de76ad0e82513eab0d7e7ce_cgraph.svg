@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCMessage.html#a060b5a2b0874bf080b36b9e406e4d2e1" target="_top" xlink:title="CMessage::getMsgId">
+<g id="a_node2"><a xlink:href="classCMessage.html#a6e01b6cc8fdbd5f7eb8238b251b8f998" target="_top" xlink:title="CMessage::getMsgId">
 <polygon fill="white" stroke="black" points="181,-0.5 181,-19.5 297,-19.5 297,-0.5 181,-0.5"/>
 <text text-anchor="middle" x="239" y="-7.5" font-family="Verdana" font-size="10.00">CMessage::getMsgId</text>
 </a>

@@ -1,8 +1,8 @@
 <map id="CXmlDocSource::populate" name="CXmlDocSource::populate">
-<area shape="rect" id="node2" href="$classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d" title="CXmlSerializingContext\l::setError" alt="" coords="295,5,465,47"/>
+<area shape="rect" id="node2" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="308,5,452,47"/>
 <area shape="rect" id="node3" href="$classCXmlDocSource.html#a87f5d62acf578217f003779459d50d81" title="Getter method. " alt="" coords="243,71,517,98"/>
 <area shape="rect" id="node4" href="$classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7" title="CXmlSerializingContext\l::appendLineToError" alt="" coords="295,123,465,164"/>
-<area shape="rect" id="node5" href="$classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933" title="Getter method. " alt="" coords="263,188,497,229"/>
-<area shape="rect" id="node6" href="$classCXmlElement.html#a4aacb946f656aab1e585e1aa8f63d4e2" title="CXmlElement::getAttribute\lString" alt="" coords="565,188,759,229"/>
-<area shape="rect" id="node7" href="$classCXmlElement.html#aacd4d202e3de66715641cc3bb89bd4b5" title="CXmlElement::hasAttribute" alt="" coords="807,195,1001,222"/>
+<area shape="rect" id="node6" href="$classCXmlDocSource.html#a07f17719f201049c80c47c7e6d4c4933" title="Getter method. " alt="" coords="263,188,497,229"/>
+<area shape="rect" id="node5" href="$classutility_1_1ErrorContext.html#aafe9cd30a03303cf376926d9c4e9dd02" title="utility::ErrorContext\l::appendToError" alt="" coords="590,123,734,164"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#a6198359168c744489018bc2b8d732dc3" title="Get attribute. " alt="" coords="565,195,759,222"/>
 </map>

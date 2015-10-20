@@ -1,9 +1,0 @@
-<map id="CParameterMgr::exportDomainsBinary" name="CParameterMgr::exportDomainsBinary">
-<area shape="rect" id="node2" href="$classCConfigurableDomains.html#ae9bf3db3133286cb842a613185b7145c" title="CConfigurableDomains\l::serializeSettings" alt="" coords="281,148,449,189"/>
-<area shape="rect" id="node3" href="$classCBinarySerializableElement.html#a1a5d4ca3376f59642f4143629c7cd565" title="CBinarySerializableElement\l::getDataSize" alt="" coords="497,29,695,71"/>
-<area shape="rect" id="node6" href="$classCBinaryStream.html#aee075f204ff985610b57848cebe30a47" title="CBinaryStream::open" alt="" coords="517,185,675,211"/>
-<area shape="rect" id="node7" href="$classCBinarySerializableElement.html#a1b023138703ff0807ae1a25724f1f7d4" title="CBinarySerializableElement\l::binarySerialize" alt="" coords="497,119,695,160"/>
-<area shape="rect" id="node8" href="$classCBinaryStream.html#aafcf30671f90cecb81901ba557a288a5" title="CBinaryStream::close" alt="" coords="516,235,676,262"/>
-<area shape="rect" id="node4" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="743,47,925,74"/>
-<area shape="rect" id="node5" href="$classCElement.html#a9bba10d2dc72821589a898e16ace9ae5" title="Get a child element (const) " alt="" coords="762,107,906,134"/>
-</map>

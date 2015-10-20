@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -112,8 +112,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af595eb154fcffbf351ce78ab04c8fd1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ab61255d58c402f059aceb6668b943d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#a0ab61255d58c402f059aceb6668b943d">save</a> (const <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pMainBlackboard)</td></tr>
 <tr class="separator:a0ab61255d58c402f059aceb6668b943d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f72a0349e2309a77459650ba10918a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#a5f72a0349e2309a77459650ba10918a1">restore</a> (<a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pMainBlackboard, bool bSync, std::list&lt; std::string &gt; *plstrError) const </td></tr>
-<tr class="separator:a5f72a0349e2309a77459650ba10918a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a428784970faf0dd87652936a4fa29c55"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#a428784970faf0dd87652936a4fa29c55">restore</a> (<a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pMainBlackboard, bool bSync, <a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> *errors) const </td></tr>
+<tr class="memdesc:a428784970faf0dd87652936a4fa29c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore the configuration area.  <a href="#a428784970faf0dd87652936a4fa29c55">More...</a><br /></td></tr>
+<tr class="separator:a428784970faf0dd87652936a4fa29c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c0ddade93f42f2ed315dd3a0719933c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c">validate</a> (const <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pMainBlackboard)</td></tr>
 <tr class="separator:a9c0ddade93f42f2ed315dd3a0719933c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0154cd24ffc0127b9038546ab2657917"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#a0154cd24ffc0127b9038546ab2657917">isValid</a> () const </td></tr>
@@ -128,10 +129,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa66ebde5e339fbea35c7a5f46403c770"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b8c95a79343ee9823b026d74184e798"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798">serializeXmlSettings</a> (<a class="el" href="classCXmlElement.html">CXmlElement</a> &amp;xmlConfigurableElementSettingsElementContent, <a class="el" href="classCConfigurationAccessContext.html">CConfigurationAccessContext</a> &amp;configurationAccessContext)</td></tr>
 <tr class="separator:a6b8c95a79343ee9823b026d74184e798"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6fe64c1853ab6ecc7be1a7348a43aed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#af6fe64c1853ab6ecc7be1a7348a43aed">serialize</a> (<a class="el" href="classCBinaryStream.html">CBinaryStream</a> &amp;binaryStream)</td></tr>
-<tr class="separator:af6fe64c1853ab6ecc7be1a7348a43aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8260adaf5e0b5c9801f9feee69316344"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#a8260adaf5e0b5c9801f9feee69316344">getSize</a> () const </td></tr>
-<tr class="separator:a8260adaf5e0b5c9801f9feee69316344"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af01dc3ba15a4deb4a713cb2d4f9b1faa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#af01dc3ba15a4deb4a713cb2d4f9b1faa">getBlackboard</a> ()</td></tr>
 <tr class="separator:af01dc3ba15a4deb4a713cb2d4f9b1faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addba20d41a3e2bade72e7693e7e201e4"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#addba20d41a3e2bade72e7693e7e201e4">getBlackboard</a> () const </td></tr>
@@ -139,8 +136,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a1a91fba8b2894f9ca3c514d355130e43"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#a1a91fba8b2894f9ca3c514d355130e43">CAreaConfiguration</a> (const <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement, const <a class="el" href="classCSyncerSet.html">CSyncerSet</a> *pSyncerSet, uint32_t uiSize)</td></tr>
-<tr class="separator:a1a91fba8b2894f9ca3c514d355130e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0674919e1b09aa207592984128e54f68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAreaConfiguration.html#a0674919e1b09aa207592984128e54f68">CAreaConfiguration</a> (const <a class="el" href="classCConfigurableElement.html">CConfigurableElement</a> *pConfigurableElement, const <a class="el" href="classCSyncerSet.html">CSyncerSet</a> *pSyncerSet, size_t size)</td></tr>
+<tr class="separator:a0674919e1b09aa207592984128e54f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -177,7 +174,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00036">36</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00035">35</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -214,7 +211,7 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a1a91fba8b2894f9ca3c514d355130e43"></a>
+<a class="anchor" id="a0674919e1b09aa207592984128e54f68"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -236,8 +233,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiSize</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -252,12 +249,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00043">43</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00042">42</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a1a91fba8b2894f9ca3c514d355130e43_cgraph.svg" width="383" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a0674919e1b09aa207592984128e54f68_cgraph.svg" width="383" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -287,20 +284,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00139">139</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00140">140</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_aa66ebde5e339fbea35c7a5f46403c770_cgraph.svg" width="399" height="194"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_aa66ebde5e339fbea35c7a5f46403c770_icgraph.svg" width="1258" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -329,20 +318,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00132">132</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00133">133</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_ae84c6459b7b261fb81026c9ebe9140f8_cgraph.svg" width="399" height="194"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_ae84c6459b7b261fb81026c9ebe9140f8_icgraph.svg" width="372" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -362,15 +343,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00168">168</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_af01dc3ba15a4deb4a713cb2d4f9b1faa_icgraph.svg" width="630" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00150">150</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -387,7 +360,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00173">173</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00155">155</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,45 +377,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00127">127</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00128">128</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a1f85dedf12591c3f43830a00e5c352df_icgraph.svg" width="1560" height="314"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a8260adaf5e0b5c9801f9feee69316344"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t CAreaConfiguration::getSize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00163">163</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a8260adaf5e0b5c9801f9feee69316344_cgraph.svg" width="375" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a8260adaf5e0b5c9801f9feee69316344_icgraph.svg" width="372" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a1f85dedf12591c3f43830a00e5c352df_icgraph.svg" width="390" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -462,19 +402,19 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00080">80</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00081">81</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a0154cd24ffc0127b9038546ab2657917_icgraph.svg" width="880" height="132"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a0154cd24ffc0127b9038546ab2657917_icgraph.svg" width="880" height="126"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a5f72a0349e2309a77459650ba10918a1"></a>
+<a class="anchor" id="a428784970faf0dd87652936a4fa29c55"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -493,8 +433,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::list&lt; std::string &gt; *&#160;</td>
-          <td class="paramname"><em>plstrError</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a> *&#160;</td>
+          <td class="paramname"><em>errors</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -504,20 +444,23 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00057">57</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Restore the configuration area. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pMainBlackboard</td><td>the application main blackboard </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bSync</td><td>indicates if a synchronisation has to be done </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">errors,errors</td><td>encountered during restoration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if success false otherwise </dd></dl>
+
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00056">56</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a5f72a0349e2309a77459650ba10918a1_cgraph.svg" width="524" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a5f72a0349e2309a77459650ba10918a1_icgraph.svg" width="1363" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a428784970faf0dd87652936a4fa29c55_cgraph.svg" width="524" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -538,7 +481,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00051">51</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00050">50</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -551,41 +494,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a0ab61255d58c402f059aceb6668b943d_icgraph.svg" width="2018" height="238"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="af6fe64c1853ab6ecc7be1a7348a43aed"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CAreaConfiguration::serialize </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classCBinaryStream.html">CBinaryStream</a> &amp;&#160;</td>
-          <td class="paramname"><em>binaryStream</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00150">150</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_af6fe64c1853ab6ecc7be1a7348a43aed_cgraph.svg" width="583" height="140"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_af6fe64c1853ab6ecc7be1a7348a43aed_icgraph.svg" width="372" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a0ab61255d58c402f059aceb6668b943d_icgraph.svg" width="803" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -616,12 +525,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00105">105</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00106">106</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a6b8c95a79343ee9823b026d74184e798_cgraph.svg" width="1195" height="711"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a6b8c95a79343ee9823b026d74184e798_cgraph.svg" width="952" height="704"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -642,7 +551,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00068">68</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00069">69</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -655,7 +564,7 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a9c0ddade93f42f2ed315dd3a0719933c_icgraph.svg" width="1719" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_a9c0ddade93f42f2ed315dd3a0719933c_icgraph.svg" width="372" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
@@ -676,20 +585,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00086">86</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="AreaConfiguration_8cpp_source.html#l00087">87</a> of file <a class="el" href="AreaConfiguration_8cpp_source.html">AreaConfiguration.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_ad655f6277ec602be7fb9ce0f586555df_cgraph.svg" width="375" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCAreaConfiguration_ad655f6277ec602be7fb9ce0f586555df_icgraph.svg" width="372" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>

@@ -1,8 +1,0 @@
-<map id="parameter/AutoLog.h" name="parameter/AutoLog.h">
-<area shape="rect" id="node2" href="$AutoLog_8cpp.html" title="parameter/AutoLog.cpp" alt="" coords="5,87,180,114"/>
-<area shape="rect" id="node3" href="$ConfigurableDomains_8cpp.html" title="parameter/ConfigurableDomains.cpp" alt="" coords="205,87,463,114"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="487,87,698,114"/>
-<area shape="rect" id="node5" href="$SelectionCriterion_8cpp.html" title="parameter/SelectionCriterion.cpp" alt="" coords="722,87,957,114"/>
-<area shape="rect" id="node6" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="981,87,1185,114"/>
-<area shape="rect" id="node7" href="$XmlFileIncluderElement_8cpp.html" title="parameter/XmlFileIncluder\lElement.cpp" alt="" coords="1209,80,1397,121"/>
-</map>

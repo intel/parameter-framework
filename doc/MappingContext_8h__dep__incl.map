@@ -1,19 +1,20 @@
 <map id="parameter/MappingContext.h" name="parameter/MappingContext.h">
-<area shape="rect" id="node2" href="$Subsystem_8h.html" title="parameter/Subsystem.h" alt="" coords="761,87,939,114"/>
-<area shape="rect" id="node13" href="$SubsystemObject_8cpp.html" title="parameter/SubsystemObject.cpp" alt="" coords="1149,177,1383,203"/>
-<area shape="rect" id="node14" href="$FormattedSubsystemObject_8cpp.html" title="parameter/FormattedSubsystem\lObject.cpp" alt="" coords="1632,80,1865,121"/>
-<area shape="rect" id="node15" href="$MappingContext_8cpp.html" title="parameter/MappingContext.cpp" alt="" coords="1889,87,2115,114"/>
-<area shape="rect" id="node16" href="$SubsystemObjectCreator_8h.html" title="parameter/SubsystemObject\lCreator.h" alt="" coords="1401,80,1608,121"/>
-<area shape="rect" id="node3" href="$BitwiseAreaConfiguration_8cpp.html" title="parameter/BitwiseAreaConfiguration.cpp" alt="" coords="565,177,845,203"/>
-<area shape="rect" id="node4" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="869,177,1125,203"/>
-<area shape="rect" id="node5" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="5,177,239,203"/>
-<area shape="rect" id="node6" href="$VirtualSubsystem_8h.html" title="parameter/VirtualSubsystem.h" alt="" coords="322,177,541,203"/>
-<area shape="rect" id="node8" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="210,341,421,367"/>
-<area shape="rect" id="node12" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="1408,177,1601,203"/>
-<area shape="rect" id="node7" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="573,259,791,285"/>
-<area shape="rect" id="node10" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="727,341,931,367"/>
-<area shape="rect" id="node11" href="$VirtualSubsystem_8cpp.html" title="parameter/VirtualSubsystem.cpp" alt="" coords="314,259,549,285"/>
-<area shape="rect" id="node9" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="483,333,702,375"/>
-<area shape="rect" id="node17" href="$SubsystemObjectCreator_8cpp.html" title="parameter/SubsystemObject\lCreator.cpp" alt="" coords="1625,169,1832,211"/>
-<area shape="rect" id="node18" href="$SubsystemObjectFactory_8h.html" title="parameter/SubsystemObject\lFactory.h" alt="" coords="1856,169,2063,211"/>
+<area shape="rect" id="node2" href="$Subsystem_8h.html" title="parameter/Subsystem.h" alt="" coords="1210,87,1389,114"/>
+<area shape="rect" id="node14" href="$SubsystemObject_8cpp.html" title="parameter/SubsystemObject.cpp" alt="" coords="1602,177,1837,203"/>
+<area shape="rect" id="node15" href="$FormattedSubsystemObject_8cpp.html" title="parameter/FormattedSubsystem\lObject.cpp" alt="" coords="1572,80,1805,121"/>
+<area shape="rect" id="node16" href="$MappingContext_8cpp.html" title="parameter/MappingContext.cpp" alt="" coords="1829,87,2055,114"/>
+<area shape="rect" id="node17" href="$SubsystemObjectCreator_8h.html" title="parameter/SubsystemObject\lCreator.h" alt="" coords="2079,80,2285,121"/>
+<area shape="rect" id="node3" href="$BitwiseAreaConfiguration_8cpp.html" title="parameter/BitwiseAreaConfiguration.cpp" alt="" coords="759,177,1039,203"/>
+<area shape="rect" id="node4" href="$DomainConfiguration_8cpp.html" title="parameter/DomainConfiguration.cpp" alt="" coords="1063,177,1319,203"/>
+<area shape="rect" id="node5" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="1344,177,1577,203"/>
+<area shape="rect" id="node6" href="$VirtualSubsystem_8h.html" title="parameter/VirtualSubsystem.h" alt="" coords="305,177,523,203"/>
+<area shape="rect" id="node8" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="645,341,855,367"/>
+<area shape="rect" id="node13" href="$Subsystem_8cpp.html" title="parameter/Subsystem.cpp" alt="" coords="1861,177,2055,203"/>
+<area shape="rect" id="node7" href="$SubsystemLibrary_8h.html" title="parameter/SubsystemLibrary.h" alt="" coords="430,259,649,285"/>
+<area shape="rect" id="node11" href="$SystemClass_8cpp.html" title="parameter/SystemClass.cpp" alt="" coords="5,341,209,367"/>
+<area shape="rect" id="node12" href="$VirtualSubsystem_8cpp.html" title="parameter/VirtualSubsystem.cpp" alt="" coords="171,259,406,285"/>
+<area shape="rect" id="node9" href="$Plugin_8h.html" title="This file is intended to be used by the plugins. " alt="" coords="477,341,621,367"/>
+<area shape="rect" id="node10" href="$SubsystemElementBuilder_8cpp.html" title="parameter/SubsystemElement\lBuilder.cpp" alt="" coords="234,333,453,375"/>
+<area shape="rect" id="node18" href="$SubsystemObjectCreator_8cpp.html" title="parameter/SubsystemObject\lCreator.cpp" alt="" coords="2079,169,2285,211"/>
+<area shape="rect" id="node19" href="$SubsystemObjectFactory_8h.html" title="parameter/SubsystemObject\lFactory.h" alt="" coords="2309,169,2516,211"/>
 </map>

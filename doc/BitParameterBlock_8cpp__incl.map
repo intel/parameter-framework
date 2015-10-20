@@ -1,18 +1,18 @@
 <map id="parameter/BitParameterBlock.cpp" name="parameter/BitParameterBlock.cpp">
-<area shape="rect" id="node2" href="$BitParameterBlock_8h.html" title="BitParameterBlock.h" alt="" coords="555,80,707,107"/>
-<area shape="rect" id="node17" href="$BitParameterBlockType_8h.html" title="BitParameterBlockType.h" alt="" coords="5,229,185,256"/>
-<area shape="rect" id="node18" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="909,453,1105,480"/>
-<area shape="rect" id="node20" href="$ParameterBlackboard_8h.html" title="ParameterBlackboard.h" alt="" coords="1235,453,1407,480"/>
-<area shape="rect" id="node3" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="330,155,551,181"/>
-<area shape="rect" id="node4" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="317,229,565,256"/>
-<area shape="rect" id="node16" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="122,304,237,331"/>
-<area shape="rect" id="node5" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="363,304,529,331"/>
-<area shape="rect" id="node6" href="$Element_8h.html" title="Element.h" alt="" coords="413,379,500,405"/>
-<area shape="rect" id="node11" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="375,453,461,480"/>
-<area shape="rect" id="node14" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="485,453,588,480"/>
-<area shape="rect" id="node15" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="663,453,786,480"/>
-<area shape="rect" id="node12" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="519,528,629,555"/>
-<area shape="rect" id="node13" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="321,528,494,555"/>
-<area shape="rect" id="node19" href="$ErrorContext_8h.html" title="ErrorContext.h" alt="" coords="893,528,1007,555"/>
-<area shape="rect" id="node21" href="$BinaryStream_8h.html" title="BinaryStream.h" alt="" coords="1234,528,1357,555"/>
+<area shape="rect" id="node2" href="$BitParameterBlock_8h.html" title="BitParameterBlock.h" alt="" coords="481,80,633,107"/>
+<area shape="rect" id="node20" href="$BitParameterBlockType_8h.html" title="BitParameterBlockType.h" alt="" coords="851,229,1031,256"/>
+<area shape="rect" id="node21" href="$ParameterAccessContext_8h.html" title="ParameterAccessContext.h" alt="" coords="979,528,1175,555"/>
+<area shape="rect" id="node22" href="$ParameterBlackboard_8h.html" title="ParameterBlackboard.h" alt="" coords="1199,528,1371,555"/>
+<area shape="rect" id="node3" href="$InstanceConfigurableElement_8h.html" title="InstanceConfigurableElement.h" alt="" coords="212,155,433,181"/>
+<area shape="rect" id="node5" href="$ConfigurableElementWithMapping_8h.html" title="ConfigurableElementWithMapping.h" alt="" coords="119,229,367,256"/>
+<area shape="rect" id="node19" href="$TypeElement_8h.html" title="TypeElement.h" alt="" coords="441,304,556,331"/>
+<area shape="rect" id="node6" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="174,304,341,331"/>
+<area shape="rect" id="node7" href="$Element_8h.html" title="Element.h" alt="" coords="365,379,451,405"/>
+<area shape="rect" id="node11" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="675,453,760,480"/>
+<area shape="rect" id="node16" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="547,453,650,480"/>
+<area shape="rect" id="node17" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="347,528,469,555"/>
+<area shape="rect" id="node12" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="545,528,655,555"/>
+<area shape="rect" id="node13" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="680,528,853,555"/>
+<area shape="rect" id="node14" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="1029,603,1160,629"/>
+<area shape="rect" id="node15" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="1103,677,1238,704"/>
 </map>

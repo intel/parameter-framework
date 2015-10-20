@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="SyncerSet_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2014, Intel Corporation</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2011-2015, Intel Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without modification,</span></div>
@@ -150,40 +150,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    _syncerSet.clear();</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b">   59</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b">CSyncerSet::sync</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>&amp; parameterBlackboard, <span class="keywordtype">bool</span> bBack, std::list&lt;std::string&gt;* plstrError)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">bool</span> bSuccess = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::string strError;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">   59</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">CSyncerSet::sync</a>(<a class="code" href="classCParameterBlackboard.html">CParameterBlackboard</a>&amp; parameterBlackboard,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                      <span class="keywordtype">bool</span> bBack,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                      <a class="code" href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a>* errors)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">bool</span> bSuccess = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Propagate</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    SyncerSetConstIterator it;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span> (it = _syncerSet.begin(); it != _syncerSet.end(); ++it) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::string strError;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// Propagate</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    SyncerSetConstIterator it;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="classISyncer.html">ISyncer</a>* pSyncer = *it;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">for</span> (it = _syncerSet.begin(); it != _syncerSet.end(); ++it) {</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">if</span> (!pSyncer-&gt;<a class="code" href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">sync</a>(parameterBlackboard, bBack, strError)) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="classISyncer.html">ISyncer</a>* pSyncer = *it;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span> (plstrError) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">if</span> (!pSyncer-&gt;<a class="code" href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">sync</a>(parameterBlackboard, bBack, strError)) {</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                plstrError-&gt;push_back(strError);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            bSuccess = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">return</span> bSuccess;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">if</span> (errors != NULL) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                errors-&gt;push_back(strError);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            bSuccess = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">return</span> bSuccess;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
 <div class="ttc" id="classCSyncerSet_html_ad8a071812dd3ce49af9608366581133b"><div class="ttname"><a href="classCSyncerSet.html#ad8a071812dd3ce49af9608366581133b">CSyncerSet::CSyncerSet</a></div><div class="ttdeci">CSyncerSet()</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00033">SyncerSet.cpp:33</a></div></div>
 <div class="ttc" id="classCSyncerSet_html_ab139f1169697d601b202eef7d6c1c754"><div class="ttname"><a href="classCSyncerSet.html#ab139f1169697d601b202eef7d6c1c754">CSyncerSet::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00054">SyncerSet.cpp:54</a></div></div>
 <div class="ttc" id="classISyncer_html_a16844aac52fb0caf4aed4f68d4b038d9"><div class="ttname"><a href="classISyncer.html#a16844aac52fb0caf4aed4f68d4b038d9">ISyncer::sync</a></div><div class="ttdeci">virtual bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, std::string &amp;strError)=0</div></div>
+<div class="ttc" id="namespacecore_html_a348873e34bd38d2a62f77d3973f1dc1c"><div class="ttname"><a href="namespacecore.html#a348873e34bd38d2a62f77d3973f1dc1c">core::Results</a></div><div class="ttdeci">std::list&lt; std::string &gt; Results</div><div class="ttdoc">String list type which can hold list of error/info. </div><div class="ttdef"><b>Definition:</b> <a href="Results_8h_source.html#l00039">Results.h:39</a></div></div>
 <div class="ttc" id="classCSyncerSet_html_abda7650761df37cecee929c510d70b6f"><div class="ttname"><a href="classCSyncerSet.html#abda7650761df37cecee929c510d70b6f">CSyncerSet::operator+=</a></div><div class="ttdeci">const CSyncerSet &amp; operator+=(ISyncer *pRightSyncer)</div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00037">SyncerSet.cpp:37</a></div></div>
 <div class="ttc" id="Syncer_8h_html"><div class="ttname"><a href="Syncer_8h.html">Syncer.h</a></div></div>
-<div class="ttc" id="classCSyncerSet_html"><div class="ttname"><a href="classCSyncerSet.html">CSyncerSet</a></div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8h_source.html#l00039">SyncerSet.h:39</a></div></div>
+<div class="ttc" id="classCSyncerSet_html"><div class="ttname"><a href="classCSyncerSet.html">CSyncerSet</a></div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8h_source.html#l00038">SyncerSet.h:38</a></div></div>
 <div class="ttc" id="SyncerSet_8h_html"><div class="ttname"><a href="SyncerSet_8h.html">SyncerSet.h</a></div></div>
-<div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00036">ParameterBlackboard.h:36</a></div></div>
+<div class="ttc" id="classCParameterBlackboard_html"><div class="ttname"><a href="classCParameterBlackboard.html">CParameterBlackboard</a></div><div class="ttdef"><b>Definition:</b> <a href="ParameterBlackboard_8h_source.html#l00038">ParameterBlackboard.h:38</a></div></div>
 <div class="ttc" id="classISyncer_html"><div class="ttname"><a href="classISyncer.html">ISyncer</a></div><div class="ttdef"><b>Definition:</b> <a href="Syncer_8h_source.html#l00036">Syncer.h:36</a></div></div>
-<div class="ttc" id="classCSyncerSet_html_a6ee2b3a5edcccc64b8694df736312e4b"><div class="ttname"><a href="classCSyncerSet.html#a6ee2b3a5edcccc64b8694df736312e4b">CSyncerSet::sync</a></div><div class="ttdeci">bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, std::list&lt; std::string &gt; *plstrError) const </div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00059">SyncerSet.cpp:59</a></div></div>
+<div class="ttc" id="classCSyncerSet_html_a8f8381b520a758f49ba8013c5cb8c7b5"><div class="ttname"><a href="classCSyncerSet.html#a8f8381b520a758f49ba8013c5cb8c7b5">CSyncerSet::sync</a></div><div class="ttdeci">bool sync(CParameterBlackboard &amp;parameterBlackboard, bool bBack, core::Results *errors) const </div><div class="ttdoc">Sync the blackboard. </div><div class="ttdef"><b>Definition:</b> <a href="SyncerSet_8cpp_source.html#l00059">SyncerSet.cpp:59</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

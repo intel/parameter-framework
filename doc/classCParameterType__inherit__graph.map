@@ -1,10 +1,11 @@
 <map id="CParameterType" name="CParameterType">
-<area shape="rect" id="node6" href="$classCBooleanParameterType.html" title="CBooleanParameterType" alt="" coords="621,5,799,32"/>
-<area shape="rect" id="node7" href="$classCEnumParameterType.html" title="CEnumParameterType" alt="" coords="629,56,791,83"/>
-<area shape="rect" id="node8" href="$classCFixedPointParameterType.html" title="CFixedPointParameterType" alt="" coords="615,107,805,133"/>
-<area shape="rect" id="node9" href="$classCIntegerParameterType.html" title="CIntegerParameterType" alt="" coords="625,157,795,184"/>
-<area shape="rect" id="node2" href="$classCTypeElement.html" title="CTypeElement" alt="" coords="280,81,392,108"/>
-<area shape="rect" id="node3" href="$classCElement.html" title="CElement" alt="" coords="148,81,232,108"/>
-<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="15,56,91,83"/>
-<area shape="rect" id="node5" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="5,107,100,133"/>
+<area shape="rect" id="node6" href="$classCBooleanParameterType.html" title="CBooleanParameterType" alt="" coords="629,5,808,32"/>
+<area shape="rect" id="node7" href="$classCEnumParameterType.html" title="CEnumParameterType" alt="" coords="637,56,800,83"/>
+<area shape="rect" id="node8" href="$classCFixedPointParameterType.html" title="CFixedPointParameterType" alt="" coords="623,107,814,133"/>
+<area shape="rect" id="node9" href="$classCFloatingPointParameterType.html" title="CFloatingPointParameterType" alt="" coords="615,157,823,184"/>
+<area shape="rect" id="node10" href="$classCIntegerParameterType.html" title="CIntegerParameterType" alt="" coords="633,208,804,235"/>
+<area shape="rect" id="node2" href="$classCTypeElement.html" title="CTypeElement" alt="" coords="280,107,392,133"/>
+<area shape="rect" id="node3" href="$classCElement.html" title="CElement" alt="" coords="148,107,232,133"/>
+<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="15,81,91,108"/>
+<area shape="rect" id="node5" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="5,132,100,159"/>
 </map>

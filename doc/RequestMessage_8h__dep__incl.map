@@ -1,10 +1,12 @@
 <map id="remote&#45;processor/RequestMessage.h" name="remote&#45;processor/RequestMessage.h">
-<area shape="rect" id="node2" href="$remote-process_2main_8cpp.html" title="remote&#45;process/main.cpp" alt="" coords="41,102,228,129"/>
-<area shape="rect" id="node3" href="$RemoteProcessorServerInterface_8h.html" title="remote&#45;processor/RemoteProcessor\lServerInterface.h" alt="" coords="252,95,505,136"/>
-<area shape="rect" id="node6" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="443,273,696,315"/>
-<area shape="rect" id="node9" href="$RequestMessage_8cpp.html" title="remote&#45;processor/Request\lMessage.cpp" alt="" coords="580,95,772,136"/>
-<area shape="rect" id="node4" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="17,191,228,218"/>
-<area shape="rect" id="node5" href="$RemoteProcessorServer_8h.html" title="remote&#45;processor/RemoteProcessor\lServer.h" alt="" coords="252,184,505,225"/>
-<area shape="rect" id="node7" href="$RemoteProcessorServerBuilder_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServerBuilder.cpp" alt="" coords="5,273,259,315"/>
-<area shape="rect" id="node8" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="283,273,418,315"/>
+<area shape="rect" id="node2" href="$remote-process_2main_8cpp.html" title="remote&#45;process/main.cpp" alt="" coords="30,102,217,129"/>
+<area shape="rect" id="node3" href="$RemoteProcessorServerInterface_8h.html" title="remote&#45;processor/RemoteProcessor\lServerInterface.h" alt="" coords="241,95,494,136"/>
+<area shape="rect" id="node7" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="419,273,673,315"/>
+<area shape="rect" id="node11" href="$RequestMessage_8cpp.html" title="remote&#45;processor/Request\lMessage.cpp" alt="" coords="569,95,761,136"/>
+<area shape="rect" id="node4" href="$RemoteProcessorServer_8h.html" title="remote&#45;processor/RemoteProcessor\lServer.h" alt="" coords="214,184,467,225"/>
+<area shape="rect" id="node5" href="$BackgroundRemoteProcessorServerBuilder_8h.html" title="remote&#45;processor/Background\lRemoteProcessorServerBuilder.h" alt="" coords="5,273,236,315"/>
+<area shape="rect" id="node8" href="$TestPlatform_8h.html" title="test/test&#45;platform\l/TestPlatform.h" alt="" coords="260,273,395,315"/>
+<area shape="rect" id="node6" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="15,370,226,397"/>
+<area shape="rect" id="node9" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="255,363,389,404"/>
+<area shape="rect" id="node10" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="413,363,548,404"/>
 </map>

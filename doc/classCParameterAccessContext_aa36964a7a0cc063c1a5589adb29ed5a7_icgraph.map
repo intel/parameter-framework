@@ -1,9 +1,11 @@
 <map id="CParameterAccessContext::valueSpaceIsRaw" name="CParameterAccessContext::valueSpaceIsRaw">
-<area shape="rect" id="node2" href="$classCBitParameterType.html#ac5ad1a455f0963dc23020bc989105039" title="CBitParameterType::\lfromBlackboard" alt="" coords="273,5,424,47"/>
-<area shape="rect" id="node3" href="$classCBooleanParameterType.html#a3e0df35be7e20a21a8401765160eb5f0" title="CBooleanParameterType\l::fromBlackboard" alt="" coords="259,71,438,112"/>
-<area shape="rect" id="node4" href="$classCEnumParameterType.html#a0bd3061022ff86f0a244575b89ab8a48" title="CEnumParameterType\l::fromBlackboard" alt="" coords="267,136,430,177"/>
-<area shape="rect" id="node5" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="CFixedPointParameterType\l::handleValueSpaceAttribute" alt="" coords="247,201,451,243"/>
-<area shape="rect" id="node6" href="$classCFixedPointParameterType.html#a8082571fa9099a8eb25820ce259b2d1d" title="Conversion. " alt="" coords="253,267,444,308"/>
-<area shape="rect" id="node7" href="$classCFixedPointParameterType.html#a915d48511911653dc8ddf03cf39dc0ec" title="CFixedPointParameterType\l::fromBlackboard" alt="" coords="253,332,444,373"/>
-<area shape="rect" id="node8" href="$classCIntegerParameterType.html#a20f5eb6c8e4cea3d1f0ccdb92e1d008c" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="263,397,434,439"/>
+<area shape="rect" id="node2" href="$classCBitParameterType.html#ac5ad1a455f0963dc23020bc989105039" title="CBitParameterType::\lfromBlackboard" alt="" coords="275,5,426,47"/>
+<area shape="rect" id="node3" href="$classCBooleanParameterType.html#a3e0df35be7e20a21a8401765160eb5f0" title="CBooleanParameterType\l::fromBlackboard" alt="" coords="261,71,440,112"/>
+<area shape="rect" id="node4" href="$classCFixedPointParameterType.html#ac5dd869d9846a4e999fe9715b397c17d" title="Value space handling for settings import/export from/to XML. " alt="" coords="249,136,453,177"/>
+<area shape="rect" id="node5" href="$classCFixedPointParameterType.html#a8082571fa9099a8eb25820ce259b2d1d" title="Conversion. " alt="" coords="255,201,446,243"/>
+<area shape="rect" id="node6" href="$classCFixedPointParameterType.html#a915d48511911653dc8ddf03cf39dc0ec" title="CFixedPointParameterType\l::fromBlackboard" alt="" coords="255,267,446,308"/>
+<area shape="rect" id="node7" href="$classCFloatingPointParameterType.html#a5fcda53d3c5e9e2cdab424158c808f19" title="Value space handling for settings import/export from/to XML. " alt="" coords="247,332,455,373"/>
+<area shape="rect" id="node8" href="$classCFloatingPointParameterType.html#af069f5563c1d676ba3933deed0851665" title="Conversions. " alt="" coords="247,397,455,439"/>
+<area shape="rect" id="node9" href="$classCFloatingPointParameterType.html#a8547b2d6ef0c74ad34985ffc96a289a3" title="CFloatingPointParameterType\l::fromBlackboard" alt="" coords="247,463,455,504"/>
+<area shape="rect" id="node10" href="$classCIntegerParameterType.html#a20f5eb6c8e4cea3d1f0ccdb92e1d008c" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="265,528,436,569"/>
 </map>

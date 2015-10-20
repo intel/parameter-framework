@@ -1,4 +1,5 @@
 <map id="CParameterAccessContext" name="CParameterAccessContext">
-<area shape="rect" id="node3" href="$classCConfigurationAccessContext.html" title="CConfigurationAccessContext" alt="" coords="5,155,216,181"/>
-<area shape="rect" id="node2" href="$classCErrorContext.html" title="CErrorContext" alt="" coords="55,5,167,32"/>
+<area shape="rect" id="node4" href="$classCConfigurationAccessContext.html" title="CConfigurationAccessContext" alt="" coords="5,229,216,256"/>
+<area shape="rect" id="node2" href="$classutility_1_1ErrorContext.html" title="utility::ErrorContext" alt="" coords="39,80,183,107"/>
+<area shape="rect" id="node3" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="37,5,185,32"/>
 </map>

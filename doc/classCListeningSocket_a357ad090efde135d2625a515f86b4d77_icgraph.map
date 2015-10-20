@@ -1,7 +1,0 @@
-<map id="CListeningSocket::listen" name="CListeningSocket::listen">
-<area shape="rect" id="node2" href="$classCRemoteProcessorServer.html#ae2ba625b835446b5fa5f1d1a244da43c" title="CRemoteProcessorServer\l::start" alt="" coords="228,23,413,65"/>
-<area shape="rect" id="node3" href="$classCTestPlatform.html#ad74d8f79000b7a85c75607a77836de39" title="CTestPlatform::load" alt="" coords="461,31,607,57"/>
-<area shape="rect" id="node4" href="$test_2test-platform_2main_8cpp.html#a8cdd52c65098972c711a9ae39f5fc81d" title="startBlockingTestPlatform" alt="" coords="656,5,840,32"/>
-<area shape="rect" id="node6" href="$test_2test-platform_2main_8cpp.html#a9fd779abc38b1314eaae2f8f359bbb42" title="startDaemonTestPlatform" alt="" coords="655,56,841,83"/>
-<area shape="rect" id="node5" href="$test_2test-platform_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="889,31,944,57"/>
-</map>

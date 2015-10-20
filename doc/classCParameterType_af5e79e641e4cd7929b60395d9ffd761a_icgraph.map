@@ -1,7 +1,6 @@
 <map id="CParameterType::isEncodable" name="CParameterType::isEncodable">
-<area shape="rect" id="node2" href="$classCEnumParameterType.html#a843bba6b2e2b5b516b7939f8bc4641ab" title="Conversion. " alt="" coords="278,5,441,47"/>
-<area shape="rect" id="node3" href="$classCFixedPointParameterType.html#a915d48511911653dc8ddf03cf39dc0ec" title="CFixedPointParameterType\l::fromBlackboard" alt="" coords="264,71,455,112"/>
-<area shape="rect" id="node4" href="$classCFixedPointParameterType.html#aadca613bcd3e811718bbe3f0f63bd59f" title="CFixedPointParameterType\l::toBlackboard" alt="" coords="264,136,455,177"/>
-<area shape="rect" id="node5" href="$classCIntegerParameterType.html#aac12d359362c7ab46915cadb574bca76" title="Conversion. " alt="" coords="274,201,445,243"/>
-<area shape="rect" id="node6" href="$classCIntegerParameterType.html#a20f5eb6c8e4cea3d1f0ccdb92e1d008c" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="274,267,445,308"/>
+<area shape="rect" id="node2" href="$classCFixedPointParameterType.html#a915d48511911653dc8ddf03cf39dc0ec" title="CFixedPointParameterType\l::fromBlackboard" alt="" coords="264,5,455,47"/>
+<area shape="rect" id="node3" href="$classCFixedPointParameterType.html#aadca613bcd3e811718bbe3f0f63bd59f" title="CFixedPointParameterType\l::toBlackboard" alt="" coords="264,71,455,112"/>
+<area shape="rect" id="node4" href="$classCIntegerParameterType.html#aac12d359362c7ab46915cadb574bca76" title="Conversion. " alt="" coords="274,136,445,177"/>
+<area shape="rect" id="node5" href="$classCIntegerParameterType.html#a20f5eb6c8e4cea3d1f0ccdb92e1d008c" title="CIntegerParameterType\l::fromBlackboard" alt="" coords="274,201,445,243"/>
 </map>

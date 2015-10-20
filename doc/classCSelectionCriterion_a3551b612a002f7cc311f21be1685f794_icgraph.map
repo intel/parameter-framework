@@ -1,6 +1,6 @@
 <map id="CSelectionCriterion::getCriterionType" name="CSelectionCriterion::getCriterionType">
 <area shape="rect" id="node2" href="$classCSelectionCriterionRule.html#a4ee8e0274ac8c7bf5a2452002aa7ae0e" title="CSelectionCriterionRule\l::parse" alt="" coords="197,5,368,47"/>
-<area shape="rect" id="node9" href="$classCSelectionCriterionRule.html#a0c1b3650a362380978983d23b6e9ec17" title="CSelectionCriterionRule\l::dump" alt="" coords="197,71,368,112"/>
+<area shape="rect" id="node9" href="$classCSelectionCriterionRule.html#a11568849b62faf215a73571ec8e20f1e" title="CSelectionCriterionRule\l::dump" alt="" coords="197,71,368,112"/>
 <area shape="rect" id="node11" href="$classCSelectionCriterionRule.html#aa3536258af1e5f9cc1db535e7629d42c" title="CSelectionCriterionRule\l::fromXml" alt="" coords="197,136,368,177"/>
 <area shape="rect" id="node12" href="$classCSelectionCriterionRule.html#aa31aa27a5aba096913b6f5d1e59a9360" title="CSelectionCriterionRule\l::toXml" alt="" coords="197,201,368,243"/>
 <area shape="rect" id="node3" href="$classCRuleParser.html#acbce516a22f0dca0af620e751d298f7a" title="CRuleParser::parse" alt="" coords="431,13,572,39"/>
@@ -9,5 +9,5 @@
 <area shape="rect" id="node6" href="$classCConfigurableDomains.html#ac2b2354eecc80c7ca4a71fe2f40606ed" title="CConfigurableDomains\l::setApplicationRule" alt="" coords="1059,5,1227,47"/>
 <area shape="rect" id="node7" href="$classCParameterMgr.html#af63f9ad7f792b2bf226afd791c1db70e" title="CParameterMgr::setApplicationRule" alt="" coords="1275,13,1521,39"/>
 <area shape="rect" id="node8" href="$classCParameterMgrFullConnector.html#a7a0323667af932143f43399070f7fe62" title="CParameterMgrFullConnector\l::setApplicationRule" alt="" coords="1569,5,1777,47"/>
-<area shape="rect" id="node10" href="$classCSelectionCriterionRule.html#a11de0a5fc56c4a73ab7ba73e6c693912" title="CSelectionCriterionRule\l::logValue" alt="" coords="416,71,587,112"/>
+<area shape="rect" id="node10" href="$classCSelectionCriterionRule.html#a9fd0608729967c6398c8bcb6f409e2f1" title="CSelectionCriterionRule\l::logValue" alt="" coords="416,71,587,112"/>
 </map>

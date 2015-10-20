@@ -1,14 +1,14 @@
 <map id="Status::success" name="Status::success">
 <area shape="rect" id="node2" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="214,132,333,159"/>
-<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a0318f736980ecc4a0a456581f44a2cf0" title="Access the value of a previously bind string parameter. " alt="" coords="419,208,589,235"/>
+<area shape="rect" id="node7" href="$ParameterFramework_8h.html#a7d998384abf12976a2bbb59bc0ba82e4" title="Access the value of a previously bind string parameter. " alt="" coords="419,208,589,235"/>
 <area shape="rect" id="node9" href="$structPfwHandler__.html#affe94703ab48bd3ee5c78ac4fffc0b45" title="PfwHandler_::createCriteria" alt="" coords="176,31,371,57"/>
-<area shape="rect" id="node10" href="$ParameterFramework_8h.html#af0490100e807cce5037e852f7f9c0aa6" title="Set a criterion value given its name and value. " alt="" coords="445,259,563,285"/>
-<area shape="rect" id="node11" href="$ParameterFramework_8h.html#a3ab4d3f7ab3cca98c22650d721c768f7" title="Get a criterion value given its name. " alt="" coords="213,309,333,336"/>
-<area shape="rect" id="node12" href="$ParameterFramework_8h.html#a72e156c6ec149be0208b26d543e07e28" title="Commit criteria change and change parameters according to the configurations. " alt="" coords="188,360,359,387"/>
-<area shape="rect" id="node13" href="$ParameterFramework_8h.html#a8af8b5749cdc5ed309c7fc73621da521" title="Construct the handle to a parameter given its path. " alt="" coords="204,411,343,437"/>
+<area shape="rect" id="node10" href="$ParameterFramework_8h.html#a7e2da0cb4b2dad4fe639259c4a087feb" title="Set a criterion value given its name and value. " alt="" coords="445,259,563,285"/>
+<area shape="rect" id="node11" href="$ParameterFramework_8h.html#afe708ce766409bc0d82638cca172330a" title="Get a criterion value given its name. " alt="" coords="213,309,333,336"/>
+<area shape="rect" id="node12" href="$ParameterFramework_8h.html#a78db487e58935caf376608255d652caa" title="Commit criteria change and change parameters according to the configurations. " alt="" coords="188,360,359,387"/>
+<area shape="rect" id="node13" href="$ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" title="Construct the handle to a parameter given its path. " alt="" coords="204,411,343,437"/>
 <area shape="rect" id="node3" href="$ParameterFramework_8cpp.html#a44326e09ebb9719ecb017d1d67832b6f" title="pfwStart" alt="" coords="467,5,541,32"/>
-<area shape="rect" id="node5" href="$ParameterFramework_8h.html#aa3c268896aa21de7f78ce9c99195e0ba" title="Access the value of a previously bind int parameter. " alt="" coords="429,56,579,83"/>
-<area shape="rect" id="node6" href="$ParameterFramework_8h.html#a5ca86cca5a701f0eb107ba24a05a0a68" title="Set the value of a previously bind int parameter. " alt="" coords="430,107,578,133"/>
-<area shape="rect" id="node8" href="$ParameterFramework_8h.html#a02e479cdd18adee13f01c05affcd5892" title="Set the value of a previously bind string parameter. " alt="" coords="419,157,589,184"/>
+<area shape="rect" id="node5" href="$ParameterFramework_8h.html#a7dde5f55f3d1e45a05409912160df12f" title="Access the value of a previously bind int parameter. " alt="" coords="429,56,579,83"/>
+<area shape="rect" id="node6" href="$ParameterFramework_8h.html#af7fd08602e984c778aaf0e4526cbbded" title="Set the value of a previously bind int parameter. " alt="" coords="430,107,578,133"/>
+<area shape="rect" id="node8" href="$ParameterFramework_8h.html#a7913a676a9f57c14b0b6f7fa20ec9f9a" title="Set the value of a previously bind string parameter. " alt="" coords="419,157,589,184"/>
 <area shape="rect" id="node4" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="637,208,796,235"/>
 </map>

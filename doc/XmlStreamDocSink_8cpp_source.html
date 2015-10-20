@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -141,7 +141,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">if</span> (!dumpedDoc) {</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        serializingContext.<a class="code" href="classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d">setError</a>(<span class="stringliteral">&quot;Unable to encode XML document in memory&quot;</span>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        serializingContext.<a class="code" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a>(<span class="stringliteral">&quot;Unable to encode XML document in memory&quot;</span>);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
@@ -153,11 +153,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
 <div class="ttc" id="XmlStreamDocSink_8h_html"><div class="ttname"><a href="XmlStreamDocSink_8h.html">XmlStreamDocSink.h</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00044">XmlSerializingContext.h:44</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html"><div class="ttname"><a href="classCXmlDocSource.html">CXmlDocSource</a></div><div class="ttdoc">The CXmlDocSource is used by CXmlDocSink. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00047">XmlDocSource.h:47</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html_a32535de3d5fb180f216d837ee7d5326d"><div class="ttname"><a href="classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d">CXmlSerializingContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00046">XmlSerializingContext.cpp:46</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
+<div class="ttc" id="classutility_1_1ErrorContext_html_afc2e1af8c4a81e36e5013bf31127c15f"><div class="ttname"><a href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">utility::ErrorContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;error)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00043">ErrorContext.hpp:43</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html"><div class="ttname"><a href="classCXmlDocSource.html">CXmlDocSource</a></div><div class="ttdoc">The CXmlDocSource is used by CXmlDocSink. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8h_source.html#l00050">XmlDocSource.h:50</a></div></div>
 <div class="ttc" id="classCXmlStreamDocSink_html_a04405c106e74c8d7b5292c9ab23d853e"><div class="ttname"><a href="classCXmlStreamDocSink.html#a04405c106e74c8d7b5292c9ab23d853e">CXmlStreamDocSink::CXmlStreamDocSink</a></div><div class="ttdeci">CXmlStreamDocSink(std::ostream &amp;output)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="XmlStreamDocSink_8cpp_source.html#l00035">XmlStreamDocSink.cpp:35</a></div></div>
-<div class="ttc" id="classCXmlDocSource_html_a26377c512cf5aea36ef6c3646a90494a"><div class="ttname"><a href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">CXmlDocSource::getDoc</a></div><div class="ttdeci">_xmlDoc * getDoc() const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00098">XmlDocSource.cpp:98</a></div></div>
+<div class="ttc" id="classCXmlDocSource_html_a26377c512cf5aea36ef6c3646a90494a"><div class="ttname"><a href="classCXmlDocSource.html#a26377c512cf5aea36ef6c3646a90494a">CXmlDocSource::getDoc</a></div><div class="ttdeci">_xmlDoc * getDoc() const </div><div class="ttdoc">Getter method. </div><div class="ttdef"><b>Definition:</b> <a href="XmlDocSource_8cpp_source.html#l00102">XmlDocSource.cpp:102</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

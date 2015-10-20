@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -130,30 +130,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classCElementLibrarySet.html#a6af614ba3d28859ef6fb0ab08bb14016">   37</a></span>&#160;<a class="code" href="classCElementLibrarySet.html#a6af614ba3d28859ef6fb0ab08bb14016">CElementLibrarySet::~CElementLibrarySet</a>()</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    uint32_t uiIndex;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">for</span> (uiIndex = 0; uiIndex &lt; _elementLibraryArray.size(); uiIndex++) {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">delete</span> _elementLibraryArray[uiIndex];</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classCElementLibrarySet.html#a3e313f9c556bd360ae935e0195d2e474">   47</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCElementLibrarySet.html#a3e313f9c556bd360ae935e0195d2e474">CElementLibrarySet::addElementLibrary</a>(<a class="code" href="classCElementLibrary.html">CElementLibrary</a>* pElementLibrary)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    _elementLibraryArray.push_back(pElementLibrary);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classCElementLibrarySet.html#a301363ecb3eb99b4f9391f307e0f946a">   52</a></span>&#160;<a class="code" href="classCElementLibrary.html">CElementLibrary</a>* <a class="code" href="classCElementLibrarySet.html#a301363ecb3eb99b4f9391f307e0f946a">CElementLibrarySet::getElementLibrary</a>(uint32_t uiIndex)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    assert(uiIndex &lt;= _elementLibraryArray.size());</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">return</span> _elementLibraryArray[uiIndex];</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// FIXME: use an array of unique_ptr</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> *elementLibrary : _elementLibraryArray) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">delete</span> elementLibrary;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classCElementLibrarySet.html#a3e313f9c556bd360ae935e0195d2e474">   46</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCElementLibrarySet.html#a3e313f9c556bd360ae935e0195d2e474">CElementLibrarySet::addElementLibrary</a>(<a class="code" href="classCElementLibrary.html">CElementLibrary</a>* pElementLibrary)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    _elementLibraryArray.push_back(pElementLibrary);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classCElementLibrarySet.html#a35c69bc5a5e264a8b7e53fe1da5dcc87">   51</a></span>&#160;<a class="code" href="classCElementLibrary.html">CElementLibrary</a>* <a class="code" href="classCElementLibrarySet.html#a35c69bc5a5e264a8b7e53fe1da5dcc87">CElementLibrarySet::getElementLibrary</a>(<span class="keywordtype">size_t</span> index)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    assert(index &lt;= _elementLibraryArray.size());</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">return</span> _elementLibraryArray[index];</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
+<div class="ttc" id="classCElementLibrarySet_html_a35c69bc5a5e264a8b7e53fe1da5dcc87"><div class="ttname"><a href="classCElementLibrarySet.html#a35c69bc5a5e264a8b7e53fe1da5dcc87">CElementLibrarySet::getElementLibrary</a></div><div class="ttdeci">CElementLibrary * getElementLibrary(size_t index) const </div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrarySet_8cpp_source.html#l00051">ElementLibrarySet.cpp:51</a></div></div>
 <div class="ttc" id="ElementLibrarySet_8h_html"><div class="ttname"><a href="ElementLibrarySet_8h.html">ElementLibrarySet.h</a></div></div>
-<div class="ttc" id="classCElementLibrary_html"><div class="ttname"><a href="classCElementLibrary.html">CElementLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrary_8h_source.html#l00039">ElementLibrary.h:39</a></div></div>
+<div class="ttc" id="classCElementLibrary_html"><div class="ttname"><a href="classCElementLibrary.html">CElementLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrary_8h_source.html#l00041">ElementLibrary.h:41</a></div></div>
 <div class="ttc" id="classCElementLibrarySet_html_a6af614ba3d28859ef6fb0ab08bb14016"><div class="ttname"><a href="classCElementLibrarySet.html#a6af614ba3d28859ef6fb0ab08bb14016">CElementLibrarySet::~CElementLibrarySet</a></div><div class="ttdeci">~CElementLibrarySet()</div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrarySet_8cpp_source.html#l00037">ElementLibrarySet.cpp:37</a></div></div>
-<div class="ttc" id="classCElementLibrarySet_html_a301363ecb3eb99b4f9391f307e0f946a"><div class="ttname"><a href="classCElementLibrarySet.html#a301363ecb3eb99b4f9391f307e0f946a">CElementLibrarySet::getElementLibrary</a></div><div class="ttdeci">CElementLibrary * getElementLibrary(uint32_t uiIndex) const </div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrarySet_8cpp_source.html#l00052">ElementLibrarySet.cpp:52</a></div></div>
-<div class="ttc" id="classCElementLibrarySet_html_a3e313f9c556bd360ae935e0195d2e474"><div class="ttname"><a href="classCElementLibrarySet.html#a3e313f9c556bd360ae935e0195d2e474">CElementLibrarySet::addElementLibrary</a></div><div class="ttdeci">void addElementLibrary(CElementLibrary *pElementLibrary)</div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrarySet_8cpp_source.html#l00047">ElementLibrarySet.cpp:47</a></div></div>
+<div class="ttc" id="classCElementLibrarySet_html_a3e313f9c556bd360ae935e0195d2e474"><div class="ttname"><a href="classCElementLibrarySet.html#a3e313f9c556bd360ae935e0195d2e474">CElementLibrarySet::addElementLibrary</a></div><div class="ttdeci">void addElementLibrary(CElementLibrary *pElementLibrary)</div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrarySet_8cpp_source.html#l00046">ElementLibrarySet.cpp:46</a></div></div>
 <div class="ttc" id="classCElementLibrarySet_html_a91b85a27e54e9cf43936b9355b822223"><div class="ttname"><a href="classCElementLibrarySet.html#a91b85a27e54e9cf43936b9355b822223">CElementLibrarySet::CElementLibrarySet</a></div><div class="ttdeci">CElementLibrarySet()</div><div class="ttdef"><b>Definition:</b> <a href="ElementLibrarySet_8cpp_source.html#l00033">ElementLibrarySet.cpp:33</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

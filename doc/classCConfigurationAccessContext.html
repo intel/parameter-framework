@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -98,7 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for CConfigurationAccessContext:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurationAccessContext__inherit__graph.svg" width="222" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurationAccessContext__inherit__graph.svg" width="222" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -109,10 +109,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac0a975afc840488e5e82345441de56cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCConfigurationAccessContext.html#ac0a975afc840488e5e82345441de56cc">serializeOut</a> () const </td></tr>
 <tr class="separator:ac0a975afc840488e5e82345441de56cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCParameterAccessContext"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCParameterAccessContext')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCParameterAccessContext.html">CParameterAccessContext</a></td></tr>
-<tr class="memitem:ac504b139ba421a9ff5d97b285425b6c9 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#ac504b139ba421a9ff5d97b285425b6c9">CParameterAccessContext</a> (std::string &amp;strError, <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex=false, uint32_t uiOffsetBase=0)</td></tr>
-<tr class="separator:ac504b139ba421a9ff5d97b285425b6c9 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90951b5052d900259b05aaaece3536af inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#a90951b5052d900259b05aaaece3536af">CParameterAccessContext</a> (std::string &amp;strError, bool bBigEndianSubsystem, <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard, uint32_t uiOffsetBase=0)</td></tr>
-<tr class="separator:a90951b5052d900259b05aaaece3536af inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff53b16ecfe294bbb73c9722425a6cba inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#aff53b16ecfe294bbb73c9722425a6cba">CParameterAccessContext</a> (std::string &amp;strError, <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard, bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex, size_t offsetBase=0)</td></tr>
+<tr class="separator:aff53b16ecfe294bbb73c9722425a6cba inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d67384d5b5d300f27e76d09600d5a8 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#ae6d67384d5b5d300f27e76d09600d5a8">CParameterAccessContext</a> (std::string &amp;strError, <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pParameterBlackboard, size_t offsetBase=0)</td></tr>
+<tr class="separator:ae6d67384d5b5d300f27e76d09600d5a8 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63edfc4e3e4be246343523fad557d156 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#a63edfc4e3e4be246343523fad557d156">CParameterAccessContext</a> (std::string &amp;strError)</td></tr>
 <tr class="separator:a63edfc4e3e4be246343523fad557d156 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad354dd5bf2a88f4ed4197be9a59fda20 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#ad354dd5bf2a88f4ed4197be9a59fda20">getParameterBlackboard</a> ()</td></tr>
@@ -129,27 +129,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adc2c2dabdfb9af278c0f5237ddcd3643 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#adc2c2dabdfb9af278c0f5237ddcd3643">outputRawFormatIsHex</a> () const </td></tr>
 <tr class="memdesc:adc2c2dabdfb9af278c0f5237ddcd3643 inherit pub_methods_classCParameterAccessContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns Output Raw Format for user get value interpretation.  <a href="#adc2c2dabdfb9af278c0f5237ddcd3643">More...</a><br /></td></tr>
 <tr class="separator:adc2c2dabdfb9af278c0f5237ddcd3643 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd3f54728dee0e195208b3be8108df9e inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#afd3f54728dee0e195208b3be8108df9e">setBigEndianSubsystem</a> (bool bBigEndian)</td></tr>
-<tr class="separator:afd3f54728dee0e195208b3be8108df9e inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedfc1595e099d7a4cf5318e3013147c9 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#aedfc1595e099d7a4cf5318e3013147c9">isBigEndianSubsystem</a> () const </td></tr>
-<tr class="separator:aedfc1595e099d7a4cf5318e3013147c9 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07eda176f4ae601bd26a6d0c9e0cc6e2 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#a07eda176f4ae601bd26a6d0c9e0cc6e2">setAutoSync</a> (bool bAutoSync)</td></tr>
 <tr class="separator:a07eda176f4ae601bd26a6d0c9e0cc6e2 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad073ad9ca128b5504f8a4a1d844c4e00 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#ad073ad9ca128b5504f8a4a1d844c4e00">getAutoSync</a> () const </td></tr>
 <tr class="separator:ad073ad9ca128b5504f8a4a1d844c4e00 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17213d6a90130c62faf41761549e64a6 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#a17213d6a90130c62faf41761549e64a6">setBaseOffset</a> (uint32_t uiBaseOffset)</td></tr>
-<tr class="separator:a17213d6a90130c62faf41761549e64a6 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8373a015bb145386732483ee3f6bdf63 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#a8373a015bb145386732483ee3f6bdf63">getBaseOffset</a> () const </td></tr>
-<tr class="separator:a8373a015bb145386732483ee3f6bdf63 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classCErrorContext"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCErrorContext')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCErrorContext.html">CErrorContext</a></td></tr>
-<tr class="memitem:a3eafb7cae8cba3ea61097752f5460a44 inherit pub_methods_classCErrorContext"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCErrorContext.html#a3eafb7cae8cba3ea61097752f5460a44">CErrorContext</a> (std::string &amp;strError)</td></tr>
-<tr class="separator:a3eafb7cae8cba3ea61097752f5460a44 inherit pub_methods_classCErrorContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d58b281c0d0fc9a6d3b83714cf812ef inherit pub_methods_classCErrorContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef">setError</a> (const std::string &amp;strError)</td></tr>
-<tr class="separator:a9d58b281c0d0fc9a6d3b83714cf812ef inherit pub_methods_classCErrorContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdd38e8aaaf045faaf575cf3ccbbc37b inherit pub_methods_classCErrorContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCErrorContext.html#afdd38e8aaaf045faaf575cf3ccbbc37b">appendToError</a> (const std::string &amp;strAppend)</td></tr>
-<tr class="separator:afdd38e8aaaf045faaf575cf3ccbbc37b inherit pub_methods_classCErrorContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5a74c8dfa916b37f5af24362787e530 inherit pub_methods_classCErrorContext"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCErrorContext.html#aa5a74c8dfa916b37f5af24362787e530">getError</a> () const </td></tr>
-<tr class="separator:aa5a74c8dfa916b37f5af24362787e530 inherit pub_methods_classCErrorContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1b39f8d2db271b7db48b47e8dba46e8 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#ac1b39f8d2db271b7db48b47e8dba46e8">setBaseOffset</a> (size_t baseOffset)</td></tr>
+<tr class="separator:ac1b39f8d2db271b7db48b47e8dba46e8 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af89af08aeec798e2e4e3a5c269722343 inherit pub_methods_classCParameterAccessContext"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterAccessContext.html#af89af08aeec798e2e4e3a5c269722343">getBaseOffset</a> () const </td></tr>
+<tr class="separator:af89af08aeec798e2e4e3a5c269722343 inherit pub_methods_classCParameterAccessContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classutility_1_1ErrorContext"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classutility_1_1ErrorContext')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a></td></tr>
+<tr class="memitem:aa7f62b70e85e2a02a21124454d0b928d inherit pub_methods_classutility_1_1ErrorContext"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutility_1_1ErrorContext.html#aa7f62b70e85e2a02a21124454d0b928d">ErrorContext</a> (std::string &amp;error)</td></tr>
+<tr class="separator:aa7f62b70e85e2a02a21124454d0b928d inherit pub_methods_classutility_1_1ErrorContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc2e1af8c4a81e36e5013bf31127c15f inherit pub_methods_classutility_1_1ErrorContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f">setError</a> (const std::string &amp;error)</td></tr>
+<tr class="separator:afc2e1af8c4a81e36e5013bf31127c15f inherit pub_methods_classutility_1_1ErrorContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafe9cd30a03303cf376926d9c4e9dd02 inherit pub_methods_classutility_1_1ErrorContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutility_1_1ErrorContext.html#aafe9cd30a03303cf376926d9c4e9dd02">appendToError</a> (const std::string &amp;append)</td></tr>
+<tr class="separator:aafe9cd30a03303cf376926d9c4e9dd02 inherit pub_methods_classutility_1_1ErrorContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6926da6db5a542239e16f4b5819b442 inherit pub_methods_classutility_1_1ErrorContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutility_1_1ErrorContext.html#aa6926da6db5a542239e16f4b5819b442">prependToError</a> (const std::string &amp;prepend)</td></tr>
+<tr class="separator:aa6926da6db5a542239e16f4b5819b442 inherit pub_methods_classutility_1_1ErrorContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -202,7 +198,7 @@ Public Member Functions</h2></td></tr>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurationAccessContext_ac0a975afc840488e5e82345441de56cc_icgraph.svg" width="680" height="304"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCConfigurationAccessContext_ac0a975afc840488e5e82345441de56cc_icgraph.svg" width="684" height="374"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>

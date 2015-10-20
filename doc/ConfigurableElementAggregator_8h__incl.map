@@ -1,9 +1,11 @@
 <map id="parameter/ConfigurableElementAggregator.h" name="parameter/ConfigurableElementAggregator.h">
-<area shape="rect" id="node2" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="422,95,589,121"/>
-<area shape="rect" id="node3" href="$Element_8h.html" title="Element.h" alt="" coords="411,169,498,196"/>
-<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="187,244,272,271"/>
-<area shape="rect" id="node11" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="297,244,399,271"/>
-<area shape="rect" id="node12" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="477,244,600,271"/>
-<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="291,319,402,345"/>
-<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="93,319,267,345"/>
+<area shape="rect" id="node2" href="$ConfigurableElement_8h.html" title="ConfigurableElement.h" alt="" coords="447,95,614,121"/>
+<area shape="rect" id="node12" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="598,468,733,495"/>
+<area shape="rect" id="node4" href="$Element_8h.html" title="Element.h" alt="" coords="305,169,391,196"/>
+<area shape="rect" id="node8" href="$XmlSink_8h.html" title="XmlSink.h" alt="" coords="469,244,555,271"/>
+<area shape="rect" id="node13" href="$XmlSource_8h.html" title="XmlSource.h" alt="" coords="342,244,445,271"/>
+<area shape="rect" id="node14" href="$PathNavigator_8h.html" title="PathNavigator.h" alt="" coords="93,244,216,271"/>
+<area shape="rect" id="node9" href="$XmlElement_8h.html" title="XmlElement.h" alt="" coords="342,319,453,345"/>
+<area shape="rect" id="node10" href="$XmlSerializingContext_8h.html" title="XmlSerializingContext.h" alt="" coords="477,319,651,345"/>
+<area shape="rect" id="node11" href="$ErrorContext_8hpp.html" title="ErrorContext.hpp" alt="" coords="499,393,629,420"/>
 </map>

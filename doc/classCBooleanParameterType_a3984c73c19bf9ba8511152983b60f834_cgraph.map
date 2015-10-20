@@ -1,5 +1,6 @@
 <map id="CBooleanParameterType::toBlackboard" name="CBooleanParameterType::toBlackboard">
-<area shape="rect" id="node2" href="$classCErrorContext.html#a9d58b281c0d0fc9a6d3b83714cf812ef" title="CErrorContext::setError" alt="" coords="253,5,423,32"/>
-<area shape="rect" id="node3" href="$classCErrorContext.html#afdd38e8aaaf045faaf575cf3ccbbc37b" title="CErrorContext::appendToError" alt="" coords="232,56,444,83"/>
-<area shape="rect" id="node4" href="$classCBooleanParameterType.html#a0e8c0863335cdca9486f53a12fd98f47" title="CBooleanParameterType\l::getKind" alt="" coords="249,107,427,149"/>
+<area shape="rect" id="node2" href="$classutility_1_1ErrorContext.html#afc2e1af8c4a81e36e5013bf31127c15f" title="utility::ErrorContext\l::setError" alt="" coords="249,5,393,47"/>
+<area shape="rect" id="node3" href="$namespaceutility.html#af26524fd398a870267af79c918862662" title="Checks if a string has the written representation of an hexadecimal number (Which is the prefix &quot;0x&quot; ..." alt="" coords="243,71,399,98"/>
+<area shape="rect" id="node4" href="$classutility_1_1ErrorContext.html#aafe9cd30a03303cf376926d9c4e9dd02" title="utility::ErrorContext\l::appendToError" alt="" coords="249,123,393,164"/>
+<area shape="rect" id="node5" href="$classCBooleanParameterType.html#a0e8c0863335cdca9486f53a12fd98f47" title="CBooleanParameterType\l::getKind" alt="" coords="232,188,411,229"/>
 </map>

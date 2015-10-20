@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classISelectionCriterionTypeInterface.html#a56b4add65b5107377938694a3c67eb82" target="_top" xlink:title="ISelectionCriterionTypeInterface\l::addValuePair">
+<g id="a_node3"><a xlink:href="classISelectionCriterionTypeInterface.html#a6ca52ae84cba77ed8d38feaefbc1abc5" target="_top" xlink:title="Add a new pair [integer, litteral] which represents a criterion. ">
 <polygon fill="white" stroke="black" points="182,-39 182,-69 349,-69 349,-39 182,-39"/>
 <text text-anchor="start" x="190" y="-57" font-family="Verdana" font-size="10.00">ISelectionCriterionTypeInterface</text>
 <text text-anchor="middle" x="265.5" y="-46" font-family="Verdana" font-size="10.00">::addValuePair</text>

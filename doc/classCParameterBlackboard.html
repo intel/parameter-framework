@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -95,97 +95,74 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="ParameterBlackboard_8h_source.html">ParameterBlackboard.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for CParameterBlackboard:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard__inherit__graph.svg" width="180" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3ed6eacd670df5642a477d82c7053aeb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a3ed6eacd670df5642a477d82c7053aeb">CParameterBlackboard</a> ()</td></tr>
-<tr class="separator:a3ed6eacd670df5642a477d82c7053aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55e42fea26cfb555ba66021568357311"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a55e42fea26cfb555ba66021568357311">~CParameterBlackboard</a> ()</td></tr>
-<tr class="separator:a55e42fea26cfb555ba66021568357311"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac03b75ea7a07a5f8d1fcdb3e1ded11dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#ac03b75ea7a07a5f8d1fcdb3e1ded11dd">setSize</a> (uint32_t uiSize)</td></tr>
-<tr class="separator:ac03b75ea7a07a5f8d1fcdb3e1ded11dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c0442d3a8907f740ce75d9b80cfa47f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a1c0442d3a8907f740ce75d9b80cfa47f">getSize</a> () const </td></tr>
-<tr class="separator:a1c0442d3a8907f740ce75d9b80cfa47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acebc8035bb3e73be7ece4fcb5169b474"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#acebc8035bb3e73be7ece4fcb5169b474">writeInteger</a> (const void *pvSrcData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian)</td></tr>
-<tr class="separator:acebc8035bb3e73be7ece4fcb5169b474"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9d9a3d649fccda93ede444ed12d8791"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#ab9d9a3d649fccda93ede444ed12d8791">readInteger</a> (void *pvDstData, uint32_t uiSize, uint32_t uiOffset, bool bBigEndian) const </td></tr>
-<tr class="separator:ab9d9a3d649fccda93ede444ed12d8791"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ccc33426ac800565cb6b5b11bbf32ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a7ccc33426ac800565cb6b5b11bbf32ce">writeString</a> (const std::string &amp;input, uint32_t uiOffset)</td></tr>
-<tr class="separator:a7ccc33426ac800565cb6b5b11bbf32ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d0efe77c5d8a11f6ff418b8013c8ede"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a7d0efe77c5d8a11f6ff418b8013c8ede">readString</a> (std::string &amp;output, uint32_t uiOffset) const </td></tr>
-<tr class="separator:a7d0efe77c5d8a11f6ff418b8013c8ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1b98fae8921c4a296d7af0faad3e0df"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#ac1b98fae8921c4a296d7af0faad3e0df">getLocation</a> (uint32_t uiOffset)</td></tr>
-<tr class="separator:ac1b98fae8921c4a296d7af0faad3e0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6a2b3fd050432c1e050347222544915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#ad6a2b3fd050432c1e050347222544915">restoreFrom</a> (const <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pFromBlackboard, uint32_t uiOffset)</td></tr>
-<tr class="separator:ad6a2b3fd050432c1e050347222544915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18beee9bc99021a03cd3d44fda0df97e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a18beee9bc99021a03cd3d44fda0df97e">saveTo</a> (<a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pToBlackboard, uint32_t uiOffset) const </td></tr>
-<tr class="separator:a18beee9bc99021a03cd3d44fda0df97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad96ba821eb1035b06a5a30ef7377da39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#ad96ba821eb1035b06a5a30ef7377da39">serialize</a> (<a class="el" href="classCBinaryStream.html">CBinaryStream</a> &amp;binaryStream)</td></tr>
-<tr class="separator:ad96ba821eb1035b06a5a30ef7377da39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7f3c085b727682c9d0e81372bb50c9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#af7f3c085b727682c9d0e81372bb50c9b">setSize</a> (size_t size)</td></tr>
+<tr class="separator:af7f3c085b727682c9d0e81372bb50c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a518aa527b461b96187777b8e1794a818"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a518aa527b461b96187777b8e1794a818">getSize</a> () const </td></tr>
+<tr class="separator:a518aa527b461b96187777b8e1794a818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d3f07a98e0e73d36cf222aa82ce3d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a52d3f07a98e0e73d36cf222aa82ce3d0">writeInteger</a> (const void *pvSrcData, size_t size, size_t offset)</td></tr>
+<tr class="separator:a52d3f07a98e0e73d36cf222aa82ce3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa87ec78e61424a92250a172b68544071"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#aa87ec78e61424a92250a172b68544071">readInteger</a> (void *pvDstData, size_t size, size_t offset) const </td></tr>
+<tr class="separator:aa87ec78e61424a92250a172b68544071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ab588ed3946c5b368b81804a08a3251"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a8ab588ed3946c5b368b81804a08a3251">writeString</a> (const std::string &amp;input, size_t offset)</td></tr>
+<tr class="separator:a8ab588ed3946c5b368b81804a08a3251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09182c2726481979101b7be0be944483"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a09182c2726481979101b7be0be944483">readString</a> (std::string &amp;output, size_t offset) const </td></tr>
+<tr class="separator:a09182c2726481979101b7be0be944483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae31d40f0fb954f3fc14e445cdef0fbd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#ae31d40f0fb954f3fc14e445cdef0fbd1">writeBuffer</a> (const void *pvSrcData, size_t size, size_t offset)</td></tr>
+<tr class="separator:ae31d40f0fb954f3fc14e445cdef0fbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ddc4545cb30be9e77acfd59830af8c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a9ddc4545cb30be9e77acfd59830af8c3">readBuffer</a> (void *pvDstData, size_t size, size_t offset) const </td></tr>
+<tr class="separator:a9ddc4545cb30be9e77acfd59830af8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b43184e94ee130442b5dcf72a54ff91"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a4b43184e94ee130442b5dcf72a54ff91">getLocation</a> (size_t offset)</td></tr>
+<tr class="separator:a4b43184e94ee130442b5dcf72a54ff91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b06995999fa388ee28c6575f5570f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#a45b06995999fa388ee28c6575f5570f2">restoreFrom</a> (const <a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pFromBlackboard, size_t offset)</td></tr>
+<tr class="separator:a45b06995999fa388ee28c6575f5570f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acde8695accd70262d2785b33a09a1e37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameterBlackboard.html#acde8695accd70262d2785b33a09a1e37">saveTo</a> (<a class="el" href="classCParameterBlackboard.html">CParameterBlackboard</a> *pToBlackboard, size_t offset) const </td></tr>
+<tr class="separator:acde8695accd70262d2785b33a09a1e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ParameterBlackboard_8h_source.html#l00036">36</a> of file <a class="el" href="ParameterBlackboard_8h_source.html">ParameterBlackboard.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a3ed6eacd670df5642a477d82c7053aeb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CParameterBlackboard::CParameterBlackboard </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00034">34</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a55e42fea26cfb555ba66021568357311"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CParameterBlackboard::~CParameterBlackboard </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00038">38</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac1b98fae8921c4a296d7af0faad3e0df"></a>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8h_source.html#l00038">38</a> of file <a class="el" href="ParameterBlackboard_8h_source.html">ParameterBlackboard.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4b43184e94ee130442b5dcf72a54ff91"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">uint8_t * CParameterBlackboard::getLocation </td>
           <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiOffset</em></td><td>)</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00113">113</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00098">98</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a4b43184e94ee130442b5dcf72a54ff91_icgraph.svg" width="472" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="a1c0442d3a8907f740ce75d9b80cfa47f"></a>
+<a class="anchor" id="a518aa527b461b96187777b8e1794a818"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t CParameterBlackboard::getSize </td>
+          <td class="memname">size_t CParameterBlackboard::getSize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -193,19 +170,61 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00058">58</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00041">41</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9ddc4545cb30be9e77acfd59830af8c3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterBlackboard::readBuffer </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pvDstData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00092">92</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a9ddc4545cb30be9e77acfd59830af8c3_cgraph.svg" width="398" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a1c0442d3a8907f740ce75d9b80cfa47f_icgraph.svg" width="590" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a9ddc4545cb30be9e77acfd59830af8c3_icgraph.svg" width="482" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="ab9d9a3d649fccda93ede444ed12d8791"></a>
+<a class="anchor" id="aa87ec78e61424a92250a172b68544071"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -218,20 +237,14 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiSize</em>, </td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiOffset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bBigEndian</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -241,11 +254,19 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00083">83</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00058">58</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_aa87ec78e61424a92250a172b68544071_icgraph.svg" width="699" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="a7d0efe77c5d8a11f6ff418b8013c8ede"></a>
+<a class="anchor" id="a09182c2726481979101b7be0be944483"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -258,8 +279,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiOffset</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -269,19 +290,19 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00107">107</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00077">77</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a7d0efe77c5d8a11f6ff418b8013c8ede_icgraph.svg" width="447" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a09182c2726481979101b7be0be944483_icgraph.svg" width="447" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="ad6a2b3fd050432c1e050347222544915"></a>
+<a class="anchor" id="a45b06995999fa388ee28c6575f5570f2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -294,8 +315,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiOffset</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -305,19 +326,19 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00119">119</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00105">105</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_ad6a2b3fd050432c1e050347222544915_icgraph.svg" width="590" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a45b06995999fa388ee28c6575f5570f2_icgraph.svg" width="375" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a18beee9bc99021a03cd3d44fda0df97e"></a>
+<a class="anchor" id="acde8695accd70262d2785b33a09a1e37"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -330,8 +351,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiOffset</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -341,71 +362,87 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00124">124</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00112">112</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad96ba821eb1035b06a5a30ef7377da39"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CParameterBlackboard::serialize </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classCBinaryStream.html">CBinaryStream</a> &amp;&#160;</td>
-          <td class="paramname"><em>binaryStream</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00130">130</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_ad96ba821eb1035b06a5a30ef7377da39_cgraph.svg" width="388" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_ad96ba821eb1035b06a5a30ef7377da39_icgraph.svg" width="590" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ac03b75ea7a07a5f8d1fcdb3e1ded11dd"></a>
+<a class="anchor" id="af7f3c085b727682c9d0e81372bb50c9b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void CParameterBlackboard::setSize </td>
           <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiSize</em></td><td>)</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00044">44</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00036">36</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_ac03b75ea7a07a5f8d1fcdb3e1ded11dd_icgraph.svg" width="383" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_af7f3c085b727682c9d0e81372bb50c9b_icgraph.svg" width="383" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="acebc8035bb3e73be7ece4fcb5169b474"></a>
+<a class="anchor" id="ae31d40f0fb954f3fc14e445cdef0fbd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CParameterBlackboard::writeBuffer </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>pvSrcData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00088">88</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_ae31d40f0fb954f3fc14e445cdef0fbd1_cgraph.svg" width="398" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_ae31d40f0fb954f3fc14e445cdef0fbd1_icgraph.svg" width="451" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a52d3f07a98e0e73d36cf222aa82ce3d0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -418,20 +455,14 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiSize</em>, </td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiOffset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bBigEndian</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -441,19 +472,19 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00064">64</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00047">47</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_acebc8035bb3e73be7ece4fcb5169b474_icgraph.svg" width="443" height="170"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a52d3f07a98e0e73d36cf222aa82ce3d0_icgraph.svg" width="714" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a7ccc33426ac800565cb6b5b11bbf32ce"></a>
+<a class="anchor" id="a8ab588ed3946c5b368b81804a08a3251"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -466,8 +497,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiOffset</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -477,12 +508,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00102">102</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ParameterBlackboard_8cpp_source.html#l00069">69</a> of file <a class="el" href="ParameterBlackboard_8cpp_source.html">ParameterBlackboard.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a7ccc33426ac800565cb6b5b11bbf32ce_icgraph.svg" width="446" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCParameterBlackboard_a8ab588ed3946c5b368b81804a08a3251_icgraph.svg" width="446" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </p>

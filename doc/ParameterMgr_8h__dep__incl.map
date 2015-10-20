@@ -1,7 +1,6 @@
 <map id="parameter/ParameterMgr.h" name="parameter/ParameterMgr.h">
-<area shape="rect" id="node2" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="5,80,239,107"/>
-<area shape="rect" id="node3" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="263,80,474,107"/>
-<area shape="rect" id="node4" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="426,155,631,196"/>
-<area shape="rect" id="node5" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="549,80,789,107"/>
-<area shape="rect" id="node6" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="689,155,928,196"/>
+<area shape="rect" id="node2" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="5,87,239,114"/>
+<area shape="rect" id="node3" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="263,87,474,114"/>
+<area shape="rect" id="node4" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="498,80,703,121"/>
+<area shape="rect" id="node5" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="728,80,967,121"/>
 </map>

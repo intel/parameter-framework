@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -123,29 +123,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ErrorContext_8hpp.html">ErrorContext.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classCXmlSerializingContext.html">   44</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classCXmlSerializingContext.html#a5e31cd8b7cde411207f55616dbc8c26b">CXmlSerializingContext</a>(std::string&amp; strError);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classCXmlSerializingContext.html#ae1c7835a0dd5c0cfb792512f31faa19a">~CXmlSerializingContext</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Error</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d">setError</a>(<span class="keyword">const</span> std::string&amp; strError);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(<span class="keyword">const</span> std::string&amp; strAppend);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classCXmlSerializingContext.html#a7521e60a007bde65aac1171d74b53825">genericErrorHandler</a>(<span class="keywordtype">void</span>* userData, <span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::string&amp; _strError;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::string _strXmlError;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
-<div class="ttc" id="classCXmlSerializingContext_html_a9e5ad5515d4c68fba4313df538382da7"><div class="ttname"><a href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">CXmlSerializingContext::appendLineToError</a></div><div class="ttdeci">void appendLineToError(const std::string &amp;strAppend)</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00051">XmlSerializingContext.cpp:51</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00044">XmlSerializingContext.h:44</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html_ae1c7835a0dd5c0cfb792512f31faa19a"><div class="ttname"><a href="classCXmlSerializingContext.html#ae1c7835a0dd5c0cfb792512f31faa19a">CXmlSerializingContext::~CXmlSerializingContext</a></div><div class="ttdeci">~CXmlSerializingContext()</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00039">XmlSerializingContext.cpp:39</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html_a7521e60a007bde65aac1171d74b53825"><div class="ttname"><a href="classCXmlSerializingContext.html#a7521e60a007bde65aac1171d74b53825">CXmlSerializingContext::genericErrorHandler</a></div><div class="ttdeci">static void genericErrorHandler(void *userData, const char *format,...)</div><div class="ttdoc">XML error handler. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00056">XmlSerializingContext.cpp:56</a></div></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">struct </span>_xmlError;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classCXmlSerializingContext.html">   49</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCXmlSerializingContext.html">CXmlSerializingContext</a> : <span class="keyword">public</span> <a class="code" href="classutility_1_1ErrorContext.html">utility::ErrorContext</a></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classCXmlSerializingContext.html#a5e31cd8b7cde411207f55616dbc8c26b">CXmlSerializingContext</a>(std::string&amp; strError);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classCXmlSerializingContext.html#ae1c7835a0dd5c0cfb792512f31faa19a">~CXmlSerializingContext</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// Error</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">appendLineToError</a>(<span class="keyword">const</span> std::string&amp; strAppend);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classCXmlSerializingContext.html#ad1582dd4364b76db3b9c527b8c67f08d">structuredErrorHandler</a>(<span class="keywordtype">void</span>* userData, _xmlError *error);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    std::string _strXmlError;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
+<div class="ttc" id="classCXmlSerializingContext_html_a9e5ad5515d4c68fba4313df538382da7"><div class="ttname"><a href="classCXmlSerializingContext.html#a9e5ad5515d4c68fba4313df538382da7">CXmlSerializingContext::appendLineToError</a></div><div class="ttdeci">void appendLineToError(const std::string &amp;strAppend)</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00046">XmlSerializingContext.cpp:46</a></div></div>
+<div class="ttc" id="classutility_1_1ErrorContext_html"><div class="ttname"><a href="classutility_1_1ErrorContext.html">utility::ErrorContext</a></div><div class="ttdef"><b>Definition:</b> <a href="ErrorContext_8hpp_source.html#l00038">ErrorContext.hpp:38</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html"><div class="ttname"><a href="classCXmlSerializingContext.html">CXmlSerializingContext</a></div><div class="ttdoc">Class that gather errors during serialization. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8h_source.html#l00049">XmlSerializingContext.h:49</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html_ae1c7835a0dd5c0cfb792512f31faa19a"><div class="ttname"><a href="classCXmlSerializingContext.html#ae1c7835a0dd5c0cfb792512f31faa19a">CXmlSerializingContext::~CXmlSerializingContext</a></div><div class="ttdeci">~CXmlSerializingContext()</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00040">XmlSerializingContext.cpp:40</a></div></div>
+<div class="ttc" id="ErrorContext_8hpp_html"><div class="ttname"><a href="ErrorContext_8hpp.html">ErrorContext.hpp</a></div></div>
+<div class="ttc" id="classCXmlSerializingContext_html_ad1582dd4364b76db3b9c527b8c67f08d"><div class="ttname"><a href="classCXmlSerializingContext.html#ad1582dd4364b76db3b9c527b8c67f08d">CXmlSerializingContext::structuredErrorHandler</a></div><div class="ttdeci">static void structuredErrorHandler(void *userData, _xmlError *error)</div><div class="ttdoc">XML error handler. </div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00057">XmlSerializingContext.cpp:57</a></div></div>
 <div class="ttc" id="classCXmlSerializingContext_html_a5e31cd8b7cde411207f55616dbc8c26b"><div class="ttname"><a href="classCXmlSerializingContext.html#a5e31cd8b7cde411207f55616dbc8c26b">CXmlSerializingContext::CXmlSerializingContext</a></div><div class="ttdeci">CXmlSerializingContext(std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00034">XmlSerializingContext.cpp:34</a></div></div>
-<div class="ttc" id="classCXmlSerializingContext_html_a32535de3d5fb180f216d837ee7d5326d"><div class="ttname"><a href="classCXmlSerializingContext.html#a32535de3d5fb180f216d837ee7d5326d">CXmlSerializingContext::setError</a></div><div class="ttdeci">void setError(const std::string &amp;strError)</div><div class="ttdef"><b>Definition:</b> <a href="XmlSerializingContext_8cpp_source.html#l00046">XmlSerializingContext.cpp:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

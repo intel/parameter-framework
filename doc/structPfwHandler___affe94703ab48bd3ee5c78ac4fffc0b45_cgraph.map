@@ -1,5 +1,5 @@
 <map id="PfwHandler_::createCriteria" name="PfwHandler_::createCriteria">
 <area shape="rect" id="node2" href="$classStatus.html#a02f271ac768f84947beb80573366de26" title="Fail without an instance of status. " alt="" coords="304,5,415,32"/>
-<area shape="rect" id="node3" href="$classISelectionCriterionTypeInterface.html#a56b4add65b5107377938694a3c67eb82" title="ISelectionCriterionTypeInterface\l::addValuePair" alt="" coords="248,57,471,98"/>
+<area shape="rect" id="node3" href="$classISelectionCriterionTypeInterface.html#a6ca52ae84cba77ed8d38feaefbc1abc5" title="Add a new pair [integer, litteral] which represents a criterion. " alt="" coords="248,57,471,98"/>
 <area shape="rect" id="node4" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="298,123,421,149"/>
 </map>

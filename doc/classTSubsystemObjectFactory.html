@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -104,19 +104,19 @@ Inheritance diagram for TSubsystemObjectFactory&lt; SubsystemObjectType &gt;:</d
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aec4b47b0b5d3ff8ccf0b719b0c6ed719"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTSubsystemObjectFactory.html#aec4b47b0b5d3ff8ccf0b719b0c6ed719">TSubsystemObjectFactory</a> (const std::string &amp;strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize=-1)</td></tr>
-<tr class="separator:aec4b47b0b5d3ff8ccf0b719b0c6ed719"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61de1063d1f32209eaa718311cbbc66b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCSubsystemObject.html">CSubsystemObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTSubsystemObjectFactory.html#a61de1063d1f32209eaa718311cbbc66b">objectCreate</a> (const std::string &amp;strMappingValue, <a class="el" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement, const <a class="el" href="classCMappingContext.html">CMappingContext</a> &amp;context) const </td></tr>
-<tr class="separator:a61de1063d1f32209eaa718311cbbc66b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a326563f3afdd0d8e13d891b3843676d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTSubsystemObjectFactory.html#a326563f3afdd0d8e13d891b3843676d1">TSubsystemObjectFactory</a> (const std::string &amp;strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize=std::numeric_limits&lt; size_t &gt;::max())</td></tr>
+<tr class="separator:a326563f3afdd0d8e13d891b3843676d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0616e849ff7d97472ab208106bb3259"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCSubsystemObject.html">CSubsystemObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTSubsystemObjectFactory.html#ad0616e849ff7d97472ab208106bb3259">objectCreate</a> (const std::string &amp;strMappingValue, <a class="el" href="classCInstanceConfigurableElement.html">CInstanceConfigurableElement</a> *pInstanceConfigurableElement, const <a class="el" href="classCMappingContext.html">CMappingContext</a> &amp;context, <a class="el" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;logger) const </td></tr>
+<tr class="separator:ad0616e849ff7d97472ab208106bb3259"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCSubsystemObjectCreator"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCSubsystemObjectCreator')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCSubsystemObjectCreator.html">CSubsystemObjectCreator</a></td></tr>
-<tr class="memitem:a500f80b4241a71e795dbebfe0c0eb02e inherit pub_methods_classCSubsystemObjectCreator"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObjectCreator.html#a500f80b4241a71e795dbebfe0c0eb02e">CSubsystemObjectCreator</a> (const std::string &amp;strMappingKey, uint32_t uiAncestorIdMask, uint32_t uiMaxConfigurableElementSize)</td></tr>
-<tr class="separator:a500f80b4241a71e795dbebfe0c0eb02e inherit pub_methods_classCSubsystemObjectCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49097bcf394bb23d0f62e86dd12bdcd5 inherit pub_methods_classCSubsystemObjectCreator"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObjectCreator.html#a49097bcf394bb23d0f62e86dd12bdcd5">CSubsystemObjectCreator</a> (const std::string &amp;strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize)</td></tr>
+<tr class="separator:a49097bcf394bb23d0f62e86dd12bdcd5 inherit pub_methods_classCSubsystemObjectCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4823f048b06798b25bf97e00f3698334 inherit pub_methods_classCSubsystemObjectCreator"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObjectCreator.html#a4823f048b06798b25bf97e00f3698334">getMappingKey</a> () const </td></tr>
 <tr class="separator:a4823f048b06798b25bf97e00f3698334 inherit pub_methods_classCSubsystemObjectCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad4ee4c92132bddb2166da97dad680be inherit pub_methods_classCSubsystemObjectCreator"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObjectCreator.html#aad4ee4c92132bddb2166da97dad680be">getAncestorMask</a> () const </td></tr>
 <tr class="separator:aad4ee4c92132bddb2166da97dad680be inherit pub_methods_classCSubsystemObjectCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c779e9f32e397e5b080fc510aa4973e inherit pub_methods_classCSubsystemObjectCreator"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObjectCreator.html#a7c779e9f32e397e5b080fc510aa4973e">getMaxConfigurableElementSize</a> () const </td></tr>
-<tr class="separator:a7c779e9f32e397e5b080fc510aa4973e inherit pub_methods_classCSubsystemObjectCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a279509f41b906328d74686fea4a919 inherit pub_methods_classCSubsystemObjectCreator"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObjectCreator.html#a3a279509f41b906328d74686fea4a919">getMaxConfigurableElementSize</a> () const </td></tr>
+<tr class="separator:a3a279509f41b906328d74686fea4a919 inherit pub_methods_classCSubsystemObjectCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc688084d766aed727e36346bacc5d3c inherit pub_methods_classCSubsystemObjectCreator"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSubsystemObjectCreator.html#abc688084d766aed727e36346bacc5d3c">~CSubsystemObjectCreator</a> ()</td></tr>
 <tr class="separator:abc688084d766aed727e36346bacc5d3c inherit pub_methods_classCSubsystemObjectCreator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -125,9 +125,9 @@ Public Member Functions</h2></td></tr>
 class TSubsystemObjectFactory&lt; SubsystemObjectType &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="SubsystemObjectFactory_8h_source.html#l00036">36</a> of file <a class="el" href="SubsystemObjectFactory_8h_source.html">SubsystemObjectFactory.h</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObjectFactory_8h_source.html#l00037">37</a> of file <a class="el" href="SubsystemObjectFactory_8h_source.html">SubsystemObjectFactory.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aec4b47b0b5d3ff8ccf0b719b0c6ed719"></a>
+<a class="anchor" id="a326563f3afdd0d8e13d891b3843676d1"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -151,8 +151,8 @@ template&lt;class SubsystemObjectType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>uiMaxConfigurableElementSize</em> = <code>-1</code>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>maxConfigurableElementSize</em> = <code>std::numeric_limits&lt;size_t&gt;::max()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -167,12 +167,12 @@ template&lt;class SubsystemObjectType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="SubsystemObjectFactory_8h_source.html#l00039">39</a> of file <a class="el" href="SubsystemObjectFactory_8h_source.html">SubsystemObjectFactory.h</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObjectFactory_8h_source.html#l00040">40</a> of file <a class="el" href="SubsystemObjectFactory_8h_source.html">SubsystemObjectFactory.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a61de1063d1f32209eaa718311cbbc66b"></a>
+<a class="anchor" id="ad0616e849ff7d97472ab208106bb3259"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -197,7 +197,13 @@ template&lt;class SubsystemObjectType &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classCMappingContext.html">CMappingContext</a> &amp;&#160;</td>
-          <td class="paramname"><em>context</em>&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcore_1_1log_1_1Logger.html">core::log::Logger</a> &amp;&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -212,9 +218,9 @@ template&lt;class SubsystemObjectType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classCSubsystemObjectCreator.html#a5805c0b45d0d10ee443384a200612032">CSubsystemObjectCreator</a>.</p>
+<p>Implements <a class="el" href="classCSubsystemObjectCreator.html#a7d2994a97f0d496976b041e6f592db03">CSubsystemObjectCreator</a>.</p>
 
-<p>Definition at line <a class="el" href="SubsystemObjectFactory_8h_source.html#l00042">42</a> of file <a class="el" href="SubsystemObjectFactory_8h_source.html">SubsystemObjectFactory.h</a>.</p>
+<p>Definition at line <a class="el" href="SubsystemObjectFactory_8h_source.html#l00044">44</a> of file <a class="el" href="SubsystemObjectFactory_8h_source.html">SubsystemObjectFactory.h</a>.</p>
 
 </div>
 </div>

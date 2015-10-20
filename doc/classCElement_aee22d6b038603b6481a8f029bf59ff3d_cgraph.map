@@ -1,10 +1,4 @@
 <map id="CElement::childrenToXml" name="CElement::childrenToXml">
-<area shape="rect" id="node2" href="$classCElement.html#a58b6cdb5715497442fde6afa1e65f8e5" title="CElement::getNbChildren" alt="" coords="235,5,417,32"/>
-<area shape="rect" id="node3" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="232,56,420,83"/>
-<area shape="rect" id="node5" href="$classCElement.html#aed2ca7f2a56dbf2edcd82167859535ee" title="CElement::getKind" alt="" coords="256,107,396,133"/>
-<area shape="rect" id="node6" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="261,157,391,184"/>
-<area shape="rect" id="node4" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="468,56,681,83"/>
-<area shape="rect" id="node7" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="471,150,679,191"/>
-<area shape="rect" id="node8" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="733,128,918,155"/>
-<area shape="rect" id="node9" href="$classCXmlElement.html#a263dbb440f86ef0ad7a74a07f09c87d1" title="CXmlElement::setAttribute\lString" alt="" coords="729,179,921,221"/>
+<area shape="rect" id="node2" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="232,5,420,32"/>
+<area shape="rect" id="node3" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="468,5,681,32"/>
 </map>

@@ -1,13 +1,12 @@
 <map id="remote&#45;processor/RemoteCommandHandler.h" name="remote&#45;processor/RemoteCommandHandler.h">
-<area shape="rect" id="node2" href="$RemoteCommandHandlerTemplate_8h.html" title="remote&#45;processor/RemoteCommand\lHandlerTemplate.h" alt="" coords="671,95,928,136"/>
-<area shape="rect" id="node12" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="953,95,1206,136"/>
-<area shape="rect" id="node3" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="492,191,688,218"/>
-<area shape="rect" id="node9" href="$TestPlatform_8h.html" title="test/test&#45;platform\l/TestPlatform.h" alt="" coords="864,184,999,225"/>
+<area shape="rect" id="node2" href="$RemoteCommandHandlerTemplate_8h.html" title="remote&#45;processor/RemoteCommand\lHandlerTemplate.h" alt="" coords="700,95,957,136"/>
+<area shape="rect" id="node11" href="$RemoteProcessorServer_8cpp.html" title="remote&#45;processor/RemoteProcessor\lServer.cpp" alt="" coords="982,95,1235,136"/>
+<area shape="rect" id="node3" href="$ParameterMgr_8h.html" title="parameter/ParameterMgr.h" alt="" coords="503,191,699,218"/>
+<area shape="rect" id="node8" href="$TestPlatform_8h.html" title="test/test&#45;platform\l/TestPlatform.h" alt="" coords="991,184,1125,225"/>
 <area shape="rect" id="node4" href="$ParameterHandle_8cpp.html" title="parameter/ParameterHandle.cpp" alt="" coords="5,281,239,307"/>
 <area shape="rect" id="node5" href="$ParameterMgr_8cpp.html" title="parameter/ParameterMgr.cpp" alt="" coords="263,281,474,307"/>
-<area shape="rect" id="node6" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="426,363,631,404"/>
-<area shape="rect" id="node7" href="$ParameterMgrLogger_8h.html" title="parameter/ParameterMgrLogger.h" alt="" coords="549,281,789,307"/>
-<area shape="rect" id="node8" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="689,363,928,404"/>
-<area shape="rect" id="node10" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="864,273,999,315"/>
-<area shape="rect" id="node11" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="1023,273,1157,315"/>
+<area shape="rect" id="node6" href="$ParameterMgrFullConnector_8cpp.html" title="parameter/ParameterMgrFull\lConnector.cpp" alt="" coords="498,273,703,315"/>
+<area shape="rect" id="node7" href="$ParameterMgrPlatformConnector_8cpp.html" title="parameter/ParameterMgrPlatform\lConnector.cpp" alt="" coords="728,273,967,315"/>
+<area shape="rect" id="node9" href="$test_2test-platform_2main_8cpp.html" title="test/test&#45;platform\l/main.cpp" alt="" coords="991,273,1125,315"/>
+<area shape="rect" id="node10" href="$TestPlatform_8cpp.html" title="test/test&#45;platform\l/TestPlatform.cpp" alt="" coords="1149,273,1284,315"/>
 </map>

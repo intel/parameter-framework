@@ -11,9 +11,9 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-278.604 944,-278.604 944,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="0,-134 0,-164 176,-164 176,-134 0,-134"/>
-<text text-anchor="start" x="8" y="-152" font-family="Verdana" font-size="10.00">CParameterMgr::addConfigurable</text>
-<text text-anchor="middle" x="88" y="-141" font-family="Verdana" font-size="10.00">ElementToDomain</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-93 0,-123 176,-123 176,-93 0,-93"/>
+<text text-anchor="start" x="8" y="-111" font-family="Verdana" font-size="10.00">CParameterMgr::addConfigurable</text>
+<text text-anchor="middle" x="88" y="-100" font-family="Verdana" font-size="10.00">ElementToDomain</text>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
@@ -25,12 +25,12 @@
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M168.204,-164.034C193.489,-168.833 221.045,-174.064 244.756,-178.565"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="244.187,-182.019 254.664,-180.446 245.492,-175.142 244.187,-182.019"/>
+<path fill="none" stroke="midnightblue" d="M128.618,-123.04C169.09,-138.404 231.326,-162.031 270.027,-176.723"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="269.215,-180.159 279.806,-180.436 271.699,-173.614 269.215,-180.159"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a xlink:href="classCConfigurableDomains.html#a5ef1a732092a341b147eca23da2f9476" target="_top" xlink:title="CConfigurableDomains\l::addConfigurableElementToDomain">
+<g id="a_node8"><a xlink:href="classCConfigurableDomains.html#a1be2d84567e3868ed69fdc50904cab3b" target="_top" xlink:title="Associate a configurable element to a domain. ">
 <polygon fill="white" stroke="black" points="212,-93 212,-123 400,-123 400,-93 212,-93"/>
 <text text-anchor="start" x="220" y="-111" font-family="Verdana" font-size="10.00">CConfigurableDomains</text>
 <text text-anchor="middle" x="306" y="-100" font-family="Verdana" font-size="10.00">::addConfigurableElementToDomain</text>
@@ -39,8 +39,21 @@
 </g>
 <!-- Node1&#45;&gt;Node8 -->
 <g id="edge9" class="edge"><title>Node1&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M168.204,-133.966C183.612,-131.041 199.863,-127.957 215.574,-124.974"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="216.634,-128.336 225.806,-123.032 215.328,-121.459 216.634,-128.336"/>
+<path fill="none" stroke="midnightblue" d="M176.233,-108C184.648,-108 193.239,-108 201.789,-108"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="201.795,-111.5 211.795,-108 201.795,-104.5 201.795,-111.5"/>
+</g>
+<!-- Node14 -->
+<g id="node14" class="node"><title>Node14</title>
+<g id="a_node14"><a xlink:href="namespaceutility.html#a3fb85a4dbd0307733f0dda49811db6d1" target="_top" xlink:title="Format the items of a map into a string as a list of key&#45;value pairs. ">
+<polygon fill="white" stroke="black" points="262.5,-54.5 262.5,-73.5 349.5,-73.5 349.5,-54.5 262.5,-54.5"/>
+<text text-anchor="middle" x="306" y="-61.5" font-family="Verdana" font-size="10.00">utility::asString</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node14 -->
+<g id="edge18" class="edge"><title>Node1&#45;&gt;Node14</title>
+<path fill="none" stroke="midnightblue" d="M162.731,-92.9808C192.207,-86.9763 225.483,-80.1979 252.438,-74.7071"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="253.338,-78.0957 262.438,-72.67 251.941,-71.2366 253.338,-78.0957"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
@@ -133,7 +146,7 @@
 </g>
 <!-- Node10 -->
 <g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="classCConfigurableDomain.html#ac200b397f14de19463146c5f75d57020" target="_top" xlink:title="CConfigurableDomain\l::addConfigurableElement">
+<g id="a_node10"><a xlink:href="classCConfigurableDomain.html#ab671c7341528cf914119ba8fb3662090" target="_top" xlink:title="Add a configurable element to the domain. ">
 <polygon fill="white" stroke="black" points="440,-44 440,-74 580,-74 580,-44 440,-44"/>
 <text text-anchor="start" x="448" y="-62" font-family="Verdana" font-size="10.00">CConfigurableDomain</text>
 <text text-anchor="middle" x="510" y="-51" font-family="Verdana" font-size="10.00">::addConfigurableElement</text>

@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -88,22 +88,95 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">XmlElement.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="XmlElement_8h_source.html">XmlElement.h</a>&quot;</code><br />
 <code>#include &lt;libxml/tree.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="convert_8hpp_source.html">convert.hpp</a>&quot;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;sstream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for XmlElement.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="XmlElement_8cpp__incl.svg" width="464" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="XmlElement_8cpp__incl.svg" width="547" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
 <p><a href="XmlElement_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a0f4705ae6ae2f4050e74627ac873c3eb"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a0f4705ae6ae2f4050e74627ac873c3eb"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="XmlElement_8cpp.html#a0f4705ae6ae2f4050e74627ac873c3eb">CXmlElement::getAttribute&lt; std::string &gt;</a> (const string &amp;name, string &amp;value) const </td></tr>
+<tr class="separator:a0f4705ae6ae2f4050e74627ac873c3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88b361f8701be7910af3eb475455a8a6"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a88b361f8701be7910af3eb475455a8a6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="XmlElement_8cpp.html#a88b361f8701be7910af3eb475455a8a6">CXmlElement::setAttribute&lt; std::string &gt;</a> (const string &amp;name, const string &amp;value)</td></tr>
+<tr class="separator:a88b361f8701be7910af3eb475455a8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a0f4705ae6ae2f4050e74627ac873c3eb"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classCXmlElement.html#a6198359168c744489018bc2b8d732dc3">CXmlElement::getAttribute</a>&lt; std::string &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="XmlElement_8cpp_source.html#l00080">80</a> of file <a class="el" href="XmlElement_8cpp_source.html">XmlElement.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a88b361f8701be7910af3eb475455a8a6"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846">CXmlElement::setAttribute</a>&lt; std::string &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="XmlElement_8cpp_source.html#l00200">200</a> of file <a class="el" href="XmlElement_8cpp_source.html">XmlElement.cpp</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

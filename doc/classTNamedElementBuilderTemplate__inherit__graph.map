@@ -1,4 +1,4 @@
 <map id="TNamedElementBuilderTemplate&lt; ElementType &gt;" name="TNamedElementBuilderTemplate&lt; ElementType &gt;">
-<area shape="rect" id="node3" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt;" alt="" coords="5,185,236,227"/>
-<area shape="rect" id="node2" href="$classCElementBuilder.html" title="CElementBuilder" alt="" coords="57,5,185,32"/>
+<area shape="rect" id="node2" href="$classCElementBuilder.html" title="CElementBuilder" alt="" coords="57,80,185,107"/>
+<area shape="rect" id="node3" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="47,5,195,32"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="remote&#45;processor/AnswerMessage.cpp" name="remote&#45;processor/AnswerMessage.cpp">
-<area shape="rect" id="node2" href="$AnswerMessage_8h.html" title="AnswerMessage.h" alt="" coords="16,80,153,107"/>
-<area shape="rect" id="node6" href="$RemoteProcessorProtocol_8h.html" title="RemoteProcessorProtocol.h" alt="" coords="177,80,376,107"/>
-<area shape="rect" id="node3" href="$Message_8h.html" title="Message.h" alt="" coords="39,155,130,181"/>
+<area shape="rect" id="node2" href="$AnswerMessage_8h.html" title="AnswerMessage.h" alt="" coords="179,80,316,107"/>
+<area shape="rect" id="node4" href="$Message_8h.html" title="Message.h" alt="" coords="314,155,405,181"/>
+<area shape="rect" id="node5" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="228,229,363,256"/>
 </map>

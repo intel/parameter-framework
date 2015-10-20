@@ -1,8 +1,8 @@
 <map id="CConfigurableElement::containsConfigurableDomain" name="CConfigurableElement::containsConfigurableDomain">
 <area shape="rect" id="node2" href="$classCConfigurableElement.html#ac5508cd538517568bebc5448179d9d76" title="CConfigurableElement\l::belongsTo" alt="" coords="268,39,432,80"/>
-<area shape="rect" id="node3" href="$classCConfigurableDomain.html#ac200b397f14de19463146c5f75d57020" title="CConfigurableDomain\l::addConfigurableElement" alt="" coords="491,5,678,47"/>
-<area shape="rect" id="node7" href="$classCConfigurableDomains.html#a181ae71432b21ee3fedb82abb05872e3" title="CConfigurableDomains\l::findConfigurationBlackboard" alt="" coords="480,71,689,112"/>
-<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a5ef1a732092a341b147eca23da2f9476" title="CConfigurableDomains\l::addConfigurableElementToDomain" alt="" coords="741,5,992,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomain.html#ab671c7341528cf914119ba8fb3662090" title="Add a configurable element to the domain. " alt="" coords="491,5,678,47"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomains.html#a0fb6ef1d7480f819135a29a5dfc6463d" title="CConfigurableDomains\l::findConfigurationBlackboard" alt="" coords="480,71,689,112"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a1be2d84567e3868ed69fdc50904cab3b" title="Associate a configurable element to a domain. " alt="" coords="741,5,992,47"/>
 <area shape="rect" id="node5" href="$classCParameterMgr.html#ae9941471fb32f02b3620cf46cd13ebbb" title="CParameterMgr::addConfigurable\lElementToDomain" alt="" coords="1044,5,1279,47"/>
 <area shape="rect" id="node6" href="$classCParameterMgrFullConnector.html#a9b8231307d300d1fbc9b01b7d1047650" title="CParameterMgrFullConnector\l::addConfigurableElementToDomain" alt="" coords="1327,5,1577,47"/>
 <area shape="rect" id="node8" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="737,71,996,112"/>

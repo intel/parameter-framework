@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">parameter-framework
-   &#160;<span id="projectnumber">v2.6.1</span>
+   &#160;<span id="projectnumber">v3.0.0</span>
    </div>
    <div id="projectbrief">Plugin-based and rule-based framework for describing and controlling parameters</div>
   </td>
@@ -156,26 +156,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  which case, no plugin will be used and the parameters won&#39;t be synchronized.</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  This is useful for debugging but may also be used for the parameter-framework</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  to act as a configurable settings database;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;- `Endianness`: `Little` or `Big`;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;- `Mapping` (optional), defines a Mapping to be inherited by all Components in</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  the Subsystem.</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;A Subsystem *must* contain:</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;- A `ComponentLibrary`, which may include (using `&lt;xi:include href=&quot;xyz.xml&quot;/&gt;`)</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  other files containing a `&lt;ComponentLibrary&gt;` or a `&lt;ComponentTypeSet&gt;` tag.</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;- An `InstanceDefinition` which instantiates the parameters and may use</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  ComponentTypes defined in the ComponentLibrary.</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;## ConfigurableDomains.xsd</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;Schema for the ConfigurableDomains (aka Settings files).  These files contain</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;the rules for applying values to parameters.</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;Writing this file by hand is painful but it is not intended to be dealt</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;with directly: instead, you may use the command-line interface (see</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;`remote-process/README.md`) to set the settings and export the resulting</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;Settings with the `getDomainsWithSettingsXML` command.</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;- `Mapping` (optional), defines a Mapping to be inherited by all Components in</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  the Subsystem.</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;A Subsystem *must* contain:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;- A `ComponentLibrary`, which may include (using `&lt;xi:include href=&quot;xyz.xml&quot;/&gt;`)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  other files containing a `&lt;ComponentLibrary&gt;` or a `&lt;ComponentTypeSet&gt;` tag.</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;- An `InstanceDefinition` which instantiates the parameters and may use</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  ComponentTypes defined in the ComponentLibrary.</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;## ConfigurableDomains.xsd</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;Schema for the ConfigurableDomains (aka Settings files).  These files contain</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;the rules for applying values to parameters.</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;Writing this file by hand is painful but it is not intended to be dealt</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;with directly: instead, you may use the command-line interface (see</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;`remote-process/README.md`) to set the settings and export the resulting</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;Settings with the `getDomainsWithSettingsXML` command.</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

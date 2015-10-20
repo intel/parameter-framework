@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCConfigurableDomain.html#aea88fe7f6e3f02217f5d9f0e2e820da2" target="_top" xlink:title="CConfigurableDomain\l::split">
+<g id="a_node2"><a xlink:href="classCConfigurableDomain.html#ad08b2c56e7c842f9288625d35cb66736" target="_top" xlink:title="Split the domain in two. ">
 <polygon fill="white" stroke="black" points="161,-0.5 161,-30.5 282,-30.5 282,-0.5 161,-0.5"/>
 <text text-anchor="start" x="169" y="-18.5" font-family="Verdana" font-size="10.00">CConfigurableDomain</text>
 <text text-anchor="middle" x="221.5" y="-7.5" font-family="Verdana" font-size="10.00">::split</text>
@@ -31,7 +31,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classCConfigurableDomains.html#ae01182802f0ce424d239ea19f9365330" target="_top" xlink:title="CConfigurableDomains\l::split">
+<g id="a_node3"><a xlink:href="classCConfigurableDomains.html#a52fc8d5da4bfcae5a67017a42a327c2a" target="_top" xlink:title="Split a domain in two. ">
 <polygon fill="white" stroke="black" points="318,-0.5 318,-30.5 444,-30.5 444,-0.5 318,-0.5"/>
 <text text-anchor="start" x="326" y="-18.5" font-family="Verdana" font-size="10.00">CConfigurableDomains</text>
 <text text-anchor="middle" x="381" y="-7.5" font-family="Verdana" font-size="10.00">::split</text>

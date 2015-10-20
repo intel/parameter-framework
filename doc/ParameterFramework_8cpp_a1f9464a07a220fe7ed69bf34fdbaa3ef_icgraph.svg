@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="ParameterFramework_8h.html#af0490100e807cce5037e852f7f9c0aa6" target="_top" xlink:title="Set a criterion value given its name and value. ">
+<g id="a_node2"><a xlink:href="ParameterFramework_8h.html#a7e2da0cb4b2dad4fe639259c4a087feb" target="_top" xlink:title="Set a criterion value given its name and value. ">
 <polygon fill="white" stroke="black" points="109.5,-38.5 109.5,-57.5 198.5,-57.5 198.5,-38.5 109.5,-38.5"/>
 <text text-anchor="middle" x="154" y="-45.5" font-family="Verdana" font-size="10.00">pfwSetCriterion</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="ParameterFramework_8h.html#a3ab4d3f7ab3cca98c22650d721c768f7" target="_top" xlink:title="Get a criterion value given its name. ">
+<g id="a_node4"><a xlink:href="ParameterFramework_8h.html#afe708ce766409bc0d82638cca172330a" target="_top" xlink:title="Get a criterion value given its name. ">
 <polygon fill="white" stroke="black" points="109,-0.5 109,-19.5 199,-19.5 199,-0.5 109,-0.5"/>
 <text text-anchor="middle" x="154" y="-7.5" font-family="Verdana" font-size="10.00">pfwGetCriterion</text>
 </a>

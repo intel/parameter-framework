@@ -1,0 +1,40 @@
+<map id="utility::NonCopyable" name="utility::NonCopyable">
+<area shape="rect" id="node2" href="$classCBackSynchronizer.html" title="CBackSynchronizer" alt="" coords="248,56,393,83"/>
+<area shape="rect" id="node5" href="$classCConfigurableElementAggregator.html" title="CConfigurableElementAggregator" alt="" coords="203,304,439,331"/>
+<area shape="rect" id="node6" href="$classCElementBuilder.html" title="CElementBuilder" alt="" coords="257,355,385,381"/>
+<area shape="rect" id="node14" href="$classCMessage.html" title="CMessage" alt="" coords="277,456,365,483"/>
+<area shape="rect" id="node17" href="$classcore_1_1log_1_1Logger.html" title="Application logger object (Thread unsafe) Provide contextualisable logging API. " alt="" coords="256,507,385,533"/>
+<area shape="rect" id="node18" href="$classCParameterBlackboard.html" title="CParameterBlackboard" alt="" coords="236,557,405,584"/>
+<area shape="rect" id="node19" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\&lt; T \&gt;" alt="" coords="219,659,422,685"/>
+<area shape="rect" id="node20" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\l\&lt; CParameterMgrPlatformConnector \&gt;" alt="" coords="741,626,1013,667"/>
+<area shape="rect" id="node21" href="$singletonCParameterMgrLogger.html" title="CParameterMgrLogger\l\&lt; CParameterMgrFullConnector \&gt;" alt="" coords="758,695,997,737"/>
+<area shape="rect" id="node22" href="$classCSelectionCriterion.html" title="CSelectionCriterion" alt="" coords="249,760,393,787"/>
+<area shape="rect" id="node23" href="$classCXmlDocSink.html" title="The CXmlDocSink class defines how to use a CXmlDocSource. " alt="" coords="267,811,374,837"/>
+<area shape="rect" id="node26" href="$classCXmlDocSource.html" title="The CXmlDocSource is used by CXmlDocSink. " alt="" coords="258,861,383,888"/>
+<area shape="rect" id="node28" href="$classDynamicLibrary.html" title="DynamicLibrary" alt="" coords="260,912,381,939"/>
+<area shape="rect" id="node29" href="$structPfwHandler__.html" title="PfwHandler_" alt="" coords="271,963,371,989"/>
+<area shape="rect" id="node30" href="$classTokenizer.html" title="Tokenizer class. " alt="" coords="280,1013,361,1040"/>
+<area shape="rect" id="node31" href="$classutility_1_1ErrorContext.html" title="utility::ErrorContext" alt="" coords="249,1064,393,1091"/>
+<area shape="rect" id="node3" href="$classCHardwareBackSynchronizer.html" title="CHardwareBackSynchronizer" alt="" coords="774,5,981,32"/>
+<area shape="rect" id="node4" href="$classCSimulatedBackSynchronizer.html" title="CSimulatedBackSynchronizer" alt="" coords="772,56,983,83"/>
+<area shape="rect" id="node7" href="$classCFileIncluderElementBuilder.html" title="This is the XmlFileIncluderElement builder class. " alt="" coords="778,472,977,499"/>
+<area shape="rect" id="node8" href="$classCSubsystemElementBuilder.html" title="CSubsystemElementBuilder" alt="" coords="777,107,977,133"/>
+<area shape="rect" id="node9" href="$classTElementBuilderTemplate.html" title="TElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="785,158,969,199"/>
+<area shape="rect" id="node10" href="$classTKindElementBuilderTemplate.html" title="TKindElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="772,223,983,265"/>
+<area shape="rect" id="node11" href="$classTLoggingElementBuilderTemplate.html" title="Builder for elements which need logger at construction. " alt="" coords="760,289,995,330"/>
+<area shape="rect" id="node12" href="$classTLoggingElementBuilderTemplate.html" title="TLoggingElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt;" alt="" coords="1219,326,1453,367"/>
+<area shape="rect" id="node13" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="762,406,993,447"/>
+<area shape="rect" id="node15" href="$classCAnswerMessage.html" title="CAnswerMessage" alt="" coords="810,523,945,549"/>
+<area shape="rect" id="node16" href="$classCRequestMessage.html" title="CRequestMessage" alt="" coords="808,573,947,600"/>
+<area shape="rect" id="node24" href="$classCXmlMemoryDocSink.html" title="Sink class used to parse an xml document and instanciate parameter&#45;framework structures. " alt="" coords="798,763,957,789"/>
+<area shape="rect" id="node25" href="$classCXmlStreamDocSink.html" title="Sink class that writes the content of any CXmlDocSource into a std::string. " alt="" coords="800,813,955,840"/>
+<area shape="rect" id="node27" href="$classCXmlMemoryDocSource.html" title="Source class that uses parameter&#45;framework&#39;s structures to create an xml document. " alt="" coords="789,864,966,891"/>
+<area shape="rect" id="node32" href="$classCParameterAccessContext.html" title="CParameterAccessContext" alt="" coords="781,1040,974,1067"/>
+<area shape="rect" id="node34" href="$classCXmlSerializingContext.html" title="Class that gather errors during serialization. " alt="" coords="792,1091,963,1117"/>
+<area shape="rect" id="node33" href="$classCConfigurationAccessContext.html" title="CConfigurationAccessContext" alt="" coords="1231,1040,1441,1067"/>
+<area shape="rect" id="node35" href="$classCXmlElementSerializingContext.html" title="CXmlElementSerializingContext" alt="" coords="1225,1091,1447,1117"/>
+<area shape="rect" id="node36" href="$classCXmlDomainSerializingContext.html" title="CXmlDomainSerializingContext" alt="" coords="1503,1055,1723,1081"/>
+<area shape="rect" id="node39" href="$classCXmlParameterSerializingContext.html" title="CXmlParameterSerializing\lContext" alt="" coords="1519,1106,1706,1147"/>
+<area shape="rect" id="node37" href="$classCXmlDomainExportContext.html" title="CXmlDomainExportContext" alt="" coords="1773,1029,1969,1056"/>
+<area shape="rect" id="node38" href="$classCXmlDomainImportContext.html" title="CXmlDomainImportContext" alt="" coords="1772,1080,1969,1107"/>
+</map>

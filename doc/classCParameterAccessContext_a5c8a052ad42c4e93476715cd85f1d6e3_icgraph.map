@@ -1,4 +1,6 @@
 <map id="CParameterAccessContext::setParameterBlackboard" name="CParameterAccessContext::setParameterBlackboard">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="277,5,435,47"/>
-<area shape="rect" id="node3" href="$classCSimulatedBackSynchronizer.html#a29b298407c7bccc21caa811d04813bcf" title="CSimulatedBackSynchronizer\l::CSimulatedBackSynchronizer" alt="" coords="247,71,465,112"/>
+<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="297,5,455,47"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="247,71,505,112"/>
+<area shape="rect" id="node5" href="$classCSimulatedBackSynchronizer.html#a29b298407c7bccc21caa811d04813bcf" title="CSimulatedBackSynchronizer\l::CSimulatedBackSynchronizer" alt="" coords="267,136,485,177"/>
+<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#a64a98bccd79559d5466ff3fd8e93b890" title="CParameterMgrFullConnector\l::accessConfigurationValue" alt="" coords="553,71,761,112"/>
 </map>
