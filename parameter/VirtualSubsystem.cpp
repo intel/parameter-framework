@@ -29,6 +29,7 @@
  */
 #include "VirtualSubsystem.h"
 #include "VirtualSyncer.h"
+#include "SyncerSet.h"
 
 #define base CSubsystem
 
@@ -50,6 +51,11 @@ CVirtualSubsystem::~CVirtualSubsystem()
 ISyncer* CVirtualSubsystem::getSyncer() const
 {
     return _pVirtualSyncer;
+}
+
+void CVirtualSubsystem::fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const
+{
+    syncerSet += _pVirtualSyncer;
 }
 
 // From IMapper
