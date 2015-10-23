@@ -50,7 +50,7 @@ class RemoteCli(object):
         """
         expectSuccess=kwargs.get("expectSuccess", True)
 
-        assert self.remoteProcess.poll() == None, "Can not send command to Test platform as it has died."
+        assert self.remoteProcess.poll() == None, "Can not send command to Test platform as it has died. Return code: %s" % self.remoteProcess.returncode
 
         sys_cmd = self.platform_command + [cmd]
         if args is not None:
@@ -86,7 +86,7 @@ class Hal(RemoteCli):
         self.setRemoteProcess(subprocess.Popen(cmd))
         # Wait for the test-platform listening socket
         while socket.socket().connect_ex(("localhost", self.testPlatformPort)) != 0:
-            assert self.remoteProcess.poll() == None, "Test platform has failed to start."
+            assert self.remoteProcess.poll() == None, "Test platform has failed to start. Return code: %s" % self.remoteProcess.returncode
             time.sleep(0.01)
 
     # Send command "stop" to the HAL

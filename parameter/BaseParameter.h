@@ -72,8 +72,7 @@ public:
     bool access(std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
     virtual bool access(std::vector<std::string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const;
 
-    // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    void structureToXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override final;
 
 protected:
     // Parameter Access
