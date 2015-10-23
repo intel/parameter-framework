@@ -136,8 +136,7 @@
 <li><a href="#req-next"><span class="toc-section-number">12</span> Next</a><ul>
 <li><a href="#req-multi-os"><span class="toc-section-number">12.1</span> Multi OS</a></li>
 <li><a href="#req-tuning-1"><span class="toc-section-number">12.2</span> Tuning</a><ul>
-<li><a href="#req-get-and-set-multiple-parameter-values-in-one-request."><span class="toc-section-number">12.2.1</span> Get and set multiple parameter values in one request.</a></li>
-<li><a href="#req-get-and-set-parameters-as-binary"><span class="toc-section-number">12.2.2</span> Get and set parameters as binary</a></li>
+<li><a href="#req-get-and-set-multiple-parameter-values-in-one-request"><span class="toc-section-number">12.2.1</span> Get and set multiple parameter values in one request</a></li>
 </ul></li>
 <li><a href="#req-stage-and-commit-sync"><span class="toc-section-number">12.3</span> Stage and commit Sync</a></li>
 <li><a href="#req-structured-api-api"><span class="toc-section-number">12.4</span> Structured api API</a><ul>
@@ -147,6 +146,7 @@
 <li><a href="#req-custom-parameter-types"><span class="toc-section-number">12.5.1</span> Custom parameter types</a></li>
 <li><a href="#req-structure-tunning"><span class="toc-section-number">12.5.2</span> Structure tunning</a></li>
 <li><a href="#req-immutable-parameters"><span class="toc-section-number">12.5.3</span> Immutable parameters</a></li>
+<li><a href="#req-endianess-adaptation"><span class="toc-section-number">12.5.4</span> Endianess adaptation</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -761,10 +761,17 @@ This requirement is fulfilled by remote-processor and remote-command on the refe
 </ul>
 <p><why>As the reference PF implementation leaves its original Android environment, needs emerge to use it on other platform.</why></p>
 <h2 id="req-tuning-1"><a href="#req-tuning-1"><span class="header-section-number">12.2</span> Tuning</a></h2>
-<h3 id="req-get-and-set-multiple-parameter-values-in-one-request."><a href="#req-get-and-set-multiple-parameter-values-in-one-request."><span class="header-section-number">12.2.1</span> Get and set multiple parameter values in one request.</a></h3>
-<p>Get and set the content of one or more parameter or multiple parameters as xml. <why>For performance reason. Tools often need to update multiple parameter and having one call per parameter is too slow. (benchmark ?)</why></p>
-<h3 id="req-get-and-set-parameters-as-binary"><a href="#req-get-and-set-parameters-as-binary"><span class="header-section-number">12.2.2</span> Get and set parameters as binary</a></h3>
-<p>The PF host API <strong>SHOULD</strong> expose parameter values with the same API syncer use. <why>The current reference implementation abstracts the memory layout of parameters. This memory layout is specified in the parameter structure thus is known </why></p>
+<h3 id="req-get-and-set-multiple-parameter-values-in-one-request"><a href="#req-get-and-set-multiple-parameter-values-in-one-request"><span class="header-section-number">12.2.1</span> Get and set multiple parameter values in one request</a></h3>
+<h4 id="req-atomicity"><a href="#req-atomicity"><span class="header-section-number">12.2.1.1</span> Atomicity</a></h4>
+When setting multiple parameters from one client request, and when one or more parameter value is invalid (eg. out of range), no parameter <strong>SHOULD</strong> be set. Eg: an invalid request to change parameters <strong>SHOULD</strong> not impact the parameters values nor the subsystems.
+<note>
+This may be implemented by first checking parameters validity before setting them, or implementing a rollback mechanism, or any other way.
+</note>
+<p><why>To provide parameter mutation atomicity to the client. This is especially important if the client wants to implement parameter consistency. Eg: let two parameters have excluding values, if a transaction fail after the first parameter is set but not the second, the excluding constraint may be violated. It also usefull for the client to know the state of the parameters after a parameter set without having to query the PF.</why></p>
+<h4 id="req-access-parameters-as-xml"><a href="#req-access-parameters-as-xml"><span class="header-section-number">12.2.1.2</span> Access parameters as Xml</a></h4>
+<p>Getting and setting the content of one or more ([one, all]) parameters <strong>SHOULD</strong> be possible in xml. <why>For performance reason. Tools often need to update multiple parameter and having one call per parameter is too slow. (benchmark ?). This feature permit the client to save and restore from an external database parameter values a la <code>alsa.state</code>.</why></p>
+<h4 id="req-access-parameters-as-binary"><a href="#req-access-parameters-as-binary"><span class="header-section-number">12.2.1.3</span> Access parameters as binary</a></h4>
+<p>The PF host API <strong>SHOULD</strong> expose parameter values with the same API syncer use. <why>The current reference implementation abstracts the memory layout of parameters. This memory layout is specified in the parameter structure thus is known by the client.</why></p>
 <h2 id="req-stage-and-commit-sync"><a href="#req-stage-and-commit-sync"><span class="header-section-number">12.3</span> Stage and commit Sync</a></h2>
 <p>Explicit sync <strong>SHOULD</strong> only sync parameters which values were updated since last sync. <why>For performance reason or when an hardware does not support certain transition state, manual parameter synchronisation is requested.</p>
 <p>Sync request was implemented in the reference implementation by syncing all parameters, including the one that were not changed since last sync.</p>
@@ -789,6 +796,9 @@ Put this in a design document.
 <h3 id="req-immutable-parameters"><a href="#req-immutable-parameters"><span class="header-section-number">12.5.3</span> Immutable parameters</a></h3>
 <p>A PF <strong>MAY</strong> support immutable parameters, i.e. parameters which value is determined on start then read only. <why>To permit hardware read only value reflection.</why> <ko>This is not implemented in the PF reference implementation.</ko></p>
 <p>This value <strong>MUST</strong> be gettable for an immutable parameter. <why>A parameter that can not be accessed (read or write) is of no use.</why></p>
+<h3 id="req-endianess-adaptation"><a href="#req-endianess-adaptation"><span class="header-section-number">12.5.4</span> Endianess adaptation</a></h3>
+<p>A parameter or a block of parameters might be presented by the Parameter Framework but only used as a passthrough to the underlying subsystem (think “<code>(void *)</code> interfaces”). It is then possible that the endianess of the subsystem differs from the one the Parameter Framework is running on, an endianness adaptation would allow supporting those cases.</p>
+<p>This can be seen as related to the “Parameter Adaptation” requirement or even as a special case.</p>
 </article>
 </body>
 </html>
