@@ -77,15 +77,16 @@ bool CArrayParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettings
     if (!configurationAccessContext.serializeOut()) {
 
         // Actually set values to blackboard
-        if (!setValues(0, configurationAccessContext.getBaseOffset(), xmlConfigurationSettingsElementContent.getTextContent(), configurationAccessContext)) {
-
+        if (!setValues(0, getOffset() - configurationAccessContext.getBaseOffset(),
+                       xmlConfigurationSettingsElementContent.getTextContent(),
+                       configurationAccessContext)) {
             return false;
         }
     } else {
 
         // Get string value
         string strValue = getValues(
-                configurationAccessContext.getBaseOffset(), // Whole array requested
+                getOffset() - configurationAccessContext.getBaseOffset(),
                 configurationAccessContext);
 
         // Populate value into xml text node
@@ -115,8 +116,8 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
         }
 
         // Actually set values
-        if (!setValues(index, parameterAccessContext.getBaseOffset(), strValue, parameterAccessContext)) {
-
+        if (!setValues(index, getOffset() - parameterAccessContext.getBaseOffset(),
+                       strValue, parameterAccessContext)) {
             return false;
         }
 
@@ -131,7 +132,7 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
         if (index == (size_t)-1) {
 
             // Whole array requested
-            strValue = getValues(parameterAccessContext.getBaseOffset(), parameterAccessContext);
+            strValue = getValues(getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext);
 
         } else {
             // Scalar requested
@@ -250,7 +251,7 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, size_t& index, CPa
 }
 
 // Common set value processing
-bool CArrayParameter::setValues(size_t uiStartIndex, size_t baseOffset, const string& strValue, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::setValues(size_t uiStartIndex, size_t offset, const string& strValue, CParameterAccessContext& parameterAccessContext) const
 {
     // Deal with value(s)
     Tokenizer tok(strValue, Tokenizer::defaultDelimiters + ",");
@@ -270,11 +271,11 @@ bool CArrayParameter::setValues(size_t uiStartIndex, size_t baseOffset, const st
     // Process
     size_t valueIndex;
     size_t size = getSize();
-    size_t offset = getOffset() + uiStartIndex * size - baseOffset;
+    size_t startOffset = offset + uiStartIndex * size;
 
     for (valueIndex = 0; valueIndex < nbValues; valueIndex++) {
 
-        if (!doSetValue(astrValues[valueIndex], offset, parameterAccessContext)) {
+        if (!doSetValue(astrValues[valueIndex], startOffset, parameterAccessContext)) {
 
             // Append parameter path to error
             parameterAccessContext.appendToError(" " + getPath() + "/" +
@@ -289,10 +290,9 @@ bool CArrayParameter::setValues(size_t uiStartIndex, size_t baseOffset, const st
 }
 
 // Common get value processing
-string CArrayParameter::getValues(size_t baseOffset, CParameterAccessContext& parameterAccessContext) const
+string CArrayParameter::getValues(size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
     size_t size = getSize();
-    size_t offset = getOffset() - baseOffset;
     size_t arrayLength = getArrayLength();
 
     string output;

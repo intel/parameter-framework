@@ -67,7 +67,7 @@ private:
     // Array length
     size_t getArrayLength() const;
     // Common set value processing
-    bool setValues(size_t uiStartIndex, size_t baseOffset, const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
+    bool setValues(size_t uiStartIndex, size_t offset, const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
     // Log / get values common
     std::string getValues(size_t baseOffset, CParameterAccessContext& parameterAccessContext) const;
     std::string logValue(CParameterAccessContext &context) const override;
