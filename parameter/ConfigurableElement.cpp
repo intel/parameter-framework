@@ -74,12 +74,29 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             }
 
             // Check element type matches in type
-            if (xmlChildConfigurableElementSettingsElement.getType() != pChildConfigurableElement->getKind()) {
+            if (xmlChildConfigurableElementSettingsElement.getType() !=
+                pChildConfigurableElement->getXmlElementName()) {
 
-                // Type error
-                configurationAccessContext.setError("Configuration settings parsing: Settings for configurable element " + pChildConfigurableElement->getName() + " does not match expected type: " + xmlChildConfigurableElementSettingsElement.getType() + " instead of " + pChildConfigurableElement->getKind());
+                // "Component" tag has been renamed to "ParameterBlock", but retro-compatibility
+                // shall be ensured.
+                //
+                // So checking if this case occurs, i.e. element name is "ParameterBlock"
+                // but xml setting name is "Component".
+                bool compatibilityCase =
+                    (pChildConfigurableElement->getXmlElementName() == "ParameterBlock") &&
+                    (xmlChildConfigurableElementSettingsElement.getType() == "Component");
 
-                return false;
+                // Error if the compatibility case does not occur.
+                if (!compatibilityCase) {
+
+                    // Type error
+                    configurationAccessContext.setError("Configuration settings parsing: Settings "
+                        "for configurable element " + pChildConfigurableElement->getName() +
+                        " does not match expected type: " +
+                        xmlChildConfigurableElementSettingsElement.getType() + " instead of " +
+                        pChildConfigurableElement->getKind());
+                    return false;
+                }
             }
 
             // Check element type matches in name
@@ -114,7 +131,7 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             // Create corresponding child element
             CXmlElement xmlChildConfigurableElementSettingsElement;
 
-            xmlConfigurationSettingsElementContent.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getKind());
+            xmlConfigurationSettingsElementContent.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getXmlElementName());
 
             // Handle element name attribute
             xmlChildConfigurableElementSettingsElement.setNameAttribute(pChildConfigurableElement->getName());

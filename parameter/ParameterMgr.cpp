@@ -642,7 +642,7 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
                                   eElementLibrary), baseUri);
 
     CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
-                            pRootElement->getKind(),
+                            pRootElement->getXmlElementName(),
                             pRootElement->getName(),
                             strNameAttributeName);
 
@@ -1293,7 +1293,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementStructure
         return CCommandHandler::EFailed;
     }
 
-    if (!exportElementToXMLString(pLocatedElement, pLocatedElement->getKind(), strResult)) {
+    if (!exportElementToXMLString(pLocatedElement, pLocatedElement->getXmlElementName(), strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1717,7 +1717,7 @@ CParameterMgr::CCommandHandler::CommandStatus
     // Get Root element where to export from
     const CSystemClass* pSystemClass = getSystemClass();
 
-    if (!exportElementToXMLString(pSystemClass, pSystemClass->getKind(), strResult)) {
+    if (!exportElementToXMLString(pSystemClass, pSystemClass->getXmlElementName(), strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -2388,7 +2388,7 @@ bool CParameterMgr::serializeElement(std::ostream& output,
 
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(&element, _bValidateSchemasOnStart,
-                                     element.getKind(),
+                                     element.getXmlElementName(),
                                      getSchemaUri(),
                                      "parameter-framework",
                                      getVersion());

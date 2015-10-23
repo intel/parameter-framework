@@ -194,7 +194,7 @@ void CElement::childrenToXml(CXmlElement& xmlElement,
         // Create corresponding child element
         CXmlElement xmlChildElement;
 
-        xmlElement.createChild(xmlChildElement, pChild->getKind());
+        xmlElement.createChild(xmlChildElement, pChild->getXmlElementName());
 
         // Propagate
         pChild->toXml(xmlChildElement, serializingContext);
@@ -525,4 +525,10 @@ string CElement::getPath() const
 string CElement::getQualifiedPath() const
 {
     return getPath() + " [" + getKind() + "]";
+}
+
+string CElement::getXmlElementName() const
+{
+    // Default to element kind
+    return getKind();
 }

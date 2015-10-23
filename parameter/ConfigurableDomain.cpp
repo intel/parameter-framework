@@ -192,7 +192,7 @@ void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlDomainExp
         // Create child xml element for that configuration
         CXmlElement xmlConfigurationSettingsElement;
 
-        xmlSettingsElement.createChild(xmlConfigurationSettingsElement, pDomainConfiguration->getKind());
+        xmlSettingsElement.createChild(xmlConfigurationSettingsElement, pDomainConfiguration->getXmlElementName());
 
         // Set its name attribute
         xmlConfigurationSettingsElement.setNameAttribute(pDomainConfiguration->getName());
