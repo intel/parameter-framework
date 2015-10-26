@@ -40,7 +40,7 @@ using std::string;
 
 const std::string CParameterType::gUnitPropertyName = "Unit";
 
-CParameterType::CParameterType(const string& strName) : base(strName), _size(0)
+CParameterType::CParameterType(const string& strName) : base(strName)
 {
 }
 

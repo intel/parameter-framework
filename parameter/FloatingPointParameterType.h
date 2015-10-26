@@ -88,6 +88,6 @@ private:
     bool checkValueAgainstRange(double dValue) const;
 
     /** Bounds */
-    float _fMin;
-    float _fMax;
+    float _fMin{std::numeric_limits<float>::lowest()};
+    float _fMax{std::numeric_limits<float>::max()};
 };

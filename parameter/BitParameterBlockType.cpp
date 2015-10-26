@@ -35,7 +35,7 @@
 
 using std::string;
 
-CBitParameterBlockType::CBitParameterBlockType(const string& strName) : base(strName), _size(0)
+CBitParameterBlockType::CBitParameterBlockType(const string& strName) : base(strName)
 {
 }
 

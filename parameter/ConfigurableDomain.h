@@ -264,12 +264,12 @@ private:
     std::map<const CConfigurableElement*, CSyncerSet*> _configurableElementToSyncerSetMap;
 
     // Sequence awareness
-    bool _bSequenceAware;
+    bool _bSequenceAware{false};
 
     // Syncer set used to ensure propoer synchronization of restored configurable elements
     CSyncerSet _syncerSet;
 
     // Last applied configuration
-    mutable const CDomainConfiguration* _pLastAppliedConfiguration;
+    mutable const CDomainConfiguration* _pLastAppliedConfiguration{nullptr};
 };
 

@@ -33,12 +33,12 @@
 
 using std::string;
 
-CLinearParameterAdaptation::CLinearParameterAdaptation() : base("Linear"), _dSlopeNumerator(1), _dSlopeDenominator(1)
+CLinearParameterAdaptation::CLinearParameterAdaptation() : base("Linear")
 {
 }
 
 CLinearParameterAdaptation::CLinearParameterAdaptation(const string& strType) :
-    base(strType), _dSlopeNumerator(1), _dSlopeDenominator(1)
+    base(strType)
 {
 }
 

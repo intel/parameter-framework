@@ -32,6 +32,7 @@
 #include "ParameterType.h"
 
 #include <string>
+#include <limits>
 
 class CParameterAdaptation;
 
@@ -88,6 +89,6 @@ private:
     // Signing
     bool _bSigned;
     // Range
-    uint32_t _uiMin;
-    uint32_t _uiMax;
+    uint32_t _uiMin{0};
+    uint32_t _uiMax{std::numeric_limits<uint32_t>::max()};
 };

@@ -56,5 +56,5 @@ private:
 
     bool _bValid;
     std::vector<std::string> _astrItems;
-    size_t _currentIndex;
+    size_t _currentIndex{0};
 };

@@ -248,7 +248,7 @@ private:
     CInstanceDefinition* _pInstanceDefinition;
 
     //! Contains the mapping info at Subsystem level
-    CMappingData* _pMappingData;
+    CMappingData* _pMappingData{nullptr};
 
     /** Logger which has to be provided to subsystem objects */
     core::log::Logger& _logger;

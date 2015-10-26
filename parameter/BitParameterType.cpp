@@ -39,7 +39,7 @@
 
 using std::string;
 
-CBitParameterType::CBitParameterType(const string& strName) : base(strName), _bitPos(0), _uiBitSize(0), _uiMax(uint64_t(-1))
+CBitParameterType::CBitParameterType(const string& strName) : base(strName)
 {
 }
 

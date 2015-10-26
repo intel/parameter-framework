@@ -32,7 +32,6 @@
 #define base CElement
 
 CParameterFrameworkConfiguration::CParameterFrameworkConfiguration()
-    : _bTuningAllowed(false), _uiServerPort(0)
 {
 }
 

@@ -687,16 +687,16 @@ private:
     inline core::log::details::Warning warning();
 
     // Tuning
-    bool _bTuningModeIsOn;
+    bool _bTuningModeIsOn{false};
 
     // Value Space
-    bool _bValueSpaceIsRaw;
+    bool _bValueSpaceIsRaw{false};
 
     // Output Raw Format
-    bool _bOutputRawFormatIsHex;
+    bool _bOutputRawFormatIsHex{false};
 
     // Automatic synchronization to HW during Tuning session
-    bool _bAutoSyncOn;
+    bool _bAutoSyncOn{true};
 
     // Current Parameter Settings
     CParameterBlackboard* _pMainParameterBlackboard;
@@ -709,16 +709,16 @@ private:
     std::string _schemaUri; // Place where schemas stand
 
     // Subsystem plugin location
-    const CSubsystemPlugins* _pSubsystemPlugins;
+    const CSubsystemPlugins* _pSubsystemPlugins{nullptr};
 
     // Remote Processor Server
-    IRemoteProcessorServerInterface* _pRemoteProcessorServer;
+    IRemoteProcessorServerInterface* _pRemoteProcessorServer{nullptr};
 
     // Parser description array
     static const SRemoteCommandParserItem gastRemoteCommandParserItems[];
 
     // Maximum command usage length
-    size_t _maxCommandUsageLength;
+    size_t _maxCommandUsageLength{0};
 
     // Blackboard access mutex
     std::mutex _blackboardMutex;
@@ -730,23 +730,23 @@ private:
      * If set to true - the default - it has no impact on the policy for
      * starting the remote interface.
      */
-    bool _bForceNoRemoteInterface;
+    bool _bForceNoRemoteInterface{false};
 
     /** If set to true, missing subsystem will abort parameterMgr start.
       * If set to false, missing subsystem will fallback on virtual subsystem.
       */
-    bool _bFailOnMissingSubsystem;
+    bool _bFailOnMissingSubsystem{true};
     /** If set to true, unparsable or discording domains will abort parameterMgr start.
       * If set to false, unparsable or discording domains
       *                 will continue the parameterMgr start with no domains.
       */
-    bool _bFailOnFailedSettingsLoad;
+    bool _bFailOnFailedSettingsLoad{true};
 
     /**
      * If set to true, parameterMgr will report an error
      *     when being unable to validate .xml files
      * If set to false, no .xml/xsd validation will happen (default behaviour)
      */
-    bool _bValidateSchemasOnStart;
+    bool _bValidateSchemasOnStart{false};
 };
 

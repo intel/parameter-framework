@@ -81,14 +81,14 @@ public:
 
 private:
     // Blackboard
-    CParameterBlackboard* _pParameterBlackboard;
+    CParameterBlackboard* _pParameterBlackboard{nullptr};
     // Value space
-    bool _bValueSpaceIsRaw;
+    bool _bValueSpaceIsRaw{false};
     // Output Raw Format
-    bool _bOutputRawFormatIsHex;
+    bool _bOutputRawFormatIsHex{false};
     // Automatic synchronization to HW
-    bool _bAutoSync;
+    bool _bAutoSync{true};
     // Base offset where parameters are stored in configuration blackboards
-    size_t _uiBaseOffset;
+    size_t _uiBaseOffset{0};
 };
 

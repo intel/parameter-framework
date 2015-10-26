@@ -35,7 +35,7 @@
 
 #define base CTypeElement
 
-CComponentType::CComponentType(const std::string& strName) : base(strName), _pExtendsComponentType(NULL)
+CComponentType::CComponentType(const std::string& strName) : base(strName)
 {
 }
 

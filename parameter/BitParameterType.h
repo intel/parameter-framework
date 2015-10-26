@@ -34,6 +34,7 @@
 #include "TypeElement.h"
 
 #include <string>
+#include <limits>
 
 class CParameterAccessContext;
 
@@ -84,9 +85,9 @@ private:
     bool isEncodable(uint64_t uiData) const;
 
     // Pos in bits
-    size_t _bitPos;
+    size_t _bitPos{0};
     // Size in bits
-    size_t _uiBitSize;
+    size_t _uiBitSize{0};
     // Max value
-    uint64_t _uiMax;
+    uint64_t _uiMax{std::numeric_limits<uint64_t>::max()};
 };

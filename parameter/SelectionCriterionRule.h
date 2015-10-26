@@ -81,13 +81,13 @@ private:
     bool setMatchesWhen(const std::string& strMatchesWhen, std::string& strError);
 
     // Selection criterion
-    const CSelectionCriterion* _pSelectionCriterion;
+    const CSelectionCriterion* _pSelectionCriterion{nullptr};
 
     // MatchesWhen
-    MatchesWhen _eMatchesWhen;
+    MatchesWhen _eMatchesWhen{EIs};
 
     // Value
-    int32_t _iMatchValue;
+    int32_t _iMatchValue{0};
 
     // Used for XML MatchesWhen attribute parsing
     static const SMatchingRuleDescription _astMatchesWhen[ENbMatchesWhen];

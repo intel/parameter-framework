@@ -40,9 +40,7 @@
 using std::string;
 
 CFloatingPointParameterType::CFloatingPointParameterType(const string& strName)
-    : base(strName),
-      _fMin(std::numeric_limits<float>::lowest()),
-      _fMax(std::numeric_limits<float>::max())
+    : base(strName)
 {
 }
 

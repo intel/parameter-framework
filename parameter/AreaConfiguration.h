@@ -105,6 +105,6 @@ private:
     const CSyncerSet* _pSyncerSet;
 
     // Area configuration validity (invalid area configurations can't be restored)
-    bool _bValid;
+    bool _bValid{false};
 };
 

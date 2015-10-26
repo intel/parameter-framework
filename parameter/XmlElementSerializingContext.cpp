@@ -33,7 +33,7 @@
 
 using std::string;
 
-CXmlElementSerializingContext::CXmlElementSerializingContext(string& strError) : base(strError), _pElementLibrary(NULL)
+CXmlElementSerializingContext::CXmlElementSerializingContext(string& strError) : base(strError)
 {
 }
 
