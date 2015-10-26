@@ -41,6 +41,5 @@ public:
     CElementLibrary* getElementLibrary(size_t index) const;
 
 private:
-    typedef std::vector<CElementLibrary*>::iterator CElementLibraryArrayIterator;
     std::vector<CElementLibrary*> _elementLibraryArray;
 };
