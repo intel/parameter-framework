@@ -47,11 +47,7 @@ const char* CRuleParser::_acDelimiters[CRuleParser::ENbStatuses] = {
 
 CRuleParser::CRuleParser(const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition) :
     _strApplicationRule(strApplicationRule),
-    _pSelectionCriteriaDefinition(pSelectionCriteriaDefinition),
-    _uiCurrentPos(0),
-    _currentDeepness(0),
-    _eStatus(CRuleParser::EInit),
-    _pRootRule(NULL)
+    _pSelectionCriteriaDefinition(pSelectionCriteriaDefinition)
 {
 }
 

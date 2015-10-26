@@ -87,7 +87,7 @@ private:
     // Output Raw Format
     bool _bOutputRawFormatIsHex;
     // Automatic synchronization to HW
-    bool _bAutoSync;
+    bool _bAutoSync{true};
     // Base offset where parameters are stored in configuration blackboards
     size_t _uiBaseOffset;
 };

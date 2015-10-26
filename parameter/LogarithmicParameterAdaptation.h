@@ -31,6 +31,8 @@
 #pragma once
 
 #include "LinearParameterAdaptation.h"
+#include <cmath>
+#include <limits>
 
 /**
  * This class is used to perform a logarithmic adapation of type:
@@ -62,10 +64,14 @@ private:
      * _dLogarithmBase characterizes the new logarithm logB(x) with
      * the following property: logB(x) = log(x) / log(_dLogarithmBase).
      * log being the base-e logarithm.
+     *
+     * std::exp(1) == e^1 == e == natural logarithm base
+     * Make sure there is no precision lose by using std::exp overload that
+     * return the same type as _dLogarithmBase
      */
-    double _dLogarithmBase;
+    double _dLogarithmBase{std::exp(decltype(_dLogarithmBase){1})};
     /**
      * _dFloorValue reflects the lower bound for volume attenuation
      */
-    double _dFloorValue;
+    double _dFloorValue{-std::numeric_limits<double>::infinity()};
 };

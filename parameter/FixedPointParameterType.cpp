@@ -44,7 +44,7 @@
 
 using std::string;
 
-CFixedPointParameterType::CFixedPointParameterType(const string& strName) : base(strName), _uiIntegral(0), _uiFractional(0)
+CFixedPointParameterType::CFixedPointParameterType(const string& strName) : base(strName)
 {
 }
 

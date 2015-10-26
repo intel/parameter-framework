@@ -33,14 +33,14 @@
 #include <assert.h>
 
 CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet)
-    : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet), _bValid(false)
+    : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet)
 {
     // Size blackboard
     _blackboard.setSize(_pConfigurableElement->getFootPrint());
 }
 
 CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, size_t size)
-    : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet), _bValid(false)
+    : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet)
 {
     // Size blackboard
     _blackboard.setSize(size);

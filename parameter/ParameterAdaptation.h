@@ -56,6 +56,6 @@ protected:
 
 private:
     // Offset
-    int32_t _iOffset;
+    int32_t _iOffset{0};
 };
 

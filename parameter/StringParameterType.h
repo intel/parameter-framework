@@ -59,5 +59,5 @@ private:
     virtual CInstanceConfigurableElement* doInstantiate() const;
 
     // Max length in bytes
-    size_t _maxLength;
+    size_t _maxLength{0};
 };

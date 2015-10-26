@@ -88,6 +88,6 @@ private:
     // Signing
     bool _bSigned;
     // Range
-    uint32_t _uiMin;
-    uint32_t _uiMax;
+    uint32_t _uiMin{0};
+    uint32_t _uiMax{uint32_t(-1)};
 };

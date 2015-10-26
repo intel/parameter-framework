@@ -38,7 +38,7 @@ CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard),
     _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
-    _bAutoSync(true), _uiBaseOffset(baseOffset)
+    _uiBaseOffset(baseOffset)
 {
 }
 
@@ -46,13 +46,13 @@ CParameterAccessContext::CParameterAccessContext(std::string& strError,
                                                  CParameterBlackboard* pParameterBlackboard,
                                                  size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bAutoSync(true), _uiBaseOffset(baseOffset)
+    _bOutputRawFormatIsHex(false), _uiBaseOffset(baseOffset)
 {
 }
 
 CParameterAccessContext::CParameterAccessContext(std::string& strError)
     : base(strError), _pParameterBlackboard(NULL), _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false), _bAutoSync(true), _uiBaseOffset(0)
+    _bOutputRawFormatIsHex(false), _uiBaseOffset(0)
 {
 }
 

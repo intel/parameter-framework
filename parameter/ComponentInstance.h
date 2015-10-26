@@ -61,6 +61,6 @@ private:
     virtual void populate(CElement* pElement) const;
 
     // Related component type
-    const CComponentType* _pComponentType;
+    const CComponentType* _pComponentType{nullptr};
 };
 

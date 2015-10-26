@@ -79,12 +79,12 @@ public:
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
 private:
     // Current state
-    int _iState;
+    int _iState{0};
     // Type
     const CSelectionCriterionType* _pType;
 
     /** Counter to know how many modifications have been applied to this criterion */
-    uint32_t _uiNbModifications;
+    uint32_t _uiNbModifications{0};
 
     /** Application logger */
     core::log::Logger& _logger;

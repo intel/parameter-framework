@@ -49,6 +49,6 @@ public:
     // Xml URI
     const std::string& getXmlUri() const;
 private:
-    const CElementLibrary* _pElementLibrary;
+    const CElementLibrary* _pElementLibrary{nullptr};
     std::string _xmlUri;
 };

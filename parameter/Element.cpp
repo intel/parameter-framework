@@ -41,7 +41,7 @@ using std::string;
 
 const std::string CElement::gDescriptionPropertyName = "Description";
 
-CElement::CElement(const string& strName) : _strName(strName), _pParent(NULL)
+CElement::CElement(const string& strName) : _strName(strName)
 {
 }
 

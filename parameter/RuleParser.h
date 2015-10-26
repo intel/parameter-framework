@@ -79,15 +79,15 @@ private:
     // Criteria defintion
     const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
     /** String iterator */
-    std::string::size_type _uiCurrentPos;
+    std::string::size_type _uiCurrentPos{0};
     // Deepness
-    size_t _currentDeepness;
+    size_t _currentDeepness{0};
     // Current Type
     std::string _strRuleType;
     // Status
-    Status _eStatus;
+    Status _eStatus{EInit};
     // Root rule
-    CCompoundRule* _pRootRule;
+    CCompoundRule* _pRootRule{nullptr};
     // Matches
     static const char* _acDelimiters[ENbStatuses];
 };

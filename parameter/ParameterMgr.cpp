@@ -320,22 +320,10 @@ const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandPa
 
 // Remote command parsers array Size
 CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogger& logger) :
-    _bTuningModeIsOn(false),
-    _bValueSpaceIsRaw(false),
-    _bOutputRawFormatIsHex(false),
-    _bAutoSyncOn(true),
     _pMainParameterBlackboard(new CParameterBlackboard),
     _pElementLibrarySet(new CElementLibrarySet),
     _xmlConfigurationUri(CXmlDocSource::mkUri(strConfigurationFilePath, "")),
-    _pSubsystemPlugins(NULL),
-    _pRemoteProcessorServer(NULL),
-    _maxCommandUsageLength(0),
-    _logger(logger),
-    _bForceNoRemoteInterface(false),
-    _bFailOnMissingSubsystem(true),
-    _bFailOnFailedSettingsLoad(true),
-    _bValidateSchemasOnStart(false)
-
+    _logger(logger)
 {
     // Deal with children
     addChild(new CParameterFrameworkConfiguration);

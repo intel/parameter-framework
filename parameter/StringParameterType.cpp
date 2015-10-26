@@ -35,7 +35,7 @@
 
 using std::string;
 
-CStringParameterType::CStringParameterType(const string& strName) : base(strName), _maxLength(0)
+CStringParameterType::CStringParameterType(const string& strName) : base(strName)
 {
 }
 
