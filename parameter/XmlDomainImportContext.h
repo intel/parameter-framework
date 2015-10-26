@@ -77,7 +77,7 @@ private:
     CSystemClass& _systemClass;
 
     // Criteria defintion
-    const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
+    const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition{nullptr};
 
     // Auto validation of configurations
     bool _bAutoValidationRequired{true};

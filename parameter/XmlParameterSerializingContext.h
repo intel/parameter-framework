@@ -44,5 +44,5 @@ public:
     void setComponentLibrary(const CComponentLibrary* pComponentLibrary);
     const CComponentLibrary* getComponentLibrary() const;
 private:
-    const CComponentLibrary* _pComponentLibrary;
+    const CComponentLibrary* _pComponentLibrary{nullptr};
 };

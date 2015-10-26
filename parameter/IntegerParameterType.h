@@ -87,7 +87,7 @@ private:
     const CParameterAdaptation* getParameterAdaptation() const;
 
     // Signing
-    bool _bSigned;
+    bool _bSigned{false};
     // Range
     uint32_t _uiMin{0};
     uint32_t _uiMax{std::numeric_limits<uint32_t>::max()};
