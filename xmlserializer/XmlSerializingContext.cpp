@@ -57,5 +57,10 @@ void CXmlSerializingContext::appendLineToError(const std::string& strAppend)
 void CXmlSerializingContext::structuredErrorHandler(void* userData, xmlErrorPtr error)
 {
     CXmlSerializingContext *self = static_cast<CXmlSerializingContext *>(userData);
-    self->_strXmlError += error->message;
+
+    std::string filename = (error->file != NULL) ? error->file : "(user input)";
+    // xmlErrorPtr->int2 contains the column; see xmlerror.h
+    self->_strXmlError += filename + ":" +
+                          std::to_string(error->line) + ":" + std::to_string(error->int2) + ": " +
+                          error->message;
 }
