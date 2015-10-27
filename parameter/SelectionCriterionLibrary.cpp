@@ -31,10 +31,6 @@
 
 #define base CElement
 
-CSelectionCriterionLibrary::CSelectionCriterionLibrary()
-{
-}
-
 std::string CSelectionCriterionLibrary::getKind() const
 {
     return "SelectionCriterionLibrary";

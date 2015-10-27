@@ -31,10 +31,6 @@
 
 #define base CElement
 
-CParameterFrameworkConfiguration::CParameterFrameworkConfiguration()
-{
-}
-
 std::string CParameterFrameworkConfiguration::getKind() const
 {
     return "ParameterFrameworkConfiguration";

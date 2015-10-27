@@ -33,10 +33,6 @@
 
 using std::string;
 
-CEnumValuePair::CEnumValuePair()
-{
-}
-
 // CElement
 string CEnumValuePair::getKind() const
 {

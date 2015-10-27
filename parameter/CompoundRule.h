@@ -36,8 +36,6 @@
 class CCompoundRule : public CRule
 {
 public:
-    CCompoundRule();
-
     // Parse
     virtual bool parse(CRuleParser& ruleParser, std::string& strError);
 

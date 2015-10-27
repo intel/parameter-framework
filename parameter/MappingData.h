@@ -36,8 +36,6 @@ class CMappingData
 {
     typedef std::map<std::string, std::string>::const_iterator KeyToValueMapConstIterator;
 public:
-    CMappingData();
-
     /** Initialize mapping data through a raw value
      *
      * @param[in] rawMapping the raw mapping data which has to be parsed.

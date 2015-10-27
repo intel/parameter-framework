@@ -32,10 +32,6 @@
 #include "Utility.h"
 #include <assert.h>
 
-CMappingData::CMappingData()
-{
-}
-
 bool CMappingData::init(const std::string &rawMapping, std::string &error)
 {
     Tokenizer mappingTok(rawMapping, ",");

@@ -40,10 +40,6 @@ const char* CCompoundRule::_apcTypes[2] = {
     "All"
 };
 
-CCompoundRule::CCompoundRule()
-{
-}
-
 // Class kind
 string CCompoundRule::getKind() const
 {

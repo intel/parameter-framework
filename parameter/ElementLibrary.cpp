@@ -31,10 +31,6 @@
 #include "ElementBuilder.h"
 
 
-CElementLibrary::CElementLibrary()
-{
-}
-
 CElementLibrary::~CElementLibrary()
 {
     clean();

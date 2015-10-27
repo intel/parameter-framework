@@ -34,7 +34,6 @@
 class CElementLibrarySet
 {
 public:
-    CElementLibrarySet();
     ~CElementLibrarySet();
 
     void addElementLibrary(CElementLibrary* pElementLibrary);
