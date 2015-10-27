@@ -44,10 +44,6 @@ CParameterType::CParameterType(const string& strName) : base(strName)
 {
 }
 
-CParameterType::~CParameterType()
-{
-}
-
 // Object creation
 void CParameterType::populate(CElement* /*elem*/) const
 {

@@ -42,8 +42,7 @@ class CAreaConfiguration
 public:
     CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet);
 
-    /* FIXME this was missing and probably buggy*/
-    virtual ~CAreaConfiguration() {}
+    virtual ~CAreaConfiguration() = default;
 
     // Save data from current
     void save(const CParameterBlackboard* pMainBlackboard);

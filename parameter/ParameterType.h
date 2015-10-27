@@ -45,7 +45,7 @@ class PARAMETER_EXPORT CParameterType : public CTypeElement
 {
 public:
     CParameterType(const std::string& strName);
-    virtual ~CParameterType();
+    virtual ~CParameterType() = default;
 
     // Size
     size_t getSize() const;

@@ -35,7 +35,7 @@
 class CElementBuilder : private utility::NonCopyable
 {
 public:
-    virtual ~CElementBuilder() {}
+    virtual ~CElementBuilder() = default;
 
     virtual CElement* createElement(const CXmlElement& xmlElement) const = 0;
 };

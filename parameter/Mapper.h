@@ -40,5 +40,5 @@ public:
     virtual void mapEnd() = 0;
 
 protected:
-    virtual ~IMapper() {}
+    virtual ~IMapper() = default;
 };
