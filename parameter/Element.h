@@ -189,5 +189,5 @@ private:
     // Children
     std::vector<CElement*> _childArray;
     // Parent
-    CElement* _pParent;
+    CElement* _pParent{nullptr};
 };

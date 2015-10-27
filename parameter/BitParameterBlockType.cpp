@@ -35,10 +35,6 @@
 
 using std::string;
 
-CBitParameterBlockType::CBitParameterBlockType(const string& strName) : base(strName), _size(0)
-{
-}
-
 string CBitParameterBlockType::getKind() const
 {
     return "BitParameterBlock";

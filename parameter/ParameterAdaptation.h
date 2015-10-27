@@ -36,7 +36,7 @@
 class CParameterAdaptation : public CElement
 {
 public:
-    CParameterAdaptation(const std::string& strType);
+    using CElement::CElement;
 
     // Element properties
     virtual void showProperties(std::string& strResult) const;
@@ -56,6 +56,6 @@ protected:
 
 private:
     // Offset
-    int32_t _iOffset;
+    int32_t _iOffset{0};
 };
 

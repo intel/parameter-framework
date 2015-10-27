@@ -39,7 +39,7 @@ using namespace core;
 CSelectionCriterion::CSelectionCriterion(const std::string& strName,
                                          const CSelectionCriterionType* pType,
                                          core::log::Logger& logger)
-    : base(strName), _iState(0), _pType(pType), _uiNbModifications(0), _logger(logger)
+    : base(strName), _pType(pType), _logger(logger)
 {
 }
 

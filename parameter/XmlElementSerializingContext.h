@@ -38,7 +38,7 @@ class CElementLibrary;
 class CXmlElementSerializingContext : public CXmlSerializingContext
 {
 public:
-    CXmlElementSerializingContext(std::string& strError);
+    using CXmlSerializingContext::CXmlSerializingContext;
 
     // Init
     void set(const CElementLibrary* pElementLibrary, const std::string& xmlUri);
@@ -49,6 +49,6 @@ public:
     // Xml URI
     const std::string& getXmlUri() const;
 private:
-    const CElementLibrary* _pElementLibrary;
+    const CElementLibrary* _pElementLibrary{nullptr};
     std::string _xmlUri;
 };

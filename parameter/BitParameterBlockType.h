@@ -36,7 +36,7 @@
 class CBitParameterBlockType : public CTypeElement
 {
 public:
-    CBitParameterBlockType(const std::string& strName);
+    using CTypeElement::CTypeElement;
 
     // Size
     size_t getSize() const;
@@ -55,6 +55,6 @@ private:
     virtual CInstanceConfigurableElement* doInstantiate() const;
 
     // Size in bytes
-    size_t _size;
+    size_t _size{0};
 };
 

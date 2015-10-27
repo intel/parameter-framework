@@ -30,10 +30,6 @@
 #include "ElementLibrarySet.h"
 #include <assert.h>
 
-CElementLibrarySet::CElementLibrarySet()
-{
-}
-
 CElementLibrarySet::~CElementLibrarySet()
 {
     // FIXME: use an array of unique_ptr

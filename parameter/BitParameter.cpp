@@ -39,10 +39,6 @@
 
 using std::string;
 
-CBitParameter::CBitParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
-{
-}
-
 // Type
 CInstanceConfigurableElement::Type CBitParameter::getType() const
 {

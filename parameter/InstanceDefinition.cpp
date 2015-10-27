@@ -32,10 +32,6 @@
 
 #define base CTypeElement
 
-CInstanceDefinition::CInstanceDefinition()
-{
-}
-
 std::string CInstanceDefinition::getKind() const
 {
     return "InstanceDefinition";

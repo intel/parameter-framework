@@ -37,7 +37,7 @@ class CBooleanParameterType : public CParameterType
 {
 public:
     CBooleanParameterType(const std::string& strName);
-    virtual ~CBooleanParameterType();
+    virtual ~CBooleanParameterType() = default;
 
     // Kind
     virtual std::string getKind() const;

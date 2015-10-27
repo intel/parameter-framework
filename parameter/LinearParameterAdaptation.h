@@ -50,6 +50,6 @@ public:
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
 private:
     // Slope attributes
-    double _dSlopeNumerator;
-    double _dSlopeDenominator;
+    double _dSlopeNumerator{1};
+    double _dSlopeDenominator{1};
 };

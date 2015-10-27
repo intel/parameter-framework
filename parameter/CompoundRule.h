@@ -36,8 +36,6 @@
 class CCompoundRule : public CRule
 {
 public:
-    CCompoundRule();
-
     // Parse
     virtual bool parse(CRuleParser& ruleParser, std::string& strError);
 
@@ -63,7 +61,7 @@ private:
     virtual bool childrenAreDynamic() const;
 
     // Type
-    bool _bTypeAll;
+    bool _bTypeAll{false};
 
     // Types
     static const char* _apcTypes[];

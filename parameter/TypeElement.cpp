@@ -35,10 +35,6 @@
 
 #define base CElement
 
-CTypeElement::CTypeElement(const std::string& strName) : base(strName), _arrayLength(0), _pMappingData(NULL)
-{
-}
-
 CTypeElement::~CTypeElement()
 {
     delete _pMappingData;

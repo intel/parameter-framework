@@ -46,10 +46,6 @@
 
 using std::string;
 
-CDomainConfiguration::CDomainConfiguration(const string& strName) : base(strName)
-{
-}
-
 // Class kind
 string CDomainConfiguration::getKind() const
 {

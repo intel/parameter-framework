@@ -33,10 +33,6 @@
 
 using std::string;
 
-CXmlParameterSerializingContext::CXmlParameterSerializingContext(string& strError) : base(strError)
-{
-}
-
 // ComponentLibrary
 void CXmlParameterSerializingContext::setComponentLibrary(const CComponentLibrary* pComponentLibrary)
 {

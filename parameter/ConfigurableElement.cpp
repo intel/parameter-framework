@@ -38,11 +38,8 @@
 
 #define base CElement
 
-CConfigurableElement::CConfigurableElement(const std::string& strName) : base(strName), _offset(0)
-{
-}
-
-CConfigurableElement::~CConfigurableElement()
+// TODO: delegate
+CConfigurableElement::CConfigurableElement(const std::string& strName) : base(strName)
 {
 }
 

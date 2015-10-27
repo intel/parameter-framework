@@ -131,6 +131,6 @@ private:
     const CTypeElement* _pTypeElement;
 
     // Sync to HW
-    ISyncer* _pSyncer;
+    ISyncer* _pSyncer{nullptr};
 };
 

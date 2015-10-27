@@ -52,7 +52,7 @@ public:
             const CMappingContext& context,
             core::log::Logger& logger) const = 0;
 
-    virtual ~CSubsystemObjectCreator() {}
+    virtual ~CSubsystemObjectCreator() = default;
 
 private:
     // Mapping key

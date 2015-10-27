@@ -40,14 +40,6 @@ using std::string;
 
 const std::string CParameterType::gUnitPropertyName = "Unit";
 
-CParameterType::CParameterType(const string& strName) : base(strName), _size(0)
-{
-}
-
-CParameterType::~CParameterType()
-{
-}
-
 // Object creation
 void CParameterType::populate(CElement* /*elem*/) const
 {

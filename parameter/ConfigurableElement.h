@@ -50,7 +50,7 @@ class PARAMETER_EXPORT CConfigurableElement : public CElement
     typedef std::list<const CConfigurableDomain*>::const_iterator ConfigurableDomainListConstIterator;
 public:
     CConfigurableElement(const std::string& strName = "");
-    virtual ~CConfigurableElement();
+    virtual ~CConfigurableElement() = default;
 
     // Offset in main blackboard
     void setOffset(size_t offset);
@@ -154,7 +154,7 @@ private:
     bool isOfConfigurableElementType(const CElement* pParent) const;
 
     // Offset in main blackboard
-    size_t _offset;
+    size_t _offset{0};
 
     // Associated configurable domains
     std::list<const CConfigurableDomain*> _configurableDomainList;

@@ -44,8 +44,8 @@ class CConfigurationAccessContext;
 class PARAMETER_EXPORT CParameterType : public CTypeElement
 {
 public:
-    CParameterType(const std::string& strName);
-    virtual ~CParameterType();
+    using CTypeElement::CTypeElement;
+    virtual ~CParameterType() = default;
 
     // Size
     size_t getSize() const;
@@ -145,7 +145,7 @@ private:
     bool doIsEncodable(type data, bool bIsSigned) const;
 
     // Size in bytes
-    size_t _size;
+    size_t _size{0};
     // Unit
     std::string _strUnit;
 

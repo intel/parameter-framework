@@ -38,7 +38,7 @@ class CParameterAdaptation;
 class CIntegerParameterType : public CParameterType
 {
 public:
-    CIntegerParameterType(const std::string& strName);
+    using CParameterType::CParameterType;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -86,8 +86,8 @@ private:
     const CParameterAdaptation* getParameterAdaptation() const;
 
     // Signing
-    bool _bSigned;
+    bool _bSigned{false};
     // Range
-    uint32_t _uiMin;
-    uint32_t _uiMax;
+    uint32_t _uiMin{0};
+    uint32_t _uiMax{uint32_t(-1)};
 };

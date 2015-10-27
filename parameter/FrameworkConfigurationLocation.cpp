@@ -33,10 +33,6 @@
 
 #define base CKindElement
 
-CFrameworkConfigurationLocation::CFrameworkConfigurationLocation(const std::string& strName, const std::string& strKind) : base(strName, strKind)
-{
-}
-
 // From IXmlSink
 bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
 {

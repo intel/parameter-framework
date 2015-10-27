@@ -36,7 +36,7 @@
 class CFixedPointParameterType : public CParameterType
 {
 public:
-    CFixedPointParameterType(const std::string& strName);
+    using CParameterType::CParameterType;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
@@ -142,7 +142,7 @@ private:
     double binaryQnmToDouble(int32_t iValue) const;
 
     // Integral part in Q notation
-    uint32_t _uiIntegral;
+    uint32_t _uiIntegral{0};
     // Fractional part in Q notation
-    uint32_t _uiFractional;
+    uint32_t _uiFractional{0};
 };

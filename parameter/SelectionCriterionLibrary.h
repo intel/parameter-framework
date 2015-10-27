@@ -35,8 +35,6 @@
 class CSelectionCriterionLibrary : public CElement
 {
 public:
-    CSelectionCriterionLibrary();
-
     // Type creation
     CSelectionCriterionType* createSelectionCriterionType(bool bIsInclusive);
 

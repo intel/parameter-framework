@@ -38,7 +38,7 @@
 class CStringParameterType : public CTypeElement
 {
 public:
-    CStringParameterType(const std::string& strName);
+    using CTypeElement::CTypeElement;
 
     // Max length
     size_t getMaxLength() const;
@@ -59,5 +59,5 @@ private:
     virtual CInstanceConfigurableElement* doInstantiate() const;
 
     // Max length in bytes
-    size_t _maxLength;
+    size_t _maxLength{0};
 };

@@ -30,7 +30,7 @@
 #include "PathNavigator.h"
 #include "Tokenizer.h"
 
-CPathNavigator::CPathNavigator(const std::string& strPath) : _currentIndex(0)
+CPathNavigator::CPathNavigator(const std::string& strPath)
 {
     init(strPath);
 }

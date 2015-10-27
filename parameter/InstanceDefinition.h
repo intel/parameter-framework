@@ -36,7 +36,7 @@
 class CInstanceDefinition : public CTypeElement
 {
 public:
-    CInstanceDefinition();
+    using CTypeElement::CTypeElement;
 
     void createInstances(CElement* pFatherElement);
 

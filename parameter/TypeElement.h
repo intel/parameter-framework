@@ -40,7 +40,8 @@ class CInstanceConfigurableElement;
 class PARAMETER_EXPORT CTypeElement : public CElement
 {
 public:
-    CTypeElement(const std::string& strName = "");
+    using CElement::CElement;
+    CTypeElement() = default;
     virtual ~CTypeElement();
 
     // Instantiation
@@ -94,8 +95,8 @@ private:
     CMappingData* getMappingData();
 
     // For Arrays. 0 means scalar
-    size_t _arrayLength;
+    size_t _arrayLength{0};
 
     // Mapping info
-    CMappingData* _pMappingData;
+    CMappingData* _pMappingData{nullptr};
 };

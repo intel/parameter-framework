@@ -36,7 +36,7 @@
 class CBitParameter : public CBaseParameter
 {
 public:
-    CBitParameter(const std::string& strName, const CTypeElement* pTypeElement);
+    using CBaseParameter::CBaseParameter;
 
     // Instantiation, allocation
     virtual size_t getFootPrint() const;

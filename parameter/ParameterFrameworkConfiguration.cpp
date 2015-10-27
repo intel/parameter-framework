@@ -31,11 +31,6 @@
 
 #define base CElement
 
-CParameterFrameworkConfiguration::CParameterFrameworkConfiguration()
-    : _bTuningAllowed(false), _uiServerPort(0)
-{
-}
-
 std::string CParameterFrameworkConfiguration::getKind() const
 {
     return "ParameterFrameworkConfiguration";

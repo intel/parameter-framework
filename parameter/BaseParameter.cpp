@@ -38,10 +38,6 @@
 
 using std::string;
 
-CBaseParameter::CBaseParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
-{
-}
-
 // XML configuration settings parsing/composing
 bool CBaseParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {

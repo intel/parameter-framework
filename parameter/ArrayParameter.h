@@ -34,7 +34,7 @@
 class CArrayParameter : public CParameter
 {
 public:
-    CArrayParameter(const std::string& strName, const CTypeElement* pTypeElement);
+    using CParameter::CParameter;
 
     // Instantiation, allocation
     virtual size_t getFootPrint() const;

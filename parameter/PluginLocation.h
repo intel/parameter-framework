@@ -36,7 +36,7 @@ class CPluginLocation : public CKindElement
 {
 
 public:
-    CPluginLocation(const std::string& strName, const std::string& strKind);
+    using CKindElement::CKindElement;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);

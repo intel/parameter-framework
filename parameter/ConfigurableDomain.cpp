@@ -42,15 +42,6 @@
 
 using std::string;
 
-CConfigurableDomain::CConfigurableDomain() :
-    _bSequenceAware(false), _pLastAppliedConfiguration(NULL)
-{
-}
-
-CConfigurableDomain::CConfigurableDomain(const string& strName) : base(strName), _bSequenceAware(false), _pLastAppliedConfiguration(NULL)
-{
-}
-
 CConfigurableDomain::~CConfigurableDomain()
 {
     // Remove all configurable elements

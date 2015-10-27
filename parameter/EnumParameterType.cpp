@@ -36,10 +36,6 @@
 
 using std::string;
 
-CEnumParameterType::CEnumParameterType(const string& strName) : base(strName)
-{
-}
-
 string CEnumParameterType::getKind() const
 {
     return "EnumParameter";

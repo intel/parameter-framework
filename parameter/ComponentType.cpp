@@ -35,10 +35,6 @@
 
 #define base CTypeElement
 
-CComponentType::CComponentType(const std::string& strName) : base(strName), _pExtendsComponentType(NULL)
-{
-}
-
 std::string CComponentType::getKind() const
 {
     return "ComponentType";

@@ -38,7 +38,7 @@ class CInstanceConfigurableElement;
 class CComponentType : public CTypeElement
 {
 public:
-    CComponentType(const std::string& strName);
+    using CTypeElement::CTypeElement;
 
     // Object creation
     virtual void populate(CElement* pElement) const;
@@ -64,5 +64,5 @@ private:
     virtual CInstanceConfigurableElement* doInstantiate() const;
 
     // Ref
-    const CComponentType* _pExtendsComponentType;
+    const CComponentType* _pExtendsComponentType{nullptr};
 };

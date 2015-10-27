@@ -41,7 +41,7 @@
 class CConfigurableElementWithMapping : public CConfigurableElement {
 public:
     CConfigurableElementWithMapping(const std::string& strName) : CConfigurableElement(strName) {}
-    virtual ~CConfigurableElementWithMapping() {}
+    virtual ~CConfigurableElementWithMapping() = default;
 
     /**
      * Get the value associated to a mapping key in the object's mapping

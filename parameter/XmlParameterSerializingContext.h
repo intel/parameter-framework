@@ -38,11 +38,11 @@ class CComponentLibrary;
 class CXmlParameterSerializingContext : public CXmlElementSerializingContext
 {
 public:
-    CXmlParameterSerializingContext(std::string& strError);
+    using CXmlElementSerializingContext::CXmlElementSerializingContext;
 
     // ComponentLibrary
     void setComponentLibrary(const CComponentLibrary* pComponentLibrary);
     const CComponentLibrary* getComponentLibrary() const;
 private:
-    const CComponentLibrary* _pComponentLibrary;
+    const CComponentLibrary* _pComponentLibrary{nullptr};
 };

@@ -46,7 +46,5 @@ private:
     virtual CInstanceConfigurableElement* doInstantiate() const;
     // Population
     virtual void populate(CElement* pElement) const;
-    // Creating sub blocks with indexes
-    static std::string computeChildName(size_t uiChild);
 };
 

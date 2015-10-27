@@ -44,10 +44,6 @@
 
 using std::string;
 
-CFixedPointParameterType::CFixedPointParameterType(const string& strName) : base(strName), _uiIntegral(0), _uiFractional(0)
-{
-}
-
 string CFixedPointParameterType::getKind() const
 {
     return "FixedPointParameter";

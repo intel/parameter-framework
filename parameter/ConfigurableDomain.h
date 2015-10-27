@@ -49,8 +49,7 @@ class CConfigurableDomain : public CElement
     typedef std::list<CConfigurableElement*>::const_iterator ConfigurableElementListIterator;
     typedef std::map<const CConfigurableElement*, CSyncerSet*>::const_iterator ConfigurableElementToSyncerSetMapIterator;
 public:
-    CConfigurableDomain();
-    CConfigurableDomain(const std::string& strName);
+    using CElement::CElement;
     virtual ~CConfigurableDomain();
 
     // Sequence awareness
@@ -264,12 +263,12 @@ private:
     std::map<const CConfigurableElement*, CSyncerSet*> _configurableElementToSyncerSetMap;
 
     // Sequence awareness
-    bool _bSequenceAware;
+    bool _bSequenceAware{false};
 
     // Syncer set used to ensure propoer synchronization of restored configurable elements
     CSyncerSet _syncerSet;
 
     // Last applied configuration
-    mutable const CDomainConfiguration* _pLastAppliedConfiguration;
+    mutable const CDomainConfiguration* _pLastAppliedConfiguration{nullptr};
 };
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,8 +34,6 @@
 class CEnumValuePair : public CElement
 {
 public:
-    CEnumValuePair();
-
     // Numerical
     int32_t getNumerical() const;
     std::string getNumericalAsString() const;
@@ -53,6 +51,6 @@ protected:
     std::string logValue(utility::ErrorContext& errorContext) const override;
 private:
     // Numerical
-    int32_t _iNumerical;
+    int32_t _iNumerical{0};
 };
 

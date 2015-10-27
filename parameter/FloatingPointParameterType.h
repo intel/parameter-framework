@@ -35,7 +35,7 @@
 class CFloatingPointParameterType : public CParameterType
 {
 public:
-    CFloatingPointParameterType(const std::string& strName);
+    using CParameterType::CParameterType;
 
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
@@ -88,6 +88,6 @@ private:
     bool checkValueAgainstRange(double dValue) const;
 
     /** Bounds */
-    float _fMin;
-    float _fMax;
+    float _fMin{std::numeric_limits<float>::lowest()};
+    float _fMax{std::numeric_limits<float>::max()};
 };
