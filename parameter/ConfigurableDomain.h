@@ -49,7 +49,7 @@ class CConfigurableDomain : public CElement
     typedef std::list<CConfigurableElement*>::const_iterator ConfigurableElementListIterator;
     typedef std::map<const CConfigurableElement*, CSyncerSet*>::const_iterator ConfigurableElementToSyncerSetMapIterator;
 public:
-    CConfigurableDomain();
+    CConfigurableDomain() = default;
     CConfigurableDomain(const std::string& strName);
     virtual ~CConfigurableDomain();
 

@@ -31,10 +31,6 @@
 #include "ComponentType.h"
 #include <assert.h>
 
-CComponentLibrary::CComponentLibrary()
-{
-}
-
 bool CComponentLibrary::childrenAreDynamic() const
 {
     return true;

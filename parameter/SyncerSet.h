@@ -39,8 +39,6 @@ class CSyncerSet
 {
     typedef std::set<ISyncer*>::const_iterator SyncerSetConstIterator;
 public:
-    CSyncerSet();
-
     // Filling
     const CSyncerSet& operator+=(ISyncer* pRightSyncer);
     const CSyncerSet& operator+=(const CSyncerSet& rightSyncerSet);

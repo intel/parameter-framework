@@ -47,10 +47,6 @@ const CSelectionCriterionRule::SMatchingRuleDescription CSelectionCriterionRule:
     { "Excludes", false }
 };
 
-CSelectionCriterionRule::CSelectionCriterionRule()
-{
-}
-
 // Class kind
 string CSelectionCriterionRule::getKind() const
 {

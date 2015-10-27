@@ -54,8 +54,6 @@ class CSelectionCriterionRule : public CRule
     };
 
 public:
-    CSelectionCriterionRule();
-
     // Parse
     virtual bool parse(CRuleParser& ruleParser, std::string& strError);
 

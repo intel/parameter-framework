@@ -36,10 +36,6 @@
 
 using std::string;
 
-CConfigurableDomains::CConfigurableDomains()
-{
-}
-
 string CConfigurableDomains::getKind() const
 {
     return "ConfigurableDomains";

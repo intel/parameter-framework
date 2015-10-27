@@ -38,8 +38,6 @@ class ISelectionCriterionObserver;
 class CSelectionCriteriaDefinition : public CElement
 {
 public:
-    CSelectionCriteriaDefinition();
-
     // Selection Criterion creation
     CSelectionCriterion* createSelectionCriterion(const std::string& strName,
                                                   const CSelectionCriterionType* pType,
