@@ -39,5 +39,5 @@ public:
     virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::string& strError) = 0;
 
 protected:
-    virtual ~ISyncer() {}
+    virtual ~ISyncer() = default;
 };

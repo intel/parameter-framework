@@ -48,7 +48,7 @@ class CDefaultElementLibrary: public CElementLibrary
 {
 public:
 
-    virtual ~CDefaultElementLibrary() {}
+    virtual ~CDefaultElementLibrary() = default;
 
     /** Set the default builder used in fallback mechanism.
       * @see createElement() for more detail on this mechanism.
