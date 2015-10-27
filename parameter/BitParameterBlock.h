@@ -34,7 +34,7 @@
 class CBitParameterBlock : public CInstanceConfigurableElement
 {
 public:
-    CBitParameterBlock(const std::string& strName, const CTypeElement* pTypeElement);
+    using CInstanceConfigurableElement::CInstanceConfigurableElement;
 
     // Instantiation, allocation
     virtual size_t getFootPrint() const;

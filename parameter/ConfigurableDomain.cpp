@@ -42,10 +42,6 @@
 
 using std::string;
 
-CConfigurableDomain::CConfigurableDomain(const string& strName) : base(strName)
-{
-}
-
 CConfigurableDomain::~CConfigurableDomain()
 {
     // Remove all configurable elements

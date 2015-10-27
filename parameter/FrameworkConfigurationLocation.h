@@ -36,7 +36,7 @@
 class CFrameworkConfigurationLocation : public CKindElement
 {
 public:
-    CFrameworkConfigurationLocation(const std::string& strName, const std::string& strKind);
+    using CKindElement::CKindElement;
 
     /** Get Configuration file URI
      */

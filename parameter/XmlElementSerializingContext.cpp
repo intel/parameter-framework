@@ -33,10 +33,6 @@
 
 using std::string;
 
-CXmlElementSerializingContext::CXmlElementSerializingContext(string& strError) : base(strError)
-{
-}
-
 // Init
 void CXmlElementSerializingContext::set(const CElementLibrary* pElementLibrary, const string& xmlUri)
 {

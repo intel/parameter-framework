@@ -42,10 +42,6 @@
 using std::string;
 using std::ostringstream;
 
-CIntegerParameterType::CIntegerParameterType(const string& strName) : base(strName)
-{
-}
-
 // Kind
 string CIntegerParameterType::getKind() const
 {

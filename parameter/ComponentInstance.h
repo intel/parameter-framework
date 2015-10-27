@@ -38,7 +38,7 @@ class CComponentType;
 class CComponentInstance : public CTypeElement
 {
 public:
-    CComponentInstance(const std::string& strName);
+    using CTypeElement::CTypeElement;
 
     // Mapping info
     virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;

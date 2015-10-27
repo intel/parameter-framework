@@ -44,7 +44,7 @@ class CConfigurationAccessContext;
 class PARAMETER_EXPORT CParameterType : public CTypeElement
 {
 public:
-    CParameterType(const std::string& strName);
+    using CTypeElement::CTypeElement;
     virtual ~CParameterType() = default;
 
     // Size

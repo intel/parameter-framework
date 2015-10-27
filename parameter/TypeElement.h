@@ -40,7 +40,8 @@ class CInstanceConfigurableElement;
 class PARAMETER_EXPORT CTypeElement : public CElement
 {
 public:
-    CTypeElement(const std::string& strName = "");
+    using CElement::CElement;
+    CTypeElement() = default;
     virtual ~CTypeElement();
 
     // Instantiation

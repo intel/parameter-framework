@@ -41,10 +41,6 @@
 
 using std::string;
 
-CArrayParameter::CArrayParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
-{
-}
-
 size_t CArrayParameter::getFootPrint() const
 {
     return getSize() * getArrayLength();

@@ -39,10 +39,6 @@
 
 using std::string;
 
-CBitParameterType::CBitParameterType(const string& strName) : base(strName)
-{
-}
-
 // CElement
 string CBitParameterType::getKind() const
 {

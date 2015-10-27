@@ -36,7 +36,7 @@
 class CFixedPointParameterType : public CParameterType
 {
 public:
-    CFixedPointParameterType(const std::string& strName);
+    using CParameterType::CParameterType;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);

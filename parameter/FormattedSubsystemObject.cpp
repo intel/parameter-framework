@@ -39,18 +39,11 @@ using std::string;
 
 CFormattedSubsystemObject::CFormattedSubsystemObject(
         CInstanceConfigurableElement* pInstanceConfigurableElement,
-        core::log::Logger& logger)
-    : base(pInstanceConfigurableElement, logger)
-{
-}
-
-CFormattedSubsystemObject::CFormattedSubsystemObject(
-        CInstanceConfigurableElement* pInstanceConfigurableElement,
         core::log::Logger& logger,
         const string& strMappingValue)
-    : base(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)
+    : base(pInstanceConfigurableElement, logger),
+      _strFormattedMappingValue(strMappingValue)
 {
-
 }
 
 
@@ -61,7 +54,7 @@ CFormattedSubsystemObject::CFormattedSubsystemObject(
         size_t firstAmendKey,
         size_t nbAmendKeys,
         const CMappingContext& context)
-    : base(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)
+    : CFormattedSubsystemObject(pInstanceConfigurableElement, logger, strMappingValue)
 {
     // Cope with quotes in the name
     if (strMappingValue[0] == '\'' && strMappingValue.length() >= 2) {

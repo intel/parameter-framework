@@ -36,7 +36,7 @@
 class CBitParameterBlockType : public CTypeElement
 {
 public:
-    CBitParameterBlockType(const std::string& strName);
+    using CTypeElement::CTypeElement;
 
     // Size
     size_t getSize() const;

@@ -37,15 +37,6 @@ class PARAMETER_EXPORT CFormattedSubsystemObject : public CSubsystemObject
 {
 public:
     /**
-     * Builds a new CFormattedSubsystemObject instance, without any mapping information.
-     *
-     * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.
-     * @param[in] logger the logger provided by the client
-     */
-    CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
-                              core::log::Logger& logger);
-
-    /**
      * Builds a new CFormattedSubsystemObject instance, using a simple mapping value without Amends.
      *
      * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.
@@ -55,7 +46,7 @@ public:
      */
     CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
                               core::log::Logger& logger,
-                              const std::string& strFormattedMapping);
+                              const std::string& strFormattedMapping = "");
 
     /**
      * Builds a new CFormattedSubsystemObject instance, using a mapping value containing Amends.

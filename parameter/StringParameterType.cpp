@@ -35,10 +35,6 @@
 
 using std::string;
 
-CStringParameterType::CStringParameterType(const string& strName) : base(strName)
-{
-}
-
 // CElement
 string CStringParameterType::getKind() const
 {

@@ -31,11 +31,6 @@
 
 #define base CKindElement
 
-CPluginLocation::CPluginLocation(const std::string& strName, const std::string& strKind) : base(strName, strKind)
-{
-
-}
-
 const std::string& CPluginLocation::getFolder() const
 {
     return _strFolder;

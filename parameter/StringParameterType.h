@@ -38,7 +38,7 @@
 class CStringParameterType : public CTypeElement
 {
 public:
-    CStringParameterType(const std::string& strName);
+    using CTypeElement::CTypeElement;
 
     // Max length
     size_t getMaxLength() const;

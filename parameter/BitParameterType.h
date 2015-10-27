@@ -40,7 +40,7 @@ class CParameterAccessContext;
 class CBitParameterType : public CTypeElement
 {
 public:
-    CBitParameterType(const std::string& strName);
+    using CTypeElement::CTypeElement;
 
     // From IXmlSink
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);

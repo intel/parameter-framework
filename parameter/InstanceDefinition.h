@@ -36,6 +36,8 @@
 class CInstanceDefinition : public CTypeElement
 {
 public:
+    using CTypeElement::CTypeElement;
+
     void createInstances(CElement* pFatherElement);
 
     virtual std::string getKind() const;

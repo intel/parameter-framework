@@ -40,7 +40,7 @@ class CConfigurationAccessContext;
 class CBaseParameter : public CInstanceConfigurableElement
 {
 public:
-    CBaseParameter(const std::string& strName, const CTypeElement* pTypeElement);
+    using CInstanceConfigurableElement::CInstanceConfigurableElement;
 
     // XML configuration settings parsing/composing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;

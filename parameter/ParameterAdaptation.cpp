@@ -33,9 +33,6 @@
 
 using std::string;
 
-CParameterAdaptation::CParameterAdaptation(const string& strType) : base(strType)
-{
-}
 // CElement
 string CParameterAdaptation::getKind() const
 {

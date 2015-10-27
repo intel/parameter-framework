@@ -35,10 +35,6 @@
 
 #define base CTypeElement
 
-CComponentInstance::CComponentInstance(const std::string& strName) : base(strName)
-{
-}
-
 std::string CComponentInstance::getKind() const
 {
     return "Component";

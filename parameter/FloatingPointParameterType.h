@@ -35,7 +35,7 @@
 class CFloatingPointParameterType : public CParameterType
 {
 public:
-    CFloatingPointParameterType(const std::string& strName);
+    using CParameterType::CParameterType;
 
     virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
     virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;

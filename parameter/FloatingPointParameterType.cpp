@@ -39,11 +39,6 @@
 
 using std::string;
 
-CFloatingPointParameterType::CFloatingPointParameterType(const string& strName)
-    : base(strName)
-{
-}
-
 string CFloatingPointParameterType::getKind() const
 {
     return "FloatingPointParameter";

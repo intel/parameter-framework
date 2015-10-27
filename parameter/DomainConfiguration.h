@@ -51,7 +51,7 @@ class CDomainConfiguration : public CElement
         ECompoundRule
     };
 public:
-    CDomainConfiguration(const std::string& strName);
+    using CElement::CElement;
 
     // Configurable Elements association
     void addConfigurableElement(const CConfigurableElement *configurableElement, const CSyncerSet *syncerSet);
