@@ -94,13 +94,12 @@ int main(int argc, char *argv[])
 
     tcp::socket connectionSocket(io_service);
 
-    asio::error_code ec;
-    asio::connect(connectionSocket, resolver.resolve(tcp::resolver::query(argv[1], (argv[2]))), ec);
-
-    if (ec) {
-
-        cerr << "Connexion failed: " << ec.message() << endl;
-
+    string host{argv[1]};
+    string port{argv[2]};
+    try {
+        asio::connect(connectionSocket, resolver.resolve(tcp::resolver::query(host, port)));
+    } catch (const asio::system_error &e) {
+        cerr << "Connection to '" << host << ":"<< port << "' failed: " << e.what() << endl;
         return 1;
     }
 
