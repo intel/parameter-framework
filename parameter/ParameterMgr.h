@@ -121,8 +121,11 @@ public:
     // Configuration application
     void applyConfigurations();
 
-    /**
-     * Returns the CConfigurableElement corresponding to the path given in argument.
+    /** const version of getConfigurableElement */
+    const CConfigurableElement* getConfigurableElement(const std::string& strPath,
+                                                       std::string& strError) const;
+
+    /** Returns the CConfigurableElement corresponding to the path given in argument.
      *
      * @param[in] strPath A std::string representing a path to an element.
      * @param[out] strError Error message
@@ -130,8 +133,8 @@ public:
      * @return A const pointer to the corresponding CConfigurableElement.
      * On error, NULL is returned and the error is explained in strError.
      */
-    const CConfigurableElement* getConfigurableElement(const std::string& strPath,
-                                                       std::string& strError) const;
+    CConfigurableElement* getConfigurableElement(const std::string& strPath,
+                                                 std::string& strError);
     // Dynamic parameter handling
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError);
 

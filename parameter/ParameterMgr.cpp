@@ -716,7 +716,6 @@ void CParameterMgr::applyConfigurations()
     }
 }
 
-// Get the configurableElement corresponding to the given path
 const CConfigurableElement* CParameterMgr::getConfigurableElement(const string& strPath,
                                                                   string& strError) const
 {
@@ -744,10 +743,19 @@ const CConfigurableElement* CParameterMgr::getConfigurableElement(const string& 
     return pConfigurableElement;
 }
 
+CConfigurableElement* CParameterMgr::getConfigurableElement(const string& strPath,
+                                                            string& strError)
+{
+    // Implement the mutable version by calling the const one and removing
+    // the const from the result.
+    const auto *constThis = this;
+    return const_cast<CConfigurableElement *>(constThis->getConfigurableElement(strPath, strError));
+}
+
 // Dynamic parameter handling
 CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, string& strError)
 {
-    const CConfigurableElement* pConfigurableElement = getConfigurableElement(strPath, strError);
+    CConfigurableElement* pConfigurableElement = getConfigurableElement(strPath, strError);
 
     if (!pConfigurableElement) {
 
@@ -765,7 +773,7 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
     }
 
     // Convert as parameter and return new handle
-    return new CParameterHandle(static_cast<const CBaseParameter*>(pConfigurableElement), this);
+    return new CParameterHandle(static_cast<CBaseParameter*>(pConfigurableElement), this);
 }
 
 void CParameterMgr::setFailureOnMissingSubsystem(bool bFail)
