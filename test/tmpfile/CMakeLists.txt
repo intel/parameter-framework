@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,37 +26,13 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-if (WIN32)
-    set(UTILITY_OS_SPECIFIC_FILES windows/DynamicLibrary.cpp)
-else ()
-    set(UTILITY_OS_SPECIFIC_FILES posix/DynamicLibrary.cpp)
-endif ()
-
-add_library(pfw_utility STATIC
-    ${UTILITY_OS_SPECIFIC_FILES}
-    Tokenizer.cpp
-    Utility.cpp
-    DynamicLibrary.cpp)
-
-target_include_directories(pfw_utility PUBLIC .)
-
-if (NOT WIN32)
-    # '-fPIC' needed for linking against shared libraries (e.g. libparameter)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
-endif ()
-
-install(FILES
-    NonCopyable.hpp
-    ErrorContext.hpp
-    Utility.h
-    convert.hpp
-    DESTINATION "include/utility")
-
 if(BUILD_TESTING)
-    # Add unit test
-    add_executable(utilityUnitTest test/utility.cpp)
+    if (WIN32)
+        set(OS_SPECIFIC_TMPFILE windows/TmpFile.cpp)
+    else ()
+        set(OS_SPECIFIC_TMPFILE posix/TmpFile.cpp)
+    endif ()
 
-    target_link_libraries(utilityUnitTest pfw_utility catch)
-    add_test(NAME utilityUnitTest
-             COMMAND utilityUnitTest)
+    add_library(tmpfile STATIC ${OS_SPECIFIC_TMPFILE})
+    target_include_directories(tmpfile PUBLIC .)
 endif()

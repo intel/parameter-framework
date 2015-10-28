@@ -49,7 +49,7 @@ if(BUILD_TESTING)
     # Add unit test
     add_executable(cparameterUnitTest Test.cpp)
 
-    target_link_libraries(cparameterUnitTest PRIVATE catch cparameter pfw_utility)
+    target_link_libraries(cparameterUnitTest PRIVATE catch cparameter tmpfile)
 
     add_test(NAME cparameterUnitTest
              COMMAND cparameterUnitTest)

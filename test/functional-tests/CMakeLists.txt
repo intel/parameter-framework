@@ -35,7 +35,7 @@ if(BUILD_TESTING)
                    FloatingPoint.cpp)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-    target_link_libraries(parameterFunctionalTest parameter catch)
+    target_link_libraries(parameterFunctionalTest parameter catch tmpfile)
     add_test(NAME parameterFunctionalTest
              COMMAND parameterFunctionalTest)
 
