@@ -554,6 +554,27 @@ private:
     bool loadSettings(std::string& strError);
     bool loadSettingsFromConfigFile(std::string& strError);
 
+    /** Get settings from a configurable element in binary format.
+     *
+     * @param[in] element configurable element.
+     * @param[out] settings current element settings (in mainblackboard) in binary format
+     *
+     * @return true on success, false on error
+     */
+    void getSettingsAsBytes(const CConfigurableElement &element,
+                            std::vector<uint8_t> &settings) const;
+
+    /** Assign settings to a configurable element in binary format.
+     *
+     * @param[in] element configurable element.
+     * @param[in] settings the settings as byte array (binary).
+     * @param[out] error error message filled in case of error
+     *
+     * @return true in case of success, false oherwise, in which case error is filled with error message.
+     */
+    bool setSettingsAsBytes(const CConfigurableElement &element,
+                            const std::vector<uint8_t> &settings, std::string &error);
+
     /** Assign settings to a configurable element in XML format.
      *
      * @param[in] configurableElement The element to set.
