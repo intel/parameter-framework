@@ -46,8 +46,8 @@ protected:
      *
      * @param[in] method (const) that return a boolean to indicate failure.
      * @param[in] args parameters to call method call with. */
-    template <class... MArgs, class... Args>
-    void mayFailCall(bool (T::*method)(MArgs...) const, Args&&... args) const {
+    template <class K, class... MArgs, class... Args>
+    void mayFailCall(bool (K::*method)(MArgs...) const, Args&&... args) const {
         std::string error;
         if (not (mWrapped.*method)(std::forward<Args>(args)..., error)) {
             throw Exception(std::move(error));
@@ -59,8 +59,8 @@ protected:
      *
      * @param[in] method that return a boolean to indicate failure.
      * @param[in] args parameters to call method call with. */
-    template <class... MArgs, class... Args>
-    void mayFailCall(bool (T::*method)(MArgs...), Args&&... args) {
+    template <class K, class... MArgs, class... Args>
+    void mayFailCall(bool (K::*method)(MArgs...), Args&&... args) {
         std::string error;
         if (not (mWrapped.*method)(std::forward<Args>(args)..., error)) {
             throw Exception(std::move(error));
@@ -72,8 +72,8 @@ protected:
      *
      * @param[in] method that return a boolean to indicate failure.
      * @param[in] args parameters to call method call with. */
-    template <class ReturnType, class... MArgs, class... Args>
-    ReturnType *mayFailCall(ReturnType *(T::*method)(MArgs...), Args&&... args) {
+    template <class K, class ReturnType, class... MArgs, class... Args>
+    ReturnType *mayFailCall(ReturnType *(K::*method)(MArgs...), Args&&... args) {
         std::string error;
         ReturnType *ret = (mWrapped.*method)(std::forward<Args>(args)..., error);
         if (ret == NULL) {
