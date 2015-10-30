@@ -46,7 +46,12 @@ class ParameterFramework : private parameterFramework::ConfigFiles,
                            private CParameterMgrFullConnector,
                            private FailureWrapper<CParameterMgrFullConnector>
 {
-private:
+protected:
+    /** Alias to the Platform Connector PF.
+     * It should not be usefull as PF is a super set but is useful
+     * to disambiguate overloaded method for MS visual compiler.
+     */
+    using PPF = CParameterMgrPlatformConnector;
     using PF = CParameterMgrFullConnector;
 
 public:
@@ -66,9 +71,7 @@ public:
      * @{ */
     using PF::applyConfigurations;
     using PF::getFailureOnMissingSubsystem;
-    using PF::setFailureOnMissingSubsystem;
     using PF::getFailureOnFailedSettingsLoad;
-    using PF::setFailureOnFailedSettingsLoad;
     using PF::getForceNoRemoteInterface;
     using PF::setForceNoRemoteInterface;
     using PF::getSchemaUri;
@@ -82,6 +85,21 @@ public:
     using PF::isAutoSyncOn;
     using PF::setLogger;
     /** @} */
+
+    /** Wrap PF::setValidateSchemasOnStart to throw an exception on failure. */
+    void setValidateSchemasOnStart(bool validate) {
+        mayFailCall(&PPF::setValidateSchemasOnStart, validate);
+    }
+
+    /** Wrap PF::setFailureOnFailedSettingsLoad to throw an exception on failure. */
+    void setFailureOnFailedSettingsLoad(bool fail) {
+        mayFailCall(&PPF::setFailureOnFailedSettingsLoad, fail);
+    }
+
+    /** Wrap PF::setFailureOnMissingSubsystem to throw an exception on failure. */
+    void setFailureOnMissingSubsystem(bool fail) {
+        mayFailCall(&PPF::setFailureOnMissingSubsystem, fail);
+    }
 
     /** Renaming for better readability (and coherency with PF::isValueSpaceRaw)
      *  of PF::setValueSpace. */

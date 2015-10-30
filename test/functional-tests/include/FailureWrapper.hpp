@@ -79,6 +79,15 @@ protected:
         return wrapCall<K, ReturnType *>(method, std::forward<Args>(args)...);
     }
 
+    /** Wrap a const method that may indicate failure by returning a null pointer to
+     * throw an Exception instead of retuning a null pointer.
+     *
+     * @param[in] method that return a nullprt to indicate failure.
+     * @param[in] args parameters to call method call with. */
+    template <class K, class ReturnType, class... MArgs, class... Args>
+    ReturnType *mayFailCall(ReturnType *(K::*method)(MArgs...) const, Args&&... args) const {
+        return wrapCall<K, ReturnType *>(method, std::forward<Args>(args)...);
+    }
 private:
     template <class K, class Ret, class M, class... Args>
     Ret wrapCall(M method, Args &&... args) const

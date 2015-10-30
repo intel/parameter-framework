@@ -91,16 +91,16 @@ public:
     bool getForceNoRemoteInterface() const;
     void setForceNoRemoteInterface(bool bForceNoRemoteInterface);
 
-    void setFailureOnMissingSubsystem(bool bFail);
+    bool setFailureOnMissingSubsystem(bool bFail, std::string& strError);
     bool getFailureOnMissingSubsystem() const;
 
-    void setFailureOnFailedSettingsLoad(bool bFail);
+    bool setFailureOnFailedSettingsLoad(bool bFail, std::string& strError);
     bool getFailureOnFailedSettingsLoad() const;
 
     void setSchemaUri(const std::string& schemaUri);
     const std::string& getSchemaUri() const;
 
-    void setValidateSchemasOnStart(bool bValidate);
+    bool setValidateSchemasOnStart(bool bValidate, std::string &strError);
     bool getValidateSchemasOnStart() const;
 
     // Tuning mode

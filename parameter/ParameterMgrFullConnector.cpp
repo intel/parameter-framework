@@ -35,127 +35,25 @@
 
 using std::string;
 
-CParameterMgrFullConnector::CParameterMgrFullConnector(const string& strConfigurationFilePath) :
-    _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrFullConnector>(*this)),
-    _pParameterMgr(new CParameterMgr(strConfigurationFilePath, *_pParameterMgrLogger)),
-    _pLogger(NULL)
-{
-}
-
-CParameterMgrFullConnector::~CParameterMgrFullConnector()
-{
-    delete _pParameterMgr;
-    delete _pParameterMgrLogger;
-}
-
-
-bool CParameterMgrFullConnector::start(string& strError)
-{
-    // Create data structure & Init flow
-    return _pParameterMgr->load(strError);
-}
-
-void CParameterMgrFullConnector::setLogger(CParameterMgrFullConnector::ILogger* pLogger)
-{
-    _pLogger = pLogger;
-}
-
-// Private logging
-void CParameterMgrFullConnector::info(const string& log)
-{
-    if (_pLogger) {
-
-        _pLogger->info(log);
-    }
-}
-
-void CParameterMgrFullConnector::warning(const string& log)
-{
-    if (_pLogger) {
-
-        _pLogger->warning(log);
-    }
-}
-
-CParameterHandle* CParameterMgrFullConnector::createParameterHandle(const string& strPath,
-                                                                    string& strError)
-{
-    return _pParameterMgr->createParameterHandle(strPath, strError);
-}
-
-ISelectionCriterionTypeInterface* CParameterMgrFullConnector::createSelectionCriterionType(
-        bool bIsInclusive)
-{
-    return _pParameterMgr->createSelectionCriterionType(bIsInclusive);
-}
-
-ISelectionCriterionInterface* CParameterMgrFullConnector::createSelectionCriterion(
-        const string& strName,
-        const ISelectionCriterionTypeInterface* pSelectionCriterionType)
-{
-    return _pParameterMgr->createSelectionCriterion(strName,
-            static_cast<const CSelectionCriterionType*>(pSelectionCriterionType));
-}
-
-ISelectionCriterionInterface* CParameterMgrFullConnector::getSelectionCriterion(
-        const string& strName)
-{
-    return _pParameterMgr->getSelectionCriterion(strName);
-}
-
-bool CParameterMgrFullConnector::getForceNoRemoteInterface() const
-{
-    return _pParameterMgr->getForceNoRemoteInterface();
-}
-
-void CParameterMgrFullConnector::setForceNoRemoteInterface(bool bForceNoRemoteInterface)
-{
-    _pParameterMgr->setForceNoRemoteInterface(bForceNoRemoteInterface);
-}
-
-void CParameterMgrFullConnector::applyConfigurations()
-{
-    return _pParameterMgr->applyConfigurations();
-}
+CParameterMgrFullConnector::CParameterMgrFullConnector(const string& strConfigurationFilePath)
+    : CParameterMgrPlatformConnector(strConfigurationFilePath) {}
 
 void CParameterMgrFullConnector::setFailureOnMissingSubsystem(bool bFail)
 {
-    _pParameterMgr->setFailureOnMissingSubsystem(bFail);
-}
-
-bool CParameterMgrFullConnector::getFailureOnMissingSubsystem() const
-{
-    return _pParameterMgr->getFailureOnMissingSubsystem();
+    std::string error;
+    setFailureOnMissingSubsystem(bFail, error);
 }
 
 void CParameterMgrFullConnector::setFailureOnFailedSettingsLoad(bool bFail)
 {
-    _pParameterMgr->setFailureOnFailedSettingsLoad(bFail);
-}
-
-bool CParameterMgrFullConnector::getFailureOnFailedSettingsLoad() const
-{
-    return _pParameterMgr->getFailureOnFailedSettingsLoad();
-}
-
-const string& CParameterMgrFullConnector::getSchemaUri() const
-{
-    return _pParameterMgr->getSchemaUri();
-}
-
-void CParameterMgrFullConnector::setSchemaUri(const string& schemaUri)
-{
-    _pParameterMgr->setSchemaUri(schemaUri);
+    std::string error;
+    setFailureOnFailedSettingsLoad(bFail, error);
 }
 
 void CParameterMgrFullConnector::setValidateSchemasOnStart(bool bValidate)
 {
-    _pParameterMgr->setValidateSchemasOnStart(bValidate);
-}
-
-bool CParameterMgrFullConnector::getValidateSchemasOnStart() const
-{
-    return _pParameterMgr->getValidateSchemasOnStart();
+    std::string error;
+    setValidateSchemasOnStart(bValidate, error);
 }
 
 bool CParameterMgrFullConnector::setTuningMode(bool bOn, string& strError)

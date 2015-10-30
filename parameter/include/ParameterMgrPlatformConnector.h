@@ -43,7 +43,13 @@ class PARAMETER_EXPORT CParameterMgrPlatformConnector
 {
     friend class CParameterMgrLogger<CParameterMgrPlatformConnector>;
 public:
-    // Logger interface
+    /** Interface to implement to provide a custom logger to the PF.
+     *
+     * Override info and warning methods to specify how each log level
+     * should be printed.
+     *
+     * @Note Errors are always returned synchronously. Never logged.
+     */
     class ILogger
     {
     public:
@@ -55,7 +61,7 @@ public:
 
     // Construction
     CParameterMgrPlatformConnector(const std::string& strConfigurationFilePath);
-    ~CParameterMgrPlatformConnector(); // Not virtual since not supposed to be derived!
+    virtual ~CParameterMgrPlatformConnector();
 
     // Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
     // Should be called before start
@@ -180,6 +186,7 @@ private:
     void info(const std::string& log);
     void warning(const std::string& log);
 
+protected:
     // Private logging
     CParameterMgrLogger<CParameterMgrPlatformConnector>* _pParameterMgrLogger;
     // Implementation
