@@ -37,18 +37,25 @@ namespace parameterFramework
 
 namespace detail
 {
+
 static inline bool successTest(bool res) { return res; }
+
 template <class T>
 static inline bool successTest(T *res) { return res != nullptr; }
+
 } // namespace detail
 
-template <class T>
-class FailureWrapper
+template <class Base>
+class FailureWrapper : protected Base
 {
 public:
-    FailureWrapper(T *wrapped) : mWrapped(*wrapped) {}
+    /** Forward construction to base.
+     *
+     * using Base::Base would be equivalent, but is not supported by VS 2013.
+     */
+    template <class... Args>
+    FailureWrapper(Args &&... args) : Base(std::forward<Args>(args)...) {}
 
-protected:
     /** Wrap a const method that may fail to throw an Exception instead of
      * retuning a boolean.
      *
@@ -56,7 +63,7 @@ protected:
      * @param[in] args parameters to call method call with. */
     template <class K, class... MArgs, class... Args>
     void mayFailCall(bool (K::*method)(MArgs...) const, Args&&... args) const {
-        wrapCall<K, bool>(method, std::forward<Args>(args)...);
+        wrapCall<bool>(*this, method, std::forward<Args>(args)...);
     }
 
     /** Wrap a method that may fail to throw an Exception instead of retuning a
@@ -66,7 +73,7 @@ protected:
      * @param[in] args parameters to call method call with. */
     template <class K, class... MArgs, class... Args>
     void mayFailCall(bool (K::*method)(MArgs...), Args&&... args) {
-        wrapCall<K, bool>(method, std::forward<Args>(args)...);
+        wrapCall<bool>(*this, method, std::forward<Args>(args)...);
     }
 
     /** Wrap a method that may indicate failure by returning a null pointer to
@@ -76,7 +83,7 @@ protected:
      * @param[in] args parameters to call method call with. */
     template <class K, class ReturnType, class... MArgs, class... Args>
     ReturnType *mayFailCall(ReturnType *(K::*method)(MArgs...), Args&&... args) {
-        return wrapCall<K, ReturnType *>(method, std::forward<Args>(args)...);
+        return wrapCall<ReturnType *>(*this, method, std::forward<Args>(args)...);
     }
 
     /** Wrap a const method that may indicate failure by returning a null pointer to
@@ -86,21 +93,19 @@ protected:
      * @param[in] args parameters to call method call with. */
     template <class K, class ReturnType, class... MArgs, class... Args>
     ReturnType *mayFailCall(ReturnType *(K::*method)(MArgs...) const, Args&&... args) const {
-        return wrapCall<K, ReturnType *>(method, std::forward<Args>(args)...);
-    }
-private:
-    template <class K, class Ret, class M, class... Args>
-    Ret wrapCall(M method, Args &&... args) const
-    {
-        static_assert(std::is_base_of<K, T>::value, "Attempt to call a method on an incompatible object.");
-        std::string error;
-        auto ret = (mWrapped.*method)(std::forward<Args>(args)..., error);
-        if (not detail::successTest(ret)) {
-            throw Exception(std::move(error));
-        }
-        return ret;
+        return wrapCall<ReturnType *>(*this, method, std::forward<Args>(args)...);
     }
 
-    T& mWrapped;
+private:
+    template <class Ret, class I, class M, class... Args>
+    static Ret wrapCall(I &instance, M method, Args&&... args)
+    {
+        std::string error;
+        auto res = (std::forward<I>(instance).*method)(std::forward<Args>(args)..., error);
+        if (not detail::successTest(res)) {
+            throw Exception(std::move(error));
+        }
+        return res;
+    }
 };
 } // parameterFramework

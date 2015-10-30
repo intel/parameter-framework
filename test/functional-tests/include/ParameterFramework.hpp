@@ -43,7 +43,6 @@ namespace parameterFramework
  *  have more user friendly methods.
  */
 class ParameterFramework : private parameterFramework::ConfigFiles,
-                           private CParameterMgrFullConnector,
                            private FailureWrapper<CParameterMgrFullConnector>
 {
 protected:
@@ -57,8 +56,7 @@ protected:
 public:
     ParameterFramework(const Config &config = Config()) :
         ConfigFiles(config),
-        PF(getPath()),
-        FailureWrapper(this) {}
+        FailureWrapper(getPath()) {}
 
     void start() {
         setForceNoRemoteInterface(true);
