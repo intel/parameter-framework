@@ -64,6 +64,11 @@ See [the wiki on github](https://github.com/01org/parameter-framework/wiki).
 
 ## Compiling
 
+**You may take a look at `.travis.yml` and `appveyor.yml` for examples on how we
+build the Parameter Framework in the CI.** It will probably help if you have
+troubles building the Parameter Framework even after reading the following
+sections:
+
 ### Dependencies
 
 In order to compile you'll need, at the very least:
@@ -127,9 +132,6 @@ Also, CMake can build a project out-of-tree, which is the recommended method:
 After a build you may want to run the parameter-framework tests with
 `make test` or `ctest`.
 
-You may take a look at `.travis.yml` and `appveyor.yml` for examples on how we
-build the Parameter Framework in the CI.
-
 ### Compiling on Windows
 
 If you don't already have libxml2 headers/libraries and don't want to build them
@@ -146,3 +148,7 @@ following two entries to `CMAKE_PREFIX_PATH`:
 
     /path/to/libxml2-x86_64/
     /path/to/asio-1.10.6/
+
+When running CMake's configuration step (the first call to CMake) you should
+specify the build system you want to use. If you are using the precompiled
+libxml2 mentioned above, add: `-G Visual Studio 12 2013 Win64`
