@@ -36,10 +36,18 @@
 class CConfigurationAccessContext : public CParameterAccessContext
 {
 public:
+    CConfigurationAccessContext(std::string& strError,
+                                CParameterBlackboard* pParameterBlackboard,
+                                bool bValueSpaceIsRaw,
+                                bool bOutputRawFormatIsHex,
+                                bool bSerializeOut);
+
     CConfigurationAccessContext(std::string& strError, bool bSerializeOut);
 
     // Serialization direction
     bool serializeOut() const;
+
+    bool serializeSettings() const override final { return true; }
 
 private:
     // Serialization direction

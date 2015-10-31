@@ -21,7 +21,7 @@
 		<Settings>
 			<Configuration Name="Conf_1_1">
 				<ConfigurableElement Path="/Test/Test/TEST_DIR">
-					<Component Name="TEST_DIR">
+					<ParameterBlock Name="TEST_DIR">
 						<!-- Tested Booleans -->
 						<BooleanParameter Name="BOOL">0</BooleanParameter>
 						<!-- Tested FixedPoints -->
@@ -55,12 +55,12 @@
 						<IntegerParameter Name="UINT8_Max_ARRAY">0</IntegerParameter>
 						<!-- Tested String-->
 						<StringParameter Name="STR_CHAR128">string_Conf_1_1</StringParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 			<Configuration Name="Conf_1_0">
 				<ConfigurableElement Path="/Test/Test/TEST_DIR">
-					<Component Name="TEST_DIR">
+					<ParameterBlock Name="TEST_DIR">
 						<!-- Tested Booleans -->
 						<BooleanParameter Name="BOOL">1</BooleanParameter>
 						<!-- Tested FixedPoints -->
@@ -94,7 +94,7 @@
 						<IntegerParameter Name="UINT8_Max_ARRAY">1</IntegerParameter>
 						<!-- Tested String-->
 						<StringParameter Name="STR_CHAR128">string_Conf_1_0</StringParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 		</Settings>
@@ -121,20 +121,20 @@
 		<Settings>
 			<Configuration Name="Conf_2_1">
 				<ConfigurableElement Path="/Test/Test/TEST_DOMAIN_0">
-					<Component Name="TEST_DOMAIN_0">
+					<ParameterBlock Name="TEST_DOMAIN_0">
 						<IntegerParameter Name="Param_00">4</IntegerParameter>
 						<IntegerParameter Name="Param_01">4</IntegerParameter>
 						<IntegerParameter Name="Param_02">4</IntegerParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 			<Configuration Name="Conf_2_0">
 				<ConfigurableElement Path="/Test/Test/TEST_DOMAIN_0">
-					<Component Name="TEST_DOMAIN_0">
+					<ParameterBlock Name="TEST_DOMAIN_0">
 						<IntegerParameter Name="Param_00">5</IntegerParameter>
 						<IntegerParameter Name="Param_01">5</IntegerParameter>
 						<IntegerParameter Name="Param_02">5</IntegerParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 		</Settings>
@@ -161,20 +161,20 @@
 		<Settings>
 			<Configuration Name="Conf_3_1">
 				<ConfigurableElement Path="/Test/Test/TEST_DOMAIN_1">
-					<Component Name="TEST_DOMAIN_1">
+					<ParameterBlock Name="TEST_DOMAIN_1">
 						<IntegerParameter Name="Param_10">4</IntegerParameter>
 						<IntegerParameter Name="Param_11">4</IntegerParameter>
 						<IntegerParameter Name="Param_12">4</IntegerParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 			<Configuration Name="Conf_3_0">
 				<ConfigurableElement Path="/Test/Test/TEST_DOMAIN_1">
-					<Component Name="TEST_DOMAIN_1">
+					<ParameterBlock Name="TEST_DOMAIN_1">
 						<IntegerParameter Name="Param_10">5</IntegerParameter>
 						<IntegerParameter Name="Param_11">5</IntegerParameter>
 						<IntegerParameter Name="Param_12">5</IntegerParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 		</Settings>

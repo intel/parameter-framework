@@ -26,7 +26,7 @@
 		<Settings>
 			<Configuration Name="Conf_0">
 				<ConfigurableElement Path="/Test/Test/TEST_DIR">
-					<Component Name="TEST_DIR">
+					<ParameterBlock Name="TEST_DIR">
 						<!-- Tested Booleans -->
 						<BooleanParameter Name="BOOL">0</BooleanParameter>
 						<!-- Tested FixedPoints -->
@@ -60,10 +60,10 @@
 						<IntegerParameter Name="UINT8_Max_ARRAY">0</IntegerParameter>
 						<!-- Tested String-->
 						<StringParameter Name="STR_CHAR128">string_Conf_0</StringParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 				<ConfigurableElement Path="/Test/Test/TEST_TYPES">
-					<Component Name="TEST_TYPES">
+					<ParameterBlock Name="TEST_TYPES">
 						<EnumParameter Name="ENUM">ENUM_NOMINAL</EnumParameter>
 						<BitParameterBlock Name="BLOCK_8BIT">
 							<BitParameter Name="BIT_0_3">0</BitParameter>
@@ -77,12 +77,12 @@
 							<IntegerParameter Name="BLOCK_UINT16">0</IntegerParameter>
 							<IntegerParameter Name="BLOCK_UINT32">0</IntegerParameter>
 						</ParameterBlock>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 			<Configuration Name="Conf_1">
 				<ConfigurableElement Path="/Test/Test/TEST_DIR">
-					<Component Name="TEST_DIR">
+					<ParameterBlock Name="TEST_DIR">
 						<!-- Tested Booleans -->
 						<BooleanParameter Name="BOOL">1</BooleanParameter>
 						<!-- Tested FixedPoints -->
@@ -116,10 +116,10 @@
 						<IntegerParameter Name="UINT8_Max_ARRAY">1</IntegerParameter>
 						<!-- Tested String-->
 						<StringParameter Name="STR_CHAR128">string_Conf_1</StringParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 				<ConfigurableElement Path="/Test/Test/TEST_TYPES">
-					<Component Name="TEST_TYPES">
+					<ParameterBlock Name="TEST_TYPES">
 						<!--Tested Enum-->
 						<EnumParameter Name="ENUM">ENUM_MIN</EnumParameter>
 						<!--Tested Bit parameter block-->
@@ -135,7 +135,7 @@
 							<IntegerParameter Name="BLOCK_UINT16">0</IntegerParameter>
 							<IntegerParameter Name="BLOCK_UINT32">0</IntegerParameter>
 						</ParameterBlock>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 		</Settings>

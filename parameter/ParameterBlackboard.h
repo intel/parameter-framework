@@ -52,6 +52,35 @@ public:
     void writeBuffer(const void* pvSrcData, size_t size, size_t offset);
     void readBuffer(void* pvDstData, size_t size, size_t offset) const;
 
+    /**
+     * Raw write the blackboard memory.
+     *
+     * May be used to write a configurable element's settings
+     *
+     * @param[in] bytes the source data bytes vector.
+     * @param[in] offset the destination offset in the blackboard.
+     *
+     * Notes:
+     *    - This function asserts that the input vector's size + the offset
+     *      does not exceed the size of the blackboard istelf.
+     */
+    void writeBytes(const std::vector<uint8_t>& bytes, size_t offset);
+
+    /**
+     * Raw read the blackboard memory.
+     *
+     * May be used to read a configurable element's settings
+     *
+     * @param[out] bytes the destination data bytes vector.
+     * @param[in] offset the source offset in the blackboard.
+     *
+     * Notes:
+     *    - This function asserts that the output vector's size + the offset
+     *      does not exceed the size of the blackboard itself.
+     *    - The user MUST reserve exactly as many elements as the amount to read
+     */
+    void readBytes(std::vector<uint8_t>& bytes, size_t offset) const;
+
     // Access from/to subsystems
     uint8_t* getLocation(size_t offset);
 

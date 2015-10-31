@@ -420,6 +420,11 @@ private:
     /// Elements/Parameters
     CCommandHandler::CommandStatus listElementsCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus listParametersCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus getElementStructureXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus getElementBytesCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus setElementBytesCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus getElementXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
+    CCommandHandler::CommandStatus setElementXMLCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus dumpElementCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus getElementSizeCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
     CCommandHandler::CommandStatus showPropertiesCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult);
@@ -545,6 +550,28 @@ private:
     // System class Structure loading
     bool loadSettings(std::string& strError);
     bool loadSettingsFromConfigFile(std::string& strError);
+
+    /** Assign settings to a configurable element in XML format.
+     *
+     * @param[in] configurableElement The element to set.
+     * @param[in] settings The settings to set.
+     * @param[out] error human readable error message filled in case of error,
+     *                   undefined in case of success.
+     * @return true in case of success, false otherwise
+     */
+    bool setSettingsAsXML(CConfigurableElement *configurableElement, const std::string &settings,
+                          std::string &error);
+
+    /** Get settings from a configurable element in XML format.
+     *
+     * @param[in] configurableElement The element to get settings from.
+     * @param[out] result on success: the exported setttings in XML
+     *                    on error: human readable error message
+     *
+     * @return true in case of success, false otherwise.
+     */
+    bool getSettingsAsXML(const CConfigurableElement *configurableElement,
+                          std::string &result) const;
 
     /** Parse an XML stream into an element
      *

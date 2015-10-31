@@ -34,6 +34,9 @@
 #include "ConfigurationAccessContext.h"
 #include "ConfigurableElementAggregator.h"
 #include "AreaConfiguration.h"
+#include "Iterator.hpp"
+#include "Utility.h"
+#include "XmlParameterSerializingContext.h"
 #include <assert.h>
 
 #define base CElement
@@ -44,6 +47,37 @@ CConfigurableElement::CConfigurableElement(const std::string& strName) : base(st
 
 CConfigurableElement::~CConfigurableElement()
 {
+}
+
+bool CConfigurableElement::fromXml(const CXmlElement &xmlElement,
+                                   CXmlSerializingContext &serializingContext)
+{
+    auto &context = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    auto &accessContext = context.getAccessContext();
+
+    if (accessContext.serializeSettings()) {
+        // As serialization and deserialisation are handled through the *same* function
+        // the (de)serialize object can not be const in `serializeXmlSettings` signature.
+        // As a result a const_cast is unavoidable :(.
+        // Fixme: split serializeXmlSettings in two functions (in and out) to avoid the `const_cast`
+        return serializeXmlSettings(const_cast<CXmlElement&>(xmlElement),
+                                    static_cast<CConfigurationAccessContext &>(accessContext));
+    }
+    return structureFromXml(xmlElement, serializingContext);
+}
+
+void CConfigurableElement::toXml(CXmlElement &xmlElement,
+                                 CXmlSerializingContext &serializingContext) const
+{
+    auto &context = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    auto &accessContext = context.getAccessContext();
+    if (accessContext.serializeSettings()) {
+
+        serializeXmlSettings(xmlElement, static_cast<CConfigurationAccessContext &>(accessContext));
+    } else {
+
+        structureToXml(xmlElement, serializingContext);
+    }
 }
 
 // XML configuration settings parsing
@@ -72,12 +106,29 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             }
 
             // Check element type matches in type
-            if (xmlChildConfigurableElementSettingsElement.getType() != pChildConfigurableElement->getKind()) {
+            if (xmlChildConfigurableElementSettingsElement.getType() !=
+                pChildConfigurableElement->getXmlElementName()) {
 
-                // Type error
-                configurationAccessContext.setError("Configuration settings parsing: Settings for configurable element " + pChildConfigurableElement->getName() + " does not match expected type: " + xmlChildConfigurableElementSettingsElement.getType() + " instead of " + pChildConfigurableElement->getKind());
+                // "Component" tag has been renamed to "ParameterBlock", but retro-compatibility
+                // shall be ensured.
+                //
+                // So checking if this case occurs, i.e. element name is "ParameterBlock"
+                // but xml setting name is "Component".
+                bool compatibilityCase =
+                    (pChildConfigurableElement->getXmlElementName() == "ParameterBlock") &&
+                    (xmlChildConfigurableElementSettingsElement.getType() == "Component");
 
-                return false;
+                // Error if the compatibility case does not occur.
+                if (!compatibilityCase) {
+
+                    // Type error
+                    configurationAccessContext.setError("Configuration settings parsing: Settings "
+                        "for configurable element " + pChildConfigurableElement->getName() +
+                        " does not match expected type: " +
+                        xmlChildConfigurableElementSettingsElement.getType() + " instead of " +
+                        pChildConfigurableElement->getKind());
+                    return false;
+                }
             }
 
             // Check element type matches in name
@@ -112,7 +163,7 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             // Create corresponding child element
             CXmlElement xmlChildConfigurableElementSettingsElement;
 
-            xmlConfigurationSettingsElementContent.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getKind());
+            xmlConfigurationSettingsElementContent.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getXmlElementName());
 
             // Handle element name attribute
             xmlChildConfigurableElementSettingsElement.setNameAttribute(pChildConfigurableElement->getName());
@@ -153,6 +204,53 @@ bool CConfigurableElement::accessValue(CPathNavigator& pathNavigator, std::strin
     }
 
     return pChild->accessValue(pathNavigator, strValue, bSet, parameterAccessContext);
+}
+
+// Whole element access
+void CConfigurableElement::getSettingsAsBytes(std::vector<uint8_t>& bytes,
+                                              CParameterAccessContext& parameterAccessContext) const
+{
+    bytes.reserve(getFootPrint());
+
+    parameterAccessContext.getParameterBlackboard()->readBytes(
+            bytes, getOffset() - parameterAccessContext.getBaseOffset());
+}
+
+bool CConfigurableElement::setSettingsAsBytes(const std::vector<uint8_t>& bytes,
+                                              CParameterAccessContext& parameterAccessContext) const
+{
+    CParameterBlackboard* pParameterBlackboard = parameterAccessContext.getParameterBlackboard();
+
+    // Size
+    size_t size = getFootPrint();
+
+    // Check sizes match
+    if (size != bytes.size()) {
+
+        parameterAccessContext.setError(std::string("Wrong size: Expected: ")
+                                        + std::to_string(size) + " Provided: "
+                                        + std::to_string(bytes.size()));
+
+        return false;
+    }
+
+    // Write bytes
+    pParameterBlackboard->writeBytes(bytes, getOffset() - parameterAccessContext.getBaseOffset());
+
+    if (not parameterAccessContext.getAutoSync()) {
+        // Auto sync is not activated, sync will be defered until an explicit request
+        return true;
+    }
+
+    CSyncerSet syncerSet;
+    fillSyncerSet(syncerSet);
+    core::Results res;
+    if (not syncerSet.sync(*parameterAccessContext.getParameterBlackboard(), true, &res)) {
+
+        parameterAccessContext.setError(utility::asString(res));
+        return false;
+    }
+    return true;
 }
 
 void CConfigurableElement::getListOfElementsWithMapping(

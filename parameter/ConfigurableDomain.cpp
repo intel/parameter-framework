@@ -192,7 +192,7 @@ void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlDomainExp
         // Create child xml element for that configuration
         CXmlElement xmlConfigurationSettingsElement;
 
-        xmlSettingsElement.createChild(xmlConfigurationSettingsElement, pDomainConfiguration->getKind());
+        xmlSettingsElement.createChild(xmlConfigurationSettingsElement, pDomainConfiguration->getXmlElementName());
 
         // Set its name attribute
         xmlConfigurationSettingsElement.setNameAttribute(pDomainConfiguration->getName());
@@ -822,13 +822,25 @@ string CConfigurableDomain::getLastAppliedConfigurationName() const
 // Pending configuration
 string CConfigurableDomain::getPendingConfigurationName() const
 {
-    const CDomainConfiguration* pPendingConfiguration = getPendingConfiguration();
+    const CDomainConfiguration* pApplicableDomainConfiguration = findApplicableDomainConfiguration();
 
-    if (pPendingConfiguration) {
+    if (!pApplicableDomainConfiguration) {
 
-        return pPendingConfiguration->getName();
+        // No configuration is pending
+        return "<none>";
     }
-    return "<none>";
+
+    // Check it will be applied
+    if (pApplicableDomainConfiguration != _pLastAppliedConfiguration) {
+
+        // Found config will get applied
+        return pApplicableDomainConfiguration->getName();
+    }
+    else {
+
+        // Same configuration as current
+        return "";
+    }
 }
 
 // Ensure validity on whole domain from main blackboard

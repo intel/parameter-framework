@@ -23,7 +23,7 @@
 		<Settings>
 			<Configuration Name="Conf_1_1">
 				<ConfigurableElement Path="/Test/Test/ERROR">
-					<Component Name="TEST_DIR">
+					<ParameterBlock Name="TEST_DIR">
 						<!-- Tested Booleans -->
 						<BooleanParameter Name="BOOL">0</BooleanParameter>
 						<!-- Tested FixedPoints -->
@@ -57,12 +57,12 @@
 						<IntegerParameter Name="UINT8_Max_ARRAY">0</IntegerParameter>
 						<!-- Tested String-->
 						<StringParameter Name="STR_CHAR128">string_Conf_1_1</StringParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 			<Configuration Name="Conf_1_0">
 				<ConfigurableElement Path="/Test/Test/TEST_DIR">
-					<Component Name="TEST_DIR">
+					<ParameterBlock Name="TEST_DIR">
 						<!-- Tested Booleans -->
 						<BooleanParameter Name="BOOL">1</BooleanParameter>
 						<!-- Tested FixedPoints -->
@@ -96,7 +96,7 @@
 						<IntegerParameter Name="UINT8_Max_ARRAY">1</IntegerParameter>
 						<!-- Tested String-->
 						<StringParameter Name="STR_CHAR128">string_Conf_1_0</StringParameter>
-					</Component>
+					</ParameterBlock>
 				</ConfigurableElement>
 			</Configuration>
 		</Settings>
