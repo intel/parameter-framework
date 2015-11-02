@@ -45,7 +45,6 @@ class PARAMETER_EXPORT CElementLibrary
     typedef ElementBuilderMap::const_iterator ElementBuilderMapConstIterator;
 
 public:
-    CElementLibrary();
     virtual ~CElementLibrary();
 
     /** Add a xml tag and it's corresponding builder in the library.

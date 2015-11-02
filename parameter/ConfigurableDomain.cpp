@@ -42,10 +42,6 @@
 
 using std::string;
 
-CConfigurableDomain::CConfigurableDomain()
-{
-}
-
 CConfigurableDomain::CConfigurableDomain(const string& strName) : base(strName)
 {
 }

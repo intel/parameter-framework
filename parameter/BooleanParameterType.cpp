@@ -38,10 +38,6 @@ CBooleanParameterType::CBooleanParameterType(const std::string& strName) : base(
     setSize(1);
 }
 
-CBooleanParameterType::~CBooleanParameterType()
-{
-}
-
 std::string CBooleanParameterType::getKind() const
 {
     return "BooleanParameter";

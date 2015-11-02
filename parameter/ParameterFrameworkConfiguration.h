@@ -36,8 +36,6 @@
 class CParameterFrameworkConfiguration : public CElement
 {
 public:
-    CParameterFrameworkConfiguration();
-
     // System class name
     const std::string& getSystemClassName() const;
 

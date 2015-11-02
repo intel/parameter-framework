@@ -72,10 +72,6 @@ CFormattedSubsystemObject::CFormattedSubsystemObject(
                                                    nbAmendKeys, context);
 }
 
-CFormattedSubsystemObject::~CFormattedSubsystemObject()
-{
-}
-
 string CFormattedSubsystemObject::getFormattedMappingValue() const
 {
     return _strFormattedMappingValue;

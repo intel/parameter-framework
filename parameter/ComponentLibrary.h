@@ -40,8 +40,6 @@ class CComponentType;
 class CComponentLibrary : public CElement
 {
 public:
-    CComponentLibrary();
-
     const CComponentType* getComponentType(const std::string& strName) const;
 
     virtual std::string getKind() const;

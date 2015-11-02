@@ -30,10 +30,6 @@
 #include "SyncerSet.h"
 #include "Syncer.h"
 
-CSyncerSet::CSyncerSet()
-{
-}
-
 const CSyncerSet& CSyncerSet::operator+=(ISyncer* pRightSyncer)
 {
     _syncerSet.insert(pRightSyncer);

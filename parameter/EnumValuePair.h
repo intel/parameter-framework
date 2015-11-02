@@ -34,8 +34,6 @@
 class CEnumValuePair : public CElement
 {
 public:
-    CEnumValuePair();
-
     // Numerical
     int32_t getNumerical() const;
     std::string getNumericalAsString() const;

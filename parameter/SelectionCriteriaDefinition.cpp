@@ -30,10 +30,6 @@
 #include "SelectionCriteriaDefinition.h"
 #include "SelectionCriterion.h"
 
-CSelectionCriteriaDefinition::CSelectionCriteriaDefinition()
-{
-}
-
 std::string CSelectionCriteriaDefinition::getKind() const
 {
     return "SelectionCriteriaDefinition";

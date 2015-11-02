@@ -44,8 +44,6 @@ class CSelectionCriteriaDefinition;
 class CConfigurableDomains : public CElement
 {
 public:
-    CConfigurableDomains();
-
     // Configuration/Domains handling
     /// Domains
     bool createDomain(const std::string& strName, std::string& strError);

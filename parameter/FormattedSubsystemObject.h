@@ -74,7 +74,7 @@ public:
                               size_t firstAmendKey,
                               size_t nbAmendKeys,
                               const CMappingContext& context);
-    virtual ~CFormattedSubsystemObject();
+    virtual ~CFormattedSubsystemObject() = default;
 
     /**
      * Returns the formatted mapping value associated to the element.

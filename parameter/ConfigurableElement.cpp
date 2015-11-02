@@ -42,10 +42,6 @@ CConfigurableElement::CConfigurableElement(const std::string& strName) : base(st
 {
 }
 
-CConfigurableElement::~CConfigurableElement()
-{
-}
-
 // XML configuration settings parsing
 bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
 {
