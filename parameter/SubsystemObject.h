@@ -122,8 +122,8 @@ private:
     // Data size
     size_t _dataSize;
     // Blackboard data location
-    CParameterBlackboard* _blackboard;
+    CParameterBlackboard* _blackboard{nullptr};
     // Accessed index for Subsystem read/write from/to blackboard
-    size_t _accessedIndex;
+    size_t _accessedIndex{0};
 };
 

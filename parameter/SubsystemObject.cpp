@@ -47,9 +47,7 @@ CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfig
                                    core::log::Logger& logger)
     : _logger(logger),
       _pInstanceConfigurableElement(pInstanceConfigurableElement),
-      _dataSize(pInstanceConfigurableElement->getFootPrint()),
-      _blackboard(NULL),
-      _accessedIndex(0)
+      _dataSize(pInstanceConfigurableElement->getFootPrint())
 {
     // Syncer
     _pInstanceConfigurableElement->setSyncer(this);

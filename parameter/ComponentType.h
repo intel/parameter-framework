@@ -64,5 +64,5 @@ private:
     virtual CInstanceConfigurableElement* doInstantiate() const;
 
     // Ref
-    const CComponentType* _pExtendsComponentType;
+    const CComponentType* _pExtendsComponentType{nullptr};
 };

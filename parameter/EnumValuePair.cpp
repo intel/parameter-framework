@@ -33,7 +33,7 @@
 
 using std::string;
 
-CEnumValuePair::CEnumValuePair() : _iNumerical(0)
+CEnumValuePair::CEnumValuePair()
 {
 }
 

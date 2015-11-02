@@ -40,7 +40,7 @@ const char* CCompoundRule::_apcTypes[2] = {
     "All"
 };
 
-CCompoundRule::CCompoundRule() : _bTypeAll(false)
+CCompoundRule::CCompoundRule()
 {
 }
 

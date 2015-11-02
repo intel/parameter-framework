@@ -33,7 +33,7 @@
 
 using std::string;
 
-CParameterAdaptation::CParameterAdaptation(const string& strType) : base(strType), _iOffset(0)
+CParameterAdaptation::CParameterAdaptation(const string& strType) : base(strType)
 {
 }
 // CElement

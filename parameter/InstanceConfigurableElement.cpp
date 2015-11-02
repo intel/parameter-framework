@@ -37,7 +37,7 @@
 
 #define base CConfigurableElementWithMapping
 
-CInstanceConfigurableElement::CInstanceConfigurableElement(const std::string& strName, const CTypeElement* pTypeElement) : base(strName), _pTypeElement(pTypeElement), _pSyncer(NULL)
+CInstanceConfigurableElement::CInstanceConfigurableElement(const std::string& strName, const CTypeElement* pTypeElement) : base(strName), _pTypeElement(pTypeElement)
 {
 }
 

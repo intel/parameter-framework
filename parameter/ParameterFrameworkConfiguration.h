@@ -56,7 +56,7 @@ private:
     // System class name
     std::string _strSystemClassName;
     // Tuning allowed
-    bool _bTuningAllowed;
+    bool _bTuningAllowed{false};
     // Server port
-    uint16_t _uiServerPort;
+    uint16_t _uiServerPort{0};
 };

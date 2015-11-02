@@ -63,7 +63,7 @@ private:
     virtual bool childrenAreDynamic() const;
 
     // Type
-    bool _bTypeAll;
+    bool _bTypeAll{false};
 
     // Types
     static const char* _apcTypes[];

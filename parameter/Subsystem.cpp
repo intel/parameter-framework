@@ -46,8 +46,7 @@ using std::ostringstream;
 
 CSubsystem::CSubsystem(const string& strName, core::log::Logger& logger)
     : base(strName), _pComponentLibrary(new CComponentLibrary),
-      _pInstanceDefinition(new CInstanceDefinition), _pMappingData(NULL),
-      _logger(logger)
+      _pInstanceDefinition(new CInstanceDefinition), _logger(logger)
 {
     // Note: A subsystem contains instance components
     // InstanceDefintion and ComponentLibrary objects are then not chosen to be children

@@ -39,7 +39,7 @@ class CXmlDomainImportContext : public CXmlDomainSerializingContext
 {
 public:
     CXmlDomainImportContext(std::string& strError, bool bWithSettings, CSystemClass& systemClass):
-        base(strError, bWithSettings), _systemClass(systemClass), _bAutoValidationRequired(true) {}
+        base(strError, bWithSettings), _systemClass(systemClass) {}
 
     // System Class
     CSystemClass& getSystemClass() const
@@ -77,9 +77,9 @@ private:
     CSystemClass& _systemClass;
 
     // Criteria defintion
-    const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
+    const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition{nullptr};
 
     // Auto validation of configurations
-    bool _bAutoValidationRequired;
+    bool _bAutoValidationRequired{true};
 };
 

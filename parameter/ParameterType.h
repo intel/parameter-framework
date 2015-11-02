@@ -145,7 +145,7 @@ private:
     bool doIsEncodable(type data, bool bIsSigned) const;
 
     // Size in bytes
-    size_t _size;
+    size_t _size{0};
     // Unit
     std::string _strUnit;
 
