@@ -29,30 +29,34 @@
  */
 #pragma once
 
-#include <ParameterHandle.h>
-
+#include "ParameterFramework.hpp"
 #include "FailureWrapper.hpp"
+
+#include <ElementHandle.h>
 
 namespace parameterFramework
 {
-/** Wrapper around ParameterHandle to throw exceptions on errors and have more
+/** Wrapper around ::ElementHandle to throw exceptions on errors and have more
  * user friendly methods.
+ * Contrary to ::ElementHandle, is constructed through it's constructor
+ * and not a factory method.
+ * @see parameterFramework::ParameterFramework for the main PF interface.
  */
-class ParameterHandle : private FailureWrapper<CParameterHandle>
+class ElementHandle : private FailureWrapper<::ElementHandle>
 {
-    ParameterHandle(const ParameterHandle &other) = delete;
-    ParameterHandle& operator=(const ParameterHandle& other) = delete;
+    ElementHandle(const ElementHandle &other) = delete;
+    ElementHandle& operator=(const ElementHandle& other) = delete;
 private:
-    using PH = CParameterHandle;
+    using EH = ::ElementHandle;
 
 public:
-    ParameterHandle(CParameterHandle *handle) :
-        FailureWrapper(*handle) { delete handle; }
+    ElementHandle(ParameterFramework &pf, const std::string& path) :
+        FailureWrapper(pf.createElementHandle(path)) {}
 
-    /** Wrap PH::setAsDouble to throw an exception on failure. */
-    void setAsDouble(double value) { mayFailCall(&PH::setAsDouble, value); }
-    /** Wrap PH::getAsDouble to throw an exception on failure. */
-    void getAsDouble(double &value) const { mayFailCall(&PH::getAsDouble, value); }
+    /** Wrap EH::setAsDouble to throw an exception on failure. */
+    void setAsDouble(double value) { mayFailCall(&EH::setAsDouble, value); }
+    /** Wrap EH::getAsDouble to throw an exception on failure. */
+    void getAsDouble(double &value) const { mayFailCall(&EH::getAsDouble, value); }
 };
 
 } // parameterFramework

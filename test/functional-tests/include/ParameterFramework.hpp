@@ -32,15 +32,22 @@
 #include "Config.hpp"
 #include "ConfigFiles.hpp"
 #include "FailureWrapper.hpp"
-#include "ParameterHandle.hpp"
 
 #include <ParameterMgrFullConnector.h>
 
 namespace parameterFramework
 {
 
+/** This forward declaration is an implementation detail, client should expect its presence.
+ * @note This forward definition should not be needed as the `friend class ElementHandle` 
+ *       declaration in ParameterFramework is itself a forward declaration.
+ *       Unfortunately there seem to be a bug in visual studio 2013, it is required.
+ */
+class ElementHandle;
+
 /** Wrapper around the Parameter Framework to throw exceptions on errors and
  *  have more user friendly methods.
+ *  @see parameterFramework::ElementHandle to access elements of the parameter tree.
  */
 class ParameterFramework : private parameterFramework::ConfigFiles,
                            private FailureWrapper<CParameterMgrFullConnector>
@@ -52,6 +59,7 @@ protected:
      */
     using PPF = CParameterMgrPlatformConnector;
     using PF = CParameterMgrFullConnector;
+    using EH = ::ElementHandle;
 
 public:
     ParameterFramework(const Config &config = Config()) :
@@ -123,12 +131,15 @@ public:
     {
         mayFailCall(&PF::accessParameterValue, path, value, false);
     }
-
-    // Dynamic parameter handling
-    ParameterHandle* createParameterHandle(const std::string& path) {
-        return new ParameterHandle(mayFailCall(&PF::createParameterHandle, path));
+private:
+    EH createElementHandle(const std::string& path)
+    {
+        // PF::createElementHandle takes it's handler in the free store
+        std::unique_ptr<EH> newedHandle{mayFailCall(&PF::createElementHandle, path)};
+        EH handle{*newedHandle};
+        return handle;
     }
-
+    friend class ElementHandle;
 };
 
 } // parameterFramework
