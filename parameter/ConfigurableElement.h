@@ -82,7 +82,16 @@ public:
     // Elements with no domains
     void listRogueElements(std::string& strResult) const;
 
-    // Belonging to no domains
+    /** @return true if element is rogue, false otherwise
+     *
+     * An element is rogue if it is disjoint with all domains.
+     *
+     * Ie: An element is rogue if neither its descendants, ascendants
+     *     nor itself are associated with any domain.
+     *
+     * Ie: An element is *not* rogue if any of its descendants, ascendants
+     *     or itself are associated with at least one domain.
+     */
     bool isRogue() const;
 
     // Footprint as string
@@ -142,6 +151,16 @@ public:
 
     // Element properties
     virtual void showProperties(std::string& strResult) const;
+
+    /**
+     * Get the value associated to a mapping key in the object's mapping
+     *
+     * @param[in] strKey the mapping key
+     * @param[out] pStrValue the associated value
+     *
+     * @return true if @p strKey is found in the object's mapping, false if not
+     */
+    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const = 0;
 
     // XML configuration settings parsing
     virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;

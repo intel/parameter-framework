@@ -35,7 +35,7 @@
 #include "ParameterAccessContext.h"
 #include <assert.h>
 
-#define base CConfigurableElementWithMapping
+#define base CConfigurableElement
 
 CInstanceConfigurableElement::CInstanceConfigurableElement(const std::string& strName, const CTypeElement* pTypeElement) : base(strName), _pTypeElement(pTypeElement), _pSyncer(NULL)
 {

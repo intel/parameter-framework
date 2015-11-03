@@ -40,7 +40,7 @@
 class CSubsystemLibrary;
 class DynamicLibrary;
 
-class CSystemClass : public CConfigurableElement
+class CSystemClass final : public CConfigurableElement
 {
 public:
 
@@ -83,6 +83,8 @@ public:
 
     // base
     virtual std::string getKind() const;
+
+    bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const override;
 
 private:
     CSystemClass(const CSystemClass&);

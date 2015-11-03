@@ -716,7 +716,6 @@ void CParameterMgr::applyConfigurations()
     }
 }
 
-// Get the configurableElement corresponding to the given path
 const CConfigurableElement* CParameterMgr::getConfigurableElement(const string& strPath,
                                                                   string& strError) const
 {
@@ -744,10 +743,19 @@ const CConfigurableElement* CParameterMgr::getConfigurableElement(const string& 
     return pConfigurableElement;
 }
 
+CConfigurableElement* CParameterMgr::getConfigurableElement(const string& strPath,
+                                                            string& strError)
+{
+    // Implement the mutable version by calling the const one and removing
+    // the const from the result.
+    const auto *constThis = this;
+    return const_cast<CConfigurableElement *>(constThis->getConfigurableElement(strPath, strError));
+}
+
 // Dynamic parameter handling
 CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, string& strError)
 {
-    const CConfigurableElement* pConfigurableElement = getConfigurableElement(strPath, strError);
+    CConfigurableElement* pConfigurableElement = getConfigurableElement(strPath, strError);
 
     if (!pConfigurableElement) {
 
@@ -765,7 +773,68 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
     }
 
     // Convert as parameter and return new handle
-    return new CParameterHandle(static_cast<const CBaseParameter*>(pConfigurableElement), this);
+    return new CParameterHandle(static_cast<CBaseParameter&>(*pConfigurableElement), *this);
+}
+
+// Dynamic element handling
+ElementHandle *CParameterMgr::createElementHandle(const std::string &path, std::string &error)
+{
+    CConfigurableElement* pConfigurableElement;
+
+    if (path == "/") {
+        // Attempt to access root configurable element
+        pConfigurableElement = getSystemClass();
+    } else {
+        pConfigurableElement = getConfigurableElement(path, error);
+    }
+
+    if (!pConfigurableElement) {
+
+        // Element not found
+        error = "Element not found: " + path;
+        return nullptr;
+    }
+
+    // The only reason why a heap object is returned instead of retuning by copy
+    // is to inform the client of a failure through a nullptr.
+    // It could be avoided (return by copy) with an
+    //  - optional equivalent (see boost::optional or std::experimental::optional)
+    //  - exception (but the api is noexcept)
+    return new ElementHandle(*pConfigurableElement, *this);
+}
+
+void CParameterMgr::getSettingsAsBytes(const CConfigurableElement &element,
+                                       std::vector<uint8_t> &settings) const
+{
+    // Not useful as the get can not fail,
+    // but the current design forces all serialization and deserialization to
+    // have an error out string
+    std::string error;
+
+    // Prepare parameter access context for main blackboard.
+    // No need to handle output raw format and value space as Byte arrays are hexa formatted
+    CParameterAccessContext parameterAccessContext(error);
+    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
+
+    // Get the settings
+    element.getSettingsAsBytes(settings, parameterAccessContext);
+}
+
+bool CParameterMgr::setSettingsAsBytes(const CConfigurableElement &element,
+                                       const std::vector<uint8_t> &settings, std::string &error)
+{
+    // Prepare parameter access context for main blackboard.
+    // Notes:
+    //     - No need to handle output raw format and value space as Byte arrays are interpreted as raw formatted
+    //     - No check is done as to the intgrity of the input data.
+    //       This may lead to undetected out of range value assignment.
+    //       Use this functionality with caution
+    CParameterAccessContext parameterAccessContext(error);
+    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
+    parameterAccessContext.setAutoSync(autoSyncOn());
+
+    // Set the settings
+    return element.setSettingsAsBytes(settings, parameterAccessContext);
 }
 
 void CParameterMgr::setFailureOnMissingSubsystem(bool bFail)
@@ -1323,17 +1392,9 @@ CParameterMgr::getElementBytesCommandProcess(const IRemoteCommand& remoteCommand
     const CConfigurableElement* pConfigurableElement =
             static_cast<CConfigurableElement*>(pLocatedElement);
 
-    // Prepare parameter access context for main blackboard.
-    // Notes:
-    //     - No need to handle output raw format and value space as Byte arrays are hexa formatted
-    //     - Pasing strResult to parameterAccessContext is only necessary wrt to constructor definition:
-    //       since it's a get type of access, no error may occur
-    CParameterAccessContext parameterAccessContext(strResult);
-    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
-
     // Get the settings
     vector<uint8_t> bytes;
-    pConfigurableElement->getSettingsAsBytes(bytes, parameterAccessContext);
+    getSettingsAsBytes(*pConfigurableElement, bytes);
 
     // Hexa formatting
     std::ostringstream ostream;
@@ -1377,16 +1438,6 @@ CParameterMgr::setElementBytesCommandProcess(const IRemoteCommand& remoteCommand
 
     const CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
 
-    // Prepare parameter access context for main blackboard.
-    // Notes:
-    //     - No need to handle output raw format and value space as Byte arrays are interpreted as raw formatted
-    //     - No check is done as to the intgrity of the input data.
-    //       This may lead to undetected out of range value assignment.
-    //       Use this functionality with caution
-    CParameterAccessContext parameterAccessContext(strResult);
-    parameterAccessContext.setParameterBlackboard(_pMainParameterBlackboard);
-    parameterAccessContext.setAutoSync(autoSyncOn());
-
     // Convert input data to binary
     vector<uint8_t> bytes;
 
@@ -1410,7 +1461,7 @@ CParameterMgr::setElementBytesCommandProcess(const IRemoteCommand& remoteCommand
     }
 
     // Set the settings
-    if (!pConfigurableElement->setSettingsAsBytes(bytes, parameterAccessContext)) {
+    if (!setSettingsAsBytes(*pConfigurableElement, bytes, strResult)) {
 
         return CCommandHandler::EFailed;
     }

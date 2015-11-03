@@ -41,6 +41,7 @@
 #include "XmlDocSource.h"
 #include "XmlDomainExportContext.h"
 #include "Results.h"
+#include "ElementHandle.h"
 #include <log/LogWrapper.h>
 #include <log/Context.h>
 
@@ -96,7 +97,7 @@ class CParameterMgr : private CElement
     static const uint32_t guiRevision = 0;
 
     // Parameter handle friendship
-    friend class CParameterHandle;
+    friend class ElementHandle;
 public:
 
     // Construction
@@ -121,8 +122,11 @@ public:
     // Configuration application
     void applyConfigurations();
 
-    /**
-     * Returns the CConfigurableElement corresponding to the path given in argument.
+    /** const version of getConfigurableElement */
+    const CConfigurableElement* getConfigurableElement(const std::string& strPath,
+                                                       std::string& strError) const;
+
+    /** Returns the CConfigurableElement corresponding to the path given in argument.
      *
      * @param[in] strPath A std::string representing a path to an element.
      * @param[out] strError Error message
@@ -130,10 +134,25 @@ public:
      * @return A const pointer to the corresponding CConfigurableElement.
      * On error, NULL is returned and the error is explained in strError.
      */
-    const CConfigurableElement* getConfigurableElement(const std::string& strPath,
-                                                       std::string& strError) const;
+    CConfigurableElement* getConfigurableElement(const std::string& strPath,
+                                                 std::string& strError);
     // Dynamic parameter handling
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError);
+
+    /** Creates a handle to a configurable element.
+     *
+     * The returned object is owned by the client who is responsible to delete it.
+     *
+     * @param[in] path A string representing a path to a configurable element.
+     * @param[out] error On error: an human readable error message
+     *                   On success: undefined
+     *
+     * @return An element handle on success
+     *         nullptr on error
+     */
+    ElementHandle *createElementHandle(const std::string &path, std::string &error);
+
+
 
     /** Is the remote interface forcefully disabled ?
      */
@@ -550,6 +569,27 @@ private:
     // System class Structure loading
     bool loadSettings(std::string& strError);
     bool loadSettingsFromConfigFile(std::string& strError);
+
+    /** Get settings from a configurable element in binary format.
+     *
+     * @param[in] element configurable element.
+     * @param[out] settings current element settings (in mainblackboard) in binary format
+     *
+     * @return true on success, false on error
+     */
+    void getSettingsAsBytes(const CConfigurableElement &element,
+                            std::vector<uint8_t> &settings) const;
+
+    /** Assign settings to a configurable element in binary format.
+     *
+     * @param[in] element configurable element.
+     * @param[in] settings the settings as byte array (binary).
+     * @param[out] error error message filled in case of error
+     *
+     * @return true in case of success, false oherwise, in which case error is filled with error message.
+     */
+    bool setSettingsAsBytes(const CConfigurableElement &element,
+                            const std::vector<uint8_t> &settings, std::string &error);
 
     /** Assign settings to a configurable element in XML format.
      *
