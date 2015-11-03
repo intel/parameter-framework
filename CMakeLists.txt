@@ -109,3 +109,5 @@ add_subdirectory(bindings)
 add_subdirectory(doc)
 
 add_subdirectory(schemas)
+
+add_subdirectory(cpack)

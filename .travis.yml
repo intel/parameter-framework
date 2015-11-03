@@ -60,13 +60,16 @@ script:
         cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_INSTALL_PREFIX=../install .. &&
         make -j &&
         CTEST_OUTPUT_ON_FAILURE=1 make test &&
-        make install)
+        make install &&
+        cpack --verbose -G DEB && dpkg --info *.deb)
   - ( cd skeleton-subsystem &&
         cmake -DCMAKE_INSTALL_PREFIX=../install . &&
         make &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck &&
         make install )
   - ( cd tools/clientSimulator &&
+        # TODO: install the generated .deb instead of using ../install
+        #       This would permit to test the packaging
         cmake -DCMAKE_INSTALL_PREFIX=../install . &&
         make &&
         make install )
