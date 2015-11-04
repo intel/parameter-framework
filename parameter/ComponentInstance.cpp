@@ -31,6 +31,7 @@
 #include "ComponentLibrary.h"
 #include "ComponentType.h"
 #include "Component.h"
+#include "ParameterBlock.h" // for "array" instantiation
 #include "XmlParameterSerializingContext.h"
 
 #define base CTypeElement
@@ -110,12 +111,33 @@ bool CComponentInstance::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
 
 CInstanceConfigurableElement* CComponentInstance::doInstantiate() const
 {
-    return new CComponent(getName(), this);
+    if (isScalar()) {
+        return new CComponent(getName(), this);
+    } else {
+        return new CParameterBlock(getName(), this);
+    }
 }
 
 void CComponentInstance::populate(CElement* pElement) const
 {
-    base::populate(pElement);
+    size_t arrayLength = getArrayLength();
 
-    _pComponentType->populate(static_cast<CComponent*>(pElement));
+    if (arrayLength != 0) {
+
+        // Create child elements
+        for (size_t child = 0; child < arrayLength; child++) {
+
+            CComponent* pChildComponent = new CComponent(std::to_string(child), this);
+
+            pElement->addChild(pChildComponent);
+
+            base::populate(pChildComponent);
+
+            _pComponentType->populate(pChildComponent);
+        }
+    } else {
+        base::populate(pElement);
+
+        _pComponentType->populate(static_cast<CComponent*>(pElement));
+    }
 }
