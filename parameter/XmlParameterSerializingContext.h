@@ -30,6 +30,7 @@
 #pragma once
 
 #include "XmlElementSerializingContext.h"
+#include "ParameterAccessContext.h"
 
 #include <string>
 
@@ -38,11 +39,16 @@ class CComponentLibrary;
 class CXmlParameterSerializingContext : public CXmlElementSerializingContext
 {
 public:
-    CXmlParameterSerializingContext(std::string& strError);
+    CXmlParameterSerializingContext(CParameterAccessContext &context, std::string& strError);
 
     // ComponentLibrary
     void setComponentLibrary(const CComponentLibrary* pComponentLibrary);
     const CComponentLibrary* getComponentLibrary() const;
+
+    CParameterAccessContext &getAccessContext() const { return mAccessContext; }
+
 private:
     const CComponentLibrary* _pComponentLibrary{nullptr};
+
+    CParameterAccessContext &mAccessContext;
 };

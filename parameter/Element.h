@@ -147,6 +147,11 @@ public:
      */
     void showDescriptionProperty(std::string &strResult) const;
 
+    /**
+     * Returns Xml element name used for element XML importing/exporting functionalities
+     */
+    virtual std::string getXmlElementName() const;
+
 protected:
     // Content dumping
     virtual std::string logValue(utility::ErrorContext& errorContext) const;

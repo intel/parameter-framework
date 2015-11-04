@@ -35,7 +35,7 @@
 #include "ParameterAccessContext.h"
 #include <assert.h>
 
-#define base CConfigurableElementWithMapping
+#define base CConfigurableElement
 
 CInstanceConfigurableElement::CInstanceConfigurableElement(const std::string& strName, const CTypeElement* pTypeElement) : base(strName), _pTypeElement(pTypeElement)
 {
@@ -217,9 +217,10 @@ bool CInstanceConfigurableElement::checkPathExhausted(CPathNavigator& pathNaviga
     return true;
 }
 
-void CInstanceConfigurableElement::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+void CInstanceConfigurableElement::structureToXml(CXmlElement &xmlElement,
+                                                  CXmlSerializingContext &serializingContext) const
 {
-    base::toXml(xmlElement, serializingContext);
+    base::structureToXml(xmlElement, serializingContext);
     // Since Description belongs to the Type of Element, delegate it to the type element.
     getTypeElement()->setXmlDescriptionAttribute(xmlElement);
 }

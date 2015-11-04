@@ -78,6 +78,14 @@ string CSystemClass::getKind() const
     return "SystemClass";
 }
 
+bool CSystemClass::getMappingData(const std::string& /*strKey*/,
+                    const std::string*& /*pStrValue*/) const
+{
+    // Although it could make sense to have mapping in the system class,
+    // just like at subsystem level, it is currently not supported.
+    return false;
+}
+
 bool CSystemClass::loadSubsystems(string& strError,
                                   const CSubsystemPlugins* pSubsystemPlugins,
                                   bool bVirtualSubsystemFallback)

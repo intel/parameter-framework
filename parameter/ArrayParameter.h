@@ -39,9 +39,6 @@ public:
     // Instantiation, allocation
     virtual size_t getFootPrint() const;
 
-    // XML configuration settings parsing
-    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
-
     /// Value access
     using CBaseParameter::access;
     bool access(std::vector<bool>& abValues, bool bSet,
@@ -67,12 +64,23 @@ private:
     // Array length
     size_t getArrayLength() const;
     // Common set value processing
-    bool setValues(size_t uiStartIndex, size_t baseOffset, const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
+    bool setValues(size_t uiStartIndex, size_t offset, const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
     // Log / get values common
     std::string getValues(size_t baseOffset, CParameterAccessContext& parameterAccessContext) const;
     std::string logValue(CParameterAccessContext &context) const override;
     // Index retrieval from user set/get request
     bool getIndex(CPathNavigator& pathNavigator, size_t& index, CParameterAccessContext& parameterAccessContext) const;
+
+    /** Access whole array.
+     *
+     * @param[in] offset Offset of the array in the context blackboard.
+     * @{
+     */
+    bool doSetValue(const std::string& strValue, size_t offset,
+                    CParameterAccessContext& parameterAccessContext) const override;
+    void doGetValue(std::string& strValue, size_t offset,
+                    CParameterAccessContext& parameterAccessContext) const override;
+    /** @} */
 
     /// Value access
     // Generic Access

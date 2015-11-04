@@ -50,6 +50,7 @@ public:
     virtual void addArgument(const std::string& strArgument);
     virtual size_t getArgumentCount() const;
     virtual const std::string& getArgument(size_t argument) const;
+    virtual const std::vector<std::string>& getArguments() const;
     virtual const std::string packArguments(size_t startArgument, size_t nbArguments) const;
 
 private:

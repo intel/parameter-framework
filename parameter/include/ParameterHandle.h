@@ -31,102 +31,21 @@
 
 #include "parameter_export.h"
 
-#include <stdint.h>
-#include <string>
-#include <vector>
+#include "ElementHandle.h"
 
-class CBaseParameter;
-class CParameterMgr;
-
-class PARAMETER_EXPORT CParameterHandle
+/** Pre v3.1 Handle to a parameter. Kept for retro-compatibility.
+ * @deprecated This class has been deprecated in favor of ElementHandle,
+ *             Use ElementHandle instead of CParameterHandle.
+ *             It is a api retro-compatible superset of the pre v3.1
+ *             CParameterHandle class.
+ * @note Achieve retro-compatibility with a derived class instead of an alias
+ *       (`typedef ElementHandle CParameterHandle`) as the later would break
+ *       client compilation in case of client forward declaration.
+ */
+class PARAMETER_EXPORT CParameterHandle : public ElementHandle
 {
-public:
-    CParameterHandle(const CBaseParameter* pParameter, CParameterMgr* pParameterMgr);
-
-    // Parameter features
-    bool isRogue() const;
-    bool isArray() const;
-    // Array Length
-    size_t getArrayLength() const; // Returns 0 for scalar
-    // Parameter path
-    std::string getPath() const;
-    // Parameter kind
-    std::string getKind() const;
-
-    // Boolean access
-    bool setAsBoolean(bool bValue, std::string& strError);
-
-    /**
-     * Fetch the parameter value as a boolean.
-     *
-     * @param bValue Reference to a boolean variable where the value will be stored
-     * @param strError Error message if a problem occured
-     *
-     * @return true on success, false otherwise
-     */
-    bool getAsBoolean(bool& bValue, std::string& strError) const;
-    bool setAsBooleanArray(const std::vector<bool>& abValues, std::string& strError);
-    bool getAsBooleanArray(std::vector<bool>& abValues, std::string& strError) const;
-
-    // Integer Access
-    bool setAsInteger(uint32_t uiValue, std::string& strError);
-    bool getAsInteger(uint32_t& uiValue, std::string& strError) const;
-    bool setAsIntegerArray(const std::vector<uint32_t>& auiValues, std::string& strError);
-    bool getAsIntegerArray(std::vector<uint32_t>& auiValues, std::string& strError) const;
-
-    // Signed Integer Access
-    bool setAsSignedInteger(int32_t iValue, std::string& strError);
-    bool getAsSignedInteger(int32_t& iValue, std::string& strError) const;
-    bool setAsSignedIntegerArray(const std::vector<int32_t>& aiValues, std::string& strError);
-    bool getAsSignedIntegerArray(std::vector<int32_t>& aiValues, std::string& strError) const;
-
-    // Double Access
-    bool setAsDouble(double dValue, std::string& strError);
-    bool getAsDouble(double& dValue, std::string& strError) const;
-    bool setAsDoubleArray(const std::vector<double>& adValues, std::string& strError);
-    bool getAsDoubleArray(std::vector<double>& adValues, std::string& strError) const;
-
-    // String Access
-    bool setAsString(const std::string& strValue, std::string& strError);
-    bool getAsString(std::string& strValue, std::string& strError) const;
-    bool setAsStringArray(const std::vector<std::string>& astrValues, std::string& strError);
-    bool getAsStringArray(std::vector<std::string>& astrValues, std::string& strError) const;
-
 private:
-    template <class T>
-    bool setAs(const T value, std::string &error) const;
-    template <class T>
-    bool getAs(T& value, std::string &error) const;
-
-    template <class T>
-    static size_t getSize(T value);
-    template <class T>
-    static size_t getSize(std::vector<T> &values);
-
-
-    /** Check that the parameter value can be modify.
-     *
-     * @param arrayLength[in] If accessing as an array: the new value array length
-     *                        Otherwise: 0
-     * @param error[out] If access is forbidden: a human readable message explaining why
-     *                   Otherwise: not modified.
-     *
-     * @return true if the parameter value can be retrieved, false otherwise.
-     */
-    bool checkSetValidity(size_t arrayLength, std::string& error) const;
-
-    /** Check that the parameter value can be retrieved.
-     *
-     * @param asArray[in] true if accessing as an array, false otherwise.
-     * @param error[out] If access is forbidden, a human readable message explaining why
-     *                   Otherwise, not modified.
-     *
-     * @return true if the parameter value can be retrieved, false otherwise.
-     */
-    bool checkGetValidity(bool asArray, std::string& error) const;
-
-    // Accessed parameter instance
-    const CBaseParameter* _pBaseParameter;
-    // Parameter Mgr
-    CParameterMgr* _pParameterMgr;
+    CParameterHandle(CConfigurableElement& element, CParameterMgr& parameterMgr)
+        : ElementHandle(element, parameterMgr) {}
+    friend CParameterMgr; // So that it can build the handler
 };

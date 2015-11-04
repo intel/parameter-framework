@@ -146,16 +146,31 @@ bool CDomainConfiguration::importOneConfigurableElementSettings(
     CXmlElement xmlConfigurableElementSettingsElementContent;
     // Check name and kind
     if (!xmlConfigurableElementSettingsElement.getChildElement(
-                destination->getKind(),
+                destination->getXmlElementName(),
                 destination->getName(),
                 xmlConfigurableElementSettingsElementContent)) {
 
-        context.setError(
-                "Couldn't find settings for " +
-                destination->getKind() + " " + destination->getName() +
-                " for Configuration " + getPath());
+        // "Component" tag has been renamed to "ParameterBlock", but retro-compatibility shall
+        // be ensured.
+        //
+        // So checking if this case occurs, i.e. element name is "ParameterBlock"
+        // but found xml setting name is "Component".
+        bool compatibilityCase =
+                (destination->getXmlElementName() == "ParameterBlock") &&
+                xmlConfigurableElementSettingsElement.getChildElement(
+                    "Component",
+                    destination->getName(),
+                    xmlConfigurableElementSettingsElementContent);
 
-        return false;
+        // Error if the compatibility case does not occur.
+        if (!compatibilityCase) {
+            context.setError(
+                    "Couldn't find settings for " +
+                    destination->getXmlElementName() + " " + destination->getName() +
+                    " for Configuration " + getPath());
+
+            return false;
+        }
     }
 
     // Create configuration access context
@@ -180,7 +195,7 @@ bool CDomainConfiguration::exportOneConfigurableElementSettings(
 
     // Create child XML element
     CXmlElement xmlConfigurableElementSettingsElementContent;
-    xmlConfigurableElementSettingsElement.createChild(xmlConfigurableElementSettingsElementContent, source->getKind());
+    xmlConfigurableElementSettingsElement.createChild(xmlConfigurableElementSettingsElementContent, source->getXmlElementName());
     xmlConfigurableElementSettingsElementContent.setNameAttribute(source->getName());
 
     // Create configuration access context

@@ -31,7 +31,7 @@
 
 #include "parameter_export.h"
 
-#include "ConfigurableElementWithMapping.h"
+#include "ConfigurableElement.h"
 #include "TypeElement.h"
 
 #include <list>
@@ -41,7 +41,7 @@ class IMapper;
 class CParameterBlackboard;
 class CParameterAccessContext;
 
-class PARAMETER_EXPORT CInstanceConfigurableElement : public CConfigurableElementWithMapping
+class PARAMETER_EXPORT CInstanceConfigurableElement : public CConfigurableElement
 {
 public:
     enum Type {
@@ -105,7 +105,7 @@ public:
     virtual void getListOfElementsWithMapping(std::list<const CConfigurableElement*>&
                                                configurableElementPath) const;
 
-    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    virtual void structureToXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
 protected:
     // Syncer

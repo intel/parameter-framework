@@ -35,7 +35,7 @@
 
 class CVirtualSyncer;
 
-class CVirtualSubsystem : public CSubsystem
+class CVirtualSubsystem final : public CSubsystem
 {
 public:
 
@@ -50,6 +50,13 @@ protected:
     // Syncer
     virtual ISyncer* getSyncer() const;
 
+    /**
+     * Fill Syncer Set From descendant nodes
+     *
+     * This functionality allows to collect the syncers when crawling down the
+     * parameter tree.
+     */
+    void fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const override;
 private:
     // From IMapper
     virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, std::string& strError);

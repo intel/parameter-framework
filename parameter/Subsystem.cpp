@@ -38,7 +38,7 @@
 #include <assert.h>
 #include <sstream>
 
-#define base CConfigurableElementWithMapping
+#define base CConfigurableElement
 
 using std::string;
 using std::list;
@@ -92,8 +92,8 @@ bool CSubsystem::needResync(bool /*bClear*/)
     return false;
 }
 
-// From IXmlSink
-bool CSubsystem::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CSubsystem::structureFromXml(const CXmlElement& xmlElement,
+                                  CXmlSerializingContext& serializingContext)
 {
     // Subsystem class does not rely on generic fromXml algorithm of Element class.
     // So, setting here the description if found as XML attribute.
@@ -315,12 +315,12 @@ void CSubsystem::addSubsystemObjectFactory(CSubsystemObjectCreator* pSubsystemOb
 string CSubsystem::getMappingError(
         const string& strKey,
         const string& strMessage,
-        const CConfigurableElementWithMapping* pConfigurableElementWithMapping) const
+        const CConfigurableElement* pConfigurableElement) const
 {
     return getName() + " " + getKind() + " " +
             "mapping:\n" + strKey + " " +
             "error: \"" + strMessage + "\" " +
-            "for element " + pConfigurableElementWithMapping->getPath();
+            "for element " + pConfigurableElement->getPath();
 }
 
 
@@ -335,7 +335,7 @@ bool CSubsystem::getMappingData(const std::string& strKey, const std::string*& p
 
 // Mapping generic context handling
 bool CSubsystem::handleMappingContext(
-        const CConfigurableElementWithMapping* pConfigurableElementWithMapping,
+        const CConfigurableElement* pConfigurableElement,
         CMappingContext& context,
         string& strError) const
 {
@@ -345,11 +345,11 @@ bool CSubsystem::handleMappingContext(
         const string& strKey = _contextMappingKeyArray[item];
         const string* pStrValue;
 
-        if (pConfigurableElementWithMapping->getMappingData(strKey, pStrValue)) {
+        if (pConfigurableElement->getMappingData(strKey, pStrValue)) {
             // Assign item to context
             if (!context.setItem(item, &strKey, pStrValue)) {
 
-                strError = getMappingError(strKey, "Already set", pConfigurableElementWithMapping);
+                strError = getMappingError(strKey, "Already set", pConfigurableElement);
 
                 return false;
             }

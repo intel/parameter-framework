@@ -34,6 +34,7 @@
 #include "SelectionCriterionTypeInterface.h"
 #include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
+#include "ElementHandle.h"
 #include "ParameterMgrLoggerForward.h"
 
 class CParameterMgr;
@@ -80,6 +81,19 @@ public:
     // Returned objects are owned by clients
     // Must be cassed after successfull start
     CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError) const;
+
+    /** Creates a handle to a configurable element.
+     *
+     * The returned object is owned by the client who is responsible to delete it.
+     *
+     * @param[in] path A string representing a path to a configurable element.
+     * @param[out] error On error: an human readable error message
+     *                   On success: undefined
+     *
+     * @return An element handle on success
+     *         NULL on error
+     */
+    ElementHandle *createElementHandle(const std::string &path, std::string &error) const;
 
     /** Is the remote interface forcefully disabled ?
      */
