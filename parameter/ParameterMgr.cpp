@@ -1510,7 +1510,7 @@ bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
         CSyncerSet syncerSet;
         static_cast<CConfigurableElement *>(configurableElement)->fillSyncerSet(syncerSet);
         core::Results results;
-        if(not syncerSet.sync(*_pMainParameterBlackboard, true, &results)) {
+        if(not syncerSet.sync(*_pMainParameterBlackboard, false, &results)) {
             result = utility::asString(results);
 
             return false;
