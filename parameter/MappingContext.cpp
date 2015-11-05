@@ -37,12 +37,7 @@ using std::string;
 // Item access
 bool CMappingContext::setItem(size_t itemType, const string* pStrKey, const string* pStrItem)
 {
-    // Assert that the key hasn't been set before
-    assert(find_if(begin(mItems), end(mItems), [pStrKey](SItem &item)
-                       { return item.strKey == pStrKey; }
-                  ) == end(mItems));
-
-    if (mItems[itemType].bSet) {
+    if (iSet(itemType)) {
         // Already set!
         return false;
     }
@@ -53,8 +48,6 @@ bool CMappingContext::setItem(size_t itemType, const string* pStrKey, const stri
     // Set item value
     mItems[itemType].strItem = pStrItem;
 
-    // Now is set
-    mItems[itemType].bSet = true;
     return true;
 }
 
@@ -83,5 +76,5 @@ const string* CMappingContext::getItem(const string& strKey) const
 
 bool CMappingContext::iSet(size_t itemType) const
 {
-    return mItems[itemType].bSet;
+    return mItems[itemType].strItem != nullptr;
 }
