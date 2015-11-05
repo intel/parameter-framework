@@ -39,7 +39,8 @@ CXmlSerializingContext::CXmlSerializingContext(std::string& strError)
 
 CXmlSerializingContext::~CXmlSerializingContext()
 {
-    xmlSetGenericErrorFunc(NULL, NULL);
+    // TODO: restore the previous handler
+    xmlSetStructuredErrorFunc(NULL, NULL);
     prependToError(_strXmlError);
 }
 
