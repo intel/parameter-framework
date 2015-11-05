@@ -370,12 +370,18 @@ public:
       *
       * @param[in] pXmlSource The source element to export
       * @param[in] strRootElementType The XML root element name of the exported instance document
+      * @param[in] xmlSerializingContext the context to use for serialization
+      *                                  Is an rvalue as it must be destructed after this function
+      *                                  call to set the error.
+      *                                  Additionally, using it for an other serialization would
+      *                                  override the error.
       * @param[out] strResult contains the xml description or the error description in case false is returned
       *
       * @return true for success, false if any error occurs during the creation of the xml description (validation or encoding)
       */
     bool exportElementToXMLString(const IXmlSource* pXmlSource,
                                   const std::string& strRootElementType,
+                                  CXmlSerializingContext &&xmlSerializingContext,
                                   std::string& strResult) const;
 
     // CElement

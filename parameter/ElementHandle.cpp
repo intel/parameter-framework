@@ -30,6 +30,7 @@
 #include "ElementHandle.h"
 #include "ParameterAccessContext.h"
 #include "BaseParameter.h"
+#include "XmlParameterSerializingContext.h"
 #include "Subsystem.h"
 #include <assert.h>
 #include "ParameterMgr.h"
@@ -124,13 +125,12 @@ bool ElementHandle::getMappingData(const string& strKey, string& strValue) const
 
 bool ElementHandle::getStructureAsXML(std::string &xmlSettings, std::string &error) const
 {
-    string result;
-    if (not mParameterMgr.exportElementToXMLString(&mElement, mElement.getXmlElementName(), result)) {
-        error = result;
-        return false;
-    }
-    xmlSettings = result;
-    return true;
+    // Use default access context for structure export
+    CParameterAccessContext accessContext(error);
+    return mParameterMgr.exportElementToXMLString(
+                &mElement, mElement.getXmlElementName(),
+                CXmlParameterSerializingContext{accessContext, error},
+                xmlSettings);
 }
 
 template <class T>
