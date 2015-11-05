@@ -53,10 +53,36 @@ public:
     ElementHandle(ParameterFramework &pf, const std::string& path) :
         FailureWrapper(pf.createElementHandle(path)) {}
 
+    /** Wrap EH::getSize.
+     *
+     * @note: can not use `using EH::getSize` as getSize has private overloads in EH.
+     */
+    size_t getSize() const { return EH::getSize(); }
+
     /** Wrap EH::setAsDouble to throw an exception on failure. */
     void setAsDouble(double value) { mayFailCall(&EH::setAsDouble, value); }
     /** Wrap EH::getAsDouble to throw an exception on failure. */
     void getAsDouble(double &value) const { mayFailCall(&EH::getAsDouble, value); }
+
+    std::string getStructureAsXML() const {
+        return mayFailGet(&EH::getStructureAsXML);
+    }
+
+    std::string getAsXML() const {
+        return mayFailGet(&EH::getAsXML);
+    }
+    void setAsXML(const std::string &settings) {
+        mayFailSet(&EH::setAsXML, settings);
+    }
+
+    std::vector<uint8_t> getAsBytes() const {
+        std::vector<uint8_t> settings(getSize());
+        mayFailCall(&EH::getAsBytes, settings);
+        return settings;
+    }
+    void setAsBytes(const std::vector<uint8_t> &settings) {
+        mayFailSet(&EH::setAsBytes, settings);
+    }
 };
 
 } // parameterFramework

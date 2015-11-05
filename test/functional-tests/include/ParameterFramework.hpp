@@ -85,7 +85,6 @@ public:
     using PF::getSchemaUri;
     using PF::setSchemaUri;
     using PF::getValidateSchemasOnStart;
-    using PF::setValidateSchemasOnStart;
     using PF::isValueSpaceRaw;
     using PF::isOutputRawFormatHex;
     using PF::setOutputRawFormat;
@@ -134,6 +133,11 @@ public:
         mayFailCall(&PF::accessParameterValue, path, value, false);
     }
 private:
+
+    /** Create an unwrapped element handle.
+     *
+     * Is not public as this method is intended to be used by ElementHandle facade.
+     */
     EH createElementHandle(const std::string& path)
     {
         // PF::createElementHandle takes it's handler in the free store

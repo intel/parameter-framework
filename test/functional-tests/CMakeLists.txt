@@ -27,15 +27,24 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 if(BUILD_TESTING)
-    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+    find_package(LibXml2 REQUIRED)
+
+    # TODO: create a libxml2 library to properly export those definition & include
+    #       so that client only have to link with libxml2
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include"
+                        ${LIBXML2_INCLUDE_DIR})
 
     # Add unit test
     add_executable(parameterFunctionalTest
                    Basic.cpp
-                   FloatingPoint.cpp)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+                   FloatingPoint.cpp
+                   Handle.cpp)
 
-    target_link_libraries(parameterFunctionalTest parameter catch tmpfile)
+    target_link_libraries(parameterFunctionalTest
+                          parameter catch tmpfile ${LIBXML2_LIBRARIES})
+
+    target_compile_definitions(parameterFunctionalTest PRIVATE "${LIBXML2_DEFINITIONS}")
+
     add_test(NAME parameterFunctionalTest
              COMMAND parameterFunctionalTest)
 

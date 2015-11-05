@@ -96,12 +96,28 @@ public:
         return wrapCall<ReturnType *>(*this, method, std::forward<Args>(args)...);
     }
 
+    /** Wrap a getter to return by value and throw an exception on failure. */
+    template <class K, class Value>
+    Value mayFailGet(bool (K::*accessor)(Value &, std::string &) const) const
+    {
+        Value value;
+        wrapCall<bool>(*this, accessor, value);
+        return value;
+    }
+
+    /** Wrap a setter to throw an exception on failure instead of returning a boolean. */
+    template <class K, class Value>
+    void mayFailSet(bool (K::*accessor)(const Value &, std::string &), const Value &value)
+    {
+        wrapCall<bool>(*this, accessor, value);
+    }
+
 private:
     template <class Ret, class I, class M, class... Args>
     static Ret wrapCall(I &instance, M method, Args&&... args)
     {
         std::string error;
-        auto res = (std::forward<I>(instance).*method)(std::forward<Args>(args)..., error);
+        auto res = (instance.*method)(std::forward<Args>(args)..., error);
         if (not detail::successTest(res)) {
             throw Exception(std::move(error));
         }
