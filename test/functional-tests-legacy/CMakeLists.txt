@@ -29,10 +29,10 @@
 if (BUILD_TESTING)
     find_package(PythonInterp 2 REQUIRED)
 
-    set(PFW_ROOT ${CMAKE_BINARY_DIR}/tmp/test-parameters)
+    set(PFW_ROOT ${PROJECT_BINARY_DIR}/tmp/test-parameters)
     set(PFW_RESULT ${PFW_ROOT}/result)
 
-    file(COPY ${CMAKE_SOURCE_DIR}/Schemas/ DESTINATION ${PFW_ROOT}/xml/Schemas)
+    file(COPY ${PROJECT_SOURCE_DIR}/Schemas/ DESTINATION ${PFW_ROOT}/xml/Schemas)
 
     configure_file(
         ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestSubsystem.xml.in
