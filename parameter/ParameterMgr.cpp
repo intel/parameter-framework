@@ -1391,14 +1391,14 @@ CParameterMgr::getElementBytesCommandProcess(const IRemoteCommand& remoteCommand
 
     // Hexa formatting
     std::ostringstream ostream;
-    ostream << std::hex << std::setw(2) << std::setfill('0');
+    ostream << std::hex << std::setfill('0');
 
     // Format bytes
     for (auto byte : bytes) {
 
         // Convert to an int in order to avoid the "char" overload that would
         // print characters instead of numbers.
-        ostream << int{byte} << " ";
+        ostream << "0x" << std::setw(2) << int{byte} << " ";
     }
 
     strResult = ostream.str();
