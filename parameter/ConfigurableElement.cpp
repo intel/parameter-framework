@@ -241,7 +241,7 @@ bool CConfigurableElement::setSettingsAsBytes(const std::vector<uint8_t>& bytes,
     CSyncerSet syncerSet;
     fillSyncerSet(syncerSet);
     core::Results res;
-    if (not syncerSet.sync(*parameterAccessContext.getParameterBlackboard(), true, &res)) {
+    if (not syncerSet.sync(*parameterAccessContext.getParameterBlackboard(), false, &res)) {
 
         parameterAccessContext.setError(utility::asString(res));
         return false;

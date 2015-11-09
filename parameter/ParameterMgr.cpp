@@ -1082,6 +1082,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
         const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition = getConstSelectionCriteria()->getSelectionCriteriaDefinition();
 
         if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria",
+                                      CXmlSerializingContext{strResult},
                                       strResult)) {
 
             return CCommandHandler::EFailed;
@@ -1356,7 +1357,11 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementStructure
         return CCommandHandler::EFailed;
     }
 
-    if (!exportElementToXMLString(pLocatedElement, pLocatedElement->getXmlElementName(), strResult)) {
+    // Use default access context for structure export
+    CParameterAccessContext accessContext(strResult);
+    if (!exportElementToXMLString(pLocatedElement, pLocatedElement->getXmlElementName(),
+                                  CXmlParameterSerializingContext{accessContext, strResult},
+                                  strResult)) {
 
         return CCommandHandler::EFailed;
     }
@@ -1505,7 +1510,7 @@ bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
         CSyncerSet syncerSet;
         static_cast<CConfigurableElement *>(configurableElement)->fillSyncerSet(syncerSet);
         core::Results results;
-        if(not syncerSet.sync(*_pMainParameterBlackboard, true, &results)) {
+        if(not syncerSet.sync(*_pMainParameterBlackboard, false, &results)) {
             result = utility::asString(results);
 
             return false;
@@ -1860,8 +1865,11 @@ CParameterMgr::CCommandHandler::CommandStatus
     // Get Root element where to export from
     const CSystemClass* pSystemClass = getSystemClass();
 
-    if (!exportElementToXMLString(pSystemClass, pSystemClass->getXmlElementName(), strResult)) {
-
+    // Use default access context for structure export
+    CParameterAccessContext accessContext(strResult);
+    if (!exportElementToXMLString(pSystemClass, pSystemClass->getXmlElementName(),
+                                  CXmlParameterSerializingContext{accessContext, strResult},
+                                  strResult)) {
         return CCommandHandler::EFailed;
     }
     // Succeeded
@@ -2814,12 +2822,9 @@ void CParameterMgr::doApplyConfigurations(bool bForce)
 // Export to XML string
 bool CParameterMgr::exportElementToXMLString(const IXmlSource* pXmlSource,
                                              const string& strRootElementType,
+                                             CXmlSerializingContext &&xmlSerializingContext,
                                              string& strResult) const
 {
-    string strError;
-
-    CXmlSerializingContext xmlSerializingContext(strError);
-
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(pXmlSource, false, strRootElementType);
 
@@ -2830,11 +2835,7 @@ bool CParameterMgr::exportElementToXMLString(const IXmlSource* pXmlSource,
     // Do the export
     bool bProcessSuccess = streamSink.process(memorySource, xmlSerializingContext);
 
-    if (bProcessSuccess) {
-        strResult = output.str();
-    } else {
-        strResult = strError;
-    }
+    strResult = output.str();
 
     return bProcessSuccess;
 }

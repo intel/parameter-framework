@@ -47,5 +47,12 @@ public:
 
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
+
+    void structureToXml(CXmlElement &xmlElement,
+                        CXmlSerializingContext &serializingContext) const
+    {
+        xmlElement.setAttribute("Size", getSize() * 8);
+        CInstanceConfigurableElement::structureToXml(xmlElement, serializingContext);
+    }
 };
 
