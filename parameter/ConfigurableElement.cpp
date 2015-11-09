@@ -206,7 +206,7 @@ bool CConfigurableElement::accessValue(CPathNavigator& pathNavigator, std::strin
 void CConfigurableElement::getSettingsAsBytes(std::vector<uint8_t>& bytes,
                                               CParameterAccessContext& parameterAccessContext) const
 {
-    bytes.reserve(getFootPrint());
+    bytes.resize(getFootPrint());
 
     parameterAccessContext.getParameterBlackboard()->readBytes(
             bytes, getOffset() - parameterAccessContext.getBaseOffset());

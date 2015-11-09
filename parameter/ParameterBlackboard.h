@@ -77,7 +77,8 @@ public:
      * Notes:
      *    - This function asserts that the output vector's size + the offset
      *      does not exceed the size of the blackboard itself.
-     *    - The user MUST reserve exactly as many elements as the amount to read
+     *    - The user MUST resize the output vector to exactly the number of
+     *      elements to be read
      */
     void readBytes(std::vector<uint8_t>& bytes, size_t offset) const;
 
