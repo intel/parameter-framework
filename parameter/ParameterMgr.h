@@ -626,13 +626,15 @@ private:
      * @param[in] input the input XML stream
      * @param[in] baseUri the XML input file URI or ""
      * @param[in] eElementLibrary which element library to be used
+     * @param[in] replace Should the element be overridden or modified in place
      * @param[in] strNameAttributeName the name of the element's XML "name" attribute
      *
      * @returns true if parsing succeeded, false otherwise
      */
     bool xmlParse(CXmlElementSerializingContext& elementSerializingContext, CElement* pRootElement,
                   _xmlDoc* doc, const std::string& baseUri,
-                  ElementLibrary eElementLibrary, const std::string& strNameAttributeName = "Name");
+                  ElementLibrary eElementLibrary, bool replace = true,
+                  const std::string& strNameAttributeName = "Name");
 
     /** Wrapper for converting public APIs semantics to internal API
      *
