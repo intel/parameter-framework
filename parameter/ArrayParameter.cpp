@@ -256,11 +256,11 @@ bool CArrayParameter::setValues(size_t uiStartIndex, size_t offset, const string
     // Process
     size_t valueIndex;
     size_t size = getSize();
-    size_t startOffset = offset + uiStartIndex * size;
+    offset += uiStartIndex * size;
 
     for (valueIndex = 0; valueIndex < nbValues; valueIndex++) {
 
-        if (!doSet(astrValues[valueIndex], startOffset, parameterAccessContext)) {
+        if (!doSet(astrValues[valueIndex], offset, parameterAccessContext)) {
 
             // Append parameter path to error
             parameterAccessContext.appendToError(" " + getPath() + "/" +
