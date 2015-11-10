@@ -151,6 +151,9 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             return false;
         }
     } else {
+        // Handle element name attribute
+        xmlConfigurationSettingsElementContent.setNameAttribute(getName());
+
         // Propagate to children
         for (size_t index = 0; index < uiNbChildren; index++) {
 
@@ -160,9 +163,6 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             CXmlElement xmlChildConfigurableElementSettingsElement;
 
             xmlConfigurationSettingsElementContent.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getXmlElementName());
-
-            // Handle element name attribute
-            xmlChildConfigurableElementSettingsElement.setNameAttribute(pChildConfigurableElement->getName());
 
             // Propagate
             pChildConfigurableElement->serializeXmlSettings(xmlChildConfigurableElementSettingsElement, configurationAccessContext);

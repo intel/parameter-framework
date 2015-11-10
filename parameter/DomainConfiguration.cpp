@@ -196,7 +196,6 @@ bool CDomainConfiguration::exportOneConfigurableElementSettings(
     // Create child XML element
     CXmlElement xmlConfigurableElementSettingsElementContent;
     xmlConfigurableElementSettingsElement.createChild(xmlConfigurableElementSettingsElementContent, source->getXmlElementName());
-    xmlConfigurableElementSettingsElementContent.setNameAttribute(source->getName());
 
     // Create configuration access context
     string error;
