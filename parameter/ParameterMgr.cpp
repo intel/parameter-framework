@@ -1487,9 +1487,8 @@ bool CParameterMgr::getSettingsAsXML(const CConfigurableElement *configurableEle
 }
 
 bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
-        const string &settings, string &result)
+        const string &settings, string &error)
 {
-    string error;
     CConfigurationAccessContext configContext(error, _pMainParameterBlackboard,
                                               _bValueSpaceIsRaw, _bOutputRawFormatIsHex, false);
 
@@ -1509,9 +1508,9 @@ bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
     if (_bAutoSyncOn) {
         CSyncerSet syncerSet;
         static_cast<CConfigurableElement *>(configurableElement)->fillSyncerSet(syncerSet);
-        core::Results results;
-        if(not syncerSet.sync(*_pMainParameterBlackboard, false, &results)) {
-            result = utility::asString(results);
+        core::Results errors;
+        if(not syncerSet.sync(*_pMainParameterBlackboard, false, &errors)) {
+            error = utility::asString(errors);
 
             return false;
         }
