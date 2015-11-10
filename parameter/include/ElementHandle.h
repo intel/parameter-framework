@@ -151,7 +151,10 @@ public:
 
     /** Gets element settings in binary format
      *
-     * @return the output binary byte array containing the ettings
+     * @param[out] bytesValue the output vector
+     * @param[out] error unused
+     *
+     * @returns true
      */
      bool getAsBytes(std::vector<uint8_t>& bytesValue, std::string& error) const;
 
