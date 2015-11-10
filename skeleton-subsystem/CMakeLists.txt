@@ -46,8 +46,8 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN true)
 
 # Force libs and executable to all be at a known place - simplifies a lot of
 # things, expecially setting the test environment
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
 #
 # Find PFW libraries and include directories

@@ -55,13 +55,13 @@ set_property(SOURCE pfw.i PROPERTY SWIG_FLAGS "-Wall" "-Werror")
 swig_add_module(PyPfw python pfw.i)
 swig_link_libraries(PyPfw parameter ${PYTHON_LIBRARIES})
 # For convenience, the global library output directory
-# (CMAKE_LIBRARY_OUTPUT_DIRECTORY) is set to ${CMAKE_BINARY_DIR}/lib, so that
+# (CMAKE_LIBRARY_OUTPUT_DIRECTORY) is set to ${PROJECT_BINARY_DIR}/lib, so that
 # all libs are generated in the same folder. This help writing test targets
 # (add_test) that do not need "make install" to be run.
 # However, putting _PyPfw.so in that folder defeats the purpose described
 # above because when running tests using the python bindings, the PYTHONPATH
 # needs to contain both _PyPfw.so and PyPfw.py. Without the line below,
-# _PyPfw.so would be put in ${CMAKE_BINARY_DIR}/lib while PyPfw.py is put in
+# _PyPfw.so would be put in ${PROJECT_BINARY_DIR}/lib while PyPfw.py is put in
 # ${CMAKE_CURRENT_BINARY_DIR}.
 set_property(TARGET _PyPfw PROPERTY LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 
