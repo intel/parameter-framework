@@ -69,8 +69,10 @@ void CStringParameter::setDefaultValues(CParameterAccessContext& parameterAccess
 bool CStringParameter::doSetValue(const string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
 {
     if (strValue.length() >= getSize()) {
-
-        parameterAccessContext.setError("Maximum length exceeded");
+        using std::to_string;
+        parameterAccessContext.setError(
+                "Can not set a string of length " + to_string(strValue.length()) +
+                ": maximum length is " + std::to_string(getSize() - 1));
 
         return false;
     }
