@@ -57,13 +57,13 @@ script:
         make -j &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck )
   - ( mkdir build && cd build &&
-        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_INSTALL_PREFIX=../install .. &&
+        cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=Release .. &&
         make -j &&
         CTEST_OUTPUT_ON_FAILURE=1 make test &&
         make install &&
         cpack --verbose -G DEB && dpkg --info *.deb)
   - ( cd skeleton-subsystem &&
-        cmake -DCMAKE_INSTALL_PREFIX=../install . &&
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install . &&
         make &&
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck &&
         make install )
