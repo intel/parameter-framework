@@ -254,4 +254,241 @@ SCENARIO_METHOD(AllParamsPF, "Export all parameters", "[handler][structure][xml]
     }
 }
 
+struct SettingsTestPF : public AllParamsPF
+{
+    static string parameterBlockNode(string name, string settings) {
+        return node("ParameterBlock", name, settings);
+    };
+    static string mkBasicSettings(string settings, string name) {
+        return rootNode("ParameterBlock", "Name='" + name + "'", settings);
+    }
+
+    static string fullXMLSettings(const string &basicSettings)
+    {
+        string settings = basicSettings;
+        settings += parameterBlockNode("parameter_block", settings) +
+                    parameterBlockNode("parameter_block_array",
+                        parameterBlockNode("0", settings) +
+                        parameterBlockNode("1", settings)) +
+                    parameterBlockNode("component_scalar", settings) +
+                    parameterBlockNode("component_array", settings);
+
+        return rootNode("SystemClass", "Name='test'" ,
+                        node("Subsystem", "test", settings, ""));
+    }
+
+    static string fullBytesSettings(const string &basicSettings)
+    {
+        string fullSettings;
+        for (size_t i = 0; i < 6; ++i) {
+            fullSettings += basicSettings;
+        }
+        return fullSettings;
+    }
+
+    /** Print Bytes as string separated hexadecimal number. */
+    static string showBytes(const Bytes &bytes) {
+        using namespace std;
+        ostringstream ss;
+        ss.exceptions(ostream::badbit | ostream::failbit);
+        for (auto byte : bytes) {
+            ss << hex << setw(2) << setfill('0') << int{byte} << ' ';
+        }
+        return ss.str();
+    }
+
+    static Bytes readBytes(const string &strBytes) {
+        using namespace std;
+        istringstream ss{strBytes};
+        ss.exceptions(istream::badbit | istream::failbit);
+        Bytes bytes(strBytes.size()/3);
+
+        for (auto &byte : bytes) {
+            uint16_t notCharByte;
+            ss >> hex >> setw(2) >> notCharByte;
+            byte = static_cast<char>(notCharByte);
+        }
+        return bytes;
+    }
+
+     static void checkBytesEq(const Bytes &result, const string &expect) {
+         checkEq(showBytes(result), expect);
+     }
+     static void checkBytesEq(const Bytes &result, const Bytes &expect) {
+         checkEq(showBytes(result), showBytes(expect));
+     }
+};
+
+static const char *defaultBasicSettingsXML = R"(
+      <BooleanParameter Name="bool">0</BooleanParameter>
+      <BooleanParameter Name="bool_array">0 0</BooleanParameter>
+      <IntegerParameter Name="integer">33</IntegerParameter>
+      <IntegerParameter Name="integer_array">-10 -10 -10 -10</IntegerParameter>
+      <FixedPointParameter Name="fix_point">0.0000</FixedPointParameter>
+      <FixedPointParameter Name="fix_point_array">0.0000 0.0000 0.0000</FixedPointParameter>
+      <EnumParameter Name="enum">min</EnumParameter>
+      <EnumParameter Name="enum_array">eight eight eight eight</EnumParameter>
+      <StringParameter Name="string"></StringParameter>
+      <BitParameterBlock Name="bit_block">
+        <BitParameter Name="one">0</BitParameter>
+        <BitParameter Name="two">0</BitParameter>
+        <BitParameter Name="six">0</BitParameter>
+        <BitParameter Name="sixteen">0</BitParameter>
+        <BitParameter Name="thirty_two">0</BitParameter>
+      </BitParameterBlock>
+)";
+
+static const char *testBasicSettingsXML = R"(
+      <BooleanParameter Name="bool">1</BooleanParameter>
+      <BooleanParameter Name="bool_array">0 1</BooleanParameter>
+      <IntegerParameter Name="integer">100</IntegerParameter>
+      <IntegerParameter Name="integer_array">-10 0 8 10</IntegerParameter>
+      <FixedPointParameter Name="fix_point">2.2500</FixedPointParameter>
+      <FixedPointParameter Name="fix_point_array">7.1250 0.6875 -1.0000</FixedPointParameter>
+      <EnumParameter Name="enum">five</EnumParameter>
+      <EnumParameter Name="enum_array">eight min eight min</EnumParameter>
+      <StringParameter Name="string">A string of 32 character.@@@@@@@</StringParameter>
+      <BitParameterBlock Name="bit_block">
+        <BitParameter Name="one">1</BitParameter>
+        <BitParameter Name="two">2</BitParameter>
+        <BitParameter Name="six">10</BitParameter>
+        <BitParameter Name="sixteen">72</BitParameter>
+        <BitParameter Name="thirty_two">4294967295</BitParameter>
+      </BitParameterBlock>
+)";
+
+
+SCENARIO_METHOD(SettingsTestPF, "Export and import XML settings", "[handler][settings][xml]")
+{
+    WHEN("Exporting root XML") {
+        auto getAsXML = [this](string path) { return ElementHandle(*this, path).getAsXML(); };
+        CHECK(getAsXML("/") == getAsXML("/test"));
+        checkXMLEq(getAsXML("/"), fullXMLSettings(defaultBasicSettingsXML));
+    }
+
+    ElementHandle basicParams(*this, "/test/test/parameter_block");
+    WHEN("Exporting basic parameter XML") {
+        checkXMLEq(basicParams.getAsXML(),
+                   mkBasicSettings(defaultBasicSettingsXML, "parameter_block"));
+    }
+    WHEN("Importing basic parameter XML") {
+        string testSettings = mkBasicSettings(testBasicSettingsXML, "parameter_block");
+        CHECK_NOTHROW(basicParams.setAsXML(testSettings));
+        THEN("Exported settings should be the ones imported") {
+            checkXMLEq(basicParams.getAsXML(), testSettings);
+        }
+    }
+}
+
+static const string defaultBasicSettingsBytes =
+ "00 00 00 21 00 f6 ff ff ff f6 ff ff ff f6 ff ff ff f6 ff ff ff 00 00 00 00 "
+ "00 00 00 00 00 00 00 00 00 00 00 00 80 08 00 08 00 08 00 08 00 00 00 00 00 00 "
+ "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
+ "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
+ "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ";
+
+static const string testBasicSettingsBytes =
+  "01 00 01 64 00 f6 ff ff ff 00 00 00 00 08 00 00 00 0a 00 00 00 00 00 00 24 "
+  "00 00 00 72 00 00 00 0b 00 00 00 f0 05 08 00 01 80 08 00 01 80 41 20 73 74 72 "
+  "69 6e 67 20 6f 66 20 33 32 20 63 68 61 72 61 63 74 65 72 2e 40 40 40 40 40 40 "
+  "40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
+  "00 00 00 00 00 00 00 8a 02 48 00 ff ff ff ff ";
+
+SCENARIO_METHOD(SettingsTestPF, "Bijection of binary show and read", "[identity][test]")
+{
+    CHECK(showBytes(readBytes(testBasicSettingsBytes)) == testBasicSettingsBytes);
+}
+
+SCENARIO_METHOD(SettingsTestPF, "Export and import root binary settings",
+                "[handler][settings][bytes]")
+{
+    ElementHandle root(*this, "/");
+    ElementHandle systemClass(*this, "/");
+
+    THEN("Root and system class should export the same binary") {
+        checkBytesEq(root.getAsBytes(), systemClass.getAsBytes());
+    }
+    WHEN("Exporting root binary") {
+        checkBytesEq(root.getAsBytes(), fullBytesSettings(defaultBasicSettingsBytes));
+    }
+    WHEN("Importing root binary") {
+        string rootTestSettings = fullBytesSettings(testBasicSettingsBytes);
+        REQUIRE_NOTHROW(root.setAsBytes(readBytes(rootTestSettings)));
+        THEN("Exported settings should be the ones imported") {
+            checkBytesEq(root.getAsBytes(), rootTestSettings);
+        }
+    }
+}
+
+SCENARIO_METHOD(SettingsTestPF, "Export and import basic binary settings",
+                "[handler][settings][bytes]")
+{
+    ElementHandle basicParams(*this, "/test/test/parameter_block");
+    WHEN("Exporting basic parameter binary") {
+        checkBytesEq(basicParams.getAsBytes(), defaultBasicSettingsBytes);
+    }
+    WHEN("Importing basic parameter binary") {
+        REQUIRE_NOTHROW(basicParams.setAsBytes(readBytes(testBasicSettingsBytes)));
+        THEN("Exported settings should be the ones imported") {
+            checkBytesEq(basicParams.getAsBytes(), testBasicSettingsBytes);
+        }
+    }
+}
+
+SCENARIO_METHOD(SettingsTestPF, "Export and import array binary settings",
+                "[handler][settings][bytes]")
+{
+    ElementHandle array(*this, "/test/test/parameter_block_array");
+    ElementHandle elem0(*this, "/test/test/parameter_block_array/0");
+    WHEN("Importing one array element") {
+        REQUIRE_NOTHROW(elem0.setAsBytes(readBytes(testBasicSettingsBytes)));
+        THEN("The other element should not have changed") {
+            checkBytesEq(array.getAsBytes(), testBasicSettingsBytes + defaultBasicSettingsBytes);
+        }
+    }
+}
+
+SCENARIO_METHOD(SettingsTestPF, "Import root in one format, export in an other",
+                "[handler][settings][bytes][xml]")
+{
+    ElementHandle root(*this, "/test");
+    string rootBytesSettings = fullBytesSettings(testBasicSettingsBytes);
+    string rootXMLSettings = fullXMLSettings(testBasicSettingsXML);
+
+    WHEN("Importing root binary") {
+        REQUIRE_NOTHROW(root.setAsBytes(readBytes(rootBytesSettings)));
+        THEN("Exported XML settings should be the ones imported") {
+            checkXMLEq(root.getAsXML(), rootXMLSettings);
+        }
+    }
+
+    WHEN("Importing root XML") {
+        REQUIRE_NOTHROW(root.setAsXML(rootXMLSettings));
+        THEN("Exported bytes settings should be the ones imported") {
+            checkBytesEq(root.getAsBytes(), rootBytesSettings);
+        }
+    }
+}
+
+SCENARIO_METHOD(SettingsTestPF, "Import basic params in one format, export in an other",
+                "[handler][settings][bytes][xml]")
+{
+    ElementHandle basicParams(*this, "/test/test/parameter_block_array/0");
+    string basicXMLSettings = mkBasicSettings(testBasicSettingsXML, "0");
+
+    WHEN("Importing basic parameters binary") {
+        REQUIRE_NOTHROW(basicParams.setAsBytes(readBytes(testBasicSettingsBytes)));
+        THEN("Exported XML settings should be the ones imported") {
+            checkXMLEq(basicParams.getAsXML(), basicXMLSettings);
+        }
+    }
+
+    WHEN("Importing basic parameters XML") {
+        REQUIRE_NOTHROW(basicParams.setAsXML(basicXMLSettings));
+        THEN("Exported bytes settings should be the ones imported") {
+            checkBytesEq(basicParams.getAsBytes(), testBasicSettingsBytes);
+        }
+    }
+}
+
 } // namespace parameterFramework
