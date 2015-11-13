@@ -66,7 +66,7 @@ bool CBaseParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsE
     }
 
     // Done
-    return true;
+    return base::serializeXmlSettings(xmlConfigurationSettingsElementContent, configurationAccessContext);
 }
 
 // Dump

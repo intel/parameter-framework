@@ -96,7 +96,10 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             if (!it.next(xmlChildConfigurableElementSettingsElement)) {
 
                 // Structure error
-                configurationAccessContext.setError("Configuration settings parsing: Settings don't conform to structure of configurable element " + getName());
+                configurationAccessContext.setError(
+                        "Configuration settings parsing: missing child node " +
+                        pChildConfigurableElement->getXmlElementName() +
+                        " (name:" + pChildConfigurableElement->getName() + ") in " + getName());
 
                 return false;
             }
@@ -119,7 +122,7 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
 
                     // Type error
                     configurationAccessContext.setError("Configuration settings parsing: Settings "
-                        "for configurable element " + pChildConfigurableElement->getName() +
+                        "for configurable element " + pChildConfigurableElement->getQualifiedPath() +
                         " does not match expected type: " +
                         xmlChildConfigurableElementSettingsElement.getType() + " instead of " +
                         pChildConfigurableElement->getKind());
@@ -131,7 +134,11 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             if (xmlChildConfigurableElementSettingsElement.getNameAttribute() != pChildConfigurableElement->getName()) {
 
                 // Name error
-                configurationAccessContext.setError("Configuration settings parsing: Under configurable elememnt " + getName() + ", expected element name " + pChildConfigurableElement->getName() + " but found " + xmlChildConfigurableElementSettingsElement.getNameAttribute() + " instead");
+                configurationAccessContext.setError(
+                        "Configuration settings parsing: Under configurable element " +
+                        getQualifiedPath() + ", expected element name " +
+                        pChildConfigurableElement->getName() + " but found " +
+                        xmlChildConfigurableElementSettingsElement.getNameAttribute() + " instead");
 
                 return false;
             }
@@ -146,11 +153,17 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
         if (it.next(xmlChildConfigurableElementSettingsElement)) {
 
             // Structure error
-            configurationAccessContext.setError("Configuration settings parsing: Settings don't conform to structure of configurable element " + getName());
+            configurationAccessContext.setError(
+                    "Configuration settings parsing: Unexpected xml element node " +
+                    xmlChildConfigurableElementSettingsElement.getType() +
+                    " in " + getQualifiedPath());
 
             return false;
         }
     } else {
+        // Handle element name attribute
+        xmlConfigurationSettingsElementContent.setNameAttribute(getName());
+
         // Propagate to children
         for (size_t index = 0; index < uiNbChildren; index++) {
 
@@ -160,9 +173,6 @@ bool CConfigurableElement::serializeXmlSettings(CXmlElement& xmlConfigurationSet
             CXmlElement xmlChildConfigurableElementSettingsElement;
 
             xmlConfigurationSettingsElementContent.createChild(xmlChildConfigurableElementSettingsElement, pChildConfigurableElement->getXmlElementName());
-
-            // Handle element name attribute
-            xmlChildConfigurableElementSettingsElement.setNameAttribute(pChildConfigurableElement->getName());
 
             // Propagate
             pChildConfigurableElement->serializeXmlSettings(xmlChildConfigurableElementSettingsElement, configurationAccessContext);

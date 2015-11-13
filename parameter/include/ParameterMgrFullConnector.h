@@ -35,6 +35,7 @@
 #include "SelectionCriterionInterface.h"
 #include "ParameterHandle.h"
 #include "ParameterMgrLoggerForward.h"
+#include "ParameterMgrPlatformConnector.h"
 
 #include <string>
 #include <list>
@@ -43,119 +44,33 @@
 
 class CParameterMgr;
 
-class PARAMETER_EXPORT CParameterMgrFullConnector
+class PARAMETER_EXPORT CParameterMgrFullConnector : public CParameterMgrPlatformConnector
 {
-    friend class CParameterMgrLogger<CParameterMgrFullConnector>;
-
 public:
 
     /** String list type which can hold list of error/info and can be presented to client */
     typedef std::list<std::string> Results;
 
     CParameterMgrFullConnector(const std::string& strConfigurationFilePath);
-    ~CParameterMgrFullConnector();
 
-    /** Interface to implement to provide a custom logger to the PF.
-     *
-      * Either:
-      *     - override info and warning methods
-      *     - override the log method
-      *
-      * Choice between the 2 is left to the client convenience.
-      * @Note Errors are always returned synchronously. Never logged.
-      */
-    class ILogger
-    {
-    public:
-        virtual void info(const std::string& strLog) = 0;
-        virtual void warning(const std::string& strLog) = 0;
-    protected:
-        virtual ~ILogger() {}
-    };
-    // Logging
-    /** Should be called before start */
-    void setLogger(ILogger* pLogger);
-
-
-    bool start(std::string& strError);
-
-    // Dynamic parameter handling
-    CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError);
-
-    ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive);
-    ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName,
-            const ISelectionCriterionTypeInterface* pSelectionCriterionType);
-    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName);
-
-    /** Is the remote interface forcefully disabled ?
+    /** @deprecated Same as its overload without error handling.
+     * @note this deprecated method in not available in the python wrapper.
      */
-    bool getForceNoRemoteInterface() const;
-
-    /**
-     * Forcefully disable the remote interface or cancel this policy.
-     *
-     * Has no effect if called after calling start().
-     *
-     * @param[in] bForceNoRemoteInterface disable the remote interface if true.
-     */
-    void setForceNoRemoteInterface(bool bForceNoRemoteInterface);
-
-    void applyConfigurations();
-
-    /** Should start fail in case of missing subsystems.
-      *
-      * @param[in] bFail: If set to true,  parameterMgr start will fail on missing subsystems.
-      *                   If set to false, missing subsystems will fallback on virtual subsystem.
-      */
     void setFailureOnMissingSubsystem(bool bFail);
+    using CParameterMgrPlatformConnector::setFailureOnMissingSubsystem;
 
-    /** Would start fail in case of missing subsystems.
-      *
-      * @return true if the subsystem will fail on missing subsystem, false otherwise.
-      */
-    bool getFailureOnMissingSubsystem() const;
-
-    /** Should start fail in failed settings load.
-      *
-      * @param[in] bFail: If set to true, parameterMgr start will fail on failed settings load.
-      *                   If set to false, failed settings load will be ignored.
-      */
+    /** @deprecated Same as its overload without error handling.
+     * @note this deprecated method in not available in the python wrapper.
+     */
     void setFailureOnFailedSettingsLoad(bool bFail);
-    /** Would start fail in case of failed settings load.
-      *
-      * @return failure on failed settings load policy state.
-      */
-    bool getFailureOnFailedSettingsLoad() const;
+    using CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad;
 
-    /** Get the XML Schemas URI
-     *
-     * @returns the XML Schemas URI
-     */
-    const std::string& getSchemaUri() const;
-
-    /** Override the XML Schemas URI
-     *
-     * @param[in] schemaUri the XML Schemas URI
-     */
-    void setSchemaUri(const std::string& schemaUri);
-
-    /** Should .xml files be validated on start ?
-     *
-     * @param[in] bValidate:
-     *     If set to true, parameterMgr will report an error
-     *         when being unable to validate .xml files
-     *     If set to false, no .xml/xsd validation will happen
-     *     (default behaviour)
-     *
-     * @return false if unable to set, true otherwise.
+    /** @deprecated Same as its overload without error handling.
+     * @note this deprecated method in not available in the python wrapper.
      */
     void setValidateSchemasOnStart(bool bValidate);
+    using CParameterMgrPlatformConnector::setValidateSchemasOnStart;
 
-    /** Would .xml files be validated on start?
-     *
-     * @return areSchemasValidated
-     */
-    bool getValidateSchemasOnStart() const;
     //////////// Tuning /////////////
     // Tuning mode
     bool setTuningMode(bool bOn, std::string& strError);
@@ -305,14 +220,4 @@ private:
     // disallow copying because this class manages raw pointers' lifecycle
     CParameterMgrFullConnector(const CParameterMgrFullConnector&);
     CParameterMgrFullConnector& operator=(const CParameterMgrFullConnector&);
-
-    void info(const std::string& log);
-    void warning(const std::string& log);
-
-    // Log wrapper
-    CParameterMgrLogger<CParameterMgrFullConnector>* _pParameterMgrLogger;
-
-    CParameterMgr* _pParameterMgr;
-
-    ILogger* _pLogger;
 };

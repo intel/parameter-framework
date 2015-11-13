@@ -29,35 +29,60 @@
  */
 #pragma once
 
-#include <ParameterHandle.h>
-
+#include "ParameterFramework.hpp"
 #include "FailureWrapper.hpp"
+
+#include <ElementHandle.h>
 
 namespace parameterFramework
 {
-/** Wrapper around ParameterHandle to throw exceptions on errors and have more
+/** Wrapper around ::ElementHandle to throw exceptions on errors and have more
  * user friendly methods.
+ * Contrary to ::ElementHandle, is constructed through it's constructor
+ * and not a factory method.
+ * @see parameterFramework::ParameterFramework for the main PF interface.
  */
-class ParameterHandle : private FailureWrapper<CParameterHandle>
+class ElementHandle : private FailureWrapper<::ElementHandle>
 {
-    ParameterHandle(const ParameterHandle &other) = delete;
-    ParameterHandle& operator=(const ParameterHandle& other) = delete;
+    ElementHandle(const ElementHandle &other) = delete;
+    ElementHandle& operator=(const ElementHandle& other) = delete;
 private:
-    using PH = CParameterHandle;
+    using EH = ::ElementHandle;
 
 public:
-    ParameterHandle(CParameterHandle *handle) :
-        FailureWrapper(handle),
-        mHandle(handle) {}
+    ElementHandle(ParameterFramework &pf, const std::string& path) :
+        FailureWrapper(pf.createElementHandle(path)) {}
 
-    ~ParameterHandle() { delete mHandle; }
+    /** Wrap EH::getSize.
+     *
+     * @note: can not use `using EH::getSize` as getSize has private overloads in EH.
+     */
+    size_t getSize() const { return EH::getSize(); }
 
-    /** Wrap PH::setAsDouble to throw an exception on failure. */
-    void setAsDouble(double value) { mayFailCall(&PH::setAsDouble, value); }
-    /** Wrap PH::getAsDouble to throw an exception on failure. */
-    void getAsDouble(double &value) const { mayFailCall(&PH::getAsDouble, value); }
+    /** Wrap EH::setAsDouble to throw an exception on failure. */
+    void setAsDouble(double value) { mayFailCall(&EH::setAsDouble, value); }
+    /** Wrap EH::getAsDouble to throw an exception on failure. */
+    void getAsDouble(double &value) const { mayFailCall(&EH::getAsDouble, value); }
 
-private:
-    CParameterHandle *mHandle;
+    std::string getStructureAsXML() const {
+        return mayFailGet(&EH::getStructureAsXML);
+    }
+
+    std::string getAsXML() const {
+        return mayFailGet(&EH::getAsXML);
+    }
+    void setAsXML(const std::string &settings) {
+        mayFailSet(&EH::setAsXML, settings);
+    }
+
+    std::vector<uint8_t> getAsBytes() const {
+        std::vector<uint8_t> settings(getSize());
+        mayFailCall(&EH::getAsBytes, settings);
+        return settings;
+    }
+    void setAsBytes(const std::vector<uint8_t> &settings) {
+        mayFailSet(&EH::setAsBytes, settings);
+    }
 };
+
 } // parameterFramework

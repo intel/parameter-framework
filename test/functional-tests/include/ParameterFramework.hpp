@@ -32,31 +32,44 @@
 #include "Config.hpp"
 #include "ConfigFiles.hpp"
 #include "FailureWrapper.hpp"
-#include "ParameterHandle.hpp"
 
 #include <ParameterMgrFullConnector.h>
 
 namespace parameterFramework
 {
 
+/** This forward declaration is an implementation detail, client should expect its presence.
+ * @note This forward definition should not be needed as the `friend class ElementHandle` 
+ *       declaration in ParameterFramework is itself a forward declaration.
+ *       Unfortunately there seem to be a bug in visual studio 2013, it is required.
+ */
+class ElementHandle;
+
 /** Wrapper around the Parameter Framework to throw exceptions on errors and
  *  have more user friendly methods.
+ *  @see parameterFramework::ElementHandle to access elements of the parameter tree.
  */
 class ParameterFramework : private parameterFramework::ConfigFiles,
-                           private CParameterMgrFullConnector,
                            private FailureWrapper<CParameterMgrFullConnector>
 {
-private:
+protected:
+    /** Alias to the Platform Connector PF.
+     * It should not be usefull as PF is a super set but is useful
+     * to disambiguate overloaded method for MS visual compiler.
+     */
+    using PPF = CParameterMgrPlatformConnector;
     using PF = CParameterMgrFullConnector;
+    using EH = ::ElementHandle;
 
 public:
     ParameterFramework(const Config &config = Config()) :
         ConfigFiles(config),
-        PF(getPath()),
-        FailureWrapper(this) {}
+        FailureWrapper(getPath())
+    {
+        setForceNoRemoteInterface(true);
+    }
 
     void start() {
-        setForceNoRemoteInterface(true);
         mayFailCall(&PF::start);
     }
 
@@ -66,15 +79,12 @@ public:
      * @{ */
     using PF::applyConfigurations;
     using PF::getFailureOnMissingSubsystem;
-    using PF::setFailureOnMissingSubsystem;
     using PF::getFailureOnFailedSettingsLoad;
-    using PF::setFailureOnFailedSettingsLoad;
     using PF::getForceNoRemoteInterface;
     using PF::setForceNoRemoteInterface;
     using PF::getSchemaUri;
     using PF::setSchemaUri;
     using PF::getValidateSchemasOnStart;
-    using PF::setValidateSchemasOnStart;
     using PF::isValueSpaceRaw;
     using PF::isOutputRawFormatHex;
     using PF::setOutputRawFormat;
@@ -82,6 +92,21 @@ public:
     using PF::isAutoSyncOn;
     using PF::setLogger;
     /** @} */
+
+    /** Wrap PF::setValidateSchemasOnStart to throw an exception on failure. */
+    void setValidateSchemasOnStart(bool validate) {
+        mayFailCall(&PPF::setValidateSchemasOnStart, validate);
+    }
+
+    /** Wrap PF::setFailureOnFailedSettingsLoad to throw an exception on failure. */
+    void setFailureOnFailedSettingsLoad(bool fail) {
+        mayFailCall(&PPF::setFailureOnFailedSettingsLoad, fail);
+    }
+
+    /** Wrap PF::setFailureOnMissingSubsystem to throw an exception on failure. */
+    void setFailureOnMissingSubsystem(bool fail) {
+        mayFailCall(&PPF::setFailureOnMissingSubsystem, fail);
+    }
 
     /** Renaming for better readability (and coherency with PF::isValueSpaceRaw)
      *  of PF::setValueSpace. */
@@ -107,12 +132,20 @@ public:
     {
         mayFailCall(&PF::accessParameterValue, path, value, false);
     }
+private:
 
-    // Dynamic parameter handling
-    ParameterHandle* createParameterHandle(const std::string& path) {
-        return new ParameterHandle(mayFailCall(&PF::createParameterHandle, path));
+    /** Create an unwrapped element handle.
+     *
+     * Is not public as this method is intended to be used by ElementHandle facade.
+     */
+    EH createElementHandle(const std::string& path)
+    {
+        // PF::createElementHandle takes it's handler in the free store
+        std::unique_ptr<EH> newedHandle{mayFailCall(&PF::createElementHandle, path)};
+        EH handle{*newedHandle};
+        return handle;
     }
-
+    friend class ElementHandle;
 };
 
 } // parameterFramework

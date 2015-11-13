@@ -621,6 +621,7 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
 
     return xmlParse(xmlDomainImportContext, pConfigurableDomains, doc,
                     _xmlConfigurationUri, EParameterConfigurationLibrary,
+                    true,
                     "SystemClassName");
 }
 
@@ -629,6 +630,7 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
                              CElement* pRootElement, _xmlDoc* doc,
                              const string& baseUri,
                              CParameterMgr::ElementLibrary eElementLibrary,
+                             bool replace,
                              const string& strNameAttributeName)
 {
     // Init serializing context
@@ -644,14 +646,13 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
     setSchemaUri(docSource.getSchemaUri());
 
     // Start clean
-    pRootElement->clean();
+    auto clean = [replace, &pRootElement]{ if (replace) { pRootElement->clean(); } };
+    clean();
 
     CXmlMemoryDocSink memorySink(pRootElement);
 
     if (!memorySink.process(docSource, elementSerializingContext)) {
-        //Cleanup
-        pRootElement->clean();
-
+        clean();
         return false;
     }
 
@@ -1487,9 +1488,8 @@ bool CParameterMgr::getSettingsAsXML(const CConfigurableElement *configurableEle
 }
 
 bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
-        const string &settings, string &result)
+        const string &settings, string &error)
 {
-    string error;
     CConfigurationAccessContext configContext(error, _pMainParameterBlackboard,
                                               _bValueSpaceIsRaw, _bOutputRawFormatIsHex, false);
 
@@ -1501,17 +1501,16 @@ bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
     if (doc == nullptr) {
         return false;
     }
-
     if (not xmlParse(xmlParameterContext, configurableElement, doc, "",
-                     EParameterConfigurationLibrary, "Name")) {
+                     EParameterConfigurationLibrary, false)) {
         return false;
     }
     if (_bAutoSyncOn) {
         CSyncerSet syncerSet;
         static_cast<CConfigurableElement *>(configurableElement)->fillSyncerSet(syncerSet);
-        core::Results results;
-        if(not syncerSet.sync(*_pMainParameterBlackboard, false, &results)) {
-            result = utility::asString(results);
+        core::Results errors;
+        if(not syncerSet.sync(*_pMainParameterBlackboard, false, &errors)) {
+            error = utility::asString(errors);
 
             return false;
         }
@@ -2525,7 +2524,8 @@ bool CParameterMgr::wrapLegacyXmlImport(const string& xmlSource, bool fromFile,
         return false;
     }
 
-    return xmlParse(xmlDomainImportContext, &element, doc, "", EParameterConfigurationLibrary, nameAttributeName);
+    return xmlParse(xmlDomainImportContext, &element, doc, "",
+                    EParameterConfigurationLibrary, true, nameAttributeName);
 }
 
 bool CParameterMgr::serializeElement(std::ostream& output,

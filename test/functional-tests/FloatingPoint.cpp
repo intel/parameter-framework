@@ -30,6 +30,7 @@
 
 #include "Config.hpp"
 #include "ParameterFramework.hpp"
+#include "ElementHandle.hpp"
 #include "Test.hpp"
 
 #include <catch.hpp>
@@ -145,10 +146,7 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
             }
 
             AND_THEN("Set/Get floating point parameter handle") {
-                /** @TODO: use move semantics to get an owned object so that
-                 * it will destroyed automatically */
-                ParameterHandle *handle;
-                CHECK_NOTHROW(handle = createParameterHandle(path));
+                ElementHandle handle{*this, path};
                 /** @FIXME: 'set' operations on a ParameterHandle are silently
                  * ignored in tuning mode. Does it make sense ? */
                 REQUIRE_NOTHROW(setTuningMode(false));
@@ -162,9 +160,9 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                             { "(inside range)", 0.0f },
                         }) {
                     GIVEN("A valid value " + vec.title) {
-                        CHECK_NOTHROW(handle->setAsDouble(vec.payload));
+                        CHECK_NOTHROW(handle.setAsDouble(vec.payload));
                         double getValueBack;
-                        CHECK_NOTHROW(handle->getAsDouble(getValueBack));
+                        CHECK_NOTHROW(handle.getAsDouble(getValueBack));
                         CHECK(getValueBack == vec.payload);
                     }
                 }
@@ -173,10 +171,9 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                             { "(too low)", -50.5f },
                         }) {
                     GIVEN("An invalid value " + vec.title) {
-                        CHECK_THROWS_AS(handle->setAsDouble(vec.payload), Exception);
+                        CHECK_THROWS_AS(handle.setAsDouble(vec.payload), Exception);
                     }
                 }
-                delete handle;
             }
         }
     }
