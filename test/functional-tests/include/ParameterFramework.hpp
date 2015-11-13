@@ -64,10 +64,12 @@ protected:
 public:
     ParameterFramework(const Config &config = Config()) :
         ConfigFiles(config),
-        FailureWrapper(getPath()) {}
+        FailureWrapper(getPath())
+    {
+        setForceNoRemoteInterface(true);
+    }
 
     void start() {
-        setForceNoRemoteInterface(true);
         mayFailCall(&PF::start);
     }
 
