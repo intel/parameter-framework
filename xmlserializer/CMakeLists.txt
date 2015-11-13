@@ -60,21 +60,11 @@ if(NOT XML2_XINCLUDE_SUPPORT)
             "please install a version of libxml2 supporting it.")
 endif()
 
-# Unfortunatly libxml2 include dir and definition need to be manualy added as:
-# "many modules currently shipped with CMake do not currently provide IMPORTED targets."
-# https://cmake.org/cmake/help/v3.2/prop_tgt/INTERFACE_INCLUDE_DIRECTORIES.html
-# When this will be fixed, remove the LIBXML2_INCLUDE_DIR and LIBXML2_DEFINITIONS
-# lines, and replace LIBXML2_LIBRARIES by libxml2.
-target_include_directories(xmlserializer
-    PRIVATE ${LIBXML2_INCLUDE_DIR}
-    PUBLIC .)
-
-target_compile_definitions(xmlserializer PRIVATE "${LIBXML2_DEFINITIONS}")
-
+target_include_directories(xmlserializer PUBLIC .)
 
 target_link_libraries(xmlserializer
     PUBLIC pfw_utility # For NonCopyable and ErrorContext
-    PRIVATE ${LIBXML2_LIBRARIES})
+    PRIVATE LibXml2::libxml2)
 
 
 install(FILES

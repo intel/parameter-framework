@@ -26,26 +26,31 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-if(BUILD_TESTING)
+# Wrapper around the official FindLibXml2.cmake in order to provide imported targets.
+# This has the advantage of propagating Transitive Usage Requirements to consumers.
+# See: https://cmake.org/cmake/help/git-master/manual/cmake-developer.7.html#find-modules
+# See: https://cmake.org/gitweb?p=cmake.git;a=blob;f=Modules/FindGLUT.cmake
+#      for a modern Find<package>.cmake example
+# TODO: make a real FindLibXml2.cmake in order to upstream it.
 
-    # TODO: create a libxml2 library to properly export those definition & include
-    #       so that client only have to link with libxml2
-    include_directories(include)
+# More info on how to write Find*.cmake on:
+# https://cmake.org/cmake/help/git-master/manual/cmake-developer.7.html#find-modules
 
-    # Add unit test
-    add_executable(parameterFunctionalTest
-                   Basic.cpp
-                   FloatingPoint.cpp
-                   Handle.cpp)
+# Remove this directory from CMAKE_MODULE_PATH for the call to the original FindLibXml2.cmake
+set(CMAKE_MODULE_PATH_BACKUP "${CMAKE_MODULE_PATH}")
+list(REMOVE_ITEM CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}")
+find_package(LibXml2)
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH_BACKUP}")
+unset(CMAKE_MODULE_PATH_BACKUP)
 
-    find_package(LibXml2 REQUIRED)
+add_library(LibXml2::libxml2 UNKNOWN IMPORTED)
 
-    target_link_libraries(parameterFunctionalTest
-                          PRIVATE parameter catch tmpfile LibXml2::libxml2)
+set_target_properties(LibXml2::libxml2 PROPERTIES
+    IMPORTED_LOCATION "${LIBXML2_LIBRARIES}"
+    INTERFACE_INCLUDE_DIRECTORIES "${LIBXML2_INCLUDE_DIR}"
+    INTERFACE_LINK_LIBRARIES "${LIBXML2_LIBRARIES}"
+    IMPORTED_LINK_INTERFACE_LANGUAGES "C"
+    INTERFACE_COMPILE_DEFINITIONS "${LIBXML2_DEFINITIONS}")
 
-    add_test(NAME parameterFunctionalTest
-             COMMAND parameterFunctionalTest)
-
-    # Custom function defined in the top-level CMakeLists
-    set_test_env(parameterFunctionalTest)
-endif()
+# Do not call find_package_handle_standard_args as this has already been done
+# in find_package(LibXml2)

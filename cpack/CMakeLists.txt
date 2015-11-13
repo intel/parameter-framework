@@ -54,6 +54,14 @@ set(CPACK_PACKAGE_CONTACT "parameter-framework@lists.01.org")
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/COPYING.txt")
 set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://01.org/parameter-framework")
 
+# Arbitrary GUID needed by the installer on windows to abort
+# if it detects a pre-existing installation that uses the same GUID.
+set(CPACK_WIX_PRODUCT_GUID "5CB589A1-8AE6-4CD2-AF46-15272B93B462")
+
+# Arbitrary GUID needed by the installer on windows to replace
+# existing installations that use the same GUID.
+set(CPACK_WIX_UPGRADE_GUID "47E60D10-B344-445D-A2F6-5684CC8B1D47")
+
 if (WIN32)
     # On windows, pack compiler provided libraries (MSVC redistributable) with the project
     include(InstallRequiredSystemLibraries)
