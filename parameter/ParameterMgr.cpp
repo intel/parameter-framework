@@ -84,6 +84,7 @@
 #include "XmlMemoryDocSource.h"
 #include "SelectionCriteriaDefinition.h"
 #include "Utility.h"
+#include "Memory.hpp"
 #include <sstream>
 #include <fstream>
 #include <algorithm>
@@ -2492,7 +2493,7 @@ bool CParameterMgr::importSingleDomainXml(const string& xmlSource, bool overwrit
 
     // We initialize the domain with an empty name but since we have set the isDomainStandalone
     // context, the name will be retrieved during de-serialization
-    std::auto_ptr<CConfigurableDomain> standaloneDomain(new CConfigurableDomain());
+    auto standaloneDomain = utility::make_unique<CConfigurableDomain>();
 
     if (!wrapLegacyXmlImport(xmlSource, fromFile, withSettings, *standaloneDomain, "", errorMsg)) {
         return false;
