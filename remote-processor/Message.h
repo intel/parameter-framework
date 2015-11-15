@@ -114,7 +114,7 @@ protected:
     size_t getRemainingDataSize() const;
 
 private:
-    void assertValidAccess(size_t offset, size_t size) const;
+    bool isValidAccess(size_t offset, size_t size) const;
 
     /** Allocate room to store the message
     *
