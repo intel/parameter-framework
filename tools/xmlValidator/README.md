@@ -28,7 +28,7 @@ where:
 In the example, we have the following files:
 
     |-- ParameterFrameworkConfiguration.xml
-    |-- Schemas
+    |-- schemas
     |   |-- ComponentLibrary.xsd
     |   |-- ComponentTypeSet.xsd
     |   |-- ConfigurableDomains.xsd
@@ -50,12 +50,12 @@ In the example, we have the following files:
 We are in the directory which contains the structure detailed previously.
 To check the validity, we just run:
 
-    ../../tools/xmlValidator/xmlValidator.py . Schemas
+    ../../tools/xmlValidator/xmlValidator.py . schemas
 
 ### Results
 And we will get the following output on the commandline:
 
-    [*] Validate xml files in /home/lab/MusicLibrary/ with /home/lab/MusicLibrary/Schemas
+    [*] Validate xml files in /home/lab/MusicLibrary/ with /home/lab/MusicLibrary/schemas
     Attempt to validate ParameterFrameworkConfiguration.xml with ParameterFrameworkConfiguration.xsd
     ParameterFrameworkConfiguration.xml is valid
     Attempt to validate my_music.xml with Subsystem.xsd

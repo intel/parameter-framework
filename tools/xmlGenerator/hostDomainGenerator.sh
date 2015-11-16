@@ -110,8 +110,8 @@ clean_up () {
     rm "$tmpFile" || true
 
     if [ "$validationEnabled" = "true" ]; then
-        echo "Cleaning $tmpDir/Schemas ..."
-        rm -r "$tmpDir/Schemas" || true
+        echo "Cleaning $tmpDir/schemas ..."
+        rm -r "$tmpDir/schemas" || true
         rmdir "$tmpDir" || true
     fi
 
@@ -268,7 +268,7 @@ deleteEscapedNewLines () {
 }
 
 copySchemaFiles() {
-    cp -r "$HostRoot"/etc/parameter-framework/Schemas "$tmpDir/Schemas"
+    cp -r "$HostRoot"/etc/parameter-framework/schemas "$tmpDir/schemas"
 }
 
 # Copy the schema files needed for validation

@@ -132,7 +132,7 @@ typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t
 // Config File System looks normally like this:
 // ---------------------------------------------
 //|-- <ParameterFrameworkConfiguration>.xml
-//|-- Schemas
+//|-- schemas
 //|   `-- *.xsd
 //|-- Settings
 //|   `-- <SystemClassName folder>*

@@ -32,7 +32,7 @@ if (BUILD_TESTING)
     set(PFW_ROOT ${PROJECT_BINARY_DIR}/tmp/test-parameters)
     set(PFW_RESULT ${PFW_ROOT}/result)
 
-    file(COPY ${PROJECT_SOURCE_DIR}/Schemas/ DESTINATION ${PFW_ROOT}/xml/Schemas)
+    file(COPY ${PROJECT_SOURCE_DIR}/schemas/ DESTINATION ${PFW_ROOT}/xml/schemas)
 
     configure_file(
         ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestSubsystem.xml.in
