@@ -101,7 +101,7 @@ add_library(parameter SHARED
     XmlFileIncluderElement.cpp
     XmlParameterSerializingContext.cpp)
 
-include (GenerateExportHeader)
+include(GenerateExportHeader)
 generate_export_header(parameter)
 
 target_link_libraries(parameter

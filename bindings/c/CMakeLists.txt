@@ -28,7 +28,7 @@
 
 add_library(cparameter SHARED ParameterFramework.cpp)
 
-include (GenerateExportHeader)
+include(GenerateExportHeader)
 generate_export_header(cparameter)
 
 install(FILES ParameterFramework.h

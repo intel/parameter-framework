@@ -64,11 +64,11 @@ function(set_test_env TestName)
     string(REPLACE ";" "\\;" TEST_LD_LIBRARY_PATH "$ENV{LD_LIBRARY_PATH}")
     string(REPLACE ";" "\\;" TEST_PYTHONPATH "$ENV{PYTHONPATH}")
 
-    if (WIN32)
+    if(WIN32)
         set(SEP "\\;")
-    else ()
+    else()
         set(SEP ":")
-    endif ()
+    endif()
 
 
     # With nmake and nmake, executables are build in:

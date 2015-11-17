@@ -31,7 +31,7 @@ find_package(SWIG)
 set_property(CACHE
     SWIG_DIR SWIG_EXECUTABLE SWIG_VERSION
     PROPERTY ADVANCED TRUE)
-if (NOT SWIG_FOUND)
+if(NOT SWIG_FOUND)
     message(FATAL_ERROR
         "Swig is needed to compile the Python bindings but was not found."
         "Please either install swig2.0 or disable Python bindings by setting"

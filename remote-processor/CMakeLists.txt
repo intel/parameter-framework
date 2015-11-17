@@ -32,7 +32,7 @@ add_library(remote-processor SHARED
         AnswerMessage.cpp
         RemoteProcessorServer.cpp)
 
-include (GenerateExportHeader)
+include(GenerateExportHeader)
 generate_export_header(remote-processor
                        BASE_NAME remote_processor)
 

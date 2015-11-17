@@ -32,7 +32,7 @@ if(BUILD_TESTING)
     #      catch is only one header so it is very easy
     find_path(CATCH_HEADER catch.hpp)
     set_property(CACHE CATCH_HEADER PROPERTY ADVANCED TRUE)
-    if (NOT CATCH_HEADER)
+    if(NOT CATCH_HEADER)
         message(SEND_ERROR
 " Catch header `catch.hpp' could not be found.
   Catch is a single header unit test framework required to build some tests.
