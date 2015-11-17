@@ -182,7 +182,11 @@ public:
 // CParameterMgrFullConnector
 // Logger interface
 %feature("director") ILogger;
-%nestedworkaround CParameterMgrFullConnector::ILogger;
+// The nested workaround is used to tell swig to ignore the
+// inner class definition that would be redundant with the fake outer class.
+// It would have been useful if ParameterMgrFullConnector.h was included
+// (as opposed to copying the class definition in this .i).
+// As their is no conflicting ILogger definition, this workaround is useless.
 class ILogger
 {
     public:
