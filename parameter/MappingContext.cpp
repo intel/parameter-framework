@@ -37,10 +37,11 @@ using std::string;
 // Item access
 bool CMappingContext::setItem(size_t itemType, const string* pStrKey, const string* pStrItem)
 {
-    for (const auto &item : mItems) {
-        // Does key already exist ?
-        assert(item.strKey != pStrKey);
-    }
+    // Assert that the key hasn't been set before
+    assert(find_if(begin(mItems), end(mItems), [pStrKey](SItem &item)
+                       { return item.strKey == pStrKey; }
+                  ) == end(mItems));
+
     if (mItems[itemType].bSet) {
         // Already set!
         return false;

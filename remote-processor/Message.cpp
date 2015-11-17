@@ -51,15 +51,15 @@ CMessage::MsgType CMessage::getMsgId() const
     return _ucMsgId;
 }
 
-void CMessage::assertValidAccess(size_t offset, size_t size) const
+bool CMessage::isValidAccess(size_t offset, size_t size) const
 {
-    assert(offset + size <= getMessageDataSize());
+    return offset + size <= getMessageDataSize();
 }
 
 // Data
 void CMessage::writeData(const void* pvData, size_t size)
 {
-    assertValidAccess(_uiIndex, size);
+    assert(isValidAccess(_uiIndex, size));
 
     auto first = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvData), size);
     auto last = first + size;
@@ -72,7 +72,7 @@ void CMessage::writeData(const void* pvData, size_t size)
 
 void CMessage::readData(void* pvData, size_t size)
 {
-    assertValidAccess(_uiIndex, size);
+    assert(isValidAccess(_uiIndex, size));
 
     auto first = begin(mData) + _uiIndex;
     auto last = first + size;
