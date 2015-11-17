@@ -40,15 +40,19 @@ set_target_properties(xmlserializer PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 find_package(LibXml2 REQUIRED)
 
 # libxml2 has been found, but does it support XInclude ?
-include(CheckLibraryExists)
-# The first argument of check_library_exists is used as a library to be linked
-# into a test executable.
-# As such, this argument can only contain *one* library. Here, we use the
-# result of CMake's libxml2 detection - the variable name suggests that several
-# libraries can be found. At the time of writing, with CMake 2.8, this is not
-# the case.
-# Thus, it is probably safe to do so.
-check_library_exists("${LIBXML2_LIBRARIES}" xmlXIncludeProcess "" XML2_XINCLUDE_SUPPORT)
+include(CMakePushCheckState)
+# Save the previous state of CMAKE_REQUIRED_* variables and empty them
+cmake_push_check_state()
+cmake_reset_check_state()
+include(CheckSymbolExists)
+set(CMAKE_REQUIRED_DEFINITIONS ${LIBXML2_DEFINITIONS})
+set(CMAKE_REQUIRED_INCLUDES ${LIBXML2_INCLUDE_DIR})
+# Check that the LIBXML_XINCLUDE_ENABLED macro is defined
+# This is the safest check, as it does not involve linking against anything
+# (which might fail for another reason than the lack of XInclude support)
+check_symbol_exists(LIBXML_XINCLUDE_ENABLED libxml/xmlversion.h XML2_XINCLUDE_SUPPORT)
+# Restore the previous state
+cmake_pop_check_state()
 if(NOT XML2_XINCLUDE_SUPPORT)
     message(SEND_ERROR
             "libxml2 has not been built with support for XInclude."
