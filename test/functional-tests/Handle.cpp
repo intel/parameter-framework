@@ -42,8 +42,10 @@
 #include <libxml/tree.h>
 
 #include <string>
+#include <list>
 
 using std::string;
+using std::list;
 using Bytes = std::vector<uint8_t>;
 
 namespace parameterFramework
@@ -493,6 +495,62 @@ SCENARIO_METHOD(SettingsTestPF, "Import basic params in one format, export in an
         REQUIRE_NOTHROW(basicParams.setAsXML(basicXMLSettings));
         THEN ("Exported bytes settings should be the ones imported") {
             checkBytesEq(basicParams.getAsBytes(), testBasicSettingsBytes);
+        }
+    }
+}
+
+struct MappingPF : public ParameterFramework
+{
+    MappingPF() : ParameterFramework{getConfig()} { REQUIRE_NOTHROW(start()); }
+
+    Config getConfig()
+    {
+        Config config;
+        config.instances = "<BooleanParameter Name='bool' Mapping='bool_map'>";
+        config.subsystemMapping = "subsystem_mapping";
+        return config;
+    }
+};
+
+SCENARIO("Mapping handle access", "[handler][mapping]")
+{
+    GIVEN ("A PF with mappings") {
+        Config config;
+        config.subsystemMapping = "rootK:rootV";
+        config.components = "<ComponentType   Name='componentType' Mapping='typeK:typeV'        />";
+        config.instances = "<BooleanParameter Name='param'         Mapping='paramK:paramV'      />"
+                           "<Component        Name='component'     Mapping='instanceK:instanceV'  "
+                           "           Type='componentType'                                     />";
+        ParameterFramework pf{config};
+        REQUIRE_NOTHROW(pf.start());
+
+        struct TestVector
+        {
+            string path;
+            list<string> valid;
+            list<string> invalid;
+        };
+        list<TestVector> testVectors = {
+            {"/test/test", {"root"}, {"param", "type", "instance"}},
+            {"/test/test/param", {"param"}, {"root", "type", "instance"}},
+            {"/test/test/component", {"type", "instance"}, {"root", "param"}}};
+
+        for (auto &test : testVectors) {
+            GIVEN ("An element handle of " + test.path) {
+                ElementHandle handle(pf, test.path);
+
+                for (auto &valid : test.valid) {
+                    THEN ("The following mapping should exist: " + valid) {
+                        CHECK(handle.getMappingData(valid + "K") == valid + "V");
+                    }
+                }
+
+                for (auto &invalid : test.invalid) {
+                    THEN ("The following mapping should not exist: " + invalid) {
+                        CHECK_THROWS_AS(handle.getMappingData(invalid + "K"), Exception);
+                    }
+                }
+            }
         }
     }
 }
