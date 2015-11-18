@@ -29,11 +29,6 @@
 # working on 2.8.12 - broken on older versions
 cmake_minimum_required(VERSION 2.8.12)
 
-# linking policy (see cmake --help-policy CMP0003)
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
-
 project(parameter-framework)
 
 include(CMakeDependentOption)
@@ -54,12 +49,12 @@ execute_process(COMMAND git describe --tags --dirty
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     OUTPUT_VARIABLE PARAMETER_FRAMEWORK_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-if (WIN32)
+if(WIN32)
     # By default cmake adds a warning level.
     # Nevertheless a different level is wanted for this project.
     # If a two different warning levels are present on the command line, cl raises a warning.
     # Thus delete the default level to set a different one.
-    STRING(REGEX REPLACE "/W[0-4]" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+    string(REGEX REPLACE "/W[0-4]" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
     # Force include iso646.h to support alternative operator form (and, or, not...)
     # Such support is require by the standard and can be enabled with /Za
@@ -74,9 +69,9 @@ if (WIN32)
     # only public methods instead of the whole class, but they are too many to
     # do that. A separated plugin interface would fix that.
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /FIiso646.h -wd4127 -wd4251")
-else ()
+else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra -Wconversion -Wno-sign-conversion")
-endif ()
+endif()
 
 # Hide symbols by default, then exposed symbols are the same in linux and windows
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
@@ -102,7 +97,7 @@ add_subdirectory(remote-process)
 
 add_subdirectory(test)
 
-if (BASH_COMPLETION)
+if(BASH_COMPLETION)
     add_subdirectory(tools/bash_completion)
 endif()
 

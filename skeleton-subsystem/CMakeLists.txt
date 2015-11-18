@@ -31,14 +31,14 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(parameter-framework-plugins-skeleton)
 
-if (WIN32)
+if(WIN32)
     # Force include iso646.h to support alternative operator form (and, or, not...)
     # Such support is require by the standard and can be enabled with /Za
     # but doing so breaks compilation of windows headers...
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /FIiso646.h")
-else ()
+else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra -Wconversion")
-endif ()
+endif()
 
 # Hide symbols by default, then exposed symbols are the same in linux and windows
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
