@@ -49,6 +49,10 @@ execute_process(COMMAND git describe --tags --dirty
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     OUTPUT_VARIABLE PARAMETER_FRAMEWORK_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
 
+# Add FindLibXml2.cmake in cmake path so that `find_package(LibXml2)` will
+# call the wrapper
+list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_LIST_DIR}/cmake")
+
 if(WIN32)
     # By default cmake adds a warning level.
     # Nevertheless a different level is wanted for this project.
@@ -109,3 +113,5 @@ add_subdirectory(bindings)
 add_subdirectory(doc)
 
 add_subdirectory(schemas)
+
+add_subdirectory(cpack)
