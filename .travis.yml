@@ -68,8 +68,8 @@ script:
         CTEST_OUTPUT_ON_FAILURE=1 make ExperimentalTest ExperimentalMemCheck &&
         make install )
   - ( cd tools/clientSimulator &&
-        # TODO: install the generated .deb instead of using ../install
-        #       This would permit to test the packaging
+        echo "TODO - install the generated .deb instead of using ../install."
+             "This would permit to test the packaging" &&
         cmake -DCMAKE_INSTALL_PREFIX=../install . &&
         make &&
         make install )
