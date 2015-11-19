@@ -41,7 +41,14 @@ CComponentInstance::CComponentInstance(const std::string& strName) : base(strNam
 
 std::string CComponentInstance::getKind() const
 {
-    return "Component";
+    return "ComponentInstance";
+}
+
+std::string CComponentInstance::getXmlElementName() const
+{
+    // Once instantiated components are reflected as parameter blocks
+    // in XML documents
+    return "ParameterBlock";
 }
 
 bool CComponentInstance::childrenAreDynamic() const
