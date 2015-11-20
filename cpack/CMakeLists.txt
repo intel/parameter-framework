@@ -34,8 +34,9 @@ execute_process(COMMAND git describe --tags --long
 
 set(REGEX "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)-([0-9]+).*$")
 if(NOT "${GIT_DESCRIBE}" MATCHES "${REGEX}")
-    MESSAGE(SEND_ERROR "Could not parse git describe version \"${GIT_DESCRIBE}\" "
-                       "with regex \"${REGEX}\"")
+    message(WARNING "Could not parse git describe version \"${GIT_DESCRIBE}\" "
+        "with regex \"${REGEX}\". Falling back to 'v0.0.0-0'")
+    set(GIT_DESCRIBE "v0.0.0-0")
 endif()
 string(REGEX REPLACE "${REGEX}" "\\1" CPACK_PACKAGE_VERSION_MAJOR "${GIT_DESCRIBE}")
 string(REGEX REPLACE "${REGEX}" "\\2" CPACK_PACKAGE_VERSION_MINOR "${GIT_DESCRIBE}")
