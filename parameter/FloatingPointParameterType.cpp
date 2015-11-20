@@ -36,6 +36,7 @@
 #include <climits>
 #include "convert.hpp"
 #include "Utility.h"
+#include "BinaryCopy.hpp"
 
 using std::string;
 
@@ -138,7 +139,7 @@ bool CFloatingPointParameterType::toBlackboard(
             return false;
         }
 
-        float fData = reinterpret_cast<const float &>(uiValue);
+        auto fData = utility::binaryCopy<float>(uiValue);
 
         // Check against NaN or infinity
         if (!std::isfinite(fData)) {
@@ -172,9 +173,7 @@ bool CFloatingPointParameterType::toBlackboard(
         }
 
         // Move to the "raw memory" value space
-        // Using an intermediary reference variable to avoid klocwork false positive
-        const uint32_t &value = reinterpret_cast<const uint32_t &>(fValue);
-        uiValue = value;
+        uiValue = utility::binaryCopy<decltype(uiValue)>(fValue);
         return true;
     }
 }
@@ -193,8 +192,8 @@ void CFloatingPointParameterType::setOutOfRangeError(
         ostrStream << "real range [" << _fMin << ", " << _fMax << "]";
     } else {
 
-        uint32_t uiMin = reinterpret_cast<const uint32_t&>(_fMin);
-        uint32_t uiMax = reinterpret_cast<const uint32_t&>(_fMax);
+        auto uiMin = utility::binaryCopy<uint32_t>(_fMin);
+        auto uiMax = utility::binaryCopy<uint32_t>(_fMax);
 
         if (utility::isHexadecimal(strValue)) {
 
@@ -228,7 +227,7 @@ bool CFloatingPointParameterType::fromBlackboard(
     } else {
 
         // Move from "raw memory" value space to real space
-        float fValue = reinterpret_cast<const float&>(uiValue);
+        auto fValue = utility::binaryCopy<float>(uiValue);
 
         ostrStream << fValue;
     }
@@ -252,9 +251,7 @@ bool CFloatingPointParameterType::toBlackboard(
 
     // Cast is fine because dValue has been checked against the value range
     float fValue = static_cast<float>(dUserValue);
-    // Using an intermediary reference variable to avoid klocwork false positive
-    const uint32_t &value = reinterpret_cast<const uint32_t &>(fValue);
-    uiValue = value;
+    uiValue = utility::binaryCopy<decltype(uiValue)>(fValue);
     return true;
 }
 
@@ -264,8 +261,7 @@ bool CFloatingPointParameterType::fromBlackboard(
         CParameterAccessContext& /*ctx*/) const
 {
     // Move from "raw memory" value space to real space
-    // Using an intermediary reference variable to avoid klocwork false positive
-    const float &fValue = reinterpret_cast<const float &>(uiValue);
+    auto fValue = utility::binaryCopy<float>(uiValue);
 
     dUserValue = fValue;
     return true;

@@ -32,6 +32,7 @@
 #include "ParameterFramework.hpp"
 #include "ElementHandle.hpp"
 #include "Test.hpp"
+#include "BinaryCopy.hpp"
 
 #include <catch.hpp>
 
@@ -114,12 +115,12 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                 REQUIRE_NOTHROW(setRawValueSpace(true));
                 for (auto &vec : Tests<string>{
                             { "(too high, as decimal)",
-                                std::to_string(reinterpret_cast<const uint32_t&>(tooHigh)) },
+                                std::to_string(::utility::binaryCopy<uint32_t>(tooHigh)) },
                             { "(too low, as decimal)",
-                                std::to_string(reinterpret_cast<const uint32_t&>(tooLow)) },
+                                std::to_string(::utility::binaryCopy<uint32_t>(tooLow)) },
                             { "(meaningless)", "foobar" },
-                            { "(infinity)", std::to_string(reinterpret_cast<const uint32_t&>(inf))},
-                            { "(NaN)", std::to_string(reinterpret_cast<const uint32_t&>(nan))},
+                            { "(infinity)", std::to_string(::utility::binaryCopy<uint32_t>(inf))},
+                            { "(NaN)", std::to_string(::utility::binaryCopy<uint32_t>(nan))},
                         }) {
                     GIVEN("Invalid value " + vec.title) {
                         CHECK_THROWS_AS(setParameter(path, vec.payload), Exception);
@@ -130,11 +131,11 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                 const float zero = 0.0f;
                 for (auto &vec : Tests<string>{
                             { "(upper limit, as decimal)",
-                                std::to_string(reinterpret_cast<const uint32_t&>(upper)) },
+                                std::to_string(::utility::binaryCopy<uint32_t>(upper)) },
                             { "(lower limit, as decimal)",
-                                std::to_string(reinterpret_cast<const uint32_t&>(lower)) },
+                                std::to_string(::utility::binaryCopy<uint32_t>(lower)) },
                             { "(inside range, as decimal)",
-                                std::to_string(reinterpret_cast<const uint32_t&>(zero)) },
+                                std::to_string(::utility::binaryCopy<uint32_t>(zero)) },
                         }) {
                     GIVEN("A valid value " + vec.title) {
                         CHECK_NOTHROW(setParameter(path, vec.payload));

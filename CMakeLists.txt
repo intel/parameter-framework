@@ -42,7 +42,7 @@ option(DOXYGEN "Enable doxygen generation (you still have to run 'make doc')" OF
 option(REQUIREMENTS "Generate the html version of the 'requirements' documentation" OFF)
 option(PYTHON_BINDINGS "Python library to use the Parameter Framework from python" ON)
 option(C_BINDINGS "Library to use the Parameter Framework using a C API" ON)
-
+option(FATAL_WARNINGS "Turn warnings into errors (-Werror flag)" ON)
 
 # find and set the Parameter Framework's version
 execute_process(COMMAND git describe --tags --dirty
@@ -73,8 +73,14 @@ if(WIN32)
     # only public methods instead of the whole class, but they are too many to
     # do that. A separated plugin interface would fix that.
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /FIiso646.h -wd4127 -wd4251")
+
+    # FIXME: Once we have removed all warnings on windows, add the /WX flags if
+    # FATAL_WARNINGS is enabled
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Werror -Wall -Wextra -Wconversion -Wno-sign-conversion")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wconversion -Wno-sign-conversion")
+    if(FATAL_WARNINGS)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+    endif()
 endif()
 
 # Hide symbols by default, then exposed symbols are the same in linux and windows

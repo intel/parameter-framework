@@ -162,7 +162,10 @@ struct AllParamsPF : public ParameterFramework
             utility::TmpFile resultFile(result);
             utility::TmpFile expectedFile(expected);
             auto gitCommand = "git --no-pager diff --word-diff-regex='[^ <>]+' --color --no-index ";
-            system((gitCommand + resultFile.getPath() + ' ' + expectedFile.getPath()).c_str());
+            auto diffSuccess = system((gitCommand + resultFile.getPath() + ' ' + expectedFile.getPath()).c_str());
+            if (diffSuccess != 0) {
+                WARN("Failed to pretty-print the difference between actual and expected results.");
+            }
         }
     }
 

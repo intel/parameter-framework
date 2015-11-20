@@ -29,6 +29,7 @@
  */
 
 #include "Utility.h"
+#include "BinaryCopy.hpp"
 
 #include <catch.hpp>
 #include <functional>
@@ -173,6 +174,54 @@ SCENARIO("isHexadecimal") {
     for (auto str : {"0xa", "0X0", "0x012", "0x13", "0xConsider as hexa as starting with 0x"}) {
         CAPTURE(str);
         CHECK(isHexadecimal(str));
+    }
+}
+
+template <class T1, class T2>
+void checkBinaryEqual(T1 v1, T2 v2) {
+    // For some yet-unknown reason, GCC 4.8 complains about
+    //     CHECK(a == b);
+    // and suggests that parentheses should be added. This is related to catch
+    // internals but such construcuts have been used without problem in lots of
+    // other places...
+    // Besides, GCC 4.9 does not seem to have a problem with that either.
+    // As a workaround, captures variables and parenthesize the expressions.
+
+    auto v2AsT1 = utility::binaryCopy<T1>(v2);
+    CAPTURE(v1);
+    CAPTURE(v2AsT1);
+    CHECK((v1 == v2AsT1));
+
+    auto v1AsT2 = utility::binaryCopy<T2>(v1);
+    CAPTURE(v2);
+    CAPTURE(v1AsT2);
+    CHECK((v2 == v1AsT2));
+}
+
+SCENARIO("binaryCopy bit exactness") {
+    GIVEN("Integer representations computed using http://babbage.cs.qc.cuny.edu/IEEE-754/") {
+
+        THEN("Floats should be coded on 32bits and fulfill IEEE-754."
+             " That assumption is made in the Parameter Framework.") {
+            REQUIRE(sizeof(float) == sizeof(uint32_t));
+            REQUIRE(std::numeric_limits<float>::is_iec559);
+        }
+        WHEN("Testing float <=> uint32_t conversion") {
+            checkBinaryEqual<float, uint32_t>(1.23456f, 0x3f9e0610);
+        }
+
+        THEN("Doubles should be coded on 64bits and fulfill IEEE-754."
+             " That assumption is made in the Parameter Framework.") {
+            REQUIRE(sizeof(double) == sizeof(uint64_t));
+            REQUIRE(std::numeric_limits<double>::is_iec559);
+        }
+        WHEN("Testing double <=> uint64_t conversion") {
+            checkBinaryEqual<double, uint64_t>(987.65432109876, 0x408edd3c0cb3420e);
+        }
+    }
+
+    WHEN("Testing int8_t <=> uint8_t conversion") {
+        checkBinaryEqual<int8_t, uint8_t>(-1, 0xff);
     }
 }
 
