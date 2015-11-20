@@ -102,7 +102,6 @@ struct AllParamsPF : public ParameterFramework
                            nodeDesc("ParameterBlock", "parameter_block_array",
                                     getBasicParams(), "ArrayLength='2'") +
                            nodeDesc("Component", "component_scalar", "", "Type='component_type'") +
-                           // Test that ArrayLength have no effect on components
                            nodeDesc("Component", "component_array", "",
                                     "Type='component_type' ArrayLength='2'");
         return config;
@@ -220,10 +219,12 @@ SCENARIO_METHOD(AllParamsPF, "Export component", "[handler][structure][xml]")
 
 SCENARIO_METHOD(AllParamsPF, "Export component array", "[handler][structure][xml]")
 {
-    string expected = rootNode("ParameterBlock", "Name='component_array' "
-                                                 "Description='description_component_array'",
-                               // component array are the same as non array for now
-                               getBasicParams());
+    string expected = rootNode("ParameterBlock",
+                               "Name='component_array' Description='description_component_array'",
+                               nodeDesc("ParameterBlock", "0", getBasicParams(), "",
+                                        "description_component_array") +
+                               nodeDesc("ParameterBlock", "1", getBasicParams(), "",
+                                        "description_component_array"));
     checkStructure("/test/test/component_array", expected);
 }
 
@@ -239,7 +240,12 @@ SCENARIO_METHOD(AllParamsPF, "Export all parameters", "[handler][structure][xml]
                                         "description_parameter_block_array")) +
                            // Components should be exported as parameterBlock
                            nodeDesc("ParameterBlock", "component_scalar", getBasicParams()) +
-                           nodeDesc("ParameterBlock", "component_array", getBasicParams());
+                           nodeDesc("ParameterBlock", "component_array",
+                                   nodeDesc("ParameterBlock", "0", getBasicParams(), "",
+                                        // description is inherited from array
+                                        "description_component_array") +
+                                   nodeDesc("ParameterBlock", "1", getBasicParams(), "",
+                                        "description_component_array"));
 
     WHEN("Exporting subsystem") {
         string expected = rootNode("Subsystem", "Name='test'", paramExpected);
@@ -274,7 +280,9 @@ struct SettingsTestPF : public AllParamsPF
                         parameterBlockNode("0", settings) +
                         parameterBlockNode("1", settings)) +
                     parameterBlockNode("component_scalar", settings) +
-                    parameterBlockNode("component_array", settings);
+                    parameterBlockNode("component_array",
+                        parameterBlockNode("0", settings) +
+                        parameterBlockNode("1", settings));
 
         return rootNode("SystemClass", "Name='test'" ,
                         node("Subsystem", "test", settings, ""));
@@ -283,7 +291,9 @@ struct SettingsTestPF : public AllParamsPF
     static string fullBytesSettings(const string &basicSettings)
     {
         string fullSettings;
-        for (size_t i = 0; i < 6; ++i) {
+        // We have the "basic params" repeated 7 times across the test
+        // structure
+        for (size_t i = 0; i < 7; ++i) {
             fullSettings += basicSettings;
         }
         return fullSettings;

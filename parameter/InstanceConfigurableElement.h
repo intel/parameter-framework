@@ -70,6 +70,7 @@ public:
 
     // From CElement
     virtual std::string getKind() const;
+    std::string getXmlElementName() const override;
 
     // Syncer to/from HW
     void setSyncer(ISyncer* pSyncer);

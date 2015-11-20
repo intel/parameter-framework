@@ -55,6 +55,7 @@ public:
 
     // CElement
     virtual std::string getKind() const;
+    std::string getXmlElementName() const override;
 private:
     virtual bool childrenAreDynamic() const;
     virtual CInstanceConfigurableElement* doInstantiate() const;

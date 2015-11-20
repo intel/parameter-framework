@@ -41,9 +41,8 @@ class PARAMETER_EXPORT CMappingContext
 private:
     // Item structure
     struct SItem {
-        const std::string* strKey;
-        const std::string* strItem;
-        bool bSet;
+        const std::string* strKey{nullptr};
+        const std::string* strItem{nullptr};
     };
 
 public:

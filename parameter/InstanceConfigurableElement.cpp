@@ -47,6 +47,12 @@ std::string CInstanceConfigurableElement::getKind() const
     return _pTypeElement->getKind();
 }
 
+std::string CInstanceConfigurableElement::getXmlElementName() const
+{
+    // Delegate
+    return _pTypeElement->getXmlElementName();
+}
+
 // Type element
 const CTypeElement* CInstanceConfigurableElement::getTypeElement() const
 {
