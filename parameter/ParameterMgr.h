@@ -93,7 +93,7 @@ class CParameterMgr : private CElement
     };
     // Version
     static const uint32_t guiEditionMajor = 3;
-    static const uint32_t guiEditionMinor = 0;
+    static const uint32_t guiEditionMinor = 1;
     static const uint32_t guiRevision = 0;
 
     // Parameter handle friendship
