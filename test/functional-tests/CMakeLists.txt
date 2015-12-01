@@ -36,12 +36,13 @@ if(BUILD_TESTING)
     add_executable(parameterFunctionalTest
                    Basic.cpp
                    FloatingPoint.cpp
-                   Handle.cpp)
+                   Handle.cpp
+                   AutoSync.cpp)
 
     find_package(LibXml2 REQUIRED)
 
     target_link_libraries(parameterFunctionalTest
-                          PRIVATE parameter catch tmpfile LibXml2::libxml2)
+                          PRIVATE parameter catch tmpfile LibXml2::libxml2 introspection-subsystem)
 
     add_test(NAME parameterFunctionalTest
              COMMAND parameterFunctionalTest)
