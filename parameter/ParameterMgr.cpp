@@ -2055,9 +2055,6 @@ bool CParameterMgr::setTuningMode(bool bOn, string& strError)
         // Ensure application of currently selected configurations
         // Force-apply configurations
         doApplyConfigurations(true);
-
-        // Turn auto sync back on
-        _bAutoSyncOn = true;
     }
 
     // Store
@@ -2097,11 +2094,6 @@ bool CParameterMgr::outputRawFormatIsHex()
 // Automatic hardware synchronization control (during tuning session)
 bool CParameterMgr::setAutoSync(bool bAutoSyncOn, string& strError)
 {
-    // Check tuning mode
-    if (!checkTuningModeOn(strError)) {
-
-        return false;
-    }
     // Warn domains about turning auto sync back on
     if (bAutoSyncOn && !_bAutoSyncOn) {
 
@@ -2126,11 +2118,6 @@ bool CParameterMgr::autoSyncOn() const
 // Manual hardware synchronization control (during tuning session)
 bool CParameterMgr::sync(string& strError)
 {
-    // Check tuning mode
-    if (!checkTuningModeOn(strError)) {
-
-        return false;
-    }
     // Warn domains about turning auto sync back on
     if (_bAutoSyncOn) {
 
