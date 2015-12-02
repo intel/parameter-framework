@@ -67,6 +67,9 @@ struct Config {
     };
     using Plugins = Plugin::Collection;
     Plugins plugins;
+
+    /** Subsystem type. Virtual by default. */
+    std::string subsystemType = "Virtual";
 };
 
 } // parameterFramework
