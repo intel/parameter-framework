@@ -43,8 +43,9 @@ install:
       wget --no-check-certificate https://01.org/sites/default/files/asio-1.10.6.tar.gz &&
       7z x asio-1.10.6.tar.gz &&
       7z x -i"!asio*/include" asio-1.10.6.tar)
+  # This version of catch is known to work.
   - if not exist catch (
-      wget --no-check-certificate https://raw.github.com/philsquared/Catch/master/single_include/catch.hpp --directory-prefix catch )
+      wget --no-check-certificate https://raw.github.com/philsquared/Catch/v1.2.1/single_include/catch.hpp --directory-prefix catch )
   - set DEBUG_LIBXML2_PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64-debug
   - set RELEASE_LIBXML2_PATH=%APPVEYOR_BUILD_FOLDER%\libxml2-x86_64
 
