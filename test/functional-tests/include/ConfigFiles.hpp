@@ -44,8 +44,9 @@ class ConfigFiles
 public:
     ConfigFiles(const Config &config) :
         mStructureFile(format(mStructureTemplate,
-                              { { "instances", config.instances },
-                                { "components", config.components } })),
+                                { { "type", config.subsystemType },
+                                  { "instances", config.instances },
+                                  { "components", config.components } })),
         mDomainsFile(format(mDomainsTemplate, { { "domains", config.domains } })),
         mConfigFile(format(mConfigTemplate,
                            { { "structurePath", mStructureFile.getPath() },
@@ -101,7 +102,7 @@ private:
      )";
     const char *mStructureTemplate = R"(<?xml version='1.0' encoding='UTF-8'?>
         <SystemClass Name='test'>
-            <Subsystem Name='test' Type='Virtual'>
+            <Subsystem Name='test' Type='{type}'>
                 <ComponentLibrary>
                     {components}
                 </ComponentLibrary>

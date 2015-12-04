@@ -27,49 +27,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#pragma once
 
-#include <string>
-#include <list>
-#include <utility>
+#include "IntrospectionEntryPoint.h"
+#include "IntrospectionSubsystemObject.h"
 
 namespace parameterFramework
 {
+namespace introspectionSubsystem
+{
 
-/** Parameter Framework configuration. */
-struct Config {
-    Config() = default;
+bool getParameterValue()
+{
+    return SubsystemObject::getSingletonInstanceValue();
+}
 
-    /** Emulate C named parameter.
-     * { .instances = "fuu" } <=> { &Config::instances, "fuu" }
-     * Passing multiple named parameters is not implemented. */
-    template <class M, class T = M>
-    Config(M (Config::*member), T &&value) { (this->*member) = std::forward<T>(value); }
-
-    /** Instances of the test subsystem.
-     *
-     * Content of the configuration
-     * SystemClass/Subsystem[name=test]/InstanceDefinition xml node.
-     */
-    std::string instances;
-    /** Content of the configuartion ConfigurableDomains xml node. */
-    std::string domains;
-    /** Content of the configuration SubsystemPlugins xml node. */
-    std::string components;
-
-    struct Plugin
-    {
-        using Location = std::string;
-        using Name = std::string;
-        /** Each plugin has a location and a path.
-         *  Locations can be factorized by using */
-        using Collection = std::list<std::pair<Location, std::list<Name>>>;
-    };
-    using Plugins = Plugin::Collection;
-    Plugins plugins;
-
-    /** Subsystem type. Virtual by default. */
-    std::string subsystemType = "Virtual";
-};
-
-} // parameterFramework
+}
+}

@@ -39,7 +39,7 @@ namespace parameterFramework
 {
 
 /** This forward declaration is an implementation detail, client should expect its presence.
- * @note This forward definition should not be needed as the `friend class ElementHandle` 
+ * @note This forward definition should not be needed as the `friend class ElementHandle`
  *       declaration in ParameterFramework is itself a forward declaration.
  *       Unfortunately there seem to be a bug in visual studio 2013, it is required.
  */
@@ -131,6 +131,25 @@ public:
     void getParameter(const std::string& path, std::string& value)
     {
         mayFailCall(&PF::accessParameterValue, path, value, false);
+    }
+
+    /** Wrap PF::accessConfigurationValue in "set" mode (and rename it) to throw an
+     * exception on failure
+     */
+    void setConfigurationParameter(const std::string domain,
+        const std::string &configuration, const std::string& path, std::string& value)
+    {
+        mayFailCall(&PF::accessConfigurationValue, domain, configuration, path, value, true);
+    }
+
+    /** Wrap PF::accessConfigurationValue in "get" mode (and rename it) to throw an
+     * exception on failure
+     */
+    void getConfigurationParameter(const std::string &domain,
+        const std::string &configuration, const std::string& path, std::string& value)
+    {
+        mayFailCall(&PF::accessConfigurationValue, domain, configuration, path, value,
+            false);
     }
 private:
 
