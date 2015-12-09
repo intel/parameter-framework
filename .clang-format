@@ -1,0 +1,93 @@
+# Copyright (c) 2015, Intel Corporation
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without modification,
+# are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+# list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation and/or
+# other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors
+# may be used to endorse or promote products derived from this software without
+# specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+---
+# The extra indent or outdent of access modifiers
+AccessModifierOffset: -4
+
+# Align parameters on the open bracket
+AlignAfterOpenBracket: Align
+
+# Disallows contracting simple braced statements to a single line
+AllowShortBlocksOnASingleLine: 'false'
+
+# Short case labels wont't be contracted to a single line
+AllowShortCaseLabelsOnASingleLine: 'false'
+
+# Merge all inline functions fitting on a single line
+AllowShortFunctionsOnASingleLine: 'Inline'
+
+# If (a) return; cannot be put on a single line
+AllowShortIfStatementsOnASingleLine: 'false'
+
+# While (true) continue; cannot be put on a single line
+AllowShortLoopsOnASingleLine: 'false'
+
+# Break after the template<...> of a template declaration.
+AlwaysBreakTemplateDeclarations: 'true'
+
+# Configure each individual brace in BraceWrapping
+BreakBeforeBraces: 'Custom'
+
+# Control of individual brace wrapping cases
+BraceWrapping: {
+    AfterClass: 'true'
+    AfterControlStatement: 'false'
+    AfterEnum : 'true'
+    AfterFunction : 'true'
+    AfterNamespace : 'true'
+    AfterStruct : 'true'
+    AfterUnion : 'true'
+    BeforeCatch : 'false'
+    BeforeElse : 'false'
+    IndentBraces : 'false'
+}
+
+# The column limit
+ColumnLimit: '100'
+
+# The number of columns to use for indentation.
+IndentWidth: '4'
+
+# Targeted language
+Language: Cpp
+
+# No indentation for namespaces.
+NamespaceIndentation: None
+
+# Pointer is aligned to right side
+PointerAlignment: Right
+
+# High penalty to avoid line break just after return type
+PenaltyReturnTypeOnItsOwnLine: 10000
+
+# Treat 'catch' BDD macros as control instructions
+ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH, GIVEN, WHEN, AND_WHEN, THEN, AND_THEN,
+    SECTION ]
+
+...

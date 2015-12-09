@@ -36,12 +36,10 @@ std::string CSelectionCriteriaDefinition::getKind() const
 }
 
 // Selection Criterion creation
-CSelectionCriterion*
-CSelectionCriteriaDefinition::createSelectionCriterion(const std::string& strName,
-                                                       const CSelectionCriterionType* pType,
-                                                       core::log::Logger& logger)
+CSelectionCriterion *CSelectionCriteriaDefinition::createSelectionCriterion(
+    const std::string &strName, const CSelectionCriterionType *pType, core::log::Logger &logger)
 {
-    CSelectionCriterion* pSelectionCriterion = new CSelectionCriterion(strName, pType, logger);
+    CSelectionCriterion *pSelectionCriterion = new CSelectionCriterion(strName, pType, logger);
 
     addChild(pSelectionCriterion);
 
@@ -49,18 +47,21 @@ CSelectionCriteriaDefinition::createSelectionCriterion(const std::string& strNam
 }
 
 // Selection Criterion access
-const CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const std::string& strName) const
+const CSelectionCriterion *CSelectionCriteriaDefinition::getSelectionCriterion(
+    const std::string &strName) const
 {
-    return static_cast<const CSelectionCriterion*>(findChild(strName));
+    return static_cast<const CSelectionCriterion *>(findChild(strName));
 }
 
-CSelectionCriterion* CSelectionCriteriaDefinition::getSelectionCriterion(const std::string& strName)
+CSelectionCriterion *CSelectionCriteriaDefinition::getSelectionCriterion(const std::string &strName)
 {
-    return static_cast<CSelectionCriterion*>(findChild(strName));
+    return static_cast<CSelectionCriterion *>(findChild(strName));
 }
 
 // List available criteria
-void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
+void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string> &lstrResult,
+                                                         bool bWithTypeInfo,
+                                                         bool bHumanReadable) const
 {
     // Propagate
     size_t uiNbChildren = getNbChildren();
@@ -68,9 +69,11 @@ void CSelectionCriteriaDefinition::listSelectionCriteria(std::list<std::string>&
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        const CSelectionCriterion* pSelectionCriterion = static_cast<const CSelectionCriterion*>(getChild(uiChild));
+        const CSelectionCriterion *pSelectionCriterion =
+            static_cast<const CSelectionCriterion *>(getChild(uiChild));
 
-        lstrResult.push_back(pSelectionCriterion->getFormattedDescription(bWithTypeInfo, bHumanReadable));
+        lstrResult.push_back(
+            pSelectionCriterion->getFormattedDescription(bWithTypeInfo, bHumanReadable));
     }
 }
 
@@ -80,11 +83,11 @@ void CSelectionCriteriaDefinition::resetModifiedStatus()
     // Propagate
     size_t uiNbChildren = getNbChildren();
     size_t uiChild;
-    CSelectionCriterion* pSelectionCriterion;
+    CSelectionCriterion *pSelectionCriterion;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        pSelectionCriterion = static_cast<CSelectionCriterion*>(getChild(uiChild));
+        pSelectionCriterion = static_cast<CSelectionCriterion *>(getChild(uiChild));
 
         pSelectionCriterion->resetModifiedStatus();
     }

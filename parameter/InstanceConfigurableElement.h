@@ -44,7 +44,8 @@ class CParameterAccessContext;
 class PARAMETER_EXPORT CInstanceConfigurableElement : public CConfigurableElement
 {
 public:
-    enum Type {
+    enum Type
+    {
         EBitParameter,
         EBitParameterBlock,
         EParameter,
@@ -53,12 +54,12 @@ public:
         EComponent
     };
 
-    CInstanceConfigurableElement(const std::string& strName, const CTypeElement* pTypeElement);
+    CInstanceConfigurableElement(const std::string &strName, const CTypeElement *pTypeElement);
 
     // Instantiated type
-    const CTypeElement* getTypeElement() const;
+    const CTypeElement *getTypeElement() const;
 
-    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
+    virtual bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const;
 
     /**
      * Returns the mapping data associated to the type element of the current
@@ -73,17 +74,17 @@ public:
     std::string getXmlElementName() const override;
 
     // Syncer to/from HW
-    void setSyncer(ISyncer* pSyncer);
+    void setSyncer(ISyncer *pSyncer);
     void unsetSyncer();
 
     // Type
     virtual Type getType() const = 0;
 
     // Mapping execution
-    bool map(IMapper& mapper, std::string& strError);
+    bool map(IMapper &mapper, std::string &strError);
 
     // Element properties
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
     // Scalar or Array?
     bool isScalar() const;
@@ -94,7 +95,8 @@ public:
     /**
      * Get the list of all the ancestors that have a mapping.
      *
-     * The mapping is represented as a std::string of all the mapping data (key:value) defined in the
+     * The mapping is represented as a std::string of all the mapping data (key:value) defined in
+     * the
      * context of the element.
      * In this class, the method is generic and calls its parent getListOfElementsWithMappings(...)
      * method.
@@ -103,16 +105,17 @@ public:
      * that have a mapping. Elements are added at the end of the list, so the root Element will be
      * the last one.
      */
-    virtual void getListOfElementsWithMapping(std::list<const CConfigurableElement*>&
-                                               configurableElementPath) const;
+    virtual void getListOfElementsWithMapping(
+        std::list<const CConfigurableElement *> &configurableElementPath) const;
 
-    virtual void structureToXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    virtual void structureToXml(CXmlElement &xmlElement,
+                                CXmlSerializingContext &serializingContext) const;
 
 protected:
     // Syncer
-    virtual ISyncer* getSyncer() const;
+    virtual ISyncer *getSyncer() const;
     // Syncer set (descendant)
-    virtual void fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const;
+    virtual void fillSyncerSetFromDescendant(CSyncerSet &syncerSet) const;
 
     /**
      * Performs the sync if the AutoSync is enabled.
@@ -123,15 +126,16 @@ protected:
      *
      * @return true if the synchronization succeded or if the AutoSync is off, false otherwise.
      */
-    bool sync(CParameterAccessContext& parameterAccessContext) const;
+    bool sync(CParameterAccessContext &parameterAccessContext) const;
 
     // Check parameter access path well formed for leaf elements
-    static bool checkPathExhausted(CPathNavigator& pathNavigator, utility::ErrorContext& errorContext);
+    static bool checkPathExhausted(CPathNavigator &pathNavigator,
+                                   utility::ErrorContext &errorContext);
+
 private:
     // Type Element
-    const CTypeElement* _pTypeElement;
+    const CTypeElement *_pTypeElement;
 
     // Sync to HW
-    ISyncer* _pSyncer{nullptr};
+    ISyncer *_pSyncer{nullptr};
 };
-

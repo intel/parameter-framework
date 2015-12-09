@@ -41,11 +41,10 @@ namespace introspectionSubsystem
 class Subsystem : public CSubsystem
 {
 public:
-   Subsystem(const std::string& name, core::log::Logger& logger);
+    Subsystem(const std::string &name, core::log::Logger &logger);
 
 private:
     using base = CSubsystem;
 };
-
 }
 }

@@ -42,17 +42,16 @@ namespace parameterFramework
 class ConfigFiles
 {
 public:
-    ConfigFiles(const Config &config) :
-        mStructureFile(format(mStructureTemplate,
-                                { { "type", config.subsystemType },
-                                  { "instances", config.instances },
-                                  { "components", config.components } })),
-        mDomainsFile(format(mDomainsTemplate, { { "domains", config.domains } })),
-        mConfigFile(format(mConfigTemplate,
-                           { { "structurePath", mStructureFile.getPath() },
-                             { "domainsPath", mDomainsFile.getPath() },
-                             { "plugins", toXml(config.plugins) } }))
-    {}
+    ConfigFiles(const Config &config)
+        : mStructureFile(format(mStructureTemplate, {{"type", config.subsystemType},
+                                                     {"instances", config.instances},
+                                                     {"components", config.components}})),
+          mDomainsFile(format(mDomainsTemplate, {{"domains", config.domains}})),
+          mConfigFile(format(mConfigTemplate, {{"structurePath", mStructureFile.getPath()},
+                                               {"domainsPath", mDomainsFile.getPath()},
+                                               {"plugins", toXml(config.plugins)}}))
+    {
+    }
 
     std::string getPath() { return mConfigFile.getPath(); }
 
@@ -67,8 +66,8 @@ private:
             for (auto &path : paths) {
                 pluginsLocationXml += "<Plugin Name='" + path + "'/>\n";
             }
-            pluginsXml += "<Location Folder='" + location + "'>\n" +
-                          pluginsLocationXml + "\n</Location>\n";
+            pluginsXml +=
+                "<Location Folder='" + location + "'>\n" + pluginsLocationXml + "\n</Location>\n";
         }
         return pluginsXml;
     }
@@ -81,13 +80,13 @@ private:
         return format;
     }
 
-    void replace(std::string& on, const std::string& from, const std::string& to) {
+    void replace(std::string &on, const std::string &from, const std::string &to)
+    {
         auto from_pos = on.find(from);
         if (from_pos != std::string::npos) {
             on.replace(from_pos, from.length(), to);
         }
     }
-
 
     const char *mConfigTemplate = R"(<?xml version='1.0' encoding='UTF-8'?>
         <ParameterFrameworkConfiguration SystemClassName='test' TuningAllowed='true'>

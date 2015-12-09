@@ -42,6 +42,7 @@ class CParameterMgr;
 class PARAMETER_EXPORT CParameterMgrPlatformConnector
 {
     friend class CParameterMgrLogger<CParameterMgrPlatformConnector>;
+
 public:
     /** Interface to implement to provide a custom logger to the PF.
      *
@@ -53,29 +54,33 @@ public:
     class ILogger
     {
     public:
-        virtual void info(const std::string& strLog) = 0;
-        virtual void warning(const std::string& strLog) = 0;
+        virtual void info(const std::string &strLog) = 0;
+        virtual void warning(const std::string &strLog) = 0;
+
     protected:
         virtual ~ILogger() {}
     };
 
     // Construction
-    CParameterMgrPlatformConnector(const std::string& strConfigurationFilePath);
+    CParameterMgrPlatformConnector(const std::string &strConfigurationFilePath);
     virtual ~CParameterMgrPlatformConnector();
 
-    // Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
+    // Selection Criteria interface. Beware returned objects are lent, clients shall not delete
+    // them!
     // Should be called before start
-    ISelectionCriterionTypeInterface* createSelectionCriterionType(bool bIsInclusive = false);
-    ISelectionCriterionInterface* createSelectionCriterion(const std::string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType);
+    ISelectionCriterionTypeInterface *createSelectionCriterionType(bool bIsInclusive = false);
+    ISelectionCriterionInterface *createSelectionCriterion(
+        const std::string &strName,
+        const ISelectionCriterionTypeInterface *pSelectionCriterionType);
     // Selection criterion retrieval
-    ISelectionCriterionInterface* getSelectionCriterion(const std::string& strName) const;
+    ISelectionCriterionInterface *getSelectionCriterion(const std::string &strName) const;
 
     // Logging
     // Should be called before start
-    void setLogger(ILogger* pLogger);
+    void setLogger(ILogger *pLogger);
 
     // Start
-    bool start(std::string& strError);
+    bool start(std::string &strError);
 
     // Started state
     bool isStarted() const;
@@ -86,7 +91,8 @@ public:
     // Dynamic parameter handling
     // Returned objects are owned by clients
     // Must be cassed after successfull start
-    CParameterHandle* createParameterHandle(const std::string& strPath, std::string& strError) const;
+    CParameterHandle *createParameterHandle(const std::string &strPath,
+                                            std::string &strError) const;
 
     /** Creates a handle to a configurable element.
      *
@@ -125,7 +131,7 @@ public:
       *
       * @return false if unable to set, true otherwise.
       */
-    bool setFailureOnMissingSubsystem(bool bFail, std::string& strError);
+    bool setFailureOnMissingSubsystem(bool bFail, std::string &strError);
 
     /** Would start fail in case of missing subsystems.
       *
@@ -143,7 +149,7 @@ public:
       *
       * @return false if unable to set, true otherwise.
       */
-    bool setFailureOnFailedSettingsLoad(bool bFail, std::string& strError);
+    bool setFailureOnFailedSettingsLoad(bool bFail, std::string &strError);
     /** Would start fail in case of failed settings load.
       *
       * @return failure on failed settings load policy state.
@@ -154,13 +160,13 @@ public:
      *
      * @returns the XML Schemas URI
      */
-    const std::string& getSchemaUri() const;
+    const std::string &getSchemaUri() const;
 
     /** Override the XML Schemas URI
      *
      * @param[in] schemaUri the XML Schemas URI
      */
-    void setSchemaUri(const std::string& schemaUri);
+    void setSchemaUri(const std::string &schemaUri);
 
     /** Should .xml files be validated on start ?
      *
@@ -180,19 +186,19 @@ public:
     bool getValidateSchemasOnStart() const;
 
 private:
-    CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector&);
-    CParameterMgrPlatformConnector& operator=(const CParameterMgrPlatformConnector&);
+    CParameterMgrPlatformConnector(const CParameterMgrPlatformConnector &);
+    CParameterMgrPlatformConnector &operator=(const CParameterMgrPlatformConnector &);
     // Private logging
-    void info(const std::string& log);
-    void warning(const std::string& log);
+    void info(const std::string &log);
+    void warning(const std::string &log);
 
 protected:
     // Private logging
-    CParameterMgrLogger<CParameterMgrPlatformConnector>* _pParameterMgrLogger;
+    CParameterMgrLogger<CParameterMgrPlatformConnector> *_pParameterMgrLogger;
     // Implementation
-    CParameterMgr* _pParameterMgr;
+    CParameterMgr *_pParameterMgr;
     // State
     bool _bStarted;
     // Logging
-    ILogger* _pLogger;
+    ILogger *_pLogger;
 };

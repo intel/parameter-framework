@@ -32,15 +32,16 @@
 
 #define base CBackSynchronizer
 
-CHardwareBackSynchronizer::CHardwareBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard)
+CHardwareBackSynchronizer::CHardwareBackSynchronizer(
+    const CConfigurableElement *pConfigurableElement, CParameterBlackboard *pParameterBlackboard)
     : base(pConfigurableElement), _pParameterBlackboard(pParameterBlackboard)
 {
     // Fill back syncer set
-    std::list<const CConfigurableElement*>::const_iterator it;
+    std::list<const CConfigurableElement *>::const_iterator it;
 
     for (it = _needingBackSyncList.begin(); it != _needingBackSyncList.end(); ++it) {
 
-        const CConfigurableElement* pConfigurableElement = *it;
+        const CConfigurableElement *pConfigurableElement = *it;
 
         pConfigurableElement->fillSyncerSet(_backSyncerSet);
     }

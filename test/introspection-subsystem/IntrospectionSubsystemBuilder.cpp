@@ -31,12 +31,10 @@
 #include <LoggingElementBuilderTemplate.h>
 #include "IntrospectionSubsystem.h"
 
-
-void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary* subsystemLibrary,
-    core::log::Logger& logger)
+void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary *subsystemLibrary,
+                                              core::log::Logger &logger)
 {
     using Subsystem = parameterFramework::introspectionSubsystem::Subsystem;
     subsystemLibrary->addElementBuilder("INTROSPECTION",
-                                         new TLoggingElementBuilderTemplate<Subsystem>(
-                                             logger));
+                                        new TLoggingElementBuilderTemplate<Subsystem>(logger));
 }

@@ -29,7 +29,8 @@
  */
 #pragma once
 
-namespace utility {
+namespace utility
+{
 
 /** Base class for private inheritance to make the derived class non copyable.
  *

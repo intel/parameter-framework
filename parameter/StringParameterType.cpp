@@ -35,7 +35,7 @@
 
 using std::string;
 
-CStringParameterType::CStringParameterType(const string& strName) : base(strName)
+CStringParameterType::CStringParameterType(const string &strName) : base(strName)
 {
 }
 
@@ -46,7 +46,7 @@ string CStringParameterType::getKind() const
 }
 
 // Element properties
-void CStringParameterType::showProperties(string& strResult) const
+void CStringParameterType::showProperties(string &strResult) const
 {
     base::showProperties(strResult);
 
@@ -57,7 +57,8 @@ void CStringParameterType::showProperties(string& strResult) const
 }
 
 // From IXmlSink
-bool CStringParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CStringParameterType::fromXml(const CXmlElement &xmlElement,
+                                   CXmlSerializingContext &serializingContext)
 {
     // MaxLength
     xmlElement.getAttribute("MaxLength", _maxLength);
@@ -66,7 +67,7 @@ bool CStringParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializin
     return base::fromXml(xmlElement, serializingContext);
 }
 
-CInstanceConfigurableElement* CStringParameterType::doInstantiate() const
+CInstanceConfigurableElement *CStringParameterType::doInstantiate() const
 {
     return new CStringParameter(getName(), this);
 }
@@ -78,7 +79,8 @@ size_t CStringParameterType::getMaxLength() const
 }
 
 // From IXmlSource
-void CStringParameterType::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+void CStringParameterType::toXml(CXmlElement &xmlElement,
+                                 CXmlSerializingContext &serializingContext) const
 {
     // MaxLength
     xmlElement.setAttribute("MaxLength", _maxLength);

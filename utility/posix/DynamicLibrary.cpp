@@ -28,20 +28,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #include <DynamicLibrary.hpp>
 
 #include <dlfcn.h>
 
 #include <stdexcept>
 
-
-
 const std::string DynamicLibrary::_osLibraryPrefix = "lib";
 const std::string DynamicLibrary::_osLibrarySuffix = ".so";
 
-DynamicLibrary::DynamicLibrary(const std::string& path)
-    : _path(osSanitizePathName(path))
+DynamicLibrary::DynamicLibrary(const std::string &path) : _path(osSanitizePathName(path))
 {
     _handle = dlopen(_path.c_str(), RTLD_LAZY);
 
@@ -57,7 +53,7 @@ DynamicLibrary::~DynamicLibrary(void)
     dlclose(_handle);
 }
 
-void *DynamicLibrary::osGetSymbol(const std::string& symbol) const
+void *DynamicLibrary::osGetSymbol(const std::string &symbol) const
 {
     void *sym = dlsym(_handle, symbol.c_str());
 

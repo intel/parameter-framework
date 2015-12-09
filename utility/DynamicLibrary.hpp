@@ -33,19 +33,16 @@
 
 #include <string>
 
-
-
 class DynamicLibrary : private utility::NonCopyable
 {
 public:
-
     /**
     * @param[in] path the library path which can be provided either in absolute path or
     *            or OS agnostic (ie. generic) name.
     * Note:
     * If generic name provided, OS specific prefix, suffix are added automatically
     */
-    DynamicLibrary(const std::string& path);
+    DynamicLibrary(const std::string &path);
     ~DynamicLibrary();
 
     /**
@@ -55,21 +52,19 @@ public:
     * @return a symbol's address in the library if it exists, NULL otherwise
     */
     template <typename SymbolType>
-    SymbolType getSymbol(const std::string& symbol) const
+    SymbolType getSymbol(const std::string &symbol) const
     {
         return reinterpret_cast<SymbolType>(osGetSymbol(symbol));
     }
 
-
 private:
-
     /**
     * OS secific helper to get a symbol from library
     *
     * @param[in] symbol the symbol name
     * @return symbol's address in the library if it exists, NULL otherwise
     */
-    void *osGetSymbol(const std::string& symbol) const;
+    void *osGetSymbol(const std::string &symbol) const;
 
     /**
     * Sanitize library path
@@ -77,7 +72,7 @@ private:
     * @param[in] path library stripped path (eg. no prefix, no suffix)
     * @return OS specific library path including prefix and suffix
     */
-    static std::string osSanitizePathName(const std::string& path);
+    static std::string osSanitizePathName(const std::string &path);
 
     /**
     * Opaque object for library handling

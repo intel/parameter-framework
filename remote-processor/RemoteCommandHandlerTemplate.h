@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -37,11 +37,12 @@ class TRemoteCommandHandlerTemplate : public IRemoteCommandHandler
 {
 public:
     /** Remote command parser execution return status */
-    enum CommandStatus {
-        EDone, /**< Command succeded, return "Done" */
+    enum CommandStatus
+    {
+        EDone,      /**< Command succeded, return "Done" */
         ESucceeded, /**< Command succeeded */
-        EFailed, /**< Command failed */
-        EShowUsage /**< Command failed, show usage */
+        EFailed,    /**< Command failed */
+        EShowUsage  /**< Command failed, show usage */
     };
 
     /** Type of the remote command callbacks
@@ -51,41 +52,32 @@ public:
      *
      * @return the command execution status, @see CommandStatus
      */
-    typedef CommandStatus (CCommandParser::*RemoteCommandParser)(const IRemoteCommand& remoteCommand, std::string& strResult);
+    typedef CommandStatus (CCommandParser::*RemoteCommandParser)(
+        const IRemoteCommand &remoteCommand, std::string &strResult);
 
 private:
     // Parser descriptions
     class CRemoteCommandParserItem
     {
     public:
-        CRemoteCommandParserItem(const std::string& strCommandName,
-                                 RemoteCommandParser pfnParser,
-                                 size_t minArgumentCount,
-                                 const std::string& strHelp,
-                                 const std::string& strDescription)
-            : _strCommandName(strCommandName),
-              _pfnParser(pfnParser),
-              _minArgumentCount(minArgumentCount),
-              _strHelp(strHelp),
-              _strDescription(strDescription) {}
-
-        const std::string& getCommandName() const
+        CRemoteCommandParserItem(const std::string &strCommandName, RemoteCommandParser pfnParser,
+                                 size_t minArgumentCount, const std::string &strHelp,
+                                 const std::string &strDescription)
+            : _strCommandName(strCommandName), _pfnParser(pfnParser),
+              _minArgumentCount(minArgumentCount), _strHelp(strHelp),
+              _strDescription(strDescription)
         {
-            return _strCommandName;
         }
 
-        const std::string& getDescription() const
-        {
-            return _strDescription;
-        }
+        const std::string &getCommandName() const { return _strCommandName; }
+
+        const std::string &getDescription() const { return _strDescription; }
 
         // Usage
-        std::string usage() const
-        {
-            return _strCommandName + " " + _strHelp;
-        }
+        std::string usage() const { return _strCommandName + " " + _strHelp; }
 
-        bool parse(CCommandParser* pCommandParser, const IRemoteCommand& remoteCommand, std::string& strResult) const
+        bool parse(CCommandParser *pCommandParser, const IRemoteCommand &remoteCommand,
+                   std::string &strResult) const
         {
             // Check enough arguments supplied
             if (remoteCommand.getArgumentCount() < _minArgumentCount) {
@@ -98,12 +90,12 @@ private:
             switch ((pCommandParser->*_pfnParser)(remoteCommand, strResult)) {
             case EDone:
                 strResult = "Done";
-                // Fall through intentionally
+            // Fall through intentionally
             case ESucceeded:
                 return true;
             case EShowUsage:
                 strResult = usage();
-                // Fall through intentionally
+            // Fall through intentionally
             case EFailed:
                 return false;
             }
@@ -120,7 +112,8 @@ private:
     };
 
 public:
-    TRemoteCommandHandlerTemplate(CCommandParser* pCommandParser) : _pCommandParser(pCommandParser), _maxCommandUsageLength(0)
+    TRemoteCommandHandlerTemplate(CCommandParser *pCommandParser)
+        : _pCommandParser(pCommandParser), _maxCommandUsageLength(0)
     {
         // Help Command
         addCommandParser("help", NULL, 0, "", "Show commands description and usage");
@@ -135,11 +128,9 @@ public:
     }
 
     // Parsers
-    bool addCommandParser(const std::string& strCommandName,
-        RemoteCommandParser pfnParser,
-        size_t minArgumentCount,
-        const std::string& strHelp,
-        const std::string& strDescription)
+    bool addCommandParser(const std::string &strCommandName, RemoteCommandParser pfnParser,
+                          size_t minArgumentCount, const std::string &strHelp,
+                          const std::string &strDescription)
     {
         if (findCommandParserItem(strCommandName)) {
 
@@ -148,17 +139,19 @@ public:
         }
 
         // Add command
-        _remoteCommandParserVector.push_back(new CRemoteCommandParserItem(strCommandName, pfnParser, minArgumentCount, strHelp, strDescription));
+        _remoteCommandParserVector.push_back(new CRemoteCommandParserItem(
+            strCommandName, pfnParser, minArgumentCount, strHelp, strDescription));
 
         return true;
     }
 
 private:
     // Command processing
-    bool remoteCommandProcess(const IRemoteCommand& remoteCommand, std::string& strResult)
+    bool remoteCommandProcess(const IRemoteCommand &remoteCommand, std::string &strResult)
     {
         // Dispatch
-        const CRemoteCommandParserItem* pRemoteCommandParserItem = findCommandParserItem(remoteCommand.getCommand());
+        const CRemoteCommandParserItem *pRemoteCommandParserItem =
+            findCommandParserItem(remoteCommand.getCommand());
 
         if (!pRemoteCommandParserItem) {
 
@@ -183,7 +176,7 @@ private:
     {
         if (!_maxCommandUsageLength) {
             // Show usages
-            for (const auto * pRemoteCommandParserItem : _remoteCommandParserVector) {
+            for (const auto *pRemoteCommandParserItem : _remoteCommandParserVector) {
 
                 size_t remoteCommandUsageLength = pRemoteCommandParserItem->usage().length();
 
@@ -197,7 +190,7 @@ private:
 
     /////////////////// Remote command parsers
     /// Help
-    void helpCommandProcess(std::string& strResult)
+    void helpCommandProcess(std::string &strResult)
     {
         initMaxCommandUsageLength();
 
@@ -216,7 +209,7 @@ private:
         }
     }
 
-    const CRemoteCommandParserItem* findCommandParserItem(const std::string& strCommandName) const
+    const CRemoteCommandParserItem *findCommandParserItem(const std::string &strCommandName) const
     {
         for (const auto *pRemoteCommandParserItem : _remoteCommandParserVector) {
 
@@ -229,8 +222,7 @@ private:
     }
 
 private:
-    CCommandParser* _pCommandParser;
-    std::vector<CRemoteCommandParserItem*> _remoteCommandParserVector;
+    CCommandParser *_pCommandParser;
+    std::vector<CRemoteCommandParserItem *> _remoteCommandParserVector;
     size_t _maxCommandUsageLength;
 };
-

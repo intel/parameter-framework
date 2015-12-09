@@ -36,10 +36,11 @@ class CConfigurableElement;
 class CVirtualSyncer : public ISyncer
 {
 public:
-    CVirtualSyncer(const CConfigurableElement* pConfigurableElement);
+    CVirtualSyncer(const CConfigurableElement *pConfigurableElement);
 
     // from ISyncer
-    virtual bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::string& strError);
+    virtual bool sync(CParameterBlackboard &parameterBlackboard, bool bBack, std::string &strError);
+
 private:
-    const CConfigurableElement* _pConfigurableElement;
+    const CConfigurableElement *_pConfigurableElement;
 };

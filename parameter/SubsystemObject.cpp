@@ -43,10 +43,9 @@
 
 using std::string;
 
-CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
-                                   core::log::Logger& logger)
-    : _logger(logger),
-      _pInstanceConfigurableElement(pInstanceConfigurableElement),
+CSubsystemObject::CSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement,
+                                   core::log::Logger &logger)
+    : _logger(logger), _pInstanceConfigurableElement(pInstanceConfigurableElement),
       _dataSize(pInstanceConfigurableElement->getFootPrint())
 {
     // Syncer
@@ -65,7 +64,7 @@ string CSubsystemObject::getFormattedMappingValue() const
 }
 
 // Blackboard data location
-uint8_t* CSubsystemObject::getBlackboardLocation() const
+uint8_t *CSubsystemObject::getBlackboardLocation() const
 {
     return _blackboard->getLocation(getOffset());
 }
@@ -77,8 +76,7 @@ size_t CSubsystemObject::getSize() const
 }
 
 int CSubsystemObject::toPlainInteger(
-        const CInstanceConfigurableElement *instanceConfigurableElement,
-        int sizeOptimizedData)
+    const CInstanceConfigurableElement *instanceConfigurableElement, int sizeOptimizedData)
 {
     if (instanceConfigurableElement) {
 
@@ -94,7 +92,7 @@ int CSubsystemObject::toPlainInteger(
 }
 
 // Default back synchronization
-void CSubsystemObject::setDefaultValues(CParameterBlackboard& parameterBlackboard) const
+void CSubsystemObject::setDefaultValues(CParameterBlackboard &parameterBlackboard) const
 {
     string strError;
 
@@ -106,7 +104,7 @@ void CSubsystemObject::setDefaultValues(CParameterBlackboard& parameterBlackboar
 }
 
 // Synchronization
-bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBack, string& strError)
+bool CSubsystemObject::sync(CParameterBlackboard &parameterBlackboard, bool bBack, string &strError)
 {
     // Get blackboard location
     _blackboard = &parameterBlackboard;
@@ -118,7 +116,7 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
 #endif
 
     // Retrieve subsystem
-    const CSubsystem* pSubsystem = _pInstanceConfigurableElement->getBelongingSubsystem();
+    const CSubsystem *pSubsystem = _pInstanceConfigurableElement->getBelongingSubsystem();
 
     // Get it's health insdicator
     bool bIsSubsystemAlive = pSubsystem->isAlive();
@@ -135,7 +133,7 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
         // Fall back to parameter default initialization
         if (bBack) {
 
-           setDefaultValues(parameterBlackboard);
+            setDefaultValues(parameterBlackboard);
         }
         return false;
     }
@@ -144,14 +142,14 @@ bool CSubsystemObject::sync(CParameterBlackboard& parameterBlackboard, bool bBac
 }
 
 // Sync to/from HW
-bool CSubsystemObject::sendToHW(string& strError)
+bool CSubsystemObject::sendToHW(string &strError)
 {
     strError = "Send to HW interface not implemented at subsystem level";
 
     return false;
 }
 
-bool CSubsystemObject::receiveFromHW(string& /*strError*/)
+bool CSubsystemObject::receiveFromHW(string & /*strError*/)
 {
     // Back synchronization is not supported at subsystem level.
     // Rely on blackboard content
@@ -160,7 +158,7 @@ bool CSubsystemObject::receiveFromHW(string& /*strError*/)
 }
 
 // Fall back HW access
-bool CSubsystemObject::accessHW(bool bReceive, string& strError)
+bool CSubsystemObject::accessHW(bool bReceive, string &strError)
 {
     // Default access fall back
     if (bReceive) {
@@ -173,14 +171,14 @@ bool CSubsystemObject::accessHW(bool bReceive, string& strError)
 }
 
 // Blackboard access from subsystems
-void CSubsystemObject::blackboardRead(void* pvData, size_t size)
+void CSubsystemObject::blackboardRead(void *pvData, size_t size)
 {
     _blackboard->readBuffer(pvData, size, getOffset() + _accessedIndex);
 
     _accessedIndex += size;
 }
 
-void CSubsystemObject::blackboardWrite(const void* pvData, size_t size)
+void CSubsystemObject::blackboardWrite(const void *pvData, size_t size)
 {
     _blackboard->writeBuffer(pvData, size, getOffset() + _accessedIndex);
 
@@ -188,12 +186,12 @@ void CSubsystemObject::blackboardWrite(const void* pvData, size_t size)
 }
 
 // Configurable element retrieval
-const CInstanceConfigurableElement* CSubsystemObject::getConfigurableElement() const
+const CInstanceConfigurableElement *CSubsystemObject::getConfigurableElement() const
 {
     return _pInstanceConfigurableElement;
 }
 // Belonging Subsystem retrieval
-const CSubsystem* CSubsystemObject::getSubsystem() const
+const CSubsystem *CSubsystemObject::getSubsystem() const
 {
     return _pInstanceConfigurableElement->getBelongingSubsystem();
 }

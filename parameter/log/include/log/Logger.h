@@ -48,37 +48,29 @@ namespace log
 class Logger : private utility::NonCopyable
 {
 public:
-
     /** Context class is friend let the prolog by externally modified */
     friend class Context;
 
     /** @param[in] logger, raw logger provided by client */
-    Logger(ILogger& logger) : mLogger(logger) {}
+    Logger(ILogger &logger) : mLogger(logger) {}
 
     /**
      * Retrieve wrapped information logger
      *
      * @return Info logger
      */
-    details::Info info()
-    {
-        return details::Info(mLogger, mProlog);
-    }
+    details::Info info() { return details::Info(mLogger, mProlog); }
 
     /**
      * Retrieve wrapped warning logger
      *
      * @return Warning logger
      */
-    details::Warning warning()
-    {
-        return details::Warning(mLogger, mProlog);
-    }
+    details::Warning warning() { return details::Warning(mLogger, mProlog); }
 
 private:
-
     /** Raw logger provided by client */
-    ILogger& mLogger;
+    ILogger &mLogger;
 
     /** Log prolog, owns the context indentation */
     std::string mProlog;

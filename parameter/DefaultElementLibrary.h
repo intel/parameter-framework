@@ -43,11 +43,10 @@
   * @tparam CDefaultElementBuilder is the class of the element builder to use if no corresponding
   *                                builder is found for a given xml element.
   */
-template<class CDefaultElementBuilder>
-class CDefaultElementLibrary: public CElementLibrary
+template <class CDefaultElementBuilder>
+class CDefaultElementLibrary : public CElementLibrary
 {
 public:
-
     virtual ~CDefaultElementLibrary() = default;
 
     /** Set the default builder used in fallback mechanism.
@@ -60,7 +59,6 @@ public:
         _defaultBuilder = std::move(defaultBuilder);
     }
 
-
     /** Create and return an element instanciated depending on an xmlElement.
       *
       * @param[in] xmlElement: The xml element used to find a matching builder
@@ -71,16 +69,17 @@ public:
       *                 create the elemen with the default element builder.
       *             otherwise, return NULL.
       */
-    CElement* createElement(const CXmlElement& xmlElement) const;
+    CElement *createElement(const CXmlElement &xmlElement) const;
 
 private:
     std::unique_ptr<CDefaultElementBuilder> _defaultBuilder;
 };
 
-template<class CDefaultElementBuilder>
-CElement* CDefaultElementLibrary<CDefaultElementBuilder>::createElement(const CXmlElement& xmlElement) const
+template <class CDefaultElementBuilder>
+CElement *CDefaultElementLibrary<CDefaultElementBuilder>::createElement(
+    const CXmlElement &xmlElement) const
 {
-    CElement* builtElement = CElementLibrary::createElement(xmlElement);
+    CElement *builtElement = CElementLibrary::createElement(xmlElement);
 
     if (builtElement != NULL) {
         // The element was created, return it
@@ -95,4 +94,3 @@ CElement* CDefaultElementLibrary<CDefaultElementBuilder>::createElement(const CX
     // Use the default builder
     return _defaultBuilder->createElement(xmlElement);
 }
-

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -35,8 +35,10 @@ class BackgroundRemoteProcessorServer final : public IRemoteProcessorServerInter
 {
 public:
     BackgroundRemoteProcessorServer(uint16_t uiPort,
-                                    std::unique_ptr<IRemoteCommandHandler> &commandHandler) :
-        _server(uiPort), mCommandHandler(std::move(commandHandler)) {}
+                                    std::unique_ptr<IRemoteCommandHandler> &commandHandler)
+        : _server(uiPort), mCommandHandler(std::move(commandHandler))
+    {
+    }
 
     ~BackgroundRemoteProcessorServer() { stop(); }
 
@@ -46,9 +48,8 @@ public:
             return false;
         }
         try {
-            mServerSuccess = std::async(std::launch::async,
-                                        &CRemoteProcessorServer::process, &_server,
-                                        std::ref(*mCommandHandler));
+            mServerSuccess = std::async(std::launch::async, &CRemoteProcessorServer::process,
+                                        &_server, std::ref(*mCommandHandler));
         } catch (std::exception &e) {
             error = "Could not create a remote processor thread: " + std::string(e.what());
             return false;
@@ -57,7 +58,8 @@ public:
         return true;
     }
 
-    bool stop() override {
+    bool stop() override
+    {
         _server.stop();
         return mServerSuccess.get();
     }
@@ -67,4 +69,3 @@ private:
     std::unique_ptr<IRemoteCommandHandler> mCommandHandler;
     std::future<bool> mServerSuccess;
 };
-

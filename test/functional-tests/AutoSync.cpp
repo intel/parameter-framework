@@ -43,8 +43,7 @@ namespace parameterFramework
 
 struct BoolPF : public ParameterFramework
 {
-    BoolPF()
-        : ParameterFramework{ createConfig() } {}
+    BoolPF() : ParameterFramework{createConfig()} {}
 
     /** Set the boolean parameter value within the "Conf" configuration,
      * which is always applicable. */
@@ -59,7 +58,7 @@ private:
     {
         Config config;
         config.instances = R"(<BooleanParameter Name="param" Mapping="Object"/>)";
-        config.plugins = { { "", {"introspection-subsystem"} } };
+        config.plugins = {{"", {"introspection-subsystem"}}};
         config.subsystemType = "INTROSPECTION";
 
         config.domains = R"(<ConfigurableDomain Name="Domain">
@@ -86,40 +85,41 @@ private:
     }
 };
 
-SCENARIO_METHOD(BoolPF, "Auto sync") {
-    GIVEN("A Pfw that starts") {
+SCENARIO_METHOD(BoolPF, "Auto sync")
+{
+    GIVEN ("A Pfw that starts") {
         REQUIRE_NOTHROW(start());
 
-        THEN("Parameter value is false according to the settings") {
+        THEN ("Parameter value is false according to the settings") {
             REQUIRE_FALSE(introspectionSubsystem::getParameterValue());
 
-            AND_THEN("Tuning is off") {
+            AND_THEN ("Tuning is off") {
                 REQUIRE_FALSE(isTuningModeOn());
 
-                WHEN("Turning autosync on") {
+                WHEN ("Turning autosync on") {
                     REQUIRE_NOTHROW(setAutoSync(true));
 
-                    AND_WHEN("A parameter is set") {
+                    AND_WHEN ("A parameter is set") {
                         REQUIRE_NOTHROW(setParameterValue(true));
 
-                        THEN("Sync is done") {
+                        THEN ("Sync is done") {
                             CHECK(introspectionSubsystem::getParameterValue());
                         }
                     }
                 }
-                WHEN("Turning autosync off") {
+                WHEN ("Turning autosync off") {
                     REQUIRE_NOTHROW(setAutoSync(false));
 
-                    AND_WHEN("A parameter is set") {
+                    AND_WHEN ("A parameter is set") {
                         REQUIRE_NOTHROW(setParameterValue(true));
 
-                        THEN("Sync should not have occurred yet") {
+                        THEN ("Sync should not have occurred yet") {
                             REQUIRE_FALSE(introspectionSubsystem::getParameterValue());
 
-                            WHEN("Turning autosync on") {
+                            WHEN ("Turning autosync on") {
                                 REQUIRE_NOTHROW(setAutoSync(true));
 
-                                THEN("Sync is done") {
+                                THEN ("Sync is done") {
                                     CHECK(introspectionSubsystem::getParameterValue());
                                 }
                             }
@@ -130,5 +130,4 @@ SCENARIO_METHOD(BoolPF, "Auto sync") {
         }
     }
 }
-
 }

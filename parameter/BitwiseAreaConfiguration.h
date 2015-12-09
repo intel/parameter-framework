@@ -36,11 +36,11 @@ class CBitParameter;
 class CBitwiseAreaConfiguration : public CAreaConfiguration
 {
 public:
-    CBitwiseAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet);
+    CBitwiseAreaConfiguration(const CConfigurableElement *pConfigurableElement,
+                              const CSyncerSet *pSyncerSet);
 
 private:
     // Blackboard copies
-    virtual void copyTo(CParameterBlackboard* pToBlackboard, size_t offset) const;
-    virtual void copyFrom(const CParameterBlackboard* pFromBlackboard, size_t offset);
+    virtual void copyTo(CParameterBlackboard *pToBlackboard, size_t offset) const;
+    virtual void copyFrom(const CParameterBlackboard *pFromBlackboard, size_t offset);
 };
-

@@ -39,7 +39,8 @@ public:
      * @see http://xmlsoft.org/threads.html
      * @see http://www.programmershare.com/1669782/
      */
-    CXmlUtil() {
+    CXmlUtil()
+    {
         xmlInitParser();
         atexit(xmlCleanupParser);
     }

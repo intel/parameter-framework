@@ -37,17 +37,18 @@ class CLinearParameterAdaptation : public CParameterAdaptation
 {
 public:
     CLinearParameterAdaptation();
-    CLinearParameterAdaptation(const std::string& strType);
+    CLinearParameterAdaptation(const std::string &strType);
 
     // Conversions
     virtual int64_t fromUserValue(double dValue) const;
     virtual double toUserValue(int64_t iValue) const;
 
     // Element properties
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+
 private:
     // Slope attributes
     double _dSlopeNumerator{1};

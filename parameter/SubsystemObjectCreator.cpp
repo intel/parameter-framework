@@ -31,13 +31,16 @@
 
 using std::string;
 
-CSubsystemObjectCreator::CSubsystemObjectCreator(const string& strMappingKey, uint32_t uiAncestorIdMask, size_t maxConfigurableElementSize)
-    : _strMappingKey(strMappingKey), _uiAncestorIdMask(uiAncestorIdMask), _maxConfigurableElementSize(maxConfigurableElementSize)
+CSubsystemObjectCreator::CSubsystemObjectCreator(const string &strMappingKey,
+                                                 uint32_t uiAncestorIdMask,
+                                                 size_t maxConfigurableElementSize)
+    : _strMappingKey(strMappingKey), _uiAncestorIdMask(uiAncestorIdMask),
+      _maxConfigurableElementSize(maxConfigurableElementSize)
 {
 }
 
 // Accessors
-const string& CSubsystemObjectCreator::getMappingKey() const
+const string &CSubsystemObjectCreator::getMappingKey() const
 {
     return _strMappingKey;
 }

@@ -36,7 +36,7 @@
 class CBitParameter : public CBaseParameter
 {
 public:
-    CBitParameter(const std::string& strName, const CTypeElement* pTypeElement);
+    CBitParameter(const std::string &strName, const CTypeElement *pTypeElement);
 
     // Instantiation, allocation
     virtual size_t getFootPrint() const;
@@ -46,29 +46,32 @@ public:
 
     /// Value access
     // Boolean access
-    bool access(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(bool &bValue, bool bSet,
+                CParameterAccessContext &parameterAccessContext) const override final;
 
     // Integer Access
-    bool access(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(uint32_t &uiValue, bool bSet,
+                CParameterAccessContext &parameterAccessContext) const override final;
 
     // AreaConfiguration creation
-    virtual CAreaConfiguration* createAreaConfiguration(const CSyncerSet* pSyncerSet) const;
+    virtual CAreaConfiguration *createAreaConfiguration(const CSyncerSet *pSyncerSet) const;
 
     // Size
     size_t getBelongingBlockSize() const;
 
     // Access from area configuration
     uint64_t merge(uint64_t uiOriginData, uint64_t uiNewData) const;
-private:
 
+private:
     // String Access
-    virtual bool doSetValue(const std::string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const;
-    virtual void doGetValue(std::string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool doSetValue(const std::string &strValue, size_t offset,
+                            CParameterAccessContext &parameterAccessContext) const;
+    virtual void doGetValue(std::string &strValue, size_t offset,
+                            CParameterAccessContext &parameterAccessContext) const;
 
     // Generic Access
     template <typename type>
-    bool doSet(type value, size_t offset, CParameterAccessContext& parameterAccessContext) const;
+    bool doSet(type value, size_t offset, CParameterAccessContext &parameterAccessContext) const;
     template <typename type>
-    void doGet(type& value, size_t offset, CParameterAccessContext& parameterAccessContext) const;
-
+    void doGet(type &value, size_t offset, CParameterAccessContext &parameterAccessContext) const;
 };

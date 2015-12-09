@@ -47,10 +47,12 @@ namespace utility
  *           let [first, last[ = list<string>{"1", "2", "3"}
  *           then join(first, last, op) == "1|2|3"
  */
-template<class T, class InputIt, class BinaryOperation>
+template <class T, class InputIt, class BinaryOperation>
 T join(InputIt first, InputIt last, BinaryOperation op, T empty = T{})
 {
-    if (first == last) { return empty; }
+    if (first == last) {
+        return empty;
+    }
     auto init = *first++;
 
     return std::accumulate(first, last, init, op);
@@ -65,8 +67,7 @@ T join(InputIt first, InputIt last, BinaryOperation op, T empty = T{})
 *
 * @return the concatenated elements.
 */
-std::string asString(const std::list<std::string>& lstr,
-                     const std::string& separator = "\n");
+std::string asString(const std::list<std::string> &lstr, const std::string &separator = "\n");
 
 /**
  * Format the items of a map into a string as a list of key-value pairs. The map must be
@@ -77,12 +78,12 @@ std::string asString(const std::list<std::string>& lstr,
  * @param[in] strItemSeparator The separator to use between each item (key-value pair)
  * @param[in] strKeyValueSeparator The separator to use between key and value
  */
-std::string asString(const std::map<std::string, std::string>& mapStr,
-                     const std::string& strItemSeparator = ", ",
-                     const std::string& strKeyValueSeparator = ":");
+std::string asString(const std::map<std::string, std::string> &mapStr,
+                     const std::string &strItemSeparator = ", ",
+                     const std::string &strKeyValueSeparator = ":");
 
 /** Utility to underline */
-void appendTitle(std::string& strTo, const std::string& strTitle);
+void appendTitle(std::string &strTo, const std::string &strTitle);
 
 /**
  * Checks if a string has the written representation of an hexadecimal
@@ -92,6 +93,6 @@ void appendTitle(std::string& strTo, const std::string& strTitle);
  *
  * @return true if the string is written as hexa, false otherwise.
  */
-bool isHexadecimal(const std::string& strValue);
+bool isHexadecimal(const std::string &strValue);
 
 } // utility

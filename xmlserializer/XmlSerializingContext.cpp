@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
@@ -31,7 +31,7 @@
 #include <libxml/xmlerror.h>
 #include <cstdio>
 
-CXmlSerializingContext::CXmlSerializingContext(std::string& strError)
+CXmlSerializingContext::CXmlSerializingContext(std::string &strError)
     : utility::ErrorContext(strError)
 {
     xmlSetStructuredErrorFunc(this, structuredErrorHandler);
@@ -44,7 +44,7 @@ CXmlSerializingContext::~CXmlSerializingContext()
     prependToError(_strXmlError);
 }
 
-void CXmlSerializingContext::appendLineToError(const std::string& strAppend)
+void CXmlSerializingContext::appendLineToError(const std::string &strAppend)
 {
     appendToError("\n" + strAppend);
 }
@@ -55,13 +55,12 @@ void CXmlSerializingContext::appendLineToError(const std::string& strAppend)
   * @param[in] format is the xml error output format
   *
   */
-void CXmlSerializingContext::structuredErrorHandler(void* userData, xmlErrorPtr error)
+void CXmlSerializingContext::structuredErrorHandler(void *userData, xmlErrorPtr error)
 {
     CXmlSerializingContext *self = static_cast<CXmlSerializingContext *>(userData);
 
     std::string filename = (error->file != NULL) ? error->file : "(user input)";
     // xmlErrorPtr->int2 contains the column; see xmlerror.h
-    self->_strXmlError += filename + ":" +
-                          std::to_string(error->line) + ":" + std::to_string(error->int2) + ": " +
-                          error->message;
+    self->_strXmlError += filename + ":" + std::to_string(error->line) + ":" +
+                          std::to_string(error->int2) + ": " + error->message;
 }

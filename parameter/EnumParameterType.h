@@ -36,42 +36,47 @@
 class CEnumParameterType : public CParameterType
 {
 public:
-    CEnumParameterType(const std::string& strName);
+    CEnumParameterType(const std::string &strName);
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
     // Integer
-    virtual bool toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(int32_t iUserValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(int32_t &iUserValue, uint32_t uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
 
     // Default value handling (simulation only)
     virtual uint32_t getDefaultValue() const;
 
     // Element properties
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
     // CElement
     virtual std::string getKind() const;
+
 private:
     // Specialized version of toBlackboard in case the access context is in raw
     // value space
-    bool toBlackboardFromRaw(const std::string& strUserValue, uint32_t& uiValue,
-                             CParameterAccessContext& parameterAccessContext) const;
+    bool toBlackboardFromRaw(const std::string &strUserValue, uint32_t &uiValue,
+                             CParameterAccessContext &parameterAccessContext) const;
 
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
 
     // Literal - numerical conversions
-    bool getLiteral(int32_t iNumerical, std::string& strLiteral) const;
-    bool getNumerical(const std::string& strLiteral, int& iNumerical) const;
+    bool getLiteral(int32_t iNumerical, std::string &strLiteral) const;
+    bool getNumerical(const std::string &strLiteral, int &iNumerical) const;
 
     // Numerical validity
     bool checkValueAgainstSpace(int32_t iNumerical) const;

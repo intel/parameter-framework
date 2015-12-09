@@ -38,29 +38,22 @@
 using std::string;
 
 CFormattedSubsystemObject::CFormattedSubsystemObject(
-        CInstanceConfigurableElement* pInstanceConfigurableElement,
-        core::log::Logger& logger)
+    CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &logger)
     : base(pInstanceConfigurableElement, logger)
 {
 }
 
 CFormattedSubsystemObject::CFormattedSubsystemObject(
-        CInstanceConfigurableElement* pInstanceConfigurableElement,
-        core::log::Logger& logger,
-        const string& strMappingValue)
+    CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &logger,
+    const string &strMappingValue)
     : base(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)
 {
-
 }
 
-
 CFormattedSubsystemObject::CFormattedSubsystemObject(
-        CInstanceConfigurableElement* pInstanceConfigurableElement,
-        core::log::Logger& logger,
-        const string& strMappingValue,
-        size_t firstAmendKey,
-        size_t nbAmendKeys,
-        const CMappingContext& context)
+    CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &logger,
+    const string &strMappingValue, size_t firstAmendKey, size_t nbAmendKeys,
+    const CMappingContext &context)
     : base(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)
 {
     // Cope with quotes in the name
@@ -68,8 +61,8 @@ CFormattedSubsystemObject::CFormattedSubsystemObject(
 
         _strFormattedMappingValue = strMappingValue.substr(1, strMappingValue.length() - 2);
     }
-    _strFormattedMappingValue = formatMappingValue(_strFormattedMappingValue, firstAmendKey,
-                                                   nbAmendKeys, context);
+    _strFormattedMappingValue =
+        formatMappingValue(_strFormattedMappingValue, firstAmendKey, nbAmendKeys, context);
 }
 
 string CFormattedSubsystemObject::getFormattedMappingValue() const
@@ -83,10 +76,9 @@ bool CFormattedSubsystemObject::isAmendKeyValid(size_t uiAmendKey)
     return (uiAmendKey > 0) && (uiAmendKey <= 9);
 }
 
-string CFormattedSubsystemObject::formatMappingValue(const string& strMappingValue,
-                                                     size_t firstAmendKey,
-                                                     size_t nbAmendKeys,
-                                                     const CMappingContext& context)
+string CFormattedSubsystemObject::formatMappingValue(const string &strMappingValue,
+                                                     size_t firstAmendKey, size_t nbAmendKeys,
+                                                     const CMappingContext &context)
 {
     string strFormattedValue = strMappingValue;
 
@@ -111,19 +103,17 @@ string CFormattedSubsystemObject::formatMappingValue(const string& strMappingVal
             if (context.iSet(uiAmendType)) {
 
                 // Make the amendment on the part of the string after the current Amend
-                string strEndOfLine = strFormattedValue.substr(uiPercentPos + 2,
-                                                               strFormattedValue.size()
-                                                               - uiPercentPos - 2);
-                string strEndOfLineAmended = formatMappingValue(strEndOfLine, firstAmendKey,
-                                                                nbAmendKeys, context);
+                string strEndOfLine = strFormattedValue.substr(
+                    uiPercentPos + 2, strFormattedValue.size() - uiPercentPos - 2);
+                string strEndOfLineAmended =
+                    formatMappingValue(strEndOfLine, firstAmendKey, nbAmendKeys, context);
 
                 // Get current Amend value
                 string strAmendValue = context.getItem(uiAmendType);
 
                 // Make the amendment
-                strFormattedValue = strFormattedValue.substr(0, uiPercentPos) + strAmendValue
-                        + strEndOfLineAmended;
-
+                strFormattedValue =
+                    strFormattedValue.substr(0, uiPercentPos) + strAmendValue + strEndOfLineAmended;
             }
         }
     }

@@ -46,7 +46,7 @@
 
 using std::string;
 
-CDomainConfiguration::CDomainConfiguration(const string& strName) : base(strName)
+CDomainConfiguration::CDomainConfiguration(const string &strName) : base(strName)
 {
 }
 
@@ -63,7 +63,8 @@ bool CDomainConfiguration::childrenAreDynamic() const
 }
 
 // XML configuration settings parsing
-bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlDomainImportContext& context)
+bool CDomainConfiguration::parseSettings(CXmlElement &xmlConfigurationSettingsElement,
+                                         CXmlDomainImportContext &context)
 {
     // Parse configurable element's configuration settings
     CXmlElement::CChildIterator it(xmlConfigurationSettingsElement);
@@ -80,12 +81,15 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
         auto areaConfiguration = findAreaConfigurationByPath(configurableElementPath);
         if (areaConfiguration == end(mAreaConfigurationList)) {
 
-            context.setError("Configurable Element " + configurableElementPath  + " referred to by Configuration " + getPath() + " not associated to Domain");
+            context.setError("Configurable Element " + configurableElementPath +
+                             " referred to by Configuration " + getPath() +
+                             " not associated to Domain");
 
             return false;
         }
         // Parse
-        if (!importOneConfigurableElementSettings(areaConfiguration->get(), xmlConfigurableElementSettingsElement, context)) {
+        if (!importOneConfigurableElementSettings(areaConfiguration->get(),
+                                                  xmlConfigurableElementSettingsElement, context)) {
 
             return false;
         }
@@ -101,43 +105,45 @@ bool CDomainConfiguration::parseSettings(CXmlElement& xmlConfigurationSettingsEl
 }
 
 // XML configuration settings composing
-void CDomainConfiguration::composeSettings(CXmlElement& xmlConfigurationSettingsElement, CXmlDomainExportContext& context) const
+void CDomainConfiguration::composeSettings(CXmlElement &xmlConfigurationSettingsElement,
+                                           CXmlDomainExportContext &context) const
 {
     // Go through all are configurations
     for (auto &areaConfiguration : mAreaConfigurationList) {
 
         // Retrieve configurable element
-        const CConfigurableElement* pConfigurableElement = areaConfiguration->getConfigurableElement();
+        const CConfigurableElement *pConfigurableElement =
+            areaConfiguration->getConfigurableElement();
 
         // Create configurable element child element
         CXmlElement xmlConfigurableElementSettingsElement;
 
-        xmlConfigurationSettingsElement.createChild(xmlConfigurableElementSettingsElement, "ConfigurableElement");
+        xmlConfigurationSettingsElement.createChild(xmlConfigurableElementSettingsElement,
+                                                    "ConfigurableElement");
 
         // Set Path attribute
         xmlConfigurableElementSettingsElement.setAttribute("Path", pConfigurableElement->getPath());
 
         // Delegate composing to area configuration
-        exportOneConfigurableElementSettings(areaConfiguration.get(), xmlConfigurableElementSettingsElement, context);
+        exportOneConfigurableElementSettings(areaConfiguration.get(),
+                                             xmlConfigurableElementSettingsElement, context);
     }
 }
 
 // Serialize one configuration for one configurable element
 bool CDomainConfiguration::importOneConfigurableElementSettings(
-        CAreaConfiguration *areaConfiguration,
-        CXmlElement& xmlConfigurableElementSettingsElement,
-        CXmlDomainImportContext& context)
+    CAreaConfiguration *areaConfiguration, CXmlElement &xmlConfigurableElementSettingsElement,
+    CXmlDomainImportContext &context)
 {
-    const CConfigurableElement* destination = areaConfiguration->getConfigurableElement();
+    const CConfigurableElement *destination = areaConfiguration->getConfigurableElement();
 
     // Check structure
     if (xmlConfigurableElementSettingsElement.getNbChildElements() != 1) {
 
         // Structure error
-        context.setError(
-                "Struture error encountered while parsing settings of " +
-                destination->getKind() + " " + destination->getName() +
-                " in Configuration " + getPath());
+        context.setError("Struture error encountered while parsing settings of " +
+                         destination->getKind() + " " + destination->getName() +
+                         " in Configuration " + getPath());
 
         return false;
     }
@@ -146,9 +152,8 @@ bool CDomainConfiguration::importOneConfigurableElementSettings(
     CXmlElement xmlConfigurableElementSettingsElementContent;
     // Check name and kind
     if (!xmlConfigurableElementSettingsElement.getChildElement(
-                destination->getXmlElementName(),
-                destination->getName(),
-                xmlConfigurableElementSettingsElementContent)) {
+            destination->getXmlElementName(), destination->getName(),
+            xmlConfigurableElementSettingsElementContent)) {
 
         // "Component" tag has been renamed to "ParameterBlock", but retro-compatibility shall
         // be ensured.
@@ -156,18 +161,14 @@ bool CDomainConfiguration::importOneConfigurableElementSettings(
         // So checking if this case occurs, i.e. element name is "ParameterBlock"
         // but found xml setting name is "Component".
         bool compatibilityCase =
-                (destination->getXmlElementName() == "ParameterBlock") &&
-                xmlConfigurableElementSettingsElement.getChildElement(
-                    "Component",
-                    destination->getName(),
-                    xmlConfigurableElementSettingsElementContent);
+            (destination->getXmlElementName() == "ParameterBlock") &&
+            xmlConfigurableElementSettingsElement.getChildElement(
+                "Component", destination->getName(), xmlConfigurableElementSettingsElementContent);
 
         // Error if the compatibility case does not occur.
         if (!compatibilityCase) {
-            context.setError(
-                    "Couldn't find settings for " +
-                    destination->getXmlElementName() + " " + destination->getName() +
-                    " for Configuration " + getPath());
+            context.setError("Couldn't find settings for " + destination->getXmlElementName() +
+                             " " + destination->getName() + " for Configuration " + getPath());
 
             return false;
         }
@@ -179,23 +180,22 @@ bool CDomainConfiguration::importOneConfigurableElementSettings(
 
     // Have domain configuration parse settings for configurable element
     bool success = areaConfiguration->serializeXmlSettings(
-            xmlConfigurableElementSettingsElementContent,
-            configurationAccessContext);
+        xmlConfigurableElementSettingsElementContent, configurationAccessContext);
 
     context.appendToError(error);
     return success;
 }
 
 bool CDomainConfiguration::exportOneConfigurableElementSettings(
-        CAreaConfiguration *areaConfiguration,
-        CXmlElement& xmlConfigurableElementSettingsElement,
-        CXmlDomainExportContext& context) const
+    CAreaConfiguration *areaConfiguration, CXmlElement &xmlConfigurableElementSettingsElement,
+    CXmlDomainExportContext &context) const
 {
-    const CConfigurableElement* source = areaConfiguration->getConfigurableElement();
+    const CConfigurableElement *source = areaConfiguration->getConfigurableElement();
 
     // Create child XML element
     CXmlElement xmlConfigurableElementSettingsElementContent;
-    xmlConfigurableElementSettingsElement.createChild(xmlConfigurableElementSettingsElementContent, source->getXmlElementName());
+    xmlConfigurableElementSettingsElement.createChild(xmlConfigurableElementSettingsElementContent,
+                                                      source->getXmlElementName());
 
     // Create configuration access context
     string error;
@@ -205,26 +205,28 @@ bool CDomainConfiguration::exportOneConfigurableElementSettings(
 
     // Have domain configuration parse settings for configurable element
     bool success = areaConfiguration->serializeXmlSettings(
-            xmlConfigurableElementSettingsElementContent,
-            configurationAccessContext);
+        xmlConfigurableElementSettingsElementContent, configurationAccessContext);
 
     context.appendToError(error);
     return success;
 }
 
-void CDomainConfiguration::addConfigurableElement(const CConfigurableElement *configurableElement, const CSyncerSet *syncerSet)
+void CDomainConfiguration::addConfigurableElement(const CConfigurableElement *configurableElement,
+                                                  const CSyncerSet *syncerSet)
 {
     mAreaConfigurationList.emplace_back(configurableElement->createAreaConfiguration(syncerSet));
 }
 
-void CDomainConfiguration::removeConfigurableElement(const CConfigurableElement* pConfigurableElement)
+void CDomainConfiguration::removeConfigurableElement(
+    const CConfigurableElement *pConfigurableElement)
 {
     auto &areaConfigurationToRemove = getAreaConfiguration(pConfigurableElement);
 
     mAreaConfigurationList.remove(areaConfigurationToRemove);
 }
 
-bool CDomainConfiguration::setElementSequence(const std::vector<string> &newElementSequence, string &error)
+bool CDomainConfiguration::setElementSequence(const std::vector<string> &newElementSequence,
+                                              string &error)
 {
     std::vector<string> elementSequenceSet;
     auto insertLocation = begin(mAreaConfigurationList);
@@ -255,17 +257,19 @@ bool CDomainConfiguration::setElementSequence(const std::vector<string> &newElem
     return true;
 }
 
-void CDomainConfiguration::getElementSequence(string& strResult) const
+void CDomainConfiguration::getElementSequence(string &strResult) const
 {
     // List configurable element paths out of ordered area configuration list
-    strResult = accumulate(begin(mAreaConfigurationList), end(mAreaConfigurationList),
-                           string("\n"), [](const string &a, const AreaConfiguration &conf) {
-        return a + conf->getConfigurableElement()->getPath() + "\n";
-    });
+    strResult = accumulate(begin(mAreaConfigurationList), end(mAreaConfigurationList), string("\n"),
+                           [](const string &a, const AreaConfiguration &conf) {
+                               return a + conf->getConfigurableElement()->getPath() + "\n";
+                           });
 }
 
 // Application rule
-bool CDomainConfiguration::setApplicationRule(const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError)
+bool CDomainConfiguration::setApplicationRule(
+    const string &strApplicationRule,
+    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition, string &strError)
 {
     // Parser
     CRuleParser ruleParser(strApplicationRule, pSelectionCriteriaDefinition);
@@ -289,7 +293,7 @@ void CDomainConfiguration::clearApplicationRule()
 
 string CDomainConfiguration::getApplicationRule() const
 {
-    const CCompoundRule* pRule = getRule();
+    const CCompoundRule *pRule = getRule();
     return pRule ? pRule->dump() : "<none>";
 }
 
@@ -305,39 +309,42 @@ string CDomainConfiguration::getApplicationRule() const
  *
  * return Pointer to the Blackboard of the Configuration.
  */
-CParameterBlackboard* CDomainConfiguration::getBlackboard(const CConfigurableElement* pConfigurableElement) const
+CParameterBlackboard *CDomainConfiguration::getBlackboard(
+    const CConfigurableElement *pConfigurableElement) const
 {
     const auto &it = find_if(begin(mAreaConfigurationList), end(mAreaConfigurationList),
-                      [&](const AreaConfiguration &conf) {
-        return conf != nullptr && conf->getConfigurableElement() == pConfigurableElement;
-    });
+                             [&](const AreaConfiguration &conf) {
+                                 return conf != nullptr &&
+                                        conf->getConfigurableElement() == pConfigurableElement;
+                             });
     ALWAYS_ASSERT(it != end(mAreaConfigurationList), "Configurable Element "
-                  << pConfigurableElement->getName() << " not found in any area Configuration");
+                                                         << pConfigurableElement->getName()
+                                                         << " not found in any area Configuration");
     return &(*it)->getBlackboard();
 }
 
 // Save data from current
-void CDomainConfiguration::save(const CParameterBlackboard* pMainBlackboard)
+void CDomainConfiguration::save(const CParameterBlackboard *pMainBlackboard)
 {
     // Just propagate to areas
-    for(auto &areaConfiguration : mAreaConfigurationList) {
+    for (auto &areaConfiguration : mAreaConfigurationList) {
         areaConfiguration->save(pMainBlackboard);
     }
 }
 
 // Apply data to current
-bool CDomainConfiguration::restore(CParameterBlackboard* pMainBlackboard,
-                                   bool bSync,
-                                   core::Results* errors) const
+bool CDomainConfiguration::restore(CParameterBlackboard *pMainBlackboard, bool bSync,
+                                   core::Results *errors) const
 {
-    return std::accumulate(begin(mAreaConfigurationList), end(mAreaConfigurationList),
-                           true, [&](bool accumulator, const AreaConfiguration &conf) {
-        return conf->restore(pMainBlackboard, bSync, errors) && accumulator;
-    });
+    return std::accumulate(begin(mAreaConfigurationList), end(mAreaConfigurationList), true,
+                           [&](bool accumulator, const AreaConfiguration &conf) {
+                               return conf->restore(pMainBlackboard, bSync, errors) && accumulator;
+                           });
 }
 
 // Ensure validity for configurable element area configuration
-void CDomainConfiguration::validate(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard)
+void CDomainConfiguration::validate(const CConfigurableElement *pConfigurableElement,
+                                    const CParameterBlackboard *pMainBlackboard)
 {
     auto &areaConfigurationToValidate = getAreaConfiguration(pConfigurableElement);
 
@@ -346,31 +353,34 @@ void CDomainConfiguration::validate(const CConfigurableElement* pConfigurableEle
 }
 
 // Ensure validity of all area configurations
-void CDomainConfiguration::validate(const CParameterBlackboard* pMainBlackboard)
+void CDomainConfiguration::validate(const CParameterBlackboard *pMainBlackboard)
 {
-    for(auto &areaConfiguration : mAreaConfigurationList) {
+    for (auto &areaConfiguration : mAreaConfigurationList) {
         areaConfiguration->validate(pMainBlackboard);
     }
 }
 
 // Return configuration validity for given configurable element
-bool CDomainConfiguration::isValid(const CConfigurableElement* pConfigurableElement) const
+bool CDomainConfiguration::isValid(const CConfigurableElement *pConfigurableElement) const
 {
     // Get child configurable elemnt's area configuration
     auto &areaConfiguration = getAreaConfiguration(pConfigurableElement);
 
     ALWAYS_ASSERT(areaConfiguration != nullptr, "Configurable Element "
-                  << pConfigurableElement->getName() << " not found in any area Configuration");
+                                                    << pConfigurableElement->getName()
+                                                    << " not found in any area Configuration");
 
     return areaConfiguration->isValid();
 }
 
 // Ensure validity of configurable element's area configuration by copying in from a valid one
-void CDomainConfiguration::validateAgainst(const CDomainConfiguration* pValidDomainConfiguration, const CConfigurableElement* pConfigurableElement)
+void CDomainConfiguration::validateAgainst(const CDomainConfiguration *pValidDomainConfiguration,
+                                           const CConfigurableElement *pConfigurableElement)
 {
     // Retrieve related area configurations
     auto &areaConfigurationToValidate = getAreaConfiguration(pConfigurableElement);
-    const auto &areaConfigurationToValidateAgainst = pValidDomainConfiguration->getAreaConfiguration(pConfigurableElement);
+    const auto &areaConfigurationToValidateAgainst =
+        pValidDomainConfiguration->getAreaConfiguration(pConfigurableElement);
 
     // Delegate to area
     areaConfigurationToValidate->validateAgainst(areaConfigurationToValidateAgainst.get());
@@ -378,11 +388,13 @@ void CDomainConfiguration::validateAgainst(const CDomainConfiguration* pValidDom
 
 void CDomainConfiguration::validateAgainst(const CDomainConfiguration *validDomainConfiguration)
 {
-    ALWAYS_ASSERT(mAreaConfigurationList.size() == validDomainConfiguration->mAreaConfigurationList.size(),
-                  "Cannot validate domain configuration " << getPath()
-                  << " since area configuration list does not have the same size"
-                     "than the configuration list to check against");
-    for (const auto &configurationToValidateAgainst : validDomainConfiguration->mAreaConfigurationList) {
+    ALWAYS_ASSERT(mAreaConfigurationList.size() ==
+                      validDomainConfiguration->mAreaConfigurationList.size(),
+                  "Cannot validate domain configuration "
+                      << getPath() << " since area configuration list does not have the same size"
+                                      "than the configuration list to check against");
+    for (const auto &configurationToValidateAgainst :
+         validDomainConfiguration->mAreaConfigurationList) {
         // Get the area configuration associated to the configurable element of the
         // valid area configuration, it will assert if none found.
         auto configurableElement = configurationToValidateAgainst->getConfigurableElement();
@@ -395,13 +407,14 @@ void CDomainConfiguration::validateAgainst(const CDomainConfiguration *validDoma
 // Dynamic data application
 bool CDomainConfiguration::isApplicable() const
 {
-    const CCompoundRule* pRule = getRule();
+    const CCompoundRule *pRule = getRule();
 
     return pRule && pRule->matches();
 }
 
 // Merge existing configurations to given configurable element ones
-void CDomainConfiguration::merge(CConfigurableElement* pToConfigurableElement, CConfigurableElement* pFromConfigurableElement)
+void CDomainConfiguration::merge(CConfigurableElement *pToConfigurableElement,
+                                 CConfigurableElement *pFromConfigurableElement)
 {
     // Retrieve related area configurations
     auto &areaConfigurationToMergeTo = getAreaConfiguration(pToConfigurableElement);
@@ -412,7 +425,7 @@ void CDomainConfiguration::merge(CConfigurableElement* pToConfigurableElement, C
 }
 
 // Domain splitting
-void CDomainConfiguration::split(CConfigurableElement* pFromConfigurableElement)
+void CDomainConfiguration::split(CConfigurableElement *pFromConfigurableElement)
 {
     // Retrieve related area configuration
     const auto &areaConfigurationToSplitFrom = getAreaConfiguration(pFromConfigurableElement);
@@ -423,7 +436,8 @@ void CDomainConfiguration::split(CConfigurableElement* pFromConfigurableElement)
 
     for (uiChild = 0; uiChild < uiNbConfigurableElementChildren; uiChild++) {
 
-        CConfigurableElement* pToChildConfigurableElement = static_cast<CConfigurableElement*>(pFromConfigurableElement->getChild(uiChild));
+        CConfigurableElement *pToChildConfigurableElement =
+            static_cast<CConfigurableElement *>(pFromConfigurableElement->getChild(uiChild));
 
         // Get child configurable elemnt's area configuration
         auto &childAreaConfiguration = getAreaConfiguration(pToChildConfigurableElement);
@@ -433,48 +447,52 @@ void CDomainConfiguration::split(CConfigurableElement* pFromConfigurableElement)
     }
 }
 
-const CDomainConfiguration::AreaConfiguration &CDomainConfiguration::getAreaConfiguration(const CConfigurableElement* pConfigurableElement) const
+const CDomainConfiguration::AreaConfiguration &CDomainConfiguration::getAreaConfiguration(
+    const CConfigurableElement *pConfigurableElement) const
 {
     const auto &it = find_if(begin(mAreaConfigurationList), end(mAreaConfigurationList),
-                      [&](const AreaConfiguration &conf) {
-        return conf->getConfigurableElement() == pConfigurableElement;
-    });
-    ALWAYS_ASSERT(it != end(mAreaConfigurationList), "Configurable Element "
-                  << pConfigurableElement->getName() << " not found in Domain Configuration list");
+                             [&](const AreaConfiguration &conf) {
+                                 return conf->getConfigurableElement() == pConfigurableElement;
+                             });
+    ALWAYS_ASSERT(it != end(mAreaConfigurationList),
+                  "Configurable Element " << pConfigurableElement->getName()
+                                          << " not found in Domain Configuration list");
     return *it;
 }
 
-CDomainConfiguration::AreaConfigurations::iterator CDomainConfiguration::findAreaConfigurationByPath(const std::string &configurableElementPath)
+CDomainConfiguration::AreaConfigurations::iterator CDomainConfiguration::
+    findAreaConfigurationByPath(const std::string &configurableElementPath)
 {
-    auto areaConfiguration = find_if(begin(mAreaConfigurationList), end(mAreaConfigurationList),
-                                         [&](const AreaConfiguration &conf) {
-        return conf->getConfigurableElement()->getPath() == configurableElementPath;
-    });
+    auto areaConfiguration =
+        find_if(begin(mAreaConfigurationList), end(mAreaConfigurationList),
+                [&](const AreaConfiguration &conf) {
+                    return conf->getConfigurableElement()->getPath() == configurableElementPath;
+                });
     return areaConfiguration;
 }
 
 // Rule
-const CCompoundRule* CDomainConfiguration::getRule() const
+const CCompoundRule *CDomainConfiguration::getRule() const
 {
     if (getNbChildren()) {
         // Rule created
-        return static_cast<const CCompoundRule*>(getChild(ECompoundRule));
+        return static_cast<const CCompoundRule *>(getChild(ECompoundRule));
     }
     return NULL;
 }
 
-CCompoundRule* CDomainConfiguration::getRule()
+CCompoundRule *CDomainConfiguration::getRule()
 {
     if (getNbChildren()) {
         // Rule created
-        return static_cast<CCompoundRule*>(getChild(ECompoundRule));
+        return static_cast<CCompoundRule *>(getChild(ECompoundRule));
     }
     return NULL;
 }
 
-void CDomainConfiguration::setRule(CCompoundRule* pRule)
+void CDomainConfiguration::setRule(CCompoundRule *pRule)
 {
-    CCompoundRule* pOldRule = getRule();
+    CCompoundRule *pOldRule = getRule();
 
     if (pOldRule) {
         // Remove previous rule

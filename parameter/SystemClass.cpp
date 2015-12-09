@@ -41,12 +41,13 @@
 #define base CConfigurableElement
 
 #ifndef PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1
-#   error Missing PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1 macro definition
+#error Missing PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1 macro definition
 #endif
 #define QUOTE(X) #X
 #define MACRO_TO_STR(X) QUOTE(X)
-const char CSystemClass::entryPointSymbol[] = MACRO_TO_STR(PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1);
-using PluginEntryPointV1 = void (*)(CSubsystemLibrary*, core::log::Logger&);
+const char CSystemClass::entryPointSymbol[] =
+    MACRO_TO_STR(PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1);
+using PluginEntryPointV1 = void (*)(CSubsystemLibrary *, core::log::Logger &);
 
 using std::list;
 using std::string;
@@ -54,7 +55,7 @@ using std::string;
 // FIXME: integrate SystemClass to core namespace
 using namespace core;
 
-CSystemClass::CSystemClass(log::Logger& logger)
+CSystemClass::CSystemClass(log::Logger &logger)
     : _pSubsystemLibrary(new CSubsystemLibrary()), _logger(logger)
 {
 }
@@ -78,16 +79,15 @@ string CSystemClass::getKind() const
     return "SystemClass";
 }
 
-bool CSystemClass::getMappingData(const std::string& /*strKey*/,
-                    const std::string*& /*pStrValue*/) const
+bool CSystemClass::getMappingData(const std::string & /*strKey*/,
+                                  const std::string *& /*pStrValue*/) const
 {
     // Although it could make sense to have mapping in the system class,
     // just like at subsystem level, it is currently not supported.
     return false;
 }
 
-bool CSystemClass::loadSubsystems(string& strError,
-                                  const CSubsystemPlugins* pSubsystemPlugins,
+bool CSystemClass::loadSubsystems(string &strError, const CSubsystemPlugins *pSubsystemPlugins,
                                   bool bVirtualSubsystemFallback)
 {
     // Start clean
@@ -98,7 +98,8 @@ bool CSystemClass::loadSubsystems(string& strError,
     _pSubsystemLibrary->addElementBuilder("Virtual", new VirtualSubsystemBuilder(_logger));
     // Set virtual subsytem as builder fallback if required
     if (bVirtualSubsystemFallback) {
-        _pSubsystemLibrary->setDefaultBuilder(utility::make_unique<VirtualSubsystemBuilder>(_logger));
+        _pSubsystemLibrary->setDefaultBuilder(
+            utility::make_unique<VirtualSubsystemBuilder>(_logger));
     }
 
     // Add subsystem defined in shared libraries
@@ -112,18 +113,20 @@ bool CSystemClass::loadSubsystems(string& strError,
     return bLoadPluginsSuccess || bVirtualSubsystemFallback;
 }
 
-bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
-                                                     const CSubsystemPlugins* pSubsystemPlugins)
+bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results &errors,
+                                                     const CSubsystemPlugins *pSubsystemPlugins)
 {
     // Plugin list
     list<string> lstrPluginFiles;
 
     size_t pluginLocation;
 
-    for (pluginLocation = 0; pluginLocation <  pSubsystemPlugins->getNbChildren(); pluginLocation++) {
+    for (pluginLocation = 0; pluginLocation < pSubsystemPlugins->getNbChildren();
+         pluginLocation++) {
 
         // Get Folder for current Plugin Location
-        const CPluginLocation* pPluginLocation = static_cast<const CPluginLocation*>(pSubsystemPlugins->getChild(pluginLocation));
+        const CPluginLocation *pPluginLocation =
+            static_cast<const CPluginLocation *>(pSubsystemPlugins->getChild(pluginLocation));
 
         string strFolder(pPluginLocation->getFolder());
         if (!strFolder.empty()) {
@@ -132,7 +135,7 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
         // Iterator on Plugin List:
         list<string>::const_iterator it;
 
-        const list<string>& pluginList = pPluginLocation->getPluginList();
+        const list<string> &pluginList = pPluginLocation->getPluginList();
 
         for (it = pluginList.begin(); it != pluginList.end(); ++it) {
 
@@ -167,9 +170,8 @@ bool CSystemClass::loadSubsystemsFromSharedLibraries(core::Results& errors,
     return true;
 }
 
-
 // Plugin loading
-bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& errors)
+bool CSystemClass::loadPlugins(list<string> &lstrPluginFiles, core::Results &errors)
 {
     assert(lstrPluginFiles.size());
 
@@ -186,8 +188,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
             auto library = utility::make_unique<DynamicLibrary>(strPluginFileName);
 
             // Load symbol from library
-            auto subSystemBuilder =
-                library->getSymbol<PluginEntryPointV1>(entryPointSymbol);
+            auto subSystemBuilder = library->getSymbol<PluginEntryPointV1>(entryPointSymbol);
 
             // Store libraries handles
             _subsystemLibraryHandleList.push_back(std::move(library));
@@ -195,7 +196,7 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
             // Fill library
             subSystemBuilder(_pSubsystemLibrary, _logger);
 
-        } catch (std::exception& e) {
+        } catch (std::exception &e) {
             errors.push_back(e.what());
 
             // Next plugin
@@ -214,19 +215,19 @@ bool CSystemClass::loadPlugins(list<string>& lstrPluginFiles, core::Results& err
     return bAtLeastOneSubsystemPluginSuccessfullyLoaded;
 }
 
-const CSubsystemLibrary* CSystemClass::getSubsystemLibrary() const
+const CSubsystemLibrary *CSystemClass::getSubsystemLibrary() const
 {
     return _pSubsystemLibrary;
 }
 
-void CSystemClass::checkForSubsystemsToResync(CSyncerSet& syncerSet, core::Results& infos)
+void CSystemClass::checkForSubsystemsToResync(CSyncerSet &syncerSet, core::Results &infos)
 {
     size_t uiNbChildren = getNbChildren();
     size_t uiChild;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        CSubsystem* pSubsystem = static_cast<CSubsystem*>(getChild(uiChild));
+        CSubsystem *pSubsystem = static_cast<CSubsystem *>(getChild(uiChild));
 
         // Collect and consume the need for a resync
         if (pSubsystem->needResync(true)) {
@@ -245,7 +246,7 @@ void CSystemClass::cleanSubsystemsNeedToResync()
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        CSubsystem* pSubsystem = static_cast<CSubsystem*>(getChild(uiChild));
+        CSubsystem *pSubsystem = static_cast<CSubsystem *>(getChild(uiChild));
 
         // Consume the need for a resync
         pSubsystem->needResync(true);

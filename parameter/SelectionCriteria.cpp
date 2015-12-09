@@ -45,29 +45,29 @@ std::string CSelectionCriteria::getKind() const
 }
 
 // Selection Criteria/Type creation
-CSelectionCriterionType* CSelectionCriteria::createSelectionCriterionType(bool bIsInclusive)
+CSelectionCriterionType *CSelectionCriteria::createSelectionCriterionType(bool bIsInclusive)
 {
     return getSelectionCriterionLibrary()->createSelectionCriterionType(bIsInclusive);
 }
 
-CSelectionCriterion*
-CSelectionCriteria::createSelectionCriterion(const std::string& strName,
-                                             const CSelectionCriterionType* pType,
-                                             core::log::Logger& logger)
+CSelectionCriterion *CSelectionCriteria::createSelectionCriterion(
+    const std::string &strName, const CSelectionCriterionType *pType, core::log::Logger &logger)
 {
     return getSelectionCriteriaDefinition()->createSelectionCriterion(strName, pType, logger);
 }
 
 // Selection criterion retrieval
-CSelectionCriterion* CSelectionCriteria::getSelectionCriterion(const std::string& strName)
+CSelectionCriterion *CSelectionCriteria::getSelectionCriterion(const std::string &strName)
 {
     return getSelectionCriteriaDefinition()->getSelectionCriterion(strName);
 }
 
 // List available criteria
-void CSelectionCriteria::listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const
+void CSelectionCriteria::listSelectionCriteria(std::list<std::string> &lstrResult,
+                                               bool bWithTypeInfo, bool bHumanReadable) const
 {
-    getSelectionCriteriaDefinition()->listSelectionCriteria(lstrResult, bWithTypeInfo, bHumanReadable);
+    getSelectionCriteriaDefinition()->listSelectionCriteria(lstrResult, bWithTypeInfo,
+                                                            bHumanReadable);
 }
 
 // Reset the modified status of the children
@@ -77,17 +77,18 @@ void CSelectionCriteria::resetModifiedStatus()
 }
 
 // Children access
-CSelectionCriterionLibrary* CSelectionCriteria::getSelectionCriterionLibrary()
+CSelectionCriterionLibrary *CSelectionCriteria::getSelectionCriterionLibrary()
 {
-    return static_cast<CSelectionCriterionLibrary*>(getChild(ESelectionCriterionLibrary));
+    return static_cast<CSelectionCriterionLibrary *>(getChild(ESelectionCriterionLibrary));
 }
 
-CSelectionCriteriaDefinition* CSelectionCriteria::getSelectionCriteriaDefinition()
+CSelectionCriteriaDefinition *CSelectionCriteria::getSelectionCriteriaDefinition()
 {
-    return static_cast<CSelectionCriteriaDefinition*>(getChild(ESelectionCriteriaDefinition));
+    return static_cast<CSelectionCriteriaDefinition *>(getChild(ESelectionCriteriaDefinition));
 }
 
-const CSelectionCriteriaDefinition* CSelectionCriteria::getSelectionCriteriaDefinition() const
+const CSelectionCriteriaDefinition *CSelectionCriteria::getSelectionCriteriaDefinition() const
 {
-    return static_cast<const CSelectionCriteriaDefinition*>(getChild(ESelectionCriteriaDefinition));
+    return static_cast<const CSelectionCriteriaDefinition *>(
+        getChild(ESelectionCriteriaDefinition));
 }

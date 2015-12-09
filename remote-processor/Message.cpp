@@ -35,13 +35,11 @@
 
 using std::string;
 
-CMessage::CMessage(MsgType ucMsgId) :
-    _ucMsgId(ucMsgId), _uiIndex(0)
+CMessage::CMessage(MsgType ucMsgId) : _ucMsgId(ucMsgId), _uiIndex(0)
 {
 }
 
-CMessage::CMessage() :
-    _ucMsgId(MsgType::EInvalid), _uiIndex(0)
+CMessage::CMessage() : _ucMsgId(MsgType::EInvalid), _uiIndex(0)
 {
 }
 
@@ -57,7 +55,7 @@ bool CMessage::isValidAccess(size_t offset, size_t size) const
 }
 
 // Data
-void CMessage::writeData(const void* pvData, size_t size)
+void CMessage::writeData(const void *pvData, size_t size)
 {
     assert(isValidAccess(_uiIndex, size));
 
@@ -70,7 +68,7 @@ void CMessage::writeData(const void* pvData, size_t size)
     _uiIndex += size;
 }
 
-void CMessage::readData(void* pvData, size_t size)
+void CMessage::readData(void *pvData, size_t size)
 {
     assert(isValidAccess(_uiIndex, size));
 
@@ -83,7 +81,7 @@ void CMessage::readData(void* pvData, size_t size)
     _uiIndex += size;
 }
 
-void CMessage::writeString(const string& strData)
+void CMessage::writeString(const string &strData)
 {
     // Size
     uint32_t size = static_cast<uint32_t>(strData.length());
@@ -94,7 +92,7 @@ void CMessage::writeString(const string& strData)
     writeData(strData.c_str(), size);
 }
 
-void CMessage::readString(string& strData)
+void CMessage::readString(string &strData)
 {
     // Size
     uint32_t uiSize;
@@ -114,7 +112,7 @@ void CMessage::readString(string& strData)
     strData = string.data();
 }
 
-size_t CMessage::getStringSize(const string& strData) const
+size_t CMessage::getStringSize(const string &strData) const
 {
     // Return string length plus room to store its length
     return strData.length() + sizeof(uint32_t);
@@ -127,7 +125,7 @@ size_t CMessage::getRemainingDataSize() const
 }
 
 // Send/Receive
-CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, string& strError)
+CMessage::Result CMessage::serialize(asio::ip::tcp::socket &socket, bool bOut, string &strError)
 {
     if (bOut) {
         asio::error_code ec;

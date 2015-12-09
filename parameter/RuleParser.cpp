@@ -36,18 +36,19 @@
 using std::string;
 
 // Matches
-const char* CRuleParser::_acDelimiters[CRuleParser::ENbStatuses] = {
-    "{",    // EInit
-    "{} ",  // EBeginCompoundRule
-    ",}",   // EEndCompoundRule
-    ",}",   // ECriterionRule
-    "{ ",   // EContinue
-    ""      // EDone
+const char *CRuleParser::_acDelimiters[CRuleParser::ENbStatuses] = {
+    "{",   // EInit
+    "{} ", // EBeginCompoundRule
+    ",}",  // EEndCompoundRule
+    ",}",  // ECriterionRule
+    "{ ",  // EContinue
+    ""     // EDone
 };
 
-CRuleParser::CRuleParser(const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition) :
-    _strApplicationRule(strApplicationRule),
-    _pSelectionCriteriaDefinition(pSelectionCriteriaDefinition)
+CRuleParser::CRuleParser(const string &strApplicationRule,
+                         const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition)
+    : _strApplicationRule(strApplicationRule),
+      _pSelectionCriteriaDefinition(pSelectionCriteriaDefinition)
 {
 }
 
@@ -57,7 +58,7 @@ CRuleParser::~CRuleParser()
 }
 
 // Parse
-bool CRuleParser::parse(CCompoundRule* pParentRule, string& strError)
+bool CRuleParser::parse(CCompoundRule *pParentRule, string &strError)
 {
     while (true) {
         // Iterate till next relevant delimiter
@@ -65,11 +66,11 @@ bool CRuleParser::parse(CCompoundRule* pParentRule, string& strError)
 
             return false;
         }
-        switch(_eStatus) {
+        switch (_eStatus) {
         case EBeginCompoundRule: {
 
             // Create new compound rule
-            CCompoundRule* pCompoundRule = new CCompoundRule;
+            CCompoundRule *pCompoundRule = new CCompoundRule;
 
             // Parse
             if (!pCompoundRule->parse(*this, strError)) {
@@ -103,7 +104,7 @@ bool CRuleParser::parse(CCompoundRule* pParentRule, string& strError)
             break;
         case ECriterionRule: {
             // Create new criterion rule
-            CSelectionCriterionRule* pCriterionRule = new CSelectionCriterionRule;
+            CSelectionCriterionRule *pCriterionRule = new CSelectionCriterionRule;
 
             // Parse
             if (!pCriterionRule->parse(*this, strError)) {
@@ -132,7 +133,6 @@ bool CRuleParser::parse(CCompoundRule* pParentRule, string& strError)
 
                 return false;
             }
-
         }
         default:
             assert(0);
@@ -144,7 +144,7 @@ bool CRuleParser::parse(CCompoundRule* pParentRule, string& strError)
 }
 
 // Iterate
-bool CRuleParser::iterate(string& strError)
+bool CRuleParser::iterate(string &strError)
 {
     string::size_type delimiter;
 
@@ -158,9 +158,11 @@ bool CRuleParser::iterate(string& strError)
     }
 
     // Parse
-    if ((_uiCurrentPos != _strApplicationRule.length()) && ((delimiter = _strApplicationRule.find_first_of(_acDelimiters[_eStatus], _uiCurrentPos)) != string::npos)) {
+    if ((_uiCurrentPos != _strApplicationRule.length()) &&
+        ((delimiter = _strApplicationRule.find_first_of(_acDelimiters[_eStatus], _uiCurrentPos)) !=
+         string::npos)) {
 
-        switch(_strApplicationRule[delimiter]) {
+        switch (_strApplicationRule[delimiter]) {
 
         case '{':
             _eStatus = EBeginCompoundRule;
@@ -212,21 +214,21 @@ bool CRuleParser::iterate(string& strError)
 }
 
 // Rule type
-const string& CRuleParser::getType() const
+const string &CRuleParser::getType() const
 {
     return _strRuleType;
 }
 
 // Criteria defintion
-const CSelectionCriteriaDefinition* CRuleParser::getSelectionCriteriaDefinition() const
+const CSelectionCriteriaDefinition *CRuleParser::getSelectionCriteriaDefinition() const
 {
     return _pSelectionCriteriaDefinition;
 }
 
 // Root rule
-CCompoundRule* CRuleParser::grabRootRule()
+CCompoundRule *CRuleParser::grabRootRule()
 {
-    CCompoundRule* pRootRule = _pRootRule;
+    CCompoundRule *pRootRule = _pRootRule;
 
     assert(pRootRule);
 
@@ -236,7 +238,7 @@ CCompoundRule* CRuleParser::grabRootRule()
 }
 
 // Next word
-bool CRuleParser::next(string& strNext, string& strError)
+bool CRuleParser::next(string &strNext, string &strError)
 {
     string::size_type delimiter;
 

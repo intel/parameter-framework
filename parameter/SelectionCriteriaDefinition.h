@@ -39,16 +39,17 @@ class CSelectionCriteriaDefinition : public CElement
 {
 public:
     // Selection Criterion creation
-    CSelectionCriterion* createSelectionCriterion(const std::string& strName,
-                                                  const CSelectionCriterionType* pType,
-                                                  core::log::Logger& logger);
+    CSelectionCriterion *createSelectionCriterion(const std::string &strName,
+                                                  const CSelectionCriterionType *pType,
+                                                  core::log::Logger &logger);
 
     // Selection Criterion access
-    const CSelectionCriterion* getSelectionCriterion(const std::string& strName) const;
-    CSelectionCriterion* getSelectionCriterion(const std::string& strName);
+    const CSelectionCriterion *getSelectionCriterion(const std::string &strName) const;
+    CSelectionCriterion *getSelectionCriterion(const std::string &strName);
 
     // List available criteria
-    void listSelectionCriteria(std::list<std::string>& lstrResult, bool bWithTypeInfo, bool bHumanReadable) const;
+    void listSelectionCriteria(std::list<std::string> &lstrResult, bool bWithTypeInfo,
+                               bool bHumanReadable) const;
 
     // Base
     virtual std::string getKind() const;
@@ -56,4 +57,3 @@ public:
     // Reset the modified status of the children
     void resetModifiedStatus();
 };
-

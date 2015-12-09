@@ -35,6 +35,7 @@
 class CMappingData
 {
     typedef std::map<std::string, std::string>::const_iterator KeyToValueMapConstIterator;
+
 public:
     /** Initialize mapping data through a raw value
      *
@@ -46,7 +47,7 @@ public:
     bool init(const std::string &rawMapping, std::string &error);
 
     // Query
-    bool getValue(const std::string& strkey, const std::string*& pStrValue) const;
+    bool getValue(const std::string &strkey, const std::string *&pStrValue) const;
 
     /**
      * Formats the mapping as a list of comma-space separated key:value pairs
@@ -56,7 +57,7 @@ public:
     std::string asString() const;
 
 private:
-    bool addValue(const std::string& strkey, const std::string& strValue);
+    bool addValue(const std::string &strkey, const std::string &strValue);
 
     std::map<std::string, std::string> _keyToValueMap;
 };

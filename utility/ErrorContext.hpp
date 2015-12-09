@@ -38,26 +38,17 @@ namespace utility
 class ErrorContext : private NonCopyable
 {
 public:
-    ErrorContext(std::string& error) : mError(error) {}
+    ErrorContext(std::string &error) : mError(error) {}
 
-    void setError(const std::string& error)
-    {
-        mError = error;
-    }
+    void setError(const std::string &error) { mError = error; }
 
-    void appendToError(const std::string& append)
-    {
-        mError += append;
-    }
+    void appendToError(const std::string &append) { mError += append; }
 
-    void prependToError(const std::string& prepend)
-    {
-        mError = prepend + mError;
-    }
+    void prependToError(const std::string &prepend) { mError = prepend + mError; }
 
 private:
     // Error reference
-    std::string& mError;
+    std::string &mError;
 };
 
 } // namespace utility

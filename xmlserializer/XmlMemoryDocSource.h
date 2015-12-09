@@ -50,11 +50,10 @@ public:
       * @param[in] strVersion a string containing the version number
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlMemoryDocSource(const IXmlSource* pXmlSource, bool bValidateWithSchema,
-                        const std::string& strRootElementType,
-                        const std::string& schemaBaseUri = "",
-                        const std::string& strProduct = "",
-                        const std::string& strVersion = "");
+    CXmlMemoryDocSource(const IXmlSource *pXmlSource, bool bValidateWithSchema,
+                        const std::string &strRootElementType,
+                        const std::string &schemaBaseUri = "", const std::string &strProduct = "",
+                        const std::string &strVersion = "");
 
     /**
       * Implementation of CXmlDocSource::populate() method.
@@ -64,9 +63,9 @@ public:
       *
       * @return false if any error occurs
       */
-    virtual bool populate(CXmlSerializingContext& serializingContext);
-private:
+    virtual bool populate(CXmlSerializingContext &serializingContext);
 
+private:
     /**
       * Initialize root element
       */
@@ -75,7 +74,7 @@ private:
     /**
       * Xml Source
       */
-    const IXmlSource* _pXmlSource;
+    const IXmlSource *_pXmlSource;
 
     /**
       * Schema file

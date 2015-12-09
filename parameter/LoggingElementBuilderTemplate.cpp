@@ -33,8 +33,8 @@
 
 namespace detail
 {
-    std::string getName(const CXmlElement& xmlElement)
-    {
-        return xmlElement.getNameAttribute();
-    }
+std::string getName(const CXmlElement &xmlElement)
+{
+    return xmlElement.getNameAttribute();
+}
 }

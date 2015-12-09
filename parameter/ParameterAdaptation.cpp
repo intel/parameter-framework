@@ -33,7 +33,7 @@
 
 using std::string;
 
-CParameterAdaptation::CParameterAdaptation(const string& strType) : base(strType)
+CParameterAdaptation::CParameterAdaptation(const string &strType) : base(strType)
 {
 }
 // CElement
@@ -49,7 +49,7 @@ int32_t CParameterAdaptation::getOffset() const
 }
 
 // Element properties
-void CParameterAdaptation::showProperties(string& strResult) const
+void CParameterAdaptation::showProperties(string &strResult) const
 {
     // Adaptation type
     strResult += " - Type: ";
@@ -63,7 +63,8 @@ void CParameterAdaptation::showProperties(string& strResult) const
 }
 
 // From IXmlSink
-bool CParameterAdaptation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CParameterAdaptation::fromXml(const CXmlElement &xmlElement,
+                                   CXmlSerializingContext &serializingContext)
 {
     xmlElement.getAttribute("Offset", _iOffset);
 

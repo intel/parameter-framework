@@ -34,7 +34,6 @@
 #include <set>
 #include <string>
 
-
 class CParameterBlackboard;
 class CConfigurableElement;
 class CSyncerSet;
@@ -46,7 +45,7 @@ class CConfigurableDomains : public CElement
 public:
     // Configuration/Domains handling
     /// Domains
-    bool createDomain(const std::string& strName, std::string& strError);
+    bool createDomain(const std::string &strName, std::string &strError);
 
     /*
      * Adds a domain object to configurable domains. The ConfigurableDomains
@@ -60,7 +59,7 @@ public:
      *
      * @returns true if the domain was successfully added
      */
-    bool addDomain(CConfigurableDomain& domain, bool bOverwrite, std::string& strError);
+    bool addDomain(CConfigurableDomain &domain, bool bOverwrite, std::string &strError);
 
     /**
      * Delete a domain by name
@@ -71,12 +70,15 @@ public:
      * @returns true of the domain was sucessfully deleted, false otherwise (i.e.
      * the domain didn't exist).
      */
-    bool deleteDomain(const std::string& strName, std::string& strError);
+    bool deleteDomain(const std::string &strName, std::string &strError);
     void deleteAllDomains();
-    bool renameDomain(const std::string& strName, const std::string& strNewName, std::string& strError);
-    bool setSequenceAwareness(const std::string& strDomain, bool bSequenceAware, std::string& strError);
-    bool getSequenceAwareness(const std::string& strDomain, bool& bSequenceAware, std::string& strError) const;
-    bool listDomainElements(const std::string& strDomain, std::string& strResult) const;
+    bool renameDomain(const std::string &strName, const std::string &strNewName,
+                      std::string &strError);
+    bool setSequenceAwareness(const std::string &strDomain, bool bSequenceAware,
+                              std::string &strError);
+    bool getSequenceAwareness(const std::string &strDomain, bool &bSequenceAware,
+                              std::string &strError) const;
+    bool listDomainElements(const std::string &strDomain, std::string &strResult) const;
 
     /** Split a domain in two.
      * Remove an element of a domain and create a new domain which owns the element.
@@ -86,18 +88,19 @@ public:
      * @param[out] infos useful information we can provide to client
      * @return true if succeed false otherwise
      */
-    bool split(const std::string& domainName,
-               CConfigurableElement* element,
-               core::Results& infos);
+    bool split(const std::string &domainName, CConfigurableElement *element, core::Results &infos);
 
-    void listAssociatedElements(std::string& strResult) const;
-    void listConflictingElements(std::string& strResult) const;
-    void listDomains(std::string& strResult) const;
+    void listAssociatedElements(std::string &strResult) const;
+    void listConflictingElements(std::string &strResult) const;
+    void listDomains(std::string &strResult) const;
     /// Configurations
-    bool listConfigurations(const std::string& strDomain, std::string& strResult) const;
-    bool createConfiguration(const std::string& strDomain, const std::string& strConfiguration, const CParameterBlackboard* pMainBlackboard, std::string& strError);
-    bool deleteConfiguration(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
-    bool renameConfiguration(const std::string& strDomain, const std::string& strConfigurationName, const std::string& strNewConfigurationName, std::string& strError);
+    bool listConfigurations(const std::string &strDomain, std::string &strResult) const;
+    bool createConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+                             const CParameterBlackboard *pMainBlackboard, std::string &strError);
+    bool deleteConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+                             std::string &strError);
+    bool renameConfiguration(const std::string &strDomain, const std::string &strConfigurationName,
+                             const std::string &strNewConfigurationName, std::string &strError);
 
     /** Restore a configuration
      *
@@ -108,21 +111,28 @@ public:
      * @param[out] errors, errors encountered during restoration
      * @return true if success false otherwise
      */
-    bool restoreConfiguration(const std::string& strDomain,
-                              const std::string& strConfiguration,
-                              CParameterBlackboard* pMainBlackboard,
-                              bool bAutoSync,
-                              core::Results& errors) const;
+    bool restoreConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+                              CParameterBlackboard *pMainBlackboard, bool bAutoSync,
+                              core::Results &errors) const;
 
-    bool saveConfiguration(const std::string& strDomain, const std::string& strConfiguration, const CParameterBlackboard* pMainBlackboard, std::string& strError);
-    bool setElementSequence(const std::string& strDomain, const std::string& strConfiguration, const std::vector<std::string>& astrNewElementSequence, std::string& strError);
-    bool getElementSequence(const std::string& strDomain, const std::string& strConfiguration, std::string& strResult) const;
-    bool setApplicationRule(const std::string& strDomain, const std::string& strConfiguration, const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
-    bool clearApplicationRule(const std::string& strDomain, const std::string& strConfiguration, std::string& strError);
-    bool getApplicationRule(const std::string& strDomain, const std::string& strConfiguration, std::string& strResult) const;
+    bool saveConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+                           const CParameterBlackboard *pMainBlackboard, std::string &strError);
+    bool setElementSequence(const std::string &strDomain, const std::string &strConfiguration,
+                            const std::vector<std::string> &astrNewElementSequence,
+                            std::string &strError);
+    bool getElementSequence(const std::string &strDomain, const std::string &strConfiguration,
+                            std::string &strResult) const;
+    bool setApplicationRule(const std::string &strDomain, const std::string &strConfiguration,
+                            const std::string &strApplicationRule,
+                            const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition,
+                            std::string &strError);
+    bool clearApplicationRule(const std::string &strDomain, const std::string &strConfiguration,
+                              std::string &strError);
+    bool getApplicationRule(const std::string &strDomain, const std::string &strConfiguration,
+                            std::string &strResult) const;
 
     // Last applied configurations
-    void listLastAppliedConfigurations(std::string& strResult) const;
+    void listLastAppliedConfigurations(std::string &strResult) const;
 
     /** Associate a configurable element to a domain
      *
@@ -132,29 +142,29 @@ public:
      * @param[out] infos useful information we can provide to client
      * @return true if succeed false otherwise
      */
-    bool addConfigurableElementToDomain(const std::string& domainName,
-                                        CConfigurableElement* element,
-                                        const CParameterBlackboard* mainBlackboard,
-                                        core::Results& infos);
+    bool addConfigurableElementToDomain(const std::string &domainName,
+                                        CConfigurableElement *element,
+                                        const CParameterBlackboard *mainBlackboard,
+                                        core::Results &infos);
 
-    bool removeConfigurableElementFromDomain(const std::string& strDomain, CConfigurableElement* pConfigurableElement, std::string& strError);
+    bool removeConfigurableElementFromDomain(const std::string &strDomain,
+                                             CConfigurableElement *pConfigurableElement,
+                                             std::string &strError);
 
     // Configuration Blackboard for element
-    CParameterBlackboard* findConfigurationBlackboard(const std::string& strDomain,
-                                     const std::string& strConfiguration,
-                                     const CConfigurableElement* pConfigurableElement,
-                                     size_t& baseOffset,
-                                     bool& bIsLastApplied,
-                                     std::string& strError) const;
+    CParameterBlackboard *findConfigurationBlackboard(
+        const std::string &strDomain, const std::string &strConfiguration,
+        const CConfigurableElement *pConfigurableElement, size_t &baseOffset, bool &bIsLastApplied,
+        std::string &strError) const;
 
-    const CConfigurableDomain* findConfigurableDomain(const std::string& strDomain,
-                                                      std::string& strError) const;
+    const CConfigurableDomain *findConfigurableDomain(const std::string &strDomain,
+                                                      std::string &strError) const;
 
     // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
     // Ensure validity on whole domains from main blackboard
-    void validate(const CParameterBlackboard* pMainBlackboard);
+    void validate(const CParameterBlackboard *pMainBlackboard);
 
     /** Apply the configuration if required
      *
@@ -163,13 +173,12 @@ public:
      * @param[in] bForce boolean used to force configuration application
      * @param[out] infos useful information we can provide to client
      */
-    void apply(CParameterBlackboard* pParameterBlackboard,
-               CSyncerSet& syncerSet,
-               bool bForce,
-               core::Results& infos) const;
+    void apply(CParameterBlackboard *pParameterBlackboard, CSyncerSet &syncerSet, bool bForce,
+               core::Results &infos) const;
 
     // Class kind
     virtual std::string getKind() const;
+
 private:
     /** Delete a domain
      *
@@ -178,12 +187,13 @@ private:
      * @returns true of the domain was sucessfully deleted, false otherwise (i.e.
      * the domain didn't exist).
      */
-    void deleteDomain(CConfigurableDomain& configurableDomain);
+    void deleteDomain(CConfigurableDomain &configurableDomain);
     // Returns true if children dynamic creation is to be dealt with
     virtual bool childrenAreDynamic() const;
     // Gather owned configurable elements owned by any domain
-    void gatherAllOwnedConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const;
+    void gatherAllOwnedConfigurableElements(
+        std::set<const CConfigurableElement *> &configurableElementSet) const;
     // Domain retrieval
-    CConfigurableDomain* findConfigurableDomain(const std::string& strDomain, std::string& strError);
+    CConfigurableDomain *findConfigurableDomain(const std::string &strDomain,
+                                                std::string &strError);
 };
-

@@ -30,19 +30,23 @@
 #include "ConfigurableElementAggregator.h"
 #include "ConfigurableElement.h"
 
-CConfigurableElementAggregator::CConfigurableElementAggregator(std::list<const CConfigurableElement*>& aggregateList, MatchesAggregationCriterion pfnMatchesAggregationCriterion)
+CConfigurableElementAggregator::CConfigurableElementAggregator(
+    std::list<const CConfigurableElement *> &aggregateList,
+    MatchesAggregationCriterion pfnMatchesAggregationCriterion)
     : _aggregateList(aggregateList), _pfnMatchesAggregationCriterion(pfnMatchesAggregationCriterion)
 {
 }
 
 // Aggregate
-void CConfigurableElementAggregator::aggegate(const CConfigurableElement* pConfigurableElement)
+void CConfigurableElementAggregator::aggegate(const CConfigurableElement *pConfigurableElement)
 {
     doAggregate(pConfigurableElement, _aggregateList);
 }
 
 // Recursive aggregate
-bool CConfigurableElementAggregator::doAggregate(const CConfigurableElement* pConfigurableElement, std::list<const CConfigurableElement*>& aggregateList)
+bool CConfigurableElementAggregator::doAggregate(
+    const CConfigurableElement *pConfigurableElement,
+    std::list<const CConfigurableElement *> &aggregateList)
 {
     if (!(pConfigurableElement->*_pfnMatchesAggregationCriterion)()) {
 
@@ -50,14 +54,15 @@ bool CConfigurableElementAggregator::doAggregate(const CConfigurableElement* pCo
         return false;
     }
     // Check children
-    std::list<const CConfigurableElement*> childAggregateElementList;
+    std::list<const CConfigurableElement *> childAggregateElementList;
 
     size_t uiNbChildren = pConfigurableElement->getNbChildren();
     size_t uiNbMatchingChildren = 0;
 
     for (size_t index = 0; index < uiNbChildren; index++) {
 
-        const CConfigurableElement* pChildConfigurableElement = static_cast<const CConfigurableElement*>(pConfigurableElement->getChild(index));
+        const CConfigurableElement *pChildConfigurableElement =
+            static_cast<const CConfigurableElement *>(pConfigurableElement->getChild(index));
 
         uiNbMatchingChildren += doAggregate(pChildConfigurableElement, childAggregateElementList);
     }
@@ -70,7 +75,8 @@ bool CConfigurableElementAggregator::doAggregate(const CConfigurableElement* pCo
         return true;
     } else {
         // Add children if any
-        aggregateList.insert(aggregateList.end(), childAggregateElementList.begin(), childAggregateElementList.end());
+        aggregateList.insert(aggregateList.end(), childAggregateElementList.begin(),
+                             childAggregateElementList.end());
 
         return false;
     }

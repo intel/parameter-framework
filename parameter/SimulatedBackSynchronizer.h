@@ -39,14 +39,15 @@ class CParameterBlackboard;
 class CSimulatedBackSynchronizer : public CBackSynchronizer
 {
 public:
-    CSimulatedBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard);
+    CSimulatedBackSynchronizer(const CConfigurableElement *pConfigurableElement,
+                               CParameterBlackboard *pParameterBlackboard);
 
     // Back synchronization
     virtual void sync();
+
 private:
     // Fake error for parameter context creation
     std::string _strError;
     // Parameter context
     CParameterAccessContext _parameterAccessContext;
 };
-

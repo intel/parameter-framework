@@ -37,27 +37,17 @@
 
 /* Wrap a class to expose its logging [info, warning] capabilities
  * through ILogger. */
-template<class T>
+template <class T>
 class CParameterMgrLogger : public core::log::ILogger, private utility::NonCopyable
 {
 public:
-    CParameterMgrLogger(T& parameterMgrConnector) :
-        _parameterMgrConnector(parameterMgrConnector)
-    {
-    }
+    CParameterMgrLogger(T &parameterMgrConnector) : _parameterMgrConnector(parameterMgrConnector) {}
 
-    virtual void info(const std::string& log)
-    {
-        _parameterMgrConnector.info(log);
-    }
+    virtual void info(const std::string &log) { _parameterMgrConnector.info(log); }
 
-    virtual void warning(const std::string& log)
-    {
-        _parameterMgrConnector.warning(log);
-    }
+    virtual void warning(const std::string &log) { _parameterMgrConnector.warning(log); }
 
 private:
     // Log destination
-    T& _parameterMgrConnector;
+    T &_parameterMgrConnector;
 };
-

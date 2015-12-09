@@ -39,7 +39,7 @@ public:
     virtual void setCriterionState(int iState) = 0;
     virtual int getCriterionState() const = 0;
     virtual std::string getCriterionName() const = 0;
-    virtual const ISelectionCriterionTypeInterface* getCriterionType() const = 0;
+    virtual const ISelectionCriterionTypeInterface *getCriterionType() const = 0;
 
 protected:
     virtual ~ISelectionCriterionInterface() {}

@@ -34,7 +34,6 @@
 class ISelectionCriterionTypeInterface
 {
 public:
-
     /**
      * Add a new pair [integer, litteral] which represents a criterion
      *
@@ -43,13 +42,12 @@ public:
      * @param[out] strError string containing error information we can provide to client
      * @return true if succeed false otherwise
      */
-    virtual bool addValuePair(int iValue, const std::string& strValue, std::string& strError) = 0;
-    virtual bool getNumericalValue(const std::string& strValue, int& iValue) const = 0;
-    virtual bool getLiteralValue(int iValue, std::string& strValue) const = 0;
+    virtual bool addValuePair(int iValue, const std::string &strValue, std::string &strError) = 0;
+    virtual bool getNumericalValue(const std::string &strValue, int &iValue) const = 0;
+    virtual bool getLiteralValue(int iValue, std::string &strValue) const = 0;
     virtual bool isTypeInclusive() const = 0;
     virtual std::string getFormattedState(int iValue) const = 0;
 
 protected:
     virtual ~ISelectionCriterionTypeInterface() {}
 };
-

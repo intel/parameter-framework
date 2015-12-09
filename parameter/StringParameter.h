@@ -36,22 +36,24 @@
 class CStringParameter : public CBaseParameter
 {
 public:
-    CStringParameter(const std::string& strName, const CTypeElement* pTypeElement);
+    CStringParameter(const std::string &strName, const CTypeElement *pTypeElement);
 
     // Instantiation, allocation
     virtual size_t getFootPrint() const;
 
     // Type
     virtual Type getType() const;
+
 protected:
     // Used for simulation and virtual subsystems
-    virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
+    virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
 
     // Actual value access (tuning)
-    virtual bool doSetValue(const std::string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const;
-    virtual void doGetValue(std::string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool doSetValue(const std::string &strValue, size_t offset,
+                            CParameterAccessContext &parameterAccessContext) const;
+    virtual void doGetValue(std::string &strValue, size_t offset,
+                            CParameterAccessContext &parameterAccessContext) const;
 
     // Size
     size_t getSize() const;
 };
-

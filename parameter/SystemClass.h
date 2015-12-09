@@ -43,12 +43,11 @@ class DynamicLibrary;
 class CSystemClass final : public CConfigurableElement
 {
 public:
-
     /**
      * @param[in] logger the logger provided by the client
      * it need to be given to the subsystem library
      */
-    CSystemClass(core::log::Logger& logger);
+    CSystemClass(core::log::Logger &logger);
     virtual ~CSystemClass();
 
     /** Load subsystem plugin and fill the corresponding libraries.
@@ -61,10 +60,10 @@ public:
      * @return true if the plugins succesfully started or that a fallback is available,
                false otherwise.
      */
-    bool loadSubsystems(std::string& strError, const CSubsystemPlugins* pSubsystemPlugins,
+    bool loadSubsystems(std::string &strError, const CSubsystemPlugins *pSubsystemPlugins,
                         bool bVirtualSubsystemFallback = false);
     // Subsystem factory
-    const CSubsystemLibrary* getSubsystemLibrary() const;
+    const CSubsystemLibrary *getSubsystemLibrary() const;
 
     /**
       * Look for subsystems that need to be resynchronized.
@@ -74,7 +73,7 @@ public:
       * @param[out] syncerSet The syncer set to fill
       * @param[out] infos Relevant informations client may want to log
       */
-    void checkForSubsystemsToResync(CSyncerSet& syncerSet, core::Results& infos);
+    void checkForSubsystemsToResync(CSyncerSet &syncerSet, core::Results &infos);
 
     /**
       * Reset subsystems need to resync flag.
@@ -84,11 +83,11 @@ public:
     // base
     virtual std::string getKind() const;
 
-    bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const override;
+    bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const override;
 
 private:
-    CSystemClass(const CSystemClass&);
-    CSystemClass& operator=(const CSystemClass&);
+    CSystemClass(const CSystemClass &);
+    CSystemClass &operator=(const CSystemClass &);
     // base
     virtual bool childrenAreDynamic() const;
 
@@ -99,8 +98,8 @@ private:
      *
      * @return true if all plugins have been succesfully loaded, false otherwises.
      */
-    bool loadSubsystemsFromSharedLibraries(core::Results& errors,
-                                           const CSubsystemPlugins* pSubsystemPlugins);
+    bool loadSubsystemsFromSharedLibraries(core::Results &errors,
+                                           const CSubsystemPlugins *pSubsystemPlugins);
 
     /** Load subsystem plugin shared libraries.
      *
@@ -112,17 +111,17 @@ private:
      *         When false is returned, some plugins MIHGT have been loaded
      *         but the lstrPluginFiles is accurate.
      */
-    bool loadPlugins(std::list<std::string>& lstrPluginFiles, core::Results& errors);
+    bool loadPlugins(std::list<std::string> &lstrPluginFiles, core::Results &errors);
 
     // Subsystem factory
-    CSubsystemLibrary* _pSubsystemLibrary;
-    std::list<std::unique_ptr<DynamicLibrary> > _subsystemLibraryHandleList; /**< Contains the list of all open plugin libs. */
+    CSubsystemLibrary *_pSubsystemLibrary;
+    std::list<std::unique_ptr<DynamicLibrary>>
+        _subsystemLibraryHandleList; /**< Contains the list of all open plugin libs. */
 
     /** Application Logger we need to provide to plugins */
-    core::log::Logger& _logger;
+    core::log::Logger &_logger;
 
     /** The entry point symbol that must be implemented by plugins
      */
     static const char entryPointSymbol[];
 };
-

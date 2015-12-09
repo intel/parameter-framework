@@ -39,15 +39,14 @@
 
 #define base CTESTSubsystemObject
 
-CTESTSubsystemBinary::CTESTSubsystemBinary(const std::string& strMappingValue,
-                                           CInstanceConfigurableElement* pInstanceConfigurableElement,
-                                           const CMappingContext& context,
-                                           core::log::Logger& logger)
+CTESTSubsystemBinary::CTESTSubsystemBinary(
+    const std::string &strMappingValue, CInstanceConfigurableElement *pInstanceConfigurableElement,
+    const CMappingContext &context, core::log::Logger &logger)
     : base(strMappingValue, pInstanceConfigurableElement, context, logger)
 {
 }
 
-std::string CTESTSubsystemBinary::toString(const void* pvValue, size_t size) const
+std::string CTESTSubsystemBinary::toString(const void *pvValue, size_t size) const
 {
     std::ostringstream strStream;
     uint32_t uiValue = 0;
@@ -61,7 +60,7 @@ std::string CTESTSubsystemBinary::toString(const void* pvValue, size_t size) con
     return strStream.str();
 }
 
-void CTESTSubsystemBinary::fromString(const std::string& strValue, void* pvValue, size_t size)
+void CTESTSubsystemBinary::fromString(const std::string &strValue, void *pvValue, size_t size)
 {
     uint32_t uiValue;
 

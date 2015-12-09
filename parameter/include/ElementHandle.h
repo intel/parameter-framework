@@ -43,7 +43,7 @@
 class CParameterMgr;
 class CConfigurableElement;
 class CBaseParameter;
- /** @} */
+/** @} */
 
 /** TODO */
 class PARAMETER_EXPORT ElementHandle
@@ -99,7 +99,7 @@ public:
      * @param[out] strValue the resulting mapping value in case of success
      * @return true for if mapping key exists, false otherwise
      */
-    bool getMappingData(const std::string& strKey, std::string& strValue) const;
+    bool getMappingData(const std::string &strKey, std::string &strValue) const;
 
     /** Gets element structure description as XML string
      *
@@ -131,7 +131,7 @@ public:
      *
      * @return true on success, false on failure
      */
-     bool getAsXML(std::string& xmlValue, std::string& error) const;
+    bool getAsXML(std::string &xmlValue, std::string &error) const;
 
     /** Sets element settings as XML string
      *
@@ -147,7 +147,7 @@ public:
      *
      * @return true on success, false otherwise
      */
-    bool setAsXML(const std::string& xmlValue, std::string& error);
+    bool setAsXML(const std::string &xmlValue, std::string &error);
 
     /** Gets element settings in binary format
      *
@@ -156,7 +156,7 @@ public:
      *
      * @returns true
      */
-     bool getAsBytes(std::vector<uint8_t>& bytesValue, std::string& error) const;
+    bool getAsBytes(std::vector<uint8_t> &bytesValue, std::string &error) const;
 
     /** Sets element settings in binary format
      *
@@ -164,7 +164,7 @@ public:
      *    - targeted element needs to be rogue for this operation to be allowed
      *    - size of the passed array must match that of the element
      */
-    bool setAsBytes(const std::vector<uint8_t>& bytesValue, std::string& error);
+    bool setAsBytes(const std::vector<uint8_t> &bytesValue, std::string &error);
 
     /** @} */
 
@@ -189,51 +189,51 @@ public:
      */
 
     /** Boolean access @{ */
-    bool getAsBoolean(bool& bValue, std::string& strError) const;
-    bool setAsBoolean(bool bValue, std::string& strError);
-    bool setAsBooleanArray(const std::vector<bool>& abValues, std::string& strError);
-    bool getAsBooleanArray(std::vector<bool>& abValues, std::string& strError) const;
+    bool getAsBoolean(bool &bValue, std::string &strError) const;
+    bool setAsBoolean(bool bValue, std::string &strError);
+    bool setAsBooleanArray(const std::vector<bool> &abValues, std::string &strError);
+    bool getAsBooleanArray(std::vector<bool> &abValues, std::string &strError) const;
     /** @} */
 
     /** Integer Access @{ */
-    bool setAsInteger(uint32_t uiValue, std::string& strError);
-    bool getAsInteger(uint32_t& uiValue, std::string& strError) const;
-    bool setAsIntegerArray(const std::vector<uint32_t>& auiValues, std::string& strError);
-    bool getAsIntegerArray(std::vector<uint32_t>& auiValues, std::string& strError) const;
+    bool setAsInteger(uint32_t uiValue, std::string &strError);
+    bool getAsInteger(uint32_t &uiValue, std::string &strError) const;
+    bool setAsIntegerArray(const std::vector<uint32_t> &auiValues, std::string &strError);
+    bool getAsIntegerArray(std::vector<uint32_t> &auiValues, std::string &strError) const;
     /** @} */
 
     /** Signed Integer Access @{ */
-    bool setAsSignedInteger(int32_t iValue, std::string& strError);
-    bool getAsSignedInteger(int32_t& iValue, std::string& strError) const;
-    bool setAsSignedIntegerArray(const std::vector<int32_t>& aiValues, std::string& strError);
-    bool getAsSignedIntegerArray(std::vector<int32_t>& aiValues, std::string& strError) const;
+    bool setAsSignedInteger(int32_t iValue, std::string &strError);
+    bool getAsSignedInteger(int32_t &iValue, std::string &strError) const;
+    bool setAsSignedIntegerArray(const std::vector<int32_t> &aiValues, std::string &strError);
+    bool getAsSignedIntegerArray(std::vector<int32_t> &aiValues, std::string &strError) const;
     /** @} */
 
     /** Double Access @{ */
-    bool setAsDouble(double dValue, std::string& strError);
-    bool getAsDouble(double& dValue, std::string& strError) const;
-    bool setAsDoubleArray(const std::vector<double>& adValues, std::string& strError);
-    bool getAsDoubleArray(std::vector<double>& adValues, std::string& strError) const;
+    bool setAsDouble(double dValue, std::string &strError);
+    bool getAsDouble(double &dValue, std::string &strError) const;
+    bool setAsDoubleArray(const std::vector<double> &adValues, std::string &strError);
+    bool getAsDoubleArray(std::vector<double> &adValues, std::string &strError) const;
     /** @} */
 
     /** String Access @{ */
-    bool setAsString(const std::string& strValue, std::string& strError);
-    bool getAsString(std::string& strValue, std::string& strError) const;
-    bool setAsStringArray(const std::vector<std::string>& astrValues, std::string& strError);
-    bool getAsStringArray(std::vector<std::string>& astrValues, std::string& strError) const;
+    bool setAsString(const std::string &strValue, std::string &strError);
+    bool getAsString(std::string &strValue, std::string &strError) const;
+    bool setAsStringArray(const std::vector<std::string> &astrValues, std::string &strError);
+    bool getAsStringArray(std::vector<std::string> &astrValues, std::string &strError) const;
     /** @} */
 
     /** @} */
 
 protected:
-    ElementHandle(CConfigurableElement& element, CParameterMgr& parameterMgr);
+    ElementHandle(CConfigurableElement &element, CParameterMgr &parameterMgr);
     friend CParameterMgr; // So that it can build the handler
 
 private:
     template <class T>
     bool setAs(const T value, std::string &error) const;
     template <class T>
-    bool getAs(T& value, std::string &error) const;
+    bool getAs(T &value, std::string &error) const;
 
     template <class T>
     static size_t getSize(T value);
@@ -252,7 +252,7 @@ private:
      *
      * @return true if the parameter value can be retrieved, false otherwise.
      */
-    bool checkSetValidity(size_t arrayLength, std::string& error) const;
+    bool checkSetValidity(size_t arrayLength, std::string &error) const;
 
     /** Check that the parameter value can be retrieved.
      *
@@ -262,10 +262,10 @@ private:
      *
      * @return true if the parameter value can be retrieved, false otherwise.
      */
-    bool checkGetValidity(bool asArray, std::string& error) const;
+    bool checkGetValidity(bool asArray, std::string &error) const;
 
     /** Reference to the handled Configurable element. */
-    CConfigurableElement& mElement;
+    CConfigurableElement &mElement;
 
-    CParameterMgr& mParameterMgr;
+    CParameterMgr &mParameterMgr;
 };

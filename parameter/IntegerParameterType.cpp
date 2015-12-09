@@ -42,7 +42,7 @@
 using std::string;
 using std::ostringstream;
 
-CIntegerParameterType::CIntegerParameterType(const string& strName) : base(strName)
+CIntegerParameterType::CIntegerParameterType(const string &strName) : base(strName)
 {
 }
 
@@ -59,7 +59,7 @@ bool CIntegerParameterType::childrenAreDynamic() const
 }
 
 // Element properties
-void CIntegerParameterType::showProperties(string& strResult) const
+void CIntegerParameterType::showProperties(string &strResult) const
 {
     base::showProperties(strResult);
 
@@ -79,7 +79,7 @@ void CIntegerParameterType::showProperties(string& strResult) const
     strResult += "\n";
 
     // Check if there's an adaptation object available
-    const CParameterAdaptation* pParameterAdaption = getParameterAdaptation();
+    const CParameterAdaptation *pParameterAdaption = getParameterAdaptation();
 
     if (pParameterAdaption) {
 
@@ -90,7 +90,8 @@ void CIntegerParameterType::showProperties(string& strResult) const
     }
 }
 
-bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
+                                    CXmlSerializingContext &serializingContext)
 {
     // Sign
     xmlElement.getAttribute("Signed", _bSigned);
@@ -118,8 +119,8 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 
             _uiMax = (1U << sizeInBits) - 1;
         }
-        signExtend((int32_t&)_uiMin);
-        signExtend((int32_t&)_uiMax);
+        signExtend((int32_t &)_uiMin);
+        signExtend((int32_t &)_uiMax);
     } else {
         if (!xmlElement.getAttribute("Min", _uiMin)) {
 
@@ -137,7 +138,8 @@ bool CIntegerParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializi
 }
 
 // Conversion (tuning)
-bool CIntegerParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::toBlackboard(const string &strValue, uint32_t &uiValue,
+                                         CParameterAccessContext &parameterAccessContext) const
 {
     // Hexa
     bool bValueProvidedAsHexa = utility::isHexadecimal(strValue);
@@ -159,13 +161,15 @@ bool CIntegerParameterType::toBlackboard(const string& strValue, uint32_t& uiVal
             signExtend(iData);
         }
 
-        if (!checkValueAgainstRange<int64_t>(strValue, iData, (int32_t)_uiMin, (int32_t)_uiMax, parameterAccessContext, bValueProvidedAsHexa)) {
+        if (!checkValueAgainstRange<int64_t>(strValue, iData, (int32_t)_uiMin, (int32_t)_uiMax,
+                                             parameterAccessContext, bValueProvidedAsHexa)) {
 
             return false;
         }
     } else {
 
-        if (!checkValueAgainstRange<uint64_t>(strValue, iData, _uiMin, _uiMax, parameterAccessContext, bValueProvidedAsHexa)) {
+        if (!checkValueAgainstRange<uint64_t>(strValue, iData, _uiMin, _uiMax,
+                                              parameterAccessContext, bValueProvidedAsHexa)) {
 
             return false;
         }
@@ -176,7 +180,8 @@ bool CIntegerParameterType::toBlackboard(const string& strValue, uint32_t& uiVal
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(string& strValue, const uint32_t& value, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::fromBlackboard(string &strValue, const uint32_t &value,
+                                           CParameterAccessContext &parameterAccessContext) const
 {
     // Check unsigned value is encodable
     assert(isEncodable(value, false));
@@ -188,8 +193,8 @@ bool CIntegerParameterType::fromBlackboard(string& strValue, const uint32_t& val
     if (parameterAccessContext.valueSpaceIsRaw() && parameterAccessContext.outputRawFormatIsHex()) {
 
         // Hexa display with unecessary bits cleared out
-        stream << "0x" << std::hex << std::uppercase <<
-               std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0') << value;
+        stream << "0x" << std::hex << std::uppercase << std::setw(static_cast<int>(getSize() * 2))
+               << std::setfill('0') << value;
     } else {
 
         if (_bSigned) {
@@ -213,7 +218,8 @@ bool CIntegerParameterType::fromBlackboard(string& strValue, const uint32_t& val
 
 // Value access
 // Integer
-bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
+                                         CParameterAccessContext &parameterAccessContext) const
 {
     if (uiUserValue < _uiMin || uiUserValue > _uiMax) {
 
@@ -227,7 +233,8 @@ bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t& uiValue
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
+bool CIntegerParameterType::fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
+                                           CParameterAccessContext & /*ctx*/) const
 {
     // Do assign
     uiUserValue = uiValue;
@@ -236,7 +243,8 @@ bool CIntegerParameterType::fromBlackboard(uint32_t& uiUserValue, uint32_t uiVal
 }
 
 // Signed Integer
-bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t &uiValue,
+                                         CParameterAccessContext &parameterAccessContext) const
 {
     if (iUserValue < (int32_t)_uiMin || iUserValue > (int32_t)_uiMax) {
 
@@ -250,7 +258,8 @@ bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t& uiValue, 
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& /*ctx*/) const
+bool CIntegerParameterType::fromBlackboard(int32_t &iUserValue, uint32_t uiValue,
+                                           CParameterAccessContext & /*ctx*/) const
 {
     int32_t iValue = uiValue;
 
@@ -264,10 +273,11 @@ bool CIntegerParameterType::fromBlackboard(int32_t& iUserValue, uint32_t uiValue
 }
 
 // Double
-bool CIntegerParameterType::toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::toBlackboard(double dUserValue, uint32_t &uiValue,
+                                         CParameterAccessContext &parameterAccessContext) const
 {
     // Check if there's an adaptation object available
-    const CParameterAdaptation* pParameterAdaption = getParameterAdaptation();
+    const CParameterAdaptation *pParameterAdaption = getParameterAdaptation();
 
     if (!pParameterAdaption) {
 
@@ -303,10 +313,11 @@ bool CIntegerParameterType::toBlackboard(double dUserValue, uint32_t& uiValue, C
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CIntegerParameterType::fromBlackboard(double &dUserValue, uint32_t uiValue,
+                                           CParameterAccessContext &parameterAccessContext) const
 {
     // Check if there's an adaptation object available
-    const CParameterAdaptation* pParameterAdaption = getParameterAdaptation();
+    const CParameterAdaptation *pParameterAdaption = getParameterAdaptation();
 
     if (!pParameterAdaption) {
 
@@ -352,7 +363,9 @@ int CIntegerParameterType::toPlainInteger(int iSizeOptimizedData) const
 }
 
 // Convert value provided by the user as a string into an int64
-bool CIntegerParameterType::convertValueFromString(const string& strValue, int64_t& iData, CParameterAccessContext& parameterAccessContext) const {
+bool CIntegerParameterType::convertValueFromString(
+    const string &strValue, int64_t &iData, CParameterAccessContext &parameterAccessContext) const
+{
 
     // Reset errno to check if it is updated during the conversion (strtol/strtoul)
     errno = 0;
@@ -367,11 +380,12 @@ bool CIntegerParameterType::convertValueFromString(const string& strValue, int64
         iData = strtoull(strValue.c_str(), &pcStrEnd, 0);
     }
 
-    // Conversion error when the input string does not contain only digits or the number is out of range (int32_t type)
+    // Conversion error when the input string does not contain only digits or the number is out of
+    // range (int32_t type)
     if (errno || (*pcStrEnd != '\0')) {
 
         string strError;
-        strError =  "Impossible to convert value " + strValue + " for " + getKind();
+        strError = "Impossible to convert value " + strValue + " for " + getKind();
 
         parameterAccessContext.setError(strError);
 
@@ -382,7 +396,11 @@ bool CIntegerParameterType::convertValueFromString(const string& strValue, int64
 }
 
 // Range checking
-template <typename type> bool CIntegerParameterType::checkValueAgainstRange(const string& strValue, type value, type minValue, type maxValue, CParameterAccessContext& parameterAccessContext, bool bHexaValue) const
+template <typename type>
+bool CIntegerParameterType::checkValueAgainstRange(const string &strValue, type value,
+                                                   type minValue, type maxValue,
+                                                   CParameterAccessContext &parameterAccessContext,
+                                                   bool bHexaValue) const
 {
     if (value < minValue || value > maxValue) {
 
@@ -392,8 +410,8 @@ template <typename type> bool CIntegerParameterType::checkValueAgainstRange(cons
 
         if (bHexaValue) {
 
-            stream << "0x" << std::hex << std::uppercase <<
-                   std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0');
+            stream << "0x" << std::hex << std::uppercase
+                   << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0');
             // Format Min
             stream << minValue;
             // Format Max
@@ -401,7 +419,7 @@ template <typename type> bool CIntegerParameterType::checkValueAgainstRange(cons
 
         } else {
 
-            stream << minValue << ", " <<  maxValue;
+            stream << minValue << ", " << maxValue;
         }
 
         stream << "] for " << getKind();
@@ -414,13 +432,14 @@ template <typename type> bool CIntegerParameterType::checkValueAgainstRange(cons
 }
 
 // Adaptation element retrieval
-const CParameterAdaptation* CIntegerParameterType::getParameterAdaptation() const
+const CParameterAdaptation *CIntegerParameterType::getParameterAdaptation() const
 {
-    return static_cast<const CParameterAdaptation*>(findChildOfKind("Adaptation"));
+    return static_cast<const CParameterAdaptation *>(findChildOfKind("Adaptation"));
 }
 
 // From IXmlSource
-void CIntegerParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CIntegerParameterType::toXml(CXmlElement &xmlElement,
+                                  CXmlSerializingContext &serializingContext) const
 {
     // Sign
     xmlElement.setAttribute("Signed", _bSigned);
@@ -446,5 +465,4 @@ void CIntegerParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContex
     xmlElement.setAttribute("Size", getSize() * 8);
 
     base::toXml(xmlElement, serializingContext);
-
 }

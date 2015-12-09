@@ -36,13 +36,13 @@
 class CParameterAdaptation : public CElement
 {
 public:
-    CParameterAdaptation(const std::string& strType);
+    CParameterAdaptation(const std::string &strType);
 
     // Element properties
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // Conversions
     virtual int64_t fromUserValue(double dValue) const;
@@ -50,6 +50,7 @@ public:
 
     // CElement
     virtual std::string getKind() const;
+
 protected:
     // Attributes
     int32_t getOffset() const;
@@ -58,4 +59,3 @@ private:
     // Offset
     int32_t _iOffset{0};
 };
-

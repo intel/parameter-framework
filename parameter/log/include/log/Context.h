@@ -38,17 +38,16 @@ namespace log
 {
 
 /** Log formatter which provide context indentation */
-class Context {
+class Context
+{
 public:
-
     /**
      * Class Constructor
      *
      * @param[in] logger application logger
      * @param[in] context name of the context to open
      */
-    Context(Logger& logger, const std::string& context)
-        : mLogger(logger)
+    Context(Logger &logger, const std::string &context) : mLogger(logger)
     {
         mLogger.info() << context << " {";
         mLogger.mProlog += "    ";
@@ -62,11 +61,11 @@ public:
     }
 
 private:
-    Context(const Context&);
-    Context& operator=(const Context&);
+    Context(const Context &);
+    Context &operator=(const Context &);
 
     /** Application logger */
-    Logger& mLogger;
+    Logger &mLogger;
 };
 
 } /** log namespace */

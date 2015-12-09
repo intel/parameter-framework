@@ -39,7 +39,7 @@
 
 using std::string;
 
-CBitParameterType::CBitParameterType(const string& strName) : base(strName)
+CBitParameterType::CBitParameterType(const string &strName) : base(strName)
 {
 }
 
@@ -50,7 +50,7 @@ string CBitParameterType::getKind() const
 }
 
 // Element properties
-void CBitParameterType::showProperties(string& strResult) const
+void CBitParameterType::showProperties(string &strResult) const
 {
     base::showProperties(strResult);
 
@@ -71,7 +71,8 @@ void CBitParameterType::showProperties(string& strResult) const
 }
 
 // From IXmlSink
-bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CBitParameterType::fromXml(const CXmlElement &xmlElement,
+                                CXmlSerializingContext &serializingContext)
 {
     // Pos
     xmlElement.getAttribute("Pos", _bitPos);
@@ -80,16 +81,18 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
     xmlElement.getAttribute("Size", _uiBitSize);
 
     // Validate bit pos and size still fit into parent type
-    const CBitParameterBlockType* pBitParameterBlockType = static_cast<const CBitParameterBlockType*>(getParent());
+    const CBitParameterBlockType *pBitParameterBlockType =
+        static_cast<const CBitParameterBlockType *>(getParent());
 
     size_t uiParentBlockBitSize = pBitParameterBlockType->getSize() * 8;
 
     if (_bitPos + _uiBitSize > uiParentBlockBitSize) {
 
         // Range exceeded
-	std::ostringstream strStream;
+        std::ostringstream strStream;
 
-        strStream << "Pos and Size attributes inconsistent with maximum container element size (" << uiParentBlockBitSize << " bits) for " + getKind();
+        strStream << "Pos and Size attributes inconsistent with maximum container element size ("
+                  << uiParentBlockBitSize << " bits) for " + getKind();
 
         serializingContext.setError(strStream.str());
 
@@ -103,7 +106,8 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
         // Max value exceeded
         std::ostringstream strStream;
 
-        strStream << "Max attribute inconsistent with maximum encodable size (" << getMaxEncodableValue() << ") for " + getKind();
+        strStream << "Max attribute inconsistent with maximum encodable size ("
+                  << getMaxEncodableValue() << ") for " + getKind();
 
         serializingContext.setError(strStream.str());
 
@@ -115,7 +119,8 @@ bool CBitParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingCo
 }
 
 // Conversion
-bool CBitParameterType::toBlackboard(const string& strValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameterType::toBlackboard(const string &strValue, uint64_t &uiValue,
+                                     CParameterAccessContext &parameterAccessContext) const
 {
     // Get value
     uint64_t uiConvertedValue = strtoull(strValue.c_str(), NULL, 0);
@@ -123,13 +128,14 @@ bool CBitParameterType::toBlackboard(const string& strValue, uint64_t& uiValue, 
     if (uiConvertedValue > _uiMax) {
 
         // Range exceeded
-	std::ostringstream strStream;
+        std::ostringstream strStream;
 
         strStream << "Value " << strValue << " standing out of admitted range [";
 
         if (utility::isHexadecimal(strValue)) {
 
-            strStream << "0x0, " << "0x" << std::hex << std::uppercase;
+            strStream << "0x0, "
+                      << "0x" << std::hex << std::uppercase;
         } else {
 
             strStream << "0, ";
@@ -147,7 +153,8 @@ bool CBitParameterType::toBlackboard(const string& strValue, uint64_t& uiValue, 
     return true;
 }
 
-void CBitParameterType::fromBlackboard(string& strValue, const uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+void CBitParameterType::fromBlackboard(string &strValue, const uint64_t &uiValue,
+                                       CParameterAccessContext &parameterAccessContext) const
 {
     uint64_t uiConvertedValue = (uiValue & getMask()) >> _bitPos;
 
@@ -167,7 +174,8 @@ void CBitParameterType::fromBlackboard(string& strValue, const uint64_t& uiValue
 
 // Value access
 // Integer
-bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t &uiValue,
+                                     CParameterAccessContext &parameterAccessContext) const
 {
     if (uiUserValue > _uiMax) {
 
@@ -182,7 +190,8 @@ bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t& uiValue, CP
     return true;
 }
 
-void CBitParameterType::fromBlackboard(uint32_t& userValue, uint64_t value, CParameterAccessContext& /*ctx*/) const
+void CBitParameterType::fromBlackboard(uint32_t &userValue, uint64_t value,
+                                       CParameterAccessContext & /*ctx*/) const
 {
     userValue = static_cast<uint32_t>((value & getMask()) >> _bitPos);
 }
@@ -199,7 +208,7 @@ size_t CBitParameterType::getBitSize() const
     return _uiBitSize;
 }
 
-CInstanceConfigurableElement* CBitParameterType::doInstantiate() const
+CInstanceConfigurableElement *CBitParameterType::doInstantiate() const
 {
     return new CBitParameter(getName(), this);
 }
@@ -231,7 +240,8 @@ bool CBitParameterType::isEncodable(uint64_t uiData) const
 }
 
 // From IXmlSource
-void CBitParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CBitParameterType::toXml(CXmlElement &xmlElement,
+                              CXmlSerializingContext &serializingContext) const
 {
     // Position
     xmlElement.setAttribute("Pos", _bitPos);
@@ -243,5 +253,4 @@ void CBitParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& s
     xmlElement.setAttribute("Max", _uiMax);
 
     base::toXml(xmlElement, serializingContext);
-
 }

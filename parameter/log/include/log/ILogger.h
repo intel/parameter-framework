@@ -40,8 +40,9 @@ namespace log
 class ILogger
 {
 public:
-    virtual void info(const std::string& strLog) = 0;
-    virtual void warning(const std::string& strLog) = 0;
+    virtual void info(const std::string &strLog) = 0;
+    virtual void warning(const std::string &strLog) = 0;
+
 protected:
     virtual ~ILogger() {}
 };

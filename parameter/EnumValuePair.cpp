@@ -51,7 +51,8 @@ string CEnumValuePair::getNumericalAsString() const
 }
 
 // From IXmlSink
-bool CEnumValuePair::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CEnumValuePair::fromXml(const CXmlElement &xmlElement,
+                             CXmlSerializingContext &serializingContext)
 {
     // Literal
     std::string name;
@@ -66,14 +67,15 @@ bool CEnumValuePair::fromXml(const CXmlElement& xmlElement, CXmlSerializingConte
 }
 
 // Content dumping
-string CEnumValuePair::logValue(utility::ErrorContext& /*ctx*/) const
+string CEnumValuePair::logValue(utility::ErrorContext & /*ctx*/) const
 {
     // Convert value
     return getNumericalAsString();
 }
 
 // From IXmlSource
-void CEnumValuePair::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CEnumValuePair::toXml(CXmlElement &xmlElement,
+                           CXmlSerializingContext &serializingContext) const
 {
     // Literal
     xmlElement.setAttribute("Literal", this->getName());

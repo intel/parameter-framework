@@ -40,6 +40,5 @@ bool getParameterValue()
 {
     return SubsystemObject::getSingletonInstanceValue();
 }
-
 }
 }

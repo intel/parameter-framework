@@ -45,8 +45,8 @@ static const uint16_t defaultPortNumber = 5001;
 
 static void showUsage()
 {
-    cerr << "test-platform [-h|--help] <file path> [port number, default "
-         << defaultPortNumber << "]" << endl;
+    cerr << "test-platform [-h|--help] <file path> [port number, default " << defaultPortNumber
+         << "]" << endl;
 }
 
 static void showInvalidUsage(const string &error)
@@ -64,7 +64,6 @@ static void showHelp()
          << "    -h|--help  display this help and exit" << endl;
 }
 
-
 int main(int argc, char *argv[])
 {
     using Options = std::list<string>;
@@ -72,9 +71,8 @@ int main(int argc, char *argv[])
     Options options(argv + 1, argv + argc);
 
     // Handle help option
-    auto helpOpts = { "-h", "--help" };
-    auto match = std::find_first_of(begin(options), end(options),
-                                    begin(helpOpts), end(helpOpts));
+    auto helpOpts = {"-h", "--help"};
+    auto match = std::find_first_of(begin(options), end(options), begin(helpOpts), end(helpOpts));
     if (match != end(options)) {
         showHelp();
         return 0;

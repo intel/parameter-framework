@@ -35,10 +35,11 @@
 
 using std::string;
 
-CVirtualSubsystem::CVirtualSubsystem(const string& strName, core::log::Logger& logger)
+CVirtualSubsystem::CVirtualSubsystem(const string &strName, core::log::Logger &logger)
     : base(strName, logger), _pVirtualSyncer(new CVirtualSyncer(this))
 {
-    logger.warning() << "Subsystem " <<  strName << " loaded as virtual. "
+    logger.warning() << "Subsystem " << strName
+                     << " loaded as virtual. "
                         "Its parameters will not be synced with any external system.";
 }
 
@@ -48,18 +49,19 @@ CVirtualSubsystem::~CVirtualSubsystem()
 }
 
 // Syncer
-ISyncer* CVirtualSubsystem::getSyncer() const
+ISyncer *CVirtualSubsystem::getSyncer() const
 {
     return _pVirtualSyncer;
 }
 
-void CVirtualSubsystem::fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const
+void CVirtualSubsystem::fillSyncerSetFromDescendant(CSyncerSet &syncerSet) const
 {
     syncerSet += _pVirtualSyncer;
 }
 
 // From IMapper
-bool CVirtualSubsystem::mapBegin(CInstanceConfigurableElement* /*elem*/, bool& bKeepDiving, string& /*strError*/)
+bool CVirtualSubsystem::mapBegin(CInstanceConfigurableElement * /*elem*/, bool &bKeepDiving,
+                                 string & /*strError*/)
 {
     // Do nothing: prevent any subsystem object from being mapped
 

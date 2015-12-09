@@ -36,9 +36,9 @@ class CElementLibrarySet
 public:
     ~CElementLibrarySet();
 
-    void addElementLibrary(CElementLibrary* pElementLibrary);
-    CElementLibrary* getElementLibrary(size_t index) const;
+    void addElementLibrary(CElementLibrary *pElementLibrary);
+    CElementLibrary *getElementLibrary(size_t index) const;
 
 private:
-    std::vector<CElementLibrary*> _elementLibraryArray;
+    std::vector<CElementLibrary *> _elementLibraryArray;
 };

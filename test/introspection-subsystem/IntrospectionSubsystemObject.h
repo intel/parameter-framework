@@ -47,10 +47,9 @@ namespace introspectionSubsystem
 class SubsystemObject final : public CSubsystemObject
 {
 public:
-    SubsystemObject(const std::string& mappingValue,
-                         CInstanceConfigurableElement* instanceConfigurableElement,
-                         const CMappingContext& context,
-                         core::log::Logger& logger);
+    SubsystemObject(const std::string &mappingValue,
+                    CInstanceConfigurableElement *instanceConfigurableElement,
+                    const CMappingContext &context, core::log::Logger &logger);
     ~SubsystemObject();
 
     static bool getSingletonInstanceValue()
@@ -62,8 +61,8 @@ public:
 private:
     using base = CSubsystemObject;
 
-    virtual bool sendToHW(std::string& error) override;
-    virtual bool receiveFromHW(std::string& error) override;
+    virtual bool sendToHW(std::string &error) override;
+    virtual bool receiveFromHW(std::string &error) override;
 
     static void registerInstance(const SubsystemObject &instance)
     {
@@ -73,7 +72,7 @@ private:
 
     static void unregisterInstance(const SubsystemObject &instance)
     {
-        //instance parameter is only used by assertion, so unused in release mode
+        // instance parameter is only used by assertion, so unused in release mode
         (void)instance;
 
         ALWAYS_ASSERT(mSingletonInstance == &instance, "This instance was not registered.");
@@ -86,6 +85,5 @@ private:
 
     bool mParameter;
 };
-
 }
 }

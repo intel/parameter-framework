@@ -35,7 +35,7 @@
 #define base CSubsystem
 
 // Implementation
-CSkeletonSubsystem::CSkeletonSubsystem(const std::string& strName, core::log::Logger& logger)
+CSkeletonSubsystem::CSkeletonSubsystem(const std::string &strName, core::log::Logger &logger)
     : base(strName, logger)
 {
     // Provide mapping keys to upper layer
@@ -44,5 +44,6 @@ CSkeletonSubsystem::CSkeletonSubsystem(const std::string& strName, core::log::Lo
     addContextMappingKey("Amend2");
 
     // Provide creators to upper layer
-    addSubsystemObjectFactory(new TSubsystemObjectFactory<CSkeletonSubsystemObject>("Message", 1 << ESkeletonOwner));
+    addSubsystemObjectFactory(
+        new TSubsystemObjectFactory<CSkeletonSubsystemObject>("Message", 1 << ESkeletonOwner));
 }

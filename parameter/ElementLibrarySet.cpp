@@ -39,12 +39,12 @@ CElementLibrarySet::~CElementLibrarySet()
     }
 }
 
-void CElementLibrarySet::addElementLibrary(CElementLibrary* pElementLibrary)
+void CElementLibrarySet::addElementLibrary(CElementLibrary *pElementLibrary)
 {
     _elementLibraryArray.push_back(pElementLibrary);
 }
 
-CElementLibrary* CElementLibrarySet::getElementLibrary(size_t index) const
+CElementLibrary *CElementLibrarySet::getElementLibrary(size_t index) const
 {
     assert(index <= _elementLibraryArray.size());
 

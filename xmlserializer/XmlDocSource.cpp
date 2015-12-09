@@ -41,28 +41,18 @@
 using std::string;
 using xml_unique_ptr = std::unique_ptr<xmlChar, decltype(xmlFree)>;
 
-
-CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
-                             _xmlNode *pRootNode) :
-      _pDoc(pDoc),
-      _pRootNode(pRootNode),
-      _strRootElementType(""),
-      _strRootElementName(""),
-      _strNameAttributeName(""),
-      _bValidateWithSchema(bValidateWithSchema)
+CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema, _xmlNode *pRootNode)
+    : _pDoc(pDoc), _pRootNode(pRootNode), _strRootElementType(""), _strRootElementName(""),
+      _strNameAttributeName(""), _bValidateWithSchema(bValidateWithSchema)
 {
 }
 
 CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
-                             const string& strRootElementType,
-                             const string& strRootElementName,
-                             const string& strNameAttributeName) :
-    _pDoc(pDoc),
-    _pRootNode(xmlDocGetRootElement(pDoc)),
-    _strRootElementType(strRootElementType),
-    _strRootElementName(strRootElementName),
-    _strNameAttributeName(strNameAttributeName),
-    _bValidateWithSchema(bValidateWithSchema)
+                             const string &strRootElementType, const string &strRootElementName,
+                             const string &strNameAttributeName)
+    : _pDoc(pDoc), _pRootNode(xmlDocGetRootElement(pDoc)), _strRootElementType(strRootElementType),
+      _strRootElementName(strRootElementName), _strNameAttributeName(strNameAttributeName),
+      _bValidateWithSchema(bValidateWithSchema)
 {
 }
 
@@ -75,17 +65,17 @@ CXmlDocSource::~CXmlDocSource()
     }
 }
 
-void CXmlDocSource::getRootElement(CXmlElement& xmlRootElement) const
+void CXmlDocSource::getRootElement(CXmlElement &xmlRootElement) const
 {
     xmlRootElement.setXmlElement(_pRootNode);
 }
 
 string CXmlDocSource::getRootElementName() const
 {
-    return (const char*)_pRootNode->name;
+    return (const char *)_pRootNode->name;
 }
 
-string CXmlDocSource::getRootElementAttributeString(const string& strAttributeName) const
+string CXmlDocSource::getRootElementAttributeString(const string &strAttributeName) const
 {
     CXmlElement topMostElement(_pRootNode);
 
@@ -96,10 +86,11 @@ string CXmlDocSource::getRootElementAttributeString(const string& strAttributeNa
 
 string CXmlDocSource::getSchemaUri() const
 {
-    return mkUri(string((const char *)_pDoc->URL), getRootElementAttributeString("noNamespaceSchemaLocation"));
+    return mkUri(string((const char *)_pDoc->URL),
+                 getRootElementAttributeString("noNamespaceSchemaLocation"));
 }
 
-_xmlDoc* CXmlDocSource::getDoc() const
+_xmlDoc *CXmlDocSource::getDoc() const
 {
     return _pDoc;
 }
@@ -110,7 +101,7 @@ bool CXmlDocSource::isParsable() const
     return _pDoc != NULL;
 }
 
-bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
+bool CXmlDocSource::populate(CXmlSerializingContext &serializingContext)
 {
     // Check that the doc has been created
     if (!_pDoc) {
@@ -121,8 +112,7 @@ bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
     }
 
     // Validate if necessary
-    if (_bValidateWithSchema)
-    {
+    if (_bValidateWithSchema) {
         if (!isInstanceDocumentValid()) {
 
             serializingContext.setError("Document is not valid");
@@ -135,8 +125,8 @@ bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
     if (getRootElementName() != _strRootElementType) {
 
         serializingContext.setError("Error: Wrong XML structure document ");
-        serializingContext.appendLineToError("Root Element " + getRootElementName()
-                                             + " mismatches expected type " + _strRootElementType);
+        serializingContext.appendLineToError("Root Element " + getRootElementName() +
+                                             " mismatches expected type " + _strRootElementType);
 
         return false;
     }
@@ -149,10 +139,9 @@ bool CXmlDocSource::populate(CXmlSerializingContext& serializingContext)
         if (!_strRootElementName.empty() && strRootElementNameCheck != _strRootElementName) {
 
             serializingContext.setError("Error: Wrong XML structure document ");
-            serializingContext.appendLineToError(_strRootElementType + " element "
-                                                 + _strRootElementName + " mismatches expected "
-                                                 + _strRootElementType + " type "
-                                                 + strRootElementNameCheck);
+            serializingContext.appendLineToError(
+                _strRootElementType + " element " + _strRootElementName + " mismatches expected " +
+                _strRootElementType + " type " + strRootElementNameCheck);
 
             return false;
         }
@@ -216,22 +205,23 @@ bool CXmlDocSource::isInstanceDocumentValid()
 #endif
 }
 
-std::string CXmlDocSource::mkUri(const std::string& base, const std::string& relative)
+std::string CXmlDocSource::mkUri(const std::string &base, const std::string &relative)
 {
     xml_unique_ptr baseUri(xmlPathToURI((const xmlChar *)base.c_str()), xmlFree);
     xml_unique_ptr relativeUri(xmlPathToURI((const xmlChar *)relative.c_str()), xmlFree);
     /* return null pointer if baseUri or relativeUri are null pointer  */
     xml_unique_ptr xmlUri(xmlBuildURI(relativeUri.get(), baseUri.get()), xmlFree);
 
-    ALWAYS_ASSERT(xmlUri != nullptr, "unable to make URI from: \""
-                                      << base << "\" and \"" << relative << "\"");
+    ALWAYS_ASSERT(xmlUri != nullptr, "unable to make URI from: \"" << base << "\" and \""
+                                                                   << relative << "\"");
 
     return (const char *)xmlUri.get();
 }
 
-_xmlDoc* CXmlDocSource::mkXmlDoc(const string& source, bool fromFile, bool xincludes, CXmlSerializingContext& serializingContext)
+_xmlDoc *CXmlDocSource::mkXmlDoc(const string &source, bool fromFile, bool xincludes,
+                                 CXmlSerializingContext &serializingContext)
 {
-    _xmlDoc* doc = NULL;
+    _xmlDoc *doc = NULL;
     if (fromFile) {
         doc = xmlReadFile(source.c_str(), NULL, 0);
     } else {

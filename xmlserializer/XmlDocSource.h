@@ -57,7 +57,7 @@ public:
       * @param[in] pRootNode a pointer to the root element of the document.
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc* pDoc, bool bValidateWithSchema = false, _xmlNode* pRootNode = NULL);
+    CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema = false, _xmlNode *pRootNode = NULL);
 
     /**
       * Constructor
@@ -69,10 +69,10 @@ public:
       * @param[in] strNameAttributeName a string containing the name of the root name attribute
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc* pDoc, bool bValidateWithSchema,
-                           const std::string& strRootElementType = "",
-                           const std::string& strRootElementName = "",
-                           const std::string& strNameAttributeName = "");
+    CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
+                  const std::string &strRootElementType = "",
+                  const std::string &strRootElementName = "",
+                  const std::string &strNameAttributeName = "");
 
     /**
       * Destructor
@@ -86,14 +86,14 @@ public:
       *
       * @return false if there are any error
       */
-    virtual bool populate(CXmlSerializingContext& serializingContext);
+    virtual bool populate(CXmlSerializingContext &serializingContext);
 
     /**
       * Method that returns the root element of the Xml tree.
       *
       * @param[out] xmlRootElement a reference to the CXmleElement destination
       */
-    void getRootElement(CXmlElement& xmlRootElement) const;
+    void getRootElement(CXmlElement &xmlRootElement) const;
 
     /**
       * Getter method.
@@ -117,7 +117,7 @@ public:
       *
       * @return the value of the root's attribute named as strAttributeName
       */
-    std::string getRootElementAttributeString(const std::string& strAttributeName) const;
+    std::string getRootElementAttributeString(const std::string &strAttributeName) const;
 
     /**
       * Getter method.
@@ -126,7 +126,7 @@ public:
       *
       * @return the document _pDoc
       */
-    _xmlDoc* getDoc() const;
+    _xmlDoc *getDoc() const;
 
     /**
     * Method that checks that the xml document has been correctly parsed.
@@ -150,7 +150,7 @@ public:
     *
     * @return new made URI if succeeded relative input otherwise
      */
-    static std::string mkUri(const std::string& base, const std::string& relative);
+    static std::string mkUri(const std::string &base, const std::string &relative);
 
     /**
      * Helper method for creating an xml document from either a file or a
@@ -162,22 +162,21 @@ public:
      * @param[in] xincludes if true, process xincludes tags
      * @param[in] serializingContext will receive any serialization error
      */
-    static _xmlDoc* mkXmlDoc(const std::string& source, bool fromFile, bool xincludes, CXmlSerializingContext& serializingContext);
+    static _xmlDoc *mkXmlDoc(const std::string &source, bool fromFile, bool xincludes,
+                             CXmlSerializingContext &serializingContext);
 
 protected:
-
     /**
       * Doc
       */
-    _xmlDoc* _pDoc;
+    _xmlDoc *_pDoc;
 
     /**
       * Root node
       */
-    _xmlNode* _pRootNode;
+    _xmlNode *_pRootNode;
 
 private:
-
     /** Method that check the validity of the document with the xsd file.
       *
       * @return true if document is valid, false if any error occures

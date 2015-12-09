@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
@@ -61,4 +61,3 @@ private:
     asio::ip::tcp::acceptor _acceptor;
     asio::ip::tcp::socket _socket;
 };
-

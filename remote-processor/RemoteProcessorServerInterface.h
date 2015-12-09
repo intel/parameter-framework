@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *

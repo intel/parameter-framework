@@ -37,13 +37,13 @@
 
 #include <string>
 
-class CSelectionCriterion : public CElement, public ISelectionCriterionInterface,
+class CSelectionCriterion : public CElement,
+                            public ISelectionCriterionInterface,
                             private utility::NonCopyable
 {
 public:
-    CSelectionCriterion(const std::string& strName,
-                        const CSelectionCriterionType* pType,
-                        core::log::Logger& logger);
+    CSelectionCriterion(const std::string &strName, const CSelectionCriterionType *pType,
+                        core::log::Logger &logger);
 
     /// From ISelectionCriterionInterface
     // State
@@ -52,7 +52,7 @@ public:
     // Name
     virtual std::string getCriterionName() const;
     // Type
-    virtual const ISelectionCriterionTypeInterface* getCriterionType() const;
+    virtual const ISelectionCriterionTypeInterface *getCriterionType() const;
     // Modified status
     bool hasBeenModified() const;
     void resetModifiedStatus();
@@ -76,17 +76,17 @@ public:
       * @param[in] serializingContext The serializing context
       *
       */
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+
 private:
     // Current state
     int _iState{0};
     // Type
-    const CSelectionCriterionType* _pType;
+    const CSelectionCriterionType *_pType;
 
     /** Counter to know how many modifications have been applied to this criterion */
     uint32_t _uiNbModifications{0};
 
     /** Application logger */
-    core::log::Logger& _logger;
+    core::log::Logger &_logger;
 };
-

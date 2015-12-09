@@ -30,7 +30,8 @@
 #pragma once
 
 // Mapping item types
-enum SkeletonItemType {
+enum SkeletonItemType
+{
     ESkeletonOwner,
     EAmend1,
     EAmend2,

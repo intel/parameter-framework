@@ -55,30 +55,30 @@ public:
         };
         Level level;
         std::string msg;
-        bool operator == (const Log &other) const {
+        bool operator==(const Log &other) const
+        {
             return level == other.level and msg == other.msg;
         }
     };
     using Logs = std::vector<Log>;
 
-    void warning(const std::string& strLog) override
+    void warning(const std::string &strLog) override
     {
-        logs.push_back({ Log::Level::warning, strLog });
+        logs.push_back({Log::Level::warning, strLog});
     }
-    void info(const std::string& strLog) override
-    {
-        logs.push_back({ Log::Level::info, strLog });
-    }
+    void info(const std::string &strLog) override { logs.push_back({Log::Level::info, strLog}); }
 
     const Logs &getLogs() const { return logs; }
 
-    const Logs filter(Log::Level level) const {
+    const Logs filter(Log::Level level) const
+    {
         return filter([&level](const Log &log) { return log.level == level; });
     };
 
-    Logs match(const std::string& pattern) const {
-        return filter([&pattern](const Log &log) {
-                return log.msg.find(pattern) == std::string::npos; });
+    Logs match(const std::string &pattern) const
+    {
+        return filter(
+            [&pattern](const Log &log) { return log.msg.find(pattern) == std::string::npos; });
     }
 
 private:
@@ -94,10 +94,11 @@ private:
 };
 
 /** Overload input stream operator to pretty print a StoreLogger::Log::Level. */
-std::ostream& operator<<(std::ostream& os, const StoreLogger::Log::Level& level) {
+std::ostream &operator<<(std::ostream &os, const StoreLogger::Log::Level &level)
+{
     auto levelStr = "UNREACHABLE";
     using L = StoreLogger::Log::Level;
-    switch(level) {
+    switch (level) {
     case L::info:
         levelStr = "Info";
         break;
@@ -109,7 +110,8 @@ std::ostream& operator<<(std::ostream& os, const StoreLogger::Log::Level& level)
 }
 
 /** Overload input stream operator to pretty print a StoreLogger::Log. */
-std::ostream& operator<< ( std::ostream& os, const StoreLogger::Log& log) {
+std::ostream &operator<<(std::ostream &os, const StoreLogger::Log &log)
+{
     return os << log.level << log.msg << std::endl;
 }
 

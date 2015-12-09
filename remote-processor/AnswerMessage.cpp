@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -34,9 +34,8 @@
 
 using std::string;
 
-CAnswerMessage::CAnswerMessage(const string& strAnswer, bool bSuccess) :
-    base(bSuccess ? MsgType::ESuccessAnswer : MsgType::EFailureAnswer),
-    _strAnswer(strAnswer)
+CAnswerMessage::CAnswerMessage(const string &strAnswer, bool bSuccess)
+    : base(bSuccess ? MsgType::ESuccessAnswer : MsgType::EFailureAnswer), _strAnswer(strAnswer)
 {
 }
 
@@ -45,12 +44,12 @@ CAnswerMessage::CAnswerMessage()
 }
 
 // Answer
-void CAnswerMessage::setAnswer(const string& strAnswer)
+void CAnswerMessage::setAnswer(const string &strAnswer)
 {
     _strAnswer = strAnswer;
 }
 
-const string& CAnswerMessage::getAnswer() const
+const string &CAnswerMessage::getAnswer() const
 {
     return _strAnswer;
 }

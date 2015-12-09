@@ -45,7 +45,9 @@
 class PARAMETER_EXPORT CParameterHandle : public ElementHandle
 {
 private:
-    CParameterHandle(CConfigurableElement& element, CParameterMgr& parameterMgr)
-        : ElementHandle(element, parameterMgr) {}
+    CParameterHandle(CConfigurableElement &element, CParameterMgr &parameterMgr)
+        : ElementHandle(element, parameterMgr)
+    {
+    }
     friend CParameterMgr; // So that it can build the handler
 };

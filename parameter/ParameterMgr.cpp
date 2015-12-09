@@ -103,16 +103,15 @@
  * This macro should be called only once in a scope. Nested scopes can
  * call this macro too, as variable shadowing is supported.
  */
-#define LOG_CONTEXT(contextTitle) \
-    core::log::Context context(_logger, contextTitle)
+#define LOG_CONTEXT(contextTitle) core::log::Context context(_logger, contextTitle)
 
 #ifdef SIMULATION
-    // In simulation, back synchronization of the blackboard won't probably work
-    // We need to ensure though the blackboard is initialized with valid data
-    typedef CSimulatedBackSynchronizer BackSynchronizer;
+// In simulation, back synchronization of the blackboard won't probably work
+// We need to ensure though the blackboard is initialized with valid data
+typedef CSimulatedBackSynchronizer BackSynchronizer;
 #else
-    // Real back synchronizer from subsystems
-    typedef CHardwareBackSynchronizer BackSynchronizer;
+// Real back synchronizer from subsystems
+typedef CHardwareBackSynchronizer BackSynchronizer;
 #endif
 
 using std::string;
@@ -128,7 +127,8 @@ using std::lock_guard;
 using namespace core;
 
 // Used for remote processor server creation
-typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t uiPort, IRemoteCommandHandler* pCommandHandler);
+typedef IRemoteProcessorServerInterface *(*CreateRemoteProcessorServer)(
+    uint16_t uiPort, IRemoteCommandHandler *pCommandHandler);
 
 // Config File System looks normally like this:
 // ---------------------------------------------
@@ -145,200 +145,187 @@ typedef IRemoteProcessorServerInterface* (*CreateRemoteProcessorServer)(uint16_t
 //        `-- <Subsystem>.xml*
 // --------------------------------------------
 
-
 // Remote command parser array
 const CParameterMgr::SRemoteCommandParserItem CParameterMgr::gastRemoteCommandParserItems[] = {
 
     /// Version
-    { "version", &CParameterMgr::versionCommandProcess, 0,
-            "", "Show version" },
+    {"version", &CParameterMgr::versionCommandProcess, 0, "", "Show version"},
 
     /// Status
-    { "status", &CParameterMgr::statusCommandProcess, 0, "",
-            "Show current status" },
+    {"status", &CParameterMgr::statusCommandProcess, 0, "", "Show current status"},
 
     /// Tuning Mode
-    { "setTuningMode", &CParameterMgr::setTuningModeCommandProcess, 1,
-            "on|off*", "Turn on or off Tuning Mode" },
-    { "getTuningMode", &CParameterMgr::getTuningModeCommandProcess, 0,
-            "", "Show Tuning Mode" },
+    {"setTuningMode", &CParameterMgr::setTuningModeCommandProcess, 1, "on|off*",
+     "Turn on or off Tuning Mode"},
+    {"getTuningMode", &CParameterMgr::getTuningModeCommandProcess, 0, "", "Show Tuning Mode"},
 
     /// Value Space
-    { "setValueSpace", &CParameterMgr::setValueSpaceCommandProcess, 1,
-            "raw|real*", "Assigns Value Space used for parameter value interpretation" },
-    { "getValueSpace", &CParameterMgr::getValueSpaceCommandProcess, 0,
-            "", "Show Value Space" },
+    {"setValueSpace", &CParameterMgr::setValueSpaceCommandProcess, 1, "raw|real*",
+     "Assigns Value Space used for parameter value interpretation"},
+    {"getValueSpace", &CParameterMgr::getValueSpaceCommandProcess, 0, "", "Show Value Space"},
 
     /// Output Raw Format
-    { "setOutputRawFormat", &CParameterMgr::setOutputRawFormatCommandProcess, 1,
-            "dec*|hex", "Assigns format used to output parameter values when in raw Value Space" },
-    { "getOutputRawFormat", &CParameterMgr::getOutputRawFormatCommandProcess, 0,
-            "", "Show Output Raw Format" },
+    {"setOutputRawFormat", &CParameterMgr::setOutputRawFormatCommandProcess, 1, "dec*|hex",
+     "Assigns format used to output parameter values when in raw Value Space"},
+    {"getOutputRawFormat", &CParameterMgr::getOutputRawFormatCommandProcess, 0, "",
+     "Show Output Raw Format"},
 
     /// Sync
-    { "setAutoSync", &CParameterMgr::setAutoSyncCommandProcess, 1,
-            "on*|off", "Turn on or off automatic synchronization to hardware while in Tuning Mode" },
-    { "getAutoSync", &CParameterMgr::getAutoSyncCommandProcess, 0,
-            "", "Show Auto Sync state" },
-    { "sync", &CParameterMgr::syncCommandProcess, 0,
-            "", "Synchronize current settings to hardware while in Tuning Mode and Auto Sync off" },
+    {"setAutoSync", &CParameterMgr::setAutoSyncCommandProcess, 1, "on*|off",
+     "Turn on or off automatic synchronization to hardware while in Tuning Mode"},
+    {"getAutoSync", &CParameterMgr::getAutoSyncCommandProcess, 0, "", "Show Auto Sync state"},
+    {"sync", &CParameterMgr::syncCommandProcess, 0, "",
+     "Synchronize current settings to hardware while in Tuning Mode and Auto Sync off"},
 
     /// Criteria
-    { "listCriteria", &CParameterMgr::listCriteriaCommandProcess, 0,
-            "[CSV|XML]", "List selection criteria" },
+    {"listCriteria", &CParameterMgr::listCriteriaCommandProcess, 0, "[CSV|XML]",
+     "List selection criteria"},
 
     /// Domains
-    { "listDomains", &CParameterMgr::listDomainsCommandProcess, 0,
-            "", "List configurable domains" },
-    { "dumpDomains", &CParameterMgr::dumpDomainsCommandProcess, 0,
-            "", "Show all domains and configurations, including applicability conditions" },
-    { "createDomain", &CParameterMgr::createDomainCommandProcess, 1,
-            "<domain>", "Create new configurable domain" },
-    { "deleteDomain", &CParameterMgr::deleteDomainCommandProcess, 1,
-            "<domain>", "Delete configurable domain" },
-    { "deleteAllDomains", &CParameterMgr::deleteAllDomainsCommandProcess, 0,
-            "", "Delete all configurable domains" },
-    { "renameDomain", &CParameterMgr::renameDomainCommandProcess, 2,
-            "<domain> <new name>", "Rename configurable domain" },
-    { "setSequenceAwareness", &CParameterMgr::setSequenceAwarenessCommandProcess, 1,
-            "<domain> true|false*", "Set configurable domain sequence awareness" },
-    { "getSequenceAwareness", &CParameterMgr::getSequenceAwarenessCommandProcess, 1,
-            "<domain>", "Get configurable domain sequence awareness" },
-    { "listDomainElements", &CParameterMgr::listDomainElementsCommandProcess, 1,
-            "<domain>", "List elements associated to configurable domain" },
-    { "addElement", &CParameterMgr::addElementCommandProcess, 2,
-            "<domain> <elem path>", "Associate element at given path to configurable domain" },
-    { "removeElement", &CParameterMgr::removeElementCommandProcess, 2,
-            "<domain> <elem path>", "Dissociate element at given path from configurable domain" },
-    { "splitDomain", &CParameterMgr::splitDomainCommandProcess, 2,
-            "<domain> <elem path>", "Split configurable domain at given associated element path" },
+    {"listDomains", &CParameterMgr::listDomainsCommandProcess, 0, "", "List configurable domains"},
+    {"dumpDomains", &CParameterMgr::dumpDomainsCommandProcess, 0, "",
+     "Show all domains and configurations, including applicability conditions"},
+    {"createDomain", &CParameterMgr::createDomainCommandProcess, 1, "<domain>",
+     "Create new configurable domain"},
+    {"deleteDomain", &CParameterMgr::deleteDomainCommandProcess, 1, "<domain>",
+     "Delete configurable domain"},
+    {"deleteAllDomains", &CParameterMgr::deleteAllDomainsCommandProcess, 0, "",
+     "Delete all configurable domains"},
+    {"renameDomain", &CParameterMgr::renameDomainCommandProcess, 2, "<domain> <new name>",
+     "Rename configurable domain"},
+    {"setSequenceAwareness", &CParameterMgr::setSequenceAwarenessCommandProcess, 1,
+     "<domain> true|false*", "Set configurable domain sequence awareness"},
+    {"getSequenceAwareness", &CParameterMgr::getSequenceAwarenessCommandProcess, 1, "<domain>",
+     "Get configurable domain sequence awareness"},
+    {"listDomainElements", &CParameterMgr::listDomainElementsCommandProcess, 1, "<domain>",
+     "List elements associated to configurable domain"},
+    {"addElement", &CParameterMgr::addElementCommandProcess, 2, "<domain> <elem path>",
+     "Associate element at given path to configurable domain"},
+    {"removeElement", &CParameterMgr::removeElementCommandProcess, 2, "<domain> <elem path>",
+     "Dissociate element at given path from configurable domain"},
+    {"splitDomain", &CParameterMgr::splitDomainCommandProcess, 2, "<domain> <elem path>",
+     "Split configurable domain at given associated element path"},
 
     /// Configurations
-    { "listConfigurations", &CParameterMgr::listConfigurationsCommandProcess, 1,
-            "<domain>", "List domain configurations" },
-    { "createConfiguration", &CParameterMgr::createConfigurationCommandProcess, 2,
-            "<domain> <configuration>", "Create new domain configuration" },
-    { "deleteConfiguration", &CParameterMgr::deleteConfigurationCommandProcess, 2,
-            "<domain> <configuration>", "Delete domain configuration" },
-    { "renameConfiguration", &CParameterMgr::renameConfigurationCommandProcess, 3,
-            "<domain> <configuration> <new name>", "Rename domain configuration" },
-    { "saveConfiguration", &CParameterMgr::saveConfigurationCommandProcess, 2,
-            "<domain> <configuration>", "Save current settings into configuration" },
-    { "restoreConfiguration", &CParameterMgr::restoreConfigurationCommandProcess, 2,
-            "<domain> <configuration>", "Restore current settings from configuration" },
-    { "setElementSequence", &CParameterMgr::setElementSequenceCommandProcess, 3,
-            "<domain> <configuration> <elem path list>",
-            "Set element application order for configuration" },
-    { "getElementSequence", &CParameterMgr::getElementSequenceCommandProcess, 2,
-            "<domain> <configuration>", "Get element application order for configuration" },
-    { "setRule", &CParameterMgr::setRuleCommandProcess, 3,
-            "<domain> <configuration> <rule>", "Set configuration application rule" },
-    { "clearRule", &CParameterMgr::clearRuleCommandProcess, 2,
-            "<domain> <configuration>", "Clear configuration application rule" },
-    { "getRule", &CParameterMgr::getRuleCommandProcess, 2,
-            "<domain> <configuration>", "Get configuration application rule" },
+    {"listConfigurations", &CParameterMgr::listConfigurationsCommandProcess, 1, "<domain>",
+     "List domain configurations"},
+    {"createConfiguration", &CParameterMgr::createConfigurationCommandProcess, 2,
+     "<domain> <configuration>", "Create new domain configuration"},
+    {"deleteConfiguration", &CParameterMgr::deleteConfigurationCommandProcess, 2,
+     "<domain> <configuration>", "Delete domain configuration"},
+    {"renameConfiguration", &CParameterMgr::renameConfigurationCommandProcess, 3,
+     "<domain> <configuration> <new name>", "Rename domain configuration"},
+    {"saveConfiguration", &CParameterMgr::saveConfigurationCommandProcess, 2,
+     "<domain> <configuration>", "Save current settings into configuration"},
+    {"restoreConfiguration", &CParameterMgr::restoreConfigurationCommandProcess, 2,
+     "<domain> <configuration>", "Restore current settings from configuration"},
+    {"setElementSequence", &CParameterMgr::setElementSequenceCommandProcess, 3,
+     "<domain> <configuration> <elem path list>",
+     "Set element application order for configuration"},
+    {"getElementSequence", &CParameterMgr::getElementSequenceCommandProcess, 2,
+     "<domain> <configuration>", "Get element application order for configuration"},
+    {"setRule", &CParameterMgr::setRuleCommandProcess, 3, "<domain> <configuration> <rule>",
+     "Set configuration application rule"},
+    {"clearRule", &CParameterMgr::clearRuleCommandProcess, 2, "<domain> <configuration>",
+     "Clear configuration application rule"},
+    {"getRule", &CParameterMgr::getRuleCommandProcess, 2, "<domain> <configuration>",
+     "Get configuration application rule"},
 
     /// Elements/Parameters
-    { "listElements", &CParameterMgr::listElementsCommandProcess, 1,
-            "<elem path>|/", "List elements under element at given path or root" },
-    { "listParameters", &CParameterMgr::listParametersCommandProcess, 1,
-            "<elem path>|/", "List parameters under element at given path or root" },
-    { "getElementStructureXML", &CParameterMgr::getElementStructureXMLCommandProcess, 1,
-            "<elem path>", "Get structure of element at given path in XML format" },
-    { "getElementBytes", &CParameterMgr::getElementBytesCommandProcess, 1,
-            "<elem path>", "Get settings of element at given path in Byte Array format" },
-    { "setElementBytes", &CParameterMgr::setElementBytesCommandProcess, 2,
-            "<elem path> <values>", "Set settings of element at given path in Byte Array format" },
-    { "getElementXML", &CParameterMgr::getElementXMLCommandProcess, 1,
-        "<elem path>", "Get settings of element at given path in XML format" },
-    { "setElementXML", &CParameterMgr::setElementXMLCommandProcess, 2,
-        "<elem path> <values>", "Set settings of element at given path in XML format" },
-    { "dumpElement", &CParameterMgr::dumpElementCommandProcess, 1,
-            "<elem path>", "Dump structure and content of element at given path" },
-    { "getElementSize", &CParameterMgr::getElementSizeCommandProcess, 1,
-            "<elem path>", "Show size of element at given path" },
-    { "showProperties", &CParameterMgr::showPropertiesCommandProcess, 1,
-            "<elem path>", "Show properties of element at given path" },
-    { "getParameter", &CParameterMgr::getParameterCommandProcess, 1,
-            "<param path>", "Get value for parameter at given path" },
-    { "setParameter", &CParameterMgr::setParameterCommandProcess, 2,
-            "<param path> <value>", "Set value for parameter at given path" },
-    { "listBelongingDomains", &CParameterMgr::listBelongingDomainsCommandProcess, 1,
-            "<elem path>", "List domain(s) element at given path belongs to" },
-    { "listAssociatedDomains", &CParameterMgr::listAssociatedDomainsCommandProcess, 1,
-            "<elem path>", "List domain(s) element at given path is associated to" },
-    { "getConfigurationParameter", &CParameterMgr::getConfigurationParameterCommandProcess, 3,
-            "<domain> <configuration> <param path>",
-            "Get value for parameter at given path from configuration" },
-    { "setConfigurationParameter", &CParameterMgr::setConfigurationParameterCommandProcess, 4,
-            "<domain> <configuration> <param path> <value>",
-            "Set value for parameter at given path to configuration" },
-    { "showMapping", &CParameterMgr::showMappingCommandProcess, 1,
-            "<elem path>", "Show mapping for an element at given path" },
+    {"listElements", &CParameterMgr::listElementsCommandProcess, 1, "<elem path>|/",
+     "List elements under element at given path or root"},
+    {"listParameters", &CParameterMgr::listParametersCommandProcess, 1, "<elem path>|/",
+     "List parameters under element at given path or root"},
+    {"getElementStructureXML", &CParameterMgr::getElementStructureXMLCommandProcess, 1,
+     "<elem path>", "Get structure of element at given path in XML format"},
+    {"getElementBytes", &CParameterMgr::getElementBytesCommandProcess, 1, "<elem path>",
+     "Get settings of element at given path in Byte Array format"},
+    {"setElementBytes", &CParameterMgr::setElementBytesCommandProcess, 2, "<elem path> <values>",
+     "Set settings of element at given path in Byte Array format"},
+    {"getElementXML", &CParameterMgr::getElementXMLCommandProcess, 1, "<elem path>",
+     "Get settings of element at given path in XML format"},
+    {"setElementXML", &CParameterMgr::setElementXMLCommandProcess, 2, "<elem path> <values>",
+     "Set settings of element at given path in XML format"},
+    {"dumpElement", &CParameterMgr::dumpElementCommandProcess, 1, "<elem path>",
+     "Dump structure and content of element at given path"},
+    {"getElementSize", &CParameterMgr::getElementSizeCommandProcess, 1, "<elem path>",
+     "Show size of element at given path"},
+    {"showProperties", &CParameterMgr::showPropertiesCommandProcess, 1, "<elem path>",
+     "Show properties of element at given path"},
+    {"getParameter", &CParameterMgr::getParameterCommandProcess, 1, "<param path>",
+     "Get value for parameter at given path"},
+    {"setParameter", &CParameterMgr::setParameterCommandProcess, 2, "<param path> <value>",
+     "Set value for parameter at given path"},
+    {"listBelongingDomains", &CParameterMgr::listBelongingDomainsCommandProcess, 1, "<elem path>",
+     "List domain(s) element at given path belongs to"},
+    {"listAssociatedDomains", &CParameterMgr::listAssociatedDomainsCommandProcess, 1, "<elem path>",
+     "List domain(s) element at given path is associated to"},
+    {"getConfigurationParameter", &CParameterMgr::getConfigurationParameterCommandProcess, 3,
+     "<domain> <configuration> <param path>",
+     "Get value for parameter at given path from configuration"},
+    {"setConfigurationParameter", &CParameterMgr::setConfigurationParameterCommandProcess, 4,
+     "<domain> <configuration> <param path> <value>",
+     "Set value for parameter at given path to configuration"},
+    {"showMapping", &CParameterMgr::showMappingCommandProcess, 1, "<elem path>",
+     "Show mapping for an element at given path"},
 
     /// Browse
-    { "listAssociatedElements", &CParameterMgr::listAssociatedElementsCommandProcess, 0,
-            "", "List element sub-trees associated to at least one configurable domain" },
-    { "listConflictingElements", &CParameterMgr::listConflictingElementsCommandProcess, 0,
-            "", "List element sub-trees contained in more than one configurable domain" },
-    { "listRogueElements", &CParameterMgr::listRogueElementsCommandProcess, 0,
-            "", "List element sub-trees owned by no configurable domain" },
+    {"listAssociatedElements", &CParameterMgr::listAssociatedElementsCommandProcess, 0, "",
+     "List element sub-trees associated to at least one configurable domain"},
+    {"listConflictingElements", &CParameterMgr::listConflictingElementsCommandProcess, 0, "",
+     "List element sub-trees contained in more than one configurable domain"},
+    {"listRogueElements", &CParameterMgr::listRogueElementsCommandProcess, 0, "",
+     "List element sub-trees owned by no configurable domain"},
 
     /// Settings Import/Export
-    { "exportDomainsXML", &CParameterMgr::exportDomainsXMLCommandProcess, 1,
-            "<file path> ", "Export domains to an XML file (provide an absolute path or relative"
-                            "to the client's working directory)" },
-    { "importDomainsXML", &CParameterMgr::importDomainsXMLCommandProcess, 1,
-            "<file path>", "Import domains from an XML file (provide an absolute path or relative"
-                            "to the client's working directory)" },
-    { "exportDomainsWithSettingsXML",
-            &CParameterMgr::exportDomainsWithSettingsXMLCommandProcess, 1,
-            "<file path> ", "Export domains including settings to XML file (provide an absolute path or relative"
-                            "to the client's working directory)" },
-    { "exportDomainWithSettingsXML",
-            &CParameterMgr::exportDomainWithSettingsXMLCommandProcess, 2,
-            "<domain> <file path> ", "Export a single given domain including settings to XML file"
-                                     " (provide an absolute path or relative to the client's"
-                                     " working directory)" },
-    { "importDomainsWithSettingsXML",
-            &CParameterMgr::importDomainsWithSettingsXMLCommandProcess, 1,
-            "<file path>", "Import domains including settings from XML file (provide an absolute path or relative"
-                            "to the client's working directory)" },
-    { "importDomainWithSettingsXML",
-            &CParameterMgr::importDomainWithSettingsXMLCommandProcess, 1,
-            "<file path> [overwrite]", "Import a single domain including settings from XML file."
-            " Does not overwrite an existing domain unless 'overwrite' is passed as second"
-            " argument. Provide an absolute path or relative to the client's working directory)" },
-    { "getDomainsWithSettingsXML",
-            &CParameterMgr::getDomainsWithSettingsXMLCommandProcess, 0,
-            "", "Print domains including settings as XML" },
-    { "getDomainWithSettingsXML",
-            &CParameterMgr::getDomainWithSettingsXMLCommandProcess, 1,
-            "<domain>", "Print the given domain including settings as XML" },
-    { "setDomainsWithSettingsXML",
-            &CParameterMgr::setDomainsWithSettingsXMLCommandProcess, 1,
-            "<xml configurable domains>", "Import domains including settings from XML string" },
-    { "setDomainWithSettingsXML",
-            &CParameterMgr::setDomainWithSettingsXMLCommandProcess, 1,
-            "<xml configurable domain> [overwrite]", "Import domains including settings from XML"
-            " string. Does not overwrite an existing domain unless 'overwrite' is passed as second"
-            " argument" },
+    {"exportDomainsXML", &CParameterMgr::exportDomainsXMLCommandProcess, 1, "<file path> ",
+     "Export domains to an XML file (provide an absolute path or relative"
+     "to the client's working directory)"},
+    {"importDomainsXML", &CParameterMgr::importDomainsXMLCommandProcess, 1, "<file path>",
+     "Import domains from an XML file (provide an absolute path or relative"
+     "to the client's working directory)"},
+    {"exportDomainsWithSettingsXML", &CParameterMgr::exportDomainsWithSettingsXMLCommandProcess, 1,
+     "<file path> ",
+     "Export domains including settings to XML file (provide an absolute path or relative"
+     "to the client's working directory)"},
+    {"exportDomainWithSettingsXML", &CParameterMgr::exportDomainWithSettingsXMLCommandProcess, 2,
+     "<domain> <file path> ", "Export a single given domain including settings to XML file"
+                              " (provide an absolute path or relative to the client's"
+                              " working directory)"},
+    {"importDomainsWithSettingsXML", &CParameterMgr::importDomainsWithSettingsXMLCommandProcess, 1,
+     "<file path>",
+     "Import domains including settings from XML file (provide an absolute path or relative"
+     "to the client's working directory)"},
+    {"importDomainWithSettingsXML", &CParameterMgr::importDomainWithSettingsXMLCommandProcess, 1,
+     "<file path> [overwrite]",
+     "Import a single domain including settings from XML file."
+     " Does not overwrite an existing domain unless 'overwrite' is passed as second"
+     " argument. Provide an absolute path or relative to the client's working directory)"},
+    {"getDomainsWithSettingsXML", &CParameterMgr::getDomainsWithSettingsXMLCommandProcess, 0, "",
+     "Print domains including settings as XML"},
+    {"getDomainWithSettingsXML", &CParameterMgr::getDomainWithSettingsXMLCommandProcess, 1,
+     "<domain>", "Print the given domain including settings as XML"},
+    {"setDomainsWithSettingsXML", &CParameterMgr::setDomainsWithSettingsXMLCommandProcess, 1,
+     "<xml configurable domains>", "Import domains including settings from XML string"},
+    {"setDomainWithSettingsXML", &CParameterMgr::setDomainWithSettingsXMLCommandProcess, 1,
+     "<xml configurable domain> [overwrite]",
+     "Import domains including settings from XML"
+     " string. Does not overwrite an existing domain unless 'overwrite' is passed as second"
+     " argument"},
     /// Structure Export
-    { "getSystemClassXML", &CParameterMgr::getSystemClassXMLCommandProcess, 0 ,
-            "", "Print parameter structure as XML" },
+    {"getSystemClassXML", &CParameterMgr::getSystemClassXMLCommandProcess, 0, "",
+     "Print parameter structure as XML"},
     /// Deprecated Commands
-    { "getDomainsXML",
-            &CParameterMgr::getDomainsWithSettingsXMLCommandProcess, 0,
-            "", "DEPRECATED COMMAND, please use getDomainsWithSettingsXML" },
+    {"getDomainsXML", &CParameterMgr::getDomainsWithSettingsXMLCommandProcess, 0, "",
+     "DEPRECATED COMMAND, please use getDomainsWithSettingsXML"},
 
 };
 
 // Remote command parsers array Size
-CParameterMgr::CParameterMgr(const string& strConfigurationFilePath, log::ILogger& logger) :
-    _pMainParameterBlackboard(new CParameterBlackboard),
-    _pElementLibrarySet(new CElementLibrarySet),
-    _xmlConfigurationUri(CXmlDocSource::mkUri(strConfigurationFilePath, "")),
-    _logger(logger)
+CParameterMgr::CParameterMgr(const string &strConfigurationFilePath, log::ILogger &logger)
+    : _pMainParameterBlackboard(new CParameterBlackboard),
+      _pElementLibrarySet(new CElementLibrarySet),
+      _xmlConfigurationUri(CXmlDocSource::mkUri(strConfigurationFilePath, "")), _logger(logger)
 {
     // Deal with children
     addChild(new CParameterFrameworkConfiguration);
@@ -375,7 +362,7 @@ string CParameterMgr::getVersion() const
     return strVersion;
 }
 
-bool CParameterMgr::load(string& strError)
+bool CParameterMgr::load(string &strError)
 {
     LOG_CONTEXT("Loading");
 
@@ -410,16 +397,15 @@ bool CParameterMgr::load(string& strError)
         return false;
     }
 
-
     {
         LOG_CONTEXT("Main blackboard back synchronization");
 
-	// Back synchronization for areas in parameter blackboard not covered by any domain
-	BackSynchronizer(getConstSystemClass(), _pMainParameterBlackboard).sync();
+        // Back synchronization for areas in parameter blackboard not covered by any domain
+        BackSynchronizer(getConstSystemClass(), _pMainParameterBlackboard).sync();
     }
 
     // We're done loading the settings and back synchronizing
-    CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
+    CConfigurableDomains *pConfigurableDomains = getConfigurableDomains();
 
     // We need to ensure all domains are valid
     pConfigurableDomains->validate(_pMainParameterBlackboard);
@@ -428,7 +414,7 @@ bool CParameterMgr::load(string& strError)
     {
         LOG_CONTEXT("Criterion states");
 
-        const CSelectionCriteria* selectionCriteria = getConstSelectionCriteria();
+        const CSelectionCriteria *selectionCriteria = getConstSelectionCriteria();
 
         list<string> criteria;
         selectionCriteria->listSelectionCriteria(criteria, true, false);
@@ -446,20 +432,21 @@ bool CParameterMgr::load(string& strError)
     return handleRemoteProcessingInterface(strError);
 }
 
-bool CParameterMgr::loadFrameworkConfiguration(string& strError)
+bool CParameterMgr::loadFrameworkConfiguration(string &strError)
 {
     LOG_CONTEXT("Loading framework configuration");
 
     // Parse Structure XML file
     CXmlElementSerializingContext elementSerializingContext(strError);
 
-    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(_xmlConfigurationUri, true, true, elementSerializingContext);
+    _xmlDoc *doc =
+        CXmlDocSource::mkXmlDoc(_xmlConfigurationUri, true, true, elementSerializingContext);
     if (doc == NULL) {
         return false;
     }
 
-    if (!xmlParse(elementSerializingContext, getFrameworkConfiguration(), doc,
-                  _xmlConfigurationUri, EFrameworkConfigurationLibrary)) {
+    if (!xmlParse(elementSerializingContext, getFrameworkConfiguration(), doc, _xmlConfigurationUri,
+                  EFrameworkConfigurationLibrary)) {
 
         return false;
     }
@@ -468,7 +455,8 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
     getConfigurableDomains()->setName(getConstFrameworkConfiguration()->getSystemClassName());
 
     // Get subsystem plugins elements
-    _pSubsystemPlugins = static_cast<const CSubsystemPlugins*>(getConstFrameworkConfiguration()->findChild("SubsystemPlugins"));
+    _pSubsystemPlugins = static_cast<const CSubsystemPlugins *>(
+        getConstFrameworkConfiguration()->findChild("SubsystemPlugins"));
 
     if (!_pSubsystemPlugins) {
 
@@ -484,14 +472,13 @@ bool CParameterMgr::loadFrameworkConfiguration(string& strError)
     return true;
 }
 
-bool CParameterMgr::loadSubsystems(std::string& error)
+bool CParameterMgr::loadSubsystems(std::string &error)
 {
     LOG_CONTEXT("Loading subsystem plugins");
 
     // Load subsystems
-    bool isSuccess = getSystemClass()->loadSubsystems(error,
-                                                      _pSubsystemPlugins,
-                                                      !_bFailOnMissingSubsystem);
+    bool isSuccess =
+        getSystemClass()->loadSubsystems(error, _pSubsystemPlugins, !_bFailOnMissingSubsystem);
 
     if (isSuccess) {
         info() << "All subsystem plugins successfully loaded";
@@ -506,19 +493,22 @@ bool CParameterMgr::loadSubsystems(std::string& error)
     return isSuccess;
 }
 
-bool CParameterMgr::loadStructure(string& strError)
+bool CParameterMgr::loadStructure(string &strError)
 {
     // Retrieve system to load structure to
-    CSystemClass* pSystemClass = getSystemClass();
+    CSystemClass *pSystemClass = getSystemClass();
 
     LOG_CONTEXT("Loading " + pSystemClass->getName() + " system class structure");
 
     // Get structure description element
-    const CFrameworkConfigurationLocation* pStructureDescriptionFileLocation = static_cast<const CFrameworkConfigurationLocation*>(getConstFrameworkConfiguration()->findChildOfKind("StructureDescriptionFileLocation"));
+    const CFrameworkConfigurationLocation *pStructureDescriptionFileLocation =
+        static_cast<const CFrameworkConfigurationLocation *>(
+            getConstFrameworkConfiguration()->findChildOfKind("StructureDescriptionFileLocation"));
 
     if (!pStructureDescriptionFileLocation) {
 
-        strError = "No StructureDescriptionFileLocation element found for SystemClass " + pSystemClass->getName();
+        strError = "No StructureDescriptionFileLocation element found for SystemClass " +
+                   pSystemClass->getName();
 
         return false;
     }
@@ -529,7 +519,8 @@ bool CParameterMgr::loadStructure(string& strError)
 
     {
         // Get structure URI
-        string structureUri = CXmlDocSource::mkUri(_xmlConfigurationUri, pStructureDescriptionFileLocation->getUri());
+        string structureUri =
+            CXmlDocSource::mkUri(_xmlConfigurationUri, pStructureDescriptionFileLocation->getUri());
 
         LOG_CONTEXT("Importing system structure from file " + structureUri);
 
@@ -538,7 +529,8 @@ bool CParameterMgr::loadStructure(string& strError)
             return false;
         }
 
-        if (!xmlParse(parameterBuildContext, pSystemClass, doc, structureUri, EParameterCreationLibrary)) {
+        if (!xmlParse(parameterBuildContext, pSystemClass, doc, structureUri,
+                      EParameterCreationLibrary)) {
 
             return false;
         }
@@ -553,7 +545,7 @@ bool CParameterMgr::loadStructure(string& strError)
     return true;
 }
 
-bool CParameterMgr::loadSettings(string& strError)
+bool CParameterMgr::loadSettings(string &strError)
 {
     string strLoadError;
     bool success = loadSettingsFromConfigFile(strLoadError);
@@ -574,12 +566,14 @@ bool CParameterMgr::loadSettings(string& strError)
     return true;
 }
 
-bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
+bool CParameterMgr::loadSettingsFromConfigFile(string &strError)
 {
     LOG_CONTEXT("Loading settings");
 
     // Get settings configuration element
-    const CFrameworkConfigurationGroup* pParameterConfigurationGroup = static_cast<const CFrameworkConfigurationGroup*>(getConstFrameworkConfiguration()->findChildOfKind("SettingsConfiguration"));
+    const CFrameworkConfigurationGroup *pParameterConfigurationGroup =
+        static_cast<const CFrameworkConfigurationGroup *>(
+            getConstFrameworkConfiguration()->findChildOfKind("SettingsConfiguration"));
 
     if (!pParameterConfigurationGroup) {
 
@@ -589,25 +583,30 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     }
 
     // Get configurable domains element
-    const CFrameworkConfigurationLocation* pConfigurableDomainsFileLocation = static_cast<const CFrameworkConfigurationLocation*>(pParameterConfigurationGroup->findChildOfKind("ConfigurableDomainsFileLocation"));
+    const CFrameworkConfigurationLocation *pConfigurableDomainsFileLocation =
+        static_cast<const CFrameworkConfigurationLocation *>(
+            pParameterConfigurationGroup->findChildOfKind("ConfigurableDomainsFileLocation"));
 
     if (!pConfigurableDomainsFileLocation) {
 
-        strError = "No ConfigurableDomainsFileLocation element found for SystemClass " + getSystemClass()->getName();
+        strError = "No ConfigurableDomainsFileLocation element found for SystemClass " +
+                   getSystemClass()->getName();
 
         return false;
     }
     // Get destination root element
-    CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
+    CConfigurableDomains *pConfigurableDomains = getConfigurableDomains();
 
     // Get Xml configuration domains URI
-    string configurationDomainsUri = CXmlDocSource::mkUri(_xmlConfigurationUri, pConfigurableDomainsFileLocation->getUri());
+    string configurationDomainsUri =
+        CXmlDocSource::mkUri(_xmlConfigurationUri, pConfigurableDomainsFileLocation->getUri());
 
     // Parse configuration domains XML file
     CXmlDomainImportContext xmlDomainImportContext(strError, true, *getSystemClass());
 
     // Selection criteria definition for rule creation
-    xmlDomainImportContext.setSelectionCriteriaDefinition(getConstSelectionCriteria()->getSelectionCriteriaDefinition());
+    xmlDomainImportContext.setSelectionCriteriaDefinition(
+        getConstSelectionCriteria()->getSelectionCriteriaDefinition());
 
     // Auto validation of configurations
     xmlDomainImportContext.setAutoValidationRequired(true);
@@ -615,39 +614,37 @@ bool CParameterMgr::loadSettingsFromConfigFile(string& strError)
     info() << "Importing configurable domains from file " << configurationDomainsUri
            << " with settings";
 
-    _xmlDoc *doc = CXmlDocSource::mkXmlDoc(configurationDomainsUri, true, true, xmlDomainImportContext);
+    _xmlDoc *doc =
+        CXmlDocSource::mkXmlDoc(configurationDomainsUri, true, true, xmlDomainImportContext);
     if (doc == NULL) {
         return false;
     }
 
-    return xmlParse(xmlDomainImportContext, pConfigurableDomains, doc,
-                    _xmlConfigurationUri, EParameterConfigurationLibrary,
-                    true,
-                    "SystemClassName");
+    return xmlParse(xmlDomainImportContext, pConfigurableDomains, doc, _xmlConfigurationUri,
+                    EParameterConfigurationLibrary, true, "SystemClassName");
 }
 
 // XML parsing
-bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingContext,
-                             CElement* pRootElement, _xmlDoc* doc,
-                             const string& baseUri,
-                             CParameterMgr::ElementLibrary eElementLibrary,
-                             bool replace,
-                             const string& strNameAttributeName)
+bool CParameterMgr::xmlParse(CXmlElementSerializingContext &elementSerializingContext,
+                             CElement *pRootElement, _xmlDoc *doc, const string &baseUri,
+                             CParameterMgr::ElementLibrary eElementLibrary, bool replace,
+                             const string &strNameAttributeName)
 {
     // Init serializing context
-    elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(
-                                  eElementLibrary), baseUri);
+    elementSerializingContext.set(_pElementLibrarySet->getElementLibrary(eElementLibrary), baseUri);
 
-    CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
-                            pRootElement->getXmlElementName(),
-                            pRootElement->getName(),
-                            strNameAttributeName);
+    CXmlDocSource docSource(doc, _bValidateSchemasOnStart, pRootElement->getXmlElementName(),
+                            pRootElement->getName(), strNameAttributeName);
 
     // Schema Uri
     setSchemaUri(docSource.getSchemaUri());
 
     // Start clean
-    auto clean = [replace, &pRootElement]{ if (replace) { pRootElement->clean(); } };
+    auto clean = [replace, &pRootElement] {
+        if (replace) {
+            pRootElement->clean();
+        }
+    };
     clean();
 
     CXmlMemoryDocSink memorySink(pRootElement);
@@ -661,28 +658,28 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext& elementSerializingCo
 }
 
 // Init
-bool CParameterMgr::init(string& strError)
+bool CParameterMgr::init(string &strError)
 {
     return base::init(strError);
 }
 
 // Selection criteria interface
-CSelectionCriterionType* CParameterMgr::createSelectionCriterionType(bool bIsInclusive)
+CSelectionCriterionType *CParameterMgr::createSelectionCriterionType(bool bIsInclusive)
 {
     // Propagate
     return getSelectionCriteria()->createSelectionCriterionType(bIsInclusive);
 }
 
-CSelectionCriterion* CParameterMgr::createSelectionCriterion(const string& strName, const CSelectionCriterionType* pSelectionCriterionType)
+CSelectionCriterion *CParameterMgr::createSelectionCriterion(
+    const string &strName, const CSelectionCriterionType *pSelectionCriterionType)
 {
     // Propagate
-    return getSelectionCriteria()->createSelectionCriterion(strName,
-                                                            pSelectionCriterionType,
+    return getSelectionCriteria()->createSelectionCriterion(strName, pSelectionCriterionType,
                                                             _logger);
 }
 
 // Selection criterion retrieval
-CSelectionCriterion* CParameterMgr::getSelectionCriterion(const string& strName)
+CSelectionCriterion *CParameterMgr::getSelectionCriterion(const string &strName)
 {
     // Propagate
     return getSelectionCriteria()->getSelectionCriterion(strName);
@@ -706,8 +703,8 @@ void CParameterMgr::applyConfigurations()
     }
 }
 
-const CConfigurableElement* CParameterMgr::getConfigurableElement(const string& strPath,
-                                                                  string& strError) const
+const CConfigurableElement *CParameterMgr::getConfigurableElement(const string &strPath,
+                                                                  string &strError) const
 {
     CPathNavigator pathNavigator(strPath);
 
@@ -718,7 +715,7 @@ const CConfigurableElement* CParameterMgr::getConfigurableElement(const string& 
     }
 
     // Find element
-    const CElement* pElement = getConstSystemClass()->findDescendant(pathNavigator);
+    const CElement *pElement = getConstSystemClass()->findDescendant(pathNavigator);
 
     if (!pElement) {
 
@@ -728,13 +725,13 @@ const CConfigurableElement* CParameterMgr::getConfigurableElement(const string& 
     }
 
     // Check found element is a parameter
-    const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pElement);
+    const CConfigurableElement *pConfigurableElement =
+        static_cast<const CConfigurableElement *>(pElement);
 
     return pConfigurableElement;
 }
 
-CConfigurableElement* CParameterMgr::getConfigurableElement(const string& strPath,
-                                                            string& strError)
+CConfigurableElement *CParameterMgr::getConfigurableElement(const string &strPath, string &strError)
 {
     // Implement the mutable version by calling the const one and removing
     // the const from the result.
@@ -743,9 +740,9 @@ CConfigurableElement* CParameterMgr::getConfigurableElement(const string& strPat
 }
 
 // Dynamic parameter handling
-CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, string& strError)
+CParameterHandle *CParameterMgr::createParameterHandle(const string &strPath, string &strError)
 {
-    CConfigurableElement* pConfigurableElement = getConfigurableElement(strPath, strError);
+    CConfigurableElement *pConfigurableElement = getConfigurableElement(strPath, strError);
 
     if (!pConfigurableElement) {
 
@@ -763,13 +760,13 @@ CParameterHandle* CParameterMgr::createParameterHandle(const string& strPath, st
     }
 
     // Convert as parameter and return new handle
-    return new CParameterHandle(static_cast<CBaseParameter&>(*pConfigurableElement), *this);
+    return new CParameterHandle(static_cast<CBaseParameter &>(*pConfigurableElement), *this);
 }
 
 // Dynamic element handling
 ElementHandle *CParameterMgr::createElementHandle(const std::string &path, std::string &error)
 {
-    CConfigurableElement* pConfigurableElement;
+    CConfigurableElement *pConfigurableElement;
 
     if (path == "/") {
         // Attempt to access root configurable element
@@ -815,7 +812,8 @@ bool CParameterMgr::setSettingsAsBytes(const CConfigurableElement &element,
 {
     // Prepare parameter access context for main blackboard.
     // Notes:
-    //     - No need to handle output raw format and value space as Byte arrays are interpreted as raw formatted
+    //     - No need to handle output raw format and value space as Byte arrays are interpreted as
+    //     raw formatted
     //     - No check is done as to the intgrity of the input data.
     //       This may lead to undetected out of range value assignment.
     //       Use this functionality with caution
@@ -847,12 +845,12 @@ bool CParameterMgr::getFailureOnFailedSettingsLoad() const
     return _bFailOnFailedSettingsLoad;
 }
 
-const string& CParameterMgr::getSchemaUri() const
+const string &CParameterMgr::getSchemaUri() const
 {
     return _schemaUri;
 }
 
-void CParameterMgr::setSchemaUri(const string& schemaUri)
+void CParameterMgr::setSchemaUri(const string &schemaUri)
 {
     _schemaUri = schemaUri;
 }
@@ -869,7 +867,8 @@ bool CParameterMgr::getValidateSchemasOnStart() const
 
 /////////////////// Remote command parsers
 /// Version
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::versionCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::versionCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     // Show version
     strResult = getVersion();
@@ -878,10 +877,11 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::versionCommandProce
 }
 
 /// Status
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     // System class
-    const CSystemClass* pSystemClass = getSystemClass();
+    const CSystemClass *pSystemClass = getSystemClass();
 
     // Show status
     /// General section
@@ -934,7 +934,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::statusCommandProces
 }
 
 /// Tuning Mode
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setTuningModeCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setTuningModeCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     if (remoteCommand.getArgument(0) == "on") {
 
@@ -955,7 +956,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setTuningModeComman
     return CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getTuningModeCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getTuningModeCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     strResult = tuningModeOn() ? "on" : "off";
 
@@ -963,7 +965,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getTuningModeComman
 }
 
 /// Value Space
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setValueSpaceCommandProcess(const IRemoteCommand& remoteCommand, string& /*strResult*/)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setValueSpaceCommandProcess(
+    const IRemoteCommand &remoteCommand, string & /*strResult*/)
 {
     if (remoteCommand.getArgument(0) == "raw") {
 
@@ -984,7 +987,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setValueSpaceComman
     return CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getValueSpaceCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getValueSpaceCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     strResult = valueSpaceIsRaw() ? "raw" : "real";
 
@@ -992,7 +996,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getValueSpaceComman
 }
 
 /// Output Raw Format
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setOutputRawFormatCommandProcess(const IRemoteCommand& remoteCommand, string& /*strResult*/)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setOutputRawFormatCommandProcess(
+    const IRemoteCommand &remoteCommand, string & /*strResult*/)
 {
     if (remoteCommand.getArgument(0) == "hex") {
 
@@ -1013,7 +1018,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setOutputRawFormatC
     return CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getOutputRawFormatCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getOutputRawFormatCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     strResult = outputRawFormatIsHex() ? "hex" : "dec";
 
@@ -1021,7 +1027,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getOutputRawFormatC
 }
 
 /// Sync
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setAutoSyncCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setAutoSyncCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     if (remoteCommand.getArgument(0) == "on") {
 
@@ -1042,20 +1049,23 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setAutoSyncCommandP
     return CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getAutoSyncCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getAutoSyncCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     strResult = autoSyncOn() ? "on" : "off";
 
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::syncCommandProcess(const IRemoteCommand&, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::syncCommandProcess(
+    const IRemoteCommand &, string &strResult)
 {
     return sync(strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 /// Criteria
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     if (remoteCommand.getArgumentCount() > 1) {
 
@@ -1071,7 +1081,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
         strOutputFormat = remoteCommand.getArgument(0);
 
         // Capitalize
-        std::transform(strOutputFormat.begin(), strOutputFormat.end(), strOutputFormat.begin(), ::toupper);
+        std::transform(strOutputFormat.begin(), strOutputFormat.end(), strOutputFormat.begin(),
+                       ::toupper);
 
         if (strOutputFormat != "XML" && strOutputFormat != "CSV") {
 
@@ -1081,11 +1092,11 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
 
     if (strOutputFormat == "XML") {
         // Get Root element where to export from
-        const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition = getConstSelectionCriteria()->getSelectionCriteriaDefinition();
+        const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition =
+            getConstSelectionCriteria()->getSelectionCriteriaDefinition();
 
         if (!exportElementToXMLString(pSelectionCriteriaDefinition, "SelectionCriteria",
-                                      CXmlSerializingContext{strResult},
-                                      strResult)) {
+                                      CXmlSerializingContext{strResult}, strResult)) {
 
             return CCommandHandler::EFailed;
         }
@@ -1108,35 +1119,44 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listCriteriaCommand
 }
 
 /// Domains
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listDomainsCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listDomainsCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     getConfigurableDomains()->listDomains(strResult);
 
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::createDomainCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::createDomainCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return createDomain(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return createDomain(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone
+                                                                 : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteDomainCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteDomainCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return deleteDomain(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return deleteDomain(remoteCommand.getArgument(0), strResult) ? CCommandHandler::EDone
+                                                                 : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteAllDomainsCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteAllDomainsCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     return deleteAllDomains(strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameDomainCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameDomainCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return renameDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ?
-        CCommandHandler::EDone : CCommandHandler::EFailed;
+    return renameDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setSequenceAwarenessCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setSequenceAwarenessCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Set property
     bool bSequenceAware;
@@ -1154,11 +1174,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setSequenceAwarenes
         return CCommandHandler::EShowUsage;
     }
 
-    return setSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult) ?
-        CCommandHandler::EDone : CCommandHandler::EFailed;
+    return setSequenceAwareness(remoteCommand.getArgument(0), bSequenceAware, strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSequenceAwarenessCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSequenceAwarenessCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Get property
     bool bSequenceAware;
@@ -1173,33 +1195,52 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSequenceAwarenes
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listDomainElementsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listDomainElementsCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return getConfigurableDomains()->listDomainElements(remoteCommand.getArgument(0), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return getConfigurableDomains()->listDomainElements(remoteCommand.getArgument(0), strResult)
+               ? CCommandHandler::ESucceeded
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::addElementCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::addElementCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return addConfigurableElementToDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return addConfigurableElementToDomain(remoteCommand.getArgument(0),
+                                          remoteCommand.getArgument(1), strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::removeElementCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::removeElementCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return removeConfigurableElementFromDomain(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return removeConfigurableElementFromDomain(remoteCommand.getArgument(0),
+                                               remoteCommand.getArgument(1), strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::splitDomainCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::splitDomainCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return split(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return split(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
 /// Configurations
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listConfigurationsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listConfigurationsCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return getConstConfigurableDomains()->listConfigurations(remoteCommand.getArgument(0), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return getConstConfigurableDomains()->listConfigurations(remoteCommand.getArgument(0),
+                                                             strResult)
+               ? CCommandHandler::ESucceeded
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpDomainsCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpDomainsCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     // Dummy error context
     string strError;
@@ -1211,41 +1252,56 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpDomainsCommandP
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::createConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::createConfigurationCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return createConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return createConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+                               strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::deleteConfigurationCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return deleteConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return deleteConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+                               strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::renameConfigurationCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     return renameConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
-            remoteCommand.getArgument(2), strResult) ?
-        CCommandHandler::EDone : CCommandHandler::EFailed;
+                               remoteCommand.getArgument(2), strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::saveConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::saveConfigurationCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return saveConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return saveConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfigurationCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::restoreConfigurationCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     core::Results result;
     if (!restoreConfiguration(remoteCommand.getArgument(0), remoteCommand.getArgument(1), result)) {
-        //Concatenate the error list as the command result
+        // Concatenate the error list as the command result
         strResult = utility::asString(result);
 
-        return  CCommandHandler::EFailed;
+        return CCommandHandler::EFailed;
     }
     return CCommandHandler::EDone;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Build configurable element path list
     std::vector<string> astrNewElementSequence;
@@ -1257,46 +1313,58 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementSequenceC
 
     // Delegate to configurable domains
     return setElementSequence(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
-            astrNewElementSequence, strResult) ?
-        CCommandHandler::EDone : CCommandHandler::EFailed;
+                              astrNewElementSequence, strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSequenceCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSequenceCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Delegate to configurable domains
-    return getConfigurableDomains()->getElementSequence(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult) ? CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return getConfigurableDomains()->getElementSequence(remoteCommand.getArgument(0),
+                                                        remoteCommand.getArgument(1), strResult)
+               ? CCommandHandler::ESucceeded
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setRuleCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setRuleCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Delegate to configurable domains
     return setApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
-            remoteCommand.packArguments(2, remoteCommand.getArgumentCount() - 2), strResult) ?
-        CCommandHandler::EDone : CCommandHandler::EFailed;
+                              remoteCommand.packArguments(2, remoteCommand.getArgumentCount() - 2),
+                              strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::clearRuleCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::clearRuleCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Delegate to configurable domains
     return clearApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
-            strResult) ?
-        CCommandHandler::EDone : CCommandHandler::EFailed;
+                                strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getRuleCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getRuleCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Delegate to configurable domains
-    return getApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
-            strResult) ?
-        CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return getApplicationRule(remoteCommand.getArgument(0), remoteCommand.getArgument(1), strResult)
+               ? CCommandHandler::ESucceeded
+               : CCommandHandler::EFailed;
 }
 
 /// Elements/Parameters
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listElementsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listElementsCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     CElementLocator elementLocator(getSystemClass(), false);
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
@@ -1320,11 +1388,12 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listElementsCommand
 }
 
 /// Elements/Parameters
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listParametersCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listParametersCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     CElementLocator elementLocator(getSystemClass(), false);
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
@@ -1348,11 +1417,11 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listParametersComma
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementStructureXMLCommandProcess(
-    const IRemoteCommand& remoteCommand, string& strResult)
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
@@ -1371,21 +1440,20 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementStructure
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-CParameterMgr::getElementBytesCommandProcess(const IRemoteCommand& remoteCommand,
-                                              std::string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementBytesCommandProcess(
+    const IRemoteCommand &remoteCommand, std::string &strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
         return CCommandHandler::EFailed;
     }
 
-    const CConfigurableElement* pConfigurableElement =
-            static_cast<CConfigurableElement*>(pLocatedElement);
+    const CConfigurableElement *pConfigurableElement =
+        static_cast<CConfigurableElement *>(pLocatedElement);
 
     // Get the settings
     vector<uint8_t> bytes;
@@ -1412,8 +1480,8 @@ CParameterMgr::getElementBytesCommandProcess(const IRemoteCommand& remoteCommand
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-CParameterMgr::setElementBytesCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementBytesCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Check tuning mode
     if (!checkTuningModeOn(strResult)) {
@@ -1424,14 +1492,15 @@ CParameterMgr::setElementBytesCommandProcess(const IRemoteCommand& remoteCommand
     // Retrieve configurable element
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
         return CCommandHandler::EFailed;
     }
 
-    const CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
+    const CConfigurableElement *pConfigurableElement =
+        static_cast<CConfigurableElement *>(pLocatedElement);
 
     // Convert input data to binary
     vector<uint8_t> bytes;
@@ -1449,7 +1518,7 @@ CParameterMgr::setElementBytesCommandProcess(const IRemoteCommand& remoteCommand
 
             return byte;
         });
-    } catch (const std::domain_error& e) {
+    } catch (const std::domain_error &e) {
         strResult = e.what();
 
         return CCommandHandler::EFailed;
@@ -1465,16 +1534,17 @@ CParameterMgr::setElementBytesCommandProcess(const IRemoteCommand& remoteCommand
 }
 
 bool CParameterMgr::getSettingsAsXML(const CConfigurableElement *configurableElement,
-        string &result) const
+                                     string &result) const
 {
     string error;
-    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard,
-                                              _bValueSpaceIsRaw, _bOutputRawFormatIsHex, true);
+    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard, _bValueSpaceIsRaw,
+                                              _bOutputRawFormatIsHex, true);
 
     CXmlParameterSerializingContext xmlParameterContext(configContext, error);
 
     // Use a doc source by loading data from instantiated Configurable Domains
-    CXmlMemoryDocSource memorySource(configurableElement, false, configurableElement->getXmlElementName());
+    CXmlMemoryDocSource memorySource(configurableElement, false,
+                                     configurableElement->getXmlElementName());
 
     // Use a doc sink that write the doc data in a string
     ostringstream output;
@@ -1489,10 +1559,10 @@ bool CParameterMgr::getSettingsAsXML(const CConfigurableElement *configurableEle
 }
 
 bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
-        const string &settings, string &error)
+                                     const string &settings, string &error)
 {
-    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard,
-                                              _bValueSpaceIsRaw, _bOutputRawFormatIsHex, false);
+    CConfigurationAccessContext configContext(error, _pMainParameterBlackboard, _bValueSpaceIsRaw,
+                                              _bOutputRawFormatIsHex, false);
 
     CXmlParameterSerializingContext xmlParameterContext(configContext, error);
 
@@ -1510,7 +1580,7 @@ bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
         CSyncerSet syncerSet;
         static_cast<CConfigurableElement *>(configurableElement)->fillSyncerSet(syncerSet);
         core::Results errors;
-        if(not syncerSet.sync(*_pMainParameterBlackboard, false, &errors)) {
+        if (not syncerSet.sync(*_pMainParameterBlackboard, false, &errors)) {
             error = utility::asString(errors);
 
             return false;
@@ -1520,7 +1590,7 @@ bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementXMLCommandProcess(
-        const IRemoteCommand &remoteCommand, string &result)
+    const IRemoteCommand &remoteCommand, string &result)
 {
     CElementLocator elementLocator(getSystemClass());
 
@@ -1538,7 +1608,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementXMLComman
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementXMLCommandProcess(
-        const IRemoteCommand &remoteCommand, string &result)
+    const IRemoteCommand &remoteCommand, string &result)
 {
     if (!checkTuningModeOn(result)) {
 
@@ -1553,18 +1623,19 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementXMLComman
 
         return CCommandHandler::EFailed;
     }
-    if (not setSettingsAsXML(static_cast<CConfigurableElement*>(locatedElement),
+    if (not setSettingsAsXML(static_cast<CConfigurableElement *>(locatedElement),
                              remoteCommand.getArgument(1), result)) {
         return CCommandHandler::EFailed;
     }
     return CCommandHandler::EDone;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
@@ -1573,7 +1644,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandP
 
     string strError;
 
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard,
+                                                   _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     // Dump elements
     strResult = pLocatedElement->dumpContent(parameterAccessContext);
@@ -1581,11 +1653,12 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::dumpElementCommandP
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSizeCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSizeCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
@@ -1593,7 +1666,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSizeComma
     }
 
     // Converted to actual sizable element
-    const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+    const CConfigurableElement *pConfigurableElement =
+        static_cast<const CConfigurableElement *>(pLocatedElement);
 
     // Get size as string
     strResult = pConfigurableElement->getFootprintAsString();
@@ -1601,11 +1675,12 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getElementSizeComma
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showPropertiesCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showPropertiesCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
@@ -1613,7 +1688,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showPropertiesComma
     }
 
     // Convert element
-    const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+    const CConfigurableElement *pConfigurableElement =
+        static_cast<const CConfigurableElement *>(pLocatedElement);
 
     // Return element properties
     pConfigurableElement->showProperties(strResult);
@@ -1621,7 +1697,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showPropertiesComma
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     string strValue;
 
@@ -1635,19 +1712,23 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getParameterCommand
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setParameterCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setParameterCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Get value to set
     string strValue = remoteCommand.packArguments(1, remoteCommand.getArgumentCount() - 1);
 
-    return accessParameterValue(remoteCommand.getArgument(0), strValue, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return accessParameterValue(remoteCommand.getArgument(0), strValue, true, strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listBelongingDomainsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listBelongingDomainsCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
@@ -1655,7 +1736,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listBelongingDomain
     }
 
     // Convert element
-    const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+    const CConfigurableElement *pConfigurableElement =
+        static_cast<const CConfigurableElement *>(pLocatedElement);
 
     // Return element belonging domains
     pConfigurableElement->listBelongingDomains(strResult);
@@ -1663,11 +1745,12 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listBelongingDomain
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listAssociatedDomainsCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listAssociatedDomainsCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(remoteCommand.getArgument(0), &pLocatedElement, strResult)) {
 
@@ -1675,7 +1758,8 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listAssociatedDomai
     }
 
     // Convert element
-    const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+    const CConfigurableElement *pConfigurableElement =
+        static_cast<const CConfigurableElement *>(pLocatedElement);
 
     // Return element belonging domains
     pConfigurableElement->listAssociatedDomains(strResult);
@@ -1683,33 +1767,38 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listAssociatedDomai
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listAssociatedElementsCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listAssociatedElementsCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     getConfigurableDomains()->listAssociatedElements(strResult);
 
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listConflictingElementsCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listConflictingElementsCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     getConfigurableDomains()->listConflictingElements(strResult);
 
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listRogueElementsCommandProcess(const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listRogueElementsCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     getSystemClass()->listRogueElements(strResult);
 
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getConfigurationParameterCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
+    getConfigurationParameterCommandProcess(const IRemoteCommand &remoteCommand, string &strResult)
 {
     string strOutputValue;
     string strError;
 
-    if (!accessConfigurationValue(remoteCommand.getArgument(0), remoteCommand.getArgument(1), remoteCommand.getArgument(2), strOutputValue, false, strError)) {
+    if (!accessConfigurationValue(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+                                  remoteCommand.getArgument(2), strOutputValue, false, strError)) {
 
         strResult = strError;
         return CCommandHandler::EFailed;
@@ -1720,22 +1809,21 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getConfigurationPar
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setConfigurationParameterCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
+    setConfigurationParameterCommandProcess(const IRemoteCommand &remoteCommand, string &strResult)
 {
     // Get value to set
     string strValue = remoteCommand.packArguments(3, remoteCommand.getArgumentCount() - 3);
 
-    bool bSuccess = accessConfigurationValue(remoteCommand.getArgument(0),
-                                            remoteCommand.getArgument(1),
-                                            remoteCommand.getArgument(2),
-                                            strValue, true, strResult);
+    bool bSuccess =
+        accessConfigurationValue(remoteCommand.getArgument(0), remoteCommand.getArgument(1),
+                                 remoteCommand.getArgument(2), strValue, true, strResult);
 
     return bSuccess ? CCommandHandler::EDone : CCommandHandler::EFailed;
 }
 
 CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showMappingCommandProcess(
-        const IRemoteCommand& remoteCommand,
-        string& strResult)
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     if (!getParameterMapping(remoteCommand.getArgument(0), strResult)) {
 
@@ -1746,48 +1834,53 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::showMappingCommandP
 }
 
 /// Settings Import/Export
-CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::exportDomainsXMLCommandProcess(
-                const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::exportDomainsXMLCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     string strFileName = remoteCommand.getArgument(0);
-    return exportDomainsXml(strFileName, false, true, strResult) ?
-            CCommandHandler::EDone : CCommandHandler::EFailed;
+    return exportDomainsXml(strFileName, false, true, strResult) ? CCommandHandler::EDone
+                                                                 : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::importDomainsXMLCommandProcess(
-                const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainsXMLCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), false, true, strResult) ?
-            CCommandHandler::EDone : CCommandHandler::EFailed;
+    return importDomainsXml(remoteCommand.getArgument(0), false, true, strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::exportDomainsWithSettingsXMLCommandProcess(
-                const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
+    exportDomainsWithSettingsXMLCommandProcess(const IRemoteCommand &remoteCommand,
+                                               string &strResult)
 {
     string strFileName = remoteCommand.getArgument(0);
-    return exportDomainsXml(strFileName, true, true, strResult) ?
-            CCommandHandler::EDone : CCommandHandler::EFailed;
+    return exportDomainsXml(strFileName, true, true, strResult) ? CCommandHandler::EDone
+                                                                : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::exportDomainWithSettingsXMLCommandProcess(
-                const IRemoteCommand& remoteCommand, string& result)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
+    exportDomainWithSettingsXMLCommandProcess(const IRemoteCommand &remoteCommand, string &result)
 {
     string domainName = remoteCommand.getArgument(0);
     string fileName = remoteCommand.getArgument(1);
-    return exportSingleDomainXml(fileName, domainName, true, true, result) ?
-            CCommandHandler::EDone : CCommandHandler::EFailed;
+    return exportSingleDomainXml(fileName, domainName, true, true, result)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainsWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
+    importDomainsWithSettingsXMLCommandProcess(const IRemoteCommand &remoteCommand,
+                                               string &strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), true, true, strResult) ? CCommandHandler::EDone : CCommandHandler::EFailed;
+    return importDomainsXml(remoteCommand.getArgument(0), true, true, strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainWithSettingsXMLCommandProcess(const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
+    importDomainWithSettingsXMLCommandProcess(const IRemoteCommand &remoteCommand,
+                                              string &strResult)
 {
     bool bOverwrite = false;
 
@@ -1803,13 +1896,13 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::importDomainWithSet
         }
     }
 
-    return importSingleDomainXml(remoteCommand.getArgument(0), bOverwrite, true, true, strResult) ?
-        CCommandHandler::EDone : CCommandHandler::EFailed;
+    return importSingleDomainXml(remoteCommand.getArgument(0), bOverwrite, true, true, strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::getDomainsWithSettingsXMLCommandProcess(
-                const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
+    getDomainsWithSettingsXMLCommandProcess(const IRemoteCommand & /*command*/, string &strResult)
 {
     if (!exportDomainsXml(strResult, true, false, strResult)) {
 
@@ -1819,27 +1912,26 @@ CParameterMgr::CCommandHandler::CommandStatus
     return CCommandHandler::ESucceeded;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::getDomainWithSettingsXMLCommandProcess(
-                const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getDomainWithSettingsXMLCommandProcess(
+    const IRemoteCommand &remoteCommand, string &strResult)
 {
     string strDomainName = remoteCommand.getArgument(0);
 
-    return exportSingleDomainXml(strResult, strDomainName, true, false, strResult) ?
-        CCommandHandler::ESucceeded : CCommandHandler::EFailed;
+    return exportSingleDomainXml(strResult, strDomainName, true, false, strResult)
+               ? CCommandHandler::ESucceeded
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::setDomainsWithSettingsXMLCommandProcess(
-                const IRemoteCommand& remoteCommand, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
+    setDomainsWithSettingsXMLCommandProcess(const IRemoteCommand &remoteCommand, string &strResult)
 {
-    return importDomainsXml(remoteCommand.getArgument(0), true, false, strResult) ?
-            CCommandHandler::EDone : CCommandHandler::EFailed;
+    return importDomainsXml(remoteCommand.getArgument(0), true, false, strResult)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::setDomainWithSettingsXMLCommandProcess(
-                const IRemoteCommand& remoteCommand, string& result)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setDomainWithSettingsXMLCommandProcess(
+    const IRemoteCommand &remoteCommand, string &result)
 {
     bool overwrite = false;
 
@@ -1854,16 +1946,16 @@ CParameterMgr::CCommandHandler::CommandStatus
         }
     }
 
-    return importSingleDomainXml(remoteCommand.getArgument(0), overwrite, true, false, result) ?
-        CCommandHandler::EDone : CCommandHandler::EFailed;
+    return importSingleDomainXml(remoteCommand.getArgument(0), overwrite, true, false, result)
+               ? CCommandHandler::EDone
+               : CCommandHandler::EFailed;
 }
 
-CParameterMgr::CCommandHandler::CommandStatus
-        CParameterMgr::getSystemClassXMLCommandProcess(
-                const IRemoteCommand& /*command*/, string& strResult)
+CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSystemClassXMLCommandProcess(
+    const IRemoteCommand & /*command*/, string &strResult)
 {
     // Get Root element where to export from
-    const CSystemClass* pSystemClass = getSystemClass();
+    const CSystemClass *pSystemClass = getSystemClass();
 
     // Use default access context for structure export
     CParameterAccessContext accessContext(strResult);
@@ -1877,7 +1969,8 @@ CParameterMgr::CCommandHandler::CommandStatus
 }
 
 // User set/get parameters in main BlackBoard
-bool CParameterMgr::accessParameterValue(const string& strPath, string& strValue, bool bSet, string& strError)
+bool CParameterMgr::accessParameterValue(const string &strPath, string &strValue, bool bSet,
+                                         string &strError)
 {
     // Forbid write access when not in TuningMode
     if (bSet && !checkTuningModeOn(strError)) {
@@ -1886,7 +1979,8 @@ bool CParameterMgr::accessParameterValue(const string& strPath, string& strValue
     }
 
     // Define context
-    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
+    CParameterAccessContext parameterAccessContext(strError, _pMainParameterBlackboard,
+                                                   _bValueSpaceIsRaw, _bOutputRawFormatIsHex);
 
     // Activate the auto synchronization with the hardware
     if (bSet) {
@@ -1898,7 +1992,7 @@ bool CParameterMgr::accessParameterValue(const string& strPath, string& strValue
 }
 
 // User get parameter mapping
-bool CParameterMgr::getParameterMapping(const string& strPath, string& strResult) const
+bool CParameterMgr::getParameterMapping(const string &strPath, string &strResult) const
 {
     CPathNavigator pathNavigator(strPath);
 
@@ -1909,18 +2003,18 @@ bool CParameterMgr::getParameterMapping(const string& strPath, string& strResult
     }
 
     // Get the ConfigurableElement corresponding to strPath
-    const CConfigurableElement* pConfigurableElement = getConfigurableElement(strPath, strResult);
+    const CConfigurableElement *pConfigurableElement = getConfigurableElement(strPath, strResult);
     if (!pConfigurableElement) {
 
         return false;
     }
 
     // Find the list of the ancestors of the current ConfigurableElement that have a mapping
-    list<const CConfigurableElement*> configurableElementPath;
+    list<const CConfigurableElement *> configurableElementPath;
     pConfigurableElement->getListOfElementsWithMapping(configurableElementPath);
 
     // Get the Subsystem containing the ConfigurableElement
-    const CSubsystem* pSubsystem = pConfigurableElement->getBelongingSubsystem();
+    const CSubsystem *pSubsystem = pConfigurableElement->getBelongingSubsystem();
     if (!pSubsystem) {
 
         strResult = "Unable to find the Subsystem containing the parameter";
@@ -1934,11 +2028,13 @@ bool CParameterMgr::getParameterMapping(const string& strPath, string& strResult
 }
 
 // User set/get parameters in specific Configuration BlackBoard
-bool CParameterMgr::accessConfigurationValue(const string& strDomain, const string& strConfiguration, const string& strPath, string& strValue, bool bSet, string& strError)
+bool CParameterMgr::accessConfigurationValue(const string &strDomain,
+                                             const string &strConfiguration, const string &strPath,
+                                             string &strValue, bool bSet, string &strError)
 {
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(strPath, &pLocatedElement, strError)) {
 
@@ -1946,22 +2042,20 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
     }
 
     // Convert element
-    const CConfigurableElement* pConfigurableElement = static_cast<const CConfigurableElement*>(pLocatedElement);
+    const CConfigurableElement *pConfigurableElement =
+        static_cast<const CConfigurableElement *>(pLocatedElement);
 
-    // Get the Configuration blackboard and the Base Offset of the configurable element in this blackboard
+    // Get the Configuration blackboard and the Base Offset of the configurable element in this
+    // blackboard
     size_t baseOffset;
     bool bIsLastApplied;
 
-    CParameterBlackboard* pConfigurationBlackboard = NULL;
+    CParameterBlackboard *pConfigurationBlackboard = NULL;
 
     {
-        pConfigurationBlackboard =
-            getConstConfigurableDomains()->findConfigurationBlackboard(strDomain,
-                                                                       strConfiguration,
-                                                                       pConfigurableElement,
-                                                                       baseOffset,
-                                                                       bIsLastApplied,
-                                                                       strError);
+        pConfigurationBlackboard = getConstConfigurableDomains()->findConfigurationBlackboard(
+            strDomain, strConfiguration, pConfigurableElement, baseOffset, bIsLastApplied,
+            strError);
         if (!pConfigurationBlackboard) {
 
             warning() << "Fail: " << strError;
@@ -1969,13 +2063,14 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
         }
     }
 
-    info() << "Element " << strPath << " in Domain " << strDomain << ", offset: "
-           << pConfigurableElement->getOffset() << ", base offset: " << baseOffset;
+    info() << "Element " << strPath << " in Domain " << strDomain
+           << ", offset: " << pConfigurableElement->getOffset() << ", base offset: " << baseOffset;
 
     /// Update the Configuration Blackboard
 
     // Define Configuration context using Base Offset and keep Auto Sync off to prevent access to HW
-    CParameterAccessContext parameterAccessContext(strError, pConfigurationBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, baseOffset);
+    CParameterAccessContext parameterAccessContext(
+        strError, pConfigurationBlackboard, _bValueSpaceIsRaw, _bOutputRawFormatIsHex, baseOffset);
 
     // Deactivate the auto synchronization with the hardware during the Configuration Blackboard
     // access (only Main Blackboard shall be synchronized, Configurations Blackboards are copied
@@ -2013,7 +2108,9 @@ bool CParameterMgr::accessConfigurationValue(const string& strDomain, const stri
 }
 
 // User set/get parameters
-bool CParameterMgr::accessValue(CParameterAccessContext& parameterAccessContext, const string& strPath, string& strValue, bool bSet, string& strError)
+bool CParameterMgr::accessValue(CParameterAccessContext &parameterAccessContext,
+                                const string &strPath, string &strValue, bool bSet,
+                                string &strError)
 {
     // Lock state
     lock_guard<mutex> autoLock(getBlackboardMutex());
@@ -2029,11 +2126,12 @@ bool CParameterMgr::accessValue(CParameterAccessContext& parameterAccessContext,
     }
 
     // Do the get
-    return getConstSystemClass()->accessValue(pathNavigator, strValue, bSet, parameterAccessContext);
+    return getConstSystemClass()->accessValue(pathNavigator, strValue, bSet,
+                                              parameterAccessContext);
 }
 
 // Tuning mode
-bool CParameterMgr::setTuningMode(bool bOn, string& strError)
+bool CParameterMgr::setTuningMode(bool bOn, string &strError)
 {
     if (bOn == tuningModeOn()) {
         strError = "Tuning mode is already in the state requested";
@@ -2092,12 +2190,13 @@ bool CParameterMgr::outputRawFormatIsHex()
 
 /// Sync
 // Automatic hardware synchronization control (during tuning session)
-bool CParameterMgr::setAutoSync(bool bAutoSyncOn, string& strError)
+bool CParameterMgr::setAutoSync(bool bAutoSyncOn, string &strError)
 {
     // Warn domains about turning auto sync back on
     if (bAutoSyncOn && !_bAutoSyncOn) {
 
-        // Do the synchronization at system class level (could be optimized by keeping track of all modified parameters)
+        // Do the synchronization at system class level (could be optimized by keeping track of all
+        // modified parameters)
         if (!sync(strError)) {
 
             return false;
@@ -2116,7 +2215,7 @@ bool CParameterMgr::autoSyncOn() const
 }
 
 // Manual hardware synchronization control (during tuning session)
-bool CParameterMgr::sync(string& strError)
+bool CParameterMgr::sync(string &strError)
 {
     // Warn domains about turning auto sync back on
     if (_bAutoSyncOn) {
@@ -2133,7 +2232,7 @@ bool CParameterMgr::sync(string& strError)
 
     // Sync
     core::Results error;
-    if (! syncerSet.sync(*_pMainParameterBlackboard, false, &error)){
+    if (!syncerSet.sync(*_pMainParameterBlackboard, false, &error)) {
 
         strError = utility::asString(error);
         return false;
@@ -2143,7 +2242,7 @@ bool CParameterMgr::sync(string& strError)
 }
 
 // Configuration/Domains handling
-bool CParameterMgr::createDomain(const string& strName, string& strError)
+bool CParameterMgr::createDomain(const string &strName, string &strError)
 {
     LOG_CONTEXT("Creating configurable domain " + strName);
     // Check tuning mode
@@ -2156,7 +2255,7 @@ bool CParameterMgr::createDomain(const string& strName, string& strError)
     return logResult(getConfigurableDomains()->createDomain(strName, strError), strError);
 }
 
-bool CParameterMgr::deleteDomain(const string& strName, string& strError)
+bool CParameterMgr::deleteDomain(const string &strName, string &strError)
 {
     LOG_CONTEXT("Deleting configurable domain '" + strName + "'");
 
@@ -2171,16 +2270,16 @@ bool CParameterMgr::deleteDomain(const string& strName, string& strError)
     return logResult(getConfigurableDomains()->deleteDomain(strName, strError), strError);
 }
 
-bool CParameterMgr::renameDomain(const string& strName, const string& strNewName, string& strError)
+bool CParameterMgr::renameDomain(const string &strName, const string &strNewName, string &strError)
 {
     LOG_CONTEXT("Renaming configurable domain '" + strName + "' to '" + strNewName + "'");
 
     // Delegate to configurable domains
-    return logResult(getConfigurableDomains()->renameDomain(
-                                                        strName, strNewName, strError), strError);
+    return logResult(getConfigurableDomains()->renameDomain(strName, strNewName, strError),
+                     strError);
 }
 
-bool CParameterMgr::deleteAllDomains(string& strError)
+bool CParameterMgr::deleteAllDomains(string &strError)
 {
     LOG_CONTEXT("Deleting all configurable domains");
 
@@ -2198,10 +2297,11 @@ bool CParameterMgr::deleteAllDomains(string& strError)
     return true;
 }
 
-bool CParameterMgr::setSequenceAwareness(const string& strName, bool bSequenceAware, string& strResult)
+bool CParameterMgr::setSequenceAwareness(const string &strName, bool bSequenceAware,
+                                         string &strResult)
 {
-    LOG_CONTEXT("Making domain '" + strName +
-                "' sequence " + (bSequenceAware ? "aware" : "unaware"));
+    LOG_CONTEXT("Making domain '" + strName + "' sequence " +
+                (bSequenceAware ? "aware" : "unaware"));
     // Check tuning mode
     if (!checkTuningModeOn(strResult)) {
 
@@ -2209,20 +2309,22 @@ bool CParameterMgr::setSequenceAwareness(const string& strName, bool bSequenceAw
         return false;
     }
 
-    return logResult(getConfigurableDomains()->setSequenceAwareness(
-                                                    strName, bSequenceAware, strResult), strResult);
+    return logResult(
+        getConfigurableDomains()->setSequenceAwareness(strName, bSequenceAware, strResult),
+        strResult);
 }
 
-bool CParameterMgr::getSequenceAwareness(const string& strName, bool& bSequenceAware,
-                                         string& strResult)
+bool CParameterMgr::getSequenceAwareness(const string &strName, bool &bSequenceAware,
+                                         string &strResult)
 {
     return getConfigurableDomains()->getSequenceAwareness(strName, bSequenceAware, strResult);
 }
 
-bool CParameterMgr::createConfiguration(const string& strDomain, const string& strConfiguration, string& strError)
+bool CParameterMgr::createConfiguration(const string &strDomain, const string &strConfiguration,
+                                        string &strError)
 {
-    LOG_CONTEXT("Creating domain configuration '" + strConfiguration +
-                "' into domain '" + strDomain + "'");
+    LOG_CONTEXT("Creating domain configuration '" + strConfiguration + "' into domain '" +
+                strDomain + "'");
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
 
@@ -2232,22 +2334,25 @@ bool CParameterMgr::createConfiguration(const string& strDomain, const string& s
 
     // Delegate to configurable domains
     return logResult(getConfigurableDomains()->createConfiguration(
-                    strDomain, strConfiguration, _pMainParameterBlackboard, strError), strError);
+                         strDomain, strConfiguration, _pMainParameterBlackboard, strError),
+                     strError);
 }
-bool CParameterMgr::renameConfiguration(const string& strDomain, const string& strConfiguration,
-                                        const string& strNewConfiguration, string& strError)
+bool CParameterMgr::renameConfiguration(const string &strDomain, const string &strConfiguration,
+                                        const string &strNewConfiguration, string &strError)
 {
-    LOG_CONTEXT("Renaming domain '" + strDomain + "''s configuration '" +
-                strConfiguration + "' to '" + strNewConfiguration + "'");
+    LOG_CONTEXT("Renaming domain '" + strDomain + "''s configuration '" + strConfiguration +
+                "' to '" + strNewConfiguration + "'");
 
-    return logResult(getConfigurableDomains()->renameConfiguration(
-                            strDomain, strConfiguration, strNewConfiguration, strError), strError);
+    return logResult(getConfigurableDomains()->renameConfiguration(strDomain, strConfiguration,
+                                                                   strNewConfiguration, strError),
+                     strError);
 }
 
-bool CParameterMgr::deleteConfiguration(const string& strDomain, const string& strConfiguration, string& strError)
+bool CParameterMgr::deleteConfiguration(const string &strDomain, const string &strConfiguration,
+                                        string &strError)
 {
-    LOG_CONTEXT("Deleting configuration '" + strConfiguration +
-                "' from domain '" + strDomain + "'");
+    LOG_CONTEXT("Deleting configuration '" + strConfiguration + "' from domain '" + strDomain +
+                "'");
 
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
@@ -2257,17 +2362,17 @@ bool CParameterMgr::deleteConfiguration(const string& strDomain, const string& s
     }
 
     // Delegate to configurable domains
-    return logResult(getConfigurableDomains()->deleteConfiguration(
-                                                 strDomain, strConfiguration, strError), strError);
+    return logResult(
+        getConfigurableDomains()->deleteConfiguration(strDomain, strConfiguration, strError),
+        strError);
 }
 
-bool CParameterMgr::restoreConfiguration(const string& strDomain,
-                                         const string& strConfiguration,
-                                         core::Results& errors)
+bool CParameterMgr::restoreConfiguration(const string &strDomain, const string &strConfiguration,
+                                         core::Results &errors)
 {
     string strError;
-    LOG_CONTEXT("Restoring domain '" + strDomain + "''s configuration '" +
-                strConfiguration + "' to parameter blackboard");
+    LOG_CONTEXT("Restoring domain '" + strDomain + "''s configuration '" + strConfiguration +
+                "' to parameter blackboard");
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
 
@@ -2277,15 +2382,17 @@ bool CParameterMgr::restoreConfiguration(const string& strDomain,
     }
 
     // Delegate to configurable domains
-    return logResult(getConstConfigurableDomains()->restoreConfiguration(
-                strDomain, strConfiguration, _pMainParameterBlackboard, _bAutoSyncOn, errors),
-                     strError);
+    return logResult(
+        getConstConfigurableDomains()->restoreConfiguration(
+            strDomain, strConfiguration, _pMainParameterBlackboard, _bAutoSyncOn, errors),
+        strError);
 }
 
-bool CParameterMgr::saveConfiguration(const string& strDomain, const string& strConfiguration, string& strError)
+bool CParameterMgr::saveConfiguration(const string &strDomain, const string &strConfiguration,
+                                      string &strError)
 {
-    LOG_CONTEXT("Saving domain '" + strDomain + "' configuration '" +
-                strConfiguration + "' from parameter blackboard");
+    LOG_CONTEXT("Saving domain '" + strDomain + "' configuration '" + strConfiguration +
+                "' from parameter blackboard");
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
 
@@ -2295,14 +2402,17 @@ bool CParameterMgr::saveConfiguration(const string& strDomain, const string& str
 
     // Delegate to configurable domains
     return logResult(getConfigurableDomains()->saveConfiguration(
-                strDomain, strConfiguration, _pMainParameterBlackboard, strError), strError);
+                         strDomain, strConfiguration, _pMainParameterBlackboard, strError),
+                     strError);
 }
 
 // Configurable element - domain association
-bool CParameterMgr::addConfigurableElementToDomain(const string& strDomain, const string& strConfigurableElementPath, string& strError)
+bool CParameterMgr::addConfigurableElementToDomain(const string &strDomain,
+                                                   const string &strConfigurableElementPath,
+                                                   string &strError)
 {
-    LOG_CONTEXT("Adding configurable element '" + strConfigurableElementPath +
-                "to domain '" + strDomain + "'");
+    LOG_CONTEXT("Adding configurable element '" + strConfigurableElementPath + "to domain '" +
+                strDomain + "'");
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
 
@@ -2312,7 +2422,7 @@ bool CParameterMgr::addConfigurableElementToDomain(const string& strDomain, cons
 
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(strConfigurableElementPath, &pLocatedElement, strError)) {
 
@@ -2321,12 +2431,13 @@ bool CParameterMgr::addConfigurableElementToDomain(const string& strDomain, cons
     }
 
     // Convert element
-    CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
+    CConfigurableElement *pConfigurableElement =
+        static_cast<CConfigurableElement *>(pLocatedElement);
 
     // Delegate
     core::Results infos;
     bool isSuccess = getConfigurableDomains()->addConfigurableElementToDomain(
-            strDomain, pConfigurableElement, _pMainParameterBlackboard, infos);
+        strDomain, pConfigurableElement, _pMainParameterBlackboard, infos);
 
     if (isSuccess) {
         info() << infos;
@@ -2338,10 +2449,12 @@ bool CParameterMgr::addConfigurableElementToDomain(const string& strDomain, cons
     return isSuccess;
 }
 
-bool CParameterMgr::removeConfigurableElementFromDomain(const string& strDomain, const string& strConfigurableElementPath, string& strError)
+bool CParameterMgr::removeConfigurableElementFromDomain(const string &strDomain,
+                                                        const string &strConfigurableElementPath,
+                                                        string &strError)
 {
-    LOG_CONTEXT("Removing configurable element '" + strConfigurableElementPath +
-                "' from domain '" + strDomain + "'");
+    LOG_CONTEXT("Removing configurable element '" + strConfigurableElementPath + "' from domain '" +
+                strDomain + "'");
 
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
@@ -2352,7 +2465,7 @@ bool CParameterMgr::removeConfigurableElementFromDomain(const string& strDomain,
 
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(strConfigurableElementPath, &pLocatedElement, strError)) {
 
@@ -2361,17 +2474,20 @@ bool CParameterMgr::removeConfigurableElementFromDomain(const string& strDomain,
     }
 
     // Convert element
-    CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
+    CConfigurableElement *pConfigurableElement =
+        static_cast<CConfigurableElement *>(pLocatedElement);
 
     // Delegate
     return logResult(getConfigurableDomains()->removeConfigurableElementFromDomain(
-                                            strDomain, pConfigurableElement, strError), strError);
+                         strDomain, pConfigurableElement, strError),
+                     strError);
 }
 
-bool CParameterMgr::split(const string& strDomain, const string& strConfigurableElementPath, string& strError)
+bool CParameterMgr::split(const string &strDomain, const string &strConfigurableElementPath,
+                          string &strError)
 {
-    LOG_CONTEXT("Splitting configurable element '" + strConfigurableElementPath +
-                "' domain '" + strDomain + "'");
+    LOG_CONTEXT("Splitting configurable element '" + strConfigurableElementPath + "' domain '" +
+                strDomain + "'");
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
 
@@ -2381,7 +2497,7 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
 
     CElementLocator elementLocator(getSystemClass());
 
-    CElement* pLocatedElement = NULL;
+    CElement *pLocatedElement = NULL;
 
     if (!elementLocator.locate(strConfigurableElementPath, &pLocatedElement, strError)) {
 
@@ -2390,7 +2506,8 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
     }
 
     // Convert element
-    CConfigurableElement* pConfigurableElement = static_cast<CConfigurableElement*>(pLocatedElement);
+    CConfigurableElement *pConfigurableElement =
+        static_cast<CConfigurableElement *>(pLocatedElement);
 
     // Delegate
     core::Results infos;
@@ -2406,9 +2523,9 @@ bool CParameterMgr::split(const string& strDomain, const string& strConfigurable
     return isSuccess;
 }
 
-bool CParameterMgr::setElementSequence(const string& strDomain, const string& strConfiguration,
-                                       const std::vector<string>& astrNewElementSequence,
-                                       string& strError)
+bool CParameterMgr::setElementSequence(const string &strDomain, const string &strConfiguration,
+                                       const std::vector<string> &astrNewElementSequence,
+                                       string &strError)
 {
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
@@ -2417,31 +2534,31 @@ bool CParameterMgr::setElementSequence(const string& strDomain, const string& st
     }
 
     return getConfigurableDomains()->setElementSequence(strDomain, strConfiguration,
-            astrNewElementSequence, strError);
+                                                        astrNewElementSequence, strError);
 }
 
-bool CParameterMgr::getApplicationRule(const string& strDomain, const string& strConfiguration,
-                                       string& strResult)
+bool CParameterMgr::getApplicationRule(const string &strDomain, const string &strConfiguration,
+                                       string &strResult)
 {
     return getConfigurableDomains()->getApplicationRule(strDomain, strConfiguration, strResult);
 }
 
-bool CParameterMgr::setApplicationRule(const string& strDomain, const string& strConfiguration,
-                                       const string& strApplicationRule, string& strError)
+bool CParameterMgr::setApplicationRule(const string &strDomain, const string &strConfiguration,
+                                       const string &strApplicationRule, string &strError)
 {
-    return getConfigurableDomains()->setApplicationRule(strDomain, strConfiguration,
-            strApplicationRule, getConstSelectionCriteria()->getSelectionCriteriaDefinition(),
-            strError);
+    return getConfigurableDomains()->setApplicationRule(
+        strDomain, strConfiguration, strApplicationRule,
+        getConstSelectionCriteria()->getSelectionCriteriaDefinition(), strError);
 }
 
-bool CParameterMgr::clearApplicationRule(const string& strDomain, const string& strConfiguration,
-                                         string& strError)
+bool CParameterMgr::clearApplicationRule(const string &strDomain, const string &strConfiguration,
+                                         string &strError)
 {
     return getConfigurableDomains()->clearApplicationRule(strDomain, strConfiguration, strError);
 }
 
-bool CParameterMgr::importDomainsXml(const string& xmlSource, bool withSettings,
-                                     bool fromFile, string& errorMsg)
+bool CParameterMgr::importDomainsXml(const string &xmlSource, bool withSettings, bool fromFile,
+                                     string &errorMsg)
 {
     // Check tuning mode
     if (!checkTuningModeOn(errorMsg)) {
@@ -2450,10 +2567,10 @@ bool CParameterMgr::importDomainsXml(const string& xmlSource, bool withSettings,
     }
 
     LOG_CONTEXT("Importing domains from " +
-            (fromFile ? ("\"" + xmlSource + "\"") : "a user-provided buffer"));
+                (fromFile ? ("\"" + xmlSource + "\"") : "a user-provided buffer"));
 
     // Root element
-    CConfigurableDomains* pConfigurableDomains = getConfigurableDomains();
+    CConfigurableDomains *pConfigurableDomains = getConfigurableDomains();
 
     bool importSuccess = wrapLegacyXmlImport(xmlSource, fromFile, withSettings,
                                              *pConfigurableDomains, "SystemClassName", errorMsg);
@@ -2467,8 +2584,8 @@ bool CParameterMgr::importDomainsXml(const string& xmlSource, bool withSettings,
     return importSuccess;
 }
 
-bool CParameterMgr::importSingleDomainXml(const string& xmlSource, bool overwrite,
-                                          bool withSettings, bool fromFile, string& errorMsg)
+bool CParameterMgr::importSingleDomainXml(const string &xmlSource, bool overwrite,
+                                          bool withSettings, bool fromFile, string &errorMsg)
 {
     if (!checkTuningModeOn(errorMsg)) {
 
@@ -2476,7 +2593,7 @@ bool CParameterMgr::importSingleDomainXml(const string& xmlSource, bool overwrit
     }
 
     LOG_CONTEXT("Importing a single domain from " +
-            (fromFile ? ('"' + xmlSource + '"') : "a user-provided buffer"));
+                (fromFile ? ('"' + xmlSource + '"') : "a user-provided buffer"));
 
     // We initialize the domain with an empty name but since we have set the isDomainStandalone
     // context, the name will be retrieved during de-serialization
@@ -2495,15 +2612,15 @@ bool CParameterMgr::importSingleDomainXml(const string& xmlSource, bool overwrit
     return true;
 }
 
-bool CParameterMgr::wrapLegacyXmlImport(const string& xmlSource, bool fromFile,
-                                        bool withSettings, CElement& element,
-                                        const string& nameAttributeName, string& errorMsg)
+bool CParameterMgr::wrapLegacyXmlImport(const string &xmlSource, bool fromFile, bool withSettings,
+                                        CElement &element, const string &nameAttributeName,
+                                        string &errorMsg)
 {
     CXmlDomainImportContext xmlDomainImportContext(errorMsg, withSettings, *getSystemClass());
 
     // Selection criteria definition for rule creation
     xmlDomainImportContext.setSelectionCriteriaDefinition(
-            getConstSelectionCriteria()->getSelectionCriteriaDefinition());
+        getConstSelectionCriteria()->getSelectionCriteriaDefinition());
 
     // It doesn't make sense to resolve XIncludes on an imported file because
     // we can't reliably decide of a "base url"
@@ -2512,13 +2629,13 @@ bool CParameterMgr::wrapLegacyXmlImport(const string& xmlSource, bool fromFile,
         return false;
     }
 
-    return xmlParse(xmlDomainImportContext, &element, doc, "",
-                    EParameterConfigurationLibrary, true, nameAttributeName);
+    return xmlParse(xmlDomainImportContext, &element, doc, "", EParameterConfigurationLibrary, true,
+                    nameAttributeName);
 }
 
-bool CParameterMgr::serializeElement(std::ostream& output,
-                                     CXmlSerializingContext& xmlSerializingContext,
-                                     const CElement& element) const
+bool CParameterMgr::serializeElement(std::ostream &output,
+                                     CXmlSerializingContext &xmlSerializingContext,
+                                     const CElement &element) const
 {
     if (!output.good()) {
         xmlSerializingContext.setError("Can't write XML: the output is in a bad state.");
@@ -2527,10 +2644,8 @@ bool CParameterMgr::serializeElement(std::ostream& output,
 
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(&element, _bValidateSchemasOnStart,
-                                     element.getXmlElementName(),
-                                     getSchemaUri(),
-                                     "parameter-framework",
-                                     getVersion());
+                                     element.getXmlElementName(), getSchemaUri(),
+                                     "parameter-framework", getVersion());
 
     // Use a doc sink to write the doc data in a stream
     CXmlStreamDocSink sink(output);
@@ -2540,25 +2655,25 @@ bool CParameterMgr::serializeElement(std::ostream& output,
     return processSuccess;
 }
 
-bool CParameterMgr::exportDomainsXml(string& xmlDest, bool withSettings, bool toFile,
-                                     string& errorMsg) const
+bool CParameterMgr::exportDomainsXml(string &xmlDest, bool withSettings, bool toFile,
+                                     string &errorMsg) const
 {
     LOG_CONTEXT("Exporting domains to " +
-            (toFile ? ('"' + xmlDest + '"') : " a user-provided buffer"));
+                (toFile ? ('"' + xmlDest + '"') : " a user-provided buffer"));
 
-    const CConfigurableDomains* configurableDomains = getConstConfigurableDomains();
+    const CConfigurableDomains *configurableDomains = getConstConfigurableDomains();
 
     return wrapLegacyXmlExport(xmlDest, toFile, withSettings, *configurableDomains, errorMsg);
 }
 
-bool CParameterMgr::exportSingleDomainXml(string& xmlDest, const string& domainName,
-                                          bool withSettings, bool toFile, string& errorMsg) const
+bool CParameterMgr::exportSingleDomainXml(string &xmlDest, const string &domainName,
+                                          bool withSettings, bool toFile, string &errorMsg) const
 {
     LOG_CONTEXT("Exporting single domain '" + domainName + "' to " +
-            (toFile ? ('"' + xmlDest + '"') : " a user-provided buffer"));
+                (toFile ? ('"' + xmlDest + '"') : " a user-provided buffer"));
 
     // Element to be serialized
-    const CConfigurableDomain* requestedDomain =
+    const CConfigurableDomain *requestedDomain =
         getConstConfigurableDomains()->findConfigurableDomain(domainName, errorMsg);
 
     if (requestedDomain == NULL) {
@@ -2568,8 +2683,8 @@ bool CParameterMgr::exportSingleDomainXml(string& xmlDest, const string& domainN
     return wrapLegacyXmlExport(xmlDest, toFile, withSettings, *requestedDomain, errorMsg);
 }
 
-bool CParameterMgr::wrapLegacyXmlExport(string& xmlDest, bool toFile, bool withSettings,
-                                        const CElement& element, string& errorMsg) const
+bool CParameterMgr::wrapLegacyXmlExport(string &xmlDest, bool toFile, bool withSettings,
+                                        const CElement &element, string &errorMsg) const
 {
     CXmlDomainExportContext context(errorMsg, withSettings, _bValueSpaceIsRaw,
                                     _bOutputRawFormatIsHex);
@@ -2581,8 +2696,7 @@ bool CParameterMgr::wrapLegacyXmlExport(string& xmlDest, bool toFile, bool withS
     }
 }
 
-bool CParameterMgr::wrapLegacyXmlExportToFile(string& xmlDest,
-                                              const CElement& element,
+bool CParameterMgr::wrapLegacyXmlExportToFile(string &xmlDest, const CElement &element,
                                               CXmlDomainExportContext &context) const
 {
     try {
@@ -2597,14 +2711,13 @@ bool CParameterMgr::wrapLegacyXmlExportToFile(string& xmlDest,
 
         return status;
 
-    } catch (std::ofstream::failure& e) {
+    } catch (std::ofstream::failure &e) {
         context.setError("Failed to open \"" + xmlDest + "\" for writing: " + e.what());
         return false;
     }
 }
 
-bool CParameterMgr::wrapLegacyXmlExportToString(string& xmlDest,
-                                                const CElement& element,
+bool CParameterMgr::wrapLegacyXmlExportToString(string &xmlDest, const CElement &element,
                                                 CXmlDomainExportContext &context) const
 {
     std::ostringstream output;
@@ -2619,7 +2732,7 @@ bool CParameterMgr::wrapLegacyXmlExportToString(string& xmlDest,
 }
 
 // For tuning, check we're in tuning mode
-bool CParameterMgr::checkTuningModeOn(string& strError) const
+bool CParameterMgr::checkTuningModeOn(string &strError) const
 {
     // Tuning Mode on?
     if (!_bTuningModeIsOn) {
@@ -2638,7 +2751,7 @@ std::mutex &CParameterMgr::getBlackboardMutex()
 }
 
 // Blackboard reference (dynamic parameter handling)
-CParameterBlackboard* CParameterMgr::getParameterBlackboard()
+CParameterBlackboard *CParameterMgr::getParameterBlackboard()
 {
     return _pMainParameterBlackboard;
 }
@@ -2647,46 +2760,75 @@ CParameterBlackboard* CParameterMgr::getParameterBlackboard()
 void CParameterMgr::feedElementLibraries()
 {
     // Global Configuration handling
-    CElementLibrary* pFrameworkConfigurationLibrary = new CElementLibrary;
+    CElementLibrary *pFrameworkConfigurationLibrary = new CElementLibrary;
 
-    pFrameworkConfigurationLibrary->addElementBuilder("ParameterFrameworkConfiguration", new TElementBuilderTemplate<CParameterFrameworkConfiguration>());
-    pFrameworkConfigurationLibrary->addElementBuilder("SubsystemPlugins", new TKindElementBuilderTemplate<CSubsystemPlugins>());
-    pFrameworkConfigurationLibrary->addElementBuilder("Location", new TKindElementBuilderTemplate<CPluginLocation>());
-    pFrameworkConfigurationLibrary->addElementBuilder("StructureDescriptionFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
-    pFrameworkConfigurationLibrary->addElementBuilder("SettingsConfiguration", new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>());
-    pFrameworkConfigurationLibrary->addElementBuilder("ConfigurableDomainsFileLocation", new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
+    pFrameworkConfigurationLibrary->addElementBuilder(
+        "ParameterFrameworkConfiguration",
+        new TElementBuilderTemplate<CParameterFrameworkConfiguration>());
+    pFrameworkConfigurationLibrary->addElementBuilder(
+        "SubsystemPlugins", new TKindElementBuilderTemplate<CSubsystemPlugins>());
+    pFrameworkConfigurationLibrary->addElementBuilder(
+        "Location", new TKindElementBuilderTemplate<CPluginLocation>());
+    pFrameworkConfigurationLibrary->addElementBuilder(
+        "StructureDescriptionFileLocation",
+        new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
+    pFrameworkConfigurationLibrary->addElementBuilder(
+        "SettingsConfiguration", new TKindElementBuilderTemplate<CFrameworkConfigurationGroup>());
+    pFrameworkConfigurationLibrary->addElementBuilder(
+        "ConfigurableDomainsFileLocation",
+        new TKindElementBuilderTemplate<CFrameworkConfigurationLocation>());
 
     _pElementLibrarySet->addElementLibrary(pFrameworkConfigurationLibrary);
 
     // Parameter creation
-    CElementLibrary* pParameterCreationLibrary = new CElementLibrary;
+    CElementLibrary *pParameterCreationLibrary = new CElementLibrary;
 
-    pParameterCreationLibrary->addElementBuilder("Subsystem", new CSubsystemElementBuilder(getSystemClass()->getSubsystemLibrary()));
-    pParameterCreationLibrary->addElementBuilder("ComponentType", new TNamedElementBuilderTemplate<CComponentType>());
-    pParameterCreationLibrary->addElementBuilder("Component", new TNamedElementBuilderTemplate<CComponentInstance>());
-    pParameterCreationLibrary->addElementBuilder("BitParameter", new TNamedElementBuilderTemplate<CBitParameterType>());
-    pParameterCreationLibrary->addElementBuilder("BitParameterBlock", new TNamedElementBuilderTemplate<CBitParameterBlockType>());
-    pParameterCreationLibrary->addElementBuilder("StringParameter", new TNamedElementBuilderTemplate<CStringParameterType>());
-    pParameterCreationLibrary->addElementBuilder("ParameterBlock", new TNamedElementBuilderTemplate<CParameterBlockType>());
-    pParameterCreationLibrary->addElementBuilder("BooleanParameter", new TNamedElementBuilderTemplate<CBooleanParameterType>());
-    pParameterCreationLibrary->addElementBuilder("IntegerParameter", new TNamedElementBuilderTemplate<CIntegerParameterType>());
-    pParameterCreationLibrary->addElementBuilder("LinearAdaptation", new TElementBuilderTemplate<CLinearParameterAdaptation>());
-    pParameterCreationLibrary->addElementBuilder("LogarithmicAdaptation", new TElementBuilderTemplate<CLogarithmicParameterAdaptation>());
-    pParameterCreationLibrary->addElementBuilder("EnumParameter", new TNamedElementBuilderTemplate<CEnumParameterType>());
-    pParameterCreationLibrary->addElementBuilder("ValuePair", new TElementBuilderTemplate<CEnumValuePair>());
-    pParameterCreationLibrary->addElementBuilder("FixedPointParameter", new TNamedElementBuilderTemplate<CFixedPointParameterType>());
-    pParameterCreationLibrary->addElementBuilder("FloatingPointParameter", new TNamedElementBuilderTemplate<CFloatingPointParameterType>);
-    pParameterCreationLibrary->addElementBuilder("SubsystemInclude", new CFileIncluderElementBuilder(_bValidateSchemasOnStart));
+    pParameterCreationLibrary->addElementBuilder(
+        "Subsystem", new CSubsystemElementBuilder(getSystemClass()->getSubsystemLibrary()));
+    pParameterCreationLibrary->addElementBuilder(
+        "ComponentType", new TNamedElementBuilderTemplate<CComponentType>());
+    pParameterCreationLibrary->addElementBuilder(
+        "Component", new TNamedElementBuilderTemplate<CComponentInstance>());
+    pParameterCreationLibrary->addElementBuilder(
+        "BitParameter", new TNamedElementBuilderTemplate<CBitParameterType>());
+    pParameterCreationLibrary->addElementBuilder(
+        "BitParameterBlock", new TNamedElementBuilderTemplate<CBitParameterBlockType>());
+    pParameterCreationLibrary->addElementBuilder(
+        "StringParameter", new TNamedElementBuilderTemplate<CStringParameterType>());
+    pParameterCreationLibrary->addElementBuilder(
+        "ParameterBlock", new TNamedElementBuilderTemplate<CParameterBlockType>());
+    pParameterCreationLibrary->addElementBuilder(
+        "BooleanParameter", new TNamedElementBuilderTemplate<CBooleanParameterType>());
+    pParameterCreationLibrary->addElementBuilder(
+        "IntegerParameter", new TNamedElementBuilderTemplate<CIntegerParameterType>());
+    pParameterCreationLibrary->addElementBuilder(
+        "LinearAdaptation", new TElementBuilderTemplate<CLinearParameterAdaptation>());
+    pParameterCreationLibrary->addElementBuilder(
+        "LogarithmicAdaptation", new TElementBuilderTemplate<CLogarithmicParameterAdaptation>());
+    pParameterCreationLibrary->addElementBuilder(
+        "EnumParameter", new TNamedElementBuilderTemplate<CEnumParameterType>());
+    pParameterCreationLibrary->addElementBuilder("ValuePair",
+                                                 new TElementBuilderTemplate<CEnumValuePair>());
+    pParameterCreationLibrary->addElementBuilder(
+        "FixedPointParameter", new TNamedElementBuilderTemplate<CFixedPointParameterType>());
+    pParameterCreationLibrary->addElementBuilder(
+        "FloatingPointParameter", new TNamedElementBuilderTemplate<CFloatingPointParameterType>);
+    pParameterCreationLibrary->addElementBuilder(
+        "SubsystemInclude", new CFileIncluderElementBuilder(_bValidateSchemasOnStart));
 
     _pElementLibrarySet->addElementLibrary(pParameterCreationLibrary);
 
     // Parameter Configuration Domains creation
-    CElementLibrary* pParameterConfigurationLibrary = new CElementLibrary;
+    CElementLibrary *pParameterConfigurationLibrary = new CElementLibrary;
 
-    pParameterConfigurationLibrary->addElementBuilder("ConfigurableDomain", new TElementBuilderTemplate<CConfigurableDomain>());
-    pParameterConfigurationLibrary->addElementBuilder("Configuration", new TNamedElementBuilderTemplate<CDomainConfiguration>());
-    pParameterConfigurationLibrary->addElementBuilder("CompoundRule", new TElementBuilderTemplate<CCompoundRule>());
-    pParameterConfigurationLibrary->addElementBuilder("SelectionCriterionRule", new TElementBuilderTemplate<CSelectionCriterionRule>());
+    pParameterConfigurationLibrary->addElementBuilder(
+        "ConfigurableDomain", new TElementBuilderTemplate<CConfigurableDomain>());
+    pParameterConfigurationLibrary->addElementBuilder(
+        "Configuration", new TNamedElementBuilderTemplate<CDomainConfiguration>());
+    pParameterConfigurationLibrary->addElementBuilder("CompoundRule",
+                                                      new TElementBuilderTemplate<CCompoundRule>());
+    pParameterConfigurationLibrary->addElementBuilder(
+        "SelectionCriterionRule", new TElementBuilderTemplate<CSelectionCriterionRule>());
 
     _pElementLibrarySet->addElementLibrary(pParameterConfigurationLibrary);
 }
@@ -2702,7 +2844,7 @@ void CParameterMgr::setForceNoRemoteInterface(bool bForceNoRemoteInterface)
 }
 
 // Remote Processor Server connection handling
-bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
+bool CParameterMgr::handleRemoteProcessingInterface(string &strError)
 {
     LOG_CONTEXT("Handling remote processing interface");
 
@@ -2720,11 +2862,10 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
 
     // Add command parsers
     for (const auto &remoteCommandParserItem : gastRemoteCommandParserItems) {
-        commandHandler->addCommandParser(remoteCommandParserItem._pcCommandName,
-                                         remoteCommandParserItem._pfnParser,
-                                         remoteCommandParserItem._minArgumentCount,
-                                         remoteCommandParserItem._pcHelp,
-                                         remoteCommandParserItem._pcDescription);
+        commandHandler->addCommandParser(
+            remoteCommandParserItem._pcCommandName, remoteCommandParserItem._pfnParser,
+            remoteCommandParserItem._minArgumentCount, remoteCommandParserItem._pcHelp,
+            remoteCommandParserItem._pcDescription);
     }
     std::unique_ptr<IRemoteCommandHandler> remoteCommandHandler(commandHandler);
 
@@ -2749,50 +2890,50 @@ bool CParameterMgr::handleRemoteProcessingInterface(string& strError)
 }
 
 // Children typwise access
-CParameterFrameworkConfiguration* CParameterMgr::getFrameworkConfiguration()
+CParameterFrameworkConfiguration *CParameterMgr::getFrameworkConfiguration()
 {
-    return static_cast<CParameterFrameworkConfiguration*>(getChild(EFrameworkConfiguration));
+    return static_cast<CParameterFrameworkConfiguration *>(getChild(EFrameworkConfiguration));
 }
 
-const CParameterFrameworkConfiguration* CParameterMgr::getConstFrameworkConfiguration()
+const CParameterFrameworkConfiguration *CParameterMgr::getConstFrameworkConfiguration()
 {
     return getFrameworkConfiguration();
 }
 
-CSelectionCriteria* CParameterMgr::getSelectionCriteria()
+CSelectionCriteria *CParameterMgr::getSelectionCriteria()
 {
-    return static_cast<CSelectionCriteria*>(getChild(ESelectionCriteria));
+    return static_cast<CSelectionCriteria *>(getChild(ESelectionCriteria));
 }
 
-const CSelectionCriteria* CParameterMgr::getConstSelectionCriteria()
+const CSelectionCriteria *CParameterMgr::getConstSelectionCriteria()
 {
-    return static_cast<const CSelectionCriteria*>(getChild(ESelectionCriteria));
+    return static_cast<const CSelectionCriteria *>(getChild(ESelectionCriteria));
 }
 
-CSystemClass* CParameterMgr::getSystemClass()
+CSystemClass *CParameterMgr::getSystemClass()
 {
-    return static_cast<CSystemClass*>(getChild(ESystemClass));
+    return static_cast<CSystemClass *>(getChild(ESystemClass));
 }
 
-const CSystemClass* CParameterMgr::getConstSystemClass() const
+const CSystemClass *CParameterMgr::getConstSystemClass() const
 {
-    return static_cast<const CSystemClass*>(getChild(ESystemClass));
+    return static_cast<const CSystemClass *>(getChild(ESystemClass));
 }
 
 // Configurable Domains
-CConfigurableDomains* CParameterMgr::getConfigurableDomains()
+CConfigurableDomains *CParameterMgr::getConfigurableDomains()
 {
-    return static_cast<CConfigurableDomains*>(getChild(EConfigurableDomains));
+    return static_cast<CConfigurableDomains *>(getChild(EConfigurableDomains));
 }
 
-const CConfigurableDomains* CParameterMgr::getConstConfigurableDomains()
+const CConfigurableDomains *CParameterMgr::getConstConfigurableDomains()
 {
-    return static_cast<const CConfigurableDomains*>(getChild(EConfigurableDomains));
+    return static_cast<const CConfigurableDomains *>(getChild(EConfigurableDomains));
 }
 
-const CConfigurableDomains* CParameterMgr::getConstConfigurableDomains() const
+const CConfigurableDomains *CParameterMgr::getConstConfigurableDomains() const
 {
-    return static_cast<const CConfigurableDomains*>(getChild(EConfigurableDomains));
+    return static_cast<const CConfigurableDomains *>(getChild(EConfigurableDomains));
 }
 
 // Apply configurations
@@ -2810,15 +2951,16 @@ void CParameterMgr::doApplyConfigurations(bool bForce)
     getConfigurableDomains()->apply(_pMainParameterBlackboard, syncerSet, bForce, infos);
     info() << infos;
 
-    // Reset the modified status of the current criteria to indicate that a new configuration has been applied
+    // Reset the modified status of the current criteria to indicate that a new configuration has
+    // been applied
     getSelectionCriteria()->resetModifiedStatus();
 }
 
 // Export to XML string
-bool CParameterMgr::exportElementToXMLString(const IXmlSource* pXmlSource,
-                                             const string& strRootElementType,
+bool CParameterMgr::exportElementToXMLString(const IXmlSource *pXmlSource,
+                                             const string &strRootElementType,
                                              CXmlSerializingContext &&xmlSerializingContext,
-                                             string& strResult) const
+                                             string &strResult) const
 {
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(pXmlSource, false, strRootElementType);
@@ -2835,7 +2977,7 @@ bool CParameterMgr::exportElementToXMLString(const IXmlSource* pXmlSource,
     return bProcessSuccess;
 }
 
-bool CParameterMgr::logResult(bool isSuccess, const std::string& result)
+bool CParameterMgr::logResult(bool isSuccess, const std::string &result)
 {
     std::string log = result.empty() ? "" : ": " + result;
 

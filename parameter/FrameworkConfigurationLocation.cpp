@@ -33,12 +33,15 @@
 
 #define base CKindElement
 
-CFrameworkConfigurationLocation::CFrameworkConfigurationLocation(const std::string& strName, const std::string& strKind) : base(strName, strKind)
+CFrameworkConfigurationLocation::CFrameworkConfigurationLocation(const std::string &strName,
+                                                                 const std::string &strKind)
+    : base(strName, strKind)
 {
 }
 
 // From IXmlSink
-bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CFrameworkConfigurationLocation::fromXml(const CXmlElement &xmlElement,
+                                              CXmlSerializingContext &serializingContext)
 {
     xmlElement.getAttribute("Path", _configurationUri);
 
@@ -51,7 +54,7 @@ bool CFrameworkConfigurationLocation::fromXml(const CXmlElement& xmlElement, CXm
     return true;
 }
 
-const std::string& CFrameworkConfigurationLocation::getUri() const
+const std::string &CFrameworkConfigurationLocation::getUri() const
 {
     return _configurationUri;
 }

@@ -33,25 +33,26 @@
 
 using std::string;
 
-CXmlElementSerializingContext::CXmlElementSerializingContext(string& strError) : base(strError)
+CXmlElementSerializingContext::CXmlElementSerializingContext(string &strError) : base(strError)
 {
 }
 
 // Init
-void CXmlElementSerializingContext::set(const CElementLibrary* pElementLibrary, const string& xmlUri)
+void CXmlElementSerializingContext::set(const CElementLibrary *pElementLibrary,
+                                        const string &xmlUri)
 {
     _pElementLibrary = pElementLibrary;
     _xmlUri = xmlUri;
 }
 
 // ElementLibrary
-const CElementLibrary* CXmlElementSerializingContext::getElementLibrary() const
+const CElementLibrary *CXmlElementSerializingContext::getElementLibrary() const
 {
     return _pElementLibrary;
 }
 
 // XML Folder Path
-const string& CXmlElementSerializingContext::getXmlUri() const
+const string &CXmlElementSerializingContext::getXmlUri() const
 {
     return _xmlUri;
 }

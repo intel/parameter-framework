@@ -34,7 +34,5 @@
 class CSkeletonSubsystem : public CSubsystem
 {
 public:
-    CSkeletonSubsystem(const std::string& strName, core::log::Logger& logger);
-
+    CSkeletonSubsystem(const std::string &strName, core::log::Logger &logger);
 };
-

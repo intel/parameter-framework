@@ -44,7 +44,7 @@ public:
       *
       * @param[out] output a reference to a ostream that will be filled by the doProcess method
       */
-    CXmlStreamDocSink(std::ostream& output);
+    CXmlStreamDocSink(std::ostream &output);
 
 private:
     /** Implementation of CXmlDocSink::doProcess()
@@ -55,11 +55,10 @@ private:
       *
       * @return false if any error occurs
       */
-    virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
+    virtual bool doProcess(CXmlDocSource &xmlDocSource, CXmlSerializingContext &serializingContext);
 
     /**
       * Result ostream containing the XML informations
       */
-    std::ostream& _output;
+    std::ostream &_output;
 };
-

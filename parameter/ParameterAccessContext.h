@@ -38,19 +38,16 @@ class CParameterBlackboard;
 class CParameterAccessContext : public utility::ErrorContext
 {
 public:
-    CParameterAccessContext(std::string& strError,
-                            CParameterBlackboard* pParameterBlackboard,
-                            bool bValueSpaceIsRaw,
-                            bool bOutputRawFormatIsHex,
+    CParameterAccessContext(std::string &strError, CParameterBlackboard *pParameterBlackboard,
+                            bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex,
                             size_t offsetBase = 0);
-    CParameterAccessContext(std::string& strError,
-                            CParameterBlackboard* pParameterBlackboard,
+    CParameterAccessContext(std::string &strError, CParameterBlackboard *pParameterBlackboard,
                             size_t offsetBase = 0);
-    CParameterAccessContext(std::string& strError);
+    CParameterAccessContext(std::string &strError);
 
     // ParameterBlackboard
-    CParameterBlackboard* getParameterBlackboard();
-    void setParameterBlackboard(CParameterBlackboard* pBlackboard);
+    CParameterBlackboard *getParameterBlackboard();
+    void setParameterBlackboard(CParameterBlackboard *pBlackboard);
 
     // Value interpretation as Real or Raw
     void setValueSpaceRaw(bool bIsRaw);
@@ -86,7 +83,7 @@ public:
 
 private:
     // Blackboard
-    CParameterBlackboard* _pParameterBlackboard{nullptr};
+    CParameterBlackboard *_pParameterBlackboard{nullptr};
     // Value space
     bool _bValueSpaceIsRaw{false};
     // Output Raw Format
@@ -96,4 +93,3 @@ private:
     // Base offset where parameters are stored in configuration blackboards
     size_t _uiBaseOffset{0};
 };
-

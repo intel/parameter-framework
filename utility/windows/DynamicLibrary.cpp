@@ -28,20 +28,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #include <DynamicLibrary.hpp>
 
 #include "windows.h"
 
 #include <stdexcept>
 
-
-
 const std::string DynamicLibrary::_osLibraryPrefix = "";
 const std::string DynamicLibrary::_osLibrarySuffix = ".dll";
 
-DynamicLibrary::DynamicLibrary(const std::string& path)
-    : _path(osSanitizePathName(path))
+DynamicLibrary::DynamicLibrary(const std::string &path) : _path(osSanitizePathName(path))
 {
     static_assert(sizeof(void *) == sizeof(HMODULE), "Incompatible object size");
 
@@ -62,7 +58,7 @@ DynamicLibrary::~DynamicLibrary()
     FreeLibrary(module);
 }
 
-void *DynamicLibrary::osGetSymbol(const std::string& symbol) const
+void *DynamicLibrary::osGetSymbol(const std::string &symbol) const
 {
     HMODULE module = reinterpret_cast<HMODULE>(_handle);
 

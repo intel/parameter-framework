@@ -47,15 +47,15 @@ static std::string formatError(DWORD error)
     LPTSTR formatedError = nullptr; // Pointer to the output buffer
 
     FormatMessage(
-       FORMAT_MESSAGE_FROM_SYSTEM |     // use system message tables to retrieve error text
-       FORMAT_MESSAGE_ALLOCATE_BUFFER | // allocate buffer on local heap for error text
-       FORMAT_MESSAGE_IGNORE_INSERTS,   // no insertion parameters
-       NULL, // unused with FORMAT_MESSAGE_FROM_SYSTEM
-       error, // the error to format
-       MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Use default language
-       (LPTSTR)&formatedError,  // output a pointer to the formated string
-       0,                       // minimum size for output buffer
-       NULL);   // No arguments
+        FORMAT_MESSAGE_FROM_SYSTEM |         // use system message tables to retrieve error text
+            FORMAT_MESSAGE_ALLOCATE_BUFFER | // allocate buffer on local heap for error text
+            FORMAT_MESSAGE_IGNORE_INSERTS,   // no insertion parameters
+        NULL,                                // unused with FORMAT_MESSAGE_FROM_SYSTEM
+        error,                               // the error to format
+        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Use default language
+        (LPTSTR)&formatedError,                    // output a pointer to the formated string
+        0,                                         // minimum size for output buffer
+        NULL);                                     // No arguments
 
     // Release memory allocated by FormatMessage() on exit
     // Ignore LocalFree failure
@@ -77,8 +77,8 @@ std::string TmpFile::mktmp()
         auto error = ::GetLastError();
 
         auto message = std::string() + "Could not create a tmp file in \"" + directory +
-                       "\", with prefix \"" + prefix + "\": (" + to_string(error) +
-                       ") " + formatError(error);
+                       "\", with prefix \"" + prefix + "\": (" + to_string(error) + ") " +
+                       formatError(error);
         throw std::runtime_error(message);
     }
 

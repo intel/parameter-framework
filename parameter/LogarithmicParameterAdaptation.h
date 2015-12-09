@@ -56,9 +56,10 @@ public:
     virtual int64_t fromUserValue(double dValue) const;
     virtual double toUserValue(int64_t iValue) const;
 
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+
 private:
     /**
      * _dLogarithmBase characterizes the new logarithm logB(x) with

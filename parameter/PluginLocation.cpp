@@ -31,22 +31,22 @@
 
 #define base CKindElement
 
-CPluginLocation::CPluginLocation(const std::string& strName, const std::string& strKind) : base(strName, strKind)
+CPluginLocation::CPluginLocation(const std::string &strName, const std::string &strKind)
+    : base(strName, strKind)
 {
-
 }
 
-const std::string& CPluginLocation::getFolder() const
+const std::string &CPluginLocation::getFolder() const
 {
     return _strFolder;
 }
 
-const std::list<std::string>& CPluginLocation::getPluginList() const
+const std::list<std::string> &CPluginLocation::getPluginList() const
 {
     return _pluginList;
 }
 
-bool CPluginLocation::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &/*ctx*/)
+bool CPluginLocation::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext & /*ctx*/)
 {
     // Retrieve folder
     xmlElement.getAttribute("Folder", _strFolder);

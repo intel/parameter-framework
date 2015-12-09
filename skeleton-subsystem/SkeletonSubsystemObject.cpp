@@ -46,43 +46,36 @@
 using std::string;
 
 CSkeletonSubsystemObject::CSkeletonSubsystemObject(
-            const string& strMappingValue,
-            CInstanceConfigurableElement* pInstanceConfigurableElement,
-            const CMappingContext& context,
-            core::log::Logger& logger
-        ) :
-        base(pInstanceConfigurableElement,
-             logger,
-             strMappingValue,
-             EAmend1,
-             EAmendEnd - EAmend1 + 1,
-             context),
-        _bWrongElementTypeError(false)
+    const string &strMappingValue, CInstanceConfigurableElement *pInstanceConfigurableElement,
+    const CMappingContext &context, core::log::Logger &logger)
+    : base(pInstanceConfigurableElement, logger, strMappingValue, EAmend1, EAmendEnd - EAmend1 + 1,
+           context),
+      _bWrongElementTypeError(false)
 {
     // Get actual element type
-    const CParameterType* pParameterType = static_cast<const CParameterType*>(pInstanceConfigurableElement->getTypeElement());
+    const CParameterType *pParameterType =
+        static_cast<const CParameterType *>(pInstanceConfigurableElement->getTypeElement());
 
     // Retrieve sizes
     _scalarSize = pParameterType->getSize();
     _arraySize = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
 
     // Construct message
-    _strMessage = context.getItem(ESkeletonOwner) + ":" + strMappingValue ;
+    _strMessage = context.getItem(ESkeletonOwner) + ":" + strMappingValue;
 
     // Handle types
     // Check we are able to handle elements (no exception support, defer the error)
-    switch(pInstanceConfigurableElement->getType()) {
+    switch (pInstanceConfigurableElement->getType()) {
 
-        case CInstanceConfigurableElement::EParameter:
-            break;
-        default:
-            _bWrongElementTypeError = true;
-            break;
+    case CInstanceConfigurableElement::EParameter:
+        break;
+    default:
+        _bWrongElementTypeError = true;
+        break;
     }
-
 }
 // Sync to/from HW
-bool CSkeletonSubsystemObject::accessHW(bool bReceive, string& strError)
+bool CSkeletonSubsystemObject::accessHW(bool bReceive, string &strError)
 {
     // Check parameter type is ok (deferred error, no exceptions available :-()
     if (_bWrongElementTypeError) {
@@ -95,11 +88,11 @@ bool CSkeletonSubsystemObject::accessHW(bool bReceive, string& strError)
     return base::accessHW(bReceive, strError);
 }
 
-bool CSkeletonSubsystemObject::sendToHW(string& /*strError*/)
+bool CSkeletonSubsystemObject::sendToHW(string & /*strError*/)
 {
-    void* pvValue = alloca(_scalarSize);
+    void *pvValue = alloca(_scalarSize);
 
-    for (size_t index = 0 ; index < _arraySize ; index++) {
+    for (size_t index = 0; index < _arraySize; index++) {
 
         // Read Value in BlackBoard
         blackboardRead(pvValue, _scalarSize);
@@ -111,11 +104,11 @@ bool CSkeletonSubsystemObject::sendToHW(string& /*strError*/)
     return true;
 }
 
-bool CSkeletonSubsystemObject::receiveFromHW(string& /*strError*/)
+bool CSkeletonSubsystemObject::receiveFromHW(string & /*strError*/)
 {
-    void* pvValue = alloca(_scalarSize);
+    void *pvValue = alloca(_scalarSize);
 
-    for (size_t index = 0 ; index < _arraySize ; index++) {
+    for (size_t index = 0; index < _arraySize; index++) {
 
         // Retreive here the value
         std::cout << "Retreive from HW: " << _strMessage << std::endl;

@@ -32,15 +32,14 @@
 
 #define base CXmlDocSink
 
-CXmlStreamDocSink::CXmlStreamDocSink(std::ostream& output):
-    _output(output)
+CXmlStreamDocSink::CXmlStreamDocSink(std::ostream &output) : _output(output)
 {
 }
 
-bool CXmlStreamDocSink::doProcess(CXmlDocSource& xmlDocSource,
-                                  CXmlSerializingContext& serializingContext)
+bool CXmlStreamDocSink::doProcess(CXmlDocSource &xmlDocSource,
+                                  CXmlSerializingContext &serializingContext)
 {
-    xmlChar* dumpedDoc = NULL;
+    xmlChar *dumpedDoc = NULL;
 
     int iSize;
     xmlDocDumpFormatMemoryEnc(xmlDocSource.getDoc(), &dumpedDoc, &iSize, "UTF-8", 1);
@@ -52,7 +51,7 @@ bool CXmlStreamDocSink::doProcess(CXmlDocSource& xmlDocSource,
         return false;
     }
 
-    _output << static_cast<unsigned char*>(dumpedDoc);
+    _output << static_cast<unsigned char *>(dumpedDoc);
 
     xmlFree(dumpedDoc);
 

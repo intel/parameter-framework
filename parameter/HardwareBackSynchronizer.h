@@ -35,7 +35,8 @@
 class CHardwareBackSynchronizer : public CBackSynchronizer
 {
 public:
-    CHardwareBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard);
+    CHardwareBackSynchronizer(const CConfigurableElement *pConfigurableElement,
+                              CParameterBlackboard *pParameterBlackboard);
 
     // Back synchronization
     virtual void sync();
@@ -44,6 +45,5 @@ private:
     // Back syncer set
     CSyncerSet _backSyncerSet;
     // Parameter blackboard
-    CParameterBlackboard* _pParameterBlackboard;
+    CParameterBlackboard *_pParameterBlackboard;
 };
-

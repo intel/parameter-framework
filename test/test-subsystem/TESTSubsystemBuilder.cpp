@@ -31,10 +31,9 @@
 #include "LoggingElementBuilderTemplate.h"
 #include "TESTSubsystem.h"
 
-
-void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary* pSubsystemLibrary, core::log::Logger& logger)
+void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary *pSubsystemLibrary,
+                                              core::log::Logger &logger)
 {
-    pSubsystemLibrary->addElementBuilder("TEST",
-                                         new TLoggingElementBuilderTemplate<CTESTSubsystem>(
-                                             logger));
+    pSubsystemLibrary->addElementBuilder(
+        "TEST", new TLoggingElementBuilderTemplate<CTESTSubsystem>(logger));
 }

@@ -30,14 +30,14 @@
 #include "SyncerSet.h"
 #include "Syncer.h"
 
-const CSyncerSet& CSyncerSet::operator+=(ISyncer* pRightSyncer)
+const CSyncerSet &CSyncerSet::operator+=(ISyncer *pRightSyncer)
 {
     _syncerSet.insert(pRightSyncer);
 
     return *this;
 }
 
-const CSyncerSet& CSyncerSet::operator+=(const CSyncerSet& rightSyncerSet)
+const CSyncerSet &CSyncerSet::operator+=(const CSyncerSet &rightSyncerSet)
 {
     if (&rightSyncerSet != this) {
 
@@ -52,9 +52,8 @@ void CSyncerSet::clear()
     _syncerSet.clear();
 }
 
-bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard,
-                      bool bBack,
-                      core::Results* errors) const
+bool CSyncerSet::sync(CParameterBlackboard &parameterBlackboard, bool bBack,
+                      core::Results *errors) const
 {
     bool bSuccess = true;
 
@@ -65,7 +64,7 @@ bool CSyncerSet::sync(CParameterBlackboard& parameterBlackboard,
 
     for (it = _syncerSet.begin(); it != _syncerSet.end(); ++it) {
 
-        ISyncer* pSyncer = *it;
+        ISyncer *pSyncer = *it;
 
         if (!pSyncer->sync(parameterBlackboard, bBack, strError)) {
 

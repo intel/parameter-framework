@@ -36,11 +36,9 @@
 
 #include <remote_processor_export.h>
 
-
 class REMOTE_PROCESSOR_EXPORT CMessage : private utility::NonCopyable
 {
 public:
-
     enum class MsgType : std::uint8_t
     {
         ECommandRequest,
@@ -52,7 +50,8 @@ public:
     CMessage();
     virtual ~CMessage() = default;
 
-    enum Result {
+    enum Result
+    {
         success,
         peerDisconnected,
         error
@@ -81,32 +80,32 @@ protected:
     * @param[in] pvData pointer to the data array
     * @param[in] uiSize array size in bytes
     */
-    void writeData(const void* pvData, size_t uiSize);
+    void writeData(const void *pvData, size_t uiSize);
 
     /** Read raw data from the message
     *
     * @param[out] pvData pointer to the data array
     * @param[in] uiSize array size in bytes
     */
-    void readData(void* pvData, size_t uiSize);
+    void readData(void *pvData, size_t uiSize);
 
     /** Write string to the message
     *
     * @param[in] strData the string to write
     */
-    void writeString(const std::string& strData);
+    void writeString(const std::string &strData);
 
     /** Write string to the message
     *
     * @param[out] strData the string to read to
     */
-    void readString(std::string& strData);
+    void readString(std::string &strData);
 
     /** @return string length plus room to store its length
     *
     * @param[in] strData the string to get the size from
     */
-    size_t getStringSize(const std::string& strData) const;
+    size_t getStringSize(const std::string &strData) const;
 
     /** @return remaining data size to read or to write depending on the context
     * (request: write, answer: read)

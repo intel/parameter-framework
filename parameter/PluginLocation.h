@@ -36,19 +36,18 @@ class CPluginLocation : public CKindElement
 {
 
 public:
-    CPluginLocation(const std::string& strName, const std::string& strKind);
+    CPluginLocation(const std::string &strName, const std::string &strKind);
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // Folder
-    const std::string& getFolder() const;
+    const std::string &getFolder() const;
 
     // Plugin list
-    const std::list<std::string>& getPluginList() const;
+    const std::list<std::string> &getPluginList() const;
 
 private:
     std::string _strFolder;
     std::list<std::string> _pluginList;
-
 };
