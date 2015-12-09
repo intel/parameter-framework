@@ -30,7 +30,6 @@
 #include "ElementLibrary.h"
 #include "ElementBuilder.h"
 
-
 CElementLibrary::~CElementLibrary()
 {
     clean();
@@ -47,7 +46,7 @@ void CElementLibrary::clean()
     _elementBuilderMap.clear();
 }
 
-CElement* CElementLibrary::createElement(const CXmlElement& xmlElement) const
+CElement *CElementLibrary::createElement(const CXmlElement &xmlElement) const
 {
     ElementBuilderMapConstIterator it = _elementBuilderMap.find(getBuilderType(xmlElement));
 
@@ -58,12 +57,13 @@ CElement* CElementLibrary::createElement(const CXmlElement& xmlElement) const
     return NULL;
 }
 
-void CElementLibrary::addElementBuilder(const std::string& type, const CElementBuilder *pElementBuilder)
+void CElementLibrary::addElementBuilder(const std::string &type,
+                                        const CElementBuilder *pElementBuilder)
 {
     _elementBuilderMap[type] = pElementBuilder;
 }
 
-std::string CElementLibrary::getBuilderType(const CXmlElement& xmlElement) const
+std::string CElementLibrary::getBuilderType(const CXmlElement &xmlElement) const
 {
     // Defaulting to xml element name
     return xmlElement.getType();

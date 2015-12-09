@@ -35,33 +35,29 @@
 class CFloatingPointParameterType : public CParameterType
 {
 public:
-    CFloatingPointParameterType(const std::string& strName);
+    CFloatingPointParameterType(const std::string &strName);
 
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
     virtual void handleValueSpaceAttribute(
-            CXmlElement& xmlConfigurableElementSettingsElement,
-            CConfigurationAccessContext& configurationAccessContext) const;
+        CXmlElement &xmlConfigurableElementSettingsElement,
+        CConfigurationAccessContext &configurationAccessContext) const;
 
-    virtual bool toBlackboard(const std::string& strValue,
-                              uint32_t& uiValue,
-                              CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string& strValue,
-                                const uint32_t& uiValue,
-                                CParameterAccessContext& parameterAccessContext) const;
-    virtual bool toBlackboard(double dUserValue,
-                              uint32_t& uiValue,
-                              CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(double& dUserValue,
-                                uint32_t uiValue,
-                                CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
+    virtual bool toBlackboard(double dUserValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(double &dUserValue, uint32_t uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
 
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
     virtual std::string getKind() const;
-private:
 
+private:
     typedef CParameterType base;
 
     /**
@@ -70,7 +66,8 @@ private:
      * @param[in] strValue the user provided value
      * @param[in,out] parameterAccessContext Parameter Access Context
      */
-    void setOutOfRangeError(const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
+    void setOutOfRangeError(const std::string &strValue,
+                            CParameterAccessContext &parameterAccessContext) const;
 
     /**
      * Check value validity against range.

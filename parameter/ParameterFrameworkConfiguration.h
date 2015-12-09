@@ -37,7 +37,7 @@ class CParameterFrameworkConfiguration : public CElement
 {
 public:
     // System class name
-    const std::string& getSystemClassName() const;
+    const std::string &getSystemClassName() const;
 
     // Tuning allowed
     bool isTuningAllowed() const;
@@ -46,7 +46,8 @@ public:
     uint16_t getServerPort() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
+
 private:
     virtual std::string getKind() const;
     virtual bool childrenAreDynamic() const;

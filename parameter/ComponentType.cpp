@@ -35,7 +35,7 @@
 
 #define base CTypeElement
 
-CComponentType::CComponentType(const std::string& strName) : base(strName)
+CComponentType::CComponentType(const std::string &strName) : base(strName)
 {
 }
 
@@ -49,16 +49,18 @@ bool CComponentType::childrenAreDynamic() const
     return true;
 }
 
-bool CComponentType::getMappingData(const std::string& strKey, const std::string*& pStrValue) const
+bool CComponentType::getMappingData(const std::string &strKey, const std::string *&pStrValue) const
 {
     // Try myself first then extended component type
-    return base::getMappingData(strKey, pStrValue) || (_pExtendsComponentType && _pExtendsComponentType->getMappingData(strKey, pStrValue));
+    return base::getMappingData(strKey, pStrValue) ||
+           (_pExtendsComponentType && _pExtendsComponentType->getMappingData(strKey, pStrValue));
 }
 
 bool CComponentType::hasMappingData() const
 {
     // Try myself first then extended component type
-    return base::hasMappingData() || (_pExtendsComponentType && _pExtendsComponentType->hasMappingData());
+    return base::hasMappingData() ||
+           (_pExtendsComponentType && _pExtendsComponentType->hasMappingData());
 }
 
 std::string CComponentType::getFormattedMapping() const
@@ -73,12 +75,14 @@ std::string CComponentType::getFormattedMapping() const
     return strValue;
 }
 
-bool CComponentType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CComponentType::fromXml(const CXmlElement &xmlElement,
+                             CXmlSerializingContext &serializingContext)
 {
     // Context
-    CXmlParameterSerializingContext& parameterBuildContext = static_cast<CXmlParameterSerializingContext&>(serializingContext);
+    CXmlParameterSerializingContext &parameterBuildContext =
+        static_cast<CXmlParameterSerializingContext &>(serializingContext);
 
-    const CComponentLibrary* pComponentLibrary = parameterBuildContext.getComponentLibrary();
+    const CComponentLibrary *pComponentLibrary = parameterBuildContext.getComponentLibrary();
 
     // Populate children
     if (!base::fromXml(xmlElement, serializingContext)) {
@@ -96,14 +100,16 @@ bool CComponentType::fromXml(const CXmlElement& xmlElement, CXmlSerializingConte
 
         if (!_pExtendsComponentType) {
 
-            serializingContext.setError("ComponentType " + strExtendsType + " referred to by " + xmlElement.getPath() + " not found!");
+            serializingContext.setError("ComponentType " + strExtendsType + " referred to by " +
+                                        xmlElement.getPath() + " not found!");
 
             return false;
         }
 
         if (_pExtendsComponentType == this) {
 
-            serializingContext.setError("Recursive ComponentType definition of " + xmlElement.getPath());
+            serializingContext.setError("Recursive ComponentType definition of " +
+                                        xmlElement.getPath());
 
             return false;
         }
@@ -112,7 +118,7 @@ bool CComponentType::fromXml(const CXmlElement& xmlElement, CXmlSerializingConte
     return true;
 }
 
-void CComponentType::populate(CElement* pElement) const
+void CComponentType::populate(CElement *pElement) const
 {
     // Populate children
     base::populate(pElement);
@@ -125,7 +131,7 @@ void CComponentType::populate(CElement* pElement) const
     }
 }
 
-CInstanceConfigurableElement* CComponentType::doInstantiate() const
+CInstanceConfigurableElement *CComponentType::doInstantiate() const
 {
     // Not supposed to be called directly (instantiation made through CComponentInstance object)
     assert(0);

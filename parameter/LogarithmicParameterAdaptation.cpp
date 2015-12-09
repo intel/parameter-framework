@@ -38,12 +38,12 @@
 CLogarithmicParameterAdaptation::CLogarithmicParameterAdaptation() : base("Logarithmic")
 {
     static_assert(std::numeric_limits<double>::is_iec559,
-            "Only double-precision floating points that are compliant with"
-            " IEC 559 (aka IEEE 754) are supported");
+                  "Only double-precision floating points that are compliant with"
+                  " IEC 559 (aka IEEE 754) are supported");
 }
 
 // Element properties
-void CLogarithmicParameterAdaptation::showProperties(std::string& strResult) const
+void CLogarithmicParameterAdaptation::showProperties(std::string &strResult) const
 {
     base::showProperties(strResult);
 
@@ -55,14 +55,14 @@ void CLogarithmicParameterAdaptation::showProperties(std::string& strResult) con
     strResult += "\n";
 }
 
-bool CLogarithmicParameterAdaptation::fromXml(const CXmlElement& xmlElement,
-                                            CXmlSerializingContext& serializingContext)
+bool CLogarithmicParameterAdaptation::fromXml(const CXmlElement &xmlElement,
+                                              CXmlSerializingContext &serializingContext)
 {
-    if (xmlElement.getAttribute("LogarithmBase", _dLogarithmBase)
-        && (_dLogarithmBase <= 0 || _dLogarithmBase == 1)) {
+    if (xmlElement.getAttribute("LogarithmBase", _dLogarithmBase) &&
+        (_dLogarithmBase <= 0 || _dLogarithmBase == 1)) {
         // Avoid negative and 1 values
-        serializingContext.setError("LogarithmBase attribute cannot be negative or 1 on element"
-                                    + xmlElement.getPath());
+        serializingContext.setError("LogarithmBase attribute cannot be negative or 1 on element" +
+                                    xmlElement.getPath());
 
         return false;
     }
@@ -73,11 +73,10 @@ bool CLogarithmicParameterAdaptation::fromXml(const CXmlElement& xmlElement,
     return base::fromXml(xmlElement, serializingContext);
 }
 
-
 int64_t CLogarithmicParameterAdaptation::fromUserValue(double value) const
 {
     return std::max(base::fromUserValue(log(value) / log(_dLogarithmBase)),
-                        static_cast<int64_t>(_dFloorValue));
+                    static_cast<int64_t>(_dFloorValue));
 }
 
 double CLogarithmicParameterAdaptation::toUserValue(int64_t iValue) const

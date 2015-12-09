@@ -38,17 +38,16 @@ class CVirtualSyncer;
 class CVirtualSubsystem final : public CSubsystem
 {
 public:
-
     /**
      * @param[in] strName subsystem name
      * @param[in] logger the main logger of the application
      */
-    CVirtualSubsystem(const std::string& strName, core::log::Logger& logger);
+    CVirtualSubsystem(const std::string &strName, core::log::Logger &logger);
     virtual ~CVirtualSubsystem();
 
 protected:
     // Syncer
-    virtual ISyncer* getSyncer() const;
+    virtual ISyncer *getSyncer() const;
 
     /**
      * Fill Syncer Set From descendant nodes
@@ -56,12 +55,14 @@ protected:
      * This functionality allows to collect the syncers when crawling down the
      * parameter tree.
      */
-    void fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const override;
+    void fillSyncerSetFromDescendant(CSyncerSet &syncerSet) const override;
+
 private:
     // From IMapper
-    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, std::string& strError);
+    virtual bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement,
+                          bool &bKeepDiving, std::string &strError);
     virtual void mapEnd();
 
     // Subsystem level dummy syncer
-    CVirtualSyncer* _pVirtualSyncer;
+    CVirtualSyncer *_pVirtualSyncer;
 };

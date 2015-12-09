@@ -43,12 +43,12 @@
  */
 #define PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1 ParameterFrameworkPluginEntryPointMagicV1
 
-class CSubsystemLibrary :
-        public CDefaultElementLibrary<TLoggingElementBuilderTemplate<CVirtualSubsystem> >
+class CSubsystemLibrary
+    : public CDefaultElementLibrary<TLoggingElementBuilderTemplate<CVirtualSubsystem>>
 {
 private:
     // Builder type (based on element's name attribute)
-    virtual std::string getBuilderType(const CXmlElement& xmlElement) const
+    virtual std::string getBuilderType(const CXmlElement &xmlElement) const
     {
         // Xml element's name attribute
         std::string type;

@@ -42,7 +42,7 @@
 
 using std::string;
 
-CConfigurableDomain::CConfigurableDomain(const string& strName) : base(strName)
+CConfigurableDomain::CConfigurableDomain(const string &strName) : base(strName)
 {
 }
 
@@ -53,7 +53,7 @@ CConfigurableDomain::~CConfigurableDomain()
 
     for (it = _configurableElementList.begin(); it != _configurableElementList.end(); ++it) {
 
-        CConfigurableElement* pConfigurableElement = *it;
+        CConfigurableElement *pConfigurableElement = *it;
 
         // Remove from configurable element
         pConfigurableElement->removeAttachedConfigurableDomain(this);
@@ -62,7 +62,8 @@ CConfigurableDomain::~CConfigurableDomain()
     // Remove all associated syncer sets
     ConfigurableElementToSyncerSetMapIterator mapIt;
 
-    for (mapIt = _configurableElementToSyncerSetMap.begin(); mapIt != _configurableElementToSyncerSetMap.end(); ++mapIt) {
+    for (mapIt = _configurableElementToSyncerSetMap.begin();
+         mapIt != _configurableElementToSyncerSetMap.end(); ++mapIt) {
 
         delete mapIt->second;
     }
@@ -79,17 +80,16 @@ bool CConfigurableDomain::childrenAreDynamic() const
 }
 
 // Content dumping
-string CConfigurableDomain::logValue(utility::ErrorContext& /*ctx*/) const
+string CConfigurableDomain::logValue(utility::ErrorContext & /*ctx*/) const
 {
     return string("{") +
 
-        "Sequence aware: " +
-        (_bSequenceAware ? "yes" : "no") +
+           "Sequence aware: " + (_bSequenceAware ? "yes" : "no") +
 
-        ", Last applied configuration: " +
-        (_pLastAppliedConfiguration ? _pLastAppliedConfiguration->getName() : "<none>") +
+           ", Last applied configuration: " +
+           (_pLastAppliedConfiguration ? _pLastAppliedConfiguration->getName() : "<none>") +
 
-        "}";
+           "}";
 }
 
 // Sequence awareness
@@ -107,7 +107,8 @@ bool CConfigurableDomain::getSequenceAwareness() const
 }
 
 // From IXmlSource
-void CConfigurableDomain::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CConfigurableDomain::toXml(CXmlElement &xmlElement,
+                                CXmlSerializingContext &serializingContext) const
 {
     base::toXml(xmlElement, serializingContext);
 
@@ -115,8 +116,8 @@ void CConfigurableDomain::toXml(CXmlElement& xmlElement, CXmlSerializingContext&
     xmlElement.setAttribute("SequenceAware", _bSequenceAware);
 }
 
-void CConfigurableDomain::childrenToXml(CXmlElement& xmlElement,
-                                        CXmlSerializingContext& serializingContext) const
+void CConfigurableDomain::childrenToXml(CXmlElement &xmlElement,
+                                        CXmlSerializingContext &serializingContext) const
 {
     // Configurations
     composeDomainConfigurations(xmlElement, serializingContext);
@@ -129,7 +130,8 @@ void CConfigurableDomain::childrenToXml(CXmlElement& xmlElement,
 }
 
 // XML composing
-void CConfigurableDomain::composeDomainConfigurations(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CConfigurableDomain::composeDomainConfigurations(
+    CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
 {
     // Create Configurations element
     CXmlElement xmlConfigurationsElement;
@@ -140,7 +142,7 @@ void CConfigurableDomain::composeDomainConfigurations(CXmlElement& xmlElement, C
     base::childrenToXml(xmlConfigurationsElement, serializingContext);
 }
 
-void CConfigurableDomain::composeConfigurableElements(CXmlElement& xmlElement) const
+void CConfigurableDomain::composeConfigurableElements(CXmlElement &xmlElement) const
 {
     // Create ConfigurableElements element
     CXmlElement xmlConfigurableElementsElement;
@@ -152,19 +154,21 @@ void CConfigurableDomain::composeConfigurableElements(CXmlElement& xmlElement) c
 
     for (it = _configurableElementList.begin(); it != _configurableElementList.end(); ++it) {
 
-        const CConfigurableElement* pConfigurableElement = *it;
+        const CConfigurableElement *pConfigurableElement = *it;
 
         // Create corresponding XML child element
         CXmlElement xmlChildConfigurableElement;
 
-        xmlConfigurableElementsElement.createChild(xmlChildConfigurableElement, "ConfigurableElement");
+        xmlConfigurableElementsElement.createChild(xmlChildConfigurableElement,
+                                                   "ConfigurableElement");
 
         // Set Path attribute
         xmlChildConfigurableElement.setAttribute("Path", pConfigurableElement->getPath());
     }
 }
 
-void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlDomainExportContext& context) const
+void CConfigurableDomain::composeSettings(CXmlElement &xmlElement,
+                                          CXmlDomainExportContext &context) const
 {
     if (!context.withSettings()) {
 
@@ -180,14 +184,17 @@ void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlDomainExp
     size_t uiNbConfigurations = getNbChildren();
     size_t uiChildConfiguration;
 
-    for (uiChildConfiguration = 0; uiChildConfiguration < uiNbConfigurations; uiChildConfiguration++) {
+    for (uiChildConfiguration = 0; uiChildConfiguration < uiNbConfigurations;
+         uiChildConfiguration++) {
 
-        const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(getChild(uiChildConfiguration));
+        const CDomainConfiguration *pDomainConfiguration =
+            static_cast<const CDomainConfiguration *>(getChild(uiChildConfiguration));
 
         // Create child xml element for that configuration
         CXmlElement xmlConfigurationSettingsElement;
 
-        xmlSettingsElement.createChild(xmlConfigurationSettingsElement, pDomainConfiguration->getXmlElementName());
+        xmlSettingsElement.createChild(xmlConfigurationSettingsElement,
+                                       pDomainConfiguration->getXmlElementName());
 
         // Set its name attribute
         xmlConfigurationSettingsElement.setNameAttribute(pDomainConfiguration->getName());
@@ -198,11 +205,12 @@ void CConfigurableDomain::composeSettings(CXmlElement& xmlElement, CXmlDomainExp
 }
 
 // From IXmlSink
-bool CConfigurableDomain::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CConfigurableDomain::fromXml(const CXmlElement &xmlElement,
+                                  CXmlSerializingContext &serializingContext)
 {
     // Context
-    CXmlDomainImportContext& xmlDomainImportContext =
-        static_cast<CXmlDomainImportContext&>(serializingContext);
+    CXmlDomainImportContext &xmlDomainImportContext =
+        static_cast<CXmlDomainImportContext &>(serializingContext);
 
     // Sequence awareness (optional)
     xmlElement.getAttribute("SequenceAware", _bSequenceAware);
@@ -220,7 +228,8 @@ bool CConfigurableDomain::fromXml(const CXmlElement& xmlElement, CXmlSerializing
     }
 
     // All provided configurations are parsed
-    // Attempt validation on areas of non provided configurations for all configurable elements if required
+    // Attempt validation on areas of non provided configurations for all configurable elements if
+    // required
     if (xmlDomainImportContext.autoValidationRequired()) {
 
         autoValidateAll();
@@ -230,8 +239,8 @@ bool CConfigurableDomain::fromXml(const CXmlElement& xmlElement, CXmlSerializing
 }
 
 // XML parsing
-bool CConfigurableDomain::parseDomainConfigurations(const CXmlElement& xmlElement,
-                                                    CXmlDomainImportContext& serializingContext)
+bool CConfigurableDomain::parseDomainConfigurations(const CXmlElement &xmlElement,
+                                                    CXmlDomainImportContext &serializingContext)
 {
     // We're supposedly clean
     assert(_configurableElementList.empty());
@@ -246,10 +255,10 @@ bool CConfigurableDomain::parseDomainConfigurations(const CXmlElement& xmlElemen
 }
 
 // Parse configurable elements
-bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElement,
-                                                    CXmlDomainImportContext& serializingContext)
+bool CConfigurableDomain::parseConfigurableElements(const CXmlElement &xmlElement,
+                                                    CXmlDomainImportContext &serializingContext)
 {
-    CSystemClass& systemClass = serializingContext.getSystemClass();
+    CSystemClass &systemClass = serializingContext.getSystemClass();
 
     // Get ConfigurableElements element
     CXmlElement xmlConfigurableElementsElement;
@@ -272,17 +281,21 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
         // Is there an element and does it match system class name?
         if (!pathNavigator.navigateThrough(systemClass.getName(), strError)) {
 
-            serializingContext.setError("Could not find configurable element of path " + strConfigurableElementPath + " from ConfigurableDomain description " + getName() + " (" + strError + ")");
+            serializingContext.setError(
+                "Could not find configurable element of path " + strConfigurableElementPath +
+                " from ConfigurableDomain description " + getName() + " (" + strError + ")");
 
             return false;
         }
         // Browse system class for configurable element
-        CConfigurableElement* pConfigurableElement =
-            static_cast<CConfigurableElement*>(systemClass.findDescendant(pathNavigator));
+        CConfigurableElement *pConfigurableElement =
+            static_cast<CConfigurableElement *>(systemClass.findDescendant(pathNavigator));
 
         if (!pConfigurableElement) {
 
-            serializingContext.setError("Could not find configurable element of path " + strConfigurableElementPath + " from ConfigurableDomain description " + getName());
+            serializingContext.setError("Could not find configurable element of path " +
+                                        strConfigurableElementPath +
+                                        " from ConfigurableDomain description " + getName());
 
             return false;
         }
@@ -301,8 +314,8 @@ bool CConfigurableDomain::parseConfigurableElements(const CXmlElement& xmlElemen
 }
 
 // Parse settings
-bool CConfigurableDomain::parseSettings(const CXmlElement& xmlElement,
-                                        CXmlDomainImportContext& serializingContext)
+bool CConfigurableDomain::parseSettings(const CXmlElement &xmlElement,
+                                        CXmlDomainImportContext &serializingContext)
 {
     // Check we actually need to parse configuration settings
     if (!serializingContext.withSettings()) {
@@ -326,12 +339,14 @@ bool CConfigurableDomain::parseSettings(const CXmlElement& xmlElement,
 
     while (it.next(xmlConfigurationSettingsElement)) {
         // Get domain configuration
-        CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(findChild(xmlConfigurationSettingsElement.getNameAttribute()));
+        CDomainConfiguration *pDomainConfiguration = static_cast<CDomainConfiguration *>(
+            findChild(xmlConfigurationSettingsElement.getNameAttribute()));
 
         if (!pDomainConfiguration) {
 
             serializingContext.setError("Could not find domain configuration referred to by"
-                                        " configurable domain \"" + getName() + "\".");
+                                        " configurable domain \"" +
+                                        getName() + "\".");
 
             return false;
         }
@@ -346,16 +361,15 @@ bool CConfigurableDomain::parseSettings(const CXmlElement& xmlElement,
     return true;
 }
 // Configurable elements association
-bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigurableElement,
-                                                 const CParameterBlackboard* pMainBlackboard,
-                                                 core::Results& infos)
+bool CConfigurableDomain::addConfigurableElement(CConfigurableElement *pConfigurableElement,
+                                                 const CParameterBlackboard *pMainBlackboard,
+                                                 core::Results &infos)
 {
     // Already associated?
     if (containsConfigurableElement(pConfigurableElement)) {
 
-        infos.push_back("Configurable element "
-                + pConfigurableElement->getPath()
-                + " already associated to configuration domain " + getName());
+        infos.push_back("Configurable element " + pConfigurableElement->getPath() +
+                        " already associated to configuration domain " + getName());
 
         return false;
     }
@@ -363,9 +377,8 @@ bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigur
     // Already owned?
     if (pConfigurableElement->belongsTo(this)) {
 
-        infos.push_back("Configurable element "
-                + pConfigurableElement->getPath()
-                + " already owned by configuration domain " + getName());
+        infos.push_back("Configurable element " + pConfigurableElement->getPath() +
+                        " already owned by configuration domain " + getName());
 
         return false;
     }
@@ -376,12 +389,14 @@ bool CConfigurableDomain::addConfigurableElement(CConfigurableElement* pConfigur
     return true;
 }
 
-bool CConfigurableDomain::removeConfigurableElement(CConfigurableElement* pConfigurableElement, string& strError)
+bool CConfigurableDomain::removeConfigurableElement(CConfigurableElement *pConfigurableElement,
+                                                    string &strError)
 {
     // Not associated?
     if (!containsConfigurableElement(pConfigurableElement)) {
 
-        strError = "Configurable element " + pConfigurableElement->getPath() + " not associated to configuration domain " + getName();
+        strError = "Configurable element " + pConfigurableElement->getPath() +
+                   " not associated to configuration domain " + getName();
 
         return false;
     }
@@ -411,14 +426,14 @@ bool CConfigurableDomain::removeConfigurableElement(CConfigurableElement* pConfi
 *
 * return Pointer to the Blackboard of the Configuration.
 */
-CParameterBlackboard* CConfigurableDomain::findConfigurationBlackboard(const string& strConfiguration,
-                                                                       const CConfigurableElement* pCandidateDescendantConfigurableElement,
-                                                                       size_t& baseOffset,
-                                                                       bool& bIsLastApplied,
-                                                                       string& strError) const
+CParameterBlackboard *CConfigurableDomain::findConfigurationBlackboard(
+    const string &strConfiguration,
+    const CConfigurableElement *pCandidateDescendantConfigurableElement, size_t &baseOffset,
+    bool &bIsLastApplied, string &strError) const
 {
     // Find Configuration
-    const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(findChild(strConfiguration));
+    const CDomainConfiguration *pDomainConfiguration =
+        static_cast<const CDomainConfiguration *>(findChild(strConfiguration));
 
     if (!pDomainConfiguration) {
 
@@ -432,11 +447,12 @@ CParameterBlackboard* CConfigurableDomain::findConfigurationBlackboard(const str
 
     for (it = _configurableElementList.begin(); it != _configurableElementList.end(); ++it) {
 
-        const CConfigurableElement* pAssociatedConfigurableElement = *it;
+        const CConfigurableElement *pAssociatedConfigurableElement = *it;
 
         // Check if the the associated element is the configurable element or one of its ancestors
         if ((pCandidateDescendantConfigurableElement == pAssociatedConfigurableElement) ||
-            (pCandidateDescendantConfigurableElement->isDescendantOf(pAssociatedConfigurableElement))) {
+            (pCandidateDescendantConfigurableElement->isDescendantOf(
+                pAssociatedConfigurableElement))) {
 
             baseOffset = pAssociatedConfigurableElement->getOffset();
             bIsLastApplied = (pDomainConfiguration == _pLastAppliedConfiguration);
@@ -451,14 +467,13 @@ CParameterBlackboard* CConfigurableDomain::findConfigurationBlackboard(const str
 }
 
 // Domain splitting
-bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement,
-                                core::Results& infos)
+bool CConfigurableDomain::split(CConfigurableElement *pConfigurableElement, core::Results &infos)
 {
     // Not associated?
     if (!containsConfigurableElement(pConfigurableElement)) {
 
-        std::string strError = "Configurable element " + pConfigurableElement->getPath()
-            + " not associated to configuration domain " + getName();
+        std::string strError = "Configurable element " + pConfigurableElement->getPath() +
+                               " not associated to configuration domain " + getName();
         infos.push_back(strError);
 
         return false;
@@ -469,8 +484,8 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement,
 
     if (!uiNbConfigurableElementChildren) {
 
-        std::string strError = "Configurable element " + pConfigurableElement->getPath()
-            + " has no children to split configurable domain to";
+        std::string strError = "Configurable element " + pConfigurableElement->getPath() +
+                               " has no children to split configurable domain to";
         infos.push_back(strError);
 
         return false;
@@ -478,7 +493,8 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement,
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurableElementChildren; uiChild++) {
 
-        CConfigurableElement* pChildConfigurableElement = static_cast<CConfigurableElement*>(pConfigurableElement->getChild(uiChild));
+        CConfigurableElement *pChildConfigurableElement =
+            static_cast<CConfigurableElement *>(pConfigurableElement->getChild(uiChild));
 
         doAddConfigurableElement(pChildConfigurableElement, infos);
     }
@@ -488,27 +504,32 @@ bool CConfigurableDomain::split(CConfigurableElement* pConfigurableElement,
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
+        CDomainConfiguration *pDomainConfiguration =
+            static_cast<CDomainConfiguration *>(getChild(uiChild));
 
         pDomainConfiguration->split(pConfigurableElement);
     }
 
     // Remove given configurable element from this domain
-    // Note: we shouldn't need to recompute the sync set in that case, as the splitted element should include the syncers of its children elements
+    // Note: we shouldn't need to recompute the sync set in that case, as the splitted element
+    // should include the syncers of its children elements
     doRemoveConfigurableElement(pConfigurableElement, false);
 
     return true;
 }
 
-// Check if there is a pending configuration for this domain: i.e. an applicable configuration different from the last applied configuration
-const CDomainConfiguration* CConfigurableDomain::getPendingConfiguration() const
+// Check if there is a pending configuration for this domain: i.e. an applicable configuration
+// different from the last applied configuration
+const CDomainConfiguration *CConfigurableDomain::getPendingConfiguration() const
 {
-    const CDomainConfiguration* pApplicableDomainConfiguration = findApplicableDomainConfiguration();
+    const CDomainConfiguration *pApplicableDomainConfiguration =
+        findApplicableDomainConfiguration();
 
     if (pApplicableDomainConfiguration) {
 
         // Check not the last one before applying
-        if (!_pLastAppliedConfiguration || (_pLastAppliedConfiguration != pApplicableDomainConfiguration)) {
+        if (!_pLastAppliedConfiguration ||
+            (_pLastAppliedConfiguration != pApplicableDomainConfiguration)) {
 
             return pApplicableDomainConfiguration;
         }
@@ -518,14 +539,12 @@ const CDomainConfiguration* CConfigurableDomain::getPendingConfiguration() const
 }
 
 // Configuration application if required
-void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard,
-                                CSyncerSet* pSyncerSet,
-                                bool bForce,
-                                std::string& strInfo) const
+void CConfigurableDomain::apply(CParameterBlackboard *pParameterBlackboard, CSyncerSet *pSyncerSet,
+                                bool bForce, std::string &strInfo) const
 {
     // Apply configuration only if the blackboard will
     // be synchronized either now or by syncerSet.
-    if(!pSyncerSet ^ _bSequenceAware) {
+    if (!pSyncerSet ^ _bSequenceAware) {
         // The configuration can not be syncronised
         return;
     }
@@ -534,15 +553,17 @@ void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard,
         // Force a configuration restore by forgetting about last applied configuration
         _pLastAppliedConfiguration = NULL;
     }
-    const CDomainConfiguration* pApplicableDomainConfiguration = findApplicableDomainConfiguration();
+    const CDomainConfiguration *pApplicableDomainConfiguration =
+        findApplicableDomainConfiguration();
 
     if (pApplicableDomainConfiguration) {
 
         // Check not the last one before applying
-        if (!_pLastAppliedConfiguration || _pLastAppliedConfiguration != pApplicableDomainConfiguration) {
+        if (!_pLastAppliedConfiguration ||
+            _pLastAppliedConfiguration != pApplicableDomainConfiguration) {
 
-            strInfo = "Applying configuration '" + pApplicableDomainConfiguration->getName()
-                    + "' from domain '" + getName() + "'";
+            strInfo = "Applying configuration '" + pApplicableDomainConfiguration->getName() +
+                      "' from domain '" + getName() + "'";
 
             // Check if we need to synchronize during restore
             bool bSync = !pSyncerSet && _bSequenceAware;
@@ -564,11 +585,14 @@ void CConfigurableDomain::apply(CParameterBlackboard* pParameterBlackboard,
 }
 
 // Return applicable configuration validity for given configurable element
-bool CConfigurableDomain::isApplicableConfigurationValid(const CConfigurableElement* pConfigurableElement) const
+bool CConfigurableDomain::isApplicableConfigurationValid(
+    const CConfigurableElement *pConfigurableElement) const
 {
-    const CDomainConfiguration* pApplicableDomainConfiguration = findApplicableDomainConfiguration();
+    const CDomainConfiguration *pApplicableDomainConfiguration =
+        findApplicableDomainConfiguration();
 
-    return pApplicableDomainConfiguration && pApplicableDomainConfiguration->isValid(pConfigurableElement);
+    return pApplicableDomainConfiguration &&
+           pApplicableDomainConfiguration->isValid(pConfigurableElement);
 }
 
 // In case configurable element was removed
@@ -580,16 +604,19 @@ void CConfigurableDomain::computeSyncSet()
     // Add syncer sets for all associated configurable elements
     ConfigurableElementToSyncerSetMapIterator mapIt;
 
-    for (mapIt = _configurableElementToSyncerSetMap.begin(); mapIt != _configurableElementToSyncerSetMap.end(); ++mapIt) {
+    for (mapIt = _configurableElementToSyncerSetMap.begin();
+         mapIt != _configurableElementToSyncerSetMap.end(); ++mapIt) {
 
-        const CSyncerSet* pSyncerSet = mapIt->second;
+        const CSyncerSet *pSyncerSet = mapIt->second;
 
         _syncerSet += *pSyncerSet;
     }
 }
 
 // Configuration Management
-bool CConfigurableDomain::createConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError)
+bool CConfigurableDomain::createConfiguration(const string &strName,
+                                              const CParameterBlackboard *pMainBlackboard,
+                                              string &strError)
 {
     // Already exists?
     if (findChild(strName)) {
@@ -600,17 +627,18 @@ bool CConfigurableDomain::createConfiguration(const string& strName, const CPara
     }
 
     // Creation
-    CDomainConfiguration* pDomainConfiguration = new CDomainConfiguration(strName);
+    CDomainConfiguration *pDomainConfiguration = new CDomainConfiguration(strName);
 
     // Configurable elements association
     ConfigurableElementListIterator it;
 
     for (it = _configurableElementList.begin(); it != _configurableElementList.end(); ++it) {
 
-        const CConfigurableElement* pConfigurableElement = *it;;
+        const CConfigurableElement *pConfigurableElement = *it;
+        ;
 
         // Retrieve associated syncer set
-        CSyncerSet* pSyncerSet = getSyncerSet(pConfigurableElement);
+        CSyncerSet *pSyncerSet = getSyncerSet(pConfigurableElement);
 
         // Associate to configuration
         pDomainConfiguration->addConfigurableElement(pConfigurableElement, pSyncerSet);
@@ -623,16 +651,17 @@ bool CConfigurableDomain::createConfiguration(const string& strName, const CPara
     // Attempt auto validation, so that the user gets his/her own settings by defaults
     if (!autoValidateConfiguration(pDomainConfiguration)) {
 
-        // No valid configuration found to copy in from, validate againt main blackboard (will concerned remaining invalid parts)
+        // No valid configuration found to copy in from, validate againt main blackboard (will
+        // concerned remaining invalid parts)
         pDomainConfiguration->validate(pMainBlackboard);
     }
 
     return true;
 }
 
-bool CConfigurableDomain::deleteConfiguration(const string& strName, string& strError)
+bool CConfigurableDomain::deleteConfiguration(const string &strName, string &strError)
 {
-    CDomainConfiguration* pDomainConfiguration = findConfiguration(strName, strError);
+    CDomainConfiguration *pDomainConfiguration = findConfiguration(strName, strError);
 
     if (!pDomainConfiguration) {
 
@@ -655,7 +684,7 @@ bool CConfigurableDomain::deleteConfiguration(const string& strName, string& str
     return true;
 }
 
-void CConfigurableDomain::listAssociatedToElements(string& strResult) const
+void CConfigurableDomain::listAssociatedToElements(string &strResult) const
 {
     strResult = "\n";
 
@@ -664,15 +693,16 @@ void CConfigurableDomain::listAssociatedToElements(string& strResult) const
     // Browse all configurable elements
     for (it = _configurableElementList.begin(); it != _configurableElementList.end(); ++it) {
 
-        const CConfigurableElement* pConfigurableElement = *it;
+        const CConfigurableElement *pConfigurableElement = *it;
 
         strResult += pConfigurableElement->getPath() + "\n";
     }
 }
 
-bool CConfigurableDomain::renameConfiguration(const string& strName, const string& strNewName, string& strError)
+bool CConfigurableDomain::renameConfiguration(const string &strName, const string &strNewName,
+                                              string &strError)
 {
-    CDomainConfiguration* pDomainConfiguration = findConfiguration(strName, strError);
+    CDomainConfiguration *pDomainConfiguration = findConfiguration(strName, strError);
 
     if (!pDomainConfiguration) {
 
@@ -683,14 +713,13 @@ bool CConfigurableDomain::renameConfiguration(const string& strName, const strin
     return pDomainConfiguration->rename(strNewName, strError);
 }
 
-bool CConfigurableDomain::restoreConfiguration(const string& configurationName,
-                                               CParameterBlackboard* mainBlackboard,
-                                               bool autoSync,
-                                               core::Results& errors) const
+bool CConfigurableDomain::restoreConfiguration(const string &configurationName,
+                                               CParameterBlackboard *mainBlackboard, bool autoSync,
+                                               core::Results &errors) const
 {
     string error;
 
-    const CDomainConfiguration* configuration = findConfiguration(configurationName, error);
+    const CDomainConfiguration *configuration = findConfiguration(configurationName, error);
 
     if (configuration == NULL) {
 
@@ -712,10 +741,12 @@ bool CConfigurableDomain::restoreConfiguration(const string& configurationName,
     return bSuccess;
 }
 
-bool CConfigurableDomain::saveConfiguration(const string& strName, const CParameterBlackboard* pMainBlackboard, string& strError)
+bool CConfigurableDomain::saveConfiguration(const string &strName,
+                                            const CParameterBlackboard *pMainBlackboard,
+                                            string &strError)
 {
     // Find Domain configuration
-    CDomainConfiguration* pDomainConfiguration = findConfiguration(strName, strError);
+    CDomainConfiguration *pDomainConfiguration = findConfiguration(strName, strError);
 
     if (!pDomainConfiguration) {
 
@@ -728,10 +759,12 @@ bool CConfigurableDomain::saveConfiguration(const string& strName, const CParame
     return true;
 }
 
-bool CConfigurableDomain::setElementSequence(const string& strConfiguration, const std::vector<string>& astrNewElementSequence, string& strError)
+bool CConfigurableDomain::setElementSequence(const string &strConfiguration,
+                                             const std::vector<string> &astrNewElementSequence,
+                                             string &strError)
 {
     // Find Domain configuration
-    CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strError);
+    CDomainConfiguration *pDomainConfiguration = findConfiguration(strConfiguration, strError);
 
     if (!pDomainConfiguration) {
 
@@ -742,10 +775,12 @@ bool CConfigurableDomain::setElementSequence(const string& strConfiguration, con
     return pDomainConfiguration->setElementSequence(astrNewElementSequence, strError);
 }
 
-bool CConfigurableDomain::getElementSequence(const string& strConfiguration, string& strResult) const
+bool CConfigurableDomain::getElementSequence(const string &strConfiguration,
+                                             string &strResult) const
 {
     // Find Domain configuration
-    const CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strResult);
+    const CDomainConfiguration *pDomainConfiguration =
+        findConfiguration(strConfiguration, strResult);
 
     if (!pDomainConfiguration) {
 
@@ -758,10 +793,12 @@ bool CConfigurableDomain::getElementSequence(const string& strConfiguration, str
     return true;
 }
 
-bool CConfigurableDomain::setApplicationRule(const string& strConfiguration, const string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, string& strError)
+bool CConfigurableDomain::setApplicationRule(
+    const string &strConfiguration, const string &strApplicationRule,
+    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition, string &strError)
 {
     // Find Domain configuration
-    CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strError);
+    CDomainConfiguration *pDomainConfiguration = findConfiguration(strConfiguration, strError);
 
     if (!pDomainConfiguration) {
 
@@ -769,13 +806,14 @@ bool CConfigurableDomain::setApplicationRule(const string& strConfiguration, con
     }
 
     // Delegate to configuration
-    return pDomainConfiguration->setApplicationRule(strApplicationRule, pSelectionCriteriaDefinition, strError);
+    return pDomainConfiguration->setApplicationRule(strApplicationRule,
+                                                    pSelectionCriteriaDefinition, strError);
 }
 
-bool CConfigurableDomain::clearApplicationRule(const string& strConfiguration, string& strError)
+bool CConfigurableDomain::clearApplicationRule(const string &strConfiguration, string &strError)
 {
     // Find Domain configuration
-    CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strError);
+    CDomainConfiguration *pDomainConfiguration = findConfiguration(strConfiguration, strError);
 
     if (!pDomainConfiguration) {
 
@@ -788,10 +826,12 @@ bool CConfigurableDomain::clearApplicationRule(const string& strConfiguration, s
     return true;
 }
 
-bool CConfigurableDomain::getApplicationRule(const string& strConfiguration, string& strResult) const
+bool CConfigurableDomain::getApplicationRule(const string &strConfiguration,
+                                             string &strResult) const
 {
     // Find Domain configuration
-    const CDomainConfiguration* pDomainConfiguration = findConfiguration(strConfiguration, strResult);
+    const CDomainConfiguration *pDomainConfiguration =
+        findConfiguration(strConfiguration, strResult);
 
     if (!pDomainConfiguration) {
 
@@ -817,7 +857,8 @@ string CConfigurableDomain::getLastAppliedConfigurationName() const
 // Pending configuration
 string CConfigurableDomain::getPendingConfigurationName() const
 {
-    const CDomainConfiguration* pApplicableDomainConfiguration = findApplicableDomainConfiguration();
+    const CDomainConfiguration *pApplicableDomainConfiguration =
+        findApplicableDomainConfiguration();
 
     if (!pApplicableDomainConfiguration) {
 
@@ -830,8 +871,7 @@ string CConfigurableDomain::getPendingConfigurationName() const
 
         // Found config will get applied
         return pApplicableDomainConfiguration->getName();
-    }
-    else {
+    } else {
 
         // Same configuration as current
         return "";
@@ -839,7 +879,7 @@ string CConfigurableDomain::getPendingConfigurationName() const
 }
 
 // Ensure validity on whole domain from main blackboard
-void CConfigurableDomain::validate(const CParameterBlackboard* pMainBlackboard)
+void CConfigurableDomain::validate(const CParameterBlackboard *pMainBlackboard)
 {
 
     // Propagate
@@ -847,27 +887,31 @@ void CConfigurableDomain::validate(const CParameterBlackboard* pMainBlackboard)
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
+        CDomainConfiguration *pDomainConfiguration =
+            static_cast<CDomainConfiguration *>(getChild(uiChild));
 
         pDomainConfiguration->validate(pMainBlackboard);
     }
 }
 
 // Ensure validity on areas related to configurable element
-void CConfigurableDomain::validateAreas(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard)
+void CConfigurableDomain::validateAreas(const CConfigurableElement *pConfigurableElement,
+                                        const CParameterBlackboard *pMainBlackboard)
 {
     // Propagate
     size_t uiNbConfigurations = getNbChildren();
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
+        CDomainConfiguration *pDomainConfiguration =
+            static_cast<CDomainConfiguration *>(getChild(uiChild));
 
         pDomainConfiguration->validate(pConfigurableElement, pMainBlackboard);
     }
 }
 
-// Attempt validation for all configurable element's areas, relying on already existing valid configuration inside domain
+// Attempt validation for all configurable element's areas, relying on already existing valid
+// configuration inside domain
 void CConfigurableDomain::autoValidateAll()
 {
     // Validate
@@ -876,18 +920,20 @@ void CConfigurableDomain::autoValidateAll()
     // Browse all configurable elements for configuration validation
     for (it = _configurableElementList.begin(); it != _configurableElementList.end(); ++it) {
 
-        const CConfigurableElement* pConfigurableElement = *it;
+        const CConfigurableElement *pConfigurableElement = *it;
 
         // Auto validate element
         autoValidateAreas(pConfigurableElement);
     }
 }
 
-// Attempt validation for configurable element's areas, relying on already existing valid configuration inside domain
-void CConfigurableDomain::autoValidateAreas(const CConfigurableElement* pConfigurableElement)
+// Attempt validation for configurable element's areas, relying on already existing valid
+// configuration inside domain
+void CConfigurableDomain::autoValidateAreas(const CConfigurableElement *pConfigurableElement)
 {
     // Find first valid configuration for given configurable element
-    const CDomainConfiguration* pValidDomainConfiguration = findValidDomainConfiguration(pConfigurableElement);
+    const CDomainConfiguration *pValidDomainConfiguration =
+        findValidDomainConfiguration(pConfigurableElement);
 
     // No valid configuration found, give up
     if (!pValidDomainConfiguration) {
@@ -900,24 +946,28 @@ void CConfigurableDomain::autoValidateAreas(const CConfigurableElement* pConfigu
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
+        CDomainConfiguration *pDomainConfiguration =
+            static_cast<CDomainConfiguration *>(getChild(uiChild));
 
-        if (pDomainConfiguration != pValidDomainConfiguration && !pDomainConfiguration->isValid(pConfigurableElement)) {
+        if (pDomainConfiguration != pValidDomainConfiguration &&
+            !pDomainConfiguration->isValid(pConfigurableElement)) {
             // Validate
             pDomainConfiguration->validateAgainst(pValidDomainConfiguration, pConfigurableElement);
         }
     }
 }
 
-// Attempt configuration validation for all configurable elements' areas, relying on already existing valid configuration inside domain
-bool CConfigurableDomain::autoValidateConfiguration(CDomainConfiguration* pDomainConfiguration)
+// Attempt configuration validation for all configurable elements' areas, relying on already
+// existing valid configuration inside domain
+bool CConfigurableDomain::autoValidateConfiguration(CDomainConfiguration *pDomainConfiguration)
 {
     // Find another configuration than this one, that ought to be valid!
     size_t uiNbConfigurations = getNbChildren();
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        const CDomainConfiguration* pPotententialValidDomainConfiguration = static_cast<const CDomainConfiguration*>(getChild(uiChild));
+        const CDomainConfiguration *pPotententialValidDomainConfiguration =
+            static_cast<const CDomainConfiguration *>(getChild(uiChild));
 
         if (pPotententialValidDomainConfiguration != pDomainConfiguration) {
 
@@ -931,13 +981,15 @@ bool CConfigurableDomain::autoValidateConfiguration(CDomainConfiguration* pDomai
 }
 
 // Search for a valid configuration for given configurable element
-const CDomainConfiguration* CConfigurableDomain::findValidDomainConfiguration(const CConfigurableElement* pConfigurableElement) const
+const CDomainConfiguration *CConfigurableDomain::findValidDomainConfiguration(
+    const CConfigurableElement *pConfigurableElement) const
 {
     size_t uiNbConfigurations = getNbChildren();
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(getChild(uiChild));
+        const CDomainConfiguration *pDomainConfiguration =
+            static_cast<const CDomainConfiguration *>(getChild(uiChild));
 
         if (pDomainConfiguration->isValid(pConfigurableElement)) {
 
@@ -948,13 +1000,14 @@ const CDomainConfiguration* CConfigurableDomain::findValidDomainConfiguration(co
 }
 
 // Search for an applicable configuration
-const CDomainConfiguration* CConfigurableDomain::findApplicableDomainConfiguration() const
+const CDomainConfiguration *CConfigurableDomain::findApplicableDomainConfiguration() const
 {
     size_t uiNbConfigurations = getNbChildren();
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(getChild(uiChild));
+        const CDomainConfiguration *pDomainConfiguration =
+            static_cast<const CDomainConfiguration *>(getChild(uiChild));
 
         if (pDomainConfiguration->isApplicable()) {
 
@@ -965,14 +1018,16 @@ const CDomainConfiguration* CConfigurableDomain::findApplicableDomainConfigurati
 }
 
 // Gather set of configurable elements
-void CConfigurableDomain::gatherConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const
+void CConfigurableDomain::gatherConfigurableElements(
+    std::set<const CConfigurableElement *> &configurableElementSet) const
 {
     // Insert all configurable elements
     configurableElementSet.insert(_configurableElementList.begin(), _configurableElementList.end());
 }
 
 // Check configurable element already attached
-bool CConfigurableDomain::containsConfigurableElement(const CConfigurableElement* pConfigurableCandidateElement) const
+bool CConfigurableDomain::containsConfigurableElement(
+    const CConfigurableElement *pConfigurableCandidateElement) const
 {
     ConfigurableElementListIterator it;
 
@@ -989,24 +1044,23 @@ bool CConfigurableDomain::containsConfigurableElement(const CConfigurableElement
 
 // Merge any descended configurable element to this one with this one
 void CConfigurableDomain::mergeAlreadyAssociatedDescendantConfigurableElements(
-                                                                CConfigurableElement* newElement,
-                                                                core::Results& infos)
+    CConfigurableElement *newElement, core::Results &infos)
 {
-    std::list<CConfigurableElement*> mergedConfigurableElementList;
+    std::list<CConfigurableElement *> mergedConfigurableElementList;
 
     ConfigurableElementListIterator it;
 
     // Browse all configurable elements (new one not yet in the list!)
     for (it = _configurableElementList.begin(); it != _configurableElementList.end(); ++it) {
 
-        CConfigurableElement* pConfigurablePotentialDescendantElement = *it;
+        CConfigurableElement *pConfigurablePotentialDescendantElement = *it;
 
         if (pConfigurablePotentialDescendantElement->isDescendantOf(newElement)) {
 
-            infos.push_back("In domain '" + getName()
-                    + "', merging descendant configurable element's configurations '"
-                    + pConfigurablePotentialDescendantElement->getName()
-                    + "' into its ascendant '" + newElement->getName() + "' ones");
+            infos.push_back("In domain '" + getName() +
+                            "', merging descendant configurable element's configurations '" +
+                            pConfigurablePotentialDescendantElement->getName() +
+                            "' into its ascendant '" + newElement->getName() + "' ones");
 
             // Merge configuration data
             mergeConfigurations(newElement, pConfigurablePotentialDescendantElement);
@@ -1017,24 +1071,28 @@ void CConfigurableDomain::mergeAlreadyAssociatedDescendantConfigurableElements(
     }
 
     // Remove all merged elements (new one not yet in the list!)
-    for (it = mergedConfigurableElementList.begin(); it != mergedConfigurableElementList.end(); ++it) {
+    for (it = mergedConfigurableElementList.begin(); it != mergedConfigurableElementList.end();
+         ++it) {
 
-        CConfigurableElement* pMergedConfigurableElement = *it;
+        CConfigurableElement *pMergedConfigurableElement = *it;
 
         // Remove merged from configurable element from internal tracking list
-        // Note: we shouldn't need to recompute the sync set in that case, as the merged to element should include the syncers of merged from elements
+        // Note: we shouldn't need to recompute the sync set in that case, as the merged to element
+        // should include the syncers of merged from elements
         doRemoveConfigurableElement(pMergedConfigurableElement, false);
     }
 }
 
-void CConfigurableDomain::mergeConfigurations(CConfigurableElement* pToConfigurableElement, CConfigurableElement* pFromConfigurableElement)
+void CConfigurableDomain::mergeConfigurations(CConfigurableElement *pToConfigurableElement,
+                                              CConfigurableElement *pFromConfigurableElement)
 {
     // Propagate to domain configurations
     size_t uiNbConfigurations = getNbChildren();
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
+        CDomainConfiguration *pDomainConfiguration =
+            static_cast<CDomainConfiguration *>(getChild(uiChild));
 
         // Do the merge.
         pDomainConfiguration->merge(pToConfigurableElement, pFromConfigurableElement);
@@ -1042,15 +1100,15 @@ void CConfigurableDomain::mergeConfigurations(CConfigurableElement* pToConfigura
 }
 
 // Configurable elements association
-void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfigurableElement,
-                                                   core::Results& infos,
-                                                   const CParameterBlackboard* pMainBlackboard)
+void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement *pConfigurableElement,
+                                                   core::Results &infos,
+                                                   const CParameterBlackboard *pMainBlackboard)
 {
     // Inform configurable element
     pConfigurableElement->addAttachedConfigurableDomain(this);
 
     // Create associated syncer set
-    CSyncerSet* pSyncerSet = new CSyncerSet;
+    CSyncerSet *pSyncerSet = new CSyncerSet;
 
     // Add to sync set the configurable element one
     pConfigurableElement->fillSyncerSet(*pSyncerSet);
@@ -1066,7 +1124,8 @@ void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfig
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
+        CDomainConfiguration *pDomainConfiguration =
+            static_cast<CDomainConfiguration *>(getChild(uiChild));
 
         pDomainConfiguration->addConfigurableElement(pConfigurableElement, pSyncerSet);
     }
@@ -1074,9 +1133,9 @@ void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfig
     // Ensure area validity for that configurable element (if main blackboard provided)
     if (pMainBlackboard) {
 
-        infos.push_back("Validating domain '" + getName()
-                + "' against main blackboard for configurable element '"
-                + pConfigurableElement->getPath() + "'");
+        infos.push_back("Validating domain '" + getName() +
+                        "' against main blackboard for configurable element '" +
+                        pConfigurableElement->getPath() + "'");
         // Need to validate against main blackboard
         validateAreas(pConfigurableElement, pMainBlackboard);
     }
@@ -1088,13 +1147,14 @@ void CConfigurableDomain::doAddConfigurableElement(CConfigurableElement* pConfig
     _configurableElementList.push_back(pConfigurableElement);
 }
 
-void CConfigurableDomain::doRemoveConfigurableElement(CConfigurableElement* pConfigurableElement, bool bRecomputeSyncSet)
+void CConfigurableDomain::doRemoveConfigurableElement(CConfigurableElement *pConfigurableElement,
+                                                      bool bRecomputeSyncSet)
 {
     // Remove from list
     _configurableElementList.remove(pConfigurableElement);
 
     // Remove associated syncer set
-    CSyncerSet* pSyncerSet = getSyncerSet(pConfigurableElement);
+    CSyncerSet *pSyncerSet = getSyncerSet(pConfigurableElement);
 
     _configurableElementToSyncerSetMap.erase(pConfigurableElement);
 
@@ -1108,7 +1168,8 @@ void CConfigurableDomain::doRemoveConfigurableElement(CConfigurableElement* pCon
 
     for (size_t uiChild = 0; uiChild < uiNbConfigurations; uiChild++) {
 
-        CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(getChild(uiChild));
+        CDomainConfiguration *pDomainConfiguration =
+            static_cast<CDomainConfiguration *>(getChild(uiChild));
 
         pDomainConfiguration->removeConfigurableElement(pConfigurableElement);
     }
@@ -1120,9 +1181,11 @@ void CConfigurableDomain::doRemoveConfigurableElement(CConfigurableElement* pCon
 }
 
 // Syncer set retrieval from configurable element
-CSyncerSet* CConfigurableDomain::getSyncerSet(const CConfigurableElement* pConfigurableElement) const
+CSyncerSet *CConfigurableDomain::getSyncerSet(
+    const CConfigurableElement *pConfigurableElement) const
 {
-    ConfigurableElementToSyncerSetMapIterator mapIt = _configurableElementToSyncerSetMap.find(pConfigurableElement);
+    ConfigurableElementToSyncerSetMapIterator mapIt =
+        _configurableElementToSyncerSetMap.find(pConfigurableElement);
 
     ALWAYS_ASSERT(mapIt != _configurableElementToSyncerSetMap.end(),
                   "Could not find syncer set for " << getName() << " configurable domain");
@@ -1131,9 +1194,11 @@ CSyncerSet* CConfigurableDomain::getSyncerSet(const CConfigurableElement* pConfi
 }
 
 // Configuration retrieval
-CDomainConfiguration* CConfigurableDomain::findConfiguration(const string& strConfiguration, string& strError)
+CDomainConfiguration *CConfigurableDomain::findConfiguration(const string &strConfiguration,
+                                                             string &strError)
 {
-    CDomainConfiguration* pDomainConfiguration = static_cast<CDomainConfiguration*>(findChild(strConfiguration));
+    CDomainConfiguration *pDomainConfiguration =
+        static_cast<CDomainConfiguration *>(findChild(strConfiguration));
 
     if (!pDomainConfiguration) {
 
@@ -1144,9 +1209,11 @@ CDomainConfiguration* CConfigurableDomain::findConfiguration(const string& strCo
     return pDomainConfiguration;
 }
 
-const CDomainConfiguration* CConfigurableDomain::findConfiguration(const string& strConfiguration, string& strError) const
+const CDomainConfiguration *CConfigurableDomain::findConfiguration(const string &strConfiguration,
+                                                                   string &strError) const
 {
-    const CDomainConfiguration* pDomainConfiguration = static_cast<const CDomainConfiguration*>(findChild(strConfiguration));
+    const CDomainConfiguration *pDomainConfiguration =
+        static_cast<const CDomainConfiguration *>(findChild(strConfiguration));
 
     if (!pDomainConfiguration) {
 

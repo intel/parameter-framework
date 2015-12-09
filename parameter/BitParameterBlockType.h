@@ -36,25 +36,25 @@
 class CBitParameterBlockType : public CTypeElement
 {
 public:
-    CBitParameterBlockType(const std::string& strName);
+    CBitParameterBlockType(const std::string &strName);
 
     // Size
     size_t getSize() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
     // CElement
     virtual std::string getKind() const;
+
 private:
     virtual bool childrenAreDynamic() const;
     // Instantiation
-    virtual CInstanceConfigurableElement* doInstantiate() const;
+    virtual CInstanceConfigurableElement *doInstantiate() const;
 
     // Size in bytes
     size_t _size{0};
 };
-

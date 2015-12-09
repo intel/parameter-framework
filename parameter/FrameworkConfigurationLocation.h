@@ -36,15 +36,15 @@
 class CFrameworkConfigurationLocation : public CKindElement
 {
 public:
-    CFrameworkConfigurationLocation(const std::string& strName, const std::string& strKind);
+    CFrameworkConfigurationLocation(const std::string &strName, const std::string &strKind);
 
     /** Get Configuration file URI
      */
-    const std::string& getUri() const;
+    const std::string &getUri() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
-private:
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
+private:
     std::string _configurationUri;
 };

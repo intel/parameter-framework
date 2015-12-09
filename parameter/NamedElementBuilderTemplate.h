@@ -35,7 +35,7 @@ template <class ElementType>
 class TNamedElementBuilderTemplate : public CElementBuilder
 {
 public:
-    virtual CElement* createElement(const CXmlElement& xmlElement) const
+    virtual CElement *createElement(const CXmlElement &xmlElement) const
     {
         return new ElementType(xmlElement.getNameAttribute());
     }

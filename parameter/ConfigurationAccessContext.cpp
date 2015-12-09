@@ -33,19 +33,18 @@
 
 using std::string;
 
-CConfigurationAccessContext::CConfigurationAccessContext(std::string& strError,
-                                                         CParameterBlackboard* pParameterBlackboard,
+CConfigurationAccessContext::CConfigurationAccessContext(std::string &strError,
+                                                         CParameterBlackboard *pParameterBlackboard,
                                                          bool bValueSpaceIsRaw,
                                                          bool bOutputRawFormatIsHex,
-                                                         bool bSerializeOut) :
-    base(strError, pParameterBlackboard, bValueSpaceIsRaw, bOutputRawFormatIsHex),
-    _bSerializeOut(bSerializeOut)
+                                                         bool bSerializeOut)
+    : base(strError, pParameterBlackboard, bValueSpaceIsRaw, bOutputRawFormatIsHex),
+      _bSerializeOut(bSerializeOut)
 {
 }
 
-CConfigurationAccessContext::CConfigurationAccessContext(string& strError, bool bSerializeOut) :
-    base(strError),
-    _bSerializeOut(bSerializeOut)
+CConfigurationAccessContext::CConfigurationAccessContext(string &strError, bool bSerializeOut)
+    : base(strError), _bSerializeOut(bSerializeOut)
 {
 }
 

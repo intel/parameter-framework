@@ -36,7 +36,7 @@
 class CBooleanParameterType : public CParameterType
 {
 public:
-    CBooleanParameterType(const std::string& strName);
+    CBooleanParameterType(const std::string &strName);
     virtual ~CBooleanParameterType() = default;
 
     // Kind
@@ -44,12 +44,18 @@ public:
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
     // Boolean
-    virtual bool toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(bool bUserValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(bool &bUserValue, uint32_t uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
     // Integer
-    virtual bool toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
 };

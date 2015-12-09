@@ -36,10 +36,10 @@ using std::string;
 
 // Construction
 CParameterMgrPlatformConnector::CParameterMgrPlatformConnector(
-        const string& strConfigurationFilePath) :
-    _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrPlatformConnector>(*this)),
-    _pParameterMgr(new CParameterMgr(strConfigurationFilePath, *_pParameterMgrLogger)),
-    _bStarted(false), _pLogger(NULL)
+    const string &strConfigurationFilePath)
+    : _pParameterMgrLogger(new CParameterMgrLogger<CParameterMgrPlatformConnector>(*this)),
+      _pParameterMgr(new CParameterMgr(strConfigurationFilePath, *_pParameterMgrLogger)),
+      _bStarted(false), _pLogger(NULL)
 {
 }
 
@@ -50,22 +50,26 @@ CParameterMgrPlatformConnector::~CParameterMgrPlatformConnector()
 }
 
 // Selection Criteria interface. Beware returned objects are lent, clients shall not delete them!
-ISelectionCriterionTypeInterface* CParameterMgrPlatformConnector::createSelectionCriterionType(bool bIsInclusive)
+ISelectionCriterionTypeInterface *CParameterMgrPlatformConnector::createSelectionCriterionType(
+    bool bIsInclusive)
 {
     assert(!_bStarted);
 
     return _pParameterMgr->createSelectionCriterionType(bIsInclusive);
 }
 
-ISelectionCriterionInterface* CParameterMgrPlatformConnector::createSelectionCriterion(const string& strName, const ISelectionCriterionTypeInterface* pSelectionCriterionType)
+ISelectionCriterionInterface *CParameterMgrPlatformConnector::createSelectionCriterion(
+    const string &strName, const ISelectionCriterionTypeInterface *pSelectionCriterionType)
 {
     assert(!_bStarted);
 
-    return _pParameterMgr->createSelectionCriterion(strName, static_cast<const CSelectionCriterionType*>(pSelectionCriterionType));
+    return _pParameterMgr->createSelectionCriterion(
+        strName, static_cast<const CSelectionCriterionType *>(pSelectionCriterionType));
 }
 
 // Selection criterion retrieval
-ISelectionCriterionInterface* CParameterMgrPlatformConnector::getSelectionCriterion(const string& strName) const
+ISelectionCriterionInterface *CParameterMgrPlatformConnector::getSelectionCriterion(
+    const string &strName) const
 {
     return _pParameterMgr->getSelectionCriterion(strName);
 }
@@ -79,21 +83,22 @@ void CParameterMgrPlatformConnector::applyConfigurations()
 }
 
 // Dynamic parameter handling
-CParameterHandle* CParameterMgrPlatformConnector::createParameterHandle(const string& strPath, string& strError) const
+CParameterHandle *CParameterMgrPlatformConnector::createParameterHandle(const string &strPath,
+                                                                        string &strError) const
 {
     assert(_bStarted);
 
     return _pParameterMgr->createParameterHandle(strPath, strError);
 }
 
-ElementHandle* CParameterMgrPlatformConnector::createElementHandle(const string &strPath,
-                                                                   string& strError) const
+ElementHandle *CParameterMgrPlatformConnector::createElementHandle(const string &strPath,
+                                                                   string &strError) const
 {
     return _pParameterMgr->createElementHandle(strPath, strError);
 }
 
 // Logging
-void CParameterMgrPlatformConnector::setLogger(CParameterMgrPlatformConnector::ILogger* pLogger)
+void CParameterMgrPlatformConnector::setLogger(CParameterMgrPlatformConnector::ILogger *pLogger)
 {
     _pLogger = pLogger;
 }
@@ -125,8 +130,8 @@ bool CParameterMgrPlatformConnector::getFailureOnMissingSubsystem() const
     return _pParameterMgr->getFailureOnMissingSubsystem();
 }
 
-bool CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad(
-        bool bFail, std::string& strError)
+bool CParameterMgrPlatformConnector::setFailureOnFailedSettingsLoad(bool bFail,
+                                                                    std::string &strError)
 {
     if (_bStarted) {
 
@@ -143,18 +148,18 @@ bool CParameterMgrPlatformConnector::getFailureOnFailedSettingsLoad() const
     return _pParameterMgr->getFailureOnFailedSettingsLoad();
 }
 
-const string& CParameterMgrPlatformConnector::getSchemaUri() const
+const string &CParameterMgrPlatformConnector::getSchemaUri() const
 {
     return _pParameterMgr->getSchemaUri();
 }
 
-void CParameterMgrPlatformConnector::setSchemaUri(const string& schemaUri)
+void CParameterMgrPlatformConnector::setSchemaUri(const string &schemaUri)
 {
     _pParameterMgr->setSchemaUri(schemaUri);
 }
 
-bool CParameterMgrPlatformConnector::setValidateSchemasOnStart(
-    bool bValidate, std::string& strError)
+bool CParameterMgrPlatformConnector::setValidateSchemasOnStart(bool bValidate,
+                                                               std::string &strError)
 {
     if (_bStarted) {
 
@@ -172,7 +177,7 @@ bool CParameterMgrPlatformConnector::getValidateSchemasOnStart() const
 }
 
 // Start
-bool CParameterMgrPlatformConnector::start(string& strError)
+bool CParameterMgrPlatformConnector::start(string &strError)
 {
     // Create data structure
     if (!_pParameterMgr->load(strError)) {
@@ -192,7 +197,7 @@ bool CParameterMgrPlatformConnector::isStarted() const
 }
 
 // Private logging
-void CParameterMgrPlatformConnector::info(const string& log)
+void CParameterMgrPlatformConnector::info(const string &log)
 {
     if (_pLogger) {
 
@@ -200,7 +205,7 @@ void CParameterMgrPlatformConnector::info(const string& log)
     }
 }
 
-void CParameterMgrPlatformConnector::warning(const string& log)
+void CParameterMgrPlatformConnector::warning(const string &log)
 {
     if (_pLogger) {
 

@@ -58,7 +58,6 @@ bool CMappingData::init(const std::string &rawMapping, std::string &error)
 
             // Get mapping value
             strValue = strMappingElement.substr(iFistDelimiterOccurrence + 1);
-
         }
 
         if (!addValue(strKey, strValue)) {
@@ -72,7 +71,7 @@ bool CMappingData::init(const std::string &rawMapping, std::string &error)
     return true;
 }
 
-bool CMappingData::getValue(const std::string& strkey, const std::string*& pStrValue) const
+bool CMappingData::getValue(const std::string &strkey, const std::string *&pStrValue) const
 {
     KeyToValueMapConstIterator it = _keyToValueMap.find(strkey);
 
@@ -90,7 +89,7 @@ std::string CMappingData::asString() const
     return utility::asString(_keyToValueMap, ", ", ":");
 }
 
-bool CMappingData::addValue(const std::string& strkey, const std::string& strValue)
+bool CMappingData::addValue(const std::string &strkey, const std::string &strValue)
 {
     if (_keyToValueMap.find(strkey) != _keyToValueMap.end()) {
 
@@ -100,4 +99,3 @@ bool CMappingData::addValue(const std::string& strkey, const std::string& strVal
 
     return true;
 }
-

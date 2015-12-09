@@ -44,8 +44,8 @@ class CSubsystem;
 class PARAMETER_EXPORT CSubsystemObject : private ISyncer
 {
 public:
-    CSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
-                     core::log::Logger& logger);
+    CSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement,
+                     core::log::Logger &logger);
     virtual ~CSubsystemObject();
 
     /**
@@ -56,13 +56,13 @@ public:
     virtual std::string getFormattedMappingValue() const;
 
     // Configurable element retrieval
-    const CInstanceConfigurableElement* getConfigurableElement() const;
+    const CInstanceConfigurableElement *getConfigurableElement() const;
 
 protected:
     /** FIXME: plugins should not have direct access to blackboard memory.
      *         Ie: This method should be removed or return a abstracted iterator.
      */
-    uint8_t* getBlackboardLocation() const;
+    uint8_t *getBlackboardLocation() const;
     // Size
     size_t getSize() const;
 
@@ -78,15 +78,15 @@ protected:
                        int sizeOptimizedData);
 
     // Sync to/from HW
-    virtual bool sendToHW(std::string& strError);
-    virtual bool receiveFromHW(std::string& strError);
+    virtual bool sendToHW(std::string &strError);
+    virtual bool receiveFromHW(std::string &strError);
     // Fall back HW access
-    virtual bool accessHW(bool bReceive, std::string& strError);
+    virtual bool accessHW(bool bReceive, std::string &strError);
     // Blackboard access from subsystems
-    void blackboardRead(void* pvData, size_t size);
-    void blackboardWrite(const void* pvData, size_t size);
+    void blackboardRead(void *pvData, size_t size);
+    void blackboardWrite(const void *pvData, size_t size);
     // Belonging Subsystem retrieval
-    const CSubsystem* getSubsystem() const;
+    const CSubsystem *getSubsystem() const;
 
     /** Logging methods
      *@{
@@ -100,30 +100,30 @@ private:
     /** This method is not supposed to be overridden by plugins
      *  as if not called, plugins will not work (sets _blackboard).
      */
-    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, std::string& strError) override final;
+    bool sync(CParameterBlackboard &parameterBlackboard, bool bBack,
+              std::string &strError) override final;
 
     // Default back synchronization
-    void setDefaultValues(CParameterBlackboard& parameterBlackboard) const;
+    void setDefaultValues(CParameterBlackboard &parameterBlackboard) const;
 
     /** @return the offset in the main blackboard of the sync values. */
     size_t getOffset() const;
 
     // Prevent unsupported operators
-    CSubsystemObject(const CSubsystemObject&);
+    CSubsystemObject(const CSubsystemObject &);
 
     // Define affection operator
-    const CSubsystemObject& operator=(const CSubsystemObject&);
+    const CSubsystemObject &operator=(const CSubsystemObject &);
 
     /** Application Logger */
-    core::log::Logger& _logger;
+    core::log::Logger &_logger;
 
     // Instance element to sync from/to
-    CInstanceConfigurableElement* _pInstanceConfigurableElement;
+    CInstanceConfigurableElement *_pInstanceConfigurableElement;
     // Data size
     size_t _dataSize;
     // Blackboard data location
-    CParameterBlackboard* _blackboard{nullptr};
+    CParameterBlackboard *_blackboard{nullptr};
     // Accessed index for Subsystem read/write from/to blackboard
     size_t _accessedIndex{0};
 };
-

@@ -40,8 +40,9 @@ class CParameterBlackboard;
 class CBackSynchronizer : private utility::NonCopyable
 {
 public:
-    CBackSynchronizer(const CConfigurableElement* pConfigurableElement)
-        : _configurableElementAggregator(_needingBackSyncList, &CConfigurableElement::hasNoValidDomainAssociated)
+    CBackSynchronizer(const CConfigurableElement *pConfigurableElement)
+        : _configurableElementAggregator(_needingBackSyncList,
+                                         &CConfigurableElement::hasNoValidDomainAssociated)
     {
         // Aggegate elements
         _configurableElementAggregator.aggegate(pConfigurableElement);
@@ -53,10 +54,9 @@ public:
 
 protected:
     // Aggregate list
-    std::list<const CConfigurableElement*> _needingBackSyncList;
+    std::list<const CConfigurableElement *> _needingBackSyncList;
 
 private:
     // Aggegator
     CConfigurableElementAggregator _configurableElementAggregator;
 };
-

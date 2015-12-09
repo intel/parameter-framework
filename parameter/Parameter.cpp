@@ -37,7 +37,8 @@
 
 using std::string;
 
-CParameter::CParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
+CParameter::CParameter(const string &strName, const CTypeElement *pTypeElement)
+    : base(strName, pTypeElement)
 {
 }
 
@@ -47,20 +48,26 @@ CInstanceConfigurableElement::Type CParameter::getType() const
 }
 
 // XML configuration settings parsing/composing
-bool CParameter::serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const
+bool CParameter::serializeXmlSettings(CXmlElement &xmlConfigurationSettingsElementContent,
+                                      CConfigurationAccessContext &configurationAccessContext) const
 {
     // Check for value space
     handleValueSpaceAttribute(xmlConfigurationSettingsElementContent, configurationAccessContext);
 
     // Base
-    return base::serializeXmlSettings(xmlConfigurationSettingsElementContent, configurationAccessContext);
+    return base::serializeXmlSettings(xmlConfigurationSettingsElementContent,
+                                      configurationAccessContext);
 }
 
 // Value space handling for configuration import
-void CParameter::handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const
+void CParameter::handleValueSpaceAttribute(
+    CXmlElement &xmlConfigurableElementSettingsElement,
+    CConfigurationAccessContext &configurationAccessContext) const
 {
     // Delegate to type
-    static_cast<const CParameterType*>(getTypeElement())->handleValueSpaceAttribute(xmlConfigurableElementSettingsElement, configurationAccessContext);
+    static_cast<const CParameterType *>(getTypeElement())
+        ->handleValueSpaceAttribute(xmlConfigurableElementSettingsElement,
+                                    configurationAccessContext);
 }
 
 size_t CParameter::getFootPrint() const
@@ -70,62 +77,70 @@ size_t CParameter::getFootPrint() const
 
 size_t CParameter::getSize() const
 {
-    return static_cast<const CParameterType*>(getTypeElement())->getSize();
+    return static_cast<const CParameterType *>(getTypeElement())->getSize();
 }
 
 // Used for simulation and virtual subsystems
-void CParameter::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
+void CParameter::setDefaultValues(CParameterAccessContext &parameterAccessContext) const
 {
     // Get default value from type
-    uint32_t uiDefaultValue = static_cast<const CParameterType*>(getTypeElement())->getDefaultValue();
+    uint32_t uiDefaultValue =
+        static_cast<const CParameterType *>(getTypeElement())->getDefaultValue();
 
     // Write blackboard
-    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    CParameterBlackboard *pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->writeInteger(&uiDefaultValue, getSize(), getOffset() - parameterAccessContext.getBaseOffset());
+    pBlackboard->writeInteger(&uiDefaultValue, getSize(),
+                              getOffset() - parameterAccessContext.getBaseOffset());
 }
 
 /// Actual parameter access
 // String access
-bool CParameter::doSetValue(const string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::doSetValue(const string &strValue, size_t offset,
+                            CParameterAccessContext &parameterAccessContext) const
 {
     return doSet(strValue, offset, parameterAccessContext);
 }
 
-void CParameter::doGetValue(string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
+void CParameter::doGetValue(string &strValue, size_t offset,
+                            CParameterAccessContext &parameterAccessContext) const
 {
     doGet(strValue, offset, parameterAccessContext);
 }
 
 // Boolean access
-bool CParameter::access(bool& bValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::access(bool &bValue, bool bSet,
+                        CParameterAccessContext &parameterAccessContext) const
 {
     return doAccess(bValue, bSet, parameterAccessContext);
 }
 
 // Integer Access
-bool CParameter::access(uint32_t& uiValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::access(uint32_t &uiValue, bool bSet,
+                        CParameterAccessContext &parameterAccessContext) const
 {
     return doAccess(uiValue, bSet, parameterAccessContext);
 }
 
 // Signed Integer Access
-bool CParameter::access(int32_t& iValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::access(int32_t &iValue, bool bSet,
+                        CParameterAccessContext &parameterAccessContext) const
 {
     return doAccess(iValue, bSet, parameterAccessContext);
 }
 
 // Double Access
-bool CParameter::access(double& dValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::access(double &dValue, bool bSet,
+                        CParameterAccessContext &parameterAccessContext) const
 {
     return doAccess(dValue, bSet, parameterAccessContext);
 }
 
 // Generic Access
 template <typename type>
-bool CParameter::doAccess(type& value, bool bSet,
-                          CParameterAccessContext& parameterAccessContext) const
+bool CParameter::doAccess(type &value, bool bSet,
+                          CParameterAccessContext &parameterAccessContext) const
 {
     if (bSet) {
         // set value
@@ -134,10 +149,9 @@ bool CParameter::doAccess(type& value, bool bSet,
 
             appendParameterPathToError(parameterAccessContext);
             return false;
-
         }
         // Synchronize
-        if (!sync(parameterAccessContext)){
+        if (!sync(parameterAccessContext)) {
 
             appendParameterPathToError(parameterAccessContext);
             return false;
@@ -155,16 +169,18 @@ bool CParameter::doAccess(type& value, bool bSet,
 }
 
 template <typename type>
-bool CParameter::doSet(type value, size_t offset, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::doSet(type value, size_t offset,
+                       CParameterAccessContext &parameterAccessContext) const
 {
     uint32_t uiData;
 
-    if (!static_cast<const CParameterType*>(getTypeElement())->toBlackboard(value, uiData, parameterAccessContext)) {
+    if (!static_cast<const CParameterType *>(getTypeElement())
+             ->toBlackboard(value, uiData, parameterAccessContext)) {
 
         return false;
     }
     // Write blackboard
-    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    CParameterBlackboard *pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
     pBlackboard->writeInteger(&uiData, getSize(), offset);
@@ -173,15 +189,17 @@ bool CParameter::doSet(type value, size_t offset, CParameterAccessContext& param
 }
 
 template <typename type>
-bool CParameter::doGet(type& value, size_t offset, CParameterAccessContext& parameterAccessContext) const
+bool CParameter::doGet(type &value, size_t offset,
+                       CParameterAccessContext &parameterAccessContext) const
 {
     uint32_t uiData = 0;
 
     // Read blackboard
-    const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    const CParameterBlackboard *pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
     pBlackboard->readInteger(&uiData, getSize(), offset);
 
-    return static_cast<const CParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);
+    return static_cast<const CParameterType *>(getTypeElement())
+        ->fromBlackboard(value, uiData, parameterAccessContext);
 }

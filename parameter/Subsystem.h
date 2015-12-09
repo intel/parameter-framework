@@ -51,20 +51,20 @@ class CMappingData;
 class PARAMETER_EXPORT CSubsystem : public CConfigurableElement, private IMapper
 {
     // Subsystem objects iterator
-    typedef std::list<CSubsystemObject*>::const_iterator SubsystemObjectListIterator;
-public:
+    typedef std::list<CSubsystemObject *>::const_iterator SubsystemObjectListIterator;
 
+public:
     /**
      * Class Constructor
      *
      * @param[in] strName subsystem name
      * @param[in] logger the main logger of the application
      */
-    CSubsystem(const std::string& strName, core::log::Logger& logger);
+    CSubsystem(const std::string &strName, core::log::Logger &logger);
     virtual ~CSubsystem();
 
-    virtual bool structureFromXml(const CXmlElement& xmlElement,
-                                  CXmlSerializingContext& serializingContext);
+    virtual bool structureFromXml(const CXmlElement &xmlElement,
+                                  CXmlSerializingContext &serializingContext);
 
     // Susbsystem sanity
     virtual bool isAlive() const;
@@ -75,12 +75,13 @@ public:
     // from CElement
     virtual std::string getKind() const;
 
-    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
+    virtual bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const;
 
     /**
      * Fetch mapping data of an element.
      *
-     * The mapping is represented as a std::string of all the mapping data (key:value) defined in the
+     * The mapping is represented as a std::string of all the mapping data (key:value) defined in
+     * the
      * context of the element.
      * This method gathers the mapping data found in each Element of the configurableElementPath
      * list to format the resulting std::string.
@@ -91,26 +92,28 @@ public:
      *
      * @return Formatted std::string of the mapping data
      */
-    virtual std::string getMapping(std::list<const CConfigurableElement*>& configurableElementPath) const;
+    virtual std::string getMapping(
+        std::list<const CConfigurableElement *> &configurableElementPath) const;
 
 protected:
     // Used for simulation and virtual subsystems
-    virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
+    virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
 
     /// Functionality intendedn for derived Subsystems
     // Subsystem context mapping keys publication
-    void addContextMappingKey(const std::string& strMappingKey);
+    void addContextMappingKey(const std::string &strMappingKey);
     // Subsystem object creator publication (strong reference)
-    void addSubsystemObjectFactory(CSubsystemObjectCreator* pSubsystemObjectCreator);
+    void addSubsystemObjectFactory(CSubsystemObjectCreator *pSubsystemObjectCreator);
+
 private:
-    CSubsystem(const CSubsystem&);
-    CSubsystem& operator=(const CSubsystem&);
+    CSubsystem(const CSubsystem &);
+    CSubsystem &operator=(const CSubsystem &);
 
     // Belonging subsystem
-    virtual const CSubsystem* getBelongingSubsystem() const;
+    virtual const CSubsystem *getBelongingSubsystem() const;
 
     // Mapping execution
-    bool mapSubsystemElements(std::string& strError);
+    bool mapSubsystemElements(std::string &strError);
 
     /**
      * Handle a configurable element mapping.
@@ -126,7 +129,8 @@ private:
      *
      * @return true on success, false on failure
      */
-    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, std::string& strError);
+    virtual bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement,
+                          bool &bKeepDiving, std::string &strError);
     virtual void mapEnd();
 
     // Mapping access
@@ -141,10 +145,8 @@ private:
      *
      * returns The formated error std::string
      */
-    std::string getMappingError(
-            const std::string& strKey,
-            const std::string& strMessage,
-            const CConfigurableElement* pConfigurableElement) const;
+    std::string getMappingError(const std::string &strKey, const std::string &strMessage,
+                                const CConfigurableElement *pConfigurableElement) const;
 
     /**
      * Format the mapping data of the ConfigurableElements that have been gathered through recursive
@@ -157,7 +159,7 @@ private:
      * @return String containing the formatted mapping
      */
     std::string formatMappingDataList(
-            const std::list<const CConfigurableElement*>& configurableElementPath) const;
+        const std::list<const CConfigurableElement *> &configurableElementPath) const;
 
     /**
      * Find the SubystemObject which contains a specific CInstanceConfigurableElement.
@@ -168,8 +170,8 @@ private:
      *
      * @return A pointer to the SubsystemObject related to pInstanceConfigurableElement
      */
-    const CSubsystemObject* findSubsystemObjectFromConfigurableElement(
-            const CInstanceConfigurableElement* pInstanceConfigurableElement) const;
+    const CSubsystemObject *findSubsystemObjectFromConfigurableElement(
+        const CInstanceConfigurableElement *pInstanceConfigurableElement) const;
 
     /**
      * Find the mapping data defined for the CInstanceConfigurableElement given in parameter, that
@@ -183,9 +185,8 @@ private:
      * @param[out] strMappingValue Mapping value contained in pInstanceConfigurableElement
      */
     void findSubsystemLevelMappingKeyValue(
-            const CInstanceConfigurableElement* pInstanceConfigurableElement,
-            std::string& strMappingKey,
-            std::string& strMappingValue) const;
+        const CInstanceConfigurableElement *pInstanceConfigurableElement,
+        std::string &strMappingKey, std::string &strMappingValue) const;
 
     /**
      * Formats the mapping of a SubsystemObject
@@ -195,7 +196,7 @@ private:
      * @return String containing the formatted mapping
      */
     std::string getFormattedSubsystemMappingData(
-            const CInstanceConfigurableElement* pInstanceConfigurableElement) const;
+        const CInstanceConfigurableElement *pInstanceConfigurableElement) const;
     /**
      * Generic context handling
      *
@@ -207,10 +208,8 @@ private:
      *
      * @return true on success
      */
-    bool handleMappingContext(
-            const CConfigurableElement* pConfigurableElement,
-            CMappingContext& context,
-            std::string& strError) const;
+    bool handleMappingContext(const CConfigurableElement *pConfigurableElement,
+                              CMappingContext &context, std::string &strError) const;
 
     /**
      * Looks if a subsystem object needs to be instantiated for the given configurable
@@ -226,29 +225,29 @@ private:
      *
      * @return true on success, false on failure
      */
-    bool handleSubsystemObjectCreation(CInstanceConfigurableElement* pInstanceConfigurableElement,
-                                       CMappingContext& context, bool& bHasCreatedSubsystemObject,
-                                       std::string& strError);
+    bool handleSubsystemObjectCreation(CInstanceConfigurableElement *pInstanceConfigurableElement,
+                                       CMappingContext &context, bool &bHasCreatedSubsystemObject,
+                                       std::string &strError);
 
     // Subsystem context mapping keys
     std::vector<std::string> _contextMappingKeyArray;
 
     // Subsystem object creator map
-    std::vector<CSubsystemObjectCreator*> _subsystemObjectCreatorArray;
+    std::vector<CSubsystemObjectCreator *> _subsystemObjectCreatorArray;
 
     // Subsystem sync objects (house keeping)
-    std::list<CSubsystemObject*> _subsystemObjectList;
+    std::list<CSubsystemObject *> _subsystemObjectList;
 
     // Mapping Context stack
     std::stack<CMappingContext> _contextStack;
 
     // Subelements
-    CComponentLibrary* _pComponentLibrary;
-    CInstanceDefinition* _pInstanceDefinition;
+    CComponentLibrary *_pComponentLibrary;
+    CInstanceDefinition *_pInstanceDefinition;
 
     //! Contains the mapping info at Subsystem level
-    CMappingData* _pMappingData{nullptr};
+    CMappingData *_pMappingData{nullptr};
 
     /** Logger which has to be provided to subsystem objects */
-    core::log::Logger& _logger;
+    core::log::Logger &_logger;
 };

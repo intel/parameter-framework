@@ -48,9 +48,11 @@ class PARAMETER_EXPORT CConfigurableElement : public CElement
 {
     friend class CConfigurableDomain;
     friend class CDomainConfiguration;
-    typedef std::list<const CConfigurableDomain*>::const_iterator ConfigurableDomainListConstIterator;
+    typedef std::list<const CConfigurableDomain *>::const_iterator
+        ConfigurableDomainListConstIterator;
+
 public:
-    CConfigurableElement(const std::string& strName = "");
+    CConfigurableElement(const std::string &strName = "");
     virtual ~CConfigurableElement() = default;
 
     // Offset in main blackboard
@@ -61,13 +63,13 @@ public:
     virtual size_t getFootPrint() const;
 
     // Syncer set (me, ascendant or descendant ones)
-    void fillSyncerSet(CSyncerSet& syncerSet) const;
+    void fillSyncerSet(CSyncerSet &syncerSet) const;
 
     // Belonging domain
-    bool belongsTo(const CConfigurableDomain* pConfigurableDomain) const;
+    bool belongsTo(const CConfigurableDomain *pConfigurableDomain) const;
 
     // Belonging domains
-    void listBelongingDomains(std::string& strResult, bool bVertical = true) const;
+    void listBelongingDomains(std::string &strResult, bool bVertical = true) const;
 
     // Matching check for domain association
     bool hasNoDomainAssociated() const;
@@ -76,11 +78,11 @@ public:
     bool hasNoValidDomainAssociated() const;
 
     // Owning domains
-    void listAssociatedDomains(std::string& strResult, bool bVertical = true) const;
+    void listAssociatedDomains(std::string &strResult, bool bVertical = true) const;
     size_t getBelongingDomainCount() const;
 
     // Elements with no domains
-    void listRogueElements(std::string& strResult) const;
+    void listRogueElements(std::string &strResult) const;
 
     /** @return true if element is rogue, false otherwise
      *
@@ -98,16 +100,17 @@ public:
     std::string getFootprintAsString() const;
 
     // Belonging subsystem
-    virtual const CSubsystem* getBelongingSubsystem() const;
+    virtual const CSubsystem *getBelongingSubsystem() const;
 
     // Check element is a parameter
     virtual bool isParameter() const;
 
     // AreaConfiguration creation
-    virtual CAreaConfiguration* createAreaConfiguration(const CSyncerSet* pSyncerSet) const;
+    virtual CAreaConfiguration *createAreaConfiguration(const CSyncerSet *pSyncerSet) const;
 
     // Parameter access
-    virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessValue(CPathNavigator &pathNavigator, std::string &strValue, bool bSet,
+                             CParameterAccessContext &parameterAccessContext) const;
 
     /** Gets the element as an array of bytes.
      *
@@ -117,8 +120,8 @@ public:
      * @param[in] parameterAccessContext Context containing the blackboard to
      *            read from.
      */
-    void getSettingsAsBytes(std::vector<uint8_t>& bytes,
-                            CParameterAccessContext& parameterAccessContext) const;
+    void getSettingsAsBytes(std::vector<uint8_t> &bytes,
+                            CParameterAccessContext &parameterAccessContext) const;
     /** Sets the element as if it was an array of bytes.
      *
      * This is like having a direct access to the blackboard.
@@ -127,13 +130,14 @@ public:
      * @param[in] parameterAccessContext Context containing the blackboard to
      *            write to.
      */
-    bool setSettingsAsBytes(const std::vector<uint8_t>& bytes,
-                            CParameterAccessContext& parameterAccessContext) const;
+    bool setSettingsAsBytes(const std::vector<uint8_t> &bytes,
+                            CParameterAccessContext &parameterAccessContext) const;
 
     /**
      * Get the list of all the ancestors that have a mapping.
      *
-     * The mapping is represented as a std::string of all the mapping data (key:value) defined in the
+     * The mapping is represented as a std::string of all the mapping data (key:value) defined in
+     * the
      * context of the element.
      * In this class, the method is generic and calls its parent getListOfElementsWithMappings(...)
      * method.
@@ -143,14 +147,14 @@ public:
      * the last one.
      *
      */
-    virtual void getListOfElementsWithMapping(std::list<const CConfigurableElement*>&
-                                               configurableElementPath) const;
+    virtual void getListOfElementsWithMapping(
+        std::list<const CConfigurableElement *> &configurableElementPath) const;
 
     // Used for simulation and virtual subsystems
-    virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
+    virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
 
     // Element properties
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
     /**
      * Get the value associated to a mapping key in the object's mapping
@@ -160,18 +164,22 @@ public:
      *
      * @return true if @p strKey is found in the object's mapping, false if not
      */
-    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const = 0;
+    virtual bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const = 0;
 
     // XML configuration settings parsing
-    virtual bool serializeXmlSettings(CXmlElement& xmlConfigurationSettingsElementContent, CConfigurationAccessContext& configurationAccessContext) const;
+    virtual bool serializeXmlSettings(
+        CXmlElement &xmlConfigurationSettingsElementContent,
+        CConfigurationAccessContext &configurationAccessContext) const;
 
     bool fromXml(const CXmlElement &xmlElement,
-                         CXmlSerializingContext &serializingContext) override final;
+                 CXmlSerializingContext &serializingContext) override final;
 
-    void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const override final;
+    void toXml(CXmlElement &xmlElement,
+               CXmlSerializingContext &serializingContext) const override final;
 
     /** Deserialize the structure from xml. */
-    virtual bool structureFromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext)
+    virtual bool structureFromXml(const CXmlElement &xmlElement,
+                                  CXmlSerializingContext &serializingContext)
     {
         // Forward to Element::fromXml.
         // This is unfortunate as Element::fromXml will call back
@@ -188,7 +196,8 @@ public:
     }
 
     /** Serialize the structure to xml. */
-    virtual void structureToXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
+    virtual void structureToXml(CXmlElement &xmlElement,
+                                CXmlSerializingContext &serializingContext) const
     {
         // See structureFromXml implementation comment.
         CElement::toXml(xmlElement, serializingContext);
@@ -196,38 +205,38 @@ public:
 
 protected:
     // Syncer (me or ascendant)
-    virtual ISyncer* getSyncer() const;
+    virtual ISyncer *getSyncer() const;
     // Syncer set (descendant)
-    virtual void fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const;
+    virtual void fillSyncerSetFromDescendant(CSyncerSet &syncerSet) const;
     // Configuration Domain local search
-    bool containsConfigurableDomain(const CConfigurableDomain* pConfigurableDomain) const;
+    bool containsConfigurableDomain(const CConfigurableDomain *pConfigurableDomain) const;
 
 private:
     // Content dumping. Override and stop further deriving: Configurable
     // Elements should be called with the overloaded version taking a
     // "Parameter Access Context" (The name is misleading as it is actually
     // used to access any Configurable Element).
-    std::string logValue(utility::ErrorContext& errorContext) const override final;
-    virtual std::string logValue(CParameterAccessContext& context) const;
+    std::string logValue(utility::ErrorContext &errorContext) const override final;
+    virtual std::string logValue(CParameterAccessContext &context) const;
 
     // Configurable domain association
-    void addAttachedConfigurableDomain(const CConfigurableDomain* pConfigurableDomain);
-    void removeAttachedConfigurableDomain(const CConfigurableDomain* pConfigurableDomain);
+    void addAttachedConfigurableDomain(const CConfigurableDomain *pConfigurableDomain);
+    void removeAttachedConfigurableDomain(const CConfigurableDomain *pConfigurableDomain);
 
     // Belonging domain ascending search
-    bool belongsToDomainAscending(const CConfigurableDomain* pConfigurableDomain) const;
+    bool belongsToDomainAscending(const CConfigurableDomain *pConfigurableDomain) const;
 
     // Belonging domains
-    void getBelongingDomains(std::list<const CConfigurableDomain*>& configurableDomainList) const;
-    void listDomains(const std::list<const CConfigurableDomain*>& configurableDomainList, std::string& strResult, bool bVertical) const;
+    void getBelongingDomains(std::list<const CConfigurableDomain *> &configurableDomainList) const;
+    void listDomains(const std::list<const CConfigurableDomain *> &configurableDomainList,
+                     std::string &strResult, bool bVertical) const;
 
     // Check parent is still of current type (by structure knowledge)
-    bool isOfConfigurableElementType(const CElement* pParent) const;
+    bool isOfConfigurableElementType(const CElement *pParent) const;
 
     // Offset in main blackboard
     size_t _offset{0};
 
     // Associated configurable domains
-    std::list<const CConfigurableDomain*> _configurableDomainList;
+    std::list<const CConfigurableDomain *> _configurableDomainList;
 };
-

@@ -38,7 +38,8 @@ class CSelectionCriteriaDefinition;
 class CRuleParser
 {
 public:
-    enum Status {
+    enum Status
+    {
         EInit,
         EBeginCompoundRule,
         EEndCompoundRule,
@@ -49,35 +50,36 @@ public:
         ENbStatuses
     };
 
-    CRuleParser(const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition);
+    CRuleParser(const std::string &strApplicationRule,
+                const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition);
     ~CRuleParser();
 
     // Parse
-    bool parse(CCompoundRule* pParentRule, std::string& strError);
+    bool parse(CCompoundRule *pParentRule, std::string &strError);
 
     // Iterate
-    bool iterate(std::string& strError);
+    bool iterate(std::string &strError);
 
     // Next word
-    bool next(std::string& strNext, std::string& strError);
+    bool next(std::string &strNext, std::string &strError);
 
     // Rule type
-    const std::string& getType() const;
+    const std::string &getType() const;
 
     // Criteria defintion
-    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const;
+    const CSelectionCriteriaDefinition *getSelectionCriteriaDefinition() const;
 
     // Root rule
-    CCompoundRule* grabRootRule();
-private:
+    CCompoundRule *grabRootRule();
 
-    CRuleParser(const CRuleParser&);
-    CRuleParser& operator=(const CRuleParser&);
+private:
+    CRuleParser(const CRuleParser &);
+    CRuleParser &operator=(const CRuleParser &);
 
     // Rule definition
     std::string _strApplicationRule;
     // Criteria defintion
-    const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition;
+    const CSelectionCriteriaDefinition *_pSelectionCriteriaDefinition;
     /** String iterator */
     std::string::size_type _uiCurrentPos{0};
     // Deepness
@@ -87,8 +89,7 @@ private:
     // Status
     Status _eStatus{EInit};
     // Root rule
-    CCompoundRule* _pRootRule{nullptr};
+    CCompoundRule *_pRootRule{nullptr};
     // Matches
-    static const char* _acDelimiters[ENbStatuses];
+    static const char *_acDelimiters[ENbStatuses];
 };
-

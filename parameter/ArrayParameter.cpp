@@ -41,7 +41,8 @@
 
 using std::string;
 
-CArrayParameter::CArrayParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
+CArrayParameter::CArrayParameter(const string &strName, const CTypeElement *pTypeElement)
+    : base(strName, pTypeElement)
 {
 }
 
@@ -57,7 +58,7 @@ size_t CArrayParameter::getArrayLength() const
 }
 
 // Element properties
-void CArrayParameter::showProperties(string& strResult) const
+void CArrayParameter::showProperties(string &strResult) const
 {
     base::showProperties(strResult);
 
@@ -68,7 +69,8 @@ void CArrayParameter::showProperties(string& strResult) const
 }
 
 // User set/get
-bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::accessValue(CPathNavigator &pathNavigator, string &strValue, bool bSet,
+                                  CParameterAccessContext &parameterAccessContext) const
 {
     size_t index;
 
@@ -86,8 +88,8 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
         }
 
         // Actually set values
-        if (!setValues(index, getOffset() - parameterAccessContext.getBaseOffset(),
-                       strValue, parameterAccessContext)) {
+        if (!setValues(index, getOffset() - parameterAccessContext.getBaseOffset(), strValue,
+                       parameterAccessContext)) {
             return false;
         }
 
@@ -102,11 +104,13 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
         if (index == (size_t)-1) {
 
             // Whole array requested
-            strValue = getValues(getOffset() - parameterAccessContext.getBaseOffset(), parameterAccessContext);
+            strValue = getValues(getOffset() - parameterAccessContext.getBaseOffset(),
+                                 parameterAccessContext);
 
         } else {
             // Scalar requested
-            CParameter::doGetValue(strValue, getOffset() + index * getSize(), parameterAccessContext);
+            CParameter::doGetValue(strValue, getOffset() + index * getSize(),
+                                   parameterAccessContext);
         }
     }
 
@@ -115,45 +119,50 @@ bool CArrayParameter::accessValue(CPathNavigator& pathNavigator, string& strValu
 
 /// Actual parameter access
 // String access
-bool CArrayParameter::doSetValue(const string& value, size_t offset,
-                                 CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::doSetValue(const string &value, size_t offset,
+                                 CParameterAccessContext &parameterAccessContext) const
 {
     return setValues(0, offset, value, parameterAccessContext);
 }
 
-void CArrayParameter::doGetValue(string& value, size_t offset,
-                                 CParameterAccessContext& parameterAccessContext) const
+void CArrayParameter::doGetValue(string &value, size_t offset,
+                                 CParameterAccessContext &parameterAccessContext) const
 {
     // Whole array requested
     value = getValues(offset, parameterAccessContext);
 }
 
 // Boolean
-bool CArrayParameter::access(std::vector<bool>& abValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<bool> &abValues, bool bSet,
+                             CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(abValues, bSet, parameterAccessContext);
 }
 
 // Integer
-bool CArrayParameter::access(std::vector<uint32_t>& auiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<uint32_t> &auiValues, bool bSet,
+                             CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(auiValues, bSet, parameterAccessContext);
 }
 
 // Signed Integer Access
-bool CArrayParameter::access(std::vector<int32_t>& aiValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<int32_t> &aiValues, bool bSet,
+                             CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(aiValues, bSet, parameterAccessContext);
 }
 
 // Double Access
-bool CArrayParameter::access(std::vector<double>& adValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<double> &adValues, bool bSet,
+                             CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(adValues, bSet, parameterAccessContext);
 }
 
 // String Access
-bool CArrayParameter::access(std::vector<string>& astrValues, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::access(std::vector<string> &astrValues, bool bSet,
+                             CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(astrValues, bSet, parameterAccessContext);
 }
@@ -166,13 +175,14 @@ string CArrayParameter::logValue(CParameterAccessContext &context) const
 }
 
 // Used for simulation and virtual subsystems
-void CArrayParameter::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
+void CArrayParameter::setDefaultValues(CParameterAccessContext &parameterAccessContext) const
 {
     // Get default value from type
-    uint32_t uiDefaultValue = static_cast<const CParameterType*>(getTypeElement())->getDefaultValue();
+    uint32_t uiDefaultValue =
+        static_cast<const CParameterType *>(getTypeElement())->getDefaultValue();
 
     // Write blackboard
-    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    CParameterBlackboard *pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Process
     size_t valueIndex;
@@ -190,28 +200,30 @@ void CArrayParameter::setDefaultValues(CParameterAccessContext& parameterAccessC
 }
 
 // Index from path
-bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, size_t& index, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::getIndex(CPathNavigator &pathNavigator, size_t &index,
+                               CParameterAccessContext &parameterAccessContext) const
 {
     index = (size_t)-1;
 
-    string* pStrChildName = pathNavigator.next();
+    string *pStrChildName = pathNavigator.next();
 
     if (pStrChildName) {
 
         // Check index is numeric
-	std::istringstream iss(*pStrChildName);
+        std::istringstream iss(*pStrChildName);
 
         iss >> index;
 
         if (!iss) {
 
-            parameterAccessContext.setError("Expected numerical expression as last item in " + pathNavigator.getCurrentPath());
+            parameterAccessContext.setError("Expected numerical expression as last item in " +
+                                            pathNavigator.getCurrentPath());
 
             return false;
         }
 
         if (index >= getArrayLength()) {
-	    std::ostringstream oss;
+            std::ostringstream oss;
 
             oss << "Provided index out of range (max is " << getArrayLength() - 1 << ")";
 
@@ -236,7 +248,8 @@ bool CArrayParameter::getIndex(CPathNavigator& pathNavigator, size_t& index, CPa
 }
 
 // Common set value processing
-bool CArrayParameter::setValues(size_t uiStartIndex, size_t offset, const string& strValue, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::setValues(size_t uiStartIndex, size_t offset, const string &strValue,
+                                CParameterAccessContext &parameterAccessContext) const
 {
     // Deal with value(s)
     Tokenizer tok(strValue, Tokenizer::defaultDelimiters + ",");
@@ -275,7 +288,8 @@ bool CArrayParameter::setValues(size_t uiStartIndex, size_t offset, const string
 }
 
 // Common get value processing
-string CArrayParameter::getValues(size_t offset, CParameterAccessContext& parameterAccessContext) const
+string CArrayParameter::getValues(size_t offset,
+                                  CParameterAccessContext &parameterAccessContext) const
 {
     size_t size = getSize();
     size_t arrayLength = getArrayLength();
@@ -307,7 +321,8 @@ string CArrayParameter::getValues(size_t offset, CParameterAccessContext& parame
 
 // Generic Access
 template <typename type>
-bool CArrayParameter::accessValues(std::vector<type>& values, bool bSet, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::accessValues(std::vector<type> &values, bool bSet,
+                                   CParameterAccessContext &parameterAccessContext) const
 {
     if (bSet) {
 
@@ -334,7 +349,8 @@ bool CArrayParameter::accessValues(std::vector<type>& values, bool bSet, CParame
 }
 
 template <typename type>
-bool CArrayParameter::setValues(const std::vector<type>& values, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::setValues(const std::vector<type> &values,
+                                CParameterAccessContext &parameterAccessContext) const
 {
     size_t nbValues = getArrayLength();
     size_t size = getSize();
@@ -353,11 +369,12 @@ bool CArrayParameter::setValues(const std::vector<type>& values, CParameterAcces
         offset += size;
     }
 
-   return true;
+    return true;
 }
 
 template <typename type>
-bool CArrayParameter::getValues(std::vector<type>& values, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::getValues(std::vector<type> &values,
+                                CParameterAccessContext &parameterAccessContext) const
 {
     size_t nbValues = getArrayLength();
     size_t size = getSize();
@@ -381,16 +398,18 @@ bool CArrayParameter::getValues(std::vector<type>& values, CParameterAccessConte
 }
 
 template <typename type>
-bool CArrayParameter::doSet(type value, size_t offset, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::doSet(type value, size_t offset,
+                            CParameterAccessContext &parameterAccessContext) const
 {
     uint32_t uiData;
 
-    if (!static_cast<const CParameterType*>(getTypeElement())->toBlackboard(value, uiData, parameterAccessContext)) {
+    if (!static_cast<const CParameterType *>(getTypeElement())
+             ->toBlackboard(value, uiData, parameterAccessContext)) {
 
         return false;
     }
     // Write blackboard
-    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    CParameterBlackboard *pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
     pBlackboard->writeInteger(&uiData, getSize(), offset);
@@ -399,16 +418,17 @@ bool CArrayParameter::doSet(type value, size_t offset, CParameterAccessContext& 
 }
 
 template <typename type>
-bool CArrayParameter::doGet(type& value, size_t offset, CParameterAccessContext& parameterAccessContext) const
+bool CArrayParameter::doGet(type &value, size_t offset,
+                            CParameterAccessContext &parameterAccessContext) const
 {
     uint32_t uiData = 0;
 
     // Read blackboard
-    const CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    const CParameterBlackboard *pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
     pBlackboard->readInteger(&uiData, getSize(), offset);
 
-    return static_cast<const CParameterType*>(getTypeElement())->fromBlackboard(value, uiData, parameterAccessContext);
+    return static_cast<const CParameterType *>(getTypeElement())
+        ->fromBlackboard(value, uiData, parameterAccessContext);
 }
-

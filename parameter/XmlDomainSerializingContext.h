@@ -36,14 +36,13 @@
 class CXmlDomainSerializingContext : public CXmlElementSerializingContext
 {
 public:
-    CXmlDomainSerializingContext(std::string& strError, bool bWithSettings):
-        base(strError), _bWithSettings(bWithSettings) {}
+    CXmlDomainSerializingContext(std::string &strError, bool bWithSettings)
+        : base(strError), _bWithSettings(bWithSettings)
+    {
+    }
 
     // Settings to be serialized or not
-    bool withSettings() const
-    {
-        return _bWithSettings;
-    }
+    bool withSettings() const { return _bWithSettings; }
 
 private:
     typedef CXmlElementSerializingContext base;

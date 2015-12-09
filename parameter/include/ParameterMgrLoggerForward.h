@@ -30,4 +30,5 @@
 #pragma once
 
 // Shared forward declaration, to ensure declaration alignment
-template<class T> class CParameterMgrLogger;
+template <class T>
+class CParameterMgrLogger;

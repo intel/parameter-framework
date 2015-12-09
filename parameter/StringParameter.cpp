@@ -37,7 +37,8 @@
 
 using std::string;
 
-CStringParameter::CStringParameter(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
+CStringParameter::CStringParameter(const string &strName, const CTypeElement *pTypeElement)
+    : base(strName, pTypeElement)
 {
 }
 
@@ -53,39 +54,41 @@ size_t CStringParameter::getFootPrint() const
 
 size_t CStringParameter::getSize() const
 {
-    return static_cast<const CStringParameterType*>(getTypeElement())->getMaxLength() + 1;
+    return static_cast<const CStringParameterType *>(getTypeElement())->getMaxLength() + 1;
 }
 
 // Used for simulation and virtual subsystems
-void CStringParameter::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
+void CStringParameter::setDefaultValues(CParameterAccessContext &parameterAccessContext) const
 {
     // Write blackboard
-    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    CParameterBlackboard *pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     pBlackboard->writeString("", getOffset());
 }
 
 // Actual parameter access (tuning)
-bool CStringParameter::doSetValue(const string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
+bool CStringParameter::doSetValue(const string &strValue, size_t offset,
+                                  CParameterAccessContext &parameterAccessContext) const
 {
     if (strValue.length() >= getSize()) {
         using std::to_string;
-        parameterAccessContext.setError(
-                "Can not set a string of length " + to_string(strValue.length()) +
-                ": maximum length is " + std::to_string(getSize() - 1));
+        parameterAccessContext.setError("Can not set a string of length " +
+                                        to_string(strValue.length()) + ": maximum length is " +
+                                        std::to_string(getSize() - 1));
 
         return false;
     }
 
     // Write blackboard
-    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    CParameterBlackboard *pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     pBlackboard->writeString(strValue, offset);
 
     return true;
 }
 
-void CStringParameter::doGetValue(string& strValue, size_t offset, CParameterAccessContext& parameterAccessContext) const
+void CStringParameter::doGetValue(string &strValue, size_t offset,
+                                  CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.getParameterBlackboard()->readString(strValue, offset);
 }

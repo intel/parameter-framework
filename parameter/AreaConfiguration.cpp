@@ -32,14 +32,16 @@
 #include "ConfigurationAccessContext.h"
 #include <assert.h>
 
-CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet)
+CAreaConfiguration::CAreaConfiguration(const CConfigurableElement *pConfigurableElement,
+                                       const CSyncerSet *pSyncerSet)
     : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet)
 {
     // Size blackboard
     _blackboard.setSize(_pConfigurableElement->getFootPrint());
 }
 
-CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurableElement, const CSyncerSet* pSyncerSet, size_t size)
+CAreaConfiguration::CAreaConfiguration(const CConfigurableElement *pConfigurableElement,
+                                       const CSyncerSet *pSyncerSet, size_t size)
     : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet)
 {
     // Size blackboard
@@ -47,15 +49,14 @@ CAreaConfiguration::CAreaConfiguration(const CConfigurableElement* pConfigurable
 }
 
 // Save data from current
-void CAreaConfiguration::save(const CParameterBlackboard* pMainBlackboard)
+void CAreaConfiguration::save(const CParameterBlackboard *pMainBlackboard)
 {
     copyFrom(pMainBlackboard, _pConfigurableElement->getOffset());
 }
 
 // Apply data to current
-bool CAreaConfiguration::restore(CParameterBlackboard* pMainBlackboard,
-                                 bool bSync,
-                                 core::Results* errors) const
+bool CAreaConfiguration::restore(CParameterBlackboard *pMainBlackboard, bool bSync,
+                                 core::Results *errors) const
 {
     assert(_bValid);
 
@@ -66,7 +67,7 @@ bool CAreaConfiguration::restore(CParameterBlackboard* pMainBlackboard,
 }
 
 // Ensure validity
-void CAreaConfiguration::validate(const CParameterBlackboard* pMainBlackboard)
+void CAreaConfiguration::validate(const CParameterBlackboard *pMainBlackboard)
 {
     if (!_bValid) {
 
@@ -84,7 +85,7 @@ bool CAreaConfiguration::isValid() const
 }
 
 // Ensure validity against given valid area configuration
-void CAreaConfiguration::validateAgainst(const CAreaConfiguration* pValidAreaConfiguration)
+void CAreaConfiguration::validateAgainst(const CAreaConfiguration *pValidAreaConfiguration)
 {
     // Should be called on purpose
     assert(!_bValid);
@@ -103,7 +104,9 @@ void CAreaConfiguration::validateAgainst(const CAreaConfiguration* pValidAreaCon
 }
 
 // XML configuration settings parsing
-bool CAreaConfiguration::serializeXmlSettings(CXmlElement& xmlConfigurableElementSettingsElementContent, CConfigurationAccessContext& configurationAccessContext)
+bool CAreaConfiguration::serializeXmlSettings(
+    CXmlElement &xmlConfigurableElementSettingsElementContent,
+    CConfigurationAccessContext &configurationAccessContext)
 {
     // Assign blackboard to configuration context
     configurationAccessContext.setParameterBlackboard(&_blackboard);
@@ -112,7 +115,8 @@ bool CAreaConfiguration::serializeXmlSettings(CXmlElement& xmlConfigurableElemen
     configurationAccessContext.setBaseOffset(_pConfigurableElement->getOffset());
 
     // Parse configuration settings (element contents)
-    if (_pConfigurableElement->serializeXmlSettings(xmlConfigurableElementSettingsElementContent, configurationAccessContext)) {
+    if (_pConfigurableElement->serializeXmlSettings(xmlConfigurableElementSettingsElementContent,
+                                                    configurationAccessContext)) {
 
         if (!configurationAccessContext.serializeOut()) {
 
@@ -125,36 +129,40 @@ bool CAreaConfiguration::serializeXmlSettings(CXmlElement& xmlConfigurableElemen
 }
 
 // Compound handling
-const CConfigurableElement* CAreaConfiguration::getConfigurableElement() const
+const CConfigurableElement *CAreaConfiguration::getConfigurableElement() const
 {
     return _pConfigurableElement;
 }
 
-void CAreaConfiguration::copyToOuter(CAreaConfiguration* pToAreaConfiguration) const
+void CAreaConfiguration::copyToOuter(CAreaConfiguration *pToAreaConfiguration) const
 {
     assert(_pConfigurableElement->isDescendantOf(pToAreaConfiguration->getConfigurableElement()));
 
-    copyTo(&pToAreaConfiguration->_blackboard, _pConfigurableElement->getOffset() - pToAreaConfiguration->getConfigurableElement()->getOffset());
+    copyTo(&pToAreaConfiguration->_blackboard,
+           _pConfigurableElement->getOffset() -
+               pToAreaConfiguration->getConfigurableElement()->getOffset());
 }
 
-void CAreaConfiguration::copyFromOuter(const CAreaConfiguration* pFromAreaConfiguration)
+void CAreaConfiguration::copyFromOuter(const CAreaConfiguration *pFromAreaConfiguration)
 {
     assert(_pConfigurableElement->isDescendantOf(pFromAreaConfiguration->getConfigurableElement()));
 
-    copyFrom(&pFromAreaConfiguration->_blackboard, _pConfigurableElement->getOffset() - pFromAreaConfiguration->getConfigurableElement()->getOffset());
+    copyFrom(&pFromAreaConfiguration->_blackboard,
+             _pConfigurableElement->getOffset() -
+                 pFromAreaConfiguration->getConfigurableElement()->getOffset());
 
     // Inner becomes valid
     setValid(true);
 }
 
-CParameterBlackboard& CAreaConfiguration::getBlackboard()
+CParameterBlackboard &CAreaConfiguration::getBlackboard()
 {
     return _blackboard;
 }
 
-const CParameterBlackboard& CAreaConfiguration::getBlackboard() const
+const CParameterBlackboard &CAreaConfiguration::getBlackboard() const
 {
-     return _blackboard;
+    return _blackboard;
 }
 
 // Store validity
@@ -164,13 +172,12 @@ void CAreaConfiguration::setValid(bool bValid)
 }
 
 // Blackboard copies
-void CAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, size_t offset) const
+void CAreaConfiguration::copyTo(CParameterBlackboard *pToBlackboard, size_t offset) const
 {
     pToBlackboard->restoreFrom(&_blackboard, offset);
 }
 
-void CAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackboard, size_t offset)
+void CAreaConfiguration::copyFrom(const CParameterBlackboard *pFromBlackboard, size_t offset)
 {
-   pFromBlackboard->saveTo(&_blackboard, offset);
+    pFromBlackboard->saveTo(&_blackboard, offset);
 }
-

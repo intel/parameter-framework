@@ -39,18 +39,19 @@ public:
     std::string getNumericalAsString() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
     // CElement
     virtual std::string getKind() const;
+
 protected:
     // Content dumping
-    std::string logValue(utility::ErrorContext& errorContext) const override;
+    std::string logValue(utility::ErrorContext &errorContext) const override;
+
 private:
     // Numerical
     int32_t _iNumerical{0};
 };
-

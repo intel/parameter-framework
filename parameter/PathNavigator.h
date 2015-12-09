@@ -36,23 +36,23 @@
 class CPathNavigator
 {
 public:
-    CPathNavigator(const std::string& strPath);
+    CPathNavigator(const std::string &strPath);
 
     // Path validity
     bool isPathValid() const;
 
     // Navigate through
-    bool navigateThrough(const std::string& strItemName, std::string& strError);
+    bool navigateThrough(const std::string &strItemName, std::string &strError);
 
     // Nagivate
-    std::string* next();
+    std::string *next();
 
     // Current path
     std::string getCurrentPath() const;
 
 private:
-    void init(const std::string& strPath);
-    static bool checkPathFormat(const std::string& strUpl);
+    void init(const std::string &strPath);
+    static bool checkPathFormat(const std::string &strUpl);
 
     bool _bValid;
     std::vector<std::string> _astrItems;

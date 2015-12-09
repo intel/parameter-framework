@@ -32,7 +32,8 @@
 
 #define base CBackSynchronizer
 
-CSimulatedBackSynchronizer::CSimulatedBackSynchronizer(const CConfigurableElement* pConfigurableElement, CParameterBlackboard* pParameterBlackboard)
+CSimulatedBackSynchronizer::CSimulatedBackSynchronizer(
+    const CConfigurableElement *pConfigurableElement, CParameterBlackboard *pParameterBlackboard)
     : base(pConfigurableElement), _parameterAccessContext(_strError)
 {
     _parameterAccessContext.setParameterBlackboard(pParameterBlackboard);
@@ -42,11 +43,11 @@ CSimulatedBackSynchronizer::CSimulatedBackSynchronizer(const CConfigurableElemen
 void CSimulatedBackSynchronizer::sync()
 {
     // Set default values to simulate back synchronization
-    std::list<const CConfigurableElement*>::const_iterator it;
+    std::list<const CConfigurableElement *>::const_iterator it;
 
     for (it = _needingBackSyncList.begin(); it != _needingBackSyncList.end(); ++it) {
 
-        const CConfigurableElement* pConfigurableElement = *it;
+        const CConfigurableElement *pConfigurableElement = *it;
 
         pConfigurableElement->setDefaultValues(_parameterAccessContext);
     }

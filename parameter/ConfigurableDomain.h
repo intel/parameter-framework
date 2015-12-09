@@ -46,11 +46,13 @@ class CSelectionCriteriaDefinition;
 
 class CConfigurableDomain : public CElement
 {
-    typedef std::list<CConfigurableElement*>::const_iterator ConfigurableElementListIterator;
-    typedef std::map<const CConfigurableElement*, CSyncerSet*>::const_iterator ConfigurableElementToSyncerSetMapIterator;
+    typedef std::list<CConfigurableElement *>::const_iterator ConfigurableElementListIterator;
+    typedef std::map<const CConfigurableElement *, CSyncerSet *>::const_iterator
+        ConfigurableElementToSyncerSetMapIterator;
+
 public:
     CConfigurableDomain() = default;
-    CConfigurableDomain(const std::string& strName);
+    CConfigurableDomain(const std::string &strName);
     virtual ~CConfigurableDomain();
 
     // Sequence awareness
@@ -58,9 +60,11 @@ public:
     bool getSequenceAwareness() const;
 
     // Configuration Management
-    bool createConfiguration(const std::string& strName, const CParameterBlackboard* pMainBlackboard, std::string& strError);
-    bool deleteConfiguration(const std::string& strName, std::string& strError);
-    bool renameConfiguration(const std::string& strName, const std::string& strNewName, std::string& strError);
+    bool createConfiguration(const std::string &strName,
+                             const CParameterBlackboard *pMainBlackboard, std::string &strError);
+    bool deleteConfiguration(const std::string &strName, std::string &strError);
+    bool renameConfiguration(const std::string &strName, const std::string &strNewName,
+                             std::string &strError);
 
     /** Restore a configuration
      *
@@ -70,17 +74,22 @@ public:
      * @param[out] errors, errors encountered during restoration
      * @return true if success false otherwise
      */
-    bool restoreConfiguration(const std::string& configurationName,
-                              CParameterBlackboard* mainBlackboard,
-                              bool autoSync,
-                              core::Results& errors) const;
+    bool restoreConfiguration(const std::string &configurationName,
+                              CParameterBlackboard *mainBlackboard, bool autoSync,
+                              core::Results &errors) const;
 
-    bool saveConfiguration(const std::string& strName, const CParameterBlackboard* pMainBlackboard, std::string& strError);
-    bool setElementSequence(const std::string& strConfiguration, const std::vector<std::string>& astrNewElementSequence, std::string& strError);
-    bool getElementSequence(const std::string& strConfiguration, std::string& strResult) const;
-    bool setApplicationRule(const std::string& strConfiguration, const std::string& strApplicationRule, const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition, std::string& strError);
-    bool clearApplicationRule(const std::string& strConfiguration, std::string& strError);
-    bool getApplicationRule(const std::string& strConfiguration, std::string& strResult) const;
+    bool saveConfiguration(const std::string &strName, const CParameterBlackboard *pMainBlackboard,
+                           std::string &strError);
+    bool setElementSequence(const std::string &strConfiguration,
+                            const std::vector<std::string> &astrNewElementSequence,
+                            std::string &strError);
+    bool getElementSequence(const std::string &strConfiguration, std::string &strResult) const;
+    bool setApplicationRule(const std::string &strConfiguration,
+                            const std::string &strApplicationRule,
+                            const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition,
+                            std::string &strError);
+    bool clearApplicationRule(const std::string &strConfiguration, std::string &strError);
+    bool getApplicationRule(const std::string &strConfiguration, std::string &strResult) const;
 
     // Last applied configuration name
     std::string getLastAppliedConfigurationName() const;
@@ -89,8 +98,9 @@ public:
     std::string getPendingConfigurationName() const;
 
     // Associated Configurable elements
-    void gatherConfigurableElements(std::set<const CConfigurableElement*>& configurableElementSet) const;
-    void listAssociatedToElements(std::string& strResult) const;
+    void gatherConfigurableElements(
+        std::set<const CConfigurableElement *> &configurableElementSet) const;
+    void listAssociatedToElements(std::string &strResult) const;
 
     /** Add a configurable element to the domain
      *
@@ -99,18 +109,16 @@ public:
      * @param[out] infos useful information we can provide to client
      * @return true if succeed false otherwise
      */
-    bool addConfigurableElement(CConfigurableElement* pConfigurableElement,
-                                const CParameterBlackboard* pMainBlackboard,
-                                core::Results& infos);
+    bool addConfigurableElement(CConfigurableElement *pConfigurableElement,
+                                const CParameterBlackboard *pMainBlackboard, core::Results &infos);
 
-    bool removeConfigurableElement(CConfigurableElement* pConfigurableElement, std::string& strError);
+    bool removeConfigurableElement(CConfigurableElement *pConfigurableElement,
+                                   std::string &strError);
 
     // Blackboard Configuration and Base Offset retrieval
-    CParameterBlackboard* findConfigurationBlackboard(const std::string& strConfiguration,
-                                                      const CConfigurableElement* pConfigurableElement,
-                                                      size_t& baseOffset,
-                                                      bool& bIsLastApplied,
-                                                      std::string& strError) const;
+    CParameterBlackboard *findConfigurationBlackboard(
+        const std::string &strConfiguration, const CConfigurableElement *pConfigurableElement,
+        size_t &baseOffset, bool &bIsLastApplied, std::string &strError) const;
 
     /** Split the domain in two.
      * Remove an element of a domain and create a new domain which owns the element.
@@ -119,10 +127,10 @@ public:
      * @param[out] infos useful information we can provide to client
      * @return true if succeed false otherwise
      */
-    bool split(CConfigurableElement* pConfigurableElement, core::Results& infos);
+    bool split(CConfigurableElement *pConfigurableElement, core::Results &infos);
 
     // Ensure validity on whole domain from main blackboard
-    void validate(const CParameterBlackboard* pMainBlackboard);
+    void validate(const CParameterBlackboard *pMainBlackboard);
 
     /** Apply the configuration if required
      *
@@ -131,70 +139,75 @@ public:
      * @param[in] bForced boolean used to force configuration application
      * @param[out] info string containing useful information we can provide to client
      */
-    void apply(CParameterBlackboard* pParameterBlackboard,
-               CSyncerSet* pSyncerSet,
-               bool bForced,
-               std::string& info) const;
+    void apply(CParameterBlackboard *pParameterBlackboard, CSyncerSet *pSyncerSet, bool bForced,
+               std::string &info) const;
 
     // Return applicable configuration validity for given configurable element
-    bool isApplicableConfigurationValid(const CConfigurableElement* pConfigurableElement) const;
+    bool isApplicableConfigurationValid(const CConfigurableElement *pConfigurableElement) const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
-    virtual void childrenToXml(CXmlElement& xmlElement,
-                               CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
+    virtual void childrenToXml(CXmlElement &xmlElement,
+                               CXmlSerializingContext &serializingContext) const;
 
     // Class kind
     virtual std::string getKind() const;
 
 protected:
     // Content dumping
-    std::string logValue(utility::ErrorContext& errorContext) const override;
+    std::string logValue(utility::ErrorContext &errorContext) const override;
 
 private:
     // Get pending configuration
-    const CDomainConfiguration* getPendingConfiguration() const;
+    const CDomainConfiguration *getPendingConfiguration() const;
 
     // Search for an applicable configuration
-    const CDomainConfiguration* findApplicableDomainConfiguration() const;
+    const CDomainConfiguration *findApplicableDomainConfiguration() const;
 
-    // Returns true if children dynamic creation is to be dealt with (here, will allow child deletion upon clean)
+    // Returns true if children dynamic creation is to be dealt with (here, will allow child
+    // deletion upon clean)
     virtual bool childrenAreDynamic() const;
 
     // Ensure validity on areas related to configurable element
-    void validateAreas(const CConfigurableElement* pConfigurableElement, const CParameterBlackboard* pMainBlackboard);
+    void validateAreas(const CConfigurableElement *pConfigurableElement,
+                       const CParameterBlackboard *pMainBlackboard);
 
-    // Attempt validation for all configurable element's areas, relying on already existing valid configuration inside domain
+    // Attempt validation for all configurable element's areas, relying on already existing valid
+    // configuration inside domain
     void autoValidateAll();
 
-    // Attempt validation for one configurable element's areas, relying on already existing valid configuration inside domain
-    void autoValidateAreas(const CConfigurableElement* pConfigurableElement);
+    // Attempt validation for one configurable element's areas, relying on already existing valid
+    // configuration inside domain
+    void autoValidateAreas(const CConfigurableElement *pConfigurableElement);
 
-    // Attempt configuration validation for all configurable elements' areas, relying on already existing valid configuration inside domain
-    bool autoValidateConfiguration(CDomainConfiguration* pDomainConfiguration);
+    // Attempt configuration validation for all configurable elements' areas, relying on already
+    // existing valid configuration inside domain
+    bool autoValidateConfiguration(CDomainConfiguration *pDomainConfiguration);
 
     // Search for a valid configuration for given configurable element
-    const CDomainConfiguration* findValidDomainConfiguration(const CConfigurableElement* pConfigurableElement) const;
-
+    const CDomainConfiguration *findValidDomainConfiguration(
+        const CConfigurableElement *pConfigurableElement) const;
 
     // In case configurable element was removed
     void computeSyncSet();
 
     // Check configurable element already attached
-    bool containsConfigurableElement(const CConfigurableElement* pConfigurableCandidateElement) const;
+    bool containsConfigurableElement(
+        const CConfigurableElement *pConfigurableCandidateElement) const;
 
     /** Merge any descended configurable element to this one
      *
      * @param[in] newElement pointer to element which has potential descendants which can be merged
      * @param[out] infos useful information we can provide to client
      */
-    void mergeAlreadyAssociatedDescendantConfigurableElements(CConfigurableElement* newElement,
-                                                              core::Results& infos);
+    void mergeAlreadyAssociatedDescendantConfigurableElements(CConfigurableElement *newElement,
+                                                              core::Results &infos);
 
-    void mergeConfigurations(CConfigurableElement* pToConfigurableElement, CConfigurableElement* pFromConfigurableElement);
+    void mergeConfigurations(CConfigurableElement *pToConfigurableElement,
+                             CConfigurableElement *pFromConfigurableElement);
 
     /** Actually realize the association between the domain and a configurable  element
      *
@@ -204,11 +217,11 @@ private:
      *            Default value is NULL, when provided, blackboard area concerning the configurable
      *            element are validated.
      */
-    void doAddConfigurableElement(CConfigurableElement* pConfigurableElement,
-                                  core::Results& infos,
-                                  const CParameterBlackboard* pMainBlackboard = NULL);
+    void doAddConfigurableElement(CConfigurableElement *pConfigurableElement, core::Results &infos,
+                                  const CParameterBlackboard *pMainBlackboard = NULL);
 
-    void doRemoveConfigurableElement(CConfigurableElement* pConfigurableElement, bool bRecomputeSyncSet);
+    void doRemoveConfigurableElement(CConfigurableElement *pConfigurableElement,
+                                     bool bRecomputeSyncSet);
 
     // XML parsing
     /**
@@ -220,8 +233,8 @@ private:
      *
      * @return false if an error occurs, true otherwise.
      */
-    bool parseDomainConfigurations(const CXmlElement& xmlElement,
-                                   CXmlDomainImportContext& serializingContext);
+    bool parseDomainConfigurations(const CXmlElement &xmlElement,
+                                   CXmlDomainImportContext &serializingContext);
     /**
      * Deserialize domain elements from an Xml document and add them to
      * the domain.
@@ -231,8 +244,8 @@ private:
      *
      * @return false if an error occurs, true otherwise.
      */
-    bool parseConfigurableElements(const CXmlElement& xmlElement,
-                                   CXmlDomainImportContext& serializingContext);
+    bool parseConfigurableElements(const CXmlElement &xmlElement,
+                                   CXmlDomainImportContext &serializingContext);
     /**
      * Deserialize settings from an Xml document and add them to
      * the domain.
@@ -242,26 +255,28 @@ private:
      *
      * @return false if an error occurs, true otherwise.
      */
-    bool parseSettings(const CXmlElement& xmlElement,
-                       CXmlDomainImportContext& serializingContext);
+    bool parseSettings(const CXmlElement &xmlElement, CXmlDomainImportContext &serializingContext);
 
     // XML composing
-    void composeDomainConfigurations(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
-    void composeConfigurableElements(CXmlElement& xmlElement) const;
-    void composeSettings(CXmlElement& xmlElement, CXmlDomainExportContext& context) const;
+    void composeDomainConfigurations(CXmlElement &xmlElement,
+                                     CXmlSerializingContext &serializingContext) const;
+    void composeConfigurableElements(CXmlElement &xmlElement) const;
+    void composeSettings(CXmlElement &xmlElement, CXmlDomainExportContext &context) const;
 
     // Syncer set retrieval from configurable element
-    CSyncerSet* getSyncerSet(const CConfigurableElement* pConfigurableElement) const;
+    CSyncerSet *getSyncerSet(const CConfigurableElement *pConfigurableElement) const;
 
     // Configuration retrieval
-    CDomainConfiguration* findConfiguration(const std::string& strConfiguration, std::string& strError);
-    const CDomainConfiguration* findConfiguration(const std::string& strConfiguration, std::string& strError) const;
+    CDomainConfiguration *findConfiguration(const std::string &strConfiguration,
+                                            std::string &strError);
+    const CDomainConfiguration *findConfiguration(const std::string &strConfiguration,
+                                                  std::string &strError) const;
 
     // Configurable elements
-    std::list<CConfigurableElement*> _configurableElementList;
+    std::list<CConfigurableElement *> _configurableElementList;
 
     // Associated syncer sets
-    std::map<const CConfigurableElement*, CSyncerSet*> _configurableElementToSyncerSetMap;
+    std::map<const CConfigurableElement *, CSyncerSet *> _configurableElementToSyncerSetMap;
 
     // Sequence awareness
     bool _bSequenceAware{false};
@@ -270,6 +285,5 @@ private:
     CSyncerSet _syncerSet;
 
     // Last applied configuration
-    mutable const CDomainConfiguration* _pLastAppliedConfiguration{nullptr};
+    mutable const CDomainConfiguration *_pLastAppliedConfiguration{nullptr};
 };
-

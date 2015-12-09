@@ -44,7 +44,7 @@ size_t CParameterBlackboard::getSize() const
 }
 
 // Single parameter access
-void CParameterBlackboard::writeInteger(const void* pvSrcData, size_t size, size_t offset)
+void CParameterBlackboard::writeInteger(const void *pvSrcData, size_t size, size_t offset)
 {
     assertValidAccess(offset, size);
 
@@ -55,7 +55,7 @@ void CParameterBlackboard::writeInteger(const void* pvSrcData, size_t size, size
     std::copy(first, last, dest_first);
 }
 
-void CParameterBlackboard::readInteger(void* pvDstData, size_t size, size_t offset) const
+void CParameterBlackboard::readInteger(void *pvDstData, size_t size, size_t offset) const
 {
     assertValidAccess(offset, size);
 
@@ -85,24 +85,24 @@ void CParameterBlackboard::readString(std::string &output, size_t offset) const
     output = reinterpret_cast<const char *>(first);
 }
 
-void CParameterBlackboard::writeBuffer(const void* pvSrcData, size_t size, size_t offset)
+void CParameterBlackboard::writeBuffer(const void *pvSrcData, size_t size, size_t offset)
 {
     writeInteger(pvSrcData, size, offset);
 }
-void CParameterBlackboard::readBuffer(void* pvDstData, size_t size, size_t offset) const
+void CParameterBlackboard::readBuffer(void *pvDstData, size_t size, size_t offset) const
 {
     readInteger(pvDstData, size, offset);
 }
 
 // Element access
-void CParameterBlackboard::writeBytes(const std::vector<uint8_t>& bytes, size_t offset)
+void CParameterBlackboard::writeBytes(const std::vector<uint8_t> &bytes, size_t offset)
 {
     assertValidAccess(offset, bytes.size());
 
     std::copy(begin(bytes), end(bytes), atOffset(offset));
 }
 
-void CParameterBlackboard::readBytes(std::vector<uint8_t>& bytes, size_t offset) const
+void CParameterBlackboard::readBytes(std::vector<uint8_t> &bytes, size_t offset) const
 {
     assertValidAccess(offset, bytes.size());
 
@@ -110,21 +110,21 @@ void CParameterBlackboard::readBytes(std::vector<uint8_t>& bytes, size_t offset)
 }
 
 // Access from/to subsystems
-uint8_t* CParameterBlackboard::getLocation(size_t offset)
+uint8_t *CParameterBlackboard::getLocation(size_t offset)
 {
     assertValidAccess(offset, 1);
     return &mBlackboard[offset];
 }
 
 // Configuration handling
-void CParameterBlackboard::restoreFrom(const CParameterBlackboard* pFromBlackboard, size_t offset)
+void CParameterBlackboard::restoreFrom(const CParameterBlackboard *pFromBlackboard, size_t offset)
 {
     const auto &fromBB = pFromBlackboard->mBlackboard;
     assertValidAccess(offset, fromBB.size());
     std::copy(begin(fromBB), end(fromBB), atOffset(offset));
 }
 
-void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, size_t offset) const
+void CParameterBlackboard::saveTo(CParameterBlackboard *pToBlackboard, size_t offset) const
 {
     auto &toBB = pToBlackboard->mBlackboard;
     assertValidAccess(offset, toBB.size());
@@ -133,7 +133,7 @@ void CParameterBlackboard::saveTo(CParameterBlackboard* pToBlackboard, size_t of
 
 void CParameterBlackboard::assertValidAccess(size_t offset, size_t size) const
 {
-    ALWAYS_ASSERT(offset + size <= getSize(), "Invalid data size access: offset=" << offset
-            << " size=" << size
-            << "reference size=" << getSize());
+    ALWAYS_ASSERT(offset + size <= getSize(),
+                  "Invalid data size access: offset=" << offset << " size=" << size
+                                                      << "reference size=" << getSize());
 }

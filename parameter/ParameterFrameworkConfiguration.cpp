@@ -42,7 +42,7 @@ bool CParameterFrameworkConfiguration::childrenAreDynamic() const
 }
 
 // System class name
-const std::string& CParameterFrameworkConfiguration::getSystemClassName() const
+const std::string &CParameterFrameworkConfiguration::getSystemClassName() const
 {
     return _strSystemClassName;
 }
@@ -60,7 +60,8 @@ uint16_t CParameterFrameworkConfiguration::getServerPort() const
 }
 
 // From IXmlSink
-bool CParameterFrameworkConfiguration::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CParameterFrameworkConfiguration::fromXml(const CXmlElement &xmlElement,
+                                               CXmlSerializingContext &serializingContext)
 {
     // System class name
     xmlElement.getAttribute("SystemClassName", _strSystemClassName);

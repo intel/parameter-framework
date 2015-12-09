@@ -36,7 +36,7 @@
 
 #define base CTypeElement
 
-CComponentInstance::CComponentInstance(const std::string& strName) : base(strName)
+CComponentInstance::CComponentInstance(const std::string &strName) : base(strName)
 {
 }
 
@@ -57,10 +57,12 @@ bool CComponentInstance::childrenAreDynamic() const
     return true;
 }
 
-bool CComponentInstance::getMappingData(const std::string& strKey, const std::string*& pStrValue) const
+bool CComponentInstance::getMappingData(const std::string &strKey,
+                                        const std::string *&pStrValue) const
 {
     // Try myself first then associated component type
-    return base::getMappingData(strKey, pStrValue) || (_pComponentType && _pComponentType->getMappingData(strKey, pStrValue));
+    return base::getMappingData(strKey, pStrValue) ||
+           (_pComponentType && _pComponentType->getMappingData(strKey, pStrValue));
 }
 
 bool CComponentInstance::hasMappingData() const
@@ -81,12 +83,14 @@ std::string CComponentInstance::getFormattedMapping() const
     return strValue;
 }
 
-bool CComponentInstance::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CComponentInstance::fromXml(const CXmlElement &xmlElement,
+                                 CXmlSerializingContext &serializingContext)
 {
     // Context
-    CXmlParameterSerializingContext& parameterBuildContext = static_cast<CXmlParameterSerializingContext&>(serializingContext);
+    CXmlParameterSerializingContext &parameterBuildContext =
+        static_cast<CXmlParameterSerializingContext &>(serializingContext);
 
-    const CComponentLibrary* pComponentLibrary = parameterBuildContext.getComponentLibrary();
+    const CComponentLibrary *pComponentLibrary = parameterBuildContext.getComponentLibrary();
 
     std::string strComponentType;
     xmlElement.getAttribute("Type", strComponentType);
@@ -95,13 +99,16 @@ bool CComponentInstance::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
 
     if (!_pComponentType) {
 
-        serializingContext.setError("Unable to create Component " + xmlElement.getPath() + ". ComponentType " + strComponentType + " not found!");
+        serializingContext.setError("Unable to create Component " + xmlElement.getPath() +
+                                    ". ComponentType " + strComponentType + " not found!");
 
         return false;
     }
     if (_pComponentType == getParent()) {
 
-        serializingContext.setError("Recursive definition of " + _pComponentType->getName() + " due to " + xmlElement.getPath() + " referring to one of its own type.");
+        serializingContext.setError("Recursive definition of " + _pComponentType->getName() +
+                                    " due to " + xmlElement.getPath() +
+                                    " referring to one of its own type.");
 
         return false;
     }
@@ -109,7 +116,7 @@ bool CComponentInstance::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
     return base::fromXml(xmlElement, serializingContext);
 }
 
-CInstanceConfigurableElement* CComponentInstance::doInstantiate() const
+CInstanceConfigurableElement *CComponentInstance::doInstantiate() const
 {
     if (isScalar()) {
         return new CComponent(getName(), this);
@@ -118,7 +125,7 @@ CInstanceConfigurableElement* CComponentInstance::doInstantiate() const
     }
 }
 
-void CComponentInstance::populate(CElement* pElement) const
+void CComponentInstance::populate(CElement *pElement) const
 {
     size_t arrayLength = getArrayLength();
 
@@ -127,7 +134,7 @@ void CComponentInstance::populate(CElement* pElement) const
         // Create child elements
         for (size_t child = 0; child < arrayLength; child++) {
 
-            CComponent* pChildComponent = new CComponent(std::to_string(child), this);
+            CComponent *pChildComponent = new CComponent(std::to_string(child), this);
 
             pElement->addChild(pChildComponent);
 
@@ -138,6 +145,6 @@ void CComponentInstance::populate(CElement* pElement) const
     } else {
         base::populate(pElement);
 
-        _pComponentType->populate(static_cast<CComponent*>(pElement));
+        _pComponentType->populate(static_cast<CComponent *>(pElement));
     }
 }

@@ -34,21 +34,19 @@
 using std::string;
 
 CXmlParameterSerializingContext::CXmlParameterSerializingContext(CParameterAccessContext &context,
-                                                                 string& strError) :
-    base(strError),
-    mAccessContext(context)
+                                                                 string &strError)
+    : base(strError), mAccessContext(context)
 {
 }
 
 // ComponentLibrary
-void CXmlParameterSerializingContext::setComponentLibrary(const CComponentLibrary* pComponentLibrary)
+void CXmlParameterSerializingContext::setComponentLibrary(
+    const CComponentLibrary *pComponentLibrary)
 {
     _pComponentLibrary = pComponentLibrary;
 }
 
-const CComponentLibrary* CXmlParameterSerializingContext::getComponentLibrary() const
+const CComponentLibrary *CXmlParameterSerializingContext::getComponentLibrary() const
 {
     return _pComponentLibrary;
 }
-
-

@@ -44,7 +44,7 @@ class CConfigurationAccessContext;
 class PARAMETER_EXPORT CParameterType : public CTypeElement
 {
 public:
-    CParameterType(const std::string& strName);
+    CParameterType(const std::string &strName);
     virtual ~CParameterType() = default;
 
     // Size
@@ -52,30 +52,40 @@ public:
 
     // Unit
     std::string getUnit() const;
-    void setUnit(const std::string& strUnit);
+    void setUnit(const std::string &strUnit);
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
     /// Conversions
     // String
-    virtual bool toBlackboard(const std::string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const = 0;
-    virtual bool fromBlackboard(std::string& strValue, const uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const = 0;
+    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const = 0;
+    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+                                CParameterAccessContext &parameterAccessContext) const = 0;
     // Boolean
-    virtual bool toBlackboard(bool bUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(bool& bUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(bool bUserValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(bool &bUserValue, uint32_t uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
     // Integer
-    virtual bool toBlackboard(uint32_t uiUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(uint32_t& uiUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
     // Signed Integer
-    virtual bool toBlackboard(int32_t iUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(int32_t& iUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(int32_t iUserValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(int32_t &iUserValue, uint32_t uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
     // Double
-    virtual bool toBlackboard(double dUserValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const;
-    virtual bool fromBlackboard(double& dUserValue, uint32_t uiValue, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool toBlackboard(double dUserValue, uint32_t &uiValue,
+                              CParameterAccessContext &parameterAccessContext) const;
+    virtual bool fromBlackboard(double &dUserValue, uint32_t uiValue,
+                                CParameterAccessContext &parameterAccessContext) const;
 
     /** Value space handling for settings import/export from/to XML
      *
@@ -89,10 +99,12 @@ public:
      * @param[in,out] xmlConfigurableElementSettingsElement the element being imported or exported
      * @param[in,out] configurationAccessContext the import or export context
      */
-    virtual void handleValueSpaceAttribute(CXmlElement& xmlConfigurableElementSettingsElement, CConfigurationAccessContext& configurationAccessContext) const;
+    virtual void handleValueSpaceAttribute(
+        CXmlElement &xmlConfigurableElementSettingsElement,
+        CConfigurationAccessContext &configurationAccessContext) const;
 
     // Element properties
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
     // Default value handling (simulation only)
     virtual uint32_t getDefaultValue() const;
@@ -102,18 +114,18 @@ public:
      *
      * @param[in:out] iData the data which will be sign extended
      */
-    void signExtend(int32_t& iData) const;
+    void signExtend(int32_t &iData) const;
 
     /**
      * Sign extension (64 bits)
      *
      * @param[in:out] iData the data which will be sign extended
      */
-    void signExtend(int64_t& iData) const;
+    void signExtend(int64_t &iData) const;
 
 protected:
     // Object creation
-    virtual void populate(CElement* pElement) const;
+    virtual void populate(CElement *pElement) const;
     // Size
     void setSize(size_t size);
 
@@ -128,19 +140,21 @@ protected:
     template <typename type>
     type getMaxValue() const
     {
-        return getSize() < sizeof(type) ?
-                    (static_cast<type>(1) << (getSize() * std::numeric_limits<unsigned char>::digits - 1)) - 1 :
-                    std::numeric_limits<type>::max();
+        return getSize() < sizeof(type)
+                   ? (static_cast<type>(1)
+                      << (getSize() * std::numeric_limits<unsigned char>::digits - 1)) -
+                         1
+                   : std::numeric_limits<type>::max();
     }
 
 private:
-    void setXmlUnitAttribute(CXmlElement& xmlElement) const;
+    void setXmlUnitAttribute(CXmlElement &xmlElement) const;
 
     // Instantiation
-    virtual CInstanceConfigurableElement* doInstantiate() const;
+    virtual CInstanceConfigurableElement *doInstantiate() const;
     // Generic Access
     template <typename type>
-    void doSignExtend(type& data) const;
+    void doSignExtend(type &data) const;
     template <typename type>
     bool doIsEncodable(type data, bool bIsSigned) const;
 

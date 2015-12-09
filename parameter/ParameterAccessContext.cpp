@@ -31,36 +31,34 @@
 
 #define base utility::ErrorContext
 
-CParameterAccessContext::CParameterAccessContext(std::string& strError,
-                                                 CParameterBlackboard* pParameterBlackboard,
-                                                 bool bValueSpaceIsRaw,
-                                                 bool bOutputRawFormatIsHex,
+CParameterAccessContext::CParameterAccessContext(std::string &strError,
+                                                 CParameterBlackboard *pParameterBlackboard,
+                                                 bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex,
                                                  size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard),
-    _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
-    _uiBaseOffset(baseOffset)
+      _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
+      _uiBaseOffset(baseOffset)
 {
 }
 
-CParameterAccessContext::CParameterAccessContext(std::string& strError,
-                                                 CParameterBlackboard* pParameterBlackboard,
+CParameterAccessContext::CParameterAccessContext(std::string &strError,
+                                                 CParameterBlackboard *pParameterBlackboard,
                                                  size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard), _uiBaseOffset(baseOffset)
 {
 }
 
-CParameterAccessContext::CParameterAccessContext(std::string& strError)
-    : base(strError)
+CParameterAccessContext::CParameterAccessContext(std::string &strError) : base(strError)
 {
 }
 
 // ParameterBlackboard
-CParameterBlackboard* CParameterAccessContext::getParameterBlackboard()
+CParameterBlackboard *CParameterAccessContext::getParameterBlackboard()
 {
     return _pParameterBlackboard;
 }
 
-void CParameterAccessContext::setParameterBlackboard(CParameterBlackboard* pBlackboard)
+void CParameterAccessContext::setParameterBlackboard(CParameterBlackboard *pBlackboard)
 {
     _pParameterBlackboard = pBlackboard;
     _uiBaseOffset = 0;

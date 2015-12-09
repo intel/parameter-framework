@@ -36,7 +36,8 @@ class CInstanceConfigurableElement;
 class IMapper
 {
 public:
-    virtual bool mapBegin(CInstanceConfigurableElement* pInstanceConfigurableElement, bool& bKeepDiving, std::string& strError) = 0;
+    virtual bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement,
+                          bool &bKeepDiving, std::string &strError) = 0;
     virtual void mapEnd() = 0;
 
 protected:

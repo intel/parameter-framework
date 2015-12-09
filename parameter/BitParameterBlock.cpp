@@ -36,7 +36,8 @@
 
 using std::string;
 
-CBitParameterBlock::CBitParameterBlock(const string& strName, const CTypeElement* pTypeElement) : base(strName, pTypeElement)
+CBitParameterBlock::CBitParameterBlock(const string &strName, const CTypeElement *pTypeElement)
+    : base(strName, pTypeElement)
 {
 }
 
@@ -54,11 +55,11 @@ size_t CBitParameterBlock::getFootPrint() const
 // Size
 size_t CBitParameterBlock::getSize() const
 {
-    return static_cast<const CBitParameterBlockType*>(getTypeElement())->getSize();
+    return static_cast<const CBitParameterBlockType *>(getTypeElement())->getSize();
 }
 
 // Used for simulation and virtual subsystems
-void CBitParameterBlock::setDefaultValues(CParameterAccessContext& parameterAccessContext) const
+void CBitParameterBlock::setDefaultValues(CParameterAccessContext &parameterAccessContext) const
 {
     // Default value is 0 as their is no min bound for bit parameters,
     // thus 0 is always a valid value.
@@ -67,9 +68,9 @@ void CBitParameterBlock::setDefaultValues(CParameterAccessContext& parameterAcce
     uint64_t uiDefaultValue = 0;
 
     // Write blackboard
-    CParameterBlackboard* pBlackboard = parameterAccessContext.getParameterBlackboard();
+    CParameterBlackboard *pBlackboard = parameterAccessContext.getParameterBlackboard();
 
     // Beware this code works on little endian architectures only!
-    pBlackboard->writeInteger(&uiDefaultValue, getSize(), getOffset() - parameterAccessContext.getBaseOffset());
+    pBlackboard->writeInteger(&uiDefaultValue, getSize(),
+                              getOffset() - parameterAccessContext.getBaseOffset());
 }
-

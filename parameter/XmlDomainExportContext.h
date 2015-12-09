@@ -35,36 +35,22 @@
 class CXmlDomainExportContext : public CXmlDomainSerializingContext
 {
 public:
-    CXmlDomainExportContext(std::string& strError,
-                            bool bWithSettings = true,
-                            bool bValueSpaceIsRaw = true,
-                            bool bOutputRawFormatIsHex = true):
-        base(strError, bWithSettings),
-        _bValueSpaceIsRaw(bValueSpaceIsRaw),
-        _bOutputRawFormatIsHex(bOutputRawFormatIsHex)
-    {}
+    CXmlDomainExportContext(std::string &strError, bool bWithSettings = true,
+                            bool bValueSpaceIsRaw = true, bool bOutputRawFormatIsHex = true)
+        : base(strError, bWithSettings), _bValueSpaceIsRaw(bValueSpaceIsRaw),
+          _bOutputRawFormatIsHex(bOutputRawFormatIsHex)
+    {
+    }
 
     // Value interpretation as Real or Raw
-    void setValueSpaceRaw(bool bIsRaw)
-    {
-        _bValueSpaceIsRaw = bIsRaw;
-    }
+    void setValueSpaceRaw(bool bIsRaw) { _bValueSpaceIsRaw = bIsRaw; }
 
-    bool valueSpaceIsRaw() const
-    {
-        return _bValueSpaceIsRaw;
-    }
+    bool valueSpaceIsRaw() const { return _bValueSpaceIsRaw; }
 
     // Output Raw Format for user get value interpretation
-    void setOutputRawFormat(bool bIsHex)
-    {
-        _bOutputRawFormatIsHex = bIsHex;
-    }
+    void setOutputRawFormat(bool bIsHex) { _bOutputRawFormatIsHex = bIsHex; }
 
-    bool outputRawFormatIsHex() const
-    {
-        return _bOutputRawFormatIsHex;
-    }
+    bool outputRawFormatIsHex() const { return _bOutputRawFormatIsHex; }
 
 private:
     typedef CXmlDomainSerializingContext base;
@@ -74,5 +60,4 @@ private:
 
     // Output Raw Format
     bool _bOutputRawFormatIsHex;
-
 };

@@ -40,8 +40,7 @@
 
 using std::string;
 
-CFloatingPointParameterType::CFloatingPointParameterType(const string& strName)
-    : base(strName)
+CFloatingPointParameterType::CFloatingPointParameterType(const string &strName) : base(strName)
 {
 }
 
@@ -51,17 +50,16 @@ string CFloatingPointParameterType::getKind() const
 }
 
 // Element properties
-void CFloatingPointParameterType::showProperties(string& strResult) const
+void CFloatingPointParameterType::showProperties(string &strResult) const
 {
     base::showProperties(strResult);
 
-    strResult += "Min:" + std::to_string(_fMin) + "\n" +
-                 "Max:" + std::to_string(_fMax) + "\n";
+    strResult += "Min:" + std::to_string(_fMin) + "\n" + "Max:" + std::to_string(_fMax) + "\n";
 }
 
 void CFloatingPointParameterType::handleValueSpaceAttribute(
-        CXmlElement& xmlConfigurableElementSettingsElement,
-        CConfigurationAccessContext& configurationAccessContext) const
+    CXmlElement &xmlConfigurableElementSettingsElement,
+    CConfigurationAccessContext &configurationAccessContext) const
 {
     if (!configurationAccessContext.serializeOut()) {
 
@@ -83,8 +81,8 @@ void CFloatingPointParameterType::handleValueSpaceAttribute(
     }
 }
 
-bool CFloatingPointParameterType::fromXml(const CXmlElement& xmlElement,
-                                          CXmlSerializingContext& serializingContext)
+bool CFloatingPointParameterType::fromXml(const CXmlElement &xmlElement,
+                                          CXmlSerializingContext &serializingContext)
 {
     // Size. The XSD fixes it to 32
     size_t sizeInBits = 32;
@@ -94,8 +92,9 @@ bool CFloatingPointParameterType::fromXml(const CXmlElement& xmlElement,
     // (e.g. doubles are not supported)
     if (sizeInBits != sizeof(float) * CHAR_BIT) {
 
-        serializingContext.setError("Unsupported size (" + std::to_string(sizeInBits) +
-            ") for " + getKind() + " " + xmlElement.getPath() + ". For now, only 32 is supported.");
+        serializingContext.setError("Unsupported size (" + std::to_string(sizeInBits) + ") for " +
+                                    getKind() + " " + xmlElement.getPath() +
+                                    ". For now, only 32 is supported.");
 
         return false;
     }
@@ -107,7 +106,7 @@ bool CFloatingPointParameterType::fromXml(const CXmlElement& xmlElement,
 
     if (_fMin > _fMax) {
         serializingContext.setError("Min (" + std::to_string(_fMin) +
-                ") can't be greater than Max (" + std::to_string(_fMax) + ")");
+                                    ") can't be greater than Max (" + std::to_string(_fMax) + ")");
         return false;
     }
 
@@ -115,17 +114,14 @@ bool CFloatingPointParameterType::fromXml(const CXmlElement& xmlElement,
 }
 
 bool CFloatingPointParameterType::toBlackboard(
-        const string& strValue,
-        uint32_t& uiValue,
-        CParameterAccessContext& parameterAccessContext) const
+    const string &strValue, uint32_t &uiValue,
+    CParameterAccessContext &parameterAccessContext) const
 {
     // Check Value integrity
     if (utility::isHexadecimal(strValue) && !parameterAccessContext.valueSpaceIsRaw()) {
 
-        parameterAccessContext.setError("Hexadecimal values are not supported for "
-                                        + getKind()
-                                        + " when selected value space is real: "
-                                        + strValue);
+        parameterAccessContext.setError("Hexadecimal values are not supported for " + getKind() +
+                                        " when selected value space is real: " + strValue);
 
         return false;
     }
@@ -154,8 +150,7 @@ bool CFloatingPointParameterType::toBlackboard(
             return false;
         }
         return true;
-    }
-    else {
+    } else {
 
         float fValue = 0.0f;
 
@@ -179,8 +174,7 @@ bool CFloatingPointParameterType::toBlackboard(
 }
 
 void CFloatingPointParameterType::setOutOfRangeError(
-        const string& strValue,
-        CParameterAccessContext& parameterAccessContext) const
+    const string &strValue, CParameterAccessContext &parameterAccessContext) const
 {
     // error message buffer
     std::ostringstream ostrStream;
@@ -197,8 +191,8 @@ void CFloatingPointParameterType::setOutOfRangeError(
 
         if (utility::isHexadecimal(strValue)) {
 
-            ostrStream << std::showbase << std::hex
-                       << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0');
+            ostrStream << std::showbase << std::hex << std::setw(static_cast<int>(getSize() * 2))
+                       << std::setfill('0');
         }
 
         ostrStream << "raw range [" << uiMin << ", " << uiMax << "]";
@@ -209,9 +203,8 @@ void CFloatingPointParameterType::setOutOfRangeError(
 }
 
 bool CFloatingPointParameterType::fromBlackboard(
-        string& strValue,
-        const uint32_t& uiValue,
-        CParameterAccessContext& parameterAccessContext) const
+    string &strValue, const uint32_t &uiValue,
+    CParameterAccessContext &parameterAccessContext) const
 {
     std::ostringstream ostrStream;
 
@@ -219,8 +212,8 @@ bool CFloatingPointParameterType::fromBlackboard(
 
         if (parameterAccessContext.outputRawFormatIsHex()) {
 
-            ostrStream << std::showbase << std::hex
-                       << std::setw(static_cast<int>(getSize() * 2)) << std::setfill('0');
+            ostrStream << std::showbase << std::hex << std::setw(static_cast<int>(getSize() * 2))
+                       << std::setfill('0');
         }
 
         ostrStream << uiValue;
@@ -239,9 +232,7 @@ bool CFloatingPointParameterType::fromBlackboard(
 
 // Value access
 bool CFloatingPointParameterType::toBlackboard(
-        double dUserValue,
-        uint32_t& uiValue,
-        CParameterAccessContext& parameterAccessContext) const
+    double dUserValue, uint32_t &uiValue, CParameterAccessContext &parameterAccessContext) const
 {
     if (!checkValueAgainstRange(dUserValue)) {
 
@@ -255,10 +246,8 @@ bool CFloatingPointParameterType::toBlackboard(
     return true;
 }
 
-bool CFloatingPointParameterType::fromBlackboard(
-        double& dUserValue,
-        uint32_t uiValue,
-        CParameterAccessContext& /*ctx*/) const
+bool CFloatingPointParameterType::fromBlackboard(double &dUserValue, uint32_t uiValue,
+                                                 CParameterAccessContext & /*ctx*/) const
 {
     // Move from "raw memory" value space to real space
     auto fValue = utility::binaryCopy<float>(uiValue);
@@ -271,9 +260,9 @@ bool CFloatingPointParameterType::checkValueAgainstRange(double dValue) const
 {
     // Check that dValue can safely be cast to a float
     // (otherwise, behaviour is undefined)
-    if ((dValue < -std::numeric_limits<float>::max())
-        || (dValue > std::numeric_limits<float>::max())) {
-            return false;
+    if ((dValue < -std::numeric_limits<float>::max()) ||
+        (dValue > std::numeric_limits<float>::max())) {
+        return false;
     }
 
     return checkValueAgainstRange(static_cast<float>(dValue));
@@ -284,8 +273,8 @@ bool CFloatingPointParameterType::checkValueAgainstRange(float fValue) const
     return fValue <= _fMax && fValue >= _fMin;
 }
 
-void CFloatingPointParameterType::toXml(CXmlElement& xmlElement,
-                                        CXmlSerializingContext& serializingContext) const
+void CFloatingPointParameterType::toXml(CXmlElement &xmlElement,
+                                        CXmlSerializingContext &serializingContext) const
 {
     xmlElement.setAttribute("Size", getSize() * CHAR_BIT);
     xmlElement.setAttribute("Min", _fMin);

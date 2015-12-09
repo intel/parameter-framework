@@ -57,7 +57,7 @@ namespace detail
  * empty string if attribute is not present
  *
  */
-std::string PARAMETER_EXPORT getName(const CXmlElement& xmlElement);
+std::string PARAMETER_EXPORT getName(const CXmlElement &xmlElement);
 }
 
 /**
@@ -69,14 +69,12 @@ template <class ElementType>
 class TLoggingElementBuilderTemplate : public CElementBuilder
 {
 public:
-
     /**
      * Class Constructor
      *
      * @param[in] logger the logger provided by the client
      */
-    TLoggingElementBuilderTemplate(core::log::Logger& logger)
-        : CElementBuilder(), mLogger(logger)
+    TLoggingElementBuilderTemplate(core::log::Logger &logger) : CElementBuilder(), mLogger(logger)
     {
     }
 
@@ -87,12 +85,12 @@ public:
      *
      * @return pointer to the generated element
      */
-    virtual CElement* createElement(const CXmlElement& xmlElement) const
+    virtual CElement *createElement(const CXmlElement &xmlElement) const
     {
         return new ElementType(detail::getName(xmlElement), mLogger);
     }
-private:
 
+private:
     /** Application Logger */
-    core::log::Logger& mLogger;
+    core::log::Logger &mLogger;
 };

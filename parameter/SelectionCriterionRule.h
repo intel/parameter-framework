@@ -38,7 +38,8 @@ class CSelectionCriterion;
 class CSelectionCriterionRule : public CRule
 {
     // Matching rules
-    enum MatchesWhen {
+    enum MatchesWhen
+    {
         EIs,
         EIsNot,
         EIncludes,
@@ -49,13 +50,13 @@ class CSelectionCriterionRule : public CRule
     // Matching rule description
     struct SMatchingRuleDescription
     {
-        const char* pcMatchesWhen;
+        const char *pcMatchesWhen;
         bool bExclusiveTypeCompatible;
     };
 
 public:
     // Parse
-    virtual bool parse(CRuleParser& ruleParser, std::string& strError);
+    virtual bool parse(CRuleParser &ruleParser, std::string &strError);
 
     // Dump
     std::string dump() const override;
@@ -64,22 +65,24 @@ public:
     virtual bool matches() const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
     // Class kind
     virtual std::string getKind() const;
+
 protected:
     // Content dumping
-    std::string logValue(utility::ErrorContext& errorContext) const override;
+    std::string logValue(utility::ErrorContext &errorContext) const override;
+
 private:
     // XML MatchesWhen attribute parsing
-    bool setMatchesWhen(const std::string& strMatchesWhen, std::string& strError);
+    bool setMatchesWhen(const std::string &strMatchesWhen, std::string &strError);
 
     // Selection criterion
-    const CSelectionCriterion* _pSelectionCriterion{nullptr};
+    const CSelectionCriterion *_pSelectionCriterion{nullptr};
 
     // MatchesWhen
     MatchesWhen _eMatchesWhen{EIs};
@@ -90,4 +93,3 @@ private:
     // Used for XML MatchesWhen attribute parsing
     static const SMatchingRuleDescription _astMatchesWhen[ENbMatchesWhen];
 };
-

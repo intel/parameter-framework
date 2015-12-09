@@ -33,16 +33,18 @@
 
 #define base CAreaConfiguration
 
-CBitwiseAreaConfiguration::CBitwiseAreaConfiguration(const CConfigurableElement *pConfigurableElement, const CSyncerSet *pSyncerSet)
-    : base(pConfigurableElement, pSyncerSet, static_cast<const CBitParameter*>(pConfigurableElement)->getBelongingBlockSize())
+CBitwiseAreaConfiguration::CBitwiseAreaConfiguration(
+    const CConfigurableElement *pConfigurableElement, const CSyncerSet *pSyncerSet)
+    : base(pConfigurableElement, pSyncerSet,
+           static_cast<const CBitParameter *>(pConfigurableElement)->getBelongingBlockSize())
 {
 }
 
 // Blackboard copies
-void CBitwiseAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, size_t offset) const
+void CBitwiseAreaConfiguration::copyTo(CParameterBlackboard *pToBlackboard, size_t offset) const
 {
     // Beware this code works on little endian architectures only!
-    const CBitParameter* pBitParameter = static_cast<const CBitParameter*>(_pConfigurableElement);
+    const CBitParameter *pBitParameter = static_cast<const CBitParameter *>(_pConfigurableElement);
 
     uint64_t uiSrcData = 0;
     uint64_t uiDstData = 0;
@@ -62,10 +64,10 @@ void CBitwiseAreaConfiguration::copyTo(CParameterBlackboard* pToBlackboard, size
     pToBlackboard->writeInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), offset);
 }
 
-void CBitwiseAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackboard, size_t offset)
+void CBitwiseAreaConfiguration::copyFrom(const CParameterBlackboard *pFromBlackboard, size_t offset)
 {
     // Beware this code works on little endian architectures only!
-    const CBitParameter* pBitParameter = static_cast<const CBitParameter*>(_pConfigurableElement);
+    const CBitParameter *pBitParameter = static_cast<const CBitParameter *>(_pConfigurableElement);
 
     uint64_t uiSrcData = 0;
     uint64_t uiDstData = 0;
@@ -84,4 +86,3 @@ void CBitwiseAreaConfiguration::copyFrom(const CParameterBlackboard* pFromBlackb
     // Write dst blackboard
     _blackboard.writeInteger(&uiDstData, pBitParameter->getBelongingBlockSize(), 0);
 }
-

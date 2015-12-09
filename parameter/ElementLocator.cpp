@@ -32,12 +32,13 @@
 
 using std::string;
 
-CElementLocator::CElementLocator(CElement* pSubRootElement, bool bStrict) : _pSubRootElement(pSubRootElement), _bStrict(bStrict)
+CElementLocator::CElementLocator(CElement *pSubRootElement, bool bStrict)
+    : _pSubRootElement(pSubRootElement), _bStrict(bStrict)
 {
 }
 
 // Locate element
-bool CElementLocator::locate(const string& strPath, CElement** ppElement, string& strError)
+bool CElementLocator::locate(const string &strPath, CElement **ppElement, string &strError)
 {
     CPathNavigator pathNavigator(strPath);
 
@@ -49,7 +50,7 @@ bool CElementLocator::locate(const string& strPath, CElement** ppElement, string
     }
 
     // Sub root element?
-    string* pStrChildName = pathNavigator.next();
+    string *pStrChildName = pathNavigator.next();
 
     if (!pStrChildName) {
 
@@ -82,4 +83,3 @@ bool CElementLocator::locate(const string& strPath, CElement** ppElement, string
 
     return true;
 }
-

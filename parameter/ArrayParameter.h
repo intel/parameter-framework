@@ -34,64 +34,71 @@
 class CArrayParameter : public CParameter
 {
 public:
-    CArrayParameter(const std::string& strName, const CTypeElement* pTypeElement);
+    CArrayParameter(const std::string &strName, const CTypeElement *pTypeElement);
 
     // Instantiation, allocation
     virtual size_t getFootPrint() const;
 
     /// Value access
     using CBaseParameter::access;
-    bool access(std::vector<bool>& abValues, bool bSet,
-                       CParameterAccessContext& parameterAccessContext) const override final;
-    bool access(std::vector<uint32_t>& auiValues, bool bSet,
-                       CParameterAccessContext& parameterAccessContext) const override final;
-    bool access(std::vector<int32_t>& aiValues, bool bSet,
-                       CParameterAccessContext& parameterAccessContext) const override final;
-    bool access(std::vector<double>& adValues, bool bSet,
-                       CParameterAccessContext& parameterAccessContext) const override final;
-    bool access(std::vector<std::string>& astrValues, bool bSet,
-                       CParameterAccessContext& parameterAccessContext) const override final;
+    bool access(std::vector<bool> &abValues, bool bSet,
+                CParameterAccessContext &parameterAccessContext) const override final;
+    bool access(std::vector<uint32_t> &auiValues, bool bSet,
+                CParameterAccessContext &parameterAccessContext) const override final;
+    bool access(std::vector<int32_t> &aiValues, bool bSet,
+                CParameterAccessContext &parameterAccessContext) const override final;
+    bool access(std::vector<double> &adValues, bool bSet,
+                CParameterAccessContext &parameterAccessContext) const override final;
+    bool access(std::vector<std::string> &astrValues, bool bSet,
+                CParameterAccessContext &parameterAccessContext) const override final;
 
 protected:
     // User set/get
-    virtual bool accessValue(CPathNavigator& pathNavigator, std::string& strValue, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    virtual bool accessValue(CPathNavigator &pathNavigator, std::string &strValue, bool bSet,
+                             CParameterAccessContext &parameterAccessContext) const;
     // Used for simulation and virtual subsystems
-    virtual void setDefaultValues(CParameterAccessContext& parameterAccessContext) const;
+    virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
 
     // Element properties
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
+
 private:
     // Array length
     size_t getArrayLength() const;
     // Common set value processing
-    bool setValues(size_t uiStartIndex, size_t offset, const std::string& strValue, CParameterAccessContext& parameterAccessContext) const;
+    bool setValues(size_t uiStartIndex, size_t offset, const std::string &strValue,
+                   CParameterAccessContext &parameterAccessContext) const;
     // Log / get values common
-    std::string getValues(size_t baseOffset, CParameterAccessContext& parameterAccessContext) const;
+    std::string getValues(size_t baseOffset, CParameterAccessContext &parameterAccessContext) const;
     std::string logValue(CParameterAccessContext &context) const override;
     // Index retrieval from user set/get request
-    bool getIndex(CPathNavigator& pathNavigator, size_t& index, CParameterAccessContext& parameterAccessContext) const;
+    bool getIndex(CPathNavigator &pathNavigator, size_t &index,
+                  CParameterAccessContext &parameterAccessContext) const;
 
     /** Access whole array.
      *
      * @param[in] offset Offset of the array in the context blackboard.
      * @{
      */
-    bool doSetValue(const std::string& strValue, size_t offset,
-                    CParameterAccessContext& parameterAccessContext) const override;
-    void doGetValue(std::string& strValue, size_t offset,
-                    CParameterAccessContext& parameterAccessContext) const override;
+    bool doSetValue(const std::string &strValue, size_t offset,
+                    CParameterAccessContext &parameterAccessContext) const override;
+    void doGetValue(std::string &strValue, size_t offset,
+                    CParameterAccessContext &parameterAccessContext) const override;
     /** @} */
 
     /// Value access
     // Generic Access
     template <typename type>
-    bool accessValues(std::vector<type>& values, bool bSet, CParameterAccessContext& parameterAccessContext) const;
+    bool accessValues(std::vector<type> &values, bool bSet,
+                      CParameterAccessContext &parameterAccessContext) const;
     template <typename type>
-    bool setValues(const std::vector<type>& values, CParameterAccessContext& parameterAccessContext) const;
+    bool setValues(const std::vector<type> &values,
+                   CParameterAccessContext &parameterAccessContext) const;
     template <typename type>
-    bool getValues(std::vector<type>& values, CParameterAccessContext& parameterAccessContext) const;
+    bool getValues(std::vector<type> &values,
+                   CParameterAccessContext &parameterAccessContext) const;
     template <typename type>
-    bool doSet(type value, size_t offset, CParameterAccessContext& parameterAccessContext) const;
+    bool doSet(type value, size_t offset, CParameterAccessContext &parameterAccessContext) const;
     template <typename type>
-    bool doGet(type& value, size_t offset, CParameterAccessContext& parameterAccessContext) const;
+    bool doGet(type &value, size_t offset, CParameterAccessContext &parameterAccessContext) const;
 };

@@ -42,9 +42,9 @@
 
 extern "C" {
 #if defined(__clang__) || defined(__GNUC__)
-    __attribute__((visibility("default")))
+__attribute__((visibility("default")))
 #elif defined(_MSC_VER)
-    __declspec(dllexport)
+__declspec(dllexport)
 #endif
     void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary*, core::log::Logger&);
 }

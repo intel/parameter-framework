@@ -36,11 +36,10 @@ class CSubsystemLibrary;
 class CSubsystemElementBuilder : public CElementBuilder
 {
 public:
-    CSubsystemElementBuilder(const CSubsystemLibrary* pSubsystemLibrary);
+    CSubsystemElementBuilder(const CSubsystemLibrary *pSubsystemLibrary);
 
-    virtual CElement* createElement(const CXmlElement& xmlElement) const;
+    virtual CElement *createElement(const CXmlElement &xmlElement) const;
 
 private:
-    const CSubsystemLibrary* _pSubsystemLibrary;
+    const CSubsystemLibrary *_pSubsystemLibrary;
 };
-

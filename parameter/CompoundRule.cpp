@@ -35,10 +35,7 @@
 using std::string;
 
 // Types
-const char* CCompoundRule::_apcTypes[2] = {
-    "Any",
-    "All"
-};
+const char *CCompoundRule::_apcTypes[2] = {"Any", "All"};
 
 // Class kind
 string CCompoundRule::getKind() const
@@ -53,14 +50,14 @@ bool CCompoundRule::childrenAreDynamic() const
 }
 
 // Content dumping
-string CCompoundRule::logValue(utility::ErrorContext& /*ctx*/) const
+string CCompoundRule::logValue(utility::ErrorContext & /*ctx*/) const
 {
     // Type
     return _apcTypes[_bTypeAll];
 }
 
 // Parse
-bool CCompoundRule::parse(CRuleParser& ruleParser, string& strError)
+bool CCompoundRule::parse(CRuleParser &ruleParser, string &strError)
 {
     // Get rule type
     for (size_t typeIndex = 0; typeIndex < 2; typeIndex++) {
@@ -99,7 +96,7 @@ string CCompoundRule::dump() const
         }
 
         // Dump inner rule
-        const CRule* pRule = static_cast<const CRule*>(getChild(uiChild));
+        const CRule *pRule = static_cast<const CRule *>(getChild(uiChild));
 
         output += pRule->dump();
 
@@ -118,7 +115,7 @@ bool CCompoundRule::matches() const
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        const CRule* pRule = static_cast<const CRule*>(getChild(uiChild));
+        const CRule *pRule = static_cast<const CRule *>(getChild(uiChild));
 
         if (pRule->matches() ^ _bTypeAll) {
 
@@ -129,7 +126,8 @@ bool CCompoundRule::matches() const
 }
 
 // From IXmlSink
-bool CCompoundRule::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CCompoundRule::fromXml(const CXmlElement &xmlElement,
+                            CXmlSerializingContext &serializingContext)
 {
     // Get type
     string strType;
@@ -141,7 +139,7 @@ bool CCompoundRule::fromXml(const CXmlElement& xmlElement, CXmlSerializingContex
 }
 
 // From IXmlSource
-void CCompoundRule::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CCompoundRule::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
 {
     // Set type
     xmlElement.setAttribute("Type", _apcTypes[_bTypeAll]);

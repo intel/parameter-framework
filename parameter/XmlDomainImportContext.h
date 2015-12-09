@@ -38,23 +38,22 @@
 class CXmlDomainImportContext : public CXmlDomainSerializingContext
 {
 public:
-    CXmlDomainImportContext(std::string& strError, bool bWithSettings, CSystemClass& systemClass):
-        base(strError, bWithSettings), _systemClass(systemClass) {}
+    CXmlDomainImportContext(std::string &strError, bool bWithSettings, CSystemClass &systemClass)
+        : base(strError, bWithSettings), _systemClass(systemClass)
+    {
+    }
 
     // System Class
-    CSystemClass& getSystemClass() const
-    {
-        return _systemClass;
-    }
+    CSystemClass &getSystemClass() const { return _systemClass; }
 
     // Criteria defintion
     void setSelectionCriteriaDefinition(
-            const CSelectionCriteriaDefinition* pSelectionCriteriaDefinition)
+        const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition)
     {
         _pSelectionCriteriaDefinition = pSelectionCriteriaDefinition;
     }
 
-    const CSelectionCriteriaDefinition* getSelectionCriteriaDefinition() const
+    const CSelectionCriteriaDefinition *getSelectionCriteriaDefinition() const
     {
         return _pSelectionCriteriaDefinition;
     }
@@ -65,21 +64,17 @@ public:
         _bAutoValidationRequired = bAutoValidationRequired;
     }
 
-    bool autoValidationRequired() const
-    {
-        return _bAutoValidationRequired;
-    }
+    bool autoValidationRequired() const { return _bAutoValidationRequired; }
 
 private:
     typedef CXmlDomainSerializingContext base;
 
     // System Class
-    CSystemClass& _systemClass;
+    CSystemClass &_systemClass;
 
     // Criteria defintion
-    const CSelectionCriteriaDefinition* _pSelectionCriteriaDefinition{nullptr};
+    const CSelectionCriteriaDefinition *_pSelectionCriteriaDefinition{nullptr};
 
     // Auto validation of configurations
     bool _bAutoValidationRequired{true};
 };
-

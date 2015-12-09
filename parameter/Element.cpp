@@ -41,7 +41,7 @@ using std::string;
 
 const std::string CElement::gDescriptionPropertyName = "Description";
 
-CElement::CElement(const string& strName) : _strName(strName)
+CElement::CElement(const string &strName) : _strName(strName)
 {
 }
 
@@ -50,12 +50,12 @@ CElement::~CElement()
     removeChildren();
 }
 
-void CElement::setDescription(const string& strDescription)
+void CElement::setDescription(const string &strDescription)
 {
     _strDescription = strDescription;
 }
 
-const string& CElement::getDescription() const
+const string &CElement::getDescription() const
 {
     return _strDescription;
 }
@@ -66,10 +66,10 @@ bool CElement::childrenAreDynamic() const
     return false;
 }
 
-bool CElement::init(string& strError)
+bool CElement::init(string &strError)
 {
 
-    for (CElement* child : _childArray) {
+    for (CElement *child : _childArray) {
 
         if (!child->init(strError)) {
 
@@ -80,7 +80,7 @@ bool CElement::init(string& strError)
     return true;
 }
 
-string CElement::dumpContent(utility::ErrorContext& errorContext, const size_t depth) const
+string CElement::dumpContent(utility::ErrorContext &errorContext, const size_t depth) const
 {
     string output;
     string strIndent;
@@ -111,7 +111,7 @@ string CElement::dumpContent(utility::ErrorContext& errorContext, const size_t d
 
     output += "\n";
 
-    for (CElement* pChild : _childArray) {
+    for (CElement *pChild : _childArray) {
 
         output += pChild->dumpContent(errorContext, depth + 1);
     }
@@ -120,7 +120,7 @@ string CElement::dumpContent(utility::ErrorContext& errorContext, const size_t d
 }
 
 // Element properties
-void CElement::showProperties(string& strResult) const
+void CElement::showProperties(string &strResult) const
 {
     strResult = "\n";
     strResult += "Kind: " + getKind() + "\n";
@@ -135,13 +135,13 @@ void CElement::showDescriptionProperty(std::string &strResult) const
 }
 
 // Content dumping
-string CElement::logValue(utility::ErrorContext& /*ctx*/) const
+string CElement::logValue(utility::ErrorContext & /*ctx*/) const
 {
     return "";
 }
 
 // From IXmlSink
-bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CElement::fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext)
 {
     xmlElement.getAttribute(gDescriptionPropertyName, _strDescription);
 
@@ -152,7 +152,7 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
 
     while (childIterator.next(childElement)) {
 
-        CElement* pChild;
+        CElement *pChild;
 
         if (!childrenAreDynamic()) {
 
@@ -160,7 +160,8 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
 
             if (!pChild) {
 
-                serializingContext.setError("Unable to handle XML element: " + childElement.getPath());
+                serializingContext.setError("Unable to handle XML element: " +
+                                            childElement.getPath());
 
                 return false;
             }
@@ -185,11 +186,11 @@ bool CElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& se
     return true;
 }
 
-void CElement::childrenToXml(CXmlElement& xmlElement,
-                             CXmlSerializingContext& serializingContext) const
+void CElement::childrenToXml(CXmlElement &xmlElement,
+                             CXmlSerializingContext &serializingContext) const
 {
     // Browse children and propagate
-    for (CElement* pChild : _childArray) {
+    for (CElement *pChild : _childArray) {
 
         // Create corresponding child element
         CXmlElement xmlChildElement;
@@ -201,14 +202,14 @@ void CElement::childrenToXml(CXmlElement& xmlElement,
     }
 }
 
-void CElement::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CElement::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
 {
     setXmlNameAttribute(xmlElement);
     setXmlDescriptionAttribute(xmlElement);
     childrenToXml(xmlElement, serializingContext);
 }
 
-void CElement::setXmlDescriptionAttribute(CXmlElement& xmlElement) const
+void CElement::setXmlDescriptionAttribute(CXmlElement &xmlElement) const
 {
     const string &description = getDescription();
     if (!description.empty()) {
@@ -216,7 +217,7 @@ void CElement::setXmlDescriptionAttribute(CXmlElement& xmlElement) const
     }
 }
 
-void CElement::setXmlNameAttribute(CXmlElement& xmlElement) const
+void CElement::setXmlNameAttribute(CXmlElement &xmlElement) const
 {
     // By default, set Name attribute if any
     string strName = getName();
@@ -228,22 +229,22 @@ void CElement::setXmlNameAttribute(CXmlElement& xmlElement) const
 }
 
 // Name
-void CElement::setName(const string& strName)
+void CElement::setName(const string &strName)
 {
     _strName = strName;
 }
 
-const string& CElement::getName() const
+const string &CElement::getName() const
 {
     return _strName;
 }
 
-bool CElement::rename(const string& strName, string& strError)
+bool CElement::rename(const string &strName, string &strError)
 {
     // Check for conflict with brotherhood if relevant
     if (_pParent && _pParent->childrenAreDynamic()) {
 
-        for (CElement* pParentChild : _pParent->_childArray) {
+        for (CElement *pParentChild : _pParent->_childArray) {
 
             if (pParentChild != this && pParentChild->getName() == strName) {
 
@@ -272,41 +273,41 @@ string CElement::getPathName() const
 }
 
 // Hierarchy
-void CElement::addChild(CElement* pChild)
+void CElement::addChild(CElement *pChild)
 {
     _childArray.push_back(pChild);
 
     pChild->_pParent = this;
 }
 
-CElement* CElement::getChild(size_t index)
+CElement *CElement::getChild(size_t index)
 {
     assert(index <= _childArray.size());
 
     return _childArray[index];
 }
 
-const CElement* CElement::getChild(size_t index) const
+const CElement *CElement::getChild(size_t index) const
 {
     assert(index <= _childArray.size());
 
     return _childArray[index];
 }
 
-CElement* CElement::createChild(const CXmlElement& childElement,
-                                CXmlSerializingContext& serializingContext)
+CElement *CElement::createChild(const CXmlElement &childElement,
+                                CXmlSerializingContext &serializingContext)
 {
     // Context
-    CXmlElementSerializingContext& elementSerializingContext =
-            static_cast<CXmlElementSerializingContext&>(serializingContext);
+    CXmlElementSerializingContext &elementSerializingContext =
+        static_cast<CXmlElementSerializingContext &>(serializingContext);
 
     // Child needs creation
-    CElement* pChild = elementSerializingContext.getElementLibrary()->createElement(childElement);
+    CElement *pChild = elementSerializingContext.getElementLibrary()->createElement(childElement);
 
     if (!pChild) {
 
-        elementSerializingContext.setError(
-                    "Unable to create XML element " + childElement.getPath());
+        elementSerializingContext.setError("Unable to create XML element " +
+                                           childElement.getPath());
 
         return NULL;
     }
@@ -316,7 +317,7 @@ CElement* CElement::createChild(const CXmlElement& childElement,
     return pChild;
 }
 
-bool CElement::removeChild(CElement* pChild)
+bool CElement::removeChild(CElement *pChild)
 {
     auto childIt = find(begin(_childArray), end(_childArray), pChild);
     if (childIt != end(_childArray)) {
@@ -327,12 +328,12 @@ bool CElement::removeChild(CElement* pChild)
     return false;
 }
 
-void CElement::listChildren(string& strChildList) const
+void CElement::listChildren(string &strChildList) const
 {
     strChildList = "\n";
 
     // Get list of children names
-    for (CElement* pChild : _childArray) {
+    for (CElement *pChild : _childArray) {
 
         strChildList += pChild->getName() + "\n";
     }
@@ -350,7 +351,7 @@ string CElement::listQualifiedPaths(bool bDive, size_t level) const
 
     if (bDive || !level) {
         // Get list of children paths
-        for (CElement* pChild : _childArray) {
+        for (CElement *pChild : _childArray) {
 
             strResult += pChild->listQualifiedPaths(bDive, level + 1);
         }
@@ -358,10 +359,10 @@ string CElement::listQualifiedPaths(bool bDive, size_t level) const
     return strResult;
 }
 
-void CElement::listChildrenPaths(string& strChildList) const
+void CElement::listChildrenPaths(string &strChildList) const
 {
     // Get list of children paths
-    for (CElement* pChild : _childArray) {
+    for (CElement *pChild : _childArray) {
 
         strChildList += pChild->getPath() + "\n";
     }
@@ -372,12 +373,12 @@ size_t CElement::getNbChildren() const
     return _childArray.size();
 }
 
-const CElement* CElement::getParent() const
+const CElement *CElement::getParent() const
 {
     return _pParent;
 }
 
-CElement* CElement::getParent()
+CElement *CElement::getParent()
 {
     return _pParent;
 }
@@ -389,7 +390,7 @@ void CElement::clean()
         removeChildren();
     } else {
         // Just propagate
-        for (CElement* pChild : _childArray) {
+        for (CElement *pChild : _childArray) {
 
             pChild->clean();
         }
@@ -408,16 +409,16 @@ void CElement::removeChildren()
     _childArray.clear();
 }
 
-const CElement* CElement::findDescendant(CPathNavigator& pathNavigator) const
+const CElement *CElement::findDescendant(CPathNavigator &pathNavigator) const
 {
-    string* pStrChildName = pathNavigator.next();
+    string *pStrChildName = pathNavigator.next();
 
     if (!pStrChildName) {
 
         return this;
     }
 
-    const CElement* pChild = findChild(*pStrChildName);
+    const CElement *pChild = findChild(*pStrChildName);
 
     if (!pChild) {
 
@@ -427,16 +428,16 @@ const CElement* CElement::findDescendant(CPathNavigator& pathNavigator) const
     return pChild->findDescendant(pathNavigator);
 }
 
-CElement* CElement::findDescendant(CPathNavigator& pathNavigator)
+CElement *CElement::findDescendant(CPathNavigator &pathNavigator)
 {
-    string* pStrChildName = pathNavigator.next();
+    string *pStrChildName = pathNavigator.next();
 
     if (!pStrChildName) {
 
         return this;
     }
 
-    CElement* pChild = findChild(*pStrChildName);
+    CElement *pChild = findChild(*pStrChildName);
 
     if (!pChild) {
 
@@ -446,7 +447,7 @@ CElement* CElement::findDescendant(CPathNavigator& pathNavigator)
     return pChild->findDescendant(pathNavigator);
 }
 
-bool CElement::isDescendantOf(const CElement* pCandidateAscendant) const
+bool CElement::isDescendantOf(const CElement *pCandidateAscendant) const
 {
     if (!_pParent) {
 
@@ -459,10 +460,9 @@ bool CElement::isDescendantOf(const CElement* pCandidateAscendant) const
     return _pParent->isDescendantOf(pCandidateAscendant);
 }
 
-CElement* CElement::findChild(const string& strName)
+CElement *CElement::findChild(const string &strName)
 {
-    for (CElement* pChild : _childArray) {
-
+    for (CElement *pChild : _childArray) {
 
         if (pChild->getPathName() == strName) {
 
@@ -473,9 +473,9 @@ CElement* CElement::findChild(const string& strName)
     return NULL;
 }
 
-const CElement* CElement::findChild(const string& strName) const
+const CElement *CElement::findChild(const string &strName) const
 {
-    for (CElement* pChild : _childArray) {
+    for (CElement *pChild : _childArray) {
 
         if (pChild->getPathName() == strName) {
 
@@ -486,9 +486,9 @@ const CElement* CElement::findChild(const string& strName) const
     return NULL;
 }
 
-CElement* CElement::findChildOfKind(const string& strKind)
+CElement *CElement::findChildOfKind(const string &strKind)
 {
-    for (CElement* pChild : _childArray) {
+    for (CElement *pChild : _childArray) {
 
         if (pChild->getKind() == strKind) {
 
@@ -499,9 +499,9 @@ CElement* CElement::findChildOfKind(const string& strKind)
     return NULL;
 }
 
-const CElement* CElement::findChildOfKind(const string& strKind) const
+const CElement *CElement::findChildOfKind(const string &strKind) const
 {
-    for (CElement* pChild : _childArray) {
+    for (CElement *pChild : _childArray) {
 
         if (pChild->getKind() == strKind) {
 

@@ -31,7 +31,6 @@
 
 #include "parameter_export.h"
 
-
 #include <stdint.h>
 #include <string>
 #include <vector>
@@ -40,9 +39,10 @@ class PARAMETER_EXPORT CMappingContext
 {
 private:
     // Item structure
-    struct SItem {
-        const std::string* strKey{nullptr};
-        const std::string* strItem{nullptr};
+    struct SItem
+    {
+        const std::string *strKey{nullptr};
+        const std::string *strItem{nullptr};
     };
 
 public:
@@ -58,8 +58,8 @@ public:
      *
      * @return False if already set, true else.
      */
-    bool setItem(size_t itemType, const std::string* pStrKey, const std::string* pStrItem);
-    const std::string& getItem(size_t itemType) const;
+    bool setItem(size_t itemType, const std::string *pStrKey, const std::string *pStrItem);
+    const std::string &getItem(size_t itemType) const;
     size_t getItemAsInteger(size_t itemType) const;
     /**
      * Get mapping item value from its key name.
@@ -68,7 +68,7 @@ public:
      *
      * @return Mapping item value pointer if found, NULL else.
      */
-    const std::string* getItem(const std::string& strKey) const;
+    const std::string *getItem(const std::string &strKey) const;
     bool iSet(size_t itemType) const;
 
 private:
@@ -77,4 +77,3 @@ private:
     using Items = std::vector<SItem>;
     Items mItems;
 };
-

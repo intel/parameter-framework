@@ -40,14 +40,14 @@ class CInstanceConfigurableElement;
 class PARAMETER_EXPORT CTypeElement : public CElement
 {
 public:
-    CTypeElement(const std::string& strName = "");
+    CTypeElement(const std::string &strName = "");
     virtual ~CTypeElement();
 
     // Instantiation
-    CInstanceConfigurableElement* instantiate() const;
+    CInstanceConfigurableElement *instantiate() const;
 
     // Mapping info
-    virtual bool getMappingData(const std::string& strKey, const std::string*& pStrValue) const;
+    virtual bool getMappingData(const std::string &strKey, const std::string *&pStrValue) const;
     virtual bool hasMappingData() const;
 
     /**
@@ -58,13 +58,13 @@ public:
     virtual std::string getFormattedMapping() const;
 
     // Element properties
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
     // Scalar or Array?
     bool isScalar() const;
@@ -83,19 +83,20 @@ public:
 
 protected:
     // Object creation
-    virtual void populate(CElement* pElement) const;
+    virtual void populate(CElement *pElement) const;
+
 private:
-    CTypeElement(const CTypeElement&);
-    CTypeElement& operator=(const CTypeElement&);
+    CTypeElement(const CTypeElement &);
+    CTypeElement &operator=(const CTypeElement &);
     // Actual instance creation
-    virtual CInstanceConfigurableElement* doInstantiate() const = 0;
+    virtual CInstanceConfigurableElement *doInstantiate() const = 0;
 
     // Mapping data creation and access
-    CMappingData* getMappingData();
+    CMappingData *getMappingData();
 
     // For Arrays. 0 means scalar
     size_t _arrayLength{0};
 
     // Mapping info
-    CMappingData* _pMappingData{nullptr};
+    CMappingData *_pMappingData{nullptr};
 };

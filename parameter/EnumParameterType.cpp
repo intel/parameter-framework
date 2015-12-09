@@ -36,7 +36,7 @@
 
 using std::string;
 
-CEnumParameterType::CEnumParameterType(const string& strName) : base(strName)
+CEnumParameterType::CEnumParameterType(const string &strName) : base(strName)
 {
 }
 
@@ -51,7 +51,7 @@ bool CEnumParameterType::childrenAreDynamic() const
 }
 
 // Element properties
-void CEnumParameterType::showProperties(string& strResult) const
+void CEnumParameterType::showProperties(string &strResult) const
 {
     base::showProperties(strResult);
 
@@ -63,7 +63,7 @@ void CEnumParameterType::showProperties(string& strResult) const
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        const CEnumValuePair* pValuePair = static_cast<const CEnumValuePair*>(getChild(uiChild));
+        const CEnumValuePair *pValuePair = static_cast<const CEnumValuePair *>(getChild(uiChild));
 
         strResult += "\tLiteral: \"";
         strResult += pValuePair->getName();
@@ -73,7 +73,8 @@ void CEnumParameterType::showProperties(string& strResult) const
     }
 }
 
-bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CEnumParameterType::fromXml(const CXmlElement &xmlElement,
+                                 CXmlSerializingContext &serializingContext)
 {
     // Size in bits
     size_t sizeInBits = 0;
@@ -89,7 +90,8 @@ bool CEnumParameterType::fromXml(const CXmlElement& xmlElement, CXmlSerializingC
 }
 
 // Conversion (tuning)
-bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue, CParameterAccessContext& parameterAccessContext) const
+bool CEnumParameterType::toBlackboard(const string &strValue, uint32_t &uiValue,
+                                      CParameterAccessContext &parameterAccessContext) const
 {
     int32_t iParsedUserValue = 0;
 
@@ -115,16 +117,19 @@ bool CEnumParameterType::toBlackboard(const string& strValue, uint32_t& uiValue,
     return toBlackboard(iParsedUserValue, uiValue, parameterAccessContext);
 }
 
-int32_t CEnumParameterType::getMin() const {
+int32_t CEnumParameterType::getMin() const
+{
     // Enums are always signed, it means we have one less util bit
     return -getMax() - 1;
 }
 
-int32_t CEnumParameterType::getMax() const {
+int32_t CEnumParameterType::getMax() const
+{
     return getMaxValue<int32_t>();
 }
 
-bool CEnumParameterType::fromBlackboard(string& userValue, const uint32_t& value, CParameterAccessContext& /*ctx*/) const
+bool CEnumParameterType::fromBlackboard(string &userValue, const uint32_t &value,
+                                        CParameterAccessContext & /*ctx*/) const
 {
     // Convert the raw value from the blackboard
     int32_t signedValue = static_cast<int32_t>(value);
@@ -135,12 +140,13 @@ bool CEnumParameterType::fromBlackboard(string& userValue, const uint32_t& value
 }
 
 // Value access
-bool CEnumParameterType::toBlackboard(int32_t userValue, uint32_t& value, CParameterAccessContext& parameterAccessContext) const
+bool CEnumParameterType::toBlackboard(int32_t userValue, uint32_t &value,
+                                      CParameterAccessContext &parameterAccessContext) const
 {
     if (!checkValueAgainstSpace(userValue)) {
 
         parameterAccessContext.setError(std::to_string(userValue) +
-                " is not part of numerical space.");
+                                        " is not part of numerical space.");
 
         return false;
     }
@@ -150,9 +156,8 @@ bool CEnumParameterType::toBlackboard(int32_t userValue, uint32_t& value, CParam
         // FIXME: values provided as hexa (either on command line or in a config
         // file will appear in decimal base instead of hexa base...
         parameterAccessContext.setError(
-                "Value " + std::to_string(userValue) + " standing out of admitted range [" +
-                std::to_string(getMin()) + ", " + std::to_string(getMax()) + "] for " + getKind()
-                );
+            "Value " + std::to_string(userValue) + " standing out of admitted range [" +
+            std::to_string(getMin()) + ", " + std::to_string(getMax()) + "] for " + getKind());
         return false;
     }
 
@@ -161,7 +166,8 @@ bool CEnumParameterType::toBlackboard(int32_t userValue, uint32_t& value, CParam
     return true;
 }
 
-bool CEnumParameterType::fromBlackboard(int32_t& userValue, uint32_t value, CParameterAccessContext& /*ctx*/) const
+bool CEnumParameterType::fromBlackboard(int32_t &userValue, uint32_t value,
+                                        CParameterAccessContext & /*ctx*/) const
 {
     int32_t signedValue = static_cast<int32_t>(value);
 
@@ -182,18 +188,18 @@ uint32_t CEnumParameterType::getDefaultValue() const
     }
 
     // Return first available numerical
-    return static_cast<const CEnumValuePair*>(getChild(0))->getNumerical();
+    return static_cast<const CEnumValuePair *>(getChild(0))->getNumerical();
 }
 
 // Literal - numerical conversions
-bool CEnumParameterType::getLiteral(int32_t iNumerical, string& strLiteral) const
+bool CEnumParameterType::getLiteral(int32_t iNumerical, string &strLiteral) const
 {
     size_t uiChild;
     size_t uiNbChildren = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        const CEnumValuePair* pValuePair = static_cast<const CEnumValuePair*>(getChild(uiChild));
+        const CEnumValuePair *pValuePair = static_cast<const CEnumValuePair *>(getChild(uiChild));
 
         if (pValuePair->getNumerical() == iNumerical) {
 
@@ -206,14 +212,14 @@ bool CEnumParameterType::getLiteral(int32_t iNumerical, string& strLiteral) cons
     return false;
 }
 
-bool CEnumParameterType::getNumerical(const string& strLiteral, int32_t& iNumerical) const
+bool CEnumParameterType::getNumerical(const string &strLiteral, int32_t &iNumerical) const
 {
     size_t uiChild;
     size_t uiNbChildren = getNbChildren();
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        const CEnumValuePair* pValuePair = static_cast<const CEnumValuePair*>(getChild(uiChild));
+        const CEnumValuePair *pValuePair = static_cast<const CEnumValuePair *>(getChild(uiChild));
 
         if (pValuePair->getName() == strLiteral) {
 
@@ -235,7 +241,7 @@ bool CEnumParameterType::checkValueAgainstSpace(int32_t iNumerical) const
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        const CEnumValuePair* pValuePair = static_cast<const CEnumValuePair*>(getChild(uiChild));
+        const CEnumValuePair *pValuePair = static_cast<const CEnumValuePair *>(getChild(uiChild));
 
         if (pValuePair->getNumerical() == iNumerical) {
 
@@ -247,7 +253,8 @@ bool CEnumParameterType::checkValueAgainstSpace(int32_t iNumerical) const
 }
 
 // From IXmlSource
-void CEnumParameterType::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CEnumParameterType::toXml(CXmlElement &xmlElement,
+                               CXmlSerializingContext &serializingContext) const
 {
     // Size
     xmlElement.setAttribute("Size", getSize() * 8);

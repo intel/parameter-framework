@@ -37,7 +37,9 @@
 
 #define base CConfigurableElement
 
-CInstanceConfigurableElement::CInstanceConfigurableElement(const std::string& strName, const CTypeElement* pTypeElement) : base(strName), _pTypeElement(pTypeElement)
+CInstanceConfigurableElement::CInstanceConfigurableElement(const std::string &strName,
+                                                           const CTypeElement *pTypeElement)
+    : base(strName), _pTypeElement(pTypeElement)
 {
 }
 
@@ -54,13 +56,14 @@ std::string CInstanceConfigurableElement::getXmlElementName() const
 }
 
 // Type element
-const CTypeElement* CInstanceConfigurableElement::getTypeElement() const
+const CTypeElement *CInstanceConfigurableElement::getTypeElement() const
 {
     return _pTypeElement;
 }
 
 // Mapping
-bool CInstanceConfigurableElement::getMappingData(const std::string& strKey, const std::string*& pStrValue) const
+bool CInstanceConfigurableElement::getMappingData(const std::string &strKey,
+                                                  const std::string *&pStrValue) const
 {
     // Delegate
     return getTypeElement()->getMappingData(strKey, pStrValue);
@@ -73,7 +76,7 @@ std::string CInstanceConfigurableElement::getFormattedMapping() const
     return getTypeElement()->getFormattedMapping();
 }
 
-bool CInstanceConfigurableElement::map(IMapper& mapper, std::string& strError)
+bool CInstanceConfigurableElement::map(IMapper &mapper, std::string &strError)
 {
     bool bHasMappingData = getTypeElement()->hasMappingData();
     bool bKeepDiving = true;
@@ -93,8 +96,8 @@ bool CInstanceConfigurableElement::map(IMapper& mapper, std::string& strError)
 
         for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-            CInstanceConfigurableElement* pInstanceConfigurableChildElement =
-                    static_cast<CInstanceConfigurableElement*>(getChild(uiChild));
+            CInstanceConfigurableElement *pInstanceConfigurableChildElement =
+                static_cast<CInstanceConfigurableElement *>(getChild(uiChild));
 
             if (!pInstanceConfigurableChildElement->map(mapper, strError)) {
 
@@ -112,9 +115,9 @@ bool CInstanceConfigurableElement::map(IMapper& mapper, std::string& strError)
 }
 
 void CInstanceConfigurableElement::getListOfElementsWithMapping(
-        std::list<const CConfigurableElement*>& configurableElementPath) const
+    std::list<const CConfigurableElement *> &configurableElementPath) const
 {
-    const CTypeElement* pTypeElement = getTypeElement();
+    const CTypeElement *pTypeElement = getTypeElement();
 
     if (pTypeElement && pTypeElement->hasMappingData()) {
 
@@ -125,7 +128,7 @@ void CInstanceConfigurableElement::getListOfElementsWithMapping(
 }
 
 // Element properties
-void CInstanceConfigurableElement::showProperties(std::string& strResult) const
+void CInstanceConfigurableElement::showProperties(std::string &strResult) const
 {
     base::showProperties(strResult);
 
@@ -146,7 +149,7 @@ size_t CInstanceConfigurableElement::getArrayLength() const
 }
 
 // Sync to HW
-void CInstanceConfigurableElement::setSyncer(ISyncer* pSyncer)
+void CInstanceConfigurableElement::setSyncer(ISyncer *pSyncer)
 {
     assert(!_pSyncer);
 
@@ -159,7 +162,7 @@ void CInstanceConfigurableElement::unsetSyncer()
 }
 
 // Syncer
-ISyncer* CInstanceConfigurableElement::getSyncer() const
+ISyncer *CInstanceConfigurableElement::getSyncer() const
 {
     if (_pSyncer) {
 
@@ -170,7 +173,7 @@ ISyncer* CInstanceConfigurableElement::getSyncer() const
 }
 
 // Syncer set (descendant)
-void CInstanceConfigurableElement::fillSyncerSetFromDescendant(CSyncerSet& syncerSet) const
+void CInstanceConfigurableElement::fillSyncerSetFromDescendant(CSyncerSet &syncerSet) const
 {
     if (_pSyncer) {
 
@@ -181,7 +184,7 @@ void CInstanceConfigurableElement::fillSyncerSetFromDescendant(CSyncerSet& synce
     }
 }
 
-bool CInstanceConfigurableElement::sync(CParameterAccessContext& parameterAccessContext) const
+bool CInstanceConfigurableElement::sync(CParameterAccessContext &parameterAccessContext) const
 {
     if (!parameterAccessContext.getAutoSync()) {
 
@@ -189,11 +192,12 @@ bool CInstanceConfigurableElement::sync(CParameterAccessContext& parameterAccess
         // This is not an error, but the expected behavior so return true anyway.
         return true;
     }
-    ISyncer* pSyncer = getSyncer();
+    ISyncer *pSyncer = getSyncer();
 
     if (!pSyncer) {
 
-        parameterAccessContext.setError("Unable to synchronize modification. No Syncer object associated to configurable element:");
+        parameterAccessContext.setError("Unable to synchronize modification. No Syncer object "
+                                        "associated to configurable element:");
 
         return false;
     }
@@ -209,9 +213,10 @@ bool CInstanceConfigurableElement::sync(CParameterAccessContext& parameterAccess
 }
 
 // Check parameter access path well formed for leaf elements
-bool CInstanceConfigurableElement::checkPathExhausted(CPathNavigator& pathNavigator, utility::ErrorContext& errorContext)
+bool CInstanceConfigurableElement::checkPathExhausted(CPathNavigator &pathNavigator,
+                                                      utility::ErrorContext &errorContext)
 {
-    std::string* pStrChildName = pathNavigator.next();
+    std::string *pStrChildName = pathNavigator.next();
 
     if (pStrChildName) {
 

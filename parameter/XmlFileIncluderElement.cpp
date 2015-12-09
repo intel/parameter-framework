@@ -36,18 +36,20 @@
 #include <fstream>
 
 #define base CKindElement
-CXmlFileIncluderElement::CXmlFileIncluderElement(const std::string& strName,
-                                                 const std::string& strKind,
+CXmlFileIncluderElement::CXmlFileIncluderElement(const std::string &strName,
+                                                 const std::string &strKind,
                                                  bool bValidateWithSchemas)
     : base(strName, strKind), _bValidateSchemasOnStart(bValidateWithSchemas)
 {
 }
 
 // From IXmlSink
-bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CXmlFileIncluderElement::fromXml(const CXmlElement &xmlElement,
+                                      CXmlSerializingContext &serializingContext)
 {
     // Context
-    CXmlElementSerializingContext& elementSerializingContext = static_cast<CXmlElementSerializingContext&>(serializingContext);
+    CXmlElementSerializingContext &elementSerializingContext =
+        static_cast<CXmlElementSerializingContext &>(serializingContext);
 
     // Parse included document
     std::string strPath;
@@ -59,8 +61,7 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
     {
         _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strPath, true, true, elementSerializingContext);
 
-        CXmlDocSource docSource(doc, _bValidateSchemasOnStart,
-                                strIncludedElementType);
+        CXmlDocSource docSource(doc, _bValidateSchemasOnStart, strIncludedElementType);
 
         if (!docSource.isParsable()) {
 
@@ -75,7 +76,8 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
         docSource.getRootElement(childElement);
 
         // Create child element
-        CElement* pChild = elementSerializingContext.getElementLibrary()->createElement(childElement);
+        CElement *pChild =
+            elementSerializingContext.getElementLibrary()->createElement(childElement);
 
         if (pChild) {
 
@@ -83,7 +85,8 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement& xmlElement, CXmlSeriali
             getParent()->addChild(pChild);
         } else {
 
-            elementSerializingContext.setError("Unable to create XML element " + childElement.getPath());
+            elementSerializingContext.setError("Unable to create XML element " +
+                                               childElement.getPath());
 
             return false;
         }

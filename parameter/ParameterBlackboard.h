@@ -43,14 +43,14 @@ public:
     size_t getSize() const;
 
     // Single parameter access
-    void writeInteger(const void* pvSrcData, size_t size, size_t offset);
-    void readInteger(void* pvDstData, size_t size, size_t offset) const;
+    void writeInteger(const void *pvSrcData, size_t size, size_t offset);
+    void readInteger(void *pvDstData, size_t size, size_t offset) const;
 
     void writeString(const std::string &input, size_t offset);
     void readString(std::string &output, size_t offset) const;
 
-    void writeBuffer(const void* pvSrcData, size_t size, size_t offset);
-    void readBuffer(void* pvDstData, size_t size, size_t offset) const;
+    void writeBuffer(const void *pvSrcData, size_t size, size_t offset);
+    void readBuffer(void *pvDstData, size_t size, size_t offset) const;
 
     /**
      * Raw write the blackboard memory.
@@ -64,7 +64,7 @@ public:
      *    - This function asserts that the input vector's size + the offset
      *      does not exceed the size of the blackboard istelf.
      */
-    void writeBytes(const std::vector<uint8_t>& bytes, size_t offset);
+    void writeBytes(const std::vector<uint8_t> &bytes, size_t offset);
 
     /**
      * Raw read the blackboard memory.
@@ -80,14 +80,14 @@ public:
      *    - The user MUST resize the output vector to exactly the number of
      *      elements to be read
      */
-    void readBytes(std::vector<uint8_t>& bytes, size_t offset) const;
+    void readBytes(std::vector<uint8_t> &bytes, size_t offset) const;
 
     // Access from/to subsystems
-    uint8_t* getLocation(size_t offset);
+    uint8_t *getLocation(size_t offset);
 
     // Configuration handling
-    void restoreFrom(const CParameterBlackboard* pFromBlackboard, size_t offset);
-    void saveTo(CParameterBlackboard* pToBlackboard, size_t offset) const;
+    void restoreFrom(const CParameterBlackboard *pFromBlackboard, size_t offset);
+    void saveTo(CParameterBlackboard *pToBlackboard, size_t offset) const;
 
 private:
     void assertValidAccess(size_t offset, size_t size) const;
@@ -98,4 +98,3 @@ private:
     Blackboard::iterator atOffset(size_t offset) { return begin(mBlackboard) + offset; }
     Blackboard::const_iterator atOffset(size_t offset) const { return begin(mBlackboard) + offset; }
 };
-

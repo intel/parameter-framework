@@ -42,8 +42,8 @@ public:
      * @param[in] pInstanceConfigurableElement Instance of the element linked to the SubsytemObject.
      * @param[in] logger the logger provided by the client
      */
-    CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
-                              core::log::Logger& logger);
+    CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement,
+                              core::log::Logger &logger);
 
     /**
      * Builds a new CFormattedSubsystemObject instance, using a simple mapping value without Amends.
@@ -53,9 +53,8 @@ public:
      * @param[in] strFormattedMapping A std::string corresponding to the mapping of the element. The
      * std::string does not contain any Amend (%) and does not need to be formatted.
      */
-    CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
-                              core::log::Logger& logger,
-                              const std::string& strFormattedMapping);
+    CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement,
+                              core::log::Logger &logger, const std::string &strFormattedMapping);
 
     /**
      * Builds a new CFormattedSubsystemObject instance, using a mapping value containing Amends.
@@ -68,12 +67,10 @@ public:
      * @param[in] nbAmendKeys Number of Amends
      * @param[in] context Contains values associated to Amend keys
      */
-    CFormattedSubsystemObject(CInstanceConfigurableElement* pInstanceConfigurableElement,
-                              core::log::Logger& logger,
-                              const std::string& strMappingValue,
-                              size_t firstAmendKey,
-                              size_t nbAmendKeys,
-                              const CMappingContext& context);
+    CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement,
+                              core::log::Logger &logger, const std::string &strMappingValue,
+                              size_t firstAmendKey, size_t nbAmendKeys,
+                              const CMappingContext &context);
     virtual ~CFormattedSubsystemObject() = default;
 
     /**
@@ -84,7 +81,6 @@ public:
     virtual std::string getFormattedMappingValue() const;
 
 private:
-
     /**
      * Check if the index of Amend key is valid.
      *
@@ -105,13 +101,12 @@ private:
      * @param[in] nbAmendKeys Number of Amend keys in the context
      * @param[in] context The context containing Amend values
      *
-     * @return The formatted std::string, corresponding to the input strMappingValue where %n have been
+     * @return The formatted std::string, corresponding to the input strMappingValue where %n have
+     * been
      * replaced by their value
      */
-    static std::string formatMappingValue(const std::string& strMappingValue,
-                                     size_t firstAmendKey,
-                                     size_t nbAmendKeys,
-                                     const CMappingContext& context);
+    static std::string formatMappingValue(const std::string &strMappingValue, size_t firstAmendKey,
+                                          size_t nbAmendKeys, const CMappingContext &context);
 
     /**
      * std::string containing the formatted mapping value

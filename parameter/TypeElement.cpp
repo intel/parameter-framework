@@ -35,7 +35,7 @@
 
 #define base CElement
 
-CTypeElement::CTypeElement(const std::string& strName) : base(strName)
+CTypeElement::CTypeElement(const std::string &strName) : base(strName)
 {
 }
 
@@ -59,7 +59,7 @@ int CTypeElement::toPlainInteger(int iSizeOptimizedData) const
     return iSizeOptimizedData;
 }
 
-bool CTypeElement::getMappingData(const std::string& strKey, const std::string*& pStrValue) const
+bool CTypeElement::getMappingData(const std::string &strKey, const std::string *&pStrValue) const
 {
     if (_pMappingData) {
 
@@ -74,7 +74,7 @@ bool CTypeElement::hasMappingData() const
 }
 
 // Element properties
-void CTypeElement::showProperties(std::string& strResult) const
+void CTypeElement::showProperties(std::string &strResult) const
 {
     // The description attribute may be found in the type and not from instance.
     showDescriptionProperty(strResult);
@@ -83,7 +83,7 @@ void CTypeElement::showProperties(std::string& strResult) const
     // which have a common base Element)
 }
 
-void CTypeElement::populate(CElement* pElement) const
+void CTypeElement::populate(CElement *pElement) const
 {
     // Populate children
     size_t uiChild;
@@ -91,16 +91,19 @@ void CTypeElement::populate(CElement* pElement) const
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 
-        const CTypeElement* pChildTypeElement = static_cast<const CTypeElement*>(getChild(uiChild));
+        const CTypeElement *pChildTypeElement =
+            static_cast<const CTypeElement *>(getChild(uiChild));
 
-        CInstanceConfigurableElement* pInstanceConfigurableChildElement = pChildTypeElement->instantiate();
+        CInstanceConfigurableElement *pInstanceConfigurableChildElement =
+            pChildTypeElement->instantiate();
 
         // Affiliate
         pElement->addChild(pInstanceConfigurableChildElement);
     }
 }
 
-bool CTypeElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CTypeElement::fromXml(const CXmlElement &xmlElement,
+                           CXmlSerializingContext &serializingContext)
 {
     // Array Length attribute
     xmlElement.getAttribute("ArrayLength", _arrayLength);
@@ -119,9 +122,9 @@ bool CTypeElement::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext
     return base::fromXml(xmlElement, serializingContext);
 }
 
-CInstanceConfigurableElement* CTypeElement::instantiate() const
+CInstanceConfigurableElement *CTypeElement::instantiate() const
 {
-    CInstanceConfigurableElement* pInstanceConfigurableElement = doInstantiate();
+    CInstanceConfigurableElement *pInstanceConfigurableElement = doInstantiate();
 
     // Populate
     populate(pInstanceConfigurableElement);
@@ -129,7 +132,7 @@ CInstanceConfigurableElement* CTypeElement::instantiate() const
     return pInstanceConfigurableElement;
 }
 
-CMappingData* CTypeElement::getMappingData()
+CMappingData *CTypeElement::getMappingData()
 {
     if (!_pMappingData) {
 
@@ -148,7 +151,7 @@ std::string CTypeElement::getFormattedMapping() const
 }
 
 // From IXmlSource
-void CTypeElement::toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const
+void CTypeElement::toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const
 {
     if (!isScalar()) {
 

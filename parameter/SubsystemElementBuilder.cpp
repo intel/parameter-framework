@@ -30,12 +30,12 @@
 #include "SubsystemElementBuilder.h"
 #include "SubsystemLibrary.h"
 
-CSubsystemElementBuilder::CSubsystemElementBuilder(const CSubsystemLibrary* pSubsystemLibrary) :
-    CElementBuilder(), _pSubsystemLibrary(pSubsystemLibrary)
+CSubsystemElementBuilder::CSubsystemElementBuilder(const CSubsystemLibrary *pSubsystemLibrary)
+    : CElementBuilder(), _pSubsystemLibrary(pSubsystemLibrary)
 {
 }
 
-CElement* CSubsystemElementBuilder::createElement(const CXmlElement& xmlElement) const
+CElement *CSubsystemElementBuilder::createElement(const CXmlElement &xmlElement) const
 {
     return _pSubsystemLibrary->createElement(xmlElement);
 }

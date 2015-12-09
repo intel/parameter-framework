@@ -35,7 +35,7 @@
 using std::string;
 
 // Item access
-bool CMappingContext::setItem(size_t itemType, const string* pStrKey, const string* pStrItem)
+bool CMappingContext::setItem(size_t itemType, const string *pStrKey, const string *pStrItem)
 {
     if (iSet(itemType)) {
         // Already set!
@@ -51,7 +51,7 @@ bool CMappingContext::setItem(size_t itemType, const string* pStrKey, const stri
     return true;
 }
 
-const string&  CMappingContext::getItem(size_t itemType) const
+const string &CMappingContext::getItem(size_t itemType) const
 {
     return *mItems[itemType].strItem;
 }
@@ -66,7 +66,7 @@ size_t CMappingContext::getItemAsInteger(size_t itemType) const
     return strtoul(mItems[itemType].strItem->c_str(), NULL, 0);
 }
 
-const string* CMappingContext::getItem(const string& strKey) const
+const string *CMappingContext::getItem(const string &strKey) const
 {
     auto itemFound = find_if(begin(mItems), end(mItems), [&](const SItem &item) {
         return item.strKey != NULL && strKey == *item.strKey;

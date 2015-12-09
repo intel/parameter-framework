@@ -37,13 +37,12 @@ CLinearParameterAdaptation::CLinearParameterAdaptation() : base("Linear")
 {
 }
 
-CLinearParameterAdaptation::CLinearParameterAdaptation(const string& strType) :
-    base(strType)
+CLinearParameterAdaptation::CLinearParameterAdaptation(const string &strType) : base(strType)
 {
 }
 
 // Element properties
-void CLinearParameterAdaptation::showProperties(string& strResult) const
+void CLinearParameterAdaptation::showProperties(string &strResult) const
 {
     base::showProperties(strResult);
 
@@ -59,17 +58,19 @@ void CLinearParameterAdaptation::showProperties(string& strResult) const
 }
 
 // From IXmlSink
-bool CLinearParameterAdaptation::fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext)
+bool CLinearParameterAdaptation::fromXml(const CXmlElement &xmlElement,
+                                         CXmlSerializingContext &serializingContext)
 {
     // Get SlopeNumerator
     xmlElement.getAttribute("SlopeNumerator", _dSlopeNumerator);
 
     // Get SlopeDenominator
-    if (xmlElement.getAttribute("SlopeDenominator", _dSlopeDenominator)
-        && (_dSlopeDenominator == 0)) {
+    if (xmlElement.getAttribute("SlopeDenominator", _dSlopeDenominator) &&
+        (_dSlopeDenominator == 0)) {
 
         // Avoid by 0 division errors
-        serializingContext.setError("SlopeDenominator attribute can't be 0 on element" + xmlElement.getPath());
+        serializingContext.setError("SlopeDenominator attribute can't be 0 on element" +
+                                    xmlElement.getPath());
         return false;
     }
 

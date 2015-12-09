@@ -36,16 +36,15 @@
 class CElementLocator
 {
 public:
-    CElementLocator(CElement* pSubRootElement, bool bStrict = true);
+    CElementLocator(CElement *pSubRootElement, bool bStrict = true);
 
     // Locate element
-    bool locate(const std::string& strPath, CElement** ppElement, std::string& strError);
+    bool locate(const std::string &strPath, CElement **ppElement, std::string &strError);
 
 private:
     // Subroot element
-    CElement* _pSubRootElement;
+    CElement *_pSubRootElement;
 
     // Strict means empty path will cause path not found error to be returned
     bool _bStrict;
 };
-

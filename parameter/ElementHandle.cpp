@@ -41,9 +41,10 @@ using std::string;
 using std::mutex;
 using std::lock_guard;
 
-ElementHandle::ElementHandle(CConfigurableElement& element, CParameterMgr& parameterMgr)
-    : mElement(element), mParameterMgr(parameterMgr) {}
-
+ElementHandle::ElementHandle(CConfigurableElement &element, CParameterMgr &parameterMgr)
+    : mElement(element), mParameterMgr(parameterMgr)
+{
+}
 
 string ElementHandle::getName() const
 {
@@ -79,7 +80,7 @@ bool ElementHandle::isArray() const
 size_t ElementHandle::getArrayLength() const
 {
     // Only instances can be arrays, SystemClass can not, nor subsystems
-    auto *instance = dynamic_cast<CInstanceConfigurableElement*>(&mElement);
+    auto *instance = dynamic_cast<CInstanceConfigurableElement *>(&mElement);
     if (instance == nullptr) {
         return 0;
     }
@@ -111,9 +112,9 @@ std::vector<ElementHandle> ElementHandle::getChildren()
     return children;
 }
 
-bool ElementHandle::getMappingData(const string& strKey, string& strValue) const
+bool ElementHandle::getMappingData(const string &strKey, string &strValue) const
 {
-    const std::string* pStrValue;
+    const std::string *pStrValue;
 
     if (!mElement.getMappingData(strKey, pStrValue)) {
         return false;
@@ -128,27 +129,32 @@ bool ElementHandle::getStructureAsXML(std::string &xmlSettings, std::string &err
     // Use default access context for structure export
     CParameterAccessContext accessContext(error);
     return mParameterMgr.exportElementToXMLString(
-                &mElement, mElement.getXmlElementName(),
-                CXmlParameterSerializingContext{accessContext, error},
-                xmlSettings);
+        &mElement, mElement.getXmlElementName(),
+        CXmlParameterSerializingContext{accessContext, error}, xmlSettings);
 }
 
 template <class T>
-struct isVector : std::false_type {};
+struct isVector : std::false_type
+{
+};
 template <class T>
-struct isVector<std::vector<T>> : std::true_type {};
+struct isVector<std::vector<T>> : std::true_type
+{
+};
 
 template <class T>
-size_t ElementHandle::getSize(T /*value*/) {
+size_t ElementHandle::getSize(T /*value*/)
+{
     return 0;
 }
 
 template <class T>
-size_t ElementHandle::getSize(std::vector<T> &values) {
+size_t ElementHandle::getSize(std::vector<T> &values)
+{
     return values.size();
 }
 
-bool ElementHandle::getAsXML(std::string& xmlValue, std::string& strError) const
+bool ElementHandle::getAsXML(std::string &xmlValue, std::string &strError) const
 {
     std::string result;
     if (not mParameterMgr.getSettingsAsXML(&mElement, result)) {
@@ -160,12 +166,12 @@ bool ElementHandle::getAsXML(std::string& xmlValue, std::string& strError) const
     return true;
 }
 
-bool ElementHandle::setAsXML(const std::string& xmlValue, std::string& error)
+bool ElementHandle::setAsXML(const std::string &xmlValue, std::string &error)
 {
     return mParameterMgr.setSettingsAsXML(&mElement, xmlValue, error);
 }
 
-bool ElementHandle::getAsBytes(std::vector<uint8_t>& bytesValue, std::string& /*error*/) const
+bool ElementHandle::getAsBytes(std::vector<uint8_t> &bytesValue, std::string & /*error*/) const
 {
     mParameterMgr.getSettingsAsBytes(mElement, bytesValue);
 
@@ -176,7 +182,7 @@ bool ElementHandle::getAsBytes(std::vector<uint8_t>& bytesValue, std::string& /*
     return true;
 }
 
-bool ElementHandle::setAsBytes(const std::vector<uint8_t>& bytesValue, std::string& error)
+bool ElementHandle::setAsBytes(const std::vector<uint8_t> &bytesValue, std::string &error)
 {
     return mParameterMgr.setSettingsAsBytes(mElement, bytesValue, error);
 }
@@ -188,7 +194,7 @@ bool ElementHandle::setAs(const T value, string &error) const
         return false;
     }
     // Safe downcast thanks to isParameter check in checkSetValidity
-    auto &parameter = static_cast<CBaseParameter&>(mElement);
+    auto &parameter = static_cast<CBaseParameter &>(mElement);
 
     // When in tuning mode, silently skip "set" requests
     if (mParameterMgr.tuningModeOn()) {
@@ -226,111 +232,111 @@ bool ElementHandle::getAs(T &value, string &error) const
 }
 
 // Boolean access
-bool ElementHandle::setAsBoolean(bool bValue, string& error)
+bool ElementHandle::setAsBoolean(bool bValue, string &error)
 {
     return setAs(bValue, error);
 }
 
-bool ElementHandle::getAsBoolean(bool& bValue, string& error) const
+bool ElementHandle::getAsBoolean(bool &bValue, string &error) const
 {
     return getAs(bValue, error);
 }
 
-bool ElementHandle::setAsBooleanArray(const std::vector<bool>& abValues, string& error)
+bool ElementHandle::setAsBooleanArray(const std::vector<bool> &abValues, string &error)
 {
     return setAs(abValues, error);
 }
 
-bool ElementHandle::getAsBooleanArray(std::vector<bool>& abValues, string& error) const
+bool ElementHandle::getAsBooleanArray(std::vector<bool> &abValues, string &error) const
 {
     return getAs(abValues, error);
 }
 
 // Integer Access
-bool ElementHandle::setAsInteger(uint32_t uiValue, string& error)
+bool ElementHandle::setAsInteger(uint32_t uiValue, string &error)
 {
     return setAs(uiValue, error);
 }
 
-bool ElementHandle::getAsInteger(uint32_t& uiValue, string& error) const
+bool ElementHandle::getAsInteger(uint32_t &uiValue, string &error) const
 {
     return getAs(uiValue, error);
 }
 
-bool ElementHandle::setAsIntegerArray(const std::vector<uint32_t>& auiValues, string& error)
+bool ElementHandle::setAsIntegerArray(const std::vector<uint32_t> &auiValues, string &error)
 {
     return setAs(auiValues, error);
 }
 
-bool ElementHandle::getAsIntegerArray(std::vector<uint32_t>& auiValues, string& error) const
+bool ElementHandle::getAsIntegerArray(std::vector<uint32_t> &auiValues, string &error) const
 {
     return getAs(auiValues, error);
 }
 
 // Signed Integer Access
-bool ElementHandle::setAsSignedInteger(int32_t iValue, string& error)
+bool ElementHandle::setAsSignedInteger(int32_t iValue, string &error)
 {
     return setAs(iValue, error);
 }
 
-bool ElementHandle::getAsSignedInteger(int32_t& iValue, string& error) const
+bool ElementHandle::getAsSignedInteger(int32_t &iValue, string &error) const
 {
     return getAs(iValue, error);
 }
 
-bool ElementHandle::setAsSignedIntegerArray(const std::vector<int32_t>& aiValues, string& error)
+bool ElementHandle::setAsSignedIntegerArray(const std::vector<int32_t> &aiValues, string &error)
 {
     return setAs(aiValues, error);
 }
 
-bool ElementHandle::getAsSignedIntegerArray(std::vector<int32_t>& aiValues, string& error) const
+bool ElementHandle::getAsSignedIntegerArray(std::vector<int32_t> &aiValues, string &error) const
 {
     return getAs(aiValues, error);
 }
 
 // Double Access
-bool ElementHandle::setAsDouble(double dValue, string& error)
+bool ElementHandle::setAsDouble(double dValue, string &error)
 {
     return setAs(dValue, error);
 }
 
-bool ElementHandle::getAsDouble(double& dValue, string& error) const
+bool ElementHandle::getAsDouble(double &dValue, string &error) const
 {
     return getAs(dValue, error);
 }
 
-bool ElementHandle::setAsDoubleArray(const std::vector<double>& adValues, string& error)
+bool ElementHandle::setAsDoubleArray(const std::vector<double> &adValues, string &error)
 {
     return setAs(adValues, error);
 }
 
-bool ElementHandle::getAsDoubleArray(std::vector<double>& adValues, string& error) const
+bool ElementHandle::getAsDoubleArray(std::vector<double> &adValues, string &error) const
 {
     return getAs(adValues, error);
 }
 
 // String Access
-bool ElementHandle::setAsString(const string& strValue, string& error)
+bool ElementHandle::setAsString(const string &strValue, string &error)
 {
     return setAs(strValue, error);
 }
 
-bool ElementHandle::getAsString(string& strValue, string& error) const
+bool ElementHandle::getAsString(string &strValue, string &error) const
 {
     return getAs(strValue, error);
 }
 
-bool ElementHandle::setAsStringArray(const std::vector<string>& astrValues, string& error)
+bool ElementHandle::setAsStringArray(const std::vector<string> &astrValues, string &error)
 {
     return setAs(astrValues, error);
 }
 
-bool ElementHandle::getAsStringArray(std::vector<string>& astrValues, string& error) const
+bool ElementHandle::getAsStringArray(std::vector<string> &astrValues, string &error) const
 {
     return getAs(astrValues, error);
 }
 
-bool ElementHandle::checkGetValidity(bool asArray, string& error) const
+bool ElementHandle::checkGetValidity(bool asArray, string &error) const
 {
     if (not isParameter()) {
         error = "Can not set element " + getPath() + " as it is not a parameter.";
@@ -340,8 +346,8 @@ bool ElementHandle::checkGetValidity(bool asArray, string& error) const
     if (asArray != isArray()) {
 
         auto toStr = [](bool array) { return array ? "an array" : "a scalar"; };
-        error = "Can not get \"" + getPath() + "\" as " + toStr(asArray) +
-                   " because it is " + toStr(isArray());
+        error = "Can not get \"" + getPath() + "\" as " + toStr(asArray) + " because it is " +
+                toStr(isArray());
         return false;
     }
 
@@ -349,7 +355,7 @@ bool ElementHandle::checkGetValidity(bool asArray, string& error) const
 }
 
 // Access validity
-bool ElementHandle::checkSetValidity(size_t arrayLength, string& error) const
+bool ElementHandle::checkSetValidity(size_t arrayLength, string &error) const
 {
     // Settings a parameter necessitates the right to get it
     if (not checkGetValidity(arrayLength != 0, error)) {
@@ -365,9 +371,8 @@ bool ElementHandle::checkSetValidity(size_t arrayLength, string& error) const
     if (arrayLength && (arrayLength != getArrayLength())) {
 
         using std::to_string;
-        error = "Array length mismatch for \"" + getPath() +
-                  "\", expected: " + to_string(getArrayLength()) +
-                  ", got: " + to_string(arrayLength);
+        error = "Array length mismatch for \"" + getPath() + "\", expected: " +
+                to_string(getArrayLength()) + ", got: " + to_string(arrayLength);
         return false;
     }
 

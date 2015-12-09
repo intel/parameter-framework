@@ -49,24 +49,24 @@ namespace details
  *
  * @tparam isWarning indicates which log canal to use
  */
-template<bool isWarning>
+template <bool isWarning>
 class LogWrapper
 {
 public:
-
     /** @param logger the ILogger to wrap */
-    LogWrapper(ILogger& logger, const std::string& prolog = "")
-        : mLogger(logger), mProlog(prolog)
-    {}
+    LogWrapper(ILogger &logger, const std::string &prolog = "") : mLogger(logger), mProlog(prolog)
+    {
+    }
 
     /**
      * Class copy constructor
      *
      * @param[in] logWrapper the instance to copy
      */
-    LogWrapper(const LogWrapper& logWrapper)
+    LogWrapper(const LogWrapper &logWrapper)
         : mLogger(logWrapper.mLogger), mProlog(logWrapper.mProlog)
-    {}
+    {
+    }
 
     /** Class destructor */
     ~LogWrapper()
@@ -87,7 +87,7 @@ public:
      * @param[in] log the information to log
      */
     template <class T>
-    LogWrapper& operator<<(const T &log)
+    LogWrapper &operator<<(const T &log)
     {
         mLog << log;
         return *this;
@@ -98,7 +98,7 @@ public:
      *
      * @param[in] logs list of information to log
      */
-    LogWrapper& operator<<(const std::list<std::string>& logs)
+    LogWrapper &operator<<(const std::list<std::string> &logs)
     {
         std::string separator = "\n" + mProlog;
         std::string formatedLogs = utility::asString(logs, separator);
@@ -113,16 +113,16 @@ public:
     }
 
 private:
-    LogWrapper& operator=(const LogWrapper&);
+    LogWrapper &operator=(const LogWrapper &);
 
     /** Log stream holder */
     std::ostringstream mLog;
 
     /** Wrapped logger */
-    ILogger& mLogger;
+    ILogger &mLogger;
 
     /** Log Prefix */
-    const std::string& mProlog;
+    const std::string &mProlog;
 };
 
 /** Default information logger type */

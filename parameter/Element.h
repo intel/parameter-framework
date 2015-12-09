@@ -40,43 +40,44 @@
 #include "PathNavigator.h"
 
 class CXmlElementSerializingContext;
-namespace utility {
+namespace utility
+{
 class ErrorContext;
 }
 
 class PARAMETER_EXPORT CElement : public IXmlSink, public IXmlSource
 {
 public:
-    CElement(const std::string& strName = "");
+    CElement(const std::string &strName = "");
     virtual ~CElement();
 
     // Description
-    void setDescription(const std::string& strDescription);
-    const std::string& getDescription() const;
+    void setDescription(const std::string &strDescription);
+    const std::string &getDescription() const;
 
     // Name / Path
-    const std::string& getName() const;
-    void setName(const std::string& strName);
-    bool rename(const std::string& strName, std::string& strError);
+    const std::string &getName() const;
+    void setName(const std::string &strName);
+    bool rename(const std::string &strName, std::string &strError);
     std::string getPath() const;
     std::string getQualifiedPath() const;
 
     // Creation / build
-    virtual bool init(std::string& strError);
+    virtual bool init(std::string &strError);
     virtual void clean();
 
     // Children management
-    void addChild(CElement* pChild);
-    bool removeChild(CElement* pChild);
-    void listChildren(std::string& strChildList) const;
+    void addChild(CElement *pChild);
+    bool removeChild(CElement *pChild);
+    void listChildren(std::string &strChildList) const;
     std::string listQualifiedPaths(bool bDive, size_t level = 0) const;
-    void listChildrenPaths(std::string& strChildPathList) const;
+    void listChildrenPaths(std::string &strChildPathList) const;
 
     // Hierarchy query
     size_t getNbChildren() const;
-    CElement* findChildOfKind(const std::string& strKind);
-    const CElement* findChildOfKind(const std::string& strKind) const;
-    const CElement* getParent() const;
+    CElement *findChildOfKind(const std::string &strKind);
+    const CElement *findChildOfKind(const std::string &strKind) const;
+    const CElement *getParent() const;
 
     /**
      * Get a child element (const)
@@ -86,7 +87,7 @@ public:
      * @param[in] index the index of the child element from 0 to number of children - 1
      * @return the child element
      */
-    const CElement* getChild(size_t index) const;
+    const CElement *getChild(size_t index) const;
 
     /**
      * Get a child element
@@ -96,19 +97,19 @@ public:
      * @param[in] index the index of the child element from 0 to number of children - 1
      * @return the child element
      */
-    CElement* getChild(size_t index);
+    CElement *getChild(size_t index);
 
-    const CElement* findChild(const std::string& strName) const;
-    CElement* findChild(const std::string& strName);
-    const CElement* findDescendant(CPathNavigator& pathNavigator) const;
-    CElement* findDescendant(CPathNavigator& pathNavigator);
-    bool isDescendantOf(const CElement* pCandidateAscendant) const;
+    const CElement *findChild(const std::string &strName) const;
+    CElement *findChild(const std::string &strName);
+    const CElement *findDescendant(CPathNavigator &pathNavigator) const;
+    CElement *findDescendant(CPathNavigator &pathNavigator);
+    bool isDescendantOf(const CElement *pCandidateAscendant) const;
 
     // From IXmlSink
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext);
+    virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 
     // From IXmlSource
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const;
+    virtual void toXml(CXmlElement &xmlElement, CXmlSerializingContext &serializingContext) const;
 
     /**
      * Serialize the children to XML
@@ -121,14 +122,14 @@ public:
      *                object upon which this method is called)
      * @param[in,out] serializingContext information about the serialization
      */
-    virtual void childrenToXml(CXmlElement& xmlElement,
-                               CXmlSerializingContext& serializingContext) const;
+    virtual void childrenToXml(CXmlElement &xmlElement,
+                               CXmlSerializingContext &serializingContext) const;
 
     // Content structure dump
-    std::string dumpContent(utility::ErrorContext& errorContext, const size_t depth = 0) const;
+    std::string dumpContent(utility::ErrorContext &errorContext, const size_t depth = 0) const;
 
     // Element properties
-    virtual void showProperties(std::string& strResult) const;
+    virtual void showProperties(std::string &strResult) const;
 
     // Class kind
     virtual std::string getKind() const = 0;
@@ -138,7 +139,7 @@ public:
      *
      * @param[in,out] xmlElement to fill with the description
      */
-    void setXmlDescriptionAttribute(CXmlElement& xmlElement) const;
+    void setXmlDescriptionAttribute(CXmlElement &xmlElement) const;
 
     /**
      * Appends if found human readable description property.
@@ -154,10 +155,10 @@ public:
 
 protected:
     // Content dumping
-    virtual std::string logValue(utility::ErrorContext& errorContext) const;
+    virtual std::string logValue(utility::ErrorContext &errorContext) const;
 
     // Hierarchy
-    CElement* getParent();
+    CElement *getParent();
 
     /**
      * Creates a child CElement from a child XML Element
@@ -167,8 +168,8 @@ protected:
      *
      * @return child a pointer on the CElement object that has been added to the tree
      */
-    CElement* createChild(const CXmlElement& childElement,
-                          CXmlSerializingContext& elementSerializingContext);
+    CElement *createChild(const CXmlElement &childElement,
+                          CXmlSerializingContext &elementSerializingContext);
 
     static const std::string gDescriptionPropertyName;
 
@@ -180,7 +181,7 @@ private:
     // House keeping
     void removeChildren();
     // Fill XmlElement during XML composing
-    void setXmlNameAttribute(CXmlElement& xmlElement) const;
+    void setXmlNameAttribute(CXmlElement &xmlElement) const;
 
     // Name
     std::string _strName;
@@ -189,10 +190,10 @@ private:
     std::string _strDescription;
 
     // Child iterators
-    typedef std::vector<CElement*>::iterator ChildArrayIterator;
-    typedef std::vector<CElement*>::reverse_iterator ChildArrayReverseIterator;
+    typedef std::vector<CElement *>::iterator ChildArrayIterator;
+    typedef std::vector<CElement *>::reverse_iterator ChildArrayReverseIterator;
     // Children
-    std::vector<CElement*> _childArray;
+    std::vector<CElement *> _childArray;
     // Parent
-    CElement* _pParent{nullptr};
+    CElement *_pParent{nullptr};
 };

@@ -37,11 +37,12 @@ class CParameterBlackboard;
 
 class CSyncerSet
 {
-    typedef std::set<ISyncer*>::const_iterator SyncerSetConstIterator;
+    typedef std::set<ISyncer *>::const_iterator SyncerSetConstIterator;
+
 public:
     // Filling
-    const CSyncerSet& operator+=(ISyncer* pRightSyncer);
-    const CSyncerSet& operator+=(const CSyncerSet& rightSyncerSet);
+    const CSyncerSet &operator+=(ISyncer *pRightSyncer);
+    const CSyncerSet &operator+=(const CSyncerSet &rightSyncerSet);
 
     // Clearing
     void clear();
@@ -53,8 +54,8 @@ public:
      * @param[out] errors, errors encountered during restoration
      * @return true if success false otherwise
      */
-    bool sync(CParameterBlackboard& parameterBlackboard, bool bBack, core::Results* errors) const;
+    bool sync(CParameterBlackboard &parameterBlackboard, bool bBack, core::Results *errors) const;
 
 private:
-    std::set<ISyncer*> _syncerSet;
+    std::set<ISyncer *> _syncerSet;
 };
