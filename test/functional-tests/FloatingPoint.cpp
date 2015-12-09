@@ -60,7 +60,8 @@ struct FloatsPF : public ParameterFramework
     FloatsPF() : ParameterFramework{std::move(validInstances)} {}
 };
 
-SCENARIO_METHOD (LazyPF, "Invalid floating points XML structure", "[floating point]") {
+SCENARIO_METHOD(LazyPF, "Invalid floating points XML structure", "[floating point]")
+{
     for (auto &vec : invalidParameters) {
         GIVEN ("intentional error: " + vec.title) {
             create(Config{&Config::instances, vec.payload});
@@ -71,7 +72,8 @@ SCENARIO_METHOD (LazyPF, "Invalid floating points XML structure", "[floating poi
     }
 }
 
-SCENARIO_METHOD (FloatsPF, "Floating points", "[floating points]") {
+SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]")
+{
     GIVEN ("A valid XML structure file") {
         THEN ("Start should succeed") {
             CHECK_NOTHROW(start());

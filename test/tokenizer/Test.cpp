@@ -39,7 +39,8 @@
 using std::string;
 using std::vector;
 
-SCENARIO ("Tokenizer tests") {
+SCENARIO("Tokenizer tests")
+{
     GIVEN ("A default tokenizer") {
 
         GIVEN ("A trivial string") {

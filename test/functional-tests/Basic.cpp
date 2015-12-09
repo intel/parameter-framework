@@ -43,7 +43,8 @@
 namespace parameterFramework
 {
 
-SCENARIO_METHOD (ParameterFramework, "Default logger", "[log]") {
+SCENARIO_METHOD(ParameterFramework, "Default logger", "[log]")
+{
     WHEN ("No logger is set") {
         THEN ("Start should succeed") {
             CHECK_NOTHROW(start());
@@ -51,7 +52,8 @@ SCENARIO_METHOD (ParameterFramework, "Default logger", "[log]") {
     }
 }
 
-SCENARIO_METHOD (ParameterFramework, "No Logger", "[log]") {
+SCENARIO_METHOD(ParameterFramework, "No Logger", "[log]")
+{
     WHEN ("A nullptr logger is set") {
         setLogger(nullptr);
         THEN ("Start should succeed") {
@@ -60,7 +62,8 @@ SCENARIO_METHOD (ParameterFramework, "No Logger", "[log]") {
     }
 }
 
-SCENARIO_METHOD (WarningPF, "Logger should receive info and warnings", "[log]") {
+SCENARIO_METHOD(WarningPF, "Logger should receive info and warnings", "[log]")
+{
     GIVEN ("Config files that emit warnings") {
         GIVEN ("A logger that stores logs") {
             StoreLogger logger{};
@@ -90,10 +93,12 @@ SCENARIO_METHOD (WarningPF, "Logger should receive info and warnings", "[log]") 
     }
 }
 
-SCENARIO_METHOD (LazyPF, "Tuning OK", "[properties][remote interface]") {
+SCENARIO_METHOD(LazyPF, "Tuning OK", "[properties][remote interface]")
+{
 }
 
-SCENARIO_METHOD (LazyPF, "Invalid XML configuration") {
+SCENARIO_METHOD(LazyPF, "Invalid XML configuration")
+{
     for (auto &xmlT : Tests<std::string>{{"an unknown tag", "<unknown_tag/>"},
                                          {"an unclosed tag", "<unclosed>"}}) {
         auto invalidXml = xmlT.payload;
@@ -114,7 +119,8 @@ SCENARIO_METHOD (LazyPF, "Invalid XML configuration") {
     }
 }
 
-SCENARIO_METHOD (LazyPF, "Plugin OK", "[properties][missing plugin policy]") {
+SCENARIO_METHOD(LazyPF, "Plugin OK", "[properties][missing plugin policy]")
+{
     for (auto &pluginNameT :
          Tests<std::string>{{"an non existing plugin", "libdonetexist.so"},
                             {"an existing library but invalid (linux) PF plugin", "libc.so.6"}}) {
@@ -141,7 +147,8 @@ SCENARIO_METHOD (LazyPF, "Plugin OK", "[properties][missing plugin policy]") {
     }
 }
 
-SCENARIO_METHOD (LazyPF, "Invalid domains", "[properties]") {
+SCENARIO_METHOD(LazyPF, "Invalid domains", "[properties]")
+{
     GIVEN ("An invalid domain file") {
         create({&Config::domains, "<Domain name='Invalid'/>"});
         THEN ("Start should fail") {
@@ -156,7 +163,8 @@ SCENARIO_METHOD (LazyPF, "Invalid domains", "[properties]") {
     }
 }
 
-SCENARIO_METHOD (ParameterFramework, "Raw value space") {
+SCENARIO_METHOD(ParameterFramework, "Raw value space")
+{
     WHEN ("Raw value space is set") {
         setRawValueSpace(true);
         THEN ("Value space should be raw") {

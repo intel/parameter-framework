@@ -39,7 +39,7 @@
 
 #ifndef SCENARIO_METHOD
 /** SCENARIO_METHOD is not available in catch on ubuntu 12.04 */
-#define SCENARIO_METHOD(className, ...) TEST_CASE_METHOD (className, "Scenario: " __VA_ARGS__)
+#define SCENARIO_METHOD(className, ...) TEST_CASE_METHOD(className, "Scenario: " __VA_ARGS__)
 #endif
 
 namespace parameterFramework

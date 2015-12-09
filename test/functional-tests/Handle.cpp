@@ -198,19 +198,22 @@ struct AllParamsPF : public ParameterFramework
     }
 };
 
-SCENARIO_METHOD (AllParamsPF, "Export boolean", "[handler][structure][xml]") {
+SCENARIO_METHOD(AllParamsPF, "Export boolean", "[handler][structure][xml]")
+{
     string expected = rootNode("BooleanParameter", "Name='bool' Description='bool'", "");
     checkStructure("/test/test/bool", expected);
 }
 
-SCENARIO_METHOD (AllParamsPF, "Export component", "[handler][structure][xml]") {
+SCENARIO_METHOD(AllParamsPF, "Export component", "[handler][structure][xml]")
+{
     string expected = rootNode("ParameterBlock", "Name='component_scalar' "
                                                  "Description='description_component_scalar'",
                                getBasicParams());
     checkStructure("/test/test/component_scalar", expected);
 }
 
-SCENARIO_METHOD (AllParamsPF, "Export component array", "[handler][structure][xml]") {
+SCENARIO_METHOD(AllParamsPF, "Export component array", "[handler][structure][xml]")
+{
     string expected = rootNode(
         "ParameterBlock", "Name='component_array' Description='description_component_array'",
         nodeDesc("ParameterBlock", "0", getBasicParams(), "", "description_component_array") +
@@ -218,7 +221,8 @@ SCENARIO_METHOD (AllParamsPF, "Export component array", "[handler][structure][xm
     checkStructure("/test/test/component_array", expected);
 }
 
-SCENARIO_METHOD (AllParamsPF, "Export all parameters", "[handler][structure][xml]") {
+SCENARIO_METHOD(AllParamsPF, "Export all parameters", "[handler][structure][xml]")
+{
     string paramExpected = getBasicParams() +
                            nodeDesc("ParameterBlock", "parameter_block", getBasicParams()) +
                            nodeDesc("ParameterBlock", "parameter_block_array",
@@ -362,7 +366,8 @@ static const char *testBasicSettingsXML = R"(
       </BitParameterBlock>
 )";
 
-SCENARIO_METHOD (SettingsTestPF, "Export and import XML settings", "[handler][settings][xml]") {
+SCENARIO_METHOD(SettingsTestPF, "Export and import XML settings", "[handler][settings][xml]")
+{
     WHEN ("Exporting root XML") {
         auto getAsXML = [this](string path) { return ElementHandle(*this, path).getAsXML(); };
         CHECK(getAsXML("/") == getAsXML("/test"));
@@ -397,12 +402,14 @@ static const string testBasicSettingsBytes =
     "40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 "
     "00 00 00 00 00 00 00 8a 02 48 00 ff ff ff ff ";
 
-SCENARIO_METHOD (SettingsTestPF, "Bijection of binary show and read", "[identity][test]") {
+SCENARIO_METHOD(SettingsTestPF, "Bijection of binary show and read", "[identity][test]")
+{
     CHECK(showBytes(readBytes(testBasicSettingsBytes)) == testBasicSettingsBytes);
 }
 
-SCENARIO_METHOD (SettingsTestPF, "Export and import root binary settings",
-                 "[handler][settings][bytes]") {
+SCENARIO_METHOD(SettingsTestPF, "Export and import root binary settings",
+                "[handler][settings][bytes]")
+{
     ElementHandle root(*this, "/");
     ElementHandle systemClass(*this, "/");
 
@@ -421,8 +428,9 @@ SCENARIO_METHOD (SettingsTestPF, "Export and import root binary settings",
     }
 }
 
-SCENARIO_METHOD (SettingsTestPF, "Export and import basic binary settings",
-                 "[handler][settings][bytes]") {
+SCENARIO_METHOD(SettingsTestPF, "Export and import basic binary settings",
+                "[handler][settings][bytes]")
+{
     ElementHandle basicParams(*this, "/test/test/parameter_block");
     WHEN ("Exporting basic parameter binary") {
         checkBytesEq(basicParams.getAsBytes(), defaultBasicSettingsBytes);
@@ -435,8 +443,9 @@ SCENARIO_METHOD (SettingsTestPF, "Export and import basic binary settings",
     }
 }
 
-SCENARIO_METHOD (SettingsTestPF, "Export and import array binary settings",
-                 "[handler][settings][bytes]") {
+SCENARIO_METHOD(SettingsTestPF, "Export and import array binary settings",
+                "[handler][settings][bytes]")
+{
     ElementHandle array(*this, "/test/test/parameter_block_array");
     ElementHandle elem0(*this, "/test/test/parameter_block_array/0");
     WHEN ("Importing one array element") {
@@ -447,8 +456,9 @@ SCENARIO_METHOD (SettingsTestPF, "Export and import array binary settings",
     }
 }
 
-SCENARIO_METHOD (SettingsTestPF, "Import root in one format, export in an other",
-                 "[handler][settings][bytes][xml]") {
+SCENARIO_METHOD(SettingsTestPF, "Import root in one format, export in an other",
+                "[handler][settings][bytes][xml]")
+{
     ElementHandle root(*this, "/test");
     string rootBytesSettings = fullBytesSettings(testBasicSettingsBytes);
     string rootXMLSettings = fullXMLSettings(testBasicSettingsXML);
@@ -468,8 +478,9 @@ SCENARIO_METHOD (SettingsTestPF, "Import root in one format, export in an other"
     }
 }
 
-SCENARIO_METHOD (SettingsTestPF, "Import basic params in one format, export in an other",
-                 "[handler][settings][bytes][xml]") {
+SCENARIO_METHOD(SettingsTestPF, "Import basic params in one format, export in an other",
+                "[handler][settings][bytes][xml]")
+{
     ElementHandle basicParams(*this, "/test/test/parameter_block_array/0");
     string basicXMLSettings = mkBasicSettings(testBasicSettingsXML, "0");
 

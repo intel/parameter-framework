@@ -41,7 +41,8 @@ using std::string;
 namespace utility
 {
 
-SCENARIO ("join<int>") {
+SCENARIO("join<int>")
+{
     struct Test
     {
         list<int> input;
@@ -64,7 +65,8 @@ SCENARIO ("join<int>") {
     }
 }
 
-SCENARIO ("asString(list)") {
+SCENARIO("asString(list)")
+{
     struct Test
     {
         string title;
@@ -92,7 +94,8 @@ SCENARIO ("asString(list)") {
     }
 }
 
-SCENARIO ("asString(map)") {
+SCENARIO("asString(map)")
+{
     using std::map;
 
     using Map = map<string, string>;
@@ -123,7 +126,8 @@ SCENARIO ("asString(map)") {
     }
 }
 
-SCENARIO ("appendTitle") {
+SCENARIO("appendTitle")
+{
     struct Test
     {
         string initial;
@@ -150,14 +154,16 @@ SCENARIO ("appendTitle") {
     }
 }
 
-SCENARIO ("isNotHexadecimal") {
+SCENARIO("isNotHexadecimal")
+{
     for (auto &str : {"a", "0", "012", "13", "ABC", "Oxa"}) {
         CAPTURE(str);
         CHECK(not isHexadecimal(str));
     }
 }
 
-SCENARIO ("isHexadecimal") {
+SCENARIO("isHexadecimal")
+{
     for (auto str : {"0xa", "0X0", "0x012", "0x13", "0xConsider as hexa as starting with 0x"}) {
         CAPTURE(str);
         CHECK(isHexadecimal(str));
@@ -186,7 +192,8 @@ void checkBinaryEqual(T1 v1, T2 v2)
     CHECK((v2 == v1AsT2));
 }
 
-SCENARIO ("binaryCopy bit exactness") {
+SCENARIO("binaryCopy bit exactness")
+{
     GIVEN ("Integer representations computed using http://babbage.cs.qc.cuny.edu/IEEE-754/") {
 
         THEN ("Floats should be coded on 32bits and fulfill IEEE-754."

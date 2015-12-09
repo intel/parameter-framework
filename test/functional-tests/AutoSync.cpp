@@ -85,7 +85,8 @@ private:
     }
 };
 
-SCENARIO_METHOD (BoolPF, "Auto sync") {
+SCENARIO_METHOD(BoolPF, "Auto sync")
+{
     GIVEN ("A Pfw that starts") {
         REQUIRE_NOTHROW(start());
 

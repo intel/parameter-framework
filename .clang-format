@@ -87,8 +87,7 @@ PointerAlignment: Right
 PenaltyReturnTypeOnItsOwnLine: 10000
 
 # Treat 'catch' BDD macros as control instructions
-ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH, SCENARIO, SCENARIO_METHOD, SCENARIO,
- SCENARIO_METHOD, GIVEN, WHEN, AND_WHEN, THEN, AND_THEN, TEST_CASE, TEST_CASE_METHOD,
- METHOD_AS_TEST_CASE, SECTION ]
+ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH, GIVEN, WHEN, AND_WHEN, THEN, AND_THEN,
+    SECTION ]
 
 ...

@@ -112,7 +112,8 @@ struct Test
     PfwHandler *pfw;
 };
 
-TEST_CASE_METHOD (Test, "Parameter-framework c api use") {
+TEST_CASE_METHOD(Test, "Parameter-framework c api use")
+{
     // Create criteria
     const char *letterList[] = {"a", "b", "c", NULL};
     const char *numberList[] = {"1", "2", "3", NULL};
