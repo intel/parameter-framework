@@ -38,7 +38,6 @@
 
 #pragma once
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -53,17 +52,17 @@ extern "C" {
   * Such arguments are marked NONNULL.
   */
 #if defined(__clang__) || defined(__GNUC__)
-#    define NONNULL  __attribute__((nonnull))
-#    define NONNULL_(...)  __attribute__((nonnull (__VA_ARGS__)))
-#    define USERESULT __attribute__((warn_unused_result))
+#define NONNULL __attribute__((nonnull))
+#define NONNULL_(...) __attribute__((nonnull(__VA_ARGS__)))
+#define USERESULT __attribute__((warn_unused_result))
 #elif defined(_MSC_VER)
-    // In visual studio's cl there is no
-    // equivalent of nonnull
-#    define NONNULL
-#    define NONNULL_(...)
-#    define USERESULT _Check_return_
+// In visual studio's cl there is no
+// equivalent of nonnull
+#define NONNULL
+#define NONNULL_(...)
+#define USERESULT _Check_return_
 #else
-#   error "Unknown compilator"
+#error "Unknown compilator"
 #endif
 
 /** Private handle to a parameter framework.
@@ -99,7 +98,8 @@ typedef enum {
 typedef void PfwLogCb(void *userCtx, PfwLogLevel level, const char *logLine);
 
 /** Logger containing a callback method and its context. */
-typedef struct {
+typedef struct
+{
     /** User defined arbitrary value that will be provided to all logCb call. */
     void *userCtx;
     /** Callback that will be called.
@@ -113,24 +113,24 @@ typedef struct {
 ///////////////////////////////
 
 /** Structure of a parameter framework criterion. */
-typedef struct {
+typedef struct
+{
     /** Name of the criterion in the pfw configuration rules. */
-    const char *name; //< Must not be null.
-    bool inclusive; //< True if the criterion is inclusive, false if exclusive.
-    /** Null terminated list of criterion value names.
-      * @example { "Red", "Green", "Blue", NULL }
-      *
-      * For an exclusive criterion, the list must not contain more elements then
-      *                             INT_MAX.
-      * For an inclusive criterion, the list must not contain more elements then
-      *                             sizeof(int) * BIT_CHAR - 1.
-      *                             Ie: (int)1 << n must *not* overflow (UB),
-      *                                 were n is the number of element in the
-      *                                 list. @see pfwSetCriterion
-      */
+    const char *name;    //< Must not be null.
+    bool inclusive;      //< True if the criterion is inclusive, false if exclusive.
+                         /** Null terminated list of criterion value names.
+                           * @example { "Red", "Green", "Blue", NULL }
+                           *
+                           * For an exclusive criterion, the list must not contain more elements then
+                           *                             INT_MAX.
+                           * For an inclusive criterion, the list must not contain more elements then
+                           *                             sizeof(int) * BIT_CHAR - 1.
+                           *                             Ie: (int)1 << n must *not* overflow (UB),
+                           *                                 were n is the number of element in the
+                           *                                 list. @see pfwSetCriterion
+                           */
     const char **values; //< Must not be null.
 } PfwCriterion;
-
 
 /** Create a parameter framework instance.
   * Can not fail except for memory allocation.
@@ -153,9 +153,8 @@ void pfwDestroy(PfwHandler *handle) NONNULL;
   * @return true on success, false on failure.
   */
 CPARAMETER_EXPORT
-bool pfwStart(PfwHandler *handle, const char *configPath,
-              const PfwCriterion criteria[], size_t criterionNb,
-              const PfwLogger *loggger) NONNULL_(1, 2, 3) USERESULT;
+bool pfwStart(PfwHandler *handle, const char *configPath, const PfwCriterion criteria[],
+              size_t criterionNb, const PfwLogger *loggger) NONNULL_(1, 2, 3) USERESULT;
 
 /** @return a string describing the last call result.
   * If the last pfw function call succeeded, return an empty string.
@@ -190,7 +189,8 @@ CPARAMETER_EXPORT
 bool pfwSetCriterion(PfwHandler *handle, const char name[], int value) NONNULL USERESULT;
 /** Get a criterion value given its name.
   * Same usage as pfwSetCriterion except that value is an out param.
-  * Get criterion will return the last value setted with pfwSetCriterion independantly of pfwCommitCritenio.
+  * Get criterion will return the last value setted with pfwSetCriterion independantly of
+ * pfwCommitCritenio.
   */
 CPARAMETER_EXPORT
 bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value) NONNULL USERESULT;
@@ -244,7 +244,7 @@ void pfwUnbindParameter(PfwParameterHandler *handle) NONNULL;
   * return true of success, false on failure.
   */
 CPARAMETER_EXPORT
-bool pfwGetIntParameter(const PfwParameterHandler *handle, int32_t *value ) NONNULL USERESULT;
+bool pfwGetIntParameter(const PfwParameterHandler *handle, int32_t *value) NONNULL USERESULT;
 
 /** Set the value of a previously bind int parameter.
   * @param handle[in] Handler to a valid parameter.

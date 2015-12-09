@@ -47,9 +47,9 @@ using std::string;
 /** Rename long pfw types to short ones in pfw namespace. */
 namespace pfw
 {
-    typedef ISelectionCriterionInterface Criterion;
-    typedef std::map<string, Criterion *> Criteria;
-    typedef CParameterMgrPlatformConnector Pfw;
+typedef ISelectionCriterionInterface Criterion;
+typedef std::map<string, Criterion *> Criteria;
+typedef CParameterMgrPlatformConnector Pfw;
 }
 
 /** Class to abstract the boolean+string status api. */
@@ -59,16 +59,27 @@ public:
     /** Fail without an instance of status. */
     static bool failure() { return false; }
     /** Fail with the given error msg. */
-    bool failure(const string &msg) { mMsg = msg; return false; }
+    bool failure(const string &msg)
+    {
+        mMsg = msg;
+        return false;
+    }
     /** Success (no error message). */
-    bool success() { mMsg.clear(); return true; }
+    bool success()
+    {
+        mMsg.clear();
+        return true;
+    }
 
     /** Forward a status operation.
       * @param success[in] the operaton status to forward
       *                    or forward a previous failure if omitted
       */
-    bool forward(bool success = false) {
-        if (success) { mMsg.clear(); }
+    bool forward(bool success = false)
+    {
+        if (success) {
+            mMsg.clear();
+        }
         return success;
     }
     /** Error message accessors.
@@ -87,7 +98,8 @@ private:
 ///////////////////////////////
 
 /** Default log callback. Log to cout or cerr depending on level. */
-static void defaultLogCb(void *, PfwLogLevel level, const char *logLine) {
+static void defaultLogCb(void *, PfwLogLevel level, const char *logLine)
+{
     switch (level) {
     case pfwLogInfo:
         std::cout << logLine << std::endl;
@@ -98,7 +110,7 @@ static void defaultLogCb(void *, PfwLogLevel level, const char *logLine) {
     };
 }
 
-static PfwLogger defaultLogger = { NULL, &defaultLogCb };
+static PfwLogger defaultLogger = {NULL, &defaultLogCb};
 
 class LogWrapper : public CParameterMgrPlatformConnector::ILogger
 {
@@ -109,7 +121,7 @@ public:
 private:
     void info(const string &msg) override { log(pfwLogInfo, msg); }
 
-    void warning(const string &msg) override  { log(pfwLogWarning, msg); }
+    void warning(const string &msg) override { log(pfwLogWarning, msg); }
 
     void log(PfwLogLevel level, const string &strLog)
     {
@@ -137,6 +149,7 @@ struct PfwHandler_ : private utility::NonCopyable
       * Is mutable because even a const function can fail.
       */
     mutable Status lastStatus;
+
 private:
     LogWrapper mLogger;
 };
@@ -161,7 +174,6 @@ void PfwHandler::setLogger(const PfwLogger *logger)
     pfw->setLogger(&mLogger);
 }
 
-
 bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t criterionNb)
 {
     Status &status = lastStatus;
@@ -176,8 +188,7 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
         }
         // Check that the criterion does not exist
         if (criteria.find(criterion.name) != criteria.end()) {
-            return status.failure("Criterion \"" + string(criterion.name) +
-                                  "\" already exist");
+            return status.failure("Criterion \"" + string(criterion.name) + "\" already exist");
         }
 
         // Create criterion type
@@ -189,7 +200,7 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
             int value;
             if (criterion.inclusive) {
                 // Check that (int)1 << valueIndex would not overflow (UB)
-                if(std::numeric_limits<int>::max() >> valueIndex == 0) {
+                if (std::numeric_limits<int>::max() >> valueIndex == 0) {
                     return status.failure("Too many values for criterion " +
                                           string(criterion.name));
                 }
@@ -197,7 +208,7 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
             } else {
                 value = static_cast<int>(valueIndex);
             }
-            const char * valueName = criterion.values[valueIndex];
+            const char *valueName = criterion.values[valueIndex];
             string error;
             if (not type->addValuePair(value, valueName, error)) {
                 return status.failure("Could not add value " + string(valueName) +
@@ -210,10 +221,8 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
     return status.success();
 }
 
-
-bool pfwStart(PfwHandler *handle, const char *configPath,
-              const PfwCriterion criteria[], size_t criterionNb,
-              const PfwLogger *logger)
+bool pfwStart(PfwHandler *handle, const char *configPath, const PfwCriterion criteria[],
+              size_t criterionNb, const PfwLogger *logger)
 {
     // Check that the api is correctly used
     Status &status = handle->lastStatus;
@@ -238,8 +247,7 @@ const char *pfwGetLastError(const PfwHandler *handle)
     return handle->lastStatus.msg().c_str();
 }
 
-static pfw::Criterion *getCriterion(const pfw::Criteria &criteria,
-                                    const string &name)
+static pfw::Criterion *getCriterion(const pfw::Criteria &criteria, const string &name)
 {
     pfw::Criteria::const_iterator it = criteria.find(name);
     return it == criteria.end() ? NULL : it->second;
@@ -300,7 +308,8 @@ PfwParameterHandler *pfwBindParameter(PfwHandler *handle, const char path[])
     Status &status = handle->lastStatus;
     if (handle->pfw == NULL) {
         status.failure("The parameter framework is not started, "
-                       "while trying to bind parameter \"" + string(path) + "\")");
+                       "while trying to bind parameter \"" +
+                       string(path) + "\")");
         return NULL;
     }
 
@@ -321,7 +330,6 @@ void pfwUnbindParameter(PfwParameterHandler *handle)
     delete handle;
 }
 
-
 bool pfwGetIntParameter(const PfwParameterHandler *handle, int32_t *value)
 {
     Status &status = handle->pfw.lastStatus;
@@ -339,7 +347,9 @@ bool pfwGetStringParameter(const PfwParameterHandler *handle, char *value[])
     *value = NULL;
     string retValue;
     bool success = handle->parameter.getAsString(retValue, status.msg());
-    if (not success) { return status.forward(); }
+    if (not success) {
+        return status.forward();
+    }
 
     *value = strdup(retValue.c_str());
     return status.success();
@@ -351,5 +361,7 @@ bool pfwSetStringParameter(PfwParameterHandler *handle, const char value[])
     return status.forward(handle->parameter.setAsString(value, status.msg()));
 }
 
-void pfwFree(void *ptr) { std::free(ptr); }
-
+void pfwFree(void *ptr)
+{
+    std::free(ptr);
+}
