@@ -31,10 +31,9 @@
 #include "LoggingElementBuilderTemplate.h"
 #include "SkeletonSubsystem.h"
 
-
-void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary* pSubsystemLibrary, core::log::Logger& logger)
+void PARAMETER_FRAMEWORK_PLUGIN_ENTRYPOINT_V1(CSubsystemLibrary *pSubsystemLibrary,
+                                              core::log::Logger &logger)
 {
     pSubsystemLibrary->addElementBuilder(
-            "Skeleton",
-            new TLoggingElementBuilderTemplate<CSkeletonSubsystem>(logger));
+        "Skeleton", new TLoggingElementBuilderTemplate<CSkeletonSubsystem>(logger));
 }

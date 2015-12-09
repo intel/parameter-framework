@@ -34,16 +34,13 @@
 class MyLogger final : public CParameterMgrFullConnector::ILogger
 {
 public:
-    void info(const std::string& log) override {
-        std::cout << "Info: " << log << std::endl;
-    }
+    void info(const std::string &log) override { std::cout << "Info: " << log << std::endl; }
 
-    void warning(const std::string& log) override {
-        std::cerr << "Warning: " << log << std::endl;
-    }
+    void warning(const std::string &log) override { std::cerr << "Warning: " << log << std::endl; }
 };
 
-int main(void) {
+int main(void)
+{
     MyLogger logger;
     CParameterMgrFullConnector instance("toplevel.xml");
     instance.setLogger(&logger);

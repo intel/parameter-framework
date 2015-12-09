@@ -36,20 +36,19 @@ class CMappingContext;
 class CSkeletonSubsystemObject : public CFormattedSubsystemObject
 {
 public:
-    CSkeletonSubsystemObject(const std::string& strMappingValue,
-                             CInstanceConfigurableElement* pInstanceConfigurableElement,
-                             const CMappingContext& context,
-                             core::log::Logger& logger);
+    CSkeletonSubsystemObject(const std::string &strMappingValue,
+                             CInstanceConfigurableElement *pInstanceConfigurableElement,
+                             const CMappingContext &context, core::log::Logger &logger);
 
 protected:
     // from CSubsystemObject
     // Sync to/from HW
-    virtual bool sendToHW(std::string& strError);
-    virtual bool receiveFromHW(std::string& strError);
+    virtual bool sendToHW(std::string &strError);
+    virtual bool receiveFromHW(std::string &strError);
 
 private:
     // Sync to/from HW
-    virtual bool accessHW(bool bReceive, std::string& strError);
+    virtual bool accessHW(bool bReceive, std::string &strError);
 
 protected:
     // Scalar parameter size for elementary access
