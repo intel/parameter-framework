@@ -38,8 +38,8 @@
 
 using std::string;
 
-CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort) :
-    _uiPort(uiPort), _io_service(), _acceptor(_io_service), _socket(_io_service)
+CRemoteProcessorServer::CRemoteProcessorServer(uint16_t uiPort)
+    : _uiPort(uiPort), _io_service(), _acceptor(_io_service), _socket(_io_service)
 {
 }
 
@@ -81,8 +81,7 @@ bool CRemoteProcessorServer::stop()
 
 void CRemoteProcessorServer::acceptRegister(IRemoteCommandHandler &commandHandler)
 {
-    auto peerHandler = [this, &commandHandler](asio::error_code ec)
-    {
+    auto peerHandler = [this, &commandHandler](asio::error_code ec) {
         if (ec) {
             std::cerr << "Accept failed: " << ec.message() << std::endl;
             return;
@@ -132,7 +131,7 @@ void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandH
         switch (res) {
         case CRequestMessage::error:
             std::cout << "Error while receiving message: " << strError << std::endl;
-            // fall through
+        // fall through
         case CRequestMessage::peerDisconnected:
             // Consider peer disconnection as normal, no log
             return; // Bail out
@@ -156,8 +155,8 @@ void CRemoteProcessorServer::handleNewConnection(IRemoteCommandHandler &commandH
 
         switch (res) {
         case CRequestMessage::peerDisconnected:
-            // Peer should not disconnect while waiting for an answer
-            // Fall through to log the error and bail out
+        // Peer should not disconnect while waiting for an answer
+        // Fall through to log the error and bail out
         case CRequestMessage::error:
             std::cout << "Error while receiving message: " << strError << std::endl;
             return; // Bail out

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -37,17 +37,17 @@ class IRemoteCommand
 {
 public:
     // Command Name
-    virtual const std::string& getCommand() const = 0;
+    virtual const std::string &getCommand() const = 0;
 
     // Arguments
-    virtual void addArgument(const std::string& strArgument) = 0;
+    virtual void addArgument(const std::string &strArgument) = 0;
     virtual size_t getArgumentCount() const = 0;
-    virtual const std::string& getArgument(size_t argument) const = 0;
+    virtual const std::string &getArgument(size_t argument) const = 0;
     /** Get all the arguments in a vector
      *
      * @returns a reference to a vector containing all the arguments.
      */
-    virtual const std::vector<std::string>& getArguments() const = 0;
+    virtual const std::vector<std::string> &getArguments() const = 0;
     virtual const std::string packArguments(size_t startArgument, size_t nbArguments) const = 0;
 
 protected:

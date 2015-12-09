@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -36,10 +36,10 @@
 
 using std::string;
 
-const char* const CRequestMessage::gacDelimiters = " \t\n\v\f\r";
+const char *const CRequestMessage::gacDelimiters = " \t\n\v\f\r";
 
-CRequestMessage::CRequestMessage(const string& strCommand) :
-    base(MsgType::ECommandRequest), _strCommand(strCommand)
+CRequestMessage::CRequestMessage(const string &strCommand)
+    : base(MsgType::ECommandRequest), _strCommand(strCommand)
 {
 }
 
@@ -48,18 +48,18 @@ CRequestMessage::CRequestMessage()
 }
 
 // Command Name
-void CRequestMessage::setCommand(const string& strCommand)
+void CRequestMessage::setCommand(const string &strCommand)
 {
     _strCommand = trim(strCommand);
 }
 
-const string& CRequestMessage::getCommand() const
+const string &CRequestMessage::getCommand() const
 {
     return _strCommand;
 }
 
 // Arguments
-void CRequestMessage::addArgument(const string& strArgument)
+void CRequestMessage::addArgument(const string &strArgument)
 {
     _argumentVector.push_back(trim(strArgument));
 }
@@ -69,12 +69,12 @@ size_t CRequestMessage::getArgumentCount() const
     return _argumentVector.size();
 }
 
-const std::vector<string>& CRequestMessage::getArguments() const
+const std::vector<string> &CRequestMessage::getArguments() const
 {
     return _argumentVector;
 }
 
-const string& CRequestMessage::getArgument(size_t argument) const
+const string &CRequestMessage::getArgument(size_t argument) const
 {
     assert(argument < _argumentVector.size());
 
@@ -90,7 +90,8 @@ const string CRequestMessage::packArguments(size_t uiStartArgument, size_t uiNbA
     // Pack arguments, separating them with a space
     bool bFirst = true;
 
-    for (size_t argument = uiStartArgument; argument < uiStartArgument + uiNbArguments; argument++) {
+    for (size_t argument = uiStartArgument; argument < uiStartArgument + uiNbArguments;
+         argument++) {
 
         if (!bFirst) {
 
@@ -155,12 +156,12 @@ size_t CRequestMessage::getDataSize() const
 }
 
 // Trim input string
-string CRequestMessage::trim(const string& strToTrim)
+string CRequestMessage::trim(const string &strToTrim)
 {
     // Trim string
     string strTrimmed = strToTrim;
 
-    strTrimmed.erase(strTrimmed.find_last_not_of(gacDelimiters) + 1 );
+    strTrimmed.erase(strTrimmed.find_last_not_of(gacDelimiters) + 1);
 
     strTrimmed.erase(0, strTrimmed.find_first_not_of(gacDelimiters));
 
