@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -35,7 +35,8 @@
 class IXmlSink
 {
 public:
-    virtual bool fromXml(const CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) = 0;
+    virtual bool fromXml(const CXmlElement &xmlElement,
+                         CXmlSerializingContext &serializingContext) = 0;
 
 protected:
     virtual ~IXmlSink() {}

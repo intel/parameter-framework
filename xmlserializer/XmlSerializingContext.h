@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2015, Intel Corporation
  * All rights reserved.
  *
@@ -49,11 +49,11 @@ struct _xmlError;
 class CXmlSerializingContext : public utility::ErrorContext
 {
 public:
-    CXmlSerializingContext(std::string& strError);
+    CXmlSerializingContext(std::string &strError);
     ~CXmlSerializingContext();
 
     // Error
-    void appendLineToError(const std::string& strAppend);
+    void appendLineToError(const std::string &strAppend);
 
     /** XML error handler
       *
@@ -61,7 +61,7 @@ public:
       * @param[in] format is the xml error output format
       *
       */
-    static void structuredErrorHandler(void* userData, _xmlError *error);
+    static void structuredErrorHandler(void *userData, _xmlError *error);
 
 private:
     std::string _strXmlError;

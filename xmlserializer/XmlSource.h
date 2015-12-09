@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2011-2014, Intel Corporation
  * All rights reserved.
  *
@@ -35,7 +35,8 @@
 class IXmlSource
 {
 public:
-    virtual void toXml(CXmlElement& xmlElement, CXmlSerializingContext& serializingContext) const = 0;
+    virtual void toXml(CXmlElement &xmlElement,
+                       CXmlSerializingContext &serializingContext) const = 0;
 
 protected:
     virtual ~IXmlSource() {}

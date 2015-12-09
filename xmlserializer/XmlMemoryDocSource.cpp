@@ -34,16 +34,14 @@
 
 #define base CXmlDocSource
 
-CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource* pXmlSource, bool bValidateWithSchema,
-                                         const std::string& strRootElementType,
-                                         const std::string& schemaBaseUri,
-                                         const std::string& strProduct,
-                                         const std::string& strVersion):
-     base(xmlNewDoc(BAD_CAST "1.0"), bValidateWithSchema,
-          xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
-     _pXmlSource(pXmlSource),
-     _strProduct(strProduct),
-     _strVersion(strVersion)
+CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource *pXmlSource, bool bValidateWithSchema,
+                                         const std::string &strRootElementType,
+                                         const std::string &schemaBaseUri,
+                                         const std::string &strProduct,
+                                         const std::string &strVersion)
+    : base(xmlNewDoc(BAD_CAST "1.0"), bValidateWithSchema,
+           xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
+      _pXmlSource(pXmlSource), _strProduct(strProduct), _strVersion(strVersion)
 {
     // Get Schema file
     _strXmlSchemaFile = CXmlDocSource::mkUri(schemaBaseUri, strRootElementType + ".xsd");
@@ -60,7 +58,7 @@ void CXmlMemoryDocSource::init()
 #endif
 }
 
-bool CXmlMemoryDocSource::populate(CXmlSerializingContext& serializingContext)
+bool CXmlMemoryDocSource::populate(CXmlSerializingContext &serializingContext)
 {
 #ifndef LIBXML_TREE_ENABLED
     serializingContext.setError("XML file exporting feature unsupported on this image. " +
@@ -71,7 +69,7 @@ bool CXmlMemoryDocSource::populate(CXmlSerializingContext& serializingContext)
 #endif
 
     // Create Xml element with the Doc
-     CXmlElement docElement(_pRootNode);
+    CXmlElement docElement(_pRootNode);
 
     if (!_strXmlSchemaFile.empty()) {
 

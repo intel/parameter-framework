@@ -44,7 +44,7 @@ public:
       * @param[out] pXmlSink a pointer to a parameter-framework structure that can parse an xml
       * description to instanciate itself
       */
-    CXmlMemoryDocSink(IXmlSink* pXmlSink);
+    CXmlMemoryDocSink(IXmlSink *pXmlSink);
 
 private:
     /**
@@ -57,8 +57,8 @@ private:
       *
       * @return false if any error occurs
       */
-    virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext);
+    virtual bool doProcess(CXmlDocSource &xmlDocSource, CXmlSerializingContext &serializingContext);
 
     // Xml Sink
-    IXmlSink* _pXmlSink;
+    IXmlSink *_pXmlSink;
 };

@@ -32,13 +32,12 @@
 
 #define base CXmlDocSink
 
-CXmlMemoryDocSink::CXmlMemoryDocSink(IXmlSink* pXmlSink):
-    _pXmlSink(pXmlSink)
+CXmlMemoryDocSink::CXmlMemoryDocSink(IXmlSink *pXmlSink) : _pXmlSink(pXmlSink)
 {
 }
 
-bool CXmlMemoryDocSink::doProcess(CXmlDocSource& xmlDocSource,
-                                  CXmlSerializingContext& serializingContext)
+bool CXmlMemoryDocSink::doProcess(CXmlDocSource &xmlDocSource,
+                                  CXmlSerializingContext &serializingContext)
 {
 
     CXmlElement docElement;

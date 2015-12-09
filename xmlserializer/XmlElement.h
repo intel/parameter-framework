@@ -38,77 +38,80 @@ struct _xmlDoc;
 class CXmlElement
 {
     friend class CChildIterator;
+
 public:
-    CXmlElement(_xmlNode* pXmlElement);
+    CXmlElement(_xmlNode *pXmlElement);
     CXmlElement();
 
     // Xml element
-    void setXmlElement(_xmlNode* pXmlElement);
+    void setXmlElement(_xmlNode *pXmlElement);
 
     // Getters
     std::string getType() const;
     std::string getPath() const;
     std::string getNameAttribute() const;
-    bool hasAttribute(const std::string& strAttributeName) const;
+    bool hasAttribute(const std::string &strAttributeName) const;
 
-     /** Get attribute
-      *
-      * If the attribute does not exists or there is a libxml2 error while
-      * reading it or conversion from string to T fails, false is returned. In
-      * case of failure, the content of value is the same as before calling
-      * this method.
-      *
-      * Note: if T==string, no conversion takes place.
-      *
-      * @tparam T the type of the value to retrieve
-      * @param[in] name The attribute name
-      * @param[out] value The attribute value
-      * @return true if success, false otherwise
-      */
+    /** Get attribute
+     *
+     * If the attribute does not exists or there is a libxml2 error while
+     * reading it or conversion from string to T fails, false is returned. In
+     * case of failure, the content of value is the same as before calling
+     * this method.
+     *
+     * Note: if T==string, no conversion takes place.
+     *
+     * @tparam T the type of the value to retrieve
+     * @param[in] name The attribute name
+     * @param[out] value The attribute value
+     * @return true if success, false otherwise
+     */
     template <typename T>
     bool getAttribute(const std::string &name, T &value) const;
 
     std::string getTextContent() const;
 
     // Navigation
-    bool getChildElement(const std::string& strType, CXmlElement& childElement) const;
-    bool getChildElement(const std::string& strType, const std::string& strNameAttribute, CXmlElement& childElement) const;
+    bool getChildElement(const std::string &strType, CXmlElement &childElement) const;
+    bool getChildElement(const std::string &strType, const std::string &strNameAttribute,
+                         CXmlElement &childElement) const;
     size_t getNbChildElements() const;
-    bool getParentElement(CXmlElement& parentElement) const;
+    bool getParentElement(CXmlElement &parentElement) const;
 
-     /** Set attribute
-      *
-      * @tparam T the type of the value to retrieve
-      * @param[in] name The attribute name
-      * @param[in] value The attribute value
-      */
+    /** Set attribute
+     *
+     * @tparam T the type of the value to retrieve
+     * @param[in] name The attribute name
+     * @param[in] value The attribute value
+     */
     template <typename T>
-    void setAttribute(const std::string& name, const T &value);
-     /** Set attribute - special case for C-style strings
-      *
-      * @param[in] name The attribute name
-      * @param[in] value The attribute value
-      */
-    void setAttribute(const std::string& name, const char *value);
+    void setAttribute(const std::string &name, const T &value);
+    /** Set attribute - special case for C-style strings
+     *
+     * @param[in] name The attribute name
+     * @param[in] value The attribute value
+     */
+    void setAttribute(const std::string &name, const char *value);
 
-    void setNameAttribute(const std::string& strValue);
-    void setTextContent(const std::string& strContent);
+    void setNameAttribute(const std::string &strValue);
+    void setTextContent(const std::string &strContent);
 
     // Child creation
-    void createChild(CXmlElement& childElement, const std::string& strType);
+    void createChild(CXmlElement &childElement, const std::string &strType);
 
 public:
     // Child iteration
     class CChildIterator
     {
     public:
-        CChildIterator(const CXmlElement& xmlElement);
+        CChildIterator(const CXmlElement &xmlElement);
 
-        bool next(CXmlElement& xmlChildElement);
+        bool next(CXmlElement &xmlChildElement);
+
     private:
-        _xmlNode* _pCurNode;
+        _xmlNode *_pCurNode;
     };
 
 private:
-    _xmlNode* _pXmlElement;
+    _xmlNode *_pXmlElement;
 };

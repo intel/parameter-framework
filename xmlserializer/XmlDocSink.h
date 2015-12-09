@@ -54,7 +54,7 @@ public:
       *
       * @return true is there was no error during the processing of xmlDocSource
       */
-    bool process(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext)
+    bool process(CXmlDocSource &xmlDocSource, CXmlSerializingContext &serializingContext)
     {
         if (!xmlDocSource.populate(serializingContext)) {
             return false;
@@ -75,5 +75,6 @@ private:
       *
       * @return true is there was no error during the processing of xmlDocSource
       */
-    virtual bool doProcess(CXmlDocSource& xmlDocSource, CXmlSerializingContext& serializingContext) = 0;
+    virtual bool doProcess(CXmlDocSource &xmlDocSource,
+                           CXmlSerializingContext &serializingContext) = 0;
 };
