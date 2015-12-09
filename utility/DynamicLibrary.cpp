@@ -28,10 +28,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #include <DynamicLibrary.hpp>
 
-std::string DynamicLibrary::osSanitizePathName(const std::string& path)
+std::string DynamicLibrary::osSanitizePathName(const std::string &path)
 {
     if (path.rfind(_osLibrarySuffix) == (path.length() - _osLibrarySuffix.length())) {
 

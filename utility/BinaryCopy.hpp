@@ -33,7 +33,8 @@
 #include "Iterator.hpp"
 #include <cassert>
 
-namespace utility {
+namespace utility
+{
 
 /**
  * Raw copy of one variable to another of the same size
@@ -58,7 +59,8 @@ typename std::remove_reference<Destination>::type binaryCopy(const Source source
 
     using Destination_ = decltype(binaryCopy<Destination>(source));
 
-    union {
+    union
+    {
         Source source;
         Destination_ destination;
     } hack;

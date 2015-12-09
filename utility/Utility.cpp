@@ -40,36 +40,32 @@ namespace utility
 {
 
 // Format string list
-std::string asString(const std::list<std::string>& lstr,
-                        const std::string& strSeparator)
+std::string asString(const std::list<std::string> &lstr, const std::string &strSeparator)
 {
-    return join<std::string>(begin(lstr), end(lstr),
-                             [strSeparator](string acc, string right) {
-                                 return acc + strSeparator + right;
-                             });
+    return join<std::string>(begin(lstr), end(lstr), [strSeparator](string acc, string right) {
+        return acc + strSeparator + right;
+    });
 }
 
 // Format string map
-std::string asString(const std::map<std::string, std::string>& mapStr,
-                               const std::string& strItemSeparator,
-                               const std::string& strKeyValueSeparator)
+std::string asString(const std::map<std::string, std::string> &mapStr,
+                     const std::string &strItemSeparator, const std::string &strKeyValueSeparator)
 {
     std::list<std::string> listKeysValues;
 
-    for (const auto & item: mapStr) {
+    for (const auto &item : mapStr) {
         listKeysValues.emplace_back(item.first + strKeyValueSeparator + item.second);
     }
 
     return asString(listKeysValues, strItemSeparator);
 }
 
-void appendTitle(string& strTo, const string& strTitle)
+void appendTitle(string &strTo, const string &strTitle)
 {
-    strTo += "\n" + strTitle + "\n" +
-             string(strTitle.size(), '=') + "\n";
+    strTo += "\n" + strTitle + "\n" + string(strTitle.size(), '=') + "\n";
 }
 
-bool isHexadecimal(const string& strValue)
+bool isHexadecimal(const string &strValue)
 {
     return (strValue.compare(0, 2, "0x") == 0) or (strValue.compare(0, 2, "0X") == 0);
 }

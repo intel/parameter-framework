@@ -51,8 +51,8 @@ public:
      * @param[in] delimiters A string containing all the token delimiters
      *            (hence, each delimiter can only be a single character)
      */
-    Tokenizer(const std::string &input, const std::string &delimiters=defaultDelimiters);
-    ~Tokenizer() {};
+    Tokenizer(const std::string &input, const std::string &delimiters = defaultDelimiters);
+    ~Tokenizer(){};
 
     /** Return the next token or an empty string if no more token
      *
@@ -70,7 +70,7 @@ public:
     static const std::string defaultDelimiters;
 
 private:
-    const std::string _input; //< string to be tokenized
+    const std::string _input;      //< string to be tokenized
     const std::string _delimiters; //< token delimiters
 
     std::string::size_type _position; //< end of the last returned token

@@ -43,25 +43,70 @@ namespace details
 {
 
 /* List of allowed types for conversion */
-template<typename T> struct ConvertionAllowed : std::false_type {};
-template<> struct ConvertionAllowed<bool> : std::true_type {};
-template<> struct ConvertionAllowed<uint64_t> : std::true_type {};
-template<> struct ConvertionAllowed<int64_t> : std::true_type {};
-template<> struct ConvertionAllowed<uint32_t> : std::true_type {};
-template<> struct ConvertionAllowed<int32_t> : std::true_type {};
-template<> struct ConvertionAllowed<uint16_t> : std::true_type {};
-template<> struct ConvertionAllowed<int16_t> : std::true_type {};
-template<> struct ConvertionAllowed<int8_t> : std::true_type {};
-template<> struct ConvertionAllowed<uint8_t> : std::true_type {};
-template<> struct ConvertionAllowed<float> : std::true_type {};
-template<> struct ConvertionAllowed<double> : std::true_type {};
+template <typename T>
+struct ConvertionAllowed : std::false_type
+{
+};
+template <>
+struct ConvertionAllowed<bool> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<uint64_t> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<int64_t> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<uint32_t> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<int32_t> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<uint16_t> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<int16_t> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<int8_t> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<uint8_t> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<float> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowed<double> : std::true_type
+{
+};
 
 /* Allow chars and unsigned chars to be converted via integers */
-template<typename T, typename Via> struct ConvertionAllowedVia : std::false_type {};
-template<> struct ConvertionAllowedVia<uint8_t, uint32_t> : std::true_type {};
-template<> struct ConvertionAllowedVia<int8_t, int32_t> : std::true_type {};
+template <typename T, typename Via>
+struct ConvertionAllowedVia : std::false_type
+{
+};
+template <>
+struct ConvertionAllowedVia<uint8_t, uint32_t> : std::true_type
+{
+};
+template <>
+struct ConvertionAllowedVia<int8_t, int32_t> : std::true_type
+{
+};
 
-template<typename T>
+template <typename T>
 static inline bool convertTo(const std::string &str, T &result)
 {
     /* Check that conversion to that type is allowed.
@@ -76,8 +121,7 @@ static inline bool convertTo(const std::string &str, T &result)
     /* Check for a '-' in string. If type is unsigned and a - is found, the
      * parsing fails. This is made necessary because "-1" is read as 65535 for
      * uint16_t, for example */
-    if (str.find("-") != std::string::npos
-        && !std::numeric_limits<T>::is_signed) {
+    if (str.find("-") != std::string::npos && !std::numeric_limits<T>::is_signed) {
         return false;
     }
 
@@ -88,8 +132,7 @@ static inline bool convertTo(const std::string &str, T &result)
     if (str.substr(0, 2) == "0x") {
         if (std::numeric_limits<T>::is_integer) {
             ss >> std::hex >> result;
-        }
-        else {
+        } else {
             /* Conversion undefined for non integers */
             return false;
         }
@@ -100,14 +143,14 @@ static inline bool convertTo(const std::string &str, T &result)
     return ss.eof() && !ss.fail() && !ss.bad();
 }
 
-template<typename T, typename Via>
+template <typename T, typename Via>
 static inline bool convertToVia(const std::string &str, T &result)
 {
     /* Check that conversion to that type is allowed.
      * If this fails, this means that this template was not intended to be used
      * with this type, thus that the result is undefined. */
     static_assert(ConvertionAllowedVia<T, Via>::value,
-            "convertToVia does not support this conversion");
+                  "convertToVia does not support this conversion");
 
     /* We want to override the behaviour of convertTo<T> with that of
      * convertTo<Via> and then safely cast the result into a T. */
@@ -117,8 +160,7 @@ static inline bool convertToVia(const std::string &str, T &result)
         return false;
     }
 
-    if ((res > std::numeric_limits<T>::max())
-        or (res < std::numeric_limits<T>::min())) {
+    if ((res > std::numeric_limits<T>::max()) or (res < std::numeric_limits<T>::min())) {
         return false;
     }
 
@@ -143,7 +185,7 @@ static inline bool convertToVia(const std::string &str, T &result)
  *
  * @return true if conversion was successful, false otherwise.
  */
-template<typename T>
+template <typename T>
 static inline bool convertTo(const std::string &str, T &result)
 {
     return details::convertTo<T>(str, result);
@@ -166,7 +208,7 @@ static inline bool convertTo(const std::string &str, T &result)
  *
  * @return true if conversion was successful, false otherwise.
  */
-template<>
+template <>
 inline bool convertTo<uint8_t>(const std::string &str, uint8_t &result)
 {
     return details::convertToVia<uint8_t, uint32_t>(str, result);
@@ -176,7 +218,7 @@ inline bool convertTo<uint8_t>(const std::string &str, uint8_t &result)
  *
  * @see convertTo<uint8_t>
  */
-template<>
+template <>
 inline bool convertTo<int8_t>(const std::string &str, int8_t &result)
 {
     return details::convertToVia<int8_t, int32_t>(str, result);
@@ -197,7 +239,7 @@ inline bool convertTo<int8_t>(const std::string &str, int8_t &result)
  *
  * @return true if conversion was successful, false otherwise.
  */
-template<>
+template <>
 inline bool convertTo<float>(const std::string &str, float &result)
 {
     if (!details::convertTo(str, result)) {
@@ -226,7 +268,7 @@ inline bool convertTo<float>(const std::string &str, float &result)
  *
  * @return true if conversion was successful, false otherwise.
  */
-template<>
+template <>
 inline bool convertTo<double>(const std::string &str, double &result)
 {
     if (!details::convertTo(str, result)) {
@@ -257,7 +299,7 @@ inline bool convertTo<double>(const std::string &str, double &result)
  *
  * @return true if conversion was successful, false otherwise.
  */
-template<>
+template <>
 inline bool convertTo<bool>(const std::string &str, bool &result)
 {
     if (str == "0" || str == "FALSE" || str == "false") {

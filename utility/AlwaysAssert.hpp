@@ -31,24 +31,22 @@
 
 #include <iostream>
 
-
 #ifdef NDEBUG
-#    include <exception>
-#    define ALWAYS_ASSERT_FAILURE(cond) std::terminate()
+#include <exception>
+#define ALWAYS_ASSERT_FAILURE(cond) std::terminate()
 #else
-#    include <cassert>
-#    define ALWAYS_ASSERT_FAILURE(cond) assert(cond)
+#include <cassert>
+#define ALWAYS_ASSERT_FAILURE(cond) assert(cond)
 #endif
 
 // __func__ should be used as per C99 and C++11, but as visual studio 2013 isn't
 // compliant, use __FUNCTION__ which is compatible with linux and WIN32.
 
-
-#define ALWAYS_ASSERT(cond, iostr) \
-    do { \
-         if (!(cond)) { \
-           std::cerr << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ \
-           << ": Assert '" #cond "' failed: " << iostr << std::endl; \
-            ALWAYS_ASSERT_FAILURE(cond); \
-         } \
+#define ALWAYS_ASSERT(cond, iostr)                                                                 \
+    do {                                                                                           \
+        if (!(cond)) {                                                                             \
+            std::cerr << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__                        \
+                      << ": Assert '" #cond "' failed: " << iostr << std::endl;                    \
+            ALWAYS_ASSERT_FAILURE(cond);                                                           \
+        }                                                                                          \
     } while (0)
