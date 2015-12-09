@@ -116,19 +116,20 @@ typedef struct
 typedef struct
 {
     /** Name of the criterion in the pfw configuration rules. */
-    const char *name;    //< Must not be null.
-    bool inclusive;      //< True if the criterion is inclusive, false if exclusive.
-                         /** Null terminated list of criterion value names.
-                           * @example { "Red", "Green", "Blue", NULL }
-                           *
-                           * For an exclusive criterion, the list must not contain more elements then
-                           *                             INT_MAX.
-                           * For an inclusive criterion, the list must not contain more elements then
-                           *                             sizeof(int) * BIT_CHAR - 1.
-                           *                             Ie: (int)1 << n must *not* overflow (UB),
-                           *                                 were n is the number of element in the
-                           *                                 list. @see pfwSetCriterion
-                           */
+    const char *name; //< Must not be null.
+    bool inclusive;   //< True if the criterion is inclusive, false if exclusive.
+
+    /** Null terminated list of criterion value names.
+      * @example { "Red", "Green", "Blue", NULL }
+      *
+      * For an exclusive criterion, the list must not contain more elements then
+      *                             INT_MAX.
+      * For an inclusive criterion, the list must not contain more elements then
+      *                             sizeof(int) * BIT_CHAR - 1.
+      *                             Ie: (int)1 << n must *not* overflow (UB),
+      *                                 were n is the number of element in the
+      *                                 list. @see pfwSetCriterion
+      */
     const char **values; //< Must not be null.
 } PfwCriterion;
 
@@ -190,7 +191,7 @@ bool pfwSetCriterion(PfwHandler *handle, const char name[], int value) NONNULL U
 /** Get a criterion value given its name.
   * Same usage as pfwSetCriterion except that value is an out param.
   * Get criterion will return the last value setted with pfwSetCriterion independantly of
- * pfwCommitCritenio.
+  * pfwCommitCritenio.
   */
 CPARAMETER_EXPORT
 bool pfwGetCriterion(const PfwHandler *handle, const char name[], int *value) NONNULL USERESULT;
