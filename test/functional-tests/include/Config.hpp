@@ -37,14 +37,18 @@ namespace parameterFramework
 {
 
 /** Parameter Framework configuration. */
-struct Config {
+struct Config
+{
     Config() = default;
 
     /** Emulate C named parameter.
      * { .instances = "fuu" } <=> { &Config::instances, "fuu" }
      * Passing multiple named parameters is not implemented. */
     template <class M, class T = M>
-    Config(M (Config::*member), T &&value) { (this->*member) = std::forward<T>(value); }
+    Config(M(Config::*member), T &&value)
+    {
+        (this->*member) = std::forward<T>(value);
+    }
 
     /** Instances of the test subsystem.
      *

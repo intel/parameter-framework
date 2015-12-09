@@ -43,43 +43,44 @@
 namespace parameterFramework
 {
 
-SCENARIO_METHOD(ParameterFramework, "Default logger", "[log]") {
-    WHEN("No logger is set") {
-        THEN("Start should succeed") {
+SCENARIO_METHOD (ParameterFramework, "Default logger", "[log]") {
+    WHEN ("No logger is set") {
+        THEN ("Start should succeed") {
             CHECK_NOTHROW(start());
         }
     }
 }
 
-SCENARIO_METHOD(ParameterFramework, "No Logger", "[log]") {
-    WHEN("A nullptr logger is set") {
+SCENARIO_METHOD (ParameterFramework, "No Logger", "[log]") {
+    WHEN ("A nullptr logger is set") {
         setLogger(nullptr);
-        THEN("Start should succeed") {
+        THEN ("Start should succeed") {
             CHECK_NOTHROW(start());
         }
     }
 }
 
-SCENARIO_METHOD(WarningPF, "Logger should receive info and warnings", "[log]") {
-    GIVEN("Config files that emit warnings") {
-        GIVEN("A logger that stores logs") {
+SCENARIO_METHOD (WarningPF, "Logger should receive info and warnings", "[log]") {
+    GIVEN ("Config files that emit warnings") {
+        GIVEN ("A logger that stores logs") {
             StoreLogger logger{};
-            WHEN("The record logger is set") {
+            WHEN ("The record logger is set") {
                 setLogger(&logger);
-                THEN("Start should succeed") {
+                THEN ("Start should succeed") {
                     REQUIRE_NOTHROW(start());
-                    AND_THEN("The logger should have stored info and warning log") {
+                    AND_THEN ("The logger should have stored info and warning log") {
                         using Logs = StoreLogger::Logs;
                         using Level = StoreLogger::Log::Level;
                         CHECK(logger.filter(Level::warning) != Logs{});
                         CHECK(logger.getLogs() != Logs{});
                     }
                 }
-                AND_WHEN("A nullptr logger is set") {
+                AND_WHEN ("A nullptr logger is set") {
                     setLogger(nullptr);
-                    THEN("Start should succeed") {
+                    THEN ("Start should succeed") {
                         REQUIRE_NOTHROW(start());
-                        AND_THEN("The record logger should NOT have stored any info or warning log") {
+                        AND_THEN (
+                            "The record logger should NOT have stored any info or warning log") {
                             CHECK(logger.getLogs() == StoreLogger::Logs{});
                         }
                     }
@@ -89,23 +90,22 @@ SCENARIO_METHOD(WarningPF, "Logger should receive info and warnings", "[log]") {
     }
 }
 
-SCENARIO_METHOD(LazyPF, "Tuning OK", "[properties][remote interface]") {
+SCENARIO_METHOD (LazyPF, "Tuning OK", "[properties][remote interface]") {
 }
 
-SCENARIO_METHOD(LazyPF, "Invalid XML configuration") {
-    for (auto &xmlT : Tests<std::string>{
-            {"an unknown tag", "<unknown_tag/>" },
-            {"an unclosed tag", "<unclosed>" } }) {
+SCENARIO_METHOD (LazyPF, "Invalid XML configuration") {
+    for (auto &xmlT : Tests<std::string>{{"an unknown tag", "<unknown_tag/>"},
+                                         {"an unclosed tag", "<unclosed>"}}) {
         auto invalidXml = xmlT.payload;
-        GIVEN("An invalid xml: containing " + xmlT.title) {
+        GIVEN ("An invalid xml: containing " + xmlT.title) {
             Config::Plugins ps{};
             for (auto &&configT : Tests<Config>{
-                    {"top config", { &Config::plugins, Config::Plugins{ { "", { invalidXml } } } } },
-                    {"structure", { &Config::instances, invalidXml } },
-                    {"settings", { &Config::domains, invalidXml } } }) {
-                WHEN("Used in the " + configT.title) {
+                     {"top config", {&Config::plugins, Config::Plugins{{"", {invalidXml}}}}},
+                     {"structure", {&Config::instances, invalidXml}},
+                     {"settings", {&Config::domains, invalidXml}}}) {
+                WHEN ("Used in the " + configT.title) {
                     create(std::move(configT.payload));
-                    THEN("Start should fail") {
+                    THEN ("Start should fail") {
                         CHECK_THROWS_AS(mPf->start(), Exception);
                     }
                 }
@@ -114,28 +114,26 @@ SCENARIO_METHOD(LazyPF, "Invalid XML configuration") {
     }
 }
 
-SCENARIO_METHOD(LazyPF, "Plugin OK", "[properties][missing plugin policy]") {
-    for (auto &pluginNameT : Tests<std::string>{
-            {"an non existing plugin", "libdonetexist.so" },
-            {"an existing library but invalid (linux) PF plugin", "libc.so.6" } })
-    {
-        GIVEN("An" + pluginNameT.title)
-        {
-            create({ &Config::plugins, Config::Plugins{ { "", { pluginNameT.payload } } } });
-            WHEN("The missing subsystem policy is left to default") {
-                THEN("Start should fail") {
+SCENARIO_METHOD (LazyPF, "Plugin OK", "[properties][missing plugin policy]") {
+    for (auto &pluginNameT :
+         Tests<std::string>{{"an non existing plugin", "libdonetexist.so"},
+                            {"an existing library but invalid (linux) PF plugin", "libc.so.6"}}) {
+        GIVEN ("An" + pluginNameT.title) {
+            create({&Config::plugins, Config::Plugins{{"", {pluginNameT.payload}}}});
+            WHEN ("The missing subsystem policy is left to default") {
+                THEN ("Start should fail") {
                     CHECK_THROWS_AS(mPf->start(), Exception);
                 }
             }
-            WHEN("The missing subsystem policy is set to failure") {
+            WHEN ("The missing subsystem policy is set to failure") {
                 mPf->setFailureOnMissingSubsystem(true);
-                THEN("Start should fail") {
+                THEN ("Start should fail") {
                     CHECK_THROWS_AS(mPf->start(), Exception);
                 }
             }
-            WHEN("The missing subsystem policy is set to ignore") {
+            WHEN ("The missing subsystem policy is set to ignore") {
                 mPf->setFailureOnMissingSubsystem(false);
-                THEN("Start should success") {
+                THEN ("Start should success") {
                     CHECK_NOTHROW(mPf->start());
                 }
             }
@@ -143,26 +141,25 @@ SCENARIO_METHOD(LazyPF, "Plugin OK", "[properties][missing plugin policy]") {
     }
 }
 
-
-SCENARIO_METHOD(LazyPF, "Invalid domains", "[properties]") {
-    GIVEN("An invalid domain file") {
-        create({ &Config::domains, "<Domain name='Invalid'/>" });
-        THEN("Start should fail") {
+SCENARIO_METHOD (LazyPF, "Invalid domains", "[properties]") {
+    GIVEN ("An invalid domain file") {
+        create({&Config::domains, "<Domain name='Invalid'/>"});
+        THEN ("Start should fail") {
             CHECK_THROWS_AS(mPf->start(), Exception);
         }
-        WHEN("Changing failure setting load policy to ignore") {
+        WHEN ("Changing failure setting load policy to ignore") {
             mPf->setFailureOnFailedSettingsLoad(false);
-            THEN("Start should succeed") {
+            THEN ("Start should succeed") {
                 CHECK_NOTHROW(mPf->start());
             }
         }
     }
 }
 
-SCENARIO_METHOD(ParameterFramework, "Raw value space") {
-    WHEN("Raw value space is set") {
+SCENARIO_METHOD (ParameterFramework, "Raw value space") {
+    WHEN ("Raw value space is set") {
         setRawValueSpace(true);
-        THEN("Value space should be raw") {
+        THEN ("Value space should be raw") {
             CHECK(isValueSpaceRaw() == true);
         }
     }

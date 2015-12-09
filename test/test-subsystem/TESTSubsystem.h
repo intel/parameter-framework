@@ -34,16 +34,16 @@
 class CTESTSubsystem : public CSubsystem
 {
 public:
-   CTESTSubsystem(const std::string& strName, core::log::Logger& logger);
+    CTESTSubsystem(const std::string &strName, core::log::Logger &logger);
 
-   // Susbsystem sanity
-   virtual bool isAlive() const;
-   // Resynchronization after subsystem restart needed
-   virtual bool needResync(bool bClear);
+    // Susbsystem sanity
+    virtual bool isAlive() const;
+    // Resynchronization after subsystem restart needed
+    virtual bool needResync(bool bClear);
 
 private:
     // Read boolean from file
-    static std::string read(const std::string& strFileName);
+    static std::string read(const std::string &strFileName);
     // Write boolean to file
-    static void write(const std::string& strFileName, const std::string& strContent);
+    static void write(const std::string &strFileName, const std::string &strContent);
 };

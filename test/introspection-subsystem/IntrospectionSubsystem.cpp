@@ -37,11 +37,9 @@ namespace parameterFramework
 namespace introspectionSubsystem
 {
 
-Subsystem::Subsystem(const std::string& name, core::log::Logger& logger)
-    : base(name, logger)
+Subsystem::Subsystem(const std::string &name, core::log::Logger &logger) : base(name, logger)
 {
     addSubsystemObjectFactory(new TSubsystemObjectFactory<SubsystemObject>("Object", 0));
 }
-
 }
 }

@@ -62,16 +62,13 @@ protected:
     using EH = ::ElementHandle;
 
 public:
-    ParameterFramework(const Config &config = Config()) :
-        ConfigFiles(config),
-        FailureWrapper(getPath())
+    ParameterFramework(const Config &config = Config())
+        : ConfigFiles(config), FailureWrapper(getPath())
     {
         setForceNoRemoteInterface(true);
     }
 
-    void start() {
-        mayFailCall(&PF::start);
-    }
+    void start() { mayFailCall(&PF::start); }
 
     /** @name Forwarded methods
      * Forward those methods without modification as there are ergonomic and
@@ -94,17 +91,20 @@ public:
     /** @} */
 
     /** Wrap PF::setValidateSchemasOnStart to throw an exception on failure. */
-    void setValidateSchemasOnStart(bool validate) {
+    void setValidateSchemasOnStart(bool validate)
+    {
         mayFailCall(&PPF::setValidateSchemasOnStart, validate);
     }
 
     /** Wrap PF::setFailureOnFailedSettingsLoad to throw an exception on failure. */
-    void setFailureOnFailedSettingsLoad(bool fail) {
+    void setFailureOnFailedSettingsLoad(bool fail)
+    {
         mayFailCall(&PPF::setFailureOnFailedSettingsLoad, fail);
     }
 
     /** Wrap PF::setFailureOnMissingSubsystem to throw an exception on failure. */
-    void setFailureOnMissingSubsystem(bool fail) {
+    void setFailureOnMissingSubsystem(bool fail)
+    {
         mayFailCall(&PPF::setFailureOnMissingSubsystem, fail);
     }
 
@@ -121,14 +121,14 @@ public:
     /** Wrap PF::accessParameterValue in "set" mode (and rename it) to throw an
      * exception on failure
      */
-    void setParameter(const std::string& path, std::string& value)
+    void setParameter(const std::string &path, std::string &value)
     {
         mayFailCall(&PF::accessParameterValue, path, value, true);
     }
     /** Wrap PF::accessParameterValue in "get" mode (and rename it) to throw an
      * exception on failure
      */
-    void getParameter(const std::string& path, std::string& value)
+    void getParameter(const std::string &path, std::string &value)
     {
         mayFailCall(&PF::accessParameterValue, path, value, false);
     }
@@ -136,8 +136,8 @@ public:
     /** Wrap PF::accessConfigurationValue in "set" mode (and rename it) to throw an
      * exception on failure
      */
-    void setConfigurationParameter(const std::string domain,
-        const std::string &configuration, const std::string& path, std::string& value)
+    void setConfigurationParameter(const std::string domain, const std::string &configuration,
+                                   const std::string &path, std::string &value)
     {
         mayFailCall(&PF::accessConfigurationValue, domain, configuration, path, value, true);
     }
@@ -145,19 +145,18 @@ public:
     /** Wrap PF::accessConfigurationValue in "get" mode (and rename it) to throw an
      * exception on failure
      */
-    void getConfigurationParameter(const std::string &domain,
-        const std::string &configuration, const std::string& path, std::string& value)
+    void getConfigurationParameter(const std::string &domain, const std::string &configuration,
+                                   const std::string &path, std::string &value)
     {
-        mayFailCall(&PF::accessConfigurationValue, domain, configuration, path, value,
-            false);
+        mayFailCall(&PF::accessConfigurationValue, domain, configuration, path, value, false);
     }
-private:
 
+private:
     /** Create an unwrapped element handle.
      *
      * Is not public as this method is intended to be used by ElementHandle facade.
      */
-    EH createElementHandle(const std::string& path)
+    EH createElementHandle(const std::string &path)
     {
         // PF::createElementHandle takes it's handler in the free store
         std::unique_ptr<EH> newedHandle{mayFailCall(&PF::createElementHandle, path)};

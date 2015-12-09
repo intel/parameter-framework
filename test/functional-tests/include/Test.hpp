@@ -38,9 +38,8 @@
 #include <string>
 
 #ifndef SCENARIO_METHOD
-    /** SCENARIO_METHOD is not available in catch on ubuntu 12.04 */
-#   define SCENARIO_METHOD(className, ...) \
-        TEST_CASE_METHOD(className, "Scenario: " __VA_ARGS__)
+/** SCENARIO_METHOD is not available in catch on ubuntu 12.04 */
+#define SCENARIO_METHOD(className, ...) TEST_CASE_METHOD (className, "Scenario: " __VA_ARGS__)
 #endif
 
 namespace parameterFramework
@@ -117,21 +116,16 @@ class LazyPF
 public:
     using PF = ParameterFramework;
 
-    void create(Config &&configFile)
-    {
-        mPf.reset(new PF{ std::move(configFile) });
-    }
+    void create(Config &&configFile) { mPf.reset(new PF{std::move(configFile)}); }
     std::unique_ptr<PF> mPf;
 };
 
 /** PF that will log a warning at start. */
 struct WarningPF : public ParameterFramework
 {
-    WarningPF() :
-        ParameterFramework{ { &Config::domains, "<InvalidDomain/>" } }
+    WarningPF() : ParameterFramework{{&Config::domains, "<InvalidDomain/>"}}
     {
         setFailureOnFailedSettingsLoad(false);
     }
 };
-
 }

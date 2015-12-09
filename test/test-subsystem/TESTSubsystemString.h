@@ -34,15 +34,13 @@
 class CTESTSubsystemString : public CTESTSubsystemObject
 {
 public:
-    CTESTSubsystemString(const std::string& strMappingValue,
-                         CInstanceConfigurableElement* pInstanceConfigurableElement,
-                         const CMappingContext& context,
-                         core::log::Logger& logger);
+    CTESTSubsystemString(const std::string &strMappingValue,
+                         CInstanceConfigurableElement *pInstanceConfigurableElement,
+                         const CMappingContext &context, core::log::Logger &logger);
 
 private:
     // from CTESTSubsystemObject
     // Format Data
-    virtual std::string toString(const void* pvValue, size_t size) const;
-    virtual void fromString(const std::string& strValue, void* pvValue, size_t size);
-
+    virtual std::string toString(const void *pvValue, size_t size) const;
+    virtual void fromString(const std::string &strValue, void *pvValue, size_t size);
 };

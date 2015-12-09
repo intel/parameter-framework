@@ -39,14 +39,15 @@
 
 #define base CSubsystemObject
 
-CTESTSubsystemObject::CTESTSubsystemObject(const std::string& /*strMappingValue*/,
-                                           CInstanceConfigurableElement* pInstanceConfigurableElement,
-                                           const CMappingContext& context,
-                                           core::log::Logger& logger)
+CTESTSubsystemObject::CTESTSubsystemObject(
+    const std::string & /*strMappingValue*/,
+    CInstanceConfigurableElement *pInstanceConfigurableElement, const CMappingContext &context,
+    core::log::Logger &logger)
     : base(pInstanceConfigurableElement, logger)
 {
     // Get actual element type
-    const CParameterType* pParameterType = static_cast<const CParameterType*>(pInstanceConfigurableElement->getTypeElement());
+    const CParameterType *pParameterType =
+        static_cast<const CParameterType *>(pInstanceConfigurableElement->getTypeElement());
 
     _scalarSize = pParameterType->getSize();
     _arraySize = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
@@ -56,7 +57,7 @@ CTESTSubsystemObject::CTESTSubsystemObject(const std::string& /*strMappingValue*
     _bLog = context.iSet(ETESTLog) && (context.getItem(ETESTLog) == "yes");
 }
 
-bool CTESTSubsystemObject::sendToHW(std::string& strError)
+bool CTESTSubsystemObject::sendToHW(std::string &strError)
 {
     std::ofstream outputFile;
 
@@ -76,8 +77,7 @@ bool CTESTSubsystemObject::sendToHW(std::string& strError)
     return true;
 }
 
-
-bool CTESTSubsystemObject::receiveFromHW(std::string& /*strError*/)
+bool CTESTSubsystemObject::receiveFromHW(std::string & /*strError*/)
 {
     std::ifstream inputFile;
 
@@ -94,13 +94,13 @@ bool CTESTSubsystemObject::receiveFromHW(std::string& /*strError*/)
     return true;
 }
 
-void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
+void CTESTSubsystemObject::sendToFile(std::ofstream &outputFile)
 {
-    for (size_t index = 0 ; index < _arraySize ; index++) {
+    for (size_t index = 0; index < _arraySize; index++) {
 
         std::vector<uint8_t> aucValue(_scalarSize);
 
-        void* pvValue = aucValue.data();
+        void *pvValue = aucValue.data();
 
         // Read Value in BlackBoard
         blackboardRead(pvValue, _scalarSize);
@@ -113,24 +113,23 @@ void CTESTSubsystemObject::sendToFile(std::ofstream& outputFile)
 
             if (_bIsScalar) {
 
-                info() << "TESTSUBSYSTEM: Writing '" << strValue
-                       << "' to file " << _strFilePath;
+                info() << "TESTSUBSYSTEM: Writing '" << strValue << "' to file " << _strFilePath;
             } else {
 
-                info() << "TESTSUBSYSTEM: Writing '" << strValue << "' to file "
-                       << _strFilePath << "[" << index << "]";
+                info() << "TESTSUBSYSTEM: Writing '" << strValue << "' to file " << _strFilePath
+                       << "[" << index << "]";
             }
         }
     }
 }
 
-void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
+void CTESTSubsystemObject::receiveFromFile(std::ifstream &inputFile)
 {
-    for (size_t index = 0 ; index < _arraySize ; index++) {
+    for (size_t index = 0; index < _arraySize; index++) {
 
         std::vector<uint8_t> aucValue(_scalarSize);
 
-        void* pvValue = aucValue.data();
+        void *pvValue = aucValue.data();
 
         std::string strValue;
 
@@ -140,12 +139,11 @@ void CTESTSubsystemObject::receiveFromFile(std::ifstream& inputFile)
 
             if (_bIsScalar) {
 
-                info() << "TESTSUBSYSTEM: Reading '" << strValue
-                       << "' to file " << _strFilePath;
+                info() << "TESTSUBSYSTEM: Reading '" << strValue << "' to file " << _strFilePath;
             } else {
 
-                info() << "TESTSUBSYSTEM: Reading '" << strValue << "' to file "
-                       << _strFilePath << "[" << index << "]";
+                info() << "TESTSUBSYSTEM: Reading '" << strValue << "' to file " << _strFilePath
+                       << "[" << index << "]";
             }
         }
 

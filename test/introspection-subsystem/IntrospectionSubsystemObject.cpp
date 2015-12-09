@@ -45,20 +45,18 @@ const CParameterType *geParameterType(CInstanceConfigurableElement *element)
     return static_cast<const CParameterType *>(element->getTypeElement());
 }
 
-SubsystemObject::SubsystemObject(const std::string& /*mappingValue*/,
-                                 CInstanceConfigurableElement* instanceConfigurableElement,
-                                 const CMappingContext& /*context*/,
-                                 core::log::Logger& logger) :
-    base(instanceConfigurableElement, logger),
-    mParameter(false)
+SubsystemObject::SubsystemObject(const std::string & /*mappingValue*/,
+                                 CInstanceConfigurableElement *instanceConfigurableElement,
+                                 const CMappingContext & /*context*/, core::log::Logger &logger)
+    : base(instanceConfigurableElement, logger), mParameter(false)
 {
     /* Checking that structure matches the internal parameter */
     ALWAYS_ASSERT(geParameterType(instanceConfigurableElement)->getSize() == parameterSize,
-        "Wrong parameter size");
+                  "Wrong parameter size");
     ALWAYS_ASSERT((instanceConfigurableElement->getFootPrint() / parameterSize) == 1,
-        "Parameter shall not be an array");
+                  "Parameter shall not be an array");
     ALWAYS_ASSERT(geParameterType(instanceConfigurableElement)->isScalar(),
-        "Parameter shall be scalar");
+                  "Parameter shall be scalar");
 
     /* Registering the instance into a singleton */
     registerInstance(*this);
@@ -70,18 +68,16 @@ SubsystemObject::~SubsystemObject()
     unregisterInstance(*this);
 }
 
-bool SubsystemObject::sendToHW(std::string& /*error*/)
+bool SubsystemObject::sendToHW(std::string & /*error*/)
 {
     blackboardRead(&mParameter, parameterSize);
     return true;
 }
 
-
-bool SubsystemObject::receiveFromHW(std::string& /*error*/)
+bool SubsystemObject::receiveFromHW(std::string & /*error*/)
 {
     blackboardRead(&mParameter, parameterSize);
     return true;
 }
-
 }
 }

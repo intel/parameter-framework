@@ -30,7 +30,7 @@
 
 #include "Tokenizer.h"
 
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main()
+#define CATCH_CONFIG_MAIN // This tells Catch to provide a main()
 #include <catch.hpp>
 
 #include <string>
@@ -39,19 +39,19 @@
 using std::string;
 using std::vector;
 
-SCENARIO("Tokenizer tests") {
-    GIVEN("A default tokenizer") {
+SCENARIO ("Tokenizer tests") {
+    GIVEN ("A default tokenizer") {
 
-        GIVEN("A trivial string") {
+        GIVEN ("A trivial string") {
             Tokenizer tokenizer("a bcd ef");
 
-            THEN("next() api should work") {
+            THEN ("next() api should work") {
                 CHECK(tokenizer.next() == "a");
                 CHECK(tokenizer.next() == "bcd");
                 CHECK(tokenizer.next() == "ef");
                 CHECK(tokenizer.next() == "");
             }
-            THEN("split() api should work") {
+            THEN ("split() api should work") {
                 vector<string> expected;
                 expected.push_back("a");
                 expected.push_back("bcd");
@@ -61,30 +61,30 @@ SCENARIO("Tokenizer tests") {
             }
         }
 
-        GIVEN("An empty string") {
+        GIVEN ("An empty string") {
             Tokenizer tokenizer("");
 
-            THEN("next() api should work") {
+            THEN ("next() api should work") {
                 CHECK(tokenizer.next() == "");
             }
-            THEN("split() api should work") {
+            THEN ("split() api should work") {
                 vector<string> expected;
 
                 CHECK(tokenizer.split().empty());
             }
         }
 
-        GIVEN("A slash-separated string and tokenizer") {
+        GIVEN ("A slash-separated string and tokenizer") {
             Tokenizer tokenizer("/a/bcd/ef g/h/", "/");
 
-            THEN("next() api should work") {
+            THEN ("next() api should work") {
                 CHECK(tokenizer.next() == "a");
                 CHECK(tokenizer.next() == "bcd");
                 CHECK(tokenizer.next() == "ef g");
                 CHECK(tokenizer.next() == "h");
                 CHECK(tokenizer.next() == "");
             }
-            THEN("split() api should work") {
+            THEN ("split() api should work") {
                 vector<string> expected;
                 expected.push_back("a");
                 expected.push_back("bcd");
@@ -95,15 +95,15 @@ SCENARIO("Tokenizer tests") {
             }
         }
 
-        GIVEN("Multiple separators in a row") {
+        GIVEN ("Multiple separators in a row") {
             Tokenizer tokenizer("  a \n\t bc  ");
 
-            THEN("next() api should work") {
+            THEN ("next() api should work") {
                 CHECK(tokenizer.next() == "a");
                 CHECK(tokenizer.next() == "bc");
                 CHECK(tokenizer.next() == "");
             }
-            THEN("split() api should work") {
+            THEN ("split() api should work") {
                 vector<string> expected;
                 expected.push_back("a");
                 expected.push_back("bc");
@@ -112,5 +112,4 @@ SCENARIO("Tokenizer tests") {
             }
         }
     }
-
 }

@@ -32,20 +32,19 @@
 
 #define base CTESTSubsystemObject
 
-CTESTSubsystemString::CTESTSubsystemString(const std::string& strMappingValue,
-                                           CInstanceConfigurableElement* pInstanceConfigurableElement,
-                                           const CMappingContext& context,
-                                           core::log::Logger& logger)
+CTESTSubsystemString::CTESTSubsystemString(
+    const std::string &strMappingValue, CInstanceConfigurableElement *pInstanceConfigurableElement,
+    const CMappingContext &context, core::log::Logger &logger)
     : base(strMappingValue, pInstanceConfigurableElement, context, logger)
 {
 }
 
-std::string CTESTSubsystemString::toString(const void* pvValue, size_t /*size*/) const
+std::string CTESTSubsystemString::toString(const void *pvValue, size_t /*size*/) const
 {
-    return (const char*)pvValue;
+    return (const char *)pvValue;
 }
 
-void CTESTSubsystemString::fromString(const std::string& strValue, void* pvValue, size_t size)
+void CTESTSubsystemString::fromString(const std::string &strValue, void *pvValue, size_t size)
 {
-    strncpy((char*)pvValue, strValue.c_str(), size);
+    strncpy((char *)pvValue, strValue.c_str(), size);
 }

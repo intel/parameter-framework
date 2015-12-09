@@ -30,7 +30,8 @@
 #pragma once
 
 // Mapping item types
-enum TESTItemType {
+enum TESTItemType
+{
     ETESTDirectory,
     ETESTLog
 };

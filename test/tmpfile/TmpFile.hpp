@@ -43,7 +43,8 @@ namespace utility
 {
 
 /** Create a temporary file with the given content. */
-class TmpFile {
+class TmpFile
+{
 public:
     TmpFile(std::string content) : mPath(mktmp())
     {
@@ -54,18 +55,15 @@ public:
         file.close();
     }
 
-    TmpFile(TmpFile &&right) : mPath(std::move(right.mPath))
-    {
-        right.mPath.clear();
-    }
+    TmpFile(TmpFile &&right) : mPath(std::move(right.mPath)) { right.mPath.clear(); }
 
     /** Forbid copy semantic as sharing the tmp file is not needed.
      * @{ */
     TmpFile(const TmpFile &right) = delete;
-    TmpFile &operator= (const TmpFile &right) = delete;
+    TmpFile &operator=(const TmpFile &right) = delete;
     /** @} */
 
-    TmpFile &operator= (TmpFile &&right)
+    TmpFile &operator=(TmpFile &&right)
     {
         remove();
         mPath = std::move(right.mPath);
@@ -87,7 +85,8 @@ private:
      *
      * Call it after a c standard function failure.
      */
-    static void throwErrnoError(std::string context) {
+    static void throwErrnoError(std::string context)
+    {
         auto message = context + ": (" + std::to_string(errno) + ") " + std::strerror(errno);
         throw std::runtime_error(message);
     }

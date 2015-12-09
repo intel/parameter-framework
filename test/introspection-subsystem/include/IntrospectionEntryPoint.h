@@ -37,6 +37,5 @@ namespace introspectionSubsystem
 {
 
 INTROSPECTION_SUBSYSTEM_EXPORT bool getParameterValue();
-
 }
 }

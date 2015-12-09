@@ -43,62 +43,58 @@ using std::string;
 namespace parameterFramework
 {
 
-
-const auto validInstances = Config{ &Config::instances,
-    // Size is fixed at 32 and as such is optional */
-    R"(<FloatingPointParameter Name="Empty"/>
+const auto validInstances = Config{&Config::instances,
+                                   // Size is fixed at 32 and as such is optional */
+                                   R"(<FloatingPointParameter Name="Empty"/>
     <FloatingPointParameter Name="trivial" Size="32"/>
     <FloatingPointParameter Name="nominal" Size="32" Min="-50.4" Max="12.2"/>
     <FloatingPointParameter Name="defaultMin" Size="32" Max="12.2"/>
-    <FloatingPointParameter Name="defaultMax" Size="32" Min="-50.4"/>)"
-};
-const auto &invalidParameters = Tests<string>{
-    { "invalid Size(64)", "<FloatingPointParameter Name='error' Size='64'/>" },
-    { "invalid Size(16)", "<FloatingPointParameter Name='error' Size='16'/>" },
-    { "minimum > maximum", "<FloatingPointParameter Name='error' Min='1' Max='0'/>" }
-};
+    <FloatingPointParameter Name="defaultMax" Size="32" Min="-50.4"/>)"};
+const auto &invalidParameters =
+    Tests<string>{{"invalid Size(64)", "<FloatingPointParameter Name='error' Size='64'/>"},
+                  {"invalid Size(16)", "<FloatingPointParameter Name='error' Size='16'/>"},
+                  {"minimum > maximum", "<FloatingPointParameter Name='error' Min='1' Max='0'/>"}};
 
 struct FloatsPF : public ParameterFramework
 {
-    FloatsPF()
-        : ParameterFramework{ std::move(validInstances) } {}
+    FloatsPF() : ParameterFramework{std::move(validInstances)} {}
 };
 
-SCENARIO_METHOD(LazyPF, "Invalid floating points XML structure", "[floating point]") {
+SCENARIO_METHOD (LazyPF, "Invalid floating points XML structure", "[floating point]") {
     for (auto &vec : invalidParameters) {
-        GIVEN("intentional error: " + vec.title) {
-            create(Config{ &Config::instances, vec.payload });
-            THEN("Start should fail") {
+        GIVEN ("intentional error: " + vec.title) {
+            create(Config{&Config::instances, vec.payload});
+            THEN ("Start should fail") {
                 CHECK_THROWS_AS(mPf->start(), Exception);
             }
         }
     }
 }
 
-SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
-    GIVEN("A valid XML structure file") {
-        THEN("Start should succeed") {
+SCENARIO_METHOD (FloatsPF, "Floating points", "[floating points]") {
+    GIVEN ("A valid XML structure file") {
+        THEN ("Start should succeed") {
             CHECK_NOTHROW(start());
             REQUIRE_NOTHROW(setTuningMode(true));
             string path = "/test/test/nominal";
 
-            AND_THEN("Set/Get a floating point parameter in real value space") {
+            AND_THEN ("Set/Get a floating point parameter in real value space") {
 
                 for (auto &vec : Tests<string>{
-                            { "(too high)", "12.3" },
-                            { "(too low)", "-50.5" },
-                            { "(not a number)", "foobar" },
-                        }) {
-                    GIVEN("Invalid value " + vec.title) {
+                         {"(too high)", "12.3"},
+                         {"(too low)", "-50.5"},
+                         {"(not a number)", "foobar"},
+                     }) {
+                    GIVEN ("Invalid value " + vec.title) {
                         CHECK_THROWS_AS(setParameter(path, vec.payload), Exception);
                     }
                 }
                 for (auto &vec : Tests<string>{
-                            { "(upper limit)", "12.2" },
-                            { "(lower limit)", "-50.4" },
-                            { "(inside range)", "0" },
-                        }) {
-                    GIVEN("A valid value " + vec.title) {
+                         {"(upper limit)", "12.2"},
+                         {"(lower limit)", "-50.4"},
+                         {"(inside range)", "0"},
+                     }) {
+                    GIVEN ("A valid value " + vec.title) {
                         CHECK_NOTHROW(setParameter(path, vec.payload));
                         string getValueBack;
                         CHECK_NOTHROW(getParameter(path, getValueBack));
@@ -107,22 +103,22 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                 }
             }
 
-            AND_THEN("Set/Get a floating point parameter in raw value space") {
+            AND_THEN ("Set/Get a floating point parameter in raw value space") {
                 const float tooHigh = 12.3f;
                 const float tooLow = -50.5f;
                 const float nan = std::numeric_limits<float>::quiet_NaN();
                 const float inf = std::numeric_limits<float>::infinity();
                 REQUIRE_NOTHROW(setRawValueSpace(true));
                 for (auto &vec : Tests<string>{
-                            { "(too high, as decimal)",
-                                std::to_string(::utility::binaryCopy<uint32_t>(tooHigh)) },
-                            { "(too low, as decimal)",
-                                std::to_string(::utility::binaryCopy<uint32_t>(tooLow)) },
-                            { "(meaningless)", "foobar" },
-                            { "(infinity)", std::to_string(::utility::binaryCopy<uint32_t>(inf))},
-                            { "(NaN)", std::to_string(::utility::binaryCopy<uint32_t>(nan))},
-                        }) {
-                    GIVEN("Invalid value " + vec.title) {
+                         {"(too high, as decimal)",
+                          std::to_string(::utility::binaryCopy<uint32_t>(tooHigh))},
+                         {"(too low, as decimal)",
+                          std::to_string(::utility::binaryCopy<uint32_t>(tooLow))},
+                         {"(meaningless)", "foobar"},
+                         {"(infinity)", std::to_string(::utility::binaryCopy<uint32_t>(inf))},
+                         {"(NaN)", std::to_string(::utility::binaryCopy<uint32_t>(nan))},
+                     }) {
+                    GIVEN ("Invalid value " + vec.title) {
                         CHECK_THROWS_AS(setParameter(path, vec.payload), Exception);
                     }
                 }
@@ -130,14 +126,14 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                 const float lower = -50.4f;
                 const float zero = 0.0f;
                 for (auto &vec : Tests<string>{
-                            { "(upper limit, as decimal)",
-                                std::to_string(::utility::binaryCopy<uint32_t>(upper)) },
-                            { "(lower limit, as decimal)",
-                                std::to_string(::utility::binaryCopy<uint32_t>(lower)) },
-                            { "(inside range, as decimal)",
-                                std::to_string(::utility::binaryCopy<uint32_t>(zero)) },
-                        }) {
-                    GIVEN("A valid value " + vec.title) {
+                         {"(upper limit, as decimal)",
+                          std::to_string(::utility::binaryCopy<uint32_t>(upper))},
+                         {"(lower limit, as decimal)",
+                          std::to_string(::utility::binaryCopy<uint32_t>(lower))},
+                         {"(inside range, as decimal)",
+                          std::to_string(::utility::binaryCopy<uint32_t>(zero))},
+                     }) {
+                    GIVEN ("A valid value " + vec.title) {
                         CHECK_NOTHROW(setParameter(path, vec.payload));
                         string getValueBack;
                         CHECK_NOTHROW(getParameter(path, getValueBack));
@@ -146,7 +142,7 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                 }
             }
 
-            AND_THEN("Set/Get floating point parameter handle") {
+            AND_THEN ("Set/Get floating point parameter handle") {
                 ElementHandle handle{*this, path};
                 /** @FIXME: 'set' operations on a ParameterHandle are silently
                  * ignored in tuning mode. Does it make sense ? */
@@ -156,11 +152,11 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                  * argument, we need to define the test vector as floats in
                  * order to prevent rounding issues */
                 for (auto &vec : Tests<float>{
-                            { "(upper limit)", 12.2f },
-                            { "(lower limit)", -50.4f },
-                            { "(inside range)", 0.0f },
-                        }) {
-                    GIVEN("A valid value " + vec.title) {
+                         {"(upper limit)", 12.2f},
+                         {"(lower limit)", -50.4f},
+                         {"(inside range)", 0.0f},
+                     }) {
+                    GIVEN ("A valid value " + vec.title) {
                         CHECK_NOTHROW(handle.setAsDouble(vec.payload));
                         double getValueBack;
                         CHECK_NOTHROW(handle.getAsDouble(getValueBack));
@@ -168,10 +164,9 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]") {
                     }
                 }
                 for (auto &vec : Tests<float>{
-                            { "(too high)", 12.3f },
-                            { "(too low)", -50.5f },
-                        }) {
-                    GIVEN("An invalid value " + vec.title) {
+                         {"(too high)", 12.3f}, {"(too low)", -50.5f},
+                     }) {
+                    GIVEN ("An invalid value " + vec.title) {
                         CHECK_THROWS_AS(handle.setAsDouble(vec.payload), Exception);
                     }
                 }
