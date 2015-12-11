@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2014, Intel Corporation
+ * Copyright (c) 2015, Intel Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -27,45 +27,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "RemoteProcessorServer.h"
-#include <memory>
-#include <future>
+#pragma once
 
-class BackgroundRemoteProcessorServer final : public IRemoteProcessorServerInterface
+#include "CommandHandlerInterface.h"
+#include <RemoteCommandHandler.h>
+#include <memory>
+
+class CommandHandlerWrapper : public CommandHandlerInterface
 {
 public:
-    BackgroundRemoteProcessorServer(uint16_t uiPort,
-                                    std::unique_ptr<IRemoteCommandHandler> &&commandHandler)
-        : _server(uiPort), mCommandHandler(std::move(commandHandler))
-    {
-    }
+    CommandHandlerWrapper(std::unique_ptr<IRemoteCommandHandler> &&wrapped);
 
-    ~BackgroundRemoteProcessorServer() { stop(); }
-
-    bool start(std::string &error) override
-    {
-        if (!_server.start(error)) {
-            return false;
-        }
-        try {
-            mServerSuccess = std::async(std::launch::async, &CRemoteProcessorServer::process,
-                                        &_server, std::ref(*mCommandHandler));
-        } catch (std::exception &e) {
-            error = "Could not create a remote processor thread: " + std::string(e.what());
-            return false;
-        }
-
-        return true;
-    }
-
-    bool stop() override
-    {
-        _server.stop();
-        return mServerSuccess.get();
-    }
+    bool process(const std::string &command, const std::vector<std::string> &arguments,
+                 std::string &output) override;
 
 private:
-    CRemoteProcessorServer _server;
-    std::unique_ptr<IRemoteCommandHandler> mCommandHandler;
-    std::future<bool> mServerSuccess;
+    std::unique_ptr<IRemoteCommandHandler> mWrapped;
 };

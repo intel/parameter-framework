@@ -2643,8 +2643,8 @@ bool CParameterMgr::serializeElement(std::ostream &output,
 
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(&element, _bValidateSchemasOnStart,
-                                     element.getXmlElementName(),
-                                     "parameter-framework", getVersion());
+                                     element.getXmlElementName(), "parameter-framework",
+                                     getVersion());
 
     // Use a doc sink to write the doc data in a stream
     CXmlStreamDocSink sink(output);
@@ -2813,8 +2813,8 @@ void CParameterMgr::feedElementLibraries()
     pParameterCreationLibrary->addElementBuilder(
         "FloatingPointParameter", new TNamedElementBuilderTemplate<CFloatingPointParameterType>);
     pParameterCreationLibrary->addElementBuilder(
-        "SubsystemInclude", new CFileIncluderElementBuilder(_bValidateSchemasOnStart,
-                                                            getSchemaUri()));
+        "SubsystemInclude",
+        new CFileIncluderElementBuilder(_bValidateSchemasOnStart, getSchemaUri()));
 
     _pElementLibrarySet->addElementLibrary(pParameterCreationLibrary);
 
@@ -2843,22 +2843,9 @@ void CParameterMgr::setForceNoRemoteInterface(bool bForceNoRemoteInterface)
     _bForceNoRemoteInterface = bForceNoRemoteInterface;
 }
 
-// Remote Processor Server connection handling
-bool CParameterMgr::handleRemoteProcessingInterface(string &strError)
+CParameterMgr::CommandHandler CParameterMgr::createCommandHandler()
 {
-    LOG_CONTEXT("Handling remote processing interface");
-
-    if (_bForceNoRemoteInterface) {
-        // The user requested not to start the remote interface
-        return true;
-    }
-
-    // Start server only if tuning allowed
-    if (!getConstFrameworkConfiguration()->isTuningAllowed()) {
-        return true;
-    }
-
-    CCommandHandler *commandHandler = new CCommandHandler(this);
+    auto commandHandler = utility::make_unique<CCommandHandler>(this);
 
     // Add command parsers
     for (const auto &remoteCommandParserItem : gastRemoteCommandParserItems) {
@@ -2867,12 +2854,30 @@ bool CParameterMgr::handleRemoteProcessingInterface(string &strError)
             remoteCommandParserItem._minArgumentCount, remoteCommandParserItem._pcHelp,
             remoteCommandParserItem._pcDescription);
     }
-    std::unique_ptr<IRemoteCommandHandler> remoteCommandHandler(commandHandler);
+
+    return commandHandler;
+}
+
+bool CParameterMgr::isRemoteInterfaceRequired()
+{
+    // The remote interface should only be started if the client didn't
+    // explicitly forbid it and if the configuration file allows it.
+    return (not _bForceNoRemoteInterface) and getConstFrameworkConfiguration()->isTuningAllowed();
+}
+
+// Remote Processor Server connection handling
+bool CParameterMgr::handleRemoteProcessingInterface(string &strError)
+{
+    LOG_CONTEXT("Handling remote processing interface");
+
+    if (not isRemoteInterfaceRequired()) {
+        return true;
+    }
 
     auto port = getConstFrameworkConfiguration()->getServerPort();
 
     // The ownership of remoteComandHandler is given to Bg remote processor server.
-    _pRemoteProcessorServer = new BackgroundRemoteProcessorServer(port, remoteCommandHandler);
+    _pRemoteProcessorServer = new BackgroundRemoteProcessorServer(port, createCommandHandler());
 
     if (_pRemoteProcessorServer == NULL) {
         strError = "ParameterMgr: Unable to create Remote Processor Server";
