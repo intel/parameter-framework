@@ -79,21 +79,6 @@ class CParameterMgr : private CElement
         EParameterConfigurationLibrary
     };
 
-    // Remote command parsers
-    typedef TRemoteCommandHandlerTemplate<CParameterMgr> CCommandHandler;
-
-    typedef CCommandHandler::CommandStatus (CParameterMgr::*RemoteCommandParser)(
-        const IRemoteCommand &remoteCommand, std::string &strResult);
-
-    // Parser descriptions
-    struct SRemoteCommandParserItem
-    {
-        const char *_pcCommandName;
-        CParameterMgr::RemoteCommandParser _pfnParser;
-        size_t _minArgumentCount;
-        const char *_pcHelp;
-        const char *_pcDescription;
-    };
     // Version
     static const uint32_t guiEditionMajor = 3;
     static const uint32_t guiEditionMinor = 1;
@@ -115,6 +100,15 @@ public:
       * @return true if no error occurred, false otherwise.
       */
     bool load(std::string &strError);
+
+    // Remote command parsers
+    using CommandHandler = std::unique_ptr<TRemoteCommandHandlerTemplate<CParameterMgr>>;
+
+    /** Create and return a command handler for this ParameterMgr instance
+     *
+     * @returns a Command Handler
+     */
+    CommandHandler createCommandHandler();
 
     // Selection Criteria
     CSelectionCriterionType *createSelectionCriterionType(bool bIsInclusive);
@@ -410,6 +404,25 @@ private:
 
     // Version
     std::string getVersion() const;
+
+    // This using is here for internal reasons: CommandHandler is public and is
+    // a unique_ptr but we want the type that's inside. And for legacy reason
+    // because that's the original name before a rework; this directive avoids
+    // renaming a lot of stuff.
+    using CCommandHandler = CommandHandler::element_type;
+    using RemoteCommandParser =
+        CCommandHandler::CommandStatus (CParameterMgr::*) (const IRemoteCommand &remoteCommand,
+                                                           std::string &strResult);
+
+    // Parser descriptions
+    struct SRemoteCommandParserItem
+    {
+        const char *_pcCommandName;
+        CParameterMgr::RemoteCommandParser _pfnParser;
+        size_t _minArgumentCount;
+        const char *_pcHelp;
+        const char *_pcDescription;
+    };
 
     ////////////////:: Remote command parsers
     /// Version
@@ -819,6 +832,7 @@ private:
     void feedElementLibraries();
 
     // Remote Processor Server connection handling
+    bool isRemoteInterfaceRequired();
     bool handleRemoteProcessingInterface(std::string &strError);
 
     /** Log the result of a function
