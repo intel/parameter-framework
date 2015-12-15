@@ -38,8 +38,11 @@
 #define base CKindElement
 CXmlFileIncluderElement::CXmlFileIncluderElement(const std::string &strName,
                                                  const std::string &strKind,
-                                                 bool bValidateWithSchemas)
-    : base(strName, strKind), _bValidateSchemasOnStart(bValidateWithSchemas)
+                                                 bool bValidateWithSchemas,
+                                                 const std::string &schemaBaseUri)
+    : base(strName, strKind),
+      _bValidateSchemasOnStart(bValidateWithSchemas),
+      _schemaBaseUri(schemaBaseUri)
 {
 }
 
@@ -62,6 +65,10 @@ bool CXmlFileIncluderElement::fromXml(const CXmlElement &xmlElement,
         _xmlDoc *doc = CXmlDocSource::mkXmlDoc(strPath, true, true, elementSerializingContext);
 
         CXmlDocSource docSource(doc, _bValidateSchemasOnStart, strIncludedElementType);
+
+        if (not _schemaBaseUri.empty()) {
+            docSource.setSchemaBaseUri(_schemaBaseUri);
+        }
 
         if (!docSource.isParsable()) {
 

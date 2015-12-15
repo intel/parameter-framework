@@ -2814,7 +2814,8 @@ void CParameterMgr::feedElementLibraries()
     pParameterCreationLibrary->addElementBuilder(
         "FloatingPointParameter", new TNamedElementBuilderTemplate<CFloatingPointParameterType>);
     pParameterCreationLibrary->addElementBuilder(
-        "SubsystemInclude", new CFileIncluderElementBuilder(_bValidateSchemasOnStart));
+        "SubsystemInclude", new CFileIncluderElementBuilder(_bValidateSchemasOnStart,
+                                                            getSchemaUri()));
 
     _pElementLibrarySet->addElementLibrary(pParameterCreationLibrary);
 
