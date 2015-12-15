@@ -325,8 +325,8 @@ if __name__ == "__main__":
     # domains) to their location on the target (which may be different than on
     # the machine that is generating the domains)
 
-    if args.target_schema_dir is not None:
-        pfw.setSchemaUri(args.target_schema_dir)
+    if args.target_schemas_dir is not None:
+        pfw.setSchemaUri(args.target_schemas_dir)
 
     # Export the resulting settings to the standard output
     ok, domains, error = pfw.exportDomainsXml("", True, False)
