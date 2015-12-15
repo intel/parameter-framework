@@ -192,9 +192,7 @@ struct AllParamsPF : public ParameterFramework
 
     static string rootNode(string name, string attributes, string content)
     {
-        return '<' + name + " xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'"
-                            " xsi:noNamespaceSchemaLocation='" +
-               name + ".xsd'" + ' ' + attributes + '>' + content + "</" + name + '>';
+        return '<' + name + ' ' + attributes + '>' + content + "</" + name + '>';
     }
 };
 

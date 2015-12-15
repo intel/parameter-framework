@@ -636,8 +636,7 @@ bool CParameterMgr::xmlParse(CXmlElementSerializingContext &elementSerializingCo
     CXmlDocSource docSource(doc, _bValidateSchemasOnStart, pRootElement->getXmlElementName(),
                             pRootElement->getName(), strNameAttributeName);
 
-    // Schema Uri
-    setSchemaUri(docSource.getSchemaUri());
+    docSource.setSchemaBaseUri(getSchemaUri());
 
     // Start clean
     auto clean = [replace, &pRootElement] {
@@ -2644,7 +2643,7 @@ bool CParameterMgr::serializeElement(std::ostream &output,
 
     // Use a doc source by loading data from instantiated Configurable Domains
     CXmlMemoryDocSource memorySource(&element, _bValidateSchemasOnStart,
-                                     element.getXmlElementName(), getSchemaUri(),
+                                     element.getXmlElementName(),
                                      "parameter-framework", getVersion());
 
     // Use a doc sink to write the doc data in a stream

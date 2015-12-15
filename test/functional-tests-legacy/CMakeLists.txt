@@ -32,8 +32,6 @@ if(BUILD_TESTING)
     set(PFW_ROOT ${PROJECT_BINARY_DIR}/tmp/test-parameters)
     set(PFW_RESULT ${PFW_ROOT}/result)
 
-    file(COPY ${PROJECT_SOURCE_DIR}/schemas/ DESTINATION ${PFW_ROOT}/xml/schemas)
-
     configure_file(
         ${CMAKE_CURRENT_SOURCE_DIR}/xml/configuration/Structure/Test/TestSubsystem.xml.in
         ${PFW_ROOT}/xml/configuration/Structure/Test/TestSubsystem.xml @ONLY)
@@ -62,5 +60,6 @@ if(BUILD_TESTING)
     set_test_env(functional-test-legacy)
     set_property(TEST functional-test-legacy APPEND PROPERTY ENVIRONMENT
                  PFW_ROOT=${PFW_ROOT}
-                 PFW_RESULT=${PFW_RESULT})
+                 PFW_RESULT=${PFW_RESULT}
+                 PFW_SCHEMAS=${PROJECT_SOURCE_DIR}/schemas)
 endif()

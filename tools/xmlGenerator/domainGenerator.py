@@ -159,10 +159,7 @@ if __name__ == "__main__":
         validation",
             default=None)
     argparser.add_argument('--target-schemas-dir',
-            help="Directory of parameter-framework XML Schemas on target \
-        machine (may be different than generating machine). \
-        Defaults to \"schemas\"",
-            default="schemas/")
+            help="Ignored. Kept for retro-compatibility")
     argparser.add_argument('--validate',
             help="Validate the settings against XML schemas",
             action='store_true')
@@ -322,16 +319,6 @@ if __name__ == "__main__":
         if error_handler.hasFailed():
             logging.error("Error while importing parsed EDD files.\n")
             exit(1)
-
-    # dirty hack: we change the schema location (right before exporting the
-    # domains) to their location on the target (which may be different than on
-    # the machine that is generating the domains)
-
-    if args.target_schemas_dir is not None:
-        # Force the path to represent a folder (e.g. add a trailing /
-        # if necessary)
-        target_schemas_dir = os.path.join(args.target_schemas_dir, "")
-        pfw.setSchemaUri(target_schemas_dir)
 
     # Export the resulting settings to the standard output
     ok, domains, error = pfw.exportDomainsXml("", True, False)

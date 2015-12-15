@@ -113,6 +113,7 @@ class Hal(RemoteCli):
 
     # Starts the Pfw
     def start(self):
+        self.sendCmd("setSchemaUri", os.environ["PFW_SCHEMAS"])
         self.sendCmd("setValidateSchemasOnStart", "true")
         self.sendCmd("start")
         self.pfw.setRemoteProcess(self.remoteProcess)
