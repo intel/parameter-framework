@@ -270,7 +270,9 @@ if __name__ == "__main__":
         if args.validate:
             pfw.setValidateSchemasOnStart(True)
             if args.schemas_dir is not None:
-                schemas_dir = args.schemas_dir
+                # Force the path to represent a folder (e.g. add a trailing /
+                # if necessary)
+                schemas_dir = os.path.join(args.schemas_dir, "")
                 pfw.setSchemaUri(schemas_dir)
 
         logger = PfwLogger()
@@ -326,7 +328,10 @@ if __name__ == "__main__":
     # the machine that is generating the domains)
 
     if args.target_schemas_dir is not None:
-        pfw.setSchemaUri(args.target_schemas_dir)
+        # Force the path to represent a folder (e.g. add a trailing /
+        # if necessary)
+        target_schemas_dir = os.path.join(args.target_schemas_dir, "")
+        pfw.setSchemaUri(target_schemas_dir)
 
     # Export the resulting settings to the standard output
     ok, domains, error = pfw.exportDomainsXml("", True, False)
