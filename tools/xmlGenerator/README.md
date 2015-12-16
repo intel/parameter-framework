@@ -246,17 +246,5 @@ InclusiveCriterion  Criterion2Name : Criterion2Value1 Criterion2Value2
 I.e. One criterion by line, starting by its kind, then its name, followed by a
 semicolon and then all possible values separated by spaces.
 
-### hostDomainGenerator.sh
-
-**This script is now deprecated and replaced by domainGenerator.py
-(see above).**
-
-It prints the resulting XML on the standard output. Its syntax is:
-
-    hostDomainGenerator.sh [--validate] <top-level configuration file> <criteria file> <EDD files...>
-
-See domainGenerator.py above for the explanation of the arguments.
-
-
 #### How it works
 TODO
