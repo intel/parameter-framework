@@ -125,6 +125,11 @@ bool CTestPlatform::run(std::string &strError)
         &CTestPlatform::getter<&CParameterMgrPlatformConnector::getValidateSchemasOnStart>, 0, "",
         "Get policy for schema validation based on .xsd files.");
 
+    commandHandler.addCommandParser("getSchemaUri", &CTestPlatform::getSchemaUri, 0,
+        "", "Get the directory where schemas can be found.");
+    commandHandler.addCommandParser("setSchemaUri", &CTestPlatform::setSchemaUri, 1,
+        "<directory>", "Set the directory where schemas can be found.");
+
     return mRemoteProcessorServer.process(commandHandler);
 }
 
@@ -200,6 +205,20 @@ CTestPlatform::CommandReturn CTestPlatform::getter(const IRemoteCommand & /*comm
     strResult = (mParameterMgrPlatformConnector.*getFunction)() ? "true" : "false";
 
     return CTestPlatform::CCommandHandler::ESucceeded;
+}
+
+CTestPlatform::CommandReturn CTestPlatform::getSchemaUri(const IRemoteCommand & /*remotecommand*/,
+                                                         string &result)
+{
+    result = mParameterMgrPlatformConnector.getSchemaUri();
+    return CTestPlatform::CCommandHandler::EDone;
+}
+
+CTestPlatform::CommandReturn CTestPlatform::setSchemaUri(const IRemoteCommand &remotecommand,
+                                                         string & /*result*/)
+{
+    mParameterMgrPlatformConnector.setSchemaUri(remotecommand.getArgument(0));
+    return CTestPlatform::CCommandHandler::EDone;
 }
 
 CTestPlatform::CommandReturn CTestPlatform::setCriterionState(const IRemoteCommand &remoteCommand,
