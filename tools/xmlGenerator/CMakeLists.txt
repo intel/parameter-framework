@@ -26,6 +26,11 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+add_executable(domainGeneratorConnector domainGeneratorConnector.cpp)
+target_link_libraries(domainGeneratorConnector PRIVATE parameter pfw_utility)
+
+install(TARGETS domainGeneratorConnector RUNTIME DESTINATION bin)
+
 install(PROGRAMS
     domainGenerator.sh
     domainGenerator.py
