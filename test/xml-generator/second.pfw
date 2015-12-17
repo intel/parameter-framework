@@ -1,0 +1,29 @@
+domainGroup: EddGroup
+	Colors Includes Red
+
+	domain: Second
+
+		confType: On
+			Switch Is On
+
+		confGroup: Blue
+			Colors Includes Blue
+
+			# Inherits from "EddGroup" domainGroup, "Blue" confGroup
+			# and from "On" confType
+			conf: On
+				/Test/test/block/2/uint8 = 3
+
+			# Inherits from "EddGroup" domainGroup and "Blue" confGroup
+			conf: Off
+				/Test/test/block/2/uint8 = 4
+
+		# Only inherits from "EddGroup" domainGroup
+		conf: Green
+			Colors Includes Green
+
+			/Test/test/block/2/uint8 = 5
+
+		# Only inherits from "EddGroup" domainGroup
+		conf: Default
+			/Test/test/block/2/uint8 = 6

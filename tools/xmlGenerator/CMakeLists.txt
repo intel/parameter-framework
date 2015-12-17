@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Intel Corporation
+# Copyright (c) 2014-2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -30,11 +30,9 @@ install(PROGRAMS
     domainGenerator.sh
     domainGenerator.py
     hostConfig.py
-    hostDomainGenerator.sh
     lightRoutingUpdate.sh
     PfwBaseTranslator.py
     EddParser.py
     PFWScriptGenerator.py
-    portAllocator.py
     updateRoutageDomains.sh
     DESTINATION bin)

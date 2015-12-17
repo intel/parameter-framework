@@ -64,6 +64,9 @@ private:
     CommandReturn createInclusiveSelectionCriterion(const IRemoteCommand &remoteCommand,
                                                     std::string &strResult);
 
+    CommandReturn getSchemaUri(const IRemoteCommand &remotecommand, std::string &result);
+    CommandReturn setSchemaUri(const IRemoteCommand &remotecommand, std::string &result);
+
     /** Callback to set a criterion's value, see ISelectionCriterionInterface::setCriterionState.
      * @see CCommandHandler::RemoteCommandParser for detail on each arguments and return
      *

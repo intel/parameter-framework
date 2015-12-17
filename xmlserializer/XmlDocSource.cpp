@@ -84,10 +84,22 @@ string CXmlDocSource::getRootElementAttributeString(const string &strAttributeNa
     return attribute;
 }
 
+void CXmlDocSource::setSchemaBaseUri(const string &uri)
+{
+    _schemaBaseUri = uri;
+}
+
+string CXmlDocSource::getSchemaBaseUri()
+{
+    return _schemaBaseUri;
+}
+
 string CXmlDocSource::getSchemaUri() const
 {
-    return mkUri(string((const char *)_pDoc->URL),
-                 getRootElementAttributeString("noNamespaceSchemaLocation"));
+    // Adding a trailing '/' is a bit dirty but works fine on both Linux and
+    // Windows in order to make sure that libxml2's URI handling methods
+    // interpret the base URI as a folder.
+    return mkUri(_schemaBaseUri + "/", getRootElementName() + ".xsd");
 }
 
 _xmlDoc *CXmlDocSource::getDoc() const

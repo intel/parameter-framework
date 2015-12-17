@@ -1,6 +1,5 @@
-#!/usr/bin/python2
-#
-# Copyright (c) 2011-2014, Intel Corporation
+#! python2
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -28,21 +27,35 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import sys, socket
+import sys
+import os
+import subprocess
+import difflib
 
-serversock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-try:
-    # Create a listening socket on a random available port on localhost
-    serversock.bind(('127.0.0.1',0))
-    serversock.listen(0)
+basedir = os.path.dirname(sys.argv[0])
+command = [sys.executable, "domainGenerator.py",
+        "--validate",
+        "--toplevel-config", os.path.join(basedir, "ParameterFrameworkConfiguration.xml"),
+        "--criteria", os.path.join(basedir, "criteria.txt"),
+        "--initial-settings", os.path.join(basedir, "TuningSettings.xml"),
+        "--add-edds", os.path.join(basedir, "first.pfw"), os.path.join(basedir, "second.pfw"),
+        "--add-domains", os.path.join(basedir, "third.xml"), os.path.join(basedir, "fourth.xml"),
+        "--schemas-dir", os.path.join(basedir, "../../schemas")]
 
-    # Print the chosen port
-    print(serversock.getsockname()[1])
-    serversock.close()
+reference = open(os.path.join(basedir, "reference.xml")).read().splitlines()
 
-except socket.error, (errno,message):
-    sys.stderr.write("portAllocator: Socket creation error " + str(errno) + ": " + message + '\n')
-    if serversock:
-        serversock.close()
+process = subprocess.Popen(command, stdout=subprocess.PIPE)
+actual = process.stdout.read().splitlines()
+
+unified = difflib.unified_diff(reference,
+                               actual,
+                               fromfile="reference.xml",
+                               tofile="-",
+                               lineterm="")
+diffs = list(unified)
+if not diffs:
+    sys.exit(0)
+else:
+    for d in diffs:
+        print(d)
     sys.exit(1)
-

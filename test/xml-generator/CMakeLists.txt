@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, Intel Corporation
+# Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -26,13 +26,14 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-add_subdirectory(catch)
-add_subdirectory(tmpfile)
-add_subdirectory(functional-tests)
-add_subdirectory(functional-tests-legacy)
-add_subdirectory(test-fixed-point-parameter)
-add_subdirectory(test-platform)
-add_subdirectory(test-subsystem)
-add_subdirectory(introspection-subsystem)
-add_subdirectory(tokenizer)
-add_subdirectory(xml-generator)
+if (BUILD_TESTING AND PYTHON_BINDINGS)
+
+    find_package(PythonInterp 2 REQUIRED)
+
+    add_test(NAME xml-generator
+             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/tools/xmlGenerator
+             COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test.py)
+
+    # Custom function defined in the top-level CMakeLists
+    set_test_env(xml-generator)
+endif()

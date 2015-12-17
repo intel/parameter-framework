@@ -202,7 +202,6 @@ It prints the resulting XML on the standard output. Its syntax is:
                              [--add-domains XML_DOMAIN_FILE [XML_DOMAIN_FILE ...]]
                              [--add-edds EDD_FILE [EDD_FILE ...]]
                              [--schemas-dir SCHEMAS_DIR]
-                             [--target-schemas-dir TARGET_SCHEMAS_DIR]
                              [--validate] [--verbose]
 
 *Explanation:*
@@ -222,10 +221,6 @@ It prints the resulting XML on the standard output. Its syntax is:
 - The optional `--schemas-dir` argument lets you change the directory
   containing the XML Schemas in the context of the XML generation only (see the
   `--validate` option).
-- The optional `--target-schemas-dir` argument lets you change the directory
-  containing the XML Schemas on the target device (the one the
-  parameter-framework will run on) if it is using Schema validation and if
-  different than the default.
 - The optional `--validate` option check the validity of all XML files involved
   in the process.
 
@@ -245,18 +240,6 @@ InclusiveCriterion  Criterion2Name : Criterion2Value1 Criterion2Value2
 
 I.e. One criterion by line, starting by its kind, then its name, followed by a
 semicolon and then all possible values separated by spaces.
-
-### hostDomainGenerator.sh
-
-**This script is now deprecated and replaced by domainGenerator.py
-(see above).**
-
-It prints the resulting XML on the standard output. Its syntax is:
-
-    hostDomainGenerator.sh [--validate] <top-level configuration file> <criteria file> <EDD files...>
-
-See domainGenerator.py above for the explanation of the arguments.
-
 
 #### How it works
 TODO

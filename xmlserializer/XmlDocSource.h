@@ -63,7 +63,6 @@ public:
       * Constructor
       *
       * @param[out] pDoc a pointer to the xml document that will be filled by the class
-      * @param[in] strXmlSchemaFile a string containing the path to the schema file
       * @param[in] strRootElementType a string containing the root element type
       * @param[in] strRootElementName a string containing the root element name
       * @param[in] strNameAttributeName a string containing the name of the root name attribute
@@ -102,12 +101,18 @@ public:
       */
     std::string getRootElementName() const;
 
-    /**
-      * Getter method.
-      *
-      * @return schema URI
-      */
-    std::string getSchemaUri() const;
+    /** Get the Schemas' base (folder) URI
+     */
+    std::string getSchemaBaseUri();
+
+    /** Set the Schema's base (folder) URI
+     *
+     * The schema for validating the XML document will be searched for in that
+     * folder.
+     *
+     * @param[in] uri The Schemas' base URI
+     */
+    void setSchemaBaseUri(const std::string &uri);
 
     /**
       * Getter method.
@@ -182,6 +187,7 @@ private:
       * @return true if document is valid, false if any error occures
       */
     bool isInstanceDocumentValid();
+    std::string getSchemaUri() const;
 
     /**
       * Element type info
@@ -202,4 +208,6 @@ private:
       * Boolean that enables the validation via xsd files
       */
     bool _bValidateWithSchema;
+
+    std::string _schemaBaseUri;
 };

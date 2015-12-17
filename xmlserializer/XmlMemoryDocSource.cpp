@@ -36,16 +36,12 @@
 
 CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource *pXmlSource, bool bValidateWithSchema,
                                          const std::string &strRootElementType,
-                                         const std::string &schemaBaseUri,
                                          const std::string &strProduct,
                                          const std::string &strVersion)
     : base(xmlNewDoc(BAD_CAST "1.0"), bValidateWithSchema,
            xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
       _pXmlSource(pXmlSource), _strProduct(strProduct), _strVersion(strVersion)
 {
-    // Get Schema file
-    _strXmlSchemaFile = CXmlDocSource::mkUri(schemaBaseUri, strRootElementType + ".xsd");
-
     init();
 }
 
@@ -70,15 +66,6 @@ bool CXmlMemoryDocSource::populate(CXmlSerializingContext &serializingContext)
 
     // Create Xml element with the Doc
     CXmlElement docElement(_pRootNode);
-
-    if (!_strXmlSchemaFile.empty()) {
-
-        // Schema namespace
-        docElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-
-        // Schema location
-        docElement.setAttribute("xsi:noNamespaceSchemaLocation", _strXmlSchemaFile);
-    }
 
     // Compose the xml document
     _pXmlSource->toXml(docElement, serializingContext);
