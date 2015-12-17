@@ -31,6 +31,8 @@
 #include "ParameterMgr.h"
 #include "ParameterMgrLogger.h"
 
+#include "CommandHandlerWrapper.h"
+
 #include <list>
 
 using std::string;
@@ -38,6 +40,11 @@ using std::string;
 CParameterMgrFullConnector::CParameterMgrFullConnector(const string &strConfigurationFilePath)
     : CParameterMgrPlatformConnector(strConfigurationFilePath)
 {
+}
+
+CommandHandlerInterface *CParameterMgrFullConnector::createCommandHandler()
+{
+    return new CommandHandlerWrapper(_pParameterMgr->createCommandHandler());
 }
 
 void CParameterMgrFullConnector::setFailureOnMissingSubsystem(bool bFail)
