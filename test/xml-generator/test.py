@@ -33,16 +33,20 @@ import subprocess
 import difflib
 
 basedir = os.path.dirname(sys.argv[0])
+
+configDir = os.path.join(basedir, "PFConfig")
+vectorDir = os.path.join(basedir, "testVector")
+
 command = [sys.executable, "domainGenerator.py",
         "--validate",
-        "--toplevel-config", os.path.join(basedir, "ParameterFrameworkConfiguration.xml"),
-        "--criteria", os.path.join(basedir, "criteria.txt"),
-        "--initial-settings", os.path.join(basedir, "TuningSettings.xml"),
-        "--add-edds", os.path.join(basedir, "first.pfw"), os.path.join(basedir, "second.pfw"),
-        "--add-domains", os.path.join(basedir, "third.xml"), os.path.join(basedir, "fourth.xml"),
+        "--toplevel-config", os.path.join(configDir, "configuration.xml"),
+        "--criteria", os.path.join(configDir, "criteria.txt"),
+        "--initial-settings", os.path.join(vectorDir, "initialSettings.xml"),
+        "--add-edds", os.path.join(vectorDir, "first.pfw"), os.path.join(vectorDir, "second.pfw"),
+        "--add-domains", os.path.join(vectorDir, "third.xml"), os.path.join(vectorDir, "fourth.xml"),
         "--schemas-dir", os.path.join(basedir, "../../schemas")]
 
-reference = open(os.path.join(basedir, "reference.xml")).read().splitlines()
+reference = open(os.path.join(vectorDir, "reference.xml")).read().splitlines()
 
 process = subprocess.Popen(command, stdout=subprocess.PIPE)
 actual = process.stdout.read().splitlines()

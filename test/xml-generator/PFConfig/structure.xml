@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemClass Name="Test" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <Subsystem Name="test" Type="Virtual">
+        <ComponentLibrary>
+            <!-- Test xi:include feature.
+                 FIXME: this should be done in the functional tests,
+                        not in the xml generation test. -->
+            <xi:include href="includeStructure.xml"/>
+        </ComponentLibrary>
+        <InstanceDefinition>
+
+            <Component Name="included" Type="Included"/>
+
+            <ParameterBlock Name="block" ArrayLength="5">
+                <FixedPointParameter Name="q2.5" Size="8" Integral="2" Fractional="5"/>
+                <IntegerParameter Name="uint8" Signed="false" Size="8"/>
+                <StringParameter Name="string" MaxLength="20"/>
+            </ParameterBlock>
+
+        </InstanceDefinition>
+    </Subsystem>
+</SystemClass>
