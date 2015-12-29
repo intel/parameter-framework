@@ -99,7 +99,7 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]")
                     GIVEN ("A valid value " + vec.title) {
                         CHECK_NOTHROW(setParameter(path, vec.payload));
                         string getValueBack;
-                        CHECK_NOTHROW(getParameter(path, getValueBack));
+                        REQUIRE_NOTHROW(getParameter(path, getValueBack));
                         CHECK(getValueBack == vec.payload);
                     }
                 }
@@ -138,7 +138,7 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]")
                     GIVEN ("A valid value " + vec.title) {
                         CHECK_NOTHROW(setParameter(path, vec.payload));
                         string getValueBack;
-                        CHECK_NOTHROW(getParameter(path, getValueBack));
+                        REQUIRE_NOTHROW(getParameter(path, getValueBack));
                         CHECK(getValueBack == vec.payload);
                     }
                 }
@@ -161,7 +161,7 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]")
                     GIVEN ("A valid value " + vec.title) {
                         CHECK_NOTHROW(handle.setAsDouble(vec.payload));
                         double getValueBack;
-                        CHECK_NOTHROW(handle.getAsDouble(getValueBack));
+                        REQUIRE_NOTHROW(handle.getAsDouble(getValueBack));
                         CHECK(getValueBack == vec.payload);
                     }
                 }
