@@ -62,29 +62,34 @@ SCENARIO_METHOD(ParameterFramework, "No Logger", "[log]")
     }
 }
 
-SCENARIO_METHOD(WarningPF, "Logger should receive info and warnings", "[log]")
+SCENARIO("Logger should receive info and warnings", "[log]")
 {
-    GIVEN ("Config files that emit warnings") {
-        GIVEN ("A logger that stores logs") {
-            StoreLogger logger{};
-            WHEN ("The record logger is set") {
-                setLogger(&logger);
-                THEN ("Start should succeed") {
-                    REQUIRE_NOTHROW(start());
-                    AND_THEN ("The logger should have stored info and warning log") {
-                        using Logs = StoreLogger::Logs;
-                        using Level = StoreLogger::Log::Level;
-                        CHECK(logger.filter(Level::warning) != Logs{});
-                        CHECK(logger.getLogs() != Logs{});
-                    }
-                }
-                AND_WHEN ("A nullptr logger is set") {
-                    setLogger(nullptr);
+    GIVEN ("A logger that stores logs") {
+        /* Instantiating logger first to ensure that its lifetime is longer than the pfw's one,
+         * because the pfw references the logger. */
+        StoreLogger logger{};
+        GIVEN ("A parameter framework") {
+            WarningPF pfw;
+            GIVEN ("Config files that emit warnings") {
+                WHEN ("The record logger is set") {
+                    pfw.setLogger(&logger);
                     THEN ("Start should succeed") {
-                        REQUIRE_NOTHROW(start());
-                        AND_THEN (
-                            "The record logger should NOT have stored any info or warning log") {
-                            CHECK(logger.getLogs() == StoreLogger::Logs{});
+                        REQUIRE_NOTHROW(pfw.start());
+                        AND_THEN ("The logger should have stored info and warning log") {
+                            using Logs = StoreLogger::Logs;
+                            using Level = StoreLogger::Log::Level;
+                            CHECK(logger.filter(Level::warning) != Logs{});
+                            CHECK(logger.getLogs() != Logs{});
+                        }
+                    }
+                    AND_WHEN ("A nullptr logger is set") {
+                        pfw.setLogger(nullptr);
+                        THEN ("Start should succeed") {
+                            REQUIRE_NOTHROW(pfw.start());
+                            AND_THEN ("The record logger should NOT have stored any info or "
+                                      "warning log") {
+                                CHECK(logger.getLogs() == StoreLogger::Logs{});
+                            }
                         }
                     }
                 }
