@@ -2843,36 +2843,41 @@ void CParameterMgr::setForceNoRemoteInterface(bool bForceNoRemoteInterface)
     _bForceNoRemoteInterface = bForceNoRemoteInterface;
 }
 
+CParameterMgr::CommandHandler CParameterMgr::createCommandHandler()
+{
+    auto commandHandler = utility::make_unique<CCommandHandler>(this);
+
+    // Add command parsers
+    for (const auto &remoteCommandParserItem : gastRemoteCommandParserItems) {
+        commandHandler->addCommandParser(
+                remoteCommandParserItem._pcCommandName, remoteCommandParserItem._pfnParser,
+                remoteCommandParserItem._minArgumentCount, remoteCommandParserItem._pcHelp,
+                remoteCommandParserItem._pcDescription);
+    }
+
+    return commandHandler;
+}
+
+bool CParameterMgr::isRemoteInterfaceRequired()
+{
+    // The remote interface should only be started if the client didn't
+    // explicitly forbid it and if the configuration file allows it.
+    return (not _bForceNoRemoteInterface) and getConstFrameworkConfiguration()->isTuningAllowed();
+}
+
 // Remote Processor Server connection handling
 bool CParameterMgr::handleRemoteProcessingInterface(string &strError)
 {
     LOG_CONTEXT("Handling remote processing interface");
 
-    if (_bForceNoRemoteInterface) {
-        // The user requested not to start the remote interface
+    if (not isRemoteInterfaceRequired()) {
         return true;
     }
-
-    // Start server only if tuning allowed
-    if (!getConstFrameworkConfiguration()->isTuningAllowed()) {
-        return true;
-    }
-
-    CCommandHandler *commandHandler = new CCommandHandler(this);
-
-    // Add command parsers
-    for (const auto &remoteCommandParserItem : gastRemoteCommandParserItems) {
-        commandHandler->addCommandParser(
-            remoteCommandParserItem._pcCommandName, remoteCommandParserItem._pfnParser,
-            remoteCommandParserItem._minArgumentCount, remoteCommandParserItem._pcHelp,
-            remoteCommandParserItem._pcDescription);
-    }
-    std::unique_ptr<IRemoteCommandHandler> remoteCommandHandler(commandHandler);
 
     auto port = getConstFrameworkConfiguration()->getServerPort();
 
     // The ownership of remoteComandHandler is given to Bg remote processor server.
-    _pRemoteProcessorServer = new BackgroundRemoteProcessorServer(port, remoteCommandHandler);
+    _pRemoteProcessorServer = new BackgroundRemoteProcessorServer(port, createCommandHandler());
 
     if (_pRemoteProcessorServer == NULL) {
         strError = "ParameterMgr: Unable to create Remote Processor Server";

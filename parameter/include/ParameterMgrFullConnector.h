@@ -36,6 +36,7 @@
 #include "ParameterHandle.h"
 #include "ParameterMgrLoggerForward.h"
 #include "ParameterMgrPlatformConnector.h"
+#include "CommandHandlerInterface.h"
 
 #include <string>
 #include <list>
@@ -51,6 +52,15 @@ public:
     typedef std::list<std::string> Results;
 
     CParameterMgrFullConnector(const std::string &strConfigurationFilePath);
+
+    /** Create and return a command handler for this ParameterMgr instance
+     *
+     * The caller owns the returned pointer and is responsible for deleting it
+     * before destroying the Connector object.
+     *
+     * @returns a Command Handler
+     */
+    CommandHandlerInterface *createCommandHandler();
 
     /** @deprecated Same as its overload without error handling.
      * @note this deprecated method in not available in the python wrapper.

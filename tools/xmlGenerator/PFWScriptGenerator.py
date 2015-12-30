@@ -36,65 +36,39 @@ import sys
 
 class PfwScriptTranslator(PfwBaseTranslator):
 
-    def __init__(self):
+    def __init__(self, separator=" "):
         super(PfwScriptTranslator, self).__init__()
 
+        self._separator = separator
         self._script = []
 
     def getScript(self):
         return self._script
 
     def _doCreateDomain(self, name):
-        self._script.append(
-                "{cmd} {domain}".format(
-                cmd="createDomain",
-                domain=name))
+        self._script.append(self._separator.join(["createDomain", name]))
 
     def _doSetSequenceAware(self):
-        self._script.append(
-                "{cmd} {domain} {aware}".format(
-                cmd="setSequenceAwareness",
-                domain=self._ctx_domain,
-                aware="true"))
+        self._script.append(self._separator.join(
+            ["setSequenceAwareness", self._ctx_domain, "true"]))
 
     def _doAddElement(self, path):
-        self._script.append(
-                "{cmd} {domain} {path}".format(
-                cmd="addElement",
-                domain=self._ctx_domain,
-                path=path))
+        self._script.append(self._separator.join(["addElement", self._ctx_domain, path]))
 
     def _doCreateConfiguration(self, name):
-        self._script.append(
-                "{cmd} {domain} {config}".format(
-                cmd="createConfiguration",
-                domain=self._ctx_domain,
-                config=name))
+        self._script.append(self._separator.join(["createConfiguration", self._ctx_domain, name]))
 
     def _doSetElementSequence(self, paths):
-        self._script.append(
-                "{cmd} {domain} {config} {paths}".format(
-                cmd="setElementSequence",
-                domain=self._ctx_domain,
-                config=self._ctx_configuration,
-                paths=" ".join(paths)))
+        self._script.append(self._separator.join(
+            ["setElementSequence", self._ctx_domain, self._ctx_configuration, " ".join(paths)]))
 
     def _doSetRule(self, rule):
-        self._script.append(
-                "{cmd} {domain} {config} {rule}".format(
-                cmd="setRule",
-                domain=self._ctx_domain,
-                config=self._ctx_configuration,
-                rule=rule))
+        self._script.append(self._separator.join(
+            ["setRule", self._ctx_domain, self._ctx_configuration, rule]))
 
     def _doSetParameter(self, path, value):
-        self._script.append(
-                "{cmd} {domain} {config} {path} '{value}'".format(
-                cmd="setConfigurationParameter",
-                domain=self._ctx_domain,
-                config=self._ctx_configuration,
-                path=path,
-                value=value))
+        self._script.append(self._separator.join(
+            ["setConfigurationParameter", self._ctx_domain, self._ctx_configuration, path, value]))
 
 class ArgparseArgumentParser(object) :
     """class that parse command line arguments with argparse library
