@@ -58,9 +58,10 @@ unified = difflib.unified_diff(reference,
                                tofile="-",
                                lineterm="")
 diffs = list(unified)
-if not diffs:
-    sys.exit(0)
-else:
+if diffs:
     for d in diffs:
         print(d)
+    sys.exit(1)
+if process.wait() != 1:
+    print("Error: Expected 1 error, found {}".format(process.returncode))
     sys.exit(1)

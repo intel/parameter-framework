@@ -42,7 +42,8 @@ import subprocess
 
 def parseArgs():
     argparser = argparse.ArgumentParser(description="Parameter-Framework XML \
-        Settings file generator")
+        Settings file generator.\n\
+        Exit with the number of (recoverable or not) error that occured.")
     argparser.add_argument('--toplevel-config',
             help="Top-level parameter-framework configuration file. Mandatory.",
             metavar="TOPLEVEL_CONFIG_FILE",
@@ -183,6 +184,7 @@ def main():
     # EDD files (aka ".pfw" files)
     #
     parsed_edds = parseEdd(args.edd_files, args.verbose)
+    error_nb = 0
 
     # We need to modify the toplevel configuration file to account for differences
     # between development setup and target (installation) setup, in particular, the
@@ -218,7 +220,8 @@ def main():
     connector.stdin.close()
     connector.wait()
     fake_toplevel_config.delete()
+    return connector.return_code
 
 # If this file is directly executed
 if __name__ == "__main__":
-    main()
+    exit(main())

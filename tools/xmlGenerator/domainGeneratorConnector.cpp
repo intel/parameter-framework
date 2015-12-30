@@ -215,8 +215,20 @@ static const char *usage =
 
 All arguments are mandatory. If no validation is required,
 the path to the schemas can be an empty string.
+
+Exit with the number of (recoverable or not error) that occured.
+
 This program is not intended to be used standalone but rather called through
 domainGenerator.py)";
+
+/** On linux at least, a program can not exit with a value greater than 255.
+ * @return min(code, 255);
+ */
+template <class T>
+static inline int normalizeExitCode(T code)
+{
+    return int(std::min<T>(code, std::numeric_limits<uint8_t>::max()));
+}
 
 int main(int argc, char *argv[])
 {
@@ -246,8 +258,8 @@ int main(int argc, char *argv[])
         // TODO: add a check for conflicting elements
         xmlGenerator.exportDomains(std::cout);
 
-        return int(std::min<decltype(errorNb)>(errorNb, std::numeric_limits<uint8_t>::max()));
-    } catch (runtime_error e) {
+        return normalizeExitCode(errorNb);
+    } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
         return 1;
     }
