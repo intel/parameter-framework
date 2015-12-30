@@ -39,6 +39,7 @@ vectorDir = os.path.join(basedir, "testVector")
 
 command = [sys.executable, "domainGenerator.py",
         "--validate",
+        "--verbose",
         "--toplevel-config", os.path.join(configDir, "configuration.xml"),
         "--criteria", os.path.join(configDir, "criteria.txt"),
         "--initial-settings", os.path.join(vectorDir, "initialSettings.xml"),
