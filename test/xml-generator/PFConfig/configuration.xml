@@ -2,5 +2,5 @@
 <ParameterFrameworkConfiguration SystemClassName="Test" ServerPort="5066" TuningAllowed="false">
     <SubsystemPlugins>
     </SubsystemPlugins>
-    <StructureDescriptionFileLocation Path="Class.xml"/>
+    <StructureDescriptionFileLocation Path="structure.xml"/>
 </ParameterFrameworkConfiguration>

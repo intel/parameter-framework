@@ -36,6 +36,7 @@ add_library(parameter SHARED
     BitParameterType.cpp
     BitwiseAreaConfiguration.cpp
     BooleanParameterType.cpp
+    CommandHandlerWrapper.cpp
     ComponentInstance.cpp
     ComponentLibrary.cpp
     ComponentType.cpp
@@ -107,7 +108,7 @@ generate_export_header(parameter)
 target_link_libraries(parameter
     # Unfortunatly xmlSink and xmlSource need to be exposed to the plugins
     PUBLIC xmlserializer
-    PRIVATE remote-processor pfw_utility
+    PRIVATE pfw_utility remote-processor
     PRIVATE ${CMAKE_DL_LIBS})
 
 target_include_directories(parameter
@@ -121,6 +122,7 @@ install(TARGETS parameter LIBRARY DESTINATION lib RUNTIME DESTINATION bin ARCHIV
 # Client headers
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/parameter_export.h"
+    include/CommandHandlerInterface.h
     include/ElementHandle.h
     include/ParameterHandle.h
     include/ParameterMgrLoggerForward.h

@@ -90,4 +90,5 @@ PenaltyReturnTypeOnItsOwnLine: 10000
 ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH, GIVEN, WHEN, AND_WHEN, THEN, AND_THEN,
     SECTION ]
 
+SortIncludes: 'false'
 ...

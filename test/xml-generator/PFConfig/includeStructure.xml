@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Test xi:include feature.
+     FIXME: this should be done in the functional tests, not in the xmlgeneration tests. -->
+<ComponentLibrary>
+    <ComponentType Name="Included">
+        <BooleanParameter Name="bool"/>
+    </ComponentType>
+</ComponentLibrary>

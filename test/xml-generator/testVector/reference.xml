@@ -7,11 +7,11 @@
       </Configuration>
     </Configurations>
     <ConfigurableElements>
-      <ConfigurableElement Path="/Test/test/tuning/bool"/>
+      <ConfigurableElement Path="/Test/test/included/bool"/>
     </ConfigurableElements>
     <Settings>
       <Configuration Name="default">
-        <ConfigurableElement Path="/Test/test/tuning/bool">
+        <ConfigurableElement Path="/Test/test/included/bool">
           <BooleanParameter Name="bool">1</BooleanParameter>
         </ConfigurableElement>
       </Configuration>
