@@ -40,8 +40,7 @@ CXmlFileIncluderElement::CXmlFileIncluderElement(const std::string &strName,
                                                  const std::string &strKind,
                                                  bool bValidateWithSchemas,
                                                  const std::string &schemaBaseUri)
-    : base(strName, strKind),
-      _bValidateSchemasOnStart(bValidateWithSchemas),
+    : base(strName, strKind), _bValidateSchemasOnStart(bValidateWithSchemas),
       _schemaBaseUri(schemaBaseUri)
 {
 }
