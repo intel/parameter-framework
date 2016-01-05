@@ -60,7 +60,8 @@ protected:
 private:
     // From IMapper
     virtual bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement,
-                          bool &bKeepDiving, std::string &strError);
+                          bool &bKeepDiving,
+                          std::string &strError);
     virtual void mapEnd();
 
     // Subsystem level dummy syncer

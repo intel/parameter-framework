@@ -38,7 +38,8 @@
 class PARAMETER_EXPORT CSubsystemObjectCreator
 {
 public:
-    CSubsystemObjectCreator(const std::string &strMappingKey, uint32_t uiAncestorIdMask,
+    CSubsystemObjectCreator(const std::string &strMappingKey,
+                            uint32_t uiAncestorIdMask,
                             size_t maxConfigurableElementSize);
 
     // Accessors
@@ -49,7 +50,8 @@ public:
     // Object creation
     virtual CSubsystemObject *objectCreate(
         const std::string &strMappingValue,
-        CInstanceConfigurableElement *pInstanceConfigurableElement, const CMappingContext &context,
+        CInstanceConfigurableElement *pInstanceConfigurableElement,
+        const CMappingContext &context,
         core::log::Logger &logger) const = 0;
 
     virtual ~CSubsystemObjectCreator() = default;

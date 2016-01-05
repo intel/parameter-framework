@@ -97,41 +97,47 @@ void CParameter::setDefaultValues(CParameterAccessContext &parameterAccessContex
 
 /// Actual parameter access
 // String access
-bool CParameter::doSetValue(const string &strValue, size_t offset,
+bool CParameter::doSetValue(const string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const
 {
     return doSet(strValue, offset, parameterAccessContext);
 }
 
-void CParameter::doGetValue(string &strValue, size_t offset,
+void CParameter::doGetValue(string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const
 {
     doGet(strValue, offset, parameterAccessContext);
 }
 
 // Boolean access
-bool CParameter::access(bool &bValue, bool bSet,
+bool CParameter::access(bool &bValue,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const
 {
     return doAccess(bValue, bSet, parameterAccessContext);
 }
 
 // Integer Access
-bool CParameter::access(uint32_t &uiValue, bool bSet,
+bool CParameter::access(uint32_t &uiValue,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const
 {
     return doAccess(uiValue, bSet, parameterAccessContext);
 }
 
 // Signed Integer Access
-bool CParameter::access(int32_t &iValue, bool bSet,
+bool CParameter::access(int32_t &iValue,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const
 {
     return doAccess(iValue, bSet, parameterAccessContext);
 }
 
 // Double Access
-bool CParameter::access(double &dValue, bool bSet,
+bool CParameter::access(double &dValue,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const
 {
     return doAccess(dValue, bSet, parameterAccessContext);
@@ -139,7 +145,8 @@ bool CParameter::access(double &dValue, bool bSet,
 
 // Generic Access
 template <typename type>
-bool CParameter::doAccess(type &value, bool bSet,
+bool CParameter::doAccess(type &value,
+                          bool bSet,
                           CParameterAccessContext &parameterAccessContext) const
 {
     if (bSet) {
@@ -169,7 +176,8 @@ bool CParameter::doAccess(type &value, bool bSet,
 }
 
 template <typename type>
-bool CParameter::doSet(type value, size_t offset,
+bool CParameter::doSet(type value,
+                       size_t offset,
                        CParameterAccessContext &parameterAccessContext) const
 {
     uint32_t uiData;
@@ -189,7 +197,8 @@ bool CParameter::doSet(type value, size_t offset,
 }
 
 template <typename type>
-bool CParameter::doGet(type &value, size_t offset,
+bool CParameter::doGet(type &value,
+                       size_t offset,
                        CParameterAccessContext &parameterAccessContext) const
 {
     uint32_t uiData = 0;

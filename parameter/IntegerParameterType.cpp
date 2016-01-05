@@ -138,7 +138,8 @@ bool CIntegerParameterType::fromXml(const CXmlElement &xmlElement,
 }
 
 // Conversion (tuning)
-bool CIntegerParameterType::toBlackboard(const string &strValue, uint32_t &uiValue,
+bool CIntegerParameterType::toBlackboard(const string &strValue,
+                                         uint32_t &uiValue,
                                          CParameterAccessContext &parameterAccessContext) const
 {
     // Hexa
@@ -180,7 +181,8 @@ bool CIntegerParameterType::toBlackboard(const string &strValue, uint32_t &uiVal
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(string &strValue, const uint32_t &value,
+bool CIntegerParameterType::fromBlackboard(string &strValue,
+                                           const uint32_t &value,
                                            CParameterAccessContext &parameterAccessContext) const
 {
     // Check unsigned value is encodable
@@ -218,7 +220,8 @@ bool CIntegerParameterType::fromBlackboard(string &strValue, const uint32_t &val
 
 // Value access
 // Integer
-bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
+bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue,
+                                         uint32_t &uiValue,
                                          CParameterAccessContext &parameterAccessContext) const
 {
     if (uiUserValue < _uiMin || uiUserValue > _uiMax) {
@@ -233,7 +236,8 @@ bool CIntegerParameterType::toBlackboard(uint32_t uiUserValue, uint32_t &uiValue
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
+bool CIntegerParameterType::fromBlackboard(uint32_t &uiUserValue,
+                                           uint32_t uiValue,
                                            CParameterAccessContext & /*ctx*/) const
 {
     // Do assign
@@ -243,7 +247,8 @@ bool CIntegerParameterType::fromBlackboard(uint32_t &uiUserValue, uint32_t uiVal
 }
 
 // Signed Integer
-bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t &uiValue,
+bool CIntegerParameterType::toBlackboard(int32_t iUserValue,
+                                         uint32_t &uiValue,
                                          CParameterAccessContext &parameterAccessContext) const
 {
     if (iUserValue < (int32_t)_uiMin || iUserValue > (int32_t)_uiMax) {
@@ -258,7 +263,8 @@ bool CIntegerParameterType::toBlackboard(int32_t iUserValue, uint32_t &uiValue,
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(int32_t &iUserValue, uint32_t uiValue,
+bool CIntegerParameterType::fromBlackboard(int32_t &iUserValue,
+                                           uint32_t uiValue,
                                            CParameterAccessContext & /*ctx*/) const
 {
     int32_t iValue = uiValue;
@@ -273,7 +279,8 @@ bool CIntegerParameterType::fromBlackboard(int32_t &iUserValue, uint32_t uiValue
 }
 
 // Double
-bool CIntegerParameterType::toBlackboard(double dUserValue, uint32_t &uiValue,
+bool CIntegerParameterType::toBlackboard(double dUserValue,
+                                         uint32_t &uiValue,
                                          CParameterAccessContext &parameterAccessContext) const
 {
     // Check if there's an adaptation object available
@@ -313,7 +320,8 @@ bool CIntegerParameterType::toBlackboard(double dUserValue, uint32_t &uiValue,
     return true;
 }
 
-bool CIntegerParameterType::fromBlackboard(double &dUserValue, uint32_t uiValue,
+bool CIntegerParameterType::fromBlackboard(double &dUserValue,
+                                           uint32_t uiValue,
                                            CParameterAccessContext &parameterAccessContext) const
 {
     // Check if there's an adaptation object available
@@ -397,8 +405,10 @@ bool CIntegerParameterType::convertValueFromString(
 
 // Range checking
 template <typename type>
-bool CIntegerParameterType::checkValueAgainstRange(const string &strValue, type value,
-                                                   type minValue, type maxValue,
+bool CIntegerParameterType::checkValueAgainstRange(const string &strValue,
+                                                   type value,
+                                                   type minValue,
+                                                   type maxValue,
                                                    CParameterAccessContext &parameterAccessContext,
                                                    bool bHexaValue) const
 {

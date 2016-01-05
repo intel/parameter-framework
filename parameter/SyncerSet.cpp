@@ -52,7 +52,8 @@ void CSyncerSet::clear()
     _syncerSet.clear();
 }
 
-bool CSyncerSet::sync(CParameterBlackboard &parameterBlackboard, bool bBack,
+bool CSyncerSet::sync(CParameterBlackboard &parameterBlackboard,
+                      bool bBack,
                       core::Results *errors) const
 {
     bool bSuccess = true;

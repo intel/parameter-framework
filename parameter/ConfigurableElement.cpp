@@ -200,7 +200,8 @@ CAreaConfiguration *CConfigurableElement::createAreaConfiguration(
 }
 
 // Parameter access
-bool CConfigurableElement::accessValue(CPathNavigator &pathNavigator, std::string &strValue,
+bool CConfigurableElement::accessValue(CPathNavigator &pathNavigator,
+                                       std::string &strValue,
                                        bool bSet,
                                        CParameterAccessContext &parameterAccessContext) const
 {
@@ -565,7 +566,8 @@ size_t CConfigurableElement::getBelongingDomainCount() const
 }
 
 void CConfigurableElement::listDomains(
-    const std::list<const CConfigurableDomain *> &configurableDomainList, std::string &strResult,
+    const std::list<const CConfigurableDomain *> &configurableDomainList,
+    std::string &strResult,
     bool bVertical) const
 {
     if (bVertical && configurableDomainList.empty()) {

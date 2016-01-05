@@ -35,8 +35,10 @@
 class CXmlDomainExportContext : public CXmlDomainSerializingContext
 {
 public:
-    CXmlDomainExportContext(std::string &strError, bool bWithSettings = true,
-                            bool bValueSpaceIsRaw = true, bool bOutputRawFormatIsHex = true)
+    CXmlDomainExportContext(std::string &strError,
+                            bool bWithSettings         = true,
+                            bool bValueSpaceIsRaw      = true,
+                            bool bOutputRawFormatIsHex = true)
         : base(strError, bWithSettings), _bValueSpaceIsRaw(bValueSpaceIsRaw),
           _bOutputRawFormatIsHex(bOutputRawFormatIsHex)
     {

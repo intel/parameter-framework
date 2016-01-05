@@ -67,7 +67,8 @@ void CStringParameter::setDefaultValues(CParameterAccessContext &parameterAccess
 }
 
 // Actual parameter access (tuning)
-bool CStringParameter::doSetValue(const string &strValue, size_t offset,
+bool CStringParameter::doSetValue(const string &strValue,
+                                  size_t offset,
                                   CParameterAccessContext &parameterAccessContext) const
 {
     if (strValue.length() >= getSize()) {
@@ -87,7 +88,8 @@ bool CStringParameter::doSetValue(const string &strValue, size_t offset,
     return true;
 }
 
-void CStringParameter::doGetValue(string &strValue, size_t offset,
+void CStringParameter::doGetValue(string &strValue,
+                                  size_t offset,
                                   CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.getParameterBlackboard()->readString(strValue, offset);

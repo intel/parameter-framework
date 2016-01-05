@@ -221,7 +221,8 @@ const CSubsystemObject *CSubsystem::findSubsystemObjectFromConfigurableElement(
 }
 
 void CSubsystem::findSubsystemLevelMappingKeyValue(
-    const CInstanceConfigurableElement *pInstanceConfigurableElement, string &strMappingKey,
+    const CInstanceConfigurableElement *pInstanceConfigurableElement,
+    string &strMappingKey,
     string &strMappingValue) const
 {
     // Find creator to get key name
@@ -314,7 +315,8 @@ void CSubsystem::addSubsystemObjectFactory(CSubsystemObjectCreator *pSubsystemOb
 }
 
 // Generic error handling from derived subsystem classes
-string CSubsystem::getMappingError(const string &strKey, const string &strMessage,
+string CSubsystem::getMappingError(const string &strKey,
+                                   const string &strMessage,
                                    const CConfigurableElement *pConfigurableElement) const
 {
     return getName() + " " + getKind() + " " + "mapping:\n" + strKey + " " + "error: \"" +
@@ -332,7 +334,8 @@ bool CSubsystem::getMappingData(const std::string &strKey, const std::string *&p
 
 // Mapping generic context handling
 bool CSubsystem::handleMappingContext(const CConfigurableElement *pConfigurableElement,
-                                      CMappingContext &context, string &strError) const
+                                      CMappingContext &context,
+                                      string &strError) const
 {
     // Feed context with found mapping data
     for (size_t item = 0; item < _contextMappingKeyArray.size(); item++) {
@@ -355,8 +358,10 @@ bool CSubsystem::handleMappingContext(const CConfigurableElement *pConfigurableE
 
 // Subsystem object creation handling
 bool CSubsystem::handleSubsystemObjectCreation(
-    CInstanceConfigurableElement *pInstanceConfigurableElement, CMappingContext &context,
-    bool &bHasCreatedSubsystemObject, string &strError)
+    CInstanceConfigurableElement *pInstanceConfigurableElement,
+    CMappingContext &context,
+    bool &bHasCreatedSubsystemObject,
+    string &strError)
 {
     bHasCreatedSubsystemObject = false;
 
@@ -423,7 +428,8 @@ bool CSubsystem::handleSubsystemObjectCreation(
 // From IMapper
 // Handle a configurable element mapping
 bool CSubsystem::mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement,
-                          bool &bKeepDiving, string &strError)
+                          bool &bKeepDiving,
+                          string &strError)
 {
     // Get current context
     CMappingContext context = _contextStack.top();

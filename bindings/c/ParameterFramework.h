@@ -154,8 +154,11 @@ void pfwDestroy(PfwHandler *handle) NONNULL;
   * @return true on success, false on failure.
   */
 CPARAMETER_EXPORT
-bool pfwStart(PfwHandler *handle, const char *configPath, const PfwCriterion criteria[],
-              size_t criterionNb, const PfwLogger *loggger) NONNULL_(1, 2, 3) USERESULT;
+bool pfwStart(PfwHandler *handle,
+              const char *configPath,
+              const PfwCriterion criteria[],
+              size_t criterionNb,
+              const PfwLogger *loggger) NONNULL_(1, 2, 3) USERESULT;
 
 /** @return a string describing the last call result.
   * If the last pfw function call succeeded, return an empty string.

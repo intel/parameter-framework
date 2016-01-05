@@ -110,16 +110,20 @@ bool CParameterMgrFullConnector::sync(string &strError)
     return _pParameterMgr->sync(strError);
 }
 
-bool CParameterMgrFullConnector::accessParameterValue(const string &strPath, string &strValue,
-                                                      bool bSet, string &strError)
+bool CParameterMgrFullConnector::accessParameterValue(const string &strPath,
+                                                      string &strValue,
+                                                      bool bSet,
+                                                      string &strError)
 {
     return _pParameterMgr->accessParameterValue(strPath, strValue, bSet, strError);
 }
 
 bool CParameterMgrFullConnector::accessConfigurationValue(const string &strDomain,
                                                           const string &strConfiguration,
-                                                          const string &strPath, string &strValue,
-                                                          bool bSet, string &strError)
+                                                          const string &strPath,
+                                                          string &strValue,
+                                                          bool bSet,
+                                                          string &strError)
 {
     return _pParameterMgr->accessConfigurationValue(strDomain, strConfiguration, strPath, strValue,
                                                     bSet, strError);
@@ -140,7 +144,8 @@ bool CParameterMgrFullConnector::deleteDomain(const string &strName, string &str
     return _pParameterMgr->deleteDomain(strName, strError);
 }
 
-bool CParameterMgrFullConnector::renameDomain(const string &strName, const string &strNewName,
+bool CParameterMgrFullConnector::renameDomain(const string &strName,
+                                              const string &strNewName,
                                               string &strError)
 {
     return _pParameterMgr->renameDomain(strName, strNewName, strError);
@@ -175,7 +180,8 @@ bool CParameterMgrFullConnector::renameConfiguration(const string &strDomain,
 }
 
 bool CParameterMgrFullConnector::saveConfiguration(const string &strDomain,
-                                                   const string &strConfiguration, string &strError)
+                                                   const string &strConfiguration,
+                                                   string &strError)
 {
     return _pParameterMgr->saveConfiguration(strDomain, strConfiguration, strError);
 }
@@ -187,13 +193,15 @@ bool CParameterMgrFullConnector::restoreConfiguration(const string &strDomain,
     return _pParameterMgr->restoreConfiguration(strDomain, strConfiguration, errors);
 }
 
-bool CParameterMgrFullConnector::setSequenceAwareness(const string &strName, bool bSequenceAware,
+bool CParameterMgrFullConnector::setSequenceAwareness(const string &strName,
+                                                      bool bSequenceAware,
                                                       string &strResult)
 {
     return _pParameterMgr->setSequenceAwareness(strName, bSequenceAware, strResult);
 }
 
-bool CParameterMgrFullConnector::getSequenceAwareness(const string &strName, bool &bSequenceAware,
+bool CParameterMgrFullConnector::getSequenceAwareness(const string &strName,
+                                                      bool &bSequenceAware,
                                                       string &strResult)
 {
     return _pParameterMgr->getSequenceAwareness(strName, bSequenceAware, strResult);
@@ -214,14 +222,17 @@ bool CParameterMgrFullConnector::removeConfigurableElementFromDomain(
 }
 
 bool CParameterMgrFullConnector::split(const string &strDomain,
-                                       const string &strConfigurableElementPath, string &strError)
+                                       const string &strConfigurableElementPath,
+                                       string &strError)
 {
     return _pParameterMgr->split(strDomain, strConfigurableElementPath, strError);
 }
 
 bool CParameterMgrFullConnector::setElementSequence(
-    const string &strDomain, const string &strConfiguration,
-    const std::vector<string> &astrNewElementSequence, string &strError)
+    const string &strDomain,
+    const string &strConfiguration,
+    const std::vector<string> &astrNewElementSequence,
+    string &strError)
 {
     return _pParameterMgr->setElementSequence(strDomain, strConfiguration, astrNewElementSequence,
                                               strError);
@@ -249,28 +260,32 @@ bool CParameterMgrFullConnector::clearApplicationRule(const string &strDomain,
     return _pParameterMgr->clearApplicationRule(strDomain, strConfiguration, strError);
 }
 
-bool CParameterMgrFullConnector::importDomainsXml(const string &strXmlSource, bool bWithSettings,
-                                                  bool bFromFile, string &strError)
+bool CParameterMgrFullConnector::importDomainsXml(const string &strXmlSource,
+                                                  bool bWithSettings,
+                                                  bool bFromFile,
+                                                  string &strError)
 {
     return _pParameterMgr->importDomainsXml(strXmlSource, bWithSettings, bFromFile, strError);
 }
 
-bool CParameterMgrFullConnector::exportDomainsXml(string &strXmlDest, bool bWithSettings,
-                                                  bool bToFile, string &strError) const
+bool CParameterMgrFullConnector::exportDomainsXml(string &strXmlDest,
+                                                  bool bWithSettings,
+                                                  bool bToFile,
+                                                  string &strError) const
 {
     return _pParameterMgr->exportDomainsXml(strXmlDest, bWithSettings, bToFile, strError);
 }
 
 // deprecated, use the other version of importSingleDomainXml instead
-bool CParameterMgrFullConnector::importSingleDomainXml(const string &strXmlSource, bool bOverwrite,
+bool CParameterMgrFullConnector::importSingleDomainXml(const string &strXmlSource,
+                                                       bool bOverwrite,
                                                        string &strError)
 {
     return importSingleDomainXml(strXmlSource, bOverwrite, true, false, strError);
 }
 
-bool CParameterMgrFullConnector::importSingleDomainXml(const string &xmlSource, bool overwrite,
-                                                       bool withSettings, bool fromFile,
-                                                       string &errorMsg)
+bool CParameterMgrFullConnector::importSingleDomainXml(
+    const string &xmlSource, bool overwrite, bool withSettings, bool fromFile, string &errorMsg)
 {
     return _pParameterMgr->importSingleDomainXml(xmlSource, overwrite, withSettings, fromFile,
                                                  errorMsg);
@@ -278,7 +293,8 @@ bool CParameterMgrFullConnector::importSingleDomainXml(const string &xmlSource, 
 
 bool CParameterMgrFullConnector::exportSingleDomainXml(string &strXmlDest,
                                                        const string &strDomainName,
-                                                       bool bWithSettings, bool bToFile,
+                                                       bool bWithSettings,
+                                                       bool bToFile,
                                                        string &strError) const
 {
     return _pParameterMgr->exportSingleDomainXml(strXmlDest, strDomainName, bWithSettings, bToFile,

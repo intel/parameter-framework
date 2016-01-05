@@ -130,7 +130,8 @@ private:
      * @return true on success, false on failure
      */
     virtual bool mapBegin(CInstanceConfigurableElement *pInstanceConfigurableElement,
-                          bool &bKeepDiving, std::string &strError);
+                          bool &bKeepDiving,
+                          std::string &strError);
     virtual void mapEnd();
 
     // Mapping access
@@ -145,7 +146,8 @@ private:
      *
      * returns The formated error std::string
      */
-    std::string getMappingError(const std::string &strKey, const std::string &strMessage,
+    std::string getMappingError(const std::string &strKey,
+                                const std::string &strMessage,
                                 const CConfigurableElement *pConfigurableElement) const;
 
     /**
@@ -186,7 +188,8 @@ private:
      */
     void findSubsystemLevelMappingKeyValue(
         const CInstanceConfigurableElement *pInstanceConfigurableElement,
-        std::string &strMappingKey, std::string &strMappingValue) const;
+        std::string &strMappingKey,
+        std::string &strMappingValue) const;
 
     /**
      * Formats the mapping of a SubsystemObject
@@ -209,7 +212,8 @@ private:
      * @return true on success
      */
     bool handleMappingContext(const CConfigurableElement *pConfigurableElement,
-                              CMappingContext &context, std::string &strError) const;
+                              CMappingContext &context,
+                              std::string &strError) const;
 
     /**
      * Looks if a subsystem object needs to be instantiated for the given configurable
@@ -226,7 +230,8 @@ private:
      * @return true on success, false on failure
      */
     bool handleSubsystemObjectCreation(CInstanceConfigurableElement *pInstanceConfigurableElement,
-                                       CMappingContext &context, bool &bHasCreatedSubsystemObject,
+                                       CMappingContext &context,
+                                       bool &bHasCreatedSubsystemObject,
                                        std::string &strError);
 
     // Subsystem context mapping keys

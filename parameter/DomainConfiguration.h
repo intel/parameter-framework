@@ -91,7 +91,8 @@ public:
      * @param[out] errors, errors encountered during restoration
      * @return true if success false otherwise
      */
-    bool restore(CParameterBlackboard *pMainBlackboard, bool bSync,
+    bool restore(CParameterBlackboard *pMainBlackboard,
+                 bool bSync,
                  core::Results *errors = NULL) const;
 
     // Ensure validity for configurable element area configuration

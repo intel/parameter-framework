@@ -64,7 +64,8 @@ public:
     const CSelectionCriteriaDefinition *getSelectionCriteriaDefinition() const;
 
     // List available criteria
-    void listSelectionCriteria(std::list<std::string> &strResult, bool bWithTypeInfo,
+    void listSelectionCriteria(std::list<std::string> &strResult,
+                               bool bWithTypeInfo,
                                bool bHumanReadable) const;
 
     // Base

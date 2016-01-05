@@ -46,11 +46,13 @@ public:
 
     /// Value access
     // Boolean access
-    bool access(bool &bValue, bool bSet,
+    bool access(bool &bValue,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override final;
 
     // Integer Access
-    bool access(uint32_t &uiValue, bool bSet,
+    bool access(uint32_t &uiValue,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override final;
 
     // AreaConfiguration creation
@@ -64,9 +66,11 @@ public:
 
 private:
     // String Access
-    virtual bool doSetValue(const std::string &strValue, size_t offset,
+    virtual bool doSetValue(const std::string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const;
-    virtual void doGetValue(std::string &strValue, size_t offset,
+    virtual void doGetValue(std::string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const;
 
     // Generic Access

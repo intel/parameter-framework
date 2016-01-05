@@ -37,8 +37,10 @@
 class CXmlFileIncluderElement : public CKindElement
 {
 public:
-    CXmlFileIncluderElement(const std::string &strName, const std::string &strKind,
-                            bool bValidateWithSchemas, const std::string &schemaBaseUri);
+    CXmlFileIncluderElement(const std::string &strName,
+                            const std::string &strKind,
+                            bool bValidateWithSchemas,
+                            const std::string &schemaBaseUri);
     // From IXmlSink
     virtual bool fromXml(const CXmlElement &xmlElement, CXmlSerializingContext &serializingContext);
 

@@ -54,7 +54,8 @@ public:
      * std::string does not contain any Amend (%) and does not need to be formatted.
      */
     CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement,
-                              core::log::Logger &logger, const std::string &strFormattedMapping);
+                              core::log::Logger &logger,
+                              const std::string &strFormattedMapping);
 
     /**
      * Builds a new CFormattedSubsystemObject instance, using a mapping value containing Amends.
@@ -68,8 +69,10 @@ public:
      * @param[in] context Contains values associated to Amend keys
      */
     CFormattedSubsystemObject(CInstanceConfigurableElement *pInstanceConfigurableElement,
-                              core::log::Logger &logger, const std::string &strMappingValue,
-                              size_t firstAmendKey, size_t nbAmendKeys,
+                              core::log::Logger &logger,
+                              const std::string &strMappingValue,
+                              size_t firstAmendKey,
+                              size_t nbAmendKeys,
                               const CMappingContext &context);
     virtual ~CFormattedSubsystemObject() = default;
 
@@ -105,8 +108,10 @@ private:
      * been
      * replaced by their value
      */
-    static std::string formatMappingValue(const std::string &strMappingValue, size_t firstAmendKey,
-                                          size_t nbAmendKeys, const CMappingContext &context);
+    static std::string formatMappingValue(const std::string &strMappingValue,
+                                          size_t firstAmendKey,
+                                          size_t nbAmendKeys,
+                                          const CMappingContext &context);
 
     /**
      * std::string containing the formatted mapping value

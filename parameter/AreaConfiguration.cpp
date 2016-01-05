@@ -41,7 +41,8 @@ CAreaConfiguration::CAreaConfiguration(const CConfigurableElement *pConfigurable
 }
 
 CAreaConfiguration::CAreaConfiguration(const CConfigurableElement *pConfigurableElement,
-                                       const CSyncerSet *pSyncerSet, size_t size)
+                                       const CSyncerSet *pSyncerSet,
+                                       size_t size)
     : _pConfigurableElement(pConfigurableElement), _pSyncerSet(pSyncerSet)
 {
     // Size blackboard
@@ -55,7 +56,8 @@ void CAreaConfiguration::save(const CParameterBlackboard *pMainBlackboard)
 }
 
 // Apply data to current
-bool CAreaConfiguration::restore(CParameterBlackboard *pMainBlackboard, bool bSync,
+bool CAreaConfiguration::restore(CParameterBlackboard *pMainBlackboard,
+                                 bool bSync,
                                  core::Results *errors) const
 {
     assert(_bValid);

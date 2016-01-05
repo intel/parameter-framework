@@ -85,7 +85,8 @@ public:
 
 protected:
     CAreaConfiguration(const CConfigurableElement *pConfigurableElement,
-                       const CSyncerSet *pSyncerSet, size_t size);
+                       const CSyncerSet *pSyncerSet,
+                       size_t size);
 
 private:
     // Blackboard copies

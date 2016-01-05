@@ -51,7 +51,8 @@ std::string CSelectionCriterionType::getKind() const
 }
 
 // From ISelectionCriterionTypeInterface
-bool CSelectionCriterionType::addValuePair(int iValue, const std::string &strValue,
+bool CSelectionCriterionType::addValuePair(int iValue,
+                                           const std::string &strValue,
                                            std::string &strError)
 {
     // Check 1 bit set only for inclusive types

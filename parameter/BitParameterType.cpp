@@ -119,7 +119,8 @@ bool CBitParameterType::fromXml(const CXmlElement &xmlElement,
 }
 
 // Conversion
-bool CBitParameterType::toBlackboard(const string &strValue, uint64_t &uiValue,
+bool CBitParameterType::toBlackboard(const string &strValue,
+                                     uint64_t &uiValue,
                                      CParameterAccessContext &parameterAccessContext) const
 {
     // Get value
@@ -153,7 +154,8 @@ bool CBitParameterType::toBlackboard(const string &strValue, uint64_t &uiValue,
     return true;
 }
 
-void CBitParameterType::fromBlackboard(string &strValue, const uint64_t &uiValue,
+void CBitParameterType::fromBlackboard(string &strValue,
+                                       const uint64_t &uiValue,
                                        CParameterAccessContext &parameterAccessContext) const
 {
     uint64_t uiConvertedValue = (uiValue & getMask()) >> _bitPos;
@@ -174,7 +176,8 @@ void CBitParameterType::fromBlackboard(string &strValue, const uint64_t &uiValue
 
 // Value access
 // Integer
-bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t &uiValue,
+bool CBitParameterType::toBlackboard(uint64_t uiUserValue,
+                                     uint64_t &uiValue,
                                      CParameterAccessContext &parameterAccessContext) const
 {
     if (uiUserValue > _uiMax) {
@@ -190,7 +193,8 @@ bool CBitParameterType::toBlackboard(uint64_t uiUserValue, uint64_t &uiValue,
     return true;
 }
 
-void CBitParameterType::fromBlackboard(uint32_t &userValue, uint64_t value,
+void CBitParameterType::fromBlackboard(uint32_t &userValue,
+                                       uint64_t value,
                                        CParameterAccessContext & /*ctx*/) const
 {
     userValue = static_cast<uint32_t>((value & getMask()) >> _bitPos);

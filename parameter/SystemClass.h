@@ -60,7 +60,8 @@ public:
      * @return true if the plugins succesfully started or that a fallback is available,
                false otherwise.
      */
-    bool loadSubsystems(std::string &strError, const CSubsystemPlugins *pSubsystemPlugins,
+    bool loadSubsystems(std::string &strError,
+                        const CSubsystemPlugins *pSubsystemPlugins,
                         bool bVirtualSubsystemFallback = false);
     // Subsystem factory
     const CSubsystemLibrary *getSubsystemLibrary() const;

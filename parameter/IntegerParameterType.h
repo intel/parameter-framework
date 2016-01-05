@@ -49,24 +49,32 @@ public:
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+    virtual bool toBlackboard(const std::string &strValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+    virtual bool fromBlackboard(std::string &strValue,
+                                const uint32_t &uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
     // Integer
-    virtual bool toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(uint32_t uiUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(uint32_t &uiUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
     // Signed Integer
-    virtual bool toBlackboard(int32_t iUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(int32_t iUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(int32_t &iUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(int32_t &iUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
     // Double
-    virtual bool toBlackboard(double dUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(double dUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(double &dUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(double &dUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
 
     // Default value handling (simulation only)
@@ -86,13 +94,17 @@ private:
     virtual bool childrenAreDynamic() const;
 
     // Conversion from std::string
-    bool convertValueFromString(const std::string &strValue, int64_t &iData,
+    bool convertValueFromString(const std::string &strValue,
+                                int64_t &iData,
                                 CParameterAccessContext &parameterAccessContext) const;
 
     // Range checking
     template <typename type>
-    bool checkValueAgainstRange(const std::string &strValue, type value, type minValue,
-                                type maxValue, CParameterAccessContext &parameterAccessContext,
+    bool checkValueAgainstRange(const std::string &strValue,
+                                type value,
+                                type minValue,
+                                type maxValue,
+                                CParameterAccessContext &parameterAccessContext,
                                 bool bHexaValue) const;
 
     // Adaptation element retrieval

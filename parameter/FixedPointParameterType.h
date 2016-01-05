@@ -52,14 +52,18 @@ public:
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+    virtual bool toBlackboard(const std::string &strValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+    virtual bool fromBlackboard(std::string &strValue,
+                                const uint32_t &uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
     // Double
-    virtual bool toBlackboard(double dUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(double dUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(double &dUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(double &dUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
 
     // Element properties
@@ -86,7 +90,8 @@ private:
      *
      * @return true if the string was successfully converted, false otherwise.
      */
-    bool convertFromDecimal(const std::string &strValue, uint32_t &uiValue,
+    bool convertFromDecimal(const std::string &strValue,
+                            uint32_t &uiValue,
                             CParameterAccessContext &parameterAccessContext) const;
 
     /**
@@ -101,7 +106,8 @@ private:
      *
      * @return true if the string was successfully converted, false otherwise.
      */
-    bool convertFromHexadecimal(const std::string &strValue, uint32_t &uiValue,
+    bool convertFromHexadecimal(const std::string &strValue,
+                                uint32_t &uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
 
     /**
@@ -116,7 +122,8 @@ private:
      *
      * @return true if the string was successfully converted, false otherwise.
      */
-    bool convertFromQnm(const std::string &strValue, uint32_t &uiValue,
+    bool convertFromQnm(const std::string &strValue,
+                        uint32_t &uiValue,
                         CParameterAccessContext &parameterAccessContext) const;
 
     /**

@@ -47,8 +47,10 @@ CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema, _xmlNode *
 {
 }
 
-CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
-                             const string &strRootElementType, const string &strRootElementName,
+CXmlDocSource::CXmlDocSource(_xmlDoc *pDoc,
+                             bool bValidateWithSchema,
+                             const string &strRootElementType,
+                             const string &strRootElementName,
                              const string &strNameAttributeName)
     : _pDoc(pDoc), _pRootNode(xmlDocGetRootElement(pDoc)), _strRootElementType(strRootElementType),
       _strRootElementName(strRootElementName), _strNameAttributeName(strNameAttributeName),
@@ -230,7 +232,9 @@ std::string CXmlDocSource::mkUri(const std::string &base, const std::string &rel
     return (const char *)xmlUri.get();
 }
 
-_xmlDoc *CXmlDocSource::mkXmlDoc(const string &source, bool fromFile, bool xincludes,
+_xmlDoc *CXmlDocSource::mkXmlDoc(const string &source,
+                                 bool fromFile,
+                                 bool xincludes,
                                  CXmlSerializingContext &serializingContext)
 {
     _xmlDoc *doc = NULL;

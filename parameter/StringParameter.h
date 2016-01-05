@@ -49,9 +49,11 @@ protected:
     virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
 
     // Actual value access (tuning)
-    virtual bool doSetValue(const std::string &strValue, size_t offset,
+    virtual bool doSetValue(const std::string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const;
-    virtual void doGetValue(std::string &strValue, size_t offset,
+    virtual void doGetValue(std::string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const;
 
     // Size

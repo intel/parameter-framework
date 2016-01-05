@@ -54,6 +54,8 @@ AllowShortLoopsOnASingleLine: 'false'
 # Break after the template<...> of a template declaration.
 AlwaysBreakTemplateDeclarations: 'true'
 
+BinPackParameters: 'false'
+
 # Configure each individual brace in BraceWrapping
 BreakBeforeBraces: 'Custom'
 

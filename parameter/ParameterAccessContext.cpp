@@ -33,7 +33,8 @@
 
 CParameterAccessContext::CParameterAccessContext(std::string &strError,
                                                  CParameterBlackboard *pParameterBlackboard,
-                                                 bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex,
+                                                 bool bValueSpaceIsRaw,
+                                                 bool bOutputRawFormatIsHex,
                                                  size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard),
       _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),

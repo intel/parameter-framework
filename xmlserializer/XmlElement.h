@@ -73,7 +73,8 @@ public:
 
     // Navigation
     bool getChildElement(const std::string &strType, CXmlElement &childElement) const;
-    bool getChildElement(const std::string &strType, const std::string &strNameAttribute,
+    bool getChildElement(const std::string &strType,
+                         const std::string &strNameAttribute,
                          CXmlElement &childElement) const;
     size_t getNbChildElements() const;
     bool getParentElement(CXmlElement &parentElement) const;

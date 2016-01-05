@@ -46,14 +46,18 @@ public:
 
     /// Conversion
     // String
-    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+    virtual bool toBlackboard(const std::string &strValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+    virtual bool fromBlackboard(std::string &strValue,
+                                const uint32_t &uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
     // Integer
-    virtual bool toBlackboard(int32_t iUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(int32_t iUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(int32_t &iUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(int32_t &iUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
 
     // Default value handling (simulation only)
@@ -68,7 +72,8 @@ public:
 private:
     // Specialized version of toBlackboard in case the access context is in raw
     // value space
-    bool toBlackboardFromRaw(const std::string &strUserValue, uint32_t &uiValue,
+    bool toBlackboardFromRaw(const std::string &strUserValue,
+                             uint32_t &uiValue,
                              CParameterAccessContext &parameterAccessContext) const;
 
     // Returns true if children dynamic creation is to be dealt with

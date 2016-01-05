@@ -132,7 +132,8 @@ void CDomainConfiguration::composeSettings(CXmlElement &xmlConfigurationSettings
 
 // Serialize one configuration for one configurable element
 bool CDomainConfiguration::importOneConfigurableElementSettings(
-    CAreaConfiguration *areaConfiguration, CXmlElement &xmlConfigurableElementSettingsElement,
+    CAreaConfiguration *areaConfiguration,
+    CXmlElement &xmlConfigurableElementSettingsElement,
     CXmlDomainImportContext &context)
 {
     const CConfigurableElement *destination = areaConfiguration->getConfigurableElement();
@@ -187,7 +188,8 @@ bool CDomainConfiguration::importOneConfigurableElementSettings(
 }
 
 bool CDomainConfiguration::exportOneConfigurableElementSettings(
-    CAreaConfiguration *areaConfiguration, CXmlElement &xmlConfigurableElementSettingsElement,
+    CAreaConfiguration *areaConfiguration,
+    CXmlElement &xmlConfigurableElementSettingsElement,
     CXmlDomainExportContext &context) const
 {
     const CConfigurableElement *source = areaConfiguration->getConfigurableElement();
@@ -269,7 +271,8 @@ void CDomainConfiguration::getElementSequence(string &strResult) const
 // Application rule
 bool CDomainConfiguration::setApplicationRule(
     const string &strApplicationRule,
-    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition, string &strError)
+    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition,
+    string &strError)
 {
     // Parser
     CRuleParser ruleParser(strApplicationRule, pSelectionCriteriaDefinition);
@@ -333,7 +336,8 @@ void CDomainConfiguration::save(const CParameterBlackboard *pMainBlackboard)
 }
 
 // Apply data to current
-bool CDomainConfiguration::restore(CParameterBlackboard *pMainBlackboard, bool bSync,
+bool CDomainConfiguration::restore(CParameterBlackboard *pMainBlackboard,
+                                   bool bSync,
                                    core::Results *errors) const
 {
     return std::accumulate(begin(mAreaConfigurationList), end(mAreaConfigurationList), true,

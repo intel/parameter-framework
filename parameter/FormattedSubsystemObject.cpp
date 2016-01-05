@@ -44,15 +44,19 @@ CFormattedSubsystemObject::CFormattedSubsystemObject(
 }
 
 CFormattedSubsystemObject::CFormattedSubsystemObject(
-    CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &logger,
+    CInstanceConfigurableElement *pInstanceConfigurableElement,
+    core::log::Logger &logger,
     const string &strMappingValue)
     : base(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)
 {
 }
 
 CFormattedSubsystemObject::CFormattedSubsystemObject(
-    CInstanceConfigurableElement *pInstanceConfigurableElement, core::log::Logger &logger,
-    const string &strMappingValue, size_t firstAmendKey, size_t nbAmendKeys,
+    CInstanceConfigurableElement *pInstanceConfigurableElement,
+    core::log::Logger &logger,
+    const string &strMappingValue,
+    size_t firstAmendKey,
+    size_t nbAmendKeys,
     const CMappingContext &context)
     : base(pInstanceConfigurableElement, logger), _strFormattedMappingValue(strMappingValue)
 {
@@ -77,7 +81,8 @@ bool CFormattedSubsystemObject::isAmendKeyValid(size_t uiAmendKey)
 }
 
 string CFormattedSubsystemObject::formatMappingValue(const string &strMappingValue,
-                                                     size_t firstAmendKey, size_t nbAmendKeys,
+                                                     size_t firstAmendKey,
+                                                     size_t nbAmendKeys,
                                                      const CMappingContext &context)
 {
     string strFormattedValue = strMappingValue;

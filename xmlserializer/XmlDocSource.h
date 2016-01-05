@@ -68,7 +68,8 @@ public:
       * @param[in] strNameAttributeName a string containing the name of the root name attribute
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
+    CXmlDocSource(_xmlDoc *pDoc,
+                  bool bValidateWithSchema,
                   const std::string &strRootElementType   = "",
                   const std::string &strRootElementName   = "",
                   const std::string &strNameAttributeName = "");
@@ -167,7 +168,9 @@ public:
      * @param[in] xincludes if true, process xincludes tags
      * @param[in] serializingContext will receive any serialization error
      */
-    static _xmlDoc *mkXmlDoc(const std::string &source, bool fromFile, bool xincludes,
+    static _xmlDoc *mkXmlDoc(const std::string &source,
+                             bool fromFile,
+                             bool xincludes,
                              CXmlSerializingContext &serializingContext);
 
 protected:

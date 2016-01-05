@@ -41,7 +41,8 @@
 
 CTESTSubsystemObject::CTESTSubsystemObject(
     const std::string & /*strMappingValue*/,
-    CInstanceConfigurableElement *pInstanceConfigurableElement, const CMappingContext &context,
+    CInstanceConfigurableElement *pInstanceConfigurableElement,
+    const CMappingContext &context,
     core::log::Logger &logger)
     : base(pInstanceConfigurableElement, logger)
 {

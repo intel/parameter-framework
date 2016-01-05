@@ -62,29 +62,39 @@ public:
 
     /// Conversions
     // String
-    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+    virtual bool toBlackboard(const std::string &strValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const = 0;
-    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+    virtual bool fromBlackboard(std::string &strValue,
+                                const uint32_t &uiValue,
                                 CParameterAccessContext &parameterAccessContext) const = 0;
     // Boolean
-    virtual bool toBlackboard(bool bUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(bool bUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(bool &bUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(bool &bUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
     // Integer
-    virtual bool toBlackboard(uint32_t uiUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(uint32_t uiUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(uint32_t &uiUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(uint32_t &uiUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
     // Signed Integer
-    virtual bool toBlackboard(int32_t iUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(int32_t iUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(int32_t &iUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(int32_t &iUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
     // Double
-    virtual bool toBlackboard(double dUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(double dUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(double &dUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(double &dUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
 
     /** Value space handling for settings import/export from/to XML

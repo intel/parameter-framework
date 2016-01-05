@@ -49,7 +49,8 @@ class SubsystemObject final : public CSubsystemObject
 public:
     SubsystemObject(const std::string &mappingValue,
                     CInstanceConfigurableElement *instanceConfigurableElement,
-                    const CMappingContext &context, core::log::Logger &logger);
+                    const CMappingContext &context,
+                    core::log::Logger &logger);
     ~SubsystemObject();
 
     static bool getSingletonInstanceValue()

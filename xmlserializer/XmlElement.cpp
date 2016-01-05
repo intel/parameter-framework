@@ -149,7 +149,8 @@ bool CXmlElement::getChildElement(const string &strType, CXmlElement &childEleme
     return false;
 }
 
-bool CXmlElement::getChildElement(const string &strType, const string &strNameAttribute,
+bool CXmlElement::getChildElement(const string &strType,
+                                  const string &strNameAttribute,
                                   CXmlElement &childElement) const
 {
     CChildIterator childIterator(*this);

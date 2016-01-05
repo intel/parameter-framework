@@ -116,7 +116,8 @@ bool CFixedPointParameterType::fromXml(const CXmlElement &xmlElement,
     return base::fromXml(xmlElement, serializingContext);
 }
 
-bool CFixedPointParameterType::toBlackboard(const string &strValue, uint32_t &uiValue,
+bool CFixedPointParameterType::toBlackboard(const string &strValue,
+                                            uint32_t &uiValue,
                                             CParameterAccessContext &parameterAccessContext) const
 {
     bool bValueProvidedAsHexa = utility::isHexadecimal(strValue);
@@ -187,7 +188,8 @@ void CFixedPointParameterType::setOutOfRangeError(
     parameterAccessContext.setError(stream.str());
 }
 
-bool CFixedPointParameterType::fromBlackboard(string &strValue, const uint32_t &value,
+bool CFixedPointParameterType::fromBlackboard(string &strValue,
+                                              const uint32_t &value,
                                               CParameterAccessContext &parameterAccessContext) const
 {
     // Check encodability
@@ -228,7 +230,8 @@ bool CFixedPointParameterType::fromBlackboard(string &strValue, const uint32_t &
 }
 
 // Value access
-bool CFixedPointParameterType::toBlackboard(double dUserValue, uint32_t &uiValue,
+bool CFixedPointParameterType::toBlackboard(double dUserValue,
+                                            uint32_t &uiValue,
                                             CParameterAccessContext &parameterAccessContext) const
 {
     // Check that the value is within the allowed range for this type
@@ -251,7 +254,8 @@ bool CFixedPointParameterType::toBlackboard(double dUserValue, uint32_t &uiValue
     return true;
 }
 
-bool CFixedPointParameterType::fromBlackboard(double &dUserValue, uint32_t uiValue,
+bool CFixedPointParameterType::fromBlackboard(double &dUserValue,
+                                              uint32_t uiValue,
                                               CParameterAccessContext & /*ctx*/) const
 {
     int32_t iData = uiValue;
@@ -281,7 +285,8 @@ void CFixedPointParameterType::getRange(double &dMin, double &dMax) const
 }
 
 bool CFixedPointParameterType::convertFromHexadecimal(
-    const string &strValue, uint32_t &uiValue,
+    const string &strValue,
+    uint32_t &uiValue,
     CParameterAccessContext &parameterAccessContext) const
 {
     // For hexadecimal representation, we need full 32 bit range conversion.
@@ -299,7 +304,8 @@ bool CFixedPointParameterType::convertFromHexadecimal(
 }
 
 bool CFixedPointParameterType::convertFromDecimal(
-    const string &strValue, uint32_t &uiValue,
+    const string &strValue,
+    uint32_t &uiValue,
     CParameterAccessContext &parameterAccessContext) const
 {
     if (!convertTo(strValue, reinterpret_cast<int32_t &>(uiValue)) || !isEncodable(uiValue, true)) {
@@ -310,7 +316,8 @@ bool CFixedPointParameterType::convertFromDecimal(
     return true;
 }
 
-bool CFixedPointParameterType::convertFromQnm(const string &strValue, uint32_t &uiValue,
+bool CFixedPointParameterType::convertFromQnm(const string &strValue,
+                                              uint32_t &uiValue,
                                               CParameterAccessContext &parameterAccessContext) const
 {
     double dData = 0;

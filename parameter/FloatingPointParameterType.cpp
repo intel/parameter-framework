@@ -114,7 +114,8 @@ bool CFloatingPointParameterType::fromXml(const CXmlElement &xmlElement,
 }
 
 bool CFloatingPointParameterType::toBlackboard(
-    const string &strValue, uint32_t &uiValue,
+    const string &strValue,
+    uint32_t &uiValue,
     CParameterAccessContext &parameterAccessContext) const
 {
     // Check Value integrity
@@ -203,7 +204,8 @@ void CFloatingPointParameterType::setOutOfRangeError(
 }
 
 bool CFloatingPointParameterType::fromBlackboard(
-    string &strValue, const uint32_t &uiValue,
+    string &strValue,
+    const uint32_t &uiValue,
     CParameterAccessContext &parameterAccessContext) const
 {
     std::ostringstream ostrStream;
@@ -246,7 +248,8 @@ bool CFloatingPointParameterType::toBlackboard(
     return true;
 }
 
-bool CFloatingPointParameterType::fromBlackboard(double &dUserValue, uint32_t uiValue,
+bool CFloatingPointParameterType::fromBlackboard(double &dUserValue,
+                                                 uint32_t uiValue,
                                                  CParameterAccessContext & /*ctx*/) const
 {
     // Move from "raw memory" value space to real space

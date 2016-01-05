@@ -49,8 +49,10 @@ public:
       * @param[in] strVersion a string containing the version number
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
-    CXmlMemoryDocSource(const IXmlSource *pXmlSource, bool bValidateWithSchema,
-                        const std::string &strRootElementType, const std::string &strProduct = "",
+    CXmlMemoryDocSource(const IXmlSource *pXmlSource,
+                        bool bValidateWithSchema,
+                        const std::string &strRootElementType,
+                        const std::string &strProduct = "",
                         const std::string &strVersion = "");
 
     /**

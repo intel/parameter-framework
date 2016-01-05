@@ -90,7 +90,8 @@ bool CEnumParameterType::fromXml(const CXmlElement &xmlElement,
 }
 
 // Conversion (tuning)
-bool CEnumParameterType::toBlackboard(const string &strValue, uint32_t &uiValue,
+bool CEnumParameterType::toBlackboard(const string &strValue,
+                                      uint32_t &uiValue,
                                       CParameterAccessContext &parameterAccessContext) const
 {
     int32_t iParsedUserValue = 0;
@@ -128,7 +129,8 @@ int32_t CEnumParameterType::getMax() const
     return getMaxValue<int32_t>();
 }
 
-bool CEnumParameterType::fromBlackboard(string &userValue, const uint32_t &value,
+bool CEnumParameterType::fromBlackboard(string &userValue,
+                                        const uint32_t &value,
                                         CParameterAccessContext & /*ctx*/) const
 {
     // Convert the raw value from the blackboard
@@ -140,7 +142,8 @@ bool CEnumParameterType::fromBlackboard(string &userValue, const uint32_t &value
 }
 
 // Value access
-bool CEnumParameterType::toBlackboard(int32_t userValue, uint32_t &value,
+bool CEnumParameterType::toBlackboard(int32_t userValue,
+                                      uint32_t &value,
                                       CParameterAccessContext &parameterAccessContext) const
 {
     if (!checkValueAgainstSpace(userValue)) {
@@ -166,7 +169,8 @@ bool CEnumParameterType::toBlackboard(int32_t userValue, uint32_t &value,
     return true;
 }
 
-bool CEnumParameterType::fromBlackboard(int32_t &userValue, uint32_t value,
+bool CEnumParameterType::fromBlackboard(int32_t &userValue,
+                                        uint32_t value,
                                         CParameterAccessContext & /*ctx*/) const
 {
     int32_t signedValue = static_cast<int32_t>(value);
