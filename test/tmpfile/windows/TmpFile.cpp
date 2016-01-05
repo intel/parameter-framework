@@ -71,7 +71,7 @@ static std::string formatError(DWORD error)
 std::string TmpFile::mktmp()
 {
     char directory[] = ".";
-    char prefix[] = "pfw"; // GetTempFileName uses up to the first three characters
+    char prefix[]    = "pfw"; // GetTempFileName uses up to the first three characters
     char path[MAX_PATH + 1];
     if (::GetTempFileName(directory, prefix, 0, path) == 0) {
         auto error = ::GetLastError();

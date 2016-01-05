@@ -125,7 +125,7 @@ public:
     virtual std::string getKind() const;
 
 private:
-    using AreaConfiguration = std::unique_ptr<CAreaConfiguration>;
+    using AreaConfiguration  = std::unique_ptr<CAreaConfiguration>;
     using AreaConfigurations = std::list<AreaConfiguration>;
 
     // Returns true if children dynamic creation is to be dealt with (here, will allow child

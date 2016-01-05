@@ -76,7 +76,7 @@ SCENARIO("Logger should receive info and warnings", "[log]")
                     THEN ("Start should succeed") {
                         REQUIRE_NOTHROW(pfw.start());
                         AND_THEN ("The logger should have stored info and warning log") {
-                            using Logs = StoreLogger::Logs;
+                            using Logs  = StoreLogger::Logs;
                             using Level = StoreLogger::Log::Level;
                             CHECK(logger.filter(Level::warning) != Logs{});
                             CHECK(logger.getLogs() != Logs{});

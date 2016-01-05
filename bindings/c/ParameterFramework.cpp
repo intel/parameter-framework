@@ -344,7 +344,7 @@ bool pfwSetIntParameter(PfwParameterHandler *handle, int32_t value)
 bool pfwGetStringParameter(const PfwParameterHandler *handle, char *value[])
 {
     Status &status = handle->pfw.lastStatus;
-    *value = NULL;
+    *value         = NULL;
     string retValue;
     bool success = handle->parameter.getAsString(retValue, status.msg());
     if (not success) {

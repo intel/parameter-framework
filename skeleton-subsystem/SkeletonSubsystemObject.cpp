@@ -58,7 +58,7 @@ CSkeletonSubsystemObject::CSkeletonSubsystemObject(
 
     // Retrieve sizes
     _scalarSize = pParameterType->getSize();
-    _arraySize = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
+    _arraySize  = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
 
     // Construct message
     _strMessage = context.getItem(ESkeletonOwner) + ":" + strMappingValue;

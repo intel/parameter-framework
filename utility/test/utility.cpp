@@ -59,7 +59,7 @@ SCENARIO("join<int>")
     for (auto &test : tests) {
         CAPTURE(Catch::toString(test.input));
         const auto &first = begin(test.input);
-        const auto &last = end(test.input);
+        const auto &last  = end(test.input);
         REQUIRE(join(first, last, test.binaryOpt, test.empty) == test.result);
         REQUIRE(join<int>(first, last, test.binaryOpt) == test.resultNoEmpty);
     }

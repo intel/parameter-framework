@@ -186,8 +186,8 @@ void CArrayParameter::setDefaultValues(CParameterAccessContext &parameterAccessC
 
     // Process
     size_t valueIndex;
-    size_t size = getSize();
-    size_t offset = getOffset();
+    size_t size        = getSize();
+    size_t offset      = getOffset();
     size_t arrayLength = getArrayLength();
 
     for (valueIndex = 0; valueIndex < arrayLength; valueIndex++) {
@@ -255,7 +255,7 @@ bool CArrayParameter::setValues(size_t uiStartIndex, size_t offset, const string
     Tokenizer tok(strValue, Tokenizer::defaultDelimiters + ",");
 
     std::vector<string> astrValues = tok.split();
-    size_t nbValues = astrValues.size();
+    size_t nbValues                = astrValues.size();
 
     // Check number of provided values
     if (nbValues + uiStartIndex > getArrayLength()) {
@@ -291,7 +291,7 @@ bool CArrayParameter::setValues(size_t uiStartIndex, size_t offset, const string
 string CArrayParameter::getValues(size_t offset,
                                   CParameterAccessContext &parameterAccessContext) const
 {
-    size_t size = getSize();
+    size_t size        = getSize();
     size_t arrayLength = getArrayLength();
 
     string output;
@@ -353,8 +353,8 @@ bool CArrayParameter::setValues(const std::vector<type> &values,
                                 CParameterAccessContext &parameterAccessContext) const
 {
     size_t nbValues = getArrayLength();
-    size_t size = getSize();
-    size_t offset = getOffset();
+    size_t size     = getSize();
+    size_t offset   = getOffset();
 
     assert(values.size() == nbValues);
 
@@ -377,8 +377,8 @@ bool CArrayParameter::getValues(std::vector<type> &values,
                                 CParameterAccessContext &parameterAccessContext) const
 {
     size_t nbValues = getArrayLength();
-    size_t size = getSize();
-    size_t offset = getOffset();
+    size_t size     = getSize();
+    size_t offset   = getOffset();
 
     values.clear();
 

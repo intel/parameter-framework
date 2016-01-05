@@ -48,8 +48,8 @@ void CParameterBlackboard::writeInteger(const void *pvSrcData, size_t size, size
 {
     assertValidAccess(offset, size);
 
-    auto first = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvSrcData), size);
-    auto last = first + size;
+    auto first      = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvSrcData), size);
+    auto last       = first + size;
     auto dest_first = atOffset(offset);
 
     std::copy(first, last, dest_first);
@@ -59,8 +59,8 @@ void CParameterBlackboard::readInteger(void *pvDstData, size_t size, size_t offs
 {
     assertValidAccess(offset, size);
 
-    auto first = atOffset(offset);
-    auto last = first + size;
+    auto first      = atOffset(offset);
+    auto last       = first + size;
     auto dest_first = MAKE_ARRAY_ITERATOR(static_cast<uint8_t *>(pvDstData), size);
 
     std::copy(first, last, dest_first);
@@ -71,7 +71,7 @@ void CParameterBlackboard::writeString(const std::string &input, size_t offset)
     assertValidAccess(offset, input.size() + 1);
 
     auto dest_last = std::copy(begin(input), end(input), atOffset(offset));
-    *dest_last = '\0';
+    *dest_last     = '\0';
 }
 
 void CParameterBlackboard::readString(std::string &output, size_t offset) const
@@ -82,7 +82,7 @@ void CParameterBlackboard::readString(std::string &output, size_t offset) const
 
     // Get the pointer to the null terminated string
     const uint8_t *first = &mBlackboard[offset];
-    output = reinterpret_cast<const char *>(first);
+    output               = reinterpret_cast<const char *>(first);
 }
 
 void CParameterBlackboard::writeBuffer(const void *pvSrcData, size_t size, size_t offset)

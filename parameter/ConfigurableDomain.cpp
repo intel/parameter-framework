@@ -454,7 +454,7 @@ CParameterBlackboard *CConfigurableDomain::findConfigurationBlackboard(
             (pCandidateDescendantConfigurableElement->isDescendantOf(
                 pAssociatedConfigurableElement))) {
 
-            baseOffset = pAssociatedConfigurableElement->getOffset();
+            baseOffset     = pAssociatedConfigurableElement->getOffset();
             bIsLastApplied = (pDomainConfiguration == _pLastAppliedConfiguration);
 
             return pDomainConfiguration->getBlackboard(pAssociatedConfigurableElement);

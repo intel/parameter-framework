@@ -33,6 +33,9 @@ AccessModifierOffset: -4
 # Align parameters on the open bracket
 AlignAfterOpenBracket: Align
 
+# Aligns consecutive assignments.
+AlignConsecutiveAssignments: 'true'
+
 # Disallows contracting simple braced statements to a single line
 AllowShortBlocksOnASingleLine: 'false'
 

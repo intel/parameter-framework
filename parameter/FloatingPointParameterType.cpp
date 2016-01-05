@@ -242,7 +242,7 @@ bool CFloatingPointParameterType::toBlackboard(
 
     // Cast is fine because dValue has been checked against the value range
     float fValue = static_cast<float>(dUserValue);
-    uiValue = utility::binaryCopy<decltype(uiValue)>(fValue);
+    uiValue      = utility::binaryCopy<decltype(uiValue)>(fValue);
     return true;
 }
 

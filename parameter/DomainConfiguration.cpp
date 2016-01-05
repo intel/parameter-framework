@@ -397,7 +397,7 @@ void CDomainConfiguration::validateAgainst(const CDomainConfiguration *validDoma
          validDomainConfiguration->mAreaConfigurationList) {
         // Get the area configuration associated to the configurable element of the
         // valid area configuration, it will assert if none found.
-        auto configurableElement = configurationToValidateAgainst->getConfigurableElement();
+        auto configurableElement      = configurationToValidateAgainst->getConfigurableElement();
         auto &configurationToValidate = getAreaConfiguration(configurableElement);
         // Delegate to area
         configurationToValidate->validateAgainst(configurationToValidateAgainst.get());
@@ -417,7 +417,7 @@ void CDomainConfiguration::merge(CConfigurableElement *pToConfigurableElement,
                                  CConfigurableElement *pFromConfigurableElement)
 {
     // Retrieve related area configurations
-    auto &areaConfigurationToMergeTo = getAreaConfiguration(pToConfigurableElement);
+    auto &areaConfigurationToMergeTo         = getAreaConfiguration(pToConfigurableElement);
     const auto &areaConfigurationToMergeFrom = getAreaConfiguration(pFromConfigurableElement);
 
     // Do the merge

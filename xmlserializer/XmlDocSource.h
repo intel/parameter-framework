@@ -69,8 +69,8 @@ public:
       * @param[in] bValidateWithSchema a boolean that toggles schema validation
       */
     CXmlDocSource(_xmlDoc *pDoc, bool bValidateWithSchema,
-                  const std::string &strRootElementType = "",
-                  const std::string &strRootElementName = "",
+                  const std::string &strRootElementType   = "",
+                  const std::string &strRootElementName   = "",
                   const std::string &strNameAttributeName = "");
 
     /**

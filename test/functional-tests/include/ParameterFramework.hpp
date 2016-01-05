@@ -58,8 +58,8 @@ protected:
      * to disambiguate overloaded method for MS visual compiler.
      */
     using PPF = CParameterMgrPlatformConnector;
-    using PF = CParameterMgrFullConnector;
-    using EH = ::ElementHandle;
+    using PF  = CParameterMgrFullConnector;
+    using EH  = ::ElementHandle;
 
 public:
     ParameterFramework(const Config &config = Config())

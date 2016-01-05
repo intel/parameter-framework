@@ -82,7 +82,7 @@ class CParameterMgr : private CElement
     // Version
     static const uint32_t guiEditionMajor = 3;
     static const uint32_t guiEditionMinor = 2;
-    static const uint32_t guiRevision = 0;
+    static const uint32_t guiRevision     = 0;
 
     // Parameter handle friendship
     friend class ElementHandle;
@@ -409,7 +409,7 @@ private:
     // a unique_ptr but we want the type that's inside. And for legacy reason
     // because that's the original name before a rework; this directive avoids
     // renaming a lot of stuff.
-    using CCommandHandler = CommandHandler::element_type;
+    using CCommandHandler     = CommandHandler::element_type;
     using RemoteCommandParser = CCommandHandler::CommandStatus (CParameterMgr::*)(
         const IRemoteCommand &remoteCommand, std::string &strResult);
 

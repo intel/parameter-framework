@@ -57,7 +57,7 @@ void CTESTSubsystemString::fromString(const std::string &strValue, void *pvValue
     }
 
     auto destination = MAKE_ARRAY_ITERATOR(static_cast<char *>(pvValue), size);
-    auto last = std::copy(begin(strValue), end(strValue), destination);
+    auto last        = std::copy(begin(strValue), end(strValue), destination);
 
     /* Adding null character */
     *last = 0;

@@ -61,7 +61,7 @@ CParameterBlackboard *CParameterAccessContext::getParameterBlackboard()
 void CParameterAccessContext::setParameterBlackboard(CParameterBlackboard *pBlackboard)
 {
     _pParameterBlackboard = pBlackboard;
-    _uiBaseOffset = 0;
+    _uiBaseOffset         = 0;
 }
 
 // Base offset for blackboard access

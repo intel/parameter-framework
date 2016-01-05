@@ -96,8 +96,8 @@ bool CSelectionCriterionType::getNumericalValue(const std::string &strValue, int
 
         Tokenizer tok(strValue, _strDelimiter);
         std::vector<std::string> astrValues = tok.split();
-        size_t uiNbValues = astrValues.size();
-        int iResult = 0;
+        size_t uiNbValues                   = astrValues.size();
+        int iResult                         = 0;
         size_t uiValueIndex;
         iValue = 0;
 

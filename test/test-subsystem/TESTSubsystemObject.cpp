@@ -50,11 +50,11 @@ CTESTSubsystemObject::CTESTSubsystemObject(
         static_cast<const CParameterType *>(pInstanceConfigurableElement->getTypeElement());
 
     _scalarSize = pParameterType->getSize();
-    _arraySize = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
-    _bIsScalar = pParameterType->isScalar();
+    _arraySize  = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
+    _bIsScalar  = pParameterType->isScalar();
 
     _strFilePath = context.getItem(ETESTDirectory) + "/" + pInstanceConfigurableElement->getName();
-    _bLog = context.iSet(ETESTLog) && (context.getItem(ETESTLog) == "yes");
+    _bLog        = context.iSet(ETESTLog) && (context.getItem(ETESTLog) == "yes");
 }
 
 bool CTESTSubsystemObject::sendToHW(std::string &strError)

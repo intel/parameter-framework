@@ -64,7 +64,7 @@ private:
         for (auto &pluginLocation : plugins) {
             std::string pluginsLocationXml;
             auto location = pluginLocation.first;
-            auto paths = pluginLocation.second;
+            auto paths    = pluginLocation.second;
             for (auto &path : paths) {
                 pluginsLocationXml += "<Plugin Name='" + path + "'/>\n";
             }
@@ -90,7 +90,7 @@ private:
         }
     }
 
-    const char *mConfigTemplate = R"(<?xml version='1.0' encoding='UTF-8'?>
+    const char *mConfigTemplate    = R"(<?xml version='1.0' encoding='UTF-8'?>
         <ParameterFrameworkConfiguration SystemClassName='test' TuningAllowed='true'>
             <SubsystemPlugins>
                 {plugins}
@@ -113,7 +113,7 @@ private:
             </Subsystem>
         </SystemClass>
     )";
-    const char *mDomainsTemplate = R"(<?xml version='1.0' encoding='UTF-8'?>
+    const char *mDomainsTemplate   = R"(<?xml version='1.0' encoding='UTF-8'?>
          <ConfigurableDomains SystemClassName="test">
              {domains}
          </ConfigurableDomains>

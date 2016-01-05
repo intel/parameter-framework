@@ -79,7 +79,7 @@ std::string CInstanceConfigurableElement::getFormattedMapping() const
 bool CInstanceConfigurableElement::map(IMapper &mapper, std::string &strError)
 {
     bool bHasMappingData = getTypeElement()->hasMappingData();
-    bool bKeepDiving = true;
+    bool bKeepDiving     = true;
 
     // Begin
     if (bHasMappingData && !mapper.mapBegin(this, bKeepDiving, strError)) {

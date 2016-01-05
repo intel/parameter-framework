@@ -79,7 +79,7 @@ std::string asString(const std::list<std::string> &lstr, const std::string &sepa
  * @param[in] strKeyValueSeparator The separator to use between key and value
  */
 std::string asString(const std::map<std::string, std::string> &mapStr,
-                     const std::string &strItemSeparator = ", ",
+                     const std::string &strItemSeparator     = ", ",
                      const std::string &strKeyValueSeparator = ":");
 
 /** Utility to underline */

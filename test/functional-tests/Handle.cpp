@@ -505,7 +505,7 @@ SCENARIO_METHOD(SettingsTestPF, "Import root in one format, export in an other",
 {
     ElementHandle root(*this, "/test");
     string rootBytesSettings = fullBytesSettings(testBasicSettingsBytes);
-    string rootXMLSettings = fullXMLSettings(testBasicSettingsXML);
+    string rootXMLSettings   = fullXMLSettings(testBasicSettingsXML);
 
     WHEN ("Importing root binary") {
         REQUIRE_NOTHROW(root.setAsBytes(readBytes(rootBytesSettings)));

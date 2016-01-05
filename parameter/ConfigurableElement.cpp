@@ -48,7 +48,7 @@ CConfigurableElement::CConfigurableElement(const std::string &strName) : base(st
 bool CConfigurableElement::fromXml(const CXmlElement &xmlElement,
                                    CXmlSerializingContext &serializingContext)
 {
-    auto &context = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    auto &context       = static_cast<CXmlParameterSerializingContext &>(serializingContext);
     auto &accessContext = context.getAccessContext();
 
     if (accessContext.serializeSettings()) {
@@ -65,7 +65,7 @@ bool CConfigurableElement::fromXml(const CXmlElement &xmlElement,
 void CConfigurableElement::toXml(CXmlElement &xmlElement,
                                  CXmlSerializingContext &serializingContext) const
 {
-    auto &context = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    auto &context       = static_cast<CXmlParameterSerializingContext &>(serializingContext);
     auto &accessContext = context.getAccessContext();
     if (accessContext.serializeSettings()) {
 
@@ -354,7 +354,7 @@ size_t CConfigurableElement::getOffset() const
 // Memory
 size_t CConfigurableElement::getFootPrint() const
 {
-    size_t uiSize = 0;
+    size_t uiSize       = 0;
     size_t uiNbChildren = getNbChildren();
 
     for (size_t index = 0; index < uiNbChildren; index++) {

@@ -59,8 +59,8 @@ void CMessage::writeData(const void *pvData, size_t size)
 {
     assert(isValidAccess(_uiIndex, size));
 
-    auto first = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvData), size);
-    auto last = first + size;
+    auto first     = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvData), size);
+    auto last      = first + size;
     auto destFirst = begin(mData) + _uiIndex;
 
     std::copy(first, last, destFirst);
@@ -72,8 +72,8 @@ void CMessage::readData(void *pvData, size_t size)
 {
     assert(isValidAccess(_uiIndex, size));
 
-    auto first = begin(mData) + _uiIndex;
-    auto last = first + size;
+    auto first     = begin(mData) + _uiIndex;
+    auto last      = first + size;
     auto destFirst = MAKE_ARRAY_ITERATOR(static_cast<uint8_t *>(pvData), size);
 
     std::copy(first, last, destFirst);

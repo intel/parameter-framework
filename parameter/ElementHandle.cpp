@@ -350,7 +350,7 @@ bool ElementHandle::checkGetValidity(bool asArray, string &error) const
     if (asArray != isArray()) {
 
         auto toStr = [](bool array) { return array ? "an array" : "a scalar"; };
-        error = "Can not get \"" + getPath() + "\" as " + toStr(asArray) + " because it is " +
+        error      = "Can not get \"" + getPath() + "\" as " + toStr(asArray) + " because it is " +
                 toStr(isArray());
         return false;
     }

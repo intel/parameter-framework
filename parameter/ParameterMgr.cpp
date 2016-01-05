@@ -1505,7 +1505,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementBytesComm
     vector<uint8_t> bytes;
 
     auto first = remoteCommand.getArguments().cbegin() + 1;
-    auto last = remoteCommand.getArguments().cend();
+    auto last  = remoteCommand.getArguments().cend();
 
     try {
         std::transform(first, last, begin(bytes), [](decltype(*first) input) {
@@ -1862,7 +1862,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
     exportDomainWithSettingsXMLCommandProcess(const IRemoteCommand &remoteCommand, string &result)
 {
     string domainName = remoteCommand.getArgument(0);
-    string fileName = remoteCommand.getArgument(1);
+    string fileName   = remoteCommand.getArgument(1);
     return exportSingleDomainXml(fileName, domainName, true, true, result)
                ? CCommandHandler::EDone
                : CCommandHandler::EFailed;

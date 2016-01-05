@@ -53,7 +53,7 @@ class PARAMETER_EXPORT CConfigurableElement : public CElement
 
 public:
     CConfigurableElement(const std::string &strName = "");
-    virtual ~CConfigurableElement() = default;
+    virtual ~CConfigurableElement()                 = default;
 
     // Offset in main blackboard
     void setOffset(size_t offset);
