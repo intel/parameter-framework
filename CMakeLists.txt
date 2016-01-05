@@ -53,6 +53,11 @@ execute_process(COMMAND git describe --tags --dirty
 # call the wrapper
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
+# Require standard C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CXX_EXTENSIONS OFF)
+set(CXX_STANDARD_REQUIRED ON)
+
 if(WIN32)
     # By default cmake adds a warning level.
     # Nevertheless a different level is wanted for this project.
@@ -77,7 +82,7 @@ if(WIN32)
     # FIXME: Once we have removed all warnings on windows, add the /WX flags if
     # FATAL_WARNINGS is enabled
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wconversion -Wno-sign-conversion")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wconversion -Wno-sign-conversion")
     if(FATAL_WARNINGS)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
     endif()
