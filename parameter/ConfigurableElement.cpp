@@ -468,8 +468,6 @@ void CConfigurableElement::listBelongingDomains(std::string &strResult, bool bVe
 // Elements with no domains
 void CConfigurableElement::listRogueElements(std::string &strResult) const
 {
-    strResult = "\n";
-
     // Get rogue element aggregate list (no associated domain)
     std::list<const CConfigurableElement *> rogueElementList;
 
@@ -568,11 +566,6 @@ void CConfigurableElement::listDomains(
     const std::list<const CConfigurableDomain *> &configurableDomainList, std::string &strResult,
     bool bVertical) const
 {
-    if (bVertical && configurableDomainList.empty()) {
-
-        strResult = "\n";
-    }
-
     // Fill list
     ConfigurableDomainListConstIterator it;
     bool bFirst = true;

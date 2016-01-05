@@ -1370,8 +1370,6 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listElementsCommand
         return CCommandHandler::EFailed;
     }
 
-    strResult = string("\n");
-
     if (!pLocatedElement) {
 
         // List from root folder
@@ -1398,8 +1396,6 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::listParametersComma
 
         return CCommandHandler::EFailed;
     }
-
-    strResult = string("\n");
 
     if (!pLocatedElement) {
 
