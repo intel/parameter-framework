@@ -1,0 +1,7 @@
+# Causes a conflicting-element error
+domain: First
+	conf: Default
+		/Test/test/included/bool = 1
+domain: Second
+	conf: Default
+		/Test/test/included/bool = 0

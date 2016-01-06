@@ -92,6 +92,14 @@ public:
      */
     size_t parse(std::istream &input);
 
+    /** Check for elements belonging to several domains
+     *
+     * Prints conflicting elements, if any, on the error output.
+     *
+     * @returns true if there are conflicting elements, false otherwise
+     */
+    bool conflictingElements();
+
     /** Prints the Parameter Framework's instance configuration
      *
      * @param[out] output The stream to which output the configuration
@@ -182,6 +190,22 @@ size_t XmlGenerator::parse(std::istream &input)
     return errorNb;
 }
 
+bool XmlGenerator::conflictingElements()
+{
+    string conflicting;
+    if (not mCommandHandler->process("listConflictingElements", {}, conflicting)) {
+        // Should not happen
+        throw Exception("Failed to list conflicting elements");
+    }
+
+    if (not conflicting.empty()) {
+        std::cerr << "There are conflicting elements:" << std::endl << conflicting;
+        return true;
+    }
+
+    return false;
+}
+
 void XmlGenerator::start()
 {
     string error;
@@ -257,7 +281,9 @@ int main(int argc, char *argv[])
     try {
         XmlGenerator xmlGenerator(toplevelConfig, validate, verbose, schemasDir);
         auto errorNb = xmlGenerator.parse(std::cin);
-        // TODO: add a check for conflicting elements
+        if (xmlGenerator.conflictingElements()) {
+            errorNb++;
+        }
         xmlGenerator.exportDomains(std::cout);
 
         return normalizeExitCode(errorNb);

@@ -90,27 +90,33 @@ basedir = os.path.dirname(sys.argv[0])
 config_dir = os.path.join(basedir, "PFConfig")
 vector_dir = os.path.join(basedir, "testVector")
 class TestCase(unittest.TestCase):
-    nominal_reference = open(os.path.join(vector_dir, "reference.xml")).read().splitlines()
-    nominal_pfconfig = PfConfig(os.path.join(config_dir, "configuration.xml"),
-                                os.path.join(config_dir, "criteria.txt"),
-                                os.path.join(basedir, "../../schemas"))
-    nominal_vector = TestVector(os.path.join(vector_dir, "initialSettings.xml"),
-                                [os.path.join(vector_dir, "first.pfw"),
-                                 os.path.join(vector_dir, "second.pfw"),
-                                 os.path.join(vector_dir, "complex.pfw")],
-                                [os.path.join(vector_dir, "third.xml"),
-                                 os.path.join(vector_dir, "fourth.xml")])
+    def setUp(self):
+        self.nominal_reference = open(os.path.join(vector_dir, "reference.xml")).read().splitlines()
+        self.nominal_pfconfig = PfConfig(os.path.join(config_dir, "configuration.xml"),
+                                         os.path.join(config_dir, "criteria.txt"),
+                                         os.path.join(basedir, "../../schemas"))
+        self.nominal_vector = TestVector(os.path.join(vector_dir, "initialSettings.xml"),
+                                         [os.path.join(vector_dir, "first.pfw"),
+                                          os.path.join(vector_dir, "second.pfw"),
+                                          os.path.join(vector_dir, "complex.pfw")],
+                                         [os.path.join(vector_dir, "third.xml"),
+                                          os.path.join(vector_dir, "fourth.xml")])
 
     def test_nominal(self):
         tester = Tester(self.nominal_pfconfig, self.nominal_vector)
         tester.check(self.nominal_reference)
 
     def test_nonfatalError(self):
-        vector = copy.copy(self.nominal_vector)
-        vector.edds.append(os.path.join(vector_dir, "duplicate.pfw"))
+        self.nominal_vector.edds.append(os.path.join(vector_dir, "duplicate.pfw"))
+
+        tester = Tester(self.nominal_pfconfig, self.nominal_vector)
+        tester.check(self.nominal_reference, expectedErrors=1)
+
+    def test_conflicting(self):
+        vector = TestVector(edds=[os.path.join(vector_dir, "conflicting.pfw")])
 
         tester = Tester(self.nominal_pfconfig, vector)
-        tester.check(self.nominal_reference, expectedErrors=1)
+        tester.check(expectedErrors=1)
 
 if __name__ == "__main__":
     unittest.main()
