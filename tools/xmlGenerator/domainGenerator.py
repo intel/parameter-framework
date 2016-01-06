@@ -58,6 +58,7 @@ def parseArgs():
             help="Initial XML settings file (containing a \
         <ConfigurableDomains>  tag",
             nargs='?',
+            default=None,
             metavar="XML_SETTINGS_FILE")
     argparser.add_argument('--add-domains',
             help="List of single domain files (each containing a single \
@@ -184,7 +185,6 @@ def main():
     # EDD files (aka ".pfw" files)
     #
     parsed_edds = parseEdd(args.edd_files, args.verbose)
-    error_nb = 0
 
     # We need to modify the toplevel configuration file to account for differences
     # between development setup and target (installation) setup, in particular, the
@@ -209,7 +209,9 @@ def main():
                             args.schemas_dir],
                            stdout=sys.stdout, stdin=subprocess.PIPE, stderr=sys.stderr)
 
-    initial_settings = os.path.realpath(args.initial_settings)
+    initial_settings = None
+    if args.initial_settings:
+        initial_settings = os.path.realpath(args.initial_settings)
 
     for command in generateDomainCommands(logging, all_criteria, initial_settings,
                                        args.xml_domain_files, parsed_edds):
@@ -219,8 +221,8 @@ def main():
     # Closing the connector's input triggers the domain generation
     connector.stdin.close()
     connector.wait()
-    fake_toplevel_config.delete()
-    return connector.return_code
+    os.remove(fake_toplevel_config.name)
+    return connector.returncode
 
 # If this file is directly executed
 if __name__ == "__main__":
