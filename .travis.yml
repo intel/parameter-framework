@@ -24,6 +24,7 @@ addons:
         sources:
             - ubuntu-toolchain-r-test
             - kubuntu-backports
+            - llvm-toolchain-precise
         # Travis white list of dpkg packages
         # https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
         packages:
@@ -33,6 +34,7 @@ addons:
             - cmake
             - python3-dev
             - libasio-dev
+            - clang-format-3.8
 
 install:
     - pip install --user cpp-coveralls; export PATH=$HOME/.local/bin:$PATH
@@ -53,6 +55,10 @@ before_script:
 
 # how to build
 script:
+  # Check coding style
+  - git ls-files | grep -E '\.[ch](pp)?$' |  xargs clang-format-3.8 -i &&
+        git diff --exit-code || { git reset --hard; false; }
+
   - ( mkdir build_debug && cd build_debug &&
         cmake -DCMAKE_PREFIX_PATH=$PREFIX -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=${coverage} .. &&
         make -j &&

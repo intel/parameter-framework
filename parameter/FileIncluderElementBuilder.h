@@ -42,8 +42,7 @@ class CFileIncluderElementBuilder : public CElementBuilder
 {
 public:
     CFileIncluderElementBuilder(bool bValidateWithSchemas, const std::string &schemaBaseUri)
-        : CElementBuilder(),
-          _bValidateWithSchemas(bValidateWithSchemas),
+        : CElementBuilder(), _bValidateWithSchemas(bValidateWithSchemas),
           _schemaBaseUri(schemaBaseUri)
     {
     }

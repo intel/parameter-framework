@@ -602,8 +602,9 @@ CConfigurableDomain *CConfigurableDomains::findConfigurableDomain(const string &
                                                                   string &strError)
 {
     // Call the const equivalent
-    return const_cast<CConfigurableDomain *>(static_cast<const CConfigurableDomains *>(this)
-                                                 ->findConfigurableDomain(strDomain, strError));
+    return const_cast<CConfigurableDomain *>(
+        static_cast<const CConfigurableDomains *>(this)->findConfigurableDomain(strDomain,
+                                                                                strError));
 }
 
 const CConfigurableDomain *CConfigurableDomains::findConfigurableDomain(const string &strDomain,

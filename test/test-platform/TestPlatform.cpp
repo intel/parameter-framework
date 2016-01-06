@@ -125,10 +125,10 @@ bool CTestPlatform::run(std::string &strError)
         &CTestPlatform::getter<&CParameterMgrPlatformConnector::getValidateSchemasOnStart>, 0, "",
         "Get policy for schema validation based on .xsd files.");
 
-    commandHandler.addCommandParser("getSchemaUri", &CTestPlatform::getSchemaUri, 0,
-        "", "Get the directory where schemas can be found.");
-    commandHandler.addCommandParser("setSchemaUri", &CTestPlatform::setSchemaUri, 1,
-        "<directory>", "Set the directory where schemas can be found.");
+    commandHandler.addCommandParser("getSchemaUri", &CTestPlatform::getSchemaUri, 0, "",
+                                    "Get the directory where schemas can be found.");
+    commandHandler.addCommandParser("setSchemaUri", &CTestPlatform::setSchemaUri, 1, "<directory>",
+                                    "Set the directory where schemas can be found.");
 
     return mRemoteProcessorServer.process(commandHandler);
 }
