@@ -209,8 +209,8 @@ void XmlGenerator::exportDomains(std::ostream &output)
 static const char *usage =
     R"(Usage: domainGeneratorConnector <top-level config> <verbose> <validate> <path>
 
- <verbose>       '1': verbose,  else: terse
- <validate>      '1' validate, else: don't validate
+ <verbose>       'verbose': verbose, else: terse
+ <validate>      'validate': validate, else: don't validate
  <path>          path to the schemas' directory
 
 All arguments are mandatory. If no validation is required,
