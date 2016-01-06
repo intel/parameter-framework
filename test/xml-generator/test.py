@@ -1,4 +1,4 @@
-#! python2
+#! python2.7
 # Copyright (c) 2015, Intel Corporation
 # All rights reserved.
 #
@@ -31,37 +31,89 @@ import sys
 import os
 import subprocess
 import difflib
+import unittest
+import copy
+
+class PfConfig:
+    def __init__(self, toplevel, criteria, schemas):
+        self.toplevel = toplevel
+        self.criteria = criteria
+        self.schemas = schemas
+
+class TestVector:
+    def __init__(self, initialSettings=None, edds=[], domains=[]):
+        self.initialSettings = initialSettings
+        self.edds = edds
+        self.domains = domains
+
+class Tester(object):
+    def __init__(self, pfConfig, testVector):
+        self.command = [sys.executable, "domainGenerator.py",
+                        "--validate",
+                        "--verbose",
+                        "--toplevel-config", pfConfig.toplevel,
+                        "--criteria", pfConfig.criteria,
+                        "--schemas-dir", pfConfig.schemas]
+
+        if testVector.initialSettings:
+            self.command += ["--initial-settings", testVector.initialSettings]
+        if testVector.edds:
+            self.command += ["--add-edds"] + testVector.edds
+        if testVector.domains:
+            self.command += ["--add-domains"] + testVector.domains
+
+    def check(self, reference=None, expectedErrors=0):
+        process = subprocess.Popen(self.command, stdout=subprocess.PIPE)
+        actual = process.stdout.read().splitlines()
+
+        if process.wait() != expectedErrors:
+            raise AssertionError("Expected {} errors, found {}".format(
+                expectedErrors,
+                process.returncode))
+
+        if not reference:
+            # The caller only wants to check the number of errors
+            return True
+
+        # The generation has succeeded as expected - let's compare with the reference.
+        unified = difflib.unified_diff(reference,
+                                       actual,
+                                       fromfile="reference.xml",
+                                       tofile="-",
+                                       lineterm="")
+        diffs = list(unified)
+        if diffs:
+            for d in diffs:
+                print(d)
+            return AssertionError("The result and the reference don't match.")
+        return True
+
 
 basedir = os.path.dirname(sys.argv[0])
 
-configDir = os.path.join(basedir, "PFConfig")
-vectorDir = os.path.join(basedir, "testVector")
+config_dir = os.path.join(basedir, "PFConfig")
+vector_dir = os.path.join(basedir, "testVector")
+class TestCase(unittest.TestCase):
+    nominal_reference = open(os.path.join(vector_dir, "reference.xml")).read().splitlines()
+    nominal_pfconfig = PfConfig(os.path.join(config_dir, "configuration.xml"),
+                                os.path.join(config_dir, "criteria.txt"),
+                                os.path.join(basedir, "../../schemas"))
+    nominal_vector = TestVector(os.path.join(vector_dir, "initialSettings.xml"),
+                                [os.path.join(vector_dir, "first.pfw"),
+                                 os.path.join(vector_dir, "second.pfw")],
+                                [os.path.join(vector_dir, "third.xml"),
+                                 os.path.join(vector_dir, "fourth.xml")])
 
-command = [sys.executable, "domainGenerator.py",
-        "--validate",
-        "--verbose",
-        "--toplevel-config", os.path.join(configDir, "configuration.xml"),
-        "--criteria", os.path.join(configDir, "criteria.txt"),
-        "--initial-settings", os.path.join(vectorDir, "initialSettings.xml"),
-        "--add-edds", os.path.join(vectorDir, "first.pfw"), os.path.join(vectorDir, "second.pfw"),
-        "--add-domains", os.path.join(vectorDir, "third.xml"), os.path.join(vectorDir, "fourth.xml"),
-        "--schemas-dir", os.path.join(basedir, "../../schemas")]
+    def test_nominal(self):
+        tester = Tester(self.nominal_pfconfig, self.nominal_vector)
+        self.assertTrue(tester.check(self.nominal_reference))
 
-reference = open(os.path.join(vectorDir, "reference.xml")).read().splitlines()
+    def test_nonfatalError(self):
+        vector = copy.copy(self.nominal_vector)
+        vector.edds.append(os.path.join(vector_dir, "duplicate.pfw"))
 
-process = subprocess.Popen(command, stdout=subprocess.PIPE)
-actual = process.stdout.read().splitlines()
+        tester = Tester(self.nominal_pfconfig, vector)
+        self.assertTrue(tester.check(self.nominal_reference, expectedErrors=1))
 
-unified = difflib.unified_diff(reference,
-                               actual,
-                               fromfile="reference.xml",
-                               tofile="-",
-                               lineterm="")
-diffs = list(unified)
-if diffs:
-    for d in diffs:
-        print(d)
-    sys.exit(1)
-if process.wait() != 1:
-    print("Error: Expected 1 error, found {}".format(process.returncode))
-    sys.exit(1)
+if __name__ == "__main__":
+    unittest.main()
