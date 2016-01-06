@@ -118,5 +118,14 @@ class TestCase(unittest.TestCase):
         tester = Tester(self.nominal_pfconfig, vector)
         tester.check(expectedErrors=1)
 
+    def test_fail_criteria(self):
+        self.nominal_pfconfig.criteria = os.path.join(config_dir, "duplicate_criterion_value.txt")
+        # Empty test vector: we want to make sure that the erroneous criterion
+        # is the only source of error
+        empty_vector = TestVector()
+
+        tester = Tester(self.nominal_pfconfig, empty_vector)
+        tester.check(expectedErrors=1)
+
 if __name__ == "__main__":
     unittest.main()
