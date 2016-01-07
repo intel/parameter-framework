@@ -44,6 +44,8 @@
 #include <string>
 #include <list>
 
+#include <stdlib.h>
+
 using std::string;
 using std::list;
 using Bytes = std::vector<uint8_t>;
@@ -158,11 +160,21 @@ struct AllParamsPF : public ParameterFramework
         if (result != expected) {
             utility::TmpFile resultFile(result);
             utility::TmpFile expectedFile(expected);
-            auto gitCommand = "git --no-pager diff --word-diff-regex='[^ <>]+' --color --no-index ";
-            auto diffSuccess =
-                system((gitCommand + resultFile.getPath() + ' ' + expectedFile.getPath()).c_str());
-            if (diffSuccess != 0) {
-                WARN("Failed to pretty-print the difference between actual and expected results.");
+            string command = "git --no-pager diff --word-diff-regex='[^ <>]+'"
+                             "                    --color --no-index --exit-code " +
+                             resultFile.getPath() + ' ' + expectedFile.getPath();
+
+            // `system` return -1 or 127 on failure, the command error code otherwise
+            // `git diff` return 1 if the files are the different (thanks to --exit-code)
+            auto status = system(command.c_str());
+#ifdef WIFEXITED // Posix platform
+            bool success = WIFEXITED(status) and WEXITSTATUS(status) == 1;
+#else
+            bool success = status == 1;
+#endif
+            if (not success) {
+                WARN("Warning: Failed to pretty-print the difference between "
+                     "actual and expected results with `git diff'");
             }
         }
     }
