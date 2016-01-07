@@ -1993,14 +1993,6 @@ bool CParameterMgr::accessParameterValue(const string &strPath, string &strValue
 // User get parameter mapping
 bool CParameterMgr::getParameterMapping(const string &strPath, string &strResult) const
 {
-    CPathNavigator pathNavigator(strPath);
-
-    // Nagivate through system class
-    if (!pathNavigator.navigateThrough(getConstSystemClass()->getName(), strResult)) {
-
-        return false;
-    }
-
     // Get the ConfigurableElement corresponding to strPath
     const CConfigurableElement *pConfigurableElement = getConfigurableElement(strPath, strResult);
     if (!pConfigurableElement) {
