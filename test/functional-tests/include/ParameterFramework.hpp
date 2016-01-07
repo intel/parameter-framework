@@ -84,7 +84,6 @@ public:
     using PF::getValidateSchemasOnStart;
     using PF::isValueSpaceRaw;
     using PF::isOutputRawFormatHex;
-    using PF::setOutputRawFormat;
     using PF::isTuningModeOn;
     using PF::isAutoSyncOn;
     using PF::setLogger;
@@ -111,6 +110,10 @@ public:
     /** Renaming for better readability (and coherency with PF::isValueSpaceRaw)
      *  of PF::setValueSpace. */
     void setRawValueSpace(bool enable) { setValueSpace(enable); }
+
+    /** Renaming for better readability (and coherency with PF::isValueSpaceRaw)
+     *  of PF::setValueSpace. */
+    void setHexOutputFormat(bool enable) { setOutputRawFormat(enable); }
 
     /** Wrap PF::setTuningMode to throw an exception on failure. */
     void setTuningMode(bool enable) { mayFailCall(&PF::setTuningMode, enable); }

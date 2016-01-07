@@ -365,6 +365,24 @@ static const char *testBasicSettingsXML = R"(
         <BitParameter Name="thirty_two">4294967295</BitParameter>
       </BitParameterBlock>
 )";
+static const char *testRawHexBasicSettingsXML = R"(
+      <BooleanParameter Name="bool">0x1</BooleanParameter>
+      <BooleanParameter Name="bool_array">0x0 0x1</BooleanParameter>
+      <IntegerParameter Name="integer">0x0064</IntegerParameter>
+      <IntegerParameter Name="integer_array">0xFFFFFFF6 0x00000000 0x00000008 0x0000000A</IntegerParameter>
+      <FixedPointParameter ValueSpace="Raw" Name="fix_point">0x24000000</FixedPointParameter>
+      <FixedPointParameter ValueSpace="Raw" Name="fix_point_array">0x72000000 0x0B000000 0xF0000000</FixedPointParameter>
+      <EnumParameter Name="enum">five</EnumParameter>
+      <EnumParameter Name="enum_array">eight min eight min</EnumParameter>
+      <StringParameter Name="string">A string of 32 character.@@@@@@@</StringParameter>
+      <BitParameterBlock Name="bit_block">
+        <BitParameter Name="one">0x1</BitParameter>
+        <BitParameter Name="two">0x2</BitParameter>
+        <BitParameter Name="six">0xA</BitParameter>
+        <BitParameter Name="sixteen">0x48</BitParameter>
+        <BitParameter Name="thirty_two">0xFFFFFFFF</BitParameter>
+      </BitParameterBlock>
+)";
 
 SCENARIO_METHOD(SettingsTestPF, "Export and import XML settings", "[handler][settings][xml]")
 {
@@ -379,12 +397,26 @@ SCENARIO_METHOD(SettingsTestPF, "Export and import XML settings", "[handler][set
         checkXMLEq(basicParams.getAsXML(),
                    mkBasicSettings(defaultBasicSettingsXML, "parameter_block"));
     }
-    WHEN ("Importing basic parameter XML") {
-        string testSettings = mkBasicSettings(testBasicSettingsXML, "parameter_block");
-        CHECK_NOTHROW(basicParams.setAsXML(testSettings));
+    string testSettings = mkBasicSettings(testBasicSettingsXML, "parameter_block");
+    string rawTestSettings = mkBasicSettings(testRawHexBasicSettingsXML, "parameter_block");
+
+    auto checkExport = [&] {
         THEN ("Exported settings should be the ones imported") {
             checkXMLEq(basicParams.getAsXML(), testSettings);
         }
+        THEN ("Exported raw settings should be the ones imported") {
+            setRawValueSpace(true);
+            setHexOutputFormat(true);
+            checkXMLEq(basicParams.getAsXML(), rawTestSettings);
+        }
+    };
+    WHEN ("Importing basic parameter XML") {
+        CHECK_NOTHROW(basicParams.setAsXML(testSettings));
+        checkExport();
+    }
+    WHEN ("Importing raw basic parameter XML") {
+        CHECK_NOTHROW(basicParams.setAsXML(rawTestSettings));
+        checkExport();
     }
 }
 
