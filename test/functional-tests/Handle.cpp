@@ -531,9 +531,12 @@ SCENARIO("Mapping handle access", "[handler][mapping]")
             list<string> invalid;
         };
         list<TestVector> testVectors = {
-            {"/test/test", {"root"}, {"param", "type", "instance"}},
-            {"/test/test/param", {"param"}, {"root", "type", "instance"}},
-            {"/test/test/component", {"type", "instance"}, {"root", "param"}}};
+            // clang-format off
+            {"/test/test",           {"root"},                     {"param", "type", "instance"}},
+            {"/test/test/param",     {"root", "param"},            {"type", "instance"}},
+            {"/test/test/component", {"root", "type", "instance"}, {"param"}}
+            // clang-format on
+        };
 
         for (auto &test : testVectors) {
             GIVEN ("An element handle of " + test.path) {

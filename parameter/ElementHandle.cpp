@@ -116,12 +116,16 @@ bool ElementHandle::getMappingData(const string &strKey, string &strValue) const
 {
     const std::string *pStrValue;
 
-    if (!mElement.getMappingData(strKey, pStrValue)) {
-        return false;
-    }
+    // Seach for the key in self and ancestors
+    auto elements = mElement.getConfigurableElementContext();
 
-    strValue = *pStrValue;
-    return true;
+    for (auto *element : elements)
+        if (element->getMappingData(strKey, pStrValue)) {
+            strValue = *pStrValue;
+            return true;
+        }
+
+    return false;
 }
 
 bool ElementHandle::getStructureAsXML(std::string &xmlSettings, std::string &error) const
