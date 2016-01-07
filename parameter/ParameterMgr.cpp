@@ -2001,8 +2001,7 @@ bool CParameterMgr::getParameterMapping(const string &strPath, string &strResult
     }
 
     // Find the list of the ancestors of the current ConfigurableElement that have a mapping
-    list<const CConfigurableElement *> configurableElementPath;
-    pConfigurableElement->getListOfElementsWithMapping(configurableElementPath);
+    auto configurableElementPath = pConfigurableElement->getConfigurableElementContext();
 
     // Get the Subsystem containing the ConfigurableElement
     const CSubsystem *pSubsystem = pConfigurableElement->getBelongingSubsystem();
