@@ -120,8 +120,8 @@ void XmlGenerator::addCriteria(std::vector<string> &tokens)
 
     auto criterionType = mConnector.createSelectionCriterionType(inclusiveness);
     if (criterionType == nullptr) {
-        throw Exception("Failed to create an " +
-                        string(inclusiveness ? "inclusive" : "exclusive") + " criterion type");
+        throw Exception("Failed to create an " + string(inclusiveness ? "inclusive" : "exclusive") +
+                        " criterion type");
     }
 
     int index = 0;

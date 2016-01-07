@@ -448,8 +448,8 @@ void CConfigurableElement::getBelongingDomains(
 
     if (isOfConfigurableElementType(pParent)) {
 
-        static_cast<const CConfigurableElement *>(pParent)
-            ->getBelongingDomains(configurableDomainList);
+        static_cast<const CConfigurableElement *>(pParent)->getBelongingDomains(
+            configurableDomainList);
     }
 }
 
