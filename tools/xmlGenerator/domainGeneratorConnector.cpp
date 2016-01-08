@@ -37,6 +37,7 @@
 #include <memory>
 #include <string>
 #include <limits>
+#include <numeric>
 #include <algorithm>
 #include <stdexcept>
 
@@ -169,9 +170,10 @@ size_t XmlGenerator::parse(std::istream &input)
             string output;
             if (not mCommandHandler->process(command, tokens, output)) {
                 errorNb++;
-                std::cerr << "Failed to executing command: "
-                          << utility::join<string>(begin(tokens), end(tokens),
-                                                   [](string l, string r) { return l + ' ' + r; })
+
+                std::cerr << accumulate(begin(tokens), end(tokens),
+                                        "Failed to executing command: `" + command + "'",
+                                        [](string l, string r) { return l + " `" + r + "'"; })
                           << std::endl
                           << output << std::endl;
             }
