@@ -275,18 +275,19 @@ bool CConfigurableElement::setSettingsAsBytes(const std::vector<uint8_t> &bytes,
     return true;
 }
 
-void CConfigurableElement::getListOfElementsWithMapping(
-    std::list<const CConfigurableElement *> &configurableElementPath) const
+std::list<const CConfigurableElement *> CConfigurableElement::getConfigurableElementContext() const
 {
-    // Check parent
-    const CElement *pParent = getParent();
-    if (isOfConfigurableElementType(pParent)) {
+    std::list<const CConfigurableElement *> configurableElementPath;
 
-        const CConfigurableElement *pConfigurableElement =
-            static_cast<const CConfigurableElement *>(pParent);
+    const CElement *element = this;
+    while (element != nullptr and isOfConfigurableElementType(element)) {
+        auto configurableElement = static_cast<const CConfigurableElement *>(element);
 
-        pConfigurableElement->getListOfElementsWithMapping(configurableElementPath);
+        configurableElementPath.push_back(configurableElement);
+        element = element->getParent();
     }
+
+    return configurableElementPath;
 }
 
 // Used for simulation and virtual subsystems

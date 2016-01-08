@@ -50,6 +50,9 @@ struct Config
         (this->*member) = std::forward<T>(value);
     }
 
+    /** Mapping attribute of the test subsystem. */
+    std::string subsystemMapping;
+
     /** Instances of the test subsystem.
      *
      * Content of the configuration

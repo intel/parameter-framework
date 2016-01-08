@@ -114,19 +114,6 @@ bool CInstanceConfigurableElement::map(IMapper &mapper, std::string &strError)
     return true;
 }
 
-void CInstanceConfigurableElement::getListOfElementsWithMapping(
-    std::list<const CConfigurableElement *> &configurableElementPath) const
-{
-    const CTypeElement *pTypeElement = getTypeElement();
-
-    if (pTypeElement && pTypeElement->hasMappingData()) {
-
-        configurableElementPath.push_back(this);
-    }
-
-    base::getListOfElementsWithMapping(configurableElementPath);
-}
-
 // Element properties
 void CInstanceConfigurableElement::showProperties(std::string &strResult) const
 {

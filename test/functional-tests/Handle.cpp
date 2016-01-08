@@ -42,8 +42,12 @@
 #include <libxml/tree.h>
 
 #include <string>
+#include <list>
+
+#include <stdlib.h>
 
 using std::string;
+using std::list;
 using Bytes = std::vector<uint8_t>;
 
 namespace parameterFramework
@@ -156,11 +160,21 @@ struct AllParamsPF : public ParameterFramework
         if (result != expected) {
             utility::TmpFile resultFile(result);
             utility::TmpFile expectedFile(expected);
-            auto gitCommand = "git --no-pager diff --word-diff-regex='[^ <>]+' --color --no-index ";
-            auto diffSuccess =
-                system((gitCommand + resultFile.getPath() + ' ' + expectedFile.getPath()).c_str());
-            if (diffSuccess != 0) {
-                WARN("Failed to pretty-print the difference between actual and expected results.");
+            string command = "git --no-pager diff --word-diff-regex='[^ <>]+'"
+                             "                    --color --no-index --exit-code " +
+                             resultFile.getPath() + ' ' + expectedFile.getPath();
+
+            // `system` return -1 or 127 on failure, the command error code otherwise
+            // `git diff` return 1 if the files are the different (thanks to --exit-code)
+            auto status = system(command.c_str());
+#ifdef WIFEXITED // Posix platform
+            bool success = WIFEXITED(status) and WEXITSTATUS(status) == 1;
+#else
+            bool success = status == 1;
+#endif
+            if (not success) {
+                WARN("Warning: Failed to pretty-print the difference between "
+                     "actual and expected results with `git diff'");
             }
         }
     }
@@ -363,6 +377,24 @@ static const char *testBasicSettingsXML = R"(
         <BitParameter Name="thirty_two">4294967295</BitParameter>
       </BitParameterBlock>
 )";
+static const char *testRawHexBasicSettingsXML = R"(
+      <BooleanParameter Name="bool">0x1</BooleanParameter>
+      <BooleanParameter Name="bool_array">0x0 0x1</BooleanParameter>
+      <IntegerParameter Name="integer">0x0064</IntegerParameter>
+      <IntegerParameter Name="integer_array">0xFFFFFFF6 0x00000000 0x00000008 0x0000000A</IntegerParameter>
+      <FixedPointParameter ValueSpace="Raw" Name="fix_point">0x24000000</FixedPointParameter>
+      <FixedPointParameter ValueSpace="Raw" Name="fix_point_array">0x72000000 0x0B000000 0xF0000000</FixedPointParameter>
+      <EnumParameter Name="enum">five</EnumParameter>
+      <EnumParameter Name="enum_array">eight min eight min</EnumParameter>
+      <StringParameter Name="string">A string of 32 character.@@@@@@@</StringParameter>
+      <BitParameterBlock Name="bit_block">
+        <BitParameter Name="one">0x1</BitParameter>
+        <BitParameter Name="two">0x2</BitParameter>
+        <BitParameter Name="six">0xA</BitParameter>
+        <BitParameter Name="sixteen">0x48</BitParameter>
+        <BitParameter Name="thirty_two">0xFFFFFFFF</BitParameter>
+      </BitParameterBlock>
+)";
 
 SCENARIO_METHOD(SettingsTestPF, "Export and import XML settings", "[handler][settings][xml]")
 {
@@ -377,12 +409,26 @@ SCENARIO_METHOD(SettingsTestPF, "Export and import XML settings", "[handler][set
         checkXMLEq(basicParams.getAsXML(),
                    mkBasicSettings(defaultBasicSettingsXML, "parameter_block"));
     }
-    WHEN ("Importing basic parameter XML") {
-        string testSettings = mkBasicSettings(testBasicSettingsXML, "parameter_block");
-        CHECK_NOTHROW(basicParams.setAsXML(testSettings));
+    string testSettings = mkBasicSettings(testBasicSettingsXML, "parameter_block");
+    string rawTestSettings = mkBasicSettings(testRawHexBasicSettingsXML, "parameter_block");
+
+    auto checkExport = [&] {
         THEN ("Exported settings should be the ones imported") {
             checkXMLEq(basicParams.getAsXML(), testSettings);
         }
+        THEN ("Exported raw settings should be the ones imported") {
+            setRawValueSpace(true);
+            setHexOutputFormat(true);
+            checkXMLEq(basicParams.getAsXML(), rawTestSettings);
+        }
+    };
+    WHEN ("Importing basic parameter XML") {
+        CHECK_NOTHROW(basicParams.setAsXML(testSettings));
+        checkExport();
+    }
+    WHEN ("Importing raw basic parameter XML") {
+        CHECK_NOTHROW(basicParams.setAsXML(rawTestSettings));
+        checkExport();
     }
 }
 
@@ -493,6 +539,65 @@ SCENARIO_METHOD(SettingsTestPF, "Import basic params in one format, export in an
         REQUIRE_NOTHROW(basicParams.setAsXML(basicXMLSettings));
         THEN ("Exported bytes settings should be the ones imported") {
             checkBytesEq(basicParams.getAsBytes(), testBasicSettingsBytes);
+        }
+    }
+}
+
+struct MappingPF : public ParameterFramework
+{
+    MappingPF() : ParameterFramework{getConfig()} { REQUIRE_NOTHROW(start()); }
+
+    Config getConfig()
+    {
+        Config config;
+        config.instances = "<BooleanParameter Name='bool' Mapping='bool_map'>";
+        config.subsystemMapping = "subsystem_mapping";
+        return config;
+    }
+};
+
+SCENARIO("Mapping handle access", "[handler][mapping]")
+{
+    GIVEN ("A PF with mappings") {
+        Config config;
+        config.subsystemMapping = "rootK:rootV";
+        config.components = "<ComponentType   Name='componentType' Mapping='typeK:typeV'        />";
+        config.instances = "<BooleanParameter Name='param'         Mapping='paramK:paramV'      />"
+                           "<Component        Name='component'     Mapping='instanceK:instanceV'  "
+                           "           Type='componentType'                                     />";
+        ParameterFramework pf{config};
+        REQUIRE_NOTHROW(pf.start());
+
+        struct TestVector
+        {
+            string path;
+            list<string> valid;
+            list<string> invalid;
+        };
+        list<TestVector> testVectors = {
+            // clang-format off
+            {"/test/test",           {"root"},                     {"param", "type", "instance"}},
+            {"/test/test/param",     {"root", "param"},            {"type", "instance"}},
+            {"/test/test/component", {"root", "type", "instance"}, {"param"}}
+            // clang-format on
+        };
+
+        for (auto &test : testVectors) {
+            GIVEN ("An element handle of " + test.path) {
+                ElementHandle handle(pf, test.path);
+
+                for (auto &valid : test.valid) {
+                    THEN ("The following mapping should exist: " + valid) {
+                        CHECK(handle.getMappingData(valid + "K") == valid + "V");
+                    }
+                }
+
+                for (auto &invalid : test.invalid) {
+                    THEN ("The following mapping should not exist: " + invalid) {
+                        CHECK_THROWS_AS(handle.getMappingData(invalid + "K"), Exception);
+                    }
+                }
+            }
         }
     }
 }

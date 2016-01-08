@@ -62,6 +62,15 @@ public:
      */
     size_t getSize() const { return EH::getSize(); }
 
+    std::string getMappingData(const std::string &key)
+    {
+        std::string value;
+        if (not EH::getMappingData(key, value)) {
+            throw Exception("Could not find mapping key \"" + key + "\" in " + EH::getPath());
+        }
+        return value;
+    }
+
     /** Wrap EH::setAsDouble to throw an exception on failure. */
     void setAsDouble(double value) { mayFailCall(&EH::setAsDouble, value); }
     /** Wrap EH::getAsDouble to throw an exception on failure. */

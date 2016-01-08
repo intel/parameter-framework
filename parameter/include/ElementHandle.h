@@ -91,9 +91,10 @@ public:
 
     std::vector<ElementHandle> getChildren();
 
-    /** Get Mapping Data
+    /** Get mapping data of the element context
      *
-     * Retrieve Mapping data associated to a given key if any
+     * Retrieve mapping data associated to a given key if any.
+     * If the key is not present in this element, query ancestors.
      *
      * @param[in] strKey the input mapping key
      * @param[out] strValue the resulting mapping value in case of success

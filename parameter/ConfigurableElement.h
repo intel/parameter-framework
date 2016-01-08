@@ -133,22 +133,11 @@ public:
     bool setSettingsAsBytes(const std::vector<uint8_t> &bytes,
                             CParameterAccessContext &parameterAccessContext) const;
 
-    /**
-     * Get the list of all the ancestors that have a mapping.
-     *
-     * The mapping is represented as a std::string of all the mapping data (key:value) defined in
-     * the
-     * context of the element.
-     * In this class, the method is generic and calls its parent getListOfElementsWithMappings(...)
-     * method.
-     *
-     * @param[in:out] configurableElementPath List of all the ConfigurableElements found
-     * that have a mapping. Elements are added at the end of the list, so the root Element will be
-     * the last one.
+    /** @return List of all ConfigurableElements that have a mapping relevant in this context.
+     *          Ie: return self and CConfigurableElement ancestor of this node.
      *
      */
-    virtual void getListOfElementsWithMapping(
-        std::list<const CConfigurableElement *> &configurableElementPath) const;
+    std::list<const CConfigurableElement *> getConfigurableElementContext() const;
 
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
