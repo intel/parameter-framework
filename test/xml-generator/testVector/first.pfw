@@ -31,5 +31,3 @@ domainGroup: EddGroup
 			component: /Test/test/block/1
 				q2.5 = 0
 				string = some other string
-	# Should trigger a non fatal error
-	domain: First
