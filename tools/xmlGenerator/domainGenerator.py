@@ -127,12 +127,12 @@ def parseCriteria(criteriaFile):
 
     return all_criteria
 
-def parseEdd(EDDFiles, verbose):
+def parseEdd(EDDFiles):
     parsed_edds = []
 
     for edd_file in EDDFiles:
         try:
-            root = EddParser.Parser().parse(edd_file, verbose)
+            root = EddParser.Parser().parse(edd_file)
         except EddParser.MySyntaxError as ex:
             logging.critical(str(ex))
             logging.info("EXIT ON FAILURE")
@@ -184,7 +184,7 @@ def main():
     #
     # EDD files (aka ".pfw" files)
     #
-    parsed_edds = parseEdd(args.edd_files, args.verbose)
+    parsed_edds = parseEdd(args.edd_files)
 
     # We need to modify the toplevel configuration file to account for differences
     # between development setup and target (installation) setup, in particular, the
