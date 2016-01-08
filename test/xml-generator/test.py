@@ -96,7 +96,8 @@ class TestCase(unittest.TestCase):
                                 os.path.join(basedir, "../../schemas"))
     nominal_vector = TestVector(os.path.join(vector_dir, "initialSettings.xml"),
                                 [os.path.join(vector_dir, "first.pfw"),
-                                 os.path.join(vector_dir, "second.pfw")],
+                                 os.path.join(vector_dir, "second.pfw"),
+                                 os.path.join(vector_dir, "complex.pfw")],
                                 [os.path.join(vector_dir, "third.xml"),
                                  os.path.join(vector_dir, "fourth.xml")])
 
