@@ -602,4 +602,33 @@ SCENARIO("Mapping handle access", "[handler][mapping]")
     }
 }
 
+SCENARIO_METHOD(AllParamsPF, "Access boolean", "[handler][access]")
+{
+    ElementHandle handle(*this, "/test/test/bool");
+    struct TestVector
+    {
+        bool expectedValue;
+        list<string> values;
+    };
+    list<TestVector> testVectors = {
+        {true, {"1", "0x1", "001", "0x001", "true", "True", "TRUe"}},
+        {false, {"0", "0x0", "000", "0x000", "false", "False", "FaLSe"}}};
+
+    for (auto testVector : testVectors) {
+        for (auto value : testVector.values) {
+            CAPTURE(value);
+            auto expectedValue = testVector.expectedValue;
+            CAPTURE(expectedValue);
+
+            CHECK_NOTHROW(handle.setAs(value));
+            CHECK(handle.getAs<decltype(value)>() == std::to_string(expectedValue));
+            CHECK(handle.getAs<decltype(expectedValue)>() == expectedValue);
+        }
+    }
+
+    for (string invalid : {"2", "-1", "0x10", "None", "faux"}) {
+        CHECK_THROWS_AS(handle.setAs(invalid), Exception);
+    }
+}
+
 } // namespace parameterFramework

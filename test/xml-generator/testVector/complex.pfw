@@ -37,4 +37,4 @@ domainGroup: Red sequenceAware
 								q2.5 = 1.18750
 								string = 12 ab @ 	 <![CDATA[ < > \n \0 ✔ "'\
 							component: included
-								bool = 1
+								bool = true

@@ -41,8 +41,12 @@ namespace parameterFramework
  * Contrary to ::ElementHandle, is constructed through it's constructor
  * and not a factory method.
  * @see parameterFramework::ParameterFramework for the main PF interface.
+ *
+ * @fixme Should privately inherit from FailureWrapper but this can not be done
+ *        as this class uses protected ::ElementHandle::getAs and setAs methods.
+ *        See their documentation for more information.
  */
-class ElementHandle : private FailureWrapper<::ElementHandle>
+class ElementHandle : protected FailureWrapper<::ElementHandle>
 {
     ElementHandle(const ElementHandle &other) = delete;
     ElementHandle &operator=(const ElementHandle &other) = delete;
@@ -71,6 +75,20 @@ public:
         return value;
     }
 
+    /** Wrap EH::setAs* to throw an exception on failure. */
+    template <class T>
+    void setAs(T value)
+    {
+        mayFailCall(&EH::setAs<T>, value);
+    }
+
+    /** Wrap EH::getAs* to throw an exception on failure.
+     * @todo list allowed types. */
+    template <class T>
+    T getAs()
+    {
+        return mayFailGet(&EH::getAs<T>);
+    }
     /** Wrap EH::setAsDouble to throw an exception on failure. */
     void setAsDouble(double value) { mayFailCall(&EH::setAsDouble, value); }
     /** Wrap EH::getAsDouble to throw an exception on failure. */

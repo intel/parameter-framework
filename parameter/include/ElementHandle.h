@@ -177,7 +177,7 @@ public:
 
     /** Access (get or set) parameters as different types.
      *
-     * Will fail if the element is not a paramete.
+     * Will fail if the element is not a parameter.
      * Array access will fail if the parameter is not an array.
      *
      * @param value if get, the value to get (in parameter)
@@ -233,15 +233,35 @@ public:
     /** @} */
 
 protected:
-    ElementHandle(CConfigurableElement &element, CParameterMgr &parameterMgr);
-    friend CParameterMgr; // So that it can build the handler
+    /** Friend to be constructed from CParameterMgr::createElementHandle. */
+    friend CParameterMgr;
 
-private:
+    /** Protected for test purposes.
+     * Client must not inherit from this class anyway.
+     * @{ */
+    ElementHandle(CConfigurableElement &element, CParameterMgr &parameterMgr);
+
+    /** Access a parameter with a template type
+     *
+     * Template version of getAsBoolean, getAsInteger, getAsDoubleArray...
+     *
+     * @tparam T How to access the parameter.
+     *         Eg: use bool to call setAsBoolean
+     *             use std::vector<bool> to call setAsBooleanArray
+     *
+     * @note Why are those two methods not public ?
+     *       It could depreciate all the other setAs* and getAs*
+     * @{
+     */
     template <class T>
     bool setAs(const T value, std::string &error) const;
     template <class T>
     bool getAs(T &value, std::string &error) const;
+    /** @} */
 
+    /** @} */
+
+private:
     template <class T>
     static size_t getSize(T value);
     template <class T>
