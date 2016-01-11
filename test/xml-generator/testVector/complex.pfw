@@ -1,0 +1,40 @@
+domain: sequenceAware sequenceAware
+
+domainGroup: Red sequenceAware
+	Colors Includes Red
+	confType: On
+		ANY
+			Switch Is On
+			# Expecting a empty tree of all (except for the last `Switch Is On` rule)
+			ALL
+				ALL
+					ALL
+				ALL
+					ANY
+						Switch Is On
+	confType: On
+		Switch Is On
+
+	domain: Black
+		Colors Includes Green
+		confGroup: green.confGroup
+			# Should add a `.` in the conf name
+			# Ie an empty confGroup in a legal name
+			confGroup:
+
+				confType: On
+					Switch Is On
+
+				# confGroups with the same name should not overwrite one another
+				confGroup: On
+					Colors Includes Green
+
+					conf: Blue.dot
+						Colors Includes Blue
+
+						component: /Test/test
+							component: block/3
+								q2.5 = 1.18750
+								string = 12 ab @ 	 <![CDATA[ < > \n \0 ✔ "'\
+							component: included
+								bool = 1

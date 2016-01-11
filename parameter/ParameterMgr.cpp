@@ -2401,7 +2401,7 @@ bool CParameterMgr::addConfigurableElementToDomain(const string &strDomain,
                                                    const string &strConfigurableElementPath,
                                                    string &strError)
 {
-    LOG_CONTEXT("Adding configurable element '" + strConfigurableElementPath + "to domain '" +
+    LOG_CONTEXT("Adding configurable element '" + strConfigurableElementPath + "' to domain '" +
                 strDomain + "'");
     // Check tuning mode
     if (!checkTuningModeOn(strError)) {
@@ -2649,7 +2649,7 @@ bool CParameterMgr::exportDomainsXml(string &xmlDest, bool withSettings, bool to
                                      string &errorMsg) const
 {
     LOG_CONTEXT("Exporting domains to " +
-                (toFile ? ('"' + xmlDest + '"') : " a user-provided buffer"));
+                (toFile ? ('"' + xmlDest + '"') : "a user-provided buffer"));
 
     const CConfigurableDomains *configurableDomains = getConstConfigurableDomains();
 
@@ -2660,7 +2660,7 @@ bool CParameterMgr::exportSingleDomainXml(string &xmlDest, const string &domainN
                                           bool withSettings, bool toFile, string &errorMsg) const
 {
     LOG_CONTEXT("Exporting single domain '" + domainName + "' to " +
-                (toFile ? ('"' + xmlDest + '"') : " a user-provided buffer"));
+                (toFile ? ('"' + xmlDest + '"') : "a user-provided buffer"));
 
     // Element to be serialized
     const CConfigurableDomain *requestedDomain =

@@ -14,7 +14,7 @@
             <ParameterBlock Name="block" ArrayLength="5">
                 <FixedPointParameter Name="q2.5" Size="8" Integral="2" Fractional="5"/>
                 <IntegerParameter Name="uint8" Signed="false" Size="8"/>
-                <StringParameter Name="string" MaxLength="20"/>
+                <StringParameter Name="string" MaxLength="50"/>
             </ParameterBlock>
 
         </InstanceDefinition>

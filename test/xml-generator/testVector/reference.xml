@@ -168,4 +168,54 @@
       </Configuration>
     </Settings>
   </ConfigurableDomain>
+  <ConfigurableDomain Name="sequenceAware" SequenceAware="true">
+    <Configurations/>
+    <ConfigurableElements/>
+    <Settings/>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="Red.Black" SequenceAware="true">
+    <Configurations>
+      <Configuration Name="green.confGroup..On.Blue.dot">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="Colors" MatchesWhen="Includes" Value="Red"/>
+          <SelectionCriterionRule SelectionCriterion="Colors" MatchesWhen="Includes" Value="Green"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Switch" MatchesWhen="Is" Value="On"/>
+            <CompoundRule Type="All">
+              <CompoundRule Type="All">
+                <CompoundRule Type="All"/>
+              </CompoundRule>
+              <CompoundRule Type="All">
+                <CompoundRule Type="Any">
+                  <SelectionCriterionRule SelectionCriterion="Switch" MatchesWhen="Is" Value="On"/>
+                </CompoundRule>
+              </CompoundRule>
+            </CompoundRule>
+          </CompoundRule>
+          <SelectionCriterionRule SelectionCriterion="Switch" MatchesWhen="Is" Value="On"/>
+          <SelectionCriterionRule SelectionCriterion="Switch" MatchesWhen="Is" Value="On"/>
+          <SelectionCriterionRule SelectionCriterion="Colors" MatchesWhen="Includes" Value="Green"/>
+          <SelectionCriterionRule SelectionCriterion="Colors" MatchesWhen="Includes" Value="Blue"/>
+        </CompoundRule>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Test/test/block/3/q2.5"/>
+      <ConfigurableElement Path="/Test/test/block/3/string"/>
+      <ConfigurableElement Path="/Test/test/included/bool"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="green.confGroup..On.Blue.dot">
+        <ConfigurableElement Path="/Test/test/block/3/q2.5">
+          <FixedPointParameter Name="q2.5">1.18750</FixedPointParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Test/test/block/3/string">
+          <StringParameter Name="string">12 ab @ 	 &lt;![CDATA[ &lt; &gt; \n \0 ✔ "'\</StringParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Test/test/included/bool">
+          <BooleanParameter Name="bool">1</BooleanParameter>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
 </ConfigurableDomains>

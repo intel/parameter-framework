@@ -73,20 +73,16 @@ class Tester(object):
 
         if not reference:
             # The caller only wants to check the number of errors
-            return True
+            return
 
         # The generation has succeeded as expected - let's compare with the reference.
-        unified = difflib.unified_diff(reference,
-                                       actual,
-                                       fromfile="reference.xml",
-                                       tofile="-",
-                                       lineterm="")
-        diffs = list(unified)
-        if diffs:
-            for d in diffs:
-                print(d)
-            return AssertionError("The result and the reference don't match.")
-        return True
+        if reference != actual:
+            unified = difflib.unified_diff(reference,
+                                           actual,
+                                           fromfile="reference.xml",
+                                           tofile="-",
+                                           lineterm="")
+            raise AssertionError("The result and the reference don't match:" + "\n".join(unified))
 
 
 basedir = os.path.dirname(sys.argv[0])
@@ -100,20 +96,21 @@ class TestCase(unittest.TestCase):
                                 os.path.join(basedir, "../../schemas"))
     nominal_vector = TestVector(os.path.join(vector_dir, "initialSettings.xml"),
                                 [os.path.join(vector_dir, "first.pfw"),
-                                 os.path.join(vector_dir, "second.pfw")],
+                                 os.path.join(vector_dir, "second.pfw"),
+                                 os.path.join(vector_dir, "complex.pfw")],
                                 [os.path.join(vector_dir, "third.xml"),
                                  os.path.join(vector_dir, "fourth.xml")])
 
     def test_nominal(self):
         tester = Tester(self.nominal_pfconfig, self.nominal_vector)
-        self.assertTrue(tester.check(self.nominal_reference))
+        tester.check(self.nominal_reference)
 
     def test_nonfatalError(self):
         vector = copy.copy(self.nominal_vector)
         vector.edds.append(os.path.join(vector_dir, "duplicate.pfw"))
 
         tester = Tester(self.nominal_pfconfig, vector)
-        self.assertTrue(tester.check(self.nominal_reference, expectedErrors=1))
+        tester.check(self.nominal_reference, expectedErrors=1)
 
 if __name__ == "__main__":
     unittest.main()
