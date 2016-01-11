@@ -37,7 +37,8 @@ template <class SubsystemObjectType>
 class TSubsystemObjectFactory : public CSubsystemObjectCreator
 {
 public:
-    TSubsystemObjectFactory(const std::string &strMappingKey, uint32_t uiAncestorIdMask,
+    TSubsystemObjectFactory(const std::string &strMappingKey,
+                            uint32_t uiAncestorIdMask,
                             size_t maxConfigurableElementSize = std::numeric_limits<size_t>::max())
         : CSubsystemObjectCreator(strMappingKey, uiAncestorIdMask, maxConfigurableElementSize)
     {
@@ -46,7 +47,8 @@ public:
     // Object creation
     virtual CSubsystemObject *objectCreate(
         const std::string &strMappingValue,
-        CInstanceConfigurableElement *pInstanceConfigurableElement, const CMappingContext &context,
+        CInstanceConfigurableElement *pInstanceConfigurableElement,
+        const CMappingContext &context,
         core::log::Logger &logger) const
     {
         return new SubsystemObjectType(strMappingValue, pInstanceConfigurableElement, context,

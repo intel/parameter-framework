@@ -102,10 +102,15 @@ public:
     bool sync(std::string &strError);
 
     // User set/get parameters
-    bool accessParameterValue(const std::string &strPath, std::string &strValue, bool bSet,
+    bool accessParameterValue(const std::string &strPath,
+                              std::string &strValue,
+                              bool bSet,
                               std::string &strError);
-    bool accessConfigurationValue(const std::string &strDomain, const std::string &strConfiguration,
-                                  const std::string &strPath, std::string &strValue, bool bSet,
+    bool accessConfigurationValue(const std::string &strDomain,
+                                  const std::string &strConfiguration,
+                                  const std::string &strPath,
+                                  std::string &strValue,
+                                  bool bSet,
                                   std::string &strError);
 
     /**
@@ -121,19 +126,26 @@ public:
     // Creation/Deletion
     bool createDomain(const std::string &strName, std::string &strError);
     bool deleteDomain(const std::string &strName, std::string &strError);
-    bool renameDomain(const std::string &strName, const std::string &strNewName,
+    bool renameDomain(const std::string &strName,
+                      const std::string &strNewName,
                       std::string &strError);
     bool deleteAllDomains(std::string &strError);
-    bool setSequenceAwareness(const std::string &strName, bool bSequenceAware,
+    bool setSequenceAwareness(const std::string &strName,
+                              bool bSequenceAware,
                               std::string &strResult);
-    bool getSequenceAwareness(const std::string &strName, bool &bSequenceAware,
+    bool getSequenceAwareness(const std::string &strName,
+                              bool &bSequenceAware,
                               std::string &strResult);
-    bool createConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+    bool createConfiguration(const std::string &strDomain,
+                             const std::string &strConfiguration,
                              std::string &strError);
-    bool deleteConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+    bool deleteConfiguration(const std::string &strDomain,
+                             const std::string &strConfiguration,
                              std::string &strError);
-    bool renameConfiguration(const std::string &strDomain, const std::string &strConfiguration,
-                             const std::string &strNewConfiguration, std::string &strError);
+    bool renameConfiguration(const std::string &strDomain,
+                             const std::string &strConfiguration,
+                             const std::string &strNewConfiguration,
+                             std::string &strError);
 
     /** Restore a configuration
      *
@@ -142,10 +154,12 @@ public:
      * @param[out] errors, errors encountered during restoration
      * @return true if success false otherwise
      */
-    bool restoreConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+    bool restoreConfiguration(const std::string &strDomain,
+                              const std::string &strConfiguration,
                               Results &errors);
 
-    bool saveConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+    bool saveConfiguration(const std::string &strDomain,
+                           const std::string &strConfiguration,
                            std::string &strError);
 
     // Configurable element - domain association
@@ -155,17 +169,23 @@ public:
     bool removeConfigurableElementFromDomain(const std::string &strDomain,
                                              const std::string &strConfigurableElementPath,
                                              std::string &strError);
-    bool split(const std::string &strDomain, const std::string &strConfigurableElementPath,
+    bool split(const std::string &strDomain,
+               const std::string &strConfigurableElementPath,
                std::string &strError);
-    bool setElementSequence(const std::string &strDomain, const std::string &strConfiguration,
+    bool setElementSequence(const std::string &strDomain,
+                            const std::string &strConfiguration,
                             const std::vector<std::string> &astrNewElementSequence,
                             std::string &strError);
 
-    bool setApplicationRule(const std::string &strDomain, const std::string &strConfiguration,
-                            const std::string &strApplicationRule, std::string &strError);
-    bool getApplicationRule(const std::string &strDomain, const std::string &strConfiguration,
+    bool setApplicationRule(const std::string &strDomain,
+                            const std::string &strConfiguration,
+                            const std::string &strApplicationRule,
+                            std::string &strError);
+    bool getApplicationRule(const std::string &strDomain,
+                            const std::string &strConfiguration,
                             std::string &strResult);
-    bool clearApplicationRule(const std::string &strDomain, const std::string &strConfiguration,
+    bool clearApplicationRule(const std::string &strDomain,
+                              const std::string &strConfiguration,
                               std::string &strError);
 
     /**
@@ -180,7 +200,9 @@ public:
       *
       * @return false if any error occures
       */
-    bool importDomainsXml(const std::string &strXmlSource, bool bWithSettings, bool bFromFile,
+    bool importDomainsXml(const std::string &strXmlSource,
+                          bool bWithSettings,
+                          bool bFromFile,
                           std::string &strError);
     /**
       * Method that imports a single Configurable Domain from an Xml source.
@@ -196,8 +218,11 @@ public:
       *
       * @return false if any error occurs
       */
-    bool importSingleDomainXml(const std::string &xmlSource, bool overwrite, bool withSettings,
-                               bool toFile, std::string &errorMsg);
+    bool importSingleDomainXml(const std::string &xmlSource,
+                               bool overwrite,
+                               bool withSettings,
+                               bool toFile,
+                               std::string &errorMsg);
     /**
       * Method that imports a single Configurable Domain from an string
       * describing an Xml source.
@@ -211,7 +236,8 @@ public:
       *
       * @return false if any error occurs
       */
-    bool importSingleDomainXml(const std::string &strXmlSource, bool bOverwrite,
+    bool importSingleDomainXml(const std::string &strXmlSource,
+                               bool bOverwrite,
                                std::string &strError);
 
     /**
@@ -226,7 +252,9 @@ public:
       *
       * @return false if any error occures, true otherwise.
       */
-    bool exportDomainsXml(std::string &strXmlDest, bool bWithSettings, bool bToFile,
+    bool exportDomainsXml(std::string &strXmlDest,
+                          bool bWithSettings,
+                          bool bToFile,
                           std::string &strError) const;
 
     /**
@@ -242,8 +270,11 @@ public:
       *
       * @return false if any error occurs, true otherwise.
       */
-    bool exportSingleDomainXml(std::string &strXmlDest, const std::string &strDomainName,
-                               bool bWithSettings, bool bToFile, std::string &strError) const;
+    bool exportSingleDomainXml(std::string &strXmlDest,
+                               const std::string &strDomainName,
+                               bool bWithSettings,
+                               bool bToFile,
+                               std::string &strError) const;
 
 private:
     // disallow copying because this class manages raw pointers' lifecycle

@@ -36,8 +36,10 @@
 class CConfigurationAccessContext : public CParameterAccessContext
 {
 public:
-    CConfigurationAccessContext(std::string &strError, CParameterBlackboard *pParameterBlackboard,
-                                bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex,
+    CConfigurationAccessContext(std::string &strError,
+                                CParameterBlackboard *pParameterBlackboard,
+                                bool bValueSpaceIsRaw,
+                                bool bOutputRawFormatIsHex,
                                 bool bSerializeOut);
 
     CConfigurationAccessContext(std::string &strError, bool bSerializeOut);

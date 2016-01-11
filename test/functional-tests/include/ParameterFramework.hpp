@@ -58,8 +58,8 @@ protected:
      * to disambiguate overloaded method for MS visual compiler.
      */
     using PPF = CParameterMgrPlatformConnector;
-    using PF = CParameterMgrFullConnector;
-    using EH = ::ElementHandle;
+    using PF  = CParameterMgrFullConnector;
+    using EH  = ::ElementHandle;
 
 public:
     ParameterFramework(const Config &config = Config())
@@ -139,8 +139,10 @@ public:
     /** Wrap PF::accessConfigurationValue in "set" mode (and rename it) to throw an
      * exception on failure
      */
-    void setConfigurationParameter(const std::string domain, const std::string &configuration,
-                                   const std::string &path, std::string &value)
+    void setConfigurationParameter(const std::string domain,
+                                   const std::string &configuration,
+                                   const std::string &path,
+                                   std::string &value)
     {
         mayFailCall(&PF::accessConfigurationValue, domain, configuration, path, value, true);
     }
@@ -148,8 +150,10 @@ public:
     /** Wrap PF::accessConfigurationValue in "get" mode (and rename it) to throw an
      * exception on failure
      */
-    void getConfigurationParameter(const std::string &domain, const std::string &configuration,
-                                   const std::string &path, std::string &value)
+    void getConfigurationParameter(const std::string &domain,
+                                   const std::string &configuration,
+                                   const std::string &path,
+                                   std::string &value)
     {
         mayFailCall(&PF::accessConfigurationValue, domain, configuration, path, value, false);
     }

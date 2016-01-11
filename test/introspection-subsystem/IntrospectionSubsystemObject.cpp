@@ -47,7 +47,8 @@ const CParameterType *geParameterType(CInstanceConfigurableElement *element)
 
 SubsystemObject::SubsystemObject(const std::string & /*mappingValue*/,
                                  CInstanceConfigurableElement *instanceConfigurableElement,
-                                 const CMappingContext & /*context*/, core::log::Logger &logger)
+                                 const CMappingContext & /*context*/,
+                                 core::log::Logger &logger)
     : base(instanceConfigurableElement, logger), mParameter(false)
 {
     /* Checking that structure matches the internal parameter */

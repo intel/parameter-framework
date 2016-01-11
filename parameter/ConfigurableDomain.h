@@ -61,9 +61,11 @@ public:
 
     // Configuration Management
     bool createConfiguration(const std::string &strName,
-                             const CParameterBlackboard *pMainBlackboard, std::string &strError);
+                             const CParameterBlackboard *pMainBlackboard,
+                             std::string &strError);
     bool deleteConfiguration(const std::string &strName, std::string &strError);
-    bool renameConfiguration(const std::string &strName, const std::string &strNewName,
+    bool renameConfiguration(const std::string &strName,
+                             const std::string &strNewName,
                              std::string &strError);
 
     /** Restore a configuration
@@ -75,10 +77,12 @@ public:
      * @return true if success false otherwise
      */
     bool restoreConfiguration(const std::string &configurationName,
-                              CParameterBlackboard *mainBlackboard, bool autoSync,
+                              CParameterBlackboard *mainBlackboard,
+                              bool autoSync,
                               core::Results &errors) const;
 
-    bool saveConfiguration(const std::string &strName, const CParameterBlackboard *pMainBlackboard,
+    bool saveConfiguration(const std::string &strName,
+                           const CParameterBlackboard *pMainBlackboard,
                            std::string &strError);
     bool setElementSequence(const std::string &strConfiguration,
                             const std::vector<std::string> &astrNewElementSequence,
@@ -110,15 +114,19 @@ public:
      * @return true if succeed false otherwise
      */
     bool addConfigurableElement(CConfigurableElement *pConfigurableElement,
-                                const CParameterBlackboard *pMainBlackboard, core::Results &infos);
+                                const CParameterBlackboard *pMainBlackboard,
+                                core::Results &infos);
 
     bool removeConfigurableElement(CConfigurableElement *pConfigurableElement,
                                    std::string &strError);
 
     // Blackboard Configuration and Base Offset retrieval
     CParameterBlackboard *findConfigurationBlackboard(
-        const std::string &strConfiguration, const CConfigurableElement *pConfigurableElement,
-        size_t &baseOffset, bool &bIsLastApplied, std::string &strError) const;
+        const std::string &strConfiguration,
+        const CConfigurableElement *pConfigurableElement,
+        size_t &baseOffset,
+        bool &bIsLastApplied,
+        std::string &strError) const;
 
     /** Split the domain in two.
      * Remove an element of a domain and create a new domain which owns the element.
@@ -139,7 +147,9 @@ public:
      * @param[in] bForced boolean used to force configuration application
      * @param[out] info string containing useful information we can provide to client
      */
-    void apply(CParameterBlackboard *pParameterBlackboard, CSyncerSet *pSyncerSet, bool bForced,
+    void apply(CParameterBlackboard *pParameterBlackboard,
+               CSyncerSet *pSyncerSet,
+               bool bForced,
                std::string &info) const;
 
     // Return applicable configuration validity for given configurable element
@@ -217,7 +227,8 @@ private:
      *            Default value is NULL, when provided, blackboard area concerning the configurable
      *            element are validated.
      */
-    void doAddConfigurableElement(CConfigurableElement *pConfigurableElement, core::Results &infos,
+    void doAddConfigurableElement(CConfigurableElement *pConfigurableElement,
+                                  core::Results &infos,
                                   const CParameterBlackboard *pMainBlackboard = NULL);
 
     void doRemoveConfigurableElement(CConfigurableElement *pConfigurableElement,

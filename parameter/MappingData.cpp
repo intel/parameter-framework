@@ -48,7 +48,7 @@ bool CMappingData::init(const std::string &rawMapping, std::string &error)
 
             // There is no delimiter in the mapping field,
             // it means that no value has been provided
-            strKey = strMappingElement;
+            strKey   = strMappingElement;
             strValue = "";
 
         } else {

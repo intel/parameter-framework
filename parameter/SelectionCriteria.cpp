@@ -64,7 +64,8 @@ CSelectionCriterion *CSelectionCriteria::getSelectionCriterion(const std::string
 
 // List available criteria
 void CSelectionCriteria::listSelectionCriteria(std::list<std::string> &lstrResult,
-                                               bool bWithTypeInfo, bool bHumanReadable) const
+                                               bool bWithTypeInfo,
+                                               bool bHumanReadable) const
 {
     getSelectionCriteriaDefinition()->listSelectionCriteria(lstrResult, bWithTypeInfo,
                                                             bHumanReadable);

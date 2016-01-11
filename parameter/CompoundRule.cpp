@@ -86,7 +86,7 @@ string CCompoundRule::dump() const
     // Children
     size_t uiChild;
     size_t uiNbChildren = getNbChildren();
-    bool bFirst = true;
+    bool bFirst         = true;
 
     for (uiChild = 0; uiChild < uiNbChildren; uiChild++) {
 

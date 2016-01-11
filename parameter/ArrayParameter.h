@@ -41,20 +41,27 @@ public:
 
     /// Value access
     using CBaseParameter::access;
-    bool access(std::vector<bool> &abValues, bool bSet,
+    bool access(std::vector<bool> &abValues,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override final;
-    bool access(std::vector<uint32_t> &auiValues, bool bSet,
+    bool access(std::vector<uint32_t> &auiValues,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override final;
-    bool access(std::vector<int32_t> &aiValues, bool bSet,
+    bool access(std::vector<int32_t> &aiValues,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override final;
-    bool access(std::vector<double> &adValues, bool bSet,
+    bool access(std::vector<double> &adValues,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override final;
-    bool access(std::vector<std::string> &astrValues, bool bSet,
+    bool access(std::vector<std::string> &astrValues,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override final;
 
 protected:
     // User set/get
-    virtual bool accessValue(CPathNavigator &pathNavigator, std::string &strValue, bool bSet,
+    virtual bool accessValue(CPathNavigator &pathNavigator,
+                             std::string &strValue,
+                             bool bSet,
                              CParameterAccessContext &parameterAccessContext) const;
     // Used for simulation and virtual subsystems
     virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
@@ -66,13 +73,16 @@ private:
     // Array length
     size_t getArrayLength() const;
     // Common set value processing
-    bool setValues(size_t uiStartIndex, size_t offset, const std::string &strValue,
+    bool setValues(size_t uiStartIndex,
+                   size_t offset,
+                   const std::string &strValue,
                    CParameterAccessContext &parameterAccessContext) const;
     // Log / get values common
     std::string getValues(size_t baseOffset, CParameterAccessContext &parameterAccessContext) const;
     std::string logValue(CParameterAccessContext &context) const override;
     // Index retrieval from user set/get request
-    bool getIndex(CPathNavigator &pathNavigator, size_t &index,
+    bool getIndex(CPathNavigator &pathNavigator,
+                  size_t &index,
                   CParameterAccessContext &parameterAccessContext) const;
 
     /** Access whole array.
@@ -80,16 +90,19 @@ private:
      * @param[in] offset Offset of the array in the context blackboard.
      * @{
      */
-    bool doSetValue(const std::string &strValue, size_t offset,
+    bool doSetValue(const std::string &strValue,
+                    size_t offset,
                     CParameterAccessContext &parameterAccessContext) const override;
-    void doGetValue(std::string &strValue, size_t offset,
+    void doGetValue(std::string &strValue,
+                    size_t offset,
                     CParameterAccessContext &parameterAccessContext) const override;
     /** @} */
 
     /// Value access
     // Generic Access
     template <typename type>
-    bool accessValues(std::vector<type> &values, bool bSet,
+    bool accessValues(std::vector<type> &values,
+                      bool bSet,
                       CParameterAccessContext &parameterAccessContext) const;
     template <typename type>
     bool setValues(const std::vector<type> &values,

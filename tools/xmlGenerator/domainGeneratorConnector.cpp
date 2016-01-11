@@ -242,9 +242,9 @@ int main(int argc, char *argv[])
     }
 
     string toplevelConfig = argv[1];
-    bool verbose = string(argv[2]) == "verbose";
-    bool validate = string(argv[3]) == "validate";
-    string schemasDir = argv[4];
+    bool verbose          = string(argv[2]) == "verbose";
+    bool validate         = string(argv[3]) == "validate";
+    string schemasDir     = argv[4];
 
     if (verbose) {
         std::cerr << "Domain generator config:" << endl

@@ -60,7 +60,8 @@ void CVirtualSubsystem::fillSyncerSetFromDescendant(CSyncerSet &syncerSet) const
 }
 
 // From IMapper
-bool CVirtualSubsystem::mapBegin(CInstanceConfigurableElement * /*elem*/, bool &bKeepDiving,
+bool CVirtualSubsystem::mapBegin(CInstanceConfigurableElement * /*elem*/,
+                                 bool &bKeepDiving,
                                  string & /*strError*/)
 {
     // Do nothing: prevent any subsystem object from being mapped

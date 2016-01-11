@@ -82,7 +82,7 @@ class CParameterMgr : private CElement
     // Version
     static const uint32_t guiEditionMajor = 3;
     static const uint32_t guiEditionMinor = 2;
-    static const uint32_t guiRevision = 0;
+    static const uint32_t guiRevision     = 0;
 
     // Parameter handle friendship
     friend class ElementHandle;
@@ -242,7 +242,9 @@ public:
     bool sync(std::string &strError);
 
     // User set/get parameters
-    bool accessParameterValue(const std::string &strPath, std::string &strValue, bool bSet,
+    bool accessParameterValue(const std::string &strPath,
+                              std::string &strValue,
+                              bool bSet,
                               std::string &strError);
     /**
      * Returns the element mapping corresponding to the path given in parameter.
@@ -253,27 +255,37 @@ public:
      * @return true if a mapping was found for this element
      */
     bool getParameterMapping(const std::string &strPath, std::string &strValue) const;
-    bool accessConfigurationValue(const std::string &strDomain, const std::string &stConfiguration,
-                                  const std::string &strPath, std::string &strValue, bool bSet,
+    bool accessConfigurationValue(const std::string &strDomain,
+                                  const std::string &stConfiguration,
+                                  const std::string &strPath,
+                                  std::string &strValue,
+                                  bool bSet,
                                   std::string &strError);
 
     ////////// Configuration/Domains handling //////////////
     // Creation/Deletion
     bool createDomain(const std::string &strName, std::string &strError);
-    bool renameDomain(const std::string &strName, const std::string &strNewName,
+    bool renameDomain(const std::string &strName,
+                      const std::string &strNewName,
                       std::string &strError);
     bool deleteDomain(const std::string &strName, std::string &strError);
     bool deleteAllDomains(std::string &strError);
-    bool setSequenceAwareness(const std::string &strName, bool bSequenceAware,
+    bool setSequenceAwareness(const std::string &strName,
+                              bool bSequenceAware,
                               std::string &strResult);
-    bool getSequenceAwareness(const std::string &strName, bool &bSequenceAware,
+    bool getSequenceAwareness(const std::string &strName,
+                              bool &bSequenceAware,
                               std::string &strResult);
-    bool createConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+    bool createConfiguration(const std::string &strDomain,
+                             const std::string &strConfiguration,
                              std::string &strError);
-    bool deleteConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+    bool deleteConfiguration(const std::string &strDomain,
+                             const std::string &strConfiguration,
                              std::string &strError);
-    bool renameConfiguration(const std::string &strDomain, const std::string &strConfiguration,
-                             const std::string &strNewConfiguration, std::string &strError);
+    bool renameConfiguration(const std::string &strDomain,
+                             const std::string &strConfiguration,
+                             const std::string &strNewConfiguration,
+                             std::string &strError);
 
     /** Restore a configuration
      *
@@ -282,10 +294,12 @@ public:
      * @param[out] errors errors encountered during restoration
      * @return true if success false otherwise
      */
-    bool restoreConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+    bool restoreConfiguration(const std::string &strDomain,
+                              const std::string &strConfiguration,
                               core::Results &errors);
 
-    bool saveConfiguration(const std::string &strDomain, const std::string &strConfiguration,
+    bool saveConfiguration(const std::string &strDomain,
+                           const std::string &strConfiguration,
                            std::string &strError);
 
     // Configurable element - domain association
@@ -295,17 +309,23 @@ public:
     bool removeConfigurableElementFromDomain(const std::string &strDomain,
                                              const std::string &strConfigurableElementPath,
                                              std::string &strError);
-    bool split(const std::string &strDomain, const std::string &strConfigurableElementPath,
+    bool split(const std::string &strDomain,
+               const std::string &strConfigurableElementPath,
                std::string &strError);
-    bool setElementSequence(const std::string &strDomain, const std::string &strConfiguration,
+    bool setElementSequence(const std::string &strDomain,
+                            const std::string &strConfiguration,
                             const std::vector<std::string> &astrNewElementSequence,
                             std::string &strError);
 
-    bool getApplicationRule(const std::string &strDomain, const std::string &strConfiguration,
+    bool getApplicationRule(const std::string &strDomain,
+                            const std::string &strConfiguration,
                             std::string &strResult);
-    bool setApplicationRule(const std::string &strDomain, const std::string &strConfiguration,
-                            const std::string &strApplicationRule, std::string &strError);
-    bool clearApplicationRule(const std::string &strDomain, const std::string &strConfiguration,
+    bool setApplicationRule(const std::string &strDomain,
+                            const std::string &strConfiguration,
+                            const std::string &strApplicationRule,
+                            std::string &strError);
+    bool clearApplicationRule(const std::string &strDomain,
+                              const std::string &strConfiguration,
                               std::string &strError);
 
     /**
@@ -320,7 +340,9 @@ public:
       *
       * @return false if any error occures
       */
-    bool importDomainsXml(const std::string &xmlSource, bool withSettings, bool fromFile,
+    bool importDomainsXml(const std::string &xmlSource,
+                          bool withSettings,
+                          bool fromFile,
                           std::string &errorMsg);
 
     /**
@@ -337,8 +359,11 @@ public:
       *
       * @return false if any error occurs
       */
-    bool importSingleDomainXml(const std::string &xmlSource, bool overwrite, bool withSettings,
-                               bool fromFile, std::string &errorMsg);
+    bool importSingleDomainXml(const std::string &xmlSource,
+                               bool overwrite,
+                               bool withSettings,
+                               bool fromFile,
+                               std::string &errorMsg);
 
     /**
       * Method that exports Configurable Domains to an Xml destination.
@@ -352,7 +377,9 @@ public:
       *
       * @return false if any error occurs, true otherwise.
       */
-    bool exportDomainsXml(std::string &xmlDest, bool withSettings, bool toFile,
+    bool exportDomainsXml(std::string &xmlDest,
+                          bool withSettings,
+                          bool toFile,
                           std::string &errorMsg) const;
 
     /**
@@ -368,8 +395,11 @@ public:
       *
       * @return false if any error occurs, true otherwise.
       */
-    bool exportSingleDomainXml(std::string &xmlDest, const std::string &domainName,
-                               bool withSettings, bool toFile, std::string &errorMsg) const;
+    bool exportSingleDomainXml(std::string &xmlDest,
+                               const std::string &domainName,
+                               bool withSettings,
+                               bool toFile,
+                               std::string &errorMsg) const;
 
     /**
       * Method that exports an Xml description of the passed element into a string
@@ -409,7 +439,7 @@ private:
     // a unique_ptr but we want the type that's inside. And for legacy reason
     // because that's the original name before a rework; this directive avoids
     // renaming a lot of stuff.
-    using CCommandHandler = CommandHandler::element_type;
+    using CCommandHandler     = CommandHandler::element_type;
     using RemoteCommandParser = CCommandHandler::CommandStatus (CParameterMgr::*)(
         const IRemoteCommand &remoteCommand, std::string &strResult);
 
@@ -641,12 +671,22 @@ private:
     CParameterBlackboard *getParameterBlackboard();
 
     // Parameter access
-    bool accessValue(CParameterAccessContext &parameterAccessContext, const std::string &strPath,
-                     std::string &strValue, bool bSet, std::string &strError);
-    bool doSetValue(const std::string &strPath, const std::string &strValue, bool bRawValueSpace,
-                    bool bDynamicAccess, std::string &strError) const;
-    bool doGetValue(const std::string &strPath, std::string &strValue, bool bRawValueSpace,
-                    bool bHexOutputRawFormat, bool bDynamicAccess, std::string &strError) const;
+    bool accessValue(CParameterAccessContext &parameterAccessContext,
+                     const std::string &strPath,
+                     std::string &strValue,
+                     bool bSet,
+                     std::string &strError);
+    bool doSetValue(const std::string &strPath,
+                    const std::string &strValue,
+                    bool bRawValueSpace,
+                    bool bDynamicAccess,
+                    std::string &strError) const;
+    bool doGetValue(const std::string &strPath,
+                    std::string &strValue,
+                    bool bRawValueSpace,
+                    bool bHexOutputRawFormat,
+                    bool bDynamicAccess,
+                    std::string &strError) const;
 
     // Framework global configuration loading
     bool loadFrameworkConfiguration(std::string &strError);
@@ -685,7 +725,8 @@ private:
      * message.
      */
     bool setSettingsAsBytes(const CConfigurableElement &element,
-                            const std::vector<uint8_t> &settings, std::string &error);
+                            const std::vector<uint8_t> &settings,
+                            std::string &error);
 
     /** Assign settings to a configurable element in XML format.
      *
@@ -695,7 +736,8 @@ private:
      *                   undefined in case of success.
      * @return true in case of success, false otherwise
      */
-    bool setSettingsAsXML(CConfigurableElement *configurableElement, const std::string &settings,
+    bool setSettingsAsXML(CConfigurableElement *configurableElement,
+                          const std::string &settings,
                           std::string &error);
 
     /** Get settings from a configurable element in XML format.
@@ -721,9 +763,13 @@ private:
      *
      * @returns true if parsing succeeded, false otherwise
      */
-    bool xmlParse(CXmlElementSerializingContext &elementSerializingContext, CElement *pRootElement,
-                  _xmlDoc *doc, const std::string &baseUri, ElementLibrary eElementLibrary,
-                  bool replace = true, const std::string &strNameAttributeName = "Name");
+    bool xmlParse(CXmlElementSerializingContext &elementSerializingContext,
+                  CElement *pRootElement,
+                  _xmlDoc *doc,
+                  const std::string &baseUri,
+                  ElementLibrary eElementLibrary,
+                  bool replace                            = true,
+                  const std::string &strNameAttributeName = "Name");
 
     /** Wrapper for converting public APIs semantics to internal API
      *
@@ -750,8 +796,11 @@ private:
      *
      * @returns true if the import succeeded, false otherwise
      */
-    bool wrapLegacyXmlImport(const std::string &xmlSource, bool fromFile, bool withSettings,
-                             CElement &element, const std::string &nameAttributeName,
+    bool wrapLegacyXmlImport(const std::string &xmlSource,
+                             bool fromFile,
+                             bool withSettings,
+                             CElement &element,
+                             const std::string &nameAttributeName,
                              std::string &errorMsg);
 
     /**
@@ -764,7 +813,8 @@ private:
      *
      * @return false if any error occurs, true otherwise.
      */
-    bool serializeElement(std::ostream &output, CXmlSerializingContext &xmlSerializingContext,
+    bool serializeElement(std::ostream &output,
+                          CXmlSerializingContext &xmlSerializingContext,
                           const CElement &element) const;
 
     /** Wrapper for converting public APIs semantics to internal API
@@ -790,21 +840,26 @@ private:
      *
      * @returns true if the export succeeded, false otherwise
      */
-    bool wrapLegacyXmlExport(std::string &xmlDest, bool toFile, bool withSettings,
-                             const CElement &element, std::string &errorMsg) const;
+    bool wrapLegacyXmlExport(std::string &xmlDest,
+                             bool toFile,
+                             bool withSettings,
+                             const CElement &element,
+                             std::string &errorMsg) const;
 
     /** Wrapper for converting public APIs semantics to internal API
      *
      * @see wrapLegacyXmlExport
      */
-    bool wrapLegacyXmlExportToFile(std::string &xmlDest, const CElement &element,
+    bool wrapLegacyXmlExportToFile(std::string &xmlDest,
+                                   const CElement &element,
                                    CXmlDomainExportContext &context) const;
 
     /** Wrapper for converting public APIs semantics to internal API
      *
      * @see wrapLegacyXmlExport
      */
-    bool wrapLegacyXmlExportToString(std::string &xmlDest, const CElement &element,
+    bool wrapLegacyXmlExportToString(std::string &xmlDest,
+                                     const CElement &element,
                                      CXmlDomainExportContext &context) const;
 
     // Framework Configuration

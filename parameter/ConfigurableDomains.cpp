@@ -62,8 +62,10 @@ void CConfigurableDomains::validate(const CParameterBlackboard *pMainBlackboard)
 }
 
 // Configuration application if required
-void CConfigurableDomains::apply(CParameterBlackboard *pParameterBlackboard, CSyncerSet &syncerSet,
-                                 bool bForce, core::Results &infos) const
+void CConfigurableDomains::apply(CParameterBlackboard *pParameterBlackboard,
+                                 CSyncerSet &syncerSet,
+                                 bool bForce,
+                                 core::Results &infos) const
 {
     /// Delegate to domains
 
@@ -176,7 +178,8 @@ void CConfigurableDomains::deleteAllDomains()
     clean();
 }
 
-bool CConfigurableDomains::renameDomain(const string &strName, const string &strNewName,
+bool CConfigurableDomains::renameDomain(const string &strName,
+                                        const string &strNewName,
                                         string &strError)
 {
     CConfigurableDomain *pConfigurableDomain = findConfigurableDomain(strName, strError);
@@ -190,7 +193,8 @@ bool CConfigurableDomains::renameDomain(const string &strName, const string &str
     return pConfigurableDomain->rename(strNewName, strError);
 }
 
-bool CConfigurableDomains::setSequenceAwareness(const string &strDomain, bool bSequenceAware,
+bool CConfigurableDomains::setSequenceAwareness(const string &strDomain,
+                                                bool bSequenceAware,
                                                 string &strError)
 {
     CConfigurableDomain *pConfigurableDomain = findConfigurableDomain(strDomain, strError);
@@ -205,7 +209,8 @@ bool CConfigurableDomains::setSequenceAwareness(const string &strDomain, bool bS
     return true;
 }
 
-bool CConfigurableDomains::getSequenceAwareness(const string &strDomain, bool &bSequenceAware,
+bool CConfigurableDomains::getSequenceAwareness(const string &strDomain,
+                                                bool &bSequenceAware,
                                                 string &strError) const
 {
     const CConfigurableDomain *pConfigurableDomain = findConfigurableDomain(strDomain, strError);
@@ -252,7 +257,8 @@ bool CConfigurableDomains::createConfiguration(const string &strDomain,
 }
 
 bool CConfigurableDomains::deleteConfiguration(const string &strDomain,
-                                               const string &strConfiguration, string &strError)
+                                               const string &strConfiguration,
+                                               string &strError)
 {
     // Find domain
     CConfigurableDomain *pConfigurableDomain = findConfigurableDomain(strDomain, strError);
@@ -297,7 +303,8 @@ bool CConfigurableDomains::listDomainElements(const string &strDomain, string &s
     return true;
 }
 
-bool CConfigurableDomains::split(const string &domainName, CConfigurableElement *element,
+bool CConfigurableDomains::split(const string &domainName,
+                                 CConfigurableElement *element,
                                  core::Results &infos)
 {
     // Find domain
@@ -410,7 +417,8 @@ void CConfigurableDomains::gatherAllOwnedConfigurableElements(
 // Config restore
 bool CConfigurableDomains::restoreConfiguration(const string &domainName,
                                                 const string &configurationName,
-                                                CParameterBlackboard *mainBlackboard, bool autoSync,
+                                                CParameterBlackboard *mainBlackboard,
+                                                bool autoSync,
                                                 core::Results &errors) const
 {
     string error;
@@ -477,8 +485,11 @@ bool CConfigurableDomains::getElementSequence(const string &strDomain,
 }
 
 bool CConfigurableDomains::setApplicationRule(
-    const string &strDomain, const string &strConfiguration, const string &strApplicationRule,
-    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition, string &strError)
+    const string &strDomain,
+    const string &strConfiguration,
+    const string &strApplicationRule,
+    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition,
+    string &strError)
 {
     CConfigurableDomain *pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
@@ -493,7 +504,8 @@ bool CConfigurableDomains::setApplicationRule(
 }
 
 bool CConfigurableDomains::clearApplicationRule(const string &strDomain,
-                                                const string &strConfiguration, string &strError)
+                                                const string &strConfiguration,
+                                                string &strError)
 {
     CConfigurableDomain *pConfigurableDomain = findConfigurableDomain(strDomain, strError);
 
@@ -540,8 +552,10 @@ void CConfigurableDomains::listLastAppliedConfigurations(string &strResult) cons
 
 // Configurable element - domain association
 bool CConfigurableDomains::addConfigurableElementToDomain(
-    const string &domainName, CConfigurableElement *element,
-    const CParameterBlackboard *mainBlackboard, core::Results &infos)
+    const string &domainName,
+    CConfigurableElement *element,
+    const CParameterBlackboard *mainBlackboard,
+    core::Results &infos)
 {
     // Find domain
     std::string error;
@@ -571,8 +585,11 @@ bool CConfigurableDomains::removeConfigurableElementFromDomain(
 }
 
 CParameterBlackboard *CConfigurableDomains::findConfigurationBlackboard(
-    const string &strDomain, const string &strConfiguration,
-    const CConfigurableElement *pConfigurableElement, size_t &baseOffset, bool &bIsLastApplied,
+    const string &strDomain,
+    const string &strConfiguration,
+    const CConfigurableElement *pConfigurableElement,
+    size_t &baseOffset,
+    bool &bIsLastApplied,
     string &strError) const
 {
     // Find domain

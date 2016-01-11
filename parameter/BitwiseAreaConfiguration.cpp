@@ -35,7 +35,8 @@
 
 CBitwiseAreaConfiguration::CBitwiseAreaConfiguration(
     const CConfigurableElement *pConfigurableElement, const CSyncerSet *pSyncerSet)
-    : base(pConfigurableElement, pSyncerSet,
+    : base(pConfigurableElement,
+           pSyncerSet,
            static_cast<const CBitParameter *>(pConfigurableElement)->getBelongingBlockSize())
 {
 }

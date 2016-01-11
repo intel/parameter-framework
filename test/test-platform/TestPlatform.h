@@ -140,9 +140,11 @@ private:
                                                         const IRemoteCommand &remoteCommand,
                                                         std::string &strResult);
 
-    bool createExclusiveSelectionCriterion(const std::string &strName, size_t nbValues,
+    bool createExclusiveSelectionCriterion(const std::string &strName,
+                                           size_t nbValues,
                                            std::string &strResult);
-    bool createInclusiveSelectionCriterion(const std::string &strName, size_t nbValues,
+    bool createInclusiveSelectionCriterion(const std::string &strName,
+                                           size_t nbValues,
                                            std::string &strResult);
     bool setCriterionState(const std::string &strName, uint32_t uiState, std::string &strResult);
     bool setCriterionStateByLexicalSpace(const IRemoteCommand &remoteCommand,

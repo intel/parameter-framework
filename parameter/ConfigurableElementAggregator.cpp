@@ -56,7 +56,7 @@ bool CConfigurableElementAggregator::doAggregate(
     // Check children
     std::list<const CConfigurableElement *> childAggregateElementList;
 
-    size_t uiNbChildren = pConfigurableElement->getNbChildren();
+    size_t uiNbChildren         = pConfigurableElement->getNbChildren();
     size_t uiNbMatchingChildren = 0;
 
     for (size_t index = 0; index < uiNbChildren; index++) {

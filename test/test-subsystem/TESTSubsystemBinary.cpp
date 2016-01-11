@@ -41,8 +41,10 @@
 #define base CTESTSubsystemObject
 
 CTESTSubsystemBinary::CTESTSubsystemBinary(
-    const std::string &strMappingValue, CInstanceConfigurableElement *pInstanceConfigurableElement,
-    const CMappingContext &context, core::log::Logger &logger)
+    const std::string &strMappingValue,
+    CInstanceConfigurableElement *pInstanceConfigurableElement,
+    const CMappingContext &context,
+    core::log::Logger &logger)
     : base(strMappingValue, pInstanceConfigurableElement, context, logger)
 {
 }
@@ -54,7 +56,7 @@ std::string CTESTSubsystemBinary::toString(const void *pvValue, size_t size) con
 
     assert(size <= sizeof(uiValue));
 
-    auto first = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvValue), size);
+    auto first       = MAKE_ARRAY_ITERATOR(static_cast<const uint8_t *>(pvValue), size);
     auto destination = MAKE_ARRAY_ITERATOR(reinterpret_cast<uint8_t *>(&uiValue), sizeof(uiValue));
 
     std::copy_n(first, size, destination);
@@ -74,7 +76,7 @@ void CTESTSubsystemBinary::fromString(const std::string &strValue, void *pvValue
         throw std::runtime_error("Unable to convert \"" + strValue + "\" to uint32");
     }
 
-    auto first = MAKE_ARRAY_ITERATOR(reinterpret_cast<const uint8_t *>(&uiValue), size);
+    auto first       = MAKE_ARRAY_ITERATOR(reinterpret_cast<const uint8_t *>(&uiValue), size);
     auto destination = MAKE_ARRAY_ITERATOR(static_cast<uint8_t *>(pvValue), size);
     std::copy_n(first, size, destination);
 }

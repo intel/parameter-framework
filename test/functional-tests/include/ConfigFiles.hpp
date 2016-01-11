@@ -43,15 +43,16 @@ class ConfigFiles
 {
 public:
     ConfigFiles(const Config &config)
-        : mStructureFile(
-              format(mStructureTemplate, {{"type", config.subsystemType},
-                                          {"instances", config.instances},
-                                          {"components", config.components},
-                                          {"subsystemMapping", config.subsystemMapping}})),
+        : mStructureFile(format(mStructureTemplate,
+                                {{"type", config.subsystemType},
+                                 {"instances", config.instances},
+                                 {"components", config.components},
+                                 {"subsystemMapping", config.subsystemMapping}})),
           mDomainsFile(format(mDomainsTemplate, {{"domains", config.domains}})),
-          mConfigFile(format(mConfigTemplate, {{"structurePath", mStructureFile.getPath()},
-                                               {"domainsPath", mDomainsFile.getPath()},
-                                               {"plugins", toXml(config.plugins)}}))
+          mConfigFile(format(mConfigTemplate,
+                             {{"structurePath", mStructureFile.getPath()},
+                              {"domainsPath", mDomainsFile.getPath()},
+                              {"plugins", toXml(config.plugins)}}))
     {
     }
 
@@ -64,7 +65,7 @@ private:
         for (auto &pluginLocation : plugins) {
             std::string pluginsLocationXml;
             auto location = pluginLocation.first;
-            auto paths = pluginLocation.second;
+            auto paths    = pluginLocation.second;
             for (auto &path : paths) {
                 pluginsLocationXml += "<Plugin Name='" + path + "'/>\n";
             }
@@ -90,7 +91,7 @@ private:
         }
     }
 
-    const char *mConfigTemplate = R"(<?xml version='1.0' encoding='UTF-8'?>
+    const char *mConfigTemplate    = R"(<?xml version='1.0' encoding='UTF-8'?>
         <ParameterFrameworkConfiguration SystemClassName='test' TuningAllowed='true'>
             <SubsystemPlugins>
                 {plugins}
@@ -113,7 +114,7 @@ private:
             </Subsystem>
         </SystemClass>
     )";
-    const char *mDomainsTemplate = R"(<?xml version='1.0' encoding='UTF-8'?>
+    const char *mDomainsTemplate   = R"(<?xml version='1.0' encoding='UTF-8'?>
          <ConfigurableDomains SystemClassName="test">
              {domains}
          </ConfigurableDomains>

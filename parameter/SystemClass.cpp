@@ -87,7 +87,8 @@ bool CSystemClass::getMappingData(const std::string & /*strKey*/,
     return false;
 }
 
-bool CSystemClass::loadSubsystems(string &strError, const CSubsystemPlugins *pSubsystemPlugins,
+bool CSystemClass::loadSubsystems(string &strError,
+                                  const CSubsystemPlugins *pSubsystemPlugins,
                                   bool bVirtualSubsystemFallback)
 {
     // Start clean

@@ -49,7 +49,8 @@ std::string asString(const std::list<std::string> &lstr, const std::string &strS
 
 // Format string map
 std::string asString(const std::map<std::string, std::string> &mapStr,
-                     const std::string &strItemSeparator, const std::string &strKeyValueSeparator)
+                     const std::string &strItemSeparator,
+                     const std::string &strKeyValueSeparator)
 {
     std::list<std::string> listKeysValues;
 

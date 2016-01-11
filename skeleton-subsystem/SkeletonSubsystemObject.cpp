@@ -46,9 +46,15 @@
 using std::string;
 
 CSkeletonSubsystemObject::CSkeletonSubsystemObject(
-    const string &strMappingValue, CInstanceConfigurableElement *pInstanceConfigurableElement,
-    const CMappingContext &context, core::log::Logger &logger)
-    : base(pInstanceConfigurableElement, logger, strMappingValue, EAmend1, EAmendEnd - EAmend1 + 1,
+    const string &strMappingValue,
+    CInstanceConfigurableElement *pInstanceConfigurableElement,
+    const CMappingContext &context,
+    core::log::Logger &logger)
+    : base(pInstanceConfigurableElement,
+           logger,
+           strMappingValue,
+           EAmend1,
+           EAmendEnd - EAmend1 + 1,
            context),
       _bWrongElementTypeError(false)
 {
@@ -58,7 +64,7 @@ CSkeletonSubsystemObject::CSkeletonSubsystemObject(
 
     // Retrieve sizes
     _scalarSize = pParameterType->getSize();
-    _arraySize = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
+    _arraySize  = pInstanceConfigurableElement->getFootPrint() / _scalarSize;
 
     // Construct message
     _strMessage = context.getItem(ESkeletonOwner) + ":" + strMappingValue;

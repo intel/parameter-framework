@@ -52,19 +52,23 @@ public:
         CConfigurationAccessContext &configurationAccessContext) const;
 
     // Boolean access
-    bool access(bool &bValue, bool bSet,
+    bool access(bool &bValue,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override;
 
     // Integer Access
-    bool access(uint32_t &uiValue, bool bSet,
+    bool access(uint32_t &uiValue,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override;
 
     // Signed Integer Access
-    bool access(int32_t &iValue, bool bSet,
+    bool access(int32_t &iValue,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override;
 
     // Double Access
-    bool access(double &dValue, bool bSet,
+    bool access(double &dValue,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const override;
 
 protected:
@@ -72,9 +76,11 @@ protected:
     virtual void setDefaultValues(CParameterAccessContext &parameterAccessContext) const;
 
     // Actual value access
-    virtual bool doSetValue(const std::string &strValue, size_t offset,
+    virtual bool doSetValue(const std::string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const;
-    virtual void doGetValue(std::string &strValue, size_t offset,
+    virtual void doGetValue(std::string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const;
 
     // Value space handling for configuration import

@@ -100,7 +100,8 @@ private:
     /** This method is not supposed to be overridden by plugins
      *  as if not called, plugins will not work (sets _blackboard).
      */
-    bool sync(CParameterBlackboard &parameterBlackboard, bool bBack,
+    bool sync(CParameterBlackboard &parameterBlackboard,
+              bool bBack,
               std::string &strError) override final;
 
     // Default back synchronization

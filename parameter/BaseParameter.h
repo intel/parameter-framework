@@ -51,27 +51,35 @@ public:
     virtual bool isParameter() const;
 
     // Boolean access
-    virtual bool access(bool &bValue, bool bSet,
+    virtual bool access(bool &bValue,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const;
-    virtual bool access(std::vector<bool> &abValues, bool bSet,
+    virtual bool access(std::vector<bool> &abValues,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const;
 
     // Integer Access
-    virtual bool access(uint32_t &uiValue, bool bSet,
+    virtual bool access(uint32_t &uiValue,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const;
-    virtual bool access(std::vector<uint32_t> &auiValues, bool bSet,
+    virtual bool access(std::vector<uint32_t> &auiValues,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const;
 
     // Signed Integer Access
-    virtual bool access(int32_t &iValue, bool bSet,
+    virtual bool access(int32_t &iValue,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const;
-    virtual bool access(std::vector<int32_t> &aiValues, bool bSet,
+    virtual bool access(std::vector<int32_t> &aiValues,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const;
 
     // Double Access
-    virtual bool access(double &dValue, bool bSet,
+    virtual bool access(double &dValue,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const;
-    virtual bool access(std::vector<double> &adValues, bool bSet,
+    virtual bool access(std::vector<double> &adValues,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const;
 
     // String Access
@@ -79,9 +87,11 @@ public:
     // as the client saying: "I don't care about the type, here's the value as
     // a string - convert it yourself". Then, string-to-anything and
     // anything-to-string methods are used to convert it into a suitable type.
-    bool access(std::string &strValue, bool bSet,
+    bool access(std::string &strValue,
+                bool bSet,
                 CParameterAccessContext &parameterAccessContext) const;
-    virtual bool access(std::vector<std::string> &astrValues, bool bSet,
+    virtual bool access(std::vector<std::string> &astrValues,
+                        bool bSet,
                         CParameterAccessContext &parameterAccessContext) const;
 
     void structureToXml(CXmlElement &xmlElement,
@@ -89,13 +99,17 @@ public:
 
 protected:
     // Parameter Access
-    virtual bool accessValue(CPathNavigator &pathNavigator, std::string &strValue, bool bSet,
+    virtual bool accessValue(CPathNavigator &pathNavigator,
+                             std::string &strValue,
+                             bool bSet,
                              CParameterAccessContext &parameterAccessContext) const;
 
     // Actual value access (to be implemented by derived)
-    virtual bool doSetValue(const std::string &strValue, size_t offset,
+    virtual bool doSetValue(const std::string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const = 0;
-    virtual void doGetValue(std::string &strValue, size_t offset,
+    virtual void doGetValue(std::string &strValue,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const = 0;
 
     /**

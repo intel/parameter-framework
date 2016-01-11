@@ -38,7 +38,8 @@ class CommandHandlerWrapper : public CommandHandlerInterface
 public:
     CommandHandlerWrapper(std::unique_ptr<IRemoteCommandHandler> &&wrapped);
 
-    bool process(const std::string &command, const std::vector<std::string> &arguments,
+    bool process(const std::string &command,
+                 const std::vector<std::string> &arguments,
                  std::string &output) override;
 
 private:

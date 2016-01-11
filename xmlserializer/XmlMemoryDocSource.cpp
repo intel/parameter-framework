@@ -34,11 +34,13 @@
 
 #define base CXmlDocSource
 
-CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource *pXmlSource, bool bValidateWithSchema,
+CXmlMemoryDocSource::CXmlMemoryDocSource(const IXmlSource *pXmlSource,
+                                         bool bValidateWithSchema,
                                          const std::string &strRootElementType,
                                          const std::string &strProduct,
                                          const std::string &strVersion)
-    : base(xmlNewDoc(BAD_CAST "1.0"), bValidateWithSchema,
+    : base(xmlNewDoc(BAD_CAST "1.0"),
+           bValidateWithSchema,
            xmlNewNode(NULL, BAD_CAST strRootElementType.c_str())),
       _pXmlSource(pXmlSource), _strProduct(strProduct), _strVersion(strVersion)
 {

@@ -60,7 +60,8 @@ public:
      * return true in the command executed succesfuly,
      *        false otherwise.
      */
-    virtual bool process(const std::string &command, const std::vector<std::string> &arguments,
+    virtual bool process(const std::string &command,
+                         const std::vector<std::string> &arguments,
                          std::string &output) = 0;
 
     virtual ~CommandHandlerInterface(){};

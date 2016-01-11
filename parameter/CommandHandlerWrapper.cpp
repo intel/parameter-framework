@@ -37,7 +37,8 @@ CommandHandlerWrapper::CommandHandlerWrapper(std::unique_ptr<IRemoteCommandHandl
 }
 
 bool CommandHandlerWrapper::process(const std::string &command,
-                                    const std::vector<std::string> &arguments, std::string &output)
+                                    const std::vector<std::string> &arguments,
+                                    std::string &output)
 {
     CRequestMessage request(command);
 

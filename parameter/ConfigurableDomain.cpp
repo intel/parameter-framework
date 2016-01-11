@@ -428,8 +428,10 @@ bool CConfigurableDomain::removeConfigurableElement(CConfigurableElement *pConfi
 */
 CParameterBlackboard *CConfigurableDomain::findConfigurationBlackboard(
     const string &strConfiguration,
-    const CConfigurableElement *pCandidateDescendantConfigurableElement, size_t &baseOffset,
-    bool &bIsLastApplied, string &strError) const
+    const CConfigurableElement *pCandidateDescendantConfigurableElement,
+    size_t &baseOffset,
+    bool &bIsLastApplied,
+    string &strError) const
 {
     // Find Configuration
     const CDomainConfiguration *pDomainConfiguration =
@@ -454,7 +456,7 @@ CParameterBlackboard *CConfigurableDomain::findConfigurationBlackboard(
             (pCandidateDescendantConfigurableElement->isDescendantOf(
                 pAssociatedConfigurableElement))) {
 
-            baseOffset = pAssociatedConfigurableElement->getOffset();
+            baseOffset     = pAssociatedConfigurableElement->getOffset();
             bIsLastApplied = (pDomainConfiguration == _pLastAppliedConfiguration);
 
             return pDomainConfiguration->getBlackboard(pAssociatedConfigurableElement);
@@ -539,8 +541,10 @@ const CDomainConfiguration *CConfigurableDomain::getPendingConfiguration() const
 }
 
 // Configuration application if required
-void CConfigurableDomain::apply(CParameterBlackboard *pParameterBlackboard, CSyncerSet *pSyncerSet,
-                                bool bForce, std::string &strInfo) const
+void CConfigurableDomain::apply(CParameterBlackboard *pParameterBlackboard,
+                                CSyncerSet *pSyncerSet,
+                                bool bForce,
+                                std::string &strInfo) const
 {
     // Apply configuration only if the blackboard will
     // be synchronized either now or by syncerSet.
@@ -699,7 +703,8 @@ void CConfigurableDomain::listAssociatedToElements(string &strResult) const
     }
 }
 
-bool CConfigurableDomain::renameConfiguration(const string &strName, const string &strNewName,
+bool CConfigurableDomain::renameConfiguration(const string &strName,
+                                              const string &strNewName,
                                               string &strError)
 {
     CDomainConfiguration *pDomainConfiguration = findConfiguration(strName, strError);
@@ -714,7 +719,8 @@ bool CConfigurableDomain::renameConfiguration(const string &strName, const strin
 }
 
 bool CConfigurableDomain::restoreConfiguration(const string &configurationName,
-                                               CParameterBlackboard *mainBlackboard, bool autoSync,
+                                               CParameterBlackboard *mainBlackboard,
+                                               bool autoSync,
                                                core::Results &errors) const
 {
     string error;
@@ -794,8 +800,10 @@ bool CConfigurableDomain::getElementSequence(const string &strConfiguration,
 }
 
 bool CConfigurableDomain::setApplicationRule(
-    const string &strConfiguration, const string &strApplicationRule,
-    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition, string &strError)
+    const string &strConfiguration,
+    const string &strApplicationRule,
+    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition,
+    string &strError)
 {
     // Find Domain configuration
     CDomainConfiguration *pDomainConfiguration = findConfiguration(strConfiguration, strError);

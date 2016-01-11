@@ -60,8 +60,10 @@ private:
     class CRemoteCommandParserItem
     {
     public:
-        CRemoteCommandParserItem(const std::string &strCommandName, RemoteCommandParser pfnParser,
-                                 size_t minArgumentCount, const std::string &strHelp,
+        CRemoteCommandParserItem(const std::string &strCommandName,
+                                 RemoteCommandParser pfnParser,
+                                 size_t minArgumentCount,
+                                 const std::string &strHelp,
                                  const std::string &strDescription)
             : _strCommandName(strCommandName), _pfnParser(pfnParser),
               _minArgumentCount(minArgumentCount), _strHelp(strHelp),
@@ -76,7 +78,8 @@ private:
         // Usage
         std::string usage() const { return _strCommandName + " " + _strHelp; }
 
-        bool parse(CCommandParser *pCommandParser, const IRemoteCommand &remoteCommand,
+        bool parse(CCommandParser *pCommandParser,
+                   const IRemoteCommand &remoteCommand,
                    std::string &strResult) const
         {
             // Check enough arguments supplied
@@ -128,8 +131,10 @@ public:
     }
 
     // Parsers
-    bool addCommandParser(const std::string &strCommandName, RemoteCommandParser pfnParser,
-                          size_t minArgumentCount, const std::string &strHelp,
+    bool addCommandParser(const std::string &strCommandName,
+                          RemoteCommandParser pfnParser,
+                          size_t minArgumentCount,
+                          const std::string &strHelp,
                           const std::string &strDescription)
     {
         if (findCommandParserItem(strCommandName)) {

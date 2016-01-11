@@ -67,7 +67,7 @@ struct Config
     struct Plugin
     {
         using Location = std::string;
-        using Name = std::string;
+        using Name     = std::string;
         /** Each plugin has a location and a path.
          *  Locations can be factorized by using */
         using Collection = std::list<std::pair<Location, std::list<Name>>>;

@@ -64,20 +64,23 @@ size_t CBitParameter::getFootPrint() const
 }
 
 // Actual parameter access (tuning)
-bool CBitParameter::doSetValue(const string &strValue, size_t offset,
+bool CBitParameter::doSetValue(const string &strValue,
+                               size_t offset,
                                CParameterAccessContext &parameterAccessContext) const
 {
     return doSet(strValue, offset, parameterAccessContext);
 }
 
-void CBitParameter::doGetValue(string &strValue, size_t offset,
+void CBitParameter::doGetValue(string &strValue,
+                               size_t offset,
                                CParameterAccessContext &parameterAccessContext) const
 {
     doGet(strValue, offset, parameterAccessContext);
 }
 
 /// Value access
-bool CBitParameter::access(bool &bValue, bool bSet,
+bool CBitParameter::access(bool &bValue,
+                           bool bSet,
                            CParameterAccessContext &parameterAccessContext) const
 {
     // Check boolean access validity here
@@ -110,7 +113,8 @@ bool CBitParameter::access(bool &bValue, bool bSet,
     return true;
 }
 
-bool CBitParameter::access(uint32_t &uiValue, bool bSet,
+bool CBitParameter::access(uint32_t &uiValue,
+                           bool bSet,
                            CParameterAccessContext &parameterAccessContext) const
 {
     size_t offset = getOffset();
@@ -138,7 +142,8 @@ bool CBitParameter::access(uint32_t &uiValue, bool bSet,
 }
 
 template <typename type>
-bool CBitParameter::doSet(type value, size_t offset,
+bool CBitParameter::doSet(type value,
+                          size_t offset,
                           CParameterAccessContext &parameterAccessContext) const
 {
     uint64_t uiData = 0;
@@ -162,7 +167,8 @@ bool CBitParameter::doSet(type value, size_t offset,
 }
 
 template <typename type>
-void CBitParameter::doGet(type &value, size_t offset,
+void CBitParameter::doGet(type &value,
+                          size_t offset,
                           CParameterAccessContext &parameterAccessContext) const
 {
     uint64_t uiData = 0;

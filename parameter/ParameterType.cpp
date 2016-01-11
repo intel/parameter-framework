@@ -211,14 +211,16 @@ uint32_t CParameterType::makeEncodable(uint32_t uiData) const
 // Conversions (dynamic access)
 // Value access
 // Boolean
-bool CParameterType::toBlackboard(bool /*bUserValue*/, uint32_t & /*uiValue*/,
+bool CParameterType::toBlackboard(bool /*bUserValue*/,
+                                  uint32_t & /*uiValue*/,
                                   CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
     return false;
 }
 
-bool CParameterType::fromBlackboard(bool & /*bUserValue*/, uint32_t /*uiValue*/,
+bool CParameterType::fromBlackboard(bool & /*bUserValue*/,
+                                    uint32_t /*uiValue*/,
                                     CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
@@ -226,14 +228,16 @@ bool CParameterType::fromBlackboard(bool & /*bUserValue*/, uint32_t /*uiValue*/,
 }
 
 // Integer
-bool CParameterType::toBlackboard(uint32_t /*uiUserValue*/, uint32_t & /*uiValue*/,
+bool CParameterType::toBlackboard(uint32_t /*uiUserValue*/,
+                                  uint32_t & /*uiValue*/,
                                   CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
     return false;
 }
 
-bool CParameterType::fromBlackboard(uint32_t & /*uiUserValue*/, uint32_t /*uiValue*/,
+bool CParameterType::fromBlackboard(uint32_t & /*uiUserValue*/,
+                                    uint32_t /*uiValue*/,
                                     CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
@@ -241,7 +245,8 @@ bool CParameterType::fromBlackboard(uint32_t & /*uiUserValue*/, uint32_t /*uiVal
 }
 
 // Signed Integer
-bool CParameterType::toBlackboard(int32_t /*iUserValue*/, uint32_t & /*uiValue*/,
+bool CParameterType::toBlackboard(int32_t /*iUserValue*/,
+                                  uint32_t & /*uiValue*/,
                                   CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
@@ -249,7 +254,8 @@ bool CParameterType::toBlackboard(int32_t /*iUserValue*/, uint32_t & /*uiValue*/
     return false;
 }
 
-bool CParameterType::fromBlackboard(int32_t & /*iUserValue*/, uint32_t /*uiValue*/,
+bool CParameterType::fromBlackboard(int32_t & /*iUserValue*/,
+                                    uint32_t /*uiValue*/,
                                     CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
@@ -258,7 +264,8 @@ bool CParameterType::fromBlackboard(int32_t & /*iUserValue*/, uint32_t /*uiValue
 }
 
 // Double
-bool CParameterType::toBlackboard(double /*dUserValue*/, uint32_t & /*uiValue*/,
+bool CParameterType::toBlackboard(double /*dUserValue*/,
+                                  uint32_t & /*uiValue*/,
                                   CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
@@ -266,7 +273,8 @@ bool CParameterType::toBlackboard(double /*dUserValue*/, uint32_t & /*uiValue*/,
     return false;
 }
 
-bool CParameterType::fromBlackboard(double & /*dUserValue*/, uint32_t /*uiValue*/,
+bool CParameterType::fromBlackboard(double & /*dUserValue*/,
+                                    uint32_t /*uiValue*/,
                                     CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");

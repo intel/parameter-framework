@@ -33,7 +33,8 @@
 
 CParameterAccessContext::CParameterAccessContext(std::string &strError,
                                                  CParameterBlackboard *pParameterBlackboard,
-                                                 bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex,
+                                                 bool bValueSpaceIsRaw,
+                                                 bool bOutputRawFormatIsHex,
                                                  size_t baseOffset)
     : base(strError), _pParameterBlackboard(pParameterBlackboard),
       _bValueSpaceIsRaw(bValueSpaceIsRaw), _bOutputRawFormatIsHex(bOutputRawFormatIsHex),
@@ -61,7 +62,7 @@ CParameterBlackboard *CParameterAccessContext::getParameterBlackboard()
 void CParameterAccessContext::setParameterBlackboard(CParameterBlackboard *pBlackboard)
 {
     _pParameterBlackboard = pBlackboard;
-    _uiBaseOffset = 0;
+    _uiBaseOffset         = 0;
 }
 
 // Base offset for blackboard access

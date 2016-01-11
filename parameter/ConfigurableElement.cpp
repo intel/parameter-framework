@@ -48,7 +48,7 @@ CConfigurableElement::CConfigurableElement(const std::string &strName) : base(st
 bool CConfigurableElement::fromXml(const CXmlElement &xmlElement,
                                    CXmlSerializingContext &serializingContext)
 {
-    auto &context = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    auto &context       = static_cast<CXmlParameterSerializingContext &>(serializingContext);
     auto &accessContext = context.getAccessContext();
 
     if (accessContext.serializeSettings()) {
@@ -65,7 +65,7 @@ bool CConfigurableElement::fromXml(const CXmlElement &xmlElement,
 void CConfigurableElement::toXml(CXmlElement &xmlElement,
                                  CXmlSerializingContext &serializingContext) const
 {
-    auto &context = static_cast<CXmlParameterSerializingContext &>(serializingContext);
+    auto &context       = static_cast<CXmlParameterSerializingContext &>(serializingContext);
     auto &accessContext = context.getAccessContext();
     if (accessContext.serializeSettings()) {
 
@@ -200,7 +200,8 @@ CAreaConfiguration *CConfigurableElement::createAreaConfiguration(
 }
 
 // Parameter access
-bool CConfigurableElement::accessValue(CPathNavigator &pathNavigator, std::string &strValue,
+bool CConfigurableElement::accessValue(CPathNavigator &pathNavigator,
+                                       std::string &strValue,
                                        bool bSet,
                                        CParameterAccessContext &parameterAccessContext) const
 {
@@ -354,7 +355,7 @@ size_t CConfigurableElement::getOffset() const
 // Memory
 size_t CConfigurableElement::getFootPrint() const
 {
-    size_t uiSize = 0;
+    size_t uiSize       = 0;
     size_t uiNbChildren = getNbChildren();
 
     for (size_t index = 0; index < uiNbChildren; index++) {
@@ -565,7 +566,8 @@ size_t CConfigurableElement::getBelongingDomainCount() const
 }
 
 void CConfigurableElement::listDomains(
-    const std::list<const CConfigurableDomain *> &configurableDomainList, std::string &strResult,
+    const std::list<const CConfigurableDomain *> &configurableDomainList,
+    std::string &strResult,
     bool bVertical) const
 {
     if (bVertical && configurableDomainList.empty()) {

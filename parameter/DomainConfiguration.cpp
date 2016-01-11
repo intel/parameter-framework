@@ -132,7 +132,8 @@ void CDomainConfiguration::composeSettings(CXmlElement &xmlConfigurationSettings
 
 // Serialize one configuration for one configurable element
 bool CDomainConfiguration::importOneConfigurableElementSettings(
-    CAreaConfiguration *areaConfiguration, CXmlElement &xmlConfigurableElementSettingsElement,
+    CAreaConfiguration *areaConfiguration,
+    CXmlElement &xmlConfigurableElementSettingsElement,
     CXmlDomainImportContext &context)
 {
     const CConfigurableElement *destination = areaConfiguration->getConfigurableElement();
@@ -187,7 +188,8 @@ bool CDomainConfiguration::importOneConfigurableElementSettings(
 }
 
 bool CDomainConfiguration::exportOneConfigurableElementSettings(
-    CAreaConfiguration *areaConfiguration, CXmlElement &xmlConfigurableElementSettingsElement,
+    CAreaConfiguration *areaConfiguration,
+    CXmlElement &xmlConfigurableElementSettingsElement,
     CXmlDomainExportContext &context) const
 {
     const CConfigurableElement *source = areaConfiguration->getConfigurableElement();
@@ -269,7 +271,8 @@ void CDomainConfiguration::getElementSequence(string &strResult) const
 // Application rule
 bool CDomainConfiguration::setApplicationRule(
     const string &strApplicationRule,
-    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition, string &strError)
+    const CSelectionCriteriaDefinition *pSelectionCriteriaDefinition,
+    string &strError)
 {
     // Parser
     CRuleParser ruleParser(strApplicationRule, pSelectionCriteriaDefinition);
@@ -333,7 +336,8 @@ void CDomainConfiguration::save(const CParameterBlackboard *pMainBlackboard)
 }
 
 // Apply data to current
-bool CDomainConfiguration::restore(CParameterBlackboard *pMainBlackboard, bool bSync,
+bool CDomainConfiguration::restore(CParameterBlackboard *pMainBlackboard,
+                                   bool bSync,
                                    core::Results *errors) const
 {
     return std::accumulate(begin(mAreaConfigurationList), end(mAreaConfigurationList), true,
@@ -397,7 +401,7 @@ void CDomainConfiguration::validateAgainst(const CDomainConfiguration *validDoma
          validDomainConfiguration->mAreaConfigurationList) {
         // Get the area configuration associated to the configurable element of the
         // valid area configuration, it will assert if none found.
-        auto configurableElement = configurationToValidateAgainst->getConfigurableElement();
+        auto configurableElement      = configurationToValidateAgainst->getConfigurableElement();
         auto &configurationToValidate = getAreaConfiguration(configurableElement);
         // Delegate to area
         configurationToValidate->validateAgainst(configurationToValidateAgainst.get());
@@ -417,7 +421,7 @@ void CDomainConfiguration::merge(CConfigurableElement *pToConfigurableElement,
                                  CConfigurableElement *pFromConfigurableElement)
 {
     // Retrieve related area configurations
-    auto &areaConfigurationToMergeTo = getAreaConfiguration(pToConfigurableElement);
+    auto &areaConfigurationToMergeTo         = getAreaConfiguration(pToConfigurableElement);
     const auto &areaConfigurationToMergeFrom = getAreaConfiguration(pFromConfigurableElement);
 
     // Do the merge

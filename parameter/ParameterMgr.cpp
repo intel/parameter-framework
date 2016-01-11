@@ -626,8 +626,11 @@ bool CParameterMgr::loadSettingsFromConfigFile(string &strError)
 
 // XML parsing
 bool CParameterMgr::xmlParse(CXmlElementSerializingContext &elementSerializingContext,
-                             CElement *pRootElement, _xmlDoc *doc, const string &baseUri,
-                             CParameterMgr::ElementLibrary eElementLibrary, bool replace,
+                             CElement *pRootElement,
+                             _xmlDoc *doc,
+                             const string &baseUri,
+                             CParameterMgr::ElementLibrary eElementLibrary,
+                             bool replace,
                              const string &strNameAttributeName)
 {
     // Init serializing context
@@ -807,7 +810,8 @@ void CParameterMgr::getSettingsAsBytes(const CConfigurableElement &element,
 }
 
 bool CParameterMgr::setSettingsAsBytes(const CConfigurableElement &element,
-                                       const std::vector<uint8_t> &settings, std::string &error)
+                                       const std::vector<uint8_t> &settings,
+                                       std::string &error)
 {
     // Prepare parameter access context for main blackboard.
     // Notes:
@@ -1505,7 +1509,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::setElementBytesComm
     vector<uint8_t> bytes;
 
     auto first = remoteCommand.getArguments().cbegin() + 1;
-    auto last = remoteCommand.getArguments().cend();
+    auto last  = remoteCommand.getArguments().cend();
 
     try {
         std::transform(first, last, begin(bytes), [](decltype(*first) input) {
@@ -1558,7 +1562,8 @@ bool CParameterMgr::getSettingsAsXML(const CConfigurableElement *configurableEle
 }
 
 bool CParameterMgr::setSettingsAsXML(CConfigurableElement *configurableElement,
-                                     const string &settings, string &error)
+                                     const string &settings,
+                                     string &error)
 {
     CConfigurationAccessContext configContext(error, _pMainParameterBlackboard, _bValueSpaceIsRaw,
                                               _bOutputRawFormatIsHex, false);
@@ -1862,7 +1867,7 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::
     exportDomainWithSettingsXMLCommandProcess(const IRemoteCommand &remoteCommand, string &result)
 {
     string domainName = remoteCommand.getArgument(0);
-    string fileName = remoteCommand.getArgument(1);
+    string fileName   = remoteCommand.getArgument(1);
     return exportSingleDomainXml(fileName, domainName, true, true, result)
                ? CCommandHandler::EDone
                : CCommandHandler::EFailed;
@@ -1968,7 +1973,9 @@ CParameterMgr::CCommandHandler::CommandStatus CParameterMgr::getSystemClassXMLCo
 }
 
 // User set/get parameters in main BlackBoard
-bool CParameterMgr::accessParameterValue(const string &strPath, string &strValue, bool bSet,
+bool CParameterMgr::accessParameterValue(const string &strPath,
+                                         string &strValue,
+                                         bool bSet,
                                          string &strError)
 {
     // Forbid write access when not in TuningMode
@@ -2019,8 +2026,11 @@ bool CParameterMgr::getParameterMapping(const string &strPath, string &strResult
 
 // User set/get parameters in specific Configuration BlackBoard
 bool CParameterMgr::accessConfigurationValue(const string &strDomain,
-                                             const string &strConfiguration, const string &strPath,
-                                             string &strValue, bool bSet, string &strError)
+                                             const string &strConfiguration,
+                                             const string &strPath,
+                                             string &strValue,
+                                             bool bSet,
+                                             string &strError)
 {
     CElementLocator elementLocator(getSystemClass());
 
@@ -2099,7 +2109,9 @@ bool CParameterMgr::accessConfigurationValue(const string &strDomain,
 
 // User set/get parameters
 bool CParameterMgr::accessValue(CParameterAccessContext &parameterAccessContext,
-                                const string &strPath, string &strValue, bool bSet,
+                                const string &strPath,
+                                string &strValue,
+                                bool bSet,
                                 string &strError)
 {
     // Lock state
@@ -2287,7 +2299,8 @@ bool CParameterMgr::deleteAllDomains(string &strError)
     return true;
 }
 
-bool CParameterMgr::setSequenceAwareness(const string &strName, bool bSequenceAware,
+bool CParameterMgr::setSequenceAwareness(const string &strName,
+                                         bool bSequenceAware,
                                          string &strResult)
 {
     LOG_CONTEXT("Making domain '" + strName + "' sequence " +
@@ -2304,13 +2317,15 @@ bool CParameterMgr::setSequenceAwareness(const string &strName, bool bSequenceAw
         strResult);
 }
 
-bool CParameterMgr::getSequenceAwareness(const string &strName, bool &bSequenceAware,
+bool CParameterMgr::getSequenceAwareness(const string &strName,
+                                         bool &bSequenceAware,
                                          string &strResult)
 {
     return getConfigurableDomains()->getSequenceAwareness(strName, bSequenceAware, strResult);
 }
 
-bool CParameterMgr::createConfiguration(const string &strDomain, const string &strConfiguration,
+bool CParameterMgr::createConfiguration(const string &strDomain,
+                                        const string &strConfiguration,
                                         string &strError)
 {
     LOG_CONTEXT("Creating domain configuration '" + strConfiguration + "' into domain '" +
@@ -2327,8 +2342,10 @@ bool CParameterMgr::createConfiguration(const string &strDomain, const string &s
                          strDomain, strConfiguration, _pMainParameterBlackboard, strError),
                      strError);
 }
-bool CParameterMgr::renameConfiguration(const string &strDomain, const string &strConfiguration,
-                                        const string &strNewConfiguration, string &strError)
+bool CParameterMgr::renameConfiguration(const string &strDomain,
+                                        const string &strConfiguration,
+                                        const string &strNewConfiguration,
+                                        string &strError)
 {
     LOG_CONTEXT("Renaming domain '" + strDomain + "''s configuration '" + strConfiguration +
                 "' to '" + strNewConfiguration + "'");
@@ -2338,7 +2355,8 @@ bool CParameterMgr::renameConfiguration(const string &strDomain, const string &s
                      strError);
 }
 
-bool CParameterMgr::deleteConfiguration(const string &strDomain, const string &strConfiguration,
+bool CParameterMgr::deleteConfiguration(const string &strDomain,
+                                        const string &strConfiguration,
                                         string &strError)
 {
     LOG_CONTEXT("Deleting configuration '" + strConfiguration + "' from domain '" + strDomain +
@@ -2357,7 +2375,8 @@ bool CParameterMgr::deleteConfiguration(const string &strDomain, const string &s
         strError);
 }
 
-bool CParameterMgr::restoreConfiguration(const string &strDomain, const string &strConfiguration,
+bool CParameterMgr::restoreConfiguration(const string &strDomain,
+                                         const string &strConfiguration,
                                          core::Results &errors)
 {
     string strError;
@@ -2378,7 +2397,8 @@ bool CParameterMgr::restoreConfiguration(const string &strDomain, const string &
         strError);
 }
 
-bool CParameterMgr::saveConfiguration(const string &strDomain, const string &strConfiguration,
+bool CParameterMgr::saveConfiguration(const string &strDomain,
+                                      const string &strConfiguration,
                                       string &strError)
 {
     LOG_CONTEXT("Saving domain '" + strDomain + "' configuration '" + strConfiguration +
@@ -2473,7 +2493,8 @@ bool CParameterMgr::removeConfigurableElementFromDomain(const string &strDomain,
                      strError);
 }
 
-bool CParameterMgr::split(const string &strDomain, const string &strConfigurableElementPath,
+bool CParameterMgr::split(const string &strDomain,
+                          const string &strConfigurableElementPath,
                           string &strError)
 {
     LOG_CONTEXT("Splitting configurable element '" + strConfigurableElementPath + "' domain '" +
@@ -2513,7 +2534,8 @@ bool CParameterMgr::split(const string &strDomain, const string &strConfigurable
     return isSuccess;
 }
 
-bool CParameterMgr::setElementSequence(const string &strDomain, const string &strConfiguration,
+bool CParameterMgr::setElementSequence(const string &strDomain,
+                                       const string &strConfiguration,
                                        const std::vector<string> &astrNewElementSequence,
                                        string &strError)
 {
@@ -2527,27 +2549,33 @@ bool CParameterMgr::setElementSequence(const string &strDomain, const string &st
                                                         astrNewElementSequence, strError);
 }
 
-bool CParameterMgr::getApplicationRule(const string &strDomain, const string &strConfiguration,
+bool CParameterMgr::getApplicationRule(const string &strDomain,
+                                       const string &strConfiguration,
                                        string &strResult)
 {
     return getConfigurableDomains()->getApplicationRule(strDomain, strConfiguration, strResult);
 }
 
-bool CParameterMgr::setApplicationRule(const string &strDomain, const string &strConfiguration,
-                                       const string &strApplicationRule, string &strError)
+bool CParameterMgr::setApplicationRule(const string &strDomain,
+                                       const string &strConfiguration,
+                                       const string &strApplicationRule,
+                                       string &strError)
 {
     return getConfigurableDomains()->setApplicationRule(
         strDomain, strConfiguration, strApplicationRule,
         getConstSelectionCriteria()->getSelectionCriteriaDefinition(), strError);
 }
 
-bool CParameterMgr::clearApplicationRule(const string &strDomain, const string &strConfiguration,
+bool CParameterMgr::clearApplicationRule(const string &strDomain,
+                                         const string &strConfiguration,
                                          string &strError)
 {
     return getConfigurableDomains()->clearApplicationRule(strDomain, strConfiguration, strError);
 }
 
-bool CParameterMgr::importDomainsXml(const string &xmlSource, bool withSettings, bool fromFile,
+bool CParameterMgr::importDomainsXml(const string &xmlSource,
+                                     bool withSettings,
+                                     bool fromFile,
                                      string &errorMsg)
 {
     // Check tuning mode
@@ -2574,8 +2602,8 @@ bool CParameterMgr::importDomainsXml(const string &xmlSource, bool withSettings,
     return importSuccess;
 }
 
-bool CParameterMgr::importSingleDomainXml(const string &xmlSource, bool overwrite,
-                                          bool withSettings, bool fromFile, string &errorMsg)
+bool CParameterMgr::importSingleDomainXml(
+    const string &xmlSource, bool overwrite, bool withSettings, bool fromFile, string &errorMsg)
 {
     if (!checkTuningModeOn(errorMsg)) {
 
@@ -2602,8 +2630,11 @@ bool CParameterMgr::importSingleDomainXml(const string &xmlSource, bool overwrit
     return true;
 }
 
-bool CParameterMgr::wrapLegacyXmlImport(const string &xmlSource, bool fromFile, bool withSettings,
-                                        CElement &element, const string &nameAttributeName,
+bool CParameterMgr::wrapLegacyXmlImport(const string &xmlSource,
+                                        bool fromFile,
+                                        bool withSettings,
+                                        CElement &element,
+                                        const string &nameAttributeName,
                                         string &errorMsg)
 {
     CXmlDomainImportContext xmlDomainImportContext(errorMsg, withSettings, *getSystemClass());
@@ -2645,7 +2676,9 @@ bool CParameterMgr::serializeElement(std::ostream &output,
     return processSuccess;
 }
 
-bool CParameterMgr::exportDomainsXml(string &xmlDest, bool withSettings, bool toFile,
+bool CParameterMgr::exportDomainsXml(string &xmlDest,
+                                     bool withSettings,
+                                     bool toFile,
                                      string &errorMsg) const
 {
     LOG_CONTEXT("Exporting domains to " +
@@ -2656,8 +2689,11 @@ bool CParameterMgr::exportDomainsXml(string &xmlDest, bool withSettings, bool to
     return wrapLegacyXmlExport(xmlDest, toFile, withSettings, *configurableDomains, errorMsg);
 }
 
-bool CParameterMgr::exportSingleDomainXml(string &xmlDest, const string &domainName,
-                                          bool withSettings, bool toFile, string &errorMsg) const
+bool CParameterMgr::exportSingleDomainXml(string &xmlDest,
+                                          const string &domainName,
+                                          bool withSettings,
+                                          bool toFile,
+                                          string &errorMsg) const
 {
     LOG_CONTEXT("Exporting single domain '" + domainName + "' to " +
                 (toFile ? ('"' + xmlDest + '"') : "a user-provided buffer"));
@@ -2673,8 +2709,11 @@ bool CParameterMgr::exportSingleDomainXml(string &xmlDest, const string &domainN
     return wrapLegacyXmlExport(xmlDest, toFile, withSettings, *requestedDomain, errorMsg);
 }
 
-bool CParameterMgr::wrapLegacyXmlExport(string &xmlDest, bool toFile, bool withSettings,
-                                        const CElement &element, string &errorMsg) const
+bool CParameterMgr::wrapLegacyXmlExport(string &xmlDest,
+                                        bool toFile,
+                                        bool withSettings,
+                                        const CElement &element,
+                                        string &errorMsg) const
 {
     CXmlDomainExportContext context(errorMsg, withSettings, _bValueSpaceIsRaw,
                                     _bOutputRawFormatIsHex);
@@ -2686,7 +2725,8 @@ bool CParameterMgr::wrapLegacyXmlExport(string &xmlDest, bool toFile, bool withS
     }
 }
 
-bool CParameterMgr::wrapLegacyXmlExportToFile(string &xmlDest, const CElement &element,
+bool CParameterMgr::wrapLegacyXmlExportToFile(string &xmlDest,
+                                              const CElement &element,
                                               CXmlDomainExportContext &context) const
 {
     try {
@@ -2707,7 +2747,8 @@ bool CParameterMgr::wrapLegacyXmlExportToFile(string &xmlDest, const CElement &e
     }
 }
 
-bool CParameterMgr::wrapLegacyXmlExportToString(string &xmlDest, const CElement &element,
+bool CParameterMgr::wrapLegacyXmlExportToString(string &xmlDest,
+                                                const CElement &element,
                                                 CXmlDomainExportContext &context) const
 {
     std::ostringstream output;

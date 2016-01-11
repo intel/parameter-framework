@@ -307,7 +307,8 @@ bool CTestPlatform::createInclusiveSelectionCriterionFromStateList(
     return true;
 }
 
-bool CTestPlatform::createExclusiveSelectionCriterion(const string &strName, size_t nbStates,
+bool CTestPlatform::createExclusiveSelectionCriterion(const string &strName,
+                                                      size_t nbStates,
                                                       string &strResult)
 {
     ISelectionCriterionTypeInterface *pCriterionType =
@@ -334,7 +335,8 @@ bool CTestPlatform::createExclusiveSelectionCriterion(const string &strName, siz
     return true;
 }
 
-bool CTestPlatform::createInclusiveSelectionCriterion(const string &strName, size_t nbStates,
+bool CTestPlatform::createInclusiveSelectionCriterion(const string &strName,
+                                                      size_t nbStates,
                                                       string &strResult)
 {
     ISelectionCriterionTypeInterface *pCriterionType =

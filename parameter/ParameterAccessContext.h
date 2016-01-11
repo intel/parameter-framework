@@ -38,10 +38,13 @@ class CParameterBlackboard;
 class CParameterAccessContext : public utility::ErrorContext
 {
 public:
-    CParameterAccessContext(std::string &strError, CParameterBlackboard *pParameterBlackboard,
-                            bool bValueSpaceIsRaw, bool bOutputRawFormatIsHex,
+    CParameterAccessContext(std::string &strError,
+                            CParameterBlackboard *pParameterBlackboard,
+                            bool bValueSpaceIsRaw,
+                            bool bOutputRawFormatIsHex,
                             size_t offsetBase = 0);
-    CParameterAccessContext(std::string &strError, CParameterBlackboard *pParameterBlackboard,
+    CParameterAccessContext(std::string &strError,
+                            CParameterBlackboard *pParameterBlackboard,
                             size_t offsetBase = 0);
     CParameterAccessContext(std::string &strError);
 

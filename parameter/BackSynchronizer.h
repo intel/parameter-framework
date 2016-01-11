@@ -49,7 +49,7 @@ public:
     }
 
     // Back synchronization
-    virtual void sync() = 0;
+    virtual void sync()          = 0;
     virtual ~CBackSynchronizer() = default;
 
 protected:

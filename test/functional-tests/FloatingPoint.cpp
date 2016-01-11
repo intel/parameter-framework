@@ -107,9 +107,9 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]")
 
             AND_THEN ("Set/Get a floating point parameter in raw value space") {
                 const float tooHigh = 12.3f;
-                const float tooLow = -50.5f;
-                const float nan = std::numeric_limits<float>::quiet_NaN();
-                const float inf = std::numeric_limits<float>::infinity();
+                const float tooLow  = -50.5f;
+                const float nan     = std::numeric_limits<float>::quiet_NaN();
+                const float inf     = std::numeric_limits<float>::infinity();
                 REQUIRE_NOTHROW(setRawValueSpace(true));
                 for (auto &vec : Tests<string>{
                          {"(too high, as decimal)",
@@ -126,7 +126,7 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]")
                 }
                 const float upper = 12.2f;
                 const float lower = -50.4f;
-                const float zero = 0.0f;
+                const float zero  = 0.0f;
                 for (auto &vec : Tests<string>{
                          {"(upper limit, as decimal)",
                           std::to_string(::utility::binaryCopy<uint32_t>(upper))},

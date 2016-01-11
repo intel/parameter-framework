@@ -53,7 +53,7 @@ class PARAMETER_EXPORT CConfigurableElement : public CElement
 
 public:
     CConfigurableElement(const std::string &strName = "");
-    virtual ~CConfigurableElement() = default;
+    virtual ~CConfigurableElement()                 = default;
 
     // Offset in main blackboard
     void setOffset(size_t offset);
@@ -109,7 +109,9 @@ public:
     virtual CAreaConfiguration *createAreaConfiguration(const CSyncerSet *pSyncerSet) const;
 
     // Parameter access
-    virtual bool accessValue(CPathNavigator &pathNavigator, std::string &strValue, bool bSet,
+    virtual bool accessValue(CPathNavigator &pathNavigator,
+                             std::string &strValue,
+                             bool bSet,
                              CParameterAccessContext &parameterAccessContext) const;
 
     /** Gets the element as an array of bytes.
@@ -218,7 +220,8 @@ private:
     // Belonging domains
     void getBelongingDomains(std::list<const CConfigurableDomain *> &configurableDomainList) const;
     void listDomains(const std::list<const CConfigurableDomain *> &configurableDomainList,
-                     std::string &strResult, bool bVertical) const;
+                     std::string &strResult,
+                     bool bVertical) const;
 
     // Check parent is still of current type (by structure knowledge)
     bool isOfConfigurableElementType(const CElement *pParent) const;

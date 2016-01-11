@@ -42,7 +42,8 @@ class CSelectionCriterion : public CElement,
                             private utility::NonCopyable
 {
 public:
-    CSelectionCriterion(const std::string &strName, const CSelectionCriterionType *pType,
+    CSelectionCriterion(const std::string &strName,
+                        const CSelectionCriterionType *pType,
                         core::log::Logger &logger);
 
     /// From ISelectionCriterionInterface

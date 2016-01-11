@@ -57,8 +57,8 @@ private:
     static Config createConfig()
     {
         Config config;
-        config.instances = R"(<BooleanParameter Name="param" Mapping="Object"/>)";
-        config.plugins = {{"", {"introspection-subsystem"}}};
+        config.instances     = R"(<BooleanParameter Name="param" Mapping="Object"/>)";
+        config.plugins       = {{"", {"introspection-subsystem"}}};
         config.subsystemType = "INTROSPECTION";
 
         config.domains = R"(<ConfigurableDomain Name="Domain">

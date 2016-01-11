@@ -97,7 +97,7 @@ private:
 std::ostream &operator<<(std::ostream &os, const StoreLogger::Log::Level &level)
 {
     auto levelStr = "UNREACHABLE";
-    using L = StoreLogger::Log::Level;
+    using L       = StoreLogger::Log::Level;
     switch (level) {
     case L::info:
         levelStr = "Info";

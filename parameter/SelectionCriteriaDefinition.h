@@ -48,7 +48,8 @@ public:
     CSelectionCriterion *getSelectionCriterion(const std::string &strName);
 
     // List available criteria
-    void listSelectionCriteria(std::list<std::string> &lstrResult, bool bWithTypeInfo,
+    void listSelectionCriteria(std::list<std::string> &lstrResult,
+                               bool bWithTypeInfo,
                                bool bHumanReadable) const;
 
     // Base

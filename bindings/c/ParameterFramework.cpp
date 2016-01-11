@@ -221,8 +221,11 @@ bool PfwHandler::createCriteria(const PfwCriterion criteriaArray[], size_t crite
     return status.success();
 }
 
-bool pfwStart(PfwHandler *handle, const char *configPath, const PfwCriterion criteria[],
-              size_t criterionNb, const PfwLogger *logger)
+bool pfwStart(PfwHandler *handle,
+              const char *configPath,
+              const PfwCriterion criteria[],
+              size_t criterionNb,
+              const PfwLogger *logger)
 {
     // Check that the api is correctly used
     Status &status = handle->lastStatus;
@@ -344,7 +347,7 @@ bool pfwSetIntParameter(PfwParameterHandler *handle, int32_t value)
 bool pfwGetStringParameter(const PfwParameterHandler *handle, char *value[])
 {
     Status &status = handle->pfw.lastStatus;
-    *value = NULL;
+    *value         = NULL;
     string retValue;
     bool success = handle->parameter.getAsString(retValue, status.msg());
     if (not success) {

@@ -42,7 +42,7 @@ void CXmlElementSerializingContext::set(const CElementLibrary *pElementLibrary,
                                         const string &xmlUri)
 {
     _pElementLibrary = pElementLibrary;
-    _xmlUri = xmlUri;
+    _xmlUri          = xmlUri;
 }
 
 // ElementLibrary

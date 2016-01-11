@@ -44,13 +44,17 @@ public:
         CXmlElement &xmlConfigurableElementSettingsElement,
         CConfigurationAccessContext &configurationAccessContext) const;
 
-    virtual bool toBlackboard(const std::string &strValue, uint32_t &uiValue,
+    virtual bool toBlackboard(const std::string &strValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(std::string &strValue, const uint32_t &uiValue,
+    virtual bool fromBlackboard(std::string &strValue,
+                                const uint32_t &uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
-    virtual bool toBlackboard(double dUserValue, uint32_t &uiValue,
+    virtual bool toBlackboard(double dUserValue,
+                              uint32_t &uiValue,
                               CParameterAccessContext &parameterAccessContext) const;
-    virtual bool fromBlackboard(double &dUserValue, uint32_t uiValue,
+    virtual bool fromBlackboard(double &dUserValue,
+                                uint32_t uiValue,
                                 CParameterAccessContext &parameterAccessContext) const;
 
     virtual void showProperties(std::string &strResult) const;

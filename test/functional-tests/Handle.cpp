@@ -184,8 +184,8 @@ struct AllParamsPF : public ParameterFramework
         checkEq(canonicalizeXML(result), canonicalizeXML(expected));
     }
 
-    static string node(string tag, string name, string content, string attributes = "",
-                       string postAttributes = "")
+    static string node(
+        string tag, string name, string content, string attributes = "", string postAttributes = "")
     {
         return "<" + tag + " " + attributes + " Name='" + name + "' " + postAttributes + ">" +
                content + "</" + tag + ">";
@@ -194,7 +194,10 @@ struct AllParamsPF : public ParameterFramework
      * @param[in] maybeDescription If nullptr, description will be generated from the name
      *                             Otherwise, the description.
      */
-    static string nodeDesc(string tag, string name, string content, string attributes = "",
+    static string nodeDesc(string tag,
+                           string name,
+                           string content,
+                           string attributes            = "",
                            const char *maybeDescription = nullptr)
     {
         string description = "description_" + name;
@@ -359,7 +362,7 @@ static const char *defaultBasicSettingsXML = R"(
       </BitParameterBlock>
 )";
 
-static const char *testBasicSettingsXML = R"(
+static const char *testBasicSettingsXML       = R"(
       <BooleanParameter Name="bool">1</BooleanParameter>
       <BooleanParameter Name="bool_array">0 1</BooleanParameter>
       <IntegerParameter Name="integer">100</IntegerParameter>
@@ -409,7 +412,7 @@ SCENARIO_METHOD(SettingsTestPF, "Export and import XML settings", "[handler][set
         checkXMLEq(basicParams.getAsXML(),
                    mkBasicSettings(defaultBasicSettingsXML, "parameter_block"));
     }
-    string testSettings = mkBasicSettings(testBasicSettingsXML, "parameter_block");
+    string testSettings    = mkBasicSettings(testBasicSettingsXML, "parameter_block");
     string rawTestSettings = mkBasicSettings(testRawHexBasicSettingsXML, "parameter_block");
 
     auto checkExport = [&] {
@@ -451,7 +454,8 @@ SCENARIO_METHOD(SettingsTestPF, "Bijection of binary show and read", "[identity]
     CHECK(showBytes(readBytes(testBasicSettingsBytes)) == testBasicSettingsBytes);
 }
 
-SCENARIO_METHOD(SettingsTestPF, "Export and import root binary settings",
+SCENARIO_METHOD(SettingsTestPF,
+                "Export and import root binary settings",
                 "[handler][settings][bytes]")
 {
     ElementHandle root(*this, "/");
@@ -472,7 +476,8 @@ SCENARIO_METHOD(SettingsTestPF, "Export and import root binary settings",
     }
 }
 
-SCENARIO_METHOD(SettingsTestPF, "Export and import basic binary settings",
+SCENARIO_METHOD(SettingsTestPF,
+                "Export and import basic binary settings",
                 "[handler][settings][bytes]")
 {
     ElementHandle basicParams(*this, "/test/test/parameter_block");
@@ -487,7 +492,8 @@ SCENARIO_METHOD(SettingsTestPF, "Export and import basic binary settings",
     }
 }
 
-SCENARIO_METHOD(SettingsTestPF, "Export and import array binary settings",
+SCENARIO_METHOD(SettingsTestPF,
+                "Export and import array binary settings",
                 "[handler][settings][bytes]")
 {
     ElementHandle array(*this, "/test/test/parameter_block_array");
@@ -500,12 +506,13 @@ SCENARIO_METHOD(SettingsTestPF, "Export and import array binary settings",
     }
 }
 
-SCENARIO_METHOD(SettingsTestPF, "Import root in one format, export in an other",
+SCENARIO_METHOD(SettingsTestPF,
+                "Import root in one format, export in an other",
                 "[handler][settings][bytes][xml]")
 {
     ElementHandle root(*this, "/test");
     string rootBytesSettings = fullBytesSettings(testBasicSettingsBytes);
-    string rootXMLSettings = fullXMLSettings(testBasicSettingsXML);
+    string rootXMLSettings   = fullXMLSettings(testBasicSettingsXML);
 
     WHEN ("Importing root binary") {
         REQUIRE_NOTHROW(root.setAsBytes(readBytes(rootBytesSettings)));
@@ -522,7 +529,8 @@ SCENARIO_METHOD(SettingsTestPF, "Import root in one format, export in an other",
     }
 }
 
-SCENARIO_METHOD(SettingsTestPF, "Import basic params in one format, export in an other",
+SCENARIO_METHOD(SettingsTestPF,
+                "Import basic params in one format, export in an other",
                 "[handler][settings][bytes][xml]")
 {
     ElementHandle basicParams(*this, "/test/test/parameter_block_array/0");
@@ -550,7 +558,7 @@ struct MappingPF : public ParameterFramework
     Config getConfig()
     {
         Config config;
-        config.instances = "<BooleanParameter Name='bool' Mapping='bool_map'>";
+        config.instances        = "<BooleanParameter Name='bool' Mapping='bool_map'>";
         config.subsystemMapping = "subsystem_mapping";
         return config;
     }
@@ -562,7 +570,7 @@ SCENARIO("Mapping handle access", "[handler][mapping]")
         Config config;
         config.subsystemMapping = "rootK:rootV";
         config.components = "<ComponentType   Name='componentType' Mapping='typeK:typeV'        />";
-        config.instances = "<BooleanParameter Name='param'         Mapping='paramK:paramV'      />"
+        config.instances  = "<BooleanParameter Name='param'         Mapping='paramK:paramV'      />"
                            "<Component        Name='component'     Mapping='instanceK:instanceV'  "
                            "           Type='componentType'                                     />";
         ParameterFramework pf{config};

@@ -91,7 +91,8 @@ public:
      * @param[out] errors, errors encountered during restoration
      * @return true if success false otherwise
      */
-    bool restore(CParameterBlackboard *pMainBlackboard, bool bSync,
+    bool restore(CParameterBlackboard *pMainBlackboard,
+                 bool bSync,
                  core::Results *errors = NULL) const;
 
     // Ensure validity for configurable element area configuration
@@ -125,7 +126,7 @@ public:
     virtual std::string getKind() const;
 
 private:
-    using AreaConfiguration = std::unique_ptr<CAreaConfiguration>;
+    using AreaConfiguration  = std::unique_ptr<CAreaConfiguration>;
     using AreaConfigurations = std::list<AreaConfiguration>;
 
     // Returns true if children dynamic creation is to be dealt with (here, will allow child

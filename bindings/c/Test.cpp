@@ -115,16 +115,16 @@ struct Test
 TEST_CASE_METHOD(Test, "Parameter-framework c api use")
 {
     // Create criteria
-    const char *letterList[] = {"a", "b", "c", NULL};
-    const char *numberList[] = {"1", "2", "3", NULL};
+    const char *letterList[]      = {"a", "b", "c", NULL};
+    const char *numberList[]      = {"1", "2", "3", NULL};
     const PfwCriterion criteria[] = {
         {"inclusiveCrit", true, letterList}, {"exclusiveCrit", false, numberList},
     };
     size_t criterionNb = sizeof(criteria) / sizeof(criteria[0]);
-    PfwLogger logger = {&logLines, logCb};
+    PfwLogger logger   = {&logLines, logCb};
 
     // Create valid pfw config file
-    const char *intParameterPath = "/test/system/integer";
+    const char *intParameterPath    = "/test/system/integer";
     const char *stringParameterPath = "/test/system/string";
     TmpFile system("<?xml version='1.0' encoding='UTF-8'?>\
         <Subsystem Name='system' Type='Virtual'>\
@@ -166,7 +166,7 @@ TEST_CASE_METHOD(Test, "Parameter-framework c api use")
             REQUIRE_FAILURE(pfwStart(pfw, config, duplicatedCriteria, 2, &logger));
         }
         WHEN ("The pfw is started with duplicated criterion value state") {
-            const char *values[] = {"a", "a", NULL};
+            const char *values[]                    = {"a", "a", NULL};
             const PfwCriterion duplicatedCriteria[] = {{"name", true, values}};
 
             WHEN ("Using test logger") {

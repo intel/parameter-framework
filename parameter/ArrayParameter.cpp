@@ -69,7 +69,9 @@ void CArrayParameter::showProperties(string &strResult) const
 }
 
 // User set/get
-bool CArrayParameter::accessValue(CPathNavigator &pathNavigator, string &strValue, bool bSet,
+bool CArrayParameter::accessValue(CPathNavigator &pathNavigator,
+                                  string &strValue,
+                                  bool bSet,
                                   CParameterAccessContext &parameterAccessContext) const
 {
     size_t index;
@@ -119,13 +121,15 @@ bool CArrayParameter::accessValue(CPathNavigator &pathNavigator, string &strValu
 
 /// Actual parameter access
 // String access
-bool CArrayParameter::doSetValue(const string &value, size_t offset,
+bool CArrayParameter::doSetValue(const string &value,
+                                 size_t offset,
                                  CParameterAccessContext &parameterAccessContext) const
 {
     return setValues(0, offset, value, parameterAccessContext);
 }
 
-void CArrayParameter::doGetValue(string &value, size_t offset,
+void CArrayParameter::doGetValue(string &value,
+                                 size_t offset,
                                  CParameterAccessContext &parameterAccessContext) const
 {
     // Whole array requested
@@ -133,35 +137,40 @@ void CArrayParameter::doGetValue(string &value, size_t offset,
 }
 
 // Boolean
-bool CArrayParameter::access(std::vector<bool> &abValues, bool bSet,
+bool CArrayParameter::access(std::vector<bool> &abValues,
+                             bool bSet,
                              CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(abValues, bSet, parameterAccessContext);
 }
 
 // Integer
-bool CArrayParameter::access(std::vector<uint32_t> &auiValues, bool bSet,
+bool CArrayParameter::access(std::vector<uint32_t> &auiValues,
+                             bool bSet,
                              CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(auiValues, bSet, parameterAccessContext);
 }
 
 // Signed Integer Access
-bool CArrayParameter::access(std::vector<int32_t> &aiValues, bool bSet,
+bool CArrayParameter::access(std::vector<int32_t> &aiValues,
+                             bool bSet,
                              CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(aiValues, bSet, parameterAccessContext);
 }
 
 // Double Access
-bool CArrayParameter::access(std::vector<double> &adValues, bool bSet,
+bool CArrayParameter::access(std::vector<double> &adValues,
+                             bool bSet,
                              CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(adValues, bSet, parameterAccessContext);
 }
 
 // String Access
-bool CArrayParameter::access(std::vector<string> &astrValues, bool bSet,
+bool CArrayParameter::access(std::vector<string> &astrValues,
+                             bool bSet,
                              CParameterAccessContext &parameterAccessContext) const
 {
     return accessValues(astrValues, bSet, parameterAccessContext);
@@ -186,8 +195,8 @@ void CArrayParameter::setDefaultValues(CParameterAccessContext &parameterAccessC
 
     // Process
     size_t valueIndex;
-    size_t size = getSize();
-    size_t offset = getOffset();
+    size_t size        = getSize();
+    size_t offset      = getOffset();
     size_t arrayLength = getArrayLength();
 
     for (valueIndex = 0; valueIndex < arrayLength; valueIndex++) {
@@ -200,7 +209,8 @@ void CArrayParameter::setDefaultValues(CParameterAccessContext &parameterAccessC
 }
 
 // Index from path
-bool CArrayParameter::getIndex(CPathNavigator &pathNavigator, size_t &index,
+bool CArrayParameter::getIndex(CPathNavigator &pathNavigator,
+                               size_t &index,
                                CParameterAccessContext &parameterAccessContext) const
 {
     index = (size_t)-1;
@@ -248,14 +258,16 @@ bool CArrayParameter::getIndex(CPathNavigator &pathNavigator, size_t &index,
 }
 
 // Common set value processing
-bool CArrayParameter::setValues(size_t uiStartIndex, size_t offset, const string &strValue,
+bool CArrayParameter::setValues(size_t uiStartIndex,
+                                size_t offset,
+                                const string &strValue,
                                 CParameterAccessContext &parameterAccessContext) const
 {
     // Deal with value(s)
     Tokenizer tok(strValue, Tokenizer::defaultDelimiters + ",");
 
     std::vector<string> astrValues = tok.split();
-    size_t nbValues = astrValues.size();
+    size_t nbValues                = astrValues.size();
 
     // Check number of provided values
     if (nbValues + uiStartIndex > getArrayLength()) {
@@ -291,7 +303,7 @@ bool CArrayParameter::setValues(size_t uiStartIndex, size_t offset, const string
 string CArrayParameter::getValues(size_t offset,
                                   CParameterAccessContext &parameterAccessContext) const
 {
-    size_t size = getSize();
+    size_t size        = getSize();
     size_t arrayLength = getArrayLength();
 
     string output;
@@ -321,7 +333,8 @@ string CArrayParameter::getValues(size_t offset,
 
 // Generic Access
 template <typename type>
-bool CArrayParameter::accessValues(std::vector<type> &values, bool bSet,
+bool CArrayParameter::accessValues(std::vector<type> &values,
+                                   bool bSet,
                                    CParameterAccessContext &parameterAccessContext) const
 {
     if (bSet) {
@@ -353,8 +366,8 @@ bool CArrayParameter::setValues(const std::vector<type> &values,
                                 CParameterAccessContext &parameterAccessContext) const
 {
     size_t nbValues = getArrayLength();
-    size_t size = getSize();
-    size_t offset = getOffset();
+    size_t size     = getSize();
+    size_t offset   = getOffset();
 
     assert(values.size() == nbValues);
 
@@ -377,8 +390,8 @@ bool CArrayParameter::getValues(std::vector<type> &values,
                                 CParameterAccessContext &parameterAccessContext) const
 {
     size_t nbValues = getArrayLength();
-    size_t size = getSize();
-    size_t offset = getOffset();
+    size_t size     = getSize();
+    size_t offset   = getOffset();
 
     values.clear();
 
@@ -398,7 +411,8 @@ bool CArrayParameter::getValues(std::vector<type> &values,
 }
 
 template <typename type>
-bool CArrayParameter::doSet(type value, size_t offset,
+bool CArrayParameter::doSet(type value,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const
 {
     uint32_t uiData;
@@ -418,7 +432,8 @@ bool CArrayParameter::doSet(type value, size_t offset,
 }
 
 template <typename type>
-bool CArrayParameter::doGet(type &value, size_t offset,
+bool CArrayParameter::doGet(type &value,
+                            size_t offset,
                             CParameterAccessContext &parameterAccessContext) const
 {
     uint32_t uiData = 0;

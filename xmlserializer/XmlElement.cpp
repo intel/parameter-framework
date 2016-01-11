@@ -83,7 +83,7 @@ bool CXmlElement::getAttribute<std::string>(const string &name, string &value) c
         return false;
     }
 
-    string backup = value;
+    string backup        = value;
     xmlChar *pucXmlValue = xmlGetProp((xmlNode *)_pXmlElement, (const xmlChar *)name.c_str());
     if (pucXmlValue == NULL) {
         value = backup;
@@ -149,7 +149,8 @@ bool CXmlElement::getChildElement(const string &strType, CXmlElement &childEleme
     return false;
 }
 
-bool CXmlElement::getChildElement(const string &strType, const string &strNameAttribute,
+bool CXmlElement::getChildElement(const string &strType,
+                                  const string &strNameAttribute,
                                   CXmlElement &childElement) const
 {
     CChildIterator childIterator(*this);

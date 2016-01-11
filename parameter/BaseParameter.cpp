@@ -91,52 +91,60 @@ bool CBaseParameter::isParameter() const
     return true;
 }
 
-bool CBaseParameter::access(bool & /*bValue*/, bool /*bSet*/,
+bool CBaseParameter::access(bool & /*bValue*/,
+                            bool /*bSet*/,
                             CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
     return false;
 }
-bool CBaseParameter::access(std::vector<bool> & /*abValues*/, bool /*bSet*/,
-                            CParameterAccessContext &parameterAccessContext) const
-{
-    parameterAccessContext.setError("Unsupported conversion");
-    return false;
-}
-
-bool CBaseParameter::access(uint32_t & /*bValue*/, bool /*bSet*/,
-                            CParameterAccessContext &parameterAccessContext) const
-{
-    parameterAccessContext.setError("Unsupported conversion");
-    return false;
-}
-bool CBaseParameter::access(std::vector<uint32_t> & /*abValues*/, bool /*bSet*/,
+bool CBaseParameter::access(std::vector<bool> & /*abValues*/,
+                            bool /*bSet*/,
                             CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
     return false;
 }
 
-bool CBaseParameter::access(int32_t & /*bValue*/, bool /*bSet*/,
+bool CBaseParameter::access(uint32_t & /*bValue*/,
+                            bool /*bSet*/,
                             CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
     return false;
 }
-bool CBaseParameter::access(std::vector<int32_t> & /*abValues*/, bool /*bSet*/,
+bool CBaseParameter::access(std::vector<uint32_t> & /*abValues*/,
+                            bool /*bSet*/,
                             CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
     return false;
 }
 
-bool CBaseParameter::access(double & /*bValue*/, bool /*bSet*/,
+bool CBaseParameter::access(int32_t & /*bValue*/,
+                            bool /*bSet*/,
                             CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
     return false;
 }
-bool CBaseParameter::access(std::vector<double> & /*abValues*/, bool /*bSet*/,
+bool CBaseParameter::access(std::vector<int32_t> & /*abValues*/,
+                            bool /*bSet*/,
+                            CParameterAccessContext &parameterAccessContext) const
+{
+    parameterAccessContext.setError("Unsupported conversion");
+    return false;
+}
+
+bool CBaseParameter::access(double & /*bValue*/,
+                            bool /*bSet*/,
+                            CParameterAccessContext &parameterAccessContext) const
+{
+    parameterAccessContext.setError("Unsupported conversion");
+    return false;
+}
+bool CBaseParameter::access(std::vector<double> & /*abValues*/,
+                            bool /*bSet*/,
                             CParameterAccessContext &parameterAccessContext) const
 {
     parameterAccessContext.setError("Unsupported conversion");
@@ -144,7 +152,8 @@ bool CBaseParameter::access(std::vector<double> & /*abValues*/, bool /*bSet*/,
 }
 
 // String Access
-bool CBaseParameter::access(string &strValue, bool bSet,
+bool CBaseParameter::access(string &strValue,
+                            bool bSet,
                             CParameterAccessContext &parameterAccessContext) const
 {
     if (bSet) {
@@ -172,7 +181,8 @@ bool CBaseParameter::access(string &strValue, bool bSet,
     return true;
 }
 
-bool CBaseParameter::access(std::vector<string> & /*astrValues*/, bool /*bSet*/,
+bool CBaseParameter::access(std::vector<string> & /*astrValues*/,
+                            bool /*bSet*/,
                             CParameterAccessContext & /*ctx*/) const
 {
     // Generic string array access to scalar parameter must have been filtered out before
@@ -182,7 +192,9 @@ bool CBaseParameter::access(std::vector<string> & /*astrValues*/, bool /*bSet*/,
 }
 
 // Parameter Access
-bool CBaseParameter::accessValue(CPathNavigator &pathNavigator, string &strValue, bool bSet,
+bool CBaseParameter::accessValue(CPathNavigator &pathNavigator,
+                                 string &strValue,
+                                 bool bSet,
                                  CParameterAccessContext &parameterAccessContext) const
 {
     // Check path validity
