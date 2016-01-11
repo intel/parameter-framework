@@ -35,41 +35,36 @@ using std::vector;
 const string Tokenizer::defaultDelimiters = " \n\r\t\v\f";
 
 Tokenizer::Tokenizer(const string &input, const string &delimiters)
-    : _input(input), _delimiters(delimiters), _position(0)
+    : _input(input), _delimiters(delimiters)
 {
-}
-
-string Tokenizer::next()
-{
-    string token;
-
-    // Skip all leading delimiters
-    string::size_type tokenStart = _input.find_first_not_of(_delimiters, _position);
-
-    // Special case if there isn't any token anymore (string::substr's
-    // throws when pos==npos)
-    if (tokenStart == string::npos) {
-        return "";
-    }
-
-    // Starting from the token's start, find the first delimiter
-    string::size_type tokenEnd = _input.find_first_of(_delimiters, tokenStart);
-
-    _position = tokenEnd;
-
-    return _input.substr(tokenStart, tokenEnd - tokenStart);
 }
 
 vector<string> Tokenizer::split()
 {
     vector<string> result;
     string token;
+    bool leftover = false;
 
-    while (true) {
-        token = next();
-        if (token.empty()) {
-            return result;
+    for (const auto character : _input) {
+        if (_delimiters.find(character) != string::npos) {
+            leftover = false;
+            if (token.empty()) {
+                // skip consecutive delimiters
+                continue;
+            }
+
+            result.push_back(token);
+            token.clear();
+            continue;
         }
+        token += character;
+        leftover = true;
+    }
+
+    // push any leftover token:
+    if (leftover) {
         result.push_back(token);
     }
+
+    return result;
 }

@@ -54,15 +54,11 @@ public:
     Tokenizer(const std::string &input, const std::string &delimiters = defaultDelimiters);
     ~Tokenizer(){};
 
-    /** Return the next token or an empty string if no more token
+    /** Return a vector of all tokens
      *
      * Multiple consecutive delimiters are considered as a single one - i.e.
      * "a     bc d   " will be tokenized as ("a", "bc", "d") if the delimiter
      * is ' '.
-     */
-    std::string next();
-
-    /** Return a vector of all tokens
      */
     std::vector<std::string> split();
 
@@ -72,6 +68,4 @@ public:
 private:
     const std::string _input;      //< string to be tokenized
     const std::string _delimiters; //< token delimiters
-
-    std::string::size_type _position; //< end of the last returned token
 };

@@ -46,12 +46,6 @@ SCENARIO("Tokenizer tests")
         GIVEN ("A trivial string") {
             Tokenizer tokenizer("a bcd ef");
 
-            THEN ("next() api should work") {
-                CHECK(tokenizer.next() == "a");
-                CHECK(tokenizer.next() == "bcd");
-                CHECK(tokenizer.next() == "ef");
-                CHECK(tokenizer.next() == "");
-            }
             THEN ("split() api should work") {
                 vector<string> expected;
                 expected.push_back("a");
@@ -65,9 +59,6 @@ SCENARIO("Tokenizer tests")
         GIVEN ("An empty string") {
             Tokenizer tokenizer("");
 
-            THEN ("next() api should work") {
-                CHECK(tokenizer.next() == "");
-            }
             THEN ("split() api should work") {
                 vector<string> expected;
 
@@ -78,13 +69,6 @@ SCENARIO("Tokenizer tests")
         GIVEN ("A slash-separated string and tokenizer") {
             Tokenizer tokenizer("/a/bcd/ef g/h/", "/");
 
-            THEN ("next() api should work") {
-                CHECK(tokenizer.next() == "a");
-                CHECK(tokenizer.next() == "bcd");
-                CHECK(tokenizer.next() == "ef g");
-                CHECK(tokenizer.next() == "h");
-                CHECK(tokenizer.next() == "");
-            }
             THEN ("split() api should work") {
                 vector<string> expected;
                 expected.push_back("a");
@@ -99,11 +83,6 @@ SCENARIO("Tokenizer tests")
         GIVEN ("Multiple separators in a row") {
             Tokenizer tokenizer("  a \n\t bc  ");
 
-            THEN ("next() api should work") {
-                CHECK(tokenizer.next() == "a");
-                CHECK(tokenizer.next() == "bc");
-                CHECK(tokenizer.next() == "");
-            }
             THEN ("split() api should work") {
                 vector<string> expected;
                 expected.push_back("a");
