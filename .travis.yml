@@ -25,6 +25,7 @@ addons:
             - ubuntu-toolchain-r-test
             - kubuntu-backports
             - llvm-toolchain-precise
+            - boost-latest
         # Travis white list of dpkg packages
         # https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
         packages:
@@ -33,7 +34,7 @@ addons:
             - g++-4.8
             - cmake
             - python3-dev
-            - libasio-dev
+            - boost1.55 # For ASIO, their is no recent standalone package
             - clang-format-3.8
 
 install:
