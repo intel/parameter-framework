@@ -41,8 +41,6 @@ install:
     # This version of catch is known to work.
     - wget --directory-prefix $PREFIX/include
               https://raw.github.com/philsquared/Catch/v1.2.1/single_include/catch.hpp
-    - wget 'https://01.org/sites/default/files/asio-1.10.6.tar.gz'
-    - tar xf asio-1.10.6.tar.gz -C $PREFIX --strip-components=1
 
 before_script:
     - coverage=OFF
