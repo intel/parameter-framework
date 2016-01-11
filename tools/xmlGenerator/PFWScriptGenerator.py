@@ -60,7 +60,7 @@ class PfwScriptTranslator(PfwBaseTranslator):
         self._appendCommand("createConfiguration", self._ctx_domain, name)
 
     def _doSetElementSequence(self, paths):
-        self._appendCommand("setElementSequence", self._ctx_domain, self._ctx_configuration, " ".join(paths))
+        self._appendCommand("setElementSequence", self._ctx_domain, self._ctx_configuration, *paths)
 
     def _doSetRule(self, rule):
         self._appendCommand("setRule", self._ctx_domain, self._ctx_configuration, rule)
