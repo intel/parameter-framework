@@ -39,57 +39,46 @@
 using std::string;
 using std::vector;
 
+using Expected = vector<string>;
+
 SCENARIO("Tokenizer tests")
 {
     GIVEN ("A default tokenizer") {
 
         GIVEN ("A trivial string") {
             Tokenizer tokenizer("a bcd ef");
+            Expected expected{"a", "bcd", "ef"};
 
             THEN ("split() api should work") {
-                vector<string> expected;
-                expected.push_back("a");
-                expected.push_back("bcd");
-                expected.push_back("ef");
-
                 CHECK(tokenizer.split() == expected);
             }
         }
 
         GIVEN ("An empty string") {
             Tokenizer tokenizer("");
+            Expected expected{};
 
-            THEN ("split() api should work") {
-                vector<string> expected;
-
-                CHECK(tokenizer.split().empty());
-            }
-        }
-
-        GIVEN ("A slash-separated string and tokenizer") {
-            Tokenizer tokenizer("/a/bcd/ef g/h/", "/");
-
-            THEN ("split() api should work") {
-                vector<string> expected;
-                expected.push_back("a");
-                expected.push_back("bcd");
-                expected.push_back("ef g");
-                expected.push_back("h");
-
+            THEN ("split() should be empty") {
                 CHECK(tokenizer.split() == expected);
             }
         }
 
         GIVEN ("Multiple separators in a row") {
             Tokenizer tokenizer("  a \n\t bc  ");
+            Expected expected{"a", "bc"};
 
             THEN ("split() api should work") {
-                vector<string> expected;
-                expected.push_back("a");
-                expected.push_back("bc");
-
                 CHECK(tokenizer.split() == expected);
             }
+        }
+    }
+
+    GIVEN ("A slash-separated string and tokenizer") {
+        Tokenizer tokenizer("/a/bcd/ef g/h/", "/");
+        Expected expected{"a", "bcd", "ef g", "h"};
+
+        THEN ("split() api should work") {
+            CHECK(tokenizer.split() == expected);
         }
     }
 }
