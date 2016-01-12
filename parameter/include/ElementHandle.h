@@ -232,15 +232,6 @@ public:
 
     /** @} */
 
-protected:
-    /** Friend to be constructed from CParameterMgr::createElementHandle. */
-    friend CParameterMgr;
-
-    /** Protected for test purposes.
-     * Client must not inherit from this class anyway.
-     * @{ */
-    ElementHandle(CConfigurableElement &element, CParameterMgr &parameterMgr);
-
     /** Access a parameter with a template type
      *
      * Template version of getAsBoolean, getAsInteger, getAsDoubleArray...
@@ -259,7 +250,14 @@ protected:
     bool getAs(T &value, std::string &error) const;
     /** @} */
 
-    /** @} */
+protected:
+    /** Friend to be constructed from CParameterMgr::createElementHandle. */
+    friend CParameterMgr;
+
+    /** Protected for test purposes.
+     * Client must not inherit from this class anyway.
+     */
+    ElementHandle(CConfigurableElement &element, CParameterMgr &parameterMgr);
 
 private:
     template <class T>
