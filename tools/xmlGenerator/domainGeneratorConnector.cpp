@@ -155,7 +155,7 @@ size_t XmlGenerator::parse(std::istream &input)
     while (not input.eof()) {
         std::getline(std::cin, line);
 
-        auto tokens = Tokenizer(line, string(1, '\0')).split();
+        auto tokens = Tokenizer(line, string(1, '\0'), false).split();
         if (tokens.empty()) {
             continue;
         }
