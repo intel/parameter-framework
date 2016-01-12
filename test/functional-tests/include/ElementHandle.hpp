@@ -89,10 +89,6 @@ public:
     {
         return mayFailGet(&EH::getAs<T>);
     }
-    /** Wrap EH::setAsDouble to throw an exception on failure. */
-    void setAsDouble(double value) { mayFailCall(&EH::setAsDouble, value); }
-    /** Wrap EH::getAsDouble to throw an exception on failure. */
-    void getAsDouble(double &value) const { mayFailCall(&EH::getAsDouble, value); }
 
     std::string getStructureAsXML() const { return mayFailGet(&EH::getStructureAsXML); }
 
