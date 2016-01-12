@@ -94,7 +94,7 @@
           <FixedPointParameter Name="q2.5">1.18750</FixedPointParameter>
         </ConfigurableElement>
         <ConfigurableElement Path="/Test/test/block/1/string">
-          <StringParameter Name="string">some string</StringParameter>
+          <StringParameter Name="string"></StringParameter>
         </ConfigurableElement>
       </Configuration>
       <Configuration Name="Green.Off">
