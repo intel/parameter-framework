@@ -82,7 +82,7 @@ class CParameterMgr : private CElement
     // Version
     static const uint32_t guiEditionMajor = 3;
     static const uint32_t guiEditionMinor = 2;
-    static const uint32_t guiRevision = 0;
+    static const uint32_t guiRevision = 1;
 
     // Parameter handle friendship
     friend class ElementHandle;
