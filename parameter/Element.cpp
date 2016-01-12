@@ -122,7 +122,6 @@ string CElement::dumpContent(utility::ErrorContext &errorContext, const size_t d
 // Element properties
 void CElement::showProperties(string &strResult) const
 {
-    strResult = "\n";
     strResult += "Kind: " + getKind() + "\n";
     showDescriptionProperty(strResult);
 }
@@ -330,8 +329,6 @@ bool CElement::removeChild(CElement *pChild)
 
 void CElement::listChildren(string &strChildList) const
 {
-    strChildList = "\n";
-
     // Get list of children names
     for (CElement *pChild : _childArray) {
 

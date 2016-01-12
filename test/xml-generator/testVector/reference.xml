@@ -200,19 +200,19 @@
       </Configuration>
     </Configurations>
     <ConfigurableElements>
-      <ConfigurableElement Path="/Test/test/block/3/q2.5"/>
-      <ConfigurableElement Path="/Test/test/block/3/string"/>
-      <ConfigurableElement Path="/Test/test/included/bool"/>
+      <ConfigurableElement Path="/Test/test/block/0/q2.5"/>
+      <ConfigurableElement Path="/Test/test/block/0/string"/>
+      <ConfigurableElement Path="/Test/test/inline/bool"/>
     </ConfigurableElements>
     <Settings>
       <Configuration Name="green.confGroup..On.Blue.dot">
-        <ConfigurableElement Path="/Test/test/block/3/q2.5">
+        <ConfigurableElement Path="/Test/test/block/0/q2.5">
           <FixedPointParameter Name="q2.5">1.18750</FixedPointParameter>
         </ConfigurableElement>
-        <ConfigurableElement Path="/Test/test/block/3/string">
+        <ConfigurableElement Path="/Test/test/block/0/string">
           <StringParameter Name="string">12 ab @ 	 &lt;![CDATA[ &lt; &gt; \n \0 ✔ "'\</StringParameter>
         </ConfigurableElement>
-        <ConfigurableElement Path="/Test/test/included/bool">
+        <ConfigurableElement Path="/Test/test/inline/bool">
           <BooleanParameter Name="bool">1</BooleanParameter>
         </ConfigurableElement>
       </Configuration>

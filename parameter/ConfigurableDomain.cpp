@@ -686,8 +686,6 @@ bool CConfigurableDomain::deleteConfiguration(const string &strName, string &str
 
 void CConfigurableDomain::listAssociatedToElements(string &strResult) const
 {
-    strResult = "\n";
-
     ConfigurableElementListIterator it;
 
     // Browse all configurable elements

@@ -33,8 +33,8 @@ domainGroup: Red sequenceAware
 						Colors Includes Blue
 
 						component: /Test/test
-							component: block/3
+							component: block/0
 								q2.5 = 1.18750
 								string = 12 ab @ 	 <![CDATA[ < > \n \0 ✔ "'\
-							component: included
+							component: inline
 								bool = 1

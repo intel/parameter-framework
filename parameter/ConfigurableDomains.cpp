@@ -317,8 +317,6 @@ bool CConfigurableDomains::split(const string &domainName, CConfigurableElement 
 
 void CConfigurableDomains::listAssociatedElements(string &strResult) const
 {
-    strResult = "\n";
-
     std::set<const CConfigurableElement *> configurableElementSet;
 
     // Get all owned configurable elements
@@ -341,8 +339,6 @@ void CConfigurableDomains::listAssociatedElements(string &strResult) const
 
 void CConfigurableDomains::listConflictingElements(string &strResult) const
 {
-    strResult = "\n";
-
     std::set<const CConfigurableElement *> configurableElementSet;
 
     // Get all owned configurable elements
@@ -369,8 +365,6 @@ void CConfigurableDomains::listConflictingElements(string &strResult) const
 
 void CConfigurableDomains::listDomains(string &strResult) const
 {
-    strResult = "\n";
-
     // List domains
     size_t uiNbConfigurableDomains = getNbChildren();
 

@@ -10,6 +10,9 @@
         <InstanceDefinition>
 
             <Component Name="included" Type="Included"/>
+            <ParameterBlock Name="inline">
+                <BooleanParameter Name="bool"/>
+            </ParameterBlock>
 
             <ParameterBlock Name="block" ArrayLength="5">
                 <FixedPointParameter Name="q2.5" Size="8" Integral="2" Fractional="5"/>

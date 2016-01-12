@@ -194,8 +194,6 @@ private:
     {
         initMaxCommandUsageLength();
 
-        strResult = "\n";
-
         // Show usages
         for (const auto *pRemoteCommandParserItem : _remoteCommandParserVector) {
 
