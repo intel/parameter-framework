@@ -159,9 +159,9 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]")
                          {"(inside range)", 0.0f},
                      }) {
                     GIVEN ("A valid value " + vec.title) {
-                        CHECK_NOTHROW(handle.setAsDouble(vec.payload));
+                        CHECK_NOTHROW(handle.setAs<double>(vec.payload));
                         double getValueBack;
-                        REQUIRE_NOTHROW(handle.getAsDouble(getValueBack));
+                        REQUIRE_NOTHROW(getValueBack = handle.getAs<double>());
                         CHECK(getValueBack == vec.payload);
                     }
                 }
@@ -169,7 +169,7 @@ SCENARIO_METHOD(FloatsPF, "Floating points", "[floating points]")
                          {"(too high)", 12.3f}, {"(too low)", -50.5f},
                      }) {
                     GIVEN ("An invalid value " + vec.title) {
-                        CHECK_THROWS_AS(handle.setAsDouble(vec.payload), Exception);
+                        CHECK_THROWS_AS(handle.setAs<double>(vec.payload), Exception);
                     }
                 }
             }

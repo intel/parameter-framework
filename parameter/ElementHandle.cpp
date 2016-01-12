@@ -218,6 +218,10 @@ bool ElementHandle::setAs(const T value, string &error) const
     return parameter.access(copy, true, parameterAccessContext);
 }
 
+template PARAMETER_EXPORT bool ElementHandle::setAs(bool, string &) const;
+template PARAMETER_EXPORT bool ElementHandle::setAs(string, string &) const;
+template PARAMETER_EXPORT bool ElementHandle::setAs(double, string &) const;
+
 template <class T>
 bool ElementHandle::getAs(T &value, string &error) const
 {
@@ -234,6 +238,10 @@ bool ElementHandle::getAs(T &value, string &error) const
 
     return parameter.access(value, false, parameterAccessContext);
 }
+
+template PARAMETER_EXPORT bool ElementHandle::getAs(bool &, string &) const;
+template PARAMETER_EXPORT bool ElementHandle::getAs(string &, string &) const;
+template PARAMETER_EXPORT bool ElementHandle::getAs(double &, string &) const;
 
 // Boolean access
 bool ElementHandle::setAsBoolean(bool bValue, string &error)

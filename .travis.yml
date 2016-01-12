@@ -33,7 +33,6 @@ addons:
             - g++-4.8
             - cmake
             - python3-dev
-            - libasio-dev
             - clang-format-3.8
 
 install:

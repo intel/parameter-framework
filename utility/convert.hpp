@@ -33,8 +33,10 @@
 #include <limits>
 #include <sstream>
 #include <string>
+#include <algorithm>
 #include <stdint.h>
 #include <cmath>
+#include <cctype>
 #include <type_traits>
 
 /* details namespace is here to hide implementation details to header end user. It
@@ -184,6 +186,8 @@ static inline bool convertToVia(const std::string &str, T &result)
  * @param[out] result reference to object where to store the result.
  *
  * @return true if conversion was successful, false otherwise.
+ *
+ * @FIXME: Unit tests were not imported with this conversion library.
  */
 template <typename T>
 static inline bool convertTo(const std::string &str, T &result)
@@ -302,12 +306,30 @@ inline bool convertTo<double>(const std::string &str, double &result)
 template <>
 inline bool convertTo<bool>(const std::string &str, bool &result)
 {
-    if (str == "0" || str == "FALSE" || str == "false") {
+    // Try the numerical representation
+    uint8_t numeric;
+    if (convertTo(str, numeric)) {
+        switch (numeric) {
+        case 0:
+            result = false;
+            return true;
+        case 1:
+            result = true;
+            return true;
+        default:
+            return false;
+        }
+    }
+
+    std::string lower = str;
+    transform(begin(str), end(str), begin(lower), tolower);
+
+    if (lower == "false") {
         result = false;
         return true;
     }
 
-    if (str == "1" || str == "TRUE" || str == "true") {
+    if (lower == "true") {
         result = true;
         return true;
     }

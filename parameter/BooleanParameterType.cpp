@@ -30,6 +30,7 @@
 #include "BooleanParameterType.h"
 #include "ParameterAccessContext.h"
 #include "Utility.h"
+#include "convert.hpp"
 
 #define base CParameterType
 
@@ -47,27 +48,14 @@ std::string CBooleanParameterType::getKind() const
 bool CBooleanParameterType::toBlackboard(const std::string &strValue, uint32_t &uiValue,
                                          CParameterAccessContext &parameterAccessContext) const
 {
-    if (strValue == "1" || strValue == "0x1") {
-
-        uiValue = true;
-    } else if (strValue == "0" || strValue == "0x0") {
-
-        uiValue = false;
-    } else {
-        parameterAccessContext.setError(strValue + " value not part of numerical space {");
-
-        if (utility::isHexadecimal(strValue)) {
-
-            parameterAccessContext.appendToError("0x0, 0x1");
-        } else {
-
-            parameterAccessContext.appendToError("0, 1");
-        }
-        parameterAccessContext.appendToError("} for " + getKind());
+    bool value;
+    if (not convertTo(strValue, value)) {
+        parameterAccessContext.setError(strValue + " value is invalid for " + getKind() +
+                                        ", valid values are {0, 1, 0x0, 0x1, true, false}");
 
         return false;
     }
-
+    uiValue = value;
     return true;
 }
 
