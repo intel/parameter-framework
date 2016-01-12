@@ -34,8 +34,8 @@ using std::vector;
 
 const string Tokenizer::defaultDelimiters = " \n\r\t\v\f";
 
-Tokenizer::Tokenizer(const string &input, const string &delimiters)
-    : _input(input), _delimiters(delimiters)
+Tokenizer::Tokenizer(const string &input, const string &delimiters, bool mergeDelimiters)
+    : _input(input), _delimiters(delimiters), _mergeDelimiters(mergeDelimiters)
 {
 }
 
@@ -47,10 +47,18 @@ vector<string> Tokenizer::split()
 
     for (const auto character : _input) {
         if (_delimiters.find(character) != string::npos) {
-            leftover = false;
-            if (token.empty()) {
-                // skip consecutive delimiters
-                continue;
+            if (_mergeDelimiters) {
+                leftover = false;
+                if (token.empty()) {
+                    // skip consecutive delimiters
+                    continue;
+                }
+            } else {
+                // We've encountered a delimiter, which means that there is a
+                // left-hand token and a right-side token. We are going to add
+                // the left-hand one but must not forget that there is a
+                // right-hand one (possibly empty)
+                leftover = true;
             }
 
             result.push_back(token);

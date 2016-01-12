@@ -81,4 +81,34 @@ SCENARIO("Tokenizer tests")
             CHECK(tokenizer.split() == expected);
         }
     }
+
+    GIVEN ("A tokenizer that doesn't merge consecutive separators") {
+
+        GIVEN ("An empty string") {
+            Tokenizer tokenizer("", Tokenizer::defaultDelimiters, false);
+            Expected expected{};
+
+            THEN ("split() should be empty") {
+                CHECK(tokenizer.split() == expected);
+            }
+        }
+
+        GIVEN ("A string consisting only of a delimiter") {
+            Tokenizer tokenizer(",", ",", false);
+            Expected expected{"", ""};
+
+            THEN ("split() should return two empty tokens") {
+                CHECK(tokenizer.split() == expected);
+            }
+        }
+
+        GIVEN ("Multiple separators in a row") {
+            Tokenizer tokenizer(" a  b \nc d ", Tokenizer::defaultDelimiters, false);
+            Expected expected{"", "a", "", "b", "", "c", "d", ""};
+
+            THEN ("split() api should work") {
+                CHECK(tokenizer.split() == expected);
+            }
+        }
+    }
 }
