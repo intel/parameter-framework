@@ -38,7 +38,7 @@ bool CMappingData::init(const std::string &rawMapping, std::string &error)
 
     std::string strMappingElement;
 
-    while (!(strMappingElement = mappingTok.next()).empty()) {
+    for (const auto &strMappingElement : mappingTok.split()) {
 
         std::string::size_type iFistDelimiterOccurrence = strMappingElement.find_first_of(':');
 

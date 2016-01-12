@@ -15,7 +15,8 @@ domainGroup: EddGroup
 
 				component: /Test/test/block/1
 					q2.5 = 1.2
-					string = some string
+					# set to an empty string
+					string =
 
 			# Inherits from "EddGroup" domainGroup, "First" domain
 			# and from "Green" confGroup

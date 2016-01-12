@@ -38,9 +38,6 @@
  *
  * Must be initialized with a string to be tokenized and, optionally, a string
  * of delimiters (@see Tokenizer::defaultDelimiters).
- *
- * Multiple consecutive delimiters (even if different) are considered as a
- * single one. As a result, there can't be empty tokens.
  */
 class Tokenizer : private utility::NonCopyable
 {
@@ -50,17 +47,13 @@ public:
      * @param[in] input The string to be tokenized
      * @param[in] delimiters A string containing all the token delimiters
      *            (hence, each delimiter can only be a single character)
+     * @param[in] mergeDelimiters If true, consecutive delimiters are considered
+     *            as one; leading and trailing delimiters are also ignored.
+     *            If false, consecutive delimiters produce empty tokens
      */
-    Tokenizer(const std::string &input, const std::string &delimiters = defaultDelimiters);
+    Tokenizer(const std::string &input, const std::string &delimiters = defaultDelimiters,
+              bool mergeDelimiters = true);
     ~Tokenizer(){};
-
-    /** Return the next token or an empty string if no more token
-     *
-     * Multiple consecutive delimiters are considered as a single one - i.e.
-     * "a     bc d   " will be tokenized as ("a", "bc", "d") if the delimiter
-     * is ' '.
-     */
-    std::string next();
 
     /** Return a vector of all tokens
      */
@@ -72,6 +65,5 @@ public:
 private:
     const std::string _input;      //< string to be tokenized
     const std::string _delimiters; //< token delimiters
-
-    std::string::size_type _position; //< end of the last returned token
+    const bool _mergeDelimiters;   //< whether subsequent delimiters should be merged
 };
