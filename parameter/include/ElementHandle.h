@@ -45,7 +45,13 @@ class CConfigurableElement;
 class CBaseParameter;
 /** @} */
 
-/** TODO */
+/** ElementHandle gives access to elements of the parameter tree.
+ *
+ * ElementHandle objects can be created by calling the
+ * ParameterMgrPlatformConnector::createElementHandle.
+ *
+ * @note non const method can only be called on rogue elements.
+ */
 class PARAMETER_EXPORT ElementHandle
 {
 public:
