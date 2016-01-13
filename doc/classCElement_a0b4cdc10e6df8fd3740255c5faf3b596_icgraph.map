@@ -1,5 +1,7 @@
 <map id="CElement::createChild" name="CElement::createChild">
-<area shape="rect" id="node2" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="412,5,568,47"/>
-<area shape="rect" id="node4" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="217,50,364,77"/>
-<area shape="rect" id="node3" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="616,13,781,39"/>
+<area shape="rect" id="node2" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="416,5,572,47"/>
+<area shape="rect" id="node4" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="217,82,364,109"/>
+<area shape="rect" id="node3" href="$classCSubsystem.html#a82e0dd2dd8f504c57e3b997f13dc7654" title="Deserialize the structure from xml. " alt="" coords="624,13,849,39"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a58dabad79b39f912250eed36e43d718a" title="Deserialize the structure from xml. " alt="" coords="412,75,576,116"/>
+<area shape="rect" id="node6" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="655,75,819,116"/>
 </map>

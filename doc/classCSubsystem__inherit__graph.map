@@ -1,9 +1,8 @@
 <map id="CSubsystem" name="CSubsystem">
-<area shape="rect" id="node8" href="$classCVirtualSubsystem.html" title="CVirtualSubsystem" alt="" coords="106,393,250,420"/>
-<area shape="rect" id="node2" href="$classCConfigurableElementWithMapping.html" title="Base class for all Configurable Elements that can have a Mapping attribute. " alt="" coords="5,229,196,271"/>
-<area shape="rect" id="node3" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="19,155,183,181"/>
-<area shape="rect" id="node4" href="$classCElement.html" title="CElement" alt="" coords="59,80,143,107"/>
-<area shape="rect" id="node5" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="8,5,84,32"/>
-<area shape="rect" id="node6" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="108,5,203,32"/>
-<area shape="rect" id="node7" href="$classIMapper.html" title="IMapper" alt="" coords="220,237,293,263"/>
+<area shape="rect" id="node7" href="$classCVirtualSubsystem.html" title="CVirtualSubsystem" alt="" coords="97,304,241,331"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="16,155,180,181"/>
+<area shape="rect" id="node3" href="$classCElement.html" title="CElement" alt="" coords="56,80,140,107"/>
+<area shape="rect" id="node4" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="5,5,81,32"/>
+<area shape="rect" id="node5" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="105,5,200,32"/>
+<area shape="rect" id="node6" href="$classIMapper.html" title="IMapper" alt="" coords="204,155,277,181"/>
 </map>

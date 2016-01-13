@@ -786,7 +786,7 @@
 </g>
 <!-- Node45 -->
 <g id="node45" class="node"><title>Node45</title>
-<g id="a_node45"><a xlink:href="classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" target="_top" xlink:title="Returns the CConfigurableElement corresponding to the path given in argument. ">
+<g id="a_node45"><a xlink:href="classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" target="_top" xlink:title="const version of getConfigurableElement ">
 <polygon fill="white" stroke="black" points="764.5,-288 764.5,-318 937.5,-318 937.5,-288 764.5,-288"/>
 <text text-anchor="start" x="772.5" y="-306" font-family="Verdana" font-size="10.00">CParameterMgr::getConfigurable</text>
 <text text-anchor="middle" x="851" y="-295" font-family="Verdana" font-size="10.00">Element</text>
@@ -905,17 +905,17 @@
 </g>
 <!-- Node53 -->
 <g id="node53" class="node"><title>Node53</title>
-<g id="a_node53"><a xlink:href="classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" target="_top" xlink:title="CParameterHandle::setAsSigned\lInteger">
-<polygon fill="white" stroke="black" points="323.5,-241 323.5,-271 496.5,-271 496.5,-241 323.5,-241"/>
-<text text-anchor="start" x="331.5" y="-259" font-family="Verdana" font-size="10.00">CParameterHandle::setAsSigned</text>
+<g id="a_node53"><a xlink:href="classElementHandle.html#a8e78a67cc5501cabb45f391040973fc7" target="_top" xlink:title="Signed Integer Access. ">
+<polygon fill="white" stroke="black" points="332,-241 332,-271 488,-271 488,-241 332,-241"/>
+<text text-anchor="start" x="340" y="-259" font-family="Verdana" font-size="10.00">ElementHandle::setAsSigned</text>
 <text text-anchor="middle" x="410" y="-248" font-family="Verdana" font-size="10.00">Integer</text>
 </a>
 </g>
 </g>
 <!-- Node52&#45;&gt;Node53 -->
 <g id="edge76" class="edge"><title>Node52&#45;&gt;Node53</title>
-<path fill="none" stroke="midnightblue" d="M274.667,-251.735C286.829,-252.122 300.07,-252.542 313.34,-252.963"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="313.371,-256.466 323.477,-253.285 313.593,-249.469 313.371,-256.466"/>
+<path fill="none" stroke="midnightblue" d="M274.667,-251.735C289.333,-252.201 305.567,-252.716 321.532,-253.223"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="321.859,-256.735 331.965,-253.554 322.081,-249.739 321.859,-256.735"/>
 </g>
 <!-- Node54&#45;&gt;Node4 -->
 <g id="edge81" class="edge"><title>Node54&#45;&gt;Node4</title>
@@ -929,9 +929,9 @@
 </g>
 <!-- Node55 -->
 <g id="node55" class="node"><title>Node55</title>
-<g id="a_node55"><a xlink:href="classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3" target="_top" xlink:title="CParameterHandle::getAsSigned\lInteger">
-<polygon fill="white" stroke="black" points="323,-115 323,-145 497,-145 497,-115 323,-115"/>
-<text text-anchor="start" x="331" y="-133" font-family="Verdana" font-size="10.00">CParameterHandle::getAsSigned</text>
+<g id="a_node55"><a xlink:href="classElementHandle.html#af92d4bc6efdf100335b078ccaf96b04a" target="_top" xlink:title="ElementHandle::getAsSigned\lInteger">
+<polygon fill="white" stroke="black" points="331.5,-115 331.5,-145 488.5,-145 488.5,-115 331.5,-115"/>
+<text text-anchor="start" x="339.5" y="-133" font-family="Verdana" font-size="10.00">ElementHandle::getAsSigned</text>
 <text text-anchor="middle" x="410" y="-122" font-family="Verdana" font-size="10.00">Integer</text>
 </a>
 </g>
@@ -953,9 +953,9 @@
 </g>
 <!-- Node58 -->
 <g id="node58" class="node"><title>Node58</title>
-<g id="a_node58"><a xlink:href="classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" target="_top" xlink:title="CParameterHandle::setAsString">
-<polygon fill="white" stroke="black" points="325.5,-76.5 325.5,-95.5 494.5,-95.5 494.5,-76.5 325.5,-76.5"/>
-<text text-anchor="middle" x="410" y="-83.5" font-family="Verdana" font-size="10.00">CParameterHandle::setAsString</text>
+<g id="a_node58"><a xlink:href="classElementHandle.html#a7acbc85ef7568684d60a158d3f177188" target="_top" xlink:title="String Access. ">
+<polygon fill="white" stroke="black" points="334,-76.5 334,-95.5 486,-95.5 486,-76.5 334,-76.5"/>
+<text text-anchor="middle" x="410" y="-83.5" font-family="Verdana" font-size="10.00">ElementHandle::setAsString</text>
 </a>
 </g>
 </g>
@@ -981,9 +981,9 @@
 </g>
 <!-- Node60 -->
 <g id="node60" class="node"><title>Node60</title>
-<g id="a_node60"><a xlink:href="classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" target="_top" xlink:title="CParameterHandle::getAsString">
-<polygon fill="white" stroke="black" points="325,-0.5 325,-19.5 495,-19.5 495,-0.5 325,-0.5"/>
-<text text-anchor="middle" x="410" y="-7.5" font-family="Verdana" font-size="10.00">CParameterHandle::getAsString</text>
+<g id="a_node60"><a xlink:href="classElementHandle.html#a900c77120aa747ae9c24f0777abcd0a4" target="_top" xlink:title="ElementHandle::getAsString">
+<polygon fill="white" stroke="black" points="334,-0.5 334,-19.5 486,-19.5 486,-0.5 334,-0.5"/>
+<text text-anchor="middle" x="410" y="-7.5" font-family="Verdana" font-size="10.00">ElementHandle::getAsString</text>
 </a>
 </g>
 </g>

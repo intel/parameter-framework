@@ -83,7 +83,7 @@
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" target="_top" xlink:title="Returns the CConfigurableElement corresponding to the path given in argument. ">
+<g id="a_node5"><a xlink:href="classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" target="_top" xlink:title="const version of getConfigurableElement ">
 <polygon fill="white" stroke="black" points="573,-102 573,-132 746,-132 746,-102 573,-102"/>
 <text text-anchor="start" x="581" y="-120" font-family="Verdana" font-size="10.00">CParameterMgr::getConfigurable</text>
 <text text-anchor="middle" x="659.5" y="-109" font-family="Verdana" font-size="10.00">Element</text>

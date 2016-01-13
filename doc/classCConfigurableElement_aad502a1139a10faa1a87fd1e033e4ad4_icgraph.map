@@ -12,8 +12,10 @@
 <area shape="rect" id="node17" href="$classCBitParameterBlock.html#a74485c7734eb44648b1182cf8e884d40" title="CBitParameterBlock\l::setDefaultValues" alt="" coords="252,649,401,691"/>
 <area shape="rect" id="node18" href="$classCConfigurableDomain.html#aec0b138482d5cd4d42e14c9de882a16c" title="Blackboard Configuration and Base Offset retrieval. " alt="" coords="222,715,431,756"/>
 <area shape="rect" id="node20" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="741,744,1000,785"/>
-<area shape="rect" id="node22" href="$classCParameter.html#a26fa5e3c97be1577ad15d04295ada708" title="CParameter::setDefaultValues" alt="" coords="219,831,434,858"/>
-<area shape="rect" id="node23" href="$classCStringParameter.html#a76f587f59ddcfd51704f55fd2fa88485" title="CStringParameter::setDefault\lValues" alt="" coords="221,883,432,924"/>
+<area shape="rect" id="node22" href="$classCConfigurableElement.html#ab18c96398bdb79afbcc3dd2e607e4a4e" title="Gets the element as an array of bytes. " alt="" coords="245,832,409,873"/>
+<area shape="rect" id="node23" href="$classCConfigurableElement.html#ac023d140783c1b1d980ec14da15855f2" title="Sets the element as if it was an array of bytes. " alt="" coords="245,897,409,939"/>
+<area shape="rect" id="node24" href="$classCParameter.html#a26fa5e3c97be1577ad15d04295ada708" title="CParameter::setDefaultValues" alt="" coords="219,963,434,990"/>
+<area shape="rect" id="node25" href="$classCStringParameter.html#a76f587f59ddcfd51704f55fd2fa88485" title="CStringParameter::setDefault\lValues" alt="" coords="221,1015,432,1056"/>
 <area shape="rect" id="node3" href="$classCAreaConfiguration.html#a9c0ddade93f42f2ed315dd3a0719933c" title="CAreaConfiguration\l::validate" alt="" coords="515,5,662,47"/>
 <area shape="rect" id="node5" href="$classCDomainConfiguration.html#aff0adeb0eb6645ef3ae8a4b75c4a7892" title="CDomainConfiguration\l::save" alt="" coords="505,71,672,112"/>
 <area shape="rect" id="node4" href="$classCDomainConfiguration.html#a442810a2eceb0eb11da8fefef93406d5" title="CDomainConfiguration\l::validate" alt="" coords="787,5,954,47"/>

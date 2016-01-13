@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['ilogger',['ILogger',['../classCParameterMgrFullConnector_1_1ILogger.html',1,'CParameterMgrFullConnector']]],
   ['ilogger',['ILogger',['../classCParameterMgrPlatformConnector_1_1ILogger.html',1,'CParameterMgrPlatformConnector']]],
   ['ilogger',['ILogger',['../classcore_1_1log_1_1ILogger.html',1,'core::log']]],
   ['imapper',['IMapper',['../classIMapper.html',1,'']]],

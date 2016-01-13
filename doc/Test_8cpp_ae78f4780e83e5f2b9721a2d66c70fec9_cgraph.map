@@ -49,15 +49,15 @@
 <area shape="rect" id="node41" href="$classCParameterMgr.html#a8e084df8edc632b057815f533624480d" title="CParameterMgr::applyConfigurations" alt="" coords="1012,615,1268,642"/>
 <area shape="rect" id="node43" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="431,729,673,771"/>
 <area shape="rect" id="node44" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="723,729,962,771"/>
-<area shape="rect" id="node45" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="1025,732,1255,773"/>
+<area shape="rect" id="node45" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="const version of getConfigurableElement " alt="" coords="1025,732,1255,773"/>
 <area shape="rect" id="node51" href="$classCConfigurableElement.html#a1376855eba031b3cbb715389e23b20fe" title="CConfigurableElement\l::isParameter" alt="" coords="1058,667,1222,708"/>
 <area shape="rect" id="node46" href="$classCPathNavigator.html#ad588f1802ca5e196e96972273f36a80d" title="CPathNavigator::navigate\lThrough" alt="" coords="1341,691,1525,732"/>
 <area shape="rect" id="node49" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="1337,781,1529,807"/>
 <area shape="rect" id="node47" href="$classCPathNavigator.html#a0fbd92beb48fdfb2041788cf77d44cf1" title="CPathNavigator::getCurrentPath" alt="" coords="1599,689,1825,715"/>
 <area shape="rect" id="node48" href="$classCPathNavigator.html#a06f35d45c0bf392e11de0bf1197cc589" title="CPathNavigator::next" alt="" coords="1633,739,1791,766"/>
 <area shape="rect" id="node50" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="1639,790,1785,817"/>
-<area shape="rect" id="node53" href="$classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" title="CParameterHandle::setAsSigned\lInteger" alt="" coords="437,795,667,836"/>
-<area shape="rect" id="node55" href="$classCParameterHandle.html#ad63615d783f46d0b6fa42127e4c1a6f3" title="CParameterHandle::getAsSigned\lInteger" alt="" coords="436,963,668,1004"/>
-<area shape="rect" id="node58" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="439,1029,665,1055"/>
-<area shape="rect" id="node60" href="$classCParameterHandle.html#a393a04f321892c5c25f076135d1b9a2c" title="CParameterHandle::getAsString" alt="" coords="439,1130,665,1157"/>
+<area shape="rect" id="node53" href="$classElementHandle.html#a8e78a67cc5501cabb45f391040973fc7" title="Signed Integer Access. " alt="" coords="448,795,656,836"/>
+<area shape="rect" id="node55" href="$classElementHandle.html#af92d4bc6efdf100335b078ccaf96b04a" title="ElementHandle::getAsSigned\lInteger" alt="" coords="447,963,657,1004"/>
+<area shape="rect" id="node58" href="$classElementHandle.html#a7acbc85ef7568684d60a158d3f177188" title="String Access. " alt="" coords="451,1029,653,1055"/>
+<area shape="rect" id="node60" href="$classElementHandle.html#a900c77120aa747ae9c24f0777abcd0a4" title="ElementHandle::getAsString" alt="" coords="451,1130,653,1157"/>
 </map>

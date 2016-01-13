@@ -1,6 +1,6 @@
 <map id="remote&#45;processor/RemoteProcessorServerInterface.h" name="remote&#45;processor/RemoteProcessorServerInterface.h">
-<area shape="rect" id="node2" href="$RequestMessage_8h.html" title="RequestMessage.h" alt="" coords="484,95,627,121"/>
-<area shape="rect" id="node4" href="$Message_8h.html" title="Message.h" alt="" coords="371,169,462,196"/>
-<area shape="rect" id="node9" href="$RemoteCommand_8h.html" title="RemoteCommand.h" alt="" coords="537,169,688,196"/>
+<area shape="rect" id="node2" href="$RequestMessage_8h.html" title="RequestMessage.h" alt="" coords="555,95,697,121"/>
+<area shape="rect" id="node4" href="$Message_8h.html" title="Message.h" alt="" coords="382,169,473,196"/>
+<area shape="rect" id="node9" href="$RemoteCommand_8h.html" title="RemoteCommand.h" alt="" coords="609,169,760,196"/>
 <area shape="rect" id="node5" href="$NonCopyable_8hpp.html" title="NonCopyable.hpp" alt="" coords="228,244,363,271"/>
 </map>

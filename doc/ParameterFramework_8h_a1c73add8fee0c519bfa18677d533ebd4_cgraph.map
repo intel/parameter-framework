@@ -4,7 +4,7 @@
 <area shape="rect" id="node13" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="263,163,363,190"/>
 <area shape="rect" id="node14" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="252,214,375,241"/>
 <area shape="rect" id="node4" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="483,97,721,139"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="769,64,1000,105"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="const version of getConfigurableElement " alt="" coords="769,64,1000,105"/>
 <area shape="rect" id="node12" href="$classCConfigurableElement.html#a1376855eba031b3cbb715389e23b20fe" title="CConfigurableElement\l::isParameter" alt="" coords="803,129,967,171"/>
 <area shape="rect" id="node6" href="$classCPathNavigator.html#ad588f1802ca5e196e96972273f36a80d" title="CPathNavigator::navigate\lThrough" alt="" coords="1052,5,1236,47"/>
 <area shape="rect" id="node9" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="1068,71,1220,98"/>

@@ -1,5 +1,5 @@
 <map id="CTypeElement::populate" name="CTypeElement::populate">
 <area shape="rect" id="node2" href="$classCInstanceDefinition.html#aa29d3b10a23894522cfaa937cf385d10" title="CInstanceDefinition\l::createInstances" alt="" coords="251,5,396,47"/>
 <area shape="rect" id="node4" href="$classCTypeElement.html#a0fd0b5dfb3e3515ff5b54eda3d7e0a45" title="CTypeElement::instantiate" alt="" coords="229,71,417,98"/>
-<area shape="rect" id="node3" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="465,13,631,39"/>
+<area shape="rect" id="node3" href="$classCSubsystem.html#a82e0dd2dd8f504c57e3b997f13dc7654" title="Deserialize the structure from xml. " alt="" coords="465,13,691,39"/>
 </map>

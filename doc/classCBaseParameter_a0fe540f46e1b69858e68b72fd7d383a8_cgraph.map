@@ -1,7 +1,0 @@
-<map id="CBaseParameter::toXml" name="CBaseParameter::toXml">
-<area shape="rect" id="node2" href="$classCInstanceConfigurableElement.html#ae2d941df411f8ec4c025cbd04d3ba421" title="CInstanceConfigurableElement\l::getTypeElement" alt="" coords="228,5,447,47"/>
-<area shape="rect" id="node3" href="$classCTypeElement.html#ac4118594de3638c76ab40ccc4ecbb2a8" title="CTypeElement::toXml" alt="" coords="259,71,416,98"/>
-<area shape="rect" id="node4" href="$classCTypeElement.html#a31edf559bc169a1e22e312280bb7a495" title="CTypeElement::isScalar" alt="" coords="519,21,689,47"/>
-<area shape="rect" id="node5" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="508,71,700,98"/>
-<area shape="rect" id="node6" href="$classCTypeElement.html#a6f0d426a1a1be3334bcd9f6a7db2c281" title="CTypeElement::getArrayLength" alt="" coords="495,122,713,149"/>
-</map>

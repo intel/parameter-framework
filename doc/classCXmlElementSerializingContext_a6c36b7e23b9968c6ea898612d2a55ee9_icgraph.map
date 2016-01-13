@@ -1,7 +1,9 @@
 <map id="CXmlElementSerializingContext::getElementLibrary" name="CXmlElementSerializingContext::getElementLibrary">
-<area shape="rect" id="node2" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="283,13,447,39"/>
-<area shape="rect" id="node6" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="276,64,455,105"/>
-<area shape="rect" id="node3" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="697,5,853,47"/>
-<area shape="rect" id="node5" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="503,50,649,77"/>
-<area shape="rect" id="node4" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="901,13,1067,39"/>
+<area shape="rect" id="node2" href="$classCElement.html#a0b4cdc10e6df8fd3740255c5faf3b596" title="Creates a child CElement from a child XML Element. " alt="" coords="283,45,447,71"/>
+<area shape="rect" id="node8" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="276,96,455,137"/>
+<area shape="rect" id="node3" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="701,5,857,47"/>
+<area shape="rect" id="node5" href="$classCElement.html#a1978d50e2db432e7b8f0928f33d3f01a" title="CElement::fromXml" alt="" coords="503,82,649,109"/>
+<area shape="rect" id="node4" href="$classCSubsystem.html#a82e0dd2dd8f504c57e3b997f13dc7654" title="Deserialize the structure from xml. " alt="" coords="909,13,1135,39"/>
+<area shape="rect" id="node6" href="$classCConfigurableElement.html#a58dabad79b39f912250eed36e43d718a" title="Deserialize the structure from xml. " alt="" coords="697,75,861,116"/>
+<area shape="rect" id="node7" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="940,75,1104,116"/>
 </map>

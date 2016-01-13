@@ -1,4 +1,3 @@
 <map id="CParameterMgr::getForceNoRemoteInterface" name="CParameterMgr::getForceNoRemoteInterface">
-<area shape="rect" id="node2" href="$classCParameterMgrFullConnector.html#ae7f1c80fbac2ab3590ecfba3881ad7e1" title="Is the remote interface forcefully disabled ? " alt="" coords="274,5,483,47"/>
-<area shape="rect" id="node3" href="$classCParameterMgrPlatformConnector.html#a3a581eb0bc308e80e1028607da28bffc" title="Is the remote interface forcefully disabled ? " alt="" coords="257,71,500,112"/>
+<area shape="rect" id="node2" href="$classCParameterMgrPlatformConnector.html#a3a581eb0bc308e80e1028607da28bffc" title="Is the remote interface forcefully disabled ? " alt="" coords="257,5,500,47"/>
 </map>

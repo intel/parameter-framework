@@ -1,4 +1,6 @@
 <map id="CElement::fromXml" name="CElement::fromXml">
-<area shape="rect" id="node2" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="200,22,356,63"/>
-<area shape="rect" id="node3" href="$classCSubsystem.html#aa114a31f4aa4b0f47b3c616b721854d4" title="CSubsystem::fromXml" alt="" coords="404,29,569,56"/>
+<area shape="rect" id="node2" href="$classCComponentLibrary.html#ad4cc928cda43371fb31f20394e8e04e5" title="CComponentLibrary::\lfromXml" alt="" coords="204,5,360,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#a58dabad79b39f912250eed36e43d718a" title="Deserialize the structure from xml. " alt="" coords="200,71,364,112"/>
+<area shape="rect" id="node3" href="$classCSubsystem.html#a82e0dd2dd8f504c57e3b997f13dc7654" title="Deserialize the structure from xml. " alt="" coords="412,13,637,39"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="443,71,607,112"/>
 </map>

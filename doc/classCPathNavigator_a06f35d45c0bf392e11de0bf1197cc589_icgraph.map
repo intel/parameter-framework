@@ -1,24 +1,25 @@
 <map id="CPathNavigator::next" name="CPathNavigator::next">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#a1dae2debee4a443ce572f15e75247808" title="CConfigurableElement\l::accessValue" alt="" coords="238,102,402,143"/>
-<area shape="rect" id="node3" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="224,243,416,269"/>
-<area shape="rect" id="node4" href="$classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36" title="CElementLocator::locate" alt="" coords="503,163,682,189"/>
-<area shape="rect" id="node21" href="$classCInstanceConfigurableElement.html#a37607c6081e2f406748ab6848acc422f" title="CInstanceConfigurableElement\l::checkPathExhausted" alt="" coords="211,370,429,411"/>
-<area shape="rect" id="node23" href="$classCPathNavigator.html#ad588f1802ca5e196e96972273f36a80d" title="CPathNavigator::navigate\lThrough" alt="" coords="228,294,412,335"/>
-<area shape="rect" id="node13" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="Returns the CConfigurableElement corresponding to the path given in argument. " alt="" coords="477,281,708,322"/>
-<area shape="rect" id="node5" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="756,150,1015,191"/>
-<area shape="rect" id="node7" href="$classCParameterMgr.html#ae9941471fb32f02b3620cf46cd13ebbb" title="CParameterMgr::addConfigurable\lElementToDomain" alt="" coords="768,215,1003,257"/>
-<area shape="rect" id="node9" href="$classCParameterMgr.html#a4f307490c67f2dde0b08e638500dd5d4" title="CParameterMgr::removeConfigurable\lElementFromDomain" alt="" coords="756,22,1015,63"/>
-<area shape="rect" id="node11" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="807,96,963,123"/>
-<area shape="rect" id="node6" href="$classCParameterMgrFullConnector.html#a64a98bccd79559d5466ff3fd8e93b890" title="CParameterMgrFullConnector\l::accessConfigurationValue" alt="" coords="1084,150,1292,191"/>
-<area shape="rect" id="node8" href="$classCParameterMgrFullConnector.html#a9b8231307d300d1fbc9b01b7d1047650" title="CParameterMgrFullConnector\l::addConfigurableElementToDomain" alt="" coords="1063,215,1313,257"/>
-<area shape="rect" id="node10" href="$classCParameterMgrFullConnector.html#aeb023e264ddb06255bea04ddb2c65708" title="CParameterMgrFullConnector\l::removeConfigurableElementFrom\lDomain" alt="" coords="1066,5,1310,61"/>
-<area shape="rect" id="node12" href="$classCParameterMgrFullConnector.html#a760e854b7cf96957927c1c64869909f4" title="CParameterMgrFullConnector\l::split" alt="" coords="1084,85,1292,126"/>
-<area shape="rect" id="node14" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="766,281,1005,322"/>
-<area shape="rect" id="node19" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="776,346,995,387"/>
-<area shape="rect" id="node15" href="$classCParameterMgrFullConnector.html#a2561bca68b84ced060cbe2be8597a812" title="CParameterMgrFullConnector\l::createParameterHandle" alt="" coords="1084,346,1292,387"/>
-<area shape="rect" id="node16" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="1067,281,1309,322"/>
-<area shape="rect" id="node17" href="$ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" title="Construct the handle to a parameter given its path. " alt="" coords="1361,288,1500,315"/>
-<area shape="rect" id="node18" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1548,288,1707,315"/>
-<area shape="rect" id="node20" href="$classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="1084,411,1292,453"/>
-<area shape="rect" id="node22" href="$classCBaseParameter.html#a4a9b3e3a2d1ea65a8dc7048559db8dc2" title="CBaseParameter::accessValue" alt="" coords="484,397,701,424"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a1dae2debee4a443ce572f15e75247808" title="CConfigurableElement\l::accessValue" alt="" coords="238,87,402,128"/>
+<area shape="rect" id="node3" href="$classCElement.html#a182dcfb7ab154cc97cff047c5f5539f5" title="CElement::findDescendant" alt="" coords="224,227,416,254"/>
+<area shape="rect" id="node4" href="$classCElementLocator.html#a94ddc34b50d96cd1cc78f43e3014ce36" title="CElementLocator::locate" alt="" coords="503,151,682,178"/>
+<area shape="rect" id="node22" href="$classCInstanceConfigurableElement.html#a37607c6081e2f406748ab6848acc422f" title="CInstanceConfigurableElement\l::checkPathExhausted" alt="" coords="211,344,429,385"/>
+<area shape="rect" id="node24" href="$classCPathNavigator.html#ad588f1802ca5e196e96972273f36a80d" title="CPathNavigator::navigate\lThrough" alt="" coords="228,279,412,320"/>
+<area shape="rect" id="node13" href="$classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" title="const version of getConfigurableElement " alt="" coords="477,280,708,321"/>
+<area shape="rect" id="node5" href="$classCParameterMgr.html#a25055f536c2d537e86852c87a4e1a061" title="CParameterMgr::accessConfiguration\lValue" alt="" coords="756,8,1015,49"/>
+<area shape="rect" id="node7" href="$classCParameterMgr.html#ae9941471fb32f02b3620cf46cd13ebbb" title="CParameterMgr::addConfigurable\lElementToDomain" alt="" coords="768,75,1003,116"/>
+<area shape="rect" id="node9" href="$classCParameterMgr.html#a4f307490c67f2dde0b08e638500dd5d4" title="CParameterMgr::removeConfigurable\lElementFromDomain" alt="" coords="756,144,1015,185"/>
+<area shape="rect" id="node11" href="$classCParameterMgr.html#a042735242f31241743085d2d9d7edcc5" title="CParameterMgr::split" alt="" coords="807,217,963,243"/>
+<area shape="rect" id="node6" href="$classCParameterMgrFullConnector.html#a64a98bccd79559d5466ff3fd8e93b890" title="CParameterMgrFullConnector\l::accessConfigurationValue" alt="" coords="1084,5,1292,47"/>
+<area shape="rect" id="node8" href="$classCParameterMgrFullConnector.html#a9b8231307d300d1fbc9b01b7d1047650" title="CParameterMgrFullConnector\l::addConfigurableElementToDomain" alt="" coords="1063,71,1313,112"/>
+<area shape="rect" id="node10" href="$classCParameterMgrFullConnector.html#aeb023e264ddb06255bea04ddb2c65708" title="CParameterMgrFullConnector\l::removeConfigurableElementFrom\lDomain" alt="" coords="1066,135,1310,191"/>
+<area shape="rect" id="node12" href="$classCParameterMgrFullConnector.html#a760e854b7cf96957927c1c64869909f4" title="CParameterMgrFullConnector\l::split" alt="" coords="1084,215,1292,256"/>
+<area shape="rect" id="node14" href="$classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" title="CParameterMgr::createParameter\lHandle" alt="" coords="766,280,1005,321"/>
+<area shape="rect" id="node18" href="$classCParameterMgr.html#ab2c4c48ccf11b35c5e2f681b24852941" title="Creates a handle to a configurable element. " alt="" coords="773,345,997,387"/>
+<area shape="rect" id="node20" href="$classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="776,411,995,452"/>
+<area shape="rect" id="node15" href="$classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" title="CParameterMgrPlatformConnector\l::createParameterHandle" alt="" coords="1067,280,1309,321"/>
+<area shape="rect" id="node16" href="$ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" title="Construct the handle to a parameter given its path. " alt="" coords="1361,287,1500,314"/>
+<area shape="rect" id="node17" href="$Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" title="TEST_CASE_METHOD" alt="" coords="1548,287,1707,314"/>
+<area shape="rect" id="node19" href="$classCParameterMgrPlatformConnector.html#abc0e4517c5b64770f493dbba77eea27b" title="Creates a handle to a configurable element. " alt="" coords="1067,345,1309,387"/>
+<area shape="rect" id="node21" href="$classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" title="Returns the element mapping corresponding to the path given in parameter. " alt="" coords="1084,411,1292,452"/>
+<area shape="rect" id="node23" href="$classCBaseParameter.html#a4a9b3e3a2d1ea65a8dc7048559db8dc2" title="CBaseParameter::accessValue" alt="" coords="484,351,701,378"/>
 </map>

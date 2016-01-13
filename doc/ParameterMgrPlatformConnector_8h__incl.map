@@ -1,6 +1,7 @@
 <map id="parameter/include/ParameterMgrPlatformConnector.h" name="parameter/include/ParameterMgrPlatformConnector.h">
-<area shape="rect" id="node3" href="$SelectionCriterionTypeInterface_8h.html" title="SelectionCriterionTypeInterface.h" alt="" coords="5,169,236,196"/>
-<area shape="rect" id="node5" href="$SelectionCriterionInterface_8h.html" title="SelectionCriterionInterface.h" alt="" coords="157,95,359,121"/>
-<area shape="rect" id="node6" href="$ParameterHandle_8h.html" title="ParameterHandle.h" alt="" coords="434,95,581,121"/>
-<area shape="rect" id="node9" href="$ParameterMgrLoggerForward_8h.html" title="ParameterMgrLoggerForward.h" alt="" coords="605,95,823,121"/>
+<area shape="rect" id="node3" href="$SelectionCriterionTypeInterface_8h.html" title="SelectionCriterionTypeInterface.h" alt="" coords="305,169,536,196"/>
+<area shape="rect" id="node5" href="$SelectionCriterionInterface_8h.html" title="SelectionCriterionInterface.h" alt="" coords="370,95,573,121"/>
+<area shape="rect" id="node6" href="$ParameterHandle_8h.html" title="ParameterHandle.h" alt="" coords="98,95,245,121"/>
+<area shape="rect" id="node7" href="$ElementHandle_8h.html" title="ElementHandle.h" alt="" coords="149,169,281,196"/>
+<area shape="rect" id="node10" href="$ParameterMgrLoggerForward_8h.html" title="ParameterMgrLoggerForward.h" alt="" coords="597,95,815,121"/>
 </map>

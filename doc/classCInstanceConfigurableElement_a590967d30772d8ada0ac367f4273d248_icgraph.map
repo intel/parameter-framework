@@ -1,3 +1,4 @@
 <map id="CInstanceConfigurableElement::getArrayLength" name="CInstanceConfigurableElement::getArrayLength">
-<area shape="rect" id="node2" href="$classCParameterHandle.html#ac4cb5852a5c0f9ec73cc20894ac3cfd6" title="CParameterHandle::getArray\lLength" alt="" coords="272,5,479,47"/>
+<area shape="rect" id="node2" href="$classElementHandle.html#a338edfe012745ce3dd8ecfe7180385aa" title="ElementHandle::getArrayLength" alt="" coords="272,13,499,39"/>
+<area shape="rect" id="node3" href="$classElementHandle.html#a7dbe78e90ccb7a01d1a00011ae6b009e" title="ElementHandle::isArray" alt="" coords="547,13,719,39"/>
 </map>

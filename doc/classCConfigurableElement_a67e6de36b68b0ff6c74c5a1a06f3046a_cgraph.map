@@ -1,3 +1,5 @@
 <map id="CConfigurableElement::isRogue" name="CConfigurableElement::isRogue">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#aef6b3524cacbbfdf7829b9126c8a8307" title="CConfigurableElement\l::getBelongingDomainCount" alt="" coords="217,5,420,47"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#aef6b3524cacbbfdf7829b9126c8a8307" title="CConfigurableElement\l::getBelongingDomainCount" alt="" coords="234,5,437,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a08cbc876b52d1e58ade956a8191b1ee3" title="CConfigurableElement\l::hasNoDomainAssociated" alt="" coords="240,71,431,112"/>
+<area shape="rect" id="node4" href="$classCConfigurableElementAggregator.html#a2cc804d11a5ec48d098ecb34be7c9c36" title="CConfigurableElementAggregator\l::aggegate" alt="" coords="217,136,453,177"/>
 </map>

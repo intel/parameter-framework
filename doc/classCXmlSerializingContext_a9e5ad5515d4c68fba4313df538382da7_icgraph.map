@@ -1,7 +1,8 @@
 <map id="CXmlSerializingContext::appendLineToError" name="CXmlSerializingContext::appendLineToError">
 <area shape="rect" id="node2" href="$classCXmlDocSource.html#a60c2e8020389b6896e61fe058f611565" title="Method called by the CXmlDocSink::process method. " alt="" coords="224,27,413,54"/>
-<area shape="rect" id="node6" href="$classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803" title="Helper method for creating an xml document from either a file or a string. " alt="" coords="461,78,664,105"/>
+<area shape="rect" id="node7" href="$classCXmlDocSource.html#a5a1330e2c0bd340ad542050053f31803" title="Helper method for creating an xml document from either a file or a string. " alt="" coords="461,78,664,105"/>
 <area shape="rect" id="node3" href="$classCXmlDocSink.html#ad795635a506e9fbe16c1d54052281d91" title="Method to be called to use an xmlDocSource. " alt="" coords="480,27,645,54"/>
-<area shape="rect" id="node4" href="$classCParameterMgr.html#ac8cc8e374d76e8c623b273ce39cf89b1" title="Method that exports an Xml description of the passed element into a string. " alt="" coords="712,5,936,47"/>
-<area shape="rect" id="node5" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="735,71,913,112"/>
+<area shape="rect" id="node4" href="$classCParameterMgr.html#a83f14b09892d2edf83546d50fe375095" title="Method that exports an Xml description of the passed element into a string. " alt="" coords="712,5,936,47"/>
+<area shape="rect" id="node6" href="$classCXmlFileIncluderElement.html#a754298eb75aacfe300ed3942d51611aa" title="CXmlFileIncluderElement\l::fromXml" alt="" coords="735,71,913,112"/>
+<area shape="rect" id="node5" href="$classElementHandle.html#a364115ffa9f7e6e718b586b2da72e1e4" title="Gets element structure description as XML string. " alt="" coords="984,5,1193,47"/>
 </map>

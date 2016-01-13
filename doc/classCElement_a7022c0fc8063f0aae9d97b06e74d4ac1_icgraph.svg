@@ -30,22 +30,22 @@
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M55.0802,-331.584C58.8038,-382.548 74.886,-521.48 142,-610 156.667,-629.346 179.668,-643.941 199.246,-653.775"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="58.5719,-331.342 54.4306,-321.59 51.5867,-331.796 58.5719,-331.342"/>
+<path fill="none" stroke="midnightblue" d="M55.1623,-331.811C59.0694,-382.796 75.5282,-520.716 142,-609 156.906,-628.797 180.406,-643.797 200.18,-653.848"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="58.6344,-331.281 54.4601,-321.543 51.6507,-331.759 58.6344,-331.281"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
 <g id="a_node7"><a xlink:href="classCConfigurableDomain.html#ab671c7341528cf914119ba8fb3662090" target="_top" xlink:title="Add a configurable element to the domain. ">
-<polygon fill="white" stroke="black" points="167,-570 167,-600 307,-600 307,-570 167,-570"/>
-<text text-anchor="start" x="175" y="-588" font-family="Verdana" font-size="10.00">CConfigurableDomain</text>
-<text text-anchor="middle" x="237" y="-577" font-family="Verdana" font-size="10.00">::addConfigurableElement</text>
+<polygon fill="white" stroke="black" points="167,-569 167,-599 307,-599 307,-569 167,-569"/>
+<text text-anchor="start" x="175" y="-587" font-family="Verdana" font-size="10.00">CConfigurableDomain</text>
+<text text-anchor="middle" x="237" y="-576" font-family="Verdana" font-size="10.00">::addConfigurableElement</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
 <g id="edge6" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M55.1812,-331.927C59.0361,-378.516 75.2133,-495.346 142,-558 149.058,-564.622 157.634,-569.633 166.701,-573.423"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="58.652,-331.395 54.4433,-321.672 51.6701,-331.897 58.652,-331.395"/>
+<path fill="none" stroke="midnightblue" d="M55.1162,-331.676C58.8383,-378.159 74.7632,-495.544 142,-558 149.071,-564.569 157.654,-569.501 166.724,-573.2"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="58.6074,-331.427 54.4224,-321.694 51.6243,-331.913 58.6074,-331.427"/>
 </g>
 <!-- Node11 -->
 <g id="node11" class="node"><title>Node11</title>
@@ -200,17 +200,17 @@
 <path fill="none" stroke="midnightblue" d="M54.8381,-292.407C57.9552,-245.639 72.66,-126.926 142,-67 148.173,-61.6655 155.426,-57.677 163.12,-54.7147"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="51.3412,-292.255 54.2792,-302.435 58.3303,-292.645 51.3412,-292.255"/>
 </g>
-<!-- Node30 -->
-<g id="node30" class="node"><title>Node30</title>
-<g id="a_node30"><a xlink:href="classCParameterHandle.html#af37c16256784bcd4673359bb3ceb42af" target="_top" xlink:title="CParameterHandle::getPath">
-<polygon fill="white" stroke="black" points="162,-0.5 162,-19.5 312,-19.5 312,-0.5 162,-0.5"/>
-<text text-anchor="middle" x="237" y="-7.5" font-family="Verdana" font-size="10.00">CParameterHandle::getPath</text>
+<!-- Node34 -->
+<g id="node34" class="node"><title>Node34</title>
+<g id="a_node34"><a xlink:href="classElementHandle.html#aee11b70e7b295021c8727df0429ca6a0" target="_top" xlink:title="ElementHandle::getPath">
+<polygon fill="white" stroke="black" points="170.5,-0.5 170.5,-19.5 303.5,-19.5 303.5,-0.5 170.5,-0.5"/>
+<text text-anchor="middle" x="237" y="-7.5" font-family="Verdana" font-size="10.00">ElementHandle::getPath</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node30 -->
-<g id="edge30" class="edge"><title>Node1&#45;&gt;Node30</title>
-<path fill="none" stroke="midnightblue" d="M53.7532,-292.253C54.2527,-240.525 63.1786,-100.163 142,-29 147.808,-23.7561 154.652,-19.7972 161.956,-16.8284"/>
+<!-- Node1&#45;&gt;Node34 -->
+<g id="edge35" class="edge"><title>Node1&#45;&gt;Node34</title>
+<path fill="none" stroke="midnightblue" d="M53.7532,-292.253C54.2527,-240.525 63.1786,-100.163 142,-29 149.909,-21.8593 159.739,-17.1015 170.034,-13.9814"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="50.2532,-292.403 53.7579,-302.401 57.2532,-292.399 50.2532,-292.403"/>
 </g>
 <!-- Node3 -->
@@ -277,8 +277,8 @@
 </g>
 <!-- Node7&#45;&gt;Node8 -->
 <g id="edge7" class="edge"><title>Node7&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M317.102,-585.7C334.455,-585.854 352.982,-586.018 370.828,-586.175"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="317.066,-582.2 307.035,-585.611 317.004,-589.199 317.066,-582.2"/>
+<path fill="none" stroke="midnightblue" d="M317.102,-585.05C334.455,-585.28 352.982,-585.526 370.828,-585.763"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="317.081,-581.55 307.035,-584.916 316.988,-588.549 317.081,-581.55"/>
 </g>
 <!-- Node9 -->
 <g id="node9" class="node"><title>Node9</title>
@@ -408,16 +408,77 @@
 </g>
 <!-- Node29 -->
 <g id="node29" class="node"><title>Node29</title>
-<g id="a_node29"><a xlink:href="classCElement.html#a442be4dd4096eafb92adff5a41b70636" target="_top" xlink:title="CElement::listQualifiedPaths">
-<polygon fill="white" stroke="black" points="390,-38.5 390,-57.5 540,-57.5 540,-38.5 390,-38.5"/>
-<text text-anchor="middle" x="465" y="-45.5" font-family="Verdana" font-size="10.00">CElement::listQualifiedPaths</text>
+<g id="a_node29"><a xlink:href="classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" target="_top" xlink:title="CConfigurableElement\l::serializeXmlSettings">
+<polygon fill="white" stroke="black" points="403.5,-55 403.5,-85 526.5,-85 526.5,-55 403.5,-55"/>
+<text text-anchor="start" x="411.5" y="-73" font-family="Verdana" font-size="10.00">CConfigurableElement</text>
+<text text-anchor="middle" x="465" y="-62" font-family="Verdana" font-size="10.00">::serializeXmlSettings</text>
 </a>
 </g>
 </g>
 <!-- Node28&#45;&gt;Node29 -->
 <g id="edge29" class="edge"><title>Node28&#45;&gt;Node29</title>
-<path fill="none" stroke="midnightblue" d="M320.978,-48C343.53,-48 367.803,-48 389.833,-48"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="320.752,-44.5001 310.752,-48 320.752,-51.5001 320.752,-44.5001"/>
+<path fill="none" stroke="midnightblue" d="M320.717,-56.0521C348.117,-58.7193 378.081,-61.6362 403.492,-64.1098"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="321.044,-52.5675 310.752,-55.082 320.366,-59.5345 321.044,-52.5675"/>
+</g>
+<!-- Node33 -->
+<g id="node33" class="node"><title>Node33</title>
+<g id="a_node33"><a xlink:href="classCElement.html#a442be4dd4096eafb92adff5a41b70636" target="_top" xlink:title="CElement::listQualifiedPaths">
+<polygon fill="white" stroke="black" points="390,-16.5 390,-35.5 540,-35.5 540,-16.5 390,-16.5"/>
+<text text-anchor="middle" x="465" y="-23.5" font-family="Verdana" font-size="10.00">CElement::listQualifiedPaths</text>
+</a>
+</g>
+</g>
+<!-- Node28&#45;&gt;Node33 -->
+<g id="edge34" class="edge"><title>Node28&#45;&gt;Node33</title>
+<path fill="none" stroke="midnightblue" d="M320.978,-39.9225C343.53,-37.7271 367.803,-35.3644 389.833,-33.2198"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="320.366,-36.4655 310.752,-40.918 321.044,-43.4325 320.366,-36.4655"/>
+</g>
+<!-- Node29&#45;&gt;Node29 -->
+<g id="edge33" class="edge"><title>Node29&#45;&gt;Node29</title>
+<path fill="none" stroke="midnightblue" d="M425.909,-95.4579C430.76,-100.179 443.791,-103.5 465,-103.5 499.805,-103.5 512.585,-94.5566 503.34,-85.159"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="429.423,-95.3873 426.66,-85.159 422.442,-94.8776 429.423,-95.3873"/>
+</g>
+<!-- Node30 -->
+<g id="node30" class="node"><title>Node30</title>
+<g id="a_node30"><a xlink:href="classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" target="_top" xlink:title="CAreaConfiguration\l::serializeXmlSettings">
+<polygon fill="white" stroke="black" points="626.5,-104 626.5,-134 745.5,-134 745.5,-104 626.5,-104"/>
+<text text-anchor="start" x="634.5" y="-122" font-family="Verdana" font-size="10.00">CAreaConfiguration</text>
+<text text-anchor="middle" x="686" y="-111" font-family="Verdana" font-size="10.00">::serializeXmlSettings</text>
+</a>
+</g>
+</g>
+<!-- Node29&#45;&gt;Node30 -->
+<g id="edge30" class="edge"><title>Node29&#45;&gt;Node30</title>
+<path fill="none" stroke="midnightblue" d="M536.771,-85.8345C565.74,-92.3163 598.861,-99.727 626.437,-105.897"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="537.236,-82.3521 526.713,-83.5842 535.707,-89.1832 537.236,-82.3521"/>
+</g>
+<!-- Node31 -->
+<g id="node31" class="node"><title>Node31</title>
+<g id="a_node31"><a xlink:href="classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" target="_top" xlink:title="CConfigurableElement\l::fromXml">
+<polygon fill="white" stroke="black" points="624.5,-55 624.5,-85 747.5,-85 747.5,-55 624.5,-55"/>
+<text text-anchor="start" x="632.5" y="-73" font-family="Verdana" font-size="10.00">CConfigurableElement</text>
+<text text-anchor="middle" x="686" y="-62" font-family="Verdana" font-size="10.00">::fromXml</text>
+</a>
+</g>
+</g>
+<!-- Node29&#45;&gt;Node31 -->
+<g id="edge31" class="edge"><title>Node29&#45;&gt;Node31</title>
+<path fill="none" stroke="midnightblue" d="M536.891,-70C565.042,-70 597.097,-70 624.169,-70"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="536.713,-66.5001 526.713,-70 536.713,-73.5001 536.713,-66.5001"/>
+</g>
+<!-- Node32 -->
+<g id="node32" class="node"><title>Node32</title>
+<g id="a_node32"><a xlink:href="classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" target="_top" xlink:title="CConfigurableElement\l::toXml">
+<polygon fill="white" stroke="black" points="624.5,-6 624.5,-36 747.5,-36 747.5,-6 624.5,-6"/>
+<text text-anchor="start" x="632.5" y="-24" font-family="Verdana" font-size="10.00">CConfigurableElement</text>
+<text text-anchor="middle" x="686" y="-13" font-family="Verdana" font-size="10.00">::toXml</text>
+</a>
+</g>
+</g>
+<!-- Node29&#45;&gt;Node32 -->
+<g id="edge32" class="edge"><title>Node29&#45;&gt;Node32</title>
+<path fill="none" stroke="midnightblue" d="M536.521,-54.2214C564.76,-47.9029 596.978,-40.6944 624.169,-34.6106"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="535.707,-50.8168 526.713,-56.4158 537.236,-57.6479 535.707,-50.8168"/>
 </g>
 </g>
 </svg>

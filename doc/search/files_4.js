@@ -4,6 +4,8 @@ var searchData=
   ['element_2eh',['Element.h',['../Element_8h.html',1,'']]],
   ['elementbuilder_2eh',['ElementBuilder.h',['../ElementBuilder_8h.html',1,'']]],
   ['elementbuildertemplate_2eh',['ElementBuilderTemplate.h',['../ElementBuilderTemplate_8h.html',1,'']]],
+  ['elementhandle_2ecpp',['ElementHandle.cpp',['../ElementHandle_8cpp.html',1,'']]],
+  ['elementhandle_2eh',['ElementHandle.h',['../ElementHandle_8h.html',1,'']]],
   ['elementlibrary_2ecpp',['ElementLibrary.cpp',['../ElementLibrary_8cpp.html',1,'']]],
   ['elementlibrary_2eh',['ElementLibrary.h',['../ElementLibrary_8h.html',1,'']]],
   ['elementlibraryset_2ecpp',['ElementLibrarySet.cpp',['../ElementLibrarySet_8cpp.html',1,'']]],

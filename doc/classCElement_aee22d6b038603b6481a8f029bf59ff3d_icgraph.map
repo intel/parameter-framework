@@ -1,3 +1,5 @@
 <map id="CElement::childrenToXml" name="CElement::childrenToXml">
-<area shape="rect" id="node2" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="232,5,361,32"/>
+<area shape="rect" id="node2" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="232,13,361,39"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#aae8cc511624bd2cee5d204815178299b" title="Serialize the structure to xml. " alt="" coords="409,5,573,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="621,5,785,47"/>
 </map>

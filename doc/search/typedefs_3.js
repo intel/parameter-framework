@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['matchesaggregationcriterion',['MatchesAggregationCriterion',['../classCConfigurableElementAggregator.html#a801b805757d002ff6898e9622970b412',1,'CConfigurableElementAggregator']]]
+  ['map',['Map',['../namespaceutility.html#a27f4102be853833ef8010ee7ad915798',1,'utility']]],
+  ['matchesaggregationcriterion',['MatchesAggregationCriterion',['../classCConfigurableElementAggregator.html#acbfdb8633112b9e3a3708d448c3b6587',1,'CConfigurableElementAggregator']]]
 ];

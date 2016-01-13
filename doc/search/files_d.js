@@ -2,7 +2,7 @@ var searchData=
 [
   ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
   ['readme_2emd',['README.md',['../remote-processor_2README_8md.html',1,'']]],
-  ['readme_2emd',['README.md',['../Schemas_2README_8md.html',1,'']]],
+  ['readme_2emd',['README.md',['../schemas_2README_8md.html',1,'']]],
   ['readme_2emd',['README.md',['../test_2test-platform_2README_8md.html',1,'']]],
   ['readme_2emd',['README.md',['../parameter_2README_8md.html',1,'']]],
   ['readme_2emd',['README.md',['../remote-process_2README_8md.html',1,'']]],

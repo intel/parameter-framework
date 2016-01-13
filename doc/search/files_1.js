@@ -4,6 +4,7 @@ var searchData=
   ['backsynchronizer_2eh',['BackSynchronizer.h',['../BackSynchronizer_8h.html',1,'']]],
   ['baseparameter_2ecpp',['BaseParameter.cpp',['../BaseParameter_8cpp.html',1,'']]],
   ['baseparameter_2eh',['BaseParameter.h',['../BaseParameter_8h.html',1,'']]],
+  ['binarycopy_2ehpp',['BinaryCopy.hpp',['../BinaryCopy_8hpp.html',1,'']]],
   ['bitparameter_2ecpp',['BitParameter.cpp',['../BitParameter_8cpp.html',1,'']]],
   ['bitparameter_2eh',['BitParameter.h',['../BitParameter_8h.html',1,'']]],
   ['bitparameterblock_2ecpp',['BitParameterBlock.cpp',['../BitParameterBlock_8cpp.html',1,'']]],

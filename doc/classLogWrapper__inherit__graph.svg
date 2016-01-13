@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classCParameterMgrPlatformConnector_1_1ILogger.html" target="_top" xlink:title="CParameterMgrPlatformConnector\l::ILogger">
+<g id="a_node2"><a xlink:href="classCParameterMgrPlatformConnector_1_1ILogger.html" target="_top" xlink:title="Interface to implement to provide a custom logger to the PF. ">
 <polygon fill="white" stroke="black" points="0,-56.5 0,-86.5 182,-86.5 182,-56.5 0,-56.5"/>
 <text text-anchor="start" x="8" y="-74.5" font-family="Verdana" font-size="10.00">CParameterMgrPlatformConnector</text>
 <text text-anchor="middle" x="91" y="-63.5" font-family="Verdana" font-size="10.00">::ILogger</text>

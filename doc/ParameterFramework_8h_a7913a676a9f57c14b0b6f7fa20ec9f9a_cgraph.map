@@ -1,6 +1,6 @@
 <map id="pfwSetStringParameter" name="pfwSetStringParameter">
-<area shape="rect" id="node2" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="277,5,396,32"/>
-<area shape="rect" id="node4" href="$classCParameterHandle.html#ac8ddc2a8c57fa45742f94eca2d1c8516" title="CParameterHandle::setAsString" alt="" coords="224,56,449,83"/>
-<area shape="rect" id="node5" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="287,107,387,133"/>
-<area shape="rect" id="node3" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="497,5,620,32"/>
+<area shape="rect" id="node2" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="266,5,385,32"/>
+<area shape="rect" id="node4" href="$classElementHandle.html#a7acbc85ef7568684d60a158d3f177188" title="String Access. " alt="" coords="224,56,427,83"/>
+<area shape="rect" id="node5" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="275,107,375,133"/>
+<area shape="rect" id="node3" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="475,5,597,32"/>
 </map>

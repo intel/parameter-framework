@@ -1,9 +1,12 @@
 <map id="CXmlElement::createChild" name="CXmlElement::createChild">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="249,29,413,71"/>
-<area shape="rect" id="node4" href="$classCDomainConfiguration.html#a39c907e9023554f7a86836ac9f8da32f" title="CDomainConfiguration\l::composeSettings" alt="" coords="247,95,414,136"/>
-<area shape="rect" id="node5" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="241,161,420,187"/>
-<area shape="rect" id="node7" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="245,212,417,253"/>
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="468,29,627,71"/>
-<area shape="rect" id="node6" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="483,161,612,187"/>
-<area shape="rect" id="node8" href="$classCSelectionCriterion.html#a3942150fa9e5980d89268672fff31032" title="Export to XML. " alt="" coords="475,212,619,253"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="249,69,413,111"/>
+<area shape="rect" id="node6" href="$classCDomainConfiguration.html#a39c907e9023554f7a86836ac9f8da32f" title="CDomainConfiguration\l::composeSettings" alt="" coords="247,135,414,176"/>
+<area shape="rect" id="node7" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="241,201,420,227"/>
+<area shape="rect" id="node10" href="$classCSelectionCriterionType.html#a95813f4b14f06857afaf8a50d0d62600" title="Export to XML. " alt="" coords="245,252,417,293"/>
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="471,5,629,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="468,71,632,112"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="892,160,1056,201"/>
+<area shape="rect" id="node8" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="485,198,615,225"/>
+<area shape="rect" id="node9" href="$classCConfigurableElement.html#aae8cc511624bd2cee5d204815178299b" title="Serialize the structure to xml. " alt="" coords="680,189,844,231"/>
+<area shape="rect" id="node11" href="$classCSelectionCriterion.html#a3942150fa9e5980d89268672fff31032" title="Export to XML. " alt="" coords="478,252,622,293"/>
 </map>

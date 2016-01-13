@@ -1,3 +1,5 @@
 <map id="CConfigurableElement::hasNoDomainAssociated" name="CConfigurableElement::hasNoDomainAssociated">
 <area shape="rect" id="node2" href="$classCConfigurableElement.html#a1b28dbdb4a01edd94c1ae8b5e42d76b2" title="CConfigurableElement\l::listRogueElements" alt="" coords="244,5,408,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#a67e6de36b68b0ff6c74c5a1a06f3046a" title="CConfigurableElement\l::isRogue" alt="" coords="244,71,408,112"/>
+<area shape="rect" id="node4" href="$classElementHandle.html#a0e895aacf73fa76d07f70a0e2e7b23bd" title="ElementHandle::isRogue" alt="" coords="456,78,633,105"/>
 </map>

@@ -1,0 +1,8 @@
+<map id="CParameterMgr::importSingleDomainXml" name="CParameterMgr::importSingleDomainXml">
+<area shape="rect" id="node2" href="$classCConfigurableDomains.html#a35d3b509ee35cb374fc7a2d1b678c203" title="CConfigurableDomains\l::addDomain" alt="" coords="264,78,432,119"/>
+<area shape="rect" id="node3" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="488,5,640,32"/>
+<area shape="rect" id="node4" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="696,78,879,119"/>
+<area shape="rect" id="node6" href="$classCConfigurableDomains.html#a26ae82c8fd65751062ea4fcffa69944f" title="Delete a domain by name. " alt="" coords="480,107,648,149"/>
+<area shape="rect" id="node7" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="491,173,637,200"/>
+<area shape="rect" id="node5" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="927,85,1073,112"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="CElement::getXmlElementName" name="CElement::getXmlElementName">
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="310,71,474,112"/>
+<area shape="rect" id="node6" href="$classElementHandle.html#a364115ffa9f7e6e718b586b2da72e1e4" title="Gets element structure description as XML string. " alt="" coords="287,136,497,177"/>
+<area shape="rect" id="node7" href="$classCInstanceConfigurableElement.html#a98adbaeeac4aa99b44b50f6634b405bc" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="283,201,501,243"/>
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="552,5,711,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="549,71,713,112"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="549,136,713,177"/>
+</map>

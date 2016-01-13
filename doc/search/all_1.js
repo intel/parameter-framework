@@ -27,7 +27,7 @@ var searchData=
   ['appendtitle',['appendTitle',['../namespaceutility.html#afd9949bbd80a31bbdbc1aa57439c5d40',1,'utility']]],
   ['appendtoerror',['appendToError',['../classutility_1_1ErrorContext.html#aafe9cd30a03303cf376926d9c4e9dd02',1,'utility::ErrorContext']]],
   ['apply',['apply',['../classCConfigurableDomain.html#acae72e3fb09dc016cc7ad903ca93b576',1,'CConfigurableDomain::apply()'],['../classCConfigurableDomains.html#a31ba1cd1d2e6df79e4050554fbbc6888',1,'CConfigurableDomains::apply()']]],
-  ['applyconfigurations',['applyConfigurations',['../classCParameterMgrFullConnector.html#a8ba983f8201a85f48dba7819db3b3ef6',1,'CParameterMgrFullConnector::applyConfigurations()'],['../classCParameterMgrPlatformConnector.html#a03ff6b6e71e733bce73a2557b585d05c',1,'CParameterMgrPlatformConnector::applyConfigurations()'],['../classCParameterMgr.html#a8e084df8edc632b057815f533624480d',1,'CParameterMgr::applyConfigurations()']]],
+  ['applyconfigurations',['applyConfigurations',['../classCParameterMgrPlatformConnector.html#a03ff6b6e71e733bce73a2557b585d05c',1,'CParameterMgrPlatformConnector::applyConfigurations()'],['../classCParameterMgr.html#a8e084df8edc632b057815f533624480d',1,'CParameterMgr::applyConfigurations()']]],
   ['areaconfiguration_2ecpp',['AreaConfiguration.cpp',['../AreaConfiguration_8cpp.html',1,'']]],
   ['areaconfiguration_2eh',['AreaConfiguration.h',['../AreaConfiguration_8h.html',1,'']]],
   ['arrayparameter_2ecpp',['ArrayParameter.cpp',['../ArrayParameter_8cpp.html',1,'']]],

@@ -1,3 +1,7 @@
 <map id="CElement::getQualifiedPath" name="CElement::getQualifiedPath">
-<area shape="rect" id="node2" href="$classCElement.html#a442be4dd4096eafb92adff5a41b70636" title="CElement::listQualifiedPaths" alt="" coords="249,5,449,32"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="267,71,431,112"/>
+<area shape="rect" id="node6" href="$classCElement.html#a442be4dd4096eafb92adff5a41b70636" title="CElement::listQualifiedPaths" alt="" coords="249,137,449,163"/>
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="500,5,659,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="497,71,661,112"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="497,136,661,177"/>
 </map>

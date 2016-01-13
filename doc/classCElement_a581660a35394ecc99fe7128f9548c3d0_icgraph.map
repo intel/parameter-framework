@@ -1,4 +1,7 @@
 <map id="CElement::setXmlDescriptionAttribute" name="CElement::setXmlDescriptionAttribute">
-<area shape="rect" id="node2" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="306,5,435,32"/>
-<area shape="rect" id="node3" href="$classCInstanceConfigurableElement.html#a466b63cf9c344e256680c409c29ef9b6" title="CInstanceConfigurableElement\l::toXml" alt="" coords="261,57,480,98"/>
+<area shape="rect" id="node2" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="306,15,435,42"/>
+<area shape="rect" id="node5" href="$classCInstanceConfigurableElement.html#a9fc955181503bd0cfd5a148dd5653905" title="Serialize the structure to xml. " alt="" coords="261,68,480,109"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#aae8cc511624bd2cee5d204815178299b" title="Serialize the structure to xml. " alt="" coords="528,5,692,47"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="740,5,904,47"/>
+<area shape="rect" id="node6" href="$classCBitParameterBlock.html#ae8f1443ff248a9b5cb783bea475157f3" title="Serialize the structure to xml. " alt="" coords="535,71,685,112"/>
 </map>

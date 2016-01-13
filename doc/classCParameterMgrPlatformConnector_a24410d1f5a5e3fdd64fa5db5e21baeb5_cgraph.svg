@@ -31,7 +31,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" target="_top" xlink:title="Returns the CConfigurableElement corresponding to the path given in argument. ">
+<g id="a_node3"><a xlink:href="classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" target="_top" xlink:title="const version of getConfigurableElement ">
 <polygon fill="white" stroke="black" points="433,-51 433,-81 606,-81 606,-51 433,-51"/>
 <text text-anchor="start" x="441" y="-69" font-family="Verdana" font-size="10.00">CParameterMgr::getConfigurable</text>
 <text text-anchor="middle" x="519.5" y="-58" font-family="Verdana" font-size="10.00">Element</text>

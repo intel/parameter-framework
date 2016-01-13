@@ -15,7 +15,6 @@ var searchData=
   ['parameterframework_2eh',['ParameterFramework.h',['../ParameterFramework_8h.html',1,'']]],
   ['parameterframeworkconfiguration_2ecpp',['ParameterFrameworkConfiguration.cpp',['../ParameterFrameworkConfiguration_8cpp.html',1,'']]],
   ['parameterframeworkconfiguration_2eh',['ParameterFrameworkConfiguration.h',['../ParameterFrameworkConfiguration_8h.html',1,'']]],
-  ['parameterhandle_2ecpp',['ParameterHandle.cpp',['../ParameterHandle_8cpp.html',1,'']]],
   ['parameterhandle_2eh',['ParameterHandle.h',['../ParameterHandle_8h.html',1,'']]],
   ['parametermgr_2ecpp',['ParameterMgr.cpp',['../ParameterMgr_8cpp.html',1,'']]],
   ['parametermgr_2eh',['ParameterMgr.h',['../ParameterMgr_8h.html',1,'']]],

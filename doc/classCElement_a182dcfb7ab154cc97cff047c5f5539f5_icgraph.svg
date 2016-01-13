@@ -11,13 +11,13 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-339 1106,-339 1106,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="0,-143 0,-162 144,-162 144,-143 0,-143"/>
-<text text-anchor="middle" x="72" y="-150" font-family="Verdana" font-size="10.00">CElement::findDescendant</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-155 0,-174 144,-174 144,-155 0,-155"/>
+<text text-anchor="middle" x="72" y="-162" font-family="Verdana" font-size="10.00">CElement::findDescendant</text>
 </g>
 <!-- Node1&#45;&gt;Node1 -->
 <g id="edge1" class="edge"><title>Node1&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M35.625,-170.004C35.6309,-175.836 47.7559,-180.5 72,-180.5 106.48,-180.5 116.447,-171.065 101.901,-162.257"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="38.3723,-172.175 42.099,-162.257 33.0009,-167.686 38.3723,-172.175"/>
+<path fill="none" stroke="midnightblue" d="M35.625,-182.004C35.6309,-187.836 47.7559,-192.5 72,-192.5 106.48,-192.5 116.447,-183.065 101.901,-174.257"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="38.3723,-184.175 42.099,-174.257 33.0009,-179.686 38.3723,-184.175"/>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
@@ -29,22 +29,22 @@
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M111.742,-165.381C148.721,-177.675 203.582,-195.914 236.799,-206.958"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="112.413,-161.915 101.819,-162.081 110.204,-168.558 112.413,-161.915"/>
+<path fill="none" stroke="midnightblue" d="M118.047,-176.668C152.222,-185.9 198.545,-198.414 230.091,-206.935"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="118.874,-173.267 108.307,-174.038 117.049,-180.024 118.874,-173.267"/>
 </g>
 <!-- Node11 -->
 <g id="node11" class="node"><title>Node11</title>
-<g id="a_node11"><a xlink:href="classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" target="_top" xlink:title="Returns the CConfigurableElement corresponding to the path given in argument. ">
-<polygon fill="white" stroke="black" points="180,-74.5 180,-104.5 353,-104.5 353,-74.5 180,-74.5"/>
-<text text-anchor="start" x="188" y="-92.5" font-family="Verdana" font-size="10.00">CParameterMgr::getConfigurable</text>
-<text text-anchor="middle" x="266.5" y="-81.5" font-family="Verdana" font-size="10.00">Element</text>
+<g id="a_node11"><a xlink:href="classCParameterMgr.html#ad3ee51d6a9f2e0d0ea143a238120b5af" target="_top" xlink:title="const version of getConfigurableElement ">
+<polygon fill="white" stroke="black" points="180,-73.5 180,-103.5 353,-103.5 353,-73.5 180,-73.5"/>
+<text text-anchor="start" x="188" y="-91.5" font-family="Verdana" font-size="10.00">CParameterMgr::getConfigurable</text>
+<text text-anchor="middle" x="266.5" y="-80.5" font-family="Verdana" font-size="10.00">Element</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node11 -->
 <g id="edge11" class="edge"><title>Node1&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M111.859,-139.782C142.95,-129.607 186.626,-115.313 219.468,-104.565"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="110.652,-136.495 102.237,-142.932 112.829,-143.148 110.652,-136.495"/>
+<path fill="none" stroke="midnightblue" d="M106.808,-151.153C140.531,-137.839 192.247,-117.421 227.404,-103.541"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="105.396,-147.947 97.3803,-154.875 107.967,-154.458 105.396,-147.947"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
@@ -57,8 +57,8 @@
 </g>
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge3" class="edge"><title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M288.005,-232.072C311.331,-249.112 351.112,-276.174 389,-292.5 397.778,-296.283 407.262,-299.6 416.734,-302.476"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="290.028,-229.214 279.909,-226.075 285.862,-234.839 290.028,-229.214"/>
+<path fill="none" stroke="midnightblue" d="M288.445,-232.052C311.877,-248.808 351.484,-275.25 389,-291.5 398.586,-295.652 409.003,-299.294 419.322,-302.435"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="290.446,-229.179 280.295,-226.145 286.339,-234.848 290.446,-229.179"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
@@ -161,98 +161,112 @@
 <!-- Node12 -->
 <g id="node12" class="node"><title>Node12</title>
 <g id="a_node12"><a xlink:href="classCParameterMgr.html#ada6dd503a49385c74029b7c0e8e1ba0e" target="_top" xlink:title="CParameterMgr::createParameter\lHandle">
-<polygon fill="white" stroke="black" points="396.5,-74.5 396.5,-104.5 575.5,-104.5 575.5,-74.5 396.5,-74.5"/>
-<text text-anchor="start" x="404.5" y="-92.5" font-family="Verdana" font-size="10.00">CParameterMgr::createParameter</text>
-<text text-anchor="middle" x="486" y="-81.5" font-family="Verdana" font-size="10.00">Handle</text>
+<polygon fill="white" stroke="black" points="396.5,-98.5 396.5,-128.5 575.5,-128.5 575.5,-98.5 396.5,-98.5"/>
+<text text-anchor="start" x="404.5" y="-116.5" font-family="Verdana" font-size="10.00">CParameterMgr::createParameter</text>
+<text text-anchor="middle" x="486" y="-105.5" font-family="Verdana" font-size="10.00">Handle</text>
 </a>
 </g>
 </g>
 <!-- Node11&#45;&gt;Node12 -->
 <g id="edge12" class="edge"><title>Node11&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M363.173,-89.5C374.157,-89.5 385.322,-89.5 396.21,-89.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="363.15,-86.0001 353.15,-89.5 363.15,-93.0001 363.15,-86.0001"/>
+<path fill="none" stroke="midnightblue" d="M363.173,-99.4969C374.157,-100.759 385.322,-102.043 396.21,-103.294"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="363.484,-96.0097 353.15,-98.3448 362.684,-102.964 363.484,-96.0097"/>
 </g>
-<!-- Node17 -->
-<g id="node17" class="node"><title>Node17</title>
-<g id="a_node17"><a xlink:href="classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" target="_top" xlink:title="Returns the element mapping corresponding to the path given in parameter. ">
-<polygon fill="white" stroke="black" points="404,-13.5 404,-43.5 568,-43.5 568,-13.5 404,-13.5"/>
-<text text-anchor="start" x="412" y="-31.5" font-family="Verdana" font-size="10.00">CParameterMgr::getParameter</text>
-<text text-anchor="middle" x="486" y="-20.5" font-family="Verdana" font-size="10.00">Mapping</text>
+<!-- Node16 -->
+<g id="node16" class="node"><title>Node16</title>
+<g id="a_node16"><a xlink:href="classCParameterMgr.html#ab2c4c48ccf11b35c5e2f681b24852941" target="_top" xlink:title="Creates a handle to a configurable element. ">
+<polygon fill="white" stroke="black" points="402,-49.5 402,-79.5 570,-79.5 570,-49.5 402,-49.5"/>
+<text text-anchor="start" x="410" y="-67.5" font-family="Verdana" font-size="10.00">CParameterMgr::createElement</text>
+<text text-anchor="middle" x="486" y="-56.5" font-family="Verdana" font-size="10.00">Handle</text>
 </a>
 </g>
 </g>
-<!-- Node11&#45;&gt;Node17 -->
-<g id="edge17" class="edge"><title>Node11&#45;&gt;Node17</title>
-<path fill="none" stroke="midnightblue" d="M330.667,-71.7842C362.577,-62.8347 400.88,-52.0922 431.344,-43.5482"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="329.668,-68.4291 320.985,-74.4996 331.559,-75.1691 329.668,-68.4291"/>
+<!-- Node11&#45;&gt;Node16 -->
+<g id="edge16" class="edge"><title>Node11&#45;&gt;Node16</title>
+<path fill="none" stroke="midnightblue" d="M363.385,-77.9196C376.23,-76.5022 389.318,-75.058 401.919,-73.6676"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="362.705,-74.4733 353.15,-79.049 363.473,-81.431 362.705,-74.4733"/>
+</g>
+<!-- Node18 -->
+<g id="node18" class="node"><title>Node18</title>
+<g id="a_node18"><a xlink:href="classCParameterMgr.html#a00467972dcf35bd3036a536f5c328436" target="_top" xlink:title="Returns the element mapping corresponding to the path given in parameter. ">
+<polygon fill="white" stroke="black" points="404,-0.5 404,-30.5 568,-30.5 568,-0.5 404,-0.5"/>
+<text text-anchor="start" x="412" y="-18.5" font-family="Verdana" font-size="10.00">CParameterMgr::getParameter</text>
+<text text-anchor="middle" x="486" y="-7.5" font-family="Verdana" font-size="10.00">Mapping</text>
+</a>
+</g>
+</g>
+<!-- Node11&#45;&gt;Node18 -->
+<g id="edge18" class="edge"><title>Node11&#45;&gt;Node18</title>
+<path fill="none" stroke="midnightblue" d="M310.545,-69.4461C333.542,-59.6997 362.502,-48.1099 389,-39.5 398.803,-36.3147 409.285,-33.3042 419.588,-30.5614"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="308.895,-66.3448 301.078,-73.4962 311.649,-72.7806 308.895,-66.3448"/>
 </g>
 <!-- Node13 -->
 <g id="node13" class="node"><title>Node13</title>
-<g id="a_node13"><a xlink:href="classCParameterMgrFullConnector.html#a2561bca68b84ced060cbe2be8597a812" target="_top" xlink:title="CParameterMgrFullConnector\l::createParameterHandle">
-<polygon fill="white" stroke="black" points="635,-98.5 635,-128.5 791,-128.5 791,-98.5 635,-98.5"/>
-<text text-anchor="start" x="643" y="-116.5" font-family="Verdana" font-size="10.00">CParameterMgrFullConnector</text>
+<g id="a_node13"><a xlink:href="classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" target="_top" xlink:title="CParameterMgrPlatformConnector\l::createParameterHandle">
+<polygon fill="white" stroke="black" points="622,-98.5 622,-128.5 804,-128.5 804,-98.5 622,-98.5"/>
+<text text-anchor="start" x="630" y="-116.5" font-family="Verdana" font-size="10.00">CParameterMgrPlatformConnector</text>
 <text text-anchor="middle" x="713" y="-105.5" font-family="Verdana" font-size="10.00">::createParameterHandle</text>
 </a>
 </g>
 </g>
 <!-- Node12&#45;&gt;Node13 -->
 <g id="edge13" class="edge"><title>Node12&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M585.762,-100.035C602.18,-101.786 618.995,-103.579 634.779,-105.263"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="585.918,-96.5315 575.603,-98.951 585.175,-103.492 585.918,-96.5315"/>
+<path fill="none" stroke="midnightblue" d="M585.604,-113.5C597.584,-113.5 609.778,-113.5 621.63,-113.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="585.603,-110 575.603,-113.5 585.603,-117 585.603,-110"/>
 </g>
 <!-- Node14 -->
 <g id="node14" class="node"><title>Node14</title>
-<g id="a_node14"><a xlink:href="classCParameterMgrPlatformConnector.html#a24410d1f5a5e3fdd64fa5db5e21baeb5" target="_top" xlink:title="CParameterMgrPlatformConnector\l::createParameterHandle">
-<polygon fill="white" stroke="black" points="622,-49.5 622,-79.5 804,-79.5 804,-49.5 622,-49.5"/>
-<text text-anchor="start" x="630" y="-67.5" font-family="Verdana" font-size="10.00">CParameterMgrPlatformConnector</text>
-<text text-anchor="middle" x="713" y="-56.5" font-family="Verdana" font-size="10.00">::createParameterHandle</text>
+<g id="a_node14"><a xlink:href="ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" target="_top" xlink:title="Construct the handle to a parameter given its path. ">
+<polygon fill="white" stroke="black" points="843,-104 843,-123 947,-123 947,-104 843,-104"/>
+<text text-anchor="middle" x="895" y="-111" font-family="Verdana" font-size="10.00">pfwBindParameter</text>
 </a>
 </g>
 </g>
-<!-- Node12&#45;&gt;Node14 -->
-<g id="edge14" class="edge"><title>Node12&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M585.604,-78.544C597.584,-77.2129 609.778,-75.858 621.63,-74.5411"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="585.155,-75.0722 575.603,-79.6552 585.928,-82.0294 585.155,-75.0722"/>
+<!-- Node13&#45;&gt;Node14 -->
+<g id="edge14" class="edge"><title>Node13&#45;&gt;Node14</title>
+<path fill="none" stroke="midnightblue" d="M814.42,-113.5C824.127,-113.5 833.67,-113.5 842.59,-113.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="814.264,-110 804.264,-113.5 814.264,-117 814.264,-110"/>
 </g>
 <!-- Node15 -->
 <g id="node15" class="node"><title>Node15</title>
-<g id="a_node15"><a xlink:href="ParameterFramework_8h.html#a1c73add8fee0c519bfa18677d533ebd4" target="_top" xlink:title="Construct the handle to a parameter given its path. ">
-<polygon fill="white" stroke="black" points="843,-55 843,-74 947,-74 947,-55 843,-55"/>
-<text text-anchor="middle" x="895" y="-62" font-family="Verdana" font-size="10.00">pfwBindParameter</text>
+<g id="a_node15"><a xlink:href="Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" target="_top" xlink:title="TEST_CASE_METHOD">
+<polygon fill="white" stroke="black" points="983,-104 983,-123 1102,-123 1102,-104 983,-104"/>
+<text text-anchor="middle" x="1042.5" y="-111" font-family="Verdana" font-size="10.00">TEST_CASE_METHOD</text>
 </a>
 </g>
 </g>
 <!-- Node14&#45;&gt;Node15 -->
 <g id="edge15" class="edge"><title>Node14&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M814.42,-64.5C824.127,-64.5 833.67,-64.5 842.59,-64.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="814.264,-61.0001 804.264,-64.5 814.264,-68.0001 814.264,-61.0001"/>
+<path fill="none" stroke="midnightblue" d="M957.468,-113.5C965.917,-113.5 974.574,-113.5 982.967,-113.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="957.298,-110 947.298,-113.5 957.298,-117 957.298,-110"/>
 </g>
-<!-- Node16 -->
-<g id="node16" class="node"><title>Node16</title>
-<g id="a_node16"><a xlink:href="Test_8cpp.html#ae78f4780e83e5f2b9721a2d66c70fec9" target="_top" xlink:title="TEST_CASE_METHOD">
-<polygon fill="white" stroke="black" points="983,-55 983,-74 1102,-74 1102,-55 983,-55"/>
-<text text-anchor="middle" x="1042.5" y="-62" font-family="Verdana" font-size="10.00">TEST_CASE_METHOD</text>
+<!-- Node17 -->
+<g id="node17" class="node"><title>Node17</title>
+<g id="a_node17"><a xlink:href="classCParameterMgrPlatformConnector.html#abc0e4517c5b64770f493dbba77eea27b" target="_top" xlink:title="Creates a handle to a configurable element. ">
+<polygon fill="white" stroke="black" points="622,-49.5 622,-79.5 804,-79.5 804,-49.5 622,-49.5"/>
+<text text-anchor="start" x="630" y="-67.5" font-family="Verdana" font-size="10.00">CParameterMgrPlatformConnector</text>
+<text text-anchor="middle" x="713" y="-56.5" font-family="Verdana" font-size="10.00">::createElementHandle</text>
 </a>
 </g>
 </g>
-<!-- Node15&#45;&gt;Node16 -->
-<g id="edge16" class="edge"><title>Node15&#45;&gt;Node16</title>
-<path fill="none" stroke="midnightblue" d="M957.468,-64.5C965.917,-64.5 974.574,-64.5 982.967,-64.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="957.298,-61.0001 947.298,-64.5 957.298,-68.0001 957.298,-61.0001"/>
+<!-- Node16&#45;&gt;Node17 -->
+<g id="edge17" class="edge"><title>Node16&#45;&gt;Node17</title>
+<path fill="none" stroke="midnightblue" d="M580.467,-64.5C594.083,-64.5 608.083,-64.5 621.636,-64.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="580.142,-61.0001 570.142,-64.5 580.142,-68.0001 580.142,-61.0001"/>
 </g>
-<!-- Node18 -->
-<g id="node18" class="node"><title>Node18</title>
-<g id="a_node18"><a xlink:href="classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" target="_top" xlink:title="Returns the element mapping corresponding to the path given in parameter. ">
+<!-- Node19 -->
+<g id="node19" class="node"><title>Node19</title>
+<g id="a_node19"><a xlink:href="classCParameterMgrFullConnector.html#ae93bb845d07d224c2221d8d2d55e5e92" target="_top" xlink:title="Returns the element mapping corresponding to the path given in parameter. ">
 <polygon fill="white" stroke="black" points="635,-0.5 635,-30.5 791,-30.5 791,-0.5 635,-0.5"/>
 <text text-anchor="start" x="643" y="-18.5" font-family="Verdana" font-size="10.00">CParameterMgrFullConnector</text>
 <text text-anchor="middle" x="713" y="-7.5" font-family="Verdana" font-size="10.00">::getParameterMapping</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node18 -->
-<g id="edge18" class="edge"><title>Node17&#45;&gt;Node18</title>
-<path fill="none" stroke="midnightblue" d="M578.229,-23.229C596.945,-22.1476 616.476,-21.0192 634.646,-19.9693"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="578.012,-19.7356 568.23,-23.8067 578.415,-26.724 578.012,-19.7356"/>
+<!-- Node18&#45;&gt;Node19 -->
+<g id="edge19" class="edge"><title>Node18&#45;&gt;Node19</title>
+<path fill="none" stroke="midnightblue" d="M578.488,-15.5C597.125,-15.5 616.559,-15.5 634.646,-15.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="578.23,-12.0001 568.23,-15.5 578.23,-19.0001 578.23,-12.0001"/>
 </g>
 </g>
 </svg>

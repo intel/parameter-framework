@@ -1,6 +1,6 @@
 <map id="pfwSetIntParameter" name="pfwSetIntParameter">
-<area shape="rect" id="node2" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="257,5,376,32"/>
-<area shape="rect" id="node4" href="$classCParameterHandle.html#aca2f7f29237c1cef42fe6b9c2edaf0d3" title="CParameterHandle::setAsSigned\lInteger" alt="" coords="201,57,432,98"/>
-<area shape="rect" id="node5" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="267,123,367,149"/>
-<area shape="rect" id="node3" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="480,5,603,32"/>
+<area shape="rect" id="node2" href="$classStatus.html#aa1a645f1b88f85f21594b4654aeced14" title="Forward a status operation. " alt="" coords="246,5,365,32"/>
+<area shape="rect" id="node4" href="$classElementHandle.html#a8e78a67cc5501cabb45f391040973fc7" title="Signed Integer Access. " alt="" coords="201,57,409,98"/>
+<area shape="rect" id="node5" href="$classStatus.html#ace8ccfda8d86810fba5391d8cb84f454" title="Error message accessors. " alt="" coords="255,123,355,149"/>
+<area shape="rect" id="node3" href="$classStatus.html#a2141902ca2f1157a8e25f66a21c988e5" title="Success (no error message). " alt="" coords="457,5,580,32"/>
 </map>

@@ -1,10 +1,15 @@
 <map id="CElement::getKind" name="CElement::getKind">
-<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="221,29,385,71"/>
-<area shape="rect" id="node4" href="$classCElement.html#af8155fa6281cb35f6794819132c091a6" title="CElement::dumpContent" alt="" coords="213,95,393,122"/>
-<area shape="rect" id="node5" href="$classCElement.html#a8c87fea54766f49f45346713d9d09880" title="CElement::showProperties" alt="" coords="208,146,397,173"/>
-<area shape="rect" id="node6" href="$classCElement.html#a893e7d2d24391fd0279245c7bda1e468" title="CElement::getQualifiedPath" alt="" coords="205,197,401,223"/>
-<area shape="rect" id="node8" href="$classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10" title="CInstanceConfigurableElement\l::getKind" alt="" coords="193,248,412,289"/>
-<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="481,29,639,71"/>
-<area shape="rect" id="node7" href="$classCElement.html#a442be4dd4096eafb92adff5a41b70636" title="CElement::listQualifiedPaths" alt="" coords="460,197,660,223"/>
-<area shape="rect" id="node9" href="$classCParameterHandle.html#aa7a0f6b334003b2aeec2fdfa9e9969ce" title="CParameterHandle::getKind" alt="" coords="461,255,659,282"/>
+<area shape="rect" id="node2" href="$classCConfigurableElement.html#a0e3feb8a7b18a3291ec960c9726b4eaf" title="CConfigurableElement\l::serializeXmlSettings" alt="" coords="498,135,662,177"/>
+<area shape="rect" id="node6" href="$classCElement.html#af8155fa6281cb35f6794819132c091a6" title="CElement::dumpContent" alt="" coords="218,56,398,83"/>
+<area shape="rect" id="node7" href="$classCElement.html#a8c87fea54766f49f45346713d9d09880" title="CElement::showProperties" alt="" coords="213,107,403,133"/>
+<area shape="rect" id="node8" href="$classCElement.html#a893e7d2d24391fd0279245c7bda1e468" title="CElement::getQualifiedPath" alt="" coords="210,5,406,32"/>
+<area shape="rect" id="node10" href="$classCElement.html#abd9e5e3b9b21652902a6fc151cce76f7" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="193,208,423,235"/>
+<area shape="rect" id="node13" href="$classElementHandle.html#a1cc967ca77b7f3d0dfed70285f05dfdf" title="ElementHandle::getKind" alt="" coords="220,259,396,285"/>
+<area shape="rect" id="node14" href="$classCInstanceConfigurableElement.html#aa5e8dc0766c8bb045e61c577e114af10" title="CInstanceConfigurableElement\l::getKind" alt="" coords="199,310,417,351"/>
+<area shape="rect" id="node3" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="740,70,899,111"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="737,135,901,177"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="737,201,901,242"/>
+<area shape="rect" id="node9" href="$classCElement.html#a442be4dd4096eafb92adff5a41b70636" title="CElement::listQualifiedPaths" alt="" coords="480,5,680,32"/>
+<area shape="rect" id="node11" href="$classElementHandle.html#a364115ffa9f7e6e718b586b2da72e1e4" title="Gets element structure description as XML string. " alt="" coords="475,201,685,242"/>
+<area shape="rect" id="node12" href="$classCInstanceConfigurableElement.html#a98adbaeeac4aa99b44b50f6634b405bc" title="Returns Xml element name used for element XML importing/exporting functionalities. " alt="" coords="471,266,689,307"/>
 </map>

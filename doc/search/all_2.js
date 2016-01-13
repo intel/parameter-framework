@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['backgroundremoteprocessorserver',['BackgroundRemoteProcessorServer',['../classBackgroundRemoteProcessorServer.html',1,'BackgroundRemoteProcessorServer'],['../classBackgroundRemoteProcessorServer.html#a7c87dd6678cbca16ed2d1800332bfad3',1,'BackgroundRemoteProcessorServer::BackgroundRemoteProcessorServer()']]],
+  ['backgroundremoteprocessorserver',['BackgroundRemoteProcessorServer',['../classBackgroundRemoteProcessorServer.html',1,'BackgroundRemoteProcessorServer'],['../classBackgroundRemoteProcessorServer.html#a843f44a059fae8e93acc9ca75589531a',1,'BackgroundRemoteProcessorServer::BackgroundRemoteProcessorServer()']]],
   ['backgroundremoteprocessorserverbuilder_2eh',['BackgroundRemoteProcessorServerBuilder.h',['../BackgroundRemoteProcessorServerBuilder_8h.html',1,'']]],
   ['backsynchronizer',['BackSynchronizer',['../ParameterMgr_8cpp.html#a4d83c4fa5f13c68085eabf6732cc4fd3',1,'ParameterMgr.cpp']]],
   ['backsynchronizer_2eh',['BackSynchronizer.h',['../BackSynchronizer_8h.html',1,'']]],
@@ -8,6 +8,8 @@ var searchData=
   ['baseparameter_2ecpp',['BaseParameter.cpp',['../BaseParameter_8cpp.html',1,'']]],
   ['baseparameter_2eh',['BaseParameter.h',['../BaseParameter_8h.html',1,'']]],
   ['belongsto',['belongsTo',['../classCConfigurableElement.html#ac5508cd538517568bebc5448179d9d76',1,'CConfigurableElement']]],
+  ['binarycopy',['binaryCopy',['../namespaceutility.html#ad60661d9c1edc5053bee3cdb84b895d7',1,'utility']]],
+  ['binarycopy_2ehpp',['BinaryCopy.hpp',['../BinaryCopy_8hpp.html',1,'']]],
   ['bitparameter_2ecpp',['BitParameter.cpp',['../BitParameter_8cpp.html',1,'']]],
   ['bitparameter_2eh',['BitParameter.h',['../BitParameter_8h.html',1,'']]],
   ['bitparameterblock_2ecpp',['BitParameterBlock.cpp',['../BitParameterBlock_8cpp.html',1,'']]],

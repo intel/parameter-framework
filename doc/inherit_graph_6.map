@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classcore_1_1log_1_1Context.html" title="Log formatter which provide context indentation. " alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node1" href="$classCommandHandlerInterface.html" title="Class used to send commands to a parameter framework. " alt="" coords="5,5,200,32"/>
+<area shape="rect" id="node2" href="$classCommandHandlerWrapper.html" title="CommandHandlerWrapper" alt="" coords="248,5,439,32"/>
 </map>

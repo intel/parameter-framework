@@ -1,6 +1,9 @@
 <map id="CConfigurableElement::getFootPrint" name="CConfigurableElement::getFootPrint">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#ab7057b4cf2482e15666f538211ac65c5" title="CAreaConfiguration\l::CAreaConfiguration" alt="" coords="222,5,377,47"/>
-<area shape="rect" id="node3" href="$classCConfigurableElement.html#a814cb153fd77968c68192acaf78db6b9" title="CConfigurableElement\l::setOffset" alt="" coords="217,95,381,136"/>
-<area shape="rect" id="node4" href="$classCConfigurableElement.html#a0282019ab1caa1ada2b637562a1d8479" title="CConfigurableElement\l::getFootprintAsString" alt="" coords="217,160,381,201"/>
-<area shape="rect" id="node5" href="$classCConfigurableElement.html#a0497959fbd4ecdcc9911ed6548f73fa1" title="CConfigurableElement\l::showProperties" alt="" coords="429,160,593,201"/>
+<area shape="rect" id="node2" href="$classCAreaConfiguration.html#ab7057b4cf2482e15666f538211ac65c5" title="CAreaConfiguration\l::CAreaConfiguration" alt="" coords="228,5,383,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#ab18c96398bdb79afbcc3dd2e607e4a4e" title="Gets the element as an array of bytes. " alt="" coords="223,71,387,112"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#ac023d140783c1b1d980ec14da15855f2" title="Sets the element as if it was an array of bytes. " alt="" coords="223,136,387,177"/>
+<area shape="rect" id="node5" href="$classCConfigurableElement.html#a814cb153fd77968c68192acaf78db6b9" title="CConfigurableElement\l::setOffset" alt="" coords="223,225,387,267"/>
+<area shape="rect" id="node6" href="$classCConfigurableElement.html#a0282019ab1caa1ada2b637562a1d8479" title="CConfigurableElement\l::getFootprintAsString" alt="" coords="223,291,387,332"/>
+<area shape="rect" id="node8" href="$classElementHandle.html#af4483c3a2d68a6a9623df051725c116f" title="ElementHandle::getSize" alt="" coords="217,357,393,383"/>
+<area shape="rect" id="node7" href="$classCConfigurableElement.html#a0497959fbd4ecdcc9911ed6548f73fa1" title="CConfigurableElement\l::showProperties" alt="" coords="441,291,605,332"/>
 </map>

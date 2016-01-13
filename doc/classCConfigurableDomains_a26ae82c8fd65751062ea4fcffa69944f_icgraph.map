@@ -1,3 +1,6 @@
 <map id="CConfigurableDomains::deleteDomain" name="CConfigurableDomains::deleteDomain">
 <area shape="rect" id="node2" href="$classCConfigurableDomains.html#a35d3b509ee35cb374fc7a2d1b678c203" title="CConfigurableDomains\l::addDomain" alt="" coords="221,5,389,47"/>
+<area shape="rect" id="node3" href="$classCParameterMgr.html#a3b70c39ad6c10dfb6635f60e49f1c797" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="437,5,648,47"/>
+<area shape="rect" id="node4" href="$classCParameterMgrFullConnector.html#aabb2c632ebbc334427a78b51225082c4" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="696,5,904,47"/>
+<area shape="rect" id="node5" href="$classCParameterMgrFullConnector.html#acafa558d331e578fadff98def13d2bc6" title="Method that imports a single Configurable Domain from an string describing an Xml source..." alt="" coords="952,5,1160,47"/>
 </map>

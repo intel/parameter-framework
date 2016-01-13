@@ -1,5 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$structdetails_1_1ConvertionAllowed.html" title="details::ConvertionAllowed\&lt; T \&gt;" alt="" coords="140,5,367,32"/>
-<area shape="rect" id="node3" href="$structdetails_1_1ConvertionAllowedVia.html" title="details::ConvertionAllowed\lVia\&lt; T, Via \&gt;" alt="" coords="159,57,348,98"/>
-<area shape="rect" id="node4" href="$structisVector.html" title="isVector\&lt; T \&gt;" alt="" coords="198,123,309,149"/>
+<area shape="rect" id="node1" href="$classIRemoteCommandHandler.html" title="IRemoteCommandHandler" alt="" coords="5,13,196,39"/>
+<area shape="rect" id="node2" href="$classTRemoteCommandHandlerTemplate.html" title="TRemoteCommandHandlerTemplate\l\&lt; CCommandParser \&gt;" alt="" coords="244,5,497,47"/>
 </map>

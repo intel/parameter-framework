@@ -1,3 +1,9 @@
 <map id="CParameterMgrFullConnector::importSingleDomainXml" name="CParameterMgrFullConnector::importSingleDomainXml">
-<area shape="rect" id="node2" href="$classCParameterMgr.html#a3b70c39ad6c10dfb6635f60e49f1c797" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="261,5,472,47"/>
+<area shape="rect" id="node2" href="$classCParameterMgr.html#a3b70c39ad6c10dfb6635f60e49f1c797" title="Method that imports a single Configurable Domain from an Xml source. " alt="" coords="261,78,472,119"/>
+<area shape="rect" id="node3" href="$classCConfigurableDomains.html#a35d3b509ee35cb374fc7a2d1b678c203" title="CConfigurableDomains\l::addDomain" alt="" coords="520,78,688,119"/>
+<area shape="rect" id="node4" href="$classCElement.html#a49581fb6412e29e932962acd82d52d6a" title="CElement::getName" alt="" coords="744,5,896,32"/>
+<area shape="rect" id="node5" href="$classCConfigurableDomains.html#a4dce38a1560b6e33871d3fa2d85cc449" title="CConfigurableDomains\l::findConfigurableDomain" alt="" coords="952,78,1135,119"/>
+<area shape="rect" id="node7" href="$classCConfigurableDomains.html#a26ae82c8fd65751062ea4fcffa69944f" title="Delete a domain by name. " alt="" coords="736,107,904,149"/>
+<area shape="rect" id="node8" href="$classCElement.html#ac2ad66ee438a4a0c1390b7388874fe72" title="CElement::addChild" alt="" coords="747,173,893,200"/>
+<area shape="rect" id="node6" href="$classCElement.html#a8595814a3159f32f874269907e70b260" title="CElement::findChild" alt="" coords="1183,85,1329,112"/>
 </map>

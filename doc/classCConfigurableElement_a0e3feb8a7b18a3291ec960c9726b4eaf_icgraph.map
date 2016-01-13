@@ -1,3 +1,5 @@
 <map id="CConfigurableElement::serializeXmlSettings" name="CConfigurableElement::serializeXmlSettings">
-<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="217,29,376,71"/>
+<area shape="rect" id="node2" href="$classCAreaConfiguration.html#a6b8c95a79343ee9823b026d74184e798" title="CAreaConfiguration\l::serializeXmlSettings" alt="" coords="220,5,379,47"/>
+<area shape="rect" id="node3" href="$classCConfigurableElement.html#ac5bbe709d02fa6af3469a91a72edcd06" title="CConfigurableElement\l::fromXml" alt="" coords="217,71,381,112"/>
+<area shape="rect" id="node4" href="$classCConfigurableElement.html#a2331dbc00f60d4d19a5686bbb519c473" title="CConfigurableElement\l::toXml" alt="" coords="217,136,381,177"/>
 </map>

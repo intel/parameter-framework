@@ -1,6 +1,7 @@
 var searchData=
 [
   ['readbuffer',['readBuffer',['../classCParameterBlackboard.html#a9ddc4545cb30be9e77acfd59830af8c3',1,'CParameterBlackboard']]],
+  ['readbytes',['readBytes',['../classCParameterBlackboard.html#a6c450122777ee781b76a88f47d4d5d7c',1,'CParameterBlackboard']]],
   ['readdata',['readData',['../classCMessage.html#ae5221bcb6b376feb894fcda7e2969b66',1,'CMessage']]],
   ['readinteger',['readInteger',['../classCParameterBlackboard.html#aa87ec78e61424a92250a172b68544071',1,'CParameterBlackboard']]],
   ['readstring',['readString',['../classCParameterBlackboard.html#a09182c2726481979101b7be0be944483',1,'CParameterBlackboard::readString()'],['../classCMessage.html#aa01efca25f3bf723c4b1bc8859b061c2',1,'CMessage::readString()']]],

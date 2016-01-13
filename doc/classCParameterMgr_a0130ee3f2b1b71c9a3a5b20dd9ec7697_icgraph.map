@@ -1,4 +1,3 @@
 <map id="CParameterMgr::setForceNoRemoteInterface" name="CParameterMgr::setForceNoRemoteInterface">
-<area shape="rect" id="node2" href="$classCParameterMgrFullConnector.html#ac355423015d0b332964de8e4cd5fda8b" title="Forcefully disable the remote interface or cancel this policy. " alt="" coords="273,5,481,47"/>
-<area shape="rect" id="node3" href="$classCParameterMgrPlatformConnector.html#adf96da00afd6f880db983a5580d61c09" title="Forcefully disable the remote interface or cancel this policy. " alt="" coords="256,71,499,112"/>
+<area shape="rect" id="node2" href="$classCParameterMgrPlatformConnector.html#adf96da00afd6f880db983a5580d61c09" title="Forcefully disable the remote interface or cancel this policy. " alt="" coords="256,5,499,47"/>
 </map>

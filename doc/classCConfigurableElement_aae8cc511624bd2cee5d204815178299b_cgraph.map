@@ -1,0 +1,9 @@
+<map id="CConfigurableElement::structureToXml" name="CConfigurableElement::structureToXml">
+<area shape="rect" id="node2" href="$classCElement.html#a7ce1bde0fda5cf412b652000cab473e4" title="CElement::toXml" alt="" coords="217,81,347,108"/>
+<area shape="rect" id="node3" href="$classCElement.html#a581660a35394ecc99fe7128f9548c3d0" title="Fill the Description field of the Xml Element during XML composing. " alt="" coords="395,45,603,86"/>
+<area shape="rect" id="node6" href="$classCElement.html#aee22d6b038603b6481a8f029bf59ff3d" title="Serialize the children to XML. " alt="" coords="409,111,588,137"/>
+<area shape="rect" id="node4" href="$classCElement.html#a83c3c6e07b015c44706edf4bb8fc41c2" title="CElement::getDescription" alt="" coords="654,5,839,32"/>
+<area shape="rect" id="node5" href="$classCXmlElement.html#ac5f4a8f3f29497167af496dccb7fa846" title="Set attribute. " alt="" coords="651,56,843,83"/>
+<area shape="rect" id="node7" href="$classCXmlElement.html#ab496b728efa782727a27b294858e8fc6" title="CXmlElement::createChild" alt="" coords="653,111,841,137"/>
+<area shape="rect" id="node8" href="$classCXmlElement.html#a3b230e1c8e92537da6a1a365dc1e71b2" title="CXmlElement::setXmlElement" alt="" coords="891,111,1104,137"/>
+</map>

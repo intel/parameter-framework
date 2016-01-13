@@ -1,3 +1,98 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structTest.html" title="Test" alt="" coords="5,5,52,32"/>
+<area shape="rect" id="node1" href="$classcore_1_1log_1_1ILogger.html" title="Logger interface provided by client. " alt="" coords="193,153,325,179"/>
+<area shape="rect" id="node2" href="$classCParameterMgrLogger.html" title="CParameterMgrLogger\&lt; T \&gt;" alt="" coords="453,182,656,209"/>
+<area shape="rect" id="node3" href="$classCParameterMgrLogger.html" title="CParameterMgrLogger\l\&lt; CParameterMgrPlatformConnector \&gt;" alt="" coords="419,116,691,157"/>
+<area shape="rect" id="node4" href="$classIMapper.html" title="IMapper" alt="" coords="518,1537,591,1563"/>
+<area shape="rect" id="node5" href="$classCSubsystem.html" title="CSubsystem" alt="" coords="807,1790,909,1817"/>
+<area shape="rect" id="node6" href="$classCVirtualSubsystem.html" title="CVirtualSubsystem" alt="" coords="1075,1790,1219,1817"/>
+<area shape="rect" id="node7" href="$classIRemoteCommand.html" title="IRemoteCommand" alt="" coords="484,878,625,905"/>
+<area shape="rect" id="node8" href="$classCRequestMessage.html" title="CRequestMessage" alt="" coords="789,878,927,905"/>
+<area shape="rect" id="node9" href="$classISelectionCriterionInterface.html" title="ISelectionCriterionInterface" alt="" coords="162,979,357,1006"/>
+<area shape="rect" id="node10" href="$classCSelectionCriterion.html" title="CSelectionCriterion" alt="" coords="483,979,627,1006"/>
+<area shape="rect" id="node11" href="$classISelectionCriterionTypeInterface.html" title="ISelectionCriterionTypeInterface" alt="" coords="148,1030,371,1057"/>
+<area shape="rect" id="node12" href="$classCSelectionCriterionType.html" title="CSelectionCriterionType" alt="" coords="469,1030,641,1057"/>
+<area shape="rect" id="node13" href="$classIXmlSink.html" title="IXmlSink" alt="" coords="15,1359,91,1386"/>
+<area shape="rect" id="node14" href="$classCElement.html" title="CElement" alt="" coords="217,1385,301,1411"/>
+<area shape="rect" id="node15" href="$classCComponentLibrary.html" title="CComponentLibrary" alt="" coords="480,1587,629,1614"/>
+<area shape="rect" id="node16" href="$classCConfigurableDomain.html" title="CConfigurableDomain" alt="" coords="474,1638,635,1665"/>
+<area shape="rect" id="node17" href="$classCConfigurableDomains.html" title="CConfigurableDomains" alt="" coords="471,1689,639,1715"/>
+<area shape="rect" id="node18" href="$classCConfigurableElement.html" title="CConfigurableElement" alt="" coords="473,1841,637,1867"/>
+<area shape="rect" id="node29" href="$classCDomainConfiguration.html" title="CDomainConfiguration" alt="" coords="471,1739,638,1766"/>
+<area shape="rect" id="node30" href="$classCEnumValuePair.html" title="CEnumValuePair" alt="" coords="491,1790,618,1817"/>
+<area shape="rect" id="node31" href="$classCKindElement.html" title="CKindElement" alt="" coords="499,1081,610,1107"/>
+<area shape="rect" id="node37" href="$classCParameterAdaptation.html" title="CParameterAdaptation" alt="" coords="471,1233,639,1259"/>
+<area shape="rect" id="node40" href="$classCParameterFrameworkConfiguration.html" title="CParameterFrameworkConfiguration" alt="" coords="429,1131,681,1158"/>
+<area shape="rect" id="node41" href="$classCParameterMgr.html" title="CParameterMgr" alt="" coords="493,1182,616,1209"/>
+<area shape="rect" id="node42" href="$classCRule.html" title="CRule" alt="" coords="526,1283,583,1310"/>
+<area shape="rect" id="node45" href="$classCSelectionCriteria.html" title="CSelectionCriteria" alt="" coords="487,1334,623,1361"/>
+<area shape="rect" id="node46" href="$classCSelectionCriteriaDefinition.html" title="CSelectionCriteriaDefinition" alt="" coords="457,1435,653,1462"/>
+<area shape="rect" id="node47" href="$classCSelectionCriterionLibrary.html" title="CSelectionCriterionLibrary" alt="" coords="461,1486,648,1513"/>
+<area shape="rect" id="node48" href="$classCTypeElement.html" title="CTypeElement" alt="" coords="499,1385,611,1411"/>
+<area shape="rect" id="node19" href="$classCInstanceConfigurableElement.html" title="CInstanceConfigurableElement" alt="" coords="749,1891,967,1918"/>
+<area shape="rect" id="node28" href="$classCSystemClass.html" title="CSystemClass" alt="" coords="801,1841,915,1867"/>
+<area shape="rect" id="node20" href="$classCBaseParameter.html" title="CBaseParameter" alt="" coords="1081,1891,1212,1918"/>
+<area shape="rect" id="node25" href="$classCBitParameterBlock.html" title="CBitParameterBlock" alt="" coords="1072,1942,1221,1969"/>
+<area shape="rect" id="node26" href="$classCComponent.html" title="CComponent" alt="" coords="1093,1993,1200,2019"/>
+<area shape="rect" id="node27" href="$classCParameterBlock.html" title="CParameterBlock" alt="" coords="1081,1841,1213,1867"/>
+<area shape="rect" id="node21" href="$classCBitParameter.html" title="CBitParameter" alt="" coords="1369,1841,1483,1867"/>
+<area shape="rect" id="node22" href="$classCParameter.html" title="CParameter" alt="" coords="1377,1891,1475,1918"/>
+<area shape="rect" id="node24" href="$classCStringParameter.html" title="CStringParameter" alt="" coords="1358,1942,1494,1969"/>
+<area shape="rect" id="node23" href="$classCArrayParameter.html" title="CArrayParameter" alt="" coords="1617,1891,1749,1918"/>
+<area shape="rect" id="node32" href="$classCFrameworkConfigurationGroup.html" title="CFrameworkConfigurationGroup" alt="" coords="746,1131,970,1158"/>
+<area shape="rect" id="node33" href="$classCFrameworkConfigurationLocation.html" title="CFrameworkConfigurationLocation" alt="" coords="739,929,977,955"/>
+<area shape="rect" id="node34" href="$classCPluginLocation.html" title="CPluginLocation" alt="" coords="797,979,919,1006"/>
+<area shape="rect" id="node35" href="$classCSubsystemPlugins.html" title="CSubsystemPlugins" alt="" coords="784,1030,932,1057"/>
+<area shape="rect" id="node36" href="$classCXmlFileIncluderElement.html" title="CXmlFileIncluderElement" alt="" coords="769,1081,947,1107"/>
+<area shape="rect" id="node38" href="$classCLinearParameterAdaptation.html" title="CLinearParameterAdaptation" alt="" coords="755,1182,961,1209"/>
+<area shape="rect" id="node39" href="$classCLogarithmicParameterAdaptation.html" title="This class is used to perform a logarithmic adapation of type: (slopeNumerator / slopeDenominator) * ..." alt="" coords="1025,1182,1268,1209"/>
+<area shape="rect" id="node43" href="$classCCompoundRule.html" title="CCompoundRule" alt="" coords="795,1233,921,1259"/>
+<area shape="rect" id="node44" href="$classCSelectionCriterionRule.html" title="CSelectionCriterionRule" alt="" coords="773,1283,943,1310"/>
+<area shape="rect" id="node49" href="$classCBitParameterBlockType.html" title="CBitParameterBlockType" alt="" coords="769,1385,947,1411"/>
+<area shape="rect" id="node50" href="$classCBitParameterType.html" title="CBitParameterType" alt="" coords="787,1435,929,1462"/>
+<area shape="rect" id="node51" href="$classCComponentInstance.html" title="CComponentInstance" alt="" coords="778,1486,938,1513"/>
+<area shape="rect" id="node52" href="$classCComponentType.html" title="CComponentType" alt="" coords="791,1537,925,1563"/>
+<area shape="rect" id="node53" href="$classCInstanceDefinition.html" title="CInstanceDefinition" alt="" coords="785,1587,931,1614"/>
+<area shape="rect" id="node54" href="$classCParameterBlockType.html" title="CParameterBlockType" alt="" coords="778,1638,938,1665"/>
+<area shape="rect" id="node55" href="$classCParameterType.html" title="CParameterType" alt="" coords="795,1689,921,1715"/>
+<area shape="rect" id="node61" href="$classCStringParameterType.html" title="CStringParameterType" alt="" coords="776,1334,940,1361"/>
+<area shape="rect" id="node56" href="$classCBooleanParameterType.html" title="CBooleanParameterType" alt="" coords="1057,1689,1236,1715"/>
+<area shape="rect" id="node57" href="$classCEnumParameterType.html" title="CEnumParameterType" alt="" coords="1065,1739,1228,1766"/>
+<area shape="rect" id="node58" href="$classCFixedPointParameterType.html" title="CFixedPointParameterType" alt="" coords="1051,1537,1242,1563"/>
+<area shape="rect" id="node59" href="$classCFloatingPointParameterType.html" title="CFloatingPointParameterType" alt="" coords="1043,1587,1251,1614"/>
+<area shape="rect" id="node60" href="$classCIntegerParameterType.html" title="CIntegerParameterType" alt="" coords="1061,1638,1232,1665"/>
+<area shape="rect" id="node62" href="$classIXmlSource.html" title="IXmlSource" alt="" coords="5,1410,100,1437"/>
+<area shape="rect" id="node63" href="$classutility_1_1NonCopyable.html" title="Base class for private inheritance to make the derived class non copyable. " alt="" coords="185,574,333,601"/>
+<area shape="rect" id="node64" href="$classCBackSynchronizer.html" title="CBackSynchronizer" alt="" coords="482,283,627,310"/>
+<area shape="rect" id="node67" href="$classCConfigurableElementAggregator.html" title="CConfigurableElementAggregator" alt="" coords="437,422,673,449"/>
+<area shape="rect" id="node68" href="$classCElementBuilder.html" title="CElementBuilder" alt="" coords="491,473,619,499"/>
+<area shape="rect" id="node76" href="$classCMessage.html" title="CMessage" alt="" coords="511,726,599,753"/>
+<area shape="rect" id="node78" href="$classcore_1_1log_1_1Logger.html" title="Application logger object (Thread unsafe) Provide contextualisable logging API. " alt="" coords="490,523,619,550"/>
+<area shape="rect" id="node79" href="$classCParameterBlackboard.html" title="CParameterBlackboard" alt="" coords="470,625,639,651"/>
+<area shape="rect" id="node80" href="$classCXmlDocSink.html" title="The CXmlDocSink class defines how to use a CXmlDocSource. " alt="" coords="501,574,608,601"/>
+<area shape="rect" id="node83" href="$classCXmlDocSource.html" title="The CXmlDocSource is used by CXmlDocSink. " alt="" coords="492,675,617,702"/>
+<area shape="rect" id="node85" href="$classDynamicLibrary.html" title="DynamicLibrary" alt="" coords="494,777,615,803"/>
+<area shape="rect" id="node86" href="$structPfwHandler__.html" title="PfwHandler_" alt="" coords="505,827,605,854"/>
+<area shape="rect" id="node87" href="$classTokenizer.html" title="Tokenizer class. " alt="" coords="514,929,595,955"/>
+<area shape="rect" id="node88" href="$classutility_1_1ErrorContext.html" title="utility::ErrorContext" alt="" coords="483,233,627,259"/>
+<area shape="rect" id="node65" href="$classCHardwareBackSynchronizer.html" title="CHardwareBackSynchronizer" alt="" coords="755,143,961,170"/>
+<area shape="rect" id="node66" href="$classCSimulatedBackSynchronizer.html" title="CSimulatedBackSynchronizer" alt="" coords="753,194,963,221"/>
+<area shape="rect" id="node69" href="$classCFileIncluderElementBuilder.html" title="This is the XmlFileIncluderElement builder class. " alt="" coords="759,377,957,403"/>
+<area shape="rect" id="node70" href="$classCSubsystemElementBuilder.html" title="CSubsystemElementBuilder" alt="" coords="758,427,958,454"/>
+<area shape="rect" id="node71" href="$classTElementBuilderTemplate.html" title="TElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="766,479,950,520"/>
+<area shape="rect" id="node72" href="$classTKindElementBuilderTemplate.html" title="TKindElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="753,544,963,585"/>
+<area shape="rect" id="node73" href="$classTLoggingElementBuilderTemplate.html" title="Builder for elements which need logger at construction. " alt="" coords="741,609,975,651"/>
+<area shape="rect" id="node74" href="$classTLoggingElementBuilderTemplate.html" title="TLoggingElementBuilderTemplate\l\&lt; CVirtualSubsystem \&gt;" alt="" coords="741,245,975,287"/>
+<area shape="rect" id="node75" href="$classTNamedElementBuilderTemplate.html" title="TNamedElementBuilderTemplate\l\&lt; ElementType \&gt;" alt="" coords="743,311,973,352"/>
+<area shape="rect" id="node77" href="$classCAnswerMessage.html" title="CAnswerMessage" alt="" coords="791,827,925,854"/>
+<area shape="rect" id="node81" href="$classCXmlMemoryDocSink.html" title="Sink class used to parse an xml document and instanciate parameter&#45;framework structures. " alt="" coords="779,726,937,753"/>
+<area shape="rect" id="node82" href="$classCXmlStreamDocSink.html" title="Sink class that writes the content of any CXmlDocSource into a std::string. " alt="" coords="781,675,935,702"/>
+<area shape="rect" id="node84" href="$classCXmlMemoryDocSource.html" title="Source class that uses parameter&#45;framework&#39;s structures to create an xml document. " alt="" coords="769,777,947,803"/>
+<area shape="rect" id="node89" href="$classCParameterAccessContext.html" title="CParameterAccessContext" alt="" coords="761,93,955,119"/>
+<area shape="rect" id="node91" href="$classCXmlSerializingContext.html" title="Class that gather errors during serialization. " alt="" coords="773,42,943,69"/>
+<area shape="rect" id="node90" href="$classCConfigurationAccessContext.html" title="CConfigurationAccessContext" alt="" coords="1041,93,1252,119"/>
+<area shape="rect" id="node92" href="$classCXmlElementSerializingContext.html" title="CXmlElementSerializingContext" alt="" coords="1035,42,1258,69"/>
+<area shape="rect" id="node93" href="$classCXmlDomainSerializingContext.html" title="CXmlDomainSerializingContext" alt="" coords="1316,71,1536,98"/>
+<area shape="rect" id="node96" href="$classCXmlParameterSerializingContext.html" title="CXmlParameterSerializing\lContext" alt="" coords="1333,5,1519,47"/>
+<area shape="rect" id="node94" href="$classCXmlDomainExportContext.html" title="CXmlDomainExportContext" alt="" coords="1585,97,1781,123"/>
+<area shape="rect" id="node95" href="$classCXmlDomainImportContext.html" title="CXmlDomainImportContext" alt="" coords="1584,46,1781,73"/>
 </map>

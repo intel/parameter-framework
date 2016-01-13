@@ -17,6 +17,9 @@ var searchData=
   ['element_2eh',['Element.h',['../Element_8h.html',1,'']]],
   ['elementbuilder_2eh',['ElementBuilder.h',['../ElementBuilder_8h.html',1,'']]],
   ['elementbuildertemplate_2eh',['ElementBuilderTemplate.h',['../ElementBuilderTemplate_8h.html',1,'']]],
+  ['elementhandle',['ElementHandle',['../classElementHandle.html',1,'ElementHandle'],['../classCParameterMgr.html#a2823abe6f334b8975db896ab8126448c',1,'CParameterMgr::ElementHandle()'],['../classElementHandle.html#ae17fa03de09d2f9b1a318e3cc79cc6ec',1,'ElementHandle::ElementHandle()']]],
+  ['elementhandle_2ecpp',['ElementHandle.cpp',['../ElementHandle_8cpp.html',1,'']]],
+  ['elementhandle_2eh',['ElementHandle.h',['../ElementHandle_8h.html',1,'']]],
   ['elementlibrary_2ecpp',['ElementLibrary.cpp',['../ElementLibrary_8cpp.html',1,'']]],
   ['elementlibrary_2eh',['ElementLibrary.h',['../ElementLibrary_8h.html',1,'']]],
   ['elementlibraryset_2ecpp',['ElementLibrarySet.cpp',['../ElementLibrarySet_8cpp.html',1,'']]],
@@ -41,6 +44,6 @@ var searchData=
   ['esuccessanswer',['ESuccessAnswer',['../classCMessage.html#aabccddfc4f9b5c1f13ed5c69cbdf671fa2b50a8950e3540a13a70c002e09aa053',1,'CMessage']]],
   ['excludes',['excludes',['../classCSelectionCriterion.html#a4346a1fe3e5b52ae98213f696998675f',1,'CSelectionCriterion']]],
   ['exportdomainsxml',['exportDomainsXml',['../classCParameterMgrFullConnector.html#ae78229affd940c70277e963b2ca25c59',1,'CParameterMgrFullConnector::exportDomainsXml()'],['../classCParameterMgr.html#a31d1f7c1783003ce3f922ff46f1f8638',1,'CParameterMgr::exportDomainsXml()']]],
-  ['exportelementtoxmlstring',['exportElementToXMLString',['../classCParameterMgr.html#ac8cc8e374d76e8c623b273ce39cf89b1',1,'CParameterMgr']]],
+  ['exportelementtoxmlstring',['exportElementToXMLString',['../classCParameterMgr.html#a83f14b09892d2edf83546d50fe375095',1,'CParameterMgr']]],
   ['exportsingledomainxml',['exportSingleDomainXml',['../classCParameterMgrFullConnector.html#a2efe76abd288839fb11dfb79366f9d3a',1,'CParameterMgrFullConnector::exportSingleDomainXml()'],['../classCParameterMgr.html#a7d317d2ce2408abccaf845b1b2d671b9',1,'CParameterMgr::exportSingleDomainXml()']]]
 ];

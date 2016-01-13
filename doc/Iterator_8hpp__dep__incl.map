@@ -1,4 +1,8 @@
 <map id="utility/Iterator.hpp" name="utility/Iterator.hpp">
-<area shape="rect" id="node2" href="$ParameterBlackboard_8cpp.html" title="parameter/ParameterBlackboard.cpp" alt="" coords="5,80,264,107"/>
-<area shape="rect" id="node3" href="$Message_8cpp.html" title="remote&#45;processor/Message.cpp" alt="" coords="287,80,513,107"/>
+<area shape="rect" id="node2" href="$ConfigurableElement_8cpp.html" title="parameter/ConfigurableElement.cpp" alt="" coords="5,80,260,107"/>
+<area shape="rect" id="node3" href="$ParameterBlackboard_8cpp.html" title="parameter/ParameterBlackboard.cpp" alt="" coords="285,80,543,107"/>
+<area shape="rect" id="node4" href="$Message_8cpp.html" title="remote&#45;processor/Message.cpp" alt="" coords="567,80,792,107"/>
+<area shape="rect" id="node5" href="$BinaryCopy_8hpp.html" title="utility/BinaryCopy.hpp" alt="" coords="816,80,975,107"/>
+<area shape="rect" id="node6" href="$FloatingPointParameterType_8cpp.html" title="parameter/FloatingPointParameter\lType.cpp" alt="" coords="663,155,906,196"/>
+<area shape="rect" id="node7" href="$utility_8cpp.html" title="utility/test/utility.cpp" alt="" coords="931,162,1079,189"/>
 </map>
